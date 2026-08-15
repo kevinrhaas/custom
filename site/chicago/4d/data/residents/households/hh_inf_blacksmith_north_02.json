@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_north_02",
- "name": "The Doyle household — a reconstructed blacksmith (north division)",
+ "name": "The Duffy household — a reconstructed blacksmith (north division)",
  "division": "north",
  "head": "inf_blacksmith_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_north_02",
-   "name": "Owen Doyle",
+   "name": "Edward Duffy",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

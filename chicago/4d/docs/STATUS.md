@@ -1,5 +1,46 @@
 # STATUS
 
+## New 2026-08-15 — the second business-front block, and the second roof each trade was refused
+
+**T-A9.** `blk_south_water_wells` — South Water, LaSalle, Lake, Wells — now carries **eight
+anonymous roofs**, six principal and two yard buildings, on six of its seven free lots, with lot 1
+(the Lake-and-Wells corner) left open and lot 6 held by Rufus Brown's boarding house. **Standing
+roofs 273 → 281; remaining 392 → 384, 46 of them on covered ground** (was 54). Inferred households
+86 → 88, inferred persons 98 → 100. Recorded in L100. **The recipe cleared every placement gate on
+its first run and no tool changed** — the second block in a row to do so, which is what T-A8 said a
+block parcel should now look like.
+
+**THE FINDING IS THAT RULE 6 DOES NOT SAY WHAT IT WAS ASSUMED TO SAY, AND IT IS OPENED AS K28.**
+Read literally, **four** of this block's six dwellings pass all three adoption tests for one trade
+or the other — the D3 *and the D4* for carpenters (one carpenter household stands in a D4, in the
+North Division), the D1 *and the D2* for labourers (four stand in D2s). The rule is silent on how
+many roofs of one block a single trade may take, because no block before this one dealt a trade two
+of its families. One adoption per trade was taken and the other two refused, on the reading that
+rule 6's own opening sentence — the mix is a claim about the town, not about what has been drawn —
+forbids one block's deal from raising a trade's count twice. **That is a choice and is recorded as
+one**, in both census arguments and in L100, so the next parcel meets an argument it can disagree
+with rather than a precedent it has to guess at. K28 is raised to make it code.
+
+**Three documented stores on this block stand INSIDE the platted South Water corridor** — Jones's
+grocery by **4.5 m**, Philo Carpenter's store by **6.6 m**, Peck's store by **8.2 m**; two of the
+three lap no lot of the block at all. T-A7 established that pre-plat records can stand "a metre or
+two proud" of their frontage and measured what that does to occupancy; the intrusion itself had
+never been measured. It cost this parcel nothing — the nearest invented roof to any of the three is
+**7.99 m** against a 3 m gate — so it is opened as **K30** rather than touched inside a block
+parcel. Three named buildings are drawn standing in a street, and either the street, the positions
+or 1835 South Water Street is what is wrong.
+
+**L99's commercial-frontage parcel did not exist.** That entry says the question was opened as a
+ROADMAP parcel; the ID it names was already carrying the confidence-band parcel, so there has been
+a liberty with no work item behind it. It is opened properly as **K29**, and this block is its
+second instance: the programme dealt a log cabin and a plank shanty to the town's busiest
+commercial frontage for the second time running, and three South Water blocks are still open.
+
+**A fourth measurement of K20:** inserting two households renamed **19 of the 98 carried-over
+invented persons**, against 32-of-96 at T-A8, 25-of-94 at T-A2h and 17-of-33-touched at T-A5. No
+grade moved and every `name_basis` kept its pool citation, so this is churn rather than a
+provenance failure — for the fourth block in a row.
+
 ## New 2026-08-15 — five invented houses on the town's business front, and the share-out that put them there
 
 **T-A8**, and it is the first block parcel since T-A5 that actually built a block: T-A6 and T-A7

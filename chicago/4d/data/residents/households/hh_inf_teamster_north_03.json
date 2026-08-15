@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_03",
- "name": "The Stebbins household — a reconstructed teamster (north division)",
+ "name": "The Stiles household — a reconstructed teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_03",
-   "name": "Seth Stebbins",
+   "name": "Abner Stiles",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

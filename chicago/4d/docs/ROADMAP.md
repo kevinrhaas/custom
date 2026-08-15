@@ -103,7 +103,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** |
+| 1 | TOWN | **T-A10…** | one open block per run until the 46 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1077,6 +1077,106 @@ nothing where the dossier is unreachable rather than offering a link that breaks
 cheapest and honest. **Whatever is chosen, a gate should assert that a card's dossier link
 resolves** — a link nobody clicks in the dev tree is exactly how this survived.
 
+### K28 — may one block raise a trade's count twice? · **UNCLAIMED · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
+
+**Phase:** lane 2, data and tools · **Runner:** improve-runner (no Blender)
+
+Rule 6 (the household programme's `method` list) admits an anonymous block roof into the
+inferred-household census where three tests pass: the trade's committed argument calls its own
+count a floor, the roof's family is one this layer already houses that trade in, and the roof's
+division is one it already houses that trade in. **It says nothing about how many roofs of one
+block a single trade may take**, because until T-A9 no block had offered the case.
+
+`blk_south_water_wells` offered it twice over. Four of its six dwellings pass for one trade or
+the other: the **D3 and the D4** for carpenters (this layer houses one carpenter household in a
+D4, in the North Division) and the **D1 and the D2** for labourers (it houses four labourers in
+D2s). T-A9 adopted one per trade and refused the other two, on the reading that rule 6's own
+opening sentence — *the mix is a claim about the TOWN rather than about what has been drawn* —
+forbids a block's deal from raising a trade's count twice. That is written into both census
+arguments and into `docs/LIBERTIES.md` L100 **as a choice**, so the next parcel can read it back
+and disagree with it.
+
+**Why it is not obvious.** Against the cap: the census argues the trade's count from the town's
+building rate and its documented volumes, so letting the drawing move it is fitting the model to
+the evidence — and the tests are per-ROOF, so a block dealt three D1s would take three labouring
+households on a rule that never meant to grant them. For the cap being wrong: method rule 5 says
+house every household, and a household this layer has already argued for and cannot house is a
+worse outcome than two adoptions on one block; a block's family deal comes from a schedule that
+knows nothing whatever about this census, so two passes on one block is a coincidence rather than
+a bias; and the eight roofs of a block are not a meaningful unit — the same two roofs dealt to
+two blocks would both have been adopted without anybody pausing.
+
+**Acceptance:** rule 6 gains a fourth clause **or an explicit statement that there is no cap**,
+in the programme's own `method` list; `tools/generate_inferred_households.py` gates whichever is
+chosen, so the answer is code rather than a habit; the four T-A9 candidates are re-decided under
+it and the two refusals either stand with a reason or are adopted; `tools/check.sh` green.
+
+### K29 — the schedule deals log cabins to the town's commercial frontage · **UNCLAIMED · from T-A8 (L99) and T-A9 (L100)**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender) · **Effort:** M
+
+**L99 said this had been opened as a ROADMAP parcel and it had not.** The ID that entry names
+was already carrying the confidence-band parcel, so the question has been sitting in a liberty
+with no work item behind it since 2026-08-15. This box is that work item; L100 carries the
+corrected pointer.
+
+The 665-roof programme apportions families **by district**. It has no notion of what a street was
+for, so every time this lane reaches a South Water block the schedule deals it ordinary
+dwellings — `blk_south_water_franklin` got five including a D2 plank shanty, and
+`blk_south_water_wells` got six including a D1 log cabin and a D2 shanty. South Water Street was
+where the town's stores, forwarding houses and warehouses stood in 1835; every documented roof on
+or beside both blocks is one of those. Three South Water blocks remain open and the same thing
+will happen on each.
+
+**This is a re-apportionment, not a block parcel**, which is why neither T-A8 nor T-A9 did it:
+T-A6 and T-A7 both started as blocks and finished as schedule changes, and the two cannot share a
+run. The shape is a frontage term in `tools/reconcile_665.py` — a block face's street decides the
+family mix it may be dealt, with the commercial families (C, F, W) weighted onto the business
+front and the meanest dwelling families weighted off it — argued from the reconstruction
+specification's own street hierarchy and from the documented commercial roofs already standing
+there, not invented as a preference.
+
+**It does not license moving anything already standing.** The blocks T-A8 and T-A9 built keep
+their roofs; a re-apportionment changes what the schedule DEALS, and L99 and L100 stay on the
+record as admissions about the two blocks that were filled before the term existed.
+
+**Acceptance:** the frontage term is derived from a committed source rather than authored as a
+constant; `tools/reconcile_665.py --check` re-derives; the family totals of the 665-roof
+programme are unchanged in aggregate (this moves families between schedule units, it does not
+raise or lower the target); the three open South Water blocks visibly change deal; `check.sh`
+green.
+
+### K30 — three documented stores stand in the middle of South Water Street · **UNCLAIMED · from T-A9 · Effort: S to measure, unknown to fix**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
+
+T-A7 established that a record placed from typed coordinates before the plat module existed can
+stand "a metre or two proud" of its own street frontage, and measured what that does to
+**occupancy**. Nobody had measured the intrusion itself. On `blk_south_water_wells`, T-A9 did:
+**H. Jones's grocery stands 4.5 m, Philo Carpenter's South Water Street store 6.6 m and P. F. W.
+Peck's store 8.2 m inside the platted South Water corridor.** Jones's and Carpenter's lap no lot
+of that block at all — they are wholly in the roadway; Peck's laps only lot 6, which Rufus
+Brown's boarding house already holds.
+
+**It is not a block parcel's business and it did not cost T-A9 anything** (the nearest invented
+roof to any of the three is 7.99 m, against a 3 m gate), but it is a claim about the town that
+nothing in the dataset states: three named, documented commercial buildings are drawn standing in
+a street. Either the street's committed centreline or width is wrong on that stretch, or the
+three positions are, or 1835 South Water Street genuinely had stores encroaching on it — which is
+entirely possible on a frontage street of a boom town and would be a **finding**, not a defect,
+if a source said so.
+
+**Start by measuring all fourteen**, not these three: T-A7 counted fourteen committed records
+whose centroid lands in a roadway and named four of them. The distribution is the finding — a
+handful of deep intrusions on one street is a different problem from a uniform half-metre bias
+across the grid, and the fix differs accordingly.
+
+**Acceptance:** every documented structure's intrusion into every platted corridor is measured
+and committed as a derived table; the three cases above are attributed to a cause with reasoning
+recorded; anything invented in the resolution goes to `docs/LIBERTIES.md`; a gate reports the
+figure so it cannot silently grow. **Do not move a documented building to make a number look
+better** — a position with a source outranks a corridor this project derived.
+
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
 **The parcel shape did repeat, and that is the finding.** Appending a block to
@@ -1409,15 +1509,51 @@ with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lo
 · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
 no resident, no sidecar, no mesh and no renderer file.
 
-### T-A9 — `blk_south_water_wells` · **CLAIMED 2026-08-15**
+### T-A9 — `blk_south_water_wells` · **DONE 2026-08-15**
 
-The second block of the South Water row, bounded by South Water, LaSalle, Lake and Wells.
-The schedule at this arrival date deals it **8 roofs — 6 principal + 2 ancillary** across
-seven free lots; `brown_boarding_house` already holds lot 6, the South Water and LaSalle
-corner. No refused family in the deal, so nothing to defer. One block, one run, under the
-rules T-A2h/T-A4/T-A5/T-A6/T-A7 already wrote into the tools.
+The second block of the South Water row — bounded by South Water, LaSalle, Lake and Wells —
+carries **eight roofs, six principal and two ancillary**, on six of its seven free lots.
+`brown_boarding_house` holds lot 6 and the Lake-and-Wells corner is left open. **281 stand and
+384 remain, 46 of them on covered ground.** The recipe cleared every placement gate on its first
+run and **no tool changed**, which under T-A8's own text is what a block parcel is supposed to
+look like now. Two adoptions under rule 6: the D3 one-room cottage on lot 7 becomes the
+fourteenth inferred carpenter household, the D1 log cabin on lot 5 the sixteenth labouring one.
+Full admission in `docs/LIBERTIES.md` **L100**.
 
-### T-A8…T-An — the remaining blocks · **UNCLAIMED**
+**Three findings came out of it that are not the block.**
+
+1. **Both adoptable trades were offered a SECOND roof here, and refusing them was a choice
+   rather than a rule.** Read literally, four of the six dwellings pass rule 6's three tests for
+   one trade or the other — the D3 *and the D4* for carpenters (one carpenter household stands in
+   a D4, in the North Division), the D1 *and the D2* for labourers (four stand in D2s). The rule
+   says nothing about how many roofs of one block a single trade may take, because no parcel
+   before this one was offered the case. One per trade was adopted, on the reading that rule 6's
+   own opening sentence — the mix is a claim about the town, not about what has been drawn —
+   forbids a block's deal from raising a trade's count twice. **That reading is written into both
+   census arguments and into L100 as a choice, not smuggled in as a rule**, and **K28** is raised
+   to settle it.
+2. **Three documented stores on this block stand INSIDE the platted South Water corridor** —
+   Jones's grocery by 4.5 m, Philo Carpenter's store by 6.6 m and Peck's store by 8.2 m. T-A7
+   established that a pre-plat record can stand "a metre or two proud" of its frontage and
+   measured the consequence for *occupancy*; nobody had measured the intrusion itself. Two of the
+   three lap no lot of this block at all. It cost this parcel nothing — the nearest any roof here
+   comes to any of them is 7.99 m against a 3 m gate — so it is recorded and opened as **K30**
+   rather than fixed inside a block parcel.
+3. **L99 said it had opened the commercial-frontage question as a ROADMAP parcel and it had
+   not** — the ID it names was already in use for the confidence-band parcel. The question is
+   real and this block is the second instance of it: the programme apportions families by
+   district and has no notion of what a street was for, so it dealt a log cabin and a plank
+   shanty to the town's busiest commercial frontage for the second time running. Opened properly
+   as **K29**.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (8 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/generated/` (8 flagged
+placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L100 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
+### T-A10…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -1432,14 +1568,15 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A7, on ground the project has coverage for — 61 roofs across ten entries, every
+**Open after T-A9, on ground the project has coverage for — 46 roofs across eight entries, every
 one of them buildable with a lot left open, and every lot of them now checked against the
-buildings that already stand there:** `blk_south_water_franklin` 7 (5P+2A) ·
-`blk_south_water_wells` 8 (6P+2A) · `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
-5 (4P+1A, **carries the one I3 in the whole open set — defer it per T-A3 unless T-I3 has
-landed**) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A) ·
-`blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8
-(6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6).
+buildings that already stand there:** `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
+5 (4P+1A) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A, **carries the one
+I3 in the whole open set — defer it per T-A3 unless T-I3 has landed; the I3 moved here from
+`blk_south_water_clark` when T-A9 re-apportioned, which is exactly why this list is not to be
+trusted**) · `blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) ·
+`blk_randolph_clark` 8 (6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a
+principal roof by T-A6, now a C2).
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block
