@@ -1775,7 +1775,15 @@ rather than an improvement. K20 still owns the fix.
 (5 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L102 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A12…T-An — the remaining blocks · **UNCLAIMED**
+### T-A12 — `blk_south_water_dearborn` · **CLAIMED 2026-08-15 · `steward/t-a12-south-water-dearborn`**
+
+The fifth block of the South Water row, bounded by South Water, State, Lake and Dearborn — and the
+first of the row whose **west** end is the Dearborn Street drawbridge rather than its east. Every
+block before it put its better roofs nearer the east end and T-A11 measured why: the only crossing
+of the main stem in July 1835 stands at the foot of Dearborn. This block is the control that
+separates the two readings of that rule, because on it they point in opposite directions.
+
+### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
