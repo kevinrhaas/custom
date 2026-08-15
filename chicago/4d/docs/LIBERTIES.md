@@ -2558,6 +2558,43 @@ in; until then it is a bound on invention and not a claim about Chicago.
 `recon_1835_blk_randolph_market_*.inferred_1835.footprint`
 **Recorded:** 2026-08-14.
 
+### L98 — The travelled earth is drawn opaquer at your feet than at range, because coverage only averages at range
+
+**Decision:** within 15 m of the eye the opacity with which a street's travelled earth is blended
+over the prairie is scaled by 2.4, capped at the same 0.92 as every other rule here, fading back
+to no scaling at all by 40 m. Nothing else moves: the three traffic classes keep their order and
+their baselines, the ruts-up crown-down modulation is untouched, no recorded ground cover changes,
+and the picture beyond 40 m is arithmetically identical to what L96 left — the harness measures
+every band past the fade unchanged to the decimal.
+
+**Why:** an alpha here is a **coverage fraction** — what share of the ground is bare earth rather
+than grass. That is the right picture of a mixture only where one pixel spans many patches of it.
+At a walker's feet one pixel spans one patch, which in life is either earth or grass, and the
+blend paints instead a uniform wash of grass with a hint of dirt in it. The owner reported exactly
+that, on mobile, on the dev preview with L96's correction already in: the ruts read in the
+mid-distance and the road is simply not there in the near field. Measured standing on a crossing,
+2–40 m scored **1.5 L\* with 30 % of probes perceptible** against 3.4 / 87 % in the very next band
+out; the same probes with the ribbon forced fully opaque score **3.4 L\*** on mobile and 4.3 on
+desktop, so the contrast was sitting in the ribbon's own colour and the shipped alpha was spending
+under half of it. It now reads **3.1 of that 3.4 with 80 % perceptible** on mobile, and 3.2 of 4.3
+with 60 % on desktop, measured on the published mirror.
+
+**Consequence:** a visitor standing on Lake Street sees earth under their feet rather than a wash,
+and what they see there is *more* worn than the same street seen from 100 m away — a gradient with
+no counterpart in the world, made by the renderer and not by the record. It is a compensation for
+what a single pixel can mean, in the same family as L96's sub-pixel rule, and it is the more
+visible of the two because it happens where the visitor is standing. The mean coverage each record
+states is still what the picture shows at the range where a mixture is what a pixel means. This
+entry adds no claim about Chicago: the numbers L79 and L96 admit to inventing are unchanged, and
+this scales one of them by distance from the camera.
+
+**How to resolve:** the honest fix is not a better constant but a textured coverage — earth and
+grass resolved as patches at the scale a near pixel can show, so that the same recorded fraction
+is what the eye integrates rather than what the blender pre-mixes. Until then this stands, and the
+same evidence L79 and L96 ask for would replace the underlying numbers outright.
+
+**Recorded:** 2026-08-15.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

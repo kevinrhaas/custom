@@ -1,5 +1,72 @@
 # STATUS
 
+## Fixed 2026-08-15 — the road at your feet, the two stations that never stood on one, and a gate that abstained exactly when it should have shouted
+
+**R-BUG3, owner-reported on mobile, on the dev preview with R-BUG2's fix already in:** standing on
+Franklin Street approaching Randolph, the wheel ruts read in the mid-distance and *"it should not
+be invisible when I am standing on it."* True. The near band now scores **3.1 L\* with 80 % of
+probes perceptible** on mobile and 3.2 / 60 % on desktop, against **1.5 / 30 %** before, measured
+on the published mirror. Every band past 40 m is untouched by the near-field fix.
+
+**The parcel's first move measured nothing, and that is the finding.** It said: add a `[2, 40]`
+band, expect it to fail, and that failure is the acceptance. Added, and the band collected **one
+probe** at `south_water` and **none** at `from_above` — because **neither gated station stands on
+a road**. `south_water` is **101 m from the centreline it is named after** (that is T-V2, now
+measured rather than suspected) and 17 m from the nearest one; `from_above` is 175 m up. The window
+was wrong in two dimensions, distance and pose, and the failing gate could only show one of them.
+There is now a third station: `lake_market`, reached the way a visitor reaches it — by clicking a
+verified street-control intersection in the Go to tab — which then turns to look along the
+centreline underfoot, a bearing read off the committed path. The arrival pose alone was not enough
+either: the shipped jump faces a fixed bearing, which at a crossing points diagonally into the
+block and put **zero** road probes inside 100 m.
+
+**The prime suspect is refuted, and no grass was cleared.** The parcel named near-field sward
+occlusion as most likely, with an explicit non-licence against widening a clearing corridor to win
+a score. The harness now re-shoots its road markers with the sward and the trees hidden, so an
+occluded probe is distinguishable from an absent one — and in the near band **all ten probes are
+marked either way**. Nothing is hiding the road. `flora.js` is untouched, no recorded ground cover
+moved, and the non-licence never had to be tested. Every band now reports the discrimination
+(`seen N of M projected, K clear of flora`), because telling occlusion from flatness is the
+distinction three gates in a row failed to draw.
+
+**The fault, stated more precisely than "the alpha is too low".** An alpha here is a **coverage
+fraction** — what share of the ground is bare earth rather than grass — and that is the right
+picture of a mixture only where one pixel spans many patches of it. At a walker's feet one pixel
+spans one patch, which in life is either earth or grass, and the blend paints a uniform wash of
+grass-with-a-hint-of-dirt instead. The harness measures both ends of it: the same near probes with
+the ribbon forced **fully opaque** score **3.4 L\***, so the contrast was sitting in the ribbon's
+own colour and the shipped alpha was spending under half of it. The near field also has less to spend — the
+ground underfoot is genuinely darker than at range, **L\* 51.0 against 52.7–56.3**. The fix scales
+alpha by 2.4 inside 15 m, fading to nothing by 40 m. Recorded as **L98**.
+
+**The durable half is the gating rule.** A band gated on *how many probes were SEEN* gates itself
+out at precisely the moment the thing it measures goes wrong: a road nobody can see reports n=0,
+which is indistinguishable from a stretch with no road in it, and the check passes by abstention.
+Bands are now gated on how many probes were **PROJECTED** — on screen, and therefore owed a
+picture. This is the third time this one bug has been a question of what the gate was pointed at,
+and the first fix that makes the gate fail loudly rather than quietly decline to answer.
+
+**A second fault, found by the new station and fixed with it.** At desktop, 100–250 m from the
+crossing, the ribbon scored **0.0 L\*** while the marker pass was frontmost — R-BUG2's fault 1
+again, its polygon offset having been tuned until the bands *at the two stations then gated*
+passed. Deepened to the marker pass's own values, that band reads **18.0 L\* at 100 %
+perceptible**. And the opaque diagnostic had to be fixed before it could be believed: its first
+form let the terrain paint back over the ribbon and reported a 0.0 ceiling under a healthy road.
+It writes depth now, as the marker pass always did. A diagnostic that lies quietly is worse than
+no diagnostic, and this one lied in the direction of *nothing to see here* — the same direction as
+every other instrument in this bug's history.
+
+**What is not fixed.** The near band has the least headroom of any band a walker actually stands
+in: its ceiling fully opaque is **3.4 L\* on mobile and 4.3 on desktop**, against 5.9–6.9 at the
+same station's 40–100 m and at both aerial bands — and **20 % of near probes on mobile, 40 % on
+desktop, cannot clear the perceptibility threshold even at full opacity**. (Not "the lowest of any
+band", which an earlier draft of this said: at that station the 600–4000 m band is lower still, and
+that is a road at a kilometre rather than one underfoot.) Opacity has nearly run out as an
+instrument here. L98 names the honest
+successor: a textured coverage, earth and grass resolved as patches at the scale a near pixel can
+show, so the eye integrates the recorded fraction rather than the blender pre-mixing it. That
+belongs to **R-W2**, where the 1.4 texture score already lives.
+
 ## New 2026-08-15 — the photograph the sky is calibrated against is now in the repository, and it checks out
 
 **R-REF1.** `renderers/web/js/world.js` derives its sky exposure, the whole of its
