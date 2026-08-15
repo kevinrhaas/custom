@@ -106,6 +106,29 @@ blocks are `blk_south_water_*`.
 name allocator (K20), it did not fix the draw-call budget (R-W5a), and it did not answer whether
 one open lot per block is the right vacancy — the question T-A6 left standing and nothing here
 touches.
+## Fixed 2026-08-15 — a wet corner was deleting whole panels of road, dry half included
+
+**R-BUG4**, owner-reported from South Water Street as a clean-edged green quadrilateral punched
+through the roadway. `streets.js` dropped a panel outright when the centreline **or any of its four
+corners** fell on water. The comment said the edge test kept a bank road from painting over water
+where its legal corridor reached it — the right aim and the wrong instrument, because deleting the
+panel takes the dry half with it.
+
+It clips at the waterline now, each end trimmed on each side independently by bisection out from
+the dry centreline. Asymmetric on purpose: a bank road is wet on one side only, and shrinking it
+symmetrically would throw the dry verge away as well. The centreline test is unchanged — a road
+whose centre is in the river is a crossing, and a crossing is a bridge's job.
+
+**Measured on the built geometry:** 4,843 panels have a dry centreline, **all 4,843 now reach the
+ribbon**, 28 clipped at the waterline, 0 dropped as sub-metre slivers, **62.7 m of roadway
+recovered**. The `13 quads / ~30 m` first recorded for this bug was read off a truncated probe
+listing and was **half the true figure**; a sorted table read from its tail is not a total, and the
+number in the roadmap and changelog is now the measured one.
+
+The gate asserts the invariant rather than the number — every panel with a dry centreline reaches
+the ribbon, the only permitted absences being sub-metre slivers, which are counted and printed —
+and it asserts that clipping actually happens, so a later simplification back to deleting the panel
+fails in CI rather than in a screenshot.
 
 ## REOPENED 2026-08-15 — the owner reproduced the invisible road WITH the fix in, and it is not the streets
 
