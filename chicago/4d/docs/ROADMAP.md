@@ -1605,15 +1605,11 @@ setting existed; every critic and smoke measurement still reads the default; the
 the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
 and legible there.
 
-### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b CLAIMED 2026-08-15 — DO NOT PICK UP · owner-reported 2026-08-14**
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b DONE 2026-08-15 · owner-reported 2026-08-14**
 
-> **K23b is CLAIMED 2026-08-15 by the scheduled steward** (branch
-> `steward/k23b-what-we-included`, expires 2026-08-16 — an expired claim is void without
-> ceremony). Take **T-V2**, **T-V1** or **T-I3** instead.
-
-> **K23a is DONE (2026-08-15).** 193 names, and the prose around them, now agree with the grade
-> the record carries. **K23b — say what we included at each level — is untouched and is still
-> the substantive half.** Findings below under "K23a — what the sweep actually found".
+> **BOTH HALVES ARE DONE.** K23a made the prose agree with the grade (193 names); K23b put the
+> per-level summary on the card. Findings under "K23a — what the sweep actually found" and
+> "K23b — what the summary had to decide" below.
 
 Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
 inferred right? Like if it was totally invented based on our population household program it was
@@ -1689,6 +1685,66 @@ user-visible string names a level it is not**; a smoke assertion that a record's
 never contradicts its own existence grade — put the fault back and it must name it; the card
 states what was included at each level for one attested, one inferred and one reconstructed
 building. Mobile is where it was reported.
+
+#### K23b — what the summary had to decide · **DONE 2026-08-15**
+
+**Shipped:** a section at the TOP of every provenance card — `What did we include, and where did
+it come from?` — that partitions every graded claim below it into the three levels, names the
+claims at each, and says where they came from. `renderers/web/js/popup.js` (`basisSection`),
+`renderers/web/css/walk.css`, four assertions in `tools/smoke_renderer.mjs`, and the changelog.
+No data changed and no generator ran: this is entirely a reading of records that already existed.
+
+**Making it a PARTITION is what made it gateable, and that was the design decision.** A summary
+can be written as a highlight reel — *"attested: its size, its position"* — and nothing can then
+check it, because there is no arithmetic to disagree with. Every claim the card renders lands in
+exactly one row instead, so the gate is a RECOUNT: pick every building, tally the confidence chips
+off the rendered card, and require the section's own three numbers to be those numbers.
+**All 276 loaded buildings agree, at both viewports.** The recount deliberately uses the SAME
+selector as the older chip-coverage assertion (`.pop-meta .conf, .pop-sec table.attrs .conf`) —
+two definitions of "a claim on this card" is exactly how a summary would come to disagree with
+the card it summarises while both gates stayed green.
+
+**A citation means a different thing at each level, and one label over all three would have been
+the same category error this card's history is made of.** On an `attested` claim a source is
+where the value came FROM. On a `reconstructed` one it is what BOUNDED an invention — the
+records say so themselves (*"the spec is cited because the invention is bounded by it, which is
+what makes it defensible rather than arbitrary"*) — and 193 anonymous roofs cite
+`owner_chicago_1835_reconstruction_spec_2026` and `andreas_1884_v1` on every attribute they have.
+A single `sources:` line over the summary would have printed a nineteenth-century history as
+attribution for a building nobody claims stood there. The three leads are **From**, **Reasoned
+from** and **Bounded by**.
+
+**Attested is not the same as built, and a summary of what was INCLUDED is exactly where that
+gap does damage.** The Western Hotel's stables are `attested` — a pre-fire account describes the
+wagon yard — and there is nothing of them in the model. **14 records carry an attribute in that
+state.** The rows below have marked it since the `geometry` declaration existed; the summary
+repeats it (`Not in the model: stables`) rather than averaging it into a count of things we
+included. Gated on the discriminating pair: the Western Hotel shows the line, the Sauganash has
+no such attribute and shows nothing.
+
+**An empty level says so in words, and that is the common case rather than the edge case.**
+Across the dataset's 279 records and **3,675 graded claims — 199 attested, 509 inferred, 2,967
+invented — 204 records have no attested claim at all.** A row that rendered only when non-empty
+would go silent on three quarters of the town, at the one moment a visitor most needs telling.
+So the attested row on an anonymous roof reads *"Nothing about this building is attested by a
+source."*
+
+**The finding this parcel did not go looking for: 69 buildings have inventions that nothing is
+recorded as bounding.** `reconstructed` requires a note, not a source — deliberately, and K23a
+argued why the old "a bottom-tier value citing sources is suspicious" rule died with the rename.
+The consequence had never been counted: of the 270 records carrying at least one invented claim,
+**69 cite nothing at all on any of them**, so their `Bounded by` line reads *"Nothing is cited as
+bounding these."* The Sauganash Hotel is one of them — its footprint is the placeholder its own
+note calls a placeholder, and no typology is named beside it. That is honest and it is now
+VISIBLE, which is the point; whether those 69 should acquire a bound is a research question for
+a successor and not something to paper over on the card.
+
+**Two things deliberately not done.** The section does not claim to cover the LIBERTIES — a
+liberty belongs to no attribute, which is why it has its own section — so the lead points at
+"What we made up here" rather than implying three rows of claim labels are the whole of what was
+invented. And the three definitions are the Evidence panel's own words, literally: each is a
+substring of the legend in `index.html`, asserted as such, because two surfaces quietly
+disagreeing about what `inferred` means is the fault K23a spent a run cleaning up.
 
 #### K23a — what the sweep actually found · **DONE 2026-08-15**
 

@@ -1,5 +1,42 @@
 # STATUS
 
+## New 2026-08-15 — the card adds its own claims up, and 204 of 279 buildings have nothing attested about them
+
+**K23b**, the substantive half of the owner's report and the sequel to K23a below. Every
+provenance card now opens with **`What did we include, and where did it come from?`** — three
+rows, one per level, naming the claims that stand at each and saying where they came from.
+
+**It is a partition, which is the whole of why it can be gated.** Every graded claim the card
+renders lands in exactly one row, so the release check is a RECOUNT rather than a look: pick
+every building at both viewports, tally the confidence chips off the RENDERED card, and require
+the section's three numbers to be those numbers. **276 of 276 loaded buildings agree.** The
+recount reuses the older chip-coverage gate's own selector on purpose — two definitions of "a
+claim on this card" is how a summary would come to disagree with the card while both gates
+stayed green.
+
+**The dataset, counted for the first time this way.** 279 records carry **3,675 graded claims —
+199 `attested`, 509 `inferred`, 2,967 `reconstructed`.** **204 of the 279 have no attested claim
+at all**, so a row that rendered only when it had something would go silent on three quarters of
+the town at the exact moment a visitor needs telling. It says *"Nothing about this building is
+attested by a source."* instead.
+
+**A citation means a different thing at each level.** `From` on an attested claim; `Bounded by`
+on an invented one — 193 anonymous roofs cite the reconstruction spec and Andreas on every
+attribute, and one `sources:` label over all three rows would have printed a nineteenth-century
+history as attribution for a building nobody claims stood there.
+
+**Two findings that are not the section.**
+
+- **69 buildings have inventions that nothing is recorded as bounding.** Of the 270 records with
+  at least one `reconstructed` claim, 69 cite nothing on any of them, so their `Bounded by` line
+  reads *"Nothing is cited as bounding these."* The bottom tier requires a note and not a source
+  — deliberately — but nobody had ever counted the consequence. The Sauganash Hotel is one of the
+  69. Visible now rather than fixed; whether those should acquire a bound is research.
+- **Attested is not built, on 14 records.** The Western Hotel's stables are attested by a
+  pre-fire account and there is nothing of them in the model. A summary of what was *included*
+  that counted them under "attested" and stopped would name something that is not there, so the
+  row repeats the mark the table below already carries: *Not in the model: stables*.
+
 ## New 2026-08-15 — 193 buildings were named a grade better than their own record, and the release gate was holding it in place
 
 **K23a**, owner-reported from a card on the dev preview. The heading read **"Inferred A1 stable

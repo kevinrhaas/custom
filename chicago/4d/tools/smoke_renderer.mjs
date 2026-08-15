@@ -1193,6 +1193,142 @@ const terrainLoad = await page.evaluate(() => {
         ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
         : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
 
+    // --- and the summary of those chips, which is what a visitor reads first -
+    // K23b, owner-reported from a card on the dev preview: *"when you say what we
+    // made up, say what we included in the recreation, or what we included in the
+    // inferred building, or what we included in the attested building."* Every
+    // part of the answer was already on the card — nineteen rows, each with its
+    // own chip — and a visitor could read all of it and still not say which parts
+    // of the building in front of them are evidence and which are ours.
+    //
+    // The section is a PARTITION of the claims below it, so the gate is a
+    // recount rather than a presence check: take the chips the assertion above
+    // has just proved complete, tally them by level, and require the summary's
+    // own three numbers to be those numbers. A summary that drifted from the card
+    // it summarises would be a worse fault than no summary, because it would be
+    // read first. Over the WHOLE registry, for the reason that assertion is:
+    // right on the sample and wrong on an anonymous roof is wrong on nearly all
+    // of this town.
+    const basis = await page.evaluate(() => {
+      const flat = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+      const rowsOf = () => [...document.querySelectorAll('#popup .pop-basis .basis-row')]
+        .map((r) => {
+          const m = /(\d+) of (\d+)/.exec(flat(r.querySelector('.basis-count')));
+          return {
+            level: r.dataset.level ?? '',
+            count: m ? Number(m[1]) : -1,
+            total: m ? Number(m[2]) : -1,
+            gloss: flat(r.querySelector('.basis-gloss')),
+            what: flat(r.querySelector('.basis-what')),
+            from: flat(r.querySelector('.basis-from')),
+            absent: flat(r.querySelector('.basis-absent')),
+          };
+        });
+      // The same selector the chip-coverage gate above uses, deliberately: the
+      // card's graded claims are whatever that assertion says they are, and two
+      // definitions of "a claim on this card" is how the summary would come to
+      // disagree with the card while both gates stayed green.
+      const tallyOf = () => {
+        const t = { attested: 0, inferred: 0, reconstructed: 0 };
+        for (const c of document.querySelectorAll(
+          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf')) {
+          const k = c.textContent.trim();
+          if (k in t) t[k] += 1;
+        }
+        return t;
+      };
+
+      const bad = [];
+      const keep = {};
+      let n = 0;
+      for (const id of window.__chicago4d.registry.keys()) {
+        window.__chicago4d.pick(id);
+        const rows = rowsOf();
+        const tally = tallyOf();
+        const total = tally.attested + tally.inferred + tally.reconstructed;
+        const problems = [];
+        if (rows.length !== 3) problems.push(`${rows.length} level rows, not 3`);
+        for (const r of rows) {
+          if (tally[r.level] === undefined) problems.push(`unknown level "${r.level}"`);
+          else if (r.count !== tally[r.level]) {
+            problems.push(`${r.level} claims ${r.count}, card shows ${tally[r.level]}`);
+          }
+          if (r.total !== total) problems.push(`${r.level} of ${r.total}, card shows ${total}`);
+          if (!r.what) problems.push(`${r.level} lists nothing at all`);
+          if (r.count && !r.from) problems.push(`${r.level} says nothing about where it came from`);
+        }
+        if (problems.length) bad.push(`${id}: ${problems.join('; ')}`);
+        if (['sauganash_hotel', 'recon_1835_south_d3_001', 'western_hotel'].includes(id)) {
+          keep[id] = rows;
+        }
+        n += 1;
+      }
+      const legend = [...document.querySelectorAll('.legend-list li')].map(flat);
+      return {
+        bad, n, legend,
+        saug: keep.sauganash_hotel ?? [],
+        anon: keep.recon_1835_south_d3_001 ?? [],
+        western: keep.western_hotel ?? [],
+      };
+    });
+    const row = (rows, level) => rows.find((r) => r.level === level) ?? {};
+    check(`${label}: the card's per-level summary is a partition of its own claims`,
+      basis.n >= 8 && basis.bad.length === 0 && basis.saug.length === 3 && basis.anon.length === 3,
+      basis.bad.length ? basis.bad.slice(0, 4).join(' | ')
+        : `${basis.n} building(s) summarised`);
+    // The discriminating pair, because a section that printed the same three rows
+    // on every card would pass a recount that only ever compared it to itself on
+    // a well-documented building. The Sauganash is attested by Wau-Bun; the
+    // anonymous roof is a count-unit toward the 665-roof programme and NOTHING
+    // about it is attested — which is the single most useful thing this section
+    // can tell a visitor, so it is said rather than left as a blank row.
+    check(`${label}: and it says what is NOT there, per building rather than stamped`,
+      row(basis.saug, 'attested').count > 0
+      && row(basis.anon, 'attested').count === 0
+      && /Nothing about this building is attested/.test(row(basis.anon, 'attested').what)
+      && row(basis.anon, 'reconstructed').count > 0,
+      `sauganash attested ${row(basis.saug, 'attested').count}, `
+      + `anonymous attested ${row(basis.anon, 'attested').count} `
+      + `("${row(basis.anon, 'attested').what.slice(0, 60)}")`);
+    // What a citation MEANS changes with the level, and one label over all three
+    // would be the category error this card's own history is made of. The
+    // anonymous roof cites the reconstruction spec on every attribute: that is
+    // what BOUNDED an invention, not where a value came from, and reading it as
+    // attribution turns the citation into evidence for a building nobody claims
+    // stood there.
+    check(`${label}: a source on an invention is named as a bound, not as attribution`,
+      /^Bounded by:/.test(row(basis.anon, 'reconstructed').from)
+      && /reconstruction_spec/.test(row(basis.anon, 'reconstructed').from)
+      && /^From:/.test(row(basis.saug, 'attested').from),
+      `invention "${row(basis.anon, 'reconstructed').from.slice(0, 70)}", `
+      + `attested "${row(basis.saug, 'attested').from.slice(0, 70)}"`);
+    // "Included" is a claim about the VIEW, not only about the evidence, and the
+    // two come apart in the direction that does the most damage: the Western
+    // Hotel's stables are ATTESTED — the wagon yard is in a pre-fire account —
+    // and there is nothing of them in the model. Counting that under "attested"
+    // and stopping would be a summary of what we included that named something
+    // we did not. The rows below already carry the mark; the summary repeats it
+    // rather than averaging it away.
+    check(`${label}: and separates what is attested from what is actually built`,
+      row(basis.western, 'attested').count > 0
+      && /^Not in the model:/.test(row(basis.western, 'attested').absent)
+      && /stables/.test(row(basis.western, 'attested').absent)
+      && !row(basis.saug, 'attested').absent,
+      `western "${row(basis.western, 'attested').absent.slice(0, 60)}", `
+      + `sauganash "${row(basis.saug, 'attested').absent}"`);
+    // Two surfaces defining `inferred` differently is the drift K23a spent a run
+    // cleaning up, and prose has no shared renderer to hold it — so the card's
+    // gloss is required to be the Evidence panel's own words, literally.
+    const glossDrift = ['attested', 'inferred', 'reconstructed'].filter((lvl) => {
+      const g = row(basis.saug, lvl).gloss;
+      return !g || !basis.legend.some((li) => li.includes(g));
+    });
+    check(`${label}: the summary defines each level in the Evidence panel's own words`,
+      basis.legend.length >= 3 && glossDrift.length === 0,
+      glossDrift.length
+        ? `${glossDrift.join(', ')} not found in the legend`
+        : `3 glosses matched against ${basis.legend.length} legend entries`);
+
     // Is the shape a bake from the record, or a stand-in?  The established
     // Sauganash asset must remain a real bake while the anonymous phase-one
     // roofs must say both that their mesh is provisional and that their

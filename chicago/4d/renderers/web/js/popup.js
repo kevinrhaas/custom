@@ -218,6 +218,161 @@ function residentsSection(s) {
 }
 
 /**
+ * What did we include at each level, and where did it come from?
+ *
+ * The owner asked for this from a card on the dev preview, and the ask was
+ * precise: *"when you say what we made up, say what we included in the
+ * recreation, or what we included in the inferred building, or what we included
+ * in the attested building."* Everything needed to answer was already on the
+ * card and none of it was answered — a visitor could read nineteen rows, each
+ * with its own chip, and still not be able to say which parts of the building in
+ * front of them are evidence and which are ours. The parts were all there; the
+ * summary a person reads FIRST was not.
+ *
+ * It is a partition, not a highlight reel. Every graded claim the card renders
+ * below lands in exactly one row here — the presence claim, the position, the
+ * outline and every attribute — so the counts add up to the card and a claim
+ * cannot be quietly left out of the summary of itself. That is also what makes
+ * it gateable: `smoke_renderer.mjs` recounts the chips off the RENDERED card and
+ * requires the same three numbers, which is the only form of this section that
+ * cannot drift from the card it describes.
+ *
+ * The three glosses are the Evidence panel's own words, trimmed at a clause
+ * boundary so each is a literal substring of the legend in `index.html` — the
+ * liberties' rule, applied to prose that has no shared renderer to hold it. Two
+ * surfaces defining `inferred` differently is exactly the drift K23a spent a run
+ * cleaning up.
+ *
+ * WHAT THE SOURCES MEAN CHANGES WITH THE LEVEL, and printing one label over all
+ * three would be the same category error the card's own history is made of. On
+ * an `attested` claim a source is where the value came FROM. On a `reconstructed`
+ * one it is what BOUNDED an invention — the record's own note says so in as many
+ * words ("the spec is cited because the invention is bounded by it, which is what
+ * makes it defensible rather than arbitrary") — and reading that as attribution
+ * would turn the citation into evidence for a building nobody claims existed.
+ *
+ * An empty level says so rather than disappearing. A building with nothing
+ * attested is the single most important thing this section can tell a visitor,
+ * and a row that renders only when it is non-empty is a row that goes silent
+ * exactly when it matters most. The same reasoning the liberties use for their
+ * "none are recorded" note, in the opposite direction.
+ *
+ * And it does not claim to cover the liberties. A liberty belongs to no
+ * attribute — that is why it has its own section — so the lead points at "What we
+ * made up here" instead of pretending three rows of claim labels are the whole of
+ * what was invented.
+ */
+const LEVELS = ['attested', 'inferred', 'reconstructed'];
+
+/** The Evidence panel's own definitions (`index.html`, the legend list), each a
+ *  literal substring of the legend text so the smoke can prove the two agree. */
+const LEVEL_GLOSS = {
+  attested: 'a source attests this at the scene date',
+  inferred: 'reasoned from evidence about this thing',
+  reconstructed: 'no source speaks to this one; built to fill a demonstrable need of the town',
+};
+
+/** What a citation IS at this level. Not decoration — see the header. */
+const LEVEL_SOURCE_LEAD = {
+  attested: 'From',
+  inferred: 'Reasoned from',
+  reconstructed: 'Bounded by',
+};
+
+/** A level with no sources, said plainly. `attested` is the interesting one: the
+ *  grade REQUIRES a resolving source (`validate.py`, CONFIDENCE), so a card that
+ *  reaches this branch is reporting a defect in its own record rather than a
+ *  quirk of presentation, and it should say so where a reader can see it. */
+const LEVEL_NO_SOURCE = {
+  attested: 'No source is cited — which this grade requires, so the record is at fault.',
+  inferred: 'No source is cited; the reasoning for each is on its own row below.',
+  reconstructed: 'Nothing is cited as bounding these.',
+};
+
+const LEVEL_EMPTY = {
+  attested: 'Nothing about this building is attested by a source.',
+  inferred: 'Nothing here was reasoned from evidence about this particular building.',
+  reconstructed: 'Nothing here was invented.',
+};
+
+/** Every graded claim the card renders below, in the order it renders them, and
+ *  under exactly the conditions each section uses — a summary that counted a
+ *  claim the card suppresses would be describing a different card. */
+function gradedClaims(s, place) {
+  const claims = [];
+  const range = s.documented_range;
+  if (range && (range.from || range.to)) {
+    claims.push({ label: 'whether it stood here', claim: range });
+  }
+  claims.push({ label: 'where it stood', claim: place });
+  if (s.footprint?.confidence) claims.push({ label: 'its outline', claim: s.footprint });
+  for (const [key, attr] of Object.entries(s.attributes || {})) {
+    claims.push({ label: prettyName(key), claim: attr || {} });
+  }
+  return claims;
+}
+
+function basisRow(level, mine, total) {
+  const sources = [...new Set(mine.flatMap((c) => (
+    Array.isArray(c.claim.sources) ? c.claim.sources : [])))];
+  const what = mine.length
+    ? `<p class="basis-what">${mine.map((c) => escapeHtml(c.label)).join(' · ')}</p>`
+    : `<p class="basis-what basis-empty">${escapeHtml(LEVEL_EMPTY[level])}</p>`;
+  const from = !mine.length ? ''
+    : sources.length
+      ? `<p class="basis-from">${escapeHtml(LEVEL_SOURCE_LEAD[level])}:
+           ${sources.map(escapeHtml).join(' · ')}</p>`
+      : `<p class="basis-from">${escapeHtml(LEVEL_NO_SOURCE[level])}</p>`;
+  // An `attested` chip over something the model does not contain is true about
+  // the evidence and false about the view — the rows below already mark it, and
+  // a summary of what was INCLUDED that ignored it would be the worse half of
+  // the same fault.
+  const absent = mine.filter((c) => c.claim.geometry === 'absent');
+  const notBuilt = absent.length
+    ? `<p class="basis-absent">Not in the model:
+         ${absent.map((c) => escapeHtml(c.label)).join(' · ')}</p>`
+    : '';
+
+  return `<div class="basis-row" data-level="${escapeHtml(level)}">
+    <p class="basis-head">${chip(level)}<span class="basis-count">${mine.length} of ${total}</span>
+      <span class="basis-gloss">${escapeHtml(LEVEL_GLOSS[level])}</span></p>
+    ${what}${from}${notBuilt}
+  </div>`;
+}
+
+function basisSection(s, place) {
+  const claims = gradedClaims(s, place);
+  if (!claims.length) return '';
+
+  const buckets = new Map(LEVELS.map((l) => [l, []]));
+  // Anything outside the three-level scale. `validate.py` refuses it in the
+  // data, so this is not an expected state — but silently folding an unknown
+  // grade into `reconstructed` would make the counts lie to hide a bug, and the
+  // counts are the whole reason this section can be gated.
+  const offScale = [];
+  for (const c of claims) {
+    (buckets.get(c.claim.confidence || 'reconstructed') ?? offScale).push(c);
+  }
+
+  const rows = LEVELS.map((l) => basisRow(l, buckets.get(l), claims.length)).join('');
+  const odd = offScale.length
+    ? `<div class="basis-row"><p class="basis-head"><span class="basis-count">${offScale.length}
+         of ${claims.length}</span> <span class="basis-gloss">not graded on this scale — a fault
+         in the record</span></p>
+       <p class="basis-what">${offScale.map((c) => escapeHtml(c.label)).join(' · ')}</p></div>`
+    : '';
+
+  return `<section class="pop-sec pop-basis">
+    <h3>What did we include, and where did it come from?</h3>
+    <p class="basis-lead">${claims.length} claims stand behind this building, and every one of
+      them is in exactly one row here. The tables further down carry them one at a time, with
+      the reasoning behind <em>why</em>; the decisions that belong to no single claim are under
+      “What we made up here”.</p>
+    ${rows}${odd}
+  </section>`;
+}
+
+/**
  * Was this building here on the day you are standing in, and how do we know
  * where it stood?
  *
@@ -530,6 +685,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
           ${reconstruction}
           ${placeholderAsset}
         </div>
+
+        ${basisSection(s, place)}
 
         ${presenceSection(s)}
 
