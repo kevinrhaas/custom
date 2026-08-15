@@ -1,5 +1,44 @@
 # STATUS
 
+## Fixed 2026-08-15 — the general case behind R-BUG3c-b: nothing checked what actually ships
+
+**K28.** #145 fixed the terrain quantiser and ended on one line: *do not measure the file you built,
+measure the file you ship.* It also said plainly what it had not done — "Nothing else in this
+project measures a published artefact against its own source, and nobody has looked for the next
+instance of it." This is that gate.
+
+**The invariant is total, which is what makes it cheap.** `tools/publish.sh` is almost entirely
+`cp`: the mirror is meant to be the repository, rearranged. So **every published file must be
+byte-identical to its source**, unless it is on a declared list — and each entry on that list has to
+say what transforms the bytes and **name the gate that measures the SHIPPED form**. That second
+column is the whole point: it is the question nobody asked about the terrain, now written down
+beside every place it applies.
+
+Current state: **521 files byte-identical, 296 transformed under 4 declared rules, 0 unmapped.**
+
+**It found two unchecked files on its first run**, which is the argument for it.
+
+- **`build.json` was two days stale.** It claimed version `8909332` built `2026-08-13T19:18:05Z`
+  while the mirror beside it was from today at a different commit. Nothing in `publish.sh` ever
+  rewrote it — it had been written once, by hand. `tools/test_dev_preview.mjs` and `docs/PIPELINE.md`
+  both read it, so both were reading a stale claim about what shipped. `publish.sh` now regenerates
+  it every run from the same two variables the visible build stamp uses, so the machine-readable
+  twin and the human-readable one cannot disagree.
+- **The mirror's `index.html`** is written once from a heredoc and traced to nothing. It is a
+  redirect stub with no claim in it, so it needs no gate — but that is now recorded, so if it ever
+  grows a claim the absence is visible.
+
+**The gate was verified to fail.** A single trailing newline appended to the published
+`data/datum.json` fails it with the divergence named and the source path quoted; restoring the file
+passes. A check that has never failed is not a check — the same standard K27 was held to earlier
+today.
+
+**What this does NOT do, stated so it is not assumed.** It compares BYTES for copies. It does not
+verify that a declared *transform* preserves what the transform is supposed to preserve — that is
+per-transform work, and it is exactly what #145 had to do by hand for the terrain. The 293 GLB
+derivatives are declared, not checked; **R-W6** already asks whether the same quantiser moves E and
+N by up to 153 mm and whether the terrain should ship quantised at all, and nobody has looked.
+
 ## FIXED 2026-08-15 — the ground you see IS the ground the town is anchored to now, and neither surface had moved
 
 **R-BUG3c-b**, the half (a) refused to guess at. The 9.6–13.1 cm disagreement (a) measured is real,

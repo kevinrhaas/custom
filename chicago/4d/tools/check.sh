@@ -126,6 +126,23 @@ step "the ground mesh still meets the heightfield the walker samples" \
 step "changelog contract" \
   node tools/check-changelog.mjs
 
+# Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
+# three parcels because the ground a browser loads was quantised by a publish
+# step AFTER the only gate that measured it, and every gate passed because every
+# gate compared a render to another render. #145 fixed that instance and left
+# the general case open in as many words: "Nothing else in this project measures
+# a published artefact against its own source." This is that gate. publish.sh is
+# almost entirely `cp`, so the invariant is total — every published file is
+# byte-identical to its source unless it is on a declared list that has to name
+# what transforms it and which gate measures the SHIPPED form. It found two
+# unchecked files on its first run, one of them a build.json two days stale.
+# Skipped rather than failed when the mirror is absent, so a fresh checkout that
+# has not published yet still gates cleanly.
+if [ -d ../../site/chicago/4d ]; then
+  step "published mirror matches its source" \
+    node tools/check_published.mjs
+fi
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A
