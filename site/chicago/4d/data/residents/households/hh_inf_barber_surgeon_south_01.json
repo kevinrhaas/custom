@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_barber_surgeon_south_01",
- "name": "The Newell household — a reconstructed barber surgeon (south division)",
+ "name": "The Nichols household — a reconstructed barber surgeon (south division)",
  "division": "south",
  "head": "inf_barber_surgeon_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_barber_surgeon_south_01",
-   "name": "Orrin Newell",
+   "name": "Elisha Nichols",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

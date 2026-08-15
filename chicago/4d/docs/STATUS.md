@@ -1,5 +1,61 @@
 # STATUS
 
+## New 2026-08-15 — the business front is built end to end, and the rule that filled it points the other way on its last block
+
+**T-A12.** `blk_south_water_dearborn` — South Water, State, Lake, Dearborn — now carries **six
+anonymous roofs**, five principal and one privy, on five of its six free lots, with lot 7 (the
+Lake-and-State corner) left open and lots 1 and 6 held by the Mansion House and the Chappel infant
+school. **Standing roofs 293 → 299; remaining 372 → 366, 28 of them on covered ground** (was 34).
+Inferred households 92 → 94, inferred persons 104 → 106. Recorded in L103. **The recipe cleared
+every placement gate on its first run and no tool changed** — the fifth block in a row. State Street
+is the platted town's eastern limit, so **the South Water row is closed**: every block of the
+business front is now built, and every open entry left in the schedule is one street back or
+further.
+
+**The rule that arranged all five blocks reverses direction on the last one, and that is the
+finding.** Four parcels put their better roofs "nearer the town-centre end"; T-A11 stopped asserting
+that as a compass direction and measured it — the distance to the **Dearborn Street drawbridge**,
+the only crossing of the main stem in July 1835. On the four blocks before this one the bridge lay
+east, so the compass and the criterion agreed and nothing separated them. This block's bridge end is
+its **west** end: lot 0's frontage is **36.4 m** from it, lots 2 and 4 are **57.7 m** and **81.7 m**,
+lot 6 is **106.6 m**, and the back street runs **126.4 m** at lot 1 to **161.1 m** at lot 7. The
+parcel follows the committed criterion rather than the compass, which is the whole point of having
+replaced one with the other — and the lot left open is again the farthest of the eight from the only
+bridge in town.
+
+**A third criterion was tried and is recorded as UNDECIDABLE, which is worth more than a third
+number.** A single landmark is a thin basis, so the parcel asked where the *mass* of documented
+building is. The footprint-weighted centroid of all **83 documented roofs (19,145 m²)** lands at
+local **E 939, N 123**, east of this block, making lot 6 nearest at **189.9 m** against lot 0's
+**250.8 m**. Excluding the Fort Dearborn reservation — 13 roofs, **10,460 m²** — moves it to
+**E 737, N 88** and reverses the answer: **95.0 m** at lot 0 against **115.9 m** at lot 6. The
+criterion therefore turns entirely on whether a military reservation counts as part of the town,
+which is a judgment and not a measurement, and its whole spread across the north tier without the
+fort is **20.9 m** against the bridge's **70.2 m**.
+
+**K30 is now half-measured and all five of its cases are on one street.** Both of this block's
+documented South Water buildings stand in the platted roadway — the **Chicago American office**
+**6.91 m** in and **Frederick Thomas's shop 6.25 m**, **148.6 m²** of documented roof on ground the
+plat calls street. With T-A9's three (4.5 m, 6.6 m, 8.2 m) that is five documented buildings, all on
+South Water, all between 4.5 and 8.2 m in. That is the shape of a centreline or width error on one
+stretch, not of a uniform bias across the grid — which is the distribution K30 was opened to find.
+Nothing was moved: a position with a source outranks a corridor this project derived.
+
+**Two further confirmations, both of things earlier parcels had to argue.** T-A7's lap case has a
+**fifth** instance and it is the largest that costs a lot nothing — the American office laps lot 0 by
+**10.74 m²** with **0.00 m²** inside the buildable inset. And T-A11's refusal of the lateral offset
+is confirmed independently and more cleanly: from the committed placement, 1.5 m further west buys
+**0.01 m** of clearance for 0.76 m of lot-line margin and 3.0 m buys **0.22 m** for 2.26 m, where
+half a metre of extra setback buys **0.50 m** and costs neither. The parcel's closest approach is
+**7.01 m** against a 3 m gate.
+
+**The row closes with K28 open, and the count is four blocks of five.** The D4 and the D2 this block
+was dealt each pass rule 6's three tests read literally and both are refused on the same
+conservative reading. One block of the row dealt neither floor trade a second roof, one dealt it to
+the carpenters alone, and three dealt it to both. **The seventh K20 measurement is 59 of 104**,
+against 7-of-102, 72-of-100, 19-of-98 and 32-of-96 — five readings spanning 7 % to 72 % with nothing
+fixed or broken between them.
+
 ## New 2026-08-15 — the fourth business-front block, and the first time the row's "better end" is a measurement
 
 **T-A11.** `blk_south_water_clark` — South Water, Dearborn, Lake, Clark — now carries **five

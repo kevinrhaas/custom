@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_butcher_south_01",
- "name": "The Wilcox household — a reconstructed butcher (south division)",
+ "name": "The Woodruff household — a reconstructed butcher (south division)",
  "division": "south",
  "head": "inf_butcher_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_butcher_south_01",
-   "name": "Ira Wilcox",
+   "name": "Otis Woodruff",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

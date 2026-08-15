@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_south_01",
- "name": "The Leland household — a reconstructed shoemaker (south division)",
+ "name": "The Metcalf household — a reconstructed shoemaker (south division)",
  "division": "south",
  "head": "inf_shoemaker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_south_01",
-   "name": "Eli Leland",
+   "name": "Hiram Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

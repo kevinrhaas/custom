@@ -903,6 +903,100 @@
           "lateral_m": 5.0
         }
       ]
+    },
+    {
+      "block_id": "blk_south_water_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_dearborn",
+      "claimed": "2026-08-15",
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 4,
+        "free_lots": 6,
+        "headroom": 6,
+        "dealt_roofs": 6,
+        "dealt_principal": 5,
+        "dealt_ancillary": 1,
+        "principal": 5,
+        "ancillary": 1
+      },
+      "families": {
+        "A3": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1
+      },
+      "open_lots": [
+        {
+          "lot": 7,
+          "why": "The Lake-and-State corner, left open, and the first open lot of this row chosen against a criterion that points the other way down the street. The three parcels before this one left a back-street corner open at the end farthest from the town centre and named that end by compass; T-A11 replaced the compass with a distance to the Dearborn Street drawbridge, the only crossing of the main stem in July 1835. On this block the two readings separate, because the bridge stands at the WEST end of it, at the foot of Dearborn: lot 7 is 161.1 m from the bridge, the farthest of the eight lots exactly as the open lot has been on every block of the row, but it is now the east corner rather than the west one. State Street is the platted town's eastern limit and the fort's reservation lies beyond it, so the lot the criterion leaves open is also the one with the least town around it. That a block on the business front is not a completed terrace one street back is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target; which lot within the tier is still a choice, and this is the first block of the row on which a stated criterion made it rather than a direction."
+        }
+      ],
+      "arrangement_note": "The fifth and LAST block of the South Water row, bounded by South Water, State, Lake and Dearborn: State Street is the platted town's eastern limit and the fort's reservation lies beyond it, so the row closes here. Lots 1 and 6 arrive taken - the Mansion House and the Chappel infant school, both seated by tools/plat_occupancy.py rather than authored here - so the schedule's six free lots are 0, 2 and 4 on South Water and 3, 5 and 7 on Lake, and this parcel builds on five of them. The face rule is T-A8's, carried one block east for the last time: South Water is the business front, so the three best dwellings the schedule deals take its three free lots - the deep-plan cottage on lot 0, the two-room cottage on lot 2 and the one-room cottage on lot 4 - and the two meanest take Lake, the plank shanty on lot 3 and the log cabin on lot 5. THE END RULE IS WHERE THIS BLOCK DIFFERS FROM EVERY OTHER BLOCK OF THE ROW, AND IT IS THE REASON THE ARRANGEMENT POINTS WEST. Four parcels have put their better roofs nearer the town-centre end; T-A11 stopped asserting that as a compass direction and measured it, as the distance to the Dearborn Street drawbridge, the only crossing of the main stem in July 1835. On the four blocks before this one the bridge lay east and the two readings agreed, so nothing separated them. On this block the bridge is at the WEST end, at the foot of Dearborn, and they disagree: lot 0's frontage is 36.4 m from it, lot 2's 57.7 m, lot 4's 81.7 m and lot 6's 106.6 m, with the back street running 126.4 m at lot 1 to 161.1 m at lot 7. This parcel follows the committed criterion rather than the compass, which is what a re-derivable criterion is for. A THIRD CRITERION WAS TRIED AND IS RECORDED AS UNDECIDABLE: the footprint-weighted centroid of all 83 documented roofs (19,145 m2) lands at local E 939, N 123 - east of this block - and makes lot 6 the nearest at 189.9 m against lot 0's 250.8 m; excluding the fort's 13 roofs and 10,460 m2 it moves to E 737, N 88 and reverses the answer to lot 0 at 95.0 m against lot 6's 115.9 m. Whether a military reservation counts as part of the town is a judgment, not a measurement, and the whole spread without it is 20.9 m against the bridge's 70.2 m, so the bridge is the criterion this block uses. THE MEASUREMENT THIS BLOCK OWES ITS READER IS ON ITS NORTH FRONTAGE, AND IT IS ABOUT THE DOCUMENTED BUILDINGS RATHER THAN THE INVENTED ONES: both of the block's documented South Water roofs stand in the platted roadway. The Chicago American office (92.9 m2) intrudes 6.91 m into the South Water corridor and Frederick Thomas's shop (55.7 m2) 6.25 m, which is 148.6 m2 of documented building standing on ground the plat calls street; with T-A9's three cases that is five, all on South Water, all between 4.5 and 8.2 m in. ROADMAP K30 owns it and nothing here moves a documented position. The American office also laps lot 0 by 10.74 m2 with 0.00 m2 of it inside the buildable inset - the fifth instance of T-A7's lap case and the largest that costs a lot nothing - and the D5 that stands on that lot clears it by 6.79 m against a 3 m gate. THE OFFSET T-A11 REFUSED WAS RE-MEASURED HERE AND REFUSED AGAIN: from the committed placement, 1.5 m further west buys 0.01 m of clearance for 0.76 m of lot-line margin and 3.0 m buys 0.22 m for 2.26 m, where half a metre of extra setback buys 0.50 m and costs neither. The office stands square across the frontage out in the road, so only standing further back moves the distance. The closest approach in the parcel is the D4 on lot 2, 7.01 m from Frederick Thomas's shop; the remaining lateral offsets are jitter and are not clearance. The privy stands in the yard of lot 0 off the block alley, behind the deep-plan cottage, which is the only lot on the block whose roof this parcel also raised.",
+      "slots": [
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 0,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.5,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.0,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 4,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 6.0,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 6.0,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 5,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 5.5,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": 5.0
+        }
+      ]
     }
   ]
 }

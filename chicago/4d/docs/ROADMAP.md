@@ -110,7 +110,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A12…** | one open block per run until the 34 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
+| 1 | TOWN | **T-A13…** | one open block per run until the 28 are placed — the South Water row closed at T-A12, so the next block is one street back; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1268,6 +1268,16 @@ three positions are, or 1835 South Water Street genuinely had stores encroaching
 entirely possible on a frontage street of a boom town and would be a **finding**, not a defect,
 if a source said so.
 
+**FIVE CASES NOW, AND ALL FIVE ARE ON SOUTH WATER STREET (T-A12, 2026-08-15).** The last block of
+the row added two: the **Chicago American office** stands **6.91 m** inside the corridor and
+**Frederick Thomas's shop 6.25 m**, so **both** of that block's documented South Water buildings —
+**148.6 m²** of roof between them — stand on ground the plat calls street. The five intrusions span
+**4.5 m to 8.2 m** and none of them is on any other street, which is the shape a *centreline or
+width error on one stretch* would make and not the shape of a uniform grid bias. It cost T-A12
+nothing either (the nearest invented roof is 6.79 m against a 3 m gate), and it is still not a block
+parcel's business — but the distribution this entry asked for is now half-measured, on the street
+that matters, and it is pointing at one answer.
+
 **Start by measuring all fourteen**, not these three: T-A7 counted fourteen committed records
 whose centroid lands in a roadway and named four of them. The distribution is the finding — a
 handful of deep intrusions on one street is a different problem from a uniform half-metre bias
@@ -1775,7 +1785,72 @@ rather than an improvement. K20 still owns the fix.
 (5 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L102 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A12…T-An — the remaining blocks · **UNCLAIMED**
+### T-A12 — `blk_south_water_dearborn` · **DONE 2026-08-15**
+
+The fifth and **last** block of the South Water row — bounded by South Water, State, Lake and
+Dearborn — carries **six roofs, five principal and one ancillary**, on five of its six free lots.
+Lot 7 (the Lake-and-State corner) is left open; lots 1 and 6 are held by the Mansion House and the
+Chappel infant school, both derived by `tools/plat_occupancy.py` rather than authored. **299 stand
+and 366 remain, 28 of them on covered ground.** The recipe cleared every placement gate on its first
+run and **no tool changed** — the fifth block in a row. Two adoptions under rule 6: the D3 one-room
+cottage on lot 4 becomes the seventeenth inferred carpenter household, the D1 log cabin on lot 5 the
+nineteenth labouring one. Full admission in `docs/LIBERTIES.md` **L103**. **State Street is the
+platted town's eastern limit, so the business front is now built end to end and the row is closed.**
+
+**Five findings came out of it that are not the block.**
+
+1. **The two readings of the end rule point in opposite directions here, and this is the block that
+   separates them.** T-A11 replaced "nearer the town-centre end" with a measurement — the distance
+   to the Dearborn Street drawbridge — and on the four blocks before this one the bridge lay east,
+   so the compass and the criterion agreed and nothing distinguished them. On this block the bridge
+   is at the **west** end: lot 0 is **36.4 m** from it, lots 2 and 4 are **57.7 m** and **81.7 m**,
+   and lot 6 — the compass reading's better end — is **106.6 m**, with the back street running
+   **126.4 m** at lot 1 to **161.1 m** at lot 7. The parcel follows the committed criterion, so the
+   row's arrangement reverses direction for the first and last time, and the open lot is again the
+   farthest of the eight from the only bridge in town.
+2. **A third criterion was tried and is recorded as UNDECIDABLE rather than quietly dropped.** The
+   bridge is one landmark, so the parcel asked a question with no landmark and no radius in it:
+   where is the mass of documented building? The footprint-weighted centroid of all **83 documented
+   roofs (19,145 m²)** lands at local **E 939, N 123** — east of this block — making lot 6 nearest at
+   **189.9 m** against lot 0's **250.8 m**. Excluding the fort's 13 roofs and **10,460 m²** moves it
+   to **E 737, N 88** and reverses the answer: lot 0 at **95.0 m**, lot 6 at **115.9 m**. Whether a
+   military reservation is part of the town is a judgment, not a measurement, and the criterion's
+   whole spread without it is **20.9 m** against the bridge's **70.2 m**.
+3. **K30 gains two more cases and every one of the five is on the same street.** Both of this
+   block's documented South Water buildings stand in the platted roadway: the **Chicago American
+   office** intrudes **6.91 m** and **Frederick Thomas's shop 6.25 m**, which is **148.6 m² of
+   documented building on this block's north frontage standing on ground the plat calls street**.
+   With T-A9's three (4.5 m, 6.6 m, 8.2 m) that is five documented buildings, all on South Water,
+   all between 4.5 and 8.2 m in — the distribution K30 asked for, and it points at one street rather
+   than a uniform bias across the grid. Nothing was moved.
+4. **T-A7's lap case has a fifth instance and it is the largest that costs a lot nothing.** The
+   American office laps lot 0 by **10.74 m²** with **0.00 m² inside the buildable inset**; two of its
+   corners sit 0.78 m and 0.70 m inside the platted lot line and the other two stand 6.92 m and
+   6.84 m out in the road. **T-A11's refusal of the lateral offset is confirmed independently and
+   more cleanly**: from the committed placement, 1.5 m further west buys **0.01 m** of clearance for
+   0.76 m of margin and 3.0 m buys **0.22 m** for 2.26 m, where half a metre of extra setback buys
+   **0.50 m** and costs neither. The cottage clears the office by **6.79 m**; the parcel's closest
+   approach is the D4 on lot 2 at **7.01 m** from Frederick Thomas's shop.
+5. **The row closes with K28 still open, and it is now four blocks of five.** The D4 on lot 2 and the
+   D2 on lot 3 both pass rule 6's three tests read literally and both are refused on the same
+   conservative reading. T-A11 asked that a fourth precedent not be collected but that the rule be
+   settled; of the five blocks of this row, one dealt neither floor trade a second roof, one dealt it
+   to the carpenters alone and **three dealt it to both**. The D5 was dealt and refused again, on
+   T-A11's written reasoning rather than a fresh argument — which is what writing it down bought.
+
+**The seventh K20 measurement is 59 of 104** carried-over invented persons renamed, against 7-of-102
+at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Five measurements now span 7 %
+to 72 % with nothing fixed or broken between them, which is what a stable hash order looks like when
+two new ids are inserted at a random position. K20 still owns the fix.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (6 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(6 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L103 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
+### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -1790,14 +1865,15 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A11, on ground the project has coverage for — 34 roofs across six entries, every
+**Open after T-A12, on ground the project has coverage for — 28 roofs across five entries, every
 one of them buildable with a lot left open, and every lot of them now checked against the
-buildings that already stand there:** `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market`
-7 (5P+2A) · `blk_randolph_franklin` 8 (6P+2A, **carries the one I3 in the whole open set — defer
-it per T-A3 unless T-I3 has landed; the I3 has now moved TWICE, from `blk_south_water_clark` to
-`blk_lake_market` at T-A9 and to this block at T-A11, which is exactly why this list is not to be
-trusted**) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8 (6P+2A) ·
-`blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6, now an F3).
+buildings that already stand there:** `blk_lake_market` 7 (5P+2A) · `blk_randolph_franklin`
+8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8 (6P+2A, **carries the one I3
+in the whole open set — defer it per T-A3 unless T-I3 has landed; the I3 has now moved THREE times,
+from `blk_south_water_clark` to `blk_lake_market` at T-A9, to `blk_randolph_franklin` at T-A11 and
+to this block at T-A12, which is exactly why this list is not to be trusted**) ·
+`blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6, now a D3).
+**The South Water row is closed** — every open entry is one street back or further.
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block

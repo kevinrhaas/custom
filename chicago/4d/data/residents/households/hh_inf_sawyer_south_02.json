@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_sawyer_south_02",
- "name": "The Lyman household — a reconstructed sawyer (south division)",
+ "name": "The Metcalf household — a reconstructed sawyer (south division)",
  "division": "south",
  "head": "inf_sawyer_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_sawyer_south_02",
-   "name": "Chauncey Lyman",
+   "name": "Erastus Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

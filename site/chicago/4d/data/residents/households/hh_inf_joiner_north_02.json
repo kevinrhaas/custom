@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_joiner_north_02",
- "name": "The Parmelee household — a reconstructed joiner (north division)",
+ "name": "The Pratt household — a reconstructed joiner (north division)",
  "division": "north",
  "head": "inf_joiner_north_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_joiner_north_02",
-   "name": "Rufus Parmelee",
+   "name": "Lemuel Pratt",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_south_01",
- "name": "The Stiles household — a reconstructed blacksmith (south division)",
+ "name": "The Thayer household — a reconstructed blacksmith (south division)",
  "division": "south",
  "head": "inf_blacksmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_south_01",
-   "name": "Luther Stiles",
+   "name": "Harvey Thayer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_blacksmith_south_01_j1",
-   "name": "Amos Hastings",
+   "name": "Levi Hubbard",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {
