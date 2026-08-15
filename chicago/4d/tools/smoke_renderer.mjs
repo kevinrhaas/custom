@@ -1196,7 +1196,7 @@ const terrainLoad = await page.evaluate(() => {
     // Is the shape a bake from the record, or a stand-in?  The established
     // Sauganash asset must remain a real bake while the anonymous phase-one
     // roofs must say both that their mesh is provisional and that their
-    // per-parcel placement is a recommended reconstruction.
+    // per-parcel placement is a reconstruction rather than a recovered parcel.
     const placeholder = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
       const realFlags = [...document.querySelectorAll('#popup .pop-flag')]
@@ -1210,11 +1210,20 @@ const terrainLoad = await page.evaluate(() => {
         recommended: window.__chicago4d.registry.get('recon_1835_south_d3_001')
           ?.assetIsPlaceholder,
         placeholderFlag: recommendedFlags.some((t) => /placeholder massing/i.test(t)),
-        // The dataset's word for these roofs is `inferred_anonymous` since the
-        // merge of 2026-08-13; the card was still testing for `recommended` and
-        // so rendered no flag at all. Same assertion, current vocabulary — the
-        // flag must still be on the card, which is what this has always asked.
-        reconstructionFlag: recommendedFlags.some((t) => /inferred reconstruction/i.test(t)),
+        // THE THIRD TIME this literal has rotted. It tested `recommended` until
+        // the merge of 2026-08-13, then `inferred reconstruction` until K23a —
+        // and each rename broke it, because it pinned the WORDING rather than
+        // the thing the assertion is actually about. What it has always asked is
+        // that the card still says this roof is not a recovered building, in the
+        // grade the record itself carries. So it asks that now, off the record,
+        // and the next rename of the vocabulary cannot break it.
+        grade: window.__chicago4d.registry.get('recon_1835_south_d3_001')
+          ?.sidecar?.documented_range?.confidence,
+        reconstructionFlag: recommendedFlags.some(
+          (t) => /anonymous/i.test(t) && /not an attested named building/i.test(t)),
+        flagNamesTheGrade: recommendedFlags.some((t) => new RegExp(
+          window.__chicago4d.registry.get('recon_1835_south_d3_001')
+            ?.sidecar?.documented_range?.confidence ?? 'x', 'i').test(t)),
       };
     });
     check(`${label}: established assets remain identified as real bakes`,
@@ -1226,8 +1235,11 @@ const terrainLoad = await page.evaluate(() => {
     // review massing" is a fact about the ASSET and stops being true the moment
     // generators/build.py bakes it properly. Asserting them together meant the
     // honest upgrade read as a regression.
-    check(`${label}: anonymous infill is visibly flagged as inferred reconstruction`,
+    check(`${label}: anonymous infill is visibly flagged as a reconstruction`,
       placeholder.reconstructionFlag === true,
+      JSON.stringify(placeholder));
+    check(`${label}: that flag names the grade the record itself carries`,
+      placeholder.flagNamesTheGrade === true && placeholder.grade === 'reconstructed',
       JSON.stringify(placeholder));
     // Both directions, which the single assertion never checked: placeholder
     // massing is claimed when the asset IS one, and — the half that was missing —
