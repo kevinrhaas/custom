@@ -75,7 +75,7 @@ belong at the end, not in the loop.
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
 | 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A7…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5). T-A6 (`blk_randolph_franklin`) is CLAIMED 2026-08-15 |
+| 1 | TOWN | **T-A7…** | one open block per run until the 66 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6 every open block is guaranteed to fit the roofs it is dealt |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -90,8 +90,13 @@ now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at rang
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
+**T-A6 is DONE (2026-08-15)** — the schedule was dealing five of the ten open blocks roofs their
+own lots could not hold, and the deal now derives lot occupancy the same way the block generator
+does. **266 stand and 399 remain, 66 of them on covered ground** (was 71 — five roofs never had
+anywhere to stand). Full findings under T-A6 below; read them before claiming a block.
+
 **T-A5 is DONE (2026-08-14)** — `blk_randolph_market` carries eight roofs, so **266 stand and 399
-remain**, 71 of them on covered ground. It is the first block whose standing roofs this project's
+remain**, 71 of them on covered ground (**re-derived to 66 by T-A6**). It is the first block whose standing roofs this project's
 *own inferred-residents layer* had put there, and it **settles the division question T-A4 left
 open**: rule 6 takes three tests, the third being the roof's division, and the written test recovers
 all four adoption decisions made before it. It also found what the tests cannot answer — four trades
@@ -920,25 +925,47 @@ household) · `data/structures/recon_1835_blk_randolph_market_*.json` (8, derive
 `data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md`
 (L97) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A6 — `blk_randolph_franklin` · **CLAIMED 2026-08-15, expires 2026-08-17**
+### T-A6 — the schedule learns what a lot is · **DONE 2026-08-15**
 
-The Randolph row's next block east of T-A5's, bounded by Randolph, Franklin, Washington and
-Wells. Re-derived from the schedule on arrival: **nine roofs on eight lots of which one already
-carries a roof** — seven principal (C2, C3, D2, D3, D4, D6, H3) and two yard buildings (A3, A4)
-— and **no institutional family**, so nothing is deferred and the parcel is the plain T-A5 shape.
+**Claimed as `blk_randolph_franklin` and finished as something else, because the block could not
+be built honestly.** Re-deriving the schedule on arrival showed the parcel had been dealt seven
+principal roofs onto seven free lots — every lot filled, no vacancy — and checking the other nine
+open blocks found the same blindness in four more. Full measurement and the three failure shapes
+in `docs/STATUS.md` § "half the open blocks were scheduled roofs their own lots could not hold".
 
-**What is new about it, and it is geometry rather than argument:** it is the first block the
-schedule deals a *commercial pair plus a boarding house* — C2, C3 and H3 are the three largest
-footprint bands in the open set (up to 22×50 ft and 34×50 ft) standing on lots the four earlier
-blocks only ever put dwellings on. If the lot-margin and separation gates are going to refuse
-anything, they refuse it here, and that refusal is the parcel's finding rather than an obstacle
-to route around.
+**The one-line version:** a block's room was counted in ROOFS and a principal roof needs a free
+LOT, so `standing_roofs` could not tell two roofs on one lot from two roofs on two.
+`blk_south_water_clark` and `blk_lake_market` were dealt seven principal roofs against six free
+lots — unwritable. `blk_south_water_wells`, `blk_randolph_franklin` and `blk_randolph_clark` were
+dealt exactly their free-lot count, which is writable and worse, because it spends the alternating
+vacancy the recipe's own placement rule promises without anybody deciding to. And
+`blk_randolph_dearborn` (the T-A3h backfill) was dealt one yard building and no principal roof to
+put it behind.
 
-Files: `data/reconstruction/1835_platted_block_parcels.json` ·
-`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` ·
-`data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing ·
-`docs/LIBERTIES.md` · `docs/ROADMAP.md` · `docs/STATUS.md`.
-**No renderer file, and no tool unless the parcel meets something genuinely new.**
+**A rule a parcel can be dealt out of is not a rule.** The vacancy was a promise each parcel kept
+by hand — T-A2 left one lot open, T-A5 two — and a block dealt its exact free-lot count could not
+keep it. It is now a property of the deal: `principal = min(free lots − 1, roof headroom)`,
+`ancillary` bounded by the 154:511 ratio AND by the principals the parcel builds, lot occupancy
+derived by the same footprint-centroid rule `tools/generate_block_infill.py` already uses so the
+two halves cannot disagree again, a token a unit cannot take offered to the next unit rather than
+dropped, and a new assertion that fails the build if a unit is ever dealt past its room.
+
+**Cost: schedulable-on-covered-ground 71 → 66, gated 328 → 333.** Five roofs that never had
+anywhere to stand went back to waiting on coverage. That is the honest number and it is smaller
+than the one this lane had been quoting.
+
+**All ten open blocks are buildable now, and each keeps a lot open.** `blk_randolph_franklin`
+returns to the queue with the corrected mix below. This parcel changed no structure record, no
+resident, no sidecar and no mesh: `tools/reconcile_665.py`, the derived programme, two documents
+and a changelog entry.
+
+**Files:** `tools/reconcile_665.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/STATUS.md` · `docs/ROADMAP.md` · `renderers/web/js/changelog.js`
+
+**What it did not do:** ask whether ONE open lot per block is the right vacancy. The rule now
+guarantees a floor of one, which is what the phase-one parcel assumes and what every parcel so far
+has done or bettered; whether a block of eight lots in 1835 Chicago carried six roofs rather than
+seven is a question for the evidence, not for the apportionment, and nothing here answers it.
 
 ### T-A7…T-An — the remaining blocks · **UNCLAIMED**
 
@@ -955,14 +982,18 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open immediately after T-A5, on ground the project has coverage for — 71 roofs across ten
-entries:** `blk_randolph_franklin` 9 · `blk_randolph_clark` 9 · `blk_randolph_lasalle` 7 ·
-`blk_south_water_franklin` 8 · `blk_south_water_wells` 8 · `blk_south_water_lasalle` 8 (**carries
-the one I3 in the whole open set — defer it per T-A3 unless T-I3 has landed**) ·
-`blk_south_water_clark` 8 · `blk_south_water_dearborn` 6 · `blk_lake_market` 7 ·
-`blk_randolph_dearborn` 1 (an A4 backfill). **This list is a convenience and goes stale the moment
-the next parcel lands** — the schedule re-apportions every open block each time one closes, and it
-moved the I3 between blocks on this very run. Re-derive it, do not trust it.
+**Open after T-A6, on ground the project has coverage for — 66 roofs across ten entries, and
+every one of them now buildable with a lot left open:** `blk_south_water_franklin` 8 (6P+2A) ·
+`blk_south_water_wells` 8 (6P+2A) · `blk_south_water_lasalle` 8 (6P+2A, **carries the one I3 in
+the whole open set — defer it per T-A3 unless T-I3 has landed**) · `blk_south_water_clark` 7
+(5P+2A) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A) ·
+`blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 5 (4P+1A) · `blk_randolph_clark` 8
+(6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6).
+**This list is a convenience and goes stale the moment the next parcel lands** — the schedule
+re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
+guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block
+is dealt more principal roofs than it has free lots less one, and no block is dealt a yard
+building without a roof to stand it behind.
 
 ---
 
