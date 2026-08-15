@@ -20,15 +20,19 @@ The changelog merges normally now. Two branches that both ship an entry conflict
 merge, and the resolution is the obvious one: keep both, newest first, re-run
 `tools/stamp-changelog.mjs`.
 
-**And the second half of that comment was simply untrue.** It claimed "the contract check catches
-that — versions must be strictly decreasing". **That check had never been written.** It is why two
-branches each shipped a `v: 93`, and later a `v: 98`, with nothing said — a duplicate only ever
-surfaced when a merge happened to break a bracket as well. A repeated version is not cosmetic:
-Manager and the launcher key on it, the stamper assigns the next number from the top entry, and the
-promotion pipeline tags `release-vNNN` from it, so a duplicate mis-tags a release and makes two
-entries indistinguishable to every consumer at once. `tools/check-changelog.mjs` now enforces
-strictly-decreasing versions and gap detection, and was **verified to fail on an injected
-duplicate** before being committed.
+**And a claim in that comment needed correcting, though not the way I first wrote it.** The comment
+said "the contract check catches that — versions must be strictly decreasing". I recorded that as
+never written. **That was wrong: the rule exists in `check-changelog.mjs` and always has.** What it
+cannot do is report — it sits after the module load, and the shape walk above it exits the moment a
+bracket is unbalanced. The merge that duplicates a version is the same merge that breaks the shape,
+so every run died on the shape first and the duplicate was never named; the hand repair then rebuilt
+the file from a base copy and took the duplicate with it. A correct check, unreachable in precisely
+the case it was written for.
+
+The version rule is now enforced in the **text scan** as well, which runs before that exit, so a
+duplicate is named even when the literal will not load — and gaps in the numbering are reported too,
+because a gap means an entry was dropped in a merge. Verified to fail on an injected duplicate
+before being committed.
 
 **The same `merge=union` line and the same exposure exist in the other fleet apps** (polecat-platform
 docs/SHELL-API.md § the fleet changelog contract). This repo is fixed; the fleet is not.

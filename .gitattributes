@@ -25,11 +25,17 @@
 # obvious one: keep both entries, newest first, and re-run
 # `node chicago/4d/tools/stamp-changelog.mjs`.
 #
-# The other half of the old comment claimed "the contract check catches that —
-# versions must be strictly decreasing". IT DID NOT: that check had never been
-# written, which is how two branches each shipped a `v: 93`, and later a `v: 98`,
-# with nothing said. `tools/check-changelog.mjs` enforces it as of 2026-08-15
-# and is verified to fail on an injected duplicate.
+# The old comment also claimed "the contract check catches that — versions must
+# be strictly decreasing". That check DOES exist (`check-changelog.mjs`, the
+# `entries must be newest-first by v` rule) and always has. What it could not do
+# is REPORT: it lives after the module load, and the shape walk above it calls
+# report() and exits the moment a bracket is unbalanced. The merge that creates
+# a duplicate version is the same merge that breaks the shape, so the run always
+# died on the shape first and the duplicate was never named — then the hand
+# repair rebuilt the file from a base copy, taking the duplicate with it. The
+# check was right and unreachable in exactly the case it was written for.
+# It is now ALSO enforced in the text scan, which runs before that exit, so a
+# duplicate is reported even when the literal will not load.
 #
 # See polecat-platform docs/SHELL-API.md § the fleet changelog contract. The
 # fleet's other apps carry the same `merge=union` line and the same exposure.
