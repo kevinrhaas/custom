@@ -42,18 +42,27 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-BUG3** | **CLAIMED 2026-08-14 — DO NOT PICK UP** (steward, `steward/r-bug3-near-road`); owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
-| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
+| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
+| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
 | 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
-| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
+| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
 | 6 | TOWN | **K21** | the adoption tests are silent, not negative, for four trades — a refusal nobody can distinguish from an unanswered question |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**R-BUG3 is DONE (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
+and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **2.8 of a measured
+ceiling of 3.7 / 60 %**, with every band past 40 m unchanged to the decimal. Two things were found
+that are not the fix and matter more. **The near band was empty at both gated stations, because
+neither one stands on a road** — `south_water` is 101 m from its own centreline (T-V2) and
+`from_above` is in the air — so the parcel's own first move, adding `[2, 40]`, measured nothing
+until a station stood on the roadway. And **a band gated on probes SEEN gates itself out exactly
+when the road goes invisible**; the bands are now gated on probes PROJECTED, so that failure is
+loud. Full findings under R-BUG3 below — read them before pointing any gate at anything.
 
 **R-BUG2 is DONE (2026-08-14)** — the owner-reported vanishing roads were **two** faults, not one,
 and the parcel's prime suspect was **refuted by measurement**. The gate could not see any of it and
@@ -1093,12 +1102,72 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-BUG3 — the road is invisible AT YOUR FEET · **CLAIMED 2026-08-14 · NEXT UP · owner-reported**
+### R-BUG3 — the road is invisible AT YOUR FEET · **DONE 2026-08-15**
 
-> **CLAIM — steward, branch `steward/r-bug3-near-road` off `dev`, 2026-08-14.** Taking the
-> near-field band into `roadContrast()` first, expecting it to fail, then measuring the three
-> candidate mechanisms before touching any of them. Another run should take R-W4 or a lane-2
-> parcel instead.
+**What it took, and what it refuted.** The near band was added, it failed exactly as this parcel
+predicted — **1.5 L\* with 30 % of probes perceptible at 2–40 m, against 3.4 / 87 % in the very
+next band out** — and it is now **3.1 of a measured ceiling of 3.4, with 80 % perceptible** on
+mobile (3.2 of 4.3 with 60 % on desktop), on the published mirror. Three
+findings came out of it, and only the third is the one this parcel expected:
+
+1. **The near band was EMPTY, and no threshold would have caught this bug.** `[2, 40]` on its own
+   changes nothing, because **neither gated station stands on a road**: `south_water` sits **101 m
+   from the centreline it is named after** (that is T-V2, measured from the committed path) and
+   17 m from the nearest one, and `from_above` is 175 m up. The near band collected **one probe**
+   at the first station and **none** at the second. The parcel's own first move was necessary and
+   nowhere near sufficient — the window was wrong in TWO dimensions, distance and pose, and only
+   the distance one was visible from the failing gate. There is now a third station,
+   `lake_market`, which arrives the way a visitor does — by clicking a verified street-control
+   intersection in the Go to tab — and then turns to look along the centreline it is standing on,
+   a bearing read off the committed path rather than authored here. The arrival pose alone was
+   not enough either: the shipped jump faces a fixed bearing, which at a crossing points
+   diagonally into the block and put **zero** road probes inside 100 m.
+2. **THE PRIME SUSPECT IS REFUTED — no grass is hiding this road.** The harness now re-shoots its
+   road markers with the sward and the trees hidden, so an occluded probe is distinguishable from
+   an absent one, and in the near band **all ten probes are marked either way**. Sward occlusion
+   and the clearing-corridor width are both out, this parcel's non-licence never had to be tested,
+   and `flora.js` is untouched. The gate reports the discrimination on every band from now on
+   (`seen N of M projected (K clear of flora)`) because it is the distinction three gates in a row
+   have failed to draw.
+3. **The fault is candidate 3, and the mechanism is sharper than "alpha".** An alpha here is a
+   **coverage fraction**, and a coverage fraction is only the right picture of a mixture where one
+   pixel spans many patches of it. Up close one pixel spans one patch, which is either earth or
+   grass, and the blend paints a uniform wash instead. The harness measures both ends: the same
+   near probes forced fully **opaque** score **3.4 L\***, so the contrast was in the ribbon's own
+   colour and the shipped alpha was spending under half of it. The near field also has less to spend — the
+   ground underfoot is genuinely darker than at range, **L\* 51.0 against 52.7–56.3** — which is
+   why spending it matters here and not at 250 m. The fix scales alpha by 2.4 inside 15 m, fading
+   to nothing by 40 m; every band past the fade is unchanged to the decimal, which is the
+   arithmetic guarantee and also the measurement. Recorded as **L98**.
+
+**And one lesson for the gates, which is the durable part.** A band gated on *how many probes were
+SEEN* gates itself out at exactly the moment the thing it measures goes wrong: a road nobody can
+see reports n=0 and is indistinguishable from a road that is not there. The bands are now gated on
+how many probes were **PROJECTED** — on screen and therefore owed a picture. That is the third
+time this bug has been a question of what the gate was pointed at, and it is the first fix that
+makes the gate fail loudly rather than quietly abstain.
+
+**One more thing the opaque pass taught, and it is a gate lesson too.** Its first form dropped the
+ribbon into the opaque queue without letting it write depth, so the terrain painted back over it
+and the pass reported a **0.0 ceiling under a perfectly healthy road**. It writes depth now, like
+the marker pass it should always have mirrored. A diagnostic that lies quietly is worse than none,
+and this one lied in the direction of "nothing to see here" — the same direction as everything else
+in this bug's history.
+
+**And a second fault, found by the new station and fixed with it.** At desktop, 100–250 m from the
+crossing, the ribbon scored **0.0 L\*** with the marker pass frontmost: R-BUG2's fault 1 again, its
+polygon offset having been tuned until the bands *at the two stations then gated* passed. Deepened
+to the marker's own values, that band reads **18.0 L\* at 100 % perceptible**. The number was never
+wrong; the sample it was tuned against was.
+
+**Not done here, and deliberately:** the near ceiling of 3.4 L\* is itself the lowest of any band
+(the others sit at 5.9–6.9), and 20 % of near probes cannot clear the threshold even fully opaque.
+L98 names the honest fix — a textured coverage, earth and grass resolved as patches at the scale a
+near pixel can show, so the eye integrates the recorded fraction instead of the blender pre-mixing
+it. That belongs to **R-W2** (texture the town), which is where the 1.4 texture score lives.
+
+<details>
+<summary>The parcel as opened, 2026-08-14</summary>
 
 
 Reported by the owner 2026-08-14, on mobile, on the **dev preview** — so **with the R-BUG2 fix
@@ -1150,6 +1219,8 @@ should be wider, that is a change to the record with its reasoning, not a tuning
 the check names it; every existing road band still green; the per-community sward cover check
 untouched and still passing. **Mobile is the report and mobile is the gate** — 390×780 is where
 it was seen.
+
+</details>
 
 ### B-A1 — does the AO bake earn its nightly? · **UNCLAIMED · NEXT UP (lane 1 or standalone)**
 

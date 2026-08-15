@@ -60,10 +60,52 @@ const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
  * pixel it needs to be seen at all. It binds only where the ribbon is thin —
  * from the air 0.02 of a wide road is nothing, so this is not what fixed
  * fault 2.
+ *
+ * ---------------------------------------------------------------------------
+ * R-BUG3 — AND THE ROAD AT YOUR FEET. The owner reported, on the dev preview
+ * with both fixes above already in, that the ruts read in the mid-distance and
+ * the road is simply not there in the near field. Measured at a station
+ * standing on a crossing (`roadContrast()` gained one, because neither gated
+ * station stood on a road at all): 2-40 m scored **1.5 L\* with 30 % of probes
+ * perceptible**, against 3.4 / 87 % in the very next band out. It now reads
+ * **3.1 / 80 % on mobile and 3.2 / 60 % on desktop**, measured on the published
+ * mirror.
+ *
+ * REFUTED — near-field sward occlusion, the parcel's prime suspect. Every one
+ * of the near probes was UNOCCLUDED: the harness re-shoots its road markers
+ * with the sward and the trees hidden, and the near band's marked count does
+ * not move. No grass is hiding this road; the road is painting almost nothing.
+ * The clearing corridor is therefore not the fault either, and neither is
+ * touched here — widening one to win a contrast score would falsify a recorded
+ * ground cover, which the parcel forbids and this fix does not need.
+ *
+ * FAULT — ALPHA IS A COVERAGE FRACTION, AND COVERAGE ONLY AVERAGES AT RANGE.
+ * The authored alpha says what share of the ground is bare earth: 0.46 at the
+ * crown of a graded track, 0.30 for a lightly worn one. Far off, one pixel
+ * spans many patches and a blend is the right picture of that mixture. At your
+ * feet one pixel spans ONE patch, which in life is either earth or grass, and
+ * the blend instead paints a uniform wash of grass-with-a-hint-of-dirt. The
+ * harness measures both ends of it: the same near probes rendered fully opaque
+ * score **3.4 L\*** (4.3 desktop), so the contrast is there in the ribbon's own
+ * colour and the shipped alpha was throwing well over half of it away. (The ground is genuinely darker
+ * underfoot than at range — L\* 51.0 against 52.7-56.3 — so the near field has
+ * less contrast to spend, which is why spending it all matters here.)
+ *
+ * THE LIFT, and what it does not do. Inside `NEAR_FULL_M` the alpha is scaled
+ * by `NEAR_GAIN`, fading back to unity by `NEAR_FADE_M` — which is the outer
+ * edge of the band the report is about, so every band the earlier gates hold
+ * is arithmetically untouched. It is a GAIN, not a floor: graded > worn >
+ * light is a modelled attribute with its own confidence and it survives
+ * scaling. Nothing in `data/` moves, no recorded cover changes, and the mean
+ * coverage the record states is still what the picture shows at the distance
+ * where a mixture is what a pixel means. Recorded in `docs/LIBERTIES.md`.
  */
 const MIN_TRACK_PX = 2.0;
 const MAX_THIN_BOOST = 6.0;
 const MAX_ALPHA = 0.92;
+const NEAR_FULL_M = 15.0;
+const NEAR_FADE_M = 40.0;
+const NEAR_GAIN = 2.4;
 
 function pointSegment(e, n, a, b) {
   const dx = b[0] - a[0];
@@ -242,8 +284,18 @@ function meshOf(surface, buf, confidence) {
     // the test in patches beyond ~250 m. Deep enough to hold at the far end of
     // the town, shallow enough that the ribbon never lifts off its own drape —
     // the vertices are untouched, and `worstDrape` still gates them.
-    polygonOffsetFactor: -4,
-    polygonOffsetUnits: -8,
+    // R-BUG3 deepened it again, and the reason it had to is the same reason
+    // R-BUG2's number was too shallow: it was tuned until the bands AT THE TWO
+    // STATIONS THEN GATED passed. Standing on Lake Street at Market, desktop,
+    // 100-250 m, the ribbon lost the test again — 23 probes where the marker
+    // pass is frontmost and the road changes the picture by 0.0 L\*, opaque or
+    // not, which is a depth fight and nothing else. These are the marker's own
+    // values, so "the road's surface is the frontmost thing here" and "the road
+    // is drawn here" now mean the same thing rather than differing by a tuning
+    // constant. The vertices are still untouched and `worstDrape` still gates
+    // them to 1e-5 m.
+    polygonOffsetFactor: -8,
+    polygonOffsetUnits: -32,
   });
   mat.name = `street-${surface}`;
   // R-BUG2 floor. `u` runs 0 -> 1 exactly across the track, so 1/fwidth(u) IS
@@ -258,6 +310,13 @@ function meshOf(surface, buf, confidence) {
         float trackPx = 1.0 / max(fwidth(vMapUv.x), 1e-6);
         float thin = clamp(${MIN_TRACK_PX.toFixed(1)} / trackPx, 1.0, ${MAX_THIN_BOOST.toFixed(1)});
         diffuseColor.a = min(diffuseColor.a * thin, ${MAX_ALPHA.toFixed(2)});
+        // R-BUG3. Distance from the eye, not a pixel count: the band this
+        // answers is metres from the walker and must not mean something
+        // different at 390 px than at 1280.
+        float eyeM = length(vViewPosition);
+        float near = 1.0 - smoothstep(${NEAR_FULL_M.toFixed(1)}, ${NEAR_FADE_M.toFixed(1)}, eyeM);
+        float gain = mix(1.0, ${NEAR_GAIN.toFixed(2)}, near);
+        diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
       }`,
     );
   };

@@ -164,10 +164,18 @@ const ROAD_MIN_PROBES = 8;
  * threshold there would be a claim about fog, not about roads.
  */
 const ROAD_STATIONS = [
-  { id: 'south_water', what: 'from the walker’s eye, down an open street', minBands: 2 },
-  { id: 'from_above', what: 'from the air, at the aerial anchor', minBands: 2 },
+  { id: 'south_water', kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
+  { id: 'from_above', kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
+  // R-BUG3. Neither anchor above STANDS ON A ROAD — the `south_water` viewpoint
+  // is 101 m from the centreline it is named after (T-V2) and 17 m from the
+  // nearest one — so the near band was empty at both and no threshold could
+  // have caught the owner's report. This station arrives the way a visitor
+  // does, by clicking a verified street-control intersection in the Go to tab,
+  // which puts the roadway under the camera and its coordinates stay in the
+  // compiled index rather than being copied into this gate.
+  { id: 'lake_market', kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
 ];
-const ROAD_BANDS = [[40, 100], [100, 250], [250, 600], [600, 4000]];
+const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
@@ -179,7 +187,36 @@ async function roadContrast(page, station) {
       const el = document.getElementById(id);
       if (el) { el.dataset.roadHidden = el.style.visibility; el.style.visibility = 'hidden'; }
     }
-    a.goTo(st);
+    if (st.kind === 'intersection') {
+      // The visitor's own route: the Go to tab's list is painted at boot, so the
+      // button is in the DOM whether or not the panel is open.
+      document.querySelector(`[data-jump-id="${st.id}"]`)?.click();
+      a.step();
+      // Then turn to look ALONG the street being stood on. The arrival pose
+      // aims at a fixed bearing, which at a crossing points diagonally into the
+      // block and puts no roadway in the frame at all — 0 probes inside 100 m.
+      // The bearing is read off the nearest committed centreline segment, so
+      // the direction is the dataset's and not a number chosen here.
+      const p = a.player;
+      let best = null;
+      for (const rec of a.streets.records) {
+        const path = rec.path;
+        for (let i = 1; i < path.length; i++) {
+          const A = path[i - 1];
+          const B = path[i];
+          const dE = B[0] - A[0];
+          const dN = B[1] - A[1];
+          const len2 = dE * dE + dN * dN;
+          const t = len2 ? Math.max(0, Math.min(1,
+            ((p.e - A[0]) * dE + (p.n - A[1]) * dN) / len2)) : 0;
+          const d = Math.hypot(p.e - (A[0] + t * dE), p.n - (A[1] + t * dN));
+          if (!best || d < best.d) best = { d, bearing: (Math.atan2(dE, dN) * 180) / Math.PI };
+        }
+      }
+      if (best) a.walker.teleport({ yaw_deg: (best.bearing + 360) % 360 });
+    } else {
+      a.goTo(st.id);
+    }
     a.step();
     a.step();
     const cam = a.camera;
@@ -241,16 +278,59 @@ async function roadContrast(page, station) {
     a.step();
   });
   const shotM = await page.screenshot({ type: 'png' });
+  // DIAGNOSTIC PASS — the same markers with the sward and the trees hidden. A
+  // probe marked here but not in `shotM` is a road that is ON SCREEN and
+  // COVERED BY VEGETATION, which the marked-only denominator drops instead of
+  // failing.
   await page.evaluate(() => {
     const a = window.__chicago4d;
+    a.__floraWas = [a.flora?.group?.visible, a.trees?.group?.visible];
+    if (a.flora?.group) a.flora.group.visible = false;
+    if (a.trees?.group) a.trees.group.visible = false;
+    a.step();
+  });
+  const shotMF = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    if (a.flora?.group) a.flora.group.visible = a.__floraWas[0] ?? true;
+    if (a.trees?.group) a.trees.group.visible = a.__floraWas[1] ?? true;
+    delete a.__floraWas;
     for (const [o, m] of a.__roadMarkers) { o.material.dispose(); o.material = m; }
     delete a.__roadMarkers;
     a.streets.group.visible = false;
     a.step();
   });
   const shotO = await page.screenshot({ type: 'png' });
+  // DIAGNOSTIC PASS — the road painted at FULL opacity. A near band that still
+  // scores flat here is not an alpha fault: it is the ribbon and the ground
+  // sharing a lightness.
   await page.evaluate(() => {
     const a = window.__chicago4d;
+    a.streets.group.visible = true;
+    a.__roadOpaque = [];
+    a.streets.group.traverse((o) => {
+      if (!o.material) return;
+      a.__roadOpaque.push([o.material, o.material.transparent, o.material.alphaTest,
+        o.material.depthWrite]);
+      o.material.transparent = false;
+      o.material.alphaTest = 0;
+      // depthWrite WITH it, exactly as the marker pass does. Leaving it false
+      // moves the ribbon into the opaque queue without letting it hold the
+      // depth buffer, so the terrain paints back over it and the band reports
+      // a 0.0 ceiling under a perfectly healthy road — which is what this
+      // measurement read at 100-250 m before the offset above was deepened.
+      o.material.depthWrite = true;
+      o.material.needsUpdate = true;
+    });
+    a.step();
+  });
+  const shotOP = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    for (const [m, t, at, dw] of a.__roadOpaque) {
+      m.transparent = t; m.alphaTest = at; m.depthWrite = dw; m.needsUpdate = true;
+    }
+    delete a.__roadOpaque;
     a.streets.group.visible = true;
     for (const id of ['hud', 'popup']) {
       const el = document.getElementById(id);
@@ -262,7 +342,9 @@ async function roadContrast(page, station) {
 
   const R = decodePng(shotR);
   const M = decodePng(shotM);
+  const MF = decodePng(shotMF);
   const O = decodePng(shotO);
+  const OP = decodePng(shotOP);
   const scale = R.width / shot.cssWidth;
   const probes = shot.probes.map((p) => ({
     dist: p.dist,
@@ -271,13 +353,20 @@ async function roadContrast(page, station) {
   }));
   // Magenta survives tone mapping as a strongly red-and-blue, weakly green
   // pixel; nothing else in this scene is.
-  const marked = (x, y) => {
-    const i = (y * M.width + x) * 4;
-    return M.data[i] > 140 && M.data[i + 2] > 140 && M.data[i + 1] < 110;
+  const isMagenta = (img, x, y) => {
+    const i = (y * img.width + x) * 4;
+    return img.data[i] > 140 && img.data[i + 2] > 140 && img.data[i + 1] < 110;
   };
+  const marked = (x, y) => isMagenta(M, x, y);
+  const markedBare = (x, y) => isMagenta(MF, x, y);
   const deltaL = (x, y) => {
     const i = (y * R.width + x) * 4;
     return Math.abs(labL(R.data[i], R.data[i + 1], R.data[i + 2])
+      - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
+  };
+  const deltaLOpaque = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return Math.abs(labL(OP.data[i], OP.data[i + 1], OP.data[i + 2])
       - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
   };
   const median = (xs) => {
@@ -285,14 +374,28 @@ async function roadContrast(page, station) {
     return s.length ? s[Math.floor(s.length / 2)] : 0;
   };
   const bands = ROAD_BANDS.map(([lo, hi]) => {
-    const ds = probes
-      .filter((p) => p.dist >= lo && p.dist < hi && marked(p.x, p.y))
-      .map((p) => deltaL(p.x, p.y));
+    const inBand = probes.filter((p) => p.dist >= lo && p.dist < hi);
+    const seen = inBand.filter((p) => marked(p.x, p.y));
+    const ds = seen.map((p) => deltaL(p.x, p.y));
+    const op = seen.map((p) => deltaLOpaque(p.x, p.y));
     return {
       lo, hi, n: ds.length,
+      // R-BUG3. How many road points landed in the frame at all, and how many
+      // of those the marker pass can see once the sward and the trees are
+      // taken away. `nProjected` is what the band is GATED on, so a road that
+      // is on screen and invisible fails here instead of quietly leaving the
+      // sample; `nBare` is what tells occlusion apart from flatness, which is
+      // the distinction three gates in a row failed to draw.
+      nProjected: inBand.length,
+      nBare: inBand.filter((p) => markedBare(p.x, p.y)).length,
+      // The ceiling: the same probes with the ribbon forced opaque. It says how
+      // much contrast the road's own colour has to spend before its alpha
+      // spends it, which is what separates "too transparent" from "the same
+      // lightness as the ground".
+      opaqueDeltaL: median(op),
       medianDeltaL: median(ds),
       perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
-      gated: ds.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
+      gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };
   });
   return { station, bands };
@@ -1850,15 +1953,21 @@ const terrainLoad = await page.evaluate(() => {
 
     // R-BUG2. Draped is not seen: every assertion above passed while the roads
     // were invisible. See `roadContrast()` for what this measures and why.
+    // R-BUG3 added the third station and the near band, and moved the gating
+    // test from "enough probes were SEEN" to "enough probes were PROJECTED" —
+    // under the old test a band nobody can see reports n=0 and gates itself
+    // out, which is indistinguishable from a band with no road in it.
     for (const station of ROAD_STATIONS) {
-      const road = await roadContrast(page, station.id);
+      const road = await roadContrast(page, { id: station.id, kind: station.kind });
       const bands = road.bands.filter((b) => b.gated);
       const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
         || b.perceptible < ROAD_MIN_PERCEPTIBLE);
       const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
-        + (b.n < ROAD_MIN_PROBES ? `n=${b.n} (not gated)`
-          : `ΔL* ${b.medianDeltaL.toFixed(1)}, ${(b.perceptible * 100).toFixed(0)} % `
-            + `perceptible, n=${b.n}${b.gated ? '' : ' (reported only)'}`)).join(' · ');
+        + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
+          : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
+            + `${(b.perceptible * 100).toFixed(0)} % perceptible, seen ${b.n} of `
+            + `${b.nProjected} projected (${b.nBare} clear of flora)`
+            + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
       check(`${label}: the roads reach the screen ${station.what}`,
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
