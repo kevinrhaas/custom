@@ -1,5 +1,42 @@
 # STATUS
 
+## Fixed 2026-08-15 — the changelog's merge driver was corrupting the file, silently, every time
+
+**K27.** `.gitattributes` merged `js/changelog.js` with `merge=union` so that two branches each
+shipping an entry would not conflict. The stated hazard was "two branches editing the same existing
+entry", called rare; the everyday prepend was called safe. **That is backwards.**
+
+Union is a LINE union and a changelog entry is not a line. When both sides prepend, the shared
+closing `    ] },` is common context and survives **once** — so the first entry swallows the second
+and the literal is left with an unclosed bracket. The result is still valid JavaScript, so
+`node --check` passes it and nothing downstream notices.
+
+**Measured: five consecutive merges in one day** (#126, #132, #136, #139 and R-BUG4) each produced
+exactly this corruption and each needed the same manual repair — rebuild from the base copy and
+re-stamp. Union did not prevent a single conflict. It converted five loud conflicts into five silent
+corruptions that had to be repaired by hand regardless.
+
+The changelog merges normally now. Two branches that both ship an entry conflict, loudly, at the
+merge, and the resolution is the obvious one: keep both, newest first, re-run
+`tools/stamp-changelog.mjs`.
+
+**And a claim in that comment needed correcting, though not the way I first wrote it.** The comment
+said "the contract check catches that — versions must be strictly decreasing". I recorded that as
+never written. **That was wrong: the rule exists in `check-changelog.mjs` and always has.** What it
+cannot do is report — it sits after the module load, and the shape walk above it exits the moment a
+bracket is unbalanced. The merge that duplicates a version is the same merge that breaks the shape,
+so every run died on the shape first and the duplicate was never named; the hand repair then rebuilt
+the file from a base copy and took the duplicate with it. A correct check, unreachable in precisely
+the case it was written for.
+
+The version rule is now enforced in the **text scan** as well, which runs before that exit, so a
+duplicate is named even when the literal will not load — and gaps in the numbering are reported too,
+because a gap means an entry was dropped in a merge. Verified to fail on an injected duplicate
+before being committed.
+
+**The same `merge=union` line and the same exposure exist in the other fleet apps** (polecat-platform
+docs/SHELL-API.md § the fleet changelog contract). This repo is fixed; the fleet is not.
+
 ## MEASURED 2026-08-15 — the ground you see is not the ground the town is anchored to
 
 **R-BUG3c-a.** The owner reproduced the invisible near-field road with the R-BUG3 fix in. The cause
