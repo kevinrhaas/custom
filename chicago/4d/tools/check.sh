@@ -108,6 +108,16 @@ check_js() {
 }
 step "renderer modules parse" check_js
 
+# The ground the town is ANCHORED to and the ground it is DRAWN as, compared on
+# the committed bytes. `generators/terrain_gen.py` refuses to export a mesh more
+# than 30 mm from the heightfield — inside a Blender run this gate cannot make,
+# so nothing re-checked the committed master afterwards, and R-BUG3c was a 306 mm
+# disagreement nobody could see. This asserts the master and REPORTS the shipped
+# derivative, which is quantised by the publish step and conformed at load; the
+# surface actually drawn is asserted by tools/smoke_renderer.mjs.
+step "the ground mesh still meets the heightfield the walker samples" \
+  node tools/measure_terrain_fit.mjs --gate
+
 # The changelog contract, on every run rather than only when somebody remembers
 # it. AGENTS.md has always told an agent to run this by hand before merging, and
 # on 2026-08-13 the file was corrupted BY A MERGE — `.gitattributes` merges it
