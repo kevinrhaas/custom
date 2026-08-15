@@ -1,5 +1,59 @@
 # STATUS
 
+## New 2026-08-15 — a block with no front, and the face rule's first measurement does not reproduce
+
+**T-A14.** `blk_randolph_franklin` — Randolph, Wells, Washington, Franklin — now carries **eight
+anonymous roofs**, six principal, a stable and a privy, on six of its seven free lots, with lot 1
+left open and lot 2 held by Harmon's log cabin. **Standing roofs 306 → 314; remaining 359 → 351, 13
+of them on covered ground** (was 21). Inferred households 96 → 98, inferred persons 108 → 110.
+Recorded in L105. **The recipe cleared every placement gate on its first run** — the seventh block in
+a row — and it is the first block parcel of this shape to commit a tool, for the reason below. It is
+the first block on the row **two streets back**, and the first **neither of whose faces the town's
+record calls a front**.
+
+**T-A13'S FACE-RULE MEASUREMENT DOES NOT REPRODUCE, AND THIS IS THE HEADLINE.** The entry directly
+below reports **Lake 12, Randolph 2, South Water 9** for "every documented or inferred structure
+whose footprint centroid stands within 25 m of a street's committed centreline". No filter
+recoverable from this repository produces those numbers — the stated one gives **Lake 17 / Randolph 7
+/ South Water 14** on the research layer alone — and the filter actually used was never written down.
+The judgement it supported survives every filter tried (Lake is the better face by a wide margin);
+what failed is **reproducibility**, which on a project whose product is provenance is the more
+serious of the two. `tools/measure_street_frontage.py` is committed so the next parcel runs the
+measurement rather than remembering it. **The T-A13 entry below is left standing verbatim**, and so
+is L104: LIBERTIES.md is append-only and what is corrected is the method.
+
+**The count reports its three evidence layers separately and never sums them.** The anonymous roofs
+the block parcels themselves place stood at **15 on Randolph and 9 on Washington** when this
+arrangement was chosen and read **18 and 12** the moment the parcel built — a face rule counting that
+layer reads the programme's own output back as evidence. Excluded, this block's answer is **14
+against 1**: Randolph carries 7 research-layer records and 7 inferred-household buildings, and
+**Washington Street's entire documented 1835 frontage is the estray pen**, the town's pound for stray
+animals.
+
+**The end rule's spread has thinned for a second block running.** Distance to the Dearborn Street
+drawbridge runs **527.8 m** at lot 6 to **584.0 m** at lot 0 on the Randolph frontage and **568.5 m**
+at lot 7 to **621.0 m** at lot 1 behind. The far end of the front face stands **1.11×** as far from
+the bridge as the near end, against T-A13's 1.13 and T-A12's 2.93, and the front face's absolute
+spread is **56.2 m** against T-A13's 68.2 m. Followed anyway on T-A13's reasoning, and recorded as
+closer to arbitrary than ordered.
+
+**The "second roof" question has been the wrong question for six blocks.** The D4 and D2 that every
+block since T-A9 has refused as *second* roofs for the carpenters and labourers are also the
+**first** roofs of the **teamsters** and the **laundresses** — the other two of method rule 2's four
+unbounded trades, each housed in that one family and no other, each already in the South Division,
+each passing all three of rule 6's tests on those roofs. **Sixteen anonymous D2 and D4 roofs stand in
+the South Division under exactly that description.** K28 is settling a larger question than it was
+opened on: not whether a trade may take a second roof, but whether rule 6 may hand a roof to a trade
+that never asked for one.
+
+**The ninth K20 measurement is 61 of 108** carried-over invented persons renamed, against 67-of-106
+at T-A13 and 7-of-102 at T-A11. Seven measurements span 7 % to 72 % with nothing fixed or broken
+between them. K20 still owns the fix.
+
+**Unverified here:** the desktop half of `smoke_renderer.mjs` does not fit this runner's ten-minute
+per-command ceiling and was not run; the mobile half was, and `tools/check.sh` — which is the dev
+gate — passed. See the run-budget box in ROADMAP.
+
 ## New 2026-08-15 — the first block off the business front, and the rule that arranged the row stops meaning anything on it
 
 **T-A13.** `blk_lake_market` — Lake, Franklin, Randolph, Market — now carries **seven anonymous

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_north_04",
- "name": "The Stebbins household — a reconstructed cooper (north division)",
+ "name": "The Stiles household — a reconstructed cooper (north division)",
  "division": "north",
  "head": "inf_cooper_north_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_north_04",
-   "name": "Seth Stebbins",
+   "name": "Abner Stiles",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

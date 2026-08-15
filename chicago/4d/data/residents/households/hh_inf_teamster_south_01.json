@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_south_01",
- "name": "The Stiles household — a reconstructed teamster (south division)",
+ "name": "The Thayer household — a reconstructed teamster (south division)",
  "division": "south",
  "head": "inf_teamster_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_south_01",
-   "name": "Abner Stiles",
+   "name": "Calvin Thayer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

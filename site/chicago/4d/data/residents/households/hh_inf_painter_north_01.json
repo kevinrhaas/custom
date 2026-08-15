@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_painter_north_01",
- "name": "The Sawyer household — a reconstructed painter (north division)",
+ "name": "The Sheldon household — a reconstructed painter (north division)",
  "division": "north",
  "head": "inf_painter_north_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_painter_north_01",
-   "name": "Lemuel Sawyer",
+   "name": "Silas Sheldon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

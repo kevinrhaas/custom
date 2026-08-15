@@ -110,7 +110,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A14…** | one open block per run until the 21 are placed — `blk_lake_market` closed at T-A13, so the four open entries are all on Randolph or Lake one row back; adopt in the same run under rule 6's three tests · **the face rule is now MEASURED rather than named** (T-A13: documented roofs within 25 m of a centreline — Lake 12, Randolph 2, South Water 9), so a block whose faces are both back streets should measure them the same way rather than reach for a compass · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
+| 1 | TOWN | **T-A15…** | one open block per run until the 13 are placed — `blk_randolph_franklin` closed at T-A14, so the three open entries are all on the Randolph–Washington row; adopt in the same run under rule 6's three tests · **the face rule is now a COMMAND rather than a remembered number**: run `tools/measure_street_frontage.py <street> <street>` and quote it, never quote T-A13's Lake 12 / Randolph 2 / South Water 9, which T-A14 showed does not reproduce · **and read T-A14 finding 4 before writing a word about a "second roof"** — the D2 and D4 refusals belong to four trades, not two · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1208,10 +1208,24 @@ knows nothing whatever about this census, so two passes on one block is a coinci
 a bias; and the eight roofs of a block are not a meaningful unit — the same two roofs dealt to
 two blocks would both have been adopted without anybody pausing.
 
+**THE QUESTION IS BIGGER THAN THIS ENTRY SAYS — T-A14, 2026-08-15, and read this before
+claiming.** Six blocks have written their refused D4 and D2 up as *second* roofs for the carpenters
+and the labourers. They are also the **first** roofs of the **teamsters** (D4) and the
+**laundresses** (D2) — the other two of method rule 2's four unbounded trades, each housed in that
+one family and in no other, each already placed in the South Division, and so each passing all three
+of rule 6's tests on those very roofs. No parcel had ever named them. **Sixteen anonymous D2 and D4
+roofs stand in the South Division under exactly that description**, and every one of the six
+"conservative refusals" was therefore a refusal of four candidacies while recording two. So the cap
+question is only half of it: the other half is **whether rule 6 may hand a roof to a trade whose own
+argument never asked for one**, which is the thing that would actually grow the census as a side
+effect of a drawing. A decision that settles the cap and leaves this open settles nothing.
+
 **Acceptance:** rule 6 gains a fourth clause **or an explicit statement that there is no cap**,
-in the programme's own `method` list; `tools/generate_inferred_households.py` gates whichever is
-chosen, so the answer is code rather than a habit; the four T-A9 candidates are re-decided under
-it and the two refusals either stand with a reason or are adopted; `tools/check.sh` green.
+in the programme's own `method` list; **it also states whether a roof may be adopted by a trade
+that has not asked for one, because T-A14 showed the two questions are the same question**;
+`tools/generate_inferred_households.py` gates whichever is chosen, so the answer is code rather
+than a habit; the four T-A9 candidates are re-decided under it and the two refusals either stand
+with a reason or are adopted; `tools/check.sh` green.
 
 ### K29 — the schedule deals log cabins to the town's commercial frontage · **UNCLAIMED · from T-A8 (L99) and T-A9 (L100)**
 
@@ -1921,6 +1935,68 @@ churn measurement of 100 %. Run them in that order, and measure K20 after the se
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L104 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
+### T-A14 — `blk_randolph_franklin` · **DONE 2026-08-15**
+
+The first block of the row **two streets back** from the business front — bounded by Randolph,
+Wells, Washington and Franklin — carries **eight roofs, six principal and two ancillary**, on six of
+its seven free lots. Lot 1 is left open; lot 2 is held by Harmon's log cabin, derived by
+`tools/plat_occupancy.py` rather than authored. **314 stand and 351 remain, 13 of them on covered
+ground.** The recipe cleared every placement gate on its first run — the seventh block in a row —
+and it is the **first block parcel of this shape to commit a tool**, `tools/measure_street_frontage.py`,
+for the reason in finding 1. Two adoptions under rule 6: the D3 one-room cottage on lot 7 becomes
+the nineteenth inferred carpenter household, the D1 log cabin on lot 3 the twenty-first labouring
+one. Full admission in `docs/LIBERTIES.md` **L105**.
+
+**Four findings came out of it that are not the block.**
+
+1. **T-A13's face-rule measurement does not reproduce, and the fix is a command rather than a
+   correction.** T-A13 reported Lake 12, Randolph 2, South Water 9 "counting every documented or
+   inferred structure whose footprint centroid stands within 25 m of a street's committed
+   centreline". No filter recoverable from the repository produces those three numbers: the stated
+   one gives **Lake 17 / Randolph 7 / South Water 14** on the research layer alone. The finding it
+   supported survives every filter tried — Lake is the better face by a wide margin — so what failed
+   was not the judgement but the **reproducibility**, and on a project whose product is provenance
+   that is the more serious failure. `tools/measure_street_frontage.py` is committed here so the
+   next block runs the measurement instead of remembering it. L104 is left verbatim: LIBERTIES.md is
+   append-only and the method is what is corrected.
+2. **The count must report its three evidence layers separately, and this block is the
+   demonstration.** The reconstruction layer — the anonymous roofs the block parcels themselves
+   place — stood at **15 on Randolph and 9 on Washington** when this arrangement was chosen and read
+   **18 and 12** the moment the parcel built. A face rule counting that layer reads the programme's
+   own output back as evidence and drifts a little further from the town's record with every block.
+   Excluded, the answer here is **14 against 1**: Randolph carries 7 research-layer records and 7
+   inferred-household buildings, and **Washington Street's entire documented 1835 frontage is the
+   estray pen**, the town's pound for stray animals.
+3. **The end rule thins for a second block running.** Distance to the Dearborn Street drawbridge
+   runs **527.8 m** at lot 6 to **584.0 m** at lot 0 on the Randolph frontage and **568.5 m** at lot
+   7 to **621.0 m** at lot 1 behind; the far end of the front face stands **1.11×** as far from the
+   bridge as the near end, against T-A13's 1.13 and T-A12's 2.93, and the front face's absolute
+   spread is **56.2 m** against T-A13's 68.2 m. Followed anyway on T-A13's reasoning; recorded as
+   closer to arbitrary than ordered.
+4. **The "second roof" question has been the wrong question for six blocks, and this is the finding
+   that matters most.** Every block since T-A9 has recorded its D4 and its D2 as *second* roofs for
+   the carpenters and the labourers and refused them conservatively. Both were dealt here and both
+   are refused again — but the D4 is also the **first** roof of the **teamsters** and the D2 the
+   first roof of the **laundresses**, the other two of method rule 2's four unbounded trades, each
+   housed in that one family and in no other and each already placed in the South Division. Both
+   pass all three of rule 6's tests and no parcel has ever named them. **Sixteen anonymous D2 and D4
+   roofs stand in the South Division today under exactly that description.** **K28** is therefore
+   settling a larger question than the one it was opened on: not whether a trade may take a second
+   roof, but whether rule 6 admits a roof for a trade that has not asked for one.
+
+**The ninth K20 measurement is 61 of 108** carried-over invented persons renamed, against 67-of-106
+at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96
+at T-A8. Seven measurements now span 7 % to 72 % with nothing fixed or broken between them. K20
+still owns the fix.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (8 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(8 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L105 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
+`tools/measure_street_frontage.py`, new, standalone, not wired into `check.sh`.**
+
 ### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
@@ -1936,16 +2012,14 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A13, re-derived from the programme that parcel committed — 21 roofs across four
-entries, and the re-apportionment moved the pieces again:** `blk_randolph_franklin` 8 (6P+2A) ·
-`blk_randolph_clark` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A, and the only open entry carrying
-H1, H2 and a C2) · `blk_randolph_dearborn` 1 (**the I3, which has now moved a FOURTH time** — from
-`blk_south_water_clark` to `blk_lake_market` at T-A9, to `blk_randolph_franklin` at T-A11, to
-`blk_randolph_clark` at T-A12 and to this block at T-A13). **That last entry is not a block parcel**:
-the generator refuses I3 by name, so its one dealt roof can only be deferred with its reason and the
-block builds nothing — which also makes T-A3h's "backfill, now a D3" stale, because the schedule has
-since dealt that block something no generator will mass. **The South Water row is closed and Lake
-and Market with it**; every open entry is on Randolph.
+**Open after T-A14, re-derived from the programme that parcel committed — 13 roofs across three
+entries, and the re-apportionment moved the pieces again:** `blk_randolph_clark` 8 (6P+2A, and the
+only open entry carrying H1, H2 and a C2) · `blk_randolph_lasalle` 4 (3P+1A) ·
+`blk_randolph_dearborn` 1. **The I3 that had moved four times is gone from the schedule and a C3 has
+taken its place on `blk_randolph_dearborn`** — that entry is still not a block parcel for the same
+reason, one dealt roof that can only be deferred with its reason, so T-A3h's "backfill, now a D3"
+stays stale. **The South Water row is closed, Lake and Market with it, and Randolph and Franklin
+now too**; every open entry is on the Randolph–Washington row.
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block

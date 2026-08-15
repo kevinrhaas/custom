@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_south_01",
- "name": "The Tuttle household — a reconstructed blacksmith (south division)",
+ "name": "The Wadsworth household — a reconstructed blacksmith (south division)",
  "division": "south",
  "head": "inf_blacksmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_south_01",
-   "name": "Warren Tuttle",
+   "name": "Horace Wadsworth",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

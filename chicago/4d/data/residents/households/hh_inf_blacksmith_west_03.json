@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_west_03",
- "name": "The Lyman household — a reconstructed blacksmith (west division)",
+ "name": "The Metcalf household — a reconstructed blacksmith (west division)",
  "division": "west",
  "head": "inf_blacksmith_west_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_west_03",
-   "name": "Reuben Lyman",
+   "name": "Hiram Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
