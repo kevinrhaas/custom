@@ -75,7 +75,7 @@ belong at the end, not in the loop.
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
 | 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A7…** | one open block per run until the 66 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6 every open block is guaranteed to fit the roofs it is dealt |
+| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -90,10 +90,17 @@ now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at rang
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
+**T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
+building standing proud of its own frontage has its centroid in the road, so four documented
+buildings — the Temple Building, Harmon & Loomis's store, the Chicago Democrat's office and the
+Cook County courthouse — stood on lots the schedule was offering to anonymous roofs. Occupancy is
+now measured by area, in ONE module both halves import. **266 stand and 399 remain, 61 of them on
+covered ground** (was 66). Full findings under T-A7 below; read them before claiming a block.
+
 **T-A6 is DONE (2026-08-15)** — the schedule was dealing five of the ten open blocks roofs their
 own lots could not hold, and the deal now derives lot occupancy the same way the block generator
 does. **266 stand and 399 remain, 66 of them on covered ground** (was 71 — five roofs never had
-anywhere to stand). Full findings under T-A6 below; read them before claiming a block.
+anywhere to stand; **re-derived to 61 by T-A7**). Full findings under T-A6 below.
 
 **T-A5 is DONE (2026-08-14)** — `blk_randolph_market` carries eight roofs, so **266 stand and 399
 remain**, 71 of them on covered ground (**re-derived to 66 by T-A6**). It is the first block whose standing roofs this project's
@@ -967,7 +974,76 @@ guarantees a floor of one, which is what the phase-one parcel assumes and what e
 has done or bettered; whether a block of eight lots in 1835 Chicago carried six roofs rather than
 seven is a question for the evidence, not for the apportionment, and nothing here answers it.
 
-### T-A7…T-An — the remaining blocks · **UNCLAIMED**
+### T-A7 — a building stands on the lot it stands on · **DONE 2026-08-15**
+
+**Claimed as `blk_south_water_franklin` and finished as something else, the way T-A6 was, and
+for the neighbouring reason.** T-A6 made a block's room a function of its FREE LOTS. This is
+about how a lot is known to be free at all — and the answer was *the building's centroid is not
+in it*, which is a proxy that fails on precisely the records the plat grid was built to correct.
+
+**The one-line version:** a building placed from typed coordinates before the plat module
+existed can stand a metre or two proud of its own street frontage, so its centroid lands in the
+ROADWAY — and a building whose centroid is in the roadway stands, as far as the schedule can
+tell, on no lot of any block. Fourteen committed records were in that position. Four of them
+are named, documented buildings sitting on lots the schedule was offering to anonymous roofs:
+the **Temple Building** (27 % of it on `blk_south_water_franklin` lot 0), **Harmon & Loomis's
+store** (31 % on `blk_south_water_clark` lot 0), the **Chicago Democrat's office** (34 % on
+`blk_south_water_lasalle` lot 6) and the **Cook County courthouse** (13 % on
+`blk_randolph_lasalle` lot 6). The claimed block was dealt six principal roofs for seven free
+lots when one of those lots has the Temple Building on it.
+
+**The rule now has two tests, in `tools/plat_occupancy.py`, and each answers a different way of
+being wrong.**
+
+1. **A building stands on the lot most of it is on**, measured. This is the same claim the
+   centroid was making, made by area instead of by a point. It is purely additive on the
+   committed dataset: *no record changes lot*, five lots that read free are now known to be
+   taken, and none that read taken became free.
+2. **It occupies that lot only where it reaches the lot's buildable part** — the lot inset by
+   `LOT_MARGIN_M`, the same 1.5 m the generator makes every new roof keep from its own lot
+   lines. A neighbour lapping only into that strip has taken nothing a roof could have used.
+   **J. H. Kinzie's store is the case that earns this test**: 9.7 m² of it lies on
+   `blk_south_water_franklin` lot 2 and none of it inside the buildable inset, so the lot is
+   free and the schedule may still deal it a roof. Without test two the town loses roofs it can
+   honestly have.
+
+**And the second half of the same defect, in the ledger:** a roof was attributed to a block by
+its position POINT, so the same buildings were counted as standing in no block at all — their
+roofs never subtracted from the headroom of the block they physically stand in. The **Exchange
+Coffee House** holds nine tenths of a lot of the claimed block and counted nowhere; so did
+**Harmon & Loomis's store** and the **Tremont House**. A roof standing on a block's lot stands
+in that block, and the ledger now says so.
+
+**One implementation, imported by both halves.** T-A6 required the schedule and the generator to
+derive occupancy the same way and they did — by each carrying its own copy of the rule, which is
+how two copies of one rule drift. `tools/plat_occupancy.py` is now the only implementation;
+`reconcile_665.py` and `generate_block_infill.py` both call it, and `LOT_MARGIN_M` is authored
+there too because the occupancy test reads the same number from the other side.
+
+**Cost: schedulable-on-covered-ground 66 → 61, gated 333 → 338.** Occupied lots 79 → 84. Standing
+roofs are unchanged at 266 and remaining at 399 — nothing was built or removed, five roofs went
+back to waiting on coverage because the ground they were promised is already built on. Four
+blocks lose a lot each: `blk_south_water_franklin` 7 free lots → 6 and 8 roofs → 7,
+`blk_south_water_lasalle` 8 → 7, `blk_south_water_clark` 7 → 5 (it also gains two standing
+roofs), `blk_randolph_lasalle` 5 → 4.
+
+**What it measured and deliberately did NOT call occupancy.** `recon_1835_west_018` laps 11.9 m²
+onto `blk_randolph_clinton` lot 2, where T-A4 stands a principal roof. Test one seats that
+building on lot 4, where 82 % of it is, so lot 2 remains the roof T-A4 put there. A rule that
+called every lap an occupation would have condemned a committed, gated placement on a corner of
+a building — and whether two roofs may stand three metres apart across a conjectural side lot
+line is the separation gate's question, which it passed at the time. The number is recorded here
+so that nobody reads the silence as nobody having looked.
+
+**What it did not do: build the block.** `blk_south_water_franklin` returns to the queue below
+with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lots.
+
+**Files:** `tools/plat_occupancy.py` (new) · `tools/reconcile_665.py` ·
+`tools/generate_block_infill.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
+no resident, no sidecar, no mesh and no renderer file.
+
+### T-A8…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -982,12 +1058,13 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A6, on ground the project has coverage for — 66 roofs across ten entries, and
-every one of them now buildable with a lot left open:** `blk_south_water_franklin` 8 (6P+2A) ·
-`blk_south_water_wells` 8 (6P+2A) · `blk_south_water_lasalle` 8 (6P+2A, **carries the one I3 in
-the whole open set — defer it per T-A3 unless T-I3 has landed**) · `blk_south_water_clark` 7
-(5P+2A) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A) ·
-`blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 5 (4P+1A) · `blk_randolph_clark` 8
+**Open after T-A7, on ground the project has coverage for — 61 roofs across ten entries, every
+one of them buildable with a lot left open, and every lot of them now checked against the
+buildings that already stand there:** `blk_south_water_franklin` 7 (5P+2A) ·
+`blk_south_water_wells` 8 (6P+2A) · `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
+5 (4P+1A, **carries the one I3 in the whole open set — defer it per T-A3 unless T-I3 has
+landed**) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A) ·
+`blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8
 (6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6).
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
