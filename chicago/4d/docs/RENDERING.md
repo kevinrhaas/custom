@@ -98,12 +98,16 @@ tallgrass photographs, all three lost). Owning phases refer to §4.
 | 14 | No town furniture | No fences, signboards, wagons, woodpiles, barrels, stovepipes, docks (ROADMAP K5, open, called "the biggest structural gap") | W6 |
 | 15 | No audio | `assets/audio/` does not exist (ROADMAP S7) | W6 |
 
-Two methodology corrections from the sweep bind every future critic loop: **the honest
-flower-load target is 4–6 %, not 13.89 %** (the original reference was a forb-rich restoration
-planting, not remnant prairie — the never-plowed stand is the analogue for 1835), and **the
-shot harness must be pitch-matched** (two rounds were judged at the wrong look-angle; the
-harness now prints its pitch). A third stands as a warning: hue/saturation cannot separate
-July from October here and must not be quoted.
+Two methodology corrections from the sweep bind every future critic loop: ~~**the honest
+flower-load target is 4–6 %, not 13.89 %**~~ — **WITHDRAWN 2026-08-15 by R-W4c(b1): there is no
+4–6 % target.** Its never-plowed-remnant half cites no photograph this repository holds, its
+restoration-planting half does not reproduce (the committed recipe reads **5.54 %** on that frame
+and 12.91 % is not on it under either ordering of the recipe's tests), and the recipe that read
+both has recall **0.055**. Do not quote 4–6 %, 13.89 % or 12.91 % — read ROADMAP § R-W4c(b1)
+first, and run `node tools/measure_bloom_target.mjs`. The correction that stands is **the shot
+harness must be pitch-matched** (two rounds were judged at the wrong look-angle; the harness now
+prints its pitch). A third stands as a warning: hue/saturation cannot separate July from October
+here and must not be quoted.
 
 Also on the books: current full-scene budgets are 49 / 53 draw calls and 378,647 / 499,343
 triangles at 390×780 / 1280×800, against gates of ≤ 80 draw calls and per-tier triangle

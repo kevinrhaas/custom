@@ -101,8 +101,8 @@ desktop half belongs to a runner without the per-command ceiling.
 |---|---|---|---|
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
-| — | RENDERING | ~~R-W4c(b1)~~ | **CLAIMED 2026-08-15 · `steward/r-w4c-b1-target-and-instrument`** — R-W4c(a) ruled that (b)'s FIRST job is re-deriving the 4–6 % target with a method of known recall, before it tunes anything. That is a whole parcel and it is split off here: **(b1) settles the bar and the instrument, (b2) raises the bloom against them** |
-| 1 | RENDERING | **R-W4c(b2)** | raise the bloom against the bar R-W4c(b1) settles — **not against `flower.load`**, which R-W4c(a) measured and found unable to see most of the bloom, and **not against 4–6 %** until (b1) says that figure is sourced. Read both boxes first |
+| — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
+| — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
 | 6 | RENDERING | **R-W6** | should the terrain ship quantised at all? 688 KB on a 306 mm lattice against 6.45 MB exact. Opened by R-BUG3c with both numbers measured; a payload decision with an owner-facing cost, and **not urgent** — the ground a visitor stands on is correct either way |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
@@ -431,7 +431,7 @@ at the top). Each half below is one coherent change with one smoke.
 |---|---|---|
 | ~~**R-W4a**~~ | ~~fix the horizon-timber metric~~ · **DONE 2026-08-15** | The headline figure counted gable ends as trees and the acceptance number was unmeasurable. It is measurable now, and it is much worse than it read. Findings below. |
 | **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
-| ~~**R-W4c**~~ | ~~flower load~~ · **(a) DONE 2026-08-15, (b) IS THE TUNING HALF** | `0.0012` was not a count of flowers: the recipe's hue cut at 50° runs through the middle of a July prairie's bloom and misses **94.5 %** of it. The render's true bloom at `prairie_west` is **2.19 %**, not 0.12 %. Findings under R-W4c(a) below — **read it before quoting any flower number, and before tuning anything**. |
+| ~~**R-W4c**~~ | ~~flower load~~ · **(a) and (b1) DONE 2026-08-15, (b2) IS THE TUNING HALF** | `0.0012` was not a count of flowers: the recipe's hue cut at 50° runs through the middle of a July prairie's bloom and misses **94.5 %** of it. The render's true bloom at `prairie_west` is **2.19 %**, not 0.12 %. **And there is no 4–6 % target to tune to** — R-W4c(b1) found it unsourced on one half and unreproducible on the other. Findings under R-W4c(a) and R-W4c(b1) below — **read both before quoting any flower number, and before tuning anything**. |
 | **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
 
 **R-W4a is not bookkeeping.** A town parcel has already handed W4 a pass it did not earn, and
@@ -630,6 +630,124 @@ a page load, and `--no-mask` still opts out of both.
 so the 2026-08-14 baseline and the photograph-derived target stay comparable to themselves. The
 new reading is `flower.bloom`, and it is `null` for a reference photograph the same way
 `timberOnly` is.
+
+#### R-W4c(b1) — DONE 2026-08-15 · there is no 4–6 % target: half of it is unsourced, half does not reproduce, and the instrument cannot be repaired
+
+**What it was.** R-W4c(a) ruled that the tuning half's *first* job is to re-derive the 4–6 %
+flower-load target "with a method of known recall, before it tunes anything — otherwise the
+tuning half will chase a bar that was never on this scale". That is a whole parcel, so it was
+split off as (b1). **The answer is that the target cannot be re-derived from anything in this
+repository, and the instrument that produced it cannot be fixed by the repair its own diagnosis
+implies.** Every figure below comes out of `node tools/measure_bloom_target.mjs`, which is
+committed; `--assert` holds the inputs to the numbers quoted here.
+
+The target's stated derivation (STATUS §00, from the 2026-08-10 prairie sweep) has two clauses:
+the recipe read **12.91 %** on a restoration planting and **1.79–5.54 %** on a never-plowed
+remnant, so the honest bar for unmanaged 1835 prairie is 4–6 %. Both clauses were checked.
+
+**1 · THE REMNANT HALF IS UNSOURCED.** There is **no never-plowed remnant photograph in this
+repository and no source record describing one.** Three photographs are committed: the DuPage
+restoration planting, a September 2017 Kansas trail, and the owner's sagebrush two-track. The
+phrase "never-plowed remnant" occurs exactly **once** in `data/sources/` — inside the record of
+the DuPage planting, the photograph that is *not* the remnant, and the same record that forbids
+quoting that photograph for this number. It cites nothing. So the entire lower reference of the
+target, and therefore the "4–6 %" that was set below the planting's reading on the strength of
+it, rests on a measurement no reader can check. **That is precisely the failure `AGENTS.md` rule
+1 exists to prevent**, reached not by inventing a citation but by carrying a number forward until
+its source was forgotten.
+
+**2 · THE PLANTING HALF DOES NOT REPRODUCE.** The committed recipe on the committed photograph:
+
+| what was measured | flower load |
+|---|---|
+| the full frame, 4032×3024 | **5.54 %** |
+| the nearest quarter | 7.02 % |
+| the nearer half | 6.69 % |
+| the full frame, flower test first (the §3 repair) | 25.82 % |
+
+**12.91 % is not there** — not on the full frame, not on a nearer crop, and not under either
+ordering of the recipe's two tests. The one candidate cause with a motive was tested and
+**refuted**: the render reads 12.93 % under the reversed ordering, a hair from the missing
+12.91 %, so the obvious explanation is that the sweep's uncommitted harness ordered its tests the
+other way — but that ordering reads 25.82 % on the photograph, not 12.91 %. The near-match at
+12.9 % is between two different images and means nothing.
+
+**And 5.54 % is, to the digit, the figure this project attributes to the never-plowed remnant it
+has no photograph of.** That coincidence is recorded and not explained. It is not built on
+anywhere below.
+
+**3 · THE INSTRUMENT CANNOT BE REPAIRED BY THE OBVIOUS FIX, and R-W4c(a)'s precision finding
+needs a correction.** R-W4c(a) diagnosed the bug exactly — the plant test runs first and swallows
+every yellow-through-cyan pixel — and the repair that diagnosis implies is to run the flower test
+first. Scored against the same subtraction ground truth, on the same frames:
+
+| station | instrument | load | recall | precision | bloom / ground |
+|---|---|---|---|---|---|
+| `prairie_west` | committed | 0.12 % | 0.055 | **0.998** | 2.02 % |
+| `prairie_west` | flower test first | 12.93 % | 0.367 | **0.062** | |
+| `prairie_south` | committed | 0.30 % | 0.128 | 0.801 | 1.07 % |
+| `prairie_south` | flower test first | 3.60 % | 0.305 | 0.159 | |
+| `river_bank` | committed | 0.22 % | 0.284 | 1.000 | 0.57 % |
+| `river_bank` | flower test first | 27.65 % | 0.525 | 0.014 | |
+
+Recall roughly sextuples and **precision collapses by sixteen times**. Reordered, the recipe calls
+**12.93 %** of `prairie_west`'s ground a flower where a flower painted **2.02 %** of it.
+
+So R-W4c(a)'s reading of the precision figure — *"almost everything it does call a flower is one.
+It is not over-counting. It is blind"* — was true of the recipe as a whole and **wrong about
+which half of it was working**. The near-perfect 0.998 was the plant test's pre-filter, not the
+flower test's discrimination: the flower test is "saturated and light, or white and light", which
+in a July prairie is *sunlit grass*. It cannot see a flower either. Ordering is not the whole bug,
+and there is no repair here that a re-read of the photograph could be trusted to.
+
+(The last column is `bloom.shareOfGround`. R-W4c(a)'s headline **2.19 %** is `shareOfHued`, over
+the smaller denominator `load` uses. Both are in the metrics and they are not the same number —
+quote which one you mean.)
+
+**4 · THE BAR THAT DOES EXIST, and it needs neither a classifier nor a photograph.** Every
+flowering forb in `data/flora/zones/` carries a sourced `density_per_ha` and a sourced
+inflorescence `size_m`. Heads as discs of diameter `size_m`, that is a bloom fraction **in plan**,
+by arithmetic, from committed records:
+
+| zone | bloom in plan | species with a density / stated by cover instead |
+|---|---|---|
+| `z01_wet_prairie` | **0.097 – 1.064 %** | 9 / 2 |
+| `z02_mesic_prairie` | **0.027 – 0.219 %** | 11 / 0 |
+| `z09_sand_prairie` | 0.004 – 0.044 % | 5 / 0 |
+| `z03_sedge_meadow` | 0.016 – 0.140 % | 2 / 6 |
+
+**This is not a target and must not be quoted as one.** It is a *plan* fraction and `load`,
+`bloom` and the photograph are all *screen-space* readings at an oblique pose — a head is seen
+frontally from an eye at 1.6 m while the ground it stands on is foreshortened to nothing, so the
+screen figure is expected to be much the larger. The conversion is not attempted here.
+
+What it does settle is **where a bloom change lives**. `flora.js` plants the forb layer at "the
+zone's OWN summed `density_per_ha`" (`flora.js:644`, weight at `:1089`), subject to a lattice cap.
+So the bloom a visitor sees is generated from sourced record fields, and **raising it is a DATA
+change requiring source support — not a renderer knob and not a palette tune.** Whether the
+realised density matches the specified one is *not* measured here and is named as open work below.
+
+**WHAT R-W4c(b2) MUST NOT DO.** It must not tune against 4–6 % (unsourced and unreproducible), it
+must not tune against `flower.load` (recall 0.055), and it must not "fix" the recipe by reordering
+it (precision 0.062). The honest reading is `bloom.shareOfHued` / `bloom.shareOfGround`, which has
+no classifier on either side — and **it has no target**. Three routes out, for the owner to choose
+between rather than an agent to pick:
+
+- **commit a never-plowed July remnant photograph** with rights cleared the way
+  `saari_2018_dupage_tallgrass` and `samstone_2017_tallgrass_trail` were on 2026-08-15 (Commons
+  API, SHA-1 checked against the file page), and derive a bar from it by a *stated* method. Note
+  that a photograph has no second frame, so its bloom cannot be measured by subtraction and any
+  method used on it will have unmeasured recall — this route buys a source, not an instrument.
+- **derive the bar from the flora records** by building the plan→screen conversion the table
+  above deliberately skips. This is the only route that ends in a number the project can
+  re-derive by command, and it is a real parcel, not a line of arithmetic.
+- **decide the bloom is not gated on a number at all** and retire the 4–6 % figure from STATUS,
+  RENDERING §4 and this file rather than leaving it to be quoted again. It has been quoted five
+  times in three documents while resting on the two clauses above.
+
+**Cost, measured.** The whole parcel: one 3-station desktop capture at **4 min 02 s**, and 19 s
+for `measure_bloom_target.mjs` (of which §2 is 4032×3024 pixels twice). No renderer file changed,
+so no bake and no new geometry.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
@@ -5147,10 +5265,13 @@ in the **mid** field.
    element — in both references the visual mass at every distance is dicot leaf, not grass
    blade — and deepen the shade without dimming the flecks. Every new instance must begin on
    `terrain.surfaceHeight()` rather than borrowing visual closure from an elevated sheet.
-7. **Flower load, against the corrected bar.** Whole-sward chroma flower **1.49 % → 4–6 %**
-   (*not* 13.89 %: that figure came from a restoration planting on a former cornfield, not from
-   prairie). Nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a never-plowed
-   remnant shows at a matched look-angle. Colour variety: effN-after-median at equal N
+7. **Flower load, against the corrected bar.** ~~Whole-sward chroma flower **1.49 % → 4–6 %**
+   (*not* 13.89 %) · nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a
+   never-plowed remnant shows at a matched look-angle.~~ **EVERY FLOWER FIGURE IN THIS ITEM IS
+   WITHDRAWN, 2026-08-15 by R-W4c(b1).** There is no 4–6 % bar: no remnant photograph is
+   committed, 12.91 % does not reproduce on the planting that is, and the recipe all four numbers
+   were read with has recall 0.055. Read R-W4c(b1)'s box before restating any of them.
+   Colour variety: effN-after-median at equal N
    **144 → ≥ 300**, green hue IQR **5.6° → ≥ 8.5°**, green chroma p25 **32.3 → ≤ 26** (what is
    missing is the grey-green and glaucous foliage, not the saturated flowers).
 8. **Fix the shot set before trusting any of the above.** `prairie_south` sits inside the
