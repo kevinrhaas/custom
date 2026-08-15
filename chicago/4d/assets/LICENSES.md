@@ -20,6 +20,15 @@ enforces this against the source's `asset_use` field. Currently gated:
 | `chicagology_*` | `check_required` | The site carries no license statement. It is a transcription and finding aid; re-source every image from the holding institution before it enters the model. |
 | `drloih_hotels` | `check_required` | Unfootnoted blog; leads only. |
 
+## Recorded clearances — the CC0/CC-BY default, excepted
+
+The default above is CC0 and CC-BY only. Each exception is a decision recorded here,
+with what it permits and what it does not.
+
+| item | licence | cleared for | NOT cleared for |
+|---|---|---|---|
+| `data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg` — Cassi Saari, *Restored tallgrass prairie in DuPage County, Illinois*, 24 July 2018, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Restored_tallgrass_prairie_in_DuPage_County,_Illinois.jpg) | **CC BY-SA 4.0**, attribution required | **Verbatim redistribution in this repository, and measurement.** Committed byte-for-byte unmodified (SHA-1 `0da00f1178e7790b04c05364d78f7cb6a43992ae`, identical to the Commons API's SHA-1 for the file page), so what is redistributed is the licensed work and not an adaptation — ShareAlike is not triggered. Source record `saari_2018_dupage_tallgrass`; attribution carried there, in the README beside the image, and here. | **Any derived asset.** A crop, a resample, a texture, a colour LUT or a tile built from it is an adaptation, and CC BY-SA 4.0 would require releasing that adaptation under CC BY-SA 4.0. This project derives nothing from it: it is read by `tools/measure_reference.py` and never enters a scene. `tools/publish.sh` does not copy `data/sources/`, so it is not on the published site. Anyone wanting to derive from it must take the ShareAlike obligation on deliberately, not by accident. |
+
 Held out of the published tree entirely, by the user's instruction:
 
 | item | disposition |
