@@ -1474,7 +1474,13 @@ against". Four things the next parcel should take from it rather than rediscover
 - **R-M1's fallback is not needed.** It was written to freeze provisional Weber figures "if the
   rights forbid committing it". They do not. Derive the thresholds from the photograph.
 
-### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · NEXT UP · UNBLOCKED 2026-08-15 by R-REF1 · owner ruled 2026-08-14**
+### R-M1 — the road gate scores contrast, not lightness · **CLAIMED 2026-08-15 — SPLIT (a)/(b) under the run-budget rule · UNBLOCKED 2026-08-15 by R-REF1 · owner ruled 2026-08-14**
+
+> **Claimed as R-M1a by the improve runner, 2026-08-15.** The parcel's own acceptance names
+> three builds to smoke — the pre-R-BUG2 build, current `dev`, and R-W1's branch — and the
+> lane's rule above is that *a parcel whose acceptance needs more than TWO full smoke passes
+> must be split before it is claimed*. It is split along the seam that rule prescribes:
+> **(a) land the measurement, commit its numbers**, **(b) set the bars against them**.
 
 **The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
 score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
