@@ -2081,6 +2081,45 @@ Lake's own centreline bearing, 390x780). Findings, all measured, none inferred:
    error, not a finding: a ribbon quad's four corners are all at +/- half the track width, so
    there are never vertices ON the centreline. Do not repeat it.)
 
+**THE HYPOTHESIS IS CONFIRMED, AND IT IS WORSE THAN STATED — measured 2026-08-15.**
+
+The ground that is DRAWN is not the ground that things are PLACED on, and the gap is an order of
+magnitude larger than the road's own lift. Measured at the owner's pose by finding, for each sample
+point, the actual triangle of the ground mesh above it and interpolating its height — no raycaster,
+no assumption about how the mesh is built:
+
+| d (m) | `surfaceHeight()` | drawn ground | drawn − sampled | road placed at | buried |
+|---|---|---|---|---|---|
+| 2 | 0.775 | **0.906** | **+0.131** | 0.797 | yes |
+| 10 | 0.781 | 0.906 | +0.125 | 0.803 | yes |
+| 25 | 0.790 | 0.906 | +0.116 | 0.812 | yes |
+| 50 | 0.805 | 0.906 | +0.101 | 0.827 | yes |
+| 100 | 0.810 | 0.906 | +0.096 | 0.832 | yes |
+
+**The drawn ground sits 9.6–13.1 cm ABOVE the sampler, over the whole hundred metres.** `LIFT_M` is
+**22 mm**. The road is under the visible ground along its entire length here and never had a chance;
+so is every plant rooted by the same sampler, which is why the grass tufts vanish with it.
+
+**Then why is the road visible beyond ~7 m at all?** Because the polygon offset wins at range and
+loses up close: depth-buffer resolution is finest near the camera, so a fixed ~12 cm burial is
+decisively resolvable at 5 m and swamped by the offset at 50 m. The crossover depends on distance
+alone — which is exactly why the edge is a clean horizontal line at a constant radius, the one
+feature of the screenshots no other explanation accounted for.
+
+**The walker is inside the hill.** Eye is at 2.455 with the sampler at 0.775 — 1.68 m of eye height,
+as recorded — but the drawn ground under that same point is 0.906, so a visitor stands **13 cm sunk
+into the terrain they can see**. Collision, building anchoring, flora roots and street drape all use
+the sampler, so this is not only a road bug: **everything in the town is anchored to a surface that
+is not the one on screen.**
+
+**What has NOT been established, and must be before anything is changed.** Which of the two is
+wrong. The drawn mesh is a baked GLB; the sampler reads `heightfield.bin`; both descend from the
+same terrain spec, and this measurement says only that they disagree, not which one moved. Do not
+"fix" this by raising `LIFT_M` — that hides a 13 cm datum disagreement behind a fudge and leaves
+buildings and collision still wrong. Find out why the two disagree.
+
+**The original hypothesis, as written before the measurement:**
+
 **The hypothesis to test FIRST, and it is only a hypothesis.** Roads and flora are both PLACED
 with `terrain.surfaceHeight()`. If the terrain that is DRAWN sits above that sampler near the
 camera, both are buried by the same few centimetres at the same radius — which is the symptom

@@ -1,5 +1,30 @@
 # STATUS
 
+## MEASURED 2026-08-15 — the ground you see is not the ground the town is anchored to
+
+**R-BUG3c-a.** The owner reproduced the invisible near-field road with the R-BUG3 fix in. The cause
+is now measured, and it is not the streets at all.
+
+At the reported pose, the DRAWN ground sits **9.6 to 13.1 cm above `terrain.surfaceHeight()`**, the
+sampler that roads, plants, buildings and collision are all placed with — over the whole hundred
+metres, not just near the camera. `LIFT_M`, the road's lift above that sampler, is **22 mm**. The
+roadway is under the visible ground along its entire length here, and so is anything else rooted by
+the same sampler, which is why the grass tufts disappear with it.
+
+**Why the road still shows beyond about seven metres:** the polygon offset wins at range and loses
+up close, because depth-buffer resolution is finest near the camera. The crossover is a function of
+distance alone — which is why the boundary is a clean horizontal line at a constant radius, the one
+feature of the owner's screenshots that no other explanation accounted for.
+
+**A visitor stands 13 cm sunk into the terrain they can see.** Eye at 2.455 over a sampler reading
+0.775 is the recorded 1.68 m of eye height; the drawn ground under that same point is 0.906.
+
+**What is NOT established: which of the two is wrong.** The drawn surface is a baked GLB, the
+sampler reads `heightfield.bin`, both descend from the same terrain spec, and this measurement says
+only that they disagree. Raising `LIFT_M` would hide a datum disagreement behind a fudge and leave
+buildings and collision wrong. Landed as a measurement, red, with no fix — which is what the parcel
+asked for and what saved R-BUG2 from a fix that would have made things worse.
+
 ## New 2026-08-15 — five invented houses on the town's business front, and the share-out that put them there
 
 **T-A8**, and it is the first block parcel since T-A5 that actually built a block: T-A6 and T-A7
