@@ -95,9 +95,11 @@ desktop half belongs to a runner without the per-command ceiling.
 | # | lane | parcel | why first |
 |---|---|---|---|
 | 1 | RENDERING | **R-BUG3c** | **owner-reproduced WITH the fix in, twice, on 2026-08-15.** The near ground — road, grass tufts, all texture — is missing below a hard line at a constant distance, and it is NOT the streets. Measured, not guessed; read the box before touching anything |
-| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road quad, dry half included: 13 quads / ~30 m of roadway removed where the centreline is dry land. Kinzie loses 14.2 % of itself |
-| 3 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| 2 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
+| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
@@ -2094,7 +2096,26 @@ block between crossings. Add a mid-block station on foot before claiming this cl
 
 **Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
 
-### R-BUG4 — a wet corner deletes the whole road quad, dry half included · **UNCLAIMED · XS, and it is a real hole in the town**
+### R-BUG4 — a wet corner deletes the whole road quad, dry half included · **DONE 2026-08-15**
+
+**DONE 2026-08-15.** The edge test clips at the waterline now instead of deleting the panel. Each
+end is trimmed on each side INDEPENDENTLY by bisection out from the dry centreline — asymmetric on
+purpose, because a bank road is wet on one side only and shrinking it symmetrically would throw the
+dry verge away too. The centreline test is untouched: a road whose centre is in the river is a
+crossing, and that is a bridge's job.
+
+**Measured on the built geometry, not on a replay of the rule:** 4,843 panels have a dry
+centreline, **all 4,843 now reach the ribbon**, **28 of them clipped at the waterline**, **0**
+dropped as sub-metre slivers, and **62.7 m of roadway recovered**. The `13 quads / ~30 m` first
+recorded here was read off a truncated probe listing and was **half the true figure** — a reminder
+that a sorted table read from its tail is not a total.
+
+The gate asserts the INVARIANT rather than the number: every panel with a dry centreline reaches
+the ribbon, the only permitted absences being sub-metre slivers, which are counted and printed. It
+also asserts that clipping actually happens, so a later simplification back to deleting the panel
+fails in CI rather than in a screenshot. The existing "no street vertex stands on water" assertion
+is unchanged and still passes — the clip stops at dry ground by construction.
+
 
 Owner-reported 2026-08-15 from South Water Street: a clean-edged green quadrilateral punched
 through the roadway ahead. Straight edges mean geometry, and it is the size of one road quad.
@@ -2119,8 +2140,10 @@ Replayed against the shipped mask, per street:
 | Randolph | 544 | 22 | 0 | 49 | 4.0 % |
 | South Water | 341 | 4 | **3** | 16 | 2.1 % |
 
-The **edge-only** column is the indefensible part: **13 quads, ~30 m of roadway, deleted while the
-centreline was dry land a visitor can stand on.** The wet-centre drops are defensible in principle
+The **edge-only** column is the indefensible part. **The table above understates it**: it was read
+off a truncated listing, and the whole-town figure measured from the built geometry is **28 panels
+and 62.7 m of roadway deleted while the centreline was dry land a visitor can stand on** — twice
+what was first written down here. Quote the measured figure, not the table. The wet-centre drops are defensible in principle
 (a road genuinely crossing the river) but should be checked against the bridge records rather than
 assumed — 34 quads on Lake is 79 m, and it is worth knowing whether that is one crossing or a
 mask that is too generous.
