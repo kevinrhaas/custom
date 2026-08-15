@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -168,6 +169,72 @@ def inside(point, polygon) -> bool:
             hit = not hit
         j = i
     return hit
+
+
+def occupied_lots(grid, datum) -> dict[str, set[int]]:
+    """Which lot of which block every committed footprint stands on.
+
+    DERIVED, and derived by the SAME rule `tools/generate_block_infill.py` uses — the
+    footprint's centroid against the committed lot polygon, every phase that carries a
+    position — because the two have to agree or this schedule deals a block roofs its
+    own generator will refuse. That is not hypothetical: it is the defect this function
+    exists to close (ROADMAP T-A6).
+    """
+    lots: dict[str, set[int]] = {}
+    for path in sorted((DATA / "structures").glob("*.json")):
+        record = load(path)
+        for phase in record.get("phases") or []:
+            position = phase.get("position") or {}
+            polygon = (phase.get("footprint") or {}).get("polygon") or []
+            if position.get("utm_e") is None or len(polygon) < 3:
+                continue
+            theta = math.radians(float(position.get("rotation_deg") or 0))
+            cos, sin = math.cos(theta), math.sin(theta)
+            e0 = float(position["utm_e"]) - float(datum["origin_utm_e"])
+            n0 = float(position["utm_n"]) - float(datum["origin_utm_n"])
+            corners = [(e0 + u * cos + v * sin, n0 - u * sin + v * cos) for u, v in polygon]
+            centre = (sum(p[0] for p in corners) / len(corners),
+                      sum(p[1] for p in corners) / len(corners))
+            for block in grid["blocks"]:
+                if not inside(centre, block["boundary_local_enu_m"]):
+                    continue
+                for index, lot in enumerate(block["lots"]):
+                    if inside(centre, lot["polygon"]):
+                        lots.setdefault(block["id"], set()).add(index)
+                break
+    return lots
+
+
+def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
+    """(principal, ancillary) a block can actually take, from its FREE LOTS.
+
+    A block's room was counted in roofs and nothing else until ROADMAP T-A6, and roofs
+    are not what binds it. Three separate things do, and the schedule could see only the
+    first:
+
+    1. the town's own roof ratio — one principal per lot plus ancillary at 154:511 —
+       less what already stands in the block. That is `headroom_roofs`, unchanged.
+    2. **a principal roof needs a FREE LOT.** A lot with somebody's house on it is not
+       headroom, and `standing_roofs` cannot tell the difference: two roofs on one lot
+       and two roofs on two lots subtract the same. Half the open blocks were being dealt
+       principal roofs with nowhere to stand — `blk_south_water_clark` and
+       `blk_lake_market` were dealt seven against six free lots, which no recipe could
+       have written down, and three more were dealt exactly as many as they had free.
+    3. **the block keeps one lot open.** The parcel recipe's own placement rule says so
+       — "a block at capacity is a claim about 1835 that the evidence does not support;
+       the schedule's capacity is a ceiling" — and until now that was a promise each
+       parcel made by hand, which a block dealt exactly its free-lot count could not
+       keep. A rule a parcel can be dealt out of is not a rule.
+
+    And the ancillary count is bounded by the principal one, because the generator's
+    yard-building gate is that an ancillary roof stands in the yard of a principal roof
+    THIS parcel built. `blk_randolph_dearborn` was dealt one ancillary and no principal,
+    so its backfill (T-A3h) was unbuildable for that reason rather than this one — the
+    same blindness, seen from the other end.
+    """
+    principal = max(0, min(free_lots - 1, headroom_roofs))
+    ancillary = min(round(principal * ANCILLARY_PER_PRINCIPAL), headroom_roofs - principal)
+    return principal, max(0, ancillary)
 
 
 def standing_roofs(grid, datum):
@@ -324,28 +391,36 @@ def programme_document():
         district_group_remaining[district] = {g: n for g, n in sorted(head.items()) if n}
 
     # ---- where it can go --------------------------------------------------------
+    taken = occupied_lots(grid, datum)
     units: list[dict] = []
     for block in grid["blocks"]:
         lots = len(block["lots"])
         capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
         stands = built_block.get(block["id"], 0)
+        free = lots - len(taken.get(block["id"], ()))
+        rooms = block_rooms(free, max(0, capacity - stands))
         units.append({
             "id": block["id"], "kind": "platted_block",
             "district": district_of_block(block), "bounded_by": block["bounded_by"],
             "lots": lots, "capacity_roofs": capacity, "standing_roofs": stands,
-            "headroom": max(0, capacity - stands),
-            "state": "open" if capacity > stands else "at_capacity",
+            "free_lots": free,
+            "principal_room": rooms[0], "ancillary_room": rooms[1],
+            "headroom": rooms[0] + rooms[1],
+            "state": "open" if rooms[0] + rooms[1] > 0 else "at_capacity",
         })
     for block in grid["omitted"]:
         if block["id"] not in STREET_CONTROL_OMISSIONS:
             continue
         lots = 8
         capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
+        rooms = block_rooms(lots, capacity)
         units.append({
             "id": block["id"], "kind": "platted_block_awaiting_street_control",
             "district": "west" if block["id"].endswith("clinton") else "south",
             "bounded_by": block["bounded_by"], "lots": lots,
-            "capacity_roofs": capacity, "standing_roofs": 0, "headroom": capacity,
+            "capacity_roofs": capacity, "standing_roofs": 0, "free_lots": lots,
+            "principal_room": rooms[0], "ancillary_room": rooms[1],
+            "headroom": rooms[0] + rooms[1],
             "state": "gated",
             "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
@@ -401,14 +476,41 @@ def programme_document():
     # Deal each district's remaining families across its units, in schedule order. The
     # deal is what keeps every marginal exact: unit totals, district totals and the
     # 35-family schedule all close.
+    #
+    # A unit takes at most the principal and ancillary roofs it has room for (T-A6), and
+    # a token it cannot take is offered to the next unit rather than dropped, so the
+    # marginals still close. Before T-A6 the deal was a flat slice of `headroom` and the
+    # KIND of roof in the slice was whatever the shuffle produced — which is how a block
+    # with six free lots came to be scheduled seven principal roofs.
     for district in DISTRICTS:
-        tokens = deal(district_families[district])
-        cursor = 0
+        pool = deal(district_families[district])
+        balance_id = BALANCE_UNITS[district][0]
         for unit in units:
             if unit["district"] != district:
                 continue
-            take = tokens[cursor:cursor + unit["headroom"]]
-            cursor += unit["headroom"]
+            if unit["id"] == balance_id:
+                # The district balance is the bucket for roofs no named unit can hold, so
+                # it takes what is left rather than a fixed slice. A roof a block has no
+                # lot for does not stop being one of the 665; it goes back to waiting on
+                # coverage, which is a statement the ledger can make and "nowhere" is not.
+                take, pool = pool, []
+                unit["capacity_roofs"] = unit["headroom"] = len(take)
+            else:
+                take, passed = [], []
+                principal_left = unit.get("principal_room", unit["headroom"])
+                ancillary_left = unit.get("ancillary_room", unit["headroom"])
+                for family in pool:
+                    is_ancillary = group_of(family) in ANCILLARY_GROUPS
+                    room = ancillary_left if is_ancillary else principal_left
+                    if len(take) < unit["headroom"] and room > 0:
+                        take.append(family)
+                        if is_ancillary:
+                            ancillary_left -= 1
+                        else:
+                            principal_left -= 1
+                    else:
+                        passed.append(family)
+                pool = passed
             mix: dict[str, int] = {}
             for family in take:
                 mix[family] = mix.get(family, 0) + 1
@@ -417,8 +519,16 @@ def programme_document():
             unit["principal"] = sum(n for f, n in mix.items()
                                     if group_of(f) not in ANCILLARY_GROUPS)
             unit["ancillary"] = unit["roofs"] - unit["principal"]
-        if cursor != len(tokens):
-            raise SystemExit(f"{district}: {len(tokens) - cursor} roofs were not scheduled")
+            # The room a unit was given and the roofs it was dealt have to agree, or the
+            # next parcel to read this schedule writes a recipe its own generator refuses.
+            if (unit["principal"] > unit.get("principal_room", unit["principal"])
+                    or unit["ancillary"] > unit.get("ancillary_room", unit["ancillary"])):
+                raise SystemExit(
+                    f"{unit['id']}: dealt {unit['principal']} principal / "
+                    f"{unit['ancillary']} ancillary against room for "
+                    f"{unit.get('principal_room')} / {unit.get('ancillary_room')}")
+        if pool:
+            raise SystemExit(f"{district}: {len(pool)} roofs were not scheduled")
 
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")

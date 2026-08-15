@@ -1,5 +1,53 @@
 # STATUS
 
+## New 2026-08-15 — half the open blocks were scheduled roofs their own lots could not hold
+
+**T-A6.** The 665-roof schedule counted a block's room in ROOFS and never in LOTS, and a principal
+roof needs a free lot. Measured across the ten open blocks at `dev@f6f2bcb`, against the placement
+gates in `tools/generate_block_infill.py` that would have refused them:
+
+| block | lots | free | dealt principal | what the recipe would have hit |
+|---|---|---|---|---|
+| `blk_south_water_clark` | 8 | 6 | **7** | **unwritable** — no seventh free lot exists |
+| `blk_lake_market` | 8 | 6 | **7** | **unwritable** — no seventh free lot exists |
+| `blk_south_water_wells` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_franklin` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_clark` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_dearborn` | 8 | 3 | **0** (one ancillary) | **unwritable** — a yard building behind no roof |
+
+**Five of the ten, and three distinct failures, not one.** Two blocks were dealt more principal
+roofs than they had lots, which no recipe could have written down at all. Three were dealt exactly
+as many as they had free, which is writable and *worse*: it silently spends the vacancy the parcel
+recipe's own placement rule promises — *"a block at capacity is a claim about 1835 that the
+evidence does not support; the schedule's capacity is a ceiling"* — so the first parcel to take one
+would have filled a block to capacity while passing every gate. And `blk_randolph_dearborn`, the
+T-A3h backfill, was dealt a single yard building and no principal roof to stand it behind: the same
+blindness seen from the other end, because an ancillary roof's gate is that it serves a principal
+roof the same parcel built.
+
+**Why it was invisible.** Occupancy was counted in roofs — `standing_roofs` — so two roofs on one
+lot and two roofs on two lots subtracted the same amount of headroom. The block generator has
+derived true lot occupancy since T-A4 and the schedule never did, so the two halves of the same
+question were being answered by different arithmetic. Nothing shipped wrong: the gates that would
+have caught each of these are real and would have fired. **The defect was that they fire at the
+END of a parcel** — after a run has claimed a block, read the schedule and written a recipe.
+
+**The fix is that the deal now knows what a lot is.** `tools/reconcile_665.py` derives lot
+occupancy by the *same rule the generator uses* — footprint centroid against the committed lot
+polygon — and a block's room becomes `principal = min(free lots − 1, roof headroom)` with
+`ancillary` bounded by both the 154:511 ratio and the principals themselves. The deal offers a
+token a unit cannot take to the next unit instead of dropping it, so every marginal still closes,
+and a new assertion fails the build if any unit is ever dealt past its room.
+
+**What it cost, and the number is the point.** Schedulable-on-covered-ground **71 → 66**; gated on
+coverage **328 → 333**. Five roofs moved from "buildable now" to "waiting on coverage" because
+they never had anywhere to stand. **All ten open blocks are now buildable and every one of them
+keeps a lot open**, which is the state T-A7 onward can be run from without re-deriving this.
+
+**What this parcel did NOT do:** build a block. T-A6 claimed `blk_randolph_franklin` and found it
+was one of the three that could not be built honestly; the block is released back to the queue with
+a corrected mix (6 principal + 2 ancillary, one lot open) for the next run to take.
+
 ## New 2026-08-15 — the card adds its own claims up, and 204 of 279 buildings have nothing attested about them
 
 **K23b**, the substantive half of the owner's report and the sequel to K23a below. Every
