@@ -18,13 +18,13 @@
   },
   "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
   "placement": {
-    "local_e": 482.257,
-    "local_n": -277.963,
-    "rotation_deg": 0.0,
+    "local_e": 423.914,
+    "local_n": -238.726,
+    "rotation_deg": 0.34,
     "position_confidence": "reconstructed",
     "position_sources": [],
-    "position_note": "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage.",
-    "symbolic_location": "South Division, local ENU E 485 N -274",
+    "position_note": "INVENTED, AND MOVED OFF THE PUBLIC SQUARE 2026-08-15 (ROADMAP T-A16). The advertisement gives no address at all, so this is a band assignment and not a reading of any source. WHAT WAS WRONG WITH THE OLD ONE. Both buildings were placed together in 'the South Division band the recipes use for ordinary dwellings', and that band ran across the block bounded by Randolph, Clark, Washington and LaSalle - the public square, which carried the county's estray pen, its log jail and its court-house, and which this project's own ground control names as such. The old placement was tested for clearance and for buildable ground, which is every question this project knew how to ask; none of them was whether the ground was for sale. WHERE THEY WENT, AND BY WHAT RULE. Each building takes the nearest free platted lot that no committed block recipe has already spoken for - the recipes name their open lots and say why, and taking one would rewrite a parcel that has already landed. Under that rule the pair moves 83 m and 69 m, onto the Randolph Street frontage of the two blocks directly across Randolph from the square, which is the least this record can move and still stand on ground the town was selling. THE COORDINATE IS COMPUTED, NOT TYPED: the lot's own street edge and inward axis, with a 5.0 m setback, through the same lot frame every anonymous roof in the town is placed by. WHAT IS STILL INVENTED: the block, the lot, the setback, and that the two buildings stood near each other at all. One advertisement offering two buildings is not a statement that they shared a holding, and the pair is no longer on one block - the ground to keep them on one was 200 m further away and faced two different streets, which would have been a worse answer bought with a better-sounding sentence.",
+    "symbolic_location": "South Division, on the Randolph Street frontage of the block bounded by Lake, LaSalle, Randolph and Wells",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"

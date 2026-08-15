@@ -1,5 +1,59 @@
 # STATUS
 
+## New 2026-08-15 — the town's public square was being offered to invented houses, and two documented ones were already standing on it
+
+**T-A16.** `blk_randolph_lasalle` — Randolph, Clark, Washington, LaSalle — was claimed as the last
+open block entry on its row and **was not built**. It is **the public square**: Andreas calls it
+*the square* and *the court-house square*, this project's own ground control names its corners
+*NW / SE corner of the Public Square block*, and it carries the estray pen (its south-west corner,
+March 1833, Chicago's first public building), the log jail (north-west, fall 1833) and the first
+Cook County court-house (1835). The 665-roof programme was dealing it four invented private roofs —
+an `A1`, a `D3`, a `D4` and a `D5`. The block is now **reserved**: no lots, no roofs, a refusal in
+the block generator, and a gate in `check.sh`. **Standing roofs unchanged at 322; remaining 343, 1
+of them on covered ground** (was 5 — the square held four of the five). The plat grid drops from
+152 lots to **144**. Recorded in **L107**.
+
+**EVERY PLACEMENT GATE THIS PROJECT HAS PASSED THE TWO BUILDINGS THAT WERE STANDING ON IT, AND THAT
+IS THE HEADLINE.** `wright_building_to_let_a` and `_b`, John Wright's two documented cottages to
+let, were placed in *"the South Division band the recipes use for ordinary dwellings"* and that band
+ran across the square. Their placement was tested for clearance from other buildings, for its own
+lot lines, for the platted roadway and for buildable ground — every question this project knew how
+to ask about a position, and **not one of them was whether the ground was for sale**. They have been
+moved: each takes the nearest free platted lot no committed block recipe has already spoken for, 83 m
+and 69 m, onto the Randolph frontage of the two blocks facing the square. The pair is split, and the
+split is stated — the only ground that kept them on one block was 200 m further off and faced two
+different streets, and one advertisement offering two buildings never said they shared a holding.
+
+**The defect is upstream of the schedule.** `tools/generate_plat_lots.py` subdivides every block it
+can build, because that is what the Thompson module says a block is; it has no way to ask whether a
+block was ever offered in lots. So the reservation withdraws the **lot lines** and not merely the
+schedule's permission to use them, and `lots_per_face_withheld` records what the module would have
+drawn so the withdrawal is visible rather than looking like a generator failure.
+
+**THE RESERVATION IS `inferred` AND IS NOT PROMOTED.** No source this project holds states that the
+square was reserved from sale. What it holds is the block's name, the county's three buildings on
+it, the dossier's own reading of the rest of it — *"open, unimproved, fenced or unfenced prairie
+block"* — and one period description of the ground itself: *"Our public Square was then a pond,
+where the Indians had trapped the muskrat, and where the first settlers hunted ducks."* The grade
+stays where the evidence puts it, and `tools/measure_reserved_ground.py` prints what a refutation
+would change.
+
+**THE POND IS DOCUMENTED AND IS NOT MODELLED — T-E5.** The terrain carries no standing water on this
+block and the marsh flora zone is a buffer of the mapped water, so the square renders as dry prairie
+with three public buildings on it. That is a second false statement about the same ground. It is
+opened rather than closed here, with the three questions that have to be settled before any ground
+moves.
+
+**The eleventh K20 measurement is 0 of 111** carried-over invented persons renamed, against 12-of-110
+at T-A15 and a range of 7 %–72 % over the nine before it. Zero for a structural reason: **this parcel
+inserts and removes no person**, so the allocator has nothing to shift. That is the first evidence in
+nine measurements about *what* perturbs it.
+
+**Unverified here:** the desktop half of `tools/smoke_renderer.mjs` — this parcel changes data, tools
+and docs only, and the desktop half does not fit the runner's ten-minute per-command ceiling (see
+ROADMAP § THE RUN BUDGET). `tools/check.sh` and the mobile half of the smoke were both run green
+against the published mirror.
+
 ## New 2026-08-15 — the block opposite the courthouse, and two of yesterday's three adoption candidacies do not reproduce
 
 **T-A15.** `blk_randolph_clark` — Randolph, Dearborn, Washington, Clark — now carries **eight

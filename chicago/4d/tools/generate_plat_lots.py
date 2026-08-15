@@ -68,6 +68,23 @@ NS_STREETS = ["clinton", "canal", "market", "franklin", "wells", "lasalle", "cla
 
 SOURCE_IDS = ["thompson_plat_1830", "hathaway_1834", "wright_1834", "osm_streets_2026"]
 
+RESERVED_PATH = DATA / "reconstruction" / "1835_reserved_ground.json"
+
+
+def reserved_blocks() -> dict[str, dict]:
+    """Blocks this project holds evidence were not private building ground.
+
+    The module knows how to subdivide a block and has no way to ask whether the block
+    was ever offered in lots. Four lots to a face is the plat's rule for ground for
+    sale; drawing it on ground the town held in common asserts a sale that never
+    happened, and the 665-roof programme reads the result as somewhere to build.
+    So a reserved block keeps its BOUNDARY — which is derived from the street lines
+    like every other block's and is not in question — and loses its SUBDIVISION.
+    """
+    if not RESERVED_PATH.exists():
+        return {}
+    return {b["block_id"]: b for b in load(RESERVED_PATH)["blocks"]}
+
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -345,6 +362,7 @@ def grid_from_inputs() -> dict:
     if field is None:
         raise SystemExit("cannot build the grid: the committed heightfield is missing")
 
+    reserved = reserved_blocks()
     blocks, omitted = [], []
     for north_id, south_id in zip(rows, rows[1:]):
         pitch_n = abs(lines[north_id]["mean_n"] - lines[south_id]["mean_n"])
@@ -375,7 +393,7 @@ def grid_from_inputs() -> dict:
                                "this dataset can stand behind")})
                 continue
             divided = subdivide(built, alley_m, frontage_m)
-            blocks.append({
+            entry = {
                 "id": block_id,
                 "bounded_by": bounded_by,
                 "boundary_local_enu_m": rounded(ring),
@@ -386,7 +404,25 @@ def grid_from_inputs() -> dict:
                 "lots_per_face": divided["count"],
                 "alley_local_enu_m": divided["alley"],
                 "lots": divided["lots"],
-            })
+            }
+            hold = reserved.get(block_id)
+            if hold:
+                # The boundary stays; the subdivision goes. `lots_per_face` reports what
+                # the module WOULD have drawn, so the withdrawal is visible here rather
+                # than looking like a block the generator failed on.
+                entry["reserved"] = {
+                    "reserved_for": hold["reserved_for"],
+                    "name": hold["name"],
+                    "confidence": hold["confidence"],
+                    "sources": hold["sources"],
+                    "authored_in": "data/reconstruction/1835_reserved_ground.json",
+                    "note": "This block is not subdivided. See the reservation record for "
+                            "the evidence and for what may stand here.",
+                }
+                entry["lots_per_face_withheld"] = entry.pop("lots_per_face")
+                entry["alley_local_enu_m"] = None
+                entry["lots"] = []
+            blocks.append(entry)
 
     return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines)
 
@@ -470,6 +506,7 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
         "summary": {
             "blocks": len(blocks),
             "omitted": len(omitted),
+            "reserved": sum(1 for b in blocks if b.get("reserved")),
             "lots": sum(len(b["lots"]) for b in blocks),
             "block_frontage_ft": {
                 "min": round(min((b["frontage_ft"] for b in blocks), default=0.0), 1),

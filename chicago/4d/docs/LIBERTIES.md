@@ -3346,6 +3346,92 @@ Chicago.
 **Recorded:** 2026-08-15.
 
 
+### L107 — The town's public square was being offered to invented houses, and two documented ones were already standing on it
+
+**Decision:** the block bounded by Randolph, Clark, Washington and LaSalle — **the public square**
+— is withdrawn from the buildable town. It is no longer subdivided into lots, it is dealt no roofs
+by the 665-roof programme, a recipe naming it is refused by name, and a gate fails if anything
+stands on it that the reservation does not permit. Three structures are permitted and stay exactly
+where they are: the **estray pen** on the square's south-west corner, the **log jail** on its
+north-west, and the **first Cook County court-house**. Two are not, and have moved: **both of John
+Wright's buildings to let**, which were standing on the square and are now on the Randolph Street
+frontage of the two blocks directly across Randolph from it.
+
+**Why:** the plat module subdivides every block it can build into four lots to a face, because
+that is what the Thompson module says a block is. It has no way to ask whether a particular block
+was ever offered in lots, and `tools/reconcile_665.py` reads its output as the ground available to
+the town. So the square arrived in the schedule as eight ordinary lots with four free, and was
+dealt an `A1`, a `D3`, a `D4` and a `D5` — four invented private roofs on ground the county was
+using. ROADMAP T-A16 claimed it as an ordinary block parcel and could not build it.
+
+**THE RESERVATION IS INFERRED AND THE BLOCK'S IDENTITY IS NOT.** Andreas names this block *the
+square* and *the court-house square* and puts three of the county's own buildings on it: the estray
+pen, Chicago's first public building, on its south-west corner in March 1833; the log jail on its
+north-west corner in the fall of 1833; the first Cook County court-house in 1835. This project's own
+ground control labels its corners in the same words — `data/traces/gcp/wright_1834_gcps.json` marks
+LaSalle and Randolph *NW corner of the Public Square block*. What is **inferred** is the consequence:
+that the ground was not for sale, and that no anonymous dwelling may be scheduled onto it. No source
+this project holds says in terms that the block was reserved from sale, so the grade is the middle
+tier and the reasoning is written down instead — a block carrying the county's pound, jail and
+court-house is ground the county is using; the same dossier's own reading of the rest of it is *open,
+unimproved, fenced or unfenced prairie block*; and the one further period description of it reached
+is water: *"Our public Square was then a pond, where the Indians had trapped the muskrat, and where
+the first settlers hunted ducks."* Three readings from three directions and not one of them is a
+house.
+
+**THE POND IS DOCUMENTED AND IS NOT MODELLED.** The terrain carries no standing water on this block
+and the marsh flora zone is a buffer of the mapped water, so the square renders as dry prairie with
+three public buildings on it. That is a second false statement about the same ground, smaller than
+the one being fixed and not fixed here; it is opened as ROADMAP T-E5 rather than closed quietly.
+
+**THE OLD PLACEMENT PASSED EVERY GATE THIS PROJECT HAD, WHICH IS THE FINDING.** The two Wright
+cottages were put in *"the South Division band the recipes use for ordinary dwellings"* and that
+band ran straight across the square. Their placement was tested for clearance from other buildings,
+for its own lot lines, for the platted roadway and for buildable ground — every question this
+project knew how to ask about a position, and not one of them was whether the ground was for sale.
+They stood there from the day the household layer landed. L106, written the day before this entry,
+describes the square as the block "which carries the Cook County courthouse, both Wright buildings to
+let and the estray pen" and reads straight past it.
+
+**WHERE THEY WENT, AND BY WHAT RULE.** Each building takes the nearest free platted lot that no
+committed block recipe has already spoken for — the recipes name their open lots and say why, and
+taking one would rewrite a parcel that has already landed. Under that rule building *a* moves **83 m**
+to lot 7 of `blk_lake_wells` and building *b* **69 m** to lot 7 of `blk_lake_lasalle`, both on the
+Randolph Street frontage, facing the square they were wrongly standing on. The coordinates are
+computed from the committed lot polygons through the same lot frame and 5.0 m setback that places
+every anonymous roof in the town, not typed. **What is still invented is everything that was invented
+before**: the block, the lot, the setback — and now also that the two buildings stood near each other
+at all. The earlier record placed them together; the ground to keep them on one block was 200 m
+further away and faced two different streets, so the pair is split and the split is stated rather
+than the distance being hidden behind a better-sounding sentence. One advertisement offering two
+buildings was never a statement that they shared a holding.
+
+**Consequence:** the town loses four scheduled roofs from ground it should never have been offered.
+Standing roofs are unchanged at **322**; **343 remain, 1 of them on ground the project has coverage
+for** (was 5), because the square held four of the five. The reserved block is reported in the
+schedule as `platted_block_reserved` / `state: reserved` rather than as `at_capacity`, which would
+have been a claim that the square was built out — the opposite of what the evidence says. The plat
+grid drops from 152 lots to **144**: eight conjectural lot lines this project had drawn across public
+ground are withdrawn with the reservation, and `lots_per_face_withheld` records what the module would
+have drawn so the withdrawal is visible rather than looking like a block the generator failed on.
+
+**The eleventh K20 measurement is 0 of 111** carried-over invented persons renamed, against 12-of-110
+at T-A15, 61-of-108 at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at
+T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. It is zero for a structural reason rather than a lucky
+one — this parcel inserts and removes no person, so the allocator has nothing to shift — which is
+the first evidence in nine measurements about **what** perturbs it. K20 still owns the fix.
+
+**How to resolve:** any statement of the square's tenure — a canal commissioners' plat text, a
+county record, a deed or an assessment roll — would move this reservation from `inferred` to
+`attested` or refute it outright, and a refutation is welcome: the file is authored data, the
+withdrawal is one entry, and `tools/measure_reserved_ground.py` prints what would change. Anything
+that gives either Wright building a street or a corner retires the placement half entirely. Until
+then the square is empty of private roofs because the evidence says it was public ground, and the
+positions of the two cottages remain claimed by the entry that has always claimed them rather than
+by this one.
+**Recorded:** 2026-08-15.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

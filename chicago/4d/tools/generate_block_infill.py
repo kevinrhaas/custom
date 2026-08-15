@@ -814,6 +814,20 @@ def records_from_inputs() -> list[dict]:
     datum = load(DATA / "datum.json")
     records: list[dict] = []
     for block in recipe["blocks"]:
+        # Ground the town held in common is refused BY NAME and before anything is
+        # built, because the failure it would otherwise produce is the wrong one:
+        # a reserved block reaches here with no lots, so a recipe on it would die
+        # with "lot 3 is not in the grid" and read as a stale lot number rather
+        # than as a claim about 1835 (ROADMAP T-A16).
+        hold = (lots_by_id.get(block["block_id"]) or {}).get("reserved")
+        if hold:
+            raise SystemExit(
+                f"{block['block_id']} is reserved ground — {hold['name']} — and takes no "
+                f"anonymous roof. The reservation is authored in {hold['authored_in']} "
+                f"and graded `{hold['confidence']}`; read it before writing a recipe "
+                "entry here, and withdraw the reservation with its evidence rather than "
+                "working around it."
+            )
         records += build_block(block, table, lots_by_id, datum)
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):
