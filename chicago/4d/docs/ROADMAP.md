@@ -70,7 +70,7 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | TOWN | **K23b** | K23a landed 2026-08-15 (the 193 names now match their grade). 23b is the substantive half the owner asked for and is untouched: say what was INCLUDED at each level, and where it came from |
+| 1 | TOWN | ~~**K23b**~~ | **CLAIMED 2026-08-15 by the steward — take T-V2, T-V1 or T-I3 instead** |
 | 1 | RENDERING | **R-REF1** | XS. The calibration reference photograph is not in the repo, and it now blocks BOTH R-W1's target re-anchoring and R-M1's thresholds |
 | 2 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
@@ -1605,7 +1605,11 @@ setting existed; every critic and smoke measurement still reads the default; the
 the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
 and legible there.
 
-### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b CLAIMED 2026-08-15 — DO NOT PICK UP · owner-reported 2026-08-14**
+
+> **K23b is CLAIMED 2026-08-15 by the scheduled steward** (branch
+> `steward/k23b-what-we-included`, expires 2026-08-16 — an expired claim is void without
+> ceremony). Take **T-V2**, **T-V1** or **T-I3** instead.
 
 > **K23a is DONE (2026-08-15).** 193 names, and the prose around them, now agree with the grade
 > the record carries. **K23b — say what we included at each level — is untouched and is still
