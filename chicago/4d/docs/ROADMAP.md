@@ -1850,6 +1850,12 @@ two new ids are inserted at a random position. K20 still owns the fix.
 (6 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L103 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
+### T-A13 — `blk_lake_market` · **CLAIMED 2026-08-15 · `steward/t-a13-lake-market`**
+
+The first block of the row one street back, and the first block of this parcel shape that is
+not on South Water Street. Bounded by Lake, Franklin, Randolph and Market; the schedule deals
+it **7 roofs, 5 principal and 2 ancillary**, on 6 free lots. Lots 0 and 1 arrive taken.
+
 ### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
