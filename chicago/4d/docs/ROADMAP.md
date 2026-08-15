@@ -1314,7 +1314,7 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-REF1 — commit the reference photograph · **UNCLAIMED · NEXT UP · XS, and it unblocks two parcels**
+### R-REF1 — commit the reference photograph · **CLAIMED 2026-08-15 · `steward/r-ref1-reference-photograph`**
 
 `bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this
 project calibrates its sky against and reasons about tree-mass contrast from — **is not in the
