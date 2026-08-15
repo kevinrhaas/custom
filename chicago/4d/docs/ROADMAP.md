@@ -387,16 +387,21 @@ the largest single accuracy deduction on the historical axis outside the town it
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W1
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a nothing; R-W5b after R-W1
 
 | | parcel | why it stands alone |
 |---|---|---|
 | **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
 | **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
 
-**Take R-W5a first unless the flicker is what is being asked for.** A budget met by tuning after
-414 roofs have landed is a rewrite; met now, it is a design choice. The two leads R-G1 left are
-in the finding below and neither has been explained.
+**R-W5a is the whole queue's first parcel as of 2026-08-15, and it has NO dependency on R-W1.**
+The `After: R-W1` this section carried was inherited from the unsplit parcel and is true only of
+**R-W5b**, which shares tonemapping and exposure with W1's post chain. Batching touches neither.
+Nothing is gained by holding it behind a parked PR, and the TOWN lane is the reason: **T-A8 and
+every block after it is blocked on this budget**, and each block that lands while it is unmet
+spends more of what is left. A budget met by tuning after 414 roofs have landed is a rewrite; met
+now, it is a design choice. The two leads R-G1 left are in the finding below and neither has been
+explained — start there rather than reaching for a batching library.
 
 **Files:** `renderers/web/js/terrain.js` (water material) · `renderers/web/js/world.js` ·
 `renderers/web/vendor/MANIFEST` (+ EffectComposer/SMAA) · `tools/smoke_renderer.mjs`
