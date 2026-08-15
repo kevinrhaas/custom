@@ -1,5 +1,70 @@
 # STATUS
 
+## New 2026-08-15 — the photograph the sky is calibrated against is now in the repository, and it checks out
+
+**R-REF1.** `renderers/web/js/world.js` derives its sky exposure, the whole of its
+horizon-restore fit and the colour distance converges on from readings taken off one
+photograph, quoted in the comments as `bar/dupage_tallgrass_2018-07-24.jpg`. **That file was
+in no checkout.** `git ls-files` returned nothing for it on 2026-08-14, which made every sky
+number in the renderer a quotation that could be read and not checked — and it was blocking
+two parcels, R-W1 (whose targets §5 asks to be re-anchored by measuring a reference through
+this code) and R-M1 (whose road-contrast thresholds are supposed to be derived from what a
+real dirt track holds against real prairie, rather than picked to fit today's build).
+
+**It is committed, and it is the right file.** Cassi Saari, *Restored tallgrass prairie in
+DuPage County, Illinois*, 24 July 2018, Wikimedia Commons, at
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg` with source
+record `saari_2018_dupage_tallgrass`. Identification did not rest on the filename: the
+Commons description is *"Prairie planting on former agricultural field in DuPage County"* —
+the same restoration-not-remnant finding the 2026-08-10 sweep made about this photograph —
+and the file's own EXIF says Samsung SM-G930V, **2018-07-24 09:32:25**, 26 mm equivalent,
+orientation upright.
+
+**The proof is that the numbers come back out of it.** `python3 tools/measure_reference.py`,
+new with this parcel, re-measures the readings `world.js` quotes:
+
+| reading | quoted in `world.js` | re-measured 2026-08-15 |
+|---|---|---|
+| 12 px above the sky/land step (the `HORIZON_RESTORE` fit target and the haze colour) | (136,163,192) | **(137,162,187)** |
+| sky at ~14.4° above the horizon | (101,153,209) | **(97,151,208)** |
+| sky at 8° | (125,165,205) | **(119,163,206)** |
+| sky at 4° | (137,166,200) | **(133,166,201)** |
+
+Nothing in the renderer was touched to make these agree, and the residual — a few units in
+red and blue — is the one the code predicts: the tool averages the full frame width, the
+original readings were taken at the shot's own view azimuth, and `world.js` records that the
+model's horizon *brightness* is azimuth-dependent even where its hue is not.
+
+**A second confirmation arrived unasked.** The 26 mm equivalent gives 57.0 px/deg vertically
+and the sky/land step sits at row 820 of 3024, which puts the camera pitch at **−12.1°**. The
+2026-08-10 prairie sweep had already established, from an entirely different direction, that
+"the reference photographer had tilted down ~12°" — a correction that invalidated two rounds
+of tuning at the time. Two derivations of the same number that never saw each other. The
+useful form of it is that the frame is now **solved**: `elevation(row) = (820 − row) / 57.0`
+degrees, reaching 14.4° above the horizon and 38.7° below. Any reading taken from this
+photograph can now state the elevation it was taken at, which is what both of this project's
+reference disagreements turned out to be about.
+
+**The rights are recorded rather than assumed, and they are not permissive.** CC BY-SA 4.0,
+attribution required. The file is committed **byte-for-byte unmodified** — SHA-1
+`0da00f1178e7790b04c05364d78f7cb6a43992ae`, checked against the SHA-1 the Commons API reports
+for the file page — so what this repository redistributes is the licensed work and not an
+adaptation, and ShareAlike is not triggered by its presence. **Deriving from it would trigger
+it**: a crop, a resample, a texture or a LUT is an adaptation that CC BY-SA 4.0 requires be
+released under CC BY-SA 4.0. The project derives nothing from it (it is measured, never
+sampled), `tools/publish.sh` does not copy `data/sources/`, and `assets/LICENSES.md` now
+carries the clearance as an explicit, reasoned exception to its CC0/CC-BY-only default.
+
+**One figure did not reproduce, and is left standing as a question rather than closed.**
+`world.js` gives the bar's most distant land as (118,146,145); the 12 px immediately below the
+step measure (106,130,140), because a naive band on that row lands partly on the far treeline
+rather than on open sward. The original reading states no recipe, so this is a recipe
+mismatch, not a contradiction — whoever needs that number next should define where it comes
+from before quoting it.
+
+**What this parcel did NOT do:** change a single rendered pixel. No renderer file was touched,
+no threshold moved, no target re-anchored. R-W1 and R-M1 own those, and both are now unblocked.
+
 ## New 2026-08-15 — a lot was called free because a building's centroid was in the road
 
 **T-A7.** T-A6 (below) made a block's room a function of its free lots. This is about how a lot

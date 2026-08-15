@@ -70,8 +70,8 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-REF1** | XS. The calibration reference photograph is not in the repo, and it now blocks BOTH R-W1's target re-anchoring and R-M1's thresholds |
-| 2 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
+| 1 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
+| 2 | RENDERING | **R-M1** | unblocked by R-REF1: the reference photograph is committed, so the road-contrast thresholds can be DERIVED rather than frozen provisional |
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
 | 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
@@ -1314,7 +1314,7 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-REF1 — commit the reference photograph · **CLAIMED 2026-08-15 · `steward/r-ref1-reference-photograph`**
+### R-REF1 — commit the reference photograph · **DONE 2026-08-15**
 
 `bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this
 project calibrates its sky against and reasons about tree-mass contrast from — **is not in the
@@ -1335,7 +1335,29 @@ uncitable calibration reference is a calibration nobody can check.
 **Files:** the image · `data/sources/<id>.json` · `assets/LICENSES.md` · `docs/RENDERING.md`
 **Acceptance:** `tools/check.sh` green; the file resolves; the rights are recorded, not assumed.
 
-### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · after R-REF1 · owner ruled 2026-08-14**
+**DONE 2026-08-15.** The file is
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg`, source
+record `saari_2018_dupage_tallgrass`, licence row in `assets/LICENSES.md`, and both R-W1 and
+R-M1 are unblocked. Full findings in `docs/STATUS.md` § "the photograph the sky is calibrated
+against". Four things the next parcel should take from it rather than rediscover:
+
+- **It is the right photograph and the numbers prove it.** `python3 tools/measure_reference.py`
+  (new, Pillow-optional, deliberately outside `check.sh`) reproduces all four sky readings
+  `world.js` quotes to within a few units, with nothing in the renderer touched. Identification
+  never rested on the filename: the Commons description carries the same
+  restoration-not-remnant finding the 2026-08-10 sweep made about this photograph, and the
+  EXIF says 2018-07-24 09:32:25.
+- **The frame is solved: `elevation(row) = (820 − row) / 57.0` degrees**, 14.4° above the
+  horizon to 38.7° below, camera pitch −12.1° — which is the ~12° down-tilt the prairie sweep
+  found independently. **Quote the elevation of any reading.** Both of this project's
+  reference disagreements were two people measuring different heights in one photograph.
+- **The rights are CC BY-SA 4.0 and they bite.** Verbatim redistribution and measurement are
+  cleared; **any crop, resample, texture or LUT is an adaptation** and would put a ShareAlike
+  obligation on this repository. R-M1 may measure it freely — it must not cut a tile out of it.
+- **R-M1's fallback is not needed.** It was written to freeze provisional Weber figures "if the
+  rights forbid committing it". They do not. Derive the thresholds from the photograph.
+
+### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · NEXT UP · UNBLOCKED 2026-08-15 by R-REF1 · owner ruled 2026-08-14**
 
 **The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
 score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
@@ -1362,9 +1384,20 @@ contrast against the bar photograph and `STATUS.md` / `LIBERTIES.md` quote it, b
 **Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
 `ROAD_MIN_PERCEPTIBLE = 0.55` were set under one exposure and are now unanchored. The honest
 source is the reference photograph — what contrast does a real dirt track hold against real
-prairie? Hence **R-REF1 first.** If the rights forbid committing it, freeze the measured Weber
+prairie? Hence **R-REF1 first.** ~~If the rights forbid committing it, freeze the measured Weber
 figures from the last agreed-good build (**0.094 at 250–600 m, 0.118 at 100–250 m**, desktop,
-`dev@d762a19`) as a provisional floor and **label them provisional in the code**.
+`dev@d762a19`) as a provisional floor and **label them provisional in the code**.~~
+
+**R-REF1 landed 2026-08-15, so the fallback is off.** The photograph is committed at
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg` and its
+readings reproduce (`python3 tools/measure_reference.py`). **Derive the thresholds from it.**
+Two conditions come with it: quote the **elevation** of every reading — `elevation(row) =
+(820 − row) / 57.0` degrees, the frame runs 14.4° above the horizon to 38.7° below — and
+**measure it, never cut it up**. It is CC BY-SA 4.0: measurement and verbatim redistribution
+are cleared, a crop or a resample is an adaptation that would put ShareAlike on this
+repository (`assets/LICENSES.md`). The Weber figures above stay useful as the last
+agreed-good build's numbers to sanity-check a derived threshold against, which is a different
+job from being the threshold.
 
 **Not a user setting, and the reasoning is worth keeping.** The gate runs headless in CI; there
 is no user in the room. Its thresholds are already tunable in the right way — named constants at
