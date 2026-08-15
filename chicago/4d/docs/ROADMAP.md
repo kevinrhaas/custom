@@ -71,10 +71,11 @@ belong at the end, not in the loop.
 | # | lane | parcel | why first |
 |---|---|---|---|
 | 1 | TOWN | **K23b** | K23a landed 2026-08-15 (the 193 names now match their grade). 23b is the substantive half the owner asked for and is untouched: say what was INCLUDED at each level, and where it came from |
-| 1 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
-| 4 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
+| 1 | RENDERING | **R-REF1** | XS. The calibration reference photograph is not in the repo, and it now blocks BOTH R-W1's target re-anchoring and R-M1's thresholds |
+| 2 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
+| 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
+| 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
+| 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
 | 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -271,12 +272,9 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 > contrasty than the sky lighting them warrants, and guarantees another re-tune at every
 > lighting change — the streets were tuned under the rig this PR proved was 1.86× too bright.
 >
-> The live question is whether the gate should score an **exposure-invariant contrast** (Weber,
-> which this repo already uses for tree-mass contrast against the reference photograph) **plus
-> an absolute floor** so a scene cannot go black and pass. That is strictly stronger than
-> today's single bar, not a relaxation — but it is a change to what "can you see the road"
-> means, so **it is the owner's call, not a runner's.** Full working:
-> `kevinrhaas/custom#125` (issue comment, 2026-08-14).
+> **The owner has ruled: the gate scores contrast plus a floor. See `R-M1`.** Once R-M1 lands,
+> re-run this branch's gate against the new metric — do not re-tune the streets to satisfy the
+> old one. Full working: `kevinrhaas/custom#125` (issue comment, 2026-08-14).
 
 Everything else it needs is in the PR and in `docs/STATUS.md` § "the town was lit by a sky that
 does not exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
@@ -1188,6 +1186,82 @@ lost result.
 (#117, based on the current `dev`) is current; the rest are stale and conflict with it. Closing
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
+
+### R-REF1 — commit the reference photograph · **UNCLAIMED · NEXT UP · XS, and it unblocks two parcels**
+
+`bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this
+project calibrates its sky against and reasons about tree-mass contrast from — **is not in the
+repo.** Confirmed 2026-08-14: `git ls-files` returns nothing for it.
+
+**It is now blocking two things, not one.** R-W1 named it *"the single thing most in the way of
+judging these numbers"* — RENDERING §5's note 1 asks the targets to be re-anchored by measuring
+a reference through this code, and that cannot be done against a file nobody has. And **`R-M1`
+below needs it** to derive its thresholds from what a real dirt track holds against real prairie,
+rather than from numbers picked to fit today's build.
+
+**The whole parcel is: establish the rights, commit the file, register it as a source.** It is a
+photograph like any other input — `data/sources/<id>.json` with its licence, provenance and a
+`what_it_does_not_supply` list, exactly as every map in this dataset carries. If the rights do
+not permit committing it, **say so in the source record and name a substitute** that does; an
+uncitable calibration reference is a calibration nobody can check.
+
+**Files:** the image · `data/sources/<id>.json` · `assets/LICENSES.md` · `docs/RENDERING.md`
+**Acceptance:** `tools/check.sh` green; the file resolves; the rights are recorded, not assumed.
+
+### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · after R-REF1 · owner ruled 2026-08-14**
+
+**The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
+score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
+
+**Why the old metric was not wrong, only unguarded.** CIE `L*` is a perceptual scale — equal
+steps are roughly equal perceived difference *under a fixed adaptation state*. That precondition
+held for as long as exposure was fixed, and R-W1 is the first parcel to break it. ΔL\* did not
+fail; its assumption did. Measured: R-W1 preserved the road/ground ratio to within **0.4 %** and
+still lost the gate, because the scene got 14–17 % darker.
+
+**Why a ratio alone is not the answer either.** Contrast sensitivity genuinely collapses at low
+luminance, so a pure ratio metric would pass a scene too dark to see anything in. That is the
+failure mode being traded into, and the floor is what prevents it.
+
+**So: a contrast bar for "is the road distinguishable from the ground", and a luminance floor for
+"is there enough light to distinguish anything at all".** Each catches what the other cannot, and
+together they are strictly stronger than the single bar in place today. This is not a relaxation
+and must not become one — the metric still has to FAIL on the pre-R-BUG2 build.
+
+**Weber is a documented standard here, not a shared helper.** `trees.js:856` reasons in Weber
+contrast against the bar photograph and `STATUS.md` / `LIBERTIES.md` quote it, but nothing in
+`tools/` computes it. Expect to write the function.
+
+**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
+`ROAD_MIN_PERCEPTIBLE = 0.55` were set under one exposure and are now unanchored. The honest
+source is the reference photograph — what contrast does a real dirt track hold against real
+prairie? Hence **R-REF1 first.** If the rights forbid committing it, freeze the measured Weber
+figures from the last agreed-good build (**0.094 at 250–600 m, 0.118 at 100–250 m**, desktop,
+`dev@d762a19`) as a provisional floor and **label them provisional in the code**.
+
+**Not a user setting, and the reasoning is worth keeping.** The gate runs headless in CI; there
+is no user in the room. Its thresholds are already tunable in the right way — named constants at
+the top of `smoke_renderer.mjs` with the reasoning beside them, so a change appears in a diff and
+gets argued. Moving them to a config file would make them easier to change *without* review,
+which is backwards for a gate.
+
+**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper)
+**Acceptance:** the new bars fail on the pre-R-BUG2 build and pass on current `dev`; R-W1's
+branch is re-run against them **without re-tuning the streets**; every existing road band still
+reports; thresholds carry their derivation in a comment.
+
+### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · AFTER R-BUG3b — never instead of it**
+
+Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
+feature. A user control that boosts road contrast **converts a defect into a preference** and
+takes the pressure off fixing the default. `K24`'s lighting setting is defensible because both
+positions are legitimate and the default is the evidence-anchored one; *"roads you cannot see
+while standing on them"* is not a position worth offering.
+
+**But the accessibility case is real** — contrast sensitivity varies, and a phone screen in
+sunlight is brutal, which is the exact condition R-BUG3 was reported from. So this ships as an
+aid layered on a correct default, **after `R-BUG3b` has made the default correct**, and it
+inherits `K24`'s constraint: the harness measures the default regardless of stored preference.
 
 ### R-BUG3 — the road is invisible AT YOUR FEET · **UNCLAIMED · NEXT UP · owner-reported**
 
