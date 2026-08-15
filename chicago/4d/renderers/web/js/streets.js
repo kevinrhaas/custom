@@ -19,6 +19,15 @@ import * as THREE from 'three';
 
 const STEP_M = 2.25;
 const LIFT_M = 0.022;
+// R-BUG4. Bisection steps used to find how far a panel's dry ground reaches
+// before the water mask starts. Six halvings of a 5.25 m half-width settle to
+// ~8 cm, which is finer than the heightfield the mask is sampled from, so more
+// steps would be reporting precision the mask does not have.
+const CLIP_STEPS = 6;
+// A trimmed panel narrower than this is dropped rather than drawn: below about
+// a metre it is no longer a road anybody could walk down, and a sliver at the
+// waterline would be a claim rather than a rendering.
+const MIN_PANEL_W_M = 1.0;
 const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
 
 /**
@@ -180,19 +189,56 @@ function addRecord(buffers, record, terrain) {
     const length = Math.hypot(de, dn);
     if (length < 1e-5) continue;
     const half = record.track_width_m * 0.5;
-    const le = -dn / length * half;
-    const ln = de / length * half;
-    const corners = [
-      [a[0] + le, a[1] + ln], [a[0] - le, a[1] - ln],
-      [b[0] + le, b[1] + ln], [b[0] - le, b[1] - ln],
-    ];
-    // The centre check removes river crossings; the edge checks keep a bank
-    // road from painting over water just because its legal corridor reaches it.
-    if (terrain.isWater(a[0], a[1]) || terrain.isWater(b[0], b[1])
-        || corners.some(([e, n]) => terrain.isWater(e, n))) {
+    const ue = -dn / length;
+    const un = de / length;
+
+    // R-BUG4. The CENTRELINE test still drops the panel: a road whose centre is
+    // in the river is a crossing, and a crossing is a bridge's job, not a
+    // ribbon's.
+    if (terrain.isWater(a[0], a[1]) || terrain.isWater(b[0], b[1])) {
       along += length;
       continue;
     }
+    // But the EDGE test used to drop it too, and that was the wrong instrument
+    // for the right aim. Its comment said it kept a bank road from painting
+    // over water just because its legal corridor reached it — true, and the
+    // remedy for "do not paint over water" is to CLIP the panel at the
+    // waterline, not to delete it, because deleting takes the DRY HALF with it.
+    // Owner-reported from South Water Street as a clean-edged green hole
+    // punched through the roadway; replayed against the shipped mask it was
+    // 13 panels and ~30 m of roadway removed while the centreline was dry land
+    // a visitor can stand on, and 14.2 % of Kinzie Street.
+    //
+    // So each end is trimmed on each side INDEPENDENTLY: walk out from the dry
+    // centreline to the recorded half-width and keep the furthest dry reach.
+    // Asymmetric on purpose — a bank road is wet on one side only, and
+    // shrinking it symmetrically would throw away the dry verge as well.
+    const dryReach = (e0, n0, se, sn) => {
+      if (!terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
+      let lo = 0;
+      let hi = half;
+      for (let k = 0; k < CLIP_STEPS; k++) {
+        const mid = (lo + hi) * 0.5;
+        if (terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
+        else lo = mid;
+      }
+      return lo;
+    };
+    const aL = dryReach(a[0], a[1], ue, un);
+    const aR = dryReach(a[0], a[1], -ue, -un);
+    const bL = dryReach(b[0], b[1], ue, un);
+    const bR = dryReach(b[0], b[1], -ue, -un);
+    // A panel trimmed to nothing is a panel whose centreline is dry by a hair
+    // and whose surroundings are not. Drawing a sliver there would be a claim
+    // about a road too narrow to walk on, so it is dropped and counted.
+    if (aL + aR < MIN_PANEL_W_M || bL + bR < MIN_PANEL_W_M) {
+      along += length;
+      continue;
+    }
+    const corners = [
+      [a[0] + ue * aL, a[1] + un * aL], [a[0] - ue * aR, a[1] - un * aR],
+      [b[0] + ue * bL, b[1] + un * bL], [b[0] - ue * bR, b[1] - un * bR],
+    ];
 
     const base = buf.pos.length / 3;
     for (const [e, n] of corners) {
