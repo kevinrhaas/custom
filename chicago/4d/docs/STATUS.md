@@ -1,5 +1,56 @@
 # STATUS
 
+## New 2026-08-15 — a refusal nobody could tell apart from an unanswered question
+
+**K21.** Rule 6 of the household programme lets a block roof be adopted by an argued household
+only if three tests pass, and the second asks whether the roof's family is one this layer already
+houses that trade in. **For four trades that question had no answer at all.** `brickmaker`,
+`packer`, `sawyer` and `wheelwright` live exclusively on the 31 roofs this layer *raises* rather
+than adopts, and those records named no family in any field a gate could read — eight further
+trades were partly in the same position, 17 households in total. T-A5 refused the sawyer adoption
+on that silence and said at the time that it could not tell the refusal from an unanswered
+question.
+
+**The answer was a transcription, not a decision.** Every one of the 31 buildings was dealt a
+crosswalk family by the programme, and every one has always *said* so in prose — the footprint note
+reads "a 16 x 22 ft rectangle from the **D3** family band", and each form value cites the same
+band. The band was committed in two places and readable in neither. Writing it into
+`reconstruction.family` therefore **invents nothing and owes `docs/LIBERTIES.md` nothing**; rule 6
+gains no fourth clause, and no trade is granted a pass — a trade whose families are readable can
+still fail the test.
+
+| | before | after |
+|---|---:|---:|
+| census trades resolving rule 6's family test | 25 of 29, four of them not at all | **29 of 29** |
+| trade-family pairs the test can compare against | — | **44** |
+| households standing on a roof that names no family | 17 | **0** |
+
+**The durable half is the gate.** `tools/generate_inferred_households.py` fails if any roof a
+household *lives or works in* names no family in the crosswalk — over both links, because a shop's
+family is as much a claim about the town as a cottage's. The test cannot go silent again without a
+gate saying so.
+
+**The parcel's own suspicion was refuted.** It flagged `inf_sawyer_dwelling_b` massing as an
+`outbuilding` while `_a` masses as a `frame_dwelling`. They differ because **they were dealt
+different families**, D3 and D2, and each resolves through its own family's committed archetype —
+the record's existence note says so in as many words. The real split is five W4 shops massed two
+ways, all of them one-storey, which W4's own licence does not explain.
+
+**And underneath that, the finding worth more than the parcel.** Reading each committed form value
+against its family's band shows **54 of 193 reconstructed roofs sit outside the band their own note
+cites** — 39 of 162 anonymous, 15 of 31 bespoke, worst `inf_laundry_north` at 280 sq ft against an
+A5 band of 48–192. The cause is that the form generators choose values by **archetype** and attach
+a note citing the **family**. A note that cites a band is the defence for the invention; where the
+value is outside it the note is wrong about its own source. That is **K25**, split so the
+measurement lands before anything moves.
+
+**Two gates caught what reading would not have.** `reconcile_665.py` classified roofs by whether a
+reconstruction block was *present*, so all 31 silently moved from `inferred_household_programme` to
+`generated` — totals unchanged, attribution wrong. And `compile_scene.py` sent every
+reconstruction-block record to the anonymous-infill dossier; the household layer has its own and now
+points at it. Which surfaced **K26**: `publish.sh` deliberately keeps `docs/` out of the payload, so
+on the deployed site **all 276 building cards link to a 404**.
+
 ## New 2026-08-15 — the photograph the sky is calibrated against is now in the repository, and it checks out
 
 **R-REF1.** `renderers/web/js/world.js` derives its sky exposure, the whole of its

@@ -237,8 +237,17 @@ def standing_roofs(grid, datum, taken):
     for path in sorted((DATA / "structures").glob("*.json")):
         record = load(path)
         rid = record["id"]
-        if "reconstruction" in record:
-            block = record["reconstruction"]
+        # WHICH PROGRAMME RAISED THIS ROOF, not merely whether it discloses a family
+        # band. Both answers used to be the same question, because only the anonymous
+        # generators wrote a reconstruction block. Since K21 the inferred-household
+        # layer's 31 buildings carry one too — they are drawn from the same family
+        # bands and now say so in a field — and a bare `"reconstruction" in record`
+        # test moved all 31 out of `inferred_household_programme` and into
+        # `generated`. The totals were unchanged, which is exactly why it is worth a
+        # gate's attention: the ledger would have gone on reporting 665 roofs while
+        # crediting a third of the household layer to a generator that never ran.
+        block = record.get("reconstruction") or {}
+        if block.get("status") == "inferred_anonymous":
             row = {"id": rid, "source": "generated", "district": block["district"],
                    "family": block["family"], "roofs_min": 1, "roofs_max": 1,
                    "programme_phase": block.get("programme_phase")}

@@ -140,6 +140,14 @@
     ],
     "note": "The reconstructed household this building exists for: hh_inf_teamster_west_05 in data/residents/households/. No name is claimed and no figure is drawn."
   },
+  "reconstruction": {
+    "status": "inferred_household",
+    "family": "A2",
+    "district": "west",
+    "programme_phase": "phase2_inferred_households",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "occupation": "teamster"
+  },
   "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A teamster's stable on the Canal Street approach, where the country roads come into the town and where the Western Hotel already keeps its own wagon yard. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
   "review_required": false
 }
