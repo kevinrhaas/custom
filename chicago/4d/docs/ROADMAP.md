@@ -38,14 +38,43 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
   now branches off `dev` and PRs into `dev`. A parcel needing new geometry ships the
   data/archetype half and says so.
 
+### THE RUN BUDGET IS 150 MINUTES, AND THE SMOKE COSTS 26 OF THEM
+
+Set 2026-08-14 on the owner's instruction — *"if it's too long we will want to break it into
+pieces"* — after a run was cancelled at exactly 150 minutes having committed nothing.
+
+**The arithmetic, measured rather than estimated.** `steward-improve` allows 150 minutes
+(raised from 90 that day, because runs of 95, 81 and 70 minutes were real work being destroyed
+at the ceiling). One `tools/smoke_renderer.mjs` pass costs **~26 minutes** at both viewports.
+`tools/critic_shots.mjs --metrics` costs ~12 minutes for the full station set, ~3 with
+`--stations`. So a parcel gets **roughly four smoke-equivalents in total**, and it also has to
+read, think, write, publish and open a PR inside that.
+
+**The rule: a parcel whose acceptance needs more than TWO full smoke passes must be split
+before it is claimed.** Measure-then-fix parcels are the ones that breach this, and they split
+along a seam they already have:
+
+- **(a) land the failing gate** — build the measurement, prove it fails on the current build,
+  commit it red with the numbers quoted. One smoke.
+- **(b) fix it green** — take (a)'s committed numbers as the baseline. One smoke.
+
+This is better than a time-saving trick: it forces the measurement to be committed *before*
+anyone knows which candidate cause is guilty, so the fix cannot quietly redefine success. It
+is exactly how R-BUG2 succeeded — *"measure before choosing"* refuted its own prime suspect.
+
+**Use `--stations` and `--only`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
+instead of 12; the smoke takes `--only` for a single viewport while iterating. Full runs
+belong at the end, not in the loop.
+
 ### NEXT UP — the unambiguous picks
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
-| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
-| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
-| 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
+| 1 | RENDERING | **R-W5a** | **+11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — and the budget is what stopped the last TOWN block landing. Every further block spends more of it. This is the one parcel BOTH lanes are waiting on.** R-W5b carries R-BUG1 (the river flicker) |
+| 2 | RENDERING | **R-REF1** | XS. The calibration reference photograph is not in the repo, and it now blocks BOTH R-W1's target re-anchoring and R-M1's thresholds |
+| 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
+| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **blocked behind R-W5a on the draw-call budget** |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -70,8 +99,20 @@ now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at rang
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
+**T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
+building standing proud of its own frontage has its centroid in the road, so four documented
+buildings — the Temple Building, Harmon & Loomis's store, the Chicago Democrat's office and the
+Cook County courthouse — stood on lots the schedule was offering to anonymous roofs. Occupancy is
+now measured by area, in ONE module both halves import. **266 stand and 399 remain, 61 of them on
+covered ground** (was 66). Full findings under T-A7 below; read them before claiming a block.
+
+**T-A6 is DONE (2026-08-15)** — the schedule was dealing five of the ten open blocks roofs their
+own lots could not hold, and the deal now derives lot occupancy the same way the block generator
+does. **266 stand and 399 remain, 66 of them on covered ground** (was 71 — five roofs never had
+anywhere to stand; **re-derived to 61 by T-A7**). Full findings under T-A6 below.
+
 **T-A5 is DONE (2026-08-14)** — `blk_randolph_market` carries eight roofs, so **266 stand and 399
-remain**, 71 of them on covered ground. It is the first block whose standing roofs this project's
+remain**, 71 of them on covered ground (**re-derived to 66 by T-A6**). It is the first block whose standing roofs this project's
 *own inferred-residents layer* had put there, and it **settles the division question T-A4 left
 open**: rule 6 takes three tests, the third being the roof's division, and the written test recovers
 all four adoption decisions made before it. It also found what the tests cannot answer — four trades
@@ -219,11 +260,44 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 ### R-W1 — calibrated light and environment · **PARKED on PR #125 (`hold`) — DO NOT REDO**
 
 **The work is done and measured; it is one assertion short of green.** Take the branch
-`steward/r-w1-calibrated-light`, not a blank sheet. What it needs is the aerial half of
-R-BUG2's road-contrast gate settled — `south_water` still passes, only `from_above` fails,
-and the gate must not be weakened. The parcel's findings, its numbers and the two candidate
-causes are in the PR and in `docs/STATUS.md` § "the town was lit by a sky that does not
-exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
+`steward/r-w1-calibrated-light`, not a blank sheet.
+
+> ### THE BLOCKER IS SETTLED. DO NOT RE-DERIVE IT.
+>
+> **A run burned its entire 150-minute budget on 2026-08-14 (`31848983349`) re-deriving this
+> and was cancelled mid-smoke with nothing committed.** The answer below was obtained in one
+> targeted measurement. Start from it.
+>
+> The PR named two candidate causes. **Cause 1 (the scene is 16 % dimmer) is CONFIRMED.
+> Cause 2 (a near-uniform indirect specular term compressing road against grass) is REFUTED.**
+>
+> Measured with the gate's own probe construction at `from_above`, desktop 1280×800, source
+> tree, `dev@d762a19` vs branch `9c69a93` — but recording **linear luminance** alongside ΔL\*,
+> because the two causes have opposite signatures there: dimming is multiplicative and
+> preserves the road/ground ratio; a specular pedestal is additive and collapses it.
+>
+> | band | Weber contrast dev → branch | ΔL\* | perceptible |
+> |---|---|---|---|
+> | 100–250 m (n=11) | 0.1217 → 0.1176 (**−3.4 %**) | 2.87 → 2.60 | 91 % → 91 % |
+> | 250–600 m (n=326) | 0.0940 → 0.0904 (**−3.8 %**) | 2.36 → 2.12 | 63 % → **52 %** |
+>
+> Ground scales ×0.862, road ×0.866. **The ratio moved 0.4 %** — the road is physically as
+> distinguishable as it was; the scene is darker and ΔL\* is compressive.
+>
+> **What actually fails is narrower than "the aerial band":** the median 2.12 clears the 1.8
+> bar. It is the *fraction* bar in the farthest gated band only — **52 % perceptible against
+> 55 % required**, a three-point miss. 100–250 m never moved.
+>
+> **Do not re-tune the street alpha.** It tunes content to a metric artefact, makes roads more
+> contrasty than the sky lighting them warrants, and guarantees another re-tune at every
+> lighting change — the streets were tuned under the rig this PR proved was 1.86× too bright.
+>
+> **The owner has ruled: the gate scores contrast plus a floor. See `R-M1`.** Once R-M1 lands,
+> re-run this branch's gate against the new metric — do not re-tune the streets to satisfy the
+> old one. Full working: `kevinrhaas/custom#125` (issue comment, 2026-08-14).
+
+Everything else it needs is in the PR and in `docs/STATUS.md` § "the town was lit by a sky that
+does not exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
 (R-W4, R-W5, R-W2, R-W3) are untouched by it and R-W4 is the one to take instead; any
 lane-2 or lane-3 parcel may run alongside it, since this one touches only
 `renderers/web/js/world.js`, `tools/smoke_renderer.mjs` and the vendor manifest.
@@ -262,11 +336,24 @@ shadow is 0.354 × the height of what casts it, so the frame carries almost no s
 and form must come from the IBL and from W3's AO — the hour is a recorded, reasoned choice and
 this is not an argument to move it, but W1 should not expect the shadow map to help it.
 
-### R-W4 — atmosphere and the mid-field · **UNCLAIMED · NEXT UP**
+### R-W4 — atmosphere and the mid-field · **SPLIT FOUR WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **Effort:** L · **After:** R-G0
+**Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **After:** R-G0
 
-The largest single visual gap: RENDERING §1 items 1–6.
+The largest single visual gap: RENDERING §1 items 1–6. **It was tagged L and that is why it is
+split** — the run budget is 150 minutes and one smoke pass is 26 of them (see the budget section
+at the top). Each half below is one coherent change with one smoke.
+
+| | parcel | why it stands alone |
+|---|---|---|
+| **R-W4a** | **fix the horizon-timber metric · DO THIS FIRST** | The acceptance number below is currently unmeasurable — see the R-G1 finding at the end of this entry. **Until this lands, no other W4 half can prove anything**, because the headline figure counts gable ends as trees. Touches the metric only, not the renderer. |
+| **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
+| **R-W4c** | **flower load** | `0.0012` against a 4–6 % target — the largest single accuracy deduction on the historical axis outside the town. `data/flora/` tuning + `flora.js`. |
+| **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
+
+**R-W4a is not bookkeeping.** A town parcel has already handed W4 a pass it did not earn, and
+the same thing will happen again on every block that lands. Fixing the metric before chasing the
+number is the difference between improving the scene and improving the score.
 
 **Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` ·
 `renderers/web/js/world.js` (horizon band) · `data/flora/` (tuning only) ·
@@ -298,9 +385,18 @@ Two further reads from the scored pass: the sky is a single cloudless gradient a
 stations, and the flower load at `prairie_west` is **0.0012** against the honest 4–6 % target —
 the largest single accuracy deduction on the historical axis outside the town itself.
 
-### R-W5 — water, post-lite, dynamic resolution · **UNCLAIMED**
+### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **Effort:** M · **After:** R-W1
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W1
+
+| | parcel | why it stands alone |
+|---|---|---|
+| **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
+| **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
+
+**Take R-W5a first unless the flicker is what is being asked for.** A budget met by tuning after
+414 roofs have landed is a rewrite; met now, it is a design choice. The two leads R-G1 left are
+in the finding below and neither has been explained.
 
 **Files:** `renderers/web/js/terrain.js` (water material) · `renderers/web/js/world.js` ·
 `renderers/web/vendor/MANIFEST` (+ EffectComposer/SMAA) · `tools/smoke_renderer.mjs`
@@ -326,10 +422,15 @@ bearings 150° apart, which no one has explained.
 
 **Phase:** RENDERING §4 W2 · **Effort:** L · **After:** R-W1
 
-**The no-Blender half (improve-runner, claimable now):** the material sheet — which surfaces
-exist, what each is made of, tiling rates, and which archetype parameter selects it — plus
-the records and archetype params that name them. **Files:** `docs/RESEARCH/materials.md`
-(new) · `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only).
+**The no-Blender half is itself TWO parcels — claim ONE:**
+
+| | parcel | scope |
+|---|---|---|
+| **R-W2a** | **the material sheet** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
+| **R-W2b** | **wire the sheet in** | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
+
+**R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
+rendering. Do not merge the two: a sheet argued and a sheet applied are different reviews.
 
 **The bake half (nightly bake, arrives as a dev-targeted PR):** UV layout, atlas generation
 and the actual textured GLBs. The `ktx` binary is installed on the bake runner as of
@@ -349,16 +450,20 @@ and a tiling rate.
 
 **Phase:** RENDERING §4 W3 · **Effort:** M · **After:** R-W2
 
-**The no-Blender half:** the AO cage specification — RENDERING §1 item 10 says the bake works
-end to end and fails because clapboard courses and window reveals a centimetre off the wall
-occlude each other (measured mean 0.265, 69 % of texels below half). It needs a **low-poly AO
-cage**, not tuning. Write the cage rule into the archetype params. **Files:**
-`generators/archetypes/*.py` (cage emission) · `docs/RESEARCH/ao-cage.md` (new).
+**The no-Blender work is THREE parcels — claim ONE. They are genuinely unrelated jobs that were
+filed together only because RENDERING §4 groups them:**
+
+| | parcel | scope |
+|---|---|---|
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other (mean 0.265, 69 % of texels below half). It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. |
+| **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
 **The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.
+**After R-W3a**, and see `B-A1` before assuming the nightly should be the thing that runs it.
 
-**Also here, improve-runner:** cascaded shadows in `renderers/web/js/world.js` — today one
-1024² map on a ±60 m follow ortho, nothing beyond 60 m.
+**3a and 3c are the same conversation about the same few centimetres of wall** (R-G1 says so),
+so whoever takes one should read the other — but they ship separately.
 
 **From R-G1 (geometry scored 4.6) — AO is carrying more than it looks like it is.** At the
 scene's 70.5° sun a shadow is 0.354 × the height that casts it, so the only cast shadow legible
@@ -836,7 +941,118 @@ household) · `data/structures/recon_1835_blk_randolph_market_*.json` (8, derive
 `data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md`
 (L97) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A6…T-An — the remaining blocks · **UNCLAIMED**
+### T-A6 — the schedule learns what a lot is · **DONE 2026-08-15**
+
+**Claimed as `blk_randolph_franklin` and finished as something else, because the block could not
+be built honestly.** Re-deriving the schedule on arrival showed the parcel had been dealt seven
+principal roofs onto seven free lots — every lot filled, no vacancy — and checking the other nine
+open blocks found the same blindness in four more. Full measurement and the three failure shapes
+in `docs/STATUS.md` § "half the open blocks were scheduled roofs their own lots could not hold".
+
+**The one-line version:** a block's room was counted in ROOFS and a principal roof needs a free
+LOT, so `standing_roofs` could not tell two roofs on one lot from two roofs on two.
+`blk_south_water_clark` and `blk_lake_market` were dealt seven principal roofs against six free
+lots — unwritable. `blk_south_water_wells`, `blk_randolph_franklin` and `blk_randolph_clark` were
+dealt exactly their free-lot count, which is writable and worse, because it spends the alternating
+vacancy the recipe's own placement rule promises without anybody deciding to. And
+`blk_randolph_dearborn` (the T-A3h backfill) was dealt one yard building and no principal roof to
+put it behind.
+
+**A rule a parcel can be dealt out of is not a rule.** The vacancy was a promise each parcel kept
+by hand — T-A2 left one lot open, T-A5 two — and a block dealt its exact free-lot count could not
+keep it. It is now a property of the deal: `principal = min(free lots − 1, roof headroom)`,
+`ancillary` bounded by the 154:511 ratio AND by the principals the parcel builds, lot occupancy
+derived by the same footprint-centroid rule `tools/generate_block_infill.py` already uses so the
+two halves cannot disagree again, a token a unit cannot take offered to the next unit rather than
+dropped, and a new assertion that fails the build if a unit is ever dealt past its room.
+
+**Cost: schedulable-on-covered-ground 71 → 66, gated 328 → 333.** Five roofs that never had
+anywhere to stand went back to waiting on coverage. That is the honest number and it is smaller
+than the one this lane had been quoting.
+
+**All ten open blocks are buildable now, and each keeps a lot open.** `blk_randolph_franklin`
+returns to the queue with the corrected mix below. This parcel changed no structure record, no
+resident, no sidecar and no mesh: `tools/reconcile_665.py`, the derived programme, two documents
+and a changelog entry.
+
+**Files:** `tools/reconcile_665.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/STATUS.md` · `docs/ROADMAP.md` · `renderers/web/js/changelog.js`
+
+**What it did not do:** ask whether ONE open lot per block is the right vacancy. The rule now
+guarantees a floor of one, which is what the phase-one parcel assumes and what every parcel so far
+has done or bettered; whether a block of eight lots in 1835 Chicago carried six roofs rather than
+seven is a question for the evidence, not for the apportionment, and nothing here answers it.
+
+### T-A7 — a building stands on the lot it stands on · **DONE 2026-08-15**
+
+**Claimed as `blk_south_water_franklin` and finished as something else, the way T-A6 was, and
+for the neighbouring reason.** T-A6 made a block's room a function of its FREE LOTS. This is
+about how a lot is known to be free at all — and the answer was *the building's centroid is not
+in it*, which is a proxy that fails on precisely the records the plat grid was built to correct.
+
+**The one-line version:** a building placed from typed coordinates before the plat module
+existed can stand a metre or two proud of its own street frontage, so its centroid lands in the
+ROADWAY — and a building whose centroid is in the roadway stands, as far as the schedule can
+tell, on no lot of any block. Fourteen committed records were in that position. Four of them
+are named, documented buildings sitting on lots the schedule was offering to anonymous roofs:
+the **Temple Building** (27 % of it on `blk_south_water_franklin` lot 0), **Harmon & Loomis's
+store** (31 % on `blk_south_water_clark` lot 0), the **Chicago Democrat's office** (34 % on
+`blk_south_water_lasalle` lot 6) and the **Cook County courthouse** (13 % on
+`blk_randolph_lasalle` lot 6). The claimed block was dealt six principal roofs for seven free
+lots when one of those lots has the Temple Building on it.
+
+**The rule now has two tests, in `tools/plat_occupancy.py`, and each answers a different way of
+being wrong.**
+
+1. **A building stands on the lot most of it is on**, measured. This is the same claim the
+   centroid was making, made by area instead of by a point. It is purely additive on the
+   committed dataset: *no record changes lot*, five lots that read free are now known to be
+   taken, and none that read taken became free.
+2. **It occupies that lot only where it reaches the lot's buildable part** — the lot inset by
+   `LOT_MARGIN_M`, the same 1.5 m the generator makes every new roof keep from its own lot
+   lines. A neighbour lapping only into that strip has taken nothing a roof could have used.
+   **J. H. Kinzie's store is the case that earns this test**: 9.7 m² of it lies on
+   `blk_south_water_franklin` lot 2 and none of it inside the buildable inset, so the lot is
+   free and the schedule may still deal it a roof. Without test two the town loses roofs it can
+   honestly have.
+
+**And the second half of the same defect, in the ledger:** a roof was attributed to a block by
+its position POINT, so the same buildings were counted as standing in no block at all — their
+roofs never subtracted from the headroom of the block they physically stand in. The **Exchange
+Coffee House** holds nine tenths of a lot of the claimed block and counted nowhere; so did
+**Harmon & Loomis's store** and the **Tremont House**. A roof standing on a block's lot stands
+in that block, and the ledger now says so.
+
+**One implementation, imported by both halves.** T-A6 required the schedule and the generator to
+derive occupancy the same way and they did — by each carrying its own copy of the rule, which is
+how two copies of one rule drift. `tools/plat_occupancy.py` is now the only implementation;
+`reconcile_665.py` and `generate_block_infill.py` both call it, and `LOT_MARGIN_M` is authored
+there too because the occupancy test reads the same number from the other side.
+
+**Cost: schedulable-on-covered-ground 66 → 61, gated 333 → 338.** Occupied lots 79 → 84. Standing
+roofs are unchanged at 266 and remaining at 399 — nothing was built or removed, five roofs went
+back to waiting on coverage because the ground they were promised is already built on. Four
+blocks lose a lot each: `blk_south_water_franklin` 7 free lots → 6 and 8 roofs → 7,
+`blk_south_water_lasalle` 8 → 7, `blk_south_water_clark` 7 → 5 (it also gains two standing
+roofs), `blk_randolph_lasalle` 5 → 4.
+
+**What it measured and deliberately did NOT call occupancy.** `recon_1835_west_018` laps 11.9 m²
+onto `blk_randolph_clinton` lot 2, where T-A4 stands a principal roof. Test one seats that
+building on lot 4, where 82 % of it is, so lot 2 remains the roof T-A4 put there. A rule that
+called every lap an occupation would have condemned a committed, gated placement on a corner of
+a building — and whether two roofs may stand three metres apart across a conjectural side lot
+line is the separation gate's question, which it passed at the time. The number is recorded here
+so that nobody reads the silence as nobody having looked.
+
+**What it did not do: build the block.** `blk_south_water_franklin` returns to the queue below
+with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lots.
+
+**Files:** `tools/plat_occupancy.py` (new) · `tools/reconcile_665.py` ·
+`tools/generate_block_infill.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
+no resident, no sidecar, no mesh and no renderer file.
+
+### T-A8…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -851,14 +1067,19 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open immediately after T-A5, on ground the project has coverage for — 71 roofs across ten
-entries:** `blk_randolph_franklin` 9 · `blk_randolph_clark` 9 · `blk_randolph_lasalle` 7 ·
-`blk_south_water_franklin` 8 · `blk_south_water_wells` 8 · `blk_south_water_lasalle` 8 (**carries
-the one I3 in the whole open set — defer it per T-A3 unless T-I3 has landed**) ·
-`blk_south_water_clark` 8 · `blk_south_water_dearborn` 6 · `blk_lake_market` 7 ·
-`blk_randolph_dearborn` 1 (an A4 backfill). **This list is a convenience and goes stale the moment
-the next parcel lands** — the schedule re-apportions every open block each time one closes, and it
-moved the I3 between blocks on this very run. Re-derive it, do not trust it.
+**Open after T-A7, on ground the project has coverage for — 61 roofs across ten entries, every
+one of them buildable with a lot left open, and every lot of them now checked against the
+buildings that already stand there:** `blk_south_water_franklin` 7 (5P+2A) ·
+`blk_south_water_wells` 8 (6P+2A) · `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
+5 (4P+1A, **carries the one I3 in the whole open set — defer it per T-A3 unless T-I3 has
+landed**) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A) ·
+`blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8
+(6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6).
+**This list is a convenience and goes stale the moment the next parcel lands** — the schedule
+re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
+guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block
+is dealt more principal roofs than it has free lots less one, and no block is dealt a yard
+building without a roof to stand it behind.
 
 ---
 
@@ -1102,6 +1323,86 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
+### R-REF1 — commit the reference photograph · **UNCLAIMED · NEXT UP · XS, and it unblocks two parcels**
+
+`bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this
+project calibrates its sky against and reasons about tree-mass contrast from — **is not in the
+repo.** Confirmed 2026-08-14: `git ls-files` returns nothing for it.
+
+**It is now blocking two things, not one.** R-W1 named it *"the single thing most in the way of
+judging these numbers"* — RENDERING §5's note 1 asks the targets to be re-anchored by measuring
+a reference through this code, and that cannot be done against a file nobody has. And **`R-M1`
+below needs it** to derive its thresholds from what a real dirt track holds against real prairie,
+rather than from numbers picked to fit today's build.
+
+**The whole parcel is: establish the rights, commit the file, register it as a source.** It is a
+photograph like any other input — `data/sources/<id>.json` with its licence, provenance and a
+`what_it_does_not_supply` list, exactly as every map in this dataset carries. If the rights do
+not permit committing it, **say so in the source record and name a substitute** that does; an
+uncitable calibration reference is a calibration nobody can check.
+
+**Files:** the image · `data/sources/<id>.json` · `assets/LICENSES.md` · `docs/RENDERING.md`
+**Acceptance:** `tools/check.sh` green; the file resolves; the rights are recorded, not assumed.
+
+### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · after R-REF1 · owner ruled 2026-08-14**
+
+**The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
+score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
+
+**Why the old metric was not wrong, only unguarded.** CIE `L*` is a perceptual scale — equal
+steps are roughly equal perceived difference *under a fixed adaptation state*. That precondition
+held for as long as exposure was fixed, and R-W1 is the first parcel to break it. ΔL\* did not
+fail; its assumption did. Measured: R-W1 preserved the road/ground ratio to within **0.4 %** and
+still lost the gate, because the scene got 14–17 % darker.
+
+**Why a ratio alone is not the answer either.** Contrast sensitivity genuinely collapses at low
+luminance, so a pure ratio metric would pass a scene too dark to see anything in. That is the
+failure mode being traded into, and the floor is what prevents it.
+
+**So: a contrast bar for "is the road distinguishable from the ground", and a luminance floor for
+"is there enough light to distinguish anything at all".** Each catches what the other cannot, and
+together they are strictly stronger than the single bar in place today. This is not a relaxation
+and must not become one — the metric still has to FAIL on the pre-R-BUG2 build.
+
+**Weber is a documented standard here, not a shared helper.** `trees.js:856` reasons in Weber
+contrast against the bar photograph and `STATUS.md` / `LIBERTIES.md` quote it, but nothing in
+`tools/` computes it. Expect to write the function.
+
+**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
+`ROAD_MIN_PERCEPTIBLE = 0.55` were set under one exposure and are now unanchored. The honest
+source is the reference photograph — what contrast does a real dirt track hold against real
+prairie? Hence **R-REF1 first.** If the rights forbid committing it, freeze the measured Weber
+figures from the last agreed-good build (**0.094 at 250–600 m, 0.118 at 100–250 m**, desktop,
+`dev@d762a19`) as a provisional floor and **label them provisional in the code**.
+
+**Not a user setting, and the reasoning is worth keeping.** The gate runs headless in CI; there
+is no user in the room. Its thresholds are already tunable in the right way — named constants at
+the top of `smoke_renderer.mjs` with the reasoning beside them, so a change appears in a diff and
+gets argued. Moving them to a config file would make them easier to change *without* review,
+which is backwards for a gate.
+
+**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper)
+**Acceptance:** the new bars fail on the pre-R-BUG2 build and pass on current `dev`; R-W1's
+branch is re-run against them **without re-tuning the streets**; every existing road band still
+reports; thresholds carry their derivation in a comment.
+
+### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
+
+Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
+feature. A user control that boosts road contrast **converts a defect into a preference** and
+takes the pressure off fixing the default. `K24`'s lighting setting is defensible because both
+positions are legitimate and the default is the evidence-anchored one; *"roads you cannot see
+while standing on them"* is not a position worth offering.
+
+**But the accessibility case is real** — contrast sensitivity varies, and a phone screen in
+sunlight is brutal, which is the exact condition R-BUG3 was reported from. So this ships as an
+aid layered on a correct default — **R-BUG3 made the default correct on 2026-08-15, so the
+precondition is met** — and it inherits `K24`'s constraint: the harness measures the default
+regardless of stored preference. Note what R-BUG3 left standing: the near band's *ceiling* is
+3.4–4.3 L\*, the lowest of any band, and a fifth of near probes cannot clear the threshold even
+fully opaque. The honest fix for that is **R-W2**'s textured coverage, not this aid; shipping
+this one must not be allowed to retire that.
+
 ### R-BUG3 — the road is invisible AT YOUR FEET · **DONE 2026-08-15**
 
 **What it took, and what it refuted.** The near band was added, it failed exactly as this parcel
@@ -1185,11 +1486,18 @@ measurement was sound and the fix was real; the window was wrong.
 measured the geometry and never asked whether the road reached the screen; the second asked, but
 only past 40 m. A gate answers exactly the question it was pointed at.
 
-**First move — extend the bands to the near field**, e.g. a `[2, 40]` band (below ~2 m the
-surface is under the camera and degenerate). `roadContrast()` already has the machinery: the
-opaque-marker denominator **M** works identically here, and a road occluded by grass stays in
-the sample and scores as a road that covers a pixel and does not change it — exactly the
-signature wanted. Expect it to FAIL on the current build; that failure is the acceptance.
+**SPLIT IN TWO — see "the run budget is 150 minutes" above. Claim ONE.**
+
+**R-BUG3a — land the near-field band, red.** Extend `ROAD_BANDS` with a `[2, 40]` band (below
+~2 m the surface is under the camera and degenerate). `roadContrast()` already has the
+machinery: the opaque-marker denominator **M** works identically here, and a road occluded by
+grass stays in the sample and scores as *a road that covers a pixel and does not change it* —
+exactly the signature wanted. **Commit it FAILING, with the measured numbers quoted**, and stop.
+One smoke pass. That failure is this half's acceptance, and committing it before anyone knows
+which cause is guilty is what stops the fix redefining success.
+
+**R-BUG3b — turn it green.** Takes R-BUG3a's committed numbers as the baseline and works the
+candidates below. One smoke pass. **Do not start until 3a has landed.**
 
 **Candidate mechanisms — measure before choosing.** That instruction is what saved R-BUG2 from
 a fix that would have made things worse, and it applies again:
@@ -1452,6 +1760,266 @@ instead, and **pushes that to `main` before starting the work** — a claim that
 a branch protects nothing. Respect any claim you find. Claims carry an expiry, and an expired
 one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
 Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
+
+### K24 — Let the visitor choose the light · **UNCLAIMED · owner-requested 2026-08-14 · AFTER #125**
+
+Owner, on being told R-W1 makes the scene 16 % dimmer and that holding the old brightness would
+collapse albedo retention to 62 %: *"Can you make this an option in settings?"*
+
+**It dissolves the trade-off rather than picking a side.** R-W1's argument for its own magnitude
+is sound — a real sky is blue, and scaling it to carry a warm lamp's luminance destroys the wall
+colours the dataset documents. But "correct and dim" and "bright and wrong" is a false choice
+when the visitor can be handed the dial.
+
+**Settings already has the shape for this.** `hud.js` `wireRange(id, label, key, fmt)` drives
+`speed`, `eyeHeight` and `fov`; `s-units` is the select pattern; everything persists additively
+into `chicago4d.settings`. Nothing new is needed structurally.
+
+**The precedent to copy is the eye-height slider**, and it is exactly the right one. It prints
+`— period eye level` when it sits on the researched default, *"so moving off it is a visible
+choice instead of a silent drift"* (`hud.js`). A light control needs the same treatment: the
+default position is the one calibrated against a verified July prairie photograph, and it should
+say so on its face.
+
+**The thing this must not become.** This project grades every claim by evidence. A brightness
+control must read as a **viewing accommodation, like the units toggle** — the same scene, easier
+to see — and never as a claim about how bright 1835 was. Label it so that no reading of the UI
+suggests the brighter setting is an alternative reconstruction. The risk is concrete: a visitor
+who moves the dial and then forms a judgement about the town's colours is judging under a light
+this project has just measured as **1.86× the luminance and 2.85× the red** of its own sky.
+
+**The non-negotiable: calibration stays anchored to the DEFAULT.** `tools/critic_shots.mjs`,
+`tools/light_probe.mjs` and every gate in `smoke_renderer.mjs` measure the default setting and
+must keep doing so. If a gate can be made to pass by moving this control, the control has become
+a way to launder a failure — add an assertion that the default rendering is unchanged by the
+setting's existence, and that the harness reads the default regardless of stored preference.
+
+**Open design question, worth deciding rather than defaulting:** a two-way choice between named
+rigs, or a continuous exposure slider with the calibrated point marked? The slider matches the
+eye-height precedent and is friendlier; the toggle is harder to misread as "accuracy dial".
+Recommendation: **slider, with the calibrated default named in the readout** — but say which was
+chosen and why.
+
+**Sequencing:** this touches `world.js`, which **PR #125 rewrites substantially**. It must land
+**after** #125 resolves or it will conflict badly. It also does **not** unblock #125 — that PR's
+road-gate failure occurs at the *default* setting, and a preference control does not change it.
+
+**Files:** `renderers/web/js/world.js` · `renderers/web/js/hud.js` · `renderers/web/index.html`
+(the control) · `tools/smoke_renderer.mjs` (default-unchanged assertion) · `docs/index.html` (Help)
+
+**Acceptance:** `tools/check.sh` green; the setting persists across reload and does not break an
+existing stored `chicago4d.settings`; the default rendering is byte-comparable to before the
+setting existed; every critic and smoke measurement still reads the default; the readout names
+the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
+and legible there.
+
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b DONE 2026-08-15 · owner-reported 2026-08-14**
+
+> **BOTH HALVES ARE DONE.** K23a made the prose agree with the grade (193 names); K23b put the
+> per-level summary on the card. Findings under "K23a — what the sweep actually found" and
+> "K23b — what the summary had to decide" below.
+
+Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
+inferred right? Like if it was totally invented based on our population household program it was
+probably recreated not inferred. Can you check those description cards. And when you say what we
+made up, say what we included in the recreation, or what we included in the inferred building, or
+what we included in the attested building."*
+
+**They are right, and the card contradicts itself on screen.** The title reads
+**"Inferred A2 barn or carriage shed #08"** while the chip directly beneath it reads
+**RECONSTRUCTED**, and so does every other chip on the card.
+
+**Verified, not assumed.** `data/structures/recon_1835_blk_randolph_market_a1_07.json` contains
+the string `"reconstructed"` **thirteen times** and `"inferred"` **zero** times — and its `name`
+is `"Inferred A1 stable #07"`. **193 structure records** are named this way.
+
+**Why it happened, and it is the residue of a fix that worked.** Changelog **v76** moved 9,076
+values onto the current three levels and re-graded 1,694 that had claimed to be reasoning when
+they were invention. It moved the DATA. It did not move the generated PROSE, which is hardcoded:
+
+```
+tools/generate_block_infill.py:522    "name": f"Inferred {family} {function} #{seq:02d}"
+tools/generate_block_infill.py:543    "change_note": "Inferred anonymous July 1835 block infill…"
+tools/generate_inferred_infill.py:229 "name": f"Inferred {family} {function} #{seq:03d}"
+tools/generate_inferred_infill.py:251 "change_note": "Inferred anonymous July 1835 infill…"
+```
+
+Under the OLD vocabulary `inferred` was the BOTTOM tier and those names were honest. Under the
+current one it is the MIDDLE tier — *reasoned from evidence about this particular thing* — which
+is exactly what an anonymous roof dealt by the household programme is **not**. So every one of
+the 193 names now claims a grade **better than its own record**, in the largest text on the card.
+This is the v76 fault surviving in the most visible place in the app.
+
+**SPLIT — claim ONE. A and B are a mechanical sweep and a design question, and bundling them
+means the sweep waits on the design.**
+
+- **K23a — make the prose agree with the grade.** Part A below. Deterministic, re-derives
+  through the generators' `--check`, and it stops the app contradicting itself on screen. Ship
+  it on its own.
+- **K23b — say what we actually did, per level.** Part B below. This one needs a wording
+  decision and a card layout, and it should not hold up 193 names that are currently wrong.
+
+**Part A — make the prose agree with the grade.** Fix it in the GENERATORS, not the records:
+they are `--check` gated, so the records must re-derive rather than be hand-edited. Sweep the
+`name`, `change_note` and `research_note` prose, and `data/residents/` too. Then check whether
+any OTHER user-visible string still uses a level-word in its old sense.
+
+**Part B — say what we actually did, per level.** This is the substantive half, and the owner's
+own framing is the specification: for each building the card should say **what was included and
+where it came from** —
+
+- **attested** — which attributes the source states, and which source;
+- **inferred** — what was reasoned, and *from what specific evidence about this thing*;
+- **reconstructed** — what we invented, and what bounded the invention (the archetype table,
+  the household programme, the 665-roof schedule).
+
+The card already carries per-attribute chips and `why` disclosures, so the parts exist; what is
+missing is the plain summary a visitor reads first. *"A yard building off the block alley"* does
+not tell them the footprint, the height, the roof form and the position were all invented and
+only the block was reasoned.
+
+**The trap.** `K16` below is **STALE and must not be followed** — it describes a rename to
+`documented/derived/inferred` that was superseded by what actually shipped in v76
+(`attested/inferred/reconstructed`). Whoever takes this should close K16 out with a line saying
+so. The standing instruction to stay vocabulary-agnostic while K16 was in flight is spent: the
+vocabulary landed, and this parcel is about making the words on screen match it.
+
+**Files:** `tools/generate_block_infill.py` · `tools/generate_inferred_infill.py` ·
+`tools/generate_inferred_households.py` · `renderers/web/js/popup.js` · regenerated
+`data/structures/*` · `docs/PROVENANCE.md` · `docs/ROADMAP.md` (close K16)
+
+**Acceptance:** `tools/check.sh` green with every generator's `--check` re-deriving; **no
+user-visible string names a level it is not**; a smoke assertion that a record's displayed name
+never contradicts its own existence grade — put the fault back and it must name it; the card
+states what was included at each level for one attested, one inferred and one reconstructed
+building. Mobile is where it was reported.
+
+#### K23b — what the summary had to decide · **DONE 2026-08-15**
+
+**Shipped:** a section at the TOP of every provenance card — `What did we include, and where did
+it come from?` — that partitions every graded claim below it into the three levels, names the
+claims at each, and says where they came from. `renderers/web/js/popup.js` (`basisSection`),
+`renderers/web/css/walk.css`, four assertions in `tools/smoke_renderer.mjs`, and the changelog.
+No data changed and no generator ran: this is entirely a reading of records that already existed.
+
+**Making it a PARTITION is what made it gateable, and that was the design decision.** A summary
+can be written as a highlight reel — *"attested: its size, its position"* — and nothing can then
+check it, because there is no arithmetic to disagree with. Every claim the card renders lands in
+exactly one row instead, so the gate is a RECOUNT: pick every building, tally the confidence chips
+off the rendered card, and require the section's own three numbers to be those numbers.
+**All 276 loaded buildings agree, at both viewports.** The recount deliberately uses the SAME
+selector as the older chip-coverage assertion (`.pop-meta .conf, .pop-sec table.attrs .conf`) —
+two definitions of "a claim on this card" is exactly how a summary would come to disagree with
+the card it summarises while both gates stayed green.
+
+**A citation means a different thing at each level, and one label over all three would have been
+the same category error this card's history is made of.** On an `attested` claim a source is
+where the value came FROM. On a `reconstructed` one it is what BOUNDED an invention — the
+records say so themselves (*"the spec is cited because the invention is bounded by it, which is
+what makes it defensible rather than arbitrary"*) — and 193 anonymous roofs cite
+`owner_chicago_1835_reconstruction_spec_2026` and `andreas_1884_v1` on every attribute they have.
+A single `sources:` line over the summary would have printed a nineteenth-century history as
+attribution for a building nobody claims stood there. The three leads are **From**, **Reasoned
+from** and **Bounded by**.
+
+**Attested is not the same as built, and a summary of what was INCLUDED is exactly where that
+gap does damage.** The Western Hotel's stables are `attested` — a pre-fire account describes the
+wagon yard — and there is nothing of them in the model. **14 records carry an attribute in that
+state.** The rows below have marked it since the `geometry` declaration existed; the summary
+repeats it (`Not in the model: stables`) rather than averaging it into a count of things we
+included. Gated on the discriminating pair: the Western Hotel shows the line, the Sauganash has
+no such attribute and shows nothing.
+
+**An empty level says so in words, and that is the common case rather than the edge case.**
+Across the dataset's 279 records and **3,675 graded claims — 199 attested, 509 inferred, 2,967
+invented — 204 records have no attested claim at all.** A row that rendered only when non-empty
+would go silent on three quarters of the town, at the one moment a visitor most needs telling.
+So the attested row on an anonymous roof reads *"Nothing about this building is attested by a
+source."*
+
+**The finding this parcel did not go looking for: 69 buildings have inventions that nothing is
+recorded as bounding.** `reconstructed` requires a note, not a source — deliberately, and K23a
+argued why the old "a bottom-tier value citing sources is suspicious" rule died with the rename.
+The consequence had never been counted: of the 270 records carrying at least one invented claim,
+**69 cite nothing at all on any of them**, so their `Bounded by` line reads *"Nothing is cited as
+bounding these."* The Sauganash Hotel is one of them — its footprint is the placeholder its own
+note calls a placeholder, and no typology is named beside it. That is honest and it is now
+VISIBLE, which is the point; whether those 69 should acquire a bound is a research question for
+a successor and not something to paper over on the card.
+
+**Two things deliberately not done.** The section does not claim to cover the LIBERTIES — a
+liberty belongs to no attribute, which is why it has its own section — so the lead points at
+"What we made up here" rather than implying three rows of claim labels are the whole of what was
+invented. And the three definitions are the Evidence panel's own words, literally: each is a
+substring of the legend in `index.html`, asserted as such, because two surfaces quietly
+disagreeing about what `inferred` means is the fault K23a spent a run cleaning up.
+
+#### K23a — what the sweep actually found · **DONE 2026-08-15**
+
+**The parcel named two generators. There were five, plus a sixth stage nobody had listed.**
+`generate_block_infill.py` and `generate_inferred_infill.py` were the two written down;
+`generate_north_infill.py`, `generate_west_infill.py` and `generate_inferred_households.py`
+carry the same four strings, and `generate_inferred_names.py` is a **second pass that runs after
+the household programme and rewrites the household's own label**. Regenerating the households
+without it silently deleted every invented resident's name and `name_basis` block — the whole of
+K18 — and the diff was the only thing that said so. **`generate_inferred_households.py` then
+`generate_inferred_names.py`, in that order**, or you lose the naming layer; the household
+programme's `--check` hides this by overlaying the naming pass before it compares, so `--check`
+is green either way.
+
+**Four strings per generator, not one.** `name`, `change_note`, `research_note` — and
+`symbolic_location`, which the parcel did not list and which said "Anonymous inferred roof in
+the …" on 162 records. All four now say `reconstructed`.
+
+**"NOT A DOCUMENTED NAMED BUILDING" was wrong twice in one line.** Every `research_note` ended
+by contrasting itself with a tier called `documented`, which has not existed since v76. It reads
+`NOT AN ATTESTED NAMED BUILDING` now.
+
+**The counts, so the next sweep can tell drift from a fresh fault.** 193 names, all on records
+graded `reconstructed` at existence — and the three `research_note` openers partition them
+exactly: 142 `RECOMMENDED / GENERATED`, 31 `INFERRED BUILDING`, 20 `INFERRED / GENERATED`. There
+is no fourth group and no record was missed. `recommended` is the word this project renamed away
+from **by name** on 2026-08-13 and then kept printing on 142 cards for a fortnight.
+
+**Three things outside the app were saying it too, and two of them are worse than the cards:**
+
+- **`docs/PROVENANCE.md` documented a vocabulary the build rejects.** It still defined
+  `documented / inferred / conjectural`. It is the page you send someone to when they ask what
+  the grades mean, so anyone following it would have written a record `validate.py` refuses.
+  Swapped, with a dated note recording the rename and pointing at `CONFIDENCE` as the
+  enforcement. Its `reconstructed` row also had to change MEANING, not just spelling: the old
+  bottom tier meant "no evidence, filled for visual completeness", the new one means "invented
+  within a bound and owing a note", and the rule that a bottom-tier value citing sources is
+  suspicious **died with the rename** — the source that bounds an invention is what makes it
+  defensible. `documented_range` keeps its name; it is a field, not a level.
+- **`validate.py`'s own error messages named the wrong tier.** A missing source on an `attested`
+  value reported *"documented requires at least one source_id"*; a `reconstructed` value with no
+  note reported *"inferred requires a note"*. An error that names a grade the project does not
+  have sends the reader to fix the wrong field.
+- **The smoke's own household assertion required the bug.** It asserted the household label
+  matched `/inferred/` — so the release gate was *holding the fault in place*. It is pinned to
+  the head's own `grade` now rather than to a literal, which is the form that cannot rot.
+
+**What was deliberately NOT changed, and why.**
+
+- **`reconstruction.status: "inferred_anonymous"`, the `inferred_1835` phase id, the
+  `hh_inf_*`/`1835_inferred_household_programme.json` filenames, and the generator filenames.**
+  These are machine identifiers: never printed, and `inferred_anonymous` names the GLB files.
+  The last time this value was renamed, `popup.js` was left testing the old string and **the
+  reconstruction flag silently vanished from 108 cards** — a test on a value nothing carries is
+  always false. Prose moved; keys did not. The card's wording and its key are now decoupled on
+  purpose, with the reason written at the test.
+- **`renderers/web/js/changelog.js` entries v87 and earlier.** They are the historical record and
+  describe what shipped *at the time*, when "recommended reconstruction" was the word actually on
+  the cards. Rewriting a shipped release note to look better is the kind of tidying this project
+  exists not to do.
+
+**Left for a successor, stated rather than quietly skipped.** `docs/PROVENANCE.md`'s *arguments*
+were only re-read where the word-swap made a sentence flatly false. Its § "They may, however,
+carry a position to `inferred`" still glosses the bottom tier as asserting *no evidence exists*,
+which was true of `conjectural` and is only half true of `reconstructed`. That is prose about
+reasoning rather than a mislabelled grade, so it is a separate read against `validate.py` and
+not a line to change in passing.
 
 ### K1 — The inferred-residents programme *(the big one; multi-session; carve into districts)*
 Chicago went from ~350 people (1833) to ~3,265 (late 1835). Build the POPULATION as a dataset,
@@ -1983,12 +2551,22 @@ relief — and `Heightfield.covers()` exists because a structure once landed 832
 reported a perfect fit. (e) Triangle budget: 139 roofs at the ~723 tris the K1 bake averaged is
 ~100 000, against 574 440 of headroom at Full detail. It fits now; it did not before K14.
 
-### K16 — The confidence vocabulary is wrong, and the owner named the fix · **CLAIMED 2026-08-13, expires 2026-08-16**
+### K16 — The confidence vocabulary is wrong, and the owner named the fix · **CLOSED 2026-08-15 — SUPERSEDED, DO NOT FOLLOW**
 
-> **CLAIM — steward, skip.** Held by the interactive session. This is a RENAME across the whole
-> dataset (240+ structure records, flora, fauna, ground claims), the schema, the validator, the
-> liberties gate, the legend and the popup. Half of it applied is worse than none of it. Take K2,
-> K5, K8 or K10.
+> **CLOSED by K23a.** The rename happened, but **not to the words written below**. This parcel
+> proposed `documented / derived / inferred`; what actually shipped in the v76 merge of
+> 2026-08-13 is **`attested / inferred / reconstructed`**, and `tools/validate.py`'s `CONFIDENCE`
+> tuple is the enforcement. Everything from "The rename, which is a rename and not a new tier"
+> onward describes a vocabulary this project does not use — **a record written to the table below
+> fails the build.** `docs/PROVENANCE.md` is the current authority and now carries a dated note
+> saying so.
+>
+> The parcel is kept rather than deleted because its *reasoning* is the reasoning behind the
+> words that did ship, and because it is the origin of the fault K23a swept up: it left the
+> standing instruction to stay "vocabulary-agnostic while K16 is in flight", and under that
+> instruction 193 generated names went on saying `Inferred` for three weeks after `inferred`
+> stopped meaning invented. **That instruction is spent.** Read the strings off
+> `docs/PROVENANCE.md`, not off this section.
 
 The owner's correction, 2026-08-13, in their words: *"I don't want to use inferred in those kind
 of cases where there was some solid research behind it… the government blacksmith shop seems

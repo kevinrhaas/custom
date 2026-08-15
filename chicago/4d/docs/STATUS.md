@@ -63,6 +63,198 @@ successor: a textured coverage, earth and grass resolved as patches at the scale
 show, so the eye integrates the recorded fraction rather than the blender pre-mixing it. That
 belongs to **R-W2**, where the 1.4 texture score already lives.
 
+## New 2026-08-15 — a lot was called free because a building's centroid was in the road
+
+**T-A7.** T-A6 (below) made a block's room a function of its free lots. This is about how a lot
+was known to be free: *no committed footprint has its centroid inside it*. The centroid is a
+proxy for the building, and it fails on exactly the records the plat grid was built to correct —
+a building placed from typed coordinates before the plat module existed can stand a metre or two
+proud of its own street frontage, which puts its centroid in the ROADWAY and therefore in no lot
+of any block. **Fourteen committed records were in that position.** Measured at `dev@968e389`:
+
+| the building | block | lot | of itself on that lot | in the buildable part |
+|---|---|---|---|---|
+| **Temple Building** | `blk_south_water_franklin` | 0 | 18.6 m², 27 % | 4.2 m² |
+| **Harmon & Loomis's store** | `blk_south_water_clark` | 0 | 29.2 m², 31 % | 9.5 m² |
+| **Chicago Democrat office** | `blk_south_water_lasalle` | 6 | 31.2 m², 34 % | 11.4 m² |
+| **Cook County courthouse** | `blk_randolph_lasalle` | 6 | 5.1 m², 13 % | 0.4 m² |
+| `recon_1835_south_d5_034` | `blk_lake_dearborn` | 3 | 25.5 m², 36 % | 15.1 m² |
+
+Four of the five are named, documented buildings, and the schedule was offering their lots to
+anonymous invented roofs. **The claimed block is the sharpest case**: `blk_south_water_franklin`
+was dealt six principal roofs for what it called seven free lots, and the Temple Building is on
+one of them.
+
+**The rule now has two tests, and each answers a different way of being wrong.** They live in
+`tools/plat_occupancy.py`, which is the ONLY implementation — `tools/reconcile_665.py` and
+`tools/generate_block_infill.py` both import it, where T-A6 had left them with a copy each.
+
+1. **A building stands on the lot most of it is on**, by measured area. The same claim the
+   centroid made, made about the building instead of about a point inside it. On the committed
+   dataset it is purely additive: **no record changes lot**, occupied lots go 79 → 84, and
+   nothing that read taken became free.
+2. **It occupies that lot only where it reaches the lot's buildable part** — the lot inset by
+   the 1.5 m every new roof must keep from its own lot lines. **J. H. Kinzie's store earns this
+   test**: 9.7 m² of it lies on `blk_south_water_franklin` lot 2 and *none* inside the buildable
+   inset, so a roof still fits there clear of it and the schedule may still deal one. Without
+   test two the town would lose roofs it can honestly have.
+
+**The ledger had the same defect from the other side.** A roof was attributed to a block by its
+position POINT, so three buildings whose point is in the roadway were counted as standing in no
+block at all: the **Exchange Coffee House** (which holds nine tenths of a lot of the claimed
+block), **Harmon & Loomis's store** and the **Tremont House**. Their roofs were never subtracted
+from the headroom of the block they physically stand in. A roof standing on a block's lot stands
+in that block.
+
+**What it cost.** Schedulable-on-covered-ground **66 → 61**; gated on coverage **333 → 338**.
+Standing roofs are unchanged at 266, remaining at 399 — nothing was built or removed. Four blocks
+lose a free lot each and `blk_south_water_clark` also gains two standing roofs, so its deal drops
+from 7 to 5.
+
+**What it measured and deliberately did not call occupancy.** `recon_1835_west_018` laps 11.9 m²
+onto `blk_randolph_clinton` lot 2, where T-A4 stands a principal roof. Test one seats it on lot 4,
+where 82 % of it is, so that placement stands. A rule that called every lap an occupation would
+have condemned a committed, gated placement over a corner of a building, and whether two roofs
+may stand three metres apart across a conjectural side lot line is the separation gate's question
+— which it passed. Recorded here so the silence is not mistaken for nobody having looked.
+
+**What this parcel did NOT do:** build a block. T-A7 claimed `blk_south_water_franklin` and found
+it could not be built honestly; it returns to the queue with a corrected deal — 7 roofs, 5
+principal and 2 ancillary, on six free lots.
+
+## New 2026-08-15 — half the open blocks were scheduled roofs their own lots could not hold
+
+**T-A6.** The 665-roof schedule counted a block's room in ROOFS and never in LOTS, and a principal
+roof needs a free lot. Measured across the ten open blocks at `dev@f6f2bcb`, against the placement
+gates in `tools/generate_block_infill.py` that would have refused them:
+
+| block | lots | free | dealt principal | what the recipe would have hit |
+|---|---|---|---|---|
+| `blk_south_water_clark` | 8 | 6 | **7** | **unwritable** — no seventh free lot exists |
+| `blk_lake_market` | 8 | 6 | **7** | **unwritable** — no seventh free lot exists |
+| `blk_south_water_wells` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_franklin` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_clark` | 8 | 7 | 7 | fills the block; no lot left open |
+| `blk_randolph_dearborn` | 8 | 3 | **0** (one ancillary) | **unwritable** — a yard building behind no roof |
+
+**Five of the ten, and three distinct failures, not one.** Two blocks were dealt more principal
+roofs than they had lots, which no recipe could have written down at all. Three were dealt exactly
+as many as they had free, which is writable and *worse*: it silently spends the vacancy the parcel
+recipe's own placement rule promises — *"a block at capacity is a claim about 1835 that the
+evidence does not support; the schedule's capacity is a ceiling"* — so the first parcel to take one
+would have filled a block to capacity while passing every gate. And `blk_randolph_dearborn`, the
+T-A3h backfill, was dealt a single yard building and no principal roof to stand it behind: the same
+blindness seen from the other end, because an ancillary roof's gate is that it serves a principal
+roof the same parcel built.
+
+**Why it was invisible.** Occupancy was counted in roofs — `standing_roofs` — so two roofs on one
+lot and two roofs on two lots subtracted the same amount of headroom. The block generator has
+derived true lot occupancy since T-A4 and the schedule never did, so the two halves of the same
+question were being answered by different arithmetic. Nothing shipped wrong: the gates that would
+have caught each of these are real and would have fired. **The defect was that they fire at the
+END of a parcel** — after a run has claimed a block, read the schedule and written a recipe.
+
+**The fix is that the deal now knows what a lot is.** `tools/reconcile_665.py` derives lot
+occupancy by the *same rule the generator uses* — footprint centroid against the committed lot
+polygon — and a block's room becomes `principal = min(free lots − 1, roof headroom)` with
+`ancillary` bounded by both the 154:511 ratio and the principals themselves. The deal offers a
+token a unit cannot take to the next unit instead of dropping it, so every marginal still closes,
+and a new assertion fails the build if any unit is ever dealt past its room.
+
+**What it cost, and the number is the point.** Schedulable-on-covered-ground **71 → 66**; gated on
+coverage **328 → 333**. Five roofs moved from "buildable now" to "waiting on coverage" because
+they never had anywhere to stand. **All ten open blocks are now buildable and every one of them
+keeps a lot open**, which is the state T-A7 onward can be run from without re-deriving this.
+
+**What this parcel did NOT do:** build a block. T-A6 claimed `blk_randolph_franklin` and found it
+was one of the three that could not be built honestly; the block is released back to the queue with
+a corrected mix (6 principal + 2 ancillary, one lot open) for the next run to take.
+
+## New 2026-08-15 — the card adds its own claims up, and 204 of 279 buildings have nothing attested about them
+
+**K23b**, the substantive half of the owner's report and the sequel to K23a below. Every
+provenance card now opens with **`What did we include, and where did it come from?`** — three
+rows, one per level, naming the claims that stand at each and saying where they came from.
+
+**It is a partition, which is the whole of why it can be gated.** Every graded claim the card
+renders lands in exactly one row, so the release check is a RECOUNT rather than a look: pick
+every building at both viewports, tally the confidence chips off the RENDERED card, and require
+the section's three numbers to be those numbers. **276 of 276 loaded buildings agree.** The
+recount reuses the older chip-coverage gate's own selector on purpose — two definitions of "a
+claim on this card" is how a summary would come to disagree with the card while both gates
+stayed green.
+
+**The dataset, counted for the first time this way.** 279 records carry **3,675 graded claims —
+199 `attested`, 509 `inferred`, 2,967 `reconstructed`.** **204 of the 279 have no attested claim
+at all**, so a row that rendered only when it had something would go silent on three quarters of
+the town at the exact moment a visitor needs telling. It says *"Nothing about this building is
+attested by a source."* instead.
+
+**A citation means a different thing at each level.** `From` on an attested claim; `Bounded by`
+on an invented one — 193 anonymous roofs cite the reconstruction spec and Andreas on every
+attribute, and one `sources:` label over all three rows would have printed a nineteenth-century
+history as attribution for a building nobody claims stood there.
+
+**Two findings that are not the section.**
+
+- **69 buildings have inventions that nothing is recorded as bounding.** Of the 270 records with
+  at least one `reconstructed` claim, 69 cite nothing on any of them, so their `Bounded by` line
+  reads *"Nothing is cited as bounding these."* The bottom tier requires a note and not a source
+  — deliberately — but nobody had ever counted the consequence. The Sauganash Hotel is one of the
+  69. Visible now rather than fixed; whether those should acquire a bound is research.
+- **Attested is not built, on 14 records.** The Western Hotel's stables are attested by a
+  pre-fire account and there is nothing of them in the model. A summary of what was *included*
+  that counted them under "attested" and stopped would name something that is not there, so the
+  row repeats the mark the table below already carries: *Not in the model: stables*.
+
+## New 2026-08-15 — 193 buildings were named a grade better than their own record, and the release gate was holding it in place
+
+**K23a**, owner-reported from a card on the dev preview. The heading read **"Inferred A1 stable
+#07"** and every chip beneath it read **RECONSTRUCTED**. The heading was the wrong one, on
+**193 structure records** — every anonymous roof this project has ever generated.
+
+**It is the residue of a fix that worked.** The v76 merge of 2026-08-13 moved 9,076 values onto
+`attested / inferred / reconstructed` and re-graded 1,694 that had claimed to be reasoning when
+they were invention. It moved the DATA. The PROSE is hardcoded in the generators, and it did not
+move — so `inferred` went from being the BOTTOM tier (where "Inferred A1 stable" was honest) to
+the MIDDLE one, *reasoned from evidence about this particular thing*, which an anonymous
+count-unit is precisely not. **Nothing about any building changed here**: not a position, a
+dimension, a source or a grade. Only what the card calls them.
+
+**Scale, exactly, so a later sweep can tell drift from a fresh fault.** 193 names; 162
+`symbolic_location` strings; 193 `research_note` openers partitioning cleanly into 142
+`RECOMMENDED / GENERATED`, 31 `INFERRED BUILDING` and 20 `INFERRED / GENERATED`; every
+`change_note` on an anonymous roof; the card's own reconstruction flag; and the household and
+person labels of the K1 layer. **`recommended` is the word this project renamed away from BY NAME
+on 2026-08-13** and then printed on 142 cards for a fortnight.
+
+**Five generators, not the two the parcel listed — and a sixth stage that is not a generator.**
+`generate_inferred_names.py` runs AFTER the household programme and rewrites the household's own
+label. Regenerating households without it deletes every invented resident's name and
+`name_basis` — the whole of K18 — and **the household programme's `--check` cannot see this**,
+because it overlays the naming pass before comparing. `--check` is green either way. The order is
+`generate_inferred_households.py` then `generate_inferred_names.py`, and it is now written into
+ROADMAP K23a where the next person will look.
+
+**The gate was enforcing the fault.** `smoke_renderer.mjs` asserted the household label matched
+`/inferred/`. So the thing that should have caught this was requiring it. That assertion is
+pinned to the head's own `grade` now, and a new whole-registry check fails the release on any
+name opening with a grade its record does not carry, or with any of the three retired words —
+with the fault planted in the same pass, so a gate scanning a clean tree cannot be mistaken for
+a gate scanning nothing.
+
+**Two things outside the app were worse than the cards.** `docs/PROVENANCE.md` — the page you
+send someone to when they ask what the grades mean — still defined `documented / inferred /
+conjectural`, so a record written by following it **fails the build**. And `validate.py`'s own
+errors named the wrong tier: a sourceless `attested` value reported *"documented requires at
+least one source_id"*. Both corrected; ROADMAP K16, which proposed a third vocabulary that never
+shipped, is **CLOSED as superseded**.
+
+**Still open, and it is the half the owner cared most about.** K23b — *say what was INCLUDED at
+each level and where it came from* — is untouched. The names are no longer wrong; the cards still
+do not tell a visitor that a building's footprint, height, roof form and position were all
+invented and only its block was reasoned.
+
 ## New 2026-08-14 — the block where two layers of this reconstruction met on the same ground, and the adoption rule grew a third test
 
 **T-A5.** `blk_randolph_market` — Randolph, Franklin, Washington, Market — is the first South

@@ -787,6 +787,7 @@ const terrainLoad = await page.evaluate(() => {
       return {
         household: hh.name,
         name: person?.name,
+        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
         basisGrade: person?.name_basis?.confidence,
         basisNote: (person?.name_basis?.note || '').slice(0, 60),
         grades: index.vocabulary.grades,
@@ -800,10 +801,70 @@ const terrainLoad = await page.evaluate(() => {
       invented.basisGrade === 'reconstructed'
       && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
       `name_basis ${invented.basisGrade} — "${invented.basisNote}"`);
+    // The layer-word in this label was `inferred` until K23a, and so was this
+    // assertion — which is how a name claiming a better grade than its own
+    // record survived a release gate. It is pinned to the HEAD'S OWN GRADE now
+    // rather than to a literal, so the label cannot drift from the record again
+    // and cannot be satisfied by whichever word happens to be in fashion.
     check(`${label}: the household is named for its head and still says which layer it is`,
       /household/.test(invented.household ?? '')
-      && /inferred/.test(invented.household ?? ''),
-      `household "${invented.household}"`);
+      && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
+      `household "${invented.household}" against head grade ${invented.headGrade}`);
+
+    // --- the prose may not name a level the record is not (K23a) ------------
+    //
+    // Owner-reported from a card on the dev preview: the title read "Inferred A2
+    // barn or carriage shed #08" while every chip beneath it read RECONSTRUCTED.
+    // Both were honest once. `inferred` was the BOTTOM tier under the vocabulary
+    // v76 retired; it is the MIDDLE one now — reasoned from evidence about this
+    // particular thing — which an anonymous count-unit is exactly not. So 193
+    // names were claiming a grade better than their own record, in the largest
+    // text on the card, and nothing in the suite could see it.
+    //
+    // The gate is over the whole registry rather than a sample: this fault
+    // arrived from a generator, so it arrives 193 at a time or not at all.
+    const naming = await page.evaluate(() => {
+      const LEVELS = ['attested', 'inferred', 'reconstructed'];
+      // The words v76 retired. A name may never open with one of these again:
+      // `documented` and `conjectural` were the old top and bottom tiers, and
+      // `recommended` was the word this project renamed away from by name.
+      const RETIRED = ['documented', 'conjectural', 'recommended'];
+      const verdict = (name, grade) => {
+        const first = String(name ?? '').trim().split(/\s+/)[0]
+          .replace(/[^A-Za-z]/g, '').toLowerCase();
+        if (RETIRED.includes(first)) return `names the retired level "${first}"`;
+        if (LEVELS.includes(first) && first !== grade) {
+          return `opens "${first}" over a record graded "${grade}"`;
+        }
+        return null;
+      };
+      const bad = [];
+      let scanned = 0;
+      for (const id of window.__chicago4d.registry.keys()) {
+        const s = window.__chicago4d.registry.get(id)?.sidecar;
+        if (!s?.name) continue;
+        scanned += 1;
+        const why = verdict(s.name, s.documented_range?.confidence);
+        if (why) bad.push(`${id}: "${s.name}" ${why}`);
+      }
+      // Put the fault back, in memory, and require the predicate to name it —
+      // otherwise a gate that scans a clean tree is indistinguishable from a
+      // gate that scans nothing, and this file has shipped that mistake before
+      // (STATUS § 28: a card flag tested against a key the data never wrote).
+      const planted = [
+        verdict('Inferred A1 stable #07', 'reconstructed'),
+        verdict('Recommended A1 stable #07', 'reconstructed'),
+        verdict('Reconstructed A1 stable #07', 'reconstructed'),
+      ];
+      return { bad, scanned, planted };
+    });
+    check(`${label}: no building's name claims a grade its own record does not`,
+      naming.scanned > 100 && naming.bad.length === 0,
+      `${naming.scanned} scanned, ${naming.bad.length} bad — ${naming.bad.slice(0, 3).join(' | ')}`);
+    check(`${label}: that check still catches the fault when it is put back`,
+      naming.planted[0] !== null && naming.planted[1] !== null
+      && naming.planted[2] === null,
+      `planted verdicts: ${JSON.stringify(naming.planted)}`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //
@@ -1235,10 +1296,146 @@ const terrainLoad = await page.evaluate(() => {
         ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
         : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
 
+    // --- and the summary of those chips, which is what a visitor reads first -
+    // K23b, owner-reported from a card on the dev preview: *"when you say what we
+    // made up, say what we included in the recreation, or what we included in the
+    // inferred building, or what we included in the attested building."* Every
+    // part of the answer was already on the card — nineteen rows, each with its
+    // own chip — and a visitor could read all of it and still not say which parts
+    // of the building in front of them are evidence and which are ours.
+    //
+    // The section is a PARTITION of the claims below it, so the gate is a
+    // recount rather than a presence check: take the chips the assertion above
+    // has just proved complete, tally them by level, and require the summary's
+    // own three numbers to be those numbers. A summary that drifted from the card
+    // it summarises would be a worse fault than no summary, because it would be
+    // read first. Over the WHOLE registry, for the reason that assertion is:
+    // right on the sample and wrong on an anonymous roof is wrong on nearly all
+    // of this town.
+    const basis = await page.evaluate(() => {
+      const flat = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+      const rowsOf = () => [...document.querySelectorAll('#popup .pop-basis .basis-row')]
+        .map((r) => {
+          const m = /(\d+) of (\d+)/.exec(flat(r.querySelector('.basis-count')));
+          return {
+            level: r.dataset.level ?? '',
+            count: m ? Number(m[1]) : -1,
+            total: m ? Number(m[2]) : -1,
+            gloss: flat(r.querySelector('.basis-gloss')),
+            what: flat(r.querySelector('.basis-what')),
+            from: flat(r.querySelector('.basis-from')),
+            absent: flat(r.querySelector('.basis-absent')),
+          };
+        });
+      // The same selector the chip-coverage gate above uses, deliberately: the
+      // card's graded claims are whatever that assertion says they are, and two
+      // definitions of "a claim on this card" is how the summary would come to
+      // disagree with the card while both gates stayed green.
+      const tallyOf = () => {
+        const t = { attested: 0, inferred: 0, reconstructed: 0 };
+        for (const c of document.querySelectorAll(
+          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf')) {
+          const k = c.textContent.trim();
+          if (k in t) t[k] += 1;
+        }
+        return t;
+      };
+
+      const bad = [];
+      const keep = {};
+      let n = 0;
+      for (const id of window.__chicago4d.registry.keys()) {
+        window.__chicago4d.pick(id);
+        const rows = rowsOf();
+        const tally = tallyOf();
+        const total = tally.attested + tally.inferred + tally.reconstructed;
+        const problems = [];
+        if (rows.length !== 3) problems.push(`${rows.length} level rows, not 3`);
+        for (const r of rows) {
+          if (tally[r.level] === undefined) problems.push(`unknown level "${r.level}"`);
+          else if (r.count !== tally[r.level]) {
+            problems.push(`${r.level} claims ${r.count}, card shows ${tally[r.level]}`);
+          }
+          if (r.total !== total) problems.push(`${r.level} of ${r.total}, card shows ${total}`);
+          if (!r.what) problems.push(`${r.level} lists nothing at all`);
+          if (r.count && !r.from) problems.push(`${r.level} says nothing about where it came from`);
+        }
+        if (problems.length) bad.push(`${id}: ${problems.join('; ')}`);
+        if (['sauganash_hotel', 'recon_1835_south_d3_001', 'western_hotel'].includes(id)) {
+          keep[id] = rows;
+        }
+        n += 1;
+      }
+      const legend = [...document.querySelectorAll('.legend-list li')].map(flat);
+      return {
+        bad, n, legend,
+        saug: keep.sauganash_hotel ?? [],
+        anon: keep.recon_1835_south_d3_001 ?? [],
+        western: keep.western_hotel ?? [],
+      };
+    });
+    const row = (rows, level) => rows.find((r) => r.level === level) ?? {};
+    check(`${label}: the card's per-level summary is a partition of its own claims`,
+      basis.n >= 8 && basis.bad.length === 0 && basis.saug.length === 3 && basis.anon.length === 3,
+      basis.bad.length ? basis.bad.slice(0, 4).join(' | ')
+        : `${basis.n} building(s) summarised`);
+    // The discriminating pair, because a section that printed the same three rows
+    // on every card would pass a recount that only ever compared it to itself on
+    // a well-documented building. The Sauganash is attested by Wau-Bun; the
+    // anonymous roof is a count-unit toward the 665-roof programme and NOTHING
+    // about it is attested — which is the single most useful thing this section
+    // can tell a visitor, so it is said rather than left as a blank row.
+    check(`${label}: and it says what is NOT there, per building rather than stamped`,
+      row(basis.saug, 'attested').count > 0
+      && row(basis.anon, 'attested').count === 0
+      && /Nothing about this building is attested/.test(row(basis.anon, 'attested').what)
+      && row(basis.anon, 'reconstructed').count > 0,
+      `sauganash attested ${row(basis.saug, 'attested').count}, `
+      + `anonymous attested ${row(basis.anon, 'attested').count} `
+      + `("${row(basis.anon, 'attested').what.slice(0, 60)}")`);
+    // What a citation MEANS changes with the level, and one label over all three
+    // would be the category error this card's own history is made of. The
+    // anonymous roof cites the reconstruction spec on every attribute: that is
+    // what BOUNDED an invention, not where a value came from, and reading it as
+    // attribution turns the citation into evidence for a building nobody claims
+    // stood there.
+    check(`${label}: a source on an invention is named as a bound, not as attribution`,
+      /^Bounded by:/.test(row(basis.anon, 'reconstructed').from)
+      && /reconstruction_spec/.test(row(basis.anon, 'reconstructed').from)
+      && /^From:/.test(row(basis.saug, 'attested').from),
+      `invention "${row(basis.anon, 'reconstructed').from.slice(0, 70)}", `
+      + `attested "${row(basis.saug, 'attested').from.slice(0, 70)}"`);
+    // "Included" is a claim about the VIEW, not only about the evidence, and the
+    // two come apart in the direction that does the most damage: the Western
+    // Hotel's stables are ATTESTED — the wagon yard is in a pre-fire account —
+    // and there is nothing of them in the model. Counting that under "attested"
+    // and stopping would be a summary of what we included that named something
+    // we did not. The rows below already carry the mark; the summary repeats it
+    // rather than averaging it away.
+    check(`${label}: and separates what is attested from what is actually built`,
+      row(basis.western, 'attested').count > 0
+      && /^Not in the model:/.test(row(basis.western, 'attested').absent)
+      && /stables/.test(row(basis.western, 'attested').absent)
+      && !row(basis.saug, 'attested').absent,
+      `western "${row(basis.western, 'attested').absent.slice(0, 60)}", `
+      + `sauganash "${row(basis.saug, 'attested').absent}"`);
+    // Two surfaces defining `inferred` differently is the drift K23a spent a run
+    // cleaning up, and prose has no shared renderer to hold it — so the card's
+    // gloss is required to be the Evidence panel's own words, literally.
+    const glossDrift = ['attested', 'inferred', 'reconstructed'].filter((lvl) => {
+      const g = row(basis.saug, lvl).gloss;
+      return !g || !basis.legend.some((li) => li.includes(g));
+    });
+    check(`${label}: the summary defines each level in the Evidence panel's own words`,
+      basis.legend.length >= 3 && glossDrift.length === 0,
+      glossDrift.length
+        ? `${glossDrift.join(', ')} not found in the legend`
+        : `3 glosses matched against ${basis.legend.length} legend entries`);
+
     // Is the shape a bake from the record, or a stand-in?  The established
     // Sauganash asset must remain a real bake while the anonymous phase-one
     // roofs must say both that their mesh is provisional and that their
-    // per-parcel placement is a recommended reconstruction.
+    // per-parcel placement is a reconstruction rather than a recovered parcel.
     const placeholder = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
       const realFlags = [...document.querySelectorAll('#popup .pop-flag')]
@@ -1252,11 +1449,20 @@ const terrainLoad = await page.evaluate(() => {
         recommended: window.__chicago4d.registry.get('recon_1835_south_d3_001')
           ?.assetIsPlaceholder,
         placeholderFlag: recommendedFlags.some((t) => /placeholder massing/i.test(t)),
-        // The dataset's word for these roofs is `inferred_anonymous` since the
-        // merge of 2026-08-13; the card was still testing for `recommended` and
-        // so rendered no flag at all. Same assertion, current vocabulary — the
-        // flag must still be on the card, which is what this has always asked.
-        reconstructionFlag: recommendedFlags.some((t) => /inferred reconstruction/i.test(t)),
+        // THE THIRD TIME this literal has rotted. It tested `recommended` until
+        // the merge of 2026-08-13, then `inferred reconstruction` until K23a —
+        // and each rename broke it, because it pinned the WORDING rather than
+        // the thing the assertion is actually about. What it has always asked is
+        // that the card still says this roof is not a recovered building, in the
+        // grade the record itself carries. So it asks that now, off the record,
+        // and the next rename of the vocabulary cannot break it.
+        grade: window.__chicago4d.registry.get('recon_1835_south_d3_001')
+          ?.sidecar?.documented_range?.confidence,
+        reconstructionFlag: recommendedFlags.some(
+          (t) => /anonymous/i.test(t) && /not an attested named building/i.test(t)),
+        flagNamesTheGrade: recommendedFlags.some((t) => new RegExp(
+          window.__chicago4d.registry.get('recon_1835_south_d3_001')
+            ?.sidecar?.documented_range?.confidence ?? 'x', 'i').test(t)),
       };
     });
     check(`${label}: established assets remain identified as real bakes`,
@@ -1268,8 +1474,11 @@ const terrainLoad = await page.evaluate(() => {
     // review massing" is a fact about the ASSET and stops being true the moment
     // generators/build.py bakes it properly. Asserting them together meant the
     // honest upgrade read as a regression.
-    check(`${label}: anonymous infill is visibly flagged as inferred reconstruction`,
+    check(`${label}: anonymous infill is visibly flagged as a reconstruction`,
       placeholder.reconstructionFlag === true,
+      JSON.stringify(placeholder));
+    check(`${label}: that flag names the grade the record itself carries`,
+      placeholder.flagNamesTheGrade === true && placeholder.grade === 'reconstructed',
       JSON.stringify(placeholder));
     // Both directions, which the single assertion never checked: placeholder
     // massing is claimed when the asset IS one, and — the half that was missing —

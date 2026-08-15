@@ -62,16 +62,19 @@ sys.path.insert(0, str(ROOT / "tools"))
 # the drift check that makes these parcels trustworthy in the first place.
 from inferred_occupancy import occupancy  # noqa: E402
 
+# Which lot is already taken is the SAME question the schedule asks before it deals this
+# parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
+from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+
 OCCUPANCY = occupancy()
 
 # The same separation the household parcel enforces. A generated building that lands
 # three metres from another one is not a dense town, it is two records occupying one
 # yard, and nothing downstream can tell them apart.
 MIN_SEPARATION_M = 3.0
-# A footprint must clear its own lot line by this much. Side lot lines are conjectural
-# (K7: four lots to a face is a reading of ONE block), so a wall ON one would be
-# asserting a line the grid does not have.
-LOT_MARGIN_M = 1.5
+# LOT_MARGIN_M — how far a footprint must stand clear of its own lot line — is authored
+# in `tools/plat_occupancy.py` and imported above, because the occupancy rule reads the
+# same number from the other side: the buildable part of a lot is the lot inset by it.
 # The walker's step tolerance, from the household parcel's placement gate.
 MAX_RELIEF_M = 0.30
 
@@ -482,7 +485,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
     # `blk_randolph_clinton` were South Division, so a literal "South Division" here
     # read correctly on every record that existed and would have written the wrong
     # division into the visitor-facing location line of the first West one.
-    where = (f"Anonymous inferred roof in the {block['district'].title()} Division "
+    where = (f"Anonymous reconstructed roof in the {block['district'].title()} Division "
              f"block bounded by "
              f"{bounded['north'].replace('_', ' ').title()}, "
              f"{bounded['east'].replace('_', ' ').title()}, "
@@ -519,7 +522,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                if family.startswith("H") else "")
     return {
         "id": sid,
-        "name": f"Inferred {family} {function} #{seq:02d}",
+        "name": f"Reconstructed {family} {function} #{seq:02d}",
         "archetype": spec["archetype"],
         "phases": [{
             "id": PHASE_ID,
@@ -540,12 +543,12 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
             "form": form_for(family, spec, sid, width, paint),
-            "change_note": "Inferred anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+            "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
-        "research_note": ("RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. The "
+        "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
                           "665-roof programme; exact presence, lot, position, footprint, "
                           "finish and instance-level form are interpretive." + mapping),
@@ -645,18 +648,11 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     if len(set(used)) != len(used):
         raise SystemExit(f"{block['block_id']}: two principal roofs on one lot")
 
-    # every other placed footprint in the dataset, in this block's local frame
-    others = []
-    for path in sorted(STRUCTURES.glob("*.json")):
-        doc = load(path)
-        if doc["id"] in {sid for sid, _ in mine}:
-            continue
-        for phase in doc.get("phases") or []:
-            pos = phase.get("position") or {}
-            poly = (phase.get("footprint") or {}).get("polygon") or []
-            if pos.get("utm_e") is None or len(poly) < 3:
-                continue
-            others.append((doc["id"], world_polygon({"phases": [phase]}, datum)))
+    # every other placed footprint in the dataset, in this block's local frame — read
+    # by the same module that answers the occupancy question below, so the separation
+    # gate and the occupancy gate cannot end up looking at two different towns
+    mine_ids = {sid for sid, _ in mine}
+    others = footprints(datum, exclude=mine_ids)
 
     # --- the lots this block ALREADY carries -------------------------------
     #
@@ -676,13 +672,16 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # from the committed records rather than authored in the recipe — a recipe
     # that had to be told which lots were taken would be a second opinion about
     # the same ground, which is the defect the plat module exists to retire.
-    occupied: dict[int, str] = {}
-    for other_id, other in others:
-        centre = (sum(p[0] for p in other) / len(other),
-                  sum(p[1] for p in other) / len(other))
-        for index, frame in enumerate(frames):
-            if point_in_polygon(centre, frame["polygon"]):
-                occupied.setdefault(index, other_id)
+    #
+    # T-A7: it is derived by the footprint's OVERLAP with the lot, in the module the
+    # schedule itself calls, because the centroid it used to read is a proxy that
+    # fails on exactly the records this gate exists for. A building placed from typed
+    # coordinates before the plat module existed can stand a metre proud of its own
+    # frontage: its centroid is then in the roadway and its walls are on the lot. Three
+    # documented buildings on this grid do it, and the block this parcel shape met them
+    # on read every one of its lots as free.
+    occupied = occupied_lots({"blocks": [grid]}, datum,
+                             exclude=mine_ids).get(block["block_id"], {})
     for record in records:
         recon = record["reconstruction"]
         index, holder = recon["lot_index"], occupied.get(recon["lot_index"])

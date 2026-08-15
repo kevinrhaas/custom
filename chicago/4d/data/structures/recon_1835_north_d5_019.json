@@ -1,6 +1,6 @@
 {
   "id": "recon_1835_north_d5_019",
-  "name": "Inferred D5 deep-plan frame cottage #019",
+  "name": "Reconstructed D5 deep-plan frame cottage #019",
   "archetype": "frame_dwelling",
   "phases": [
     {
@@ -15,7 +15,7 @@
         "utm_e": 447926.053,
         "utm_n": 4637565.372,
         "rotation_deg": 180.0,
-        "symbolic_location": "Anonymous inferred roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
+        "symbolic_location": "Anonymous reconstructed roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
         "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
@@ -119,7 +119,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D5 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         }
       },
-      "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+      "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
     }
   ],
   "function": {
@@ -151,6 +151,6 @@
     "roof_condition": "weathered",
     "age_state": "older_frontier"
   },
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "review_required": false
 }

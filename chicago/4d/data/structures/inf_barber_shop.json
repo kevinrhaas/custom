@@ -1,6 +1,6 @@
 {
   "id": "inf_barber_shop",
-  "name": "Inferred barber shop (barber-surgeon)",
+  "name": "Reconstructed barber shop (barber-surgeon)",
   "archetype": "frame_storefront",
   "phases": [
     {
@@ -9,7 +9,7 @@
         "from": "1835-01-01",
         "to": "1835-12-31",
         "confidence": "reconstructed",
-        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - tHE SECOND BARBER, which is the owner's own example of what this layer is for. The smallest commercial roof in this parcel, on the street where the hotels are. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof a reconstructed household requires - tHE SECOND BARBER, which is the owner's own example of what this layer is for. The smallest commercial roof in this parcel, on the street where the hotels are. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
         "utm_e": 447479.567,
@@ -164,14 +164,14 @@
     "note": "THE SECOND BARBER, which is the owner's own example of what this layer is for. The smallest commercial roof in this parcel, on the street where the hotels are."
   },
   "occupants": {
-    "value": "An inferred household; no name is claimed",
+    "value": "A reconstructed household; no name is claimed",
     "confidence": "reconstructed",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "The inferred household this building exists for: hh_inf_barber_surgeon_south_01 in data/residents/households/. No name is claimed and no figure is drawn."
+    "note": "The reconstructed household this building exists for: hh_inf_barber_surgeon_south_01 in data/residents/households/. No name is claimed and no figure is drawn."
   },
-  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). THE SECOND BARBER, which is the owner's own example of what this layer is for. The smallest commercial roof in this parcel, on the street where the hotels are. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). THE SECOND BARBER, which is the owner's own example of what this layer is for. The smallest commercial roof in this parcel, on the street where the hotels are. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
   "review_required": false
 }
