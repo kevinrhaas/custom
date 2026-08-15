@@ -735,7 +735,18 @@ const terrainLoad = await page.evaluate(() => {
         box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
       }
       return { box, groundTiles,
-               terrainProblems: api.problems.filter((t) => /terrain|water/i.test(t)) };
+               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
+               // `terrain <epoch>: …` and `water: …`, always at the start of the
+               // string, so a problem ABOUT the ground or the river is recognisable
+               // by its subject. The unanchored `/terrain|water/i` this replaced
+               // matched the word anywhere, and the first block of the town whose
+               // id contains one of them — `blk_south_water_franklin`, ROADMAP T-A8
+               // — turned two ordinary placeholder-asset notes into a reported
+               // terrain load failure. Five of the ten open blocks are
+               // `blk_south_water_*`, so it would have fired on each of them in
+               // turn. This narrows what the filter MATCHES, not what the check
+               // ALLOWS: a real terrain or water problem still has to be zero.
+               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
     // The authored water surface spans the whole modelled box — about 5.4 km by
     // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere
@@ -2200,8 +2211,68 @@ const terrainLoad = await page.evaluate(() => {
         modern: document.getElementById('street-modern')?.textContent,
         ahead: document.getElementById('street-approach')?.textContent,
       };
+      // R-BUG4. A panel used to be DELETED outright when any one of its four
+      // corners fell on water, which took the dry part of the panel with it —
+      // the owner saw it as a clean-edged green hole punched through South
+      // Water Street. It is clipped at the waterline now. This re-derives the
+      // rule's own arithmetic and asserts the ribbon carries every panel whose
+      // CENTRELINE is dry, so a future "simplification" back to dropping the
+      // panel fails here instead of in a screenshot.
+      const STEP = 2.25;
+      const MIN_W = 1.0;
+      let dryCentrelinePanels = 0;
+      let clippedPanels = 0;
+      let slivers = 0;
+      for (const rec of a.streets.records) {
+        const half = (rec.track_width_m ?? 10.5) * 0.5;
+        const pts = [];
+        for (let i = 1; i < rec.path.length; i++) {
+          const A = rec.path[i - 1];
+          const B = rec.path[i];
+          const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
+          const c = Math.max(1, Math.ceil(d / STEP));
+          for (let j = 0; j < c; j++) {
+            if (!pts.length) pts.push([A[0], A[1]]);
+            const t = (j + 1) / c;
+            pts.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
+          }
+        }
+        for (let i = 1; i < pts.length; i++) {
+          const A = pts[i - 1];
+          const B = pts[i];
+          const de = B[0] - A[0];
+          const dn = B[1] - A[1];
+          const L = Math.hypot(de, dn);
+          if (L < 1e-5) continue;
+          if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(B[0], B[1])) continue;
+          dryCentrelinePanels++;
+          const ue = -dn / L;
+          const un = de / L;
+          const reach = (e0, n0, se, sn) => {
+            if (!a.terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
+            let lo = 0;
+            let hi = half;
+            for (let k = 0; k < 6; k++) {
+              const mid = (lo + hi) * 0.5;
+              if (a.terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
+              else lo = mid;
+            }
+            return lo;
+          };
+          const aw = reach(A[0], A[1], ue, un) + reach(A[0], A[1], -ue, -un);
+          const bw = reach(B[0], B[1], ue, un) + reach(B[0], B[1], -ue, -un);
+          if (aw < half * 2 - 1e-6 || bw < half * 2 - 1e-6) clippedPanels++;
+          if (aw < MIN_W || bw < MIN_W) slivers++;
+        }
+      }
+      let emittedQuads = 0;
+      a.streets.group.traverse((o) => {
+        if (o.geometry?.index) emittedQuads += o.geometry.index.count / 6;
+      });
+
       return {
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
+        dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
         canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
         treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
         drownedTreeStations: drownedTreeStations.length,
@@ -2219,6 +2290,15 @@ const terrainLoad = await page.evaluate(() => {
       && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
       `${streetLayer.records} streets, ${streetLayer.vertices} vertices, `
       + `drape ${streetLayer.worstDrape}, wet ${streetLayer.wetVertices}`);
+    // R-BUG4. Every panel whose centreline is dry must reach the ribbon — the
+    // only panels allowed to go missing are those clipped below a walkable
+    // width, and they are counted rather than assumed to be few.
+    check(`${label}: no panel of road is deleted because its EDGE reached the water`,
+      streetLayer.emittedQuads === streetLayer.dryCentrelinePanels - streetLayer.slivers
+      && streetLayer.clippedPanels > 0,
+      `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
+      + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
+      + `${streetLayer.slivers} dropped as narrower than a metre`);
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
