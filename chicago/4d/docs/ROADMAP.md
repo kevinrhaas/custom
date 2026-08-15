@@ -119,7 +119,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
-| 4 | TOWN | **K33** | opened by K25(a): `paint` on 227 records cites a band, and **220 of those families never mention paint**. A note citing a band that does not exist, on a bigger population than K25's. A decision first, then data — no bake |
+| — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
 | 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
@@ -1400,9 +1400,76 @@ citing a band it does not sit in.
 storefront does not explain it. Decide which is right for a one-storey artisan shop and make the
 five agree, or record why a barber's shop and a gunsmith's are different kinds of building.
 
-### K33 — the note cites a band for values the specification does not bound · **CLAIMED 2026-08-15 · branch `steward/k33-note-splits` · from K25(a) · Effort: S to decide, M to apply**
+### K33 — the note cites a band for values the specification does not bound · **DONE 2026-08-15 · 623 values, and 42 of them nothing could have found**
 
 **Phase:** lane 2 · **Effort:** S to decide, M to apply · data and tools only, no bake
+
+**DONE 2026-08-15 — it is 623 values on 227 of 249 records, and the decision is route 2:
+split the note.** The box below scoped it from the prose census (581). The true figure is
+**623**, because the census could only ask its question of the fields it had classified as
+prose, and **42 `roof_pitch_deg` values cite a band on five families whose roof line is
+"gable or shed"** — a form with no slope in it. Those were invisible to K25(a) for a
+structural reason worth keeping: **a value with no band is never tested against one**, so
+the banded half of the tool walked straight past the very records where the fault is total
+rather than partial. The generous keyword instrument was not the only floor in the census;
+the classification itself was.
+
+| field | repaired | field | repaired |
+|---|---:|---|---:|
+| `paint` | 220 | `door` / `door_side` | 37 each |
+| `chimneys` | 93 | `bays` | 35 |
+| `board_gap_m` | 69 | `porch` | 23 |
+| `plan` | 46 | `goods_door` / `goods_door_side` | 8 each |
+| **`roof_pitch_deg`** | **42** | `gallery` / `shopfront` | 4 / 1 |
+
+**The decision, and why route 2 rather than route 3.** Route 1 (extend the crosswalk) would
+author evidence rather than record it and is refused. **Route 3 — grade these a level lower
+— is not available at this project's price, and the reason is mechanical: the confidence
+FLOATS are hashed into `generators/mesh_inputs.py`'s input recipe.** Regrading 623 values
+would stale 249 committed GLBs, and that is the identical wall T-V1(b) and K25(b) are stuck
+behind. **Prose is not hashed.** So route 2 is both the honest repair and the only one that
+lands without a bake — and that coincidence is worth naming, because next time it will not
+be a coincidence and somebody will be tempted by the cheap one anyway.
+
+**What the note says now.** It negates the paragraph above it rather than quietly dropping
+a citation. Every one of these values is prefixed by a generator-level lede reading *"the
+spec is cited because the invention is bounded by it"* — the exact claim that is untrue
+here — so dropping the trailing citation alone would have left the false impression intact
+and made the repair invisible. The replacement opens `NOT BOUNDED BY THE SPECIFICATION,
+and the sentence above about the invention being bounded does not hold for this value`,
+names the family and the field, and says what the value actually is: the reconstruction
+generator's type default. Each parcel's own closing clause ("it is not evidence for this
+anonymous North Division instance") is preserved verbatim.
+
+**What shipped.** `tools/band_notes.py` — the single predicate for *may this value cite the
+band*, imported by all five generators that author the sentence and by
+`tools/measure_band_claims.py` that audits it. One file, because `family_bands.py` exists
+for exactly this reason and its docstring says so: the same arithmetic in two files, and
+only one of them ran. The assertion is now in `--gate` and `--strict` and is **absolute —
+no baseline, no allowance**, in deliberate contrast to K25's ratchet beside it, because
+this repair costs prose and cannot block anything. Proven in three directions before being
+trusted: **red at 623 against the pre-repair data**, **green at 0 after**, and a planted
+fresh offender caught. It also fails on a citation attached to a field neither table has
+classified, so the next invented fitting cannot inherit a citation by default.
+
+**What did NOT change, and the residual.** No value moved and no geometry moved; 623 note
+strings and nothing else. Two things are left open on purpose:
+
+- **`sources` still lists the spec on these values.** The note now says the spec does not
+  bound them, while the machine-readable `sources` array still cites it. The spec IS the
+  source of the family assignment that produced the archetype default, so it is not simply
+  wrong — but the two fields no longer say the same thing, and that is a smaller version of
+  this same parcel's subject. It wants a decision, not a sweep.
+- **The prose tier keeps its citation.** Where the crosswalk speaks without bounding —
+  `construction` as "hewn or round logs with chinking", `variants` as "2/3 bays; external
+  chimney" — the citation stands. K25(a) drew that line when it separated the prose fields
+  from the banded ones and K33 does not reopen it. A parcel that wants to argue the middle
+  tier down is a new one, and it should read `PROSE_KEYWORDS` first: the instrument is a
+  keyword and generous by design.
+
+---
+
+*The original parcel description follows, with its 581-value prose census left as written.*
 
 K25(a) measured the values the crosswalk *does* bound. This is the other half, and it is
 worse in kind: **`paint` on 227 records carries "Type-level choice within the D3 band",

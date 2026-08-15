@@ -55,6 +55,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 # T-E2's refused ground is resolved from the committed traces rather than stored, so the
 # generator asks the same command the gate does instead of keeping its own copy.
+from band_notes import split_notes  # noqa: E402
 from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
 from measure_no_build_ground import reservation_ring  # noqa: E402
 
@@ -203,10 +204,30 @@ def door_kind(family: str) -> str:
     return "man"
 
 
+def band_note(family: str) -> str:
+    """The sentence that defends every invented form value, and it is a source claim.
+
+    Kept in one place because K33 restricts where it may be attached, and a claim that
+    is authored in one file and audited in another drifts. See tools/band_notes.py.
+    """
+    return (f"Type-level choice within the {family} band in the supplied reconstruction "
+            "specification; it is not evidence for this anonymous instance.")
+
+
 def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
-    """Form values, with the storey count and eave height read off the crosswalk."""
-    why = (f"Type-level choice within the {family} band in the supplied reconstruction "
-           "specification; it is not evidence for this anonymous instance.")
+    """Form values, with the storey count and eave height read off the crosswalk.
+
+    `_form_body` authors every value exactly as it always has, with the citation
+    attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
+    the values whose family authors nothing for it to point at, and says instead what
+    the value actually is — the reconstruction generator's type default.
+    """
+    return split_notes(_form_body(family, spec, key, width, paint), family,
+                       band_note(family))
+
+
+def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
+    why = band_note(family)
     levels, loft = storeys(spec["levels"])
     construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
     # The door is chosen before the eave because the eave floor depends on it: a wagon
