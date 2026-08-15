@@ -1,5 +1,45 @@
 # STATUS
 
+## FIXED 2026-08-15 — the ground you see IS the ground the town is anchored to now, and neither surface had moved
+
+**R-BUG3c-b**, the half (a) refused to guess at. The 9.6–13.1 cm disagreement (a) measured is real,
+and **neither the drawn mesh nor the sampler was wrong**. The gap is introduced *between* them, by
+the publish step, after the only gate that measures it.
+
+`generators/terrain_gen.py` ray-casts its decimated ground against the heightfield and refuses to
+export past **30 mm**. Its master honours that to **2.5 mm** — as exact as the field it is built
+from. The file a browser loads is the derivative `gltf-transform optimize` writes afterwards in
+`tools/bake.sh`, and that quantises POSITION to **14 bits under one uniform node scale**. The scale
+is set by the widest axis; this mesh is **5,020 m wide** (a 2,020 m box plus 1.5 km of skirt each
+side) and **8.6 m tall**, so the vertical rungs are **306 mm** apart. Measured on the shipped bytes:
+**rms 85 mm, max 228 mm**.
+
+**No setting fixes it, and that was measured rather than assumed.** 16 bits — the maximum the format
+offers — still lands on a 76.6 mm lattice. Only turning compression off meets the tolerance, at
+**6.45 MB against 688 KB**.
+
+**The fix is not a fudge and deliberately not `LIFT_M`.** The renderer reads the ground's heights
+back off the heightfield as it loads (`conformGroundToField()`), so the surface a visitor sees and
+the surface everything is placed on are the same surface by construction. All **124,141** vertices
+move, by up to **227.6 mm**; the residual is **0.24 µm**, which is float32 storage.
+
+**Three gates missed this and all three missed it the same way: they compare the render to another
+render.** A quantised ground looks perfectly correct. Two gates now hold a measurement instead —
+`check.sh` asserts the committed master and reports the derivative, and the smoke asserts the
+surface actually DRAWN against the sampler, green at both viewports.
+
+**Unflattering, and worth keeping in view.** This is the third parcel on one owner report. R-BUG3
+fixed a real contrast fault and declared the bug closed; the owner reproduced it the same day.
+R-BUG3c-a measured the cause and fixed nothing, which is the only reason this fix is the right one
+rather than a nudge to `LIFT_M` that would have left buildings, collision and flora still wrong. The
+lesson is one line: **do not measure the file you built, measure the file you ship.** Nothing else
+in this project measures a published artefact against its own source, and nobody has looked for the
+next instance of it.
+
+**Still open, and honestly open:** the same quantiser moves E and N by up to **153 mm** and nothing
+corrects that. It is invisible on a decimated prairie as far as anyone has checked — and nobody has
+actually checked. That is **R-W6**, along with whether the terrain should ship quantised at all.
+
 ## New 2026-08-15 — the second business-front block, and the second roof each trade was refused
 
 **T-A9.** `blk_south_water_wells` — South Water, LaSalle, Lake, Wells — now carries **eight

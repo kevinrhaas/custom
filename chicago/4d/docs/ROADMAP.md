@@ -94,8 +94,9 @@ desktop half belongs to a runner without the per-command ceiling.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-BUG3c** | **owner-reproduced WITH the fix in, twice, on 2026-08-15.** The near ground — road, grass tufts, all texture — is missing below a hard line at a constant distance, and it is NOT the streets. Measured, not guessed; read the box before touching anything |
-| 2 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
+| 1 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| 6 | RENDERING | **R-W6** | should the terrain ship quantised at all? 688 KB on a 306 mm lattice against 6.45 MB exact. Opened by R-BUG3c with both numbers measured; a payload decision with an owner-facing cost, and **not urgent** — the ground a visitor stands on is correct either way |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
@@ -2206,11 +2207,82 @@ it was seen.
 
 </details>
 
-### R-BUG3c — the near ground is missing, and it is NOT the streets · **(a) DONE · (b) CLAIMED 2026-08-15 · owner-reproduced 2026-08-15**
+### R-BUG3c — the near ground is missing, and it is NOT the streets · **DONE 2026-08-15**
 
-**R-BUG3c-b is CLAIMED (2026-08-15, branch `steward/r-bug3c-b-datum-disagreement`)** — the half
-that answers which of the two moved. (a) proved they disagree by 9.6–13.1 cm and deliberately
-fixed nothing.
+**R-BUG3c-b is DONE (2026-08-15) — NEITHER surface moved. The publish step moves the mesh
+AFTER the only gate that measures it.**
+
+(a) asked which of the two was wrong and refused to guess. The answer is neither: the drawn
+ground and the sampler are both faithful to the terrain spec, and the disagreement is
+introduced between the generator and the browser, by `gltf-transform optimize` in
+`tools/bake.sh`.
+
+**Measured on the committed bytes** — `tools/measure_terrain_fit.mjs`, a third reader of this
+geometry, which decodes `EXT_meshopt_compression` and `KHR_mesh_quantization` the way the
+renderer does and compares vertex heights against the same `heightfield.bin` the walker samples:
+
+| mesh | lattice | mean | rms | max \|Δ\| |
+|---|---|---|---|---|
+| `assets/gltf/` **master** — what the generator gates | float | −0.0 mm | 1.4 mm | **2.5 mm** |
+| `assets/web/` **shipped** — what a browser loads | **306.4 mm** | 5.0 mm | 85.1 mm | **227.6 mm** |
+
+The master honours `MESH_FIT_TOLERANCE_M` to **2.5 mm**, which is the heightfield's own
+quantisation error — it is as exact as the field it is built from. The derivative published
+beside it is off by up to **228 mm**.
+
+**Why, precisely.** `gltf-transform` quantises POSITION to a **bit depth — 14 by default** —
+under ONE UNIFORM node scale, and stores the result in the next integer type up, so the low
+two bits are always zero. The uniform scale is set by the widest axis. This mesh is
+**5,020 m wide** (a 2,020 m box plus `SKIRT_MARGIN_M` = 1.5 km of apron on each side) and
+**8.6 m tall**, an aspect ratio of 580:1, so the vertical rung spacing is
+`5020 / 16383` = **306 mm**. The skirt — whose entire job is to carry the channel past the
+box edge — is what sets the precision of the ground the town stands on.
+
+**And no setting fixes it, which is the part that decides the shape of the fix.** Measured, not
+argued: `--quantize-position 16`, the maximum the format offers, lands on a **76.6 mm** lattice
+(rms 22.0 mm, max 54.4 mm) — still over the 30 mm the generator refuses to export past.
+`--meshopt-level medium` quantises identically and costs 166 KB more. Only `--compress false`
+meets the tolerance, at **6.45 MB against 688 KB**.
+
+**So the renderer reads the heights back off the field at load** —
+`conformGroundToField()` in `js/terrain.js`. Not a correction factor and explicitly not the
+`LIFT_M` fudge (a) forbade: the heightfield is *already* the authority for collision, building
+anchoring, flora roots and street drape, so this makes the surface a visitor SEES the same
+surface as the one the town is placed on, by construction rather than by tolerance. The GLB
+keeps the jobs the field cannot do — the decimated topology, the normals, the `_CONFIDENCE`
+channel. All **124,141** vertices move, by up to **227.6 mm**, and the residual afterwards is
+**0.24 µm**, which is float32 storage and nothing else.
+
+The skirt is carried rather than flattened: it lies outside the box, where `sample()` returns
+its **fallback of 0** instead of clamping, so snapping it naively would have dropped 1.5 km of
+apron onto the water plane. Sampling at the clamped position reproduces the generator's own
+rule for the skirt — "carry each boundary vertex outward, keeping its own height" — and the
+seam at the box edge closes exactly.
+
+**Three gates missed this, and the reason they all missed it is the same.** The normals gate,
+the road-contrast gate and the horizon gate each compare the render to another render. A
+quantised ground is a *correct-looking* ground; it is only wrong relative to a measurement
+none of them held. Two new gates hold it:
+
+- **`tools/check.sh`** — asserts the committed MASTER still meets `MESH_FIT_TOLERANCE_M` and
+  REPORTS the derivative's drift. Nothing re-checked the master after the bake, because the
+  generator's own refusal happens inside a Blender run this gate cannot make; a hand-edited GLB
+  would have sailed through every check in this repo. The derivative is reported and **not**
+  asserted, because it cannot pass and saying so would only assert that a compressor is a
+  compressor.
+- **`tools/smoke_renderer.mjs`** — asserts the surface actually DRAWN, at the tiles' own
+  vertices after every load step, against the sampler the town is placed with. That is the
+  comparison none of the three made. Green at **both** viewports.
+
+**What is NOT repaired, and is a question rather than a defect.** The same quantiser moves E and
+N by up to **153 mm**, which is invisible on a decimated prairie and is why only Y is read back.
+Whether the terrain should ship quantised at all — 688 KB with a lattice, against 6.45 MB
+exact — is a payload decision with an owner-facing cost, so it is **R-W6** below rather than
+something this parcel settled on its own. The fix here makes that answer stop mattering for the
+ground a visitor stands on.
+
+**The gate lesson, for the fourth time on this bug: do not measure the file you built. Measure
+the file you ship.**
 
 **The owner reproduced R-BUG3 on the branch that fixes it**, on mobile, on Lake Street approaching
 Franklin — the same complaint, after the parcel below declared it solved. Reproduced here at that
@@ -2283,6 +2355,45 @@ green. The owner was 172 ft short of an intersection. A station AT a crossing ca
 block between crossings. Add a mid-block station on foot before claiming this closed.
 
 **Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
+
+### R-W6 — should the terrain ship quantised at all? · **UNCLAIMED · opened 2026-08-15 by R-BUG3c · NOT urgent**
+
+R-BUG3c found that the published ground mesh lands on a **306 mm** vertical lattice and fixed
+the consequence rather than the cause: the renderer reads the heights back off the heightfield,
+so the ground a visitor stands on is correct whatever the compressor does. This parcel asks
+whether the cause is worth removing.
+
+**The numbers are already measured** — see R-BUG3c's table and
+`tools/measure_terrain_fit.mjs`:
+
+| encoding | size | vertical lattice | max \|Δ\| vs the field |
+|---|---|---|---|
+| shipped today (meshopt, 14-bit) | **688 KB** | 306.4 mm | 227.6 mm |
+| meshopt, 16-bit (the format's max) | 688 KB | 76.6 mm | 54.4 mm |
+| meshopt, `--level medium`, 16-bit | 854 KB | 76.6 mm | 54.4 mm |
+| no compression | **6.45 MB** | float | 2.5 mm |
+
+**What is still open, and it is genuinely a decision rather than a measurement.** 5.8 MB is a
+real cost on the phone this project was reported from twice, and the conforming pass has made
+the height error harmless. What remains wrong is the **horizontal** displacement — E and N move
+by up to **153 mm** — which nothing corrects and which nobody has yet shown a visitor can see.
+
+**So the honest order is: measure the horizontal artefact BEFORE trading 5.8 MB for it.**
+`tools/critic_shots.mjs --metrics` exists for exactly this kind of "can you see it" question.
+If it is invisible at the anchors a visitor is offered, the answer is to keep the 688 KB, raise
+the bit depth to 16 because it is free, and write the reasoning down. Do not answer this by
+preference, and do not answer it by reaching for the uncompressed file because exactness feels
+safer — page weight is a user-facing cost the same way a buried road is.
+
+**One thing to check first, because it may make the whole trade cheap:** the 5,020 m width that
+sets the lattice is mostly `SKIRT_MARGIN_M` — 1.5 km of apron on each side of a 2,020 m box. A
+skirt emitted as its own mesh would shrink the ground's quantisation volume by 2.5×
+(`--quantization-volume mesh` is already the default), which at 16 bits would put the lattice
+near 31 mm for nothing but a generator change. That needs a bake, so it is a proposal to
+`docs/GLB-CONTRACT.md` and `generators/terrain_gen.py`, not a unilateral edit.
+
+**Files:** `tools/bake.sh` · `generators/terrain_gen.py` (skirt split, if taken) ·
+`docs/RENDERING.md` · `docs/GLB-CONTRACT.md` (propose). Measurement first.
 
 ### R-BUG4 — a wet corner deletes the whole road quad, dry half included · **DONE 2026-08-15**
 
