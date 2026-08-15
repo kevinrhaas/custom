@@ -1,7 +1,7 @@
 {
   "id": "recon_1835_north_a4_010",
   "phase": "inferred_1835",
-  "name": "Inferred A4 woodshed or storage shed #010",
+  "name": "Reconstructed A4 woodshed or storage shed #010",
   "aka": [],
   "archetype": "outbuilding",
   "asset": "gltf/recon_1835_north_a4_010__inferred_1835.glb",
@@ -14,7 +14,7 @@
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
-  "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
+  "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
     "local_e": 586.219,
     "local_n": 226.829,
@@ -22,7 +22,7 @@
     "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
-    "symbolic_location": "Anonymous inferred roof in North Division cluster north_water_west; between the north bank and Michigan Street",
+    "symbolic_location": "Anonymous reconstructed roof in North Division cluster north_water_west; between the north bank and Michigan Street",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"
@@ -154,7 +154,7 @@
       ]
     }
   ],
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "research_doc": "docs/RESEARCH/inferred_infill_1835.md",
   "review_required": false,
   "reconstruction": {

@@ -1,7 +1,7 @@
 {
   "id": "recon_1835_south_d6_012",
   "phase": "inferred_1835",
-  "name": "Inferred D6 one-and-a-half-story frame cottage #012",
+  "name": "Reconstructed D6 one-and-a-half-story frame cottage #012",
   "aka": [],
   "archetype": "frame_dwelling",
   "asset": "gltf/recon_1835_south_d6_012__inferred_1835.glb",
@@ -14,7 +14,7 @@
     "sources": [],
     "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
   },
-  "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution.",
+  "change_note": "Reconstructed anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution.",
   "placement": {
     "local_e": 542.533,
     "local_n": -151.223,
@@ -22,7 +22,7 @@
     "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
-    "symbolic_location": "Anonymous inferred roof in the South Division block between LaSalle and Clark, south of Lake Street",
+    "symbolic_location": "Anonymous reconstructed roof in the South Division block between LaSalle and Clark, south of Lake Street",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"
@@ -144,10 +144,10 @@
   "residents": [
     {
       "household": "hh_inf_barber_surgeon_south_01",
-      "name": "The Nash household — an inferred barber surgeon (south division)",
+      "name": "The Nash household — a reconstructed barber surgeon (south division)",
       "division": "south",
       "relation": "lived here",
-      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_south_d6_012 is an anonymous inferred roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
+      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_south_d6_012 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -158,10 +158,10 @@
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "barber_surgeon",
-          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 BARBER-SURGEON HOUSEHOLDS THIS LAYER INFERS. THE OWNER'S OTHER EXAMPLE. One barber-surgeon is documented in the 1833 town of perhaps three hundred and fifty people. At ten times the population, the second barber is not a guess about a person: it is a statement about a ratio."
+          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 BARBER-SURGEON HOUSEHOLDS THIS LAYER RECONSTRUCTS. THE OWNER'S OTHER EXAMPLE. One barber-surgeon is documented in the 1833 town of perhaps three hundred and fifty people. At ten times the population, the second barber is not a guess about a person: it is a statement about a ratio."
         }
       ],
-      "research_note": "INFERRED HOUSEHOLD - first of 1 barber-surgeon households in this layer, in the south division. THE OWNER'S OTHER EXAMPLE. One barber-surgeon is documented in the 1833 town of perhaps three hundred and fifty people. At ten times the population, the second barber is not a guess about a person: it is a statement about a ratio. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+      "research_note": "RECONSTRUCTED HOUSEHOLD - first of 1 barber-surgeon households in this layer, in the south division. THE OWNER'S OTHER EXAMPLE. One barber-surgeon is documented in the 1833 town of perhaps three hundred and fifty people. At ten times the population, the second barber is not a guess about a person: it is a statement about a ratio. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
     }
   ],
   "citations": [
@@ -193,7 +193,7 @@
       ]
     }
   ],
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
   "research_doc": "docs/RESEARCH/inferred_infill_1835.md",
   "review_required": false,
   "reconstruction": {

@@ -222,11 +222,11 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
         reconstruction["yard_group"] = yard_group
 
     blocks = block_name(local_e)
-    location = f"Anonymous inferred roof in the South Division block between {blocks}, south of Lake Street"
+    location = f"Anonymous reconstructed roof in the South Division block between {blocks}, south of Lake Street"
     function = function_for(family)
     return {
         "id": sid,
-        "name": f"Inferred {family} {function} #{seq:03d}",
+        "name": f"Reconstructed {family} {function} #{seq:03d}",
         "archetype": archetype_for(family),
         "phases": [{
             "id": PHASE_ID,
@@ -248,12 +248,12 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, seq, finish, width, depth),
-            "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+            "change_note": "Reconstructed anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
         }],
         "function": inferred(function, f"Assigned from the {family} production family to satisfy the aggregate South Division mix; no occupant or individual use is known."),
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
-        "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+        "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
         "review_required": False
     }
 

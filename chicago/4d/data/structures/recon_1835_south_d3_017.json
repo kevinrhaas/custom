@@ -1,6 +1,6 @@
 {
   "id": "recon_1835_south_d3_017",
-  "name": "Inferred D3 one-room frame cottage #017",
+  "name": "Reconstructed D3 one-room frame cottage #017",
   "archetype": "frame_dwelling",
   "phases": [
     {
@@ -15,7 +15,7 @@
         "utm_e": 447788.489,
         "utm_n": 4637245.407,
         "rotation_deg": 1.07,
-        "symbolic_location": "Anonymous inferred roof in the South Division block between Dearborn and State, south of Lake Street",
+        "symbolic_location": "Anonymous reconstructed roof in the South Division block between Dearborn and State, south of Lake Street",
         "confidence": "reconstructed",
         "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
         "derivation": {
@@ -127,7 +127,7 @@
           "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
         }
       },
-      "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+      "change_note": "Reconstructed anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
     }
   ],
   "function": {
@@ -159,6 +159,6 @@
     "roof_condition": "darkened",
     "age_state": "recent"
   },
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
   "review_required": false
 }

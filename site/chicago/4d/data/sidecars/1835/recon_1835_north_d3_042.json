@@ -1,7 +1,7 @@
 {
   "id": "recon_1835_north_d3_042",
   "phase": "inferred_1835",
-  "name": "Inferred D3 one-room frame cottage #042",
+  "name": "Reconstructed D3 one-room frame cottage #042",
   "aka": [],
   "archetype": "frame_dwelling",
   "asset": "gltf/recon_1835_north_d3_042__inferred_1835.glb",
@@ -14,7 +14,7 @@
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
-  "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
+  "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
     "local_e": 1007.257,
     "local_n": 316.647,
@@ -22,7 +22,7 @@
     "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
-    "symbolic_location": "Anonymous inferred roof in North Division cluster rush_east_fringe; between the north bank and Michigan Street",
+    "symbolic_location": "Anonymous reconstructed roof in North Division cluster rush_east_fringe; between the north bank and Michigan Street",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"
@@ -144,10 +144,10 @@
   "residents": [
     {
       "household": "hh_inf_domestic_north_01",
-      "name": "The Brady household — an inferred domestic (north division)",
+      "name": "The Brady household — a reconstructed domestic (north division)",
       "division": "north",
       "relation": "lived here",
-      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d3_042 is an anonymous inferred roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
+      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d3_042 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -158,10 +158,10 @@
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "domestic",
-          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 DOMESTIC HOUSEHOLDS THIS LAYER INFERS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her."
+          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 DOMESTIC HOUSEHOLDS THIS LAYER RECONSTRUCTS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her."
         }
       ],
-      "research_note": "INFERRED HOUSEHOLD - first of 4 domestic households in this layer, in the north division. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+      "research_note": "RECONSTRUCTED HOUSEHOLD - first of 4 domestic households in this layer, in the north division. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
     }
   ],
   "citations": [
@@ -193,7 +193,7 @@
       ]
     }
   ],
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "research_doc": "docs/RESEARCH/inferred_infill_1835.md",
   "review_required": false,
   "reconstruction": {

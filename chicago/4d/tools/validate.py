@@ -145,7 +145,7 @@ def validate_schemas(sources, structures, scenes, rep: Report) -> None:
 # --------------------------------------------------------------------------
 
 def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report) -> str | None:
-    """documented needs a resolving source; inferred needs stated reasoning."""
+    """attested needs a resolving source; inferred and reconstructed need stated reasoning."""
     if not isinstance(att, dict) or "confidence" not in att:
         return None
     conf = att.get("confidence")
@@ -158,7 +158,7 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
 
     if conf == "attested":
         if not srcs:
-            rep.error(where, f"{key}: documented requires at least one source_id")
+            rep.error(where, f"{key}: attested requires at least one source_id")
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
@@ -166,23 +166,23 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
         # Reasoned FROM something, so it owes the reasoning; and it may cite the
         # evidence it reasoned from, which is the ordinary case.
         if not note:
-            rep.error(where, f"{key}: derived requires a note stating the reasoning")
+            rep.error(where, f"{key}: inferred requires a note stating the reasoning")
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    else:  # inferred — invented to fill a demonstrable need of the town
+    else:  # reconstructed — invented to fill a demonstrable need of the town
         # It owes its reasoning too: an invention nobody can defend is the thing
         # this project exists not to ship. What it may NOT be is silent.
         #
         # It may also cite sources, and under the old vocabulary that was a
         # warning — "conjectural but cites sources, so either it is not
         # conjectural or the citation is decorative". That rule died with the
-        # rename: an inferred value is invented WITHIN a bound, and the source
+        # rename: a reconstructed value is invented WITHIN a bound, and the source
         # that establishes the bound (the reconstruction programme, a trade
         # roster, a census total) is exactly what makes the invention defensible
         # rather than arbitrary. Citing it is right, not suspicious.
         if not note:
-            rep.error(where, f"{key}: inferred requires a note stating the reasoning — "
+            rep.error(where, f"{key}: reconstructed requires a note stating the reasoning — "
                              f"an invention nobody can defend is not a reconstruction")
         for sid in srcs:
             if sid not in source_ids:
@@ -4516,8 +4516,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                      if (h.get("present_on_scene_date") or {}).get("value") != "present")
         flagged = sum(1 for h in households.values() if h.get("review_required"))
         rep.note(f"residents: {len(households)} household(s), {n_persons} person(s) "
-                 f"({grade_totals['attested']} documented, {grade_totals['inferred']} derived, "
-                 f"{grade_totals['reconstructed']} inferred); {linked} linked to a structure, "
+                 f"({grade_totals['attested']} attested, {grade_totals['inferred']} inferred, "
+                 f"{grade_totals['reconstructed']} reconstructed); {linked} linked to a structure, "
                  f"{unsure} NOT recorded as certainly present on the scene date, "
                  f"{flagged} flagged review_required")
     return households

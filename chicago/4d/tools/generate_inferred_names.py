@@ -178,15 +178,21 @@ def build(preload: dict | None = None):
         named += 1
 
     for path, doc in docs.items():
-        # The household's own label follows its head. "An inferred baker's
+        # The household's own label follows its head. "A reconstructed baker's
         # household (south division)" is what the layer is FOR, and it is also
-        # unreadable as a place where someone lived; "The Kellogg household — an
-        # inferred baker (south division)" says both at once.
+        # unreadable as a place where someone lived; "The Kellogg household — a
+        # reconstructed baker (south division)" says both at once.
+        #
+        # "reconstructed", not "inferred", since K23a: the head's own `grade` is
+        # `reconstructed` and the card prints that chip directly under this line,
+        # so calling the household inferred claimed a tier better than its own
+        # record — the middle tier means reasoned from evidence about this
+        # particular person, and there is no particular person here.
         head = next((p for p in doc.get("persons", [])
                      if p.get("relationship") == "head"), None)
         if head and head.get("name"):
             trade = ((head.get("occupation") or {}).get("value") or "").replace("_", " ")
-            doc["name"] = (f"The {head['name'].split()[-1]} household — an inferred "
+            doc["name"] = (f"The {head['name'].split()[-1]} household — a reconstructed "
                            f"{trade} ({doc.get('division', '')} division)")
         files[path] = dumps(doc)
     return files, named

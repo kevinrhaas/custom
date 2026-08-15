@@ -482,7 +482,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
     # `blk_randolph_clinton` were South Division, so a literal "South Division" here
     # read correctly on every record that existed and would have written the wrong
     # division into the visitor-facing location line of the first West one.
-    where = (f"Anonymous inferred roof in the {block['district'].title()} Division "
+    where = (f"Anonymous reconstructed roof in the {block['district'].title()} Division "
              f"block bounded by "
              f"{bounded['north'].replace('_', ' ').title()}, "
              f"{bounded['east'].replace('_', ' ').title()}, "
@@ -519,7 +519,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                if family.startswith("H") else "")
     return {
         "id": sid,
-        "name": f"Inferred {family} {function} #{seq:02d}",
+        "name": f"Reconstructed {family} {function} #{seq:02d}",
         "archetype": spec["archetype"],
         "phases": [{
             "id": PHASE_ID,
@@ -540,12 +540,12 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
             "form": form_for(family, spec, sid, width, paint),
-            "change_note": "Inferred anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+            "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
-        "research_note": ("RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. The "
+        "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
                           "665-roof programme; exact presence, lot, position, footprint, "
                           "finish and instance-level form are interpretive." + mapping),

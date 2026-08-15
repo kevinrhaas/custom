@@ -481,10 +481,19 @@ export function createPopup(root, { docBase = '../../' } = {}) {
       // one. That is the third time a card has silently lost a flag by reading a
       // key the data does not write (STATUS § 28, and the placeholder line
       // directly above). The release gate caught it; nothing else would have.
+      //
+      // The FLAG's own wording moved with K23a, and the KEY deliberately did not.
+      // `inferred_anonymous` is a machine value — it is never printed, it names
+      // the GLB files, and the last time a rename of it went through this line
+      // the flag silently vanished for 108 roofs. The words a visitor reads are
+      // what claimed the wrong tier: this said "Inferred reconstruction" over a
+      // record graded `reconstructed` at every attribute, and `inferred` is now
+      // the MIDDLE tier — reasoned from evidence about this particular thing,
+      // which an anonymous count-unit is exactly not.
       const reconstruction = s.reconstruction?.status === 'inferred_anonymous'
-        ? `<span class="pop-flag"><strong>Inferred reconstruction — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
+        ? `<span class="pop-flag"><strong>Reconstructed — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
              Its family and district come from the modern production specification;
-             this is not a documented named building or recovered parcel.</span>`
+             this is not an attested named building or a recovered parcel.</span>`
         : '';
 
       // The position's own reasoning, on the line that shows the position. Every
