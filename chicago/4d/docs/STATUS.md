@@ -1,5 +1,64 @@
 # STATUS
 
+## New 2026-08-15 — a lot was called free because a building's centroid was in the road
+
+**T-A7.** T-A6 (below) made a block's room a function of its free lots. This is about how a lot
+was known to be free: *no committed footprint has its centroid inside it*. The centroid is a
+proxy for the building, and it fails on exactly the records the plat grid was built to correct —
+a building placed from typed coordinates before the plat module existed can stand a metre or two
+proud of its own street frontage, which puts its centroid in the ROADWAY and therefore in no lot
+of any block. **Fourteen committed records were in that position.** Measured at `dev@968e389`:
+
+| the building | block | lot | of itself on that lot | in the buildable part |
+|---|---|---|---|---|
+| **Temple Building** | `blk_south_water_franklin` | 0 | 18.6 m², 27 % | 4.2 m² |
+| **Harmon & Loomis's store** | `blk_south_water_clark` | 0 | 29.2 m², 31 % | 9.5 m² |
+| **Chicago Democrat office** | `blk_south_water_lasalle` | 6 | 31.2 m², 34 % | 11.4 m² |
+| **Cook County courthouse** | `blk_randolph_lasalle` | 6 | 5.1 m², 13 % | 0.4 m² |
+| `recon_1835_south_d5_034` | `blk_lake_dearborn` | 3 | 25.5 m², 36 % | 15.1 m² |
+
+Four of the five are named, documented buildings, and the schedule was offering their lots to
+anonymous invented roofs. **The claimed block is the sharpest case**: `blk_south_water_franklin`
+was dealt six principal roofs for what it called seven free lots, and the Temple Building is on
+one of them.
+
+**The rule now has two tests, and each answers a different way of being wrong.** They live in
+`tools/plat_occupancy.py`, which is the ONLY implementation — `tools/reconcile_665.py` and
+`tools/generate_block_infill.py` both import it, where T-A6 had left them with a copy each.
+
+1. **A building stands on the lot most of it is on**, by measured area. The same claim the
+   centroid made, made about the building instead of about a point inside it. On the committed
+   dataset it is purely additive: **no record changes lot**, occupied lots go 79 → 84, and
+   nothing that read taken became free.
+2. **It occupies that lot only where it reaches the lot's buildable part** — the lot inset by
+   the 1.5 m every new roof must keep from its own lot lines. **J. H. Kinzie's store earns this
+   test**: 9.7 m² of it lies on `blk_south_water_franklin` lot 2 and *none* inside the buildable
+   inset, so a roof still fits there clear of it and the schedule may still deal one. Without
+   test two the town would lose roofs it can honestly have.
+
+**The ledger had the same defect from the other side.** A roof was attributed to a block by its
+position POINT, so three buildings whose point is in the roadway were counted as standing in no
+block at all: the **Exchange Coffee House** (which holds nine tenths of a lot of the claimed
+block), **Harmon & Loomis's store** and the **Tremont House**. Their roofs were never subtracted
+from the headroom of the block they physically stand in. A roof standing on a block's lot stands
+in that block.
+
+**What it cost.** Schedulable-on-covered-ground **66 → 61**; gated on coverage **333 → 338**.
+Standing roofs are unchanged at 266, remaining at 399 — nothing was built or removed. Four blocks
+lose a free lot each and `blk_south_water_clark` also gains two standing roofs, so its deal drops
+from 7 to 5.
+
+**What it measured and deliberately did not call occupancy.** `recon_1835_west_018` laps 11.9 m²
+onto `blk_randolph_clinton` lot 2, where T-A4 stands a principal roof. Test one seats it on lot 4,
+where 82 % of it is, so that placement stands. A rule that called every lap an occupation would
+have condemned a committed, gated placement over a corner of a building, and whether two roofs
+may stand three metres apart across a conjectural side lot line is the separation gate's question
+— which it passed. Recorded here so the silence is not mistaken for nobody having looked.
+
+**What this parcel did NOT do:** build a block. T-A7 claimed `blk_south_water_franklin` and found
+it could not be built honestly; it returns to the queue with a corrected deal — 7 roofs, 5
+principal and 2 ancillary, on six free lots.
+
 ## New 2026-08-15 — half the open blocks were scheduled roofs their own lots could not hold
 
 **T-A6.** The 665-roof schedule counted a block's room in ROOFS and never in LOTS, and a principal

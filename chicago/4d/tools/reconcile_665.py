@@ -44,12 +44,19 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RECON = DATA / "reconstruction"
 OUT_PATH = RECON / "1835_665_roof_programme.json"
+
+sys.path.insert(0, str(ROOT / "tools"))
+
+# Lot occupancy is derived in ONE place and imported by both halves of the T-A6 rule.
+# See tools/plat_occupancy.py for why it is a module rather than a copied loop.
+from plat_occupancy import block_of_structure, occupied_lots  # noqa: E402
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -171,40 +178,6 @@ def inside(point, polygon) -> bool:
     return hit
 
 
-def occupied_lots(grid, datum) -> dict[str, set[int]]:
-    """Which lot of which block every committed footprint stands on.
-
-    DERIVED, and derived by the SAME rule `tools/generate_block_infill.py` uses — the
-    footprint's centroid against the committed lot polygon, every phase that carries a
-    position — because the two have to agree or this schedule deals a block roofs its
-    own generator will refuse. That is not hypothetical: it is the defect this function
-    exists to close (ROADMAP T-A6).
-    """
-    lots: dict[str, set[int]] = {}
-    for path in sorted((DATA / "structures").glob("*.json")):
-        record = load(path)
-        for phase in record.get("phases") or []:
-            position = phase.get("position") or {}
-            polygon = (phase.get("footprint") or {}).get("polygon") or []
-            if position.get("utm_e") is None or len(polygon) < 3:
-                continue
-            theta = math.radians(float(position.get("rotation_deg") or 0))
-            cos, sin = math.cos(theta), math.sin(theta)
-            e0 = float(position["utm_e"]) - float(datum["origin_utm_e"])
-            n0 = float(position["utm_n"]) - float(datum["origin_utm_n"])
-            corners = [(e0 + u * cos + v * sin, n0 - u * sin + v * cos) for u, v in polygon]
-            centre = (sum(p[0] for p in corners) / len(corners),
-                      sum(p[1] for p in corners) / len(corners))
-            for block in grid["blocks"]:
-                if not inside(centre, block["boundary_local_enu_m"]):
-                    continue
-                for index, lot in enumerate(block["lots"]):
-                    if inside(centre, lot["polygon"]):
-                        lots.setdefault(block["id"], set()).add(index)
-                break
-    return lots
-
-
 def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
     """(principal, ancillary) a block can actually take, from its FREE LOTS.
 
@@ -237,9 +210,21 @@ def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
     return principal, max(0, ancillary)
 
 
-def standing_roofs(grid, datum):
+def standing_roofs(grid, datum, taken):
     """Every committed structure record, with the physical roofs it puts in the scene and
-    the platted block it stands in, where the grid reaches it."""
+    the platted block it stands in, where the grid reaches it.
+
+    **A roof standing on a block's lot stands in that block**, which is the second half
+    of the T-A7 finding. The block was read off the record's position POINT against the
+    block boundary, and a building placed a metre proud of its own frontage has that
+    point in the roadway: the Exchange Coffee House holds nine tenths of a lot of
+    `blk_south_water_franklin` and was counted as standing in no block at all. Its
+    roof was therefore not subtracted from the headroom of the block it stands in, so
+    the schedule offered that block room a visitor can see is already built on. The
+    occupancy map — derived from the footprint, in `tools/plat_occupancy.py` — answers
+    it where the point cannot.
+    """
+    home = block_of_structure(taken)
     reconciliation = {
         r["structure_id"]: r
         for r in load(RECON / "1835_existing_roof_reconciliation.json")["records"]
@@ -280,8 +265,8 @@ def standing_roofs(grid, datum):
             raise SystemExit(f"{rid} contributes a roof with no family to count it under")
         position = next((p["position"] for p in record["phases"]
                          if p.get("position") and p["position"].get("utm_e") is not None), None)
-        row["block"] = None
-        if position:
+        row["block"] = home.get(rid)
+        if row["block"] is None and position:
             point = (position["utm_e"] - datum["origin_utm_e"],
                      position["utm_n"] - datum["origin_utm_n"])
             for block in grid["blocks"]:
@@ -313,7 +298,10 @@ def programme_document():
             raise SystemExit(f"family targets for {group} sum to {families}, "
                              f"not the group's own total of {row['total']}")
 
-    rows = standing_roofs(grid, datum)
+    # Derived once and used by both halves — which lot each roof holds, and, through
+    # that, which block each roof stands in. Two questions, one measurement.
+    taken = occupied_lots(grid, datum)
+    rows = standing_roofs(grid, datum, taken)
 
     # ---- what stands ------------------------------------------------------------
     built_family: dict[str, int] = {}
@@ -391,7 +379,6 @@ def programme_document():
         district_group_remaining[district] = {g: n for g, n in sorted(head.items()) if n}
 
     # ---- where it can go --------------------------------------------------------
-    taken = occupied_lots(grid, datum)
     units: list[dict] = []
     for block in grid["blocks"]:
         lots = len(block["lots"])
