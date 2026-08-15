@@ -103,6 +103,46 @@ quad when ANY of its four corners is water, dry half included. **13 quads / ~30 
 deleted while the centreline is dry land**; Kinzie loses 14.2 % of itself. Clip at the waterline,
 do not discard.
 
+## New 2026-08-15 — the horizon-timber figure was scoring the town's roofs, and the fix for it is subtraction rather than a colour test
+
+**R-W4a.** RENDERING § 5 asks for **≥ 90 %** horizon-timber column coverage. The number answering
+that question counted **any** break in the skyline above the land/sky line, and a gable end breaks
+a skyline as surely as an oak — R-G1 caught `prairie_south` moving 0.364 → 0.436 on nineteen new
+roofs with no renderer change. **Corrected, `prairie_south` reads 0.295 desktop where it read
+0.632, and 62 % of what was counted as timber there was the town** (409 of 1053 measured columns
+broke on a roof and on nothing else). Across the 22 station-viewports the mean falls **0.672 →
+0.582**, and the number meeting the target falls **1 → 0**. Full table in `docs/ROADMAP.md`
+§ R-W4a.
+
+**The discriminator this project had written down does not work, and that was measured rather
+than argued.** R-G1 proposed the crown-hue channel — "a whitewashed gable is not green". At the
+first hit pixel of every broken column, desktop: grey gables at `prairie_south` sit at ΔG−B
+**+22.4**, hazed timber at `prairie_west` ranges **+0.1 to +17.5**. The two populations overlap
+completely, because the horizon sky is strongly blue-dominant and every non-sky pixel clears a +3
+G−B test — the channel was a not-sky detector, so the old figure was testing the same condition
+twice. **No colour test can separate them in principle here**: L17 makes extinction total by
+1500 m, so distant timber and a distant wall both converge on the fog colour.
+
+**What replaced it takes the town away instead of guessing.** The harness photographs each
+station twice from the identical pose — once as the visitor sees it, once with the `structures`
+group hidden — and measures the horizon in the second frame. Timber by construction: no
+threshold, no hue, nothing to tune, and **the figure cannot move when a block lands**. The old
+number is kept at its old value under a name that says what it counts (skyline breaks), so
+2026-08-14's baseline is still comparable and no past figure was silently redefined.
+
+**Two properties of the new figure that must be quoted with it.** It rises at six of the
+22 station-viewports, because a building can stand in front of timber and hide it — it answers
+*is the horizon timbered*, not *can the visitor see timber past the town*, which is the right
+question for a target derived from photographs of a treeline. And `from_above` is an aerial pose
+whose band is not a horizon at all (0.212 / 0.156, town share 0 %): do not average it in without
+saying so.
+
+**Unverified / not claimed:** nothing about the renderer changed, so no scene claim moves with
+this. The cost of the second capture is measured (13 min 12 s for the full both-viewport run,
+against ~12 min without it) and `--no-mask` opts out. Putting the town back was checked rather
+than assumed: 5, 9 and 51 differing pixels of 1,024,000 across the change, inside the harness's
+own cross-process residual, with the `--stability` contract passing byte-identical.
+
 ## Partly fixed 2026-08-15 — the road at a crossing, the two stations that never stood on one, and a gate that abstained exactly when it should have shouted
 
 ## New 2026-08-15 — the road gate can now see contrast as well as lightness, and the photograph it was told to calibrate against has no road in it
