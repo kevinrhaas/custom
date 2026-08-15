@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 98, title: 'The green patches punched through the streets by the river are gone', kind: 'fix', ts: '2026-08-15T13:41:53.077Z', date: 'Aug 15, 2026, 8:41 AM CT',
+    items: [
+      'Reported from a phone on South Water Street: a clean-edged green patch sitting in the middle of the roadway ahead, with sharp straight sides. It was a hole, and there were twenty-eight of them across the town.',
+      'Where a street runs beside the river the roadway is drawn as a run of short panels, about two metres each. A panel was being thrown away in full whenever any one of its four corners fell on water. The intention was sound — a street should not be painted across the river just because the width the survey gives it reaches that far — but discarding the panel takes the dry part with it, and the dry part is the bit you are standing on. A panel is trimmed at the water\u2019s edge now, each end and each side independently, so a road with the river on one side keeps its whole dry width instead of vanishing.',
+      'Sixty-two point seven metres of road you could walk on has come back. Every one of the 4,843 panels whose centre line is on dry ground is now drawn, and none had to be dropped for being too narrow to be a road. Streets that genuinely cross the river are unchanged and still stop at the bank, because that is a bridge\u2019s job and the bridges are recorded separately.',
+      'The earlier note about this put the loss at about thirty metres. That figure was read off the tail of a sorted list rather than totalled, and it was half the real number. The measurement here is taken from the roadway as actually built.',
+      'Nothing about the streets themselves changed: same routes, same widths, same evidence, same recorded wear.',
+    ] },
   { v: 97, title: 'The road is still missing between the crossings, and a wet corner has been deleting whole panels of it', kind: 'fix', ts: '2026-08-15T12:28:29.674Z', date: 'Aug 15, 2026, 7:28 AM CT',
     items: [
       'Reported twice more from a phone the same evening, with that morning\u2019s road fix already in: standing on Lake Street approaching Franklin, there is still no road underfoot. That report is right, and the entry below overclaimed. What improved is real and stands — at a street crossing the worn earth now reads about twice as strongly as it did — but between crossings the trouble is a different and larger one, and calling it fixed was wrong.',
