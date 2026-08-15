@@ -75,7 +75,7 @@ belong at the end, not in the loop.
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
 | 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
+| 1 | TOWN | **T-A7…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5). T-A6 (`blk_randolph_franklin`) is CLAIMED 2026-08-15 |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -920,7 +920,27 @@ household) · `data/structures/recon_1835_blk_randolph_market_*.json` (8, derive
 `data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md`
 (L97) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A6…T-An — the remaining blocks · **UNCLAIMED**
+### T-A6 — `blk_randolph_franklin` · **CLAIMED 2026-08-15, expires 2026-08-17**
+
+The Randolph row's next block east of T-A5's, bounded by Randolph, Franklin, Washington and
+Wells. Re-derived from the schedule on arrival: **nine roofs on eight lots of which one already
+carries a roof** — seven principal (C2, C3, D2, D3, D4, D6, H3) and two yard buildings (A3, A4)
+— and **no institutional family**, so nothing is deferred and the parcel is the plain T-A5 shape.
+
+**What is new about it, and it is geometry rather than argument:** it is the first block the
+schedule deals a *commercial pair plus a boarding house* — C2, C3 and H3 are the three largest
+footprint bands in the open set (up to 22×50 ft and 34×50 ft) standing on lots the four earlier
+blocks only ever put dwellings on. If the lot-margin and separation gates are going to refuse
+anything, they refuse it here, and that refusal is the parcel's finding rather than an obstacle
+to route around.
+
+Files: `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` ·
+`data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing ·
+`docs/LIBERTIES.md` · `docs/ROADMAP.md` · `docs/STATUS.md`.
+**No renderer file, and no tool unless the parcel meets something genuinely new.**
+
+### T-A7…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
