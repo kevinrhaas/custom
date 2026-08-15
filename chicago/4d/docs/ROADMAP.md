@@ -1708,7 +1708,14 @@ a large bucket renames everything after it. K20's fix still belongs in its own p
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L101 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A11…T-An — the remaining blocks · **UNCLAIMED**
+### T-A11 — `blk_south_water_clark` · **CLAIMED 2026-08-15 · `steward/t-a11-south-water-clark`**
+
+The fourth block of the South Water row, bounded by South Water, Dearborn, Lake and Clark. The
+schedule deals it **five roofs, four principal and one ancillary** (D1, D3, D4, D5, A3) on five
+free lots — lots 0, 6 and 7 are already held. No other parcel may take this block while this
+heading stands.
+
+### T-A12…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
