@@ -455,6 +455,40 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         state, note = p["ground_contact"]
         phase["ground_contact"] = {"state": state, "note": note}
 
+    # K21 — the family band, in a field a gate can read.
+    #
+    # Every one of these 31 buildings was dealt a crosswalk family by the
+    # programme, and every one has always SAID so: the footprint note above reads
+    # "a 16 x 22 ft rectangle from the D3 family band", and the form notes cite the
+    # same band attribute by attribute. What no record carried was the band as a
+    # VALUE. Rule 6 of the programme's method asks whether a roof's family is one
+    # this layer already houses a trade in, and for a trade housed only here the
+    # question had no answer — not "no", which is a refusal, but nothing, which is
+    # an unanswered question wearing a refusal's clothes. T-A5 refused the two
+    # sawyer households on exactly that silence.
+    #
+    # So this writes down a value the programme already committed. It is a
+    # transcription, not a claim: `b["family"]` is read from the recipe, the same
+    # string the prose has been printing all along, and nothing here decides
+    # anything about a building. That is why it owes docs/LIBERTIES.md nothing —
+    # a liberty is an invention, and no invention is made by recording what was
+    # already committed in two other places.
+    #
+    # `status` is its own value rather than `inferred_anonymous`, because these
+    # roofs are the opposite of anonymous: each exists for a named-nowhere but
+    # argued household, carries an occupants block, and consumes a programme slot
+    # rather than filling one by aggregate mix. Reusing the anonymous word would
+    # have told popup.js to print "anonymous roof" over a building whose whole
+    # reason for existing is the household in it.
+    household_layer = None if documented else {
+        "status": "inferred_household",
+        "family": b["family"],
+        "district": b["district"],
+        "programme_phase": "phase2_inferred_households",
+        "source_id": SPEC,
+        "occupation": b["occupation"],
+    }
+
     record = {
         "id": bid,
         "name": name,
@@ -464,6 +498,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         "occupants": attested(
             p["occupants_value"] if documented else "A reconstructed household; no name is claimed",
             occ_conf, occ_src, occ_note),
+        **({"reconstruction": household_layer} if household_layer else {}),
         "research_note": research,
         "review_required": False,
     }
@@ -619,6 +654,46 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
         if sid in homes:
             raise SystemExit(f"{sid} is the dwelling of both {homes[sid]} and {h['id']}")
         homes[sid] = h["id"]
+
+    # K21 — every roof this layer stands a household on must name its family band.
+    #
+    # This is the gate that keeps rule 6's second test ANSWERABLE. The test asks
+    # whether a block roof's family is one this layer already houses that trade in,
+    # and it can only be evaluated against the families the layer's own roofs
+    # carry. A roof with no family in it does not answer "no" — it answers
+    # nothing, and a trade housed only on such roofs falls out of the test
+    # entirely. Four of them did (brickmaker, packer, sawyer, wheelwright), and
+    # eight more were partly out; T-A5 refused an adoption on that silence and
+    # could not tell the refusal apart from an unanswered question.
+    #
+    # It is deliberately stated over BOTH links, not just the dwelling. A trade's
+    # workshop family is as much a claim about the town as its dwelling family,
+    # and the works_at side is where the shop families (W*, C*) live.
+    crosswalk = {f["id"] for f in load(
+        DATA / "reconstruction" / "1835_family_archetype_crosswalk.json")["families"]}
+    by_id = {r["id"]: r for r in records}
+    for h in households:
+        for key in ("lives_at", "works_at"):
+            sid = h.get(key)
+            if not sid:
+                continue
+            doc = by_id.get(sid)
+            if doc is None:
+                path = STRUCTURES / f"{sid}.json"
+                if not path.exists():
+                    raise SystemExit(f"{h['id']} {key.replace('_', ' ')} {sid}, which no "
+                                     f"structure record builds")
+                doc = load(path)
+            family = (doc.get("reconstruction") or {}).get("family")
+            if not family:
+                raise SystemExit(
+                    f"{h['id']} {key.replace('_', ' ')} {sid}, which names no family band: "
+                    f"rule 6's family test cannot be evaluated for a {h['occupation']} and "
+                    f"would go silent rather than negative. Give the roof a reconstruction "
+                    f"block, or amend rule 6 to name the case explicitly (docs/ROADMAP.md K21)")
+            if family not in crosswalk:
+                raise SystemExit(f"{sid} names family {family}, which is not in "
+                                 f"1835_family_archetype_crosswalk.json")
 
     # the 665-roof programme is a ceiling, not a budget to overspend
     inventory = load(INVENTORY)
@@ -797,6 +872,19 @@ def main() -> int:
                    if sid and sid.startswith("recon_")})
     print(f"{mode} {len(households)} reconstructed households ({persons} persons), "
           f"{len(records)} structure records, {adopted} anonymous roofs adopted")
+    # K21: the figure the gate above guarantees, printed rather than assumed. A
+    # trade whose dwelling families are known is a trade rule 6's second test can
+    # be evaluated for; before this parcel four of them could not be, and the
+    # refusal that followed was indistinguishable from an unanswered question.
+    programme = load(PROGRAMME)
+    dwellings = {r["id"]: r for r in records}
+    trades: dict[str, set] = {}
+    for h in programme["households"]:
+        doc = dwellings.get(h["lives_at"]) or load(STRUCTURES / f"{h['lives_at']}.json")
+        trades.setdefault(h["occupation"], set()).add(doc["reconstruction"]["family"])
+    print(f"  rule 6 family test: {len(trades)} of "
+          f"{len(programme['occupation_census'])} census trades resolve, "
+          f"{sum(len(v) for v in trades.values())} trade-family pairs")
     return 0
 
 

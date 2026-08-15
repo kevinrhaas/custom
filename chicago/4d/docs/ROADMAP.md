@@ -69,6 +69,26 @@ this paragraph promised a `--stations` flag that did not exist and a `--only` fl
 does not have, so every run that took the advice ran the full set. `--stations` exists now and
 was measured at 2 min 03 s for three desktop stations. The full both-viewport `--metrics` run
 now costs 13 min with R-W4a's second capture.)
+**Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
+instead of 12; `SMOKE_VIEWPORT=mobile` runs one viewport while iterating. Full runs belong at the
+end, not in the loop.
+
+**AND A CEILING THE RUN BUDGET DOES NOT COVER, measured 2026-08-15 (K21): an agent's single
+foreground command is capped at TEN MINUTES, and the desktop half of the smoke does not fit in
+it.** The 150-minute figure above is the *run's* budget; the harness a steward run executes in also
+caps each individual command, and that is the binding constraint for this gate. Measured on this
+runner, serving the published mirror: **`SMOKE_VIEWPORT=mobile` finished in 4 m 43 s, 214 passed /
+0 failed. `SMOKE_VIEWPORT=desktop` was killed at 10 m 00 s having passed 151 with 0 failed** — an
+estimated ~13 minutes end to end, so it fails by about three. Both halves in one command is ~18
+minutes and never fits. The trailing `page.click: Target page … has been closed` in such a log is
+the kill, not a failure.
+
+**So a parcel whose acceptance needs the desktop half cannot self-verify it here, and should say so
+in its PR rather than quietly merging on the mobile half.** `tools/check.sh` — which is the actual
+dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) — is unaffected at
+~90 s. The durable fix is for the smoke to take a test-name or section filter the way it takes
+`SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
+desktop half belongs to a runner without the per-command ceiling.
 
 ### NEXT UP — the unambiguous picks
 
@@ -86,7 +106,7 @@ now costs 13 min with R-W4a's second capture.)
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
-| 6 | TOWN | **K21** | the adoption tests are silent, not negative, for four trades — a refusal nobody can distinguish from an unanswered question |
+| 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
 
@@ -133,6 +153,15 @@ and the parcel's prime suspect was **refuted by measurement**. The gate could no
 now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at range and **1.1 L\* /
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
+
+**K21 is DONE (2026-08-15)** — the four trades whose adoption test was silent are silent no longer:
+every roof this layer raises now carries the family band its own prose has always named, **29 of 29
+census trades resolve across 44 trade-family pairs**, and a gate fails if a household is ever housed
+on a roof that names no family. No liberty was owed — the value was already committed twice over —
+and rule 6 gains no clause. The parcel's own Watch note was **refuted**: the two sawyer roofs differ
+because they were dealt different families. The real archetype split, and the finding underneath it
+— **54 of 193 roofs sit outside the band their note cites** — are **K25**. Full findings under K21
+below; read the refutation before massing anything off an archetype.
 
 **T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
 building standing proud of its own frontage has its centroid in the road, so four documented
@@ -881,7 +910,62 @@ loses its pool citation.
 diff whose real content is one addition. Two independent measurements at the same rate; the "buries
 the parcel's real diff" paragraph above is now demonstrated rather than predicted.
 
-### K21 — the adoption tests are silent, not negative, for four trades · **UNCLAIMED · from T-A5 · Effort: S**
+### K21 — the adoption tests are silent, not negative, for four trades · **DONE 2026-08-15**
+
+**The answer was the first of the two the parcel offered, and it was not close.** Every one of the
+31 buildings this layer raises was dealt a crosswalk family by the programme, and every one has
+always *said* so in prose: the footprint note reads "a 16 x 22 ft rectangle from the **D3** family
+band", and each form value cites the same band. What no record carried was the band as a **value**.
+So there was nothing to decide — the assignment is a transcription of a string committed in two
+other places, which is why **it owes `docs/LIBERTIES.md` nothing**: a liberty is an invention, and
+writing down what was already committed invents nothing. The second branch (records deliberately
+outside the typology, rule 6 gaining a fourth clause) was never reached, and rule 6 gains **no new
+clause** — a trade whose families are now readable can still fail the test.
+
+**What it measured, before and after.** Of 29 census trades, **four resolved nothing**
+(`brickmaker`, `packer`, `sawyer`, `wheelwright`) and **eight resolved partly** — 17 households
+stood on 31 roofs that named no family. After: **29 of 29 trades resolve, across 44 trade-family
+pairs**, and the two sawyer households T-A5 refused now read D3 and D2 — facts a parcel can check
+rather than a question it could not ask.
+
+**The gate is the durable half.** `tools/generate_inferred_households.py` now fails if any roof a
+household *lives or works in* names no family in the crosswalk, over both links rather than the
+dwelling alone — a shop's family is as much a claim about the town as a cottage's. A test cannot go
+silent again without a gate saying so, which is the same medicine T-A4's `deferred` gate applied
+one level down.
+
+**The suspicion in the parcel's own Watch note is refuted, and the refutation is the useful part.**
+`inf_sawyer_dwelling_b` masses as an `outbuilding` while `_a` masses as a `frame_dwelling` because
+**they were dealt different families** — D3 and D2 — and each resolves through its own family's
+committed placeholder archetype. The programme says so in the record's own existence note: the
+second sawyer's roof is "a plank dwelling of the schedule's D2 shanty family, which is what the
+meanest end of the building trade lived in". Two dwellings of one trade massed as different kinds
+of thing is the deliberate claim, not a defect. **The real archetype split is elsewhere and the
+Watch note pointed at the wrong record:** five W4 shops, one family, are massed two ways —
+`inf_shoemaker_shop`, `inf_tailor_shop` and `inf_barber_shop` as `frame_storefront` at a 3.25 m
+eave, `inf_gunsmith_shop` and `inf_harness_shop` as `outbuilding` at 2.05 m. All five are
+one-storey, so W4's own licence for the storefront massing ("acceptable only for one-storey
+massing; two-storey shop-house variants need dwelling/storefront openings") does not explain it.
+That is **K25**, with the larger finding it opened.
+
+**Two side effects, both caught by gates rather than by reading.** `tools/reconcile_665.py`
+classified a record by whether it carried a reconstruction block at all, so all 31 moved from
+`inferred_household_programme` into `generated` — totals unchanged, attribution wrong, which is
+precisely the kind of thing a total hides; it keys on the status now. And `compile_scene.py` sent
+every reconstruction-block record to the anonymous-infill dossier, which would have put a visitor
+who clicked a building raised for one argued household in front of a write-up about aggregate
+count-units; the household layer has its own dossier and now points at it. That link is dead on the
+live site for every building on the site — see **K26**.
+
+**Files:** `tools/generate_inferred_households.py`, `tools/compile_scene.py`,
+`tools/reconcile_665.py`, `data/structures.schema.json` (the block gains an `inferred_household`
+status and an `occupation`; `sequence` and `inventory_class` are required of the anonymous status
+only, because a bespoke roof has no parcel slot and inventing one would be a claim),
+`data/reconstruction/1835_inferred_household_programme.json` (rule 6 records the resolution),
+31 structure records + their sidecars.
+
+<details>
+<summary>The parcel as it was written</summary>
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
@@ -919,6 +1003,77 @@ looking at while in the file; it may be the same root cause and it may be a seco
 **Acceptance:** every trade in the occupation census either resolves test 2 or is named as a case
 rule 6 explicitly handles; `tools/check.sh` green; `tools/audit_confidence.py --strict` green; no
 household is added by this parcel.
+
+</details>
+
+### K25 — 54 roofs sit outside the band their own note cites · **UNCLAIMED · from K21 · SPLIT (a) then (b)**
+
+**Phase:** lane 2 for (a), and (b) NEEDS THE BAKE · **Effort:** M
+
+Every reconstructed roof carries the same sentence on every form value: *"Type-level choice within
+the D3 band in the reconstruction specification."* For **54 of 193** records the value is not in
+that band. Measured against `key_geometry_parameters` in
+`data/reconstruction/1835_family_archetype_crosswalk.json`, reading `wall_height_m` as the eave the
+placeholder massing builds it as:
+
+| layer | records | outside | worst |
+|---|---:|---:|---|
+| anonymous infill (`recon_1835_*`) | 162 | **39** | F2 at 17.6 ft against 19–23 |
+| inferred-household (K21's 31) | 31 | **15** | W4 at 6.7 ft against **9–18** |
+
+**The root cause is one line, and it is not a typo.** `inferred_form()` in
+`tools/generate_inferred_households.py` — and its counterparts in the anonymous generators — choose
+every form value from the **archetype**, consulting the family only for a handful of special cases.
+So `outbuilding` hands out a 2.05 m wall whether the family band asks for 7–8 ft (D2, near enough)
+or 9–18 ft (W4, out by a third of the band's floor), and the note attached to that value cites the
+band regardless. **Fifteen of the 54 are within 1 ft and read as rounding** (D3 at 9.1 ft against a
+band ending at 9.0). The other end is not rounding: `inf_laundry_north` is 280 sq ft against an A5
+band of 48–192, and `inf_sawpit_shed` is 720 against W5's 792–2160.
+
+**Why it outranks a tidy-up.** A note that cites a band is a provenance claim — it says the
+invention is *bounded by the specification*, which is the whole defence for inventing it. Where the
+value is outside the band the note is not merely imprecise, it is **wrong about its own source**,
+and it is wrong on 54 buildings at once.
+
+**(a) land the failing measurement.** A gate that reads each form value against its family's
+committed band and fails, committed RED with the numbers above quoted, plus the decision about the
+sub-1-ft cases (widen the tolerance and say why, or accept them as failures). Data and tools only;
+no geometry moves. **(b) turn it green** takes (a)'s numbers as the baseline. Some fixes are a
+number in a table; any that changes a wall height changes the massing and **needs the bake**, so
+(b) ships the data half and says so.
+
+**Do not fix this by widening a band.** The bands are the specification's, not this project's, and
+a band widened to admit the value it was supposed to bound stops being evidence. Where a value
+genuinely belongs outside its band, the record's note must say so in its own words instead of
+citing a band it does not sit in.
+
+**The W4 split rides along.** Five W4 shops, one family, two massings (three `frame_storefront` at
+3.25 m, two `outbuilding` at 2.05 m) and all five one-storey, so the family's own licence for the
+storefront does not explain it. Decide which is right for a one-storey artisan shop and make the
+five agree, or record why a barber's shop and a gunsmith's are different kinds of building.
+
+### K26 — every building card links to a dossier that is not published · **UNCLAIMED · from K21 · Effort: S — a decision, then a line**
+
+**Phase:** lane 1 (renderer or publish) · **Effort:** S
+
+Each sidecar carries `research_doc`, and `popup.js` renders it as a link — `docBase +
+s.research_doc`, so `docs/RESEARCH/<id>.md` relative to the walkthrough. **`tools/publish.sh`
+deliberately does not publish `docs/`** ("the uncompressed GLB masters, the research dossiers and
+the raw dataset all stay in the repo and out of the payload"). So on the deployed site **all 276
+cards link to a 404**, and the card that says the least — an invented building whose whole defence
+is the write-up behind it — is the one whose link is worth the most.
+
+In the repo it is worse than a blanket 404 and better than nothing: **215 of 276** dossier paths
+exist, 61 do not. Thirty of those 61 are documented buildings with no dossier written yet (a
+research debt, not this parcel); the other 31 were K21's, and now point at the dossier that
+actually covers them.
+
+**It is a decision before it is a fix, which is why it is not folded into either.** Three
+candidates: publish `docs/RESEARCH/` (it is markdown a browser will not render, so it wants a
+viewer); link to the file on GitHub (leaves the site, works today, one line); or have the card show
+nothing where the dossier is unreachable rather than offering a link that breaks. The middle one is
+cheapest and honest. **Whatever is chosen, a gate should assert that a card's dossier link
+resolves** — a link nobody clicks in the dev tree is exactly how this survived.
 
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
