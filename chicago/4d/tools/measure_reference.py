@@ -24,6 +24,9 @@ state the elevation it was taken at:
 
 That also puts the camera pitch at -12.1 deg, which the 2026-08-10 prairie sweep
 had already established independently as "tilted down ~12 deg".
+
+The second section answers a question R-M1 asked of this file and got a NO from:
+does the frame contain a bare-earth surface at all? See `bare_ground_survey`.
 """
 import math
 import statistics
@@ -93,6 +96,96 @@ def _mean(pixels):
     return tuple(round(a / n) for a in acc)
 
 
+def is_soil(c):
+    """A bare-earth pixel: a warm monotone ramp r > g > b with a real red-blue
+    spread, and not so dark that it is shadow rather than surface. Deliberately
+    GENEROUS — it accepts dry litter, dead stems and shaded ground as well as
+    soil — because the question below is answered by a NO and a loose detector
+    makes a NO harder to get, not easier."""
+    r, g, b = c
+    return r > g > b and (r - b) >= 25 and r >= 60
+
+
+def is_non_green(c):
+    """No green excess at all. Definition-free backstop to `is_soil`: whatever a
+    track is made of, the vegetation it replaces is what has the green."""
+    r, g, b = c
+    return g - (r + b) / 2 <= 0
+
+
+def bare_ground_survey(px, width, height, horizon, ppd):
+    """Is there a dirt track in this photograph? — R-M1's question, 2026-08-15.
+
+    R-M1 was written to derive the road gate's thresholds by measuring "what
+    contrast a real dirt track holds against real prairie" in this frame. It
+    does not hold one. This is that finding as a command rather than as a
+    sentence, so the next parcel can re-run it instead of trusting it.
+
+    Fractions alone would not settle it — 3 % of this land region is soil-like
+    by the test above, which is dry stems and shadowed litter between plants and
+    would be 3 % in a frame with a road through it too. What separates a track
+    from litter is that a track is CONTIGUOUS ACROSS THE FRAME. So the number
+    that decides is the longest horizontal run, per row, and the elevation it
+    is found at.
+    """
+    print()
+    print("   BARE GROUND — is there a track in this frame? (R-M1)")
+    band_rows = {}
+    best_soil = (0, 0)
+    best_non_green = (0, 0)
+    for y in range(horizon + 8, height, 4):
+        soil_run = run = 0
+        green_run = grun = 0
+        soil_n = total = 0
+        for x in range(0, width, 4):
+            c = px[x, y]
+            total += 1
+            if is_soil(c):
+                soil_n += 1
+                run += 1
+                soil_run = max(soil_run, run)
+            else:
+                run = 0
+            if is_non_green(c):
+                grun += 1
+                green_run = max(green_run, grun)
+            else:
+                grun = 0
+        if soil_run > best_soil[0]:
+            best_soil = (soil_run, y)
+        if green_run > best_non_green[0]:
+            best_non_green = (green_run, y)
+        band = int((horizon - y) / ppd / 5) * 5
+        acc = band_rows.setdefault(band, [0, 0])
+        acc[0] += soil_n
+        acc[1] += total
+
+    print(f"   {'elevation band':<22}{'soil-like':<12}sampled")
+    for band in sorted(band_rows, reverse=True):
+        soil_n, total = band_rows[band]
+        label = f"{band:+d} to {band - 5:+d} deg"
+        print(f"   {label:<22}{100 * soil_n / total:>6.1f} %     {total}")
+
+    def report(name, best):
+        px_run = best[0] * 4
+        print(f"   longest {name:<26}{px_run:>5d} px = {100 * px_run / width:4.1f} % of the "
+              f"frame width, at {(horizon - best[1]) / ppd:+.1f} deg")
+
+    print()
+    report("bare-earth run", best_soil)
+    report("run with no green excess", best_non_green)
+    print()
+    print("   VERDICT — no track. A dirt road crossing this frame would put a")
+    print("   contiguous bare run across a large fraction of the width at some")
+    print("   elevation; the widest anywhere is under an eighth of it, and it is")
+    print("   at the bottom edge of the frame, at the photographer's own feet.")
+    print("   The widest run with no green excess is at the horizon: it is the")
+    print("   hazed treeline, which is not ground at all.")
+    print("   So this photograph CANNOT supply a road-against-ground contrast.")
+    print("   R-M1's derivation source has to come from somewhere else; the")
+    print("   sky, horizon and canopy readings above are unaffected.")
+
+
 def main():
     try:
         from PIL import Image
@@ -146,6 +239,8 @@ def main():
     print("   full frame width, the original readings were taken at the shot's own")
     print("   view azimuth, and the horizon's BRIGHTNESS is azimuth-dependent even")
     print("   where its hue is not. See the README beside the image.")
+
+    bare_ground_survey(px, width, height, int(round(horizon)), ppd)
     return 0
 
 

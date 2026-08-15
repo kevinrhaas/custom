@@ -1,5 +1,58 @@
 # STATUS
 
+## New 2026-08-15 — the road gate can now see contrast as well as lightness, and the photograph it was told to calibrate against has no road in it
+
+**R-M1a.** The owner ruled on 2026-08-14 that the road gate should score exposure-invariant
+**contrast** and keep an absolute **floor** — both bars, not a replacement — after R-W1
+legitimately changed the scene's exposure, preserved the road/ground ratio to within 0.4 %, and
+lost a gate it had not regressed. Both numbers are now measured at every road band, at both
+viewports. **Neither is gated**, and that split is deliberate: the parcel's own acceptance names
+three builds to smoke and the lane allows a parcel two, so it was split into *land the
+measurement* and *set the bars* before it was claimed. A gate that moves at the same moment as
+its own baseline has no baseline.
+
+**The measurement is verified against a number this project committed before the code to compute
+it existed.** R-W1's parked working recorded Weber **0.1217** at `from_above`, desktop,
+100–250 m, taken by hand at the point of use on `dev@d762a19`. `weberContrast()` reads **0.1217
+at n 11** against R-W1's n=11, eleven commits later. The 250–600 m band moved 0.0940 → 0.0999
+(+6.3 %) with ΔL\* 2.36 → 2.4 in step, which is R-BUG3's alpha-and-opaque work reaching a band
+R-BUG3 predicted it would leave untouched — small, real, and R-M1b's to explain.
+
+**The finding that matters more than the baseline: Weber has no ceiling as its background goes
+dark, and one band already demonstrates it.** `lake_market`, desktop, 100–250 m reads
+**`weber 8.8023` over a ground of `L* 3.0`**, where the same band on mobile reads 0.1339 over
+L\* 53.5. Nothing is wrong with the road there — ΔL\* is 18.0 at 100 % perceptible. The road's
+projected probes on that viewport simply land against something almost black, and a ratio whose
+denominator is the light in the background is unbounded when the background has none. **A median
+Weber over a band can therefore be set by its darkest probes rather than by its roads.** That is
+the precise failure the owner's ruling anticipated by pairing the ratio with a floor instead of
+swapping one bar for the other, and it is the number the bars would have been fitted against had
+they been set in the same change as the baseline.
+
+**And R-M1's threshold source does not exist.** The parcel says to derive the bars by measuring
+"what contrast a real dirt track holds against real prairie" in the R-REF1 photograph.
+**There is no dirt track in that photograph.** `tools/measure_reference.py` now surveys the land
+region and prints it: the widest contiguous bare-earth run anywhere below the horizon is
+**332 px = 8.2 % of the frame width, at −38.2°** — the bottom edge of the frame, at the
+photographer's own feet, and it is dry stems and litter between plants rather than a surface. The
+widest run with no green excess at all is 11.1 % at −0.4°, which is the hazed treeline and is not
+ground. The soil-like *fraction* is 3 % over the whole land region and rises to 18.5 % in the
+bottom 5°, which is exactly why a fraction cannot decide this and a run length can: a track
+crossing that frame would be contiguous across a large part of its width at some elevation, and
+nothing in it is.
+
+This is the second time this project has been handed a target that its own reference cannot
+supply. The first is recorded above under the 2026-08-10 prairie sweep — a horizon-timber brief
+specifying "Weber 0.036–0.067", of which STATUS says it *"does not exist in the reference at any
+threshold — that error was the brief's, not the builder's."* Nothing R-REF1 actually landed is
+weakened by this: all four sky readings, the horizon band and the canopy contrast still
+reproduce, and they are what `world.js` and `trees.js` quote. **R-M1b is therefore blocked on a
+threshold source, not on effort**, and the three honest options — a second cited photograph that
+does show a track, a cited published detection threshold labelled as a claim about eyes rather
+than roads, or R-M1a's own baseline frozen and labelled provisional — are written out in
+`docs/ROADMAP.md` § R-M1b for the owner to choose between. Do not pick a number and call it
+derived.
+
 ## Fixed 2026-08-15 — the town was paying a draw call per colour of paint, and the next 399 roofs now cost none
 
 **R-W5a.** The draw-call budget was the one thing both overnight lanes were waiting on: R-G1

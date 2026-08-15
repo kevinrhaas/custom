@@ -70,10 +70,10 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-M1** | unblocked by R-REF1 (landed 2026-08-15): the reference photograph is committed, so the road-contrast thresholds can be DERIVED rather than frozen provisional |
+| 1 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
+| — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
-| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
-| 4 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
+| 3 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
 | 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -1472,15 +1472,137 @@ against". Four things the next parcel should take from it rather than rediscover
   cleared; **any crop, resample, texture or LUT is an adaptation** and would put a ShareAlike
   obligation on this repository. R-M1 may measure it freely — it must not cut a tile out of it.
 - **R-M1's fallback is not needed.** It was written to freeze provisional Weber figures "if the
-  rights forbid committing it". They do not. Derive the thresholds from the photograph.
+  rights forbid committing it". They do not. ~~Derive the thresholds from the photograph.~~
+- **CORRECTED 2026-08-15 by R-M1a: the photograph cannot supply R-M1's thresholds, and this
+  bullet was wrong to promise it could.** It contains no bare-earth surface — widest contiguous
+  bare run **8.2 % of the frame width, at −38.2°**, at the photographer's feet — so there is no
+  dirt track in it to measure a road contrast against. `python3 tools/measure_reference.py`
+  prints the survey. **Nothing else on this list is affected**: the sky, horizon and canopy
+  readings R-REF1 landed all still reproduce, and they are what `world.js` and `trees.js`
+  actually quote. R-REF1 unblocked R-W1's target re-anchoring, which was the other half of what
+  it was for. See R-M1b for what a threshold source would now have to be.
 
-### R-M1 — the road gate scores contrast, not lightness · **CLAIMED 2026-08-15 — SPLIT (a)/(b) under the run-budget rule · UNBLOCKED 2026-08-15 by R-REF1 · owner ruled 2026-08-14**
+### R-M1a — the two scales, measured and not gated · **DONE 2026-08-15**
 
-> **Claimed as R-M1a by the improve runner, 2026-08-15.** The parcel's own acceptance names
-> three builds to smoke — the pre-R-BUG2 build, current `dev`, and R-W1's branch — and the
-> lane's rule above is that *a parcel whose acceptance needs more than TWO full smoke passes
-> must be split before it is claimed*. It is split along the seam that rule prescribes:
-> **(a) land the measurement, commit its numbers**, **(b) set the bars against them**.
+**The parcel was split before it was claimed, under the lane's own run-budget rule.** R-M1's
+acceptance names three builds to smoke — the pre-R-BUG2 build, current `dev`, and R-W1's
+branch — and the rule above is that *a parcel whose acceptance needs more than TWO full smoke
+passes must be split before it is claimed*. The seam that rule prescribes is
+**(a) land the measurement and commit its numbers**, **(b) set the bars against them**, and it
+earns more here than the time it saves: the baseline has to exist before anyone knows which
+threshold it will justify, so (b) cannot quietly pick a bar and call it derived.
+
+**What landed.** `weberContrast` and `relativeLuminance` are exported from
+`tools/critic_metrics.mjs` — the first thing in `tools/` to compute Weber, which `trees.js` and
+`LIBERTIES.md` have been quoting by hand — and every road band in `smoke_renderer.mjs` now also
+reports **`weber`** (exposure-invariant road-against-ground contrast, magnitude, median over the
+same probes) and **`groundL`** (median CIE L\* of the ground at those probes, the floor reading).
+**Neither is gated.** Nothing this change touches can alter a pass or a fail, which is the whole
+reason it is safe to land in one smoke: a gate that moves at the same moment as its own baseline
+has no baseline.
+
+**THE BASELINE, `dev@b287b31` + this branch, one full smoke, both viewports.** Gated bands only;
+`weber` is the median magnitude, `n` the probes it is taken over.
+
+| station | band | mobile 390×780 | desktop 1280×800 |
+|---|---|---|---|
+| `south_water` | 40–100 m | 0.1461 (n 34) · L\* 52.7 | 0.1570 (n 33) · L\* 53.5 |
+| `south_water` | 100–250 m | 0.1482 (n 24) · L\* 53.1 | 0.1606 (n 36) · L\* 54.6 |
+| `south_water` | 250–600 m | **0.5217 (n 15)** · L\* 52.0 | 0.1646 (n 11) · L\* 54.7 |
+| `from_above` | 100–250 m | 0.1169 (n 40) · L\* 51.2 | **0.1217 (n 11)** · L\* 51.9 |
+| `from_above` | 250–600 m | 0.1105 (n 150) · L\* 53.5 | 0.0999 (n 327) · L\* 53.9 |
+| `lake_market` | 2–40 m | 0.1190 (n 10) · L\* 51.0 | 0.1326 (n 10) · L\* 51.5 |
+| `lake_market` | 40–100 m | 0.1491 (n 15) · L\* 52.7 | 0.1288 (n 15) · L\* 52.7 |
+| `lake_market` | 100–250 m | 0.1339 (n 43) · L\* 53.5 | **8.8023 (n 23) · L\* 3.0** |
+| `lake_market` | 250–600 m | 0.1274 (n 122) · L\* 56.3 | **0.3965 (n 18)** · L\* 54.4 |
+
+**The implementation is verified against a number this project committed before it existed, and
+did not compute.** R-W1's parked measurement recorded Weber **0.1217** at `from_above`,
+desktop, 100–250 m, `dev@d762a19`, taken by hand at the point of use. This helper reads
+**0.1217 at n 11** against R-W1's **n=11**, on a `dev` that has moved eleven commits since.
+That is a reproduction, not an agreement of adjectives, and it is the evidence that the two
+halves of R-M1 are measuring one quantity. The 250–600 m band is the one that moved —
+0.0940 → 0.0999 (+6.3 %), with ΔL\* 2.36 → 2.4 in step — which is R-BUG3's opaque-and-alpha
+work showing up where R-BUG3 said it would not reach and is worth one line of R-M1b's attention.
+
+**Three things (b) must not walk past, and the first of them is why this half was worth landing
+on its own.**
+
+- **WEBER IS UNBOUNDED BELOW, AND ONE BAND ALREADY PROVES IT. `lake_market`, desktop,
+  100–250 m reads `weber 8.8023` over a ground of `L* 3.0`.** The denominator is the light the
+  ground is carrying, and at that station-band, on that viewport, the road's projected probes
+  land against something almost black — so a ratio that reads 0.13 on the same band at mobile
+  reads **eight point eight** on desktop. Nothing is wrong with the road there; ΔL\* reads 18.0
+  and 100 % perceptible. It is the scale that has no ceiling as its background goes dark.
+  **A median Weber over a band can therefore be set by its darkest probes rather than by its
+  roads**, which is the exact failure the owner's ruling anticipated when it paired the ratio
+  with a floor rather than replacing one bar with the other. (b) has to say what it does about
+  it — exclude probes below the floor, gate the two bars per-probe rather than per-median, or
+  something better — and it must not simply threshold this column. **Had the bars been set in
+  the same PR as the baseline, this is the number they would have been set against.**
+- **`south_water` at 250–600 m is not a band, it is fifteen pixels.** Mobile reads **0.5217**
+  against every other band's 0.10–0.17, on **15 probes seen of 510 projected**, and desktop
+  reads 0.1646 on **11 of 637**. A threshold fitted to that station-band is fitted to whatever
+  those few surviving probes happen to sit against. `ROAD_MIN_PROBES` is 8 and this clears it;
+  the number that should worry a threshold-setter is the seen-to-projected ratio, not the count.
+- **The floor is remarkably flat and that is a finding about the floor, not about the roads.**
+  Every gated band on both viewports reads ground L\* **51–58**. A floor bar anywhere below ~50
+  would never fire on any build this project has shipped, which makes it untestable rather than
+  safe. R-W1's build is the one that moves it — 14–17 % darker — so the floor's value has to be
+  derived against *that* branch or it is decoration.
+
+### R-M1b — set the two bars · **UNCLAIMED · NEXT UP · from R-M1a · Effort: M · BLOCKED ON A THRESHOLD SOURCE**
+
+Take R-M1a's table as the baseline. What is left is R-M1's original acceptance: the new bars
+**fail on the pre-R-BUG2 build** and **pass on current `dev`**, R-W1's branch is re-run against
+them **without re-tuning the streets**, every existing band still reports, and each threshold
+carries its derivation in a comment beside it.
+
+> ### THE DERIVATION SOURCE R-M1 NAMED DOES NOT EXIST. DO NOT SUBSTITUTE A GUESS FOR IT.
+>
+> R-M1 says to derive the thresholds by measuring "what contrast a real dirt track holds
+> against real prairie" in the R-REF1 photograph. **It does not contain a dirt track.**
+> `python3 tools/measure_reference.py` now surveys the land region of the frame and prints it:
+> the widest contiguous bare-earth run anywhere below the horizon is **332 px, 8.2 % of the
+> frame width, at −38.2°** — the bottom edge, at the photographer's own feet, and it is litter
+> and dry stems between plants rather than a surface. The widest run with no green excess at
+> all is **11.1 % at −0.4°**, which is the hazed treeline and is not ground. A track crossing
+> that frame would put a contiguous bare run across a large fraction of the width at some
+> elevation. Nothing in it does. The soil-like *fraction* is 3 % overall and rises to 18.5 %
+> in the bottom 5° — which is exactly why the fraction cannot decide this and the run length
+> can.
+>
+> This is the same shape of error the 2026-08-10 sweep recorded against itself: a brief handed
+> a builder a target — *"Weber 0.036–0.067"* — that **"does not exist in the reference at any
+> threshold"**, and STATUS.md says of it *"that error was the brief's, not the builder's"*.
+> R-M1's threshold clause is the second instance. The sky, horizon and canopy readings the
+> photograph *does* support are untouched by this and still reproduce.
+>
+> **So (b) needs a source, and picking one is above this lane's pay grade.** The honest options,
+> for the owner rather than for a runner:
+>
+> 1. **A second reference photograph** — a documented dirt track through grass, CC-licensed,
+>    committed the way R-REF1 committed this one, measured by the same code. It is R-REF1 again
+>    in full: identification, rights, EXIF, a frame solved so a reading can state its elevation.
+>    Call it **R-REF2**. It is the only option that makes "derived" literally true.
+> 2. **A published detection threshold**, cited as such — Weber contrast at photopic levels for
+>    a large suprathreshold target — with the bar set at a stated multiple of it and the
+>    multiple argued in the comment. Honest, and it is a claim about *eyes*, not about *roads*,
+>    which is a different bar than the parcel asked for and must be labelled as one.
+> 3. **Freeze R-M1a's own baseline as a no-regression bar**, explicitly labelled provisional in
+>    the code the way R-M1's struck-out fallback would have been. It is the weakest: it says
+>    only "no worse than 2026-08-15" and it cannot fail the pre-R-BUG2 build unless the margin
+>    is chosen, which is picking a number with extra steps.
+>
+> **Do not quietly take option 3 and describe it as derived.** If (b) arrives before the owner
+> has ruled, land option 3 *labelled as option 3* and say so in the PR — or leave the bars
+> ungated and say why.
+
+#### R-M1 (spec) — the original parcel definition, kept verbatim
+
+Unchanged except for the threshold-source paragraph, which is struck through below for the
+reason R-M1b states. (a) discharged the helper, the two measurements and the baseline; (b) owns
+everything else in it.
 
 **The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
 score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
@@ -1502,9 +1624,11 @@ and must not become one — the metric still has to FAIL on the pre-R-BUG2 build
 
 **Weber is a documented standard here, not a shared helper.** `trees.js:856` reasons in Weber
 contrast against the bar photograph and `STATUS.md` / `LIBERTIES.md` quote it, but nothing in
-`tools/` computes it. Expect to write the function.
+`tools/` computes it. Expect to write the function. — **DISCHARGED by R-M1a**:
+`weberContrast` and `relativeLuminance` are exported from `tools/critic_metrics.mjs`, and the
+first thing they were used for reproduced R-W1's hand-taken 0.1217 exactly.
 
-**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
+~~**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
 `ROAD_MIN_PERCEPTIBLE = 0.55` were set under one exposure and are now unanchored. The honest
 source is the reference photograph — what contrast does a real dirt track hold against real
 prairie? Hence **R-REF1 first.** ~~If the rights forbid committing it, freeze the measured Weber
@@ -1520,7 +1644,12 @@ Two conditions come with it: quote the **elevation** of every reading — `eleva
 are cleared, a crop or a resample is an adaptation that would put ShareAlike on this
 repository (`assets/LICENSES.md`). The Weber figures above stay useful as the last
 agreed-good build's numbers to sanity-check a derived threshold against, which is a different
-job from being the threshold.
+job from being the threshold.~~
+
+**STRUCK 2026-08-15 by R-M1a: the photograph contains no dirt track, so it cannot be the
+source.** Measured, printed and reproducible — `python3 tools/measure_reference.py`. See
+R-M1b's box above for what the options now are; the two conditions on *reading* the photograph
+(quote the elevation, never cut it up) stand and apply to anything that measures it.
 
 **Not a user setting, and the reasoning is worth keeping.** The gate runs headless in CI; there
 is no user in the room. Its thresholds are already tunable in the right way — named constants at
@@ -1528,10 +1657,12 @@ the top of `smoke_renderer.mjs` with the reasoning beside them, so a change appe
 gets argued. Moving them to a config file would make them easier to change *without* review,
 which is backwards for a gate.
 
-**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper)
+**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper) ·
+`tools/measure_reference.py` (R-M1a, the survey that struck the threshold source)
 **Acceptance:** the new bars fail on the pre-R-BUG2 build and pass on current `dev`; R-W1's
 branch is re-run against them **without re-tuning the streets**; every existing road band still
-reports; thresholds carry their derivation in a comment.
+reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
+"every existing road band still reports", which R-M1a holds green by not gating anything.
 
 ### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
 
