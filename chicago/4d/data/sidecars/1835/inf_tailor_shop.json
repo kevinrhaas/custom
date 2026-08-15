@@ -177,7 +177,7 @@
   "residents": [
     {
       "household": "hh_inf_tailor_south_01",
-      "name": "The Eastman household — a reconstructed tailor (south division)",
+      "name": "The Fairbanks household — a reconstructed tailor (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "inf_tailor_shop is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -187,7 +187,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Charles Eastman",
+          "name": "Joseph Fairbanks",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "tailor",
@@ -227,6 +227,14 @@
     }
   ],
   "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A tailor's shop on the same frontage, at the smaller scale a bespoke trade supports. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
-  "research_doc": "docs/RESEARCH/inf_tailor_shop.md",
-  "review_required": false
+  "research_doc": "docs/RESEARCH/residents_1835_inferred.md",
+  "review_required": false,
+  "reconstruction": {
+    "status": "inferred_household",
+    "family": "W4",
+    "district": "south",
+    "programme_phase": "phase2_inferred_households",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "occupation": "tailor"
+  }
 }

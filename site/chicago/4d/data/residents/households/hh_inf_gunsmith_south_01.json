@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_gunsmith_south_01",
- "name": "The Hayes household — a reconstructed gunsmith (south division)",
+ "name": "The Keegan household — a reconstructed gunsmith (south division)",
  "division": "south",
  "head": "inf_gunsmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_gunsmith_south_01",
-   "name": "Martin Hayes",
+   "name": "Patrick Keegan",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

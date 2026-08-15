@@ -6,7 +6,16 @@
  *   node tools/critic_shots.mjs --stability         …and hold them to the repeat contract
  *   node tools/critic_shots.mjs --published         shoot the published mirror
  *   node tools/critic_shots.mjs --viewport desktop  one viewport, while iterating
+ *   node tools/critic_shots.mjs --stations a,b      a subset, while iterating
+ *   node tools/critic_shots.mjs --no-mask           skip the structure-free frame
  *   node tools/critic_shots.mjs --out DIR           default /tmp/critic
+ *
+ * `--metrics` captures each station TWICE — the visitor's frame, and the same
+ * pose with the town's `structures` group hidden — because no property of one
+ * frame separates a gable end from an oak on the horizon (R-W4a; the argument
+ * and the numbers are in `critic_metrics.mjs`). The second capture costs frames
+ * rather than a page load, and `--no-mask` opts out for a run that only wants
+ * the cheap readings.
  *
  * WHY THIS EXISTS. Every rendering round this project has run was judged in
  * adjectives, or in numbers from a harness that was never committed — so no two
@@ -76,6 +85,16 @@ const WANT_METRICS = flag('--metrics');
 const WANT_STABILITY = flag('--stability');
 const OUT = path.resolve(value('--out', '/tmp/critic'));
 const ONLY = value('--viewport', '');
+// `--stations a,b,c` — the budget section of ROADMAP has told runs to use this
+// since 2026-08-14 and it did not exist, so every "3 minutes instead of 12" in
+// that section was actually a twelve-minute run. It filters the set and says so,
+// loudly, because a filtered run is not the baseline and must never be quoted
+// as one.
+const PICK = value('--stations', '').split(',').map((s) => s.trim()).filter(Boolean);
+// `--no-mask` drops the structure-free second capture (R-W4a). It costs frames,
+// not a page load, and without it the only horizon figure is the one that counts
+// gables as trees — so it is opt-OUT, and a run that opts out says so.
+const NO_MASK = flag('--no-mask');
 const PORT = Number(process.env.CRITIC_PORT || 4191);
 const YEAR = process.env.CRITIC_YEAR || '1835';
 
@@ -132,7 +151,11 @@ const STATIONS = [
     expectPitch: typeof a.pitch_deg === 'number' ? a.pitch_deg : 0,
   })),
   ...SWEEP_STATIONS.map((s) => ({ ...s, expectPitch: 0 })),
-];
+].filter((s) => !PICK.length || PICK.includes(s.id));
+if (PICK.length && !STATIONS.length) {
+  console.error(`no station matches --stations ${PICK.join(',')}`);
+  process.exit(2);
+}
 
 const VIEWPORTS = [
   ['mobile', { width: 390, height: 780 }],
@@ -215,6 +238,7 @@ function compareMetrics(a, b) {
   const readings = [
     ['horizonTimber.coverageAll', (m) => m.horizonTimber.coverageAll],
     ['horizonTimber.coverageCentralTwoThirds', (m) => m.horizonTimber.coverageCentralTwoThirds],
+    ['horizonTimber.timberOnly.coverageAll', (m) => m.horizonTimber.timberOnly?.coverageAll],
     ['crown.fineDetailRatio', (m) => m.crown.fineDetailRatio],
     ['crown.sunlitGminusB', (m) => m.crown.sunlitGminusB],
     ['shadow.darkestDecileL', (m) => m.shadow.darkestDecileL],
@@ -329,6 +353,39 @@ async function round(viewportName, viewport, dir) {
     const canvas = (await page.$('#view')) ?? (await page.$('canvas'));
     const png = await canvas.screenshot({ path: path.join(dir, `${st.id}.png`) });
     const sha = crypto.createHash('sha256').update(png).digest('hex');
+
+    // THE SECOND CAPTURE, AND WHY IT IS NOT A NEW WAY TO DRIVE THE SCENE.
+    // R-W4a: the horizon-timber recipe counts gable ends as trees, and no
+    // property of a single frame separates them — the sky is blue-dominant, so
+    // every non-sky pixel clears the G−B test, and L17's total extinction by
+    // 1500 m converges distant timber and a distant wall on one fog colour.
+    // So the harness photographs the same pose twice and lets SUBTRACTION do
+    // it: once as the visitor sees it, once with the `structures` group's
+    // `visible` flag down. Nothing is moved, nothing is reloaded, no camera
+    // changes, and the flag goes straight back up — the station's own frame is
+    // still the one in the manifest, and `sha256` is still that frame's.
+    if (WANT_METRICS && !NO_MASK) {
+      const toggled = await page.evaluate(async (on) => {
+        const g = window.__chicago4d.scene3d.getObjectByName('structures');
+        if (!g) return false;
+        g.visible = on;
+        // Two frames, matching the arrival idiom above: the batches carry no
+        // camera-driven rebuild, but a frame that has not been drawn is not a
+        // frame that can be photographed.
+        for (let i = 0; i < 2; i++) await window.__chicago4d.capture(4);
+        return true;
+      }, false);
+      if (!toggled) {
+        problems.push(`${viewportName}/${st.id}: no "structures" group to hide — `
+          + 'the timber-only figure cannot be measured');
+      } else {
+        await canvas.screenshot({ path: path.join(dir, `${st.id}__bare.png`) });
+        await page.evaluate(async () => {
+          window.__chicago4d.scene3d.getObjectByName('structures').visible = true;
+          for (let i = 0; i < 2; i++) await window.__chicago4d.capture(4);
+        });
+      }
+    }
     const pitchOff = Math.abs(arrived.pitchDeg - st.expectPitch);
     if (pitchOff > 0.5) {
       problems.push(`${viewportName}/${st.id}: pitch ${arrived.pitchDeg.toFixed(2)}° `
@@ -365,6 +422,7 @@ async function round(viewportName, viewport, dir) {
 console.log(`critic shots — ${PUBLISHED ? 'PUBLISHED mirror (compressed assets)' : 'source tree'}`
   + ` · ${STATIONS.length} stations · out ${OUT}`);
 if (ONLY) console.log(`NOT THE FULL SET — viewports filtered to "${ONLY}"`);
+if (PICK.length) console.log(`NOT THE FULL SET — stations filtered to ${PICK.join(', ')}`);
 
 const manifest = { target: PUBLISHED ? 'published' : 'source', year: YEAR, viewports: {} };
 
@@ -376,7 +434,10 @@ for (const [name, viewport] of VIEWPORTS) {
 
   if (WANT_METRICS || WANT_STABILITY) {
     for (const s of manifest.viewports[name].shots) {
-      s.metrics = measure(decodePng(fs.readFileSync(path.join(dir, `${s.id}.png`))));
+      const bare = path.join(dir, `${s.id}__bare.png`);
+      s.metrics = measure(decodePng(fs.readFileSync(path.join(dir, `${s.id}.png`))), {
+        withoutStructures: fs.existsSync(bare) ? decodePng(fs.readFileSync(bare)) : null,
+      });
     }
   }
 
@@ -395,7 +456,10 @@ for (const [name, viewport] of VIEWPORTS) {
       const a = decodePng(fs.readFileSync(path.join(dir, `${s.id}.png`)));
       const b = decodePng(fs.readFileSync(path.join(dir2, `${s.id}.png`)));
       const diff = pixelDiff(a, b);
-      const metricDrift = compareMetrics(s.metrics, measure(b));
+      const bare2 = path.join(dir2, `${s.id}__bare.png`);
+      const metricDrift = compareMetrics(s.metrics, measure(b, {
+        withoutStructures: fs.existsSync(bare2) ? decodePng(fs.readFileSync(bare2)) : null,
+      }));
       s.stability = {
         byte_identical: other.sha256 === s.sha256,
         differing_pixels: diff.pixels,
@@ -432,8 +496,12 @@ console.log(`\nmanifest: ${path.join(OUT, 'manifest.json')}`);
 if (WANT_METRICS) {
   console.log('\nmetric                     station            mobile    desktop');
   const rows = [
-    ['horizon timber (all)', (m) => m.horizonTimber.coverageAll],
-    ['horizon timber (centre)', (m) => m.horizonTimber.coverageCentralTwoThirds],
+    ['skyline breaks (all)', (m) => m.horizonTimber.coverageAll],
+    ['skyline breaks (centre)', (m) => m.horizonTimber.coverageCentralTwoThirds],
+    ['horizon TIMBER (all)', (m) => m.horizonTimber.timberOnly?.coverageAll ?? null],
+    ['horizon TIMBER (centre)',
+      (m) => m.horizonTimber.timberOnly?.coverageCentralTwoThirds ?? null],
+    ['…of which was the town', (m) => m.horizonTimber.timberOnly?.structureShareOfBreaks ?? null],
     ['crown fine-detail ratio', (m) => m.crown.fineDetailRatio],
     ['sunlit crown G-B', (m) => m.crown.sunlitGminusB],
     ['shadow darkest decile L', (m) => m.shadow.darkestDecileL],

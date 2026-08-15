@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_sawyer_south_01",
-      "name": "The Kelly household — a reconstructed sawyer (south division)",
+      "name": "The Lynch household — a reconstructed sawyer (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "inf_sawpit_shed is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Michael Kelly",
+          "name": "James Lynch",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "sawyer",
@@ -216,6 +216,14 @@
     }
   ],
   "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A sawpit and its shed on the river bank west of the built blocks: two men, a pit, a whip-saw and a stack of boards. NOT A MILL - no mill in the town is attested and none is claimed. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
-  "research_doc": "docs/RESEARCH/inf_sawpit_shed.md",
-  "review_required": false
+  "research_doc": "docs/RESEARCH/residents_1835_inferred.md",
+  "review_required": false,
+  "reconstruction": {
+    "status": "inferred_household",
+    "family": "W5",
+    "district": "south",
+    "programme_phase": "phase2_inferred_households",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "occupation": "sawyer"
+  }
 }

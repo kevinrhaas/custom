@@ -1,5 +1,86 @@
 # STATUS
 
+## New 2026-08-15 — five invented houses on the town's business front, and the share-out that put them there
+
+**T-A8**, and it is the first block parcel since T-A5 that actually built a block: T-A6 and T-A7
+each set out to fill one in and finished up repairing the arithmetic that decides what a block may
+be dealt. `blk_south_water_franklin` — South Water, Wells, Lake, Franklin — now carries **seven
+anonymous roofs**, five principal and two yard buildings, on five of its six free lots, with lot 1
+(the Lake-and-Franklin corner) left open. **Standing roofs 266 → 273; remaining 399 → 392, 54 of
+them on covered ground** (was 61). Inferred households 84 → 86, inferred persons 96 → 98; totals
+158 households and 194 people. Recorded in L99.
+
+**The recipe cleared every placement gate on its first run and no tool changed**, which is the
+shape T-A2 predicted these would settle into and which T-A6 and T-A7 both interrupted.
+
+**THE FINDING IS ABOUT THE SHARE-OUT, NOT ABOUT THIS BLOCK, AND IT IS OPENED AS K25.** This is the
+first block this lane has filled on South Water Street — the town's business front, where every
+documented roof on or beside the block is commercial: the Temple Building, the Exchange Coffee
+House, J. H. Kinzie's forwarding store, Newberry & Dole's warehouse west and H. Jones's store east.
+The 665-roof programme dealt it **five ordinary dwellings, one of them a D2 plank shanty**, because
+`tools/reconcile_665.py` apportions families by DISTRICT and has no notion of what a street was
+for. The block was built as dealt — the apportionment is the programme's claim and overriding it by
+hand on the day it produces an awkward result is how a reconstruction becomes a picture somebody
+liked — but the defect is now written down in three places rather than absorbed silently, and it
+will recur on `blk_south_water_wells`, `blk_south_water_lasalle`, `blk_south_water_clark`,
+`blk_south_water_dearborn` and `blk_lake_market`: **six of the ten open blocks front a commercial
+street.**
+
+**T-A7's second test is vindicated by measurement, which is what this block was in a position to
+do.** T-A7 left lot 2 schedulable because Kinzie's store laps it only inside the 1.5 m margin
+strip. If that had been too generous, this parcel is where it would have failed. It did not: the
+lot 2 roof stands **7.3 m** from Kinzie's store against a 3.0 m separation gate, and every other
+roof this parcel places is further from its own nearest neighbour than that.
+
+**Both adoptable trades passed rule 6 on one block, for the first time since the rule took its
+third test.** Exactly two trades' committed arguments call their own counts a floor — carpenter and
+labourer — and this block was dealt a D3 and a D1 in the South Division, which is precisely the
+family each is already housed in there. Both were adopted (13th carpenter, 15th labourer). Adopting
+only one, as every parcel before this did, would have been a preference rather than the rule
+choosing.
+
+**K20 measured a third time, and it is the worst reading yet.** Inserting two households renamed
+**28 of the 84 carried-over inferred households and 32 of the 96 carried-over invented persons** —
+a third of the layer — against 25-of-94 at T-A2h and 17-of-33-touched at T-A5. No grade moved, no
+`name_basis` lost its pool citation, and `check.sh` re-derives all 98, so this is churn rather than
+a provenance failure. K20's own text says the fix belongs in its own parcel; it has now ridden
+along with a block three times, and it is the reason this PR's diff is 47 files wide for a change
+whose real content is seven buildings.
+
+**AND IT DOES NOT SHIP. THE DESKTOP DRAW-CALL BUDGET IS EXCEEDED AND THIS PARCEL IS WHAT EXCEEDED
+IT.** `tools/check.sh` is green. The mobile viewport is green — 419 assertions, zero page errors.
+The desktop viewport fails four assertions for one reason. Measured on the published mirror at
+1280×800, both runs full and in the foreground:
+
+| | draw calls | budget | verdict |
+|---|---|---|---|
+| `dev@52641c4` (baseline) | **75** | 80 | pass |
+| this branch, +7 roofs | **84** | 80 | **fail**, and the three per-tier detail ceilings with it |
+
+**Seven roofs cost nine draw calls.** R-G1 projected +11 per 19 records; the observed rate here is
+steeper, and it was spent against five calls of headroom. This is **R-W5a**, arriving earlier than
+its own straight line predicted, and the operational consequence is blunt: **lane 2 cannot land
+another block until R-W5a lands.** Nine open blocks remain and not one of them is smaller than the
+one that broke it.
+
+**Three things were NOT done to make it green**, listed because each is a tempting shortcut. The
+budget was not raised — an assertion moved to admit what it was measuring is not a gate. Roofs were
+not dropped — the schedule deals seven, and building five to satisfy a frame rate is fitting the
+town to the renderer. R-W5a was not fixed in this run — it is a lane 1 parcel with a lane 1 PR
+already in flight, and batching the scene is a unit of its own.
+
+**One renderer-adjacent fix IS in this branch, because the parcel could not be diagnosed without
+it.** `tools/smoke_renderer.mjs` filtered terrain problems with `/terrain|water/i` against the
+whole message, so `blk_south_water_franklin` — the first block whose id contains the word — turned
+two ordinary placeholder-asset notes into a reported terrain load failure. Anchored to
+`/^\s*(terrain|water)\b/i`, which is what the code's own comment always claimed, and verified
+against real `terrain <epoch>: …` and `water: …` messages in both directions. Five of the ten open
+blocks are `blk_south_water_*`.
+
+**What this parcel did NOT do.** It did not re-apportion the schedule (K25), it did not fix the
+name allocator (K20), it did not fix the draw-call budget (R-W5a), and it did not answer whether
+one open lot per block is the right vacancy — the question T-A6 left standing and nothing here
+touches.
 ## Fixed 2026-08-15 — a wet corner was deleting whole panels of road, dry half included
 
 **R-BUG4**, owner-reported from South Water Street as a clean-edged green quadrilateral punched
@@ -44,6 +125,46 @@ A second, separate fault came out of the same reports (**R-BUG4**): `addRecord` 
 quad when ANY of its four corners is water, dry half included. **13 quads / ~30 m of roadway
 deleted while the centreline is dry land**; Kinzie loses 14.2 % of itself. Clip at the waterline,
 do not discard.
+
+## New 2026-08-15 — the horizon-timber figure was scoring the town's roofs, and the fix for it is subtraction rather than a colour test
+
+**R-W4a.** RENDERING § 5 asks for **≥ 90 %** horizon-timber column coverage. The number answering
+that question counted **any** break in the skyline above the land/sky line, and a gable end breaks
+a skyline as surely as an oak — R-G1 caught `prairie_south` moving 0.364 → 0.436 on nineteen new
+roofs with no renderer change. **Corrected, `prairie_south` reads 0.295 desktop where it read
+0.632, and 62 % of what was counted as timber there was the town** (409 of 1053 measured columns
+broke on a roof and on nothing else). Across the 22 station-viewports the mean falls **0.672 →
+0.582**, and the number meeting the target falls **1 → 0**. Full table in `docs/ROADMAP.md`
+§ R-W4a.
+
+**The discriminator this project had written down does not work, and that was measured rather
+than argued.** R-G1 proposed the crown-hue channel — "a whitewashed gable is not green". At the
+first hit pixel of every broken column, desktop: grey gables at `prairie_south` sit at ΔG−B
+**+22.4**, hazed timber at `prairie_west` ranges **+0.1 to +17.5**. The two populations overlap
+completely, because the horizon sky is strongly blue-dominant and every non-sky pixel clears a +3
+G−B test — the channel was a not-sky detector, so the old figure was testing the same condition
+twice. **No colour test can separate them in principle here**: L17 makes extinction total by
+1500 m, so distant timber and a distant wall both converge on the fog colour.
+
+**What replaced it takes the town away instead of guessing.** The harness photographs each
+station twice from the identical pose — once as the visitor sees it, once with the `structures`
+group hidden — and measures the horizon in the second frame. Timber by construction: no
+threshold, no hue, nothing to tune, and **the figure cannot move when a block lands**. The old
+number is kept at its old value under a name that says what it counts (skyline breaks), so
+2026-08-14's baseline is still comparable and no past figure was silently redefined.
+
+**Two properties of the new figure that must be quoted with it.** It rises at six of the
+22 station-viewports, because a building can stand in front of timber and hide it — it answers
+*is the horizon timbered*, not *can the visitor see timber past the town*, which is the right
+question for a target derived from photographs of a treeline. And `from_above` is an aerial pose
+whose band is not a horizon at all (0.212 / 0.156, town share 0 %): do not average it in without
+saying so.
+
+**Unverified / not claimed:** nothing about the renderer changed, so no scene claim moves with
+this. The cost of the second capture is measured (13 min 12 s for the full both-viewport run,
+against ~12 min without it) and `--no-mask` opts out. Putting the town back was checked rather
+than assumed: 5, 9 and 51 differing pixels of 1,024,000 across the change, inside the harness's
+own cross-process residual, with the `--stability` contract passing byte-identical.
 
 ## Partly fixed 2026-08-15 — the road at a crossing, the two stations that never stood on one, and a gate that abstained exactly when it should have shouted
 
@@ -216,6 +337,56 @@ instrument here. L98 names the honest
 successor: a textured coverage, earth and grass resolved as patches at the scale a near pixel can
 show, so the eye integrates the recorded fraction rather than the blender pre-mixing it. That
 belongs to **R-W2**, where the 1.4 texture score already lives.
+## New 2026-08-15 — a refusal nobody could tell apart from an unanswered question
+
+**K21.** Rule 6 of the household programme lets a block roof be adopted by an argued household
+only if three tests pass, and the second asks whether the roof's family is one this layer already
+houses that trade in. **For four trades that question had no answer at all.** `brickmaker`,
+`packer`, `sawyer` and `wheelwright` live exclusively on the 31 roofs this layer *raises* rather
+than adopts, and those records named no family in any field a gate could read — eight further
+trades were partly in the same position, 17 households in total. T-A5 refused the sawyer adoption
+on that silence and said at the time that it could not tell the refusal from an unanswered
+question.
+
+**The answer was a transcription, not a decision.** Every one of the 31 buildings was dealt a
+crosswalk family by the programme, and every one has always *said* so in prose — the footprint note
+reads "a 16 x 22 ft rectangle from the **D3** family band", and each form value cites the same
+band. The band was committed in two places and readable in neither. Writing it into
+`reconstruction.family` therefore **invents nothing and owes `docs/LIBERTIES.md` nothing**; rule 6
+gains no fourth clause, and no trade is granted a pass — a trade whose families are readable can
+still fail the test.
+
+| | before | after |
+|---|---:|---:|
+| census trades resolving rule 6's family test | 25 of 29, four of them not at all | **29 of 29** |
+| trade-family pairs the test can compare against | — | **44** |
+| households standing on a roof that names no family | 17 | **0** |
+
+**The durable half is the gate.** `tools/generate_inferred_households.py` fails if any roof a
+household *lives or works in* names no family in the crosswalk — over both links, because a shop's
+family is as much a claim about the town as a cottage's. The test cannot go silent again without a
+gate saying so.
+
+**The parcel's own suspicion was refuted.** It flagged `inf_sawyer_dwelling_b` massing as an
+`outbuilding` while `_a` masses as a `frame_dwelling`. They differ because **they were dealt
+different families**, D3 and D2, and each resolves through its own family's committed archetype —
+the record's existence note says so in as many words. The real split is five W4 shops massed two
+ways, all of them one-storey, which W4's own licence does not explain.
+
+**And underneath that, the finding worth more than the parcel.** Reading each committed form value
+against its family's band shows **54 of 193 reconstructed roofs sit outside the band their own note
+cites** — 39 of 162 anonymous, 15 of 31 bespoke, worst `inf_laundry_north` at 280 sq ft against an
+A5 band of 48–192. The cause is that the form generators choose values by **archetype** and attach
+a note citing the **family**. A note that cites a band is the defence for the invention; where the
+value is outside it the note is wrong about its own source. That is **K25**, split so the
+measurement lands before anything moves.
+
+**Two gates caught what reading would not have.** `reconcile_665.py` classified roofs by whether a
+reconstruction block was *present*, so all 31 silently moved from `inferred_household_programme` to
+`generated` — totals unchanged, attribution wrong. And `compile_scene.py` sent every
+reconstruction-block record to the anonymous-infill dossier; the household layer has its own and now
+points at it. Which surfaced **K26**: `publish.sh` deliberately keeps `docs/` out of the payload, so
+on the deployed site **all 276 building cards link to a 404**.
 
 ## New 2026-08-15 — the photograph the sky is calibrated against is now in the repository, and it checks out
 

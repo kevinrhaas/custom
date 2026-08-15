@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_packer_south_01",
- "name": "The Rice household — a reconstructed packer (south division)",
+ "name": "The Sawyer household — a reconstructed packer (south division)",
  "division": "south",
  "head": "inf_packer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_packer_south_01",
-   "name": "Rufus Rice",
+   "name": "Lemuel Sawyer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
