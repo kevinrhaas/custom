@@ -2467,6 +2467,36 @@
       "asset": "gltf/recon_1835_blk_randolph_wells_h2_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_south_water_clark_a3_05",
+      "name": "Reconstructed A3 privy #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_a3_05.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_a3_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d1_04",
+      "name": "Reconstructed D1 older log dwelling #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d1_04.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d3_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d4_02.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d5_01.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_south_water_franklin_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_franklin_a1_06.json",

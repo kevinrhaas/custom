@@ -110,7 +110,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A11…** | one open block per run until the 39 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
+| 1 | TOWN | **T-A12…** | one open block per run until the 34 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1708,12 +1708,72 @@ a large bucket renames everything after it. K20's fix still belongs in its own p
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L101 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A11 — `blk_south_water_clark` · **CLAIMED 2026-08-15 · `steward/t-a11-south-water-clark`**
+### T-A11 — `blk_south_water_clark` · **DONE 2026-08-15**
 
-The fourth block of the South Water row, bounded by South Water, Dearborn, Lake and Clark. The
-schedule deals it **five roofs, four principal and one ancillary** (D1, D3, D4, D5, A3) on five
-free lots — lots 0, 6 and 7 are already held. No other parcel may take this block while this
-heading stands.
+The fourth block of the South Water row — bounded by South Water, Dearborn, Lake and Clark —
+carries **five roofs, four principal and one ancillary**, on four of its five free lots. Lot 1
+(the Lake-and-Clark corner) is left open; lots 0, 6 and 7 are held by Harmon & Loomis's store,
+John Bates Jr.'s auction room and the first Tremont House, all three derived by
+`tools/plat_occupancy.py` rather than authored. **293 stand and 372 remain, 34 of them on covered
+ground.** The recipe cleared every placement gate on its first run and **no tool changed** — the
+fourth block in a row. Two adoptions under rule 6: the D3 one-room cottage on lot 5 becomes the
+sixteenth inferred carpenter household, the D1 log cabin on lot 3 the eighteenth labouring one.
+Full admission in `docs/LIBERTIES.md` **L102**.
+
+**Five findings came out of it that are not the block.**
+
+1. **The end rule has been asserted as a direction three times and is measured here for the first
+   time.** T-A8, T-A9 and T-A10 each put the better roof nearer "the town-centre end". This
+   block's east end is Dearborn Street, and the **Dearborn Street drawbridge** — the only crossing
+   of the main stem in July 1835, already a committed structure record, its south abutment at the
+   foot of Dearborn on South Water — is **35.6 m** from lot 6's frontage and **101.7 m** from
+   lot 0's, with lots 4 and 2 at 55.5 m and 78.1 m between them; the back street runs 126.3 m at
+   lot 7 to **158.2 m at lot 1**. The arrangement is still invented — no source says a better
+   house stood nearer the bridge — but it now has a re-derivable criterion instead of a compass
+   direction, and the open lot is the one farthest of the eight from the only bridge in town.
+2. **The frontage half of the same rule meets its first counter-example, and it is kept anyway.**
+   The largest documented footprint on this block stands on the BACK street: the first Tremont
+   House at **139.3 m²**, against 92.9 m² for the auction room, 92.9 m² for Harmon & Loomis's
+   store and 46.5 m² for the drug store. A hotel choosing Lake and Dearborn is evidence about
+   1835; the face rule is a typology for where anonymous dwellings of different tiers go, and L102
+   says so rather than letting three parcels of repetition harden into a claim about the street.
+3. **T-A7's lap case has a fourth instance and it is the first that costs the lot nothing.**
+   Pruyne & Kimball's drug store laps lot 2 by **4.66 m²** with **0.00 m² inside the buildable
+   inset** — the whole lap is in the 1.5 m margin strip. Two of its corners are 0.70 m and 0.65 m
+   inside the platted lot line; the other two stand 5.4 m out in the road, a **5.55 m** intrusion
+   into the South Water corridor. Four measured points now span the case from "entirely in the
+   strip" to L100's 22.1 m² of buildable area.
+4. **The west offset T-A10 used to clear a documented store was measured here and refused.** On
+   lot 2 it buys **0.03 m at 1.5 m and 0.33 m at 3.0 m**, the 3 m version costing 1.26 m of
+   lot-line margin, where half a metre of extra setback buys **0.50 m**. Church's store stood deep
+   in its lot; this one stands in the roadway, so only the setback moves the distance. The cottage
+   clears it by **6.83 m** against a 3 m gate — the closest approach in the parcel — and the
+   remaining offsets are called jitter rather than clearance.
+5. **Five South Division households live in a D5, this block was dealt one, and no parcel had ever
+   written down why none of them takes it.** Rule 6's family and division tests pass for the
+   baker, the butcher, the blacksmith and both clerks; every one of them fails test one, and two
+   fail it emphatically — the baker's argument infers one baker "and only one, because a bakehouse
+   serves a great many people and nothing attests a second". Three blocks running have been dealt
+   a D5 in silence. The silence is now a recorded refusal.
+
+**And K28 gets its third piece of evidence rather than its second.** The D4 on lot 2 passes all
+three tests for the carpenters as literally as T-A9's and T-A10's did, and was refused again on
+the same conservative reading. Three for three means the case is the ordinary shape of a South
+Division block, not a recurring edge — settle it rather than collect a fourth precedent. The
+labourers were dealt no D2 here, the first block since T-A8 where their second-roof question did
+not arise.
+
+**The sixth K20 measurement is the smallest ever recorded: 7 of 102** carried-over invented
+persons renamed, against 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was
+fixed in between; it is the hash-position mechanism L101 described, and this is the confirmation
+rather than an improvement. K20 still owns the fix.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (5 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(5 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L102 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
 ### T-A12…T-An — the remaining blocks · **UNCLAIMED**
 
@@ -1730,15 +1790,14 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A9, on ground the project has coverage for — 46 roofs across eight entries, every
+**Open after T-A11, on ground the project has coverage for — 34 roofs across six entries, every
 one of them buildable with a lot left open, and every lot of them now checked against the
-buildings that already stand there:** `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
-5 (4P+1A) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A, **carries the one
-I3 in the whole open set — defer it per T-A3 unless T-I3 has landed; the I3 moved here from
-`blk_south_water_clark` when T-A9 re-apportioned, which is exactly why this list is not to be
-trusted**) · `blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) ·
-`blk_randolph_clark` 8 (6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a
-principal roof by T-A6, now a C2).
+buildings that already stand there:** `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market`
+7 (5P+2A) · `blk_randolph_franklin` 8 (6P+2A, **carries the one I3 in the whole open set — defer
+it per T-A3 unless T-I3 has landed; the I3 has now moved TWICE, from `blk_south_water_clark` to
+`blk_lake_market` at T-A9 and to this block at T-A11, which is exactly why this list is not to be
+trusted**) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8 (6P+2A) ·
+`blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6, now an F3).
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block

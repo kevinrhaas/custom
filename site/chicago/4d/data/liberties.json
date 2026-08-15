@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 101,
+  "count": 102,
   "liberties": [
     {
       "id": "L1",
@@ -8912,6 +8912,52 @@
         {
           "label": "Covers",
           "text": "`recon_1835_blk_south_water_lasalle_*.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L102",
+      "title": "Four invented dwellings and a privy on the fourth block of the business front, and the first block where the \"better end\" can be pointed at",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_018"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_clark` — bounded by South Water, Dearborn, Lake and Clark — now carries **five anonymous roofs**: four dwellings, one per lot on four of its five free lots, and one privy in the yard of lot 4 off the block alley. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the five are adopted — the D3 one-room cottage on lot 5 as a sixteenth inferred carpenter household, the D1 log cabin on lot 3 as an eighteenth labouring one — and the other three stay anonymous count-units. Lot 0 is held by Harmon & Loomis's store, lot 6 by John Bates Jr.'s auction room and lot 7 by the first Tremont House; none of the three is touched. **THE END RULE HAS BEEN ASSERTED BY THREE PARCELS AS A DIRECTION AND THIS IS THE FIRST BLOCK WHERE THE THING AT THE GOOD END CAN BE NAMED AND MEASURED.** T-A8, T-A9 and T-A10 each put their better roofs nearer \"the town-centre end\" and further from \"the end that runs back toward the wharves\", which was a reading of the town rather than a measurement of anything. This block's east end is Dearborn Street, and the **Dearborn Street drawbridge** — the only crossing of the main stem in July 1835, a committed structure record whose south abutment stands at the foot of Dearborn on South Water — is 35.6 m from the frontage of lot 6 and **101.7 m from lot 0**, with lots 4 and 2 at **55.5 m and 78.1 m** in between. The gradient runs the same way on the back street (lot 7 at 126.3 m to lot 1 at 158.2 m). So the arrangement is still an invention — no source says a better house stood nearer the bridge — but it is now an invention with a stated and re-derivable criterion instead of a compass direction, and the lot left open is the one **farthest of the eight from the only bridge in town**. **And the frontage half of the same rule meets its first counter-example on this block, which is recorded rather than argued away.** Three parcels have called South Water the valuable face and Lake the back street. On this block the **largest documented footprint stands on Lake**: the first Tremont House at 139.3 m², against 92.9 m² for the auction room, 92.9 m² for Harmon & Loomis's store and 46.5 m² for Pruyne & Kimball's drug store. A hotel choosing the Lake and Dearborn corner is evidence about 1835 and the frontage rule is not; the rule is kept because it is a typology for where *anonymous* dwellings of different tiers go, and this entry says plainly that the block's own documented evidence does not support extending it into a claim about which street was worth more. **The T-A7 lap case has a fourth instance and it is the first that costs the lot nothing at all.** Pruyne & Kimball's drug store laps lot 2 by **4.66 m² of its 46.5 m²**, and **0.00 m² of that lap is inside lot 2's buildable inset** — the whole of it lies in the 1.5 m margin strip along the frontage. Two of its four corners sit 0.70 m and 0.65 m inside the platted lot line and the other two stand 5.4 m out in the roadway; measured against the corridors it intrudes **5.55 m into South Water**. Against L100's 22.1 m² inside the inset on `blk_south_water_lasalle`, Kinzie's 9.7 m² and `recon_1835_west_018`'s 11.9 m², the case now has four measured points spanning the whole range from \"entirely in the strip\" to \"a fifth of it buildable\". **The offset that answered the last block's lap was measured here and refused, which is the more useful half of the finding.** T-A10 moved its shanty west to clear Church's store. The same move on lot 2 buys **0.03 m at 1.5 m of offset and 0.33 m at 3.0 m**, and the 3 m version costs 1.26 m of lot-line margin; half a metre of extra setback buys **0.50 m** on its own. The reason is geometric and worth stating once: Church's store stood deep inside its lot, so sliding along the frontage moved a building away from it, while the drug store stands *in the roadway*, so only standing further back from the street helps. The cottage is set back 7.5 m and clears the drug store by **6.83 m** against a 3 m separation gate — the closest approach anywhere in this parcel. The lateral offsets that remain are ordinary jitter and are described as jitter, not as clearance. **Five South Division households live in a D5, this block was dealt a D5, and none of them took it — the first time a parcel has written down why.** Rule 6's second and third tests (the roof's family and division are ones this layer already houses the trade in) pass for the baker, the butcher, the blacksmith and both clerks. Every one of them fails the first test, and two fail it emphatically: the baker's committed argument says one baker is inferred \"and only one, because a bakehouse serves a great many people and nothing attests a second\", and the butcher's infers a single household. Three consecutive blocks have now dealt a D5 and none has recorded the question; the answer is that test one is doing all the work, and a rule whose refusals are never written down is indistinguishable from a rule nobody applied. **A third consecutive block offered the carpenters a second roof and a third refusal is recorded.** The D4 two-room cottage on lot 2 passes all three tests as literally as T-A9's and T-A10's did. Held to one per trade again, as a choice and not a rule — but three for three means the case is the ordinary shape of a South Division block rather than a recurring edge, and **ROADMAP K28** should be settled rather than collecting a fourth precedent. The labourers were offered only one roof here (no D2 was dealt), the first block since T-A8 where that question did not arise. **One thing about the derived occupancy, found while reading it and affecting nothing.** Bates's auction room fronts **east onto Dearborn** by its own record, and is seated on lot 6, a *South Water*-face lot, because `tools/plat_occupancy.py` seats a building by the area it covers and the K7 division gives a block two faces of four lots and no lot facing the cross street. That is the right answer for occupancy — the lot is covered and cannot carry another roof — but a reader should not infer a frontage from a lot index."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its eighth platted block and its fourth on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive — flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **288 → 293** against the 665-roof target; **372 remain**, 34 of them on ground the project has coverage for. Inferred households move 90 → 92 and inferred persons 102 → 104; two more anonymous roofs stop being anonymous. **The sixth K20 measurement is the smallest ever recorded, and it is the same mechanism.** Two new households renamed **7 of the 102 carried-over invented persons** — against 72-of-100 at T-A10, 19-of-98 at T-A9, 32-of-96 at T-A8 and 25-of-94 at T-A2h. Nothing was fixed between T-A10 and this parcel; the churn is a function of where the two new person ids hash into their community-and-sex pools, exactly as L101 said, and this measurement is the confirmation rather than an improvement. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 104. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. The commercial-frontage question (K29) is discharged by any evidence that states what stood on South Water Street between Clark and Dearborn in July 1835 — a directory, an assessment roll or a fire-insurance sheet would settle it — and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_clark_*.inferred_1835.position`, `recon_1835_blk_south_water_clark_*.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",
