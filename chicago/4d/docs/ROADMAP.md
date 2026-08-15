@@ -1647,7 +1647,14 @@ Full admission in `docs/LIBERTIES.md` **L100**.
 placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L100 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A10…T-An — the remaining blocks · **UNCLAIMED**
+### T-A10 — `blk_south_water_lasalle` · **CLAIMED 2026-08-15 · `steward/t-a10-south-water-lasalle`**
+
+The third block of the South Water row, bounded by South Water, Clark, Lake and LaSalle. Dealt
+**seven roofs, five principal and two ancillary** (D1 D2 D3 D4 D5 · A1 A3) on its six free lots —
+lot 6 is held by the Chicago Democrat's office and lot 5 by Thomas Church's store, both derived
+by `tools/plat_occupancy.py`, not authored. One lot left open under the alternating-vacancy rule.
+
+### T-A11…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
