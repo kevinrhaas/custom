@@ -62,9 +62,13 @@ This is better than a time-saving trick: it forces the measurement to be committ
 anyone knows which candidate cause is guilty, so the fix cannot quietly redefine success. It
 is exactly how R-BUG2 succeeded — *"measure before choosing"* refuted its own prime suspect.
 
-**Use `--stations` and `--only`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
-instead of 12; the smoke takes `--only` for a single viewport while iterating. Full runs
-belong at the end, not in the loop.
+**Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in about
+2 minutes instead of 13; the smoke takes `SMOKE_VIEWPORT=desktop` for a single viewport while
+iterating. Full runs belong at the end, not in the loop. (**Corrected 2026-08-15 by R-W4a**:
+this paragraph promised a `--stations` flag that did not exist and a `--only` flag the smoke
+does not have, so every run that took the advice ran the full set. `--stations` exists now and
+was measured at 2 min 03 s for three desktop stations. The full both-viewport `--metrics` run
+now costs 13 min with R-W4a's second capture.)
 
 ### NEXT UP — the unambiguous picks
 
@@ -72,7 +76,8 @@ belong at the end, not in the loop.
 |---|---|---|---|
 | 1 | RENDERING | **R-BUG3c** | **owner-reproduced WITH the fix in, twice, on 2026-08-15.** The near ground — road, grass tufts, all texture — is missing below a hard line at a constant distance, and it is NOT the streets. Measured, not guessed; read the box before touching anything |
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road quad, dry half included: 13 quads / ~30 m of roadway removed where the centreline is dry land. Kinzie loses 14.2 % of itself |
-| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
+| 3 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
@@ -368,8 +373,10 @@ this is not an argument to move it, but W1 should not expect the shadow map to h
 
 ### R-W4 — atmosphere and the mid-field · **SPLIT FOUR WAYS — claim ONE**
 
-> **R-W4a is CLAIMED 2026-08-15** by the run on `steward/r-w4a-timber-metric`. It touches
-> `tools/critic_metrics.mjs` and `tools/critic_shots.mjs` only. R-W4b/c/d are free.
+> **R-W4a is DONE 2026-08-15** — the metric counted the town's roofs as timber, the
+> discriminator this entry named was measured and REFUTED, and the figure it was replaced with
+> cannot move when a block lands. Findings and the corrected table under R-W4a below.
+> R-W4b/c/d are free and now have a number they can trust.
 
 **Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **After:** R-G0
 
@@ -379,7 +386,7 @@ at the top). Each half below is one coherent change with one smoke.
 
 | | parcel | why it stands alone |
 |---|---|---|
-| **R-W4a** | **fix the horizon-timber metric · DO THIS FIRST** | The acceptance number below is currently unmeasurable — see the R-G1 finding at the end of this entry. **Until this lands, no other W4 half can prove anything**, because the headline figure counts gable ends as trees. Touches the metric only, not the renderer. |
+| ~~**R-W4a**~~ | ~~fix the horizon-timber metric~~ · **DONE 2026-08-15** | The headline figure counted gable ends as trees and the acceptance number was unmeasurable. It is measurable now, and it is much worse than it read. Findings below. |
 | **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
 | **R-W4c** | **flower load** | `0.0012` against a 4–6 % target — the largest single accuracy deduction on the historical axis outside the town. `data/flora/` tuning + `flora.js`. |
 | **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
@@ -393,7 +400,8 @@ number is the difference between improving the scene and improving the score.
 `tools/smoke_renderer.mjs`
 
 **Acceptance (RENDERING §5):** vegetated pixels present to the fog-90 % distance; horizon
-timber column coverage **≥ 90 %**; crown fine-detail ratio **≥ 0.6**; depth-band high-pass
+timber column coverage **≥ 90 %** — quoted from `horizonTimber.timberOnly.coverageAll` and
+never from `coverageAll`, which counts roofs (R-W4a); crown fine-detail ratio **≥ 0.6**; depth-band high-pass
 RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %**; the ring seam gone
 (no constant screen row across all columns). Fog still total by 1500 m (**L17**), and
 `HAZE_MAX = 0.82` on the horizon band is **L35** — a technique that changes what either
@@ -417,6 +425,81 @@ already computes (G−B) is the obvious discriminator, since a whitewashed gable
 Two further reads from the scored pass: the sky is a single cloudless gradient at all five
 stations, and the flower load at `prairie_west` is **0.0012** against the honest 4–6 % target —
 the largest single accuracy deduction on the historical axis outside the town itself.
+
+#### R-W4a — DONE 2026-08-15 · the horizon metric was scoring the town, and the discriminator this entry named does not work
+
+**What it was.** `critic_metrics.mjs` counted a horizon column as timbered if anything broke the
+skyline in the band above the land/sky line. A gable end does that as surely as an oak, so the
+figure rose when the town grew — R-G1 measured `prairie_south` moving 0.364 → 0.436 on nineteen
+new roofs with no renderer change — and 399 roofs were still to come.
+
+**The named discriminator was refuted before anything was built.** This entry proposed the G−B
+channel, "since a whitewashed gable is not green". Measured on the 2026-08-15 `dev` build,
+desktop, at the first hit pixel of every broken column: the grey gables at `prairie_south` sit at
+**ΔG−B +22.4** and hazed timber at `prairie_west` ranges **+0.1 to +17.5**. The populations
+overlap completely, because the sky near the horizon is strongly blue-dominant and *every*
+non-sky pixel clears a +3 G−B test by a wide margin — the channel is a not-sky detector, and
+`coverageAll` was reading the same thing twice. **No colour test can work here in principle**:
+L17 makes extinction total by 1500 m, so distant timber and a distant wall converge on the fog
+colour. The atmosphere destroys the evidence the discriminator needs, correctly.
+
+**What was done instead — subtraction, not a heuristic.** `critic_shots.mjs` photographs each
+station twice from the identical pose: once as the visitor sees it, and once with the
+`structures` group's `visible` flag down. `measure()` runs the same recipe on both. The second
+frame's coverage is timber by construction — no threshold, no hue, nothing to tune — and it
+**cannot move when a block lands**. The old number is kept, unchanged in value and computed
+exactly as before, under a name that says what it counts (skyline breaks), so the 2026-08-14
+baseline stays comparable.
+
+**The corrected table — source tree, 2026-08-15 `dev`, both viewports, 11 stations.** `breaks` is
+the old figure; `timber` is the honest one; `town` is the share of the old figure that was roofs.
+
+| station | dsk breaks | dsk **timber** | dsk town | mob breaks | mob **timber** | mob town |
+|---|---|---|---|---|---|---|
+| `sauganash` | 0.638 | **0.477** | 29 % | 0.756 | **0.574** | 33 % |
+| `sauganash_wing` | 0.518 | **0.492** | 20 % | 0.636 | **0.636** | 16 % |
+| `lake_market` | 0.532 | **0.534** | 16 % | 0.697 | **0.597** | 24 % |
+| `first_post_office` | 0.847 | **0.751** | 12 % | 0.919 | **0.698** | 24 % |
+| `forks` | 0.738 | **0.651** | 25 % | 0.749 | **0.818** | 16 % |
+| `green_tree` | 0.737 | **0.745** | 9 % | 0.762 | **0.797** | 3 % |
+| `south_water` | 0.889 | **0.706** | 25 % | 0.836 | **0.362** | 58 % |
+| `from_above` | 0.212 | **0.212** | 0 % | 0.156 | **0.156** | 0 % |
+| `prairie_south` | 0.632 | **0.295** | **62 %** | 0.682 | **0.403** | 49 % |
+| `prairie_west` | 0.830 | **0.894** | 5 % | 0.669 | **0.639** | 21 % |
+| `river_bank` | 0.641 | **0.651** | 1 % | 0.713 | **0.713** | 0 % |
+
+**Three things in that table are worth reading before quoting it:**
+
+- **The worst overstatement is `prairie_south`, where 62 % of the "timber" was the town** — 409
+  of 1053 measured columns broke the skyline on a roof and on nothing else. The station R-G1 used
+  to demonstrate the fault is the station the fault was worst at, which is the fault being
+  self-consistent rather than a coincidence.
+- **The correction runs the OTHER way at six of the twenty-two station-viewports** (`green_tree`,
+  `lake_market`, `prairie_west` desktop, `forks` mobile, `river_bank`), because a building can
+  stand in front of timber and hide it. This is the figure answering "is the horizon timbered",
+  not "can the visitor see timber past the town" — the right question for a target derived from
+  photographs of a treeline, and it is stated here so nobody reads a rise as an improvement.
+- **Nought of twenty-two station-viewports meet the ≥ 90 % target on the honest figure**, against
+  one on the old one. Mean 0.582 against 0.672. **R-W4d inherits a bigger gap than it was
+  promised**, and `from_above` (0.212 / 0.156, town share 0 %) is an aerial pose whose band is
+  not a horizon at all — do not average it in without saying so.
+
+**Cost, measured.** The full 11-station both-viewport `--metrics` run took **13 min 12 s** with
+the second capture, against the ~12 min the budget section quotes without it; on a 3-station
+desktop A/B it went 2 min 03 s → 2 min 58 s, most of the fixed cost being the page load the two
+share. `--no-mask` opts out and says so in the header.
+
+**Putting the town back leaves the frame alone, measured rather than assumed.** The visitor's
+screenshot is taken BEFORE the toggle, so a station's own frame cannot be affected by it; the
+question is whether the NEXT station's is. Same three stations before and after the change, in
+separate browser processes: **5, 9 and 51 differing pixels of 1,024,000** (≤ 0.005 %), inside the
+harness's own documented cross-process residual of 1–43 px and far under its 0.05 % ceiling. The
+`--stability` contract passes with the second capture in it, byte-identical at both stations
+tested, worst metric drift **0**.
+
+**And a doc claim was found false while using it.** The budget section has told every run since
+2026-08-14 to use `critic_shots.mjs --stations a,b,c` for a 3-minute run instead of 12. **That
+flag did not exist**, so every run that followed the advice ran the full set. It exists now.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
