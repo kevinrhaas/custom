@@ -121,7 +121,7 @@
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred labourer's household (17 of 19 this layer infers): hh_inf_labourer_south_17 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred labourer's household (17 of 20 this layer infers): hh_inf_labourer_south_17 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
   },
   "reconstruction": {
     "status": "inferred_anonymous",

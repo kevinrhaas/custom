@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_south_01",
- "name": "The Doyle household — a reconstructed cooper (south division)",
+ "name": "The Duffy household — a reconstructed cooper (south division)",
  "division": "south",
  "head": "inf_cooper_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_south_01",
-   "name": "Owen Doyle",
+   "name": "Edward Duffy",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

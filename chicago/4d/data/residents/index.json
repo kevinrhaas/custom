@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 166,
-  "persons": 202,
+  "households": 168,
+  "persons": 204,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 106
+   "reconstructed": 108
   }
  },
  "households": [
@@ -1053,6 +1053,20 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_18",
+   "file": "households/hh_inf_carpenter_south_18.json",
+   "head": "inf_carpenter_south_18",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_lake_market_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1552,6 +1566,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_south_water_dearborn_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_20",
+   "file": "households/hh_inf_labourer_south_20.json",
+   "head": "inf_labourer_south_20",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_lake_market_d1_05",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

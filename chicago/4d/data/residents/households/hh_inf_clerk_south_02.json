@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_clerk_south_02",
- "name": "The Kelly household — a reconstructed clerk (south division)",
+ "name": "The Lynch household — a reconstructed clerk (south division)",
  "division": "south",
  "head": "inf_clerk_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_clerk_south_02",
-   "name": "Michael Kelly",
+   "name": "James Lynch",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

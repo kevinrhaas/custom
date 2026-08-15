@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_north_04",
- "name": "The Sheldon household — a reconstructed cooper (north division)",
+ "name": "The Stebbins household — a reconstructed cooper (north division)",
  "division": "north",
  "head": "inf_cooper_north_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_north_04",
-   "name": "Silas Sheldon",
+   "name": "Seth Stebbins",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

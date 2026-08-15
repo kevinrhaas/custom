@@ -110,7 +110,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A13…** | one open block per run until the 28 are placed — the South Water row closed at T-A12, so the next block is one street back; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
+| 1 | TOWN | **T-A14…** | one open block per run until the 21 are placed — `blk_lake_market` closed at T-A13, so the four open entries are all on Randolph or Lake one row back; adopt in the same run under rule 6's three tests · **the face rule is now MEASURED rather than named** (T-A13: documented roofs within 25 m of a centreline — Lake 12, Randolph 2, South Water 9), so a block whose faces are both back streets should measure them the same way rather than reach for a compass · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1850,6 +1850,77 @@ two new ids are inserted at a random position. K20 still owns the fix.
 (6 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L103 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
+### T-A13 — `blk_lake_market` · **DONE 2026-08-15**
+
+The **first block of this parcel shape that is not on South Water Street** — bounded by Lake,
+Franklin, Randolph and Market, at the western limit of the platted South Division against the south
+branch — carries **seven roofs, five principal and two ancillary**, on five of its six free lots.
+Lot 3 is left open; lots 0 and 1 are held by the Sauganash Hotel with Philo Carpenter's log drug
+store, and by the packer's dwelling, all derived by `tools/plat_occupancy.py` rather than authored.
+**306 stand and 359 remain, 21 of them on covered ground.** The recipe cleared every placement gate
+on its first run and **no tool changed** — the sixth block in a row. Two adoptions under rule 6: the
+D3 one-room cottage on lot 2 becomes the eighteenth inferred carpenter household, the D1 log cabin
+on lot 5 the twentieth labouring one. Full admission in `docs/LIBERTIES.md` **L104**.
+
+**Five findings came out of it that are not the block.**
+
+1. **The face rule was asserted five times and is measured here, because neither of this block's
+   faces is South Water.** T-A8 through T-A12 named the front by the street's documented use, which
+   says nothing about a block bounded by Lake and Randolph. Counting every documented or inferred
+   structure whose footprint centroid stands within 25 m of a street's committed centreline,
+   **Lake carries 12 and Randolph carries 2** (South Water carries 9). Lake's twelve include the
+   Sauganash, the Green Tree, the Exchange Coffee House, the Tremont, the Mansion House, both
+   churches and Dole's south warehouse; Randolph's two are the log jail and the Western Hotel. The
+   rule is now inherited on a measurement rather than a habit — **and is still the invention it
+   always was**: no source says a better dwelling stood on the better street.
+2. **The end rule's ORDER survives and its MEANING does not.** T-A11's criterion — distance to the
+   Dearborn Street drawbridge — runs **532.2 m** at lot 6 to **600.4 m** at lot 0 on the Lake
+   frontage and **576.3 m** at lot 7 to **640.0 m** at lot 1 behind, so it orders the lots exactly as
+   it has on every block. But on T-A12's block the far end stood **2.93×** as far from the bridge as
+   the near end and here it stands **1.13×**; the absolute spread of the front face is **68.2 m**
+   against T-A12's 70.2 m — the same block, moved half a kilometre. The criterion is separating two
+   lots that are, in any terms a resident would have used, the same distance from the bridge. It is
+   followed anyway, because swapping criteria on the block where the first stops flattering the
+   answer is how an invention starts to look like a finding — **but at this distance the arrangement
+   is closer to arbitrary than on any block of the row**, and L104 says so rather than defending it.
+3. **K30 gets its first control measurement off South Water, and it is a factor of twenty to forty.**
+   The **Sauganash Hotel** intrudes **0.19 m** into the platted Lake corridor and **Philo Carpenter's
+   log drug store 0.22 m**, against 4.5–8.2 m for all five South Water cases — near enough to the
+   kerb line to be inside the plat's own precision. Two cases are not a survey, but they are the
+   control K30 asked for and they point **away** from a uniform grid bias. Nothing was moved.
+4. **The block's two documented roofs share one lot and the occupancy map names the smaller of
+   them.** The Sauganash puts **94.33 m²** of its 96.0 m² on lot 0 (67.66 m² inside the buildable
+   inset) and the log shop **28.58 m²** of its 29.7 m² (19.43 m² inside it); the source says the shop
+   stood against the Sauganash's public bar and the two footprints touch at **0.00 m**, so the record
+   is agreeing with itself. `plat_occupancy` names the first holder by id — the log shop — so the
+   town's most-documented building is not the one the derived table credits with its own corner. It
+   costs this parcel nothing, and it will mislead anyone reading that table for what stands where.
+   **T-A7's lap case also gains a sixth instance**: the packer's dwelling laps lot 3 by **9.57 m²**
+   with **0.00 m² inside the buildable inset**, and lot 3 is the lot left open.
+5. **A sixth block offered both floor trades a second roof, and it is the first that is not on South
+   Water.** The D4 on lot 4 and the D2 on lot 7 pass rule 6's three tests read literally and are both
+   refused on the same conservative reading. T-A11 read three consecutive cases as the ordinary shape
+   of a South WATER block; this one shows it is the ordinary shape of **a South Division block of
+   five dwellings, wherever it stands**, so the sample K28 has to settle is larger than the row that
+   produced it.
+
+**The eighth K20 measurement is 67 of 106** carried-over invented persons renamed, against 59-of-104
+at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Six
+measurements now span 7 % to 72 % with nothing fixed or broken between them. K20 still owns the fix.
+
+**A note for the next block parcel, which cost this one twenty minutes.**
+`tools/generate_inferred_households.py` **strips every invented resident name and its `name_basis`**;
+`tools/generate_inferred_names.py` puts them back. Running the first without the second leaves 106
+persons named "A baker (reconstructed resident, unnamed)" and reads, in a diff, exactly like a K20
+churn measurement of 100 %. Run them in that order, and measure K20 after the second.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (7 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L104 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
 ### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
@@ -1865,15 +1936,16 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A12, on ground the project has coverage for — 28 roofs across five entries, every
-one of them buildable with a lot left open, and every lot of them now checked against the
-buildings that already stand there:** `blk_lake_market` 7 (5P+2A) · `blk_randolph_franklin`
-8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) · `blk_randolph_clark` 8 (6P+2A, **carries the one I3
-in the whole open set — defer it per T-A3 unless T-I3 has landed; the I3 has now moved THREE times,
-from `blk_south_water_clark` to `blk_lake_market` at T-A9, to `blk_randolph_franklin` at T-A11 and
-to this block at T-A12, which is exactly why this list is not to be trusted**) ·
-`blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a principal roof by T-A6, now a D3).
-**The South Water row is closed** — every open entry is one street back or further.
+**Open after T-A13, re-derived from the programme that parcel committed — 21 roofs across four
+entries, and the re-apportionment moved the pieces again:** `blk_randolph_franklin` 8 (6P+2A) ·
+`blk_randolph_clark` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A, and the only open entry carrying
+H1, H2 and a C2) · `blk_randolph_dearborn` 1 (**the I3, which has now moved a FOURTH time** — from
+`blk_south_water_clark` to `blk_lake_market` at T-A9, to `blk_randolph_franklin` at T-A11, to
+`blk_randolph_clark` at T-A12 and to this block at T-A13). **That last entry is not a block parcel**:
+the generator refuses I3 by name, so its one dealt roof can only be deferred with its reason and the
+block builds nothing — which also makes T-A3h's "backfill, now a D3" stale, because the schedule has
+since dealt that block something no generator will mass. **The South Water row is closed and Lake
+and Market with it**; every open entry is on Randolph.
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block
