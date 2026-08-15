@@ -28,11 +28,18 @@
  *                       the GROUND line from the top of a tree: horizon timber
  *                       is two to four pixels tall and never satisfies it.
  *   horizon timber      in the band immediately above that line, a column counts
- *                       as timbered if a pixel there falls at least 3 luma below
+ *                       as BROKEN if a pixel there falls at least 3 luma below
  *                       — or 3 G−B above — the sky's own gradient EXTRAPOLATED
  *                       into the band from the twenty rows over it. A constant
  *                       sky reference does not work: the haze brightens steeply
  *                       toward the horizon and reports the air itself as trees.
+ *                       BROKEN IS NOT TIMBERED: a gable end breaks a skyline as
+ *                       surely as an oak, and `coverageAll` counts both. The
+ *                       timber figure is `timberOnly`, measured on a second
+ *                       capture of the same station with the town hidden, and it
+ *                       is the one RENDERING § 5's ≥ 90 % target is about. See
+ *                       the block over the recipe in `measure` for why the hue
+ *                       discriminator was measured and abandoned.
  *   depth-band RMS      5x5 high-pass on Rec.709 luma over sRGB 0-255, in three
  *                       equal bands down from the median boundary. Collapse
  *                       toward the far band is the tell (§ 1 item 4).
@@ -51,6 +58,11 @@
  *                       stations. It is reported everywhere and quoted there.
  *
  * Every threshold above is a measurement convention, not a claim about 1835.
+ *
+ * Two exported colour helpers are not frame metrics and have no thresholds:
+ * `relativeLuminance` (linear Y) and `weberContrast` (R-M1's exposure-invariant
+ * scale). They live here so that anything measuring contrast in this project
+ * measures it the same way — see the block over `weberContrast`.
  */
 
 import zlib from 'node:zlib';
@@ -151,6 +163,52 @@ export function labL(r, g, b) {
   return 116 * f - 16;
 }
 
+/**
+ * Rec.709 relative luminance in LINEAR light, 0..1, from gamma-encoded sRGB.
+ * This is the Y that `labL` then compresses; kept separate because the two
+ * answer different questions and one of them is not compressive.
+ */
+export function relativeLuminance(r, g, b) {
+  return 0.2126 * SRGB_LIN[r] + 0.7152 * SRGB_LIN[g] + 0.0722 * SRGB_LIN[b];
+}
+
+/**
+ * Weber contrast — `(Y_target − Y_background) / Y_background`, on linear
+ * luminance, signed, `null` where the background carries no light to divide by.
+ *
+ * WHY THIS FILE OWNS IT, and why it is not a rewrite of `labL`. Both scales are
+ * right about different things and R-M1 is the parcel that needs both.
+ *
+ *   `labL` is PERCEPTUAL. Equal steps are roughly equal perceived difference —
+ *   but only under a fixed adaptation state. That precondition held for as long
+ *   as the renderer's exposure was fixed, and R-W1 is the first change to break
+ *   it: it preserved the road/ground ratio to within 0.4 % and still lost the
+ *   road gate, because the whole scene got 14–17 % darker and ΔL* is
+ *   compressive. ΔL* did not fail there; its assumption did.
+ *
+ *   Weber is EXPOSURE-INVARIANT by construction. Scale both terms by any k and
+ *   the k cancels, so it answers "is the road distinguishable from the ground"
+ *   without also answering "how bright is the scene". That is exactly the
+ *   separation the owner ruled for on 2026-08-14: score contrast, and keep an
+ *   absolute floor beside it, because contrast sensitivity genuinely collapses
+ *   at low luminance and a ratio alone would pass a scene too dark to see
+ *   anything in. Neither number is a replacement for the other.
+ *
+ * The BACKGROUND is the denominator, which is what makes it Weber rather than a
+ * bare ratio: it is the surface the target is being picked out from. For the
+ * road gate that is the same pixel with the street layer hidden, so a road on
+ * grass and a road on mud are held to one standard.
+ *
+ * `trees.js` already reasons in this quantity against the reference photograph
+ * (0.625 tree-mass-against-sky there, 0.655 in the scene) and `LIBERTIES.md`
+ * quotes it, but until now nothing in `tools/` computed it, so every figure was
+ * produced by hand at the point of use.
+ */
+export function weberContrast(targetY, backgroundY) {
+  if (!(backgroundY > 0)) return null;
+  return (targetY - backgroundY) / backgroundY;
+}
+
 /** Hue in degrees and HSL-style saturation, from gamma-encoded sRGB. */
 function hueSat(r, g, b) {
   const mx = Math.max(r, g, b);
@@ -211,6 +269,77 @@ function round(v, places = 3) {
 // ---- the measurements ---------------------------------------------------- //
 
 /**
+ * Horizon timber for ONE frame: per column, does anything break the skyline in
+ * the band above the land/sky line. Split out of `measure` by R-W4a so the same
+ * recipe can be run twice — once on the frame a visitor sees and once on the
+ * same frame with the town's structures hidden — because run on one frame it
+ * cannot tell an oak from a gable end. See the `horizonTimber` block in
+ * `measure` for the whole argument and the numbers behind it.
+ */
+function timberCoverage(img, luma, gb, boundary, bandPx, fitRows) {
+  const { width: W, height: H } = img;
+  let timbered = 0; let measurable = 0;
+  let timberedCentre = 0; let measurableCentre = 0;
+  const hit = new Uint8Array(W);
+  const measured = new Uint8Array(W);
+  const c0 = Math.floor(W / 6);
+  const c1 = Math.ceil(W * 5 / 6);
+  for (let x = 0; x < W; x++) {
+    const b = boundary[x];
+    const bandTop = b - bandPx;
+    if (b >= H || bandTop - fitRows < 0) continue;
+    // Least squares on the sky ABOVE the band, extrapolated down into it: the
+    // haze gradient is steep enough near the horizon that a flat reference
+    // reports the air as timber.
+    let sx = 0; let sy = 0; let sxx = 0; let sxyL = 0; let syG = 0; let sxyG = 0;
+    for (let i = 0; i < fitRows; i++) {
+      const y = bandTop - fitRows + i;
+      const vL = luma[y * W + x];
+      const vG = gb[y * W + x];
+      sx += i; sxx += i * i; sy += vL; sxyL += i * vL; syG += vG; sxyG += i * vG;
+    }
+    const denom = fitRows * sxx - sx * sx;
+    const slopeL = (fitRows * sxyL - sx * sy) / denom;
+    const interceptL = (sy - slopeL * sx) / fitRows;
+    const slopeG = (fitRows * sxyG - sx * syG) / denom;
+    const interceptG = (syG - slopeG * sx) / fitRows;
+
+    let broken = false;
+    for (let y = bandTop; y < b; y++) {
+      const t = y - (bandTop - fitRows);
+      const predL = interceptL + slopeL * t;
+      const predG = interceptG + slopeG * t;
+      if (luma[y * W + x] <= predL - 3 || gb[y * W + x] >= predG + 3) { broken = true; break; }
+    }
+    measured[x] = 1;
+    measurable++;
+    if (broken) { hit[x] = 1; timbered++; }
+    if (x >= c0 && x < c1) { measurableCentre++; if (broken) timberedCentre++; }
+  }
+  return {
+    columnsMeasured: measurable,
+    columnsBroken: timbered,
+    coverageAll: measurable ? round(timbered / measurable, 4) : null,
+    coverageCentralTwoThirds: measurableCentre
+      ? round(timberedCentre / measurableCentre, 4) : null,
+    hit,
+    measured,
+  };
+}
+
+/** Luma and G−B planes, the two the horizon recipe reads. */
+function planes(img) {
+  const { width: W, height: H, data } = img;
+  const luma = new Float32Array(W * H);
+  const gb = new Float32Array(W * H);
+  for (let i = 0, p = 0; i < W * H; i++, p += 4) {
+    luma[i] = 0.2126 * data[p] + 0.7152 * data[p + 1] + 0.0722 * data[p + 2];
+    gb[i] = data[p + 1] - data[p + 2];
+  }
+  return { luma, gb };
+}
+
+/**
  * Per-column land/sky boundary. Returns an Int32Array of row indices; `H` means
  * the column never reaches sustained ground (all sky, or a frame that is all
  * ground has boundary 0).
@@ -244,12 +373,7 @@ export function measure(img, opts = {}) {
   const { width: W, height: H, data } = img;
   const { boundary, sky, run } = landSkyBoundary(img, opts.runPx);
 
-  const luma = new Float32Array(W * H);
-  const gb = new Float32Array(W * H);
-  for (let i = 0, p = 0; i < W * H; i++, p += 4) {
-    luma[i] = 0.2126 * data[p] + 0.7152 * data[p + 1] + 0.0722 * data[p + 2];
-    gb[i] = data[p + 1] - data[p + 2];
-  }
+  const { luma, gb } = planes(img);
 
   // --- where the ground line sits, as one number for the banding ---------- //
   const sorted = [...boundary].sort((a, b) => a - b);
@@ -257,42 +381,67 @@ export function measure(img, opts = {}) {
   const skyFraction = boundary.reduce((s, b) => s + Math.min(b, H), 0) / (W * H);
 
   // --- horizon timber ----------------------------------------------------- //
+  //
+  // R-W4a, 2026-08-15. THE RECIPE BELOW COUNTS SKYLINE BREAKS, NOT TIMBER, and
+  // that is now said in the field names rather than in a footnote. A gable end
+  // breaking the skyline satisfies it as surely as an oak — `prairie_south`
+  // moved 0.364 → 0.436 on nineteen new roofs with no renderer change — so a
+  // town parcel could hand W4 a pass it had not earned.
+  //
+  // THE DISCRIMINATOR THE ROADMAP NAMED DOES NOT WORK, and it was measured
+  // before it was abandoned. G−B cannot separate a roof from a crown here: the
+  // sky near the horizon is strongly blue-dominant, so EVERY non-sky pixel in
+  // the band clears the +3 G−B test by a wide margin. Measured on the
+  // 2026-08-15 `dev` build, desktop: the grey gables at `prairie_south` sit at
+  // ΔG−B +22.4, and hazed timber at `prairie_west` ranges +0.1 to +17.5. The
+  // channel is a not-sky detector, and its two populations overlap completely.
+  // Nor does the fog leave a colour to sort them by — L17 makes extinction
+  // total by 1500 m, so distant timber and a distant wall both converge on the
+  // fog colour, which is the atmosphere doing its job.
+  //
+  // WHAT DOES WORK is asking the renderer to take the town away: the harness
+  // captures the same station twice, once as the visitor sees it and once with
+  // the `structures` group hidden, and this function is run on both. The second
+  // frame's coverage is timber and only timber, by construction rather than by
+  // heuristic — no threshold, no hue, nothing to tune. `timberOnly` below is
+  // therefore the figure RENDERING § 5's ≥ 90 % target is about, and it cannot
+  // move when a block lands. `structureOnlyColumns` is the size of the error
+  // the old number was carrying.
+  //
+  // This file still reads PNGs and nothing else. The second frame is another
+  // PNG, and a reference photograph — which has no second frame — simply
+  // reports `timberOnly: null` and its skyline-break coverage as before.
   const bandPx = opts.horizonBandPx ?? Math.max(3, Math.round(H / 100));
   const fitRows = 20;
-  let timbered = 0; let measurable = 0;
-  let timberedCentre = 0; let measurableCentre = 0;
-  const c0 = Math.floor(W / 6);
-  const c1 = Math.ceil(W * 5 / 6);
-  for (let x = 0; x < W; x++) {
-    const b = boundary[x];
-    const bandTop = b - bandPx;
-    if (b >= H || bandTop - fitRows < 0) continue;
-    // Least squares on the sky ABOVE the band, extrapolated down into it: the
-    // haze gradient is steep enough near the horizon that a flat reference
-    // reports the air as timber.
-    let sx = 0; let sy = 0; let sxx = 0; let sxyL = 0; let syG = 0; let sxyG = 0;
-    for (let i = 0; i < fitRows; i++) {
-      const y = bandTop - fitRows + i;
-      const vL = luma[y * W + x];
-      const vG = gb[y * W + x];
-      sx += i; sxx += i * i; sy += vL; sxyL += i * vL; syG += vG; sxyG += i * vG;
-    }
-    const denom = fitRows * sxx - sx * sx;
-    const slopeL = (fitRows * sxyL - sx * sy) / denom;
-    const interceptL = (sy - slopeL * sx) / fitRows;
-    const slopeG = (fitRows * sxyG - sx * syG) / denom;
-    const interceptG = (syG - slopeG * sx) / fitRows;
+  const skyline = timberCoverage(img, luma, gb, boundary, bandPx, fitRows);
 
-    let hit = false;
-    for (let y = bandTop; y < b; y++) {
-      const t = y - (bandTop - fitRows);
-      const predL = interceptL + slopeL * t;
-      const predG = interceptG + slopeG * t;
-      if (luma[y * W + x] <= predL - 3 || gb[y * W + x] >= predG + 3) { hit = true; break; }
+  let timberOnly = null;
+  const bare = opts.withoutStructures ?? null;
+  if (bare) {
+    if (bare.width !== W || bare.height !== H) {
+      throw new Error('withoutStructures frame is a different size');
     }
-    measurable++;
-    if (hit) timbered++;
-    if (x >= c0 && x < c1) { measurableCentre++; if (hit) timberedCentre++; }
+    const bp = planes(bare);
+    const bareBoundary = landSkyBoundary(bare, opts.runPx).boundary;
+    const t = timberCoverage(bare, bp.luma, bp.gb, bareBoundary, bandPx, fitRows);
+    // A column the town breaks and the timber does not: the share of the old
+    // headline number that was roofs. Counted over columns BOTH frames measure,
+    // so a column the town moved out of measurable range cannot be scored.
+    let structureOnly = 0; let common = 0;
+    for (let x = 0; x < W; x++) {
+      if (!skyline.measured[x] || !t.measured[x]) continue;
+      common++;
+      if (skyline.hit[x] && !t.hit[x]) structureOnly++;
+    }
+    timberOnly = {
+      columnsMeasured: t.columnsMeasured,
+      coverageAll: t.coverageAll,
+      coverageCentralTwoThirds: t.coverageCentralTwoThirds,
+      columnsComparable: common,
+      structureOnlyColumns: structureOnly,
+      structureShareOfBreaks: skyline.columnsBroken
+        ? round(structureOnly / skyline.columnsBroken, 4) : null,
+    };
   }
 
   // --- depth-band high-pass RMS ------------------------------------------- //
@@ -378,10 +527,14 @@ export function measure(img, opts = {}) {
       skyFraction: round(skyFraction, 4),
     },
     horizonTimber: {
-      columnsMeasured: measurable,
-      coverageAll: measurable ? round(timbered / measurable, 4) : null,
-      coverageCentralTwoThirds: measurableCentre
-        ? round(timberedCentre / measurableCentre, 4) : null,
+      columnsMeasured: skyline.columnsMeasured,
+      // NOT timber — every skyline break, gables included. Kept under its old
+      // name and its old value so the 2026-08-14 baseline stays comparable, and
+      // never the figure a W4 acceptance quotes.
+      coverageAll: skyline.coverageAll,
+      coverageCentralTwoThirds: skyline.coverageCentralTwoThirds,
+      // Timber and only timber, measured on the structure-free capture.
+      timberOnly,
     },
     depthBandHighPassRms: {
       far: round(rms(bands.far), 2),
