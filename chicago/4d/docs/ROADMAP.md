@@ -118,7 +118,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
 | 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
-| 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
+| — | GROUND | ~~T-E2~~ | **CLAIMED 2026-08-15 · `steward/t-e2-ground-that-stays-empty`** — the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
 | 3 | GROUND | **T-E5** | the public square **was a pond** in this project's own committed fauna data and renders as dry prairie with three public buildings on it. Opened by T-A16 |
 
@@ -2327,7 +2327,7 @@ each reading, because they do not agree on everything.
 `what_it_does_not_supply` list that names the 1830-vs-1835 problem and the "present outlet"
 label explicitly.
 
-### T-E2 — the ground that must stay empty · **UNCLAIMED · NEXT UP · after T-E1**
+### T-E2 — the ground that must stay empty · **CLAIMED 2026-08-15 · `steward/t-e2-ground-that-stays-empty`**
 
 The owner's read — *"I don't think houses are in much of it because of Fort Dearborn"* — is
 the substance of this parcel, and it is a claim to be evidenced, not assumed.
