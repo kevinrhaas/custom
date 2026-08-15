@@ -460,7 +460,8 @@ visual phase in the whole program.
   seam undetectable, L17 assertion still green, triangle budget held via the existing
   flora-cap tiers (never via building/terrain cuts).
 - W4.2 — horizon ≥ 90 % columns; crown fine-detail ≥ 0.6; depth-band RMS non-collapsing
-  (far band ≥ 0.75× reference); flower load 4–6 %; blind A/B re-run against the sweep's
+  (far band ≥ 0.75× reference); flower load 4–6 % from `flower.bloom`, not `flower.load`
+  (R-W4c(a)); blind A/B re-run against the sweep's
   references at the same stations — the loss margins recorded in STATUS either close or
   get honest new numbers.
 
@@ -677,7 +678,7 @@ recipes in Appendix B.
 | Sunlit crown warmth (G−B) | ≥ +10 (ref +13..+24) | STATUS §00 |
 | Shadowed darkest decile | L ≥ 14, no literal (0,0,0) (ref L 14–27) | STATUS §00 |
 | Depth-band high-pass RMS | non-collapsing; far band ≥ 0.75× ref | STATUS §00 |
-| Flower load | 4–6 % of vegetated pixels | STATUS §00 correction |
+| Flower load | 4–6 % of vegetated pixels — **quoted from `flower.bloom`, never from `flower.load`, which counts a yellow coneflower as grass (R-W4c(a)); and the target itself needs re-deriving before it is compared against `bloom`** | STATUS §00 correction |
 | Vegetated-pixel extent | present to the fog-90 % distance | §1 item 1 |
 | White-card / albedo integrity | white wall in band; log-wall R/B ≈ 1.75 | world.js measurement |
 | 8-axis rubric | mean ≥ 8.0, no axis < 7, ≤ 4 iterations | Joliet QUALITY-LOG protocol |
@@ -864,7 +865,14 @@ correction). Every number quotes its anchor and viewport.
 - **Crown fine-detail ratio**: ratio of fine-scale (high-frequency) to coarse-scale energy
   over crown-masked pixels at 20–60 m; reference 0.61–0.64.
 - **Color checks**: sunlit-crown G−B; shadowed-region darkest-decile L in Lab.
-- **Flower load**: fraction of vegetated pixels classified flower-hued; target 4–6 %.
+- **Flower load**: fraction of vegetated pixels the flower heads actually paint, measured on a
+  third capture of the same pose with the nine `flora-head-*` sets hidden — `flower.bloom`,
+  and **never `flower.load`**, whose hue cut at 50° classifies a yellow coneflower as the grass
+  it is being compared against and missed 94.5 % of the bloom at `prairie_west` (R-W4c(a); the
+  argument and the per-station numbers are in `critic_metrics.mjs` and ROADMAP). Target 4–6 %,
+  **carried forward but not yet on the same scale as `bloom`**: it was derived by running the
+  blind recipe on the reference photographs, and a photograph has no second frame to subtract.
+  Re-deriving it is R-W4c(b)'s first job.
 - **White-card exposure**: a known-albedo card placed at a fixed anchor; assert the rendered
   sRGB value in band; assert the log-wall R/B ratio ≈ its base-colour ratio (1.75).
 - **Placement parity** (multi-renderer): same anchors, both renderers, structure-silhouette

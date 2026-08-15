@@ -1127,9 +1127,16 @@ point on this whole table.*
 **Historical accuracy — 6.8 → mostly earned, one real deduction.** `first_post_office` scores 8:
 evidence footprint, surveyed position, unresolved reads carried on the record. The deduction is
 at `south_water` (5) for the same repeated stamp — uniformity that no source claims, understating
-what the research knows — and at `prairie_west` (7) for a flower load of **0.0012** against the
-honest 4–6 % target, an under-representation of a July prairie by two orders of magnitude that is
-recorded but not yet fixed. *Fix: W4 for the flower load; lane 2 for the stamp.*
+what the research knows — and at `prairie_west` (7) for the flower load. **CORRECTED 2026-08-15
+by R-W4c(a): the "two orders of magnitude" this paragraph used to claim was a measurement error,
+and it was 18× too big.** `0.0012` is what the flower-load recipe reports, and that recipe misses
+94.5 % of the bloom at this station — its hue cut at 50° puts a yellow coneflower in with the
+grass. Measured by hiding the flower heads and subtracting, the render's true bloom here is
+**2.19 %** of hued ground. Against the 4–6 % target that is a factor of two to three, which is
+still a real deduction and still not fixed. Read ROADMAP R-W4c(a) before quoting either number —
+in particular, the 4–6 % target was itself derived with the blind recipe and is **not yet on the
+same scale** as the 2.19 %. *Fix: R-W4c(b) for the flower load, which must re-derive the target
+first; lane 2 for the stamp.*
 
 ### The three findings that are not scores
 
@@ -1578,8 +1585,12 @@ both viewports, and every station's pitch matched its declaration.
   street or across water hold their grain; the ones looking over open sward lose it. § 1 item
   4 stands.
 - **Flower load at the prairie stations is 0.0031 and 0.0012** against the honest 4–6 %
-  target. Two orders of magnitude short, and the number is now on the record rather than in an
-  argument.
+  target. ~~Two orders of magnitude short~~ — **the gap is 18× smaller than that, and this
+  bullet was wrong (R-W4c(a), 2026-08-15).** Those are the *recipe's* figures and the recipe
+  misses 94.5 % of the bloom at `prairie_west`, counting 69.7 % of the pixels a flower painted
+  as the plant it is being compared against. Measured by subtraction, the bloom is **0.0219 /
+  0.0187 / 0.0076** at `prairie_west` / `prairie_south` / `river_bank`. The recipe figures are
+  kept because the 2026-08-14 baseline is on them.
 - **Draw calls exceed the ≤ 80 budget at four stations** — `prairie_west` 97 desktop / 94
   mobile, `green_tree` 91/88, `forks` 87/82, `south_water` 85/83. **This is new information,
   not a new fault**: the budget has only ever been measured at the spawn station, where it
