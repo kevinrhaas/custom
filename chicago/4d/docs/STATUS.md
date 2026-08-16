@@ -26,10 +26,18 @@ run while every link was broken. It now reads the `href` and asserts it leaves t
 `temple_building` as the discriminating no-link case. `validate.py` had gated the *open question*
 dossier pointer's existence since it was written; the building card's pointer never had it.
 
-**What is unverified:** the desktop half of `tools/smoke_renderer.mjs` — the ten-minute
-per-command ceiling (ROADMAP, "the run budget"). `tools/check.sh` and the mobile half both passed
-against the published mirror. **No geometry, dimension, coordinate or confidence moved**: 30
-sidecars lose a path that pointed at nothing, and the rest are untouched.
+**What is unverified:** the desktop half of `tools/smoke_renderer.mjs`, for the usual reason — the
+harness's ten-minute per-command ceiling (ROADMAP, "the run budget"). `tools/check.sh` passed and
+the mobile half passed against the published mirror, **219 passed / 0 failed**. The two new
+assertions were additionally run at 1280×800 against the same mirror by an ad-hoc script — both
+green, zero page errors, in 7.5 s — so what is unverified at desktop is the rest of the suite, not
+this parcel's own claims. That number is worth noting on its own: booting the published walk-
+through and reading two cards at desktop costs seconds, and the desktop half's thirteen minutes
+are its road-contrast and horizon captures. A test-name filter would let it run as two commands
+that each fit.
+
+**No geometry, dimension, coordinate or confidence moved**: 30 sidecars lose a path that pointed
+at nothing, and the rest are untouched.
 
 ## New 2026-08-16 — the ground still stands over the road it carries, and the fix costs 1,116 bytes
 
