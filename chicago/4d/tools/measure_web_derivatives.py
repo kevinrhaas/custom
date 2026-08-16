@@ -91,6 +91,23 @@ and comparing material tables costs about a second for all 334 assets.
     nothing.** It stays a ratchet rather than an absolute because the repair moves 334
     binary files and a permanently red dev gate would block every unrelated parcel
     behind it. A new offender fails. A repaired one fails too, and says to bank it.
+
+8.  **The passthrough set is decided, not discovered** (absolute in BOTH directions,
+    `tools/web_derivative_baseline.json`, K38). 93 of the 334 derivatives are
+    byte-identical to their masters, because compressing them makes them bigger and
+    `tools/web_derivatives.sh` keeps the smaller file (K37). Every one of those is a
+    decision. **A 94th is not** — and until this assertion existed, nothing could tell
+    the two apart, because a master copied over its own derivative satisfies assertions
+    1 through 7 by construction: same triangles, same node identity, same attributes,
+    zero rungs of bounding-box drift, identical materials, and a byte count that is
+    equal rather than larger. Measured (K38): two masters copied through by
+    `tools/publish.sh` added **1,212,760 bytes** to the payload and `tools/check.sh`
+    printed **CHECK PASS**. `assets/web/` has three writers — this step,
+    `generators/inferred_placeholder.py` and, until K38, `tools/publish.sh` — and the
+    gate on a directory's contents is a gate on its last writer only. So the set is
+    banked by name and both directions fail: an unbanked passthrough is a writer nobody
+    watched, and a banked one that is now compressed is a repair that has to be recorded
+    with `--write-baseline` rather than discovered.
 """
 
 from __future__ import annotations
@@ -390,6 +407,23 @@ def assertions(result: dict, baseline: dict) -> list[str]:
                         f"the way to the site, and it no longer does. That is the repair — "
                         f"re-run tools/measure_web_derivatives.py --write-baseline in the "
                         f"commit that made it")
+
+    # Assertion 8 (K38). Absolute in both directions against the banked set.
+    decided = set(baseline.get("passthrough", []))
+    copies = {r["name"] for r in result["rows"] if r["uncompressed_copy"]}
+    for name in sorted(copies - decided):
+        problems.append(f"{name}: assets/web/{name} is byte-identical to its master and is not "
+                        f"a decided passthrough. Something copied a master over its derivative "
+                        f"— the site ships it uncompressed and assertions 1-7 cannot see it, "
+                        f"because a copy has the master's triangles, identity, attributes, "
+                        f"bounding box and materials. Regenerate it with "
+                        f"tools/web_derivatives.sh --only {name}, or bank the decision with "
+                        f"--write-baseline if the compressed file really is bigger (K38)")
+    for name in sorted(decided - copies):
+        problems.append(f"{name}: banked in {BASELINE.name} as a decided master passthrough and "
+                        f"it is compressed now. That is a repair, not a discovery — re-run "
+                        f"tools/measure_web_derivatives.py --write-baseline in the commit that "
+                        f"made it (K38)")
     return problems
 
 
@@ -413,10 +447,17 @@ def print_census(result: dict) -> None:
         print(f"  compressed  {len(compressed)} asset(s), {cm / cs:.2f}x")
     if copies:
         cs = sum(r["bytes"][1] for r in copies)
+        decided = set(load_baseline().get("passthrough", []))
+        undecided = sorted(r["name"] for r in copies if r["name"] not in decided)
         print(f"  shipped as a MASTER PASSTHROUGH (byte-identical to the master)  "
               f"{len(copies)} asset(s), {cs / 1024:.0f} KB, "
               f"{100 * cs / shipped_bytes:.1f} % of the payload — compressing them makes "
               f"them bigger (K37), which is a decision now and not an accident")
+        print(f"    of those, {len(copies) - len(undecided)} are banked decisions and "
+              f"{len(undecided)} are not (bound: 0, K38 — a copy nothing decided is a "
+              f"writer nobody watched)")
+        for name in undecided[:5]:
+            print(f"      unbanked  {name}")
     grew = [r for r in rows
             if not r["name"].startswith(EPOCH_PREFIXES) and r["bytes"][1] > r["bytes"][0]]
     excluded = [r for r in rows
@@ -532,6 +573,12 @@ def self_test() -> int:
                  lambda r: _break_materials(r))
     ok &= mutate("a banked asset was repaired and not banked",
                  lambda r: _repair_materials(r, baseline))
+    # K38's two, and they are the mutation assertions 1-7 survive: a master copied over
+    # its own derivative changes nothing any of them measure.
+    ok &= mutate("a master was copied over its compressed derivative",
+                 lambda r: _copy_master_through(r, baseline))
+    ok &= mutate("a decided passthrough was regenerated and not banked",
+                 lambda r: _uncopy_passthrough(r, baseline))
     print("SELF-TEST PASS" if ok else "SELF-TEST FAIL")
     return 0 if ok else 1
 
@@ -553,6 +600,36 @@ def _break_materials(result: dict) -> bool:
             row["names_lost"] = ["log", "chinking"]
             row["colours_lost"] = 2
             row["textures_shipped"] = row["textures_master"] + 2
+            return True
+    return False
+
+
+def _copy_master_through(result: dict, baseline: dict) -> bool:
+    """Make one compressed derivative a byte-for-byte copy of its master.
+
+    This is what tools/publish.sh did whenever a master was newer by mtime, and the
+    point of the mutation is what it does NOT change: the triangles, the node identity,
+    the contract attributes, the bounding box and the material table are the master's,
+    so assertions 1-5 and 7 stay silent and assertion 6 sees an equal byte count rather
+    than a larger one. Measured against the real tree before this assertion existed,
+    two of these passed the whole of tools/check.sh (K38).
+    """
+    decided = set(baseline.get("passthrough", []))
+    for row in result["rows"]:
+        if row["name"] in decided or row["uncompressed_copy"]:
+            continue
+        row["uncompressed_copy"] = True
+        row["bytes"] = (row["bytes"][0], row["bytes"][0])
+        return True
+    return False
+
+
+def _uncopy_passthrough(result: dict, baseline: dict) -> bool:
+    """One banked passthrough comes back compressed, without being re-banked."""
+    decided = set(baseline.get("passthrough", []))
+    for row in result["rows"]:
+        if row["name"] in decided and row["uncompressed_copy"]:
+            row["uncompressed_copy"] = False
             return True
     return False
 
@@ -582,7 +659,17 @@ def write_baseline(result: dict) -> None:
         fault = material_fault(row)
         if fault:
             faults[row["name"]] = fault
+    passthrough = sorted(r["name"] for r in result["rows"] if r["uncompressed_copy"])
     BASELINE.write_text(json.dumps({
+        "$note.passthrough": "ROADMAP K38. Assets whose shipped derivative IS the master, "
+                 "byte for byte, because tools/web_derivatives.sh measured the compressed "
+                 "file as the bigger of the two and kept the smaller one (K37). This list is "
+                 "the DECISION. It is asserted in both directions and it is not a ratchet: a "
+                 "derivative that is a master copy and is not listed here means something "
+                 "other than the web-derivative step wrote it — assets/web/ has three "
+                 "writers, and assertions 1-7 cannot see a copy at all. A listed asset that "
+                 "is compressed now is a repair, and repairs are recorded rather than "
+                 "discovered. Regenerate with --write-baseline in the commit that moves it.",
         "$note": "ROADMAP K36(a). Assets whose shipped derivative does not resolve to the "
                  "material table of the master it was compressed from — gltf-transform's "
                  "palette pass folds their named materials into one PaletteMaterial and two "
@@ -595,8 +682,10 @@ def write_baseline(result: dict) -> None:
         "measured": "2026-08-16",
         "pairs": len(result["rows"]),
         "material_identity": faults,
+        "passthrough": passthrough,
     }, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"wrote {BASELINE.relative_to(ROOT)}: {len(faults)} asset(s)")
+    print(f"wrote {BASELINE.relative_to(ROOT)}: {len(faults)} material fault(s), "
+          f"{len(passthrough)} decided passthrough(s)")
 
 
 def main() -> int:
@@ -631,10 +720,12 @@ def main() -> int:
         rows = result["rows"]
         faults = sum(1 for r in rows if material_fault(r))
         worst = max((r["rungs"] for r in rows), default=0.0)
+        copies = sum(1 for r in rows if r["uncompressed_copy"])
         print(f"shipped derivatives: {len(rows)} pair(s) carry the master's triangles, node "
               f"identity and contract attributes; worst bounding-box disagreement "
               f"{worst:.2f} of {RUNG_TOLERANCE:.0f} rungs; {faults} asset(s) lose their "
-              f"material identity to the publish path (banked, K36(b))")
+              f"material identity to the publish path (banked, K36(b)); {copies} master "
+              f"passthrough(s), all of them decided (K38)")
     return 0
 
 

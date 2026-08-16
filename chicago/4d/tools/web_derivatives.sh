@@ -253,8 +253,23 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
     echo "   $passthrough derivative(s) kept as a master passthrough — compressing them"
     echo "   makes them bigger, which is a decision now and not an accident (K37)"
   fi
+  # Every branch above that copies a master through — the deliberate size rule, the
+  # optimize fallback, and the no-tool fallback below — produces a derivative that is
+  # byte-identical to its master, and assertion 8 (K38) fails on any such file that is
+  # not banked by name. That is the point: the two fallbacks are ACCIDENTS wearing the
+  # deliberate rule's clothes, and until K38 nothing could tell them apart. So say what
+  # closes the loop, here, rather than leaving it to be discovered on the dev gate.
+  if [ "$OUT" = "assets/web" ] && [ -z "$ONLY" ]; then
+    echo "   if the passthrough set moved, bank it in the same commit:"
+    echo "     python3 tools/measure_web_derivatives.py --write-baseline"
+  fi
 else
+  # A FOURTH passthrough path, and the widest: no tool means every one of the 334
+  # derivatives becomes an uncompressed master copy — a ~4.6x payload against a 25 MB
+  # budget. It warned and nothing gated it. Assertion 8 does now.
   echo "   gltf-transform unavailable; copying masters to assets/web unoptimised"
+  echo "   WARNING: every derivative is now a master copy. tools/check.sh will fail"
+  echo "   assertion 8 (K38) on all of them, which is correct — do not bank it."
   mkdir -p "$OUT" && cp -f assets/gltf/*.glb "$OUT/" 2>/dev/null || true
 fi
 

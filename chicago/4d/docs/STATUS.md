@@ -1,5 +1,51 @@
 # STATUS
 
+## Fixed 2026-08-16 — a publish step could put 1.2 MB of uncompressed models into the payload and the whole gate said CHECK PASS
+
+**K38.** K37 noticed a third writer of `assets/web/` and declined to chase it:
+`tools/publish.sh` copied any master through whenever it was newer by mtime. Chased, it is
+worse than the note.
+
+**It is reachable in one command, and nothing sees it.** Two compressed masters `touch`ed —
+the state the tree reaches whenever `generators/build.py` is run on its own, which is the
+case the script's own comment says the copy exists for — then `tools/publish.sh`:
+`fort_dearborn_palisade` **114,768 → 841,836 bytes** and `dearborn_street_drawbridge`
+**71,504 → 557,196**. **+1,212,760 bytes** into the payload, written into the *tracked*
+source tree and mirrored to `site/`. On that tree the derivative gate exited 0,
+`check_published.mjs` exited 0, and the full `tools/check.sh` printed **CHECK PASS**.
+
+**And it could not have been otherwise.** A master copied over its own derivative has that
+master's triangles, node identity, contract attributes, bounding box (zero rungs) and
+material table, and a byte count that is equal rather than larger. K36(a)'s eight assertions
+watch the *transformation* `assets/gltf/ → assets/web/`; they cannot see a file that skipped
+it. **A gate written against a transformation is not a gate on its output directory.**
+
+**It is not three writers — it is three scripts and four passthrough branches**, three of
+them silent: the size rule K37 decided (93 assets), `optimize`'s failure fallback,
+`gltf-transform`-unavailable copying **all 334** (payload 4.54 → 20.96 MB, 4.6× against a
+25 MB budget), and `publish.sh`'s mtime copy. **And mtime never compared a byte:** on a fresh
+clone **334 of 334 masters are older than their derivatives**, by `git checkout`'s index
+order, so the rule fires on any rebuild and is blind on the tree a run starts from.
+
+**What moved:** no asset, no record. **Assertion 8**, absolute in both directions against the
+93 passthroughs banked by name — a 94th fails whichever writer made it, and a banked one that
+returns compressed fails and says to re-bank. Both `--self-test` mutations fire.
+**`tools/publish.sh` is no longer a writer of `assets/web/`**: it keeps the scan, moves it
+above the first write and refuses, naming each file and the `tools/web_derivatives.sh --only`
+that repairs it. Verified end to end — the same two `touch`es now stop it at exit 1 with the
+working tree clean.
+
+**Stated, not tidied:** a new placeholder now needs `--write-baseline` in the commit that adds
+it, because "the generator added one" and "something copied a master through" are the same
+bytes and one of them is a decision. And refusing on mtime is still mtime — a master rebuilt
+with the same geometry and different `_CONFIDENCE` values passes both the scan and assertions
+2–7. **K39** is that residual: the step knows which master it compressed and writes it down
+nowhere.
+
+**Not verified here:** the desktop half of the smoke (~13 min against this harness's
+10-minute per-command ceiling). `tools/check.sh` and the mobile half of `--published` are
+green. No committed asset changed a byte in this parcel.
+
 ## Fixed 2026-08-16 — the ninety unsqueezed files were right, and three squeezed ones were shipping bigger than the models they came from
 
 **K37.** K36(a) reported 90 derivatives as byte-identical master copies and K36(b)'s control

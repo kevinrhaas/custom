@@ -6,6 +6,59 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# ---------------------------------------------------------------------------
+# THIS SCRIPT IS NOT A WRITER OF assets/web/ — ROADMAP K38.
+#
+# It used to be. Any master newer by mtime than its derivative was copied
+# through, here, into the TRACKED source tree and then into the mirror. The
+# intent was right — run `generators/build.py` alone and `assets/web/` goes
+# stale, which once cost a debugging round when a rebuilt building kept
+# rendering with its old confidence values — but the response was wrong twice:
+#
+#   * it SHIPPED THE UNCOMPRESSED MASTER, silently. Measured: two assets copied
+#     through this way added 1,212,760 bytes to the payload, and the entire dev
+#     gate printed CHECK PASS. A master copied over its own derivative has that
+#     master's triangles, node identity, attributes, bounding box and materials,
+#     and a byte count that is equal rather than larger, so every assertion in
+#     tools/measure_web_derivatives.py passed it. Assertion 8 exists now and
+#     catches exactly this, from ANY writer.
+#   * and it made a publish step mutate the repository, which is the one thing
+#     the mirror contract says publish does not do.
+#
+# So the detection stays and the writing goes. This refuses BEFORE it writes
+# anything, names the files and names the command that fixes them. mtime is a
+# conservative trigger, not a complete one — on a fresh clone every master is
+# older than its derivative by checkout order (measured: 334 of 334), so this
+# can miss a stale derivative it should catch. That residual is K39; a false
+# negative here is caught by assertion 8 the moment a writer produces a copy,
+# and by nothing at all when it does not, which is what K39 is for.
+# ---------------------------------------------------------------------------
+mkdir -p assets/web
+stale=()
+for m in assets/gltf/*.glb; do
+  [ -e "$m" ] || continue
+  w="assets/web/$(basename "$m")"
+  if [ ! -e "$w" ] || [ "$m" -nt "$w" ]; then
+    stale+=("$(basename "$m")")
+  fi
+done
+if [ ${#stale[@]} -gt 0 ]; then
+  echo "REFUSING TO PUBLISH — ${#stale[@]} master(s) are newer than the derivative the" >&2
+  echo "site would ship, so the mirror would carry a building the repository no longer" >&2
+  echo "describes. This used to be a silent 'cp' of the uncompressed master (K38)." >&2
+  for n in "${stale[@]}"; do
+    echo "   stale derivative: $n" >&2
+  done
+  echo "" >&2
+  echo "Regenerate them, then publish again:" >&2
+  for n in "${stale[@]}"; do
+    echo "   tools/web_derivatives.sh --only $n" >&2
+  done
+  echo "   python3 tools/measure_web_derivatives.py --write-baseline   # only if the" >&2
+  echo "     # passthrough set moved — a master that compresses bigger stays a copy" >&2
+  exit 1
+fi
+
 SITE="../../site/chicago/4d"
 mkdir -p "$SITE/data/gltf" "$SITE/data/sidecars"
 
@@ -24,22 +77,11 @@ if [ -f renderers/web/js/changelog.js ]; then
   cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"
 fi
 
-# Web-derivative assets only — never the masters.
+# Web-derivative assets only — never the masters. assets/web/ is produced by
+# tools/web_derivatives.sh (which tools/bake.sh calls and nothing else does);
+# the staleness of that directory against assets/gltf/ is settled at the top of
+# this script, and this copies what is there rather than deciding it.
 #
-# assets/web/ is produced by the gltf-transform step in bake.sh. Running
-# generators/build.py directly refreshes assets/gltf/ but NOT assets/web/, and
-# publishing then silently ships the previous mesh — which cost a debugging
-# round when a rebuilt building kept rendering with its old confidence values.
-# So: any master newer than its derivative is copied through here, and says so.
-mkdir -p assets/web
-for m in assets/gltf/*.glb; do
-  [ -e "$m" ] || continue
-  w="assets/web/$(basename "$m")"
-  if [ ! -e "$w" ] || [ "$m" -nt "$w" ]; then
-    echo "   derivative stale, copying master through: $(basename "$m")"
-    cp -f "$m" "$w"
-  fi
-done
 # The mirror is a MIRROR, not an accumulator. Copying in without clearing out
 # means a retired asset ships forever: the 108 __recommended_1835.glb placeholders
 # were deleted from the source tree and kept being published for as long as anyone
