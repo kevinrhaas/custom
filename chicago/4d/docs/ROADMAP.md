@@ -147,8 +147,9 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K42~~ | **DONE 2026-08-16** — the two layers' read-sets exist now, and they say **58 of 100 figures reach nothing**. K41's phrase *"both are rendered"* is **refuted**: `data/fauna` has no reader at all — no file under `renderers/` opens it and `publish.sh` never puts it on the site — while the scene's `layers` list, `docs/LIBERTIES.md` L2 and two validator messages all implied it does. In the flora, the manifest's own `_doc` claimed the ground colours were denormalised *"so the ground shader can work from one fetch"* and **`terrain.js` never opens `data/flora`**; the palettes carry **108** figures the renderer replaced with its own constants; **31** species record a July fruit nothing draws. K41's residual is answered: **202 of 202** flora citations sit on a node whose figures do reach a vertex, **30 of 30** fauna citations on a layer nothing draws. Read its box before quoting any flora or fauna read number |
 | 4 | KERNEL | **K43** | opened by K42: the three unread populations it measured are three different decisions and none of them is a gate's. The fauna layer needs the owner's word (leave it and stop implying otherwise, or give it a reader); the palettes' 108 tuning figures are a `TUNE`-versus-record question with no evidence in it and **no bake**; the July `fruit` on 31 species is the one with a research half, because `docs/LIBERTIES.md` does not record that omission. **Its fruit half is spent — see K44** |
 | — | KERNEL | ~~K44~~ | **DONE 2026-08-16** — a figure can be read and still reach nothing, because every reader takes a COHORT and no reader here receives every record: **339 of the 1,880 (record, figure) pairs K42's map calls read reach nothing**, and **six records reach no reader at all** — four of them the lakeshore's woody scrub, which the zone's own prose promises a visitor. K42's *"31 flowering plants record the fruit they carry in July, which nothing draws"* is **refuted**: 29 of the 31 are drawn in the fruit's own colour and shape, and what nothing reads is the boolean. The one flower genuinely missing is the **basswood in bloom**, because `trees.js` has no head path at all. Read its box before quoting any flora read number |
-| — | RENDERING | **K45(a)** | **CLAIMED 2026-08-16 · in flight** — before spending a smoke on K45's first repair, measure whether it draws anything. `TIMBER_ZONES` is read for SPECIES; placement is a hand-written `COMMUNITIES` mix |
-| 4 | KERNEL | **K45** | opened by K44: three repairs, none of them a bake — `z08_lakeshore` into `TIMBER_ZONES` (four dune trees, archetypes already exist), a head path in `trees.js` (the basswood's flowers and the ironwood's fruit), and the 124 herbaceous records a visitor cannot be told the name of. Each is a renderer parcel, so each carries the smoke |
+| — | RENDERING | ~~K45(a)~~ | **DONE 2026-08-16** — the repair K44 and `docs/LIBERTIES.md` L113 both prescribe **draws nothing**, and it is not close: `TIMBER_ZONES` is a SPECIES table, placement is a hand-written `COMMUNITIES` mix, and two of the four dune records already take their spec from `z05` while the other two are in no mix. The same hole was already occupied — the **American sycamore** is routed, archetyped and selected by nothing. And the woody planter is a fixed **632 m square** inside a field it reaches **27.05 %** of, so **87.9 ha** of modelled dry land has never been visited by the timber layer while the sward follows the visitor over all of it. Read its box before quoting any planting-reach number |
+| 4 | RENDERING | **K45(b)** | the lakeshore repair as it actually is, opened by K45(a) with its numbers measured: a dune community with a sourced placement rule AND the planter's square carried east. Two changes, and neither of them is "add the zone to the list" |
+| 4 | KERNEL | **K45** | opened by K44: three repairs, none of them a bake — ~~`z08_lakeshore` into `TIMBER_ZONES`~~ (**refuted by K45(a) — it draws nothing; see K45(b)**), a head path in `trees.js` (the basswood's flowers and the ironwood's fruit), and the 124 herbaceous records a visitor cannot be told the name of. Each is a renderer parcel, so each carries the smoke |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -2609,6 +2610,142 @@ tools/smoke_renderer.mjs --published` green. The desktop half was not run and is
 file. **No record moved and no asset changed**: the only data edit is one `_doc` sentence in
 `data/flora/index.json` that was false, and two `tools/validate.py` error messages that said
 a renderer reads a block no renderer reads.
+
+### K45(a) — the repair K44 named draws nothing, because `TIMBER_ZONES` is a species table and the placer picks from a hand-written list · **DONE 2026-08-16 — one line of prescribed repair refuted three ways, and the American sycamore has been standing in the same hole all along**
+
+**Read this box before quoting any planting-reach number.** K44 found four researched
+lakeshore trees handed to no reader and wrote the repair down in `docs/LIBERTIES.md`
+**L113** and in this file: *"Add `z08_lakeshore` to `TIMBER_ZONES` and the four dune
+records are drawn by the archetypes that already exist."* This parcel is the run-budget
+box's rule applied to that sentence — **land the measurement before spending a smoke on
+the fix** — and the measurement refuses the fix.
+
+**FINDING 1 — `TIMBER_ZONES` places nothing; it is a SPECIES table, and the proof is
+already committed.** `trees.js` opens those four zone files to build one render spec per
+species — height, crown width, July foliage, density, confidence — and then throws the
+zone away. A zone's `extent` is read by `flora.js` and **never** by `trees.js`. Placement
+is `COMMUNITIES`: four hand-written mixes chosen by heightfield rules (distance to water,
+which land division, a generated relief field), and a stem's species is
+`pick(mix, rnd())`. Nobody has to take that on argument, because the repo contains the
+control: **`z07_bur_oak_savanna`'s declared extent box is E −2600..−600, N −6400..−4400** —
+4.4 km outside the modelled field in the nearest direction, so no point in the scene is
+ever in that zone — **and its two oaks are drawn anyway**, out of the `ridge_oak` mix. A
+zone in the list is a zone whose species parameters are read. It is not a zone that is
+planted.
+
+**FINDING 2 — so the prescribed repair draws exactly zero stems, and the gate now says so
+in memory.** Applied to the real tree by `--self-test`, adding `z08_lakeshore` to
+`TIMBER_ZONES` does this and nothing else: `populus_deltoides` and `salix_interior`
+**already** have a spec from `z05_riverbank_timber`, and `loadTimberZones` is first-zone-
+wins (`if (specs[sp.id]) continue`) with the new zone appended last, so z05's gallery
+cottonwood keeps the entry and the dune form never lands — which is the right outcome and
+also not a repair. The other two, **`populus_tremuloides` and `populus_balsamifera`, are in
+no community mix**, so `pick()` can never return them: they gain a `specs` entry nothing
+can select. Four records in, zero stems out. The count is asserted rather than described —
+the self-test prints the two species the repair adds to the unselectable bank.
+
+**FINDING 3 — and the hole was already occupied.** Ask the question of the town as it
+stands and one species falls into it: **`platanus_occidentalis`, the American sycamore** —
+routed by `z05_riverbank_timber`, role `tree`, form `tree_gallery` which has an archetype,
+`density_per_ha` **[1, 3]** written down, graded `inferred` off McBride & Bowles, its July
+appearance recorded as *"Rare, at its northern edge; white mottled bark flashing on the
+upper limbs"* — **and in none of the four mixes.** It is drawn nowhere and always has
+been. **K44 counted it as reached**, correctly by its own definition: the record is handed
+to `trees.js`. It is the same loss one level in, and invisible from K44 for the same reason
+K44 was invisible from K42 — *"this record is received"* and *"this record can be selected"*
+are different sentences, and only the first one had a gate.
+
+**FINDING 4 — the timber layer has never visited three quarters of the modelled ground.**
+The woody planting loop sweeps a fixed square, `half = 320 - step`, so **E/N −316..+316 m**
+at full detail. S2e carried the heightfield east to **E −320..+1700, N −400..+400**.
+Measured against the planter's own dry floor (`water_surface_m + TREE_DRY_MARGIN_M`, 0.20 m):
+**192,844 heightfield nodes stand above it, 52,163 of them inside the square — 27.05 % —
+and 140,681 outside, which is 87.9 ha.** `flora.js`'s lattice is built around `camE`/`camN`
+and follows the visitor over all of it, so the sward reaches ground the timber cannot. And
+`z08_lakeshore`'s own box starts at E +1400, **1,084 m east of the planter's east edge**:
+even a repair that fixed the mix would still plant nothing there.
+
+**WHAT THIS MEANS FOR THE PARCEL, stated as a plan rather than left implied.** K45's first
+repair is not one line, it is two changes and one research question: a **dune community**
+in `COMMUNITIES` with a placement rule (what selects it — substrate? distance to the lake?
+the zone extent, which would make `trees.js` read an extent for the first time) and the
+sourced densities the records already carry (3–15, 2–8, 2–8 per ha), **and** the planting
+loop's square carried east over the ground that community stands on. Both carry the smoke,
+and the second one changes how much ground the loop sweeps, which is a cost question this
+box does not answer. That is **K45(b)**.
+
+**WHAT SHIPPED.** `tools/measure_planting_reach.py` — census, `--gate`, `--self-test`,
+`--update` — and `tools/planting_reach_baseline.json`. Four assertions: **1** the
+declarations are still in the renderer, and `trees.js` still has exactly the **2**
+`addTree` call sites this gate accounts for, so a third selection path is a failure rather
+than a species wrongly called unselectable; **2** the planter's domain, banked exactly and
+allowed to GROW and not shrink — the number K45(b) has to move; **3** the routed,
+archetyped, unselectable species, exact both ways, which is the assertion that refuses
+L113's repair; **4** every `TIMBER_ZONE` that declares an extent box with whether that box
+meets the planter, so routing-is-not-placement is held in a file instead of a paragraph.
+Every declaration is **scanned out of the renderer**, and a scanner that cannot find its
+own is a raise rather than an empty set.
+
+**THE SCANNER BUG THIS FILE FOUND IN ITSELF, recorded because it is the failure mode the
+house style exists to prevent.** The first version read a community's mix with
+`\[(.*?)\],` and the mixes are written several lines long with a `],` closing each species
+pair, so the non-greedy match stopped two entries in — and the census confidently reported
+**nine** unselectable species, six of which are drawn in every frame. A bracket-balanced
+reader replaced it and a self-test check now asserts that a multi-line mix is read to its
+END. **A scan that under-reads looks exactly like a finding**, which is why every scanner
+here has to be able to say no as well as yes.
+
+**THE LIMIT.** `standsDry` is one of several tests a stem must pass — the traced water
+mask, the buildings, the community classifier (which returns null over most of the box)
+and the per-hectare roll all remove more. The land census is therefore an **upper bound on
+ground the loop could visit**, not a count of stems; the stems actually built are
+`trees.stats` and belong to the smoke. The tool's docstring says so.
+
+**Verified:** `tools/check.sh` green with the two new steps; `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not
+claimed — ~13 minutes against a 10-minute per-command ceiling; see the run-budget box at
+the top of this file. **No record, asset, parameter or renderer file changed** — this
+parcel is a measurement, a bank, two gate steps, a correction to L113 and a changelog
+entry. Nothing a visitor sees moved, which is the honest outcome when the repair on the
+table would have moved nothing either.
+
+### K45(b) — the lakeshore repair as it actually is · **UNCLAIMED · opened 2026-08-16 by K45(a) · Effort: M · NO BAKE, and it carries the smoke**
+
+K45(a) refuted the one-line version. What is left is two changes and one research question, and
+its numbers are all measured and committed — take them, do not re-derive them.
+
+**Change one: a community that can stand on dune sand.** `COMMUNITIES` has four mixes and the
+classifier that chooses between them (`communityAt`) asks distance-to-water, which land division,
+and a generated relief field. On the beach the lake IS water, so bank distance is small and the
+classifier would return `gallery` — silver maple and elm on open sand, which is worse than nothing.
+A `dune` mix needs its own branch and the branch needs a rule: the honest candidates are
+**substrate** (the zone record's own `cover`/`ground`), **the zone extent** (which would make
+`trees.js` read an extent for the first time in its life, and is a real design change, not a
+line), or **distance to the lake specifically** rather than to any water. The densities are
+already sourced — `populus_deltoides` [3, 15]/ha in the dune form, `populus_tremuloides` and
+`populus_balsamifera` [2, 8] each, all three graded `attested` off the MNFI open-dune survey and
+Cowles 1901. **Do not invent a fourth species to round the mix out.**
+
+**Change two: the planting loop's square carried east.** `const half = 320 - step` sweeps
+E/N −316..+316 while the field runs E −320..+1700, N −400..+400 — **87.9 ha, 72.95 % of the ground
+above the loop's own dry floor, is outside it**. The cost is the open question this parcel has to
+answer with a number rather than a guess: the loop is O(cells) and the field is 4× the square, so
+the sweep gets ~4× longer at the same step, on top of whatever the new stems cost in triangles and
+draw calls. `stats.drawCalls` and the ≤ 80-per-station budget R-W5a and K36(b) both measure are
+the gate. **Measure it before widening it**: a `SMOKE_VIEWPORT=desktop` run cannot self-verify on
+this runner, so if the widened sweep needs the desktop half, split again and say so.
+
+**And the third thing, which is separable and much smaller.** The **American sycamore** is one mix
+entry — `['platanus_occidentalis', 1]` in `gallery`, weighted at the [1, 3]/ha its own record
+carries — and it is drawn nowhere today. It has nothing to do with the lakeshore and could ship on
+its own, ahead of either change above, as the cheapest way to move `tools/measure_planting_reach.py`'s
+unselectable bank from one to zero. It changes the frame, so it carries the smoke; that is the whole
+of its cost.
+
+**The gate will demand the bank move.** `tools/measure_planting_reach.py` holds the planter's reach
+(may grow, may not shrink) and the unselectable population (exact both ways), so each of the three
+has to `--update` in the commit that makes it. `docs/LIBERTIES.md` **L114** is the entry to move to
+**Resolved**, in halves, as they land.
 
 ### K44 — a figure can be read and still reach nothing, because every reader takes a cohort · **DONE 2026-08-16 — 339 of 1,880 (record, figure) pairs, six records handed to no reader at all, and the July fruit K43 was opened to record as missing is drawn on 29 of the 31 records that carry it**
 

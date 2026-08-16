@@ -1,0 +1,65 @@
+{
+  "_doc": "Whether a routed woody record can be PLACED. K44 measured which reader receives a record; trees.js receives one and then selects a species out of a hand-written COMMUNITIES mix, so a record it receives whose species is in no mix is drawn nowhere. `planter` and `ground` are the fixed square the timber loop sweeps and how much of the modelled field it reaches \u2014 it may grow and may not shrink. `unselectable` is the population, exact in both directions. `zone_boxes` records that a TIMBER_ZONE's extent is never consulted by the reader it is routed to. Held by tools/measure_planting_reach.py. Read ROADMAP K45(a) before adding a line.",
+  "planter": {
+    "half_const_m": 320.0,
+    "half_m": 316.0,
+    "dry_margin_m": 0.2,
+    "steps_m": [
+      4.0,
+      4.7,
+      5.6
+    ],
+    "call_sites": 2
+  },
+  "ground": {
+    "dry_floor_m": 0.2,
+    "nodes_above_floor": 192844,
+    "inside_planter": 52163,
+    "outside_planter": 140681,
+    "inside_pct": 27.05,
+    "outside_ha": 87.9,
+    "field_e_m": [
+      -320.0,
+      1700.0
+    ],
+    "field_n_m": [
+      -400.0,
+      400.0
+    ]
+  },
+  "zone_boxes": {
+    "z05_riverbank_timber": {
+      "verdict": "no-box",
+      "box": null
+    },
+    "z06_dense_forest": {
+      "verdict": "no-box",
+      "box": null
+    },
+    "z07_bur_oak_savanna": {
+      "verdict": "outside-the-planter",
+      "box": {
+        "e": [
+          -2600,
+          -600
+        ],
+        "n": [
+          -6400,
+          -4400
+        ]
+      }
+    },
+    "z10_settled_town": {
+      "verdict": "no-box",
+      "box": null
+    }
+  },
+  "unselectable": {
+    "platanus_occidentalis": {
+      "zones": [
+        "z05_riverbank_timber"
+      ],
+      "reason": "in-no-community-mix"
+    }
+  }
+}

@@ -1,5 +1,40 @@
 # STATUS
 
+## Measured 2026-08-16 — the repair yesterday's parcel prescribed draws nothing, and a researched tree has never been in the scene
+
+**K45(a)**, and it moves no record, no parameter and no renderer file. K44 found four researched
+lakeshore trees handed to no reader and wrote the repair down in two places: *"add `z08_lakeshore`
+to `TIMBER_ZONES`"*. Measured before spending a smoke on it, that repair draws **zero** stems.
+
+**`TIMBER_ZONES` is a species table, not a placement list.** `trees.js` opens those zone files for
+height, crown width, July foliage, density and confidence, then places from a hand-written
+`COMMUNITIES` mix; a zone's `extent` is read by `flora.js` and never by `trees.js`. The control is
+already committed — **`z07_bur_oak_savanna`'s declared extent box is 4.4 km outside the modelled
+field and its oaks are drawn anyway.** Of the lakeshore's four woody records, two already take
+their spec from `z05_riverbank_timber` (first zone wins) and the other two are in no mix, so
+`pick()` can never return them.
+
+**And the hole was already occupied.** The **American sycamore** — routed by
+`z05_riverbank_timber`, form `tree_gallery` with an archetype, `density_per_ha` [1, 3], its white
+mottled bark written down — is in none of the four mixes and has never stood in this scene. It is
+the only one of the 20 routed, archetyped woody species in that position, and **K44 counted it as
+reached**, correctly by its own definition.
+
+**The timber layer has never visited three quarters of the modelled ground.** The woody planting
+loop sweeps a fixed square, E/N −316..+316 m; the heightfield runs E −320..+1700, N −400..+400. Of
+**192,844** nodes above the planter's own dry floor, **52,163 (27.05 %) are inside it and 140,681
+are outside — 87.9 ha**. `flora.js`'s lattice is centred on the camera and follows the visitor over
+all of it. `z08_lakeshore`'s box begins **1,084 m** east of the planter's edge.
+
+**What is unverified, stated plainly.** The land census is an **upper bound** on ground the loop
+could visit, not a count of stems: the traced water mask, the buildings, the community classifier
+and the per-hectare roll all remove more. `tools/check.sh` is green with the two new steps and
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` is green; **the desktop half was
+not run** — ~13 minutes against this runner's 10-minute per-command ceiling. Both populations are
+banked by `tools/measure_planting_reach.py`; `docs/LIBERTIES.md` **L113** carries a correction and
+**L114** records the two omissions. The repair is **K45(b)**: a dune community with a placement
+rule, and the planter's square carried east. Neither is one line.
+
 ## Measured 2026-08-16 — a figure can be read and still reach nothing: 339 of 1,880 (record, figure) pairs, and six researched plants are handed to no renderer at all
 
 **K44**, and it moves no record and no renderer file. K42 asked whether a FIGURE is read. Every
