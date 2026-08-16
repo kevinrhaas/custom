@@ -588,6 +588,132 @@ const FORM_OF = {
 
 const CONFIDENCE_VALUE = { attested: 0.0, inferred: 0.5, reconstructed: 1.0 };
 
+/* -------------------------------------------------------------------------- */
+/* the woody head — ROADMAP K45(c)                                             */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Head archetype per RECORDED INFLORESCENCE SHAPE, for the woody cohort.
+ *
+ * K44 measured that three recorded July inflorescences draw no flower and named
+ * the cause exactly: *"`trees.js` has no head archetype at all"*. Two of the
+ * three are this file's — the **American basswood in bloom** (`flowering`,
+ * `cluster_terminal`, sRGB 222,214,152) and the **ironwood's hop-like fruit**
+ * (`fruiting`, `cluster_terminal`, 214,212,180), both in `z06_dense_forest` and
+ * both in the `mesic_pocket` mix, so both stand in this scene today with nothing
+ * on them. The third is the riverbank grape, whose `vine_drape` form no reader
+ * implements; it is a ROUTING gap and stays K45(b)'s, not this parcel's.
+ *
+ * **The repair K44 wrote down is one step short of the truth, and this is the
+ * finding.** Handing this file `flora.js`'s `HEAD_OF_SHAPE` verbatim draws
+ * `cluster_terminal`'s count — **1 to 4 heads** — because that table is
+ * calibrated for a forb, where the whole plant IS one flowering scape. On a
+ * basswood the arithmetic says what that looks like: the record's own
+ * `size_m` is [0.06, 0.12] m for ONE inflorescence, and a 0.09 m cluster at the
+ * 23 m slant range of a neighbouring crown (11 m up, 20 m out) subtends
+ * 0.0039 rad — **3.3 px** at this file's `DEFAULT_PX_PER_RAD` of 833. The crown
+ * carrying them is 10–16 m across, which is **580 px** at the same range. Four
+ * 3-px specks on a 580-px crown is not a tree in flower; it is four pixels of
+ * noise, and it would have banked a false pass on K44's own assertion 5.
+ *
+ * So SIZE comes from the record exactly and MULTIPLICITY is keyed to the crown,
+ * which is a liberty and is recorded as one (docs/LIBERTIES.md L115) for the
+ * same reason `flora.js`'s is (L35): **the records give the density of PLANTS
+ * and the size of ONE inflorescence, and say nothing about how many a plant
+ * carries.** Keying it to the crown rather than to a constant is what makes an
+ * 18 m basswood and a 7 m ironwood differ by their own evidenced `width_m`
+ * instead of by a number typed here.
+ *
+ *   kind   which archetype draws it. `cluster` is a small dense blob; a
+ *          pendulous `catkin` is drawn longer than it is wide. At 3 px the
+ *          difference is a silhouette, not a shape, which is why there are two
+ *          and not nine — this file is not `flora.js` and must not pretend the
+ *          extra archetypes are resolvable at the ranges it draws at.
+ *   perM   heads per metre of crown width, before the clamp below.
+ *   band   how far DOWN from `height_frac` the heads are carried, as a fraction
+ *          of crown height. A terminal cluster sits in the outer shell of the
+ *          canopy; it is not scattered through its interior, where nothing
+ *          would see it.
+ *
+ * The map is exhaustive over the shapes the woody records actually carry, and a
+ * shape it cannot draw is REPORTED and draws nothing rather than being quietly
+ * substituted — the same rule as `flora.js`, for the same reason.
+ */
+const WOODY_HEAD_OF_SHAPE = {
+  cluster_terminal: { kind: 'cluster', perM: 1.6, band: 0.30 },
+  berry_cluster: { kind: 'cluster', perM: 1.3, band: 0.34 },
+  cluster_axillary: { kind: 'catkin', perM: 1.8, band: 0.52 },
+  raceme: { kind: 'catkin', perM: 1.4, band: 0.36 },
+  nut_husk: { kind: 'cluster', perM: 0.9, band: 0.30 },
+  cherry: { kind: 'cluster', perM: 1.2, band: 0.34 },
+};
+
+/**
+ * The clamp on that multiplicity, and both ends of it are about legibility
+ * rather than botany. Below the floor a crown reads as unflowered and the
+ * layer may as well not have been drawn; above the ceiling the heads merge into
+ * a pale cap and the tree stops reading as a tree in flower and starts reading
+ * as a tree with a different foliage colour. A 13 m basswood crown lands on 21
+ * and a 5.5 m ironwood on 9.
+ */
+const HEADS_MIN = 6;
+const HEADS_MAX = 26;
+
+/** The July gate, copied from `flora.js` rather than imported, because these two
+ *  files share no module and the rule is CONTRACT.md §5.4 rule 1 rather than
+ *  either file's. A record that is vegetative or in bud in mid-July draws no
+ *  head even if it carries one, and the contradiction is reported. K44: the
+ *  woody layer had no July gate at all, because `july.phenology` was read by
+ *  `flora.js` alone. */
+const VEGETATIVE_PHASES = ['vegetative', 'budding'];
+
+/**
+ * One species' head spec, or null. Mirrors `flora.js`'s `headOf` — same gate,
+ * same refusal to substitute an archetype — and differs only in what it keys
+ * the count to.
+ */
+function woodyHeadOf(sp, zoneId, problems) {
+  const july = sp.july ?? {};
+  // Named for the field it holds, and that is load-bearing rather than a style
+  // choice: `rgb` is an ambiguous leaf, so `tools/measure_layer_reads.py` scans
+  // it PARENT-QUALIFIED (`inflorescence.rgb`). A local called `inflor` reads
+  // the record just as truly and is invisible to the scan, which is how
+  // `flora.js` ends up needing its whole expression matched verbatim instead.
+  const inflorescence = july.inflorescence;
+  if (!inflorescence) return null;
+  if (VEGETATIVE_PHASES.includes(july.phenology)) {
+    problems.push(`trees: ${zoneId}/${sp.id ?? sp.binomial} is '${july.phenology}' and `
+      + 'still carries an inflorescence — no head is drawn; the record needs fixing');
+    return null;
+  }
+  const style = WOODY_HEAD_OF_SHAPE[inflorescence.shape];
+  if (!style) {
+    problems.push(`trees: ${zoneId}/${sp.id ?? sp.binomial} records inflorescence shape `
+      + `'${inflorescence.shape}', which has no woody archetype — its flower is not drawn`);
+    return null;
+  }
+  const size = Array.isArray(inflorescence.size_m) && inflorescence.size_m.length === 2
+    ? inflorescence.size_m : [0.06, 0.12];
+  // `inflorescence.fruit` is deliberately NOT read here. K44 measured that the
+  // boolean reaches nothing and that 29 of the 31 records carrying it are drawn
+  // in the fruit's own colour and shape anyway — it is redundant with
+  // `phenology: 'fruiting'`, which this function does read. Storing it on the
+  // spec and drawing nothing from it would BE the fault K44 named, one field
+  // further along, and would take it off that gate's banked list while changing
+  // nothing a visitor sees.
+  return {
+    kind: style.kind,
+    perM: style.perM,
+    band: style.band,
+    // The record's sRGB bytes. See `linear()` for why the transfer happens
+    // exactly once on the way to a vertex colour.
+    rgb: rgbHex(inflorescence.rgb),
+    frac: clamp01(inflorescence.height_frac ?? 0.8),
+    size,
+    phenology: july.phenology ?? null,
+  };
+}
+
 /**
  * Read the timber zones and hand back one render spec per species. The record
  * wins on everything it carries — height, crown width, July foliage, density,
@@ -598,13 +724,14 @@ const CONFIDENCE_VALUE = { attested: 0.0, inferred: 0.5, reconstructed: 1.0 };
  * rather than `problems`, because it is a gap in the RENDERER and `problems` is
  * what the repo smoke reads to decide whether the DATA loaded.
  */
-async function loadTimberZones(dataBase) {
+async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
   const density = {};
   const unimplemented = new Set();
   const zonesRead = [];
+  const heads = [];
   for (const id of TIMBER_ZONES) {
     const entry = (manifest.zones ?? []).find((z) => z.id === id);
     if (!entry) throw new Error(`flora/index.json names no zone ${id}`);
@@ -635,11 +762,26 @@ async function loadTimberZones(dataBase) {
         // module invented the position of every individual stem in the scene.
         conf: Math.max(0.5, CONFIDENCE_VALUE[sp.confidence] ?? 0.5),
         july: sp.july?.appearance ?? base.july,
+        // The recorded July inflorescence, or null. A thicket is drawn by
+        // `addThicket`, which has no head path, so a head on one would be
+        // silently dropped — reported here instead, because a dropped flower
+        // that nothing says was dropped is exactly the fault K44 measured.
+        head: woodyHeadOf(sp, id, problems),
         fromRecord: true,
       };
+      if (specs[sp.id].head) {
+        if (form === 'thicket') {
+          problems.push(`trees: ${id}/${sp.id} is a thicket carrying a `
+            + `'${sp.july.inflorescence.shape}' inflorescence, and the clonal path draws `
+            + 'no head — its flower is not drawn');
+          specs[sp.id].head = null;
+        } else {
+          heads.push(sp.id);
+        }
+      }
     }
   }
-  return { specs, density, unimplemented: [...unimplemented], zonesRead };
+  return { specs, density, unimplemented: [...unimplemented], zonesRead, heads };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -741,6 +883,10 @@ const ICO_F = [
  */
 class MeshBuf {
   constructor() {
+    /** How many inflorescences landed in this chunk (ROADMAP K45(c)). Counted
+     *  where they are built rather than estimated from the stem count, because
+     *  the multiplicity is a function of each tree's own crown width. */
+    this.heads = 0;
     this.pos = [];
     this.nrm = [];
     this.col = [];
@@ -913,6 +1059,57 @@ function addPuff(buf, cx, cy, cz, radius, squash, dark, light, shade, flexBase, 
     buf.vert(x, y, z, v[0], v[1], v[2], r, g, b, flexBase + up * 0.22, conf);
   }
   for (const f of ICO_F) buf.tri(base + f[0], base + f[1], base + f[2]);
+}
+
+/**
+ * The head primitive: an OCTAHEDRON, six vertices and eight faces.
+ *
+ * The cheapest closed solid is a tetrahedron and it was rejected on its
+ * silhouette rather than on its cost — edge-on a tetrahedron is a sliver, and a
+ * flower cluster that disappears from a third of the bearings around the tree is
+ * a worse artefact than the two extra vertices are a saving. Eight faces is
+ * still an eighth of the twenty `addPuff` spends on a foliage mass, which is the
+ * right ratio: at the ranges this file draws at a head is 3 px and a crown is
+ * 580 (see `WOODY_HEAD_OF_SHAPE`), so the head is where the geometry budget must
+ * NOT be spent.
+ */
+const OCT_V = [
+  [1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1],
+];
+const OCT_F = [
+  [0, 2, 4], [2, 1, 4], [1, 3, 4], [3, 0, 4],
+  [2, 0, 5], [1, 2, 5], [3, 1, 5], [0, 3, 5],
+];
+
+/**
+ * Add one inflorescence: a small blob in the record's own flower colour,
+ * sitting in the outer shell of the crown.
+ *
+ * `stretch` is what separates the two archetypes — a `catkin` hangs, so it is
+ * drawn longer than it is wide and dropped below its anchor; a `cluster` is
+ * roughly isotropic. `lit` carries the same crown self-shadowing the foliage
+ * gets, because a flower deep in a canopy is in the same shade the leaves
+ * around it are, and a bloom drawn at full brightness through the whole crown
+ * is the "glowing lights in a dark tree" failure.
+ */
+function addHead(buf, cx, cy, cz, radius, stretch, colour, lit, flex, rnd, conf) {
+  const base = buf.count;
+  const shade = lerp(0.34, 1.0, lit);
+  const r = colour[0] * shade;
+  const g = colour[1] * shade;
+  const b = colour[2] * shade;
+  for (let i = 0; i < 6; i++) {
+    const v = OCT_V[i];
+    const k = radius * (0.72 + rnd() * 0.56);
+    buf.vert(
+      cx + v[0] * k,
+      cy + v[1] * k * stretch,
+      cz + v[2] * k,
+      v[0], v[1], v[2],
+      r, g, b, flex, conf,
+    );
+  }
+  for (const f of OCT_F) buf.tri(base + f[0], base + f[1], base + f[2]);
 }
 
 /** Add a tapered n-sided prism — a bole, or a limb. */
@@ -1152,6 +1349,41 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
     const flexBase = 0.42 + 0.44 * c[3];
     addPuff(buf, c[0], c[1], c[2], rad, squash, d2, l2, c[3], flexBase, rnd, conf);
   }
+
+  // The flower, if the record carries one and July allows it. Drawn LAST so it
+  // sits over the foliage it is carried on rather than being buried by a puff
+  // added after it — the crown is opaque and merged, and there is no depth sort
+  // inside one buffer to fix an ordering mistake here.
+  //
+  // Placement is on the outer SHELL: the record's `height_frac` picks the band
+  // up the crown and `band` gives it depth, then each head is thrown out to
+  // 0.72–1.0 of the crown radius at that height. A cluster at the centre of a
+  // canopy is inside 12 m of leaves and is drawn for nobody.
+  if (spec.head) {
+    const head = spec.head;
+    const n = Math.max(HEADS_MIN,
+      Math.min(HEADS_MAX, Math.round(spread * head.perM)));
+    const stretch = head.kind === 'catkin' ? 2.1 : 1.0;
+    const colour = linear(head.rgb);
+    // The crown radius at a given height, as an ellipsoid: widest at mid-crown,
+    // closing at the cap. Without this the heads at `height_frac` 0.9 stand out
+    // in clear air a metre off the foliage.
+    const shellR = (t) => (spread * 0.5) * Math.sqrt(Math.max(0.08, 1 - Math.pow(2 * t - 1, 2)));
+    for (let i = 0; i < n; i++) {
+      const t = clamp01(head.frac - head.band * rnd());
+      const a = (i / n) * Math.PI * 2 + rnd() * 1.1;
+      const rr = shellR(t) * (0.72 + rnd() * 0.28);
+      const hy = crownBase + crownH * t;
+      const rad = lerp(head.size[0], head.size[1], rnd()) * 0.5;
+      // Same self-shadowing law the foliage gets: high in the crown is lit,
+      // low is interior. `t` is already that fraction.
+      addHead(buf, topX + Math.cos(a) * rr, hy - (stretch > 1 ? rad * 1.4 : 0),
+        topZ + Math.sin(a) * rr,
+        rad, stretch, colour, Math.pow(clamp01(t), 1.5),
+        0.42 + 0.44 * t, rnd, conf);
+    }
+    buf.heads += n;
+  }
   return h;
 }
 
@@ -1194,6 +1426,11 @@ export async function createTrees({
     })),
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
     rejectedBelowWaterline: 0, lowestStationY: null,
+    // ROADMAP K45(c). `headSpecies` is which records carry a July
+    // inflorescence this file draws; `headStems` is how many stems actually
+    // got one, which is the number that says whether the flower is IN the
+    // scene rather than merely implemented.
+    headSpecies: [], headStems: 0, heads: 0, headStations: [],
   };
 
   if (!hf?.loaded) {
@@ -1211,7 +1448,7 @@ export async function createTrees({
   let records;
   try {
     if (!dataBase) throw new Error('no dataBase');
-    records = await loadTimberZones(dataBase);
+    records = await loadTimberZones(dataBase, problems);
   } catch (err) {
     problems.push(`trees: the flora zone records did not load (${err.message}) — `
       + 'no woody vegetation placed');
@@ -1220,6 +1457,7 @@ export async function createTrees({
   stats.zoneRecords = records.zonesRead;
   stats.unimplementedForms = records.unimplemented;
   stats.speciesFromRecord = Object.keys(records.specs).length;
+  stats.headSpecies = records.heads;
 
   /** The render spec per species: the record's ecology over this file's forms. */
   const specs = {};
@@ -1512,6 +1750,15 @@ export async function createTrees({
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
       noteStation(px, pz, gy);
       stats.trees++;
+      if (spec.head) {
+        stats.headStems++;
+        // Where the flowering stems actually stand. A layer that is implemented
+        // and a layer a visitor can SEE are different claims, and this is the
+        // only field that lets anything downstream tell them apart: the mesic
+        // pocket is a minority community and its two flowering species are 14
+        // stems of 159 (ROADMAP K45(c)).
+        stats.headStations.push({ e: px, n: pz, id });
+      }
       bump(stats.communities, key);
       bump(stats.species, id);
     }
@@ -1569,6 +1816,7 @@ uniform float uWind;
     stats.drawCalls++;
     stats.triangles += buffers[i].idx.length / 3;
   }
+  for (const b of buffers) stats.heads += b.heads;
 
   /* ---- 5. the horizon ---------------------------------------------------- */
 

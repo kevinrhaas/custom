@@ -3711,6 +3711,17 @@ see has changed; only the sentence about how to fix it.
 
 **Recorded:** 2026-08-16.
 
+**PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(c)) — the second of the three repairs is done, and it
+was one step short of what this entry said it was.** `trees.js` has a head path now, and the
+**American basswood in bloom** and the **ironwood in fruit** are drawn from their own records:
+`tools/measure_flora_reach.py` banks **one** headless flower where it banked three, and the
+remaining one is the grape, whose `vine_drape` form is still unimplemented and which was never
+this repair's. What the sentence above got wrong is the size of it — handing `trees.js`
+`flora.js`'s own `HEAD_OF_SHAPE` verbatim draws `cluster_terminal`'s **1 to 4** heads, a count
+calibrated for a forb whose whole plant is one flowering scape, and four 3-pixel specks on a
+580-pixel crown is not a tree in flower. The multiplicity that makes it one is **L115**. The
+first repair remains refuted (K45(a)) and the third — the vines — is untouched.
+
 
 ### L114 — A researched tree that no mix can choose, and three quarters of the modelled ground the timber layer has never visited
 
@@ -4041,4 +4052,63 @@ This entry discharges no `Covers:` claim, deliberately. It admits a method conve
 how many invented households exist, which is the kind of decision the header of this file says
 does not live in any single attribute. The inventions the convention paces are already covered by
 **L83**, **L84**, **L99**, **L100** and **L101**.
+**Recorded:** 2026-08-16.
+
+
+### L115 — How many flowers a tree carries, which no record states
+
+**Decision:** the number of inflorescences drawn on a woody stem is **invented**, keyed to that
+tree's own recorded crown width at 1.6 heads per metre and clamped to 6–26. The record's
+`july.inflorescence.size_m` — the size of ONE inflorescence — is used exactly as written, and so
+are its colour and its `height_frac`. Only the multiplicity is this project's (ROADMAP
+**K45(c)**, `renderers/web/js/trees.js` → `WOODY_HEAD_OF_SHAPE`).
+
+**Why nothing else was possible.** `data/flora/` gives the density of PLANTS per hectare and the
+size of one inflorescence, and says nothing anywhere about how many a plant carries. That is the
+same gap `flora.js` records in **L35** for the herbaceous layer, and it is a gap in the sources
+rather than in the transcription: the dossiers behind these records are a presettlement land
+survey and a regional vegetation reconstruction, neither of which counts flowers.
+
+**Why it is not simply L35's number.** `flora.js` keys its count to the plant's architecture and
+lands `cluster_terminal` on **1 to 4**, which is right for a forb — the whole plant is one
+flowering scape. On a basswood it is wrong by orders of magnitude in the direction that matters,
+and the arithmetic is the reason rather than the judgement: the record's own 0.06–0.12 m cluster
+at the 23 m slant range of a neighbouring crown (11 m up, 20 m out) subtends 0.0039 rad, which is
+**3.3 px** at the renderer's 833 px per radian. The crown carrying it is 10–16 m across, which is
+**580 px** at the same range. Four 3-px specks on a 580-px crown is four pixels of noise, and it
+would have satisfied every gate this project has while drawing, to a visitor, nothing at all.
+
+**What it costs, named.** A basswood's 13 m crown lands on 21 heads and an ironwood's 5.5 m crown
+on 9. A real basswood in full bloom carries very many more than 21 cymes, so this is an
+**under**-statement of the bloom and not an over-statement — chosen in that direction because the
+alternative is a pale cap over the whole crown, at which point the tree stops reading as a tree in
+flower and starts reading as a tree of a different colour. Both ends of the clamp are legibility
+decisions, not botany, and they are written as constants (`HEADS_MIN`, `HEADS_MAX`) so a reader
+can find them. On the build this was recorded against the whole invention amounts to **187 heads
+on 14 stems**, 1,496 of the timber layer's 113,890 triangles, and **no new draw call**.
+
+**What it does NOT invent.** The size, the colour, the height on the plant and whether a head is
+drawn at all all come from the record. The July gate is CONTRACT.md §5.4 rule 1 and refuses a head
+on a `vegetative` or `budding` record however many the count would allow — the woody layer had no
+July gate before this (K44), because `july.phenology` was read by `flora.js` alone.
+
+**And the honest limit, which is not about the count.** The two flowering species are both in the
+`mesic_pocket` community, which is **20 of 159 stems**, and every one of the 14 flowering stems
+stands north of N +174 m. **The nearest committed scene anchor is 269 m away** — `south_water` —
+at which range one inflorescence is **0.28 px**. A visitor who walks north-east will stand under a
+flowering basswood; a visitor who stays at any anchor the project itself poses will never see one.
+That is a fact about where the mesic pocket falls on the modelled ground, not about this liberty,
+and it is written down here so nobody re-derives it from a screenshot.
+`tools/measure_head_reach.mjs` re-runs the whole table.
+
+**How to resolve:** by evidence about the flower rather than about the renderer. A count in a
+source — a phenological note, a bee-forage estimate, anything that states how many cymes a
+mature basswood carries — replaces the constant outright, and the clamp with it.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a **drawing convention** that
+governs how many inflorescences appear on a `role: tree` record drawn by
+`renderers/web/js/trees.js`, which is the kind of decision the header of this file says does not
+live in any single attribute — no record's confidence changes and no attribute is graded by it.
+Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the
+omission this resolves half of.
 **Recorded:** 2026-08-16.
