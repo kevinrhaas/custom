@@ -1,5 +1,43 @@
 # STATUS
 
+## Measured 2026-08-16 — the rights rule could only ever fire on a violation somebody had already written down, and 49 geometry-bearing attributes are built from sources nobody has checked
+
+**K41**, and it moves no record. AGENTS.md rule 6 and `docs/PROVENANCE.md` say a
+`check_required` source *"may be cited in text but must not have assets derived from it"*, and
+PROVENANCE.md said **"the validator enforces this."** The enforcement compares two fields of
+the **same source record** — `rights_status` against the source's own `asset_use` label — so it
+fires only when an author has recorded the violation. **The pair has never existed here: 38 of
+64 sources have unresolved rights and every one declares `cross_check` or `text_only`**, while
+the three that declare `geometry` are a survey and two maps, all clear. The labels are honest;
+the rule is about a derivation and the mechanism is about a declaration.
+
+**Asked of the town instead**, using the read-sets the generators already declare
+(`CONSUMED` in each `*_params.py`, the same definition `check_geometry_declarations` uses, plus
+the footprint polygon `from_phase` reads): **49 geometry-bearing attributes on 21 records cite
+an unresolved source** — 43 on buildings, 6 on the terrain spec — and **19 of the 20 buildings
+have a baked master in the tree**. **35 of the 49 stand on unresolved support alone** and **16
+of those are graded `attested`**: the Sauganash Hotel's storeys and construction, the Wolf
+Point Tavern's frame addition and painted sign, the Green Tree Tavern's footprint, roof and
+paint, St Mary's Church's footprint, the Western Hotel, Miller House, and the west and south
+division levels on the ground.
+
+**What this parcel refuses to decide.** Whether a dimension read out of a copyrighted page is
+an "asset derived from it" is a rights reading, and this project's own documents disagree —
+`docs/PLAN.md` reads it narrowly (images, *"before any derivative texture"*), AGENTS.md and
+PROVENANCE.md broadly. The two readings give opposite answers for all 49, so the gate holds the
+population where it is and the reading goes to the owner; three routes are written up in
+ROADMAP K41.
+
+**What shipped:** `tools/measure_rights_derivation.py` and its 49-entry bank, four assertions
+(the old label test kept, plus new-fault, no-ghost and no-worsening on the bank), all five
+failure modes exercised by `--self-test` in `tools/check.sh`. **The residual is named and
+counted on every run:** `data/flora` carries **202** citations of an unresolved source and
+`data/fauna` **30**, both rendered, neither with a declared read-set — K42.
+
+**Not verified here:** the desktop half of the smoke (~13 min against a 10-minute per-command
+ceiling). `tools/check.sh` and the mobile half of `--published` are green. **No record, asset,
+parameter or renderer file changed.**
+
 ## Measured 2026-08-16 — it is 189, not 195; this runner reproduces the nightly's bytes on every one of them; and the rewrite is not scheduled, it is open
 
 **K40**, and it moves no asset. K39 could not verify its own record the obvious way — by

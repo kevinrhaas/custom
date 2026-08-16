@@ -143,6 +143,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K39~~ | **DONE 2026-08-16** — the step records `name → sha256(master)` now, in `assets/manifest.web.json`, and assertion 9 answers staleness from CONTENT in both directions. **The finding is the control it could not get**: 14 of 20 sampled derivatives cannot be reproduced by this repository's own step, and all 14 come back byte-for-byte under `BAKE_PALETTE=1` — **195 of 241 compressed derivatives are palette-era**, welded by a pass K36(b) turned off. Read its box before quoting any reproduction number |
 | — | KERNEL | ~~K40~~ | **DONE 2026-08-16** — it is **189, not 195**, and the rewrite was never scheduled: it is **open, in bake PR #175**, whose 280 derivatives decompose exactly as 189 palette-era + 90 placeholder→canonical upgrades + 1 terrain. The control this project has never had now exists (`tools/measure_web_reproduction.py`, chunked to fit the 10-minute ceiling) and it says **this runner reproduces the nightly's bytes on 189 of 189** — so the no-Blender strategy holds; what failed was carrying a step change through 38 files instead of 334. K39's vertex signature is **refuted** in both directions. **No step field** — a script hash would have gone red on all 334 four times, twice moving no byte. Read its box before quoting any reproduction number |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
+| — | KERNEL | ~~K41~~ | **DONE 2026-08-16** — *"the validator enforces this"* was false in the way that matters: the rights gate compares two fields of the SAME source record, so it can only fire on a violation an author has already written down, and **the pair it looks for has never existed** (38 unresolved sources, all `cross_check`/`text_only`; the 3 that declare `geometry` are a survey and two maps, all clear). Asked of the town instead, with the read-sets the generators already declare: **49 geometry-bearing attributes on 21 records, 35 on unresolved support alone, 16 of those graded `attested`** — the Sauganash, Wolf Point, the Green Tree, St Mary's. Banked and held. The reading that decides whether they are a fault is the OWNER's — three routes in its box. Read it before quoting any rights number |
+| 4 | KERNEL | **K42** | opened by K41: `data/flora` cites unresolved sources **202** times and `data/fauna` **30**, both are rendered, and neither layer has a `CONSUMED` map — so no gate here can say which of a zone's figures reaches a vertex. The map is worth more than the citations: it is `check_geometry_declarations`' question, never once asked of a plant. **No bake** |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -2508,6 +2510,89 @@ Watch: do **not** fold this into `tools/web_derivative_baseline.json`. That file
 record of FAULTS and repairs, deliberately rewritten only by a person banking a decision;
 a hash map that changes on every bake has the opposite lifecycle and would train everyone
 to run `--write-baseline` without reading it.
+
+### K41 — the rights rule tests a label, and the label is on the other side of the question · **DONE 2026-08-16 — the gate could only ever fire on a violation an author had already written down, and 49 geometry-bearing attributes on 21 records are built from sources nobody has checked**
+
+**Read this box before quoting any rights number.** AGENTS.md hard rule 6 and
+`docs/PROVENANCE.md` both say a `check_required` source *"may be cited in text but must not
+have assets derived from it"*, and PROVENANCE.md added four words: **"The validator enforces
+this."** The parcel took K34's move — *read a rule this project states about itself and ask
+what enforces it* — and pointed it at rule 6.
+
+**FINDING 1 — the enforcement compares two fields of the SAME source record, and the pair it
+looks for has never existed.** `run_license_check` fails a source whose `rights_status` is
+`check_required` or `restricted` **and** whose `asset_use` is `geometry`. `asset_use` is the
+source's own declaration of intent, so the assertion fires only once an author has written the
+violation into the record. Measured: **38 of 64 sources have unresolved rights and every one
+of them declares `cross_check` or `text_only`**; the **three** that declare `geometry` are
+`wright_1834`, `harrison_1830_river_mouth` and `hathaway_1834` — a survey and two maps, all
+clear. The intersection is empty and always has been. Note what this is *not*: the labels are
+not dishonest. `asset_use: geometry` means *this work is traced*, and nothing traced is
+unresolved. The fault is that the rule is about a **derivation** and the mechanism is about a
+**declaration**, so the one population it exists to watch is invisible to it.
+
+**FINDING 2 — the derivation is real, and this project already had a definition of it.** No
+reviewer has to decide what "derived" means here: `generators/archetypes/*_params.py` declares
+`CONSUMED`, the set of form attributes the generator reads, and `generators/terrain_inputs.py`
+declares the same map for the ground. That is the same definition `tools/validate.py` uses to
+demand a `geometry:` declaration on everything *outside* it — an attribute inside it reaches a
+vertex by construction. Footprints are in by the same argument: `from_phase` reads the polygon
+for the massing. Against that definition, **49 geometry-bearing attributes on 21 records cite
+a source whose rights are unresolved** — 43 on buildings, 6 on the terrain spec's blocks — and
+**19 of the 20 buildings have a baked master in `assets/gltf/` today**.
+
+**FINDING 3 — the sharp population is the sole-support one, and it is most of it.** **35 of
+the 49** have no source outside the blocked set at all, so striking the unresolved citation
+would leave the value standing on nothing. **16 of those 35 are graded `attested`** — this
+project's strongest grade, resting entirely on a work nobody has checked the rights on. They
+are not marginal buildings: the **Sauganash Hotel**'s storeys and construction, the **Wolf
+Point Tavern**'s frame addition and its painted sign, the **Green Tree Tavern**'s footprint,
+roof and paint, **St Mary's Church**'s footprint, the **Western Hotel**, **Miller House**,
+and on the ground the west and south division levels and the old south channel.
+
+**WHAT THIS PARCEL DELIBERATELY DOES NOT DECIDE.** Whether reading *"two storeys, frame"* out
+of a copyrighted page and building a box from it **is** deriving an asset from that page is a
+question about rights, and the project's own documents do not agree. `docs/PLAN.md` reads it
+narrowly — *"blocks derived assets, e.g. Conley/Stelzer, but not textual citation … Stanford
+renewal check before any derivative texture"*, which is about **images** — while AGENTS.md and
+PROVENANCE.md read it broadly enough to cover a dimension. The two readings give opposite
+answers for all 49. **A gate cannot settle that and this one does not try**: it holds the
+population where it is and hands the reading to the owner.
+
+**THE THREE ROUTES, for the owner.** (1) *Narrow the rule to expression* — say in AGENTS.md
+and PROVENANCE.md that `check_required` blocks traced geometry and derived textures, not facts
+read out of a text; then the 49 are legitimate and the bank becomes a watch-list for the day
+someone traces one. (2) *Do the checks* — 13 distinct sources carry all 49, mostly
+`chicagology.com` and `drloih`; resolving those to `cleared` empties the bank by data rather
+than by definition, and assertion 3 makes each resolution a visible commit. (3) *Hold the wide
+reading and re-grade* — the 16 `attested` sole-support values would have to fall back to
+`inferred` with the reasoning stated, which is a change to what the town claims about itself
+and needs the owner's word.
+
+**WHAT SHIPPED.** `tools/measure_rights_derivation.py` — census, `--gate`, `--self-test`,
+`--update` — and `tools/rights_derivation_baseline.json`, 49 entries banked by record, phase
+and attribute. Four assertions: **1** absolute, the old label test kept and restated where the
+real measurement lives; **2** a new geometry-bearing citation of an unresolved source fails;
+**3** absolute, a banked entry that has left the data fails until it is un-banked in the
+commit that repaired it, so a repair is recorded rather than absorbed; **4** a banked entry
+may improve and may not worsen — its blocked set may not grow and corroboration may not be
+lost. All five failure modes are exercised in memory against the real tree by `--self-test`,
+which `tools/check.sh` runs, because K37's lesson was that a gate nobody has watched fail is a
+gate nobody knows fires.
+
+**THE RESIDUAL, named rather than left silent.** The gate stops at the buildings and the
+ground because those are the only two layers with a declared read-set. **`data/flora` carries
+202 citations of an unresolved source and `data/fauna` 30**, both rendered, and neither has a
+`CONSUMED` map — so "which of a zone's figures reaches a vertex" has no answer to gate on yet.
+The census prints both counts on every run so the hole cannot be forgotten. That map is the
+successor parcel, and it is worth more than the citations: it is the same question
+`check_geometry_declarations` asks of every building and has never asked of a plant.
+
+**Verified:** `tools/check.sh` green (with the two new steps); `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not claimed —
+~13 minutes against a 10-minute per-command ceiling; see the run-budget box at the top of this
+file. **No record, asset, parameter or renderer file changed** — this is a measurement, a
+gate, the documents and a changelog entry.
 
 ### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S · NEEDS ONE BAKE, or an owner's word that a derivative may be regenerated outside one**
 
