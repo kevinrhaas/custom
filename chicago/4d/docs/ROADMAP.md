@@ -153,7 +153,8 @@ rationed.**
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
-| **1** | RENDERING | **K49(d)** | **SEEN** | **CLAIMED 2026-08-16 · `steward/k49d-stratified-matrix`** · **opened 2026-08-16 by K49(b) — needs no research, no data and no bake.** The forb layer's tail is closed; the matrix layers' is not, and their worst shortfall is **31.47 slots**. K49(b)'s lattice is VETOED there — it grew the west prairie in visible rows — so the successor is a stratification with no direction in it. Read K49(b) finding 2 before starting, and shoot `prairie_west` before and after |
+| — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
+| **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | **7** | RENDERING | **K49(c)** | **SEEN** | **6 of 20 lists deal their slots off an area compared against a count** — the forest understory is 96 % ramps against eleven species recorded as cover. Blocked on 25 records that give a cover fraction and no `width_m`, so **its first half is research**; the smoke prints the list every run |
 | — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
@@ -3265,24 +3266,100 @@ emit) · ROADMAP + STATUS + the changelog + the published mirror. No `data/` cha
 change to the grass. The desktop half of the smoke was not run and is not claimed — ~13 minutes
 against this runner's 10-minute per-command ceiling.
 
-### K49(d) — a stratification the dense layer can take · **CLAIMED 2026-08-16 · `steward/k49d-stratified-matrix` · SEEN · opened 2026-08-16 by K49(b) · Effort: M**
+### K49(d) — a stratification the dense layer can take · **DONE 2026-08-16 — the bijection works, and the block size is a U-curve nobody had a floor OR a ceiling for. Matrix deviation 368.80 → 282.89, and `prairie_west` does not stripe**
 
-K49(b) left the near and mid tufts on an independent draw because the lattice **rows the
-prairie**. That is a veto on this construction, not on the goal: the matrix layers' worst
-shortfall is **31.47 slots** and nothing has reduced it.
+**Read this box before setting a stratum size anywhere in this project, and before quoting any
+matrix shortfall number.**
 
-**What the successor has to do differently.** The striping is not the rare end, it is the common
-one: `u < share` at share ≈ 0.6 selects most of a lattice whose structure is then the field's
-structure. A construction with no direction in it is the candidate — a **hash-driven bijection
-over the block's slots** (a small Feistel is the standard form), which gives every band of the
-CDF its exact count inside the block while arranging them with no lattice direction to read. Its
-weakness is the mirror of the lattice's: exactness over the *block* is not equidistribution over
-a *sub-window*, and the census reads zone ∩ ring, which is one. So it may fix the shortfall and
-not the tail — which is fine here, because the matrix tail is already empty.
+**The construction, as the parcel prescribed it.** Every slot in a block of the world lattice is
+dealt a distinct rank by a four-round Feistel network keyed on the block — a bijection by
+construction, so `u` takes each of the n equally spaced values in `[0, 1)` exactly once and a CDF
+band of width w gets `round(w·n)` slots rather than a Poisson draw around it. It is a pure
+function of the slot's world coordinates, so re-centring puts the same plant back. Verified as a
+permutation before it was measured as a repair: 1,024 distinct ranks of 1,024 at three keys, and
+a 0.05-wide CDF band inside `share = 0.6` gets exactly 31 of 614.
 
-**It is SEEN in both directions, so shoot before and after.** `prairie_west` desktop is the
-frame that vetoed K49(b)'s half; both are in `/tmp` for a run, so re-shoot rather than trust a
-description. A construction that fixes 31.47 and stripes the meadow is a regression.
+**Finding 1 — the headline, and it is the row the parcel was opened on.** `z02_mesic_prairie`
+deals 793 slots between four grasses and one came up **31.47** short of its own recorded cover.
+It is now **3.67**. Across the seventeen matrix rows: **eleven improve, five cannot move** (they
+are single-species lists, and a list of one has nothing to stratify) **and two get worse** —
+finding 3. Worst shortfall **31.47 → 19.59**; total deviation **368.80 → 282.89**, −23 %.
+
+**Finding 2 — THE BLOCK SIZE IS A U-CURVE, and K49(b) finding 3's rule is only its left half.**
+That rule — *the block size is set by PLANTED slots, not by cells* — is a FLOOR: the block must
+hold enough planted slots to resolve the finest CDF band. It has a CEILING too, and nothing had
+named it: exactness holds over the block, the census reads a sub-window, so the error is whatever
+the window's partial blocks cut. A near ring is 15.2 m across; a 16-cell block is 11.8 m, so the
+window contained about **one** whole block and almost every slot read was in a partial one.
+Measured, all five, on the matrix deviation:
+
+| block | m (near) | slots | matrix deviation | vs. independent draw |
+|---|---|---|---|---|
+| independent draw | — | — | 368.80 | — |
+| 1 cell | 0.74 | 4 | **2,725.88** | 7.4× worse |
+| 2 cells | 1.48 | 16 | 602.95 | 1.6× worse |
+| **4 cells** | **2.96** | **64** | **282.89** | **−23 %** |
+| 8 cells | 5.92 | 256 | 303.30 | −18 % |
+| 16 cells | 11.84 | 1,024 | 340.47 | −8 % |
+
+The floor is not a soft one. At four slots per block `u ∈ {0.125, 0.375, 0.625, 0.875}`, so at
+`share ≈ 0.6` exactly two are planted and `u/share` takes **two** values — the whole CDF collapses
+onto two species and the deviation is seven times the fault being repaired. **The forb layer sits
+at the floor** (it plants ~1 % and needed 1,024 slots); **the matrix layer is bound by the
+ceiling** (it plants ~60 %, so 64 slots already carry ~38 plants). Same rule, opposite ends,
+which is why one number could never have served both layers.
+
+**Finding 3 — the two rows that got WORSE are both rows where a spatial filter runs after the
+deal, and that is the sub-window weakness one turn further in.** `z10_settled_town` in its own
+community went 14.31 → **39.18** and `z05_riverbank_timber` reading the wet-prairie list went
+6.37 → 8.87. A permutation makes rank a deterministic function of position inside the block, so
+anything that removes slots *on a spatial rule* — the town's building footprints through
+`station()`, the waterline through the same — selects a **biased** set of ranks, where an
+independent draw would have been filtered without bias. That is the leading explanation and it is
+consistent with both rows being the two most heavily filtered; it is **not proven**, and
+`z03_sedge_meadow` reading the marsh list improved despite crossing water. **K49(e)** is the
+parcel that measures it.
+
+**The screenshot, which is the acceptance test K49(b) set.** `prairie_west` desktop, published
+mirror, before and after: **no rows, no diagonal banding, 74 draw calls both ways.** The mix in
+frame changes visibly — the under-drawn grass now has its recorded share — which is the point.
+The veto is cleared.
+
+**Finding 4 — the measurement this needed did not exist.** `worstShortfall` is a max of a max: it
+moves on one species in one list and it ranked these five candidates in a different order from the
+robust statistic (16 cells wins on `worst` at 15.98 and is nearly the worst option on deviation).
+It named the fault and it cannot choose a repair. `tools/measure_sward_draw.mjs` now also prints
+**`deviation`** — the whole list's disagreement with its own record, summed over every species and
+both signs — per row and per layer, and that is the figure the table above ranks on.
+
+**Files:** `renderers/web/js/flora.js` (`STRAT_SALT`, `STRAT_BLOCK_SHIFT`, `feistel`, `stratum`,
+`stratumHalf`, `scatter`'s `draw` mode, the near + mid emits) · `tools/measure_sward_draw.mjs` ·
+ROADMAP + STATUS + the changelog + the published mirror. No `data/` change, no bake.
+
+**Verified:** `tools/check.sh` **CHECK PASS** · `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green · `node tools/measure_sward_draw.mjs` on the published
+mirror, five block sizes, table above · `tools/critic_shots.mjs --published --viewport desktop
+--stations prairie_west` before and after. **The desktop half of the smoke was not run and is not
+claimed** — ~13 minutes against this runner's 10-minute per-command ceiling.
+
+### K49(e) — does a spatial filter eat the stratification? · **UNCLAIMED · UNSEEN · opened 2026-08-16 by K49(d) · Effort: S**
+
+**It is UNSEEN and it has the written exemption: it is a gate-shaped measurement blocking a named
+SEEN parcel** — every future use of `stratum` in a filtered layer, and K49(c) is one.
+
+K49(d) finding 3's explanation is stated and not proven. The claim: because a permutation makes
+rank a deterministic function of position within the block, any filter applied AFTER the deal that
+is itself a spatial rule selects a biased set of ranks, and an independent draw would not have
+been biased that way. The two rows that regressed are the two most heavily filtered
+(`z10_settled_town`'s building footprints, `z05_riverbank_timber`'s waterline); one row that
+crosses water improved anyway, which the explanation does not cover.
+
+**How to settle it without guessing.** `station()` and `crowdsTheWalker()` are the filters. Count,
+per row, what fraction of DEALT slots they reject and correlate it against the change in
+`deviation` — the tool already stands the placer in every community, so this is a column, not a
+harness. If the correlation is there, the remedy is not a different permutation: it is to deal
+AFTER the filter, or to accept it and say so in `stratum`'s doc block. If it is not there, the
+regression has another cause and K49(d) finding 3 must be corrected in this file.
 
 ### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
 

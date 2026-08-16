@@ -119,6 +119,12 @@ const measured = await page.evaluate(() => {
         drawn: d.drawn,
         species: d.species.length,
         worstShortfall: Math.max(0, ...d.species.map((s) => s.expected - s.drawn)),
+        // ROADMAP K49(d). The worst shortfall is a max of a max, so it moves on
+        // one species in one list and is the noisiest thing this tool prints —
+        // it named the fault, but it cannot rank two candidate repairs. This is
+        // the whole list's disagreement with its own record, summed over every
+        // species and both signs, and it is the figure to compare draws on.
+        deviation: d.species.reduce((t, s) => t + Math.abs(s.expected - s.drawn), 0),
         absent: d.species.filter((s) => s.drawn === 0 && s.expected >= 1)
           .map((s) => ({ id: s.id, owed: s.expected, unit: s.unit })),
       });
@@ -133,16 +139,20 @@ const absent = measured.rows.flatMap((r) => r.absent.map(
   (s) => `${r.community}.${r.list}.${s.id} owed ${s.owed.toFixed(2)} (${s.unit}), standing at `
     + `${r.at}`));
 const worst = Math.max(0, ...measured.rows.map((r) => r.worstShortfall));
+const devOf = (list) => measured.rows.filter((r) => r.list === list)
+  .reduce((t, r) => t + r.deviation, 0);
 
 for (const r of measured.rows) {
   console.log(`  at ${r.at.padEnd(22)} ${r.community.padEnd(22)} ${r.list.padEnd(6)} `
     + `drawn ${String(r.drawn).padStart(5)}  of ${String(r.species).padStart(2)} species  `
-    + `worst shortfall ${r.worstShortfall.toFixed(2)}`
+    + `worst shortfall ${r.worstShortfall.toFixed(2)}  dev ${r.deviation.toFixed(2)}`
     + `${r.absent.length ? `  ABSENT ${r.absent.map((s) => s.id).join(', ')}` : ''}`);
 }
 const ab = measured.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
 console.log(`\n${measured.spots.length} communities stood in · ${lists.size} populated list(s) · `
   + `${slots} slots dealt · worst shortfall ${worst.toFixed(2)} slot(s)`);
+console.log(`deviation from the recorded cover, summed over every species and both signs: `
+  + `matrix ${devOf('matrix').toFixed(2)} · forb ${devOf('forb').toFixed(2)} slot(s)`);
 console.log(`${absent.length} species owed a whole slot and drawn nowhere:`);
 for (const s of absent) console.log(`  - ${s}`);
 console.log(`\nabundance units: ${ab.mixed.length} of ${ab.lists} lists mix an area with a count; `
