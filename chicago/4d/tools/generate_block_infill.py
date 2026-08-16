@@ -151,15 +151,23 @@ REFUSED_FAMILIES = {
         "than quietly removed, and it is not a precedent this generator extends.)"
     ),
     "I3": (
-        "civic or public-service structures. The family resolves through the "
-        "fort_structure placeholder, whose whole vocabulary of building kinds is "
-        "garrison words — quarters, barracks, blockhouse, magazine, store, guard, "
-        "sutler, artillery — and none of them names the adapted office or the engine "
-        "house the crosswalk says this family spans. Massing an anonymous town civic "
-        "building through it would stand a garrison building in the middle of the "
-        "platted town. The crosswalk states the precondition itself: the six-roof "
-        "aggregate 'spans unlike functions; they must reconcile to named public "
-        "records before selecting construction'."
+        "civic or public-service structures. THE REFUSAL IS NOW THE RESEARCH RATHER "
+        "THAN THE ARCHETYPE (ROADMAP T-I3, docs/RESEARCH/civic_public_buildings_1835.md): "
+        "the town's public buildings on 1835-07-01 are enumerable and every one of them "
+        "is already a committed named record — the log jail, the council house and the "
+        "lighthouse. The court-house went up in the fall of 1835 and the engine house was "
+        "contracted on 30 December 1835; the estray pen is roofless; and every other "
+        "public function in the town, the post office and the United States Land Office "
+        "and the county's own offices among them, was carried on inside a private "
+        "building. There is no unnamed civic roof for a slot to be spent on. (The "
+        "archetype argument stands and was the original ground: the family resolves "
+        "through the fort_structure placeholder, whose whole vocabulary of building kinds "
+        "is garrison words — quarters, barracks, blockhouse, magazine, store, guard, "
+        "sutler, artillery — so massing one would also stand a garrison building in the "
+        "middle of the platted town.) The crosswalk stated the precondition itself: the "
+        "six-roof aggregate 'spans unlike functions; they must reconcile to named public "
+        "records before selecting construction'. Three of those six slots are now known "
+        "to be a count of nothing, and correcting the target is T-I3(b)."
     ),
 }
 

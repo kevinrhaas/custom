@@ -1777,12 +1777,6 @@
       "asset": "gltf/cobweb_castle__log_1820.glb"
     },
     {
-      "id": "cook_county_courthouse_1835",
-      "name": "First Cook County court-house",
-      "sidecar": "sidecars/1835/cook_county_courthouse_1835.json",
-      "asset": "gltf/cook_county_courthouse_1835__wood_1835.glb"
-    },
-    {
       "id": "council_house",
       "name": "Council House",
       "sidecar": "sidecars/1835/council_house.json",
@@ -3691,5 +3685,7 @@
       "asset": "gltf/wright_building_to_let_b__documented_1835.glb"
     }
   ],
-  "excluded_by_date": []
+  "excluded_by_date": [
+    "cook_county_courthouse_1835"
+  ]
 }

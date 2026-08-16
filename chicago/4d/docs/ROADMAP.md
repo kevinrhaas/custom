@@ -117,7 +117,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | 1 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
-| 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| — | TOWN | ~~T-I3(a)~~ | **DONE 2026-08-16** — the town's public buildings are **three roofs** and this project already had all three, so the refusal is now absolute rather than argued. The finding is the fourth building: **the court-house was not built yet** — Andreas fixes the season, the month AND the corner the record said nothing fixed, and the citation it had was a **picture caption** — so a record is taken OUT of a scene on evidence for the first time. Read its box before quoting any civic number |
+| 3 | TOWN | **T-I3(b)** | **NOT A PICK WITHOUT THE OWNER.** Three of the six I3 slots are a count of nothing; the inventory's arithmetic is closed, so removing them is either "the town had 662 roofs" or "three roofs were not civic". Two different claims about the town, and the research settles neither |
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
 | — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
 | 4 | TOWN | **K30(c)** | the repair K30(b) attributed: redraw the bodies onto the correct side of their own frontage. **NEEDS ONE BAKE** — it changes footprints, so it cannot go green on the improve runner |
@@ -2172,7 +2173,96 @@ one moves a baseline station. Re-shoot the full desktop and mobile sets and rest
 `south_water` row in the STATUS baseline table rather than leaving two incomparable numbers
 under one name — the whole point of the harness is that two rounds can be compared.
 
-### T-I3 — the civic roofs, reconciled to named records · **UNCLAIMED · NEXT UP**
+### T-I3(a) — the civic roofs, reconciled to named records · **DONE 2026-08-16**
+
+**The town's public buildings with a roof on 1835-07-01 are THREE, and this project already had
+all three of them** — `log_jail`, `council_house`, `chicago_lighthouse_1832`. `estray_pen` is
+public and roofless. The enumeration is
+`docs/RESEARCH/civic_public_buildings_1835.md`; every citation in it is Andreas, a source this
+project has held since the scaffold, so **no new source record was needed and none was invented**.
+
+**THE FINDING IS THE FOURTH BUILDING: the court-house was not built yet, and it is now out of the
+scene.** 332 structures resolved into 1835 and 331 do. The record modelled it as complete on 1
+July under a note saying, correctly, that nothing it had reached fixed a month. Three passages
+fix it and none is earlier than the fall: the town-period narrative — *"During the fall of the
+year (1835,) a one-story and basement brick court-house was erected on the northeast corner of the
+square, on Clark and Randolph streets"* (Andreas I scan p. 369); the chronology, under 1835 at
+**November** (scan p. 1317); and the county Recorder *"removed his office toward the end of
+October to the new building recently erected by the county on the public square"* (scan p. 305).
+**The dataset had said it already, in another file, for four days**: the physical-roof reconciliation gives this record `roof_count: 0` because *"Production chronology places construction in fall 1835"*, committed 2026-08-12, one day after the record that stood the building on the square — and the walkthrough's release notes carried that reading to visitors while the walkthrough drew the building. Nothing reads the two files together. The one that was right is the one with **no citation at all**.
+**The citation the record had was a picture** — the scan p. 373 it cited for "a section headed
+'THE FIRST COURT-HOUSE.'" is a PLATE, and those words are an engraving's caption. The narrative is
+four scan pages earlier. This is the second time in this project a citation has resolved to a
+heading instead of to a sentence.
+
+**Two of the record's own hedges are settled and BOTH say it was better than it knew.** Its
+position note warned that Andreas's north-east siting "is the 1837 BUILDING" and might be
+contaminating an 1835 record; Andreas gives that corner to THIS building, in the sentence that
+dates it, so the invented placement is where the source puts it. Its construction note ruled out
+brick because "the first brick building in Chicago is 1837"; that fact is about the first brick
+HOUSE (`peck_brick_house`, already excluded) and Andreas calls this court-house brick. **Neither
+is applied**: a changed form value stales the placeholder mesh, geometry belongs to the nightly
+bake, and a promotion made in the same commit that took the building off screen is a promotion
+nobody can see. Both are recorded on the record as amendments and are the bake parcel's to apply.
+
+**The refusal is now the research, and it is ASSERTED rather than argued.**
+`tools/measure_institutional_claims.py` runs in `check.sh` and asks every committed record, not
+only the ones a generator is about to write: **absolute zero** for I1 and I3 — the families are
+enumerable, so zero is enforceable — and a **ratchet at one** for I2, naming
+`recon_1835_north_i2_015`, the liberty L93 records rather than deletes. All three halves were
+broken deliberately before the gate was trusted. `generate_block_infill.py` refused these families
+on the ARCHETYPE's vocabulary; that argument stands and is no longer the load-bearing one.
+
+**What a slot would have been spent on, and why none of it is a building.** The crosswalk says the
+family spans *"jail/blockhouse; engine/service; adapted offices"*, and in July 1835 every adapted
+office in Chicago was a room in a private building. The **United States Land Office** is the sharp
+case: open since May 1835, transacting Beaubien's pre-emption four weeks before the scene date
+(certificate 28 May, recorded 26 June) — and *"on the east side of Lake Street, between Clark and
+Dearborn streets"*, where *"the office of the Registers and Receivers were usually at their
+private offices"* (scan p. 313). The post office was a counter in Hogan's store, which this
+project already shows. The county's own officers were private until late October. Three guards
+added to `data/exclusions.json` — `us_land_office_1835`, `custom_house_chicago`,
+`chicago_town_hall` — and `first_fire_engine_house` **amended**, because it dated the ENGINE and
+the HOUSE is later still (contracted to Levi Blake 30 December 1835, unfinished in February 1836).
+
+**A citation correction on the way past, worth its line because nothing visible depends on it.**
+`estray_pen` dated the pen to March **1833** and cited Andreas for the year. Andreas gives 1832
+twice — the narrative (*"seen in March, 1832 ... there arose upon the southwest corner of the
+square, the so-called 'estray-pen' ... quite roofless"*, scan p. 365) and the chronology, where
+the entry stands under the heading **1832** (scan p. 1315) — and 1833 nowhere. The month was read
+off that index correctly and the year off the wrong heading. The pen stands, roofless, either way.
+Its phase id stays `pen_1833`: a phase id is half of a baked asset's filename and a cosmetic
+rename is not worth a bake.
+
+**Files:** `docs/RESEARCH/civic_public_buildings_1835.md` (new) ·
+`tools/measure_institutional_claims.py` (new) · `tools/check.sh` ·
+`tools/generate_block_infill.py` (the I3 refusal's reason) ·
+`data/structures/cook_county_courthouse_1835.json` · `data/structures/estray_pen.json` ·
+`data/exclusions.json` · `data/sidecars/1835/*` · `docs/LIBERTIES.md` (L110) · `docs/STATUS.md`
+
+### T-I3(b) — the six-roof target, which is a claim about the town and not about its public buildings · **BLOCKED ON THE OWNER · opened 2026-08-16 by T-I3(a)**
+
+**Three of the six I3 slots are a count of nothing.** That much is settled. What is not settled is
+what to do with them, and the reason an agent should not choose is the R-W4c(b2) reason: the
+inventory's arithmetic is closed — every family target sums into a district-group row, every row
+into a district target, every district into `roof_total: 665`, and `tools/reconcile_665.py`
+asserts all three — so three slots cannot simply be deleted. There are exactly two exits and they
+are **two different claims about the town**:
+
+1. **The town had three fewer roofs than 665.** `roof_total` → 662, inside the spec's own
+   `defensible_range` of [565, 765]; `institutional_public` 12 → 9; the south district 370 → 367.
+   This says the authored total was over by the three phantom civic roofs.
+2. **The three roofs existed and were not civic.** They go back into the pool the 665 apportions
+   and are re-typed by weight into the ordinary families. This says the total is right and the
+   family split was wrong.
+
+Route 1 also makes the filename `1835_665_roof_programme.json`, the tool name `reconcile_665.py`
+and a great deal of committed prose say a number the data no longer holds — not a reason to
+prefer route 2, but a cost to price in. **Until the owner picks, the target stays at six and the
+programme keeps scheduling I3 slots that every generator and now every gate refuses.** That is
+visible, gated and honest, and it is a better failure than a number quietly changed.
+
+### T-I3 — the parcel as written, kept for the record
 
 **Research, not massing, and it is the parcel T-A3 refused to do by hand.** The programme
 schedules six I3 roofs — civic or public-service — across the town, and the generator now refuses
