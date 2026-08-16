@@ -1,5 +1,64 @@
 # STATUS
 
+## Fixed 2026-08-16 — the compression flag that hid 38 buildings' material names was also spending the town's draw-call budget, and half the anchors were over it
+
+**K36(b).** K36(a) recorded the palette pass as a fault about NAMES: `gltf-transform optimize`
+folds the named materials of any file carrying five or more of them into one `PaletteMaterial`
+plus generated PNGs, so 38 shipped assets lost `log`, `chinking`, `board`, `roof`, `dark`,
+`interior` on the way to the browser. The pass's own justification is that merging materials
+saves draw calls, so the reading was that names had been traded for speed. **Neither was true.
+It cost both.**
+
+**FINDING 1 — a generated map makes an asset unbatchable.** `materialKey()` in
+`renderers/web/js/buildings.js` includes `m.map?.uuid`, and a GLTFLoader mints a fresh uuid per
+loaded texture, so a palette asset cannot join any batch — not the town's, and not another
+palette asset's. The 38 shipped as **40 single-building batches** (40, not 38: `sauganash_hotel`
+came out with three `PaletteMaterial`s, its glass and shutters refusing the merge) on top of the
+town's 16. **The published town drew 56 batches. R-W5a's committed figure is 16.** With the pass
+off: 56 → 16, textures in memory 55 → 41, shader programs 15 → 12.
+
+**FINDING 2 — R-W5a's numbers were taken on the source tree.** Its *"no map of any kind"* was
+true of what this repository bakes and never true of what the site serves — the identical error
+K36(a) found in R-W2a's material sheet, from a different parcel, three days apart. R-W5a's
+result stands (47 → 16 is real, and is what the 40 now fold back into); its "16 batches" was
+never a statement about the site. `tools/measure_shipped_batches.mjs` reads the **mirror** by
+default and prints which tree it read, so there is no third time to have.
+
+**FINDING 3 — four of the eight scene anchors were over the 80-call budget on the site.** A
+batch holding one building is culled with that building, so this is paid per pose and is worst
+where the town is densest. At 1280×800, through the renderer's own `goTo`:
+
+| | green_tree | forks | from_above | south_water | lake_market | s'nash_wing | f_post_office | sauganash |
+|---|---|---|---|---|---|---|---|---|
+| before | **102** | **96** | **84** | **82** | 71 | 68 | 66 | 62 |
+| after | 70 | 68 | 63 | 69 | 63 | 61 | 60 | 59 |
+
+Nothing had measured it: the smoke reads the counter at whatever pose it is standing in, and
+`critic_shots.mjs` reports draw calls per station without asserting on them.
+
+**The cost is 187,392 bytes** — the 38 go 318,540 → 505,932 (+58.8 %), because 197 named
+materials take more room than 75 generated PNGs. That is +4.1 % on a 4.5 MB tree against a
+25 MB budget. `material identity: 334 of 334`, and K36(a)'s ratchet is rebanked empty.
+
+**`tools/web_derivatives.sh` is the structural half.** The web-derivative step is lifted out of
+`tools/bake.sh` whole, so a Blender-free runner can regenerate derivatives from the committed
+masters and measure them — link 2 could be *found* broken by K36(a) and not *repaired* without a
+nightly. The control that makes this attributable: under `BAKE_PALETTE=1` it reproduces **243 of
+334 derivatives byte-for-byte**, including all 38.
+
+**The other 91 are two findings this parcel did not fix and did not hide.** **K37** — 90
+derivatives are byte-identical master copies, and the pipeline's own step does not reproduce
+them: it makes them ~21 % *bigger* (4,968 → 6,000 on the sample). Nothing states which
+behaviour is intended. **R-W6(b)** — the shipped terrain is still **14-bit**: regenerating the
+committed master at 14 bits reproduces `assets/web/terrain__e1834_harbor_cut.glb` md5 for md5,
+and the 1,116-byte gap to the 16-bit file is exactly R-W6's own quoted cost. **R-W6's fix is in
+the script and not in the file a visitor downloads**, so the ground is still on the 306 mm
+lattice R-BUG3c found buries the road. Both are open parcels in `docs/ROADMAP.md`.
+
+**Not verified here:** the desktop half of the smoke (~13 min against this harness's 10-minute
+per-command ceiling). `tools/check.sh` and the mobile half of `--published` are green, and the
+desktop draw-call numbers above are measured at 1280×800 by the new tool.
+
 ## New 2026-08-16 — the town on the site has 75 textures, and the repository has none
 
 **K36(a).** The geometry a visitor downloads reaches them along four links —
@@ -51,14 +110,18 @@ warning line in a log nobody reads, and the only committed instrument that could
 survive; `_CONFIDENCE` — how a visitor is told which parts we made up — reaches the site on
 every asset that carries it. The world bounding box agrees to at worst **2.63 rungs** of an
 asset's own extent (0.107 mm on a 2.7 m shed), and the terrain's 82.8 mm is **1.08 rungs** of
-its 5,020 m box, consistent with the 76.6 mm lattice R-W6 committed.
+its 5,020 m box, consistent with the 76.6 mm lattice R-W6 committed. **Corrected 2026-08-16 by
+K36(b): a "rung" there is `extent / 65535` by the gate's own definition, not the file's actual
+lattice, and the shipped terrain is 14-bit — so 82.8 mm is consistent with a 306 mm lattice too,
+and that is the one a visitor is standing on. See R-W6(b).**
 
 **The gate is `tools/measure_web_derivatives.py --gate`, in `check.sh`, at 0.2 s and with no
 decoder** — every claim above is answerable from the glTF JSON chunk. Five absolute assertions
 (bijection, triangles, identity, contract attributes, bounding box) and one ratchet
 (`tools/web_derivative_baseline.json`, the 38). All eight failure modes were broken deliberately
 in `--self-test` and each fires. **The repair is K36(b)** — it regenerates 334 binary files, so
-it is a separate parcel and it does not need Blender.
+it is a separate parcel and it does not need Blender. **DONE 2026-08-16, and it turned out to be
+about draw calls rather than names — see the top of this file.**
 
 ## New 2026-08-16 — the constraint this project puts above the work was kept by the buildings and not by the people
 

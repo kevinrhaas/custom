@@ -137,7 +137,9 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K34~~ | **DONE 2026-08-16** — the constraint AGENTS.md puts above the work was kept by the **buildings and not the people**: the release block was `data/structures/` alone, so the **7 flagged households blocked nothing** and were safe only by the coincidence that all **11** of their links land on a flagged building. And **`hh_caldwell_billy` said in its own prose that it carries the flag and never did**. Four absolute assertions now, all four broken deliberately first. Read its box before quoting any review-flag number |
 | 3 | KERNEL | **K35** | opened by K34: three flagged structures state no reason anywhere, and the building side has no field a reason could live in. A research question and an owner's choice between three routes, not an engineering task. **No bake** |
 | — | KERNEL | ~~K36(a)~~ | **DONE 2026-08-16** — `data/` → master → **shipped derivative** → mirror was gated at links 1 and 3 and **not at link 2**, and the gap holds a town that is **textured on the site and untextured in this repository**: 38 assets ship one `PaletteMaterial001` and **75 PNGs that exist in no master**. The split is a count, exactly — **five materials faults, four does not, 296 of 296** — so **275 assets sit one material short of it** and R-W2b is what moves them. R-W2a's sheet measured the masters under the words "the shipped GLBs". Read its box before quoting any material or payload number |
-| 1 | KERNEL | **K36(b)** | give the site back the material names it was baked with — opened by K36(a). **NEEDS NO BAKE**: `assets/web/` comes from the committed masters by `gltf-transform` alone, so this runner can do it. Not "add the flag" — measure what the palette pass buys in draw calls before removing it |
+| — | KERNEL | ~~K36(b)~~ | **DONE 2026-08-16** — the palette pass was not buying draw calls, it was **spending** them: a generated map cannot join any batch, so 38 assets shipped as **40 solo batches** and the published town drew **56 where R-W5a's committed figure is 16**. **Four of the eight scene anchors were over the 80-call budget** (worst 102, at the Green Tree); none is now, worst 70. R-W5a's numbers were taken on the SOURCE tree — the same error as R-W2a's, three days apart. Read its box before quoting any batch or draw-call number |
+| 1 | KERNEL | **K37** | opened by K36(b): **90 derivatives are master copies and the pipeline's own step does not reproduce them** — it makes them 21 % bigger. Nothing states which is intended. **NO BAKE**, and it is a decision plus a gate, not a regeneration |
+| 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -158,6 +160,19 @@ the next runner-closable unit here is most likely **a parcel this file does not 
 the honest way to find one is the way T-E5(a) found its own: read a deferral, a `not_modelled`
 entry or a "deferred to parcel (c)" phrase and ask **what question it was never asked**. That is
 where four of the last six findings came from.
+
+**AND IT PAID A THIRD TIME, ONE LINK FURTHER IN — 2026-08-16, K36(b).** The successor to the
+paragraph below took its own advice literally: K36(a) had gated a transformation and named its
+output a fault about NAMES, so K36(b) asked what else that transformation changes. The answer
+was the town's draw-call budget, breached at half its scene anchors, on a flag whose
+documentation says it does the opposite. **The generalisation: when a tool's own justification
+for a step is a number, measure the number in YOUR system.** `--palette` merges materials
+inside one file; this renderer batches across files; those are not the same currency and
+nothing had ever converted between them. The lane is full of steps justified by a
+tool's README — `--simplify`, `--compress`, `meshopt`'s bit depths, the AO bake's own nightly
+(B-A1 asks exactly this question of it, and is still unclaimed).
+**And it opened TWO runner-closable parcels, K37 and R-W6(b)**, which is the count the box
+above says the lane needs more than it needs the next pick.
 
 **THE SEAM IS STILL OPEN, AND IT PAID AGAIN — 2026-08-16, K36(a).** Same move as K34, one link
 further out: instead of a rule about a record, take a rule about a FILE — *"a stale committed GLB
@@ -1885,9 +1900,144 @@ it needs ~13 minutes against this harness's 10-minute per-command ceiling (see t
 box at the top of this file). This parcel changes no renderer file and no geometry, so the
 scene it would exercise is byte-for-byte the one the last run smoked.
 
-### K36(b) — give the site back the material names it was baked with · **CLAIMED 2026-08-16 · `steward/k36b-shipped-material-names` · opened by K36(a) · Effort: S–M · NO BAKE, and that is the point**
+### K36(b) — give the site back the material names it was baked with · **DONE 2026-08-16 · the palette pass was not buying draw calls, it was spending them, and four of the eight anchors were over budget**
 
-The 38 assets in `tools/web_derivative_baseline.json` reach the browser as one
+**Phase:** kernel (lane 1 side) · **Effort:** S–M · tools, docs and 38 derivative files —
+no data record, no renderer file, no master, no bake
+
+**FINDING 1 — the flag's own justification is false here, and it is false by 40 batches.**
+The palette pass merges materials *inside one file*, which is a saving when the renderer
+batches per file. This one does not. `materialKey()` in `renderers/web/js/buildings.js`
+includes `m.map?.uuid`, and a GLTFLoader mints a fresh uuid per loaded texture — so an asset
+arriving with its own generated palette map **cannot join any batch, not even another palette
+asset's**. Measured on the mirror: the 38 faulted assets shipped as **40 single-building
+batches** on top of the town's 16 (40 rather than 38 because `sauganash_hotel` came out with
+three `PaletteMaterial`s, its glass and shutters refusing the merge), and the published town
+drew **56 batches where R-W5a's committed number is 16**. With the pass off: **56 → 16**, every
+one of the 40 folded back into the roughness buckets, `textures` in memory 55 → 41, shader
+programs 15 → 12.
+
+**FINDING 2 — the answer to K36(b)'s own "second question" is: R-W5a's numbers were taken on
+the SOURCE tree.** Its *"no map of any kind"* is true of what is baked and was never true of
+what is served, exactly as K36(a)'s finding 2 was of R-W2a's sheet. That is the same mistake
+twice in three days, from two different parcels, and the reason is the same both times — the
+instrument was pointed at `assets/gltf/`. `tools/measure_shipped_batches.mjs` is pointed at
+the mirror by default and prints which tree it read, so the next parcel cannot make it a third
+time. **R-W5a's finding stands** — the collapse from 47 to 16 is real and is what the 40 now
+fold back into — but its "16 batches" was never a statement about the site.
+
+**FINDING 3 — and this is the one that matters to a visitor: four of the eight scene anchors
+were OVER the 80-call budget on the published site.** A batch holding one building is culled
+with that building, so the cost is paid per pose and it is worst where the town is densest.
+Measured at 1280×800 through the renderer's own `goTo`, before → after:
+
+| anchor | before | after |
+|---|---|---|
+| green_tree | **102** | 70 |
+| forks | **96** | 68 |
+| from_above | **84** | 63 |
+| south_water | **82** | 69 |
+| lake_market | 71 | 63 |
+| sauganash_wing | 68 | 61 |
+| first_post_office | 66 | 60 |
+| sauganash | 62 | 59 |
+
+**None is over budget now, and the worst falls 102 → 70.** Nothing had ever measured this,
+because the smoke reads the counter at the pose it happens to be standing in and
+`critic_shots.mjs` reports draw calls per station without asserting on them.
+
+**WHAT IT COST.** The 38 derivatives go **318,540 → 505,932 bytes (+187,392, +58.8 %)** — 197
+named materials take more room than 75 generated PNGs — which is **+4.1 %** on a 4.5 MB tree
+against a 25 MB budget. `material identity: 334 of 334` now, and the K36(a) ratchet is rebanked
+empty; it will fail loudly on the 39th.
+
+**WHAT SHIPPED.** `tools/web_derivatives.sh` — the web-derivative step lifted out of
+`tools/bake.sh` **whole and unchanged apart from the flag**, so a Blender-free runner can
+regenerate derivatives from the committed masters and MEASURE them. That was the structural
+problem behind this parcel: link 2 could be *found* broken by K36(a) but not *repaired* without
+a nightly. `BAKE_PALETTE=1` restores the old behaviour for re-measurement; nothing sets it.
+Plus `tools/measure_shipped_batches.mjs` (one page load, seconds, no captures) and the
+`docs/GLB-CONTRACT.md` bullet that recommended the pass, now struck through with the numbers.
+
+**THE CONTROL, and it is what makes the 38 changes attributable.** Regenerating all 334
+derivatives under `BAKE_PALETTE=1` reproduces **243 of 334 byte-for-byte**, md5 for md5,
+including **all 38** faulted ones. So the difference in the shipped files is `--palette false`
+and not a change of tools. **The other 91 are two findings this parcel did NOT fix and did not
+hide** — see K37 and R-W6(b) below; both are real, both are outside a parcel about materials,
+and neither is safe to "tidy" without a gate looking at it.
+
+**WHAT IT DID NOT GATE, deliberately and worth someone's parcel.** Finding 3 is measured and
+not asserted: nothing fails if an anchor goes back over 80. `measure_shipped_batches.mjs` costs
+a page load (~40 s), which is too much for `check.sh` at 14 s, so the right home is the smoke —
+it already has a page open and already reads `stats().drawCalls` at whatever pose it is
+standing in. **Walking the eight anchors and asserting each is the missing gate**, and it is a
+few lines rather than a parcel's worth of work.
+
+**WHAT IT DID NOT DO.** It moved no record, no coordinate, no master and no triangle —
+triangle counts are asserted identical across all 334 pairs by the K36(a) gate, which passes.
+It invented nothing and upgraded no confidence. No liberty is owed.
+
+**Verified:** `tools/check.sh` green. `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green. The desktop half was not run and is not claimed — ~13 minutes against this
+harness's 10-minute per-command ceiling (see the run-budget box at the top of this file) — but
+the desktop draw-call numbers in finding 3 ARE measured at 1280×800, by
+`tools/measure_shipped_batches.mjs`, which is the quantity the desktop half would have been
+run for.
+
+### K37 — 90 derivatives were never put through the step that produces them · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S to decide, S to apply · NO BAKE**
+
+K36(a) reported *"90 assets ship uncompressed, and the only instrument that could notice is a
+25 MB budget"*, and attributed it to `generators/inferred_placeholder.py` writing the same
+bytes into both trees. K36(b)'s control adds the other half: **running the pipeline's own
+web-derivative step over those 90 masters does not reproduce their committed derivatives** —
+it produces different, and *larger*, files. On the sample measured, `4,968 → 6,000 bytes`
+(**+20.8 %**), because `meshopt` adds a compression header and index buffer to a file too small
+to earn either back.
+
+So the count is exact in both directions and the two halves disagree about which is right:
+`tools/web_derivatives.sh` says those 90 should be meshopt-compressed and 21 % bigger; the
+committed tree says they should be master copies. **Nothing measures the disagreement**, which
+is the same shape of gap K36(a) opened — a transformation with a flag in it and no gate.
+
+The decision is small and needs a number, not a preference:
+
+1. measure the payload both ways across all 90 (the sample says the passthrough wins on bytes);
+2. decide whether a placeholder derivative is *supposed* to be a master copy — if it is, say so
+   in `tools/web_derivatives.sh` and skip them there deliberately, rather than by the accident
+   of write order;
+3. either way, make `tools/measure_web_derivatives.py` assert the rule, so the 91st cannot
+   appear silently.
+
+Watch: **do not "fix" this by regenerating them.** It grows the payload and moves 90 files for
+no visitor-visible reason. The fault is that nothing states which behaviour is intended.
+
+### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S · NEEDS ONE BAKE, or an owner's word that a derivative may be regenerated outside one**
+
+R-W6 is marked DONE 2026-08-16: the terrain's quantisation was raised from 14 to 16 bits,
+taking the ground's lattice from 306 mm to 76.6 mm and its worst drawn-surface error from
+46.3 mm to 12.9 mm, under the 22 mm road lift everywhere. **The change is in
+`EPOCH_QUANT_BITS`. It is not in `assets/web/terrain__e1834_harbor_cut.glb`.**
+
+Measured, not inferred. Regenerating the committed terrain master at **14** bits reproduces the
+committed derivative **md5 for md5** (`8fb489c25b3b1237b0a95565d8a9e9e6`, 687,232 bytes); at 16
+bits it comes out 688,348 bytes, and **1,116 bytes is exactly the cost R-W6 quoted for 16 bits**.
+So the ground a visitor is standing on today is still on the **306 mm lattice R-BUG3c found
+buries the road**, and R-W6's numbers describe a file that has never been published.
+
+Nothing caught it because the K36(a) gate compares master to derivative on material identity,
+triangle count, node identity and a bounding box within four rungs — and a bit-depth change
+moves none of those. R-W6's own gates measure the *field*, not the shipped bytes.
+
+**Why this is not K36(b)'s to fix.** It moves the ground, which is the surface R-BUG3c,
+R-BUG4, R-M1a and the road-contrast bands all measure against, so it needs those gates run and
+not a materials parcel's. It is one `tools/web_derivatives.sh --only terrain__e1834_harbor_cut.glb`
+plus the same for `water__`, so a runner *can* do it — but regenerating geometry outside a bake
+is a policy question this project has not answered (see T-V1(b), which is parked on the same
+one). **Take the measurement above as committed; do not re-derive it.**
+
+### K36(b) — the parcel as written, kept for the record
+
+The 38 assets in `tools/web_derivative_baseline.json` reached the browser as one
 `PaletteMaterial001` plus two generated PNGs. **This repair needs no Blender**: `assets/web/` is
 produced from the committed masters by `gltf-transform` alone, so a run with `npx` reachable can
 regenerate all 334 derivatives from the tree as it stands.

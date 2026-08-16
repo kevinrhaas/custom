@@ -143,10 +143,22 @@ whose height is a guess is a guessed wall, even if we know it was white.
 
 - One shared material per batch. A building with five materials is **five batches**, not one —
   glTF primitives cannot span materials, so "all buildings in a single `BatchedMesh`" is not
-  achievable while material sets differ. Draw calls stay flat as buildings are added only if
-  they **share** material sets, which is what the `gltf-transform palette` step is for. That
-  step has not run yet, so the current count is per-material.
-- Run `gltf-transform palette` so flat per-building colours become a shared atlas.
+  achievable while material sets differ. **Corrected 2026-08-16 by R-W5a and K36(b):** the
+  renderer no longer batches per material *set*. `materialKey()` batches on the fields a
+  renderer actually distinguishes and leaves `color` out of them, so a building's parts join
+  the town's existing batches by roughness and a new paint colour costs nothing. The town is
+  **16 batches**, on the site as well as in the tree.
+- ~~Run `gltf-transform palette` so flat per-building colours become a shared atlas.~~
+  **REFUSED 2026-08-16 with numbers — K36(b).** The palette pass fires on any file with five
+  or more materials, and it had been firing on 38 shipped assets since the step was written.
+  It merges materials *inside one file* and, because `materialKey()` includes the texture and
+  a GLTFLoader mints a fresh uuid per loaded map, it makes those files **unbatchable against
+  everything else**: 38 assets shipped as 40 single-building batches, the published town drew
+  **56** batches against the tree's 16, and **four of the eight scene anchors were over the
+  80-call budget** (worst 102). With the pass off: 56 → 16 batches, worst anchor 70, no
+  anchor over budget. It is off in `tools/web_derivatives.sh`, and `BAKE_PALETTE=1` restores
+  it for anyone re-measuring. A shared atlas is still the right idea — it is **R-W2b's** job,
+  authored across the town rather than generated per file.
 - **Bake ambient occlusion into the texture**, not into vertex colours.
 - No emissive, no transparency in the base asset. The confidence view's translucency is a
   *renderer* effect (screen-door dither in the opaque pass), never baked geometry.
