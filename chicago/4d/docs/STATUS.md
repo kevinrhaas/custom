@@ -1,5 +1,50 @@
 # STATUS
 
+## New 2026-08-16 — the adoption rule nine block parcels supplied by hand is code now, and it changes nothing
+
+**K28 is done**, and the honest headline is that **not one household, roof or coordinate moved**.
+Since T-A9 on 2026-08-15, nine block parcels have refused a trade a second roof and every one of
+them wrote the refusal down as *a choice rather than a rule*, because method rule 6 was silent on
+three things at once. All three are decided and two of them are now gates.
+
+**The settlement is permissive on the table and strict on the rate**, deliberately — settling all
+three conservatively would have been caution dressed as method:
+
+- **(i) tests 2 and 3 read two PROJECTIONS of the housing table, not a set of pairs.** The
+  stricter pair reading is **refused**, on rule 6's own standard rather than on taste: requiring
+  the pair refuses the **fourteenth labouring household** (T-A4's D1 west of the river, argued in
+  exactly the projected form), which rule 6 names as one of the **four decisions its third test
+  recovers** — and the same paragraph says a test that has to be told the answers is a preference.
+  What the projections admit is measured, not waved at: **20 (family, division) pairs across 8
+  trades** that this layer houses none of.
+- **(ii) there IS a cap — one adoption per trade per block parcel.** A block is an artefact of the
+  drawing rather than a unit of the town, which is the reason for the cap and not an objection to
+  it: without one, the granularity of the plat sets the rate at which this census grows. It is
+  also what makes (i) safe — the projections widen *which* roofs are eligible, the cap bounds *how
+  fast* any of them may move a count.
+- **(iii) test 1 means the trade's OWN committed text, not method rule 3's list of unbounded
+  trades.** Being unbounded says where a number came from; test 1 asks whether the number is too
+  low. Only the **carpenters and labourers** state it, so the laundresses' D2 and the teamsters'
+  D4 are refused — **with the remedy named**: argue the floor in that trade's own argument, from
+  the town, and the roofs follow.
+
+**Both gates were proven to bite before merge**, against mutated copies of the programme rather
+than by inspection: a second carpenter on `blk_south_water_wells`'s D4 and a laundress on
+`blk_randolph_franklin`'s D2 — the two roofs nine parcels refused by hand — each fail with the
+clause named. The floor predicate is **imported** from `tools/measure_adoption_tests.py` into the
+gate rather than restated, so the report and the gate cannot drift apart about what a floor is.
+That tool also no longer tells its reader the question is open, which it did in four places.
+
+**All 21 standing block adoptions already obeyed the cap**, which is why nothing moved. The value
+is that the tenth block cannot drift.
+
+**What was and was NOT run.** `./tools/check.sh` — the dev gate — is **green**.
+`node tools/smoke_renderer.mjs` was run at **mobile (390x780) only**; the desktop half **was not
+run**, because a single foreground command on this runner is capped at ten minutes and the desktop
+half takes about thirteen (K21, measured). This parcel changes one authored JSON's `method` prose
+and two tools: **no renderer file, no record, no geometry, no coordinate, no material**. Say so
+rather than implying both halves ran.
+
 ## New 2026-08-16 — one new household renamed 73 of 113 invented residents, not the 17-25 eleven parcels reported
 
 **K20 is done.** `tools/generate_inferred_names.py` dealt each `(community, sex)` pool round **by

@@ -3872,3 +3872,48 @@ which is the resolution L83 and L84 already state.
 This entry discharges no `Covers:` claim, deliberately. It admits a change of labels, and the
 inventions those labels sit on are already covered by **L83** and **L84**.
 **Recorded:** 2026-08-16.
+
+### L112 — The rate at which a drawing may grow this census is a convention, and it is one roof per trade per block
+
+**Decision:** method rule 6 of `data/reconstruction/1835_inferred_household_programme.json` gained
+a fourth clause on 2026-08-16 (ROADMAP **K28**): a block parcel may adopt **at most one anonymous
+roof per trade**, however many of that trade's families the schedule happens to deal it. No
+household, roof, coordinate, grade or source citation moved — all **21** block adoptions standing
+that day already obeyed it — so this entry admits a **rule** rather than a change to the town.
+
+**Why it is a liberty at all.** Nothing in any source says a Chicago trade acquired one household
+per city block, and nothing could: the block is an artefact of **this project's own drawing
+order** — the sequence in which ROADMAP's T-A parcels happen to fill the plat — not a unit anybody
+in 1835 would recognise. The cap therefore ties the growth rate of an invented layer to an
+arbitrary grid. The same two roofs dealt to two blocks would both have been adopted, and under
+this clause the same two roofs on one block yield one household. **That asymmetry is invented.**
+
+**Why it was adopted anyway, stated so a reader can disagree with it.** The alternative is no cap,
+and then the granularity of the plat sets the rate at which this census grows — a block of eight
+dwellings could raise the labourers by three in an afternoon because a schedule that knows nothing
+about the census happened to deal three of their families. Rule 6 opens by forbidding exactly
+that: the trade mix is a claim about the TOWN and not about what has been drawn. Given a choice
+between an arbitrary rate and an arbitrary rate **set by the drawing**, the clause takes the first
+and writes it down. It is also the counterweight to the permissive half of the same decision — K28
+kept rule 6's tests as two projections of the housing table rather than narrowing them to pairs,
+which widens *which* roofs are eligible, and the cap is what bounds *how fast* any of them may
+move a count.
+
+**What it costs, named rather than left for a reader to find.** A trade that could honestly have
+taken two roofs on one block takes one, and the second household waits for the next block instead
+of being refused outright — so the cap **delays** rather than **denies**, and the layer is
+slightly smaller at any given moment than an uncapped reading would make it. Nine block parcels
+between T-A9 and T-A3h had already applied it by hand and recorded the refusal each time, so this
+clause changes the future and not the past.
+
+**How to resolve:** by evidence about the trades rather than about the blocks. The cap exists
+because the census's counts are argued from the town's building rate and documented volumes, which
+is a loose enough instrument that a drawing could out-run it. A trade whose count is pinned to a
+documented figure needs no cap at all, because its ceiling is real; the clause becomes dead letter
+for every trade that gets one.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a method convention governing
+how many invented households exist, which is the kind of decision the header of this file says
+does not live in any single attribute. The inventions the convention paces are already covered by
+**L83**, **L84**, **L99**, **L100** and **L101**.
+**Recorded:** 2026-08-16.
