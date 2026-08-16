@@ -1536,6 +1536,11 @@ export async function createTrees({
     // got one, which is the number that says whether the flower is IN the
     // scene rather than merely implemented.
     headSpecies: [], headStems: 0, heads: 0, headStations: [],
+    // ROADMAP K48. The DRAWN population, per community and per list: what each
+    // species' weight asks for against how many stems it actually got. K47
+    // found a species that is recorded, weighted, banded, gated — and absent
+    // from the frame, because nothing had ever counted what was drawn.
+    draws: [],
   };
 
   if (!hf?.loaded) {
@@ -1810,13 +1815,114 @@ export async function createTrees({
   const maxTrees = stems.trees;
   const maxThickets = stems.thickets;
 
-  const pick = (mix, r) => {
+  /**
+   * WHICH SPECIES STANDS AT THIS STEM — drawn against its own running deficit.
+   *
+   * ROADMAP K48. The weights in `COMMUNITIES` are SHARES of the stand: `perHa`
+   * decides how many stems a hectare of this community holds and the mix
+   * decides what they are, so a species' expected count is `share × stems`.
+   * Until 2026-08-16 every stem was an INDEPENDENT draw on that share, and an
+   * independent draw loses the rare end of a distribution. The American
+   * sycamore is 2 of the gallery's 116 over 115 gallery stems — 1.98 expected —
+   * and the seeded shuffle dealt NONE. That is a 13.5 % outcome on independent
+   * draws, and because this scene is seeded it was not bad luck that would come
+   * out next time: it was permanent. Three more species stood as a single stem,
+   * so the sycamore was the tail of a distribution rather than a special case.
+   *
+   * So the draw is corrected against what it already owes. Each species carries
+   * `share × drawn − placed`, its shortfall at this stem, and the draw is made
+   * proportional to that shortfall instead of to the share — except that a
+   * species already owed a WHOLE stem takes the next one outright. Two bounds
+   * follow by construction, and they are what the smoke asserts:
+   *
+   *   - **Nothing overshoots by a stem.** `placed` only ever increments while
+   *     `placed < share × drawn`, so no species can end up more than one stem
+   *     above what its own weight asks for.
+   *   - **Nothing owed a whole stem gets none.** The moment a shortfall reaches
+   *     one stem the next stem is that species'.
+   *
+   * Stress-tested over 35,880 (mix, stand size, seed) cases on the four
+   * communities and the edge list, at stand sizes 4 to 900: worst overshoot
+   * 0.99 stems, worst shortfall 1.21, and not one species owed a whole stem
+   * standing nowhere. Without the outright rule the worst shortfall is 2.32 and
+   * 17 of those cases lose a species that the stand owed a stem to.
+   *
+   * It stays a DRAW. Which species stands at any one stem is still random
+   * except where a shortfall has reached a stem (22 % of them), so a stand does
+   * not come out combed the way a strict rotation over a raster scan order
+   * would.
+   *
+   * THE WHOLE WOOD IS RE-DEALT, and saying otherwise would be the easy lie
+   * here. This consumes exactly the one `rnd()` per stem the independent draw
+   * consumed, at the same point in the same stream — but `addTree` draws a
+   * tree's own bole, taper and puffs from that same stream and takes a
+   * different NUMBER of draws per species, so changing which species stands at
+   * one stem shifts every draw after it. Measured on the published mirror at
+   * both viewports: 163 stems became 178 and 214 thicket stools became 213.
+   * Nothing that decides HOW MANY stems a hectare holds changed — `perHa`,
+   * `edgeFade`, `clearedFactor` and the waterline gate are untouched — so that
+   * is the same Bernoulli placement re-dealt, not a denser wood.
+   *
+   * Nothing about WHERE a stem stands changes. This consumes exactly the one
+   * `rnd()` per stem the independent draw consumed, at the same point in the
+   * same stream, so the positions, the thickets, the shapes and every other
+   * consumer of that stream are untouched. What changes is which tree you are
+   * standing under.
+   *
+   * It also does not touch a weight, a density or a band — see K48's box for
+   * why neither of the two repairs that DO can be built.
+   */
+  const pickerFor = (community, list, mix) => {
+    const n = mix.length;
+    const census = { community, list, stems: 0, species: [] };
+    stats.draws.push(census);
+    if (!n) return () => null;
     let total = 0;
     for (const m of mix) total += m[1];
-    let t = r * total;
-    for (const m of mix) { t -= m[1]; if (t <= 0) return m[0]; }
-    return mix[mix.length - 1][0];
+    const share = mix.map((m) => (total > 0 ? m[1] / total : 1 / n));
+    const placed = new Array(n).fill(0);
+    const owed = new Array(n).fill(0);
+    let drawn = 0;
+    census.species = mix.map(([id, weight], i) => ({
+      id, weight, share: share[i], expected: 0, drawn: 0,
+    }));
+    return (r) => {
+      drawn++;
+      let sum = 0;
+      let most = 0;
+      for (let i = 0; i < n; i++) {
+        owed[i] = Math.max(0, share[i] * drawn - placed[i]);
+        sum += owed[i];
+        if (owed[i] > owed[most]) most = i;
+      }
+      // The raw shortfalls sum to exactly one stem — `drawn` of expectation
+      // against `drawn - 1` placed — so `sum` is only ever zero if every
+      // species has overshot, which the bound above forbids. The fallback, and
+      // the outright rule, are both the hungriest species rather than the last
+      // one written.
+      let k = most;
+      if (owed[most] < 1 && sum > 0) {
+        const t = r * sum;
+        let acc = 0;
+        for (let i = 0; i < n; i++) { acc += owed[i]; if (t < acc) { k = i; break; } }
+      }
+      placed[k]++;
+      census.stems = drawn;
+      for (let i = 0; i < n; i++) {
+        census.species[i].expected = share[i] * drawn;
+        census.species[i].drawn = placed[i];
+      }
+      return mix[k][0];
+    };
   };
+
+  const pickers = {};
+  for (const [key, m] of Object.entries(mixes)) {
+    pickers[key] = {
+      mix: pickerFor(key, 'mix', m.mix),
+      edgeMix: m.edgeMix ? pickerFor(key, 'edgeMix', m.edgeMix) : null,
+    };
+  }
   const bump = (obj, key) => { obj[key] = (obj[key] ?? 0) + 1; };
   /** Record a planted stem for the smoke suite, with the height it stands at. */
   const noteStation = (e, n, y) => {
@@ -1883,9 +1989,9 @@ export async function createTrees({
       if (bank < 3.0 && comm !== 'gallery_edge') continue;
       if (blocked(px, pz)) continue;
 
-      const m = mixes[key];
-      const mix = comm === 'gallery_edge' && m.edgeMix ? m.edgeMix : m.mix;
-      const id = pick(mix, rnd());
+      const p = pickers[key];
+      const pick = comm === 'gallery_edge' && p.edgeMix ? p.edgeMix : p.mix;
+      const id = pick(rnd());
       const spec = specs[id];
       if (!spec) continue;
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);

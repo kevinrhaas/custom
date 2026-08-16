@@ -1,5 +1,47 @@
 # STATUS
 
+## Fixed 2026-08-16 — the sycamore is standing, and the density it was supposedly starved of was never the fault
+
+**K48**, and it refuted the premise it was opened on. The parcel said every species is planted at
+a third to two thirds of the density its own record carries. **Both repairs it named are
+unbuildable, and the arithmetic is in the record rather than in an opinion:**
+
+- **Rescaling the weights so every realised density lands inside its recorded band is an
+  unsolvable system in two of the four communities.** Realised densities sum to the stand density,
+  so the recorded floors have to fit under the stand ceiling. **`wet_woods`: floors sum to 100/ha
+  against a ceiling of 84. `gallery`: 75 against 62** in the South Division belt. No assignment of
+  weights exists.
+- **Deriving `perHa` from the mix sum contradicts the dossier row the weights are read out of** —
+  gallery at **116 trees/ha** against § ZONE 5's *"canopy 30–80 trees/ha"*, `wet_woods` at **153**
+  against § ZONE 6's *"overall canopy target 50–110 trees/ha"*.
+
+**So the record's density column is not a stand density**, which ZONE 6 states in its own words
+and which the mix comment in `trees.js` has said all along. The file was right and the parcel that
+doubted it was wrong. Nothing about a weight, a band, a density or a departure changed.
+
+**What was actually broken is the DRAW.** Every stem was an independent draw on its community's
+shares, and an independent draw loses the rare end of a distribution — the sycamore is 1.98
+expected over 115 gallery stems and the seeded shuffle dealt none, permanently, because the scene
+is seeded. The draw is now corrected against what it owes: proportional to `share × drawn −
+placed`, and a species already owed a whole stem takes the next one outright. Nothing overshoots
+by a stem and nothing owed a stem gets none, both by construction; stress-tested over **35,880**
+(mix, stand size, seed) cases — worst overshoot 0.99, worst shortfall 1.21, zero losses.
+
+**Measured on the published mirror, identical at 390×780 and 1280×800.** Sycamores standing
+**0 → 2**. Weighted entries standing nowhere **1 → 0**, out of 26. Worst overshoot 0.51 stems,
+worst shortfall 0.86. Stems 163 → 178 and thicket stools 214 → 213: `addTree` draws a tree's own
+shape from the same stream and takes a different number of draws per species, so the whole wood is
+re-dealt. Nothing that sets how many stems a hectare holds moved.
+
+**And the census K47 said was missing now exists.** `measure_planting_reach.py` proves a record can
+be *chosen*; `stats.draws` and two smoke assertions prove it is *drawn*. A renderer that went back
+to the independent draw fails both.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh` and the
+mobile smoke against the published mirror are what this rests on, plus a direct both-viewport
+census probe of the published build, which is where the desktop numbers above come from.
+
 ## Found 2026-08-16 — the American sycamore is not in this town, and the bark it was given proves it
 
 **K47.** The parcel was claimed SEEN and delivered UNSEEN, and the inversion is the finding. The

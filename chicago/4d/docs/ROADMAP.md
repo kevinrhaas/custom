@@ -122,7 +122,8 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
-| **6** | RENDERING | **K48** | **SEEN** | **opened 2026-08-16 by K47, and it is the reason the town has no sycamore in it.** Every species is planted at 29–67 % of the density its own record carries, because the mix literal is walked as a *share* of a stand density the mix sums far above — and K46's gate checks the literal, which is not that number. Its cheap half is a drawn-population census in the smoke, which fails red today. Frame-wide, so read its box before touching a weight |
+| — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
+| **6** | RENDERING | **K49** | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
 | — | RENDERING | ~~K47~~ | — | **DONE 2026-08-16 — and it inverted: claimed SEEN, delivered UNSEEN.** The sycamore's archetype is built and `drawn_as_another_species` is empty; the tree is **0 of 163 stems**. Read its box before quoting v139 or K45(b1) on what stands by the river |
 | — | RENDERING | ~~K46~~ | **SEEN** | **DONE 2026-08-16** — the written weight plants the stem, and route 3 was refuted by the DATASET: ZONE 6a and 6b are one record, so a zone-keyed density cannot hold the elm at 60 in the thicket and 12 in the pocket. 23 of 26 weights sit inside their own cited band, 3 below, **none above**. Read its box before quoting a mix weight or a species share |
 
@@ -2979,36 +2980,81 @@ file. The two-tone bark was **proved to draw** before it was shipped: with the m
 temporarily at 400 the pale trunks and limbs are unmistakable at 70 m against the near-black
 boles beside them, and that experiment was reverted before the commit.
 
-### K48 — the weight is a share and the gate reads it as a density · **UNCLAIMED · SEEN · opened 2026-08-16 by K47 · Effort: M–L · NO BAKE, and it carries the full smoke**
+### K48 — the share was not the defect · **DONE 2026-08-16 — both repairs it named are impossible, and the sycamore was lost by the DRAW. 0 sycamores became 2**
 
-**The one-sentence version: every species in this town is planted at a third to two thirds of the
-density its own record carries, and the gate that was built to protect exactly that number cannot
-see it.** The literal in `COMMUNITIES` is walked by `pick()` as a *share of the community's stand
-density*, and the community's mix sums far above that stand density — 116 against `perHa` [34, 62]
-in the gallery. K46 checked the literal against the record's band, which is the right check on the
-wrong number.
+**Read this box before proposing a change to a mix weight, a `perHa`, or a recorded density.**
+K48 was opened on the reading that every species is planted too thin. That reading is wrong, and
+the arithmetic that refutes it is in the record rather than in an opinion. Neither of the two
+repairs the parcel named can be built:
 
-**Do not start by editing weights.** The seam this project has used three times now applies:
-land the measurement first. Two candidate repairs, and they are not equivalent —
-**(a)** rescale each community's literals so the realised density lands inside the record's band,
-which keeps `perHa` as written and changes 26 numbers; **(b)** derive `perHa` from the mix sum and
-let the record's densities stand as densities, which changes how many trees the wood holds rather
-than which ones. (a) preserves the stand count and (b) preserves the ecology, and the dossier's
-own words — *"canopy 30–80 trees/ha"* against per-species microsite figures that "sum higher" —
-are what decides which the record actually asserts. **Read the mix comment in `trees.js` and K46's
-box before choosing; the file already argues one side of this and does not know it.**
+- **(a) rescale each community's literals so the realised density lands inside the record's band
+  — ARITHMETICALLY IMPOSSIBLE in two of the four communities.** The realised densities of a
+  community's species sum to its stand density, so putting every species at or above its own
+  recorded floor requires the floors to fit under the stand ceiling. **`wet_woods`: the floors sum
+  to 100/ha against a stand ceiling of 84.** **`gallery`: 75 against 62** in the South Division
+  belt (the North Division's [50, 78] clears it by three). No assignment of weights exists. This
+  is not a preference between two ecologies; it is a system with no solution.
+- **(b) derive `perHa` from the mix sum — REFUTED by the same dossier row the weights come from.**
+  It puts the gallery at **116 trees/ha** against § ZONE 5's *"canopy 30–80 trees/ha"* and
+  `wet_woods` at **153** against § ZONE 6's *"overall canopy target 50–110 trees/ha"*. Both
+  contradict an attested structural sentence to satisfy a column in the table beneath it.
 
-**The second half, and it is the cheaper one:** nothing banks the **drawn** population.
-`tools/measure_planting_reach.py` proves a record can be *chosen*; K47 found a species that is
-chooseable, weighted, banded, gated — and absent from the frame. The census exists in
-`api.trees.stats.species` in a running renderer, so the instrument is a smoke assertion rather
-than a static scan: **every species in a community mix stands at least once, or the run says which
-does not and why.** Land that first and it fails red on the sycamore today, which is the shape
-that stops the fix redefining success.
+**So the record's density column is not a stand density and never was.** ZONE 6 says so in its own
+words — *"overall canopy target 50–110/ha with local >100/ha pockets and >30 % of area at savanna
+density"* — and 6a's four species sum to 100–205 on their own. The figures are microsite
+abundances that legitimately sum above the stand they sit in, which is exactly what the mix comment
+in `trees.js` already said and what K48 read as a defect. **The file was right and the parcel that
+doubted it was wrong.** K46's gate is checking the literal against the band, which is the right
+check on the right number after all.
+
+**What WAS broken is one line further down, and it is what K47 actually found.** Every stem was an
+**independent** draw on its community's shares. An independent draw loses the rare end of a
+distribution: the sycamore is 2 of the gallery's 116 over 115 gallery stems — 1.98 expected — and
+the seeded shuffle dealt none. Because the scene is seeded that was not luck that would come out
+next time; it was permanent. Three more species stood as a single stem, so it was the tail of a
+distribution and not one species' bad day.
+
+**The repair: the draw is corrected against what it already owes.** Each species carries
+`share × drawn − placed` and the draw is proportional to that shortfall, except that a species
+already owed a whole stem takes the next one outright. Two bounds follow by construction —
+nothing overshoots by a stem, and nothing owed a whole stem gets none — and both are what the
+smoke now asserts. Stress-tested over **35,880** (mix, stand size, seed) cases at stand sizes 4 to
+900: worst overshoot **0.99** stems, worst shortfall **1.21**, zero species owed a stem and given
+none. Without the outright rule the worst shortfall is **2.32** and 17 of those cases lose a
+species the stand owed a stem to. **No weight, density, band or departure moved.**
+
+**Measured on the published mirror, mobile 390×780 and desktop 1280×800, identical at both:**
+
+| | before | after |
+|---|---|---|
+| American sycamores standing | **0** | **2** (for 1.52 owed) |
+| of the 26 weighted entries, standing nowhere | 1 | **0** |
+| worst overshoot / shortfall against share | — | **0.51 / 0.86** stems |
+| stems / thicket stools | 163 / 214 | 178 / 213 |
+
+**The wood is re-dealt and the PR says so rather than claiming otherwise.** `addTree` draws a
+tree's own bole, taper and puffs from the same stream and takes a different number of draws per
+species, so changing which species stands at one stem shifts every draw after it. Nothing that
+decides how many stems a hectare holds changed — `perHa`, `edgeFade`, `clearedFactor` and the
+waterline gate are untouched — so 163 → 178 is the same Bernoulli placement re-dealt, not a
+denser wood.
+
+**The drawn census now exists**, which was the parcel's cheaper half and the gap K47 named:
+`tools/measure_planting_reach.py` proves a record can be **chosen**, and
+`stats.draws` + the two smoke assertions prove it is **drawn**. A renderer that went back to an
+independent draw fails both — it overshoots freely (the gallery elm's 25/116 over 115 stems has a
+standard deviation of 4.4 stems) and it loses the tail.
+
+**The generalisation, and it is the K36(b) seam pointed at a distribution: when a parcel says a
+population is the wrong SIZE, check first whether it is the wrong SHAPE.** Three parcels in a row
+here — K45(b1), K46, K48 — read a species that was not in the frame as a fault in the number
+beside it. Twice it was, once it was not, and the once was the one where the number was small.
+Every weighted rare thing in this project is drawn the same way: **the 63 households in
+`generators/inferred_households.py`, the roof coverings, the massing variety picker.** Each one is
+a weighted draw over a small sample, and none of them has ever been asked what its tail does.
 
 **Files:** `renderers/web/js/trees.js` · `tools/smoke_renderer.mjs` (the drawn census) ·
-`tools/measure_planting_reach.py` · `docs/LIBERTIES.md` L117 (its three departures are stated in
-literals and would move) · ROADMAP + STATUS.
+ROADMAP + STATUS + the changelog. No `data/` change, so no bake.
 
 ### K47 — the parcel as it was claimed, kept for the record
 
