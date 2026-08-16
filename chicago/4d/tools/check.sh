@@ -224,11 +224,18 @@ step "changelog contract" \
 # record a bug that "collapsed every building to a two-metre box shipped past a fully
 # green gate — twice" (ROADMAP K36). Triangles, node identity, the contract's
 # attributes and the world bounding box are all answerable from the glTF JSON chunk,
-# so this costs a second and no decoder. The material half is a ratchet: 38 assets
-# reach the site with one PaletteMaterial where the master has five or six named
-# ones, and K36(b) owns that repair.
+# so this costs a second and no decoder. The material half is a ratchet, and K36(b)
+# emptied it: 334 of 334 now, so the next offender is the first entry.
 step "the shipped derivative still describes the master's building" \
   python3 tools/measure_web_derivatives.py --gate --quiet
+
+# The gate above has eight assertions and, until K37, nothing had ever watched one
+# of them fail — its --self-test breaks each in memory against the real tree and
+# was reporting SELF-TEST FAIL on a clean tree because a mutation it could no
+# longer apply read as a miss. It costs a second, so run it here rather than
+# trusting that someone runs it by hand.
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_web_derivatives.py --self-test
 
 # Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
 # three parcels because the ground a browser loads was quantised by a publish

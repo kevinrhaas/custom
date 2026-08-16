@@ -168,11 +168,27 @@ whose height is a guess is a guessed wall, even if we know it was white.
 | artifact | form | where |
 |---|---|---|
 | archival master | uncompressed `.glb` | `assets/gltf/` (committed, not published) |
-| web derivative | `EXT_meshopt_compression` + KTX2 textures | `assets/web/` → published |
+| web derivative | `EXT_meshopt_compression`, **or the master passed through where compressing it is bigger** | `assets/web/` → published |
 
 The master is the source of truth; derivatives regenerate from it. Meshopt over Draco: it
 decodes far faster with no per-file WASM cold start, which matters more than bytes for ~150
 small meshes.
+
+KTX2 is **not** in that row and never has been. `--texture-compress ktx2` is off in
+`tools/web_derivatives.sh` because the vendored `GLTFLoader` has no `setKTX2Loader()` and no
+Basis transcoder, so a KTX2 asset throws in the loader and leaves the scene; see the script.
+
+**The passthrough is a measured rule, not an exception — K37, 2026-08-16.** `meshopt` writes a
+compression header, a buffer-view table and an index buffer, and below a few hundred triangles
+those cost more than they save. Running the step over the 90 flagged placeholders takes them
+**520,700 → 628,028 bytes, +20.6 %**, 88 of the 90 growing. Nothing about an asset's *kind*
+predicts the sign — three assets that had always been compressed here were shipping larger than
+their masters, and two of the ninety placeholders compress 9.3 % smaller — so the step measures
+each file and keeps the smaller one, and `tools/measure_web_derivatives.py` asserts that no
+derivative is bigger than its master. A passthrough carries **exact float positions** rather
+than a quantised lattice, so it satisfies every other assertion in that gate by construction;
+93 of 334 assets ship this way, 11.3 % of the payload. The two epoch meshes are excluded by
+name while R-W6(b) holds them.
 
 ### Quantised geometry: float before you transform
 
