@@ -2979,7 +2979,7 @@ file. The two-tone bark was **proved to draw** before it was shipped: with the m
 temporarily at 400 the pale trunks and limbs are unmistakable at 70 m against the near-black
 boles beside them, and that experiment was reverted before the commit.
 
-### K48 — the weight is a share and the gate reads it as a density · **UNCLAIMED · SEEN · opened 2026-08-16 by K47 · Effort: M–L · NO BAKE, and it carries the full smoke**
+### K48 — the weight is a share and the gate reads it as a density · **CLAIMED 2026-08-16 · SEEN · opened 2026-08-16 by K47 · Effort: M–L · NO BAKE, and it carries the full smoke**
 
 **The one-sentence version: every species in this town is planted at a third to two thirds of the
 density its own record carries, and the gate that was built to protect exactly that number cannot
