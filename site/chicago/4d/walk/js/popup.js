@@ -542,11 +542,30 @@ function researchSection(s) {
 }
 
 /**
+ * Where a dossier is READ, which is not where it lives in this repository.
+ *
+ * The card used to link `docBase + s.research_doc` — a path relative to the page,
+ * which resolves in the source tree and nowhere a visitor stands: `publish.sh`
+ * deliberately leaves `docs/` out of the payload ("the uncompressed GLB masters,
+ * the research dossiers and the raw dataset all stay in the repo and out of the
+ * payload"), so every card on the deployed site linked to a 404 (ROADMAP K26).
+ * The dossiers are markdown and a browser will not render markdown, so publishing
+ * them would want a viewer; GitHub already is one, and renders the file with its
+ * tables and its images intact.
+ *
+ * `main` and not `dev`, deliberately: this is the branch a visitor's copy of the
+ * walkthrough was promoted from. A dossier written on `dev` and not yet promoted
+ * therefore links to a page that appears when the promotion lands — the same lag
+ * the rest of the tier carries, rather than a second one.
+ */
+export const DOSSIER_BASE = 'https://github.com/kevinrhaas/custom/blob/main/chicago/4d/';
+
+/**
  * @param {HTMLElement} root  the <aside> to render into
  * @param {object} opts
- * @param {string} opts.docBase  where docs/ lives relative to the page
+ * @param {string} opts.docBase  where a dossier is read — see DOSSIER_BASE
  */
-export function createPopup(root, { docBase = '../../' } = {}) {
+export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
   let currentId = null;
   /** Null until the derived list loads; never faked to an empty list. */
   let liberties = null;
@@ -664,10 +683,15 @@ export function createPopup(root, { docBase = '../../' } = {}) {
       const aka = Array.isArray(s.aka) && s.aka.length
         ? `<p class="pop-aka">also ${s.aka.map(escapeHtml).join(' · ')}</p>` : '';
 
+      // Empty when no dossier has been WRITTEN for this record — the compiler
+      // resolves the path against the repository rather than naming one by
+      // convention and hoping (ROADMAP K26). Thirty documented buildings are in
+      // that state, and offering them a link that breaks taught a visitor to
+      // distrust the 302 that do not. The sentence says which of the two it is.
       const doc = s.research_doc
         ? `<a href="${escapeHtml(docBase + s.research_doc)}" target="_blank" rel="noopener">
              ${escapeHtml(s.research_doc)}</a>`
-        : 'no dossier recorded';
+        : 'no dossier written for this building yet';
 
       root.innerHTML = `
         <div class="pop-head">

@@ -265,7 +265,11 @@ async function boot() {
     return run;
   }
 
-  const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
+  // No `docBase` override: a dossier is read at one absolute address from every
+  // tier, because the relative one resolved only in the source tree — the tree
+  // nobody visits — and 404'd on the deployed site and its preview alike
+  // (ROADMAP K26, popup.js DOSSIER_BASE).
+  const popup = createPopup(popupRoot);
   const navigation = createNavigation({
     root: hudRoot, terrain, registry: loaded.registry, streets,
   });

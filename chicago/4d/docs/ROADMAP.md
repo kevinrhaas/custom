@@ -1506,9 +1506,67 @@ where it does not**; or grade these values a level lower than the ones the band 
 cite a band only if the family authors one for it. Until then the census prints and does
 not fail, and this box says why.
 
-### K26 — every building card links to a dossier that is not published · **UNCLAIMED · from K21 · Effort: S — a decision, then a line**
+### K26 — every building card links to a dossier that is not published · **DONE 2026-08-16 · 332 links, 332 of them 404, and 30 that should never have been links**
 
 **Phase:** lane 1 (renderer or publish) · **Effort:** S
+
+**The 404 is measured rather than reasoned about**, because the whole fault is that it can only
+be seen from outside the repository:
+
+```
+200  https://github.com/kevinrhaas/custom/blob/main/chicago/4d/docs/RESEARCH/sauganash_hotel.md
+404  https://kevinrhaas.github.io/custom/chicago/4d/docs/RESEARCH/sauganash_hotel.md
+```
+
+The second URL is what the card offered. **332 cards, not 276** — the parcel was written when the
+town was smaller — and every one of them broken on the deployed site for as long as the site has
+had cards on it.
+
+**Route 2 was taken, as the parcel expected: the link is absolute and goes to GitHub**
+(`popup.js` `DOSSIER_BASE`), which renders the markdown with its tables and images rather than
+downloading it. `main` and not `dev`, deliberately — that is the branch a visitor's copy was
+promoted from, so a dossier written on `dev` links to a page that appears when the promotion
+lands, carrying the tier's existing lag rather than a second one. **Measured at 0 today:** all 55
+distinct dossier paths the cards currently link are already on `main`.
+
+**What the parcel did not predict is the 30, and they are the better half of the finding.** The
+compiler asserted the path by convention — `docs/RESEARCH/<id>.md` for any record with no
+reconstruction block — and never asked whether the file was there. It is right about 302 records
+and wrong about 30, all of them **documented** buildings whose write-up nobody has done: the
+courthouse, the log jail, the estray pen, St Mary's, the Temple Building, the Presbyterian church,
+Kinzie & Hunter's warehouse. So the convention generated a link that looked exactly like the 302
+working ones and led nowhere. `compile_scene.research_doc()` now resolves the path against the
+repository and emits `""` where nothing is written, and the card says *no dossier written for this
+building yet* instead of offering a link that breaks. That is route 3 applied to the 30 records
+route 3 was actually right about, and it is not a competing answer to route 2 — the two questions
+are "where is a dossier read" and "is there one".
+
+**Both halves are gated, structurally and offline** — `tools/check_dossier_links.py`, run by
+`check.sh`. Every non-empty `research_doc` must be a file here (absolute, not a ratchet: a card
+either links to something that exists or does not link), and `DOSSIER_BASE` must be an absolute
+GitHub blob URL ending in this app's own location inside the repository, with nothing handing the
+card a relative base back. **Proved in four directions before being trusted:** a planted dead
+path, a `DOSSIER_BASE` reverted to `'../../'`, an app prefix moved to `chicago/5d/`, and a
+`docBase: '../'` override restored in `main.js` — each red, and green again after.
+
+**The smoke assertion it replaces is the reason this survived**, and it is worth stating as a
+lesson rather than a fix. `popup links the research dossier` tested the card's TEXT for the path,
+and the text was right on every run for months while every link was a 404. It now reads the
+`href` and asserts it **leaves this origin** — a property nothing served from the payload can
+satisfy — plus the discriminating case beside it: `temple_building`, one of the 30, must offer no
+dossier anchor at all.
+
+**Precedent that was already here.** `validate.py` has asserted since it was written that an open
+question's `dossier.file` "is not a committed file" is an error, and that its anchor exists in
+that file. The building card's pointer — 332 of them, the ones a visitor actually sees — was
+never asked either question.
+
+**The 30 stay a research debt and are named by the gate on every run**, so the number is loud
+rather than absent. Writing them is research, not this parcel.
+
+**Contract:** `research_doc`'s empty case is documented in `docs/GLB-CONTRACT.md`; the field is
+unchanged in name, shape and reader, so this is an extension of the sidecar's stated meaning
+rather than a change to it.
 
 Each sidecar carries `research_doc`, and `popup.js` renders it as a link — `docBase +
 s.research_doc`, so `docs/RESEARCH/<id>.md` relative to the walkthrough. **`tools/publish.sh`

@@ -223,6 +223,6 @@
     }
   ],
   "research_note": "THE THIRD SMITHY, and the one phase one identified as a documented building with no record. This dataset already holds pierce_blacksmith_shop on the south side and blacksmith_shop_state_st at the Indian agency; DO NOT MERGE ANY OF THE THREE. The street name 'Main-street' is recorded as a finding for the streets layer in docs/RESEARCH/residents_1835.md section 7 and is not acted on beyond this placement.",
-  "research_doc": "docs/RESEARCH/mason_blacksmith_shop.md",
+  "research_doc": "",
   "review_required": false
 }

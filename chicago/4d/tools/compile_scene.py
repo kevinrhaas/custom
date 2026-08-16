@@ -47,6 +47,27 @@ RESEARCH_DOSSIER = {
 }
 
 
+def research_doc(structure: dict) -> str:
+    """The dossier that covers this record, or `""` where none has been written.
+
+    The path used to be asserted by convention — `docs/RESEARCH/<id>.md` for
+    anything with no reconstruction block — and the convention is right about 302
+    of 332 records and wrong about 30, which are documented buildings whose
+    write-up nobody has done yet. The card rendered the guess as a link either
+    way, so a third of the town's most interesting buildings offered a link that
+    breaks (ROADMAP K26). Resolving it here rather than in the renderer is what
+    lets a static card be honest about it: the compiler can see the repository
+    and a browser on the deployed site cannot see even the file it is asking for.
+
+    Emitting `""` rather than dropping the key keeps the sidecar one shape
+    everywhere, which is the same rule `residents` follows.
+    """
+    path = RESEARCH_DOSSIER.get(
+        (structure.get("reconstruction") or {}).get("status"),
+        f"docs/RESEARCH/{structure['id']}.md")
+    return path if (ROOT / path).exists() else ""
+
+
 def load(p: Path):
     return json.loads(p.read_text())
 
@@ -852,10 +873,10 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             # count-units when the building they clicked exists for a particular
             # argued household. Keyed on the status rather than on the block's mere
             # presence, so a third status cannot inherit the wrong dossier by
-            # default; anything with no block keeps its per-record path.
-            "research_doc": RESEARCH_DOSSIER.get(
-                (st.get("reconstruction") or {}).get("status"),
-                f"docs/RESEARCH/{st['id']}.md"),
+            # default; anything with no block keeps its per-record path — and
+            # the path is resolved against the repository, so a card never
+            # offers a dossier nobody wrote (see research_doc() above).
+            "research_doc": research_doc(st),
             "review_required": st.get("review_required", False),
         }
         if st.get("reconstruction"):
