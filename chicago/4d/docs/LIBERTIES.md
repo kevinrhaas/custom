@@ -3788,6 +3788,42 @@ are written to one number and place stems at another**; all twenty-six are banke
 and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about
 this entry. Half two of this entry — the **87.9 ha** — is untouched and stands.
 
+**HALF TWO IS RESOLVED, 2026-08-16 (ROADMAP K45(b2)) — the planter sweeps the field, and what it
+now refuses is a smaller and a stated omission.** The planting loop's `const half = 320 - step` is
+gone; it sweeps the heightfield's own extent inset by one planting step, so **189,700 of the
+192,844 dry nodes — 98.37 %, against 27.05 % — are ground the loop visits**, and the 87.9 ha it
+had never offered a stem to is **2.0 ha**, the one-step margin at the field's own rim. A hundred
+and forty-seven stems now stand east of the old square's edge where one did.
+
+**What replaces the omission, because the loop reaching ground is not the same as a wood standing
+on it.** Andreas is quoted in `z05_riverbank_timber`'s own note and he ends both divisions'
+timber: the South Side belt runs *"east as far as Wells Street"*, and the North Side's *"body of
+thrifty heavy growth of timber"* excepts *"the sandy hills near the lake and the marshy places."*
+So `communityAt` now carries an east limit per division, read at load from
+`data/streets/1835.json`: **Wells Street, E +329.3, for the South Division; State Street,
+E +825.8, for the North.** Ground east of its division's limit carries no woody community, which
+leaves **64,385 nodes — 40.2 ha — swept and refused.**
+
+**The two inventions in that, stated plainly.** *One:* Andreas names no street for the North
+Division; he names the sandy hills. State Street is this project's reading of where they start,
+taken from `z09_sand_prairie`, whose relict beach-ridge belt begins at the State Street
+break-of-slope that `generators/terrain_gen.py` builds between E +780 and +880 off two committed
+ground-control points. A different reading of *"near the lake"* would move that line, and moving
+it moves stems. *Two:* the mean easting of a centreline is used rather than either of its ends —
+Wells runs E +328.1 at N −400 to +330.5 at N +7 — which is a 1.2 m convention, not a source.
+
+**And the 40.2 ha is still an omission; it is only an honest one now.** `z08_lakeshore` records
+*"a scrub of sand cherry and leaning cottonwood"* and carries the eastern cottonwood, quaking
+aspen and balsam poplar at sourced dune densities. None of them is in any mix, so the sand carries
+no woody stem in this build. That is **ROADMAP K45(b) change one** — a dune community with its own
+placement rule — and it is the whole of what is left of this entry.
+`tools/measure_planting_reach.py` banks the swept domain (may grow, may not shrink), both east
+limits (exact, in both directions) and the refused hectares, so neither the reach nor the limit
+can move without a commit that says so.
+
+Related: **L113**, which recorded the four dune trees this leaves unplaced, and **L116**, the
+sycamore's borrowed bark.
+
 ### L118 — The sycamore's pale limbs are two invented colours, and the mottling is still not drawn
 
 **Decision:** the American sycamore is drawn in **two bark tones that no source states** — a pale

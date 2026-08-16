@@ -28,12 +28,24 @@ measured one level out, and invisible from there for the same reason: K44's
 question is answered by the file that receives the record, and this one is
 answered by a literal inside it.
 
-**And the woody planter is a fixed box inside a field four times its size.** It
-sweeps `-half..+half` in both axes, `half = 320 - step`, while the heightfield
-S2e carried east runs E -320..+1700. `flora.js`'s lattice is centred on the
-CAMERA and follows the visitor everywhere; the timber does not move. Both
-declarations are scanned below rather than restated, because the asymmetry is the
-finding and an asymmetry quoted from memory is an anecdote.
+**The woody planter WAS a fixed box inside a field four times its size**, and
+ROADMAP K45(b2) carried it over the field. It swept `-half..+half` in both axes,
+`half = 320 - step`, while the heightfield S2e carried east runs E -320..+1700,
+so 73 % of the ground above its own dry floor had never had a stem offered to it
+while `flora.js`'s camera-centred lattice reached all of it. It now sweeps the
+field inset by one planting step, and the question moved with it: what the loop
+may VISIT is nearly everything, and what may GROW there is `communityAt`'s
+answer. Both declarations are still scanned rather than restated, because the
+asymmetry was the finding and an asymmetry quoted from memory is an anecdote.
+
+**And the timber has an east end, which the square used to supply by accident.**
+Andreas runs the South Division belt "east as far as Wells Street" and excepts
+"the sandy hills near the lake" from the North Division's timber; the old
+square's edge stood at E +316, 13 m short of Wells and 510 m short of the State
+Street break-of-slope where `z09_sand_prairie` starts the beach ridges. Both
+limits are read by the renderer out of `data/streets/1835.json` and banked here
+EXACTLY — a wood that reaches further east is an argument about a source, not a
+repair.
 
 **And the weight beside the species id is a FALLBACK.** ROADMAP K45(b1). The
 literal in `COMMUNITIES` is documented as *"the dossier's per-species
@@ -65,12 +77,16 @@ FIVE ASSERTIONS.
     empty set: an empty mix would call every species unselectable and bank it,
     and an unseen third call site would call an unselectable species drawn.
 
-2.  **(absolute, banked, may grow and may not shrink) The woody planter's
-    domain.** The half-extent scanned out of the planting loop, the field it
-    sits inside, and how many of the heightfield's nodes stand above the
-    planter's OWN dry floor inside it and outside it. This is the number a
-    lakeshore repair has to move, and banking it means the repair cannot be
-    reported as done while the box stands still.
+2.  **(absolute, banked; the domain may grow and may not shrink, the east
+    limits may not move at all) The woody planter's domain.** The swept bounds
+    scanned out of the planting loop — their FORM, since K45(b2) derives them
+    from the heightfield rather than writing a number — the field they sit
+    inside, how many of the heightfield's nodes stand above the planter's OWN
+    dry floor inside them and outside them, and how much of what it now reaches
+    lies east of the documented limits and is therefore swept and refused. The
+    east limits themselves are banked with the street each is read from, and
+    that `communityAt` still applies them: a limit that is loaded and consulted
+    by nothing is the loss K45(a) measured one level out.
 
 3.  **(absolute, banked both ways) Every woody species a `TIMBER_ZONE`
     contributes, whose form has an archetype, that no community mix and no
@@ -154,8 +170,8 @@ VERDICTS = {
 
 # Whether a zone's declared extent box meets the ground the woody planter sweeps.
 BOX_VERDICTS = {
-    "meets-the-planter": "the declared box overlaps the swept square",
-    "outside-the-planter": "the declared box is wholly outside the swept square",
+    "meets-the-planter": "the declared box overlaps the swept domain",
+    "outside-the-planter": "the declared box is wholly outside the swept domain",
     "no-box": "the extent declares no box, so it is bounded by its kind alone",
 }
 
@@ -393,29 +409,124 @@ def direct_call_sites(src: str) -> tuple[int, set[str]]:
     return sites, named
 
 
-def planter_bounds(src: str) -> dict:
-    """The woody planting loop's fixed square, and the steps that size it."""
-    half_const = js_number(src, r"const half\s*=\s*([\d.]+)\s*-\s*step;",
-                           "the planting loop's half-extent", TREES_JS)
+def planter_bounds(src: str, hf: dict) -> dict:
+    """The woody planting loop's swept domain, and the steps that inset it.
+
+    ROADMAP K45(b2) replaced a fixed square — `const half = 320 - step`, swept
+    `-half..+half` on both axes — with the heightfield's own extent inset by one
+    planting step. So this no longer reads a literal out of the renderer: it
+    reads the FORM of the declaration and derives the bounds from the same
+    heightfield header the land census below reads. That is the stronger gate of
+    the two, because a square written as a number can be right by accident and a
+    domain derived from the field cannot silently stop tracking it.
+    """
     steps = [float(v) for v in re.findall(r"step:\s*([\d.]+),", src)]
     if not steps:
         raise LookupError(f"{TREES_JS} no longer declares the STEMS planting steps — the "
-                          f"swept square is `half_const - step` and cannot be sized "
+                          f"swept domain is the field inset by one and cannot be sized "
                           f"without them")
-    if not re.search(r"for \(let n = -half; n <= half; n \+= step\)", src):
-        raise LookupError(f"{TREES_JS}'s planting loop no longer sweeps -half..+half — "
-                          f"this gate's whole domain claim is read off that loop")
+    decls = (
+        (r"const sweepE0\s*=\s*originE \+ step;", "sweepE0 = originE + step"),
+        (r"const sweepE1\s*=\s*originE \+ \(cols - 1\) \* cellM - step;",
+         "sweepE1 = originE + (cols - 1) * cellM - step"),
+        (r"const sweepN0\s*=\s*originN \+ step;", "sweepN0 = originN + step"),
+        (r"const sweepN1\s*=\s*originN \+ \(rows - 1\) \* cellM - step;",
+         "sweepN1 = originN + (rows - 1) * cellM - step"),
+        (r"for \(let n = sweepN0; n <= sweepN1; n \+= step\)", "the N loop over the sweep"),
+        (r"for \(let e = sweepE0; e <= sweepE1; e \+= step\)", "the E loop over the sweep"),
+    )
+    for pattern, what in decls:
+        if not re.search(pattern, src):
+            raise LookupError(
+                f"{TREES_JS}'s planting loop no longer declares `{what}` — this gate's "
+                f"whole domain claim is read off that loop, and a loop it cannot read "
+                f"would bank a reach nothing sweeps. If the planter has been rewritten, "
+                f"rewrite this scan with it (ROADMAP K45(b2))")
     dry_margin = js_number(src, r"const TREE_DRY_MARGIN_M\s*=\s*([\d.]+);",
                            "TREE_DRY_MARGIN_M", TREES_JS)
+    # The widest sweep is the smallest step, which is the `full` detail level.
+    # Banking the widest is banking the most generous case: a repair that has to
+    # move these numbers cannot be reported done at `light`.
+    step = min(steps)
+    cols, rows, cell = hf["cols"], hf["rows"], hf["cell_m"]
+    e0, n0 = hf["origin_e"], hf["origin_n"]
     return {
-        "half_const_m": half_const,
+        "kind": "the modelled field inset by one planting step",
         "steps_m": sorted(steps),
-        # The widest sweep is the smallest step, which is the `full` detail
-        # level. Banking the widest is banking the most generous case: a repair
-        # that has to move this number cannot be reported done at `light`.
-        "half_m": round(half_const - min(steps), 3),
+        "sweep_e_m": [round(e0 + step, 3), round(e0 + (cols - 1) * cell - step, 3)],
+        "sweep_n_m": [round(n0 + step, 3), round(n0 + (rows - 1) * cell - step, 3)],
         "dry_margin_m": dry_margin,
     }
+
+
+def east_limits(src: str) -> dict:
+    """Where the woody layer stops in the east, and the streets that say so.
+
+    ROADMAP K45(b2). The planter used to answer this by accident: its square ran
+    out at E +316. Now it sweeps the field, so `communityAt` carries the answer,
+    and the answer is two street ids rather than two numbers — Andreas puts the
+    South Division belt's end at Wells Street and excepts "the sandy hills near
+    the lake" from the North Division's timber, which `z09_sand_prairie` places
+    from the State Street break-of-slope east.
+
+    Three things are scanned rather than assumed. The ids, out of the renderer.
+    That the renderer READS them from the street records the scene index carries
+    rather than carrying its own copy of two numbers — a limit quoted from a
+    street has to move when the street does. And that `communityAt` actually
+    applies them, because a limit that is loaded and never consulted is the exact
+    shape of defect K45(a) found in `TIMBER_ZONES`: a declaration everything
+    reads and nothing uses.
+
+    The eastings themselves are then taken here from `data/streets/1835.json`,
+    which is the file `tools/compile_scene.py` compiles that index FROM. The
+    renderer must not fetch it directly: it is not published as itself, so a
+    fetch of it passes in the source tree and 404s on the site — the exact gap
+    AGENTS.md says has shipped bugs twice, and it shipped this one until the
+    `--published` smoke caught it.
+    """
+    m = re.search(r"const TIMBER_EAST_LIMIT_STREETS\s*=\s*\{([^}]*)\}", src)
+    if not m:
+        raise LookupError(f"{TREES_JS} no longer declares TIMBER_EAST_LIMIT_STREETS — the "
+                          f"east end of the timber is what stops the widened planter "
+                          f"putting a wood on the beach, and a missing declaration would "
+                          f"read as a layer with no eastern limit at all")
+    ids = dict(re.findall(r"(\w+):\s*'([^']+)'", m.group(1)))
+    if set(ids) != {"south", "north"}:
+        raise LookupError(f"{TREES_JS}'s TIMBER_EAST_LIMIT_STREETS names {sorted(ids)} — "
+                          f"this gate reads one limit per division and the divisions are "
+                          f"south and north")
+    if not re.search(r"timberEastLimits\(streetRecords, problems\)", src):
+        raise LookupError(f"{TREES_JS} no longer derives its east limits from the street "
+                          f"records handed to it — they would then be numbers copied into "
+                          f"a renderer, which is how a limit and the street it cites drift "
+                          f"apart")
+    if not re.search(r"pts\.reduce\(\(a, p\) => a \+ p\[0\], 0\) / pts\.length", src):
+        raise LookupError(f"{TREES_JS} no longer takes the mean easting of a centreline — "
+                          f"this gate takes the same mean, and two different readings of "
+                          f"the same street are two different limits")
+    if not re.search(r"if \(e > \(d === NORTH \? eastLimit\.north : eastLimit\.south\)\) "
+                     r"return null;", src):
+        raise LookupError(f"{TREES_JS}'s communityAt no longer applies the east limits — "
+                          f"they would be loaded and consulted by nothing, which is the "
+                          f"loss ROADMAP K45(a) measured one level out")
+    streets = json.loads((ROOT / "data" / "streets" / "1835.json").read_text(encoding="utf-8"))
+    by_id = {s["id"]: s for s in streets.get("streets", [])}
+    out = {}
+    for side, sid in sorted(ids.items()):
+        st = by_id.get(sid)
+        if not st:
+            raise LookupError(f"data/streets/1835.json carries no street `{sid}`, which "
+                              f"{TREES_JS} names as the {side} division's east limit")
+        pts = st["path_local_enu_m"]
+        out[side] = {
+            "street": sid,
+            "name_1835": st.get("name_1835", sid),
+            # The same mean the renderer takes, and taken here for the same
+            # reason it is taken there: a centreline is two or more points and
+            # is not exactly north-south.
+            "east_m": round(sum(p[0] for p in pts) / len(pts), 1),
+        }
+    return out
 
 
 def herbaceous_is_camera_centred(src: str) -> bool:
@@ -453,7 +564,8 @@ def declarations() -> dict:
         "call_sites": sites,
         "named_at_call_sites": named,
         "selectable": selectable | named,
-        "planter": planter_bounds(trees),
+        "planter": planter_bounds(trees, heightfield()),
+        "east_limits": east_limits(trees),
     }
 
 
@@ -471,24 +583,36 @@ def heightfield() -> dict:
     return meta
 
 
-def land_census(hf: dict, half: float, dry_margin: float) -> dict:
+def land_census(hf: dict, sweep_e: list, sweep_n: list, dry_margin: float,
+                limits: dict) -> dict:
     """How many heightfield nodes stand above the planter's own dry floor, and
-    how they split across the boundary of the square it sweeps."""
+    how they split across the boundary of the domain it sweeps.
+
+    `east_of_limit` is the second half, added by ROADMAP K45(b2): the planter now
+    reaches nearly the whole field, so "can the loop visit this node" stopped
+    being the interesting question and "may anything grow on it" started. The
+    fraction beyond the further of the two documented east limits is ground the
+    loop visits and refuses, which is a different and honest number — the dune
+    community that belongs there is K45(b) change one and is not built.
+    """
     cols, rows, cell = hf["cols"], hf["rows"], hf["cell_m"]
     e0, n0 = hf["origin_e"], hf["origin_n"]
     scale, off = hf["scale"], hf["offset"]
     floor = hf.get("water_surface_m", 0.0) + dry_margin
     s = hf["_samples"]
-    inside = outside = 0
+    east_cut = max(v["east_m"] for v in limits.values())
+    inside = outside = beyond = 0
     for r in range(rows):
         n = n0 + r * cell
-        in_n = -half <= n <= half
+        in_n = sweep_n[0] <= n <= sweep_n[1]
         for c in range(cols):
             if s[r * cols + c] * scale + off < floor:
                 continue
             e = e0 + c * cell
-            if in_n and -half <= e <= half:
+            if in_n and sweep_e[0] <= e <= sweep_e[1]:
                 inside += 1
+                if e > east_cut:
+                    beyond += 1
             else:
                 outside += 1
     total = inside + outside
@@ -502,6 +626,9 @@ def land_census(hf: dict, half: float, dry_margin: float) -> dict:
         "outside_ha": round(outside * ha, 1),
         "field_e_m": [e0, e0 + (cols - 1) * cell],
         "field_n_m": [n0, n0 + (rows - 1) * cell],
+        "east_limit_m": east_cut,
+        "reached_east_of_limit": beyond,
+        "reached_east_of_limit_ha": round(beyond * ha, 1),
     }
 
 
@@ -509,12 +636,12 @@ def land_census(hf: dict, half: float, dry_margin: float) -> dict:
 # the data, asked whether it can be selected
 # ---------------------------------------------------------------------------
 
-def boxes_overlap(box: dict, half: float) -> bool:
+def boxes_overlap(box: dict, sweep_e: list, sweep_n: list) -> bool:
     be = box.get("e")
     bn = box.get("n")
-    if be and (be[1] < -half or be[0] > half):
+    if be and (be[1] < sweep_e[0] or be[0] > sweep_e[1]):
         return False
-    if bn and (bn[1] < -half or bn[0] > half):
+    if bn and (bn[1] < sweep_n[0] or bn[0] > sweep_n[1]):
         return False
     return True
 
@@ -582,7 +709,8 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
     zones_read = timber_zones if timber_zones is not None else dec["zones"]
     manifest = json.loads((DATA / "index.json").read_text(encoding="utf-8"))
     hf = heightfield()
-    half = dec["planter"]["half_m"]
+    sweep_e = dec["planter"]["sweep_e_m"]
+    sweep_n = dec["planter"]["sweep_n_m"]
 
     contributed: dict[str, list[str]] = {}
     unimplemented: dict[str, list[str]] = {}
@@ -595,7 +723,7 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
         if zid in zones_read:
             box = (rec.get("extent") or {}).get("box")
             if box:
-                verdict = ("meets-the-planter" if boxes_overlap(box, half)
+                verdict = ("meets-the-planter" if boxes_overlap(box, sweep_e, sweep_n)
                            else "outside-the-planter")
             else:
                 verdict = "no-box"
@@ -632,7 +760,9 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
             "steps_m": dec["planter"]["steps_m"],
             "call_sites": dec["call_sites"],
         },
-        "ground": land_census(hf, half, dec["planter"]["dry_margin_m"]),
+        "east_limits": dec["east_limits"],
+        "ground": land_census(hf, sweep_e, sweep_n, dec["planter"]["dry_margin_m"],
+                              dec["east_limits"]),
         "zones_read": sorted(zones_read),
         "zone_boxes": zone_boxes,
         "communities": {k: sorted({sp for lst in v.values() for sp in lst})
@@ -694,12 +824,39 @@ def evaluate(state: dict, bank: dict) -> list[str]:
 
     # 2 — the planter's domain. It may GROW: that is what a repair looks like.
     b, s = bank["planter"], state["planter"]
-    for key in ("half_const_m", "half_m", "dry_margin_m"):
+    # A bank written before ROADMAP K45(b2) describes a square and this state
+    # describes a domain. Say so rather than raising a KeyError three frames in:
+    # the fix is `--update` in the commit that changed the loop, and a gate whose
+    # failure mode is a stack trace teaches nobody which commit owes what.
+    missing = [k for k in ("sweep_e_m", "sweep_n_m") if k not in b]
+    if missing or "east_limits" not in bank:
+        out.append("the baseline predates ROADMAP K45(b2): it banks a fixed square "
+                   "(`half_m`) and no east limits, and the planter now sweeps the modelled "
+                   "field with a documented limit per division. Re-bank with --update in "
+                   "the commit that widened it")
+        return out
+    if s["dry_margin_m"] != b["dry_margin_m"]:
+        out.append(f"the woody planter's dry_margin_m moved: {b['dry_margin_m']} -> "
+                   f"{s['dry_margin_m']} — the ground census below is counted against it")
+    for key in ("sweep_e_m", "sweep_n_m"):
         if s[key] != b[key]:
-            direction = "widened" if s[key] > b[key] else "narrowed"
+            span_b = b[key][1] - b[key][0]
+            span_s = s[key][1] - s[key][0]
+            direction = "widened" if span_s > span_b else "narrowed"
             note = (" — re-bank it with --update in the commit that widened it"
-                    if s[key] > b[key] else "")
+                    if span_s > span_b else " — the swept domain may grow and may not shrink")
             out.append(f"the woody planter's {key} {direction}: {b[key]} -> {s[key]}{note}")
+    # The east limits are the other half of the domain since ROADMAP K45(b2): the
+    # loop reaches the field and `communityAt` decides what may stand on it. A
+    # limit that MOVES is a claim about a source, so it is banked exactly rather
+    # than allowed to grow — a wood that reaches further east is not a repair
+    # unless the record that ends it moved too.
+    if state["east_limits"] != bank["east_limits"]:
+        out.append(f"the timber's east limits moved: {bank['east_limits']} -> "
+                   f"{state['east_limits']}. Andreas ends the South Division belt at Wells "
+                   f"Street and excepts the sandy hills near the lake from the North "
+                   f"Division's timber — moving either is an argument about a source and "
+                   f"belongs in a parcel, not in a re-bank")
     bg, sg = bank["ground"], state["ground"]
     if sg["field_e_m"] != bg["field_e_m"] or sg["field_n_m"] != bg["field_n_m"]:
         out.append(f"the modelled field moved: E {bg['field_e_m']} N {bg['field_n_m']} -> "
@@ -817,14 +974,19 @@ def evaluate(state: dict, bank: dict) -> list[str]:
 def print_census(state: dict) -> None:
     p, g = state["planter"], state["ground"]
     print("WHERE THE WOODY PLANTER CAN PUT A STEM")
-    print(f"  the swept square   E/N -{p['half_m']:.1f}..+{p['half_m']:.1f} m "
-          f"(`half = {p['half_const_m']:.0f} - step`, steps "
-          f"{'/'.join(f'{s:g}' for s in p['steps_m'])})")
+    print(f"  the swept domain   E {p['sweep_e_m'][0]:.1f}..{p['sweep_e_m'][1]:.1f}  "
+          f"N {p['sweep_n_m'][0]:.1f}..{p['sweep_n_m'][1]:.1f} m "
+          f"({p['kind']}, steps {'/'.join(f'{s:g}' for s in p['steps_m'])})")
+    for side, v in sorted(state["east_limits"].items()):
+        print(f"  {side:<5} division timber ends at {v['name_1835']}, E +{v['east_m']:.1f} m")
     print(f"  the modelled field E {g['field_e_m'][0]:.0f}..{g['field_e_m'][1]:.0f}  "
           f"N {g['field_n_m'][0]:.0f}..{g['field_n_m'][1]:.0f} m")
     print(f"  ground above the planter's own dry floor ({g['dry_floor_m']:.2f} m): "
           f"{g['nodes_above_floor']} node(s)")
-    print(f"    inside the square   {g['inside_planter']:>7} ({g['inside_pct']:.2f} %)")
+    print(f"    inside the sweep    {g['inside_planter']:>7} ({g['inside_pct']:.2f} %)")
+    print(f"      of which east of the limits {g['reached_east_of_limit']:>7} "
+          f"({g['reached_east_of_limit_ha']:.1f} ha swept and refused — the dune "
+          f"community that belongs there is ROADMAP K45(b) change one)")
     print(f"    outside it          {g['outside_planter']:>7} "
           f"({100 - g['inside_pct']:.2f} %, {g['outside_ha']:.1f} ha the timber layer "
           f"never visits)")
@@ -896,8 +1058,12 @@ def self_test() -> int:
     cases.append(("1 a third addTree call site this gate cannot read", s1, bank))
 
     s2 = copy.deepcopy(state)
-    s2["planter"]["half_m"] = 900.0
-    cases.append(("2 the swept square widened and not re-banked", s2, bank))
+    s2["planter"]["sweep_e_m"] = [-316.0, 316.0]
+    cases.append(("2 the swept domain narrowed back to the old square", s2, bank))
+
+    s2e = copy.deepcopy(state)
+    s2e["east_limits"]["south"]["east_m"] = 1700.0
+    cases.append(("2 the timber's east limit carried to the lake", s2e, bank))
 
     s2b = copy.deepcopy(state)
     s2b["ground"]["inside_planter"] -= 1
@@ -1043,13 +1209,24 @@ def self_test() -> int:
         ("the direct call site scan finds the point-bar thicket",
          "salix_interior" in dec["named_at_call_sites"]),
         ("the call sites are counted, not assumed", dec["call_sites"] >= 2),
-        ("the planter's half-extent is read off the loop",
-         dec["planter"]["half_const_m"] == 320.0),
-        ("the bound scanner refuses a loop that no longer sweeps a square",
+        ("the planter's domain is derived from the field, not from a literal",
+         dec["planter"]["sweep_e_m"][1] > 1000.0),
+        ("the bound scanner refuses a loop that no longer sweeps the field",
          raises(lambda: planter_bounds(src.replace(
-             "for (let n = -half; n <= half; n += step)", "for (const n of everywhere)")))),
-        ("the bound scanner refuses a renderer with no half-extent",
-         raises(lambda: planter_bounds("const STEMS = { full: { step: 4.0 } };"))),
+             "for (let n = sweepN0; n <= sweepN1; n += step)",
+             "for (const n of everywhere)"), heightfield()))),
+        ("the bound scanner refuses a renderer with no planting steps",
+         raises(lambda: planter_bounds("const sweepE0 = 1;", heightfield()))),
+        ("the east limits are read off the street data, not off the renderer",
+         dec["east_limits"]["south"]["street"] == "wells"
+         and 320.0 < dec["east_limits"]["south"]["east_m"] < 340.0),
+        ("…and a communityAt that stopped applying them is refused",
+         raises(lambda: east_limits(src.replace(
+             "if (e > (d === NORTH ? eastLimit.north : eastLimit.south)) return null;",
+             "if (false) return null;")))),
+        ("…and a renderer that stopped reading the street records is refused",
+         raises(lambda: east_limits(src.replace(
+             "timberEastLimits(streetRecords, problems)", "timberEastLimits()")))),
         ("flora.js's lattice is read as camera-centred",
          herbaceous_is_camera_centred(renderer_source(FLORA_JS))),
         ("…and a lattice that stopped following the camera is refused",
@@ -1198,8 +1375,15 @@ def main() -> int:
                     "reader receives a record; trees.js receives one and then selects a "
                     "species out of a hand-written COMMUNITIES mix, so a record it "
                     "receives whose species is in no mix is drawn nowhere. `planter` and "
-                    "`ground` are the fixed square the timber loop sweeps and how much "
-                    "of the modelled field it reaches — it may grow and may not shrink. "
+                    "`ground` are the domain the timber loop sweeps — since ROADMAP "
+                    "K45(b2) the modelled field inset by one planting step, not a fixed "
+                    "square inside it — and how much of the field it reaches; it may grow "
+                    "and may not shrink. `east_limits` is where the woody layer stops in "
+                    "the east and the street each limit is read from: Andreas ends the "
+                    "South Division belt at Wells Street and excepts the sandy hills near "
+                    "the lake from the North Division's timber. They are banked EXACTLY, "
+                    "in both directions — a wood that reaches further east is an argument "
+                    "about a source, not a repair. "
                     "`unselectable` is the population, exact in both directions, and "
                     "`drawn_as_another_species` is the placed species that have no archetype of "
                     "their own. "
@@ -1209,8 +1393,9 @@ def main() -> int:
                     "a fallback, and `records.density` (the midpoint of the band in the "
                     "first TIMBER_ZONE naming the species) is what places a stem. Held by "
                     "tools/measure_planting_reach.py. Read ROADMAP K45(a) and K45(b1) "
-                    "before adding a line.",
+                    "before adding a line, and K45(b2) before moving an east limit.",
             "planter": state["planter"],
+            "east_limits": state["east_limits"],
             "ground": state["ground"],
             "zone_boxes": {k: state["zone_boxes"][k] for k in sorted(state["zone_boxes"])},
             "unselectable": state["unselectable"],
@@ -1241,10 +1426,10 @@ def main() -> int:
         g = state["ground"]
         departing = sum(1 for v in state["weights"].values()
                         if v["verdict"] != "inside-its-band")
-        print(f"planting reach: the woody planter sweeps a "
-              f"{2 * state['planter']['half_m']:.0f} m square and reaches "
+        print(f"planting reach: the woody planter sweeps the modelled field and reaches "
               f"{g['inside_pct']:.1f} % of the ground above its own dry floor "
-              f"({g['outside_ha']:.1f} ha outside it); "
+              f"({g['outside_ha']:.1f} ha outside it, {g['reached_east_of_limit_ha']:.1f} ha "
+              f"swept and refused east of the documented limits); "
               f"{len(state['unselectable'])} routed woody species can be selected by no "
               f"community mix; {departing} of {len(state['weights'])} mix weights sit "
               f"outside every band their own community cites. All three are banked and none "

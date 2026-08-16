@@ -156,6 +156,9 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
+| **1a** | TOWN | **K45(b) change one** | **SEEN** | **the dune community.** 40.2 ha of modelled beach and relict ridge is swept by the planter and refused, because `z08_lakeshore`'s eastern cottonwood, quaking aspen and balsam poplar are in no mix. K45(b2) removed the hard part — `communityAt` already refuses everything east of State Street, so the `dune` branch does not have to out-argue the bank-distance test — and the densities are sourced. **NO BAKE**; it carries the smoke |
+| **1b** | RENDERING | **K45(b3)** | SEEN on `light` | the timber's detail control is a cap that never binds and truncates the wood's north end when it does. A keep fraction per level, opened and measured by K45(b2). Small, and it is the one parcel here that a phone sees and a desktop does not |
+| — | RENDERING | ~~K45(b2)~~ | **SEEN** | **DONE 2026-08-16** — the planter sweeps the field (reach 27.05 % → 98.37 %), the timber gets the east end Andreas gives it, and `z05`'s own note had Wells Street 440 m from where the committed centreline puts it. Read its box before quoting a reach number or moving a woody east limit |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
 | — | RENDERING | ~~R-BUG1~~ | **SEEN** | **DONE 2026-08-16 — the owner's flickering river edge was the NEAR PLANE, and 15.6 % of the drawn bank line is now 3.3 %.** A fixed 0.1 m near against a 3,000 m far leaves two surfaces 350 m away needing 10 cm of separation before the depth buffer can order them, and the waterline is co-planar BY DESIGN. The instrument is the finding: **move the camera 2 mm and photograph the same view twice** — the control is 0 px, so anything that changes is a tie. **Most of what flickers is not the bank (R-BUG6), and its suspect is UNTESTED because the flag written to test it changes nothing.** Read its box before biasing any surface to settle a tie |
@@ -197,6 +200,12 @@ schema change across 315 records with no source yet stating a roof covering, so 
 "unblocked" reads — and **T-E5**, whose ground half also needs a bake though its research and
 `docs/LIBERTIES.md` half does not. **The lane needs new parcels opened more than it needs the next
 one picked**, and the bake-shaped backlog is the reason: four parcels are waiting on a nightly.
+
+**AND THE COUNT IS BETTER THAN IT WAS — 2026-08-16, K45(b2).** The box above says the lane needs
+new parcels more than it needs the next pick, and this run left **two runner-closable SEEN ones**
+where it took one: **K45(b) change one** (the dune community, whose hard question K45(b2) removed
+rather than answered) and **K45(b3)** (the detail control, which K45(b2) measured as doing nothing
+at all). Both are rows 1a and 1b in the table above. Neither needs a bake.
 
 **T-E5 WAS THE LAST OF THOSE TWO AND IT IS TAKEN — 2026-08-16, T-E5(a).** The count above was
 right and the paragraph's own advice is now the binding one: **the lane needs new parcels opened
@@ -3068,6 +3077,104 @@ has to `--update` in the commit that makes it. `docs/LIBERTIES.md` **L114** is t
 
 **THE THIRD THING IS SPENT — 2026-08-16, K45(b1) — and the line above got its weight wrong twice.**
 See K45(b1) below before writing any mix entry. Changes one and two stand exactly as written.
+
+**CHANGE TWO IS SPENT — 2026-08-16, K45(b2) — and it answered change one's hardest question on the
+way.** The planter sweeps the field; the cost is measured; and the classifier's beach problem is
+solved for now by an east limit rather than by a dune mix. **Change one is what is left of K45(b)
+and it is now the only thing standing between `z08_lakeshore`'s three dune poplars and the
+ground** — read K45(b2) below before writing its placement rule, because the branch it needs is
+narrower than this box says: `communityAt` already refuses everything east of State Street, so a
+`dune` mix does not have to out-argue the bank-distance test, it has to be reached at all.
+
+### K45(b2) — the planter sweeps the field, and the timber gets the east end its own source gives it · **DONE 2026-08-16 — the square was 13 m from right on one bank and 510 m from right on the other**
+
+**SEEN.** 147 stems stand east of the old square's edge where **one** did; a screenshot taken
+looking east from anywhere on the north bank differs. It also holds no exemption and needs none.
+
+**Read this box before quoting a planting-reach number or moving a woody east limit.**
+
+**WHAT SHIPPED, one: the loop.** `const half = 320 - step` is gone. The planting loop sweeps the
+heightfield's own extent inset by one planting step — **E −316..+1696, N −396..+396** — so the
+reach goes from **52,163 to 189,700 of the field's 192,844 dry nodes, 27.05 % → 98.37 %**, and the
+87.9 ha it had never offered a stem to is **2.0 ha of one-step rim**. The bounds are derived from
+the heightfield rather than written down, which is the stronger form: a square written as a number
+can be right by accident, and this one was.
+
+**WHAT SHIPPED, two: the east end, which the square used to supply by accident.** Ground the loop
+reaches is not ground a wood may stand on, and the classifier had no eastern answer at all —
+`bank <= width` would have read the lake as a river and planted silver maple on the beach.
+Andreas ends both divisions in the sentence `z05_riverbank_timber` is already built from: the
+South Side belt runs *"east as far as Wells Street"*, and the North Side's timber excepts *"the
+sandy hills near the lake"*. `communityAt` now carries one limit per division, **read at load out
+of `data/streets/1835.json`** — Wells at **E +329.3**, State at **E +825.8** — so a limit and the
+street it cites cannot drift apart. **64,385 nodes, 40.2 ha, are swept and refused**, which is a
+stated omission where an unstated one stood.
+
+**FINDING 1 — `z05_riverbank_timber`'s own note put Wells Street 440 m east of where it is, and
+the error was load-bearing.** The note read *"Wells Street is about 440 m east of this box's east
+edge, so the whole South Division frontage inside the box is inside that belt."* The committed
+centreline runs **E +328.1 to +330.5**. That is **nine metres** east of the 640 m box's edge, not
+440. The conclusion survived — but on nine metres of margin, not four hundred, and a belt read as
+running 440 m past the box would have licensed a gallery over the beach ridges the moment the
+planter was widened. Corrected in the record and in `data/flora/index.json`, both quoting the
+committed street. **The generalisation: a note that states a distance is a measurement somebody
+took once, and this repository holds the coordinates to re-take it.** Three flora zone notes state
+distances of this shape (z03's *"480 to 840 m EAST"*, z07's *"5.6 km SSW"*, z08's *"1,084 m"*) and
+only this one has been checked.
+
+**FINDING 2 — the timber's detail control has never done anything, and widening the sweep turned
+that from harmless into a defect.** `STEMS` caps the stems at 820/520/300 trees by detail level,
+and `step` is **count-neutral by construction**: the acceptance roll is `perHa * step² / 10000`,
+so a coarser step visits proportionally fewer cells and accepts proportionally more at each. The
+caps are therefore the whole of the control — and at 163 trees they had never bound, so `light`
+and `full` have always planted the same wood in slightly different places. Widened, the wood plants
+**387 trees at `light`**, and the cap **bound at exactly 300**: measured, not predicted. That is
+not a thinning. The loop runs south to north, so a bound cap **deletes the north end of the wood
+and leaves a straight edge across the town** — on phones, which start at `light`. Every cap is
+raised by 3.70×, the ratio of the ground now swept, and **a bound cap is now a `problems` entry**,
+which the release smoke reads as a failure. Making the detail control mean something is a uniform
+thinning rather than a cap, and it is its own parcel — see K45(b3).
+
+**THE COST, measured on this runner at 1280×800 rather than estimated.** The loop is O(cells) and
+the field is 4× the square. Load **1.98 s → 2.13 s**. Stems **377 → 640** (163 trees + 214 thickets
+→ 376 + 264). Timber triangles **108,804 → 175,136**; whole scene **~393k → 459k** against a
+1,000,000 budget. **Draw calls unchanged at 59** against the ≤ 80 budget: the timber merges into
+four quadrant buffers keyed on the sign of e and n, and widening the field does not add a bucket.
+**The limit that buys**: those buckets are now 2 km wide, so a frame in town still submits the
+eastern wood's geometry to be culled per-object at four objects. It costs nothing today at 175k
+triangles and it is the wrong shape at 500k — a tiled chunker is the fix and it trades draw calls
+for it, which is a budget question and not this parcel's.
+
+**WHAT THE GATE HOLDS NOW.** `tools/measure_planting_reach.py` assertion 2 was a banked square and
+is a banked domain: the swept bounds (may grow, may not shrink), the field they sit in, the reach
+census, **the hectares swept and refused east of the limits**, and **both east limits with the
+street each is read from, banked EXACTLY in both directions** — a wood that reaches further east is
+an argument about a source, not a re-bank. Three new scans refuse the ways this could go quiet: a
+loop that stopped sweeping the field, a renderer that stopped reading the street data, and a
+`communityAt` that loads the limits and never consults them — which is precisely the loss K45(a)
+measured one level out. All 38 self-test cases fire.
+
+**WHAT DID NOT CHANGE, and one thing that did that a reader deserves.** No mix, no weight, no
+density, no confidence and no archetype moved. But the wood is dealt from one seeded stream in
+sweep order, so a wider sweep **redeals every stem in the town**: same rules, same expected counts,
+different individuals. Nothing was tuned to make that look better.
+
+**Verified:** `tools/check.sh` green; `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green. The desktop half was not run and is not claimed — ~13 minutes against the
+10-minute per-command ceiling; see the run-budget box at the top of this file. The draw-call and
+triangle figures above are from a 1280×800 page load, which is the desktop geometry even though
+the desktop smoke did not run.
+
+### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **UNCLAIMED · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
+
+K45(b2) finding 2 measured it: `step` is count-neutral, so `light`, `balanced` and `full` plant the
+same wood, and the only thing that could differentiate them — the `STEMS` caps — truncates the
+north of the wood rather than thinning it when it binds. K45(b2) raised the caps so they do not
+bind and made a bound one loud, which is a backstop and not a control. **The repair is a keep
+fraction per detail level applied to the acceptance roll**, so a phone gets the same wood at lower
+density instead of three quarters of one, and the caps stay what they now are. It is SEEN on
+`light` and UNSEEN on `full`; take it with a mobile shot, and note that `flora.js` answers the same
+question for the sward and is worth reading first rather than reinventing.
 
 ### K45(b1) — the sycamore, and the weight beside it that nothing uses · **DONE 2026-08-16 — 17 of the 26 mix entries are written to one number and plant stems at another**
 
