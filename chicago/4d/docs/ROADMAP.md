@@ -123,7 +123,8 @@ rationed.**
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
-| **1** | RENDERING | **K49(b)** | **SEEN** | **opened 2026-08-16 by K49(a) — needs no research, no data and no bake, and it stands six named plants up.** Measured over 6,780 slots in every community: **six species their own list owes a whole plant to are drawn nowhere**, prairie dock (a two-metre landmark) owed 3.23 of them in the wet prairie. K48's picker must NOT be ported — the sward is re-dealt from a world-anchored lattice and running state makes plants change species as you walk. Its box carries the stateless form and the one screenshot to check |
+| **1** | RENDERING | **K49(d)** | **SEEN** | **opened 2026-08-16 by K49(b) — needs no research, no data and no bake.** The forb layer's tail is closed; the matrix layers' is not, and their worst shortfall is **31.47 slots**. K49(b)'s lattice is VETOED there — it grew the west prairie in visible rows — so the successor is a stratification with no direction in it. Read K49(b) finding 2 before starting, and shoot `prairie_west` before and after |
+| — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | **7** | RENDERING | **K49(c)** | **SEEN** | **6 of 20 lists deal their slots off an area compared against a count** — the forest understory is 96 % ramps against eleven species recorded as cover. Blocked on 25 records that give a cover fraction and no `width_m`, so **its first half is research**; the smoke prints the list every run |
 | — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
 | — | RENDERING | ~~K49~~ | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
@@ -3085,29 +3086,75 @@ No `data/` change, so no bake.
 mirror, which is where every number above comes from. The desktop half of the smoke was not run
 and is not claimed — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(b) — stand the six absent species up · **UNCLAIMED · NEXT UP · SEEN · from K49(a) · Effort: M**
+### K49(b) — stand the six absent species up · **DONE 2026-08-16 — all six are standing, and the screenshot the parcel asked for vetoed half the repair: the dense layer cannot take a lattice**
 
-**The half that puts a plant in the ground, and it is the one to take first** — it needs no
-research and no data at all. Six species are owed a whole plant and drawn nowhere; prairie dock
-is owed 3.23 in the wet prairie and is a two-metre landmark. The repair is a stateless
-equivalent of K48's owed-draw: **a low-discrepancy assignment keyed on the slot's own world
-coordinates** — `frac(c·α + r·β + k·γ)` walked against the same CDF `pick()` already walks —
-which is equidistributed over any window, so a species owed a plant in the ring gets one,
-while staying a pure function of the slot and keeping the world-anchoring `hash3` promises.
+**Read this box before proposing a low-discrepancy draw anywhere else in this project — the
+answer is layer-dependent, and the deciding evidence is a frame, not a number.**
 
-**Do not port K48's picker.** It carries running state, and the sward is re-dealt from a
-world-anchored lattice on every re-centre: state makes a slot's species depend on the order
-slots were visited in, and the plant at your feet changes species as you walk up to it.
+**The six are up.** `tools/measure_sward_draw.mjs`, standing the placer in all eight
+communities, **6,780 slots → 6,795, and 6 species owed a whole plant and drawn nowhere → 0.**
+Prairie dock stands in the wet prairie it was owed 3.23 of; water hemlock beside it; wood
+nettle in the dense forest; ninebark and wild garlic on the riverbank; compass plant on the
+mesic prairie. The settled town, where the gate's own station stands, still reports 0 absent —
+the repair did not move the fault to the one place that could see it.
 
-**The one thing to check before it ships is a screenshot, not a number.** A lattice sequence
-evaluated on lattice coordinates can align with the grid it is indexed by and stripe the field
-diagonally by species. `tools/critic_shots.mjs --stations` at the wet prairie is the check, and
-if it stripes, a per-window Cranley–Patterson rotation is the standard answer and keeps the
-equidistribution.
+**The repair, as the parcel prescribed it.** A slot's draw is `frac(c·α + r·β + k·γ + shift)` on
+its own world lattice coordinates — the R3 generators, 1/g, 1/g², 1/g³ for g⁴ = g + 1 — walked
+against the CDF `pick()` already walks. Stateless, so re-centring puts the same plant back; K48's
+account-keeping picker was NOT ported, for the reason K49(a) gave.
 
-**Verify with `node tools/measure_sward_draw.mjs`** — the same six names, and the run is done
-when none of them is on the list. Then re-run it in the settled town too: the gate's own station
-reports 0 absent today, and a repair must not make that the only place it is true.
+**Finding 1 — the thinning has to be part of the same draw, or the equidistribution is spent.**
+A slot is asked two questions: does the recorded cover put a plant here (`share`), and which
+species. Left as two independent numbers, the surviving slots are a *random subsample* of a
+low-discrepancy set, and a random subsample is back to Poisson in its tail — the exact fault
+being repaired. `dealt()` asks both of one draw: `u < share` carries the plant, and `u`'s
+position inside `[0, share)` walks the CDF. Same marginals, one stratified draw.
+
+**Finding 2 — and it is the one to carry away — THE DENSE LAYER CANNOT TAKE THIS, and a
+screenshot is why.** Run on the near and mid tufts as well, the same construction grew the west
+prairie **in visible ROWS with bare ground between them**. A lattice band is a family of
+near-diagonal lines through the index grid: invisible where two slots in a hundred are planted,
+unmissable where sixty are. Two frames at `prairie_west`, before and after, settled it in one
+look after the census had already reported the change an improvement — *the census would have
+merged it.* The matrix lists lost **no** species to the tail (their column read 0 absent both
+ways), so the cost was entirely visible and the benefit entirely in a number that was already
+zero. **The forb layer keeps the stratified draw; the near and mid layers are untouched.**
+Consequence, stated rather than buried: the matrix layers' worst shortfall stays at 31.47 slots.
+
+**Finding 3 — the block size is set by PLANTED slots, not by cells.** The Cranley–Patterson
+rotation that breaks the lattice's diagonals is keyed on a world block. At 4×4 cells (64 slots)
+the forb layer plants one or two per block, so the rotation was all that survived — an
+independent draw in a costume — and the census still found **3** species standing nowhere
+(`silphium_laciniatum`, `sambucus_canadensis`, `allium_canadense`). At 16×16 (1,024 slots, ~54 m,
+about the width of the forb ring itself) it found none. Measured, both numbers, before choosing.
+
+**Files:** `renderers/web/js/flora.js` (`LD_A/B/C`, the per-block rotation, `dealt`, the forb
+emit) · ROADMAP + STATUS + the changelog + the published mirror. No `data/` change, no bake.
+
+**Verified:** `tools/check.sh` green · `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green · `node tools/measure_sward_draw.mjs` on the published mirror, 0 absent ·
+`tools/critic_shots.mjs --stations prairie_west,river_bank` before and after, no striping and no
+change to the grass. The desktop half of the smoke was not run and is not claimed — ~13 minutes
+against this runner's 10-minute per-command ceiling.
+
+### K49(d) — a stratification the dense layer can take · **UNCLAIMED · SEEN · opened 2026-08-16 by K49(b) · Effort: M**
+
+K49(b) left the near and mid tufts on an independent draw because the lattice **rows the
+prairie**. That is a veto on this construction, not on the goal: the matrix layers' worst
+shortfall is **31.47 slots** and nothing has reduced it.
+
+**What the successor has to do differently.** The striping is not the rare end, it is the common
+one: `u < share` at share ≈ 0.6 selects most of a lattice whose structure is then the field's
+structure. A construction with no direction in it is the candidate — a **hash-driven bijection
+over the block's slots** (a small Feistel is the standard form), which gives every band of the
+CDF its exact count inside the block while arranging them with no lattice direction to read. Its
+weakness is the mirror of the lattice's: exactness over the *block* is not equidistribution over
+a *sub-window*, and the census reads zone ∩ ring, which is one. So it may fix the shortfall and
+not the tail — which is fine here, because the matrix tail is already empty.
+
+**It is SEEN in both directions, so shoot before and after.** `prairie_west` desktop is the
+frame that vetoed K49(b)'s half; both are in `/tmp` for a run, so re-shoot rather than trust a
+description. A construction that fixes 31.47 and stripes the meadow is a regression.
 
 ### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
 
