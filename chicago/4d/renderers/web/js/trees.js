@@ -274,7 +274,10 @@ const DEFAULT_PX_PER_RAD = 800 / (55 * Math.PI / 180);
  * the diameter at breast height, both straight out of the dossier's tables;
  * `dossier` names the section the row came from. The two greens are a shaded
  * and a sunlit July foliage colour — render tuning, not evidence, and the pair
- * the palette record will own once `data/flora/palettes/` is populated.
+ * the palette record will own once `data/flora/palettes/` is populated. `bark`
+ * is the bole, and the optional `barkUpper` the upper bole and limbs where a
+ * species is drawn in two tones; both are invented, as every colour here is,
+ * and a species that omits `barkUpper` is drawn in one tone as before.
  *
  * form: gallery = tall crowded floodplain tree · open = open-grown, short bole
  * and heavy horizontal limbs · lean = bank willow leaning over the water ·
@@ -317,6 +320,21 @@ const SPECIES = {
   juglans_nigra: { common: 'black walnut', dossier: 'ZONE 5',
     form: 'gallery', h: [18, 25], dbh: [0.35, 0.65], spreadK: 0.58, boleK: 0.48, puffs: 6,
     dark: 0x39552f, light: 0x718a49, bark: 0x3f382d,
+  },
+  // The one species carrying a second bark tone, and the only one whose record
+  // says anything about its bark at all: "white mottled bark flashing on the
+  // upper limbs" (`z05_riverbank_timber`). Both hexes are invented — no record
+  // in `data/flora/` carries a colour — and bounded by this file's own barks:
+  // the lower bole is the palest of the eighteen and the limbs are far paler
+  // than any of them, because being the palest thing in the timber is the whole
+  // of what that sentence describes. The MOTTLING is not drawn: the break is
+  // between bole and limb, not a patchwork within either. docs/LIBERTIES.md
+  // L118, ROADMAP K47. `dbh` sits at the top of this file's own height:diameter
+  // ratios (0.035 against the gallery's 0.023–0.031) — the stoutest bole on the
+  // bank, which is what a sycamore is; `boleK` forks it lower than the elm.
+  platanus_occidentalis: { common: 'American sycamore', dossier: 'ZONE 5',
+    form: 'gallery', h: [18, 25], dbh: [0.55, 0.95], spreadK: 0.62, boleK: 0.38, puffs: 6,
+    dark: 0x60783e, light: 0x9bb06c, bark: 0x7a7263, barkUpper: 0xd9d3c2,
   },
   salix_interior: { common: 'sandbar willow', dossier: 'ZONE 5',
     form: 'thicket', h: [2.2, 4.0], dbh: [0.04, 0.08], spreadK: 1.30, boleK: 0, puffs: 4,
@@ -1335,6 +1353,16 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
   // almost none of it is ever in direct sun, but bark is a lighter material
   // than a shaded leaf mass and must not go to a silhouette.
   const bark = linear(spec.bark).map((v) => v * BARK_ALBEDO);
+  // A second bark tone, for the one species whose record singles its bark out:
+  // the sycamore's upper limbs are the pale half of "white mottled bark
+  // flashing on the upper limbs", and the trunk under them is not. The tree was
+  // already drawn as three colours' worth of wood — lower bole, upper bole,
+  // limbs — so carrying the pale tone is a value, not a mesh. A species that
+  // does not declare one is unchanged: `barkUpper` falls back to `bark`.
+  // docs/LIBERTIES.md L118 owns the invention; ROADMAP K47.
+  const barkUpper = spec.barkUpper != null
+    ? linear(spec.barkUpper).map((v) => v * BARK_ALBEDO)
+    : bark;
   // Fire-scarred boles: blackened to 1–2 m on 20–40 % of trees in the savanna.
   const scarred = spec.fireScar && rnd() < 0.32;
   const bole = scarred ? [bark[0] * 0.34, bark[1] * 0.32, bark[2] * 0.30] : bark;
@@ -1357,7 +1385,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
       r0, r0 * 0.66, bole, 5, 0, 0.10, conf);
     addStem(buf, x + (topX - x) * 0.55, midY, z + (topZ - z) * 0.55,
       topX, groundY + boleH, topZ,
-      r0 * 0.66, r0 * 0.46, bark, 5, 0.10, 0.22, conf);
+      r0 * 0.66, r0 * 0.46, barkUpper, 5, 0.10, 0.22, conf);
   }
 
   // Where the foliage masses sit. `open` spreads them wide and low, `gallery`
@@ -1411,7 +1439,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
         lerp(fy, c[1], tip) - crownH * (openForm ? 0.12 : 0.04),
         lerp(fz, c[2], tip),
         r0 * (openForm ? 0.44 : 0.30), r0 * (openForm ? 0.20 : 0.11),
-        bark, 4, 0.20, 0.42, conf);
+        barkUpper, 4, 0.20, 0.42, conf);
     }
   }
 

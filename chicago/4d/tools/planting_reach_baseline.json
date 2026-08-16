@@ -55,9 +55,7 @@
     }
   },
   "unselectable": {},
-  "drawn_as_another_species": {
-    "platanus_occidentalis": "ulmus_americana"
-  },
+  "drawn_as_another_species": {},
   "weights": {
     "gallery.edgeMix.salix_nigra": {
       "weight": 42.0,

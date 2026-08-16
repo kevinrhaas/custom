@@ -1,5 +1,45 @@
 # STATUS
 
+## Found 2026-08-16 — the American sycamore is not in this town, and the bark it was given proves it
+
+**K47.** The parcel was claimed SEEN and delivered UNSEEN, and the inversion is the finding. The
+archetype is built — `SPECIES.platanus_occidentalis`, its own bole, taper, diameter band, puff
+count, and a two-tone bark whose pale upper limbs are the one thing `z05_riverbank_timber` singles
+the species out for. A screenshot from any stand in this town is unchanged, because **no sycamore
+is planted anywhere in the scene.**
+
+**Measured in the published build at 1280×800**, out of `api.trees.stats.species`: **163 woody
+stems, 115 of them in the gallery, 0 sycamores.** The mix weight is 2 of the gallery's 116, so 1.98
+were expected and the seeded draw returned none — 13.5 % likely on independent draws. Three other
+species stand as one stem each, so this is the tail of a distribution and not a special case: a
+115-draw sample cannot carry a 26-entry ecology.
+
+**The rule underneath it, and no gate has ever looked at it.** The gallery mix sums to **116**
+against a stand density of **[34, 62]/ha** south of the river and **[50, 78]/ha** north, so every
+literal is walked as a *share*: **each species is planted at 29–67 % of the density written beside
+it.** K46 made the literal the number that plants the stem and the record's band the constraint on
+that literal — and the literal is not the density. The sycamore's 2 sits at the midpoint of its
+recorded [1, 3]/ha and passes; the scene plants it at **0.59–1.34/ha**. That is ROADMAP **K48**,
+frame-wide, opened rather than started.
+
+**What this corrects.** K45(b1) and changelog **v139** both say a handful of stems along the river
+are now sycamores. They are not. The species became *selectable* — which is what that parcel's gate
+measures, correctly — and selectable is not drawn. `tools/measure_planting_reach.py` banks whether
+a record can be **chosen**; nothing banks whether it is **drawn**, and the drawn census lives only
+inside a running renderer. K48's cheap half is that census as a smoke assertion; it fails red on
+the sycamore today.
+
+**What did ship.** `docs/LIBERTIES.md` **L116** is resolved — no species in this scene wears
+another's archetype now — and the two invented bark tones are **L118** with their bounds stated.
+`trees.js` gained one optional field, `barkUpper`, on the upper bole and the limbs; every other
+species omits it and is byte-identical. The two-tone bark was **proved to draw** with the weight
+temporarily at 400 (pale trunks unmistakable at 70 m against the near-black boles beside them),
+and that experiment was reverted before the commit.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the gate's
+own self-test and the mobile smoke against the published mirror are what this rests on.
+
 ## Fixed 2026-08-16 — the written weight plants the stem, and the tidy alternative was refuted by the shape of the dataset
 
 **K46**, the question K45(b1) measured and refused to answer. The literal in `COMMUNITIES` is now
