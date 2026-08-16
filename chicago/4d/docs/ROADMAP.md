@@ -139,6 +139,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K36(a)~~ | **DONE 2026-08-16** — `data/` → master → **shipped derivative** → mirror was gated at links 1 and 3 and **not at link 2**, and the gap holds a town that is **textured on the site and untextured in this repository**: 38 assets ship one `PaletteMaterial001` and **75 PNGs that exist in no master**. The split is a count, exactly — **five materials faults, four does not, 296 of 296** — so **275 assets sit one material short of it** and R-W2b is what moves them. R-W2a's sheet measured the masters under the words "the shipped GLBs". Read its box before quoting any material or payload number |
 | — | KERNEL | ~~K36(b)~~ | **DONE 2026-08-16** — the palette pass was not buying draw calls, it was **spending** them: a generated map cannot join any batch, so 38 assets shipped as **40 solo batches** and the published town drew **56 where R-W5a's committed figure is 16**. **Four of the eight scene anchors were over the 80-call budget** (worst 102, at the Green Tree); none is now, worst 70. R-W5a's numbers were taken on the SOURCE tree — the same error as R-W2a's, three days apart. Read its box before quoting any batch or draw-call number |
 | — | KERNEL | ~~K37~~ | **DONE 2026-08-16** — the passthrough is **right**: the step makes those 90 files **+107,328 bytes (+20.6 %)**, 88 of 90 growing. But the rule is not "placeholder" — **three assets that have always been compressed here were shipping LARGER than their masters** (+324, +240, +224) and two of the ninety placeholders compress 9.3 % smaller. The step keeps the smaller file per asset now, the gate's bound is **zero**, and `water__` (+744) is the one exclusion, by name, deferred to R-W6(b). Read its box before quoting any payload or passthrough number |
+| 1 | KERNEL | **K38** | **CLAIMED 2026-08-16.** opened by K37: `assets/web/` has three writers — `web_derivatives.sh`, `inferred_placeholder.py` and `publish.sh`'s mtime passthrough — and the gate written to watch that link cannot see a master copied over its own derivative. **No bake** |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
@@ -2107,6 +2108,37 @@ The decision is small and needs a number, not a preference:
 
 Watch: **do not "fix" this by regenerating them.** It grows the payload and moves 90 files for
 no visitor-visible reason. The fault is that nothing states which behaviour is intended.
+
+### K38 — `assets/web/` has three writers and the gate on it watches one · **CLAIMED 2026-08-16 · opened 2026-08-16 by K37 · Effort: S — tools and docs, no data record, no master, no bake**
+
+**Phase:** kernel · `tools/publish.sh`, `tools/measure_web_derivatives.py`, docs. No data
+record, no renderer file, no master, no confidence.
+
+K37 closed with a paragraph it declined to chase: *"A THIRD WRITER OF `assets/web/`, noticed
+and not chased. `tools/publish.sh` copies a master through whenever it is newer by mtime.
+That is a passthrough nothing decided either, it is invisible to this gate (a copy is never
+larger than its master), and on a fresh clone mtimes come from checkout order."* Its
+generalisation is the parcel: **when a directory has more than one writer, the gate on its
+contents is a gate on the last writer only.**
+
+The questions, in order:
+
+1. **Can the mtime rule fire, and what does it do when it does?** Not "is it firing today" —
+   whether the tree can reach a state where `publish.sh` replaces a compressed derivative
+   with an uncompressed master copy, in the *tracked* source tree and in the mirror.
+2. **Which of the eight assertions in `tools/measure_web_derivatives.py` sees it?** A master
+   copied over its own derivative has the master's triangles, node identity, attributes,
+   bounding box, materials and byte count. Answer it by measurement, not by reading.
+3. **What does the passthrough cost if it fires everywhere?** The census already prints the
+   payload both ways; put the number in the parcel rather than leaving it as a ratio.
+4. **Then decide the writer, not only the gate.** `publish.sh`'s copy exists for a real
+   failure (run `generators/build.py` alone and `assets/web/` is stale), but this project's
+   own rule for that case is *"a stale committed GLB is a check failure, not a warning"*
+   (AGENTS.md), and `measure_web_derivatives.py --gate` already answers staleness from
+   CONTENT. A silent `cp` and a content gate cannot both be the answer.
+
+Watch: the 93 legitimate passthroughs K37 decided are legitimate — the gate must tell a
+decided passthrough from an accidental one, and a bound of zero would be wrong.
 
 ### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S · NEEDS ONE BAKE, or an owner's word that a derivative may be regenerated outside one**
 
