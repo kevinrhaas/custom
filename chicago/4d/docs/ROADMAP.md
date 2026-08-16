@@ -3487,7 +3487,7 @@ smoke was not run and is not claimed** (~13 min against this runner's 10-minute 
 ceiling); the desktop evidence is `measure_sward_draw.mjs`, which measures at 1280×800 and reports
 0 absent.
 
-### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
+### K49(c) — give the sward's lists one unit · **CLAIMED 2026-08-16 (steward/k49c-one-unit) · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
 
 The other fault K49(a) measured and refused to guess at. **It starts with the 25 records**,
 because nothing else can be derived until they carry a footprint: find a clump width for each
