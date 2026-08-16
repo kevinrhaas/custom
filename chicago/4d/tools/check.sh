@@ -91,6 +91,18 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# The terrain spec defers four in-town water features — the slough, the public-square
+# pond, the Frog Pond and the Wells Street marsh — under one shared phrase, "existence
+# documented, geometry conjectural". Existence is a claim about a PLACE and the scene is
+# a date, and not one of the four had ever been asked where it stands on 1835-07-01
+# (ROADMAP T-E5(a)). They do not answer alike: the slough is dated by the bridge this
+# project already stands over it, the Frog Pond by a newspaper one year late, and the
+# pond is argued in both directions by the same document. This holds the correspondence
+# in both directions, so a fifth feature cannot be deferred undated and a dating entry
+# cannot outlive the deferral it grades.
+step "every deferred in-town water feature is dated against the scene" \
+  python3 tools/measure_intown_water.py --gate
+
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
 # a PERSON placed, so the answer arrived as anecdotes — three buildings in T-A9, two more

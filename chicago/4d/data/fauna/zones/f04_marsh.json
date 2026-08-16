@@ -3,9 +3,9 @@
  "zone": 4,
  "name": "Marsh, sloughs and the in-town ponds",
  "habitat": "marsh",
- "dossier": "docs/research/08-fauna.md \u00a7 ZONE 3",
+ "dossier": "docs/research/08-fauna.md § ZONE 3",
  "scene_date": "1835-07-01",
- "reads_as": "cattail marsh and standing ponds inside and beside the town \u2014 muskrat wakes, flightless moulting ducks skulking in cover, a crane pair calling, and after dark a frog chorus that a newspaper complained about in July",
+ "reads_as": "cattail marsh and standing ponds inside and beside the town — muskrat wakes, flightless moulting ducks skulking in cover, a crane pair calling, and after dark a frog chorus that a newspaper complained about in July",
  "in_modelled_extent": true,
  "extent_from": {
   "flora_zone": "z04_marsh"
@@ -39,15 +39,16 @@
       "chicagology_prefire273",
       "andreas_1884_v1"
      ],
-     "note": "The Public Square \u2014 Randolph to Washington, Clark to LaSalle \u2014 'was then a pond, where the Indians had trapped the muskrat, and where the first settlers hunted ducks'. Andreas independently has hunters taking 'ducks and muskrats in the marshes'. Muskrats are active year-round."
+     "note": "The Public Square — Randolph to Washington, Clark to LaSalle — 'was then a pond, where the Indians had trapped the muskrat, and where the first settlers hunted ducks'. Andreas independently has hunters taking 'ducks and muskrats in the marshes'. Muskrats are active year-round."
     },
     "presence": {
      "value": "visible",
      "confidence": "attested",
      "sources": [
-      "chicagology_prefire273"
+      "chicagology_prefire273",
+      "andreas_1884_v1"
      ],
-     "note": "The trapping record is direct evidence of animals present in numbers at a named location inside the scene box."
+     "note": "THE TRAPPING RECORD IS NOT THE IN-SCENE EVIDENCE IT WAS READ AS, and this note used to say it was. It read 'direct evidence of animals present in numbers at a named location inside the scene box'. The named location is the public-square pond, and ROADMAP T-E5(a) found that this project cannot date that pond to 1835-07-01: the quotation's 'then' is undated, the dossier calls the pond seasonal and puts its water at 0.5-2 ft deep in spring, and two county buildings stand on the block before the scene date (data/terrain/1835_intown_water_dating.json zone 15). The pond is also the one water in this zone's name that the terrain does not model at all. WHAT CARRIES THE GRADE INSTEAD IS ANDREAS, and it is weaker in exactly one way that is worth stating: hunters taking 'ducks and muskrats in the marshes' names no location and no date, but the marshes it names ARE the marshes this zone plants — the extent here is a buffer of the mapped water, the river-shore strip, and not the pond. So the animal is attested in the habitat the scene draws, and it is no longer attested at a named block the scene draws dry."
     },
     "abundance": {
      "value": "common",
@@ -57,7 +58,7 @@
     "max_group": 3,
     "vocalization": "silent",
     "behaviour": "A V-wake crossing still water at first and last light; an animal hauling cut cattail to a feeding platform.",
-    "appearance": "Dark, low in the water, with a thin vertically flattened tail \u2014 not a beaver's paddle.",
+    "appearance": "Dark, low in the water, with a thin vertically flattened tail — not a beaver's paddle.",
     "trace": null
    },
    "confidence": "attested",
@@ -89,9 +90,10 @@
      "value": "visible",
      "confidence": "attested",
      "sources": [
-      "chicagology_prefire273"
+      "chicagology_prefire273",
+      "andreas_1884_v1"
      ],
-     "note": "'Where the first settlers hunted ducks' is direct evidence of ducks on this pond; the July state of those ducks is the inference."
+     "note": "'Where the first settlers hunted ducks' is direct evidence of ducks, and ROADMAP T-E5(a) found that it is not evidence dated to this scene: it is the public-square pond quotation, whose 'then' the document never fixes and whose water this project cannot place on 1835-07-01 (data/terrain/1835_intown_water_dating.json zone 15). The grade is carried by Andreas instead — hunters taking 'ducks and muskrats in the marshes', which is the habitat this zone actually plants — and the July state of those ducks is still the inference it always was. The hunting itself is an autumn activity either way, which the abundance note beside this one already says."
     },
     "abundance": {
      "value": "common",
@@ -101,7 +103,7 @@
     "max_group": 12,
     "vocalization": "call_only",
     "behaviour": "A hen leading ducklings along a cattail edge; dull, skulking adults keeping to cover and swimming rather than flying when disturbed.",
-    "appearance": "Drakes are in eclipse \u2014 brown, female-like, with only the yellow bill left to tell them by. The green head belongs to autumn and spring, not to 1 July.",
+    "appearance": "Drakes are in eclipse — brown, female-like, with only the yellow bill left to tell them by. The green head belongs to autumn and spring, not to 1 July.",
     "trace": null
    },
    "confidence": "attested",
@@ -288,7 +290,7 @@
     "trace": null
    },
    "confidence": "inferred",
-   "note": "Song is falling away by 1 July as the second broods fledge \u2014 the konk-la-ree is still there and the wall of it is not."
+   "note": "Song is falling away by 1 July as the second broods fledge — the konk-la-ree is still there and the wall of it is not."
   },
   {
    "id": "antigone_canadensis",
@@ -305,7 +307,7 @@
     "status": {
      "value": "breeding_resident",
      "confidence": "inferred",
-     "note": "Cranes probably bred fairly commonly in Illinois until about 1890, with the last state nest found in 1872 \u2014 so in 1835 they are breeding residents here, not migrants. The dossier's citations are Outdoor Illinois Journal and Illinois DNR, and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
+     "note": "Cranes probably bred fairly commonly in Illinois until about 1890, with the last state nest found in 1872 — so in 1835 they are breeding residents here, not migrants. The dossier's citations are Outdoor Illinois Journal and Illinois DNR, and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible_and_audible",
@@ -729,7 +731,7 @@
     "trace": null
    },
    "confidence": "inferred",
-   "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way \u2014 the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
+   "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way — the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
   },
   {
    "id": "pseudacris_crucifer",
@@ -778,17 +780,17 @@
     "status": {
      "value": "absent_seasonal",
      "confidence": "inferred",
-     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
+     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous — but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "presence": {
      "value": "absent",
      "confidence": "inferred",
-     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
+     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous — but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "abundance": {
      "value": "absent",
      "confidence": "inferred",
-     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
+     "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous — but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "max_group": 0,
     "vocalization": "silent",
@@ -801,9 +803,10 @@
   }
  ],
  "confidence": "attested",
- "note": "The two documented anchors are both inside the platted grid: the Public Square pond where muskrat were trapped and settlers hunted ducks, and the frog pond at Lake and LaSalle described in the Chicago American of 9 July 1836 \u2014 the same season, one year on.",
+ "note": "THE TWO DOCUMENTED ANCHORS ARE NOT EQUALLY DOCUMENTED, which this note used to imply by naming them in one breath. The frog pond at Lake and LaSalle carries a date — the Chicago American of 9 July 1836, the same week of the same season, one year on — and the step back to 1835 is an inference this project records as one. The public-square pond carries none: ROADMAP T-E5(a) measured its dating and left it `not_established`, argued in both directions by the same document, and it is drawn dry (data/terrain/1835_intown_water_dating.json). Neither pond is modelled as water in any committed epoch, so BOTH anchors are inside the platted grid and outside the terrain; what this zone plants is the river-shore marsh its extent is actually a buffer of.",
  "sources": [
   "chicagology_prefire062",
-  "chicagology_prefire273"
+  "chicagology_prefire273",
+  "andreas_1884_v1"
  ]
 }
