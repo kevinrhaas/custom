@@ -1022,8 +1022,6 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const palette = files.get(`palette:${rec.palette ?? entry.palette}`) ?? null;
     const graminoids = [];
     const forbs = [];
-    let forbPerM2 = 0;
-    let coverSum = 0;
 
     for (const sp of rec.species) {
       if (!OUR_ROLES.has(sp.role)) continue;          // trees.js draws the rest
@@ -1042,16 +1040,45 @@ function compileZones({ index, files }, terrain, problems, stats) {
       const built = buildSpecies(sp, palette, problems, entry.id);
       if (!built) continue;
       stats.species++;
-      if (isGrass) {
-        graminoids.push(built);
-        coverSum += built.weight;
-      } else {
-        forbs.push(built);
-        forbPerM2 += built.weight;
-      }
+      if (isGrass) graminoids.push(built);
+      else forbs.push(built);
     }
-    if (coverSum > 0) for (const g of graminoids) g.weight /= coverSum;
-    if (forbPerM2 > 0) for (const f of forbs) f.weight /= forbPerM2;
+
+    /**
+     * ROADMAP K49(c2) — THE LOTTERY IS DEALT ON PLANTS PER SQUARE METRE, AND
+     * THE SLOT COUNT IS NOT.
+     *
+     * Two different questions had been answered off one number. How many slots
+     * a list is dealt is a question about GROUND — the forb layer's own summed
+     * density, the matrix layer's recorded `matrix_fraction` — and which
+     * species fills a dealt slot is a question about the POPULATION standing on
+     * it. K49(a) found the second one being answered by normalising three
+     * different units against each other, so a species recorded as covering
+     * 25 % of the ground was dealt slots as though it were 0.25 plants per
+     * square metre, against a neighbour recorded at 6 plants per square metre.
+     * The two-metre dogwood and the wild garlic, made identical by a division.
+     *
+     * `stems` is the record's own abundance read as a count — K49(c1) closed
+     * the last gap in it, so all 98 sward records carry one — and the lottery
+     * is normalised over THAT. The recorded sum is kept separately and is what
+     * still sets `forbShare`, so **the number of slots does not move**: this
+     * changes what fills a slot, never how many are filled. `matrixShare` is
+     * read off the record directly and was never in the arithmetic at all.
+     *
+     * The shares it moves are quoted in ROADMAP K49(c1), measured before this
+     * half was written so it could not choose its own bar.
+     */
+    for (const s of [...graminoids, ...forbs]) {
+      /** The abundance exactly as recorded, in whatever unit the record used.
+       *  It sets how many slots the list is dealt and nothing else. */
+      s.recorded = s.weight;
+      s.weight = s.stems ?? s.recorded;
+    }
+    const lotOf = (list) => list.reduce((t, s) => t + s.weight, 0);
+    for (const list of [graminoids, forbs]) {
+      const total = lotOf(list);
+      if (total > 0) for (const s of list) s.weight /= total;
+    }
 
     // How much of the ground a community's matrix actually covers is AUTHORED,
     // per zone, in the record's own `cover` block — and nothing in this
@@ -1094,12 +1121,19 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const subsetOn = (list, wet) => {
       const items = list.filter((s) => (
         wet ? s.substrate !== 'soil' : s.substrate !== 'open_water'));
-      return { items, total: items.reduce((a, s) => a + s.weight, 0) };
+      return {
+        items,
+        total: items.reduce((a, s) => a + s.weight, 0),
+        /** ROADMAP K49(c2). The subset's abundance AS RECORDED — the number of
+         *  slots is dealt off this, not off the lottery, so moving the lottery
+         *  onto plants per m² leaves every slot count where it was. */
+        density: items.reduce((a, s) => a + s.recorded, 0),
+      };
     };
 
     const cell = TUNE.forb.cell;
     const forbShareOf = (subset) => Math.min(
-      1, subset.total * forbPerM2 * cell * cell / TUNE.forb.perCell);
+      1, subset.density * cell * cell / TUNE.forb.perCell);
     const dry = { graminoids: subsetOn(graminoids, false), forbs: subsetOn(forbs, false) };
     const wet = { graminoids: subsetOn(graminoids, true), forbs: subsetOn(forbs, true) };
     out.push({
@@ -1765,6 +1799,69 @@ function stratum(idx, n, half, key, phase) {
   return frac((idx + 0.5) / n + phase);
 }
 
+/**
+ * ROADMAP K49(c2) — AND THE PHASE HAS TO SWEEP THE STEP, or a species owed ONE
+ * plant in the frame gets it on a coin toss.
+ *
+ * K49(f) gave every block its own RANDOM phase, which is unbiased and is what
+ * fixed the species drawn nowhere in the WORLD: a band of width `w` lands on a
+ * dealt value in about `w · n` of the blocks instead of in all of them or none.
+ * What it does not fix is the frame. A band with `w · n = 0.077` — the sedge
+ * meadow's two bulrushes, measured — is a coin toss per block, and over the
+ * fourteen blocks a station's ring holds it comes up empty about a third of the
+ * time. The species is owed 1.10 slots and draws none, at random, which is the
+ * one thing K49(f)'s gate is absolute about.
+ *
+ * So the phases are STRATIFIED ACROSS BLOCKS as well as within one. The block's
+ * phase is `globalShift + vdc(morton(block)) / n`: a van der Corput sweep of the
+ * step `[0, 1/n)`, indexed by the block's Morton code, on a random global start.
+ * Three properties, and the parcel needs all three:
+ *
+ * - **The set inside a block is untouched** — the n values are still equally
+ *   spaced by `1/n`, so it is still an exact stratification and K49(d)'s
+ *   deviation result stands by construction.
+ * - **Adjacent blocks get maximally separated phases.** Reversing the bits of
+ *   the Morton code sends the block coordinates' LOW bits to the top of the
+ *   fraction, so the four blocks of any aligned 2×2 group hold phases exactly
+ *   `1/4` of the step apart, sixteen of a 4×4 group `1/16` apart. A band wider
+ *   than the sweep's spacing is then hit BY CONSTRUCTION rather than by luck.
+ * - **It stays unbiased.** `globalShift` is one random start for the layer, so
+ *   a band of width `w` still lands in `w · n` of the blocks on average; what
+ *   changes is the variance, which is the whole complaint.
+ */
+function blockPhase(c, r, n, globalShift) {
+  return frac(globalShift + vdc(morton(c, r)) / n);
+}
+
+/** Interleave two block coordinates into one Morton code. Biased into the
+ *  unsigned range first, so a block west or south of the origin indexes the
+ *  same way as one east or north of it. */
+function morton(c, r) {
+  return ((spread16(r + 0x8000) << 1) | spread16(c + 0x8000)) >>> 0;
+}
+
+/** One 16-bit value spread into the even bits of a 32-bit word. */
+function spread16(n) {
+  let x = n & 0xffff;
+  x = (x | (x << 8)) & 0x00ff00ff;
+  x = (x | (x << 4)) & 0x0f0f0f0f;
+  x = (x | (x << 2)) & 0x33333333;
+  x = (x | (x << 1)) & 0x55555555;
+  return x >>> 0;
+}
+
+/** The van der Corput sequence in base 2: the index with its bits reversed,
+ *  read as a fraction. Consecutive indices are far apart by construction, which
+ *  is the property `blockPhase` is built on. */
+function vdc(i) {
+  let x = i >>> 0;
+  x = ((x & 0x55555555) << 1) | ((x >>> 1) & 0x55555555);
+  x = ((x & 0x33333333) << 2) | ((x >>> 2) & 0x33333333);
+  x = ((x & 0x0f0f0f0f) << 4) | ((x >>> 4) & 0x0f0f0f0f);
+  x = ((x & 0x00ff00ff) << 8) | ((x >>> 8) & 0x00ff00ff);
+  return (((x >>> 16) | (x << 16)) >>> 0) / 4294967296;
+}
+
 /** The half-width the Feistel needs to cover `n` slots. */
 function stratumHalf(n) {
   let bits = 1;
@@ -1806,14 +1903,25 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emi
   const span = 1 << shiftBits;
   const nSlots = span * span * perCell;
   const half = stratumHalf(nSlots);
+  // ROADMAP K49(c2). ONE random start for the whole layer, not one per block:
+  // the sweep is what separates neighbouring blocks, and a per-block random
+  // start would put it back where K49(f) left it.
+  const globalShift = hash3(salt, STRAT_SALT, 0x9e3779b9) / 4294967296;
   for (let r = r0; r <= r1; r++) {
     for (let c = c0; c <= c1; c++) {
       const cellSeed = hash3(c, r, salt);
       // ROADMAP K49(b). One rotation per 16×16-cell block of the WORLD lattice —
       // and, K49(d), one permutation key per the same block.
-      const blockHash = hash3(c >> shiftBits, r >> shiftBits,
-        salt ^ (strata ? STRAT_SALT : LD_BLOCK_SALT));
-      const shift = blockHash / 4294967296;
+      const bc = c >> shiftBits;
+      const br = r >> shiftBits;
+      const blockHash = hash3(bc, br, salt ^ (strata ? STRAT_SALT : LD_BLOCK_SALT));
+      // ROADMAP K49(c2). The lattice takes a Cranley–Patterson rotation, which
+      // wants an independent offset per block; the stratification takes a phase
+      // that SWEEPS its own step across neighbouring blocks, because a random
+      // one leaves a narrow band to a coin toss in the frame. See `blockPhase`.
+      const shift = strata
+        ? blockPhase(bc, br, nSlots, globalShift)
+        : blockHash / 4294967296;
       // The slot's index inside its own block. Arithmetic shift, so a block west
       // or south of the origin indexes the same way as one east or north of it.
       const base = ((c - ((c >> shiftBits) << shiftBits)) * span

@@ -24,7 +24,12 @@
    "common": "tussock sedge",
    "role": "matrix",
    "form": "sedge_tussock",
-   "abundance": {"cover_fraction":[0.4,0.6]},
+   "abundance": {"stems_per_m2":[1.0,4.0]},
+   "abundance_provenance": {
+    "confidence": "inferred",
+    "sources": ["chicagology_prefire273", "white_1978_inai"],
+    "note": "A COUNT OF PLANTS, TAKEN FROM THE SPACING ITS OWN SOURCE STATES, for ROADMAP K49(c2). docs/research/02-flora.md \u00a7 ZONE 3 gives this stand as \"40-60% cover as tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", and the two halves of that sentence are not the same measurement: tussocks 0.3 m wide at 0.5-1.0 m spacing cover 7-28% of the ground at the base, so the 40-60% is FOLIAGE cover on a plant that arches well past its own pedestal. The sward is dealt as a count of plants, and a spacing states a count directly: 1/s\u00b2 for s in [0.5, 1.0] m is [1, 4] plants per m\u00b2. That is better evidence than the same cover divided by the same width (6.62/m\u00b2), which reads a foliage area against a base footprint. The cover figure is not lost: how much ground this community's matrix holds is the zone's own cover.matrix_fraction, which is what decides how many slots are planted. Graded inferred rather than attested because the arithmetic assumes an even spacing in both directions; the source states the spacing, not the count."
+   },
    "height_m": [0.6,0.9],
    "width_m": [0.28,0.34],
    "july": {

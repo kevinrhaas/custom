@@ -1,5 +1,62 @@
 # STATUS
 
+## Measured 2026-08-16 — the sward is dealt on plants per m², and the route written off as hopeless is the one that reached the gate
+
+**ROADMAP K49(c2)**, the fix half of K49(c1)'s split, and a **SEEN** parcel: what is standing in
+every plant community changed. The conversion K49(c1) measured and refused to ship is shipped, at
+that parcel's own committed baseline.
+
+### What shipped
+
+| | dev (before) | K49(c1)'s conversion | shipped |
+|---|---|---|---|
+| deviation from the record, matrix | 219.19 | 197.46 | **154.19** slots |
+| deviation from the record, forb | 107.18 | 89.11 | **89.11** slots |
+| worst shortfall, any row | 15.21 | 12.29 | **8.50** slots |
+| species owed a whole slot and drawn nowhere | 0 | 1 | **0** |
+
+Measured with `tools/measure_sward_draw.mjs --gate` against the **published mirror**, at both
+viewports. The shares move by up to a factor of three, which is the visible half: the forest's
+ramps 96.5 % → 89.3 % and its wood nettle 1.1 % → 6.3 %, the sand prairie's June grass 8.1 % →
+24.0 %, the lakeshore's little bluestem 11.6 % → 30.1 %, the settled town's broadleaf plantain
+25.2 % → 53.6 %.
+
+### Route 1 was built, and it is refuted at frame scale
+
+The block phase is stratified across blocks now — a van der Corput sweep of the step `1/n` indexed
+by the block's Morton code, on one random start per layer, so neighbouring blocks sit a quarter and
+a sixteenth of the step apart by construction. On the conversion alone it takes the matrix
+deviation **197.46 → 156.51**, and *Scirpus cyperinus* is **still drawn nowhere at 1.11 owed**.
+K49(c1)'s promise for this route — a species owed one slot in the frame would take one — does not
+hold, and the reason is K49(e)'s open question: **a frame does not hold whole blocks.** The union
+of block grids is an exact stratification only when every block is fully realised, and the ring and
+the view cone cut most of them. At an expectation of 1.1 slots, a world-anchored construction buys
+variance and not a guarantee. It is kept because that 197.46 → 156.51 is the largest single move in
+the table.
+
+### Route 3 is what reached the gate, and K49(c1) said it would not
+
+Its words: *"That does not on its own lift the bulrushes over the gate (measured: 0.24 %, 1.57
+slots owed)"*. It does — with the sweep (154.19) and, tested separately, without it (191.48). The
+prediction was made on the share rather than on the draw, which is the same error in miniature as
+reading a cover as a count.
+
+`data/flora/zones/z03_sedge_meadow.json`'s *Carex stricta* records `stems_per_m2: [1, 4]` — 1/s²
+for the **0.5–1.0 m apart** its own dossier row states — under an `abundance_provenance` block
+graded `inferred`, because the source states a spacing and the even-spacing arithmetic is ours.
+`tools/validate.py` holds that block to the rule `width_provenance` already carries: a figure may
+not outrank the record it sits in. It replaces a derived **6.62/m²**, and no cover claim was lost —
+how much ground the matrix holds is the zone's own `cover.matrix_fraction`, which is what deals the
+slots. That one record takes `z03_sedge_meadow.matrix` from **42.20 to 19.87** deviation and its
+worst shortfall from **15.21 to 6.18**.
+
+### What it does not do
+
+It does not touch `matrixShare` or `forbShare`'s tuning, it does not move the number of slots (the
+lottery reads `stems`, the slot count reads `recorded` — two fields with two jobs now), and it
+raises no confidence: nothing was invented, so no liberty was owed. The desktop half of the smoke
+was not run — the ten-minute per-command ceiling does not fit it — and the mobile half is 224/0.
+
 ## Measured 2026-08-16 — the sward's twenty-five missing footprints are in, and the conversion they unlock is committed unshipped
 
 **ROADMAP K49(c1)**, the measurement half of a measure-then-fix split. **Nothing a visitor can see
