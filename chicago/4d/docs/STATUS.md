@@ -1,5 +1,51 @@
 # STATUS
 
+## Fixed 2026-08-16 — the ninety unsqueezed files were right, and three squeezed ones were shipping bigger than the models they came from
+
+**K37.** K36(a) reported 90 derivatives as byte-identical master copies and K36(b)'s control
+found that the pipeline's own step does not reproduce them. Run over all 90, the step takes them
+**520,700 → 628,028 bytes, +107,328 (+20.6 %)**, with **88 of the 90 growing**: `meshopt` writes
+a compression header, a buffer-view table and an index buffer, and on a 16–60-triangle shed those
+cost more than the compression saves. **The passthrough was the right answer; it was just nobody's
+decision** — it fell out of `generators/inferred_placeholder.py` writing the same bytes into both
+trees.
+
+**And the class predicate is wrong in both directions.** `kind: placeholder` maps onto
+"uncompressed" 90 of 90 today, and that is a coincidence of write order. Three assets that have
+been through this step on every bake since it was written ship **larger** than their masters —
+`fort_dearborn_root_house` +324, `lake_house_construction` +240, `fort_dearborn_magazine` +224 —
+while `fort_dearborn_parade`, 5,504 bytes and 30 triangles, compresses −24.5 %, and two of the
+ninety placeholders compress −9.3 %. Byte size does not predict the sign either. So the rule is
+**keep whichever file is smaller, measured per asset**, and it lives in
+`tools/web_derivatives.sh` rather than in a list of names.
+
+**What moved:** three derivatives, replaced by their masters — **−788 bytes**, and they now carry
+exact float positions rather than a quantised lattice. The 90 are untouched. **The gate:**
+`measure_web_derivatives.py` assertion 6, absolute, **bound zero**, with a `--self-test` that
+grows a derivative by one byte and confirms it fires *and* grows an epoch mesh by one byte and
+confirms it does not.
+
+**The one exclusion, by name:** `water__e1834_harbor_cut.glb` is +744 bytes (+55.0 %) under the
+rule and is **not** passed through. The epoch meshes' bit depth is a geometric decision (R-W6),
+the ground and waterline are what R-BUG3c, R-BUG4 and R-M1a measure against, and **R-W6(b) holds
+both files** pending the owner's word on regenerating geometry outside a bake.
+
+**Left open, stated:** the two placeholders that compress smaller stay master copies —
+`inferred_placeholder.py` rewrites every placeholder into both trees on each run and would undo
+them. **1,624 bytes.** And `tools/publish.sh` is a **third** writer of `assets/web/`: it copies a
+master through whenever it is newer by mtime, which is a passthrough nothing decided and which
+this gate cannot see. Worth a parcel.
+
+**The gate's own self-test had been red since K36(b)** — rebanking the material ratchet empty
+left one mutation with nothing to mutate, and it printed MISSED, so `--self-test` reported
+SELF-TEST FAIL on a clean tree. Nothing noticed because `check.sh` ran `--gate` and never
+`--self-test`. An inapplicable mutation now prints `skipped`, and `check.sh` runs the self-test
+as its own step.
+
+**Not verified here:** the desktop half of the smoke (~13 min against this harness's 10-minute
+per-command ceiling). `tools/check.sh` and the mobile half of `--published` are green. Nothing
+here moves a vertex, a material or a pose.
+
 ## Fixed 2026-08-16 — the compression flag that hid 38 buildings' material names was also spending the town's draw-call budget, and half the anchors were over it
 
 **K36(b).** K36(a) recorded the palette pass as a fault about NAMES: `gltf-transform optimize`
@@ -49,7 +95,9 @@ nightly. The control that makes this attributable: under `BAKE_PALETTE=1` it rep
 **The other 91 are two findings this parcel did not fix and did not hide.** **K37** — 90
 derivatives are byte-identical master copies, and the pipeline's own step does not reproduce
 them: it makes them ~21 % *bigger* (4,968 → 6,000 on the sample). Nothing states which
-behaviour is intended. **R-W6(b)** — the shipped terrain is still **14-bit**: regenerating the
+behaviour is intended. **(K37 is DONE 2026-08-16 — the passthrough is correct, measured over all
+90 at +20.6 %, and the sample generalised; see the section above.)** **R-W6(b)** — the shipped
+terrain is still **14-bit**: regenerating the
 committed master at 14 bits reproduces `assets/web/terrain__e1834_harbor_cut.glb` md5 for md5,
 and the 1,116-byte gap to the 16-bit file is exactly R-W6's own quoted cost. **R-W6's fix is in
 the script and not in the file a visitor downloads**, so the ground is still on the 306 mm

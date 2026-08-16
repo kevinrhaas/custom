@@ -17,6 +17,17 @@
 # Verified byte-for-byte at the extraction: running this over the committed
 # masters reproduces all 334 committed derivatives exactly, md5 for md5, on
 # gltf-transform 4.4.2.
+#
+# THAT SENTENCE WAS NOT TRUE WHEN IT WAS WRITTEN — K36(b)'s own control measured
+# 243 of 334, and the 91 it did not reproduce are the two findings it deferred:
+# the 90 placeholder passthroughs (K37, decided below — the passthrough is right
+# and the step now produces it) and the terrain derivative (R-W6(b), still open).
+# With the size rule below in place, and K37's three repairs applied, it
+# reproduces 331 of 334. The three it does not are named, not rounded off:
+# `terrain__e1834_harbor_cut.glb` (committed at 14 bits, asked for at 16 —
+# R-W6(b) owns it) and the two placeholders that compress SMALLER, which stay
+# master copies because `generators/inferred_placeholder.py` rewrites the web
+# tree from the master on every run and would undo them. See K37's open end.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -167,14 +178,54 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
     compress+=(--palette false)
   fi
 
+  # KEEP THE SMALLER FILE — K37, and the rule is a MEASUREMENT, not a class.
+  #
+  # `meshopt` writes an EXT_meshopt_compression header, a buffer-view table and
+  # an index buffer. On a big mesh those are free; on a 30-triangle shed they
+  # are most of the file, and the derivative comes out LARGER than the master it
+  # was compressed from. Measured 2026-08-16 over the whole tree:
+  #
+  #   • the 90 flagged placeholders, compressed here for the first time:
+  #     520,700 -> 628,028 bytes, +107,328 (+20.6 %). 88 of the 90 grow.
+  #   • and it is not a placeholder property, in EITHER direction. THREE assets
+  #     that have always been through this step ship bigger than their master
+  #     today — fort_dearborn_root_house (+324), lake_house_construction (+240),
+  #     fort_dearborn_magazine (+224) — while fort_dearborn_parade, 30 triangles
+  #     and 5,504 bytes, compresses to -24.5 %. And two of the ninety
+  #     placeholders go the other way (-808 and -816 bytes, both -9.3 %).
+  #     Nothing about the asset's KIND predicts the sign; only measuring it does.
+  #
+  # K36(a) reported the 90 as an anomaly and K36(b)'s control found that this
+  # step does not reproduce them. Both readings were right and neither was the
+  # rule: the passthrough is CORRECT for those files, it was just arrived at by
+  # the accident of `generators/inferred_placeholder.py` writing the same bytes
+  # into both trees rather than by anything deciding it. So decide it here,
+  # per file, from the bytes — a derivative that is not smaller than its master
+  # has no reason to exist, and `tools/measure_web_derivatives.py` asserts the
+  # outcome so the 91st cannot appear silently.
+  #
+  # A passthrough is not a degraded derivative. It is the master, so it carries
+  # exact float positions instead of a quantised lattice, and it satisfies every
+  # assertion that gate makes about identity, triangles and bounds by construction.
+  # 90 assets have shipped this way to visitors since 2026-08-11.
+  #
+  # THE TWO EPOCH MESHES ARE EXCLUDED, DELIBERATELY AND BY NAME. `water__` is
+  # +744 bytes (+55.0 %) under this rule and would be passed through by it — but
+  # the epoch derivatives' bit depth is a GEOMETRIC decision (R-W6 set
+  # EPOCH_QUANT_BITS against measured drawn-surface error, and the ground and the
+  # waterline are what R-BUG3c, R-BUG4 and R-M1a all measure against), and
+  # R-W6(b) is holding those two files pending the owner's word on regenerating
+  # geometry outside a bake. A payload rule does not get to move the water while
+  # that is open. The exclusion is recorded in the gate too, with its number.
   fellback=0
+  passthrough=0
   for f in assets/gltf/*.glb; do
     [ -e "$f" ] || continue
     [ -z "$ONLY" ] || [ "$(basename "$f")" = "$ONLY" ] || continue
     out="$OUT/$(basename "$f")"
     case "$(basename "$f")" in
-      terrain__*|water__*) bits="$EPOCH_QUANT_BITS" ;;
-      *) bits="$ASSET_QUANT_BITS" ;;
+      terrain__*|water__*) bits="$EPOCH_QUANT_BITS"; epoch=1 ;;
+      *) bits="$ASSET_QUANT_BITS"; epoch=0 ;;
     esac
     tmp="$(mktemp -t gltfopt.XXXXXX.glb)"
     npx --yes @gltf-transform/cli optimize "$f" "$tmp" "${compress[@]}" 2>&1 | tail -2 \
@@ -183,14 +234,24 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
         echo "   optimize failed for $(basename "$f"); copying the master through"
         cp "$f" "$out"; fellback=$((fellback + 1)); }
     rm -f "$tmp"
-    printf '   %s  %s -> %s bytes\n' "$(basename "$f")" \
-      "$(stat -c%s "$f")" "$(stat -c%s "$out")"
+    note=""
+    if [ "$epoch" = "0" ] && [ "$(stat -c%s "$out")" -ge "$(stat -c%s "$f")" ]; then
+      cp -f "$f" "$out"
+      passthrough=$((passthrough + 1))
+      note="  (compression grew it; master passed through)"
+    fi
+    printf '   %s  %s -> %s bytes%s\n' "$(basename "$f")" \
+      "$(stat -c%s "$f")" "$(stat -c%s "$out")" "$note"
   done
   # Say it once, at the end, where it cannot scroll past unnoticed. A fallback
   # copy is CORRECT but fat, and a fat payload is what fails the 25 MB gate —
   # so the reason has to be visible next to the number.
   if [ "$fellback" -gt 0 ]; then
     echo "   WARNING: $fellback derivative(s) fell back to an uncompressed master copy"
+  fi
+  if [ "$passthrough" -gt 0 ]; then
+    echo "   $passthrough derivative(s) kept as a master passthrough — compressing them"
+    echo "   makes them bigger, which is a decision now and not an accident (K37)"
   fi
 else
   echo "   gltf-transform unavailable; copying masters to assets/web unoptimised"

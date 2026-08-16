@@ -138,7 +138,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | 3 | KERNEL | **K35** | opened by K34: three flagged structures state no reason anywhere, and the building side has no field a reason could live in. A research question and an owner's choice between three routes, not an engineering task. **No bake** |
 | — | KERNEL | ~~K36(a)~~ | **DONE 2026-08-16** — `data/` → master → **shipped derivative** → mirror was gated at links 1 and 3 and **not at link 2**, and the gap holds a town that is **textured on the site and untextured in this repository**: 38 assets ship one `PaletteMaterial001` and **75 PNGs that exist in no master**. The split is a count, exactly — **five materials faults, four does not, 296 of 296** — so **275 assets sit one material short of it** and R-W2b is what moves them. R-W2a's sheet measured the masters under the words "the shipped GLBs". Read its box before quoting any material or payload number |
 | — | KERNEL | ~~K36(b)~~ | **DONE 2026-08-16** — the palette pass was not buying draw calls, it was **spending** them: a generated map cannot join any batch, so 38 assets shipped as **40 solo batches** and the published town drew **56 where R-W5a's committed figure is 16**. **Four of the eight scene anchors were over the 80-call budget** (worst 102, at the Green Tree); none is now, worst 70. R-W5a's numbers were taken on the SOURCE tree — the same error as R-W2a's, three days apart. Read its box before quoting any batch or draw-call number |
-| 1 | KERNEL | **K37** | opened by K36(b): **90 derivatives are master copies and the pipeline's own step does not reproduce them** — it makes them 21 % bigger. Nothing states which is intended. **NO BAKE**, and it is a decision plus a gate, not a regeneration |
+| — | KERNEL | ~~K37~~ | **DONE 2026-08-16** — the passthrough is **right**: the step makes those 90 files **+107,328 bytes (+20.6 %)**, 88 of 90 growing. But the rule is not "placeholder" — **three assets that have always been compressed here were shipping LARGER than their masters** (+324, +240, +224) and two of the ninety placeholders compress 9.3 % smaller. The step keeps the smaller file per asset now, the gate's bound is **zero**, and `water__` (+744) is the one exclusion, by name, deferred to R-W6(b). Read its box before quoting any payload or passthrough number |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
@@ -173,6 +173,15 @@ tool's README — `--simplify`, `--compress`, `meshopt`'s bit depths, the AO bak
 (B-A1 asks exactly this question of it, and is still unclaimed).
 **And it opened TWO runner-closable parcels, K37 and R-W6(b)**, which is the count the box
 above says the lane needs more than it needs the next pick.
+**K37 IS SPENT — 2026-08-16 — and it opened two more of the same shape.** Its own finding was
+that the parcel's question ("are these 90 special?") had the wrong subject: the discriminator was
+not the asset's kind but a number nobody had taken, and taking it convicted three assets the
+parcel never suspected. The two it leaves open are both *writers of `assets/web/` that nothing
+decided*: `generators/inferred_placeholder.py`, which seeds the tree from the master on every
+run, and `tools/publish.sh`, which copies a master through on an **mtime** comparison. Three
+scripts write that directory and only one of them is the step. **The generalisation, and it is
+the K36(a) seam one turn further: when a directory has more than one writer, the gate on its
+contents is a gate on the last writer only.**
 
 **THE SEAM IS STILL OPEN, AND IT PAID AGAIN — 2026-08-16, K36(a).** Same move as K34, one link
 further out: instead of a rule about a record, take a rule about a FILE — *"a stale committed GLB
@@ -1984,7 +1993,95 @@ the desktop draw-call numbers in finding 3 ARE measured at 1280×800, by
 `tools/measure_shipped_batches.mjs`, which is the quantity the desktop half would have been
 run for.
 
-### K37 — 90 derivatives were never put through the step that produces them · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S to decide, S to apply · NO BAKE**
+### K37 — 90 derivatives were never put through the step that produces them · **DONE 2026-08-16 · the passthrough is right, the rule is not "placeholder", and three assets were going the other way**
+
+**Phase:** kernel · tools, docs and three derivative files — no data record, no renderer
+file, no master, no bake, no record moved, no confidence touched.
+
+**FINDING 1 — the answer is the passthrough, and the margin is not close.** The step was
+run over all 90 flagged placeholders, which is the measurement the parcel asked for:
+**520,700 → 628,028 bytes, +107,328 (+20.6 %)**, and **88 of the 90 grow**. `meshopt`
+writes a compression header, a buffer-view table and an index buffer, and on a
+sixteen-to-sixty-triangle shed those cost more than the compression saves. K36(a) read
+the 90 as an anomaly; K36(b)'s control read them as a non-reproduction; both were true
+and **neither was a rule**. Committing them squeezed would have grown the payload to buy
+nothing.
+
+**FINDING 2 — and this is the one the parcel did not expect: the class predicate is wrong
+in BOTH directions.** "Placeholder ⇒ master copy" fits the tree exactly today —
+`kind: placeholder` is 90 of 90 uncompressed, `kind: generated` was 244 of 244
+compressed — and it is a coincidence of write order, not a rule:
+
+| | bytes | Δ |
+|---|---|---|
+| `fort_dearborn_root_house__cellar_1816` | 4,488 → 4,812 | **+324 (+7.2 %)** |
+| `lake_house_construction__shell_1835` | 5,620 → 5,860 | **+240 (+4.3 %)** |
+| `fort_dearborn_magazine__brick_1816` | 6,236 → 6,460 | **+224 (+3.6 %)** |
+| `fort_dearborn_parade__parade_1816` | 5,504 → 4,156 | −1,348 (−24.5 %) |
+| `recon_1835_blk_randolph_wells_h2_01` (placeholder) | 8,728 → 7,912 | −816 (−9.3 %) |
+| `recon_1835_blk_randolph_clark_h2_02` (placeholder) | 8,712 → 7,904 | −808 (−9.3 %) |
+
+**Three assets that have been through this step on every bake since it was written have
+been shipping LARGER than the masters they came from**, and two of the ninety
+placeholders compress smaller. Byte size does not predict it either — `parade` is 5,504
+bytes and wins, `lake_house_construction` is 5,620 and loses; the discriminator is
+triangle count against header overhead, and the honest way to know is to run it. So the
+rule is **keep whichever file is smaller, measured per asset**, and it is in
+`tools/web_derivatives.sh` rather than in a list of names.
+
+**WHAT MOVED.** Three derivatives, replaced by their masters: **−788 bytes**, and they
+now carry exact float positions rather than a quantised lattice. Nothing else. The 90
+placeholders are byte-identical to what they were — the parcel's own *"do not fix this by
+regenerating them"* held, and the measurement is why.
+
+**THE GATE.** `tools/measure_web_derivatives.py` assertion 6, **absolute, bound zero**: no
+derivative may be larger than the master it came from. Its `--self-test` grows a
+derivative by one byte and confirms it fires, **and grows an epoch mesh by one byte and
+confirms it does not** — an exclusion nobody has watched hold is an exclusion nobody has
+watched.
+
+**THE ONE EXCLUSION, by name and with its number.** `water__e1834_harbor_cut.glb` is
+1,352 → 2,096 bytes (**+744, +55.0 %**) and the rule would pass it through. It is not
+passed through and it is not banked as a fault: the epoch meshes' bit depth is a
+*geometric* decision (R-W6 set `EPOCH_QUANT_BITS` against measured drawn-surface error,
+and the ground and waterline are what R-BUG3c, R-BUG4, R-M1a and the road-contrast bands
+all measure against), and **R-W6(b) is holding both files** pending the owner's word on
+regenerating geometry outside a bake. A payload rule does not get to move the water while
+that is open. R-W6(b) inherits the question with the number already taken.
+
+**THE OPEN END, stated rather than tidied.** The two placeholders that compress 9.3 %
+smaller are left as master copies, because `generators/inferred_placeholder.py` rewrites
+**every** non-superseded placeholder into both trees on every run and would silently undo
+them — the same write-order coupling that produced this parcel. Fixing it means deciding
+whether that generator may seed a provisional derivative at all, which is a generator
+change and a separate question. Cost of leaving it: **1,624 bytes**. With the size rule
+in place and these three repairs applied, `tools/web_derivatives.sh` reproduces **331 of
+334** committed derivatives; the three are those two and `terrain__` (14 bits committed,
+16 asked for — R-W6(b)).
+
+**A THIRD WRITER OF `assets/web/`, noticed and not chased.** `tools/publish.sh` copies a
+master through whenever it is **newer by mtime** than its derivative. That is a
+passthrough nothing decided either, it is invisible to this gate (a copy is never larger
+than its master), and on a fresh clone mtimes come from checkout order. Worth a parcel's
+attention; it is not this one's.
+
+**AND THE GATE'S OWN SELF-TEST HAD BEEN RED SINCE THE DAY BEFORE.**
+`measure_web_derivatives.py --self-test` reported **SELF-TEST FAIL** on a clean `dev` from
+K36(b) onward: K36(b) repaired all 38 material faults and rebanked the ratchet empty, so
+the mutation *"a banked asset was repaired and not banked"* had nothing to mutate and
+printed MISSED. Nothing caught it because `check.sh` ran `--gate` and never `--self-test`.
+Both are fixed: an inapplicable mutation now prints `skipped`, and `check.sh` runs the
+self-test as its own step. The docstring's *"38 of 334 assets fail this today"* was also
+a day stale and now says 334 of 334.
+
+**Verified:** `tools/check.sh` green (including the two new steps).
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` green. The desktop half
+was not run and is not claimed — ~13 minutes against this harness's 10-minute per-command
+ceiling; see the run-budget box at the top of this file. Nothing in this parcel moves a
+vertex, a material or a pose, and the three files it does move become *more* geometrically
+exact, so the desktop half has no quantity of its own to measure here.
+
+### K37 — the parcel as written, kept for the record
 
 K36(a) reported *"90 assets ship uncompressed, and the only instrument that could notice is a
 25 MB budget"*, and attributed it to `generators/inferred_placeholder.py` writing the same

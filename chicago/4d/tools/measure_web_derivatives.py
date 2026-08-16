@@ -65,15 +65,32 @@ and comparing material tables costs about a second for all 334 assets.
     quantity R-W6 committed as a 76.6 mm lattice. A building collapsed to a two-metre
     box is thousands of rungs, not four.
 
-6.  **Material identity** (RATCHET, `tools/web_derivative_baseline.json`). The shipped
+6.  **The derivative is never bigger than the master** (absolute, K37). `meshopt`
+    writes a compression header, a buffer-view table and an index buffer, and on a
+    small enough mesh those cost more than they save: the 90 flagged placeholders
+    come out **+107,328 bytes (+20.6 %)** when this step is run over them, 88 of the
+    90 growing. K36(a) read that as an anomaly and K36(b)'s control read it as a
+    non-reproduction; both were describing the same thing and neither was a rule.
+    The rule is a measurement, and it is **not** a property of the asset's kind —
+    three assets that have always been compressed here shipped *larger* than their
+    masters until this assertion was written, and two of the ninety placeholders
+    compress 9.3 % *smaller*. `tools/web_derivatives.sh` now keeps whichever file is
+    smaller, per asset, and this says what arrived. **The two epoch meshes are
+    excluded by name**: their bit depth is a geometric decision (R-W6, and the ground
+    and waterline are what R-BUG3c, R-BUG4 and R-M1a measure against), R-W6(b) is
+    holding both files, and `water__` is +744 bytes under this rule — recorded, not
+    silently applied.
+
+7.  **Material identity** (RATCHET, `tools/web_derivative_baseline.json`). The shipped
     file should resolve to the same material NAMES and base COLOURS as its master and
-    should gain no texture the master does not have. **38 of 334 assets fail this
-    today** and they are in the baseline: `optimize`'s palette pass folds their five or
-    six named materials — `log`, `chinking`, `board`, `roof`, … — into a single
-    `PaletteMaterial001` carrying two generated PNGs. It is a ratchet rather than an
-    absolute for the reason K25's is: the repair is K36(b), it regenerates 334 binary
-    files, and a permanently red dev gate would block every unrelated parcel behind it.
-    A new offender fails. A repaired one fails too, and says to bank it.
+    should gain no texture the master does not have. 38 of 334 assets failed this when
+    the assertion was written — `optimize`'s palette pass folded their five or six named
+    materials — `log`, `chinking`, `board`, `roof`, … — into a single
+    `PaletteMaterial001` carrying two generated PNGs. **K36(b) repaired all 38 and
+    rebanked the baseline empty, so it is 334 of 334 today and the ratchet holds
+    nothing.** It stays a ratchet rather than an absolute because the repair moves 334
+    binary files and a permanently red dev gate would block every unrelated parcel
+    behind it. A new offender fails. A repaired one fails too, and says to bank it.
 """
 
 from __future__ import annotations
@@ -99,6 +116,13 @@ RUNG_TOLERANCE = 4.0
 
 # Attributes docs/GLB-CONTRACT.md names. TEXCOORD_0 is not one of them.
 CONTRACT_ATTRIBUTES = ("POSITION", "NORMAL", "_CONFIDENCE")
+
+# The two epoch-scale meshes, excluded from assertion 6 by name rather than by a
+# size threshold — a threshold would be a second unmeasured rule. Their derivative's
+# bit depth is set independently (EPOCH_QUANT_BITS) because it is a geometric
+# decision about the surface the ground gates measure against, and R-W6(b) holds
+# both files. See the docstring.
+EPOCH_PREFIXES = ("terrain__", "water__")
 
 # glTF component types that carry a normalised integer, and their divisor.
 NORMALISED = {5120: 127.0, 5121: 255.0, 5122: 32767.0, 5123: 65535.0}
@@ -326,6 +350,16 @@ def assertions(result: dict, baseline: dict) -> list[str]:
         if lost:
             problems.append(f"{name}: the shipped file lost {', '.join(lost)}, which "
                             f"docs/GLB-CONTRACT.md names")
+        if not name.startswith(EPOCH_PREFIXES):
+            master_bytes, shipped_bytes = row["bytes"]
+            if shipped_bytes > master_bytes:
+                problems.append(
+                    f"{name}: the shipped derivative is {shipped_bytes:,} bytes and the master "
+                    f"it came from is {master_bytes:,} — {shipped_bytes - master_bytes:+,} "
+                    f"({100 * (shipped_bytes / master_bytes - 1):+.1f} %). meshopt's header and "
+                    f"index buffer cost more than they save on a mesh this small, and a "
+                    f"derivative that is not smaller than its master has no reason to exist. "
+                    f"tools/web_derivatives.sh passes the master through in that case (K37)")
         if row["rungs"] > RUNG_TOLERANCE:
             problems.append(f"{name}: the shipped bounding box is {row['bbox_drift_m'] * 1000:.1f} "
                             f"mm from the master's, {row['rungs']:.2f} rungs of its own "
@@ -379,8 +413,19 @@ def print_census(result: dict) -> None:
         print(f"  compressed  {len(compressed)} asset(s), {cm / cs:.2f}x")
     if copies:
         cs = sum(r["bytes"][1] for r in copies)
-        print(f"  shipped UNCOMPRESSED (byte-identical to the master)  {len(copies)} asset(s), "
-              f"{cs / 1024:.0f} KB, {100 * cs / shipped_bytes:.1f} % of the payload")
+        print(f"  shipped as a MASTER PASSTHROUGH (byte-identical to the master)  "
+              f"{len(copies)} asset(s), {cs / 1024:.0f} KB, "
+              f"{100 * cs / shipped_bytes:.1f} % of the payload — compressing them makes "
+              f"them bigger (K37), which is a decision now and not an accident")
+    grew = [r for r in rows
+            if not r["name"].startswith(EPOCH_PREFIXES) and r["bytes"][1] > r["bytes"][0]]
+    excluded = [r for r in rows
+                if r["name"].startswith(EPOCH_PREFIXES) and r["bytes"][1] > r["bytes"][0]]
+    print(f"  derivative bigger than its master: {len(grew)} (bound: 0) "
+          f"+ {len(excluded)} epoch mesh(es) excluded by name, R-W6(b)")
+    for r in excluded:
+        print(f"    excluded  {r['name']}  {r['bytes'][0]:,} -> {r['bytes'][1]:,} bytes "
+              f"({r['bytes'][1] - r['bytes'][0]:+,})")
 
     worst = sorted((r for r in rows if r["bbox_drift_m"] is not None),
                    key=lambda r: -r["rungs"])[:5]
@@ -433,9 +478,19 @@ def self_test() -> int:
         return 1
 
     def mutate(label, fn):
+        """Apply one mutation and require the gate to notice.
+
+        A mutation that returns False could not be applied to THIS tree — the
+        ratchet's mutation has nothing to repair once the ratchet is empty, which
+        K36(b) made it. That is a self-test with nothing to say, not a gate that
+        missed something, and reporting it as MISSED made the whole run read FAIL
+        on a clean tree from 2026-08-16 until K37 read it.
+        """
         import copy
         broken = copy.deepcopy(result)
-        fn(broken)
+        if fn(broken) is False:
+            print(f"  skipped  {label} — nothing in this tree to mutate")
+            return True
         found = assertions(broken, baseline)
         print(f"  {'caught' if found else 'MISSED'}  {label}"
               + (f" — {found[0][:96]}" if found else ""))
@@ -457,6 +512,22 @@ def self_test() -> int:
                  lambda r: r["rows"][0].__setitem__("attributes_lost", ["_CONFIDENCE"]))
     ok &= mutate("the building collapsed to a two-metre box",
                  lambda r: r["rows"][0].__setitem__("rungs", 8000.0))
+    ok &= mutate("compression made the shipped file bigger than its master",
+                 lambda r: _grow_derivative(r, epoch=False))
+
+    # And the other way round for assertion 6's one exclusion: an exclusion nobody
+    # has watched hold is an exclusion nobody has watched. Growing an epoch mesh by
+    # the same amount must NOT fire, or the exclusion is decorative.
+    import copy
+    broken = copy.deepcopy(result)
+    grown = _grow_derivative(broken, epoch=True)
+    if grown is None:
+        print("  skipped  the epoch exclusion (no epoch mesh in the tree)")
+    else:
+        fired = assertions(broken, baseline)
+        print(f"  {'held' if not fired else 'LEAKED'}  the epoch exclusion: {grown} "
+              f"grown past its master fires nothing (R-W6(b) holds that file)")
+        ok &= not fired
     ok &= mutate("a new asset loses its material names",
                  lambda r: _break_materials(r))
     ok &= mutate("a banked asset was repaired and not banked",
@@ -465,23 +536,36 @@ def self_test() -> int:
     return 0 if ok else 1
 
 
-def _break_materials(result: dict) -> None:
+def _grow_derivative(result: dict, epoch: bool) -> str | None:
+    """Make one asset's shipped file a byte bigger than its master."""
+    for row in result["rows"]:
+        if row["name"].startswith(EPOCH_PREFIXES) is not epoch:
+            continue
+        master_bytes = row["bytes"][0]
+        row["bytes"] = (master_bytes, master_bytes + 1)
+        return row["name"]
+    return None
+
+
+def _break_materials(result: dict) -> bool:
     for row in result["rows"]:
         if not material_fault(row):
             row["names_lost"] = ["log", "chinking"]
             row["colours_lost"] = 2
             row["textures_shipped"] = row["textures_master"] + 2
-            return
+            return True
+    return False
 
 
-def _repair_materials(result: dict, baseline: dict) -> None:
+def _repair_materials(result: dict, baseline: dict) -> bool:
     banked = set(baseline.get("material_identity", {}))
     for row in result["rows"]:
         if row["name"] in banked:
             row["names_lost"] = []
             row["colours_lost"] = 0
             row["textures_shipped"] = row["textures_master"]
-            return
+            return True
+    return False
 
 
 # ---------------------------------------------------------------- entry point
