@@ -99,6 +99,7 @@ desktop half belongs to a runner without the per-command ceiling.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
+| **1** | RENDERING | **R-BUG5 — TREES STAND IN THE RIVER** | **OWNER-REPORTED 2026-08-15 with a screenshot, and the top of the queue.** Scattered woody plants on the water, plus a straight LINE of them across the channel — scatter is noise, a line is an unmasked planting row. A gate already claims this cannot happen and was GREEN on that build, so the first job is finding why. Visible from any bank. Full box below |
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
@@ -387,6 +388,48 @@ it and then it is blocked on S9 street control and the terrain extensions, not o
 Acceptance numbers are copied from RENDERING §5 so a builder does not have to hold two
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
+
+### R-BUG5 — trees stand in the river · **UNCLAIMED · TOP OF THE QUEUE · owner-reported 2026-08-15**
+
+**The report is a screenshot from 31 ft up, bearing 044°, north-east across the main stem: woody
+plants standing on the water. Two populations, and the second one is the diagnosis.**
+
+1. **Scattered** individuals over open water near the north bank.
+2. **A straight LINE of them** running out across the river. **Scatter is noise; a line is a
+   planting row.** Whatever lays plants out in rows is emitting into the channel, so a water test
+   is either not applied on that path or applied in the wrong space.
+
+**A gate already claims this cannot happen.** `smoke_renderer.mjs` asserts *"woody vegetation never
+occupies the river mask"* and *"emergent flora stays within eight metres of a riverbank"*, and both
+were GREEN on the build in the screenshot. **So the first job is not the trees — it is why the gate
+says they are not there.** Fourth time on this project that a green gate and the owner's screen have
+disagreed, and every previous time the gate was pointed at something other than what ships.
+
+**A TRAP, MEASURED, so the next run does not fall into it.** A census taken at the spawn point found
+**5 trees and 814 plants in the entire scene, none in water.** That is not a finding, it is a broken
+probe: the scene plainly holds hundreds of trees, so **vegetation is streamed or instantiated near
+the camera**, and anything counted at spawn counts almost nothing. Census this **from the reported
+viewpoint with the far bank loaded**, and **report the population count** so an implausible total is
+obvious. If a probe says "0 in water", check the denominator before believing it.
+
+**Candidates, in the order worth testing:**
+
+1. **The row emitter skips the water test** — find whatever plants in rows (hedgerow, bank line,
+   windbreak) and check whether it consults `terrain.isWater` at all.
+2. **The test runs in the wrong space.** `isWater(e, n)` takes ENU; a caller passing world `(x, z)`
+   without negating `z` tests a mirrored point and passes over water.
+3. **The mask and the drawn water disagree.** The water is ONE quad at `y = 0` spanning the whole
+   scene, so ground below 0 reads as submerged whatever the mask says — the R-BUG3c-b class, where
+   the drawn surface and the sampler were not the same surface.
+4. **Streaming plants near the camera bypass the placement gate** the committed set passes.
+
+**Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` · `tools/smoke_renderer.mjs`
+
+**Acceptance:** the owner's viewpoint reshot with no woody plant over water; the gate **FAILS on the
+current build** and passes after — a gate that stayed green through this bug proves nothing until it
+has been shown to catch it; the census prints its population. **Reconstructed bank vegetation is
+wanted — plants standing in the channel are not.**
+
 
 ### R-G0 — the critic harness · **DONE 2026-08-14 (G0.1 + the numeric half of G0.2)**
 
