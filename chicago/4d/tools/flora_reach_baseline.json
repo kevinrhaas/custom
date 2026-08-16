@@ -1,0 +1,215 @@
+{
+  "_doc": "Where a read stops, by RECORD rather than by field. K42's read-set says a figure is read if any renderer source reads it; every reader here takes a cohort, so a read figure still reaches nothing on the records its reader never receives. `records` are the species records no reader receives at all, `figures` are the declared reads that reach only part of their carriers, and `heads` are the recorded July inflorescences that draw no flower. Routing only: a reached record is one its reader receives, not one a visitor is standing in front of. Held exact in both directions by tools/measure_flora_reach.py. Read ROADMAP K44 before adding a line.",
+  "records": {
+    "z05_riverbank_timber/parthenocissus_quinquefolia": {
+      "role": "thicket",
+      "form": "vine_drape",
+      "reason": "form-not-implemented"
+    },
+    "z05_riverbank_timber/vitis_riparia": {
+      "role": "thicket",
+      "form": "vine_drape",
+      "reason": "form-not-implemented"
+    },
+    "z08_lakeshore/populus_balsamifera": {
+      "role": "tree",
+      "form": "tree_columnar",
+      "reason": "zone-not-read"
+    },
+    "z08_lakeshore/populus_deltoides": {
+      "role": "tree",
+      "form": "tree_leaning",
+      "reason": "zone-not-read"
+    },
+    "z08_lakeshore/populus_tremuloides": {
+      "role": "tree",
+      "form": "tree_columnar",
+      "reason": "zone-not-read"
+    },
+    "z08_lakeshore/salix_interior": {
+      "role": "thicket",
+      "form": "thicket_clonal",
+      "reason": "zone-not-read"
+    }
+  },
+  "figures": {
+    "species[].abundance.cover_fraction": {
+      "carriers": 61,
+      "reached": 59,
+      "unreached": 2,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].abundance.density_per_ha": {
+      "carriers": 72,
+      "reached": 69,
+      "unreached": 3,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].abundance.stems_per_m2": {
+      "carriers": 21,
+      "reached": 18,
+      "unreached": 3,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].common": {
+      "carriers": 154,
+      "reached": 30,
+      "unreached": 124,
+      "readers": [
+        "trees.js"
+      ],
+      "state": "shown"
+    },
+    "species[].confidence": {
+      "carriers": 154,
+      "reached": 148,
+      "unreached": 6,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].form": {
+      "carriers": 154,
+      "reached": 148,
+      "unreached": 6,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].height_m": {
+      "carriers": 154,
+      "reached": 148,
+      "unreached": 6,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.appearance": {
+      "carriers": 154,
+      "reached": 30,
+      "unreached": 124,
+      "readers": [
+        "trees.js"
+      ],
+      "state": "shown"
+    },
+    "species[].july.foliage_rgb": {
+      "carriers": 154,
+      "reached": 148,
+      "unreached": 6,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.foliage_rgb_alt": {
+      "carriers": 10,
+      "reached": 8,
+      "unreached": 2,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.inflorescence.height_frac": {
+      "carriers": 97,
+      "reached": 94,
+      "unreached": 3,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.inflorescence.rgb": {
+      "carriers": 97,
+      "reached": 94,
+      "unreached": 3,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.inflorescence.shape": {
+      "carriers": 97,
+      "reached": 94,
+      "unreached": 3,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.inflorescence.size_m": {
+      "carriers": 97,
+      "reached": 94,
+      "unreached": 3,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].july.phenology": {
+      "carriers": 154,
+      "reached": 118,
+      "unreached": 36,
+      "readers": [
+        "flora.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].role": {
+      "carriers": 154,
+      "reached": 148,
+      "unreached": 6,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    },
+    "species[].width_m": {
+      "carriers": 84,
+      "reached": 81,
+      "unreached": 3,
+      "readers": [
+        "flora.js",
+        "trees.js"
+      ],
+      "state": "mesh"
+    }
+  },
+  "heads": {
+    "z05_riverbank_timber/vitis_riparia": {
+      "shape": "berry_cluster",
+      "phenology": "fruiting",
+      "reason": "record-unrouted"
+    },
+    "z06_dense_forest/ostrya_virginiana": {
+      "shape": "cluster_terminal",
+      "phenology": "fruiting",
+      "reason": "reader-draws-no-head"
+    },
+    "z06_dense_forest/tilia_americana": {
+      "shape": "cluster_terminal",
+      "phenology": "flowering",
+      "reason": "reader-draws-no-head"
+    }
+  }
+}

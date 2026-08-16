@@ -146,7 +146,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K41~~ | **DONE 2026-08-16** — *"the validator enforces this"* was false in the way that matters: the rights gate compares two fields of the SAME source record, so it can only fire on a violation an author has already written down, and **the pair it looks for has never existed** (38 unresolved sources, all `cross_check`/`text_only`; the 3 that declare `geometry` are a survey and two maps, all clear). Asked of the town instead, with the read-sets the generators already declare: **49 geometry-bearing attributes on 21 records, 35 on unresolved support alone, 16 of those graded `attested`** — the Sauganash, Wolf Point, the Green Tree, St Mary's. Banked and held. The reading that decides whether they are a fault is the OWNER's — three routes in its box. Read it before quoting any rights number |
 | — | KERNEL | ~~K42~~ | **DONE 2026-08-16** — the two layers' read-sets exist now, and they say **58 of 100 figures reach nothing**. K41's phrase *"both are rendered"* is **refuted**: `data/fauna` has no reader at all — no file under `renderers/` opens it and `publish.sh` never puts it on the site — while the scene's `layers` list, `docs/LIBERTIES.md` L2 and two validator messages all implied it does. In the flora, the manifest's own `_doc` claimed the ground colours were denormalised *"so the ground shader can work from one fetch"* and **`terrain.js` never opens `data/flora`**; the palettes carry **108** figures the renderer replaced with its own constants; **31** species record a July fruit nothing draws. K41's residual is answered: **202 of 202** flora citations sit on a node whose figures do reach a vertex, **30 of 30** fauna citations on a layer nothing draws. Read its box before quoting any flora or fauna read number |
 | 4 | KERNEL | **K43** | opened by K42: the three unread populations it measured are three different decisions and none of them is a gate's. The fauna layer needs the owner's word (leave it and stop implying otherwise, or give it a reader); the palettes' 108 tuning figures are a `TUNE`-versus-record question with no evidence in it and **no bake**; the July `fruit` on 31 species is the one with a research half, because `docs/LIBERTIES.md` does not record that omission. **Its fruit half is spent — see K44** |
-| — | KERNEL | **K44** | **CLAIMED 2026-08-16** — K42 asked whether a FIELD is read. A field can be read and still reach nothing on the records that carry it, because every reader takes a COHORT: `flora.js` takes five roles and fifteen forms, `trees.js` takes two roles, five forms and **four of the ten zones**. No bake |
+| — | KERNEL | ~~K44~~ | **DONE 2026-08-16** — a figure can be read and still reach nothing, because every reader takes a COHORT and no reader here receives every record: **339 of the 1,880 (record, figure) pairs K42's map calls read reach nothing**, and **six records reach no reader at all** — four of them the lakeshore's woody scrub, which the zone's own prose promises a visitor. K42's *"31 flowering plants record the fruit they carry in July, which nothing draws"* is **refuted**: 29 of the 31 are drawn in the fruit's own colour and shape, and what nothing reads is the boolean. The one flower genuinely missing is the **basswood in bloom**, because `trees.js` has no head path at all. Read its box before quoting any flora read number |
+| 4 | KERNEL | **K45** | opened by K44: three repairs, none of them a bake — `z08_lakeshore` into `TIMBER_ZONES` (four dune trees, archetypes already exist), a head path in `trees.js` (the basswood's flowers and the ironwood's fruit), and the 124 herbaceous records a visitor cannot be told the name of. Each is a renderer parcel, so each carries the smoke |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -2607,6 +2608,97 @@ tools/smoke_renderer.mjs --published` green. The desktop half was not run and is
 file. **No record moved and no asset changed**: the only data edit is one `_doc` sentence in
 `data/flora/index.json` that was false, and two `tools/validate.py` error messages that said
 a renderer reads a block no renderer reads.
+
+### K44 — a figure can be read and still reach nothing, because every reader takes a cohort · **DONE 2026-08-16 — 339 of 1,880 (record, figure) pairs, six records handed to no reader at all, and the July fruit K43 was opened to record as missing is drawn on 29 of the 31 records that carry it**
+
+**Read this box before quoting any flora read number.** K42 built the read-set and asked
+the question a read-set can ask: does any file under `renderers/web/js/` contain an
+expression that touches this figure? One does, so `species[].july.inflorescence.shape` is
+`mesh` and the map is finished with it — **for all 154 species records at once, and no
+reader in this project has ever received all 154.**
+
+**FINDING 1 — the arithmetic, and the map reports zero of it.** Every reader takes a
+COHORT, declared in the renderer as three different kinds of literal: `flora.js` draws
+five of the manifest's seven roles and fifteen of its forms over **all ten** zones;
+`trees.js` draws the other two roles, five forms, and **four of the ten zones**
+(`TIMBER_ZONES`). Multiply K42's 18 declared species reads by that routing and **339 of
+the 1,880 (record, figure) pairs it calls read reach nothing** — 18 %, across **17 of the
+18** figures. The two widest are not the flowers: `species[].common` and
+`species[].july.appearance` are read by `trees.js` alone, so **30 of 154** plant records
+can be named to a visitor and **124 cannot**. `july.phenology` is read by `flora.js`
+alone, so the woody layer has **no July gate at all** — 36 records whose season is
+recorded and never tested.
+
+**FINDING 2 — six records reach no reader, and four of them are a promise the zone makes
+in its own prose.** `z08_lakeshore` carries **eastern cottonwood, quaking aspen, balsam
+poplar and sandbar willow** — three graded `attested` off the MNFI open-dune survey and
+Cowles 1901 — and `TIMBER_ZONES` does not name that zone, so `trees.js` never opens it.
+The zone's `reads_as` says *"a scrub of sand cherry and leaning cottonwood"*: the sand
+cherry is a `shrub_low` and is drawn, the cottonwood is a `tree` and is not. **The fault is
+independent of the ground question and survives its repair** — whatever K42's finding 4b
+settles about the eastern zones' extents, and whatever T-E3 does to the heightfield under
+them, these four records are still handed to nothing, because the list they are missing
+from is in a renderer and not in the terrain. The other
+two are the riverbank's vines, whose `vine_drape` form the manifest itself publishes in
+`forms_unimplemented`: a stated gap, and stated to a programmer rather than to a visitor.
+
+**FINDING 3 — K42's fruit sentence is refuted, and K43's research half is not owed.**
+*"31 flowering plants record the fruit they carry in July, which nothing draws"* is wrong
+in the direction that matters: **29 of the 31 are drawn**, in the fruit's own recorded
+colour, shape, size and height on the plant, because `headOf()` draws a fruiting head from
+`july.inflorescence` exactly as it draws a flowering one — the cattail's brown spadix
+`[92, 62, 40]`, the dogwood's white berry cluster `[214, 216, 206]`, the iris's green
+capsule. What no renderer reads is the **boolean** `inflorescence.fruit`, which
+`tools/validate.py` requires whenever `phenology` is `fruiting`, and which is therefore the
+one part of the record another field already implies. **The flower that IS missing is a
+different one**: `trees.js` has no head archetype at all, so the **American basswood in
+bloom** — *"pale flower clusters on their strap bracts, heavily bee-worked"*, colour and
+size both written down — draws plain foliage, as does the ironwood in fruit. Three recorded
+July inflorescences draw no flower; two are woody and one is the grape.
+
+**WHY THE FIELD-LEVEL MAP COULD NOT SEE ANY OF THIS, and it is the generalisation worth
+carrying.** *"This figure is read"* and *"this record is read"* are different sentences,
+and only the first one had a gate. A read-set keyed on a field path is a statement about a
+FILE; the population it is silently quantified over is the records that reach that file,
+and nothing had ever written that population down. The same shape is waiting anywhere a
+project declares a read against a reader that receives a subset: the archetypes' `CONSUMED`
+lists are per-archetype and every building is dispatched to one of them, and
+`terrain_inputs.py` declares its reads against a generator that runs on one epoch.
+
+**WHAT SHIPPED.** `tools/measure_flora_reach.py` — census, `--gate`, `--self-test`,
+`--update` — and `tools/flora_reach_baseline.json`, banking all three populations by name:
+6 records, 17 partly-reached figures with their counts, 3 headless inflorescences with a
+reason each. Five assertions: **1** the manifest's `forms_flora` / `forms_trees` /
+`forms_unimplemented` vocabularies against the readers' own dispatch tables, both
+directions; **2** the two cohorts are disjoint and every role is a published one; **3**
+the unrouted records, exact both ways and by reason; **4** every declared read whose
+carriers are not all reached, banked with its counts, so a moved population is a failure
+rather than a discovery; **5** the recorded flowers that draw no head. Every cohort is
+**scanned out of the renderer**, never restated — a Set, an array and an object literal,
+and a scanner that cannot find its declaration raises rather than returning an empty set,
+because an empty cohort would route the whole town to `none` and bank it. K42's
+`FLORA_ZONE_READS` is imported rather than copied, so the two gates cannot drift.
+`docs/LIBERTIES.md` **L113** records the omission, with the three repairs that resolve it.
+
+**THE METHOD NOTE, because one scan alone is wrong in both directions.** Attributing a
+figure to a reader needs the declared expression AND the leaf scan, unioned. The
+expression alone undercounts — `sp.height_m` is destructured in `flora.js` and
+type-checked in `trees.js`, and K42's map names one of those. The leaf scan alone misses
+the renamed local: `flora.js` reads `inflor.rgb` off a variable, and `rgb` is the one leaf
+K42 has to scan parent-qualified. Both directions are exercised in `--self-test`.
+
+**THE LIMIT, stated rather than discovered later.** This measures **routing** — which
+reader is handed the record. Whether a routed record then has modelled ground to stand on
+is a different question with a different answer (K42's finding 4b, zone extents), and this
+tool does not ask it: a record it calls reached is one its reader receives, not a plant a
+visitor is guaranteed to be standing in front of. The tool's docstring and its census
+footer both say so.
+
+**Verified:** `tools/check.sh` green with the two new steps; `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not
+claimed — ~13 minutes against a 10-minute per-command ceiling; see the run-budget box at
+the top of this file. **No record moved, no renderer file changed and no asset changed**:
+this parcel is a measurement, a bank, a liberty and two gate steps.
 
 ### K41 — the rights rule tests a label, and the label is on the other side of the question · **DONE 2026-08-16 — the gate could only ever fire on a violation an author had already written down, and 49 geometry-bearing attributes on 21 records are built from sources nobody has checked**
 

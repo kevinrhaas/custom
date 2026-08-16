@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 112,
+  "count": 113,
   "liberties": [
     {
       "id": "L1",
@@ -9283,6 +9283,29 @@
         {
           "label": "How to resolve",
           "text": "for the court-house, a month rather than a season — a contract, a commissioners' minute or a newspaper notice — and the bake that applies its attested corner and fabric. For the enumeration, any source naming a public building this list does not have; it arrives as a named record, never as a slot."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L113",
+      "title": "Six researched plants are handed to no renderer at all, and the woody layer draws no flower",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "six of the 154 species records in `data/flora/` reach **no reader**, and three recorded July inflorescences on records that *are* read draw **no flower**. Nothing is deleted and no grade moves — every one of them stays committed, cited and shipped to the browser. The omission is recorded here, and `tools/measure_flora_reach.py` holds all three populations exact so none of them can grow quietly (ROADMAP **K44**). **What a visitor does not see.** Four are the lakeshore's woody scrub — **eastern cottonwood, quaking aspen, balsam poplar and sandbar willow**, three of them graded `attested` off the Michigan Natural Features Inventory's open-dune survey and Cowles 1901 — and the zone's own `reads_as` sentence promises them in as many words: *\"a scrub of sand cherry and leaning cottonwood\"*. The sand cherry is drawn and the cottonwood is not. Two are the riverbank's vines, **riverbank grape and Virginia creeper**, whose `vine_drape` form the manifest publishes in `forms_unimplemented` — that one is a stated gap rather than a silent one, and it is recorded here because a published list of unimplemented forms is a note to a programmer, not to a visitor. The three flowerless records are the **American basswood in bloom** (its record: *\"pale flower clusters on their strap bracts, heavily bee-worked\"*, colour and size both written down), the **ironwood in fruit**, and the grape. **Why, and it is a routing rule rather than a decision anybody made.** `renderers/web/js/flora.js` draws five of the manifest's seven roles and fifteen of its forms, over every zone. `renderers/web/js/trees.js` draws the other two roles, five forms, and **four of the ten zones** — a `TIMBER_ZONES` list written when the woody records lived only in the timber communities, which `z08_lakeshore` was never added to. Neither file is wrong on its own terms; the gap is between them, and it is invisible from either. It is also invisible from the read-set that was supposed to catch exactly this: K42 measured which FIGURES a renderer reads, and every figure these records carry is read — on somebody else's record. **Consequence, stated so a reader can weigh it.** Wherever the lakeshore community is planted it is planted without its trees — bare sand, marram and sand cherry — which is a claim about the dune this project's own dossier does not make. (Whether that community reaches modelled ground at all today is a separate open question, ROADMAP K42 finding 4b; this entry is about what happens when it does.) In the timber, July's most conspicuous bloom is missing: a basswood in flower is what the record describes and the drawn tree is plain foliage. And the same routing has one more visible edge — a plant's `common` name and its July `appearance` sentence are read by `trees.js` alone, so of 154 plant records the **30** woody ones can be named to a visitor and the **124** herbaceous ones cannot. **What this entry does NOT admit, because the measurement refuted it.** K42 reported that *\"31 flowering plants record the fruit they carry in July, which nothing draws\"*, and ROADMAP K43 was opened to record that omission here. It is not owed. **29 of the 31 are drawn**, in the fruit's own recorded colour, shape, size and height on the plant — the cattail's brown spadix, the dogwood's white berry cluster, the iris's green capsule — because a fruiting head is drawn from `july.inflorescence` exactly as a flowering one is. What no renderer reads is the **boolean** `inflorescence.fruit`, which `tools/validate.py` requires whenever `phenology` is `fruiting` and which is therefore the one part of that record already implied by another field. The two exceptions are the grape and the ironwood, and both are in the paragraph above for a different reason than the one K42 gave."
+        },
+        {
+          "label": "How to resolve",
+          "text": "three separate repairs, none of them a bake. Add `z08_lakeshore` to `TIMBER_ZONES` and the four dune records are drawn by the archetypes that already exist. Give `trees.js` a head path and the basswood and the ironwood get the flower and the fruit their records describe. The vines need a `vine_drape` archetype, which is a renderer parcel of real size. Each of the three is a line this entry can be moved to **Resolved** for, and the gate will demand the bank be updated in the same commit."
         },
         {
           "label": "Recorded",

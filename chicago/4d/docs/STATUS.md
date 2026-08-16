@@ -1,5 +1,48 @@
 # STATUS
 
+## Measured 2026-08-16 — a figure can be read and still reach nothing: 339 of 1,880 (record, figure) pairs, and six researched plants are handed to no renderer at all
+
+**K44**, and it moves no record and no renderer file. K42 asked whether a FIGURE is read. Every
+reader here takes a **cohort**, and no reader receives every record: `flora.js` draws five of the
+manifest's seven roles and fifteen of its forms over all ten zones; `trees.js` draws the other two
+roles, five forms, and **four of the ten zones**. Multiply the read-set by that routing and **339
+of the 1,880 (record, figure) pairs it calls read reach nothing** — 18 %, across 17 of the 18
+declared species reads — and the map reports zero of it.
+
+**Six records reach no reader at all.** Four are `z08_lakeshore`'s woody scrub — **cottonwood,
+quaking aspen, balsam poplar, sandbar willow**, three of them `attested` — missing from a
+`TIMBER_ZONES` list in `trees.js` that names four zones and explains none of the six it leaves
+out. The zone's own `reads_as` promises *"a scrub of sand cherry and leaning cottonwood"*: the
+sand cherry is drawn and the cottonwood is not. **This is independent of the ground question** —
+whatever K42's finding 4b and T-E3 settle about the eastern extents, these four are still handed
+to nothing. The other two are the riverbank's vines, whose form the manifest itself publishes as
+unimplemented.
+
+**K42's fruit sentence is refuted, and it is the one K43 was opened to write a liberty about.**
+**29 of the 31** records carrying a July fruit are drawn, in the fruit's own recorded colour,
+shape, size and height — a fruiting head comes off `july.inflorescence` exactly as a flowering one
+does. What nothing reads is the **boolean**, which the validator requires whenever `phenology` is
+`fruiting`. **The flower that really is missing is the American basswood in bloom**, because
+`trees.js` has no head archetype at all; the ironwood's fruit and the grape's go the same way.
+
+**Two more visible edges of the same routing.** `common` and `july.appearance` are read by
+`trees.js` alone — **30 of 154** plant records can be named to a visitor and **124 cannot** — and
+`july.phenology` is read by `flora.js` alone, so the woody layer has **no July gate**.
+
+**What shipped:** `tools/measure_flora_reach.py` and `tools/flora_reach_baseline.json`, banking
+all three populations by name, with five assertions (the manifest's form vocabularies against the
+readers' dispatch tables; the cohorts disjoint and total; the unrouted records; every partly
+reached read with its counts; the flowers that draw no head), all exercised by `--self-test` in
+`tools/check.sh`. Every cohort is scanned out of the renderer and a scanner that cannot find its
+declaration raises rather than routing the town to nothing. `docs/LIBERTIES.md` **L113** records
+the omission and the three repairs that would resolve it; **K45** is the parcel.
+
+**The limit is stated, not discovered later:** this measures routing only. Whether a routed
+record has modelled ground under it is K42's finding 4b and is not asked here.
+
+**Not verified here:** the desktop half of the smoke (~13 min against a 10-minute per-command
+ceiling). `tools/check.sh` and the mobile half of `--published` are green.
+
 ## Measured 2026-08-16 — 58 of the flora and fauna layers' 100 figures reach nothing, and one of the two layers has no reader at all
 
 **K42**, and it moves no record. The buildings and the ground each declare which of their
