@@ -85,6 +85,34 @@ you need one of the three exemptions, in writing, in the PR body.
 what changed; if nothing in the scene changed, it says so. Gaming the phrase instead of the work
 is worse than the streak.
 
+## What's-New is for the visitor, not the reviewer — a length budget
+
+**Measured 2026-08-15 on the owner's report that What's-New "has gotten excessively verbose". The
+drift is monotonic across the whole history and nobody asked for it:**
+
+| entries | items | words | title words |
+|---|---|---|---|
+| v60–79 | 5.0 | 443 | 11.9 |
+| v80–99 | 7.5 | 642 | 16.2 |
+| v100–119 | 7.3 | 724 | 21.4 |
+| **v120–138** | **8.9** | **790** | **25.7** |
+
+Words per entry up **78 %**, titles up **116 %**, the longest recent entry **984 words**. A
+25-word title is not a title.
+
+**It is the same pressure that produced the invisible-run streak.** This project rewards
+thoroughness, so an entry that explains more of itself reads as better work. It is not. **What's-New
+is read by a visitor who wants to know what changed in the town** — the reasoning, the refutations,
+the measurements and the caveats belong in the PR body and `docs/STATUS.md`, which have no length
+limit precisely so this one can.
+
+**The budget, enforced by `tools/check-changelog.mjs` on entries from v139:** title **≤ 12 words**,
+**≤ 6 items**, **≤ 450 words** total. Over budget warns; over 1.5× fails. The 138 entries already
+written are history and are not retro-failed — the rule binds what is added next.
+
+**Cut the entry rather than raising the number.** If a release genuinely needs more, it is usually
+two entries or an entry plus a STATUS section, not one longer entry.
+
 ## The work-parcel contract
 
 Work is parceled so parallel agents never collide. If you are a subagent:
