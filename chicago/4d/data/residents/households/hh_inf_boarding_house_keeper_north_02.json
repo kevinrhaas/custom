@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_boarding_house_keeper_north_02",
- "name": "The Laframboise household — a reconstructed boarding house keeper (north division)",
+ "name": "The Cardinal household — a reconstructed boarding house keeper (north division)",
  "division": "north",
  "head": "inf_boarding_house_keeper_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_boarding_house_keeper_north_02",
-   "name": "Pierre Laframboise",
+   "name": "Jean Cardinal",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

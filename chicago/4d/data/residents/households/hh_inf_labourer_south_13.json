@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_13",
- "name": "The Fairbanks household — a reconstructed labourer (south division)",
+ "name": "The Bacon household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_13",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_13",
-   "name": "Joseph Fairbanks",
+   "name": "Luther Bacon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

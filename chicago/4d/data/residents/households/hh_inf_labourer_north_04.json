@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_04",
- "name": "The Brady household — a reconstructed labourer (north division)",
+ "name": "The Lynch household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_04",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_04",
-   "name": "Patrick Brady",
+   "name": "Owen Lynch",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

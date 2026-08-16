@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_tavern_keeper_north_01",
- "name": "The Dufresne household — a reconstructed tavern keeper (north division)",
+ "name": "The Gagnier household — a reconstructed tavern keeper (north division)",
  "division": "north",
  "head": "inf_tavern_keeper_north_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_tavern_keeper_north_01",
-   "name": "Louis Dufresne",
+   "name": "Hyacinthe Gagnier",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

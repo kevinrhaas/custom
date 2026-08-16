@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_south_02",
- "name": "The Wadsworth household — a reconstructed shoemaker (south division)",
+ "name": "The Hubbard household — a reconstructed shoemaker (south division)",
  "division": "south",
  "head": "inf_shoemaker_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_south_02",
-   "name": "Horace Wadsworth",
+   "name": "Asa Hubbard",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

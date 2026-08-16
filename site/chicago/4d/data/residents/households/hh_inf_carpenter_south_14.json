@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_14",
- "name": "The Stebbins household — a reconstructed carpenter (south division)",
+ "name": "The Lyman household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_14",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_14",
-   "name": "Seth Stebbins",
+   "name": "Henry Lyman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

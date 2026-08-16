@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_laundress_south_01",
- "name": "The Bacon household — a reconstructed laundress (south division)",
+ "name": "The Whitcomb household — a reconstructed laundress (south division)",
  "division": "south",
  "head": "inf_laundress_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_laundress_south_01",
-   "name": "Mary Bacon",
+   "name": "Abigail Whitcomb",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

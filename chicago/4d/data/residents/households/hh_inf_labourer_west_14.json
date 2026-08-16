@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_west_14",
- "name": "The Sheldon household — a reconstructed labourer (west division)",
+ "name": "The Stebbins household — a reconstructed labourer (west division)",
  "division": "west",
  "head": "inf_labourer_west_14",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_west_14",
-   "name": "Silas Sheldon",
+   "name": "Joseph Stebbins",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

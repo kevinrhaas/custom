@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_01",
- "name": "The Donnelly household — a reconstructed labourer (south division)",
+ "name": "The Walsh household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_01",
-   "name": "Bryan Donnelly",
+   "name": "Terence Walsh",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

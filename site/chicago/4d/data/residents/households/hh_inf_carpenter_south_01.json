@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_01",
- "name": "The Gallagher household — a reconstructed carpenter (south division)",
+ "name": "The Kelly household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_01",
-   "name": "Hugh Gallagher",
+   "name": "John Kelly",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_carpenter_south_01_j1",
-   "name": "Elisha Pratt",
+   "name": "Alanson Bardwell",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

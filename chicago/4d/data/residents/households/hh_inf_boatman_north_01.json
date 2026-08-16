@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_boatman_north_01",
- "name": "The Gagnier household — a reconstructed boatman (north division)",
+ "name": "The Bourassa household — a reconstructed boatman (north division)",
  "division": "north",
  "head": "inf_boatman_north_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_boatman_north_01",
-   "name": "Francois Gagnier",
+   "name": "Louis Bourassa",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

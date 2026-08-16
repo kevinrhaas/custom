@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_domestic_north_04",
- "name": "The Bardwell household — a reconstructed domestic (north division)",
+ "name": "The Rice household — a reconstructed domestic (north division)",
  "division": "north",
  "head": "inf_domestic_north_04",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_domestic_north_04",
-   "name": "Sarah Bardwell",
+   "name": "Eliza Rice",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_08",
- "name": "The Hubbard household — a reconstructed labourer (north division)",
+ "name": "The Bardwell household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_08",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_08",
-   "name": "Levi Hubbard",
+   "name": "Lemuel Bardwell",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

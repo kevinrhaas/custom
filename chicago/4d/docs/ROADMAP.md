@@ -124,6 +124,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | 3 | TOWN | **T-I3(b)** | **NOT A PICK WITHOUT THE OWNER.** Three of the six I3 slots are a count of nothing; the inventory's arithmetic is closed, so removing them is either "the town had 662 roofs" or "three roofs were not civic". Two different claims about the town, and the research settles neither |
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
 | — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
+| — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
 | 4 | TOWN | **K30(c)** | the repair K30(b) attributed: redraw the bodies onto the correct side of their own frontage. **NEEDS ONE BAKE** — it changes footprints, so it cannot go green on the improve runner |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
@@ -1230,9 +1231,75 @@ counts, two arguments) · `tools/measure_adoption_tests.py` (the `pair housed` c
 `docs/LIBERTIES.md` (L109) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
 `renderers/web/js/changelog.js` · `site/chicago/4d/` (publish mirror)
 
-### K20 — the invented-name allocator is not stable under insertion · **UNCLAIMED**
+### K20 — the invented-name allocator is not stable under insertion · **DONE 2026-08-16**
 
-`tools/generate_inferred_names.py` says of itself: *"Assignment is DETERMINISTIC, from a hash of
+> **DONE — and the twelve anecdotes understated it. One new household renamed up to 73 of the
+> 113 invented residents, 64.6 % of the layer, and in the two largest buckets it never renamed
+> nobody. It is 10 now, the pools are the reason it is not 0, and the instrument is committed.**
+>
+> **The eleven measurements were all real and all low.** T-A2h read 25 of 94, T-A5 17 of 33
+> touched, T-A9 19 of 98, T-A14 61 of 108, and L101 — the worst before this — 72 of 100. Every
+> one was a by-product of a parcel doing something else, which means every one measured a
+> single arbitrary insertion at a single arbitrary point in the hash order. Sampled properly,
+> with 240 synthetic single-household insertions across all six trades this layer populates,
+> the distribution is not centred anywhere near 25: mean **40.4** for a carpenter, worst
+> **73 of 113**, and **1 of 40** probes in that bucket renamed nobody. The parcels that read
+> 17 and 19 were lucky, and the argument that "a fifth of the layer" was the cost was built on
+> the low half of a distribution nobody had drawn.
+>
+> **The cause is exactly what the parcel predicted, and the fix is the shape it proposed with
+> one change.** Dealing by index makes a name a function of *how many people sort ahead of you*.
+> It is now a function of *who you collide with*: each person has their own deterministic
+> ordering of the pool, and taking them in the same stable hash order, each claims the
+> least-used name they are permitted. The change to the proposal is that **a given name and a
+> surname are not the same problem** and the old code welded them to one index. A repeated
+> given name is what a town looks like — five Johns among 73 men in 1835 is unremarkable and
+> claims nothing about anybody — so a given name is now simply each person's first preference,
+> with no ledger at all, which is the most insertion-local rule available. A repeated *surname*
+> reads as kinship, which this layer asserts of nobody, so that one keeps the ledger and the
+> floor rule that holds every count within one of every other.
+>
+> **Measured after, on the same 240 probes: worst 10 of 113, mean 4.6.** Splitting the two
+> halves is a third of that improvement on its own — the floor rule on both halves gives 17.
+>
+> **The residual is the POOL, not the allocator, and the report proves it rather than asserting
+> it.** `tools/measure_name_churn.py` prints each bucket's pressure — its size over its surname
+> pool. The two buckets with room to spare (**0.14×**) rename **at most one** person, which is
+> the literal acceptance criterion: only the person actually collided with. The four dealing 36
+> surnames to 73 men (**2.03×**) rename up to ten, because at that pressure there is no spare
+> name at the floor, so the newcomer must displace somebody and that person displaces the next.
+> **8 renames at pressure 2.03× is a pool that is too small; 8 at 0.14× would be an allocator
+> that is still not local.** The gate reads the second as a failure and the first as arithmetic.
+>
+> **A bug the fix exposed, which the index deal had been hiding.** Unwelding the given name from
+> the surname allows two people to draw the same pair, and the first run of it shipped **two
+> Alvah Hastings** — two invented residents who were the same person. The allocator now carries
+> that as its one absolute constraint; all 113 full names are distinct.
+>
+> **The one-time cost is the whole layer: 113 of 113 renamed, 101 household files.** That is
+> what K20 said it would be, it is recorded as **L111**, and it invents nothing new — the pools,
+> the grading, the `name_basis` citation and the note are untouched, and a different invented
+> name is the same claim about the same nobody.
+>
+> **The durable half is a gate**, in `check.sh` at ~2 s: `measure_name_churn.py --gate` fails if
+> one insertion rewrites more than **16** names. Sixteen rather than ten because what it must
+> catch is the class — an allocation that depends on how many people precede you — and every
+> measurement of that class has been above it. If growth ever fires it, the answer is a wider
+> pool, not a higher number.
+>
+> **What this does NOT fix, and what to open if the diffs go noisy again:** the surname pools
+> are 2.03× oversubscribed and are seeded from the 76 attested residents this project holds, so
+> widening them is **evidence work** — more named 1835 Chicagoans out of Andreas and the census
+> rolls — and not a tuning knob. At 3× pressure the residual will climb again. That is the
+> parcel to open, and it buys a better-attested pool as well as a quieter diff.
+>
+> **Files:** `tools/generate_inferred_names.py` · `tools/measure_name_churn.py` (new) ·
+> `tools/check.sh` · `data/residents/households/*.json` (101) · `data/sidecars/1835/*.json` ·
+> `docs/LIBERTIES.md` · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`
+> and the published mirror. `data/residents/index.json` is deliberately untouched: it carries
+> person ids, not names, which is the point the naming tool's own closing comment makes.
+
+`tools/generate_inferred_names.py` said of itself, before this parcel: *"Assignment is DETERMINISTIC, from a hash of
 the person's id. Re-running produces the same town… nobody has to wonder whether a name drifted."*
 The first clause is what the code was built for and the second is not what it does. Pass two deals
 each `(community, sex)` bucket round its pool **by index** — deliberately, to stop four unrelated

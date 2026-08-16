@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_09",
- "name": "The Bardwell household — a reconstructed labourer (north division)",
+ "name": "The Fisk household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_09",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_09",
-   "name": "Samuel Bardwell",
+   "name": "Charles Fisk",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

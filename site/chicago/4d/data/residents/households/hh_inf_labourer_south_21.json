@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_21",
- "name": "The Corrigan household — a reconstructed labourer (south division)",
+ "name": "The Nolan household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_21",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_21",
-   "name": "Cornelius Corrigan",
+   "name": "John Nolan",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

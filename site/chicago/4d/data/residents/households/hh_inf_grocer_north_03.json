@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_grocer_north_03",
- "name": "The Barnes household — a reconstructed grocer (north division)",
+ "name": "The Nash household — a reconstructed grocer (north division)",
  "division": "north",
  "head": "inf_grocer_north_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_grocer_north_03",
-   "name": "William Barnes",
+   "name": "Ira Nash",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
