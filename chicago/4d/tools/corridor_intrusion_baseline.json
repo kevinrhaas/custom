@@ -4,6 +4,9 @@
   "lapping": {
     "bates_auction_room:frame_1834": {
       "anchor_in": [],
+      "anchor_offset_m": 18.92,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 0.97,
       "layer": "research",
@@ -16,6 +19,9 @@
       "anchor_in": [
         "south_water"
       ],
+      "anchor_offset_m": 11.67,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -28,6 +34,9 @@
     },
     "chappel_infant_school:log_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 15.75,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.98,
       "layer": "research",
@@ -38,6 +47,9 @@
     },
     "chicago_american_office:frame_1835": {
       "anchor_in": [],
+      "anchor_offset_m": 13.25,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -50,6 +62,9 @@
     },
     "chicago_democrat_office:frame_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 14.7,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -62,6 +77,9 @@
     },
     "cook_county_courthouse_1835:wood_1835": {
       "anchor_in": [],
+      "anchor_offset_m": 14.97,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "clark",
         "randolph"
@@ -75,6 +93,9 @@
     },
     "dole_warehouse_south:frame_1832": {
       "anchor_in": [],
+      "anchor_offset_m": 18.63,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.28,
       "layer": "research",
@@ -87,6 +108,9 @@
       "anchor_in": [
         "wells"
       ],
+      "anchor_offset_m": 10.8,
+      "body_toward_street": false,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.44,
       "layer": "research",
@@ -97,6 +121,9 @@
     },
     "first_presbyterian_church:frame_1834": {
       "anchor_in": [],
+      "anchor_offset_m": 22.46,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.92,
       "layer": "research",
@@ -107,6 +134,9 @@
     },
     "frederick_thomas_shop:frame_1835": {
       "anchor_in": [],
+      "anchor_offset_m": 12.3,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -121,6 +151,9 @@
       "anchor_in": [
         "lake"
       ],
+      "anchor_offset_m": 20.96,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 0.56,
       "layer": "research",
@@ -133,6 +166,9 @@
       "anchor_in": [
         "south_water"
       ],
+      "anchor_offset_m": 11.64,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -147,6 +183,9 @@
       "anchor_in": [
         "clark"
       ],
+      "anchor_offset_m": 14.7,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -159,6 +198,9 @@
     },
     "hogan_store:log_1831": {
       "anchor_in": [],
+      "anchor_offset_m": 14.62,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -171,6 +213,9 @@
     },
     "jh_kinzie_forwarding_store:frame_1830s": {
       "anchor_in": [],
+      "anchor_offset_m": 12.94,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -183,6 +228,9 @@
     },
     "log_jail:log_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 13.33,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "randolph"
       ],
@@ -197,6 +245,9 @@
       "anchor_in": [
         "south_water"
       ],
+      "anchor_offset_m": 11.84,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -209,6 +260,9 @@
     },
     "newberry_dole_slaughterhouse_south_branch:works_1834": {
       "anchor_in": [],
+      "anchor_offset_m": 12.74,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "randolph"
       ],
@@ -224,6 +278,9 @@
         "franklin",
         "south_water"
       ],
+      "anchor_offset_m": 5.19,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "franklin",
         "south_water"
@@ -237,6 +294,9 @@
     },
     "old_bank_building:frame_1834": {
       "anchor_in": [],
+      "anchor_offset_m": 19.83,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.63,
       "layer": "research",
@@ -247,6 +307,9 @@
     },
     "peck_store:frame_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 15.3,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -259,6 +322,9 @@
     },
     "philo_carpenter_log_shop:log_1832": {
       "anchor_in": [],
+      "anchor_offset_m": 16.9,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 0.22,
       "layer": "research",
@@ -269,6 +335,9 @@
     },
     "pruyne_kimball_drugstore:frame_1830s": {
       "anchor_in": [],
+      "anchor_offset_m": 12.86,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -281,6 +350,9 @@
     },
     "sauganash_hotel:frame_1831": {
       "anchor_in": [],
+      "anchor_offset_m": 20.1,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 0.19,
       "layer": "research",
@@ -291,6 +363,9 @@
     },
     "slough_log_bridge:log_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 8.71,
+      "body_toward_street": false,
+      "category": "furniture",
       "centroid_in": [],
       "depth_m": 0.03,
       "layer": "research",
@@ -301,6 +376,9 @@
     },
     "st_marys_church:frame_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 18.89,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 3.97,
       "layer": "research",
@@ -311,6 +389,9 @@
     },
     "temple_building:frame_1833": {
       "anchor_in": [],
+      "anchor_offset_m": 14.07,
+      "body_toward_street": true,
+      "category": "building",
       "centroid_in": [
         "south_water"
       ],
@@ -325,6 +406,9 @@
       "anchor_in": [
         "dearborn"
       ],
+      "anchor_offset_m": 10.5,
+      "body_toward_street": false,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 1.75,
       "layer": "research",
@@ -337,6 +421,9 @@
       "anchor_in": [
         "canal"
       ],
+      "anchor_offset_m": 11.34,
+      "body_toward_street": false,
+      "category": "building",
       "centroid_in": [],
       "depth_m": 0.85,
       "layer": "research",

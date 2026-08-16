@@ -31,6 +31,7 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py                the full table
     tools/measure_corridor_intrusion.py --by-street    the distribution only
     tools/measure_corridor_intrusion.py --recentre     K30(a)'s refuted counterfactual
+    tools/measure_corridor_intrusion.py --reflect      K30(b)'s CONFIRMED cause
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
@@ -44,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -66,20 +68,83 @@ PLACES = 2
 # depth that grows by more is a building that moved, or a corridor that did.
 TOLERANCE_M = 0.01
 
+# STREET FURNITURE — ROADMAP K30(b) item 2. A bridge standing in a street corridor is the
+# bridge doing its job, and counting it as a building in the road is a category error. So
+# it is CATEGORISED, not deleted: the row stays in the table, stays in the baseline, and
+# stays ratcheted so its depth cannot silently grow — it is simply not counted among the
+# buildings drawn standing in their own streets.
+#
+# The rule is derived from the record's own archetype and function and NEVER from a list
+# of ids, which is the whole point: an id list is an allowance that any later parcel can
+# quietly extend to silence a defect, and this project has been bitten by hand-maintained
+# numbers twice already (K30(a) finding 3, T-A14 on T-A13). To be furniture a record must
+# be BOTH a carrying-way archetype AND a crossing function. A store cannot become furniture
+# by being renamed, and a bridge cannot stop being one by being moved.
+FURNITURE_ARCHETYPES = frozenset({"bridge_timber"})
+FURNITURE_FUNCTIONS = frozenset({"street_crossing", "river_crossing"})
 
-def placed_phases() -> list[tuple[str, str, dict, list[tuple[float, float]]]]:
-    """(structure_id, phase_id, phase, world polygon) for every committed placed phase."""
+# The floor of K30(a)'s DEEP mode. The depths are bimodal with a clean empty gap between
+# 1.98 m and 3.48 m, and that gap is a measurement rather than a threshold anybody chose —
+# which is why this constant is the observed edge of the upper mode and not a round number.
+DEEP_MODE_M = 3.48
+
+# Half the platted street module, read from the same committed control the placements were
+# derived from rather than restated here — `data/traces/street_control.json` exists because
+# this figure used to live in five paragraphs of prose and nothing checked it.
+HALF_WIDTH_M = float(json.loads(
+    (ROOT / "data" / "traces" / "street_control.json").read_text(encoding="utf-8")
+)["platted_street"]["half_width_m"])
+
+
+def is_street_furniture(record: dict) -> bool:
+    """Does this record exist to CARRY a way rather than to stand beside one?"""
+    archetype = record.get("archetype")
+    function = (record.get("function") or {}).get("value")
+    return archetype in FURNITURE_ARCHETYPES and function in FURNITURE_FUNCTIONS
+
+
+def placed_phases() -> list[tuple[str, str, dict, list[tuple[float, float]], str]]:
+    """(structure_id, phase_id, phase, world polygon, category) per committed placed phase.
+
+    `category` is `furniture` for a record that exists to carry a way and `building` for
+    everything else — see `is_street_furniture`.
+    """
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
     out = []
     for path in sorted(STRUCTURES.glob("*.json")):
         record = json.loads(path.read_text(encoding="utf-8"))
+        category = "furniture" if is_street_furniture(record) else "building"
         for phase in record.get("phases") or []:
             position = phase.get("position") or {}
             polygon = (phase.get("footprint") or {}).get("polygon") or []
             if position.get("utm_e") is None or len(polygon) < 3:
                 continue
-            out.append((record["id"], phase["id"], phase, world_polygon(phase, datum)))
+            out.append((record["id"], phase["id"], phase,
+                        world_polygon(phase, datum), category))
     return out
+
+
+def centreline_frame(points: list, px: float, py: float) -> tuple[float, tuple, tuple]:
+    """Distance to a centreline, the unit direction of its nearest segment, and the foot.
+
+    The frame every cross-street question in this module is asked in. A street is a
+    polyline, so "across the street" is only defined against the segment nearest the point
+    — which is why this returns the segment's direction rather than assuming the grid's.
+    """
+    best = (float("inf"), (1.0, 0.0), (px, py))
+    for i in range(len(points) - 1):
+        ax, ay = points[i]
+        bx, by = points[i + 1]
+        dx, dy = bx - ax, by - ay
+        length = math.hypot(dx, dy)
+        if length == 0:
+            continue
+        t = max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / (length * length)))
+        qx, qy = ax + t * dx, ay + t * dy
+        distance = math.hypot(px - qx, py - qy)
+        if distance < best[0]:
+            best = (distance, (dx / length, dy / length), (qx, qy))
+    return best
 
 
 def measure() -> dict:
@@ -91,7 +156,7 @@ def measure() -> dict:
 
     rows: dict[str, dict] = {}
     placed = placed_phases()
-    for structure_id, phase_id, phase, polygon in placed:
+    for structure_id, phase_id, phase, polygon, category in placed:
         street, depth = intrusion(polygon, lanes)
         if street is None:
             continue
@@ -107,15 +172,28 @@ def measure() -> dict:
                              if point_in_polygon((cx, cy), lane["ring"]))
         anchor_in = sorted(s for s, lane in lanes.items()
                            if point_in_polygon(anchor, lane["ring"]))
+        # How far the record's own POINT stands from the centreline of the street it laps,
+        # and which side of it the body was drawn on. K30(b): for a frontage placement
+        # that offset should be the platted half-width, and the body should be on the far
+        # side of the point from the street. Where it is not, the drawing crosses the
+        # frontage the derivation established, and that is the deep cluster's cause.
+        _, axis, foot = centreline_frame(lanes[street]["points"], *anchor)
+        normal = (-axis[1], axis[0])
+        anchor_side = ((anchor[0] - foot[0]) * normal[0]
+                       + (anchor[1] - foot[1]) * normal[1])
+        body_side = ((cx - anchor[0]) * normal[0] + (cy - anchor[1]) * normal[1])
         key = f"{structure_id}:{phase_id}"
         rows[key] = {
             "structure": structure_id,
             "phase": phase_id,
             "layer": layer_of(structure_id),
+            "category": category,
             "street": street,
             "depth_m": round(depth, PLACES),
             "centroid_in": centroid_in,
             "anchor_in": anchor_in,
+            "anchor_offset_m": round(abs(anchor_side), PLACES),
+            "body_toward_street": bool(anchor_side * body_side < 0),
             "position_confidence": position.get("confidence"),
         }
     return {
@@ -127,11 +205,14 @@ def measure() -> dict:
 
 def _fmt_table(result: dict) -> str:
     rows = sorted(result["lapping"].values(), key=lambda r: -r["depth_m"])
-    lines = [f"{'structure':<44}{'street':<14}{'depth m':>8}  {'centroid':<9}{'layer'}"]
+    lines = [f"{'structure':<44}{'street':<14}{'depth m':>8}  {'centroid':<9}"
+             f"{'crosses':<9}{'layer'}"]
     for r in rows:
         centroid = "IN" if r["centroid_in"] else "clear"
+        note = "FURNITURE" if r["category"] == "furniture" else (
+            "frontage" if r["body_toward_street"] else "")
         lines.append(f"{r['structure']:<44}{r['street']:<14}{r['depth_m']:>8.2f}  "
-                     f"{centroid:<9}{r['layer']}")
+                     f"{centroid:<9}{note:<9}{r['layer']}")
     return "\n".join(lines)
 
 
@@ -152,7 +233,34 @@ def _distribution(result: dict) -> str:
         lines.append(f"   {layer:<22}{by_layer.get(layer, 0):>3}")
     centroid = sum(1 for r in rows if r["centroid_in"])
     anchor = sum(1 for r in rows if r["anchor_in"])
+    furniture = [r for r in rows if r["category"] == "furniture"]
+    buildings = [r for r in rows if r["category"] != "furniture"]
+    deep = [r for r in buildings if r["depth_m"] >= DEEP_MODE_M]
+    crossing = [r for r in deep if r["body_toward_street"]]
+    # K30(b)'s three populations. The split is by where the record's own POINT stands
+    # relative to the corridor it laps, because that is what decides whether the depth is
+    # the building's own depth (a drawing fault), the corridor disagreeing with the
+    # centreline (a tolerance), or a corner clipping an intersection (neither).
+    at_kerb = [r for r in buildings if r["anchor_offset_m"] >= HALF_WIDTH_M
+               and r["body_toward_street"] and r["depth_m"] >= DEEP_MODE_M]
+    point_inside = [r for r in buildings if r["anchor_offset_m"] < HALF_WIDTH_M]
     lines += [
+        "",
+        f"{len(furniture)} of them are STREET FURNITURE — a carrying-way archetype with a "
+        f"crossing function, which belongs in a corridor and is categorised rather than "
+        f"counted (ROADMAP K30(b)): {', '.join(r['structure'] for r in furniture) or '—'}",
+        f"{len(buildings)} are buildings drawn standing in a street.",
+        f"{len(deep)} of those are in the DEEP mode (>= {DEEP_MODE_M} m), and all "
+        f"{len(crossing)} of them have their body drawn TOWARD the street from their own "
+        f"anchor — K30(b)'s cause. See --reflect.",
+        f"{len(point_inside)} have the authored POINT itself inside a corridor "
+        f"(< {HALF_WIDTH_M} m from a centreline), by "
+        f"{min(HALF_WIDTH_M - r['anchor_offset_m'] for r in point_inside):.2f}-"
+        f"{max(HALF_WIDTH_M - r['anchor_offset_m'] for r in point_inside):.2f} m: "
+        f"{', '.join(r['structure'] for r in sorted(point_inside, key=lambda r: r['anchor_offset_m'])) or '—'}. "
+        f"That penetration is a floor no redrawing can clear — see --reflect.",
+        f"{len(at_kerb)} stand at or beyond the platted kerb with the body drawn back "
+        f"across it, which is the population the repair is for.",
         "",
         f"{len(rows)} of {result['placed_phases']} placed phases lap a platted corridor.",
         f"{centroid} of them have their CENTROID in one (T-A7's test).",
@@ -181,7 +289,7 @@ def recentre() -> str:
     origin_n = float(datum["origin_utm_n"])
 
     rows = []
-    for structure_id, _phase_id, phase, polygon in placed_phases():
+    for structure_id, _phase_id, phase, polygon, _category in placed_phases():
         street, depth = intrusion(polygon, lanes)
         if street is None:
             continue
@@ -216,6 +324,127 @@ def recentre() -> str:
     return "\n".join(lines)
 
 
+def reflect() -> str:
+    """K30(b)'s CONFIRMED cause, kept as a command for the reason K30(a) gives.
+
+    K30(a) refuted the anchor convention by RECENTRING — moving each footprint half its own
+    depth. That was the wrong counterfactual for the right suspect. The convention it was
+    testing is real and it is universal: 331 of the 333 committed footprints put local
+    (0, 0) at the polygon's minimum corner, so every body in this dataset grows NORTH and
+    EAST from the point the record was derived to.
+
+    And the hand-placed South Water records were derived to their FRONTAGE — the position
+    notes say so in as many words, "the modern intersection centre was read from
+    OpenStreetMap and the footprint offset 12.2 m, half an 80 ft platted street". A point
+    on the south kerb, with a body that grows north from it, is a building drawn across its
+    own frontage and into the roadway by its full depth. That is not a georeference error
+    and no coordinate is wrong; the derivation convention and the drawing convention were
+    never reconciled with each other.
+
+    So the counterfactual that tests it is a REFLECTION, not a recentring: mirror the
+    footprint about the line through its own anchor parallel to the corridor it laps, which
+    is the same record with its body on the other side of the frontage it was derived to.
+
+    THIS IS A DIAGNOSIS AND NOT A PROPOSAL, for two reasons that both matter. It changes
+    footprint polygons, so it changes every affected mesh and needs a bake this runner
+    cannot do; and "the reflection clears the corridor" is evidence about the CAUSE, not
+    authority to redraw a documented building. The repair is K30(c)'s, with the bake.
+    """
+    datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
+    origin_e = float(datum["origin_utm_e"])
+    origin_n = float(datum["origin_utm_n"])
+    lanes = corridors()
+
+    rows = []
+    for structure_id, _phase_id, phase, polygon, category in placed_phases():
+        street, depth = intrusion(polygon, lanes)
+        if street is None:
+            continue
+        position = phase["position"]
+        anchor = (float(position["utm_e"]) - origin_e, float(position["utm_n"]) - origin_n)
+        _, axis, _foot = centreline_frame(lanes[street]["points"], *anchor)
+        normal = (-axis[1], axis[0])
+        mirrored = []
+        for x, y in polygon:
+            vx, vy = x - anchor[0], y - anchor[1]
+            across = vx * normal[0] + vy * normal[1]
+            along = vx * axis[0] + vy * axis[1]
+            mirrored.append((anchor[0] + along * axis[0] - across * normal[0],
+                             anchor[1] + along * axis[1] - across * normal[1]))
+        _, moved = intrusion(mirrored, lanes)
+        _, _axis_d, foot = centreline_frame(lanes[street]["points"], *anchor)
+        inside = max(0.0, HALF_WIDTH_M - math.dist(anchor, foot))
+        # Is the body drawn toward the street from its own point? Reflection is the
+        # correction for one that is, and the wrong operation for one that is not — which
+        # is why the law below is stated over the CORRECTED drawing and not over this
+        # column. Three records are already drawn correctly and reflection ruins them.
+        cx = sum(p[0] for p in polygon) / len(polygon)
+        cy = sum(p[1] for p in polygon) / len(polygon)
+        normal_a = (-_axis_d[1], _axis_d[0])
+        anchor_side = ((anchor[0] - foot[0]) * normal_a[0]
+                       + (anchor[1] - foot[1]) * normal_a[1])
+        body_side = (cx - anchor[0]) * normal_a[0] + (cy - anchor[1]) * normal_a[1]
+        toward = anchor_side * body_side < 0
+        corrected = moved if toward else depth
+        # Rounded to the same places as the table, so `--reflect` and the distribution
+        # cannot disagree about which records are in the deep mode. They did, by one
+        # record, while this was being written: log_jail is 3.48 m to the centimetre and
+        # 3.4799 m in full, so an unrounded comparison put it in a different mode here
+        # than in the table — the same class of mismatch K30(a) finding 3 is about.
+        rows.append((structure_id, street, round(depth, PLACES), round(moved, PLACES),
+                     category, round(inside, PLACES), round(corrected, PLACES), toward))
+
+    buildings = [r for r in rows if r[4] != "furniture"]
+    cleared = [r for r in buildings if r[3] <= TOLERANCE_M]
+    worse = [r for r in buildings if r[3] > r[2] + TOLERANCE_M]
+    deep = [r for r in buildings if r[2] >= DEEP_MODE_M]
+    deep_fixed = [r for r in deep if r[3] < 1.0]
+
+    lines = [f"{'structure':<44}{'street':<14}{'as drawn':>9}{'reflected':>10}"
+             f"{'pt inside':>10}{'':>3}"]
+    for structure_id, street, depth, moved, _c, inside, _corr, _t in sorted(
+            rows, key=lambda r: -r[2]):
+        mark = "WORSE" if moved > depth + TOLERANCE_M else (
+            "clears" if moved <= TOLERANCE_M else "")
+        lines.append(f"{structure_id:<44}{street:<14}{depth:>9.2f}{moved:>10.2f}"
+                     f"{inside:>10.2f}   {mark}")
+
+    # THE RESIDUAL LAW, which is the other half of this parcel's answer. Once the body is
+    # drawn on the correct side of its own point, what is left in the roadway is how far
+    # that POINT stands inside the corridor — and that is not a drawing fault at all, it
+    # is the derived corridor and the traced centreline disagreeing. Reported as a
+    # measured maximum rather than a claimed tolerance.
+    # The population is the KERB HALF of the corridor — a point in the outer half stands
+    # near the frontage it was derived to, which is what the law is about. A point in the
+    # INNER half is not a frontage placement at all and is named rather than averaged in:
+    # today that is one record, and it is the one whose own note says its bank is disputed.
+    kerb_half = HALF_WIDTH_M / 2
+    frontage = [r for r in buildings if 0 < r[5] <= kerb_half]
+    inner = [r for r in buildings if r[5] > kerb_half]
+    law = max((abs(r[6] - r[5]), r[0]) for r in frontage) if frontage else (0.0, "—")
+
+    lines += [
+        "",
+        f"reflecting each body about its own anchor: {len(cleared)} of {len(buildings)} "
+        f"clear the corridor outright, {len(worse)} get deeper.",
+        f"Of the {len(deep)} records in the DEEP mode (>= {DEEP_MODE_M} m), "
+        f"{len(deep_fixed)} fall under 1 m.",
+        "So the cause of the deep cluster is the frontage crossing, not the georeference "
+        "(ROADMAP K30(b)). It is a DIAGNOSIS: the repair changes footprints, needs a bake, "
+        "and is K30(c)'s.",
+        "",
+        f"THE RESIDUAL LAW, over the {len(frontage)} records whose point stands inside the "
+        f"KERB half of a corridor: once the body is drawn on the correct side of its own "
+        f"point, the depth still left in the roadway IS that penetration, to within "
+        f"{law[0]:.2f} m (worst: {law[1]}). The drawing is what puts a body in the "
+        f"road; the point is what the corridor and the traced centreline disagree by, and "
+        f"it is the irreducible term the repair cannot reach.",
+        f"Point in the INNER half, where the law does not apply and the placement is not a "
+        f"frontage placement: {', '.join(f'{r[0]} ({r[5]:.2f} m)' for r in inner) or '—'}.",
+    ]
+    return "\n".join(lines)
+
+
 def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
@@ -223,10 +452,12 @@ def _baseline() -> dict:
 def gate(quiet: bool = False) -> int:
     """The ratchet. A new intruder fails; a deeper one fails; a shallower one is a repair.
 
-    Plus one ABSOLUTE assertion that is not a ratchet: no generated roof may lap a
-    corridor at all. Every generator already refuses it through the same module, so the
+    Plus two ABSOLUTE assertions that are not ratchets. No generated roof may lap a
+    corridor at all — every generator already refuses it through the same module, so the
     invariant is enforceable at zero today and any future breach is a regression rather
-    than a debt.
+    than a debt. And no record may CHANGE CATEGORY: street furniture is the one exemption
+    in this table, so the way to abuse it is to make a store into a bridge, and that is
+    the check which makes the rule safe to have (ROADMAP K30(b) item 2).
     """
     result = measure()
     baseline = _baseline()
@@ -248,14 +479,23 @@ def gate(quiet: bool = False) -> int:
         elif row["street"] != committed[key]["street"]:
             failures.append(f"{key} now laps {row['street']}, "
                             f"was {committed[key]['street']}")
+        elif row["category"] != committed[key].get("category", "building"):
+            failures.append(
+                f"{key} changed category "
+                f"{committed[key].get('category', 'building')} -> {row['category']}; "
+                f"street furniture is an exemption and may not be acquired by editing an "
+                f"archetype or a function")
 
     repaired = sorted(set(committed) - set(result["lapping"]))
     shallower = sorted(k for k, r in result["lapping"].items()
                        if k in committed and r["depth_m"] < committed[k]["depth_m"] - TOLERANCE_M)
 
+    furniture = sum(1 for r in result["lapping"].values() if r["category"] == "furniture")
     if not quiet or failures:
         print(f"   {len(result['lapping'])} of {result['placed_phases']} placed phases lap "
               f"a platted corridor ({len(committed)} committed)")
+        print(f"   {len(result['lapping']) - furniture} buildings, {furniture} street "
+              f"furniture (a bridge in a street is not an intrusion)")
         print(f"   generated roofs lapping a corridor: {len(generated)} (must be 0)")
     if repaired or shallower:
         print(f"   {len(repaired)} cleared and {len(shallower)} shallower than the "
@@ -270,6 +510,8 @@ def main() -> int:
     parser.add_argument("--by-street", action="store_true", help="the distribution only")
     parser.add_argument("--recentre", action="store_true",
                         help="K30(a)'s refuted counterfactual, kept so it stays refuted")
+    parser.add_argument("--reflect", action="store_true",
+                        help="K30(b)'s confirmed cause — a diagnosis, not a proposal")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
@@ -282,6 +524,10 @@ def main() -> int:
 
     if args.recentre:
         print(recentre())
+        return 0
+
+    if args.reflect:
+        print(reflect())
         return 0
 
     result = measure()

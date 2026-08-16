@@ -1,6 +1,57 @@
 # STATUS
 
-## New 2026-08-16 — 29 buildings are drawn standing in the town's own streets, and every one of them was placed by hand
+## New 2026-08-16 — the buildings in the streets are drawn wrong, not placed wrong, and the town's georeference is exonerated
+
+**K30(b)**, the attributing half, and it moved nothing. K30(a) measured 29 buildings lapping
+a platted corridor and left the deep cluster without a cause. The cause is now a command,
+`tools/measure_corridor_intrusion.py --reflect`.
+
+**The suspect this project named is refuted, by arithmetic.** South Water is georeferenced
+through modern Wacker Drive, which was built on made ground, so a displaced centreline would
+displace every record on that street alike. It does not: the 13 deep South Water anchors
+stand **11.64–15.30 m** from the committed centreline against a platted half-width of
+**12.192 m**. The corridor and the placements agree to about a metre, the disagreement has
+**both signs**, and a displacement that explained a 4.51–8.17 m intrusion would have to be
+4.51–8.17 m.
+
+**The cause is two conventions that were never reconciled.** The derivation convention puts
+a record's point on its FRONTAGE — the position notes say *"offset 12.2 m, half an 80 ft
+platted street"*. The drawing convention puts local `(0, 0)` at the polygon's minimum corner,
+so the body grows north and east from that point; **331 of the 333 committed footprints do
+it.** A south-side building with its point on the south kerb is therefore drawn into the
+roadway **by its own full depth**. All 13 deep South Water records declare the south side and
+all 13 are drawn northward from the kerb; across the whole table, **all 17 deep records have
+their body drawn toward the street from their own anchor**. Reflecting each body about its
+own point takes **12 of the 17 under 1 m**, five of them to exactly zero. K30(a)'s recentring
+was the wrong operation on the right suspect — it moves a body half its depth, and cannot
+clear a fault whose size *is* its depth.
+
+**The shallow tail is answered and is not to be fixed.** Once a body is drawn on the correct
+side of its own point, what is left in the roadway **is how far that point stands inside the
+corridor** — to within **0.10 m** over the six records the law covers. So the two terms are
+separable and unequal: the drawing term is a building's depth, 4.51–8.17 m; the point term is
+**0.35–1.69 m**, which is what a derived corridor and a hand-traced centreline disagree by.
+`tremont_house_1`, `exchange_coffee_house` and `western_hotel` are their point's penetration
+and nothing else, and their bodies are **already drawn correctly** — reflecting them sends
+them 12 m into the road, which is the check that the law is about the point. Twelve nudged
+buildings would have bought nothing.
+
+**A bridge in a street is not a building in a street.** `slough_log_bridge` is now
+categorised as street furniture — derived from its own archetype *and* function, never from
+a list of ids — and its row stays in the table, in the baseline and under the ratchet. The
+exemption's obvious abuse is to relabel a store as a bridge, so the gate refuses any category
+change; `peck_store` was disguised as a `bridge_timber` crossing before the rule was trusted
+and the gate caught it.
+
+**What is NOT done.** Nothing was redrawn. The repair changes footprints, so it changes every
+affected mesh and needs a bake the improve runner cannot do — that is **K30(c)**. Three deep
+records are not the frontage fault and are named rather than averaged in:
+`newberry_dole_warehouse`, whose point is 7.00 m inside the corridor and whose own note says
+its bank is disputed; `hogan_store`, derived to the Lake/Market junction at the wedge; and
+`temple_building`, which improves but does not clear. **No coordinate, dimension, footprint or
+confidence moved, and nothing was invented.**
+
+## 2026-08-16 — 29 buildings are drawn standing in the town's own streets, and every one of them was placed by hand
 
 **K30(a)**, the measuring half. T-A9 found three documented stores inside the South Water
 Street corridor and T-A12 found two more, and the entry that collected them asked for the
@@ -23,7 +74,9 @@ regression. Both halves of the gate were broken deliberately before being truste
 and 3.48 m: 17 records deep, 12 shallow. **13 of the 17 deep are South Water.** The shallow
 tail is spread over six streets at ≤ 1.98 m, which is what a derived corridor and a traced
 centreline can honestly disagree by — T-A7's "a metre or two proud of its own frontage". The
-deep cluster is not that, and it has no attributed cause yet.
+deep cluster is not that, and it has no attributed cause yet. *(K30(b), the entry above,
+attributed it the same day: the cause is the drawing convention, and the shallow tail's
+"metre or two" is now measured at 0.35–1.69 m rather than described.)*
 
 **Two numbers that were quoted and do not reproduce.** T-A7's *fourteen* records with their
 centroid in a roadway is **16** — measured at `52641c46`, the commit that states it, as well

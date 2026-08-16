@@ -119,7 +119,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
-| 4 | TOWN | **K30(b)** | the deep South Water cluster still has no attributed cause, and K30(a) committed the table it must take as its baseline. Research, not arithmetic |
+| — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
+| 4 | TOWN | **K30(c)** | the repair K30(b) attributed: redraw the bodies onto the correct side of their own frontage. **NEEDS ONE BAKE** — it changes footprints, so it cannot go green on the improve runner |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
@@ -1788,36 +1789,136 @@ is K30(b)'s to write, not a number to quietly exclude.
 `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. **No data record,
 coordinate, dimension or confidence moved.**
 
-### K30(b) — attribute the deep cluster to a cause, and decide what moves · **CLAIMED 2026-08-16 · steward/k30b-corridor-cause · from K30(a) · Effort: M — research, not arithmetic**
+### K30(b) — attribute the deep cluster to a cause, and decide what moves · **DONE 2026-08-16**
 
-**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
+**THE CAUSE IS THE DRAWING, NOT THE GEOREFERENCE, AND IT IS A COMMAND —
+`tools/measure_corridor_intrusion.py --reflect`.** The suspect this entry named is refuted;
+the one that survives explains **all 17** records in the deep mode, and the residual it
+leaves is measured rather than argued. **No coordinate, dimension, footprint or confidence
+moved in this parcel.** Nothing was invented, so `docs/LIBERTIES.md` gains no entry.
 
-K30(a)'s committed table is the baseline and **its numbers are not to be re-derived by
-hand** — run the command. Three things are owed, and the first is the whole parcel:
+**Finding 1 — the Wacker made-ground hypothesis is REFUTED, and the refutation is
+arithmetic.** If the committed 1835 centreline were displaced from the modern control the
+placements were derived from, every South Water record would be displaced by that amount.
+It is not: the anchors of the 13 deep South Water records stand **11.64–15.30 m** from the
+committed centreline against a platted half-width of **12.192 m**, so the corridor and the
+placements agree to about a metre, and the disagreement has **both signs**. A displacement
+large enough to explain a 4.51–8.17 m intrusion would have to be 4.51–8.17 m. It is not
+there, and made ground is not the answer.
 
-1. **Why are 13 deep intrusions on South Water Street?** The three candidate causes K30
-   listed are all still open — the committed centreline, the platted half-width, or the
-   positions — and K30(a) adds the one worth testing first: **South Water is the street this
-   project georeferences through modern Wacker Drive**, and Wacker was built on made ground
-   over the old river frontage. If the 1835 centreline is south of where the equivalence puts
-   it, every South Water record is displaced the same way and the corridor is what is wrong.
-   That is testable against the traced shore and the plat, and it is a **finding** rather
-   than a defect if it holds.
-2. **A category rule for street furniture.** A bridge in a street corridor is correct. Say so
-   in a rule, in the tool, with the reasoning — do not delete the row.
-3. **The shallow tail is probably not to be fixed at all.** 12 records ≤ 1.98 m, spread over
-   six streets, is what a derived corridor and a traced centreline disagree by. If that is
-   the finding, write it down and close it; a tolerance argued from the measurement is worth
-   more than twelve nudged buildings.
+**Finding 2 — the cause is that the body is drawn across the frontage its own point was
+derived to, and it is universal.** Two conventions that were never reconciled with each
+other:
 
-**The standing prohibition, restated because it is the one that will be tempting here:** do
-NOT move a documented building to make a number smaller. A position with a source outranks a
-corridor this project derived from a module and a traced line. Anything invented in the
-resolution goes to `docs/LIBERTIES.md`.
+- The **derivation** convention puts the record's point on its FRONTAGE. The position notes
+  say so in as many words — *"the modern intersection centre was read from OpenStreetMap and
+  the footprint offset 12.2 m, half an 80 ft platted street"* — and the measured offsets
+  above are that half-width.
+- The **drawing** convention puts local `(0, 0)` at the polygon's minimum corner, so a body
+  grows NORTH and EAST from that point. **331 of the 333 committed footprints do this.**
 
-**Acceptance:** the deep cluster attributed to a cause with the reasoning recorded; the
-street-furniture rule written and gated; `tools/check.sh` green; every entry that clears the
-table banked with `--write-baseline`, and the entries that stay explained.
+A south-side building whose point is on the south kerb, drawn with its body growing north,
+is therefore drawn **into the roadway by its own full depth**. All 13 deep South Water
+records declare themselves on the south side of the street, and all 13 are drawn northward
+from a point at the kerb. Across the whole table, **all 17 records in the deep mode have
+their body drawn toward the street from their own anchor.**
+
+**The counterfactual that tests it is a REFLECTION, not K30(a)'s recentring** — the same
+record with its body on the other side of the frontage it was derived to, rather than moved
+half its own depth. `--reflect` is that command:
+
+| | as drawn | reflected |
+|---|---|---|
+| `jh_kinzie_forwarding_store` | 6.87 m | **0.00** |
+| `frederick_thomas_shop` | 6.25 m | **0.00** |
+| `pruyne_kimball_drugstore` | 5.55 m | **0.00** |
+| `log_jail` | 3.48 m | **0.00** |
+| `newberry_dole_slaughterhouse_south_branch` | 11.45 m | **0.00** |
+| `h_jones_store` | 8.17 m | 0.65 |
+| `chicago_american_office` | 6.91 m | 0.12 |
+| `carpenter_south_water_store` | 6.62 m | 0.59 |
+| `madore_beaubien_house` | 5.98 m | 0.35 |
+| `harmon_loomis_store` | 5.31 m | 0.30 |
+| `chicago_democrat_office` | 5.11 m | 0.05 |
+| `peck_store` | 4.51 m | 0.24 |
+
+**12 of the 17 deep records fall under 1 m**, and 11 of the 28 buildings clear the corridor
+outright. K30(a)'s recentring was the wrong operation on the right suspect: it moves a body
+half its depth, which cannot clear a fault whose size IS its depth, and that is why 10
+records got worse under it.
+
+**Finding 3 — THE RESIDUAL LAW, which is the shallow tail's answer (item 3) and settles it
+without moving anything.** Once the body is drawn on the correct side of its own point, the
+depth still left in the roadway **IS how far that point stands inside the corridor**, to
+within **0.10 m** across the six records the law applies to. The two terms are separable and
+they are different sizes:
+
+- **The drawing term** is metres — a building's own depth, 4.51 to 8.17 m on South Water.
+- **The point term** is **0.35–1.69 m**, and that is exactly what a corridor derived from a
+  module and a centreline traced by hand disagree by.
+
+So the shallow tail is **not to be fixed**, as this entry suspected, and now for a measured
+reason rather than a guess: `tremont_house_1` (1.75 m drawn / 1.69 m point), and
+`exchange_coffee_house` (1.44 / 1.39) and `western_hotel` (0.85 / 0.85) are their point's
+penetration and nothing else. **Their bodies are already drawn correctly** — reflecting them
+is the wrong operation and sends them 12 m into the road, which is the check that the law is
+about the point and not about the drawing. Eight further shallow records are corner clips at
+intersections, where two corridor rings overlap and a polygon corner reaches into the one it
+does not front. **Twelve nudged buildings would have bought nothing.**
+
+**Finding 4 — three deep records are NOT the frontage fault and are named rather than
+averaged in.** `newberry_dole_warehouse` (12.10 m, reflects to 11.97) has its point **7.00 m
+inside the corridor**, in the INNER half — it is not a frontage placement at all, and its own
+note says its bank is disputed between two readings this project has not settled.
+`hogan_store` (10.06 → 7.95) is derived to the Lake/Market junction at the wedge where Lake
+and South Water converge, so it laps a street it was not placed against. `temple_building`
+(5.49 → 2.38), `cook_county_courthouse_1835` (4.54 → 3.69) and `st_marys_church` (3.97 →
+3.00) improve but do not clear. Each is its own question and none is answered here.
+
+**Item 2 — the street-furniture rule, written and gated.** A bridge in a street corridor is
+the bridge doing its job. `slough_log_bridge` (0.03 m into South Water) is now
+**categorised, not deleted**: the row stays in the table, stays in the baseline and stays
+ratcheted, and is reported as furniture rather than counted among the 28 buildings drawn
+standing in a street. The rule is derived from the record's own `archetype` **and**
+`function` — a carrying-way archetype with a crossing function — and **never from a list of
+ids**, because an id list is an allowance a later parcel can quietly extend. The obvious
+abuse is to make a store into a bridge, so **the gate now refuses any category change**:
+re-labelling `peck_store` as `bridge_timber` + `street_crossing` was tried before the rule
+was trusted and the gate caught it (`changed category building -> furniture`).
+
+**What K30(b) deliberately does NOT do: it moves nothing.** The repair is a footprint change
+on 13+ records — it changes every affected mesh, so it needs a bake this runner cannot run —
+and "the reflection clears the corridor" is evidence about the cause, not authority to
+redraw a documented building. That is **K30(c)**, below. The standing prohibition held: a
+position with a source still outranks a corridor this project derived.
+
+**Files:** `tools/measure_corridor_intrusion.py` (`--reflect`, the furniture rule, the
+category assertion, `centreline_frame`) · `tools/corridor_intrusion_baseline.json`
+(additive only — **no depth changed**) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js`.
+
+### K30(c) — redraw the bodies onto the correct side of their own frontage · **UNCLAIMED · from K30(b) · NEEDS ONE BAKE · Effort: M**
+
+**Phase:** lane 2, data + geometry · **Runner:** NOT the improve runner — needs `bake.sh`
+
+K30(b) attributed the deep cluster and committed the counterfactual as a command. This is
+the repair, and it is a **footprint** change, not a position change: the records' points are
+right and their sources are untouched. For each record `--reflect` clears, the polygon's
+local origin moves from the corner nearest the street to the corner away from it, so the
+body grows away from the frontage instead of across it. Every affected mesh regenerates, so
+this parcel cannot go green on the improve runner.
+
+**Three things it must not do.** It must not move a point — the intrusion that survives is
+the residual law's term and belongs to the corridor, not to the record. It must not touch
+the five records finding 4 names; they are separate questions. And it must not treat
+`--reflect`'s output as the answer to copy: the reflection is a test of the cause, while the
+repair is authoring the correct anchor corner for each polygon, which is a per-record
+reading of what that record fronts.
+
+**Acceptance:** the affected footprints re-authored and baked; `--reflect` and the baseline
+re-run and the repair banked with `--write-baseline`; the residual on each repaired record
+equals its point's penetration to the tolerance finding 3 measured; `tools/check.sh` and
+`tools/smoke_renderer.mjs` green; nothing in `docs/LIBERTIES.md` unless something is invented.
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
