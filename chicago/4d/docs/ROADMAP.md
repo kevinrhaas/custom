@@ -1678,6 +1678,18 @@ where it does not**; or grade these values a level lower than the ones the band 
 cite a band only if the family authors one for it. Until then the census prints and does
 not fail, and this box says why.
 
+### K34 — what `review_required` actually blocks · **CLAIMED 2026-08-16 — DO NOT PICK UP**
+
+Held by the overnight steward run of 2026-08-16 on `steward/k34-review-constraint`. Take
+**R-W2b** or open a fresh parcel instead. Claim expires 2026-08-17.
+
+AGENTS.md puts one constraint above the work — *the final removal of the Potawatomi from
+Chicago occurred in August 1835, inside this project's first target year* — and gives it one
+mechanism: **`review_required: true` on any record blocks a scene from being marked
+`released`.** Nothing has ever measured what that sentence covers.
+
+**Phase:** lane 2 · **Effort:** S to measure, S to gate · data, tools and docs only, no bake
+
 ### K26 — every building card links to a dossier that is not published · **DONE 2026-08-16 · 332 links, 332 of them 404, and 30 that should never have been links**
 
 **Phase:** lane 1 (renderer or publish) · **Effort:** S
