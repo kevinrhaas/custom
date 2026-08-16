@@ -141,6 +141,7 @@ rationed.**
 
 | # | lane | parcel | seen? | why |
 |---|---|---|---|---|
+| **0** | RENDERING | **K49(f)** | **SEEN** | **CLAIMED 2026-08-16.** The even deal K49(d) gave the grasses deals the SAME 64 values of `u` in every block of the world, so a matrix species whose CDF band is narrower than 1/64 falls between two of them and is drawn **nowhere at all**. Measured on the shipped build: wild rice is absent from the marsh at all three stations that read the marsh list, and the prickly pear is absent from the sand prairie. K49(b)'s "6 absent → 0" has become 2 absent and nothing had re-asked |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
