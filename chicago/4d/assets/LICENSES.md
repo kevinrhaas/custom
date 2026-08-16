@@ -8,6 +8,12 @@ Generated output (`gltf/`, `web/`) is covered by the project's own license and b
 provenance of the data it was generated from — but any **texture, audio, or authored
 asset** brought in from outside needs its own row, with a URL and the license name.
 
+Two files here are build RECORDS rather than assets, carry no third-party content, and
+are covered by the project's own license along with the output they describe:
+`manifest.json`, written by the Blender build, records data → master; and
+`manifest.web.json`, written by `tools/web_derivatives.sh`, records master →
+derivative (ROADMAP K39).
+
 ## Rights gating
 
 A source whose `rights_status` is `check_required` or `restricted` in `data/sources/`
