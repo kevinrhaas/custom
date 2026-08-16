@@ -1,5 +1,43 @@
 # STATUS
 
+## New 2026-08-16 — the ground still stands over the road it carries, and the fix costs 1,116 bytes
+
+**R-W6**, which expected to prove the horizontal artefact invisible and instead measured it on
+South Water Street. R-BUG3c repaired the 306 mm VERTICAL lattice by reading heights back off the
+heightfield at load; the same quantiser moves E and N, nothing corrects that, and a vertex
+conformed at a displaced position holds the field's height for the wrong place.
+
+**Measured at all 259,689 of the field's own sample points, after `conformGroundToField()`, by
+interpolating the containing triangle in plan** — `tools/measure_terrain_horizontal.mjs`, with the
+14-bit rebuild coming back **byte-for-byte identical to the file in `assets/web/`**, so the
+numbers are the shipping ones:
+
+| encoding | KB | lattice | plan displacement | drawn surface vs field (rms / p99 / max) | past the 22 mm road lift |
+|---|---|---|---|---|---|
+| master | 6296 | float | — | 1.3 / 3.8 / **7.7 mm** | — |
+| **shipped, 14-bit** | 671 | 306.4 mm | **273.1 mm** | 2.1 / 7.9 / **46.3 mm** | **87** (44 dry) |
+| **16-bit — taken** | 672 | 76.6 mm | 52.0 mm | 1.4 / 3.8 / **12.9 mm** | **0** |
+| uncompressed | 6296 | float | 0.0 mm | 1.3 / 3.8 / **7.7 mm** | 0 |
+
+**The closest over-budget sample stands 1.9 m from South Water Street's centreline** — inside a
+10.5 m travelled track — **30.2 mm above the field, carrying a road lifted 22 mm.** That is
+R-BUG3c's failure mode surviving its own fix, on the street the owner reported it from, at 1/5
+the amplitude and on 0.03 % of the town. The mechanism is slope, not size: the 87 samples sit at
+a median slope of **18 %**, and flat platted prairie cannot show this at any bit depth.
+
+**The decision, made by measurement rather than preference.** The terrain keeps shipping
+quantised — the uncompressed file buys 12.9 mm → 7.7 mm for 5.8 MB, and 7.7 mm is DECIMATION
+every row carries — at **16 bits on the epoch meshes only**: +1,116 bytes, against +105.7 KB
+(+2.4 %) measured for raising the whole payload to buy nothing measurable, because precision is
+per-mesh and every asset that is not the terrain or the water already lands inside 4.8 mm
+(median 0.5 mm). Two corrections ride with it: R-BUG3c's *"E and N move by up to 153 mm"* was
+arithmetic and the measured figure is **273.1 mm** in plan; and 15 bits is *bigger* than 16.
+
+**What is unverified:** the desktop half of `tools/smoke_renderer.mjs` — the ten-minute
+per-command ceiling. The mobile half was run against a published mirror carrying the 16-bit
+ground: **218 passed, 0 failed**. **No GLB ships with this parcel**: `assets/web/` belongs to the
+nightly bake, so the ground a visitor loads stays 14-bit until `chicago-4d-bake.yml` next runs.
+
 ## New 2026-08-15 — 623 invented details cited a band the specification never wrote, and 42 of them were unfindable
 
 **K33**, the other half of K25's subject, and it is worse in kind: not a value outside its band but

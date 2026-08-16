@@ -134,14 +134,27 @@ async function readAccessor(gltf, bin, index, decoder) {
   return { data: out, items, componentType: acc.componentType, normalized: !!acc.normalized };
 }
 
-/** The ground mesh's world-space vertices, in ENU metres. */
-async function groundVertices(file, decoder) {
+/** The ground mesh's world-space vertices, in ENU metres.
+ *
+ * Exported because the triangles are the surface: a vertex table answers "is
+ * this corner at the right height", and only the triangles answer "is the
+ * ground a visitor SEES the ground the town is placed on" — which is what
+ * `tools/measure_terrain_horizontal.mjs` asks. A second reader of these bytes
+ * would be a fourth; this file already decodes them the way the renderer does.
+ */
+export async function groundVertices(file, decoder, { indices = false } = {}) {
   const gltf = parseGlb(await readFile(file));
   const node = (gltf.json.nodes || []).find((n) => n.mesh !== undefined);
   if (!node) throw new Error(`${path.basename(file)}: no node with a mesh`);
   const mesh = gltf.json.meshes[node.mesh];
   const prim = mesh.primitives[0];
   const pos = await readAccessor(gltf, gltf.bin, prim.attributes.POSITION, decoder);
+  let tris = null;
+  if (indices) {
+    if (prim.indices === undefined) throw new Error(`${path.basename(file)}: no index buffer`);
+    const idx = await readAccessor(gltf, gltf.bin, prim.indices, decoder);
+    tris = Uint32Array.from(idx.data);
+  }
   const s = node.scale ?? [1, 1, 1];
   const t = node.translation ?? [0, 0, 0];
   const n = pos.data.length / 3;
@@ -152,7 +165,7 @@ async function groundVertices(file, decoder) {
     out[i * 3 + 1] = pos.data[i * 3 + 1] * s[1] + t[1];
     out[i * 3 + 2] = pos.data[i * 3 + 2] * s[2] + t[2];
   }
-  return { xyz: out, count: n, node, accessor: pos };
+  return { xyz: out, count: n, node, accessor: pos, indices: tris };
 }
 
 // --- the heightfield the walker samples ---------------------------------- //

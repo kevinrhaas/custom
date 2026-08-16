@@ -75,7 +75,36 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   # Turning this on is part of W2 (docs/RENDERING.md), and the order is: wire
   # KTX2Loader + a vendored transcoder into the renderer FIRST, prove it loads a
   # textured asset, and only then set BAKE_KTX2=1 here.
-  compress=(--compress meshopt)
+  # POSITION PRECISION IS PER-MESH, AND ONE MESH IN THIS TOWN IS 5 KM WIDE.
+  #
+  # `gltf-transform` quantises POSITION to a bit depth under ONE UNIFORM node
+  # scale set by the mesh's own bounding box, so the rung spacing an asset lands
+  # on is its own widest axis over 2^bits — nothing to do with how big its
+  # details are. Measured on the 244 derivatives that ship quantised
+  # (tools/measure_terrain_horizontal.mjs, and the per-asset scan in R-W6):
+  #
+  #   water__e1834_harbor_cut   330.8 mm  ) the two epoch-scale meshes: a 2,020 m
+  #   terrain__e1834_harbor_cut 306.4 mm  ) box plus 1.5 km of skirt on each side
+  #   north_pier                 16.8 mm
+  #   every other asset          ≤ 4.8 mm, median 0.5 mm
+  #
+  # At 14 bits the ground therefore ships on a 306 mm lattice, which R-BUG3c
+  # found buries the road, and the town's OTHER 242 assets ship at half a
+  # millimetre, which is precision nobody asked for and nothing can see. So the
+  # bit depth is raised where it is needed and left alone where it is not:
+  # 16 bits on the epoch meshes costs 1,116 bytes and takes the ground's lattice
+  # to 76.6 mm and its worst drawn-surface error from 46.3 mm to 12.9 mm — under
+  # the 22 mm road lift at every one of the field's 259,689 sample points. Asking
+  # for 16 bits EVERYWHERE was measured too: +105.7 KB on a 4.47 MB payload
+  # (+2.4 %) to buy nothing measurable, so it is not done. See R-W6.
+  #
+  # `optimize` has no --quantize-position, so compression moves to the `meshopt`
+  # command in a second pass. Verified byte-for-byte: `optimize --compress false`
+  # followed by a default `meshopt` reproduces the file this step shipped before,
+  # exactly — the ONLY thing that changes below is the bit depth.
+  EPOCH_QUANT_BITS="${EPOCH_QUANT_BITS:-16}"
+  ASSET_QUANT_BITS="${ASSET_QUANT_BITS:-14}"
+  compress=(--compress false)
   if [ "${BAKE_KTX2:-0}" = "1" ]; then
     if command -v ktx >/dev/null 2>&1; then
       echo "   BAKE_KTX2=1 — asking for KTX2 textures (the renderer MUST have setKTX2Loader wired)"
@@ -112,10 +141,17 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   for f in assets/gltf/*.glb; do
     [ -e "$f" ] || continue
     out="assets/web/$(basename "$f")"
-    npx --yes @gltf-transform/cli optimize "$f" "$out" \
-      "${compress[@]}" 2>&1 | tail -2 || {
+    case "$(basename "$f")" in
+      terrain__*|water__*) bits="$EPOCH_QUANT_BITS" ;;
+      *) bits="$ASSET_QUANT_BITS" ;;
+    esac
+    tmp="$(mktemp -t gltfopt.XXXXXX.glb)"
+    npx --yes @gltf-transform/cli optimize "$f" "$tmp" "${compress[@]}" 2>&1 | tail -2 \
+      && npx --yes @gltf-transform/cli meshopt "$tmp" "$out" \
+        --quantize-position "$bits" 2>&1 | tail -2 || {
         echo "   optimize failed for $(basename "$f"); copying the master through"
         cp "$f" "$out"; fellback=$((fellback + 1)); }
+    rm -f "$tmp"
     printf '   %s  %s -> %s bytes\n' "$(basename "$f")" \
       "$(stat -c%s "$f")" "$(stat -c%s "$out")"
   done

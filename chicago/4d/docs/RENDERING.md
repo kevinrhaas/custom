@@ -689,6 +689,7 @@ recipes in Appendix B.
 | Draw calls (`walk/`) | ≤ 80 main pass; extra passes accounted separately | existing BUDGET + W5 |
 | Triangles (`walk/`) | ≤ 1,000,000 / 800,000 / 600,000 by tier | existing DETAIL |
 | Published site | ≤ 25 MB until H2's sanctioned raise (~100 MB) | validate.py + §8 |
+| Drawn ground vs the heightfield | within the 22 mm road lift at **every** field sample, after conforming (16-bit: 12.9 mm worst; 14-bit was 46.3 mm at 87 samples) | R-W6, `tools/measure_terrain_horizontal.mjs` |
 | Page errors | zero, at 390×780 AND 1280×800, every renderer | AGENTS.md |
 | Fog extinction | total by 1500 m, every renderer, every mode | LIBERTIES L17 |
 
@@ -806,6 +807,19 @@ set at the G0 anchors.
    bake may write to `main`. The bake branches off `dev` and PRs into `dev`; promotion to
    production is owner-dispatch only. Recorded because it changes where every phase in this
    document lands, not merely how it is reviewed.
+
+**RESOLVED BY MEASUREMENT — R-W6, 2026-08-16** (no owner ruling was needed once the number
+existed, which is the point of taking the measurement first):
+
+7. **The terrain keeps shipping quantised, at 16 bits on the epoch meshes.** The payload question
+   ("688 KB on a lattice against 6.45 MB exact") turned out to be answerable without trading
+   anything: 16 bits costs **1,116 bytes** and takes the drawn ground's worst departure from the
+   heightfield from **46.3 mm to 12.9 mm**, inside the 22 mm road lift at all 259,689 field
+   samples, while the uncompressed file would buy 12.9 → 7.7 mm for 5.8 MB — and 7.7 mm is the
+   master's own decimation error, which no compressor setting touches. Raising every asset to 16
+   bits was measured and rejected: +105.7 KB for nothing visible, because quantisation precision
+   is set per-mesh by its own bounding box and only the terrain and water meshes are km-scale.
+   Full table and the two corrections it carries: ROADMAP § R-W6, STATUS 2026-08-16.
 
 **OPEN** (no agent acts on these without a ruling recorded here):
 
