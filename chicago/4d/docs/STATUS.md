@@ -1,5 +1,49 @@
 # STATUS
 
+## New 2026-08-16 — 29 buildings are drawn standing in the town's own streets, and every one of them was placed by hand
+
+**K30(a)**, the measuring half. T-A9 found three documented stores inside the South Water
+Street corridor and T-A12 found two more, and the entry that collected them asked for the
+distribution rather than the anecdotes. It is a command now —
+`tools/measure_corridor_intrusion.py` — and `tools/check.sh` runs it.
+
+**29 of the town's 332 placed phases lap one of the 13 platted corridors.** 16 have their
+centroid in one, which is T-A7's test; 9 have their authored position point in one. South
+Water carries 14 of the 29 and the deepest at **12.10 m**, but the set spans **eight**
+streets — Randolph, Clark, State, Lake, Dearborn, Wells and Canal as well — so
+"all of them are on South Water" does not survive the full measurement.
+
+**Every one of the 29 is a `research`-layer record.** Zero of the anonymous reconstruction
+roofs and zero of the inferred-household roofs lap any corridor. Every generator has asked
+`plat_corridors.intrusion()` before placing anything since K7, and this parcel commits that
+as an **absolute** assertion rather than a ratchet: a generated roof in a roadway is a
+regression. Both halves of the gate were broken deliberately before being trusted.
+
+**The depths are bimodal, and the gap is the finding.** Nothing at all sits between 1.98 m
+and 3.48 m: 17 records deep, 12 shallow. **13 of the 17 deep are South Water.** The shallow
+tail is spread over six streets at ≤ 1.98 m, which is what a derived corridor and a traced
+centreline can honestly disagree by — T-A7's "a metre or two proud of its own frontage". The
+deep cluster is not that, and it has no attributed cause yet.
+
+**Two numbers that were quoted and do not reproduce.** T-A7's *fourteen* records with their
+centroid in a roadway is **16** — measured at `52641c46`, the commit that states it, as well
+as today, and it is the same 16 both times, so the layer has not grown. And two of the four
+buildings T-A7 names are printed against the wrong street, because a centroid at an
+intersection is inside **two** corridors and nothing said which to report.
+
+**The one systematic cause that could be tested here was tested and is refuted.** The
+position sits at the footprint polygon's origin, which is a vertex on 332 of 333 records, so
+a building derived to a street corner is drawn with a corner on that point — a good enough
+mechanism that 20 of the 29 anchors stand on legal ground while the body reaches into the
+street. Centring every footprint on its own anchor clears 5, improves 14 and makes **10
+worse**, the Tremont House by 7.59 m. `--recentre` keeps the refutation runnable.
+
+**What is unverified:** the desktop half of `tools/smoke_renderer.mjs`, for the usual reason
+— the harness's ten-minute per-command ceiling (ROADMAP, "the run budget"). `tools/check.sh`
+passed and the mobile half passed against the published mirror. This parcel ships no data,
+renderer or scene change, so there is nothing in it a browser could load differently: **no
+record, coordinate, dimension or confidence moved**, and no building was touched.
+
 ## New 2026-08-16 — every card's dossier link was a 404 on the deployed site, and 30 of them should never have been links
 
 **K26.** Each building card ends with a link to the research write-up behind the building, and

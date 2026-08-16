@@ -118,6 +118,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
+| 4 | TOWN | **K30(b)** | the deep South Water cluster still has no attributed cause, and K30(a) committed the table it must take as its baseline. Research, not arithmetic |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
@@ -1703,10 +1705,119 @@ programme are unchanged in aggregate (this moves families between schedule units
 raise or lower the target); the three open South Water blocks visibly change deal; `check.sh`
 green.
 
-### K30 — three documented stores stand in the middle of South Water Street · **CLAIMED 2026-08-16 — DO NOT PICK UP**
+### K30(a) — the distribution, measured · **DONE 2026-08-16**
 
-Held by the overnight steward as **K30(a)**, the measuring half only, under the run-budget rule's
-measure-then-fix split. Expires 2026-08-17. Take T-I3 or T-E5 instead.
+**It is 29 buildings, not three and not five, and every one of them is documented.** The
+question is a command now — `tools/measure_corridor_intrusion.py` — and `tools/check.sh`
+carries it, so the figure cannot silently grow.
+
+**The headline table.** 29 of the town's 332 placed phases lap one of the 13 platted
+corridors; 16 have their **centroid** in one, which is T-A7's test; 9 have their authored
+**position point** in one.
+
+| street | records | deepest | shallowest |
+|---|---|---|---|
+| south_water | 14 | **12.10 m** | 0.03 m |
+| randolph | 2 | 11.45 m | 3.48 m |
+| clark | 2 | 4.54 m | 1.92 m |
+| state | 2 | 3.97 m | 1.98 m |
+| lake | 4 | 1.63 m | 0.19 m |
+| dearborn | 2 | 1.75 m | 0.97 m |
+| wells | 1 | 1.44 m | — |
+| canal | 2 | 0.85 m | 0.56 m |
+
+**Finding 1 — the fault is entirely in the hand-placed layer, and the placement gate holds
+absolutely.** All 29 are `research`-layer records. **Zero** of the anonymous reconstruction
+roofs and **zero** of the inferred-household roofs lap any corridor, across 332 placed
+phases. Every generator has asked `plat_corridors.intrusion()` before placing anything since
+K7, and the assertion this parcel commits is therefore **absolute, not a ratchet**: a
+generated roof in a roadway is a regression, never a debt. Both halves of the gate were
+broken deliberately before being trusted — a documented building moved 6 m (caught,
+`0.19 → 6.19 m`) and a generated roof moved into the Washington corridor (caught, `must be 0`).
+
+**Finding 2 — T-A9's and T-A12's "all five are on South Water" does not survive the full
+set, and the depth distribution replaces it with something sharper.** The 29 are on **eight**
+streets, so a centreline-or-width error on one stretch cannot be the whole story. But the
+depths are **bimodal, with a clean empty gap between 1.98 m and 3.48 m**: 17 records deep,
+12 shallow, nothing in between. **13 of the 17 deep ones are South Water.** The shallow tail
+— ≤ 1.98 m, on Lake, Dearborn, Canal, Wells, Clark and State — is exactly the "metre or two
+proud of its own frontage" T-A7 described, which is inside the tolerance a derived corridor
+and a traced centreline can honestly disagree by. The deep cluster is not.
+
+**And the gap is very nearly the centroid test.** Every record deeper than 3.48 m has its
+centroid in the corridor and every record shallower than 1.98 m does not, with **exactly one
+exception**: St Mary's church, 3.97 m deep with its centroid clear. So T-A7's fourteen and
+this parcel's depth distribution are two views of one population, not two findings.
+
+**Finding 3 — T-A7's "fourteen" does not reproduce, at its own commit.** Re-run at
+`52641c46`, the commit that states it, the centroid test gives **16**, and the same 16 it
+gives today. The set has not grown by a single record since — as designed, because every
+block parcel since is generated and gated — so the discrepancy is not the town growing. It
+is a hand-derived number that was never a command, the same failure T-A14 found in T-A13's
+frontage counts and for the same reason. Two of the four buildings T-A7 names are also
+quoted against the wrong street in the write-ups (the courthouse as Randolph, the Newberry &
+Dole warehouse as South Water): a centroid at an intersection is inside **two** corridors,
+and nothing said which one to print. The tool records every corridor a point is in.
+
+**Finding 4 — the one systematic cause that could be tested without new sources was tested,
+and it is REFUTED.** `docs/GLB-CONTRACT.md` fixes the record's position at the footprint
+polygon's own origin — *"NOT the centroid and NOT the bbox corner"* — and 332 of the 333
+committed footprints put local `(0, 0)` at a **vertex**. So a building derived to "the
+south-west corner of South Water and LaSalle" is drawn with a *corner* on that point and its
+whole body extending in whatever direction the polygon and its rotation send it. That is a
+plausible enough mechanism to look like the answer, and **20 of the 29 have an anchor point
+standing on perfectly legal ground while the body reaches into the street.**
+
+It is still not the cause. Re-measured with every footprint **centred** on its own anchor
+instead of cornered at it, the fault does not go away: 5 records clear entirely, 14 get
+shallower — and **10 get WORSE**, the Tremont House by +7.59 m and the Exchange Coffee House
+by +6.97 m. Recentring is not the fix, and the anchor convention is not the fault. K30(b)
+inherits a refuted suspect rather than an untested one, and the refutation is a command —
+`--recentre` — rather than a paragraph, for the reason finding 3 gives.
+
+**What is NOT concluded.** Nothing here says whether the corridor, the position, or 1835
+itself is wrong, and no building was moved — the deep cluster is on the street whose modern
+equivalence (`osm_streets_2026`, cited by 19 of the 29) is Wacker Drive, a boulevard built on
+filled river frontage, and testing that is source work. **One record is deliberately left in
+the table and is not a defect**: `slough_log_bridge`, 0.03 m into South Water. A bridge
+carrying a street belongs in that street's corridor, and a category rule for street furniture
+is K30(b)'s to write, not a number to quietly exclude.
+
+**Files:** `tools/measure_corridor_intrusion.py` (new) ·
+`tools/corridor_intrusion_baseline.json` (new, derived) · `tools/check.sh` ·
+`docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. **No data record,
+coordinate, dimension or confidence moved.**
+
+### K30(b) — attribute the deep cluster to a cause, and decide what moves · **UNCLAIMED · from K30(a) · Effort: M — research, not arithmetic**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
+
+K30(a)'s committed table is the baseline and **its numbers are not to be re-derived by
+hand** — run the command. Three things are owed, and the first is the whole parcel:
+
+1. **Why are 13 deep intrusions on South Water Street?** The three candidate causes K30
+   listed are all still open — the committed centreline, the platted half-width, or the
+   positions — and K30(a) adds the one worth testing first: **South Water is the street this
+   project georeferences through modern Wacker Drive**, and Wacker was built on made ground
+   over the old river frontage. If the 1835 centreline is south of where the equivalence puts
+   it, every South Water record is displaced the same way and the corridor is what is wrong.
+   That is testable against the traced shore and the plat, and it is a **finding** rather
+   than a defect if it holds.
+2. **A category rule for street furniture.** A bridge in a street corridor is correct. Say so
+   in a rule, in the tool, with the reasoning — do not delete the row.
+3. **The shallow tail is probably not to be fixed at all.** 12 records ≤ 1.98 m, spread over
+   six streets, is what a derived corridor and a traced centreline disagree by. If that is
+   the finding, write it down and close it; a tolerance argued from the measurement is worth
+   more than twelve nudged buildings.
+
+**The standing prohibition, restated because it is the one that will be tempting here:** do
+NOT move a documented building to make a number smaller. A position with a source outranks a
+corridor this project derived from a module and a traced line. Anything invented in the
+resolution goes to `docs/LIBERTIES.md`.
+
+**Acceptance:** the deep cluster attributed to a cause with the reasoning recorded; the
+street-furniture rule written and gated; `tools/check.sh` green; every entry that clears the
+table banked with `--write-baseline`, and the entries that stay explained.
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
