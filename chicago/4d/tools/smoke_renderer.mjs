@@ -2536,6 +2536,63 @@ const terrainLoad = await page.evaluate(() => {
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
+    // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
+    // missing. `tools/measure_planting_reach.py` proves a record can be
+    // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
+    // species: the American sycamore is recorded, archetyped, weighted, banded
+    // and gated, and stood NOWHERE in the scene — 0 of 163 stems. A census of
+    // what was planted only exists inside a running renderer, so this is a
+    // smoke assertion rather than a static scan.
+    //
+    // The bar is the draw's own two guarantees rather than a percentage, so a
+    // renderer that went back to an independent draw fails it on both counts:
+    // an independent draw overshoots freely (the gallery elm's 25/116 over 115
+    // stems has a standard deviation of 4.4 stems) and it loses the tail (the
+    // sycamore's 1.98 came out 0). Anti-vacuity: a census with no planted list,
+    // or a list with no species in it, reads as a failure and not as a pass.
+    const draws = await page.evaluate(() => (
+      window.__chicago4d.trees.stats.draws ?? []
+    ).map((d) => ({
+      community: d.community,
+      list: d.list,
+      stems: d.stems,
+      species: d.species.map((s) => ({ id: s.id, expected: s.expected, drawn: s.drawn })),
+    })));
+    const planted = draws.filter((d) => d.stems > 0);
+    const absent = [];
+    const over = [];
+    let worstOver = 0;
+    let worstUnder = 0;
+    for (const d of planted) {
+      for (const s of d.species) {
+        const where = `${d.community}.${d.list}.${s.id}`;
+        worstOver = Math.max(worstOver, s.drawn - s.expected);
+        worstUnder = Math.max(worstUnder, s.expected - s.drawn);
+        if (s.drawn === 0 && s.expected >= 1) absent.push(`${where} owed ${s.expected.toFixed(2)}`);
+        if (s.drawn - s.expected >= 1) over.push(`${where} ${s.drawn} for ${s.expected.toFixed(2)}`);
+      }
+    }
+    check(`${label}: every species the stand owes a stem to stands in it`,
+      planted.length >= 3 && planted.every((d) => d.species.length > 0)
+      && absent.length === 0 && over.length === 0,
+      `${planted.length} planted list(s), ${planted.reduce((t, d) => t + d.stems, 0)} stems, `
+      + `${planted.reduce((t, d) => t + d.species.length, 0)} weighted species; worst `
+      + `overshoot ${worstOver.toFixed(2)} stem(s), worst shortfall `
+      + `${worstUnder.toFixed(2)}`
+      + `${absent.length ? `; DRAWN NOWHERE: ${absent.join(', ')}` : ''}`
+      + `${over.length ? `; OVER BY A STEM: ${over.join(', ')}` : ''}`);
+    // The species this parcel exists for, named rather than left to the
+    // aggregate above: a gate that only reports a count would go green on the
+    // day the sycamore came back and say nothing about it.
+    const gallery = planted.find((d) => d.community === 'gallery' && d.list === 'mix');
+    const sycamore = gallery?.species.find((s) => s.id === 'platanus_occidentalis');
+    check(`${label}: the American sycamore stands on the riverbank`,
+      !!sycamore && sycamore.drawn >= 1,
+      sycamore
+        ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
+          + `${gallery.stems} in the gallery`
+        : 'no gallery mix census at all');
+
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them
     // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the
