@@ -6367,7 +6367,7 @@ branch is re-run against them **without re-tuning the streets**; every existing 
 reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
 "every existing road band still reports", which R-M1a holds green by not gating anything.
 
-### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
+### R-A1 — a road-legibility accessibility aid · **CLAIMED 2026-08-16 · steward/r-a1-road-legibility-aid · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
 
 Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
 feature. A user control that boosts road contrast **converts a defect into a preference** and
