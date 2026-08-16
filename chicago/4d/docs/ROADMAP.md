@@ -141,6 +141,7 @@ rationed.**
 
 | # | lane | parcel | seen? | why |
 |---|---|---|---|---|
+| — | RENDERING | ~~K49(f)~~ | **SEEN** | **DONE 2026-08-16 — 2 species absent → 0, and the block's own phase pays for itself twice.** The even deal dealt the SAME 64 values of `u` in every block of the world, so a band narrower than 1/64 fell between two of them EVERYWHERE: **45 matrix bands, exactly 2 under one step, and exactly those 2 were the species drawn nowhere.** Matrix deviation **282.90 → 219.19**. Its finding is not the repair: **K49(e)'s leading explanation is refuted for the bigger of the two rows it was written about** — the settled town recovers 23.66 of its 24.87 regression on a change that touches no filter. Read its box before quoting K49(d) on a regressed row |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -3320,6 +3321,12 @@ consistent with both rows being the two most heavily filtered; it is **not prove
 `z03_sedge_meadow` reading the marsh list improved despite crossing water. **K49(e)** is the
 parcel that measures it.
 
+**CORRECTED 2026-08-16 by K49(f): this explanation is refuted for the bigger of the two rows.**
+Giving the block's grid a phase — a change that touches no filter — takes `z10_settled_town` from
+39.18 back to **15.52**, within 1.21 of its pre-K49(d) 14.31, and `z05_riverbank_timber` from 8.87
+to **7.67**. The town's regression was the fixed grid's own bias, not `station()`. What is left for
+K49(e) is the riverbank's residual 1.30. Do not quote the paragraph above without this one.
+
 **The screenshot, which is the acceptance test K49(b) set.** `prairie_west` desktop, published
 mirror, before and after: **no rows, no diagonal banding, 74 draw calls both ways.** The mix in
 frame changes visibly — the under-drawn grass now has its recorded share — which is the point.
@@ -3360,6 +3367,125 @@ per row, what fraction of DEALT slots they reject and correlate it against the c
 harness. If the correlation is there, the remedy is not a different permutation: it is to deal
 AFTER the filter, or to accept it and say so in `stratum`'s doc block. If it is not there, the
 regression has another cause and K49(d) finding 3 must be corrected in this file.
+
+**MOSTLY ANSWERED ALREADY, AS A BY-PRODUCT — 2026-08-16, K49(f), and the answer is the LAST clause
+above.** K49(f) gave the block's grid a phase. It touches no filter, `station()` and
+`crowdsTheWalker()` run exactly as before, and both regressed rows recover: **`z10_settled_town`
+39.18 → 15.52**, which is 23.66 of its 24.87 regression and lands within 1.21 of its
+pre-K49(d) 14.31; **`z05_riverbank_timber` reading the wet prairie 8.87 → 7.67**, 1.20 of 2.50.
+So the town's regression was **not** the filter — it was the fixed grid's own bias, and the
+explanation K49(d) finding 3 offered is refuted for the row it was mostly measured on. What
+survives is the riverbank's residual **1.30**, which is what this parcel is now for: a small term,
+possibly the filter, possibly nothing. **Re-scope it before claiming it** — the correlation column
+is still the right instrument and the population it has to explain is now half the size.
+
+### K49(f) — the same 64 numbers in every block · **DONE 2026-08-16 — 2 species absent → 0, matrix deviation 282.90 → 219.19**
+
+**Read this box before reaching for `stratum` anywhere, and before quoting K49(d) on a regressed
+row.**
+
+**The fault.** `stratum()` returned `(rank + 0.5) / n`. The Feistel permutation decides which slot
+gets which rank; it does **not** change the SET of `u` a block deals, which was the same n equally
+spaced numbers in every block of the world. A species owns a CDF band of width `share × weight`, so
+a band narrower than `1/n` may contain none of those numbers — and if it contains none of them in
+one block it contains none of them in **all** of them. The species is then not thinly drawn. It is
+absent from the scene, deterministically, at every station, for ever. The forb layer never had this
+because its lattice `u` already carried the block's `shift`; the matrix layer acquired it the day
+K49(d) handed it a fixed grid.
+
+**Finding 1 — the predicted population and the measured one are the SAME TWO RECORDS.** At
+`STRAT_BLOCK_SHIFT = 2` the step is `1/64 = 0.015625`. Across the ten communities there are **45**
+matrix bands, and exactly **two** are narrower than one step: `z04_marsh.zizania_aquatica` at
+**0.007137** (0.457 of a step) and `z09_sand_prairie.opuntia_humifusa` at **0.004412** (0.282).
+Those two, and only those two, were the species `tools/measure_sward_draw.mjs` found owed a whole
+slot and drawn nowhere — wild rice at all three stations that read the marsh list. That is an exact
+correspondence between a population predicted from the construction and a population measured in
+the shipped build, which is what makes this a cause rather than a correlation. **A band narrower
+than a step is not certain to be missed** — it is missed unless it happens to contain one of the n
+values — but because the grid is identical everywhere, that coin is tossed **once for the whole
+world**. Both of these lost it.
+
+**The repair, and why it is the textbook one.** `u = frac((rank + 0.5) / n + phase)`, where `phase`
+is the block's own offset — the `shift` the lattice path has always taken, now taken by both. This
+is a systematic sample with a random start, and the reason that is the standard form is exactly the
+reason it is needed here: the n values stay equally spaced, so the block is still an exact
+stratification and K49(d)'s construction is untouched, but a band of width w now falls on a dealt
+value in about `w · n` of the blocks instead of in all of them or none. The estimator becomes
+unbiased. One line, in `stratum` and its call site.
+
+**Finding 2 — it is not a trade, it pays on the statistic K49(d) chose too.** Published mirror,
+`tools/measure_sward_draw.mjs`, 17 matrix rows:
+
+| | K49(d) | K49(f) |
+|---|---|---|
+| species owed a whole slot and drawn nowhere | **4 rows / 2 species** | **0** |
+| total matrix deviation | 282.90 | **219.19** |
+| worst matrix shortfall | 19.59 | **15.21** |
+| matrix rows improved / unchanged / worse | — | **8 / 5 / 4** |
+| forb deviation | 107.18 | **107.18** |
+
+The five unchanged rows are single-species lists. The forb figure is identical **to the decimal**,
+which is the control: the lattice path was not touched. **Four rows do get worse** — `z02` 12.67 →
+18.13, `z04` 7.06 → 12.48 (and it is the row that gains wild rice), `z03` 36.69 → 42.20, `z09`
+25.88 → 26.35 — and that is the honest cost of an unbiased draw: a band of width w takes `floor` or
+`ceil` of `w·n` per block instead of one fixed count, so a block is noisier and the long run is
+right. Net **−22.5 %**.
+
+**Finding 3 — the by-product is the bigger result, and it belongs to K49(e).** See that box: the
+two rows K49(d) regressed and attributed to a post-deal spatial filter recover on a change that
+touches no filter. The town recovers 95 % of its regression. **The generalisation worth carrying:
+when a construction is changed and two numbers move, the explanation offered for the one that got
+worse is a hypothesis about the CONSTRUCTION, and the cheapest test of it is another change to the
+construction — not a harness around the suspect.** K49(e) was scoped as a filter measurement and
+its subject was never the filter.
+
+**Finding 4 — the gate that missed it is the gate K49(a) already described, and it is fixed here
+rather than described again.** `smoke_renderer.mjs` read the sward census at whichever community it
+was standing in — the settled town, one of ten — and printed "0 absent" throughout. It now stands
+the placer in **every** community, the way `tools/measure_sward_draw.mjs` does, and the assertion is
+on the SCENE rather than on a station: a species counts as absent only where **no** station drew it
+while some station's list owed it a whole slot. A station missing a plant its own ring owes 1.2 of
+is a sample; a plant that is nowhere is the fault. The camera is restored afterwards so nothing
+downstream reads a sward dealt at the last station visited.
+
+**And finding 4 has a second half that the first version of this gate got wrong, which is worth
+more than the gate.** It was written as "viewport-safe by construction" on the reasoning that a
+smaller ring lowers what is owed. **That is false, and the gate failed on its own first run
+proving it.** The census's resolution is the number of slots dealt, and that is set by SCENE DETAIL,
+not by the viewport: measured at 390×780, `full` deals **6,848** slots, `balanced` **3,791** and
+`light` **2,670** — and the smoke's own run had left the renderer at `light`, where the wet
+prairie's prairie dock, owed **1.09**, can take none of them from a perfectly correct draw. Gating
+that reads a fault out of a small sample. So the census now runs at **all three** detail levels, the
+**richest** one is the gate, and the other two are printed every run:
+
+| detail | slots dealt | drawn nowhere |
+|---|---|---|
+| **full** | **6,848** | **0** — gated |
+| balanced | 3,791 | 1 — `z01_wet_prairie.forb.cicuta_maculata`, owed 1.37 |
+| light | 2,670 | 1 — `z01_wet_prairie.forb.silphium_terebinthinaceum`, owed 1.09 |
+
+**Those two are named rather than gated away, and they are not this parcel's fault**: both are in
+the FORB list, which K49(f) does not touch, and both are one plant either side of an expectation
+just over 1. But the row is real — *a visitor on `light` may not find the prairie dock* — and the
+honest place for it is a line the smoke prints every run rather than a sentence in a doc. **The
+generalisation: a census gate's bar belongs to its SAMPLE SIZE, and the sample size here is a
+setting the visitor controls.**
+
+`tools/measure_sward_draw.mjs --gate` is the same scene-wide assertion as a one-command check
+(**7 s**, at the default detail); `tools/check.sh` runs neither, because the dev gate's runner has
+no Playwright by design.
+
+**Files:** `renderers/web/js/flora.js` (`stratum`, its call site in `scatter`) ·
+`tools/smoke_renderer.mjs` (the all-community census) · `tools/measure_sward_draw.mjs` (`--gate`) ·
+ROADMAP + STATUS + the changelog + the published mirror. No `data/` change, no bake, no liberty.
+
+**Verified:** the gate landed RED on the old construction first — `--gate` reports **FAIL, 4
+species** with the phase forced to zero and **PASS, 0** with it in, which is the only way to know an
+assertion catches the thing it was written for. `tools/check.sh` **CHECK PASS** ·
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` green · **the desktop half of the
+smoke was not run and is not claimed** (~13 min against this runner's 10-minute per-command
+ceiling); the desktop evidence is `measure_sward_draw.mjs`, which measures at 1280×800 and reports
+0 absent.
 
 ### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
 

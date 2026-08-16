@@ -1,7 +1,7 @@
 /**
  * ROADMAP K49(a) — THE SWARD'S DRAWN CENSUS, ACROSS EVERY COMMUNITY.
  *
- *   node tools/measure_sward_draw.mjs [--source]
+ *   node tools/measure_sward_draw.mjs [--source] [--gate]
  *
  * `flora.js` keeps the census (`stats.draws`); the release smoke reads it at
  * whatever station the gate happens to be standing in, and that is one
@@ -24,6 +24,14 @@
  * Defaults to the PUBLISHED mirror, for the reason the smoke does: the source
  * tree and the site do not load the same geometry, and the ground a plant is
  * stationed on comes off it. `--source` measures the working tree instead.
+ *
+ * ROADMAP K49(f) — `--gate` exits non-zero when any list owes a species a WHOLE
+ * slot and deals it none. The same assertion now runs inside
+ * `tools/smoke_renderer.mjs`, which is where it belongs; this flag is here so
+ * the question can be asked in a minute rather than in a smoke, because that is
+ * the difference between a check an agent runs while iterating and one it runs
+ * at the end. `tools/check.sh` cannot run either — the dev gate's runner has no
+ * Playwright, by design (it is the fast half of the two-speed build).
  */
 import http from 'node:http';
 import fs from 'node:fs';
@@ -48,6 +56,7 @@ const { chromium } = await loadPlaywright();
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const wantSource = process.argv.includes('--source');
+const wantGate = process.argv.includes('--gate');
 const ROOT = wantSource
   ? path.resolve(HERE, '..')
   : path.resolve(HERE, '../../../site/chicago/4d');
@@ -81,7 +90,12 @@ if (!wantSource && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
 console.log(`serving ${ROOT} — ${wantSource ? 'source tree' : 'PUBLISHED mirror'}\n`);
 
 const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
-const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+// The viewport decides the ring sizes and therefore how many slots a station
+// deals, so the census has to be answerable at both. `SWARD_VIEWPORT=mobile`
+// stands it at the smoke's phone size (ROADMAP K49(f)).
+const VIEWPORT = process.env.SWARD_VIEWPORT === 'mobile'
+  ? { width: 390, height: 780 } : { width: 1280, height: 800 };
+const page = await browser.newPage({ viewport: VIEWPORT });
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load' });
@@ -127,6 +141,10 @@ const measured = await page.evaluate(() => {
         deviation: d.species.reduce((t, s) => t + Math.abs(s.expected - s.drawn), 0),
         absent: d.species.filter((s) => s.drawn === 0 && s.expected >= 1)
           .map((s) => ({ id: s.id, owed: s.expected, unit: s.unit })),
+        // ROADMAP K49(f). The per-station `absent` above is the diagnostic; the
+        // GATE is on the scene, so it needs each species' draw summed over every
+        // station that reads the list.
+        each: d.species.map((s) => ({ id: s.id, drawn: s.drawn, expected: s.expected })),
       });
     }
   }
@@ -138,6 +156,23 @@ const lists = new Set(measured.rows.map((r) => `${r.community}.${r.list}`));
 const absent = measured.rows.flatMap((r) => r.absent.map(
   (s) => `${r.community}.${r.list}.${s.id} owed ${s.owed.toFixed(2)} (${s.unit}), standing at `
     + `${r.at}`));
+// ROADMAP K49(f) — the scene-wide reading of the same question, and the one
+// `--gate` asserts. A station missing a plant its ring owes 1.2 of is a sample;
+// a plant no station drew while some station owed it a whole one is ABSENT.
+const tally = new Map();
+for (const r of measured.rows) {
+  for (const s of r.each) {
+    const key = `${r.community}.${r.list}.${s.id}`;
+    const t = tally.get(key) ?? { drawn: 0, owed: 0, at: [] };
+    t.drawn += s.drawn;
+    t.owed = Math.max(t.owed, s.expected);
+    if (s.expected >= 1) t.at.push(r.at);
+    tally.set(key, t);
+  }
+}
+const nowhere = [...tally.entries()]
+  .filter(([, t]) => t.drawn === 0 && t.owed >= 1)
+  .map(([k, t]) => `${k} owed ${t.owed.toFixed(2)} at ${t.at.join('/')}`);
 const worst = Math.max(0, ...measured.rows.map((r) => r.worstShortfall));
 const devOf = (list) => measured.rows.filter((r) => r.list === list)
   .reduce((t, r) => t + r.deviation, 0);
@@ -153,8 +188,11 @@ console.log(`\n${measured.spots.length} communities stood in · ${lists.size} po
   + `${slots} slots dealt · worst shortfall ${worst.toFixed(2)} slot(s)`);
 console.log(`deviation from the recorded cover, summed over every species and both signs: `
   + `matrix ${devOf('matrix').toFixed(2)} · forb ${devOf('forb').toFixed(2)} slot(s)`);
-console.log(`${absent.length} species owed a whole slot and drawn nowhere:`);
+console.log(`${absent.length} station-row(s) owe a species a whole slot and deal it none:`);
 for (const s of absent) console.log(`  - ${s}`);
+console.log(`${nowhere.length} of ${tally.size} (list, species) pair(s) drawn NOWHERE in the `
+  + `whole scene:`);
+for (const s of nowhere) console.log(`  - ${s}`);
 console.log(`\nabundance units: ${ab.mixed.length} of ${ab.lists} lists mix an area with a count; `
   + `${ab.unconvertible.length} record(s) give cover with no width_m`);
 for (const m of ab.mixed) {
@@ -165,4 +203,9 @@ if (errors.length) console.log(`\npage errors: ${errors.length}\n  ${errors.join
 
 await browser.close();
 server.close();
-process.exit(errors.length ? 1 : 0);
+if (wantGate) {
+  console.log(`\nGATE: ${nowhere.length ? 'FAIL' : 'PASS'} — ${nowhere.length} (list, species) `
+    + `pair(s) owed a whole slot and drawn nowhere in the scene, over ${slots} slots in `
+    + `${lists.size} list(s)`);
+}
+process.exit(errors.length || (wantGate && nowhere.length) ? 1 : 0);

@@ -1,5 +1,75 @@
 # STATUS
 
+## Fixed 2026-08-16 — the even deal dealt the same sixty-four numbers everywhere, so two plants were absent from the whole scene
+
+**ROADMAP K49(f)**, opened and closed the same day K49(d) shipped the fault. A visitor can see it:
+**wild rice** stands out of the water of the marsh again — the only plant of its kind in the scene —
+and the **prickly pear** is back on the sand prairie. Both were drawn nowhere at all.
+
+### What was wrong
+
+`stratum()` returned `(rank + 0.5) / n`. The Feistel permutation decides which slot gets which rank;
+it does not change the SET of `u` a block deals, which was **the same n equally spaced numbers in
+every block of the world**. A species owns a CDF band of width `share × weight`, so a band narrower
+than `1/n` may contain none of them — and because the grid is identical everywhere, "may" is decided
+once for the whole world. The forb layer never had this: its lattice `u` already carried the block's
+`shift`. The matrix layer acquired it the day K49(d) handed it a fixed grid.
+
+### The population is predicted exactly, which is what makes it a cause
+
+At `STRAT_BLOCK_SHIFT = 2` the step is `1/64 = 0.015625`. There are **45** matrix bands across the
+ten communities and exactly **two** are narrower than one step —
+`z04_marsh.zizania_aquatica` at **0.007137** (0.457 of a step) and
+`z09_sand_prairie.opuntia_humifusa` at **0.004412** (0.282). Those two, and only those two, are the
+species the census found owed a whole slot and drawn nowhere.
+
+### The repair, and the numbers on the published mirror
+
+`u = frac((rank + 0.5) / n + phase)`, `phase` being the block's own offset — the `shift` the lattice
+path has always taken. A systematic sample with a random start: the values stay equally spaced, so
+the block is still an exact stratification, but a band of width w now lands on a dealt value in
+about `w · n` of the blocks instead of in all or none.
+
+| | K49(d) | K49(f) |
+|---|---|---|
+| species owed a whole slot and drawn nowhere | **4 rows / 2 species** | **0** |
+| total matrix deviation (17 rows) | 282.90 | **219.19** |
+| worst matrix shortfall | 19.59 | **15.21** |
+| matrix rows improved / unchanged / worse | — | **8 / 5 / 4** |
+| forb deviation | 107.18 | **107.18** |
+
+The five unchanged rows are single-species lists. The forb figure is identical **to the decimal** —
+the control that says the lattice path was not touched.
+
+### The finding that is not the fix — K49(e) was scoped at the wrong subject
+
+K49(d) attributed its two regressed rows to a spatial filter selecting a biased set of ranks. This
+change touches no filter, and both rows recover: **`z10_settled_town` 39.18 → 15.52**, within 1.21
+of its pre-K49(d) **14.31**, and **`z05_riverbank_timber` reading the wet prairie 8.87 → 7.67**. The
+town's regression — 95 % of it — was the fixed grid's own bias. K49(e) keeps the riverbank's residual
+**1.30** and needs re-scoping before it is claimed.
+
+### What is NOT claimed
+
+- **Four rows got worse**: `z02` 12.67 → 18.13, `z04` 7.06 → 12.48 (the row that gains the wild
+  rice), `z03` 36.69 → 42.20, `z09` 25.88 → 26.35. That is the honest cost of an unbiased draw — a
+  band takes `floor` or `ceil` of `w·n` per block instead of one fixed count, so a block is noisier
+  and the long run is right. Net **−22.5 %**.
+- **Two species are still drawn nowhere at reduced scene detail**, and the smoke prints it every
+  run rather than gating it away: at `balanced` (3,791 slots) the wet prairie's water hemlock, owed
+  **1.37**, and at `light` (2,670 slots) its prairie dock, owed **1.09**. Both are in the FORB list,
+  which this parcel does not touch, and both are one plant either side of an expectation just over
+  one — a sample, not an exclusion. It does mean a visitor on `light` may not find the prairie dock.
+  The census's resolution is scene detail, not viewport, and the first version of this gate assumed
+  the opposite and failed on its own first run.
+- **The desktop half of the smoke was not run** — ~13 minutes against this runner's 10-minute
+  per-command ceiling. The desktop evidence is `tools/measure_sward_draw.mjs`, which measures at
+  1280×800 and reports 0 absent.
+- **`tools/check.sh` does not run the census** and cannot: the dev gate's runner has no Playwright
+  by design. The gate lives in `tools/smoke_renderer.mjs`, and
+  `tools/measure_sward_draw.mjs --gate` is the same assertion in **7 s** for anyone iterating.
+- No `data/` record moved, no confidence changed, no liberty was owed.
+
 ## Fixed 2026-08-16 — the grasses take an even deal after all, and the stratum size turns out to be a U-curve with a floor AND a ceiling
 
 **ROADMAP K49(d)**, the successor K49(b) opened when a screenshot vetoed half its own repair. A
