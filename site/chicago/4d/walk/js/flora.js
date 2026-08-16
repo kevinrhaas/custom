@@ -649,6 +649,8 @@ export async function createFlora({
         // The community's own recorded matrix cover decides whether this slot
         // carries a plant — the same rule the forb layer has always applied to
         // its own recorded densities, on the field the matrix layer ignored.
+        // It stays an INDEPENDENT draw, unlike the forb layer's: see `dealt`,
+        // and K49(b) for the two screenshots that decided it.
         if (rng() > zone.matrixShare) return;
         const wet = water.isWater(e, n);
         const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
@@ -684,9 +686,10 @@ export async function createFlora({
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // A clump card stands for the same matrix the near tufts do, so it is
-        // thinned by the same recorded cover. Applying it to one layer and not
-        // the other would put a seam at the near/mid crossover exactly where
-        // the change of representation is supposed to be invisible.
+        // thinned by the same recorded cover — and by the same INDEPENDENT
+        // draw. Applying it to one layer and not the other would put a seam at
+        // the near/mid crossover exactly where the change of representation is
+        // supposed to be invisible.
         if (rng() > zone.matrixShare) return;
         const wet = water.isWater(e, n);
         const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
@@ -705,7 +708,7 @@ export async function createFlora({
     rosetteSet.reset();
     const f = rings.forb;
     scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
-      f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng) => {
+      f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng, _cellSeed, u) => {
         // The forb ring ends within a metre of the mid ring, so the two
         // boundaries land on the same screen row and both have to be ragged or
         // the flowers alone would draw the line the grass no longer does.
@@ -716,10 +719,11 @@ export async function createFlora({
         // The forb layer's density is the zone's OWN summed density_per_ha, so a
         // sparse community stays sparse. `share` is the chance this lattice slot
         // is used at all — of the half of the community that may stand on this
-        // side of the waterline, which is why there are two of them.
+        // side of the waterline, which is why there are two of them. It and the
+        // species come off the slot's ONE low-discrepancy draw; see `dealt`.
         const wet = water.isWater(e, n);
-        if (rng() > (wet ? zone.forbShareWet : zone.forbShare)) return;
-        const sp = pick(wet ? zone.wet.forbs : zone.dry.forbs, rng());
+        const sp = dealt(wet ? zone.wet.forbs : zone.dry.forbs,
+          wet ? zone.forbShareWet : zone.forbShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
@@ -1536,6 +1540,62 @@ function hash3(a, b, c) {
   return (h ^ (h >>> 16)) >>> 0;
 }
 
+/**
+ * ROADMAP K49(b) — THE FORB SLOT'S DRAW, AND WHY IT IS NOT `rng()`.
+ *
+ * A slot's species used to come off the same xorshift stream as its jitter: an
+ * independent uniform draw per slot. Independent draws lose their rare end. Six
+ * species their own community's recipe owes a whole plant to were drawn NOWHERE
+ * across 6,780 slots (K49(a)) — prairie dock, a two-metre landmark, owed 3.23 of
+ * them in the wet prairie and standing none. **All six were forb lists**, which
+ * is why this is the forb layer's draw and not the sward's.
+ *
+ * The repair is a low-discrepancy assignment: a rank-1 lattice
+ * `frac(c·α + r·β + k·γ)` on the slot's OWN world lattice coordinates, walked
+ * against the same CDF `pick()` already walks. It is equidistributed over any
+ * window, so a band of the CDF the width of prairie dock's share gets its count
+ * to within one slot instead of to within a Poisson tail — and it is a pure
+ * function of the slot, so re-centring the lattice puts the same species back in
+ * the same place, which is the promise `hash3` makes and K48's owed-draw picker
+ * cannot keep (its running state would change the plant at your feet as you
+ * walked up to it).
+ *
+ * α, β, γ are 1/g, 1/g², 1/g³ for the root of g⁴ = g + 1 — the R3 quasirandom
+ * generators, chosen for equidistribution rather than for looking irrational.
+ *
+ * THE MATRIX LAYERS KEEP THEIR INDEPENDENT DRAW, AND A SCREENSHOT IS WHY. Run
+ * on the near and mid tufts as well, this made the west prairie grow in ROWS:
+ * the lattice band that decides whether a slot carries a plant is a family of
+ * near-diagonal lines, invisible where two slots in a hundred are planted and
+ * unmissable where sixty are. The matrix lists lost no species to the tail — the
+ * cost was all visible and the benefit all in a column that already read zero.
+ * A stratification that does not stripe a dense layer is K49(d), with both
+ * frames in its box.
+ */
+const LD_A = 0.8191725133961644;
+const LD_B = 0.6710436067037893;
+const LD_C = 0.5497004779019702;
+/**
+ * ...and the rotation that keeps the lattice from repeating the same diagonal
+ * across the whole field. A rank-1 lattice puts a thin CDF band on a family of
+ * parallel lines through the index grid; a Cranley–Patterson rotation — one
+ * offset added to a whole block — breaks that family at the block edge while
+ * preserving the equidistribution inside it, and it is keyed on the WORLD block
+ * index, so it re-centres with the lattice rather than with the camera.
+ *
+ * SIXTEEN cells square, not four, and the census set the number. The block has
+ * to hold enough PLANTED slots for a species' band to be resolved inside it, and
+ * the forb layer plants a few per cent of what it deals: at four cells (64
+ * slots, one or two flowers) the rotation was all that survived — an independent
+ * draw in a costume — and the census still found three species owed a whole
+ * plant and standing nowhere. At sixteen (1,024 slots, ~54 m, about the width of
+ * the ring itself) it found none.
+ */
+const LD_BLOCK_SHIFT = 4;
+const LD_BLOCK_SALT = 0x2b1f3d7d;
+
+function frac(x) { return x - Math.floor(x); }
+
 function rngFrom(seed) {
   let s = seed >>> 0 || 1;
   return () => {
@@ -1559,8 +1619,16 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
   for (let r = r0; r <= r1; r++) {
     for (let c = c0; c <= c1; c++) {
       const cellSeed = hash3(c, r, salt);
+      // ROADMAP K49(b). One rotation per 16×16-cell block of the WORLD lattice.
+      const shift = hash3(c >> LD_BLOCK_SHIFT, r >> LD_BLOCK_SHIFT, salt ^ LD_BLOCK_SALT)
+        / 4294967296;
       for (let k = 0; k < perCell; k++) {
         const rng = rngFrom(hash3(cellSeed, k, 0x68bc21eb));
+        // ROADMAP K49(b). The slot's own place in the deal: it decides BOTH
+        // whether this slot carries a plant at all and which species it is, so
+        // that the thinning cannot resample the species draw back into an
+        // independent one. See `dealt`.
+        const u = frac(c * LD_A + r * LD_B + k * LD_C + shift);
         // A jittered sub-grid, not free scatter: free scatter leaves holes
         // the eye reads as bare soil and clusters it reads as one plant.
         const sx = k % sub;
@@ -1578,7 +1646,7 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
         // because that ring must not flicker as you turn on the spot.
         if (cone && d > CONE_KEEP_M
           && ((e - camE) * cone.fe + (n - camN) * cone.fn) / d < cone.cos) continue;
-        emit(e, n, d, rng, cellSeed);
+        emit(e, n, d, rng, cellSeed, u);
       }
     }
   }
@@ -1601,6 +1669,29 @@ function pick(subset, u) {
     if (target <= acc) return item;
   }
   return list[list.length - 1];
+}
+
+/**
+ * ROADMAP K49(b) — the slot's whole deal, out of ONE low-discrepancy draw.
+ *
+ * A lattice slot is asked two questions in a row: does the community's recorded
+ * cover put a plant here at all (`share`), and if so which species (`pick`). Ask
+ * them of two independent numbers and the second one's equidistribution is
+ * spent: the surviving slots are a random subsample of the lattice, and a random
+ * subsample of a low-discrepancy set is back to Poisson in its tail — which is
+ * the fault K49(a) measured.
+ *
+ * So the two questions share one draw. `u` below the share carries the plant,
+ * and its position INSIDE `[0, share)` is what walks the CDF: species i then
+ * owns a band of width `share × weight_i`, and the lattice hits every band at
+ * its own rate. That is the whole repair — the same marginal probabilities, in
+ * one stratified draw instead of two independent ones.
+ *
+ * Returns null when the slot carries nothing.
+ */
+function dealt(subset, share, u) {
+  if (!(share > 0) || u >= share) return null;
+  return pick(subset, u / share);
 }
 
 /* -------------------------------------------------------------------------- */

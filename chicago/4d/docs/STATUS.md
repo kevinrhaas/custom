@@ -1,5 +1,47 @@
 # STATUS
 
+## Fixed 2026-08-16 — the six meadow plants are standing, and the screenshot the parcel asked for vetoed half its own repair
+
+**K49(b)**, the fix half of K49(a). A visitor can see it: **prairie dock is standing in the wet
+prairie**, two metres of scape over a metre-wide rosette, where its own recipe owed 3.23 of them
+and none stood. Water hemlock is beside it, wood nettle is on the forest floor, ninebark and wild
+garlic are on the riverbank, the compass plant is on the mesic prairie.
+
+**Measured, `tools/measure_sward_draw.mjs` on the published mirror, all eight communities:
+6,780 slots → 6,795, and 6 species owed a whole plant and drawn nowhere → 0.** The settled town —
+the one community the release smoke's own station stands in — still reports 0 absent, so the
+repair did not move the fault to the only place the gate can see.
+
+The construction is the one K49(a) prescribed: a rank-1 lattice `frac(c·α + r·β + k·γ + shift)` on
+the slot's own **world** coordinates (R3 generators), walked against the CDF `pick()` already
+walks. Stateless, so re-centring the lattice puts the same plant back and nothing changes species
+as you walk up to it. K48's account-keeping picker was not ported.
+
+**Three findings, and the second is the transferable one.**
+
+1. **The thinning has to be part of the same draw.** Ask "does a plant stand here" and "which
+   species" of two independent numbers and the survivors are a *random subsample* of a
+   low-discrepancy set — which is Poisson again in its tail, i.e. the fault being repaired.
+   `dealt()` asks both of one draw: `u < share` carries the plant, and `u`'s position inside
+   `[0, share)` walks the CDF. Same marginals, one stratified draw.
+2. **THE DENSE LAYERS CANNOT TAKE IT, AND THE CENSUS WOULD HAVE MERGED IT.** Applied to the near
+   and mid tufts as well, the same construction grew the west prairie **in visible rows with bare
+   ground between them** — a lattice band is a family of near-diagonal lines, invisible at two
+   planted slots in a hundred and unmissable at sixty. The census called that version an
+   improvement (worst shortfall 31.47 → 12.87) and every number was green; two `critic_shots`
+   frames at `prairie_west`, before and after, refused it in one look. The matrix lists were
+   losing **no** species to the tail, so the cost was all visible and the benefit all in a column
+   that already read zero. **The forb layer keeps the stratified draw; near and mid are
+   untouched, and their worst shortfall stays 31.47.** The successor is **K49(d)**.
+3. **The block size is set by planted slots, not by cells.** The Cranley–Patterson rotation that
+   breaks the lattice's diagonals is keyed on a world block; at 4×4 cells the forb layer plants
+   one or two per block, so the rotation was all that survived and **three** species still stood
+   nowhere. At 16×16 (~1,024 slots, ~54 m, about the forb ring's own width) none did.
+
+**Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute
+per-command ceiling). `tools/check.sh`, the mobile smoke on the published mirror, the census and
+both `critic_shots` frames are green. No `data/` change, no bake.
+
 ## Found 2026-08-16 — six plants the meadow recipes owe a place to stand nowhere, and the gate's own station cannot see any of them
 
 **K49(a)**, the measurement half of K49. Nothing a visitor can see changed; the fixes are
