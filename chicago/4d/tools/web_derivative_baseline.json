@@ -1,0 +1,508 @@
+{
+  "$note": "ROADMAP K36(a). Assets whose shipped derivative does not resolve to the material table of the master it was compressed from \u2014 gltf-transform's palette pass folds their named materials into one PaletteMaterial and two generated PNGs. DERIVED \u2014 regenerate with tools/measure_web_derivatives.py --write-baseline, and only ever to record a repair. This file is a RATCHET: tools/check.sh fails on an asset that is not here, on a listed one whose loss has grown, and on a listed one that is now clean and has not been banked. It is NOT an allowance \u2014 K36(b) owns the fix, and these are the numbers it takes as its baseline.",
+  "material_identity": {
+    "beaubien_barn__converted_1817.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "blacksmith_shop_state_st__log_1823.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "brown_boarding_house__documented_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "chappel_infant_school__log_1833.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "clybourn_cabins__log_1824.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "clybourn_slaughterhouse__log_1827.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "cobweb_castle__log_1820.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "council_house__log_1834.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "estray_pen__pen_1833.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "harmon_log_cabin__documented_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "hogan_store__log_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "inf_boatman_cabin_north__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "james_kinzie_house__dwelling_1830.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "jb_beaubien_homestead__factory_1817.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "log_jail__log_1833.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "madore_beaubien_house__log_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "mansion_house__log_frame_1833.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "miller_house__log_frame_1827.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "miller_tannery__log_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "north_side_school_1833__log_1833.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "philo_carpenter_log_shop__log_1832.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_001__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_013__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_023__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_053__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_054__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_north_d1_060__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_south_a1_046__inferred_1835.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_south_d1_021__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_south_d1_033__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_west_001__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "recon_1835_west_014__inferred_1835.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "robert_kinzie_store__store_1830.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "robinson_caldwell_cabins__log_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "sauganash_hotel__frame_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "glass",
+        "log",
+        "roof",
+        "shutter",
+        "wall"
+      ],
+      "shipped_materials": 3,
+      "textures_gained": 1
+    },
+    "walker_meeting_house__log_1831.glb": {
+      "colours_lost": 5,
+      "master_materials": 5,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "wolf_point_tavern__log_frame_1828.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "chinking",
+        "dark",
+        "frame",
+        "log",
+        "roof",
+        "sign"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    },
+    "wolf_point_tavern_stable__stable_1831.glb": {
+      "colours_lost": 6,
+      "master_materials": 6,
+      "names_lost": [
+        "board",
+        "chinking",
+        "interior",
+        "log",
+        "roof",
+        "timber"
+      ],
+      "shipped_materials": 1,
+      "textures_gained": 2
+    }
+  },
+  "measured": "2026-08-16",
+  "pairs": 334
+}

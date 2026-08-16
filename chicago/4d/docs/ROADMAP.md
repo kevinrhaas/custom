@@ -136,7 +136,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | 2 | GROUND | **T-E5(b)** | how much of the square was wet — opened by T-E5(a), and its first question is whether any source states an extent at all. **NEEDS A BAKE** |
 | — | KERNEL | ~~K34~~ | **DONE 2026-08-16** — the constraint AGENTS.md puts above the work was kept by the **buildings and not the people**: the release block was `data/structures/` alone, so the **7 flagged households blocked nothing** and were safe only by the coincidence that all **11** of their links land on a flagged building. And **`hh_caldwell_billy` said in its own prose that it carries the flag and never did**. Four absolute assertions now, all four broken deliberately first. Read its box before quoting any review-flag number |
 | 3 | KERNEL | **K35** | opened by K34: three flagged structures state no reason anywhere, and the building side has no field a reason could live in. A research question and an owner's choice between three routes, not an engineering task. **No bake** |
-| — | KERNEL | **K36(a)** | **CLAIMED 2026-08-16** — K34's seam again: `data/` → master GLB → **shipped derivative** → published mirror is gated at link 1 (staleness) and link 3 (`check_published.mjs`) and **not at link 2**, where this project's own script records that "a bug that collapsed every building to a two-metre box shipped past a fully green gate — twice". Tools and docs only, no bake |
+| — | KERNEL | ~~K36(a)~~ | **DONE 2026-08-16** — `data/` → master → **shipped derivative** → mirror was gated at links 1 and 3 and **not at link 2**, and the gap holds a town that is **textured on the site and untextured in this repository**: 38 assets ship one `PaletteMaterial001` and **75 PNGs that exist in no master**. The split is a count, exactly — **five materials faults, four does not, 296 of 296** — so **275 assets sit one material short of it** and R-W2b is what moves them. R-W2a's sheet measured the masters under the words "the shipped GLBs". Read its box before quoting any material or payload number |
+| 1 | KERNEL | **K36(b)** | give the site back the material names it was baked with — opened by K36(a). **NEEDS NO BAKE**: `assets/web/` comes from the committed masters by `gltf-transform` alone, so this runner can do it. Not "add the flag" — measure what the palette pass buys in draw calls before removing it |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -157,6 +158,17 @@ the next runner-closable unit here is most likely **a parcel this file does not 
 the honest way to find one is the way T-E5(a) found its own: read a deferral, a `not_modelled`
 entry or a "deferred to parcel (c)" phrase and ask **what question it was never asked**. That is
 where four of the last six findings came from.
+
+**THE SEAM IS STILL OPEN, AND IT PAID AGAIN — 2026-08-16, K36(a).** Same move as K34, one link
+further out: instead of a rule about a record, take a rule about a FILE — *"a stale committed GLB
+is a check failure, not a warning"*, *"the bytes a visitor downloads have to be the bytes
+something tested"* — and ask which of the steps between the data and the browser anything
+actually measures. Two of three, it turned out, and the ungated one had been shipping 75
+textures out of a repository that contains none. **The generalisation worth carrying forward:
+this project gates its ARTEFACTS at their ends and not at their transformations**, and every
+transformation here is a script with a flag in it. `publish.sh`, `compile_scene.py` and the dev
+preview assembler are the same shape of thing; two of them now have a gate and the question is
+worth asking of anything that rewrites a file on its way out.
 
 **THE ADVICE WORKS, AND THE RICHEST SEAM IS NOT THE DEFERRALS — 2026-08-16, K34.** It took the
 paragraph above and widened it one step: instead of a deferral, read a **rule this project states
@@ -1782,6 +1794,126 @@ Three routes, and the choice belongs with the owner rather than with a gate:
    None of the nine is a `recon_*` placeholder today.
 3. **Leave it.** The flag is conservative in the direction that matters — it blocks — and an
    unexplained block is not a hazard the way an unexplained claim is.
+
+### K36(a) — nothing compared a shipped derivative to the master it came from · **DONE 2026-08-16 · the site has 75 textures and the repository has none**
+
+**Phase:** kernel (lane 1 side) · **Effort:** S to measure, S to gate · tools and docs only —
+no data record, no renderer file, no geometry, no bake
+
+The geometry a visitor downloads reaches them along four links:
+
+    data/  ->  assets/gltf/  ->  assets/web/  ->  site/chicago/4d/assets/web/
+
+Link 1 is gated — `validate.py --stale` recomputes every master's input hash. Link 3 is gated —
+`check_published.mjs` asserts the mirror is byte-identical to its source, and exists because
+R-BUG3c-b cost three parcels discovering that *"nothing else in this project measures a
+published artefact against its own source"*. **Link 2 was gated by nothing at all**, and it is
+the link with the moving parts: two `gltf-transform` passes whose own comments in `tools/bake.sh`
+record what has already come out of them — *"a bug that collapsed every building to a two-metre
+box shipped past a fully green gate — twice"*, and a `--texture-compress ktx2` flag that
+*"silently turned every derivative into an uncompressed copy of its master, in every
+environment, since this step was written"*. Both were found by a person reading the script.
+This reads the bytes.
+
+**FINDING 1 — the town on the site is textured; the town in this repository is not.**
+`optimize`'s palette pass folds the named materials of **38 of 334 assets** into one
+`PaletteMaterial001` carrying generated PNGs. **75 textures exist in `assets/web/` that exist in
+no master**, and the material NAMES they replace — `log`, `chinking`, `board`, `roof`, `dark`,
+`interior` — do not reach the browser at all on those 38.
+
+**FINDING 1b — the split is a COUNT and it is exact.** Every master carrying **five or six**
+materials is faulted (31 `log_dwelling`, 6 `outbuilding`, 1 `frame_tavern`); every master
+carrying **four or fewer** is clean, 296 of 296. Nothing about logs: that is the palette pass's
+own documented minimum of five materials, and its output is named `PaletteMaterial001` by the
+tool. The consequence is the reason this is a ratchet rather than a curiosity — **275 assets sit
+exactly one material short of the threshold**, so an archetype that gains a fifth surface moves
+every asset it paints across it. That is what R-W2b does.
+
+**FINDING 2 — R-W2a's material sheet inventories the masters under the words "the shipped
+GLBs".** `docs/RESEARCH/materials.md` reasons in its own preamble that *"the source and the
+shipped bytes have disagreed in this project before … a sheet that inventories intentions is
+worth nothing to a bake"* — and then measures `assets/gltf/**/*.glb`, which is the source side
+of exactly that disagreement. Its **"nothing in the town carries a texture of any kind"** is
+true of what is baked and false of what is served. Corrected in place, with a §0 note and a
+pointer here; **none of its five findings moves**, because all five are about what the
+generators paint and that is unaffected. What DOES move is R-W2b's plan: it wires an atlas onto
+material names that the publish path deletes on 38 assets, and it now knows that before it
+starts rather than after a bake.
+
+**FINDING 3 — 90 assets ship uncompressed, and the only instrument that could notice is a
+25 MB budget.** They are exactly the 90 pure-Python placeholders, which
+`generators/inferred_placeholder.py` writes byte-identically into both trees; the 244
+Blender-baked assets compress **5.29×**. It is 508 KB and **11.4 % of the payload** — not a
+problem today, and it is now a printed census line rather than a warning in a nightly log.
+
+**WHAT DOES NOT MOVE, MEASURED RATHER THAN ASSUMED.** Triangle counts are identical across all
+334 pairs, so `--simplify false` has held in fact and not only in the script. Node names, the
+`structure_id`/`phase_id` extras and mesh names all survive, so the sidecar join key is intact.
+`_CONFIDENCE` — how a visitor is told which parts we made up — reaches the site on every asset
+carrying it. The world bounding box agrees to at worst **2.63 rungs** of an asset's own extent
+(0.107 mm on a 2.7 m shed); the terrain's 82.8 mm is **1.08 rungs** of its 5,020 m box, the same
+quantity R-W6 committed as a 76.6 mm lattice, which is the cross-check that the two
+measurements are of the same thing.
+
+**WHAT SHIPPED.** `tools/measure_web_derivatives.py`, in `check.sh` at **0.2 s and with no
+decoder** — the shipped positions are `EXT_meshopt_compression` payloads this project cannot
+decode here, and every claim above is answerable from the glTF JSON chunk instead, because the
+spec requires POSITION accessors to carry `min`/`max` and a quantised file carries its
+dequantisation in the node's own TRS. **Five absolute assertions** — bijection both ways,
+triangle count, node/mesh identity, the attributes `docs/GLB-CONTRACT.md` names, and a bounding
+box within **four rungs** (`extent / 65535`) of the master's. The bound is a lattice rather than
+a millimetre count because the assets differ in size by three orders of magnitude, and a
+building collapsed to a two-metre box is thousands of rungs, not four. **One ratchet** —
+`tools/web_derivative_baseline.json`, the 38 — which fails on a new offender, on a banked one
+whose loss has grown, AND on a banked one that is now clean and has not been banked as repaired.
+TEXCOORD_0 is dropped from 204 masters on the way and that is reported, not gated: the UVs are
+unused on an untextured asset and the prune pass is right to drop them.
+
+**All eight failure modes were broken deliberately before the gate was trusted**
+(`--self-test`, in memory, against the real tree): a derivative with no master, a master with no
+derivative, a simplified mesh, a lost `structure_id`, a lost `_CONFIDENCE`, a collapsed
+bounding box, a new material fault, and a repaired one left in the baseline. Each fires; the
+clean tree passes.
+
+**WHAT IT DID NOT DO.** It moved no record, no coordinate and no byte of geometry, invented
+nothing and upgraded no confidence. No liberty is owed — `docs/LIBERTIES.md` records inventions,
+and this parcel measures.
+
+**Verified:** `tools/check.sh` green (with the new step). `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not claimed —
+it needs ~13 minutes against this harness's 10-minute per-command ceiling (see the run-budget
+box at the top of this file). This parcel changes no renderer file and no geometry, so the
+scene it would exercise is byte-for-byte the one the last run smoked.
+
+### K36(b) — give the site back the material names it was baked with · **UNCLAIMED · opened 2026-08-16 by K36(a) · Effort: S–M · NO BAKE, and that is the point**
+
+The 38 assets in `tools/web_derivative_baseline.json` reach the browser as one
+`PaletteMaterial001` plus two generated PNGs. **This repair needs no Blender**: `assets/web/` is
+produced from the committed masters by `gltf-transform` alone, so a run with `npx` reachable can
+regenerate all 334 derivatives from the tree as it stands.
+
+**The likely fix is one flag** — turning the palette pass off in `tools/bake.sh`'s `optimize`
+invocation — but the parcel is not "add the flag", it is **measure what the flag costs**. The
+palette pass exists to reduce draw calls by merging materials, which is the same currency R-W5a
+spent its parcel on (47 batches → 16, budget ≤ 80 per station-viewport). So:
+
+1. regenerate the derivatives with the palette pass disabled, and diff the payload;
+2. re-run the smoke and R-W5a's batch counts against the *published* mirror, at the stations
+   where those 38 buildings are in frame, and quote both numbers;
+3. **if the palette genuinely buys draw calls**, the answer is not to keep it silently — it is
+   to say so in `docs/GLB-CONTRACT.md`, which is a bilateral contract, and to record that the
+   shipped material identity is deliberately different from the baked one;
+4. either way, bank the outcome with `tools/measure_web_derivatives.py --write-baseline`.
+
+**Read K36(a)'s finding 1b first.** The fault is a function of a material count with 275 assets
+one step below the threshold, so "it is only 38 buildings" is a statement with a short shelf
+life — and R-W2b is the parcel that would end it.
+
+**A SECOND QUESTION THIS PARCEL SHOULD ASK RATHER THAN ASSUME.** R-W5a measured that all
+building batches share one `MeshStandardMaterial` with *"no map of any kind"*. On 38 shipped
+assets there IS a map. Whether R-W5a's numbers were taken against the source tree or the
+published mirror decides whether that finding is unaffected or partly measured on files that no
+longer exist in that form — ask it before quoting either.
 
 ### K26 — every building card links to a dossier that is not published · **DONE 2026-08-16 · 332 links, 332 of them 404, and 30 that should never have been links**
 
