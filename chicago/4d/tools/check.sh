@@ -185,6 +185,23 @@ step "every flora and fauna figure is declared read or banked unread" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_layer_reads.py --self-test
 
+# The same question one level in, and it is a different question: the read-set
+# above says a FIGURE is read if any renderer source reads it, and no reader in
+# this project receives every record. flora.js takes five roles and fifteen
+# forms; trees.js takes two roles, five forms and FOUR of the manifest's ten
+# zones. So 339 of the 1,880 (record, figure) pairs the map calls read reach
+# nothing, six records reach no reader at all — four of them the lakeshore's
+# woody scrub, which its own zone prose describes to a visitor — and three
+# recorded July inflorescences draw no flower (ROADMAP K44). Every cohort is
+# scanned out of the renderer rather than restated here, and all three
+# populations are banked exactly: they may not grow, and a repair has to be
+# recorded with --update in the commit that made it.
+step "every flora record reaches the reader its figures are read by" \
+  python3 tools/measure_flora_reach.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_flora_reach.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
