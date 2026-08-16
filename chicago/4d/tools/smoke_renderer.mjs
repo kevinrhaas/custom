@@ -2717,6 +2717,119 @@ const terrainLoad = await page.evaluate(() => {
       + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
         `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
 
+    // ROADMAP K49(f) — AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
+    //
+    // The paragraph above is the reason this exists: the tail figure it prints
+    // is honest and it is blind, because one station is one community of ten,
+    // and the ten do not share a species list. K49(d) handed the matrix lists a
+    // fixed grid of `u`, which put wild rice out of the marsh and the prickly
+    // pear off the sand prairie in the same commit — and this gate, standing in
+    // the settled town, read "0 absent" through all of it.
+    //
+    // It costs a page.evaluate and no frames: `flora.update` is handed a
+    // synthetic camera at a plantable point inside each community in turn, which
+    // is what `tools/measure_sward_draw.mjs` does and the same entry point the
+    // render loop uses. The camera is put back afterwards, so nothing downstream
+    // reads a sward dealt at the last station visited.
+    //
+    // The bar is ABSOLUTE and it is on the SCENE, not on a station: a species
+    // counts as absent only where no station drew it at all while some station's
+    // list owed it a whole slot. That is what "drawn nowhere" means, and the
+    // distinction is not pedantry — a list is read from more than one community
+    // (the wet prairie's is read at four stations), the ring is a few blocks
+    // across, and a species owed 1.2 slots in one ring can legitimately take
+    // both of them in the next one. The fault this gate exists for is not a
+    // station missing a plant; it is a plant that is nowhere. `expected` is the
+    // list's own recorded share of the slots dealt, so this asserts the deal
+    // against the record rather than against a baseline.
+    const everywhere = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      const wanted = a.flora.substrates().map((z) => z.id);
+      const spots = {};
+      for (let e = -900; e <= 1200 && Object.keys(spots).length < wanted.length; e += 6) {
+        for (let n = -700; n <= 700; n += 6) {
+          const z = a.flora.zoneAt(e, n);
+          if (z && !spots[z] && a.flora.plantableAt(e, n)) spots[z] = [e, n];
+        }
+      }
+      const started = a.detail;
+      const levels = [];
+      for (const level of a.detailOrder) {
+        await a.setDetail(level);
+        const rows = [];
+        for (const [zone, [e, n]] of Object.entries(spots)) {
+          const camera = {
+            getWorldPosition: (v) => { v.set(e, 1.7, -n); return v; },
+            getWorldDirection: (v) => { v.set(0, 0, -1); return v; },
+          };
+          a.flora.update(0.016, camera);
+          a.flora.update(0.016, camera);
+          for (const d of a.flora.stats.draws) {
+            if (d.drawn <= 0) continue;
+            rows.push({
+              at: zone,
+              community: d.community,
+              list: d.list,
+              drawn: d.drawn,
+              species: d.species.map((s) => ({
+                id: s.id, drawn: s.drawn, expected: s.expected,
+              })),
+            });
+          }
+        }
+        levels.push({ level, rows });
+      }
+      // Put the visitor's own detail level and the walker's own camera back
+      // before anything else reads either.
+      await a.setDetail(started);
+      if (a.camera) {
+        a.flora.update(0.016, a.camera);
+        a.flora.update(0.016, a.camera);
+      }
+      return { spots: Object.keys(spots), levels };
+    });
+    // Summed over every station, per (community, list, species) — the scene's
+    // answer, at one detail level.
+    const swardCensus = (rows) => {
+      const tally = new Map();
+      for (const r of rows) {
+        for (const s of r.species) {
+          const key = `${r.community}.${r.list}.${s.id}`;
+          const t = tally.get(key) ?? { drawn: 0, owed: 0, at: [] };
+          t.drawn += s.drawn;
+          t.owed = Math.max(t.owed, s.expected);
+          if (s.expected >= 1) t.at.push(r.at);
+          tally.set(key, t);
+        }
+      }
+      return {
+        pairs: tally.size,
+        lists: new Set(rows.map((r) => `${r.community}.${r.list}`)).size,
+        slots: rows.reduce((t, r) => t + r.drawn, 0),
+        nowhere: [...tally.entries()].filter(([, t]) => t.drawn === 0 && t.owed >= 1)
+          .map(([k, t]) => `${k} owed ${t.owed.toFixed(2)} at ${t.at.join('/')}`),
+      };
+    };
+    const censuses = everywhere.levels.map((l) => ({ level: l.level, ...swardCensus(l.rows) }));
+    const richest = censuses[0] ?? { pairs: 0, lists: 0, slots: 0, nowhere: ['no census taken'] };
+    check(`${label}: no sward species its own list owes a plant to is drawn nowhere, `
+      + `in ANY community`,
+      everywhere.spots.length >= 2 && richest.pairs >= 2 && richest.nowhere.length === 0,
+      `${everywhere.spots.length} communities stood in, ${richest.lists} populated list(s), `
+      + `${richest.pairs} (list, species) pairs, ${richest.slots} slots dealt at detail `
+      + `'${richest.level}'`
+      + `${richest.nowhere.length ? `; DRAWN NOWHERE: ${richest.nowhere.join(', ')}` : ''}`);
+    // Reported, not gated: the same census at the levels a visitor can turn the
+    // scene down to. THE RESIDUAL IS REAL AND IS NAMED RATHER THAN GATED AWAY —
+    // at 'light' the wet prairie's prairie dock, owed 1.09 of the 2,670 slots
+    // that level deals, can take none. It is the FORB layer, which K49(f) did
+    // not touch, and one plant either side of an expectation of 1.09 is a
+    // sample rather than an exclusion. Quote the gated line for a claim about
+    // the deal, and this one for a claim about what a phone on 'light' shows.
+    console.log(`  note  ${label}: sward census by detail — ${censuses.map((c) => (
+      `${c.level} ${c.slots} slots, ${c.nowhere.length} drawn nowhere`
+      + `${c.nowhere.length ? ` (${c.nowhere.join('; ')})` : ''}`)).join('  ·  ')}`);
+
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them
     // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the

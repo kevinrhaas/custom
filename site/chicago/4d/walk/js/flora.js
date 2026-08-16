@@ -1635,6 +1635,14 @@ function frac(x) { return x - Math.floor(x); }
  * it. The matrix tail is already empty (K49(a) found no absent matrix species),
  * so the tail is not what this is for — the shortfall is.
  *
+ * THAT LAST SENTENCE WAS WRONG WITHIN THE DAY, AND K49(f) IS WHY. The tail was
+ * empty when it was written and this construction emptied it the other way: a
+ * fixed grid of `u` puts every band narrower than one step out of the scene
+ * ALTOGETHER, and two of the dataset's forty-five matrix bands are. Read
+ * `stratum`'s own doc block below before changing anything here — the repair is
+ * the block's phase, and it also recovers most of the regression the paragraph
+ * below blames on a filter.
+ *
  * ...and it has a SECOND face that cost two rows of the census. Rank is a
  * deterministic function of position inside the block, so a filter that runs
  * AFTER the deal on a spatial rule of its own — `station()` refusing a building
@@ -1643,7 +1651,9 @@ function frac(x) { return x - Math.floor(x); }
  * that got worse are the two most heavily filtered, the settled town and the
  * riverbank. That is the leading explanation and it is not proven; K49(e)
  * measures it. Do not reach for `stratum` in a heavily filtered layer until it
- * has.
+ * has. (K49(f), same day: **refuted for the settled town**, which recovers
+ * 39.18 → 15.52 on the phase alone, against a pre-K49(d) 14.31. The riverbank
+ * keeps a residual 1.30 and that is all K49(e) has left to explain.)
  */
 const STRAT_SALT = 0x7f4a7c15;
 /**
@@ -1707,14 +1717,35 @@ function feistel(x, half, key) {
  * `[0, n)`. The guard is a belt on a loop that provably terminates; falling back
  * to the identity keeps `u` in range rather than returning a rank that is not a
  * rank.
+ *
+ * ROADMAP K49(f) — AND THE GRID IT LANDS ON HAS TO MOVE, or the tail of the CDF
+ * is not thin, it is EMPTY.
+ *
+ * The permutation decides which slot gets which rank. It does not change the SET
+ * of `u` the block deals, which without `phase` is `{(k + 0.5) / n}` — the same n
+ * numbers in every block of the world, for ever. A species owns a CDF band of
+ * width `share × weight`, so a band narrower than `1/n` can contain none of them,
+ * and then it contains none of them EVERYWHERE: the species is not rare in the
+ * scene, it is absent from it, deterministically, at every station. That is the
+ * exact fault K49(b) repaired in the forb lists — and it came back in the matrix
+ * lists the moment K49(d) handed them a fixed grid. (The forb layer never had it:
+ * its lattice `u` already carries the block's `shift`.)
+ *
+ * `phase` is the block's own offset, wrapped — a systematic sample with a random
+ * start, which is the textbook form for exactly this reason. The n values stay
+ * equally spaced, so the block is still an exact stratification and K49(d)'s
+ * deviation result is untouched in construction; what changes is that a band of
+ * width w now falls on a dealt value in about `w · n` of the blocks instead of in
+ * all of them or none, which is the unbiased answer. A species owed a plant per
+ * hundred square metres gets one per hundred square metres.
  */
-function stratum(idx, n, half, key) {
+function stratum(idx, n, half, key, phase) {
   let x = idx;
   for (let guard = 0; guard < 24; guard++) {
     x = feistel(x, half, key);
-    if (x < n) return (x + 0.5) / n;
+    if (x < n) return frac((x + 0.5) / n + phase);
   }
-  return (idx + 0.5) / n;
+  return frac((idx + 0.5) / n + phase);
 }
 
 /** The half-width the Feistel needs to cover `n` slots. */
@@ -1776,8 +1807,13 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emi
         // whether this slot carries a plant at all and which species it is, so
         // that the thinning cannot resample the species draw back into an
         // independent one. See `dealt`.
+        // ROADMAP K49(f). `shift` is the block's offset and BOTH draws take it:
+        // the lattice adds it to a rank-1 sequence, the stratification wraps its
+        // grid of ranks by it. Without it the strata deal the same n values of
+        // `u` in every block of the world and a CDF band narrower than `1/n` is
+        // drawn nowhere at all.
         const u = strata
-          ? stratum(base + k, nSlots, half, blockHash)
+          ? stratum(base + k, nSlots, half, blockHash, shift)
           : frac(c * LD_A + r * LD_B + k * LD_C + shift);
         // A jittered sub-grid, not free scatter: free scatter leaves holes
         // the eye reads as bare soil and clusters it reads as one plant.
