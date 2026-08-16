@@ -2918,6 +2918,30 @@ tools/smoke_renderer.mjs --published` green; critic shots re-measured. The deskt
 and is not claimed — ~13 minutes against a 10-minute per-command ceiling; see the run-budget box at
 the top of this file.
 
+### K47 — the sycamore is drawn as an elm from the bark outwards · **CLAIMED 2026-08-16 · SEEN · from K45(b1) finding 3 and `docs/LIBERTIES.md` L116 · Effort: S–M · NO BAKE**
+
+K45(b1) planted the American sycamore and its own box says the tree **cannot be identified in the
+frame**: it is the only placed species with no `SPECIES` archetype, so
+`SPECIES[sp.id] ?? SPECIES.ulmus_americana` hands it the elm's bole, taper, dbh band, puff count
+and **bark colour**, and `docs/LIBERTIES.md` **L116** records the substitution rather than
+inventing past it. The one thing `z05_riverbank_timber` singles the species out for is the
+sentence *"white mottled bark flashing on the upper limbs"* — the reason a sycamore is
+identifiable across a floodplain — and this scene draws it in the elm's dark brown.
+
+**Why this parcel and why now.** The owner, 2026-08-15: *"you are still being hesitant and
+refusing to build because you are being too cautious about being perfect. It's ok to create
+things that have some justification and they can be inferred or even reconstructed based on your
+analysis"* — with **the tree colours as his own example**. L116's stated reason for not
+building is that no flora record carries a bark colour, so a hex is an invention. That is what
+`docs/LIBERTIES.md` is for: bound the invention, write it down, and build.
+
+**Files:** `renderers/web/js/trees.js` (one `SPECIES` entry, and the one change that lets a
+species carry a second bark tone) · `tools/measure_planting_reach.py` (assertion 3b's bank leaves
+with `--update`, and its negative control has to be re-pointed, because a control whose subject is
+the thing being repaired stops controlling anything) · `docs/LIBERTIES.md` L116 → resolved, plus
+the new entry the invention owes · `docs/STATUS.md` · the changelog. **No `data/` change, so no
+bake.** It changes the frame, so it carries the smoke.
+
 ### K46 — the parcel as it was opened · **superseded by the box above**
 
 K45(b1) measured the divergence and refused to resolve it. The question is one sentence: **when a
