@@ -152,6 +152,23 @@ const TYPES = {
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
+
+/**
+ * ROADMAP R-BUG5 — the bodies of far timber whose authored polyline crosses
+ * water, read from the same file `tools/measure_far_timber.py` writes rather
+ * than restated here.
+ *
+ * Two readers of one number: the Python censuses `data/terrain/…/heightfield.bin`
+ * and this censuses the mask the browser loaded off the published mirror. They
+ * must agree, and importing the baseline is what makes disagreement a failure
+ * instead of a discrepancy nobody compares.
+ */
+const FAR_TIMBER_BANKED_BY_ID = Object.fromEntries(
+  Object.entries(JSON.parse(
+    fs.readFileSync(path.join(HERE, 'far_timber_baseline.json'), 'utf8'),
+  ).bodies).map(([id, entry]) => [id, entry.wet]),
+);
+const FAR_TIMBER_BANKED = Object.keys(FAR_TIMBER_BANKED_BY_ID);
 /**
  * R-M1a — THE TWO NUMBERS THE BARS ABOVE CANNOT SEE, MEASURED AND NOT YET GATED.
  *
@@ -2382,6 +2399,24 @@ const terrainLoad = await page.evaluate(() => {
         drownedTreeStations: drownedTreeStations.length,
         lowestTreeStation, waterY,
         treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
+        // ROADMAP R-BUG5. The population both woody checks above are blind to:
+        // `stations` is written only inside the near-field planter's 632 m
+        // square, so the five FAR_TIMBER bodies drawn as a horizon silhouette
+        // have never been asked where they stand. Measured against the mask the
+        // BROWSER loaded, not the one in data/ — tools/measure_far_timber.py
+        // asks the committed bytes and this project has twice shipped a bug
+        // living exactly in that gap.
+        farTimberWater: a.trees.farTimberWater?.() ?? null,
+        // ...and the clip that keeps them off the screen, exercised. The band is
+        // solved around the camera, so this stands far enough back that
+        // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
+        // it: from the spawn point it is 329 m away and one metre inside the
+        // near cut-off, which is a green gate that has run nothing.
+        horizonWetSkipped: (() => {
+          a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
+          a.step();
+          return a.trees.stats?.horizonWetSkipped ?? null;
+        })(),
         anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
         worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
@@ -2473,6 +2508,26 @@ const terrainLoad = await page.evaluate(() => {
       `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
+    // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
+    // above walk `stations`, which the near-field planter writes and which
+    // therefore describes a 632 m square; the owner's line of trees was four
+    // hundred metres out, in the FAR_TIMBER band, where neither check has ever
+    // looked. Both halves are asserted: the solver refused water on this build
+    // (a number that would be zero if the clip were removed OR if the run never
+    // stood far enough back to reach the belt), and the browser's own census
+    // agrees with what `tools/far_timber_baseline.json` banks — the mask the
+    // page loaded and the mask in `data/` being the same mask is exactly the
+    // R-BUG3c-class assumption that has cost this project two parcels.
+    const farTimberWet = (streetLayer.farTimberWater ?? [])
+      .filter((b) => b.wet > 0);
+    check(`${label}: the horizon band refuses to draw timber over water`,
+      streetLayer.horizonWetSkipped > 0
+      && farTimberWet.length === FAR_TIMBER_BANKED.length
+      && farTimberWet.every((b) => b.wet === FAR_TIMBER_BANKED_BY_ID[b.id]),
+      `${streetLayer.horizonWetSkipped} samples clipped at the mask; census `
+      + (farTimberWet.map((b) => `${b.id} ${b.wet}/${b.samples} wet, `
+        + `${b.worstDepthM.toFixed(3)} m deep`).join(' · ') || 'nothing in water')
+      + ` against banked ${JSON.stringify(FAR_TIMBER_BANKED_BY_ID)}`);
 
     // The horizon timber, in the two ways it was failing to read as timber.
     //
