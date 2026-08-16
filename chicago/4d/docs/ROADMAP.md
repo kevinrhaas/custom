@@ -140,7 +140,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K36(b)~~ | **DONE 2026-08-16** — the palette pass was not buying draw calls, it was **spending** them: a generated map cannot join any batch, so 38 assets shipped as **40 solo batches** and the published town drew **56 where R-W5a's committed figure is 16**. **Four of the eight scene anchors were over the 80-call budget** (worst 102, at the Green Tree); none is now, worst 70. R-W5a's numbers were taken on the SOURCE tree — the same error as R-W2a's, three days apart. Read its box before quoting any batch or draw-call number |
 | — | KERNEL | ~~K37~~ | **DONE 2026-08-16** — the passthrough is **right**: the step makes those 90 files **+107,328 bytes (+20.6 %)**, 88 of 90 growing. But the rule is not "placeholder" — **three assets that have always been compressed here were shipping LARGER than their masters** (+324, +240, +224) and two of the ninety placeholders compress 9.3 % smaller. The step keeps the smaller file per asset now, the gate's bound is **zero**, and `water__` (+744) is the one exclusion, by name, deferred to R-W6(b). Read its box before quoting any payload or passthrough number |
 | — | KERNEL | ~~K38~~ | **DONE 2026-08-16** — the gate on `assets/web/` watched the transformation and not the directory, and **two masters copied into the payload (+1,212,760 bytes) drew CHECK PASS from the whole of `tools/check.sh`**. It is three scripts and **four** passthrough branches, three of them silent, the widest taking the payload 4.54 → 20.96 MB. mtime never compared a byte and is wrong both ways — **334 of 334 masters are older than their derivatives on a fresh clone**, by checkout order. Assertion 8 banks the 93 decisions by name and `publish.sh` refuses instead of copying. Read its box before quoting any passthrough or payload number |
-| 1 | KERNEL | **K39** | opened by K38: the derivative does not record the master it was made from, so staleness is still a timestamp. A rebuilt master with the same geometry and different `_CONFIDENCE` values passes everything. **No bake to build it**, one to bank it — and the coupling to the nightly is the decision, not the hash |
+| — | KERNEL | ~~K39~~ | **DONE 2026-08-16** — the step records `name → sha256(master)` now, in `assets/manifest.web.json`, and assertion 9 answers staleness from CONTENT in both directions. **The finding is the control it could not get**: 14 of 20 sampled derivatives cannot be reproduced by this repository's own step, and all 14 come back byte-for-byte under `BAKE_PALETTE=1` — **195 of 241 compressed derivatives are palette-era**, welded by a pass K36(b) turned off. Read its box before quoting any reproduction number |
+| 1 | KERNEL | **K40** | opened by K39: `assets/web/` is a mixture of two transformations and the next bake rewrites 195 of them. The question is the decision, not the diff — and whether the record should name the STEP as well as the master. **No Blender**, but it needs the desktop smoke half |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
@@ -199,6 +200,19 @@ project's directories now have more writers than gates, and `assets/gltf/` — w
 never been asked the question at all. K38's own successor K39 is the narrower half: the
 step knows which master it compressed and writes it down nowhere, so staleness is still a
 timestamp.
+
+**AND THE NARROW HALF WAS THE ONE THAT PAID — 2026-08-16, K39.** The record itself is
+exactly what K38 predicted and took an afternoon. The finding came from trying to VERIFY
+it: a seeded hash wants a reproduction control, this repository claims one in as many
+words (*"it reproduces 331 of 334"*), and **the claim is false** — 6 of 20, with the other
+14 reproducing byte-for-byte under a flag K36(b) turned off two parcels ago. **The
+generalisation, and it is the K36(b) seam turned on ourselves: when a repair regenerates
+SOME of a set, the remainder becomes the output of a step that no longer exists.** K36(b)
+regenerated 38 of 241 and said so honestly; nothing asked what the other 203 were. This
+project has done partial regenerations at least three times — K36(b)'s 38, K37's 3, and
+R-W6's terrain that never reached the file at all — and each one left a cohort behind.
+K40 is this instance. The question is worth asking of `assets/gltf/` too, where the
+nightly, a `--only` run and `generators/build.py` all write.
 
 **THE SEAM IS STILL OPEN, AND IT PAID AGAIN — 2026-08-16, K36(a).** Same move as K34, one link
 further out: instead of a rule about a record, take a rule about a FILE — *"a stale committed GLB
@@ -2236,7 +2250,157 @@ The questions, in order:
 Watch: the 93 legitimate passthroughs K37 decided are legitimate — the gate must tell a
 decided passthrough from an accidental one, and a bound of zero would be wrong.
 
-### K39 — the derivative does not record the master it was made from · **UNCLAIMED · opened 2026-08-16 by K38 · Effort: S — one field in a baked artefact, and a decision about what a bake commits · NO BAKE to build it, ONE BAKE to bank it**
+### K39 — the derivative does not record the master it was made from · **DONE 2026-08-16 — it does now, and the control that was supposed to verify it does not exist: 14 of 20 shipped derivatives cannot be produced by this repository's own step**
+
+**Phase:** kernel · `tools/web_derivatives.sh`, `tools/measure_web_derivatives.py`,
+`tools/publish.sh`, `assets/manifest.web.json` (new), `assets/LICENSES.md`, docs. No data
+record, no renderer file, no master, no confidence, and **no committed asset changed a
+byte**.
+
+**THE COUPLING, DECIDED BEFORE THE FILE WAS WRITTEN** — which is what the parcel asked
+for, because it is the part that can turn a nightly into a red dev gate for everyone
+else. **The STEP writes the record, on every run, and a bake carries the diff.**
+
+- The record's lifecycle is the derivative's: same producer, same run, same commit.
+  `tools/bake.sh`'s only web-derivative call is `tools/web_derivatives.sh`, and the bake
+  workflow commits `chicago/4d` whole — so a nightly that regenerates geometry rewrites
+  the record in the same breath, and **no workflow change is needed** (which matters:
+  workflow files are outside a steward run's scope).
+- Hand-banking was the alternative and it is the failure this project has now measured
+  twice — `build.json`, written once by hand and two days stale on the site; the
+  665-roof crosswalk, authored and wrong by a third of the programme. A record a person
+  maintains describes the tree as it was when they last remembered.
+- **It is not in `tools/web_derivative_baseline.json`**, which is K39's own Watch. That
+  file is a record of FAULTS a person banks deliberately with `--write-baseline`; a map
+  that changes on every bake has the opposite lifecycle and would train everyone to run
+  `--write-baseline` without reading it. It went beside **`assets/manifest.json`**
+  instead, because the two are the two links of one chain: the manifest records
+  data → master and is written by the Blender build, `manifest.web.json` records
+  master → derivative and is written by the step after it.
+
+**FINDING 1 — one hash, and the assertion is absolute in both directions.** 334 of 334
+derivatives now record the master they were made from. A derivative whose recorded hash
+is not its master's hash today fails; a derivative with no entry fails (that is a file no
+step here claims to have produced); an entry naming a derivative that is not there fails.
+**Exercised against the real tree rather than only in memory**: appending one byte to
+`cobweb_castle__log_1820.glb`'s master makes `--gate` fail by name — *"made from a master
+with sha256 275bab93cbe7… and the master in the tree today is d6e5c694decd…"* — and makes
+`tools/publish.sh` **refuse before it writes anything**, working tree clean afterwards.
+Two new `--self-test` mutations, both caught, and they are the mutations assertions 1-8
+survive: a master rebuilt into the same geometry moves no triangle, no node, no
+attribute, no bounding box, no material and no byte count.
+
+**There is deliberately no way to rewrite the record without regenerating the bytes.** No
+`--write-record` on the gate, no reseed flag on the step. The remedy for every failure
+assertion 9 can produce is `tools/web_derivatives.sh --only <name>`. A hash map you can
+rewrite to make a gate green is a hash map that says nothing, and this project already
+keeps one file whose whole discipline is that it may only be rewritten to record a
+repair.
+
+**FINDING 2, AND IT IS THE ONE WORTH READING — the record's own verification control
+does not exist.** The obvious way to prove a seeded hash is to regenerate the derivative
+and compare bytes, and `tools/web_derivatives.sh`'s header says that works: *"it
+reproduces 331 of 334."* **It does not.** Measured on a 20-asset spread sample of the
+compressed derivatives:
+
+| | reproduced by `tools/web_derivatives.sh` | did not |
+|---|---|---|
+| 20-asset spread sample | **6** | **14** |
+
+And the 14 are not noise — **every one of them reproduces BYTE FOR BYTE under
+`BAKE_PALETTE=1`** (checked on three: `bates_auction_room`, `jh_kinzie_forwarding_store`,
+`recon_1835_west_022`). The cause is a side effect nobody had measured: **`optimize`'s
+palette pass welds**, and K36(b) turned that pass off for draw-call reasons that stand,
+then regenerated only the **38** assets that carried the material fault. The other
+derivatives still carry palette-era bytes.
+
+The size of it needs no `npx` at all — a welded derivative carries fewer vertices than
+its master, and that is readable from the glTF JSON:
+
+| compressed derivatives (334 − 93 passthroughs) | 241 |
+|---|---|
+| **fewer vertices than their master** — only the palette-era step produces this | **195** |
+| exactly the master's vertex count — today's step, or nothing to weld | 46 |
+| vertices the welded set drops in total | 10,513 |
+
+195 is a **lower bound**: an asset with no duplicate vertices to weld looks identical
+under both steps, which is exactly why 6 of the sample reproduced.
+
+**Nothing is wrong with the bytes on the site.** A weld is lossless, the triangles are
+equal, and assertions 1-9 are green on all 195. What is wrong is the claim: the sentence
+the whole no-Blender repair strategy rests on — *this runner can regenerate what the
+nightly ships* — is true for 46 of 241 and false for 195. And the consequence is
+scheduled: **the next nightly bake rewrites all 195 as unwelded files**, +2,756 bytes
+across the 14 sampled (+197 each), arriving in a bake PR as binary noise nothing
+predicted.
+
+**FINDING 3 — and it is why assertion 9 stops where it does.** The hash names the
+MASTER, not the STEP. All 195 palette-era derivatives record the right master and are
+correctly green, because their master *is* the master beside them. Answering "which step
+made this" is a second field with a 195-file repair behind it, and it is K40's, not this
+parcel's — K39's own effort line says one field.
+
+**THE SEED, STATED PLAINLY.** The record was seeded in this commit rather than produced
+by a full run of the step, because a full run regenerates all 334 derivatives and 195 of
+them would change bytes — that is K40's repair and it needs a smoke half this runner
+cannot finish. One entry (`cobweb_castle__log_1820.glb`) was written by the step itself,
+and its derivative came back **md5-identical**; the other 333 were hashed from the
+masters in the tree and merged into the same structure. **What the seed rests on** is
+assertions 1-8: each derivative carries this master's triangles, node identity and
+`extras`, contract attributes, bounding box to under 2.63 rungs, and material table, and
+93 of them are byte-identical to it. **What it does not claim** is that the shipped bytes
+were produced by today's step — finding 2 measured that at least 195 of them were not.
+
+**Verified:** `tools/check.sh` green, including the self-test step and the licence check
+(`assets/manifest.web.json` is accounted for in `assets/LICENSES.md`, beside
+`manifest.json`, as a build record rather than an asset).
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` green. The desktop half
+was not run and is not claimed — ~13 minutes against this harness's 10-minute
+per-command ceiling; see the run-budget box at the top of this file. No vertex, material
+or pose moves in this parcel and no committed asset changed a byte.
+
+### K40 — 195 shipped derivatives were made by a step this repository no longer has · **UNCLAIMED · opened 2026-08-16 by K39 · Effort: M — 195 binary files, or the decision not to move them · NO BLENDER (gltf-transform only), but the desktop smoke half is the acceptance**
+
+K39 needed a reproduction control and could not get one. `tools/web_derivatives.sh` does
+not produce the bytes on the site: **6 of 20 sampled derivatives reproduce, 14 do not,
+and all 14 come back byte-for-byte with `BAKE_PALETTE=1`.** K36(b) turned the palette
+pass off — correctly, it was costing draw calls at four of eight scene anchors — and
+regenerated only the 38 assets whose material identity it had broken. The pass was also
+**welding**, which nothing had measured, so **195 of the 241 compressed derivatives carry
+fewer vertices than their masters** (10,513 vertices in total) and are the output of a
+step that no longer exists here.
+
+Nothing on the site is wrong today. The problem is that the repair is *scheduled without
+a decision*: the next nightly bake regenerates all 195 unwelded, and that lands as a
+195-file binary diff in a bake PR with no number attached to it.
+
+The questions, in order:
+
+1. **Count it exactly.** The 195 is a lower bound from the vertex signature; a full
+   `tools/web_derivatives.sh --out <tmp>` control over 334 masters gives the exact set.
+   It costs about 17 minutes of `npx` at ~3 s per asset, so it must be **chunked** under
+   this harness's 10-minute per-command ceiling — that constraint is the parcel's shape,
+   not an aside.
+2. **Price it.** +197 bytes per asset on the 14 sampled, against a 4.5 MB payload and a
+   25 MB budget. Take the real total, both ways, and quote it.
+3. **Decide who moves them, and say why.** Regenerating them here is one command and no
+   Blender, but it moves 195 binary files and the acceptance is the *desktop* smoke half
+   — which this harness cannot finish (see the run-budget box). Letting the nightly do it
+   costs nothing and buys a bake PR nobody can review. Both are defensible; picking
+   silently is not.
+4. **Then ask whether the record should name the STEP.** K39 deliberately recorded the
+   master and not the step, and finding 3 says why: the 195 record the right master and
+   are correctly green. A second field — the tool version and the flag set — would have
+   caught this on the day K36(b) landed. It would also go stale on every flag change, so
+   it is a lifecycle question, not a hashing one.
+
+Watch: **do not "fix" this by turning the palette pass back on.** K36(b) measured what it
+costs — 56 draw calls against R-W5a's 16, four of eight anchors over the 80 budget, worst
+102 at the Green Tree — and that measurement stands. If the weld is worth having, it is
+worth having *on its own*: `gltf-transform` ships a `weld` command, and a pass this
+project adds deliberately is a pass it can measure. Do not add one without a number.
+
+### K39 — the parcel as written, kept for the record
 
 K38 took `tools/publish.sh` out of the business of writing `assets/web/` and left its
 detector in place, refusing instead of copying. **The detector is still an mtime

@@ -28,6 +28,20 @@
 # R-W6(b) owns it) and the two placeholders that compress SMALLER, which stay
 # master copies because `generators/inferred_placeholder.py` rewrites the web
 # tree from the master on every run and would undo them. See K37's open end.
+#
+# AND THAT SENTENCE IS NOT TRUE EITHER — measured 2026-08-16 by K39, which needed a
+# reproduction control to verify its own record and could not get one. On a 20-asset
+# spread sample of the compressed derivatives, **6 reproduced and 14 did not**, and
+# every one of the 14 reproduces BYTE FOR BYTE under `BAKE_PALETTE=1`. The palette pass
+# K36(b) turned off (for measured draw-call reasons that stand) was also WELDING these
+# files, and K36(b) regenerated only the 38 that carried the material fault. So
+# `assets/web/` is a mixture of two transformations: **195 of the 241 compressed
+# derivatives carry fewer vertices than their masters**, which only the palette-era step
+# produces, and 10,513 vertices in total. Nothing is wrong with the bytes on the site —
+# a weld is lossless and assertions 1-9 are green on all of them — but this script does
+# not produce them, and the next nightly bake will rewrite all 195 as unwelded files.
+# ROADMAP K40 owns the count, the payload delta and the decision. Do not quote "331 of
+# 334": it is the claim K40 exists to correct.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -40,6 +54,82 @@ while [ $# -gt 0 ]; do
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
+
+# WHAT THIS STEP KNOWS AND NOTHING ELSE DOES — ROADMAP K39.
+#
+# It knows which master it just compressed. Until K39 it wrote that down nowhere, so
+# "is this derivative stale?" was answered by a TIMESTAMP: publish.sh compared mtimes,
+# and K38 measured that on a fresh clone `git checkout`'s write order makes 334 of 334
+# masters older than their derivatives — silent on exactly the tree a steward run
+# starts from. Assertions 1-8 in tools/measure_web_derivatives.py compare a derivative
+# to whatever master sits beside it TODAY and never ask whether that is the one it came
+# from, so a master rebuilt with the same geometry and different _CONFIDENCE values
+# passed all of them. That is the failure publish.sh's own comment was written about.
+#
+# So the step records `name -> sha256(master)` into assets/manifest.web.json as it
+# produces each file, and assertion 9 turns staleness into a hash comparison. It sits
+# beside assets/manifest.json because the two are the two links of one chain: that one
+# records data -> master and is written by the Blender build, this one records
+# master -> derivative and is written by the step after it.
+#
+# THE COUPLING, DECIDED (K39 asked for the decision before the file): the STEP writes
+# it, on every run, and a bake carries the diff. The record's lifecycle is the
+# derivative's — same producer, same run, same commit — so a nightly that regenerates
+# geometry rewrites the record in the same breath and cannot leave the dev gate red for
+# everyone else. tools/bake.sh's only web-derivative call is this script, and the bake
+# workflow commits `chicago/4d` whole, so this needs no workflow change. Banking it by
+# hand was the alternative and it is the failure this project has now measured twice: a
+# record a person maintains describes the tree as it was when they last remembered.
+# It is NOT in tools/web_derivative_baseline.json for the same reason — that file is a
+# record of FAULTS a person banks deliberately, and a map that changes on every bake
+# would train everyone to run --write-baseline without reading it.
+#
+# It is written by this script and read by the gate. There is no flag anywhere that
+# rewrites it without regenerating the bytes it describes: the remedy for a stale
+# derivative is `tools/web_derivatives.sh --only NAME`, never an edit of the record.
+RECORD="assets/manifest.web.json"
+PRODUCED="$(mktemp -t webderiv.XXXXXX)"
+trap 'rm -f "$PRODUCED"' EXIT
+
+record_masters() {
+  # Only ever for the canonical tree — a --out run is a MEASUREMENT and must not
+  # author a claim about what the repository ships.
+  [ "$OUT" = "assets/web" ] || return 0
+  [ -s "$PRODUCED" ] || return 0
+  python3 - "$RECORD" "$PRODUCED" "${ONLY:-}" <<'PY'
+import hashlib, json, pathlib, sys
+
+record, produced, only = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]), sys.argv[3]
+names = [n for n in produced.read_text().split() if n]
+
+# A full run rewrites the map whole, so a deleted asset's entry goes with it. A
+# --only run merges, because it has nothing to say about the other 333.
+masters = {}
+if only and record.exists():
+    masters = json.loads(record.read_text()).get("masters", {})
+for name in names:
+    src = pathlib.Path("assets/gltf") / name
+    masters[name] = hashlib.sha256(src.read_bytes()).hexdigest()
+
+record.write_text(json.dumps({
+    "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was "
+             "produced from, written by tools/web_derivatives.sh in the "
+             "same run that produced the bytes, and read by "
+             "tools/measure_web_derivatives.py assertion 9. It answers 'has the master "
+             "been rebuilt since?' from CONTENT rather than from a timestamp — mtime "
+             "cannot, because on a fresh clone every master is older than its "
+             "derivative by checkout order (K38, measured 334 of 334). DERIVED, and "
+             "not bankable: the remedy for a mismatch is "
+             "`tools/web_derivatives.sh --only <name>`, never an edit of this file. It "
+             "names the MASTER, not the STEP — a derivative made by an older flag set "
+             "from this same master is recorded correctly here and reproduces nothing "
+             "(ROADMAP K40).",
+    "written_by": "tools/web_derivatives.sh",
+    "masters": dict(sorted(masters.items())),
+}, indent=2) + "\n", encoding="utf-8")
+print(f"   recorded {len(names)} master hash(es) in {record}")
+PY
+}
 
 echo "== web derivatives"
 if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
@@ -240,6 +330,7 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
       passthrough=$((passthrough + 1))
       note="  (compression grew it; master passed through)"
     fi
+    echo "$(basename "$f")" >> "$PRODUCED"
     printf '   %s  %s -> %s bytes%s\n' "$(basename "$f")" \
       "$(stat -c%s "$f")" "$(stat -c%s "$out")" "$note"
   done
@@ -271,5 +362,15 @@ else
   echo "   WARNING: every derivative is now a master copy. tools/check.sh will fail"
   echo "   assertion 8 (K38) on all of them, which is correct — do not bank it."
   mkdir -p "$OUT" && cp -f assets/gltf/*.glb "$OUT/" 2>/dev/null || true
+  # This branch is a writer too, and the record says what was written rather than what
+  # was intended — a copy IS what came out of this step here. Assertion 8 is what says
+  # it should not have.
+  for f in assets/gltf/*.glb; do
+    [ -e "$f" ] || continue
+    [ -z "$ONLY" ] || [ "$(basename "$f")" = "$ONLY" ] || continue
+    echo "$(basename "$f")" >> "$PRODUCED"
+  done
 fi
+
+record_masters
 

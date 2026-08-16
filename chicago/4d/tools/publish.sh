@@ -26,34 +26,33 @@ cd "$(dirname "$0")/.."
 #     the mirror contract says publish does not do.
 #
 # So the detection stays and the writing goes. This refuses BEFORE it writes
-# anything, names the files and names the command that fixes them. mtime is a
-# conservative trigger, not a complete one — on a fresh clone every master is
-# older than its derivative by checkout order (measured: 334 of 334), so this
-# can miss a stale derivative it should catch. That residual is K39; a false
-# negative here is caught by assertion 8 the moment a writer produces a copy,
-# and by nothing at all when it does not, which is what K39 is for.
+# anything, names the files and names the command that fixes them.
+#
+# AND THE DETECTION IS NO LONGER AN mtime SCAN — ROADMAP K39. It was one, and K38
+# recorded its own residual in as many words: mtime is a conservative trigger, not a
+# complete one, because on a fresh clone `git checkout`'s write order makes every
+# master older than its derivative (measured: 334 of 334). So the scan was silent on
+# exactly the tree a steward run starts from, and the stale derivative it was written
+# to catch — a master rebuilt with the same geometry and different _CONFIDENCE values —
+# went past it and past assertions 1-8 alike.
+#
+# tools/web_derivatives.sh records the sha256 of the master it compressed as it writes
+# each derivative, and assertion 9 in tools/measure_web_derivatives.py compares that
+# hash to the master in the tree. So staleness is answered from CONTENT here now, and
+# this simply runs the gate: it is the same question, asked by the thing that already
+# knows how to ask it, and running the whole gate also means a publish cannot ship a
+# tree whose derivatives fail any of the other eight.
 # ---------------------------------------------------------------------------
 mkdir -p assets/web
-stale=()
-for m in assets/gltf/*.glb; do
-  [ -e "$m" ] || continue
-  w="assets/web/$(basename "$m")"
-  if [ ! -e "$w" ] || [ "$m" -nt "$w" ]; then
-    stale+=("$(basename "$m")")
-  fi
-done
-if [ ${#stale[@]} -gt 0 ]; then
-  echo "REFUSING TO PUBLISH — ${#stale[@]} master(s) are newer than the derivative the" >&2
-  echo "site would ship, so the mirror would carry a building the repository no longer" >&2
-  echo "describes. This used to be a silent 'cp' of the uncompressed master (K38)." >&2
-  for n in "${stale[@]}"; do
-    echo "   stale derivative: $n" >&2
-  done
+if ! python3 tools/measure_web_derivatives.py --gate --quiet; then
   echo "" >&2
-  echo "Regenerate them, then publish again:" >&2
-  for n in "${stale[@]}"; do
-    echo "   tools/web_derivatives.sh --only $n" >&2
-  done
+  echo "REFUSING TO PUBLISH — the derivatives this would mirror do not answer for" >&2
+  echo "themselves against the masters in the tree (see the failures above). The site" >&2
+  echo "would carry a building the repository no longer describes, and publishing it" >&2
+  echo "is how that becomes invisible." >&2
+  echo "" >&2
+  echo "Each failure names its own remedy; both of the common ones are regenerations:" >&2
+  echo "   tools/web_derivatives.sh --only <name>       # a stale or unrecorded file" >&2
   echo "   python3 tools/measure_web_derivatives.py --write-baseline   # only if the" >&2
   echo "     # passthrough set moved — a master that compresses bigger stays a copy" >&2
   exit 1

@@ -108,11 +108,44 @@ and comparing material tables costs about a second for all 334 assets.
     banked by name and both directions fail: an unbanked passthrough is a writer nobody
     watched, and a banked one that is now compressed is a repair that has to be recorded
     with `--write-baseline` rather than discovered.
+
+9.  **The derivative records the master it was made from** (absolute in BOTH
+    directions, `assets/manifest.web.json`, K39). Assertions 1-8 compare a derivative
+    to *whatever master sits beside it today*. None of them asks whether that is the
+    master it came from, and nothing else did either: K38 left `tools/publish.sh`
+    refusing on **mtime**, and measured that on a fresh clone `git checkout`'s own
+    write order makes 334 of 334 masters older than their derivatives — so the scan is
+    silent on exactly the tree a steward run starts from. The gap that survived is
+    narrow and named. A master rebuilt into a *different building* fails assertions
+    2-5; a master rebuilt into the **same** geometry with different `_CONFIDENCE`
+    values fails nothing at all. That is the failure `publish.sh`'s original comment
+    was written about — *"a rebuilt building kept rendering with its old confidence
+    values"* — and `_CONFIDENCE` is how a visitor is told which parts we made up, so a
+    stale one is a provenance fault wearing a rendering fault's clothes.
+
+    `tools/web_derivatives.sh` knows exactly which master it compressed. It now writes
+    `name -> sha256(master)` as it produces each derivative, into a sidecar that
+    travels with the artefact, and this asserts it: a derivative whose recorded hash is
+    not its master's hash today is stale ABSOLUTELY, whatever the timestamps say, and a
+    derivative with no record at all is a file no step in this repository claims to
+    have produced. The remedy in both directions is a REGENERATION, never an edit of
+    the record — which is why the record has no `--write` affordance here on purpose. A
+    hash map you can rewrite to make a gate green is a hash map that says nothing.
+
+    **What it does not answer, stated because measuring it is what opened K40.** The
+    hash names the MASTER, not the STEP. A derivative produced by an older flag set
+    from this same master carries the right hash and still reproduces nothing:
+    measured on a 20-asset spread sample, **14 of 20 shipped derivatives cannot be
+    reproduced by `tools/web_derivatives.sh` as it stands today** — they carry FEWER
+    vertices than their masters, because the palette pass K36(b) turned off was welding
+    them as a side effect nobody had measured. Assertion 9 is silent on all 14, and
+    correctly so: their master is the right master.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import struct
@@ -123,6 +156,18 @@ ROOT = Path(__file__).resolve().parent.parent
 MASTERS = ROOT / "assets" / "gltf"
 SHIPPED = ROOT / "assets" / "web"
 BASELINE = ROOT / "tools" / "web_derivative_baseline.json"
+
+# K39. Written by tools/web_derivatives.sh as it produces each derivative, and by
+# nothing else — not by this file, which only reads it.
+#
+# It sits beside assets/manifest.json deliberately: the two are the two links of the
+# same chain. The manifest records data -> master (an inputs hash per asset, written by
+# the Blender build); this records master -> derivative (the master's own hash, written
+# by the step after it). Its lifecycle is the derivative's — same producer, same run,
+# same commit. tools/web_derivative_baseline.json has the opposite lifecycle, a person
+# banking a decision by hand with --write-baseline, and a map that changes on every
+# bake does not belong in it.
+RECORD = ROOT / "assets" / "manifest.web.json"
 
 # A normalised position component is stored in a SHORT and dequantised by the node's
 # own scale, so the finest step any shipped vertex can land on is the asset's widest
@@ -284,6 +329,8 @@ def measure() -> dict:
     master_files = {p.name: p for p in sorted(MASTERS.glob("*.glb"))}
     shipped_files = {p.name: p for p in sorted(SHIPPED.glob("*.glb"))}
 
+    record = load_record()
+
     rows = []
     for name in sorted(set(master_files) & set(shipped_files)):
         a = glb_json(master_files[name])
@@ -317,11 +364,13 @@ def measure() -> dict:
             "bytes": (master_bytes, shipped_bytes),
             "uncompressed_copy": master_files[name].read_bytes()
                                  == shipped_files[name].read_bytes(),
+            "master_sha256": hashlib.sha256(master_files[name].read_bytes()).hexdigest(),
         })
     return {
         "rows": rows,
         "master_only": sorted(set(master_files) - set(shipped_files)),
         "shipped_only": sorted(set(shipped_files) - set(master_files)),
+        "record": record,
     }
 
 
@@ -424,6 +473,33 @@ def assertions(result: dict, baseline: dict) -> list[str]:
                         f"it is compressed now. That is a repair, not a discovery — re-run "
                         f"tools/measure_web_derivatives.py --write-baseline in the commit that "
                         f"made it (K38)")
+
+    # Assertion 9 (K39). Staleness answered from CONTENT, in both directions.
+    recorded = result.get("record", {})
+    for row in result["rows"]:
+        name = row["name"]
+        was = recorded.get(name)
+        if was is None:
+            problems.append(
+                f"{name}: nothing records which master assets/web/{name} was made from. "
+                f"tools/web_derivatives.sh writes {RECORD.name} as it produces each "
+                f"derivative, so a file it does not appear in was written by something "
+                f"else — regenerate it with tools/web_derivatives.sh --only {name} (K39)")
+        elif was != row["master_sha256"]:
+            problems.append(
+                f"{name}: the shipped derivative was made from a master with sha256 "
+                f"{was[:12]}… and the master in the tree today is {row['master_sha256'][:12]}…. "
+                f"The master has been rebuilt since; the site would ship the OLD building's "
+                f"bytes, and assertions 2-7 cannot see it when the rebuild kept the geometry "
+                f"and moved only the confidence values. Regenerate it with "
+                f"tools/web_derivatives.sh --only {name} (K39). Do not edit {RECORD.name} — "
+                f"it is written by the step and by nothing else")
+    for name in sorted(set(recorded) - {r["name"] for r in result["rows"]}):
+        problems.append(
+            f"{name}: {RECORD.name} records a master hash for a derivative that is not in "
+            f"assets/web/ beside a master of its own. The record is rewritten whole by a "
+            f"full tools/web_derivatives.sh run; a stale entry means the file was deleted "
+            f"without one (K39)")
     return problems
 
 
@@ -490,6 +566,13 @@ def print_census(result: dict) -> None:
                   f"{', '.join(fault['names_lost'][:4])}")
         if len(faults) > 5:
             print(f"      … and {len(faults) - 5} more")
+
+    recorded = result.get("record", {})
+    matched = sum(1 for r in rows if recorded.get(r["name"]) == r["master_sha256"])
+    print(f"  master lineage (K39): {matched} of {len(rows)} derivative(s) record the master "
+          f"they were made from, and that master's bytes are still the ones in the tree — "
+          f"{len(rows) - matched} do not (bound: 0), {len(set(recorded) - {r['name'] for r in rows})} "
+          f"record(s) name a derivative that is not here")
 
     lost = {}
     for r in rows:
@@ -579,6 +662,13 @@ def self_test() -> int:
                  lambda r: _copy_master_through(r, baseline))
     ok &= mutate("a decided passthrough was regenerated and not banked",
                  lambda r: _uncopy_passthrough(r, baseline))
+    # K39's two, and they are the mutation assertions 1-8 survive: a master rebuilt into
+    # the same geometry with different confidence values changes no triangle, no node, no
+    # attribute, no bounding box, no material and no byte count.
+    ok &= mutate("the master was rebuilt after the derivative was made",
+                 lambda r: _rebuild_master(r))
+    ok &= mutate("a derivative nothing recorded a master for",
+                 lambda r: _forget_master(r))
     print("SELF-TEST PASS" if ok else "SELF-TEST FAIL")
     return 0 if ok else 1
 
@@ -634,6 +724,30 @@ def _uncopy_passthrough(result: dict, baseline: dict) -> bool:
     return False
 
 
+def _rebuild_master(result: dict) -> bool:
+    """One master comes back from a bake with the same geometry and a new hash.
+
+    The point of the mutation is what it does NOT change: nothing this file measures
+    about the shipped bytes moves, which is why K38's residual survived eight
+    assertions and an mtime scan.
+    """
+    for row in result["rows"]:
+        if row["name"] in result.get("record", {}):
+            row["master_sha256"] = "f" * 64
+            return True
+    return False
+
+
+def _forget_master(result: dict) -> bool:
+    """A derivative appears in assets/web/ that the step never recorded producing."""
+    record = result.get("record", {})
+    for row in result["rows"]:
+        if row["name"] in record:
+            del record[row["name"]]
+            return True
+    return False
+
+
 def _repair_materials(result: dict, baseline: dict) -> bool:
     banked = set(baseline.get("material_identity", {}))
     for row in result["rows"]:
@@ -651,6 +765,19 @@ def load_baseline() -> dict:
     if not BASELINE.exists():
         return {}
     return json.loads(BASELINE.read_text())
+
+
+def load_record() -> dict:
+    """The master hash each derivative was made from (K39). Read-only, here.
+
+    There is deliberately no writer in this file. `tools/web_derivatives.sh` authors
+    the record in the same run that produces the bytes it describes; a `--write-record`
+    flag on the GATE would let anyone answer a stale-derivative failure by re-recording
+    the hash instead of regenerating the file, which is the fault wearing a green tick.
+    """
+    if not RECORD.exists():
+        return {}
+    return json.loads(RECORD.read_text()).get("masters", {})
 
 
 def write_baseline(result: dict) -> None:
@@ -725,7 +852,8 @@ def main() -> int:
               f"identity and contract attributes; worst bounding-box disagreement "
               f"{worst:.2f} of {RUNG_TOLERANCE:.0f} rungs; {faults} asset(s) lose their "
               f"material identity to the publish path (banked, K36(b)); {copies} master "
-              f"passthrough(s), all of them decided (K38)")
+              f"passthrough(s), all of them decided (K38); and every one of them records "
+              f"the master it was made from, which is still the master in the tree (K39)")
     return 0
 
 

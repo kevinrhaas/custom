@@ -1,5 +1,56 @@
 # STATUS
 
+## Fixed 2026-08-16 — the shipped model now records the model it was made from; and 195 of them were made by a step this repository no longer has
+
+**K39.** K38's residual was that staleness was still a **timestamp**: `tools/publish.sh`
+compared mtimes, and on a fresh clone `git checkout`'s write order makes **334 of 334**
+masters older than their derivatives, so the scan was silent on exactly the tree a run
+starts from. A master rebuilt with the same geometry and different `_CONFIDENCE` values —
+the case the script's own comment was written about — passed that scan and all eight
+content assertions alike.
+
+**What moved.** `tools/web_derivatives.sh` records `name → sha256(master)` as it produces
+each derivative, into **`assets/manifest.web.json`**, beside `assets/manifest.json`: the
+manifest records data → master and is written by the Blender build, this records master →
+derivative and is written by the step after it. **Assertion 9** compares the recorded hash
+to the master in the tree, absolute in both directions — a moved master fails, an
+unrecorded derivative fails, an entry with no file fails. Exercised on the real tree, not
+only in memory: one byte appended to a master makes the gate fail by name and
+`tools/publish.sh` refuse before writing anything. `publish.sh` no longer scans mtimes at
+all; it runs the gate. **There is deliberately no flag anywhere that rewrites the record
+without regenerating the bytes** — the remedy is always `--only <name>`.
+
+**The coupling was the real question and it is decided: the STEP writes it, every run, and
+a bake carries the diff.** The record's lifecycle is the derivative's — same producer, same
+run, same commit — so a nightly rewrites it in the same breath and cannot leave the dev
+gate red for everyone else. It is deliberately **not** in
+`tools/web_derivative_baseline.json`, which is a record of faults a person banks by hand.
+
+**AND THE CONTROL THAT WAS SUPPOSED TO VERIFY IT DOES NOT EXIST.**
+`tools/web_derivatives.sh` says it *"reproduces 331 of 334"*. Measured: **6 of 20** in a
+spread sample, and **all 14 that failed come back byte-for-byte under `BAKE_PALETTE=1`**.
+`optimize`'s palette pass was **welding**, K36(b) turned the pass off for draw-call reasons
+that stand, and it regenerated only the 38 assets whose material identity had broken. By
+vertex signature — no `npx` needed — **195 of the 241 compressed derivatives carry fewer
+vertices than their masters**, 10,513 vertices in total, and that is a lower bound.
+
+**Nothing on the site is wrong**: a weld is lossless, triangles are equal, and assertions
+1–9 are green on all 195. What is false is the claim that this runner can regenerate what
+the nightly ships — true for 46 of 241 — and the consequence is scheduled: **the next bake
+rewrites all 195 as unwelded files**, a 195-file binary diff with no number attached to it.
+**K40** owns the count, the price and the decision, and the further question K39 declined:
+whether the record should name the STEP as well as the master.
+
+**Stated, not tidied:** the record was **seeded** in this commit, not produced by a full
+run, because a full run would move those 195 files. One entry was written by the step (its
+derivative came back md5-identical); the other 333 rest on assertions 1–8 and on the 93
+passthroughs' byte identity with their masters. It does not claim the shipped bytes came
+from today's step.
+
+**Not verified here:** the desktop half of the smoke (~13 min against this harness's
+10-minute per-command ceiling). `tools/check.sh` and the mobile half of `--published` are
+green. No committed asset changed a byte.
+
 ## Fixed 2026-08-16 — a publish step could put 1.2 MB of uncompressed models into the payload and the whole gate said CHECK PASS
 
 **K38.** K37 noticed a third writer of `assets/web/` and declined to chase it:
