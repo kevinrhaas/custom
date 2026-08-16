@@ -1,5 +1,72 @@
 # STATUS
 
+## Found 2026-08-16 — six plants the meadow recipes owe a place to stand nowhere, and the gate's own station cannot see any of them
+
+**K49(a)**, the measurement half of K49. Nothing a visitor can see changed; the fixes are
+**K49(b)** (no research needed, stands six plants up) and **K49(c)**, both SEEN.
+
+K48 lost the American sycamore because a small weighted sample loses its rare end, and K49 asked
+whether the same is true of the sward — **118 of the 154 plant records**, against `trees.js`'s 36,
+and never once counted. It is true. Measured by `tools/measure_sward_draw.mjs` on the published
+mirror, standing the placer in every community in turn — **8 communities, 16 populated lists,
+6,780 slots dealt, worst shortfall 31.47 slots:**
+
+| species | owed | list | recorded as |
+|---|---|---|---|
+| **prairie dock** `silphium_terebinthinaceum` | **3.23** | `z01_wet_prairie.forb` | `density_per_ha` |
+| water hemlock `cicuta_maculata` | 2.62 | `z01_wet_prairie.forb` | `density_per_ha` |
+| wood nettle `laportea_canadensis` | 1.74 | `z06_dense_forest.forb` | `cover_fraction` |
+| ninebark `physocarpus_opulifolius` | 1.45 | `z05_riverbank_timber.forb` | `cover_fraction` |
+| compass plant `silphium_laciniatum` | 1.14 | `z02_mesic_prairie.forb` | `density_per_ha` |
+| wild garlic `allium_canadense` | 1.02 | `z05_riverbank_timber.forb` | `cover_fraction` |
+
+Prairie dock is a 2–3 m plant over a rosette 0.6–1.0 m across: the wet prairie is owed three of
+them and stands none.
+
+**And the harness could not see it, which is the finding that is not about flora.** The release
+smoke reads the same census, at whatever station the gate is standing in — the settled town, **68
+slots, one community of ten** — and from there the answer is "0 absent". A first draft of this
+entry quoted exactly that and called the sward's tail clean. It was the sample that was clean.
+Every per-frame figure the smoke prints has this shape, and the repair was to move the instrument,
+not to change what it counts.
+
+**A second fault sits underneath, one line earlier.** `pick()` deals SLOTS, and a slot is one drawn
+plant. `stems_per_m2` and `density_per_ha` are counts of plants; `cover_fraction` is an area of
+ground. `buildSpecies` normalises all three into one share, so *"covers 25 % of the ground"* is
+read as *"0.25 plants per square metre"* — the same sentence about a two-metre dogwood and about
+a wild garlic.
+
+**Six of twenty lists mix the two, dataset-wide** (so the figure does not move with the camera):
+`z06_dense_forest.forb` **96.5 %** of slots dealt off counts against species recorded as cover,
+`z08_lakeshore.matrix` 14.0 %, `z03_sedge_meadow.forb` 10.2 %, `z03_sedge_meadow.matrix` 3.8 %,
+`z09_sand_prairie.matrix` 0.7 %, `z10_settled_town.forb` 0.6 %. The forest understory is the
+extreme: ramps at 2.5 stems/m² take 96 % of that list against nine shrubs.
+
+**The repair is blocked on data, and that is why this is (a).** A conversion needs the plant's own
+footprint, and **25 records give a cover fraction with no `width_m`** — `poa_pratensis`, which is
+60 % of the town's lawn, and all three cover-recorded forbs of the sedge meadow among them. The
+placer's existing fallback is a walker-clearance radius, and it would dominate the answer:
+measured offline, it moves `poa_pratensis` from a 0.60 share to 0.99 while a recorded width moves
+`trifolium_repens` from 0.16 to 0.003. A gap the arithmetic turns on is recorded, not filled.
+
+**Reported and not gated**, on the R-M1 split — a bar today would either fail the build over
+unresearched data or be met with an invention. What IS gated is that the instrument works: every
+slot dealt is attributed to a species, over a populated sward.
+
+**Why the tail was not repaired in the same run.** K48's picker keeps running accounts, which is
+fine for a wood dealt once at load and wrong for a sward re-dealt from a world-anchored lattice on
+every re-centre: state makes a slot's species depend on the order slots were visited in, so the
+plant at your feet would change species as you walked up to it. The sward needs a stateless
+equivalent — a low-discrepancy assignment keyed on the slot's own coordinates — and that is a
+placement change whose failure mode is diagonal striping by species, which has to be looked at
+rather than counted. K49(b) carries the form and the check.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the
+mobile smoke against the published mirror and `tools/measure_sward_draw.mjs` are what this rests
+on. The two audit figures are dataset-wide and viewport-independent; the smoke's tail figure is
+the frame the gate stood in, and its note now says so in as many words.
+
 ## Fixed 2026-08-16 — the sycamore is standing, and the density it was supposedly starved of was never the fault
 
 **K48**, and it refuted the premise it was opened on. The parcel said every species is planted at
