@@ -145,6 +145,18 @@ step "the anonymous massings that claim a sampled band have one" \
 step "no reconstructed value is newly outside the band its own note cites" \
   python3 tools/measure_band_claims.py --gate --quiet
 
+# AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
+# from Chicago is August 1835, inside this project's first target year — and gives it
+# one mechanism: review_required on any record blocks a scene from being marked
+# released. Nothing had ever measured what that sentence covers (ROADMAP K34). It
+# covered the buildings: the seven flagged households blocked nothing, and were safe
+# only by the coincidence that each lives or works in a building that is flagged too.
+# One record said in its own prose that it carried the flag and never had. Four
+# absolute assertions and no ratchet, because this is a commitment rather than a fault
+# being paid down.
+step "the standing constraint reaches every record that claims it" \
+  python3 tools/measure_review_constraint.py --gate
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

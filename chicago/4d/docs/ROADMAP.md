@@ -134,6 +134,8 @@ desktop half belongs to a runner without the per-command ceiling.
 
 | — | GROUND | ~~T-E5(a)~~ | **DONE 2026-08-16** — the four in-town waters were deferred under one phrase and **three of the four are datable at the scene; the pond is not**. The sharpest finding is not the pond: **the scene draws the BRIDGE over the slough and not the slough**. On the square, date and extent are one question — a whole-block pond is refused by this project's own estray pen (**March 1832**) and log jail (**fall 1833**), and a partial one has no source. **No liberty owed, no grade moved.** Read its box before quoting any in-town water number |
 | 2 | GROUND | **T-E5(b)** | how much of the square was wet — opened by T-E5(a), and its first question is whether any source states an extent at all. **NEEDS A BAKE** |
+| — | KERNEL | ~~K34~~ | **DONE 2026-08-16** — the constraint AGENTS.md puts above the work was kept by the **buildings and not the people**: the release block was `data/structures/` alone, so the **7 flagged households blocked nothing** and were safe only by the coincidence that all **11** of their links land on a flagged building. And **`hh_caldwell_billy` said in its own prose that it carries the flag and never did**. Four absolute assertions now, all four broken deliberately first. Read its box before quoting any review-flag number |
+| 3 | KERNEL | **K35** | opened by K34: three flagged structures state no reason anywhere, and the building side has no field a reason could live in. A research question and an owner's choice between three routes, not an engineering task. **No bake** |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -154,6 +156,15 @@ the next runner-closable unit here is most likely **a parcel this file does not 
 the honest way to find one is the way T-E5(a) found its own: read a deferral, a `not_modelled`
 entry or a "deferred to parcel (c)" phrase and ask **what question it was never asked**. That is
 where four of the last six findings came from.
+
+**THE ADVICE WORKS, AND THE RICHEST SEAM IS NOT THE DEFERRALS — 2026-08-16, K34.** It took the
+paragraph above and widened it one step: instead of a deferral, read a **rule this project states
+about itself** and ask what enforces it. AGENTS.md's standing constraint on the removal is the
+most important sentence in this repository and nothing had ever measured what it covers; the
+answer was "the buildings, and not the people", plus one record that claimed the flag in prose
+and never carried it. **`docs/` and `AGENTS.md` are full of sentences of that shape** — a rule
+stated, a mechanism named, and nothing that runs. K35 is the successor this one opened, and the
+seam is not exhausted.
 
 **R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
 growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
@@ -1677,6 +1688,99 @@ where it does not**; or grade these values a level lower than the ones the band 
 **Whatever is chosen, `tools/measure_band_claims.py` gains the assertion** — a value may
 cite a band only if the family authors one for it. Until then the census prints and does
 not fail, and this box says why.
+
+### K34 — what `review_required` actually blocks · **DONE 2026-08-16 · one record claimed the flag in prose and never carried it, and the block read buildings only**
+
+**Phase:** lane 2 · **Effort:** S to measure, S to gate · data, tools and docs only, no bake
+
+AGENTS.md puts one constraint above the work — *the final removal of the Potawatomi from
+Chicago occurred in August 1835, inside this project's first target year* — and gives it one
+mechanism: **`review_required: true` on any record blocks a scene from being marked
+`released`.** Nothing had ever measured what that sentence covers. It covers **9 structures
+of 332**; it did **not** cover the **7 households of 173** that carry the same flag, nor the
+person layer that carries the same two fields.
+
+**FINDING 1 — `hh_caldwell_billy` says it carries the flag and never has.** Its
+`research_note` has read *"It carries review_required so that no scene containing it can be
+marked released before the consultation the project has committed to"* since the record was
+written, and `git log -S` finds no commit in which the field was ever `true`. The sentence is
+the same one `hh_robinson_alexander` carries, where both fields ARE set. Billy Caldwell —
+Sauganash, the agency's interpreter, the namesake of the town's best-known tavern — is the
+one household in this dataset whose own text quotes Andreas putting its subject at the head
+of the march to the Missouri. **Both flags are set now, on the record's own committed text
+and on nothing new**, and the note records that they were false and that the paragraph above
+them said otherwise. `touches_removal ⇒ review_required` could not catch it because
+`touches_removal` was false too.
+
+**FINDING 2 — the release block was `data/structures/` alone, and the households were safe by
+coincidence.** `validate.py`'s scene gate built its `blocked` list out of structures while
+its own household-side error promised that *"any record touching it blocks a scene from being
+marked released"* — a consequence that did not follow. The seven flagged households were
+covered anyway because **all 11 of their `lives_at`/`works_at` links land on a structure that
+is flagged too**. Nothing required that. A flagged household with a null `lives_at` and an
+unflagged workplace — or with no links at all — passed clean, and the self-test that proves
+it is committed.
+
+**FINDING 3 — the same sentence read the other way is a deliberate, honest NO.**
+`chappel_infant_school`, `walker_meeting_house` and `watkins_school_house` each say
+*"review_required is set false … but the call is worth a second opinion"*, and each is false.
+That is the reason assertion 1 tests **both directions** rather than "prose mentions the
+constraint ⇒ set the flag": three settler buildings that reasoned their way to `false` in
+writing are not defects, and a gate that could not tell them from finding 1 would have been
+a gate arguing for its own conclusion. **Three of the nine flagged structures — `beaubien_barn`,
+`clybourn_slaughterhouse`, `robert_kinzie_store` — state no reason at all**, which is the
+open end of this parcel and is left open rather than guessed at: see K35.
+
+**WHAT SHIPPED.** `tools/measure_review_constraint.py`, in `check.sh`, with **four absolute
+assertions and no ratchet** — a ratchet is the instrument for a fault being paid down, and
+this is a commitment. (1) a record whose prose claims the flag carries it, and one whose prose
+declines it does not; (2) `touches_removal ⇒ review_required` at household AND person level,
+the person half never having been asked; (3) the flag reaches the building a constrained
+household lives or works in, 11 of 11; (4) **behavioural** — `validate_scene` is run against
+the real dataset with `released` forced true and the blocked set it names must equal the union
+of flagged ids across every layer, so a gate that restated the rule cannot pass while the
+validator disagrees with it. Plus `tools/review_constraint_baseline.json`: adding a flag is
+free, **clearing one fails** and names what clearing it would mean.
+
+**All four were broken deliberately before the gate was trusted** — the Caldwell flag cleared
+again, `cobweb_castle` unflagged under three households, a person given `touches_removal`
+without `review_required`, and the validator reverted to reading structures only. Each exits
+1 with the divergence named; the restored tree passes.
+
+**WHAT IT DID NOT DO.** It moved no building, no household and no coordinate, invented
+nothing, and upgraded no confidence. No liberty is owed: `docs/LIBERTIES.md` records
+inventions, and nothing here was invented.
+
+**Verified:** `tools/check.sh` green. `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs`
+green against the published mirror. The desktop half was not run and is not claimed — it
+needs ~13 minutes against this harness's 10-minute per-command ceiling (see the run-budget
+box at the top of this file). This parcel changes no renderer file and no geometry.
+
+### K35 — three records carry the standing constraint and say why nowhere · **UNCLAIMED · opened 2026-08-16 by K34 · Effort: S — a research question, then possibly a field**
+
+`beaubien_barn`, `clybourn_slaughterhouse` and `robert_kinzie_store` carry
+`review_required: true` and no text anywhere in the record says what for. Six of the nine
+flagged structures do explain themselves in prose, and three settler buildings explain in
+prose why they are deliberately NOT flagged (K34 finding 3) — so the reason is *usually*
+written down, by convention rather than by rule.
+
+**The question is not "why are these three flagged".** It is whether a bare boolean is the
+right carrier for a commitment this project puts above the work. Households have
+`touches_removal` beside `review_required` and structures have nothing equivalent, so on the
+building side there is no field in which a reason could live even if somebody wrote one.
+
+Three routes, and the choice belongs with the owner rather than with a gate:
+
+1. **Prose convention, asserted.** Require every flagged record to say something — K34's
+   assertion 1 already reads prose, so this is a small extension. Cheapest; also the weakest,
+   because "says something" is not "says why".
+2. **A `review_reason` string on the structure schema.** Explicit, greppable, and a schema
+   change across 9 records. Bake-free: a top-level structure field is not in
+   `generators/mesh_inputs.py`'s resolved-params recipe, so it stales no GLB — **but confirm
+   that against the placeholder records, whose `inputs_sha256` is the sha of the whole file.**
+   None of the nine is a `recon_*` placeholder today.
+3. **Leave it.** The flag is conservative in the direction that matters — it blocks — and an
+   unexplained block is not a hazard the way an unexplained claim is.
 
 ### K26 — every building card links to a dossier that is not published · **DONE 2026-08-16 · 332 links, 332 of them 404, and 30 that should never have been links**
 

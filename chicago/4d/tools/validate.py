@@ -239,7 +239,8 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
 # semantic: scenes resolve against phases
 # --------------------------------------------------------------------------
 
-def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict, rep: Report) -> None:
+def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict, rep: Report,
+                   households: dict | None = None) -> None:
     sid = scene.get("id", "?")
     where = f"scene {sid}"
     target = parse_date(scene.get("target_date", ""))
@@ -277,8 +278,27 @@ def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict
         else:
             excluded.append(st.get("id"))
 
+    # The people carry the same flag as the buildings, and until 2026-08-16 this list
+    # was built out of data/structures/ alone — so a household flagged for AGENTS.md's
+    # standing constraint blocked nothing, while the error this validator prints on the
+    # household side promised that "any record touching it blocks a scene from being
+    # marked released" (ROADMAP K34). The seven flagged households were covered anyway,
+    # by the coincidence that every one of them lives or works in a building that is
+    # also flagged; nothing required that, and tools/measure_review_constraint.py now
+    # does. A household is not date-gated the way a phase is: the residents layer runs
+    # its own scene-date gate, and a record flagged for consultation is not made safe
+    # to release by being absent from one year of it.
+    for hid, h in sorted((households or {}).items()):
+        if h.get("review_required"):
+            blocked.append(hid)
+        for p in h.get("persons", []):
+            if p.get("review_required"):
+                blocked.append(hid)
+                break
+
     if scene.get("released") and blocked:
-        rep.error(where, f"released is true but these records carry review_required: {blocked}")
+        rep.error(where, f"released is true but these records carry review_required: "
+                         f"{sorted(set(blocked))}")
 
     rep.note(f"scene {sid} ({target}): {len(included)} structure(s) included, "
              f"{len(excluded)} excluded by date"
@@ -4663,9 +4683,22 @@ def main() -> int:
     # reasoning lived in a `note` no check could read.
     check_transcription_declarations(sources, rep)
 
+    # the people, and the scene-date gate they have to obey. The population is
+    # what justifies the buildings (docs/ROADMAP.md K1): a household that needs
+    # a dwelling becomes a structure record, so a household whose subject was
+    # still in Vermont on the scene date would put a house on the plat.
+    #
+    # RUN BEFORE THE SCENES, which is not where it used to be. The scene's
+    # release block has to see this layer — a household carrying AGENTS.md's
+    # standing constraint blocks release exactly as a building does — and it
+    # could not while the layer was loaded after the block had already run
+    # (ROADMAP K34).
+    households = check_residents(source_ids, {st.get("id") for st in structures.values()
+                                              if isinstance(st, dict)}, rep, tally)
+
     # scenes
     for name, sc in scenes.items():
-        validate_scene(sc, structures, epochs, exclusions, rep)
+        validate_scene(sc, structures, epochs, exclusions, rep, households=households)
 
     # what we invented has to be written down, not merely tagged — and so does
     # what we recorded and never built, which is the same standard read backwards
@@ -4726,13 +4759,6 @@ def main() -> int:
     # the animal records, and the July gate they have to obey — the same
     # argument as the flora phenology, one trophic level up
     check_fauna(source_ids, rep, tally)
-
-    # the people, and the scene-date gate they have to obey. The population is
-    # what justifies the buildings (docs/ROADMAP.md K1): a household that needs
-    # a dwelling becomes a structure record, so a household whose subject was
-    # still in Vermont on the scene date would put a house on the plat.
-    check_residents(source_ids, {st.get("id") for st in structures.values()
-                                 if isinstance(st, dict)}, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

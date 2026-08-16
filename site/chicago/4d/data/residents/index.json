@@ -250,7 +250,7 @@
    "lives_at": null,
    "works_at": "cobweb_castle",
    "present_on_scene_date": "present",
-   "review_required": false
+   "review_required": true
   },
   {
    "id": "hh_calhoun_john",

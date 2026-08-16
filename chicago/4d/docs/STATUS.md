@@ -1,5 +1,74 @@
 # STATUS
 
+## New 2026-08-16 — the constraint this project puts above the work was kept by the buildings and not by the people
+
+**K34.** AGENTS.md's standing constraint is the one sentence in this repository that outranks
+the rest of it: the final removal of the Potawatomi from Chicago is **August 1835**, inside the
+first target year, and it is *"not a research gap to be filled by inference"*. It is given
+exactly one mechanism — **`review_required: true` on any record blocks a scene from being marked
+`released`** — and nothing had ever measured what that sentence covers.
+
+| layer | carries the flag | did it block a release? |
+|---|---|---|
+| `data/structures/` | **9** of 332 | yes |
+| `data/residents/` households | **7** of 173 | **no** |
+| `data/residents/` persons | 0 of 209 | **no — the layer was never read** |
+
+**FINDING 1, AND IT IS ONE RECORD.** `hh_caldwell_billy` — Billy Caldwell, Sauganash, the
+agency's interpreter and the namesake of the town's best-known tavern — carries this sentence
+in its `research_note`, in the same words `hh_robinson_alexander` uses: *"It carries
+review_required so that no scene containing it can be marked released before the consultation
+the project has committed to."* **The field was `false`, and `git log -S` finds no commit in
+which it was ever anything else.** The record has been promising the flag since it was written.
+`touches_removal ⇒ review_required` — the one rule the validator did hold on this layer — could
+not see it, because `touches_removal` was `false` too.
+
+Both are `true` now, **on the record's own committed text and on nothing new**: the same note
+already quotes Andreas putting this man at the head of the march to the Missouri. Nothing else
+about the record moved, and the note now says the flags were false and that the paragraph above
+them said otherwise.
+
+**FINDING 2 — the seven households were safe by coincidence.** `validate.py`'s scene gate built
+its blocked list out of `data/structures/` alone, while the error it prints on the *household*
+side says any record touching the removal *"blocks a scene from being marked released"*. That
+consequence did not follow. The households were covered anyway because **all 11 of their
+`lives_at`/`works_at` links land on a structure that is flagged too** — a fact nothing required,
+nothing measured, and nothing would have noticed the loss of. A flagged household with a null
+`lives_at` and an unflagged workplace passed clean; that scene is now a committed self-test.
+
+**FINDING 3 — the same sentence, read the other way, is a deliberate NO and not a defect.**
+`chappel_infant_school`, `walker_meeting_house` and `watkins_school_house` each say
+*"review_required is set false … but the call is worth a second opinion"*, and each is false.
+So the gate tests **both directions** rather than "prose mentions the removal ⇒ set the flag".
+A gate that could not tell finding 1 from finding 3 would have been an instrument arguing for
+its own conclusion. What it leaves open is **K35**: three of the nine flagged structures state
+no reason anywhere, and the building side has no field a reason could live in.
+
+**FOUR ABSOLUTE ASSERTIONS AND NO RATCHET**, deliberately — a ratchet is the right instrument
+for a fault being paid down, and this is a commitment. Prose matches field; `touches_removal`
+implies `review_required` at household AND person level; the flag reaches the building
+(11 of 11); and — behavioural, against the real dataset — a scene with `released` forced true
+is refused for **exactly** the union of flagged ids across every layer, so a gate that restated
+the rule cannot pass while the validator disagrees with it. `tools/review_constraint_baseline.json`
+makes the asymmetry explicit: **adding a flag is free, clearing one fails** and names what
+clearing it would mean.
+
+**The gate was verified to fail, on four separate injections** — the Caldwell flag cleared
+again, `cobweb_castle` unflagged under three households, a person given `touches_removal`
+without `review_required`, and the validator reverted to structures-only. Each exits 1 with the
+divergence named, and the restored tree passes.
+
+**Verified:** `tools/check.sh` green. `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs`
+green against the published mirror. **The desktop half was NOT run and is not claimed as
+passed** — it needs ~13 minutes against this harness's 10-minute per-command ceiling, which the
+ROADMAP's run-budget box records. This parcel changes no renderer file, no geometry and no
+coordinate.
+
+**What it did NOT do:** it moved no building, household or coordinate, invented nothing and
+regraded nothing. No liberty is owed — `docs/LIBERTIES.md` records inventions, and there is no
+invention here. It did not decide whether the three unexplained structure flags need a reason
+field; that is K35 and it is an owner's choice, not a gate's.
+
 ## New 2026-08-16 — there is a bridge in this scene over a watercourse the scene does not contain
 
 **T-E5(a).** The terrain spec defers four in-town water features under one shared phrase —
