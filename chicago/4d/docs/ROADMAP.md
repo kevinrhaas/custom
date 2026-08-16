@@ -1737,7 +1737,7 @@ nothing where the dossier is unreachable rather than offering a link that breaks
 cheapest and honest. **Whatever is chosen, a gate should assert that a card's dossier link
 resolves** — a link nobody clicks in the dev tree is exactly how this survived.
 
-### K28 — may one block raise a trade's count twice? · **UNCLAIMED · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
+### K28 — may one block raise a trade's count twice? · **CLAIMED 2026-08-16 (`steward/k28-adoption-cap`) · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
 
 > **THE ID IS USED TWICE AND THIS IS THE ROADMAP ONE.** The published-mirror gate that landed as
 > PR #147 ("gate the published mirror against its own source", recorded at the top of
