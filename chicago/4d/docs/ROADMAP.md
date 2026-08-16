@@ -125,6 +125,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
 | — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
 | — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
+| — | TOWN | ~~K28~~ | **DONE 2026-08-16** — three questions, three clauses, **two gates, and not one record moved**. The table is **projections** (the pair reading is refused because it refuses T-A4's fourteenth labouring household, one of the four rule 6 says its third test recovers); there **is** a cap, one adoption per trade per block, which is what makes the projections safe; and test 1 means the trade's **own committed text**, so the laundresses' D2 and the teamsters' D4 are refused with the remedy named. All **21** standing block adoptions already obeyed it. Read its box before quoting any adoption rule |
 | 4 | TOWN | **K30(c)** | the repair K30(b) attributed: redraw the bodies onto the correct side of their own frontage. **NEEDS ONE BAKE** — it changes footprints, so it cannot go green on the improve runner |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
@@ -132,6 +133,17 @@ desktop half belongs to a runner without the per-command ceiling.
 | 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
 | 3 | GROUND | **T-E5** | the public square **was a pond** in this project's own committed fauna data and renders as dry prairie with three public buildings on it. Opened by T-A16 |
+
+**THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
+stated here because the next run will otherwise spend a third of its budget rediscovering it.**
+Of the numbered picks left standing, **T-V1(b), K30(c), T-E3 and R-W2c all say NEEDS A BAKE** and
+cannot go green on the improve runner; **T-V2 and R-W1 are parked on `hold` PRs #135 and #125**;
+**R-W4c(b2), T-I3(b) and R-M1b are blocked on the owner**; and **R-W5a2's own box says to take it
+only when the lane has nothing sharper**. That leaves **R-W2b** — whose R-W2a finding 2 makes it a
+schema change across 315 records with no source yet stating a roof covering, so it is larger than
+"unblocked" reads — and **T-E5**, whose ground half also needs a bake though its research and
+`docs/LIBERTIES.md` half does not. **The lane needs new parcels opened more than it needs the next
+one picked**, and the bake-shaped backlog is the reason: four parcels are waiting on a nightly.
 
 **R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
 growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
@@ -1737,7 +1749,72 @@ nothing where the dossier is unreachable rather than offering a link that breaks
 cheapest and honest. **Whatever is chosen, a gate should assert that a card's dossier link
 resolves** — a link nobody clicks in the dev tree is exactly how this survived.
 
-### K28 — may one block raise a trade's count twice? · **CLAIMED 2026-08-16 (`steward/k28-adoption-cap`) · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
+### K28 — may one block raise a trade's count twice? · **DONE 2026-08-16 — three questions, three clauses, two gates, and not one record moved**
+
+**The settlement, and it deliberately does not run conservative three times.** The three
+questions this box had accumulated are one question — *how fast may a drawing move a claim about
+the town* — so they were settled together, and the answer is **permissive on the table and strict
+on the rate**:
+
+| | question | answer |
+|---|---|---|
+| **(i)** | are tests 2 and 3 a set of PAIRS or two projections of one table? | **projections** — the pair reading is **refused** |
+| **(ii)** | may one block raise a trade's count twice? | **no** — one adoption per trade per block parcel |
+| **(iii)** | does test 1 mean the trade's own text, or method rule 3's list? | **its own committed text** |
+
+**(i) is refused on rule 6's own standard, not on a preference.** Requiring the pair refuses the
+**fourteenth labouring household** — T-A4's D1 log cabin in the WEST Division, adopted when this
+layer housed labourers west of the river only in D2 shanties, which is exactly the projected form
+— and rule 6 names that adoption as one of the **four decisions its third test recovers**. The
+same paragraph says a test which has to be told the answers is a preference and one that recovers
+them is a rule. The pair reading has to be told one of the four. What the projections admit is
+measured rather than waved at: `tools/measure_adoption_tests.py --pairs` prints **20 (family,
+division) pairs across 8 trades** that the projections admit and this layer houses none of.
+
+**(ii) is what makes (i) safe, and the objection to it is the reason for it.** A block is an
+artefact of the drawing rather than a unit of the town — the same two roofs dealt to two blocks
+would both have been adopted without anybody pausing — which is precisely why the rate has to be
+capped there: without a cap, the **granularity of the plat** sets the rate at which this census
+grows, and that is the fitting-the-model-to-the-drawing rule 6's first sentence exists to stop.
+The projections widen WHICH roofs are eligible; the cap bounds HOW FAST any of them may move a
+count.
+
+**(iii) separates two things nine parcels had been reading as one.** Method rule 3 names four
+trades whose count is argued from the building rate because no roof family bounds it; that says
+where a number came from, not that the number is too low. Test 1 asks the second thing. Only the
+**carpenters and the labourers** state it (`--floors`), so the laundresses' D2 and the teamsters'
+D4 — T-A14's two extra candidacies, which T-A15 could not reproduce — are refused. **The remedy
+is named so the refusal is not read as a closed door**: if either count really is a floor, the
+place to say so is that trade's own argument, argued from the town. What is refused is a trade
+acquiring a floor as a side effect of a block being dealt a D2.
+
+**Two gates, and both bite on the exact roofs nine parcels refused by hand.** They live in
+`tools/generate_inferred_households.py` and were proven against mutated copies of the programme
+before merge:
+
+- a second carpenter on `blk_south_water_wells`'s D4 → *"blk_south_water_wells adopts 2 carpenter
+  households … rule 6 caps a block parcel at ONE adoption per trade (K28 clause ii)"*;
+- a laundress on `blk_randolph_franklin`'s D2 → *"the laundress argument never states in its own
+  committed text that its count is a floor, so rule 6 test 1 fails (K28 clause iii)"*.
+
+The floor predicate is **imported** from `tools/measure_adoption_tests.py` rather than restated,
+because a second copy of the rule in the gate path is how the report and the gate would come to
+disagree about what a floor is.
+
+**NOTHING MOVED, AND THAT IS THE RESULT RATHER THAN AN ANTICLIMAX.** All **21 block adoptions**
+standing on 2026-08-16 are already one per trade per block, so nine parcels' habit became a rule
+without a household, roof or coordinate changing. The four T-A9 candidates re-decide identically
+— its D3 and D1 stay adopted, its D4 and D2 stay refused, now under clause (ii) rather than under
+a reading — and T-A4's fourteenth labouring household stays adopted, under clause (i). What
+changed is that the next block cannot drift: the refusal is code.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` (rule 6) ·
+`tools/generate_inferred_households.py` (the gates) · `tools/measure_adoption_tests.py` (it no
+longer tells its reader the question is open) · `docs/LIBERTIES.md` L112 · `docs/STATUS.md`.
+
+**The parcel as written follows.**
+
+### K28 (spec) — may one block raise a trade's count twice? · **from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
 
 > **THE ID IS USED TWICE AND THIS IS THE ROADMAP ONE.** The published-mirror gate that landed as
 > PR #147 ("gate the published mirror against its own source", recorded at the top of
@@ -2800,7 +2877,7 @@ rather than an improvement. K20 still owns the fix.
 `data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (5 new) ·
 `data/residents/` (2 new households, 2 new persons, K20 churn) ·
 `data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
-(5 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L102 · `docs/STATUS.md` ·
+(5 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L112 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
 ### T-A12 — `blk_south_water_dearborn` · **DONE 2026-08-15**
