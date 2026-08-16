@@ -1788,7 +1788,7 @@ is K30(b)'s to write, not a number to quietly exclude.
 `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. **No data record,
 coordinate, dimension or confidence moved.**
 
-### K30(b) — attribute the deep cluster to a cause, and decide what moves · **UNCLAIMED · from K30(a) · Effort: M — research, not arithmetic**
+### K30(b) — attribute the deep cluster to a cause, and decide what moves · **CLAIMED 2026-08-16 · steward/k30b-corridor-cause · from K30(a) · Effort: M — research, not arithmetic**
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
