@@ -106,7 +106,8 @@ visible parcels were the hardest ones to find. Completed work now lives in its o
 not at the top of the queue.
 | # | lane | parcel | why first |
 |---|---|---|---|
-| **1** | RENDERING | **R-BUG5 — TREES STAND IN THE RIVER** | **OWNER-REPORTED 2026-08-15 with a screenshot, and the top of the queue.** Scattered woody plants on the water, plus a straight LINE of them across the channel — scatter is noise, a line is an unmasked planting row. A gate already claims this cannot happen and was GREEN on that build, so the first job is finding why. Visible from any bank. Full box below |
+| — | RENDERING | ~~R-BUG5~~ | **DONE 2026-08-16** — it was the SKYLINE, not the planter. Both of the owner's populations are ONE body of far timber authored **between the two banks** of the main stem, 39 of 39 samples over water and **3.347 m** under its surface; the scatter is the horizon solver's own gap modulation breaking the same run into crowns. Both existing gates were green because both count the near-field planter's 632 m square, and **nothing had ever asked the five `FAR_TIMBER` polylines where they stand**. Read its box before quoting any horizon-timber number |
+| **1** | RENDERING | **R-BUG5(b)** | **NOT A PICK WITHOUT THE OWNER.** `main_stem_belt_east` now draws nothing, because none of it was on land. Where the South Water Street belt's near edge actually ran is a placement claim no source here settles — three routes are written up in R-BUG5's box for the owner to choose between |
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
@@ -408,46 +409,102 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
-### R-BUG5 — trees stand in the river · **CLAIMED 2026-08-16 · `steward/r-bug5-timber-in-the-channel`**
+### R-BUG5 — trees stand in the river · **DONE 2026-08-16 · it was the SKYLINE, not the planter**
 
-**The report is a screenshot from 31 ft up, bearing 044°, north-east across the main stem: woody
-plants standing on the water. Two populations, and the second one is the diagnosis.**
+**The owner's two populations are ONE cause, and neither of them is a planted stem.** The report was
+a screenshot from 31 ft up, bearing 044°, north-east across the main stem: a straight LINE of woody
+plants running out across the channel, and scattered ones over the open water beside it. The line is
+`FAR_TIMBER.main_stem_belt_east`, a three-point polyline in `renderers/web/js/trees.js`, and the
+scatter is the horizon solver's own gap modulation breaking the rest of the same run into separate
+crowns.
 
-1. **Scattered** individuals over open water near the north bank.
-2. **A straight LINE of them** running out across the river. **Scatter is noise; a line is a
-   planting row.** Whatever lays plants out in rows is emitting into the channel, so a water test
-   is either not applied on that path or applied in the wrong space.
+**Measured, from the reported viewpoint with the far bank loaded, and the population is reported so
+the denominator is visible** — the trap this box warned about is real and the probe below does not
+fall into it:
 
-**A gate already claims this cannot happen.** `smoke_renderer.mjs` asserts *"woody vegetation never
-occupies the river mask"* and *"emergent flora stays within eight metres of a riverbank"*, and both
-were GREEN on the build in the screenshot. **So the first job is not the trees — it is why the gate
-says they are not there.** Fourth time on this project that a green gate and the owner's screen have
-disagreed, and every previous time the gate was pointed at something other than what ships.
+| population | counted | over water |
+|---|---|---|
+| planted woody stations (`noteStation`) | **391** | **0** |
+| flora instances, every set in the group | **1,024** | **0** |
+| far-timber polyline samples at 2 m | **6,527 in-box of 6,664** | **47** |
 
-**A TRAP, MEASURED, so the next run does not fall into it.** A census taken at the spawn point found
-**5 trees and 814 plants in the entire scene, none in water.** That is not a finding, it is a broken
-probe: the scene plainly holds hundreds of trees, so **vegetation is streamed or instantiated near
-the camera**, and anything counted at spawn counts almost nothing. Census this **from the reported
-viewpoint with the far bank loaded**, and **report the population count** so an implausible total is
-obvious. If a probe says "0 in water", check the denominator before believing it.
+Counted in the browser, on the published mirror, from the reported viewpoint. The two woody gates
+were telling the truth about the 391 and the 1,024; the 47 is a population neither of them has a
+reader for. **The Python census and the browser census agree sample for sample and to the
+millimetre on every body** — which is the R-BUG3c-class assumption (the mask in `data/` and the mask
+the page loads being the same mask) asserted rather than assumed, for the first time on this
+layer.
 
-**Candidates, in the order worth testing:**
+**So nothing the two existing gates measure was ever wrong.** They were measuring the wrong
+population. `"woody vegetation never occupies the river mask"` walks
+`trees.group.userData.stations`, which `noteStation()` writes inside the near-field planter's 632 m
+square; `"emergent flora stays within eight metres of a riverbank"` walks the flora instance
+matrices, a lattice re-centred on the camera. `FAR_TIMBER` is neither: five bodies of timber the
+sources put beyond the modelled town, authored as polylines and drawn as a horizon silhouette. **No
+gate in this project had ever asked those polylines where they stand.** Fifth time a green gate and
+the owner's screen have disagreed, and the fifth time the gate was pointed at something other than
+what ships.
 
-1. **The row emitter skips the water test** — find whatever plants in rows (hedgerow, bank line,
-   windbreak) and check whether it consults `terrain.isWater` at all.
-2. **The test runs in the wrong space.** `isWater(e, n)` takes ENU; a caller passing world `(x, z)`
-   without negating `z` tests a mirrored point and passes over water.
-3. **The mask and the drawn water disagree.** The water is ONE quad at `y = 0` spanning the whole
-   scene, so ground below 0 reads as submerged whatever the mask says — the R-BUG3c-b class, where
-   the drawn surface and the sampler were not the same surface.
-4. **Streaming plants near the camera bypass the placement gate** the committed set passes.
+**The census, `tools/measure_far_timber.py`, RED on the build in the screenshot:**
 
-**Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` · `tools/smoke_renderer.mjs`
+| body | samples | over water | wet run | worst depth |
+|---|---|---|---|---|
+| `main_stem_belt_east` | 39 | **39** | **73.4 m of 73.4 m** | **3.347 m** |
+| `north_branch_belt` | 2,513 | 8 | 16.0 m of 5,016.1 m | 1.380 m |
+| `south_branch_belt` | 2,308 | 0 | — | — |
+| `north_division_timber` | 459 | 0 | — | — |
+| `south_branch_grove` | 1,345 | 0 | — | — |
 
-**Acceptance:** the owner's viewpoint reshot with no woody plant over water; the gate **FAILS on the
-current build** and passes after — a gate that stayed green through this bug proves nothing until it
-has been shown to catch it; the census prints its population. **Reconstructed bank vegetation is
-wanted — plants standing in the channel are not.**
+`main_stem_belt_east` runs (326, 46) → (396, 68). The committed `south_water` centreline is at
+n ≈ +7 across that reach and `north_water` at n ≈ +66, so **a belt whose own note says it follows
+South Water Street was authored between the two banks.** It is not a survey error at the margin: it
+is on the far side of the river from the street it is named after, along its whole length.
+
+**Three of the four candidates this box listed are REFUTED, and the fourth is not what happened.**
+The row emitter does consult the mask — `communityAt()` refuses `terrain.isWater` outright and the
+planting loop tests the exact stem point before the ecology. The space is right: everything on that
+path is ENU throughout. The mask and the drawn water do not disagree here. And nothing streams past
+a placement gate. **The bug was in a population nobody had listed as a suspect**, which is the
+finding worth keeping: the candidate list was written from the near-field planter, because that is
+where a search for "what plants things" leads, and the thing that drew these trees does not plant
+anything at all.
+
+**The fix, and it is an invariant rather than a coordinate.** `solveHorizon()` now asks
+`terrain.isWater(pe, pn)` at every emitted sample and skips it. The near-field planter has refused
+that mask since it was written; a stand drawn at four hundred metres makes the same claim about the
+same water. It is sampled at the EMITTED point, not at the body's vertices, because a belt can cross
+a channel between two dry ends — which is exactly what the North Branch belt does. Outside the
+modelled heightfield the mask returns its fallback and answers "dry", and that is the honest answer:
+this project has no survey of that ground and a clip that claimed one would be inventing it.
+
+**What is NOT fixed, deliberately: `main_stem_belt_east` now draws NOTHING, because none of it was
+on land.** Repairing it means choosing where the belt's near edge actually ran, and no source here
+settles that — the note that produced the fault is itself this project's best current reading of
+Andreas ("the South Side timber extend[ed] east as far as Wells Street"). Picking a new line to make
+the census green would be inventing the very thing the measurement just showed nobody knows. So the
+two offenders are **banked by name in `tools/far_timber_baseline.json`**: the fault may shrink and
+may not grow, a new offender fails, and a repair that forgets to re-bank fails too. **The renderer
+half is absolute and needs no baseline.**
+
+**R-BUG5(b) — where the South Water Street belt stood · NOT A PICK WITHOUT THE OWNER.** Three routes,
+and they are different claims about the town rather than different code:
+1. **Re-derive it from the committed `south_water` centreline**, south of the corridor. Mechanical,
+   and the same move `south_branch_belt` already makes off the river's modern course — but it
+   asserts which side of the street the timber stood on, which Andreas does not say.
+2. **Leave it drawing nothing** and record the body as researched-but-unplaceable. Honest, and it
+   loses a documented body of timber from the skyline.
+3. **Withdraw the record** the way T-A16 withdrew the public square, on the grounds that a belt
+   whose position cannot be derived is not a body this scene can carry.
+
+**Files:** `renderers/web/js/trees.js` · `tools/measure_far_timber.py` ·
+`tools/far_timber_baseline.json` · `tools/smoke_renderer.mjs` · `tools/check.sh`
+
+**Gates:** `tools/check.sh` runs the census and its self-test (five broken-assertion cases plus the
+three ratchet directions). `smoke_renderer.mjs` asserts the browser's own census matches the banked
+numbers AND that `horizonWetSkipped > 0` from a stand where the belt clears `MIN_FAR_M` — from the
+spawn point it is **329.2 m** away against a 330 m cut-off — 0.8 m inside it — so a gate that solved
+only at spawn would have exercised nothing. Measured on the shipped build from that stand:
+**7 samples clipped**.
 
 
 ### R-G0 — the critic harness · **DONE 2026-08-14 (G0.1 + the numeric half of G0.2)**

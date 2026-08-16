@@ -219,6 +219,22 @@ step "every routed woody record can be selected by something that places it" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_planting_reach.py --self-test
 
+# The population BOTH woody gates were blind to. smoke_renderer.mjs asserts that
+# "woody vegetation never occupies the river mask" off trees.group.userData.stations
+# — written only inside the near-field planter's 632 m square — and the flora half
+# walks instance matrices on a lattice centred on the camera. FAR_TIMBER is neither:
+# five bodies of timber authored as polylines and drawn as a horizon silhouette, and
+# nothing had ever asked those polylines where they stand. One of them, the belt whose
+# own note says it follows South Water Street, is 39 of 39 samples over the main stem
+# and 3.347 m under its surface — the line of trees across the channel in the owner's
+# screenshot (ROADMAP R-BUG5). The renderer refuses it absolutely now; this holds the
+# table, and scans the clip so it cannot quietly come back out.
+step "no body of far timber stands in the river" \
+  python3 tools/measure_far_timber.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_far_timber.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

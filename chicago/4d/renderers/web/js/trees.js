@@ -2127,6 +2127,7 @@ uniform float uWind;
     rawRad.fill(0);
     pxPerRad = readPxPerRad();
 
+    let wetSkipped = 0;
     for (const body of FAR_TIMBER) {
       const path = body.path;
       for (let s = 0; s < path.length - 1; s++) {
@@ -2146,6 +2147,25 @@ uniform float uWind;
           const stepM = Math.max(16, d * 0.030);
           t += stepM;
           if (d < MIN_FAR_M) continue;
+          // ROADMAP R-BUG5. THE ONE QUESTION EVERY BODY OF TIMBER MUST ANSWER,
+          // and until 2026-08-16 this loop never asked it. `communityAt()` has
+          // refused the traced water mask outright since the near-field planter
+          // was written, and a stand drawn at four hundred metres makes exactly
+          // the same claim about exactly the same water — so the mask binds here
+          // too. `main_stem_belt_east` was authored between the two banks of the
+          // main stem, 39 of 39 census samples over water and up to 3.347 m
+          // below its surface, and drew a straight line of crowns out across the
+          // channel with the solver's gap modulation scattering the rest of the
+          // run into separate trees. That is the owner's screenshot, both
+          // populations of it, from one cause.
+          //
+          // Sampled at the emitted point rather than at the body's vertices: a
+          // belt may cross a channel between two dry ends, which is what the
+          // North Branch belt does. Outside the modelled heightfield the mask
+          // returns the fallback height and answers "dry" — which is the honest
+          // answer there, because this project has no survey of that ground and
+          // a clip that claimed one would be inventing it.
+          if (terrain.isWater(pe, pn)) { wetSkipped++; continue; }
 
           const bearing = Math.atan2(dx, dn);
           const hgt = lerp(body.canopy[0], body.canopy[1],
@@ -2282,6 +2302,11 @@ uniform float uWind;
     hGeo.attributes.color.needsUpdate = true;
     hGeo.index.needsUpdate = true;
     hGeo.setDrawRange(0, indices);
+    // R-BUG5: how much of the band this solve refused to draw because the mask
+    // said the ground under it was river. Zero on a clean dataset — a non-zero
+    // number here means a body is authored into water and the clip is the only
+    // thing standing between it and the owner's screen.
+    stats.horizonWetSkipped = wetSkipped;
     stats.horizonBins = timbered;
     stats.timberedBearingFraction = timbered / BINS;
     stats.horizonDrawnFraction = continuity.fraction;
@@ -2305,6 +2330,55 @@ uniform float uWind;
     group,
     /** The far-timber table, so a test can assert what is on the horizon. */
     farTimber: FAR_TIMBER,
+
+    /**
+     * ROADMAP R-BUG5 — every body of far timber, sampled against the water mask
+     * the browser actually loaded.
+     *
+     * `tools/measure_far_timber.py` asks the same question of the committed
+     * bytes and is the gate that runs on every commit. This is the runtime half,
+     * and it is not redundant: the Python reads `heightfield.bin` from `data/`
+     * and the page loads the published mirror, and this project has twice
+     * shipped a bug that lived exactly in that gap. The step is the same 2 m,
+     * finer than the solver's own minimum emission step of 16 m, so a reach the
+     * band could draw into cannot fall between two samples.
+     *
+     * `unmodelled` is the honest third answer: past the edge of the heightfield
+     * the mask returns a fallback and knows nothing, and four of the five bodies
+     * run kilometres past it.
+     */
+    farTimberWater(stepM = 2) {
+      return FAR_TIMBER.map((body) => {
+        let samples = 0;
+        let wet = 0;
+        let unmodelled = 0;
+        let worst = 0;
+        const hf = terrain.heightfield;
+        const inBox = (e, n) => !hf?.loaded || (
+          e >= hf.originE && n >= hf.originN
+          && e <= hf.originE + (hf.cols - 1) * hf.cellM
+          && n <= hf.originN + (hf.rows - 1) * hf.cellM);
+        for (let s = 0; s < body.path.length - 1; s++) {
+          const [ax, ay] = body.path[s];
+          const [bx, by] = body.path[s + 1];
+          const segLen = Math.hypot(bx - ax, by - ay);
+          const steps = Math.max(1, Math.ceil(segLen / stepM));
+          for (let k = 0; k <= steps; k++) {
+            if (k === steps && s < body.path.length - 2) break;
+            const f = k / steps;
+            const e = ax + (bx - ax) * f;
+            const n = ay + (by - ay) * f;
+            samples++;
+            if (!inBox(e, n)) { unmodelled++; continue; }
+            if (terrain.isWater(e, n)) {
+              wet++;
+              worst = Math.min(worst, terrain.surfaceHeight(e, n));
+            }
+          }
+        }
+        return { id: body.id, samples, wet, unmodelled, worstDepthM: -worst };
+      });
+    },
     omitted: OMITTED_TIMBER,
     stats,
 
