@@ -139,6 +139,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K36(a)~~ | **DONE 2026-08-16** — `data/` → master → **shipped derivative** → mirror was gated at links 1 and 3 and **not at link 2**, and the gap holds a town that is **textured on the site and untextured in this repository**: 38 assets ship one `PaletteMaterial001` and **75 PNGs that exist in no master**. The split is a count, exactly — **five materials faults, four does not, 296 of 296** — so **275 assets sit one material short of it** and R-W2b is what moves them. R-W2a's sheet measured the masters under the words "the shipped GLBs". Read its box before quoting any material or payload number |
 | — | KERNEL | ~~K36(b)~~ | **DONE 2026-08-16** — the palette pass was not buying draw calls, it was **spending** them: a generated map cannot join any batch, so 38 assets shipped as **40 solo batches** and the published town drew **56 where R-W5a's committed figure is 16**. **Four of the eight scene anchors were over the 80-call budget** (worst 102, at the Green Tree); none is now, worst 70. R-W5a's numbers were taken on the SOURCE tree — the same error as R-W2a's, three days apart. Read its box before quoting any batch or draw-call number |
 | — | KERNEL | ~~K37~~ | **DONE 2026-08-16** — the passthrough is **right**: the step makes those 90 files **+107,328 bytes (+20.6 %)**, 88 of 90 growing. But the rule is not "placeholder" — **three assets that have always been compressed here were shipping LARGER than their masters** (+324, +240, +224) and two of the ninety placeholders compress 9.3 % smaller. The step keeps the smaller file per asset now, the gate's bound is **zero**, and `water__` (+744) is the one exclusion, by name, deferred to R-W6(b). Read its box before quoting any payload or passthrough number |
+| — | KERNEL | ~~K38~~ | **DONE 2026-08-16** — the gate on `assets/web/` watched the transformation and not the directory, and **two masters copied into the payload (+1,212,760 bytes) drew CHECK PASS from the whole of `tools/check.sh`**. It is three scripts and **four** passthrough branches, three of them silent, the widest taking the payload 4.54 → 20.96 MB. mtime never compared a byte and is wrong both ways — **334 of 334 masters are older than their derivatives on a fresh clone**, by checkout order. Assertion 8 banks the 93 decisions by name and `publish.sh` refuses instead of copying. Read its box before quoting any passthrough or payload number |
+| 1 | KERNEL | **K39** | opened by K38: the derivative does not record the master it was made from, so staleness is still a timestamp. A rebuilt master with the same geometry and different `_CONFIDENCE` values passes everything. **No bake to build it**, one to bank it — and the coupling to the nightly is the decision, not the hash |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
@@ -182,6 +184,21 @@ run, and `tools/publish.sh`, which copies a master through on an **mtime** compa
 scripts write that directory and only one of them is the step. **The generalisation, and it is
 the K36(a) seam one turn further: when a directory has more than one writer, the gate on its
 contents is a gate on the last writer only.**
+
+**AND THAT SENTENCE WAS WORTH A PARCEL ON ITS OWN — 2026-08-16, K38.** It took K37's
+declined paragraph verbatim and the answer was worse than the paragraph guessed: the count
+is not three writers but **four passthrough branches across three scripts**, three of them
+silent, and the fault is reachable in one command. Two masters `touch`ed and
+`tools/publish.sh` run put **1,212,760 uncompressed bytes into the payload** and drew
+**CHECK PASS** from the entire dev gate — because a master copied over its own derivative
+satisfies assertions 1 through 7 *by construction*. **The generalisation one turn further:
+a gate written against a transformation is not a gate on its output directory**, and the
+difference is invisible for as long as only the transformation writes there. Two of this
+project's directories now have more writers than gates, and `assets/gltf/` — written by
+`generators/build.py`, by the nightly, and by whatever a parcel does with `--only` — has
+never been asked the question at all. K38's own successor K39 is the narrower half: the
+step knows which master it compressed and writes it down nowhere, so staleness is still a
+timestamp.
 
 **THE SEAM IS STILL OPEN, AND IT PAID AGAIN — 2026-08-16, K36(a).** Same move as K34, one link
 further out: instead of a rule about a record, take a rule about a FILE — *"a stale committed GLB
@@ -2107,6 +2124,154 @@ The decision is small and needs a number, not a preference:
 
 Watch: **do not "fix" this by regenerating them.** It grows the payload and moves 90 files for
 no visitor-visible reason. The fault is that nothing states which behaviour is intended.
+
+### K38 — `assets/web/` has three writers and the gate on it watched one · **DONE 2026-08-16 · two masters copied into the payload, +1,212,760 bytes, and the whole gate printed CHECK PASS**
+
+**Phase:** kernel · `tools/publish.sh`, `tools/web_derivatives.sh`,
+`tools/measure_web_derivatives.py`, `tools/check.sh`, docs. No data record, no renderer
+file, no master, no GLB moved, no confidence touched.
+
+**FINDING 1 — the fault is real, it was reachable in one command, and every gate this
+project owns passed it.** Two compressed masters were `touch`ed and `tools/publish.sh`
+run, which is the state the tree reaches whenever `generators/build.py` is run on its
+own — the exact case the script's own comment says the passthrough exists for:
+
+| | master | derivative before | shipped after |
+|---|---|---|---|
+| `fort_dearborn_palisade__picket_1816.glb` | 841,836 | 114,768 | **841,836** |
+| `dearborn_street_drawbridge__draw_1834.glb` | 557,196 | 71,504 | **557,196** |
+
+**+1,212,760 bytes into the payload**, written into the *tracked* `assets/web/` and
+mirrored to `site/`. Then, on that tree: `measure_web_derivatives.py --gate` **exit 0**,
+`check_published.mjs` **exit 0**, and the full `tools/check.sh` printed **CHECK PASS**.
+
+**FINDING 2 — and it could not have been otherwise, which is the general point.** A
+master copied over its own derivative carries the master's triangles (assertion 2), node
+names and `extras` (3), contract attributes (4), bounding box to **zero** rungs (5) and
+material table (7), and a byte count that is *equal* rather than larger (6). K36(a) wrote
+those assertions to watch the transformation `assets/gltf/ → assets/web/`. **They watch
+the transformation. They cannot see a file that skipped it** — and the whole point of a
+gate on a directory is that it holds whatever put the bytes there.
+
+**FINDING 3 — it is not three writers, it is three scripts and FOUR passthrough
+branches**, three of which are silent:
+
+| writer | branch | decided? |
+|---|---|---|
+| `tools/web_derivatives.sh` | the size rule — compressed file is bigger, keep the master (K37) | **yes**, 93 assets |
+| `tools/web_derivatives.sh` | `optimize` failed → `cp "$f" "$out"` | no — warns, gated by nothing |
+| `tools/web_derivatives.sh` | `gltf-transform` unavailable → copy **all 334** | no — warns, gated by nothing |
+| `tools/publish.sh` | master newer by mtime → `cp` | no — announced, gated by nothing |
+| `generators/inferred_placeholder.py` | seeds both trees from the master every run (K37) | no — and 90 of the 93 are its output |
+
+The no-tool branch is the widest of them: it takes the payload from **4.54 MB to
+20.96 MB**, a 4.6× against a 25 MB budget, and the only instrument that would have
+noticed is that budget.
+
+**FINDING 4 — mtime was answering a content question, and it is wrong in BOTH
+directions.** On a fresh clone of this repository, **334 of 334 masters are OLDER than
+their derivatives** — not because anything is fresh, but because `git checkout` writes in
+index order and `assets/gltf/` sorts before `assets/web/`. So the rule fires on any
+rebuild that rewrites a master (true positive, wrong response) and is blind on a clean
+clone (false negative, no response). It has never once compared a byte.
+
+**WHAT MOVED.** No asset. **Assertion 8**, absolute in both directions against a set
+banked by name in `tools/web_derivative_baseline.json`: 93 decided passthroughs, and a
+94th fails whichever writer produced it; a banked one that comes back compressed fails
+too, and says to re-bank. Its two `--self-test` mutations both fire. **And
+`tools/publish.sh` is no longer a writer of `assets/web/`** — it keeps the mtime scan,
+moves it above the first write, and **refuses**, naming each stale file and the
+`tools/web_derivatives.sh --only <name>` that fixes it. Verified end to end: the same two
+`touch`es now stop the publish at exit 1 with the working tree clean.
+
+**THE COST, STATED.** A new placeholder now needs
+`measure_web_derivatives.py --write-baseline` in the commit that adds it. That is the
+assertion working, not a wart: `generators/inferred_placeholder.py` is the writer of 90
+of the 93, and "the generator added one" and "something copied a master through" are the
+same bytes. One of them is a decision and it is now written down.
+
+**THE RESIDUAL, and it is K39.** Refusing on mtime is strictly better than copying on
+mtime, but it is still mtime: on a fresh clone it will not fire, so a derivative that is
+genuinely stale in CONTENT — a master rebuilt with different `_CONFIDENCE` values and the
+same geometry, which is the debugging round `publish.sh`'s original comment cites — passes
+assertion 2 through 7 and this scan alike. **The honest fix is for the step to record the
+master it compressed**, so staleness is a hash comparison and not a timestamp. That is a
+change to what a bake commits, so it is a parcel and not a footnote.
+
+**Verified:** `tools/check.sh` green including the self-test step.
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` green. The desktop half
+was not run and is not claimed — ~13 minutes against this harness's 10-minute per-command
+ceiling; see the run-budget box at the top of this file. No vertex, material or pose moves
+in this parcel and no committed asset changed a byte, so the desktop half has no quantity
+of its own to measure here.
+
+### K38 — the parcel as written, kept for the record
+
+**Phase:** kernel · `tools/publish.sh`, `tools/measure_web_derivatives.py`, docs. No data
+record, no renderer file, no master, no confidence.
+
+K37 closed with a paragraph it declined to chase: *"A THIRD WRITER OF `assets/web/`, noticed
+and not chased. `tools/publish.sh` copies a master through whenever it is newer by mtime.
+That is a passthrough nothing decided either, it is invisible to this gate (a copy is never
+larger than its master), and on a fresh clone mtimes come from checkout order."* Its
+generalisation is the parcel: **when a directory has more than one writer, the gate on its
+contents is a gate on the last writer only.**
+
+The questions, in order:
+
+1. **Can the mtime rule fire, and what does it do when it does?** Not "is it firing today" —
+   whether the tree can reach a state where `publish.sh` replaces a compressed derivative
+   with an uncompressed master copy, in the *tracked* source tree and in the mirror.
+2. **Which of the eight assertions in `tools/measure_web_derivatives.py` sees it?** A master
+   copied over its own derivative has the master's triangles, node identity, attributes,
+   bounding box, materials and byte count. Answer it by measurement, not by reading.
+3. **What does the passthrough cost if it fires everywhere?** The census already prints the
+   payload both ways; put the number in the parcel rather than leaving it as a ratio.
+4. **Then decide the writer, not only the gate.** `publish.sh`'s copy exists for a real
+   failure (run `generators/build.py` alone and `assets/web/` is stale), but this project's
+   own rule for that case is *"a stale committed GLB is a check failure, not a warning"*
+   (AGENTS.md), and `measure_web_derivatives.py --gate` already answers staleness from
+   CONTENT. A silent `cp` and a content gate cannot both be the answer.
+
+Watch: the 93 legitimate passthroughs K37 decided are legitimate — the gate must tell a
+decided passthrough from an accidental one, and a bound of zero would be wrong.
+
+### K39 — the derivative does not record the master it was made from · **UNCLAIMED · opened 2026-08-16 by K38 · Effort: S — one field in a baked artefact, and a decision about what a bake commits · NO BAKE to build it, ONE BAKE to bank it**
+
+K38 took `tools/publish.sh` out of the business of writing `assets/web/` and left its
+detector in place, refusing instead of copying. **The detector is still an mtime
+comparison, and K38 measured that mtime cannot answer this question**: on a fresh clone
+334 of 334 masters are older than their derivatives by `git checkout`'s own write order,
+so the scan is silent on exactly the tree a steward run starts from.
+
+The gap that survives is narrow and named. `measure_web_derivatives.py` asserts triangles,
+node identity, contract attributes, a bounding box within four rungs and material
+identity — so a master rebuilt into a *different building* fails. A master rebuilt into
+the **same** geometry with different `_CONFIDENCE` values does not, and that is the
+failure `publish.sh`'s original comment was written about: *"a rebuilt building kept
+rendering with its old confidence values."* `_CONFIDENCE` is how a visitor is told which
+parts we made up, so a stale one is a provenance fault wearing a rendering fault's
+clothes.
+
+The fix is one hash. `tools/web_derivatives.sh` knows exactly which master it compressed;
+nothing writes that down.
+
+1. Have the step record `name → sha256(master)` as it produces each derivative — as a
+   committed sidecar it writes itself, so the record travels with the artefact and the
+   step stays the only thing that authors it.
+2. Assert it: a derivative whose recorded master hash is not the master's hash today is
+   stale, absolutely, whatever the timestamps say. That subsumes K38's mtime scan and
+   `publish.sh` can then simply run the gate.
+3. **Decide the coupling first, because it is the real question.** The record changes on
+   every bake, so a nightly that regenerates geometry and does not rewrite it turns the
+   dev gate red for everything else. Either the step rewrites it (and the bake PR carries
+   the diff, which is honest) or it is banked by hand (and it will go stale). Pick, and
+   say why, before writing the file.
+
+Watch: do **not** fold this into `tools/web_derivative_baseline.json`. That file is a
+record of FAULTS and repairs, deliberately rewritten only by a person banking a decision;
+a hash map that changes on every bake has the opposite lifecycle and would train everyone
+to run `--write-baseline` without reading it.
 
 ### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S · NEEDS ONE BAKE, or an owner's word that a derivative may be regenerated outside one**
 

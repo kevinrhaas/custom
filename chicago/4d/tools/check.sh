@@ -226,6 +226,13 @@ step "changelog contract" \
 # attributes and the world bounding box are all answerable from the glTF JSON chunk,
 # so this costs a second and no decoder. The material half is a ratchet, and K36(b)
 # emptied it: 334 of 334 now, so the next offender is the first entry.
+#
+# K38 added assertion 8, which is the one that covers the OTHER writers. `assets/web/`
+# is written by three scripts and four of their branches copy a master through, and a
+# master copied over its own derivative satisfies assertions 1-7 by construction —
+# measured, two of them passed the whole of this file. The 93 legitimate passthroughs
+# are banked by name and both directions fail. A new placeholder therefore needs
+# `--write-baseline` in the commit that adds it: the decision is recorded, not found.
 step "the shipped derivative still describes the master's building" \
   python3 tools/measure_web_derivatives.py --gate --quiet
 
