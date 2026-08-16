@@ -94,6 +94,36 @@ def test_review_required_blocks_release() -> None:
           any("review_required" in e for e in rep.errors), rep.errors)
 
 
+def test_a_flagged_household_blocks_release() -> None:
+    """AGENTS.md says ANY record, and until 2026-08-16 it meant any BUILDING.
+
+    ROADMAP K34. The seven households carrying the standing constraint were covered
+    only by the coincidence that each one lives or works in a building that is also
+    flagged — so the scene below is the shape the coincidence does not cover: a
+    flagged household attached to nothing. Before K34 this passed clean.
+    """
+    rep = V.Report()
+    households = {"hh_x": {"id": "hh_x", "review_required": True, "touches_removal": True}}
+    V.validate_scene(scene(released=True), {}, EPOCHS, {}, rep, households=households)
+    check("a flagged household blocks a scene from being released",
+          any("hh_x" in e and "review_required" in e for e in rep.errors), rep.errors)
+
+    # and the person layer, which carries the same two fields and had never been read
+    rep = V.Report()
+    households = {"hh_y": {"id": "hh_y", "persons": [{"id": "p1", "review_required": True}]}}
+    V.validate_scene(scene(released=True), {}, EPOCHS, {}, rep, households=households)
+    check("a flagged PERSON blocks a scene from being released",
+          any("hh_y" in e for e in rep.errors), rep.errors)
+
+    # an unflagged household is not swept up with them
+    rep = V.Report()
+    households = {"hh_z": {"id": "hh_z", "review_required": False,
+                           "persons": [{"id": "p1", "review_required": False}]}}
+    V.validate_scene(scene(released=True), {}, EPOCHS, {}, rep, households=households)
+    check("an unflagged household does not block release",
+          not any("review_required" in e for e in rep.errors), rep.errors)
+
+
 def test_exclusions_cannot_contradict_the_dataset() -> None:
     rep = V.Report()
     structures = {"x.json": {"id": "saloon_building",
