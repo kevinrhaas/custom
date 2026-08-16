@@ -122,7 +122,7 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
-| — | RENDERING | **K46** | **SEEN** | **unranked, opened 2026-08-16 by K45(b1) — rank it against the five above rather than taking it as an eleventh.** The hand-written weight in each species mix is a fallback and loses to the record's: **17 of 26 entries place stems at a different number from the one written**, the elm at 25 where its two communities say 60 and 12, the maple at 25 at a water's edge the file cuts it to 8 for. Deciding which wins changes the species composition of most of the timber in the scene. **No bake**; carries the full smoke and the critic shots |
+| — | RENDERING | **K46** | **SEEN** | **CLAIMED 2026-08-16 · `steward/k46-which-weight-plants-the-stem`** · opened 2026-08-16 by K45(b1) — rank it against the five above rather than taking it as an eleventh.** The hand-written weight in each species mix is a fallback and loses to the record's: **17 of 26 entries place stems at a different number from the one written**, the elm at 25 where its two communities say 60 and 12, the maple at 25 at a water's edge the file cuts it to 8 for. Deciding which wins changes the species composition of most of the timber in the scene. **No bake**; carries the full smoke and the critic shots |
 
 **If you are about to claim an UNSEEN parcel, stop and read the rule.** It needs one of three
 written exemptions: an owner-reported bug, the second half of a measure-then-fix split, or a gate
@@ -2817,7 +2817,7 @@ plant stops proving it the day the repair lands.
 --published` green. The desktop half was not run and is not claimed — ~13 minutes against a
 10-minute per-command ceiling; see the run-budget box at the top of this file.
 
-### K46 — the hand-written community weight, or the record's global one? · **UNCLAIMED · opened 2026-08-16 by K45(b1) · Effort: M · NO BAKE, and it carries the full smoke AND the critic shots**
+### K46 — the hand-written community weight, or the record's global one? · **CLAIMED 2026-08-16 · `steward/k46-which-weight-plants-the-stem` · opened by K45(b1) · Effort: M · NO BAKE, and it carries the full smoke AND the critic shots**
 
 K45(b1) measured the divergence and refused to resolve it. The question is one sentence: **when a
 community's mix says a species is commoner in it than the species' own record does, which number
