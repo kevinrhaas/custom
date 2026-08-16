@@ -1506,9 +1506,10 @@ where it does not**; or grade these values a level lower than the ones the band 
 cite a band only if the family authors one for it. Until then the census prints and does
 not fail, and this box says why.
 
-### K26 — every building card links to a dossier that is not published · **UNCLAIMED · from K21 · Effort: S — a decision, then a line**
+### K26 — every building card links to a dossier that is not published · **CLAIMED 2026-08-16 · from K21 · Effort: S — a decision, then a line**
 
-**Phase:** lane 1 (renderer or publish) · **Effort:** S
+**Phase:** lane 1 (renderer or publish) · **Effort:** S · **Claimed** 2026-08-16 on branch
+`steward/k26-dossier-links`
 
 Each sidecar carries `research_doc`, and `popup.js` renders it as a link — `docBase +
 s.research_doc`, so `docs/RESEARCH/<id>.md` relative to the walkthrough. **`tools/publish.sh`
