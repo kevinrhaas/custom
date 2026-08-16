@@ -7032,7 +7032,12 @@ the number can only go down. Fixing this lowers the constant in the same PR.
 **Runner:** the no-Blender half is diagnosis — find the 79 in the generator's own output and
 say what makes them. The rebake arrives via `chicago-4d-bake.yml`.
 
-### R-BUG1 — the river edge flickers when flying · **UNCLAIMED**
+### R-BUG1 — the river edge flickers when flying · **CLAIMED 2026-08-16 — DO NOT PICK UP**
+
+> Held by the steward run of 2026-08-16 on `steward/r-bug1-river-edge` (lane 1, renderer only,
+> no bake). It is taken out of R-W5b and run as its own parcel because it is an owner-reported
+> defect and needs neither the post chain nor the dynamic-resolution half. Claim expires
+> 2026-08-17; take **K49(e)** or **R-W2c** instead while it stands.
 
 Reported by the owner 2026-08-14: flying over the river, its edges flicker. Almost certainly
 **z-fighting between the water plane at the datum (y = 0) and the terrain crossing it** — the
