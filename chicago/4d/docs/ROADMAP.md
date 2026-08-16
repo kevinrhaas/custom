@@ -104,6 +104,41 @@ first is the rule — see AGENTS.md § THE VISIBLE-PROGRESS RULE, which caps inv
 four. The second is this table: it had grown ~20 completed rows above the live picks, so the
 visible parcels were the hardest ones to find. Completed work now lives in its own section below,
 not at the top of the queue.
+| # | lane | parcel | why first |
+|---|---|---|---|
+| **1** | RENDERING | **R-BUG5 — TREES STAND IN THE RIVER** | **OWNER-REPORTED 2026-08-15 with a screenshot, and the top of the queue.** Scattered woody plants on the water, plus a straight LINE of them across the channel — scatter is noise, a line is an unmasked planting row. A gate already claims this cannot happen and was GREEN on that build, so the first job is finding why. Visible from any bank. Full box below |
+| — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
+| — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
+| — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
+| — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
+| — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number |
+| — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
+| — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
+| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
+| — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
+| 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
+| 2 | RENDERING | **R-W2b** | wire R-W2a's committed sheet into the params and records. **Unblocked as of 2026-08-16** — the sheet exists, and it says which surfaces are real, what selects each one, and which two tiles cannot be sized until a source arrives |
+| 3 | RENDERING | **R-W2c** | opened by R-W2a: 219 chimney stacks on 199 buildings are painted with the roof's colour, while the 90 placeholders ship a real brick. Opens with a research question, not a palette. **NEEDS ONE BAKE** |
+| 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
+| — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
+| — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
+| — | TOWN | ~~T-A3h~~ | **DONE 2026-08-15** — the last open block entry, and the two adoptions it predicted are the two it made: `blk_randolph_dearborn`'s D3 to the carpenters and its D1 to the labourers, measured with `tools/measure_adoption_tests.py` rather than recalled. **Its finding is about the other two**: the D4 and the D2 that pass as a "second roof" are pairs this layer has NEVER housed — the D4 evidence is one household in the NORTH, the D2's is four in the NORTH and WEST — so every second-roof refusal K28 has collected is a candidacy built from two projections of one table. Read its box and K28's before quoting any adoption test |
+| 1 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
+| — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
+| 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
+| — | TOWN | ~~T-I3(a)~~ | **DONE 2026-08-16** — the town's public buildings are **three roofs** and this project already had all three, so the refusal is now absolute rather than argued. The finding is the fourth building: **the court-house was not built yet** — Andreas fixes the season, the month AND the corner the record said nothing fixed, and the citation it had was a **picture caption** — so a record is taken OUT of a scene on evidence for the first time. Read its box before quoting any civic number |
+| 3 | TOWN | **T-I3(b)** | **NOT A PICK WITHOUT THE OWNER.** Three of the six I3 slots are a count of nothing; the inventory's arithmetic is closed, so removing them is either "the town had 662 roofs" or "three roofs were not civic". Two different claims about the town, and the research settles neither |
+| — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
+| — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
+| — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
+| — | TOWN | ~~K28~~ | **DONE 2026-08-16** — three questions, three clauses, **two gates, and not one record moved**. The table is **projections** (the pair reading is refused because it refuses T-A4's fourteenth labouring household, one of the four rule 6 says its third test recovers); there **is** a cap, one adoption per trade per block, which is what makes the projections safe; and test 1 means the trade's **own committed text**, so the laundresses' D2 and the teamsters' D4 are refused with the remedy named. All **21** standing block adoptions already obeyed it. Read its box before quoting any adoption rule |
+| 4 | TOWN | **K30(c)** | the repair K30(b) attributed: redraw the bodies onto the correct side of their own frontage. **NEEDS ONE BAKE** — it changes footprints, so it cannot go green on the improve runner |
+| — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
+| — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
+| — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
+| 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
 **Every row is tagged. `SEEN` means a screenshot from the same spot looks different when it
 merges. `UNSEEN` means it does not — those are real work and this project needs them, but they are
@@ -372,6 +407,48 @@ it and then it is blocked on S9 street control and the terrain extensions, not o
 Acceptance numbers are copied from RENDERING §5 so a builder does not have to hold two
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
+
+### R-BUG5 — trees stand in the river · **UNCLAIMED · TOP OF THE QUEUE · owner-reported 2026-08-15**
+
+**The report is a screenshot from 31 ft up, bearing 044°, north-east across the main stem: woody
+plants standing on the water. Two populations, and the second one is the diagnosis.**
+
+1. **Scattered** individuals over open water near the north bank.
+2. **A straight LINE of them** running out across the river. **Scatter is noise; a line is a
+   planting row.** Whatever lays plants out in rows is emitting into the channel, so a water test
+   is either not applied on that path or applied in the wrong space.
+
+**A gate already claims this cannot happen.** `smoke_renderer.mjs` asserts *"woody vegetation never
+occupies the river mask"* and *"emergent flora stays within eight metres of a riverbank"*, and both
+were GREEN on the build in the screenshot. **So the first job is not the trees — it is why the gate
+says they are not there.** Fourth time on this project that a green gate and the owner's screen have
+disagreed, and every previous time the gate was pointed at something other than what ships.
+
+**A TRAP, MEASURED, so the next run does not fall into it.** A census taken at the spawn point found
+**5 trees and 814 plants in the entire scene, none in water.** That is not a finding, it is a broken
+probe: the scene plainly holds hundreds of trees, so **vegetation is streamed or instantiated near
+the camera**, and anything counted at spawn counts almost nothing. Census this **from the reported
+viewpoint with the far bank loaded**, and **report the population count** so an implausible total is
+obvious. If a probe says "0 in water", check the denominator before believing it.
+
+**Candidates, in the order worth testing:**
+
+1. **The row emitter skips the water test** — find whatever plants in rows (hedgerow, bank line,
+   windbreak) and check whether it consults `terrain.isWater` at all.
+2. **The test runs in the wrong space.** `isWater(e, n)` takes ENU; a caller passing world `(x, z)`
+   without negating `z` tests a mirrored point and passes over water.
+3. **The mask and the drawn water disagree.** The water is ONE quad at `y = 0` spanning the whole
+   scene, so ground below 0 reads as submerged whatever the mask says — the R-BUG3c-b class, where
+   the drawn surface and the sampler were not the same surface.
+4. **Streaming plants near the camera bypass the placement gate** the committed set passes.
+
+**Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` · `tools/smoke_renderer.mjs`
+
+**Acceptance:** the owner's viewpoint reshot with no woody plant over water; the gate **FAILS on the
+current build** and passes after — a gate that stayed green through this bug proves nothing until it
+has been shown to catch it; the census prints its population. **Reconstructed bank vegetation is
+wanted — plants standing in the channel are not.**
+
 
 ### R-G0 — the critic harness · **DONE 2026-08-14 (G0.1 + the numeric half of G0.2)**
 

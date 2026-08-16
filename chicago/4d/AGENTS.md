@@ -112,6 +112,44 @@ written are history and are not retro-failed — the rule binds what is added ne
 
 **Cut the entry rather than raising the number.** If a release genuinely needs more, it is usually
 two entries or an entry plus a STATUS section, not one longer entry.
+## RECONSTRUCTED IS A TIER, NOT A FAILURE — build, then declare
+
+**The owner, 2026-08-15: the loop is "being hesitant and refusing to build because you are being
+too cautious about being perfect. It's ok to create things that have some justification and they
+can be inferred or even reconstructed based on your analysis."** He is right, and the example he
+gave is the shape of it: the trees were not coloured as described because no source stated the
+colour, so nothing was done at all.
+
+**That is a misreading of this project's own vocabulary.** There are three tiers, and the third one
+exists precisely for this:
+
+- **attested** — a source states it. Cite the source.
+- **inferred** — reasoned from evidence about *this particular thing*. Record the reasoning.
+- **reconstructed** — **invented within bounds, because the scene needs it and nothing states it.**
+  Record what bounded the invention and add a `docs/LIBERTIES.md` entry.
+
+**`reconstructed` is a licence to build, not an admission of defeat.** Six hundred and sixty-five
+roofs stand in this town on exactly that footing. A tree with no stated colour is not a reason to
+leave the tree grey — it is a reconstructed colour, bounded by the species, the month and the
+reference photographs already committed, recorded as a liberty, and BUILT.
+
+**The rule.** When a parcel stalls for want of evidence, the first question is not "may I proceed?"
+It is **"what is the lowest tier that honestly carries this, and what bounds it?"** Then build at
+that tier and say so. Refusing to build leaves the scene wrong AND undocumented, which is strictly
+worse than a declared reconstruction: an invented colour recorded as invented is honest, and a grey
+tree nobody chose is not.
+
+**"Blocked on the owner" is for four things only** — rights and licensing, the L1 constraint on
+depicting people, spending real money, and a decision that changes what the project IS. **A missing
+number is not one of them.** Derive a defensible figure, label it reconstructed, name what bounds
+it, and write down what would replace it. There were **seven** parcels sitting on "blocked on the
+owner" when this was written; most were missing numbers.
+
+**What does NOT change, and this is the whole reason the tiers exist.** Never claim a source that
+does not exist. Never promote a reconstruction to inferred or attested. Never leave an invention out
+of `docs/LIBERTIES.md`. The bar was never "only build what is proven" — it is **"never misrepresent
+what you built."** Those are different, and the second one is compatible with building a great deal
+more than this loop has been building.
 
 ## The work-parcel contract
 
