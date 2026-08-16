@@ -158,7 +158,8 @@ rationed.**
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
 | **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
-| **7** | RENDERING | **K49(c)** | **SEEN** | **6 of 20 lists deal their slots off an area compared against a count** — the forest understory is 96 % ramps against eleven species recorded as cover. Blocked on 25 records that give a cover fraction and no `width_m`, so **its first half is research**; the smoke prints the list every run |
+| — | RENDERING | ~~K49(c1)~~ | — | **DONE 2026-08-16 — the 25 footprints are in, `unconvertible` 25 → 0, and the conversion is measured and NOT shipped.** It moves the shares by up to 3× (June grass 8.1 % → 24.0 %, wood nettle 1.1 % → 6.3 %) and improves both deviations (matrix 219.19 → 197.46, forb 107.18 → 89.11), and it puts *Scirpus atrovirens* at **1.10 slots owed, 0 drawn** — K49(f)'s absolute gate. Read its box before dealing a sward slot off any number |
+| **1** | RENDERING | **K49(c2)** | **SEEN** | the fix half, with its baseline already committed: deal the sward on plants per m² and reach K49(f)'s tail gate rather than weakening it. Three routes are written up in K49(c1)'s box, and the first two are the same question K49(e) is measuring |
 | — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
 | — | RENDERING | ~~K49~~ | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
 | — | RENDERING | ~~K47~~ | — | **DONE 2026-08-16 — and it inverted: claimed SEEN, delivered UNSEEN.** The sycamore's archetype is built and `drawn_as_another_species` is empty; the tree is **0 of 163 stems**. Read its box before quoting v139 or K45(b1) on what stands by the river |
@@ -3530,7 +3531,92 @@ smoke was not run and is not claimed** (~13 min against this runner's 10-minute 
 ceiling); the desktop evidence is `measure_sward_draw.mjs`, which measures at 1280×800 and reports
 0 absent.
 
-### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
+### K49(c1) — the twenty-five footprints, and what the conversion does · **DONE 2026-08-16 — `unconvertible` 25 → 0, and the conversion is MEASURED AND NOT SHIPPED because it puts a species at the edge of K49(f)'s gate**
+
+**Read this box before dealing a sward slot off any number.** K49(c) was written as one parcel and
+split on the run-budget rule the lane already carries: it is a measure-then-fix, its measurement
+half is the twenty-five records, and the fix half now has a committed baseline it cannot redefine.
+
+**The research half, and it is closed.** Every sward record that measured an AREA and carried no
+footprint has one: **25 records across 8 communities**, each graded in its own
+`width_provenance` — **11 inferred**, reasoned from a footprint this dataset already commits for
+a plant standing beside it in the same list, and **14 reconstructed**, bounded by the record's own
+`height_m` and its dossier row's stated habit and recorded in `docs/LIBERTIES.md` **L119**. Not one
+is attested, because **no source this project holds states a footprint for any of the twenty-five**;
+the one measured graminoid footprint in the whole dossier is *Carex stricta*'s (§ ZONE 3,
+*"tussocks 0.3–0.5 m tall × 0.3 m wide"*), which this dataset already committed.
+
+**Why the grade sits on the figure rather than on the record.** A record's `confidence` grades what
+its sources say about the PLANT, and eight of the twenty-five are `attested` records. Writing an
+argued width under that grade would have promoted an argument into an attestation — the one thing
+AGENTS.md rule 1 forbids — so `width_provenance` is a sibling block of the `{confidence, sources,
+note}` shape this project already uses on every structure attribute, and `tools/validate.py`
+refuses a width_provenance that outranks the record it sits in.
+
+**And the gap is closed for good, which the measurement alone would not do.** `tools/validate.py`
+now fails any flora record whose abundance is a `cover_fraction` and whose role is one the sward
+placer deals (`matrix`, `forb`, `emergent`, `shrub_low`, `ground`) unless it carries a `width_m`.
+A new cover record without one silently re-opens a list that is measurable today.
+
+**THE FIX HALF, MEASURED ON THE PUBLISHED MIRROR AND COMMITTED HERE SO K49(c2) CANNOT MOVE THE
+BAR.** The conversion — `weight` dealt off `stems` (plants per m²) instead of off whichever field
+the record carried, with `forbShare` held on the recorded-cover sum so the number of slots does not
+move — was built, published and censused with `tools/measure_sward_draw.mjs`:
+
+| | before | after the conversion |
+|---|---|---|
+| records giving a cover with no `width_m` | 25 | **0** |
+| deviation from the recorded cover, matrix | 219.19 | **197.46** slots |
+| deviation from the recorded cover, forb | 107.18 | **89.11** slots |
+| worst shortfall, any row | 15.21 | **12.29** slots |
+| species owed a whole slot and drawn nowhere | 0 | **1** |
+
+**The shares it moves, which is why the parcel is SEEN:** the forest understory's ramps
+**96.5 % → 89.3 %** of its lottery and the wood nettle **1.1 % → 6.3 %**; the sand prairie's June
+grass **8.1 % → 24.0 %**; the lakeshore's little bluestem **11.6 % → 30.1 %**; the settled town's
+broadleaf plantain **25.2 % → 53.6 %**; the sedge meadow's cordgrass **14.2 % → 3.2 %**.
+
+**AND THE ONE THING THAT STOPS IT MERGING, stated as a number rather than as a worry.** The two
+bulrushes of the sedge meadow — *Scirpus atrovirens* and *S. cyperinus*, **identical records at
+200/ha** — are dealt **1.90 % → 0.16 %** of that list's slots, which over the census's 645-slot
+frame is **1.10 slots owed each**. One takes its slot and the other takes none, and K49(f)'s gate
+is ABSOLUTE on exactly that: a species owed a whole slot and drawn nowhere fails the smoke. It is
+not a band narrower than one step — the fault K49(f) repaired — it is **the tail of an unbiased
+deal at expectation 1.1**, and the two identical species landing on opposite sides of it is the
+proof. Weakening the assertion to pass is refused; the gate is right and the deal needs to reach
+it. **K49(c2) is the fix half.**
+
+**A second finding, and it is about what `width_m` MEANS.** The conversion is
+`cover / (π·(w/2)²)`, which is exact for non-overlapping cover — so it only converts honestly if
+the width is the same thing the cover measures. It is not, everywhere: § ZONE 3 gives the tussock
+sedge **40–60 % cover** and, in the same sentence, tussocks **0.3 m wide standing 0.5–1.0 m
+apart** — which is **1–4 plants/m²**, against the **6.62/m²** the conversion derives from that
+record's committed 0.31 m width. The width is a BASE width and the cover is FOLIAGE cover. This
+project's `width_m` is a crown width on a tree and a clump width on a sedge, and nothing had ever
+asked whether those are the same field. Where a dossier states a SPACING it states a density
+directly, and that is better evidence than any width — K49(c2) owns it.
+
+### K49(c2) — deal the sward on plants per m² · **UNCLAIMED · SEEN · opened 2026-08-16 by K49(c1) · Effort: S–M**
+
+The fix half. The conversion is built and measured (the table above is its baseline and may not be
+re-derived to something kinder); what is missing is the tail. Three routes, none of them a change
+to the assertion:
+
+1. **Stratify the phase across BLOCKS, not just within one.** K49(f) gave each block its own
+   offset, which makes a narrow band land in about `w·n` of the blocks — unbiased, and still a coin
+   flip over the two or three blocks a frame holds. A phase that sweeps the step across
+   neighbouring blocks would make a species owed one slot in the frame take one. Watch K49(d)'s
+   U-curve and K49(e)'s filter question before touching it.
+2. **A tail slot.** One designated slot per block dealt from the species whose bands are narrower
+   than one step. Guarantees the rare end by construction; it is a new construction in a filtered
+   layer, so it needs its own census.
+3. **Take the density where a dossier states a SPACING** — § ZONE 3's *"0.5–1.0 m apart"* is a
+   count of 1–4/m², attested, and it moves *Carex stricta* from the 6.62/m² the width implies. That
+   does not on its own lift the bulrushes over the gate (measured: 0.24 %, 1.57 slots owed), so it
+   is a correction to make and not a route to green.
+
+Whatever route: publish, re-census, and the smoke's sward tail assertion must be green on the
+PUBLISHED mirror before it merges.
 
 The other fault K49(a) measured and refused to guess at. **It starts with the 25 records**,
 because nothing else can be derived until they carry a footprint: find a clump width for each

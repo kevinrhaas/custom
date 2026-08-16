@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 148, title: 'Nothing you can see changed: twenty-five plants get a size', kind: 'fix', ts: '2026-08-16T20:38:10.241Z', date: 'Aug 16, 2026, 3:38 PM CT',
+    items: [
+      'Nothing in the town looks different today, and saying so is the point. This is the piece of research the next one needs, and the next one is what moves the meadows.',
+      'A plant record says how common a species is in one of three ways: plants per square metre, plants per hectare, or the share of ground it covers. The first two count plants. The third measures area. To share out the plants standing in front of you, all three have to become the same kind of number \u2014 and turning a share of ground into a count needs one thing the record must carry: how much ground one plant covers. Twenty-five records did not carry it.',
+      'They do now, and each says plainly where its figure came from. Eleven are reasoned from a plant already measured in the same list beside them. Fourteen are ours: nothing states them and nothing implies them, so they are bounded by the plant\u2019s own height and by what its research row says about how it grows, and written into the register of liberties you can open on the Evidence panel. Not one was chosen by looking at the scene.',
+      'The build now refuses a new plant recorded as a share of ground without one, so the gap cannot quietly re-open.',
+      'What the conversion does was measured rather than promised, and it is large: on the forest floor the wild leek falls from 96 to 89 in every hundred plants and the wood nettle rises from 1 to 6; on the sand prairie June grass goes from 8 to 24; in the town the broadleaf plantain goes from 25 to 54.',
+      'It is measured and not shipped. Dealt that way, one of the sedge meadow\u2019s two bulrushes \u2014 identical records, owed one plant each in the meadow in front of you \u2014 takes its plant and the other takes none, and a check written a day ago refuses exactly that. The check is right, so it stands and the change waits for a repair that reaches it.',
+    ] },
   { v: 147, title: 'Wild rice stands in the marsh again, and the prickly pear', kind: 'fix', ts: '2026-08-16T19:45:36.495Z', date: 'Aug 16, 2026, 2:45 PM CT',
     items: [
       'Two plants that were growing nowhere at all are back in the ground. Wild rice is the one to walk out for: a tall grass standing out of the shallow water of the marsh, and the only plant of its kind in the scene. The prickly pear is the other, low on the sand prairie towards the lake.',

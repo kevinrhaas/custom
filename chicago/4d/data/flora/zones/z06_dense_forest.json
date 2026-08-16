@@ -214,6 +214,12 @@
    "form": "forb_spike",
    "abundance": {"cover_fraction":[0.3,0.6]},
    "height_m": [0.5,1.0],
+   "width_m": [0.3,0.6],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 6 gives the wood nettle as a \"wood nettle mass on mucky ground\" holding 60-90 % of the forest floor at 0.3-1.0 m, and states no width. Bounded by that height band: a single stem's leaf spread is taken at roughly half to two-thirds its height. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [104,130,72],
@@ -232,6 +238,12 @@
    "form": "sedge_tussock",
    "abundance": {"cover_fraction":[0.2,0.4]},
    "height_m": [0.3,0.6],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. The forest-floor sedge is an unresolved aggregate; it is given the measured tussock's band widened downward, as the shore aggregate in z05 is."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [80,108,56],
@@ -342,6 +354,12 @@
    "form": "forb_umbel",
    "abundance": {"cover_fraction":[0.05,0.15]},
    "height_m": [0.4,0.9],
+   "width_m": [0.3,0.5],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 6b gives white snakeroot in the \"sparse, shaded\" ground layer at 0.2-0.6 m, budding in July, with no width. A branched shade forb of that height carries a leaf spread near its own height, so 0.30-0.50 m. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "budding",
     "foliage_rgb": [96,122,68],
@@ -360,6 +378,12 @@
    "form": "forb_umbel",
    "abundance": {"cover_fraction":[0.03,0.1]},
    "height_m": [0.3,0.6],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. Shares § ZONE 6b's \"sparse, shaded\" ground-layer row with Ageratina altissima (0.2-0.6 m, no width) and is the smaller of the two, so it takes the lower half of that band. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [90,118,64],

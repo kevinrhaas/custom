@@ -44,6 +44,12 @@
    "form": "grass_fine",
    "abundance": {"cover_fraction":[0.15,0.25]},
    "height_m": [0.9,1.2],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["white_1978_inai"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. Bluejoint stands in the same list and is rhizomatous rather than tussock-forming, so its drawn cluster is taken at or under that hummock: 0.20-0.40 m."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [104,122,74],
@@ -81,6 +87,12 @@
    "form": "sedge_tussock",
    "abundance": {"cover_fraction":[0.05,0.08]},
    "height_m": [0.7,1.0],
+   "width_m": [0.25,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. § ZONE 3 gives C. lacustris and C. aquatilis as one row, 10-15 % cover at 0.7-1.0 m — taller and broader-bladed than the 0.6-0.9 m stricta beside them — so the clump is taken at stricta's width and a little above it."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [92,118,62],
@@ -99,6 +111,12 @@
    "form": "sedge_tussock",
    "abundance": {"cover_fraction":[0.05,0.08]},
    "height_m": [0.7,1.0],
+   "width_m": [0.25,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. C. aquatilis shares that row with C. lacustris (10-15 % cover, 0.7-1.0 m) and takes the same reasoning and the same band."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [86,116,68],
@@ -173,6 +191,12 @@
    "form": "forb_spike",
    "abundance": {"cover_fraction":[0.02,0.06]},
    "height_m": [0.5,1.0],
+   "width_m": [0.3,0.6],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["white_1978_inai"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 3 gives scarlet smartweed as \"patches\" at 0.5-1.0 m and states no width. Bounded by its own height band: a rhizomatous emergent forb of this height carries a leaf spread of roughly half to two-thirds its height, so one drawn plant is 0.30-0.60 m across. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [98,120,66],
@@ -190,6 +214,12 @@
    "form": "forb_spike",
    "abundance": {"cover_fraction":[0.02,0.05]},
    "height_m": [0.4,0.8],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 3 files water horehound under \"matrix filler\", 0.4-0.8 m, with no width. Bounded by that height band at roughly half of it. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [94,118,70],
@@ -208,6 +238,12 @@
    "form": "forb_spike",
    "abundance": {"cover_fraction":[0.02,0.05]},
    "height_m": [0.4,0.8],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. Shares § ZONE 3's \"matrix filler\" row with Lycopus americanus (0.4-0.8 m, no width) and takes the same band. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [82,112,62],

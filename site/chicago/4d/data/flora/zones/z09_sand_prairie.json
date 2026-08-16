@@ -130,6 +130,17 @@
         0.2,
         0.4
       ],
+      "width_m": [
+        0.1,
+        0.2
+      ],
+      "width_provenance": {
+        "confidence": "inferred",
+        "sources": [
+          "swink_wilhelm_1994"
+        ],
+        "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. Reasoned from this record's committed Schizachyrium scoparium clump, [0.20, 0.35] m. § ZONE 9 pairs June grass with sand dropseed at 5-15 % cover, 0.2-0.4 m, \"fine, pale\" — against little bluestem's 0.3-0.5 m on the same page. It is the finer and shorter plant, so its tuft is taken at about half that clump. No source states the width."
+      },
       "july": {
         "phenology": "vegetative",
         "foliage_rgb": [
@@ -162,6 +173,17 @@
         0.2,
         0.4
       ],
+      "width_m": [
+        0.15,
+        0.3
+      ],
+      "width_provenance": {
+        "confidence": "inferred",
+        "sources": [
+          "swink_wilhelm_1994"
+        ],
+        "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. Reasoned from this record's committed Schizachyrium scoparium clump, [0.20, 0.35] m. Sand dropseed shares § ZONE 9's \"fine, pale\" row with Koeleria macrantha (5-15 % cover, 0.2-0.4 m) and is the looser and taller of the two, so it is banded between June grass and little bluestem. No source states the width."
+      },
       "july": {
         "phenology": "vegetative",
         "foliage_rgb": [

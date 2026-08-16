@@ -190,8 +190,8 @@
       "state": "mesh"
     },
     "species[].width_m": {
-      "carriers": 84,
-      "reached": 81,
+      "carriers": 109,
+      "reached": 106,
       "unreached": 3,
       "readers": [
         "flora.js",

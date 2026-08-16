@@ -3054,6 +3054,14 @@ def check_source_surface(sources: dict, rep: Report, *,
 FLORA = DATA / "flora"
 
 FLORA_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground", "tree", "thicket")
+# The roles `renderers/web/js/flora.js` deals as SLOTS — one slot is one drawn
+# plant, so its lottery is a count and a `cover_fraction` is an area (K49(a)).
+# `width_m` is the only thing in a record that converts the one into the other,
+# and until K49(c) twenty-five sward records carried a cover and no width, so
+# six of twenty lists dealt an area against a count. The two roles left out are
+# `tree` and `thicket`, which trees.js deals off `density_per_ha` mixes and
+# never converts.
+FLORA_SWARD_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground")
 FLORA_PHENOLOGY = ("flowering", "vegetative", "budding", "past_bloom", "fruiting",
                    "leafless", "senescent")
 EXTENT_KINDS = ("elevation_band", "polygon", "buffer", "everywhere")
@@ -3320,6 +3328,34 @@ def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
         rep.error(where, f"height_m must be [min,max] ascending in metres, got {sp['height_m']}")
     if "width_m" in sp and not _num_range(sp["width_m"], 0.01, 45.0):
         rep.error(where, f"width_m must be [min,max] ascending, got {sp['width_m']}")
+
+    # ROADMAP K49(c) — A COVER IS NOT A COUNT, AND width_m IS THE ONLY BRIDGE.
+    # The sward's placer deals slots, one slot per drawn plant, off a single
+    # normalised share per list. A record measuring an AREA and a record
+    # counting PLANTS were both read into that share, so "covers a quarter of
+    # the ground" was compared against "a quarter of a plant per square metre".
+    # A width closes it, and the gap has to stay closed: a new cover record
+    # without one silently re-opens a list that is measurable today.
+    if "cover_fraction" in ab and sp["role"] in FLORA_SWARD_ROLES and "width_m" not in sp:
+        rep.error(where, "abundance.cover_fraction is an AREA and the sward is dealt as a "
+                         "COUNT of plants, so this record needs width_m — what one plant "
+                         "covers on the ground — before it can be dealt against a species "
+                         "recorded as a density. See ROADMAP K49(c)")
+
+    # An added width is almost never something a source states, and the record's
+    # own `confidence` grades what its sources say about the PLANT. Writing a
+    # width under that grade promotes an argument into an attestation, so a
+    # width that the record's sources do not state carries its own grade here —
+    # and that grade may never outrank the record it sits in.
+    wp = sp.get("width_provenance")
+    if wp is not None:
+        if "width_m" not in sp:
+            rep.error(where, "width_provenance grades a width_m this record does not carry")
+        wconf = check_attested(where, "width_provenance", wp, source_ids, rep)
+        rconf = sp.get("confidence")
+        if wconf and rconf in CONFIDENCE and CONFIDENCE.index(wconf) < CONFIDENCE.index(rconf):
+            rep.error(where, f"width_provenance is '{wconf}' on a record graded '{rconf}' — a "
+                             f"figure may not outrank the record it belongs to")
 
     j = sp.get("july")
     if not isinstance(j, dict):
