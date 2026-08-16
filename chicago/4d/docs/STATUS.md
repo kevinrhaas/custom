@@ -1,5 +1,50 @@
 # STATUS
 
+## Measured 2026-08-16 — it is 189, not 195; this runner reproduces the nightly's bytes on every one of them; and the rewrite is not scheduled, it is open
+
+**K40**, and it moves no asset. K39 could not verify its own record the obvious way — by
+regenerating a derivative and comparing bytes — because `tools/web_derivatives.sh` did not
+produce the bytes on the site. It reported a **lower bound of 195** from a vertex signature
+and named the exact count, the price and the decision as this parcel. All four questions are
+answered from a control that runs the step itself over all 334 masters, chunked into four
+3 min 21 s passes to fit the harness's ten-minute per-command ceiling. That loop is now
+`tools/measure_web_reproduction.py` rather than something every parcel reinvents, and it
+refuses to write into `assets/` under any flag.
+
+**The exact count: 142 of 334 reproduce.** The 192 failures decompose with nothing left over
+— **189 come back byte-for-byte under `BAKE_PALETTE=1`** (the palette-era set) and **three
+were already owned by name**: K37's two placeholders that compress smaller, and
+`terrain__e1834_harbor_cut.glb` at 14 bits against a 16-bit ask, which is R-W6(b).
+
+**And the sentence the no-Blender strategy rests on is true after all.** Bake PR **#175**
+(07:34 UTC) rewrites **280** derivatives and holds all 192; on the 189 the nightly's bytes
+and this runner's are **md5-identical, 189 of 189**. The bake's 280 decompose exactly — 189
+palette-era + 90 placeholder masters upgraded to canonical archetype bakes + 1 terrain at
+16 bits — so a binary diff nobody could review now has an arithmetic. What was wrong was
+never the extraction: **K36(b) carried a step change through 38 files and not 334.**
+
+**K39's vertex signature is refuted as an identifier**, in both directions: 189 shared, **six
+welded files today's step reproduces exactly** (`optimize` dedups without the palette pass)
+and three failures with no weld. 195 is a number to stop quoting, and no gate is built on it.
+
+**The price**, for the record: +48,836 bytes over the 189 (mean +258, all 189 grow), +48,328
+net across the tree — **0.18 % of the 25 MB budget**. K39's sample said +197 and 30 %
+reproduction; the truth is +258 and 42.5 %.
+
+**Two decisions.** *Who moves the 189*: nobody here — an open PR already holds those exact
+bytes, and this parcel neither regenerates them nor merges that PR. **#175 and #164 carry no
+status checks at all** because a bot-opened PR does not trigger the dev gate; running it
+against them is the janitor's job and the owner's call. *Should the record name the STEP*:
+**no.** A flag string is prose and can be edited to turn a gate green; a script hash would
+have invalidated all 334 entries on each of the four commits that have changed the step,
+**twice on a commit that moved no byte** (38, 3, 0, 0). What the failure needed was a rule,
+and it is in the step's header: **a change that moves any derivative's bytes regenerates all
+334, not the ones that visibly broke.**
+
+**Not verified here:** the desktop half of the smoke (~13 min against a 10-minute
+per-command ceiling). `tools/check.sh` and the mobile half of `--published` are green. **No
+asset, record, parameter or renderer file changed.**
+
 ## Fixed 2026-08-16 — the shipped model now records the model it was made from; and 195 of them were made by a step this repository no longer has
 
 **K39.** K38's residual was that staleness was still a **timestamp**: `tools/publish.sh`

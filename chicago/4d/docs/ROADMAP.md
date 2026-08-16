@@ -141,7 +141,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K37~~ | **DONE 2026-08-16** — the passthrough is **right**: the step makes those 90 files **+107,328 bytes (+20.6 %)**, 88 of 90 growing. But the rule is not "placeholder" — **three assets that have always been compressed here were shipping LARGER than their masters** (+324, +240, +224) and two of the ninety placeholders compress 9.3 % smaller. The step keeps the smaller file per asset now, the gate's bound is **zero**, and `water__` (+744) is the one exclusion, by name, deferred to R-W6(b). Read its box before quoting any payload or passthrough number |
 | — | KERNEL | ~~K38~~ | **DONE 2026-08-16** — the gate on `assets/web/` watched the transformation and not the directory, and **two masters copied into the payload (+1,212,760 bytes) drew CHECK PASS from the whole of `tools/check.sh`**. It is three scripts and **four** passthrough branches, three of them silent, the widest taking the payload 4.54 → 20.96 MB. mtime never compared a byte and is wrong both ways — **334 of 334 masters are older than their derivatives on a fresh clone**, by checkout order. Assertion 8 banks the 93 decisions by name and `publish.sh` refuses instead of copying. Read its box before quoting any passthrough or payload number |
 | — | KERNEL | ~~K39~~ | **DONE 2026-08-16** — the step records `name → sha256(master)` now, in `assets/manifest.web.json`, and assertion 9 answers staleness from CONTENT in both directions. **The finding is the control it could not get**: 14 of 20 sampled derivatives cannot be reproduced by this repository's own step, and all 14 come back byte-for-byte under `BAKE_PALETTE=1` — **195 of 241 compressed derivatives are palette-era**, welded by a pass K36(b) turned off. Read its box before quoting any reproduction number |
-| 1 | KERNEL | **K40** | opened by K39: `assets/web/` is a mixture of two transformations and the next bake rewrites 195 of them. The question is the decision, not the diff — and whether the record should name the STEP as well as the master. **No Blender**, but it needs the desktop smoke half |
+| — | KERNEL | ~~K40~~ | **DONE 2026-08-16** — it is **189, not 195**, and the rewrite was never scheduled: it is **open, in bake PR #175**, whose 280 derivatives decompose exactly as 189 palette-era + 90 placeholder→canonical upgrades + 1 terrain. The control this project has never had now exists (`tools/measure_web_reproduction.py`, chunked to fit the 10-minute ceiling) and it says **this runner reproduces the nightly's bytes on 189 of 189** — so the no-Blender strategy holds; what failed was carrying a step change through 38 files instead of 334. K39's vertex signature is **refuted** in both directions. **No step field** — a script hash would have gone red on all 334 four times, twice moving no byte. Read its box before quoting any reproduction number |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
@@ -2359,7 +2359,79 @@ was not run and is not claimed — ~13 minutes against this harness's 10-minute
 per-command ceiling; see the run-budget box at the top of this file. No vertex, material
 or pose moves in this parcel and no committed asset changed a byte.
 
-### K40 — 195 shipped derivatives were made by a step this repository no longer has · **CLAIMED 2026-08-16 · `steward/k40-two-transformations` · opened 2026-08-16 by K39 · Effort: M — 195 binary files, or the decision not to move them · NO BLENDER (gltf-transform only), but the desktop smoke half is the acceptance**
+### K40 — 195 shipped derivatives were made by a step this repository no longer has · **DONE 2026-08-16 — it is 189, this runner reproduces the nightly's bytes on every one of them, and the rewrite is not scheduled: it is sitting in an open bake PR**
+
+**Read `docs/RESEARCH/web-reproduction.md` before quoting any reproduction number, and stop
+quoting 195.** Four questions were asked and all four are answered from a control that runs
+`tools/web_derivatives.sh` itself over all 334 masters — chunked into four 3 min 21 s passes
+to fit the harness's ten-minute per-command ceiling, which is why the loop is now a tool
+(`tools/measure_web_reproduction.py`) rather than something each parcel reinvents.
+
+**FINDING 1 — the exact count, and the failures decompose with nothing left over.**
+**142 of 334** reproduce. Of the 192 that do not, **189 come back BYTE FOR BYTE under
+`BAKE_PALETTE=1`** — the palette-era set, counted rather than inferred — and the remaining
+**three were already owned by name**: the two K37 placeholders that compress smaller
+(`recon_1835_blk_randolph_clark_h2_02`, `…_wells_h2_01`) and `terrain__e1834_harbor_cut.glb`,
+committed at 14 bits against a 16-bit ask, which is R-W6(b) in one file.
+
+**FINDING 2, AND IT IS THE ONE THAT MOVES THE PARCEL — the rewrite is not scheduled, it is
+OPEN, and this runner's control produces the nightly's exact bytes.** Bake PR **#175**
+(opened 07:34 UTC, 2026-08-16) rewrites **280 derivatives**, and all 192 non-reproducing
+files are in it. On the 189 the nightly's bytes and this runner's are **md5-identical, 189 of
+189**. So the claim the whole no-Blender repair strategy rests on — *this runner can
+regenerate what the nightly ships* — is **true**, with a control behind it for the first
+time. What was wrong was never the extraction; it was that a step change had been carried
+through 38 files and not 334. The bake's 280 decompose exactly: **189** palette-era + **90**
+placeholder masters upgraded to canonical archetype bakes (5 KB boxes → 25–83 KB buildings)
++ **1** terrain at 16 bits. A binary diff nobody could review now has an arithmetic.
+
+**FINDING 3 — K39's vertex signature is REFUTED as an identifier.** It counted 195 files
+carrying fewer vertices than their masters and reasoned that only the palette-era step
+produces that. Against the exact set it is wrong in **both** directions: 189 shared, **six
+welded files that today's step reproduces exactly** (2–4 vertices each — `optimize` dedups
+without the palette pass) and three failures with no weld. The tool prints the proxy beside
+the exact answer so it cannot be rounded off again, and **no gate is built on the vertex
+count**.
+
+**THE PRICE.** +48,836 bytes over the 189 (mean **+258**, and **all 189 grow**; worst
+`fort_dearborn_garrison_garden__fence_1816` at +7,240), **+48,328** net across the tree once
+K37's two placeholders' −1,624 is counted. That is +1.01 % of 4,764,664 bytes and **0.18 % of
+the 25 MB budget**. K39's sample said +197 from 14 files and 30 % reproduction; the true
+figures are +258 and 42.5 %. **10,491** vertices are merged across the set.
+
+**DECISION 1 — who moves the 189: nobody here.** The parcel expected a choice between
+regenerating 195 binary files on a runner that cannot finish the desktop smoke, and letting a
+nightly land them unreviewable. Measuring first dissolved the first option — an open PR
+already holds those exact bytes — and answered the second with the decomposition above. This
+parcel therefore **moves no asset and merges no bake**: #175 and #164 carry **no status checks
+at all**, because a bot-opened PR does not trigger the dev gate, and running that gate against
+them is the janitor's job and the owner's call.
+
+**DECISION 2 — should the record name the STEP as well as the master? NO,** and the
+measurement is the reason. A flag-set string is prose, and prose can be edited to turn a red
+gate green — the one property K39 deliberately denied the record. A hash of the script is not
+editable and is wrong measurably: the four commits that have changed
+`tools/web_derivatives.sh` since it was extracted moved **38, 3, 0 and 0** derivatives, so a
+script hash would have invalidated all 334 entries four times, **twice on a commit that moved
+no byte**, and the file is mostly comment — every parcel writing down what it learned would go
+red. What the failure needed was a rule, and it is in the step's header now: **a change here
+that moves any derivative's bytes regenerates all 334, not the ones that visibly broke.** It
+is deliberately not a gate — the only exact test is the 13-minute control, `tools/check.sh` is
+90 seconds on purpose, and the one cheap candidate is the signature finding 3 refutes.
+
+**Verified:** `tools/check.sh` green; `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green. The desktop half was not run and is not claimed — ~13 minutes against a
+10-minute per-command ceiling; see the run-budget box at the top of this file. **No asset,
+record, parameter or renderer file changed in this parcel** — it is a measurement, two
+decisions, a tool and the documents.
+
+**Open, and named rather than left implicit:** #175 rewrites `assets/web/` and this parcel did
+not gate it. When it or a successor lands, `tools/measure_web_reproduction.py --report` should
+read **334 of 334**, and the two K37 placeholders are the ones to watch — today's step
+compresses them, so `tools/web_derivative_baseline.json`'s passthrough list moves 93 → 91 and
+assertion 8 asks to be re-banked. That is a repair to record deliberately, not a surprise.
+
+### K40 — the parcel as written, kept for the record
 
 K39 needed a reproduction control and could not get one. `tools/web_derivatives.sh` does
 not produce the bytes on the site: **6 of 20 sampled derivatives reproduce, 14 do not,
