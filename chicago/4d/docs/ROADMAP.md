@@ -153,7 +153,7 @@ rationed.**
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
-| **1** | RENDERING | **K49(d)** | **SEEN** | **opened 2026-08-16 by K49(b) — needs no research, no data and no bake.** The forb layer's tail is closed; the matrix layers' is not, and their worst shortfall is **31.47 slots**. K49(b)'s lattice is VETOED there — it grew the west prairie in visible rows — so the successor is a stratification with no direction in it. Read K49(b) finding 2 before starting, and shoot `prairie_west` before and after |
+| **1** | RENDERING | **K49(d)** | **SEEN** | **CLAIMED 2026-08-16 · `steward/k49d-stratified-matrix`** · **opened 2026-08-16 by K49(b) — needs no research, no data and no bake.** The forb layer's tail is closed; the matrix layers' is not, and their worst shortfall is **31.47 slots**. K49(b)'s lattice is VETOED there — it grew the west prairie in visible rows — so the successor is a stratification with no direction in it. Read K49(b) finding 2 before starting, and shoot `prairie_west` before and after |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | **7** | RENDERING | **K49(c)** | **SEEN** | **6 of 20 lists deal their slots off an area compared against a count** — the forest understory is 96 % ramps against eleven species recorded as cover. Blocked on 25 records that give a cover fraction and no `width_m`, so **its first half is research**; the smoke prints the list every run |
 | — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
@@ -3265,7 +3265,7 @@ emit) · ROADMAP + STATUS + the changelog + the published mirror. No `data/` cha
 change to the grass. The desktop half of the smoke was not run and is not claimed — ~13 minutes
 against this runner's 10-minute per-command ceiling.
 
-### K49(d) — a stratification the dense layer can take · **UNCLAIMED · SEEN · opened 2026-08-16 by K49(b) · Effort: M**
+### K49(d) — a stratification the dense layer can take · **CLAIMED 2026-08-16 · `steward/k49d-stratified-matrix` · SEEN · opened 2026-08-16 by K49(b) · Effort: M**
 
 K49(b) left the near and mid tufts on an independent draw because the lattice **rows the
 prairie**. That is a veto on this construction, not on the goal: the matrix layers' worst
