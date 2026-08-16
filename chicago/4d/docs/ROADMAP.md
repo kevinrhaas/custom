@@ -103,7 +103,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
 | — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
-| 6 | RENDERING | **R-W6** | should the terrain ship quantised at all? 688 KB on a 306 mm lattice against 6.45 MB exact. Opened by R-BUG3c with both numbers measured; a payload decision with an owner-facing cost, and **not urgent** — the ground a visitor stands on is correct either way |
+| — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
@@ -3603,7 +3603,86 @@ block between crossings. Add a mid-block station on foot before claiming this cl
 
 **Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
 
-### R-W6 — should the terrain ship quantised at all? · **UNCLAIMED · opened 2026-08-15 by R-BUG3c · NOT urgent**
+### R-W6 — should the terrain ship quantised at all? · **DONE 2026-08-16 · opened by R-BUG3c**
+
+**YES, AT 16 BITS — and the artefact was NOT invisible, which is the finding.** This parcel was
+written expecting to confirm that the horizontal displacement cannot be seen and to raise the bit
+depth because it is free. The second half stands; the first is wrong. Measured on the bytes that
+ship, the 14-bit ground stands **up to 46.3 mm above the field the town is placed on**, past the
+**22 mm** road lift at **87** of the field's 259,689 sample points, 44 of them on dry ground —
+**and the closest of those stands 1.9 m from the centreline of South Water Street**, inside a
+10.5 m travelled track, 30.2 mm over a road that is lifted 22 mm. That is R-BUG3c's own failure
+mode, on the street the owner reported it from, surviving the fix at 1/5 the size and 0.03 % of
+the town. `tools/measure_terrain_horizontal.mjs` is the new reader; `--mesh f.glb=label` prices
+any candidate derivative against the same columns.
+
+**The trade is not the one the box below describes, because 16 bits is nearly free and nearly
+exact.** Every row measured with the same `gltf-transform` the bake runs, on the committed
+master, and the 14-bit rebuild came back **byte-for-byte identical to the file in
+`assets/web/`** — so these are the shipping numbers, not a simulation of them:
+
+| encoding | KB | vertical lattice | \|Δy\| handed to the browser | plan displacement | **drawn surface vs the field, after conforming** | past the 22 mm lift |
+|---|---|---|---|---|---|---|
+| master (`assets/gltf/`) | 6296 | float | 2.5 mm | — | 1.3 rms / 3.8 p99 / **7.7 max** | — |
+| **shipped today, 14-bit** | **671** | 306.4 mm | 227.6 mm | **273.1 mm** | 2.1 / 7.9 / **46.3** | **87** (44 dry) |
+| 15-bit | 677 | 153.2 mm | 107.0 mm | 131.0 mm | 1.5 / 4.5 / **22.4** | 1 |
+| **16-bit — TAKEN** | **672** | 76.6 mm | 54.4 mm | 52.0 mm | 1.4 / 3.8 / **12.9** | **0** |
+| no compression | 6296 | float | 2.5 mm | 0.0 mm | 1.3 / 3.8 / **7.7** | 0 |
+
+Four things in that table are worth more than the decision:
+
+- **The last column is measured at all 259,689 of the field's own sample points, after
+  `conformGroundToField()`** — the surface a visitor is actually shown, read by interpolating
+  the containing triangle in plan the way a rasteriser does. Not at three camera anchors: an
+  anchor set cannot answer a question about 1.6 km² of ground, and R-BUG3's own gate went green
+  standing 172 ft from the fault.
+- **The master's 1.3 mm rms / 7.7 mm max is DECIMATION, and every row carries it.** So the
+  uncompressed file buys 12.9 mm → 7.7 mm for **5.8 MB**, and what is left after that is not the
+  compressor's to give back. That is the whole answer to "should it ship quantised at all".
+- **The mechanism is slope, not size.** A vertex conformed at a displaced position holds the
+  field's height for the wrong place, so the cost is (slope × displacement): the 87 over-budget
+  samples sit at a **median slope of 18 %** — bank faces, the sand ridges, the harbour cut —
+  and flat platted prairie cannot show this artefact at any bit depth.
+- **R-BUG3c's "E and N move by up to 153 mm" was arithmetic — half of the 306.4 mm rung — and
+  the measured figure is larger**: 203.6 mm east, 182.0 mm north, **273.1 mm in plan**. Quote the
+  measured one. (Its 16-bit row reproduces exactly: 54.4 mm.)
+
+**Precision is per-mesh, and only two meshes in this town are big enough to care.**
+`gltf-transform` quantises POSITION under one uniform node scale set by the mesh's OWN bounding
+box, so an asset's lattice is its widest axis over 2^bits — nothing to do with how fine its
+details are. Across the 244 derivatives that ship quantised: `water__e1834_harbor_cut` 330.8 mm,
+`terrain__e1834_harbor_cut` 306.4 mm, `north_pier` 16.8 mm, and **every other asset ≤ 4.8 mm,
+median 0.5 mm**. So the bit depth is raised on the epoch meshes and left alone everywhere else:
+**+1,116 bytes**, against **+105.7 KB (+2.4 %)** measured for 16 bits across the whole payload to
+buy nothing anything can see. `EPOCH_QUANT_BITS` / `ASSET_QUANT_BITS` in `tools/bake.sh`.
+
+**Two smaller measured facts, recorded so nobody re-derives them:** 15 bits is BIGGER than 16
+(693.4 KB against 688.3) — do not "optimise" to it; and the water mesh is four vertices at
+exactly y = 0, which lands on the lattice at every bit depth, so its 330.8 mm rung never had
+anything to spoil and its derivative is byte-identical either way.
+
+**The skirt split is NOT taken, and that is now a measurement rather than a deferral.** The idea
+below is sound — 1.5 km of apron on each side is what sets the quantisation volume — but at 16
+bits every one of the 259,689 samples is already inside the tightest budget this town has, so
+splitting the skirt would buy precision nothing is waiting on, at the cost of a generator change,
+a `docs/GLB-CONTRACT.md` amendment and a bake. Reopen it if a future epoch's box grows or the
+ground gets a tighter consumer than the road lift.
+
+**What is NOT verified here:** the desktop half of `tools/smoke_renderer.mjs` (the ten-minute
+per-command ceiling — see "the run budget" above). The **mobile** half was run against a
+published mirror carrying the 16-bit ground: **218 passed, 0 failed, zero page errors**,
+including the drawn-surface-against-the-sampler assertion R-BUG3c added. **No GLB is committed by
+this parcel** — `assets/web/` is the bake's to write, and the ground reaches the site with the
+next nightly `chicago-4d-bake.yml`. Until it does, the shipped ground is the 14-bit one this box
+measures.
+
+**Files:** `tools/bake.sh` (the two-stage optimize + meshopt pass, and the per-mesh bit depth) ·
+`tools/measure_terrain_horizontal.mjs` (new) · `tools/measure_terrain_fit.mjs` (exports its
+reader rather than growing a fourth one) · `docs/RENDERING.md` · `docs/STATUS.md`
+
+---
+
+**The parcel as written, for the record:**
 
 R-BUG3c found that the published ground mesh lands on a **306 mm** vertical lattice and fixed
 the consequence rather than the cause: the renderer reads the heights back off the heightfield,
