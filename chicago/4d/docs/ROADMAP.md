@@ -2726,6 +2726,127 @@ of its cost.
 has to `--update` in the commit that makes it. `docs/LIBERTIES.md` **L114** is the entry to move to
 **Resolved**, in halves, as they land.
 
+**THE THIRD THING IS SPENT — 2026-08-16, K45(b1) — and the line above got its weight wrong twice.**
+See K45(b1) below before writing any mix entry. Changes one and two stand exactly as written.
+
+### K45(b1) — the sycamore, and the weight beside it that nothing uses · **DONE 2026-08-16 — 17 of the 26 mix entries are written to one number and plant stems at another**
+
+**Read this box before quoting any mix weight.** K45(b)'s separable third change was *"one mix
+entry — `['platanus_occidentalis', 1]` … weighted at the [1, 3]/ha its own record carries"*, and
+`docs/LIBERTIES.md` L114 says the same in prose. The entry is in and the population it moves is
+banked. The weight in it is not the one that was prescribed, for two independent reasons, and the
+second one is the parcel.
+
+**FINDING 1 — the prescribed 1 is the BOTTOM of the band, and the file's rule is the midpoint.**
+Measured across all 25 entries standing before this parcel: **18 sit exactly on their record's
+band midpoint or on its floor** (`fraxinus_pennsylvanica` 22 against 22.5, `celtis_occidentalis` 8
+against 8.5, `juglans_nigra` 2 against 2.5, `salix_nigra` 42 against 42.5). Of the seven that do
+not, three are a species carrying its full band in one list and a deliberately reduced presence in
+another (`salix_amygdaloides` 8 in the gallery against 17 at the edge; `acer_saccharinum` the
+other way about; `ulmus_americana` 60 in the thicket against 12 in the pocket), two are
+`ridge_oak`, whose dossier merges **ZONE 6c + ZONE 7** so no single band applies, and two are
+residue: `fraxinus_pennsylvanica` at 32 against 30, and `fraxinus_nigra` at **14 against 15** in
+the only community it appears in, from the only zone that carries it. `[1, 3]` has a midpoint of
+**2**, so the entry shipped is `['platanus_occidentalis', 2]`.
+
+**FINDING 2, and it makes finding 1 moot — the literal beside a species id is a FALLBACK, and it
+loses.** `loadTimberZones` builds `density[sp.id] = (perHa[0] + perHa[1]) / 2` for the first
+`TIMBER_ZONES` entry that names a species, and `mixes` is then rebuilt as
+**`records.density[id] ?? fallback`**. So the number that places a stem is *one global figure per
+species for the whole town*, and the per-community weighting this file writes by hand — the thing
+its own comment says the weights ARE — does not survive the load. **17 of the 26 entries differ**,
+and three of them differ in a way a reader would call an error if they saw the frame:
+
+| entry | written | plants at | from |
+|---|---|---|---|
+| `wet_woods.ulmus_americana` | 60 (39.2 % of the mix) | **25** (25.6 %) | z05, not z06 |
+| `mesic_pocket.ulmus_americana` | 12 (12.2 %) | **25** (22.4 %) | z05, not z06 |
+| `gallery.edgeMix.acer_saccharinum` | 8 (11.9 %) | **25** (29.4 %) | z05 |
+| `gallery.mix.salix_amygdaloides` | 8 (7.0 %) | **17.5** (14.0 %) | z05 |
+| `wet_woods.quercus_bicolor` | 17 (11.1 %) | **10** (10.3 %) | z05, not z06 |
+
+The elm is written 60 where it is meant to dominate and 12 where it is meant to be incidental, and
+is planted at 25 in both. The edge mix's own comment says *"at the water's edge the mix goes to
+willow"* and the maple it cuts to 8 to say so is planted there at **25**, taking the edge from a
+ninth silver maple to nearly a third of it. **All five species written into more than one list**
+— `acer_saccharinum`, `ulmus_americana`, `fraxinus_pennsylvanica`, `quercus_bicolor`,
+`salix_amygdaloides` — take **z05's** band in every community, because z05 is first in
+`TIMBER_ZONES`: the same first-zone-wins rule K45(a) found deciding the SPEC, one field along and
+with nothing anywhere saying so.
+
+**WHAT DID NOT MOVE, and why that is the honest outcome.** No weight was corrected. Which of the
+two numbers ought to win is a claim about the ecology — a per-community weight asserts *this
+species is commoner here than there*, and the per-species midpoint is what the record actually
+states — and answering it moves stems in three of the four communities at once. That is **K46**,
+and it carries the full smoke and the critic shots. Correcting it here, inside a parcel whose
+subject is one rare tree, would have been a frame-wide ecological change smuggled in under a
+one-line repair.
+
+**FINDING 3 — and the tree that got planted cannot be identified in the frame.** The sycamore is
+the **only** placed species with no `SPECIES` archetype of its own, so
+`SPECIES[sp.id] ?? SPECIES.ulmus_americana` hands it the elm's bole, taper, dbh band, puff count
+and **bark colour**; its height, crown width and July foliage are its record's. The one thing the
+record singles the species out for is *"white mottled bark flashing on the upper limbs"*, which is
+how a sycamore is identified across a floodplain. **No flora record in this project carries a bark
+colour at all**, so choosing a hex is a plain invention and a conspicuous one — the palest trunk
+on that riverbank. Recorded as `docs/LIBERTIES.md` **L116** rather than invented inside a parcel
+about a mix entry, and banked by name in `drawn_as_another_species`, exact both ways.
+
+**WHAT SHIPPED.** `['platanus_occidentalis', 2]`; assertion **5** in
+`tools/measure_planting_reach.py` — every entry's literal beside the weight that runs and the zone
+it came from, banked exactly both ways — and the derivation itself scanned, so a renderer that
+stops overriding the literal, or stops taking the band's midpoint, **raises** rather than
+comparing a number with itself. A mix entry weighted **0** is a failure now: it would sit in the
+file looking planted, be unpickable, and be invisible to assertion 3, which asks about species not
+in a mix. Assertion **3b** banks every placed species drawn with another's archetype — one today,
+and the substitution named in both directions. The self-test fires K45(b)'s own prescribed `['platanus_occidentalis', 1]` in memory on
+every run, the way K45(a) fires L113's repair. The `unselectable` bank is **0 of 20**, and its old
+negative control — *"a species in no mix is not selectable"*, which was this very sycamore — is
+synthetic now: a gate whose proof that its scanner can say no is a species somebody is about to
+plant stops proving it the day the repair lands.
+
+**Verified:** `tools/check.sh` green; `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green. The desktop half was not run and is not claimed — ~13 minutes against a
+10-minute per-command ceiling; see the run-budget box at the top of this file.
+
+### K46 — the hand-written community weight, or the record's global one? · **UNCLAIMED · opened 2026-08-16 by K45(b1) · Effort: M · NO BAKE, and it carries the full smoke AND the critic shots**
+
+K45(b1) measured the divergence and refused to resolve it. The question is one sentence: **when a
+community's mix says a species is commoner in it than the species' own record does, which number
+plants the stem?** Today the record wins by accident — `records.density[id] ?? fallback` was
+written to let a record supply a weight the file did not have, and it also overwrites every weight
+the file does have. Nothing in the repository states that as a decision.
+
+**Take K45(b1)'s numbers; they are banked.** 17 of 26 entries differ, and the five sharpest are in
+its table. Do not re-derive them: `python3 tools/measure_planting_reach.py` prints the pairs.
+
+**The three routes, and none of them is free.**
+
+1. **The record wins, deliberately** — delete the per-community weights and write the mixes as bare
+   species lists. Honest about what runs today, and it *discards* real information: the swamp
+   thicket's elm at 60 and the mesic pocket's at 12 are a reading of the dossier that nothing else
+   in this project records. Cheapest, and it loses the most.
+2. **The community wins** — the fallback becomes the value and `records.density` supplies only
+   species the mix does not weight. Restores the edge mix's "goes to willow" and the elm's two
+   readings; moves stems in three of the four communities, so it is the route that has to prove
+   itself in the frame.
+3. **Both, keyed properly** — `density` becomes per (zone, species) rather than global, and each
+   community reads the band from the zone its own `dossier` line cites. This is the one that says
+   what the file's comment claims: the weights ARE the dossier's per-species densities, from the
+   right dossier. It needs `ridge_oak`'s merged **ZONE 6c + ZONE 7** answered first — it cites two
+   zones and would have to say which band it means, or how it combines them.
+
+**What it must not do.** Route 2 or 3 without the frame is not acceptable: this changes the
+species composition of most of the timber in the scene, and R-W4a's horizon metric and R-G1's
+axes are the evidence that it did not make the town worse. `tools/critic_shots.mjs --metrics
+--stations …` and the mobile smoke are the minimum; the desktop half does not fit this runner's
+per-command ceiling, so say so rather than merging on the mobile half alone.
+
+**One residue for whoever takes it.** `fraxinus_nigra` is written **14** against a band whose
+midpoint is **15**, in the only community it appears in, from the only zone that carries it — the
+one departure K45(b1) could not explain by a species in two lists or a community merging two
+zones. It is invisible today (the 15 runs), and route 2 would make it visible.
+
 ### K44 — a figure can be read and still reach nothing, because every reader takes a cohort · **DONE 2026-08-16 — 339 of 1,880 (record, figure) pairs, six records handed to no reader at all, and the July fruit K43 was opened to record as missing is drawn on 29 of the 31 records that carry it**
 
 **Read this box before quoting any flora read number.** K42 built the read-set and asked
