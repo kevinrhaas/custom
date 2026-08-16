@@ -1,5 +1,36 @@
 # STATUS
 
+## New 2026-08-16 — every card's dossier link was a 404 on the deployed site, and 30 of them should never have been links
+
+**K26.** Each building card ends with a link to the research write-up behind the building, and
+`popup.js` composed it as a path relative to the walkthrough. `tools/publish.sh` leaves `docs/`
+out of the payload by design, so **all 332 links 404'd on the deployed site** — measured, not
+reasoned about: `…github.io/custom/chicago/4d/docs/RESEARCH/sauganash_hotel.md` returns 404 and
+the same dossier on GitHub returns 200. The link resolved in the source tree, which is the one
+place it was ever clicked.
+
+**The link is now absolute and goes to GitHub**, which renders markdown; `main` rather than `dev`,
+because that is the branch a visitor's copy was promoted from (0 of the 55 distinct dossier paths
+currently linked are dev-only, so the lag is nil today).
+
+**The 30 are the finding the parcel did not predict.** The compiler asserted
+`docs/RESEARCH/<id>.md` by convention and never asked whether the file existed — right about 302
+records, wrong about 30, every one a *documented* building whose write-up has not been done (the
+courthouse, the log jail, the estray pen, St Mary's, the Temple Building, the Presbyterian church,
+Kinzie & Hunter's warehouse). Those cards now say *no dossier written for this building yet* and
+offer no anchor. The 30 remain a research debt and `tools/check_dossier_links.py` names them every
+run.
+
+**Why it survived:** the smoke asserted the card's TEXT contained the path, which was true on every
+run while every link was broken. It now reads the `href` and asserts it leaves this origin, with
+`temple_building` as the discriminating no-link case. `validate.py` had gated the *open question*
+dossier pointer's existence since it was written; the building card's pointer never had it.
+
+**What is unverified:** the desktop half of `tools/smoke_renderer.mjs` — the ten-minute
+per-command ceiling (ROADMAP, "the run budget"). `tools/check.sh` and the mobile half both passed
+against the published mirror. **No geometry, dimension, coordinate or confidence moved**: 30
+sidecars lose a path that pointed at nothing, and the rest are untouched.
+
 ## New 2026-08-16 — the ground still stands over the road it carries, and the fix costs 1,116 bytes
 
 **R-W6**, which expected to prove the horizontal artefact invisible and instead measured it on

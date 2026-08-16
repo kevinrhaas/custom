@@ -129,6 +129,15 @@ step "liberties derived from docs/LIBERTIES.md" \
 step "sidecars derived from data/" \
   python3 tools/compile_scene.py --all --check
 
+# Every building card offers a link to the write-up behind the building, and on
+# the deployed site all 332 of them were a 404: publish.sh leaves docs/ out of
+# the payload by design, so the link resolved in the source tree and nowhere a
+# visitor stands (ROADMAP K26). The link is now absolute and this asserts both
+# halves of it — that every linked dossier is a file here, and that the base the
+# renderer composes with still points at this app inside its repository.
+step "every dossier link a card offers resolves" \
+  python3 tools/check_dossier_links.py
+
 # Renderer JS must at least parse. The repo's deploy workflow does the same thing
 # for site/, and a syntax error there is a blank page for everyone.
 check_js() {

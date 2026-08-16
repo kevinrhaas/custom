@@ -137,6 +137,6 @@
     }
   ],
   "research_note": "The second of the two Kinzie buildings this parcel adds to the west-bank row, and the better attested of them: Andreas gives it a neighbour where the dossier had only 'at Wolf Point'. THE ARRANGEMENT OF THE ROW IS NOW THE RECORD'S LARGEST UNCERTAINTY, not the building. Five structures in this dataset — james_kinzie_house, this store, wolf_point_tavern, robinson_caldwell_cabins and walker_meeting_house — sit on about 130 m of west-bank frontage on the strength of four ordering statements and no measured distances, and every one of them hangs off the tavern's own position, which is the weakest placement in the parcel. If the tavern moves, the whole row moves with it; if a source ever gives one of the five a distance or a lot, the row can be re-derived from that instead. NOTE ALSO THE IDENTIFICATION RISK: John H. Kinzie, James Kinzie and Robert A. Kinzie are three different men who all traded at Chicago in this decade, and this dataset carries premises for all three (jh_kinzie_forwarding_store on South Water Street, james_kinzie_house here, this store). Andreas's 'Robert A. Kinzie, near Wentworth's tavern' is the sentence that keeps them apart at Wolf Point; do not merge them. See docs/research/03-structures-north.md section 2.4.",
-  "research_doc": "docs/RESEARCH/robert_kinzie_store.md",
+  "research_doc": "",
   "review_required": true
 }

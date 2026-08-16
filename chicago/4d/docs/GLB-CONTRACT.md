@@ -223,7 +223,7 @@ GLB. The renderer reads placement, provenance and footprint from here.
       "transcribes": [ { "work": "...", "date": "1883-07-22" } ],
       "what_it_supplies": ["..."], "what_it_does_not_supply": ["..."] }
   ],
-  "research_doc": "docs/RESEARCH/sauganash_hotel.md"
+  "research_doc": "docs/RESEARCH/sauganash_hotel.md"   // "" where none is written
 }
 ```
 
@@ -245,6 +245,16 @@ is better than about ±20 m.
 
 `footprint` is `{ "polygon": [[u,v],…], "confidence": "…" }` — the polygon alone would lose the
 footprint's confidence, which is exactly what the confidence view exists to show.
+
+`research_doc` is **the dossier that covers this record, or `""` where none has been written**
+— resolved by the compiler against the repository rather than asserted by convention. The path
+used to be `docs/RESEARCH/<id>.md` for anything with no reconstruction block, which is right
+about 302 of 332 records and wrong about 30, and the card rendered the guess as a link either
+way. Emitting the empty string rather than dropping the key keeps the sidecar one shape
+everywhere, the rule `residents` already follows. **The renderer composes an absolute URL from
+it** (`popup.js` `DOSSIER_BASE`), because `docs/` is deliberately not published: a path relative
+to the walkthrough resolves in the source tree and 404s everywhere a visitor stands. Both halves
+are gated by `tools/check_dossier_links.py` (ROADMAP K26).
 
 `documented_range`, `change_note` and the `position_*` fields are the phase's claim about
 itself, carried in the same shape as an attribute (value/confidence/sources/note) so the card

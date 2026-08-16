@@ -1180,8 +1180,41 @@ const terrainLoad = await page.evaluate(() => {
       && ev(/Wau-Bun/).limits.length === 0,
       `Wright ${JSON.stringify(ev(/Wright/).limits)} · `
       + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).limits)}`);
-    check(`${label}: popup links the research dossier`,
-      /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
+    // --- the dossier link, which is a link and not a string ----------------
+    // The assertion this replaces tested `picked.text` for the path, and it
+    // passed on every run for months while every one of the 332 cards linked to
+    // a 404: `publish.sh` leaves `docs/` out of the payload by design, so a
+    // path relative to the walkthrough resolved in the source tree and nowhere a
+    // visitor stands (ROADMAP K26). The text was right the whole time. So this
+    // reads the HREF the card actually offers, and asserts it leaves the site —
+    // that is the property, because nothing served from this origin can satisfy
+    // it. And the discriminating case beside it: a record whose dossier nobody
+    // has written must offer no link at all rather than a plausible one.
+    const dossier = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const a = [...document.querySelectorAll('#popup a')]
+          .find((el) => /docs\/RESEARCH\//.test(el.getAttribute('href') ?? ''));
+        return {
+          href: a?.href ?? '',
+          offSite: !!a && new URL(a.href).origin !== window.location.origin,
+          text: document.getElementById('popup')?.textContent ?? '',
+        };
+      };
+      return { linked: read('sauganash_hotel'), unwritten: read('temple_building') };
+    });
+    check(`${label}: the card's dossier link leaves the payload it is not in`,
+      dossier.linked.offSite
+      && /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/blob\//.test(dossier.linked.href)
+      && dossier.linked.href.endsWith('/chicago/4d/docs/RESEARCH/sauganash_hotel.md'),
+      `href ${dossier.linked.href || '(none)'} · offSite ${dossier.linked.offSite}`);
+    check(`${label}: a building with no dossier written offers no dossier link`,
+      !dossier.unwritten.href && /no dossier written/.test(dossier.unwritten.text),
+      `href ${dossier.unwritten.href || '(none)'} · `
+      + `${dossier.unwritten.text.slice(-160)}`);
+
+    // Restore the card the assertions after this one are written against.
+    await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
 
     // --- what the chip cannot say: whether you are looking at it -----------
     // A confidence chip grades the evidence. It says nothing about whether the
