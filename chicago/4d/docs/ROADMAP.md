@@ -408,7 +408,7 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
-### R-BUG5 — trees stand in the river · **UNCLAIMED · TOP OF THE QUEUE · owner-reported 2026-08-15**
+### R-BUG5 — trees stand in the river · **CLAIMED 2026-08-16 · `steward/r-bug5-timber-in-the-channel`**
 
 **The report is a screenshot from 31 ft up, bearing 044°, north-east across the main stem: woody
 plants standing on the water. Two populations, and the second one is the diagnosis.**
