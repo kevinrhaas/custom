@@ -3788,6 +3788,49 @@ are written to one number and place stems at another**; all twenty-six are banke
 and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about
 this entry. Half two of this entry — the **87.9 ha** — is untouched and stands.
 
+### L118 — The sycamore's pale limbs are two invented colours, and the mottling is still not drawn
+
+**Decision:** the American sycamore is drawn in **two bark tones that no source states** — a pale
+grey-brown bole and a cream-white upper bole and limb set — because the one thing its record
+singles the species out for is a colour, and until now the tree was drawn in the American elm's
+dark brown (**L116**, resolved by the same parcel, ROADMAP **K47**). Both hexes are inventions of
+this project. So is every other bark, foliage and ground colour in `renderers/web/js/trees.js`;
+what makes this one worth its own entry is that it is **conspicuous** — the palest wood in the
+scene, and the first thing a visitor will notice on that stretch of river.
+
+**What bounds the invention, and it is three things rather than taste.**
+
+1. **The record fixes the direction and the place.** `data/flora/zones/z05_riverbank_timber.json`
+   reads *"Rare, at its northern edge; white mottled bark flashing on the upper limbs."* Pale, and
+   **upper** — a sycamore's lower bole is the brown scaly half, which is why one tone would have
+   been the wrong repair even in the right colour.
+2. **This file's own barks fix the range.** The eighteen bark constants standing before this run
+   span `0x332e26` (black oak) to `0x6a6355` (white oak). The sycamore's bole is `0x7a7263` — just
+   past the palest of them, because the species is pale wood all over — and its limbs `0xd9d3c2`,
+   far outside that range on purpose, since *being the palest thing in the timber* is the whole of
+   what the record's sentence describes.
+3. **Warm off-white, not white.** A pure `0xffffff` limb reads as painted rather than as bark, and
+   the scene's other woods are all warm greys, so the cream is desaturated toward them.
+
+**What is still NOT drawn, stated plainly because the record's word is "mottled".** The tone break
+is between the bole and the limbs — one colour each — and the **mottling itself, the patchwork of
+cream against olive and grey within a single limb, is not drawn at all.** That needs a second
+material or a vertex-colour break inside one stem, which is R-W2b/R-W2c territory. A visitor can
+now identify the sycamore across the floodplain, which is what the sentence is about; a visitor
+standing under one sees a plain pale limb rather than a piebald one.
+
+**Consequence, stated so a reader can weigh it.** Nothing in `data/` moved and no attribute was
+regraded: the tree's presence, height, crown and July foliage remain the record's, and the colours
+were never a data attribute — no record in `data/flora/` carries a bark colour at all. The
+sycamore stands at 1–3 per hectare on the gallery bank, so this is a handful of stems, not a
+repainted wood.
+
+**How to resolve:** a source stating either colour, or the mottling drawn as a break within the
+limb. Until then the two hexes stay this project's, and `renderers/web/js/trees.js` says so at the
+entry that carries them.
+
+**Recorded:** 2026-08-16.
+
 
 ## Resolved
 
@@ -4166,6 +4209,14 @@ in the same queue for the same reason. When it lands, the entry has to leave
 Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
 drawing convention in the same layer.
 **Recorded:** 2026-08-16.
+**Resolved:** 2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the
+species is drawn with its own bole, taper, diameter band, puff count and bark, and
+`drawn_as_another_species` is empty where it held this one substitution. The **How to resolve**
+line above offered a choice — sourced, or recorded as invented — and there was never a source to
+find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated
+bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the
+*mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed
+here.
 
 ### L117 — Three canopy weights the records do not carry, kept because no record can carry them
 

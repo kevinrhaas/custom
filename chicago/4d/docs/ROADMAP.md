@@ -122,6 +122,8 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
+| **6** | RENDERING | **K48** | **SEEN** | **opened 2026-08-16 by K47, and it is the reason the town has no sycamore in it.** Every species is planted at 29–67 % of the density its own record carries, because the mix literal is walked as a *share* of a stand density the mix sums far above — and K46's gate checks the literal, which is not that number. Its cheap half is a drawn-population census in the smoke, which fails red today. Frame-wide, so read its box before touching a weight |
+| — | RENDERING | ~~K47~~ | — | **DONE 2026-08-16 — and it inverted: claimed SEEN, delivered UNSEEN.** The sycamore's archetype is built and `drawn_as_another_species` is empty; the tree is **0 of 163 stems**. Read its box before quoting v139 or K45(b1) on what stands by the river |
 | — | RENDERING | ~~K46~~ | **SEEN** | **DONE 2026-08-16** — the written weight plants the stem, and route 3 was refuted by the DATASET: ZONE 6a and 6b are one record, so a zone-keyed density cannot hold the elm at 60 in the thicket and 12 in the pocket. 23 of 26 weights sit inside their own cited band, 3 below, **none above**. Read its box before quoting a mix weight or a species share |
 
 **If you are about to claim an UNSEEN parcel, stop and read the rule.** It needs one of three
@@ -2917,6 +2919,120 @@ not take it, and no gate reads that figure today.
 tools/smoke_renderer.mjs --published` green; critic shots re-measured. The desktop half was not run
 and is not claimed — ~13 minutes against a 10-minute per-command ceiling; see the run-budget box at
 the top of this file.
+
+### K47 — the sycamore is drawn as an elm from the bark outwards · **DONE 2026-08-16 — the archetype is built, and the tree it was built for is not in the town: 0 sycamores of 163 stems**
+
+**UNSEEN, and the parcel was claimed SEEN. That inversion is the finding, so it goes first.** The
+archetype landed exactly as specified — `SPECIES.platanus_occidentalis`, its own bole, taper,
+diameter band, puff count and a two-tone bark — and a screenshot from any spot in this town is
+byte-identical, because **the species the archetype draws is not planted anywhere in the scene.**
+
+**THE MEASUREMENT.** Read out of `api.trees.stats.species` in the **published** build at 1280×800,
+which is what a visitor loads:
+
+| | |
+|---|---|
+| woody stems planted | **163** (plus 214 sandbar-willow thicket clumps) |
+| of them in the `gallery` | **115** |
+| **American sycamores** | **0** |
+| the mix weight | 2 of the gallery's 116 |
+| expected at that share | 115 × 2/116 = **1.98** |
+| P(zero), independent draws | (1 − 2/116)^115 = **13.5 %** |
+
+Three other species stand as a **single** stem (`celtis_occidentalis`, `quercus_velutina`,
+`ostrya_virginiana`) and one as two, so the sycamore is the tail of a distribution rather than a
+special case: **a 115-draw sample cannot carry a 26-entry ecology, and the rare end of it rounds
+to nothing.**
+
+**AND THE RULE UNDERNEATH IT, which no gate has ever checked.** `COMMUNITIES.gallery.mix` sums to
+**116** while the community's stand density `perHa` is **[34, 62]** south of the river and
+**[50, 78]** north. The weights are therefore *shares*: every species is planted at
+**29–67 % of the density written beside it**. K46 made the literal the number that plants the
+stem and made the record's band the constraint on that literal — and the literal is not the
+density. The sycamore's 2 sits at the midpoint of its recorded **[1, 3]/ha** and passes the gate;
+the scene plants it at **0.59–1.34/ha**, at or under the band's floor. That is **K48**, opened
+below, and it is frame-wide: correcting it moves every species in every community, exactly as K46
+did.
+
+**SO WHAT DID CHANGE.** `docs/LIBERTIES.md` **L116** is resolved — nothing in this scene is drawn
+with another species' archetype now, and `drawn_as_another_species` is empty where it held one.
+The two invented bark tones are **L118**, with their bounds written down. `renderers/web/js/trees.js`
+gained one optional field, `barkUpper`, used by the upper bole and the limbs; every other species
+omits it and is unchanged. Assertion 3b's negative control was **re-pointed rather than left**: it
+synthesised an empty bank against a state that carried the substitution, and with the substitution
+repaired it was comparing nothing with nothing — a control that stops controlling on the day its
+subject is fixed. It now synthesises the bank side.
+
+**AND THE RECORD IT CORRECTS.** K45(b1)'s box and changelog **v139** both say a handful of stems
+along the river are now sycamores and that a screenshot from the same spot differs. **Neither is
+true**: the species became *selectable* — which is what that parcel's gate measures, and it
+measured it correctly — and selectable is not planted. Nothing was overstated on purpose; the
+instrument answered the question it was asked. `tools/measure_planting_reach.py` banks whether a
+record can be **chosen**; nothing banks whether it is **drawn**, and the drawn census exists only
+inside a running renderer. That gap is the other half of K48.
+
+**Verified:** `tools/check.sh` green; `python3 tools/measure_planting_reach.py --self-test` PASS
+(all 16 fire cases fire, all 27 scanner checks ok); `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not claimed —
+~13 minutes against a 10-minute per-command ceiling; see the run-budget box at the top of this
+file. The two-tone bark was **proved to draw** before it was shipped: with the mix weight
+temporarily at 400 the pale trunks and limbs are unmistakable at 70 m against the near-black
+boles beside them, and that experiment was reverted before the commit.
+
+### K48 — the weight is a share and the gate reads it as a density · **UNCLAIMED · SEEN · opened 2026-08-16 by K47 · Effort: M–L · NO BAKE, and it carries the full smoke**
+
+**The one-sentence version: every species in this town is planted at a third to two thirds of the
+density its own record carries, and the gate that was built to protect exactly that number cannot
+see it.** The literal in `COMMUNITIES` is walked by `pick()` as a *share of the community's stand
+density*, and the community's mix sums far above that stand density — 116 against `perHa` [34, 62]
+in the gallery. K46 checked the literal against the record's band, which is the right check on the
+wrong number.
+
+**Do not start by editing weights.** The seam this project has used three times now applies:
+land the measurement first. Two candidate repairs, and they are not equivalent —
+**(a)** rescale each community's literals so the realised density lands inside the record's band,
+which keeps `perHa` as written and changes 26 numbers; **(b)** derive `perHa` from the mix sum and
+let the record's densities stand as densities, which changes how many trees the wood holds rather
+than which ones. (a) preserves the stand count and (b) preserves the ecology, and the dossier's
+own words — *"canopy 30–80 trees/ha"* against per-species microsite figures that "sum higher" —
+are what decides which the record actually asserts. **Read the mix comment in `trees.js` and K46's
+box before choosing; the file already argues one side of this and does not know it.**
+
+**The second half, and it is the cheaper one:** nothing banks the **drawn** population.
+`tools/measure_planting_reach.py` proves a record can be *chosen*; K47 found a species that is
+chooseable, weighted, banded, gated — and absent from the frame. The census exists in
+`api.trees.stats.species` in a running renderer, so the instrument is a smoke assertion rather
+than a static scan: **every species in a community mix stands at least once, or the run says which
+does not and why.** Land that first and it fails red on the sycamore today, which is the shape
+that stops the fix redefining success.
+
+**Files:** `renderers/web/js/trees.js` · `tools/smoke_renderer.mjs` (the drawn census) ·
+`tools/measure_planting_reach.py` · `docs/LIBERTIES.md` L117 (its three departures are stated in
+literals and would move) · ROADMAP + STATUS.
+
+### K47 — the parcel as it was claimed, kept for the record
+
+K45(b1) planted the American sycamore and its own box says the tree **cannot be identified in the
+frame**: it is the only placed species with no `SPECIES` archetype, so
+`SPECIES[sp.id] ?? SPECIES.ulmus_americana` hands it the elm's bole, taper, dbh band, puff count
+and **bark colour**, and `docs/LIBERTIES.md` **L116** records the substitution rather than
+inventing past it. The one thing `z05_riverbank_timber` singles the species out for is the
+sentence *"white mottled bark flashing on the upper limbs"* — the reason a sycamore is
+identifiable across a floodplain — and this scene draws it in the elm's dark brown.
+
+**Why this parcel and why now.** The owner, 2026-08-15: *"you are still being hesitant and
+refusing to build because you are being too cautious about being perfect. It's ok to create
+things that have some justification and they can be inferred or even reconstructed based on your
+analysis"* — with **the tree colours as his own example**. L116's stated reason for not
+building is that no flora record carries a bark colour, so a hex is an invention. That is what
+`docs/LIBERTIES.md` is for: bound the invention, write it down, and build.
+
+**Files:** `renderers/web/js/trees.js` (one `SPECIES` entry, and the one change that lets a
+species carry a second bark tone) · `tools/measure_planting_reach.py` (assertion 3b's bank leaves
+with `--update`, and its negative control has to be re-pointed, because a control whose subject is
+the thing being repaired stops controlling anything) · `docs/LIBERTIES.md` L116 → resolved, plus
+the new entry the invention owes · `docs/STATUS.md` · the changelog. **No `data/` change, so no
+bake.** It changes the frame, so it carries the smoke.
 
 ### K46 — the parcel as it was opened · **superseded by the box above**
 

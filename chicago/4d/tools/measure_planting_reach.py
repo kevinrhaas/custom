@@ -928,8 +928,17 @@ def self_test() -> int:
     s3d["drawn_as_another_species"]["quercus_alba"] = "ulmus_americana"
     cases.append(("3b a placed species newly drawn with another's archetype", s3d, bank))
 
+    # ROADMAP K47 turned this case round, and the reason is the one K45(b1)
+    # already wrote about assertion 3's own negative control: until the sycamore
+    # got its archetype, `state` carried the substitution and the case emptied
+    # the BANK. It is banked empty now, so emptying it again compares nothing
+    # with nothing and the case goes silent — a control that stops controlling
+    # the day the thing it watched was repaired. Synthesised on the bank side
+    # instead, which is the direction that still has something to say: a
+    # substitution recorded in the baseline and no longer in the tree must fire,
+    # because that is the un-bank this parcel had to perform.
     b3d = copy.deepcopy(bank)
-    b3d["drawn_as_another_species"] = {}
+    b3d["drawn_as_another_species"] = {"platanus_occidentalis": "ulmus_americana"}
     cases.append(("3b a banked substitution that has been given its own archetype",
                   state, b3d))
 
