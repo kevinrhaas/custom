@@ -1,5 +1,47 @@
 # STATUS
 
+## Measured 2026-08-16 — 58 of the flora and fauna layers' 100 figures reach nothing, and one of the two layers has no reader at all
+
+**K42**, and it moves no record. The buildings and the ground each declare which of their
+figures reaches a vertex; `data/flora` and `data/fauna` — 293 records between them — never
+had. They do now: **100 figures across five record kinds**, after identity, file routing,
+provenance and prose are stripped the way the ground side strips them. **38 reach a vertex or
+a pixel**, 2 are shown as text, 2 are read only by a diagnostic, and **58 reach nothing**.
+
+**The largest finding is a whole layer.** `data/fauna` is **139 species records across ten
+habitat zones and zero reads** — and the check that says so is a directory scan, not a field
+one: **no file under `renderers/` names the layer**, and `tools/publish.sh` does not copy it,
+so `site/chicago/4d/data/` contains no `fauna/` and a browser has never been offered it.
+Three documents implied otherwise — `data/scenes/1835.json` lists `fauna` in its `layers`,
+`docs/LIBERTIES.md` L2 describes the soundscape as shipped, and `tools/validate.py` demanded
+eight vocabulary blocks because *"a renderer reads this block"*. **This is not a case for
+deleting anything**: AGENTS.md says the dataset is the durable artefact and renderers are
+disposable. The fault is that nothing said so.
+
+**In the flora, four unread things and one false sentence.** `data/flora/index.json`'s `_doc`
+said its `ground_*` and `bare_soil_fraction` copies were there *"so the ground shader can work
+from one fetch"* — **`terrain.js` never opens `data/flora`**, and that sentence is now rewritten
+to what is true. `plantable_in_scene` is read by nothing. The nine palettes carry **108** unread
+figures between them (wind, LOD, instance budgets, ground colours) because `flora.js` uses its
+own `TUNE` constants and reads `greens` and `dry_accent` only. And **31 flowering species record
+a July `fruit` nothing draws**.
+
+**K41's residual is answered, and the plants are on the worse side of it.** All **202**
+unresolved-source citations in `data/flora` sit on a record node with at least one figure that
+reaches a vertex; all **30** in `data/fauna` sit on a layer nothing draws. The reading that
+decides whether that is a fault is still the owner's — same three routes as K41.
+
+**What shipped:** `tools/measure_layer_reads.py`, its 58-entry bank, five assertions (every
+figure classified; every read declaration still a real read; the absolute layer rule in both
+directions plus a per-figure reverse scan; no new unread figure; no ghost in the bank), all
+exercised by `--self-test` in `tools/check.sh`. **The limit is stated, not discovered later:**
+2 entries whose leaf name is read under another record kind are exempt from the per-field scan
+and printed as stated rather than proven.
+
+**Not verified here:** the desktop half of the smoke (~13 min against a 10-minute per-command
+ceiling). `tools/check.sh` and the mobile half of `--published` are green. **No record, asset
+or parameter changed**, and the only renderer edit is a changelog entry.
+
 ## Measured 2026-08-16 — the rights rule could only ever fire on a violation somebody had already written down, and 49 geometry-bearing attributes are built from sources nobody has checked
 
 **K41**, and it moves no record. AGENTS.md rule 6 and `docs/PROVENANCE.md` say a

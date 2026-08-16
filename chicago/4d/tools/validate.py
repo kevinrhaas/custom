@@ -3428,8 +3428,12 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
     vocab = index.get("vocabulary") or {}
     for key in ("roles", "forms_flora", "forms_trees", "substrates", "phenology"):
         if not vocab.get(key):
-            rep.error("flora index", f"vocabulary.{key} is missing — the renderer reads this "
-                                     f"block to know the closed sets it must implement")
+            rep.error("flora index", f"vocabulary.{key} is missing — this validator reads "
+                                     f"the block to hold every record to a closed set. It "
+                                     f"once said 'the renderer reads this', and ROADMAP "
+                                     f"K42 measured that it does not: of the seven "
+                                     f"published vocabularies the renderer reads one, "
+                                     f"inflorescence_shapes, which is not one of these five")
 
     palettes = {}
     for entry in index.get("palettes", []):
@@ -3970,8 +3974,11 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
     for key in ("classes", "activity", "active_periods", "july_status", "presence_modes",
                 "abundance", "vocalization", "habitats"):
         if not vocab.get(key):
-            rep.error("fauna index", f"vocabulary.{key} is missing — a renderer reads this "
-                                     f"block to know the closed sets it must implement")
+            rep.error("fauna index", f"vocabulary.{key} is missing — this validator reads "
+                                     f"the block to hold every record to a closed set. No "
+                                     f"renderer reads any of it: ROADMAP K42 measured that "
+                                     f"nothing under renderers/ opens data/fauna at all, "
+                                     f"and publish.sh does not put it on the site")
 
     # The fauna zones borrow their geometry from the flora zones rather than
     # restating it, so the two datasets cannot drift into describing different

@@ -1,0 +1,779 @@
+#!/usr/bin/env python3
+"""Which of a plant's or an animal's figures reaches a vertex.
+
+ROADMAP K42, opened by K41. This project answers that question for two of its
+layers and had never asked it of the other two.
+
+    generators/archetypes/*_params.py   declares CONSUMED — the form attributes
+                                        the building generator reads
+    generators/terrain_inputs.py        declares CONSUMED — the terrain spec
+                                        figures the ground generator reads
+
+`tools/validate.py` turns each of those into a rule: every figure OUTSIDE the
+read-set carries a declaration saying what the mesh does instead, because the
+confidence model grades how sure we are of a value and says nothing at all about
+whether the thing was built. A `documented` painted wolf sign over a building
+with no sign on it is the failure that rule exists to end.
+
+`data/flora/` and `data/fauna/` have no such map, and they are not small: 154
+plant records across ten communities, 139 animal records across ten habitat
+zones, 202 and 30 citations of a source whose rights are unresolved (K41). Every
+figure in them is shipped to a browser, and until this ran nothing here could say
+which ones a visitor is looking at.
+
+WHY THE MAP IS IN PYTHON AND THE READER IS JAVASCRIPT. `terrain_inputs.py` gives
+the argument for not co-locating a read-set with the code that reads: there the
+generator's bytes are hashed into the ground, so a constant no builder reads
+would have demanded a Blender bake. Here the reason is plainer — the reader is
+`renderers/web/js/`, the gate is a Python script, and a declaration written into
+the renderer would be a renderer change with a 26-minute smoke behind it every
+time a key moved. What co-location would have bought is bought the same way the
+terrain buys it: **every declaration is scanned against the renderer sources**,
+in both directions, with the JS comments stripped first. A `read` declaration
+names an expression that must still be in the source; an `unread` figure must not
+be accessible anywhere in it. So a declaration that stops being true fails here
+rather than quietly excusing an omission.
+
+    tools/measure_layer_reads.py              print the census
+    tools/measure_layer_reads.py --gate       exit 1 on a divergence
+    tools/measure_layer_reads.py --self-test  break each assertion, in memory
+    tools/measure_layer_reads.py --update     rewrite the baseline
+
+THE FOUR STATES. Three of them are reads and the fourth is the finding.
+
+    mesh    a vertex or a pixel comes from the value
+    shown   the renderer reads it and shows it to a visitor as text
+    probe   the renderer reads it into a diagnostic or a gate accessor, and
+            nothing a visitor sees comes from it
+    unread  nothing in the renderer reads it at all
+
+`machinery` is the fifth thing and is not a state: identity, file routing and
+provenance keys — `id`, `file`, `sources`, `note` — are not figures and never
+reach the gate, exactly as `compile_scene.ground_fields` strips them on the
+ground side. An explicit read declaration outranks the machinery list, which is
+how `species[].confidence` — a provenance grade everywhere else in this project,
+and a colour here, because the confidence view tints each plant by it — is
+counted as a figure that reaches a pixel.
+
+FIVE ASSERTIONS.
+
+1.  **(absolute) Every figure present in the data is classified.** A new key in a
+    zone, a manifest or a palette with no entry here fails. "The renderer ignores
+    it" and "nobody has said" are different states and only one of them is a
+    finding — the terrain gate's sentence, arriving on the vegetation.
+
+2.  **(absolute) Every read declaration is a real read.** The expression it names
+    must appear in the renderer sources with comments stripped. Stripping first
+    is not fastidiousness: `flora.js` discusses `bare_soil_fraction: 0.45` in a
+    comment three lines above the line that reads it, and a scan that matches its
+    own explanatory prose proves nothing (`check_sidecar_contract` reported
+    itself on its first run for exactly this).
+
+3.  **(absolute) Every unread figure is really unread**, in two halves. The
+    strong half is the LAYER: a layer no renderer source opens has been read by
+    nothing in it, and that settles `data/fauna` entirely — no file under
+    `renderers/` names the directory, and `tools/publish.sh` does not copy it to
+    the site, so the browser has never been offered it. A layer that gains a
+    reader fails here, because the whole of its unread bank rests on nobody
+    opening it. The narrow half is per figure: the reverse scan looks for a
+    property access of the leaf. Leaves whose bare name collides with the
+    renderer's own vocabulary — `rgb` is a three.js shader field as well as a
+    palette key — are declared in `AMBIGUOUS_LEAVES` and scanned
+    parent-qualified. Leaves whose name is read under ANOTHER record kind —
+    `bare_soil_fraction` is read off a zone and copied into the manifest — are
+    listed as shared and exempted, because a text scan cannot attribute a
+    property access to one of two records that both have that field, and a scan
+    that cannot fail honestly is worse than a stated exemption.
+
+4.  **The unread population is banked and may not grow.** `tools/layer_reads_
+    baseline.json`, keyed by layer, record kind and field path, with the number
+    of records carrying each figure. A new unread figure fails: either the
+    renderer reads it, or shipping it to a browser is a decision somebody makes
+    on purpose in the commit that adds it.
+
+5.  **(absolute) The bank may not outlive the data.** An entry that is no longer
+    in the tree fails until it is un-banked with `--update` in the same commit,
+    because a repair here is a claim and recording it is part of making it.
+
+WHAT THIS DOES NOT DECIDE. Whether an unread figure should be deleted, wired up
+or declared is three different answers for three different findings, and none of
+them is this parcel's to make: `data/fauna/` is a research dataset whose value
+does not depend on a renderer existing, the palette's wind and LOD blocks are
+render tuning that the renderer has since re-tuned in its own constants, and
+`plantable_in_scene` is gated by `tools/validate.py` on every run. The routes are
+written up in `docs/ROADMAP.md` K42. This measures, holds and prints.
+"""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+RENDERER = ROOT / "renderers" / "web" / "js"
+BASELINE = ROOT / "tools" / "layer_reads_baseline.json"
+
+# The renderer, minus the two files that are not renderer code: the changelog is
+# authored prose that happens to be JavaScript (and quotes field names by the
+# dozen), and vendored three.js is not ours to reason about.
+RENDERER_SKIP = ("changelog.js",)
+
+# Identity, file routing, provenance and prose. Not figures, so not the gate's
+# business — the same strip `compile_scene.ground_fields` does before the
+# ground's geometry check sees a claim. A path declared in READS outranks this.
+MACHINERY_LEAVES = frozenset({
+    "_doc", "id", "zone", "file", "version", "scene_date", "dossier", "sources",
+    "note", "name", "binomial", "synonym", "review_required", "palette",
+    "species_count", "confidence", "reads_as",
+})
+
+# Leaves whose bare name is also the renderer's own vocabulary, so the reverse
+# scan of assertion 3 would fire on code that has nothing to do with the record.
+# Scanned parent-qualified instead — to read `ground.rgb` out of a palette the
+# renderer has to touch `ground` first. One entry, because the layer rule below
+# removes the need for the rest.
+AMBIGUOUS_LEAVES = frozenset({
+    "rgb",        # `diffuseColor.rgb` is a three.js shader field, in four files
+})
+
+# ---------------------------------------------------------------------------
+# THE MAP. Every declaration is `path -> (state, expression)`, and every
+# expression is scanned against the renderer with comments stripped. The paths
+# are the ones `field_paths()` produces: a leaf under a list of records is
+# `species[].height_m`.
+# ---------------------------------------------------------------------------
+
+FLORA_ZONE_READS: dict[str, tuple[str, str]] = {
+    # How much of the ground a community's matrix covers. Authored per zone,
+    # read as a probability directly — the one zone-level figure that changes
+    # how many plants stand.
+    "cover.matrix_fraction": ("mesh", "cover.matrix_fraction"),
+    # Read, and its only consumer is the `zones()` accessor the smoke's sward
+    # gate reads. No plant is placed or withheld by it.
+    "cover.bare_soil_fraction": ("probe", "cover.bare_soil_fraction"),
+    # The extent decides WHERE a community stands, which is a position and
+    # therefore a vertex. `x` is the extent object inside `matchZone`.
+    "extent.kind": ("mesh", "switch (x.kind)"),
+    "extent.elev_m": ("mesh", "Array.isArray(x.elev_m)"),
+    "extent.polygon": ("mesh", "pointInPolygon(x.polygon, e, n)"),
+    "extent.box.e": ("mesh", "const be = x.box.e;"),
+    "extent.box.n": ("mesh", "const bn = x.box.n;"),
+    "extent.of": ("mesh", "if (x.of !== 'water') return false;"),
+    "extent.distance_m": ("mesh", "x.distance_m ?? [0, 0]"),
+    "extent.exclude_polygons": ("mesh", "x.exclude_polygons ?? []"),
+    "extent.priority": ("mesh", "rec.extent?.priority"),
+    # Per species.
+    "species[].role": ("mesh", "OUR_ROLES.has(sp.role)"),
+    "species[].form": ("mesh", "GRASS_SHAPE[sp.form]"),
+    "species[].height_m": ("mesh", "const h = sp.height_m;"),
+    "species[].width_m": ("mesh", "Array.isArray(sp.width_m) ? sp.width_m : null"),
+    "species[].substrate": ("mesh", "const declared = sp.substrate;"),
+    "species[].abundance.cover_fraction": ("mesh", "mid(ab.cover_fraction)"),
+    "species[].abundance.density_per_ha": ("mesh", "mid(ab.density_per_ha)"),
+    "species[].abundance.stems_per_m2": ("mesh", "mid(ab.stems_per_m2)"),
+    "species[].july.phenology": ("mesh", "july.phenology === 'vegetative'"),
+    "species[].july.foliage_rgb": ("mesh", "rgb(july.foliage_rgb)"),
+    "species[].july.foliage_rgb_alt": ("mesh", "rgb(july.foliage_rgb_alt)"),
+    "species[].july.inflorescence.shape": ("mesh", "HEAD_OF_SHAPE[inflor.shape]"),
+    "species[].july.inflorescence.rgb": ("mesh", "rgb(inflor.rgb)"),
+    "species[].july.inflorescence.height_frac": ("mesh", "inflor.height_frac ?? 0.9"),
+    "species[].july.inflorescence.size_m": ("mesh", "Array.isArray(inflor.size_m)"),
+    # A provenance grade everywhere else in this project, and a colour here: the
+    # confidence view tints every plant by its species' evidence.
+    "species[].confidence": ("mesh", "LEVEL[sp.confidence]"),
+    # trees.js shows the July note and the common name in the timber panel.
+    "species[].july.appearance": ("shown", "sp.july?.appearance"),
+    "species[].common": ("shown", "sp.common ?? base.common"),
+}
+
+FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
+    # The manifest's extent is a denormalised copy read as a whole-object
+    # fallback — `rec.extent ?? entry.extent` — so its leaves reach the same
+    # matcher as the zone record's. validate.py holds the two copies equal.
+    "zones[].extent.kind": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.elev_m": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.polygon": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.box.e": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.box.n": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.of": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.distance_m": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.exclude_polygons": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.priority": ("mesh", "entry.priority ?? 0"),
+    "zones[].priority": ("mesh", "entry.priority ?? 0"),
+    # Read once at boot, to report a published shape this renderer has no
+    # archetype for. Nothing is drawn from the list itself.
+    "vocabulary.inflorescence_shapes": ("probe", "index.vocabulary?.inflorescence_shapes"),
+}
+
+FLORA_PALETTE_READS: dict[str, tuple[str, str]] = {
+    "greens": ("mesh", "palette?.greens"),
+    "dry_accent": ("mesh", "rgb(palette?.dry_accent)"),
+}
+
+# data/fauna has no reads at all. This is not an oversight in the map: no file
+# under renderers/ names the layer, and tools/publish.sh does not copy it to the
+# site, so the browser has never been offered it. Assertion 3 holds the whole
+# layer to that in the one direction that can be checked.
+FAUNA_READS: dict[str, tuple[str, str]] = {}
+
+READS: dict[str, dict[str, tuple[str, str]]] = {
+    "flora/zone": FLORA_ZONE_READS,
+    "flora/manifest": FLORA_MANIFEST_READS,
+    "flora/palette": FLORA_PALETTE_READS,
+    "fauna/zone": FAUNA_READS,
+    "fauna/manifest": FAUNA_READS,
+}
+
+STATES = ("mesh", "shown", "probe")
+
+
+# ---------------------------------------------------------------------------
+# the renderer, read as text
+# ---------------------------------------------------------------------------
+
+def strip_js_comments(src: str) -> str:
+    """Remove `//` and `/* */` comments without touching string bodies.
+
+    A character-level pass rather than a regex, because this project's renderer
+    is full of URLs in strings and shader source in template literals, and both
+    of the obvious regexes get one of them wrong.
+    """
+    out: list[str] = []
+    i, n = 0, len(src)
+    quote = None
+    while i < n:
+        c = src[i]
+        if quote:
+            out.append(c)
+            if c == "\\" and i + 1 < n:
+                out.append(src[i + 1])
+                i += 2
+                continue
+            if c == quote:
+                quote = None
+            i += 1
+            continue
+        if c in "'\"`":
+            quote = c
+            out.append(c)
+            i += 1
+            continue
+        if c == "/" and i + 1 < n and src[i + 1] == "/":
+            while i < n and src[i] != "\n":
+                i += 1
+            continue
+        if c == "/" and i + 1 < n and src[i + 1] == "*":
+            i += 2
+            while i + 1 < n and not (src[i] == "*" and src[i + 1] == "/"):
+                i += 1
+            i += 2
+            continue
+        out.append(c)
+        i += 1
+    return "".join(out)
+
+
+def renderer_text() -> str:
+    """Every renderer source, comments stripped, concatenated."""
+    parts = []
+    for path in sorted(RENDERER.glob("*.js")):
+        if path.name in RENDERER_SKIP:
+            continue
+        parts.append(strip_js_comments(path.read_text(encoding="utf-8")))
+    return "\n".join(parts)
+
+
+def reads_leaf(src: str, path: str) -> bool:
+    """Does the renderer access this field anywhere?
+
+    The bare form — `.leaf` or `['leaf']` — for a leaf whose name is the
+    record's alone; the parent-qualified form for one that collides with the
+    renderer's own vocabulary.
+    """
+    parts = [p for p in re.split(r"[.\[\]]+", path) if p]
+    leaf = parts[-1]
+    parent = parts[-2] if len(parts) > 1 else None
+    if leaf in AMBIGUOUS_LEAVES and parent:
+        stem = re.escape(parent)
+        pats = [rf"{stem}\s*\??\.\s*{re.escape(leaf)}\b",
+                rf"{stem}\s*\[\s*['\"]{re.escape(leaf)}['\"]\s*\]"]
+    else:
+        pats = [rf"\.\s*{re.escape(leaf)}\b",
+                rf"\[\s*['\"]{re.escape(leaf)}['\"]\s*\]"]
+    return any(re.search(p, src) for p in pats)
+
+
+def layer_is_opened(src: str, layer: str) -> bool:
+    """Does the renderer fetch this layer's directory at all?
+
+    The strongest form of the question, and the one that settles `data/fauna`
+    without any per-field scanning: a renderer that never names the directory
+    has read none of it. Both readers of `data/flora` build their URL the same
+    way — `new URL('flora/index.json', dataBase)` — so the directory name in a
+    string literal is what a read looks like from here.
+    """
+    return bool(re.search(rf"['\"`]{re.escape(layer)}/", src))
+
+
+# ---------------------------------------------------------------------------
+# the data, walked to leaves
+# ---------------------------------------------------------------------------
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def field_paths(obj, prefix: str = "") -> dict[str, int]:
+    """Every LEAF path in a record, with how many times it occurs.
+
+    A list of records recurses as `<key>[]`; a list of numbers is a leaf, because
+    `elev_m: [1.18, 3.0]` is one figure and not two.
+
+    A key whose value is `null` is NOT counted. `july.inflorescence: null` on the
+    57 species that carry no flower on 1 July is the absence of a figure stated
+    in the place a figure would go, and counting it would put the same path in
+    the map twice — once as the flowering block's parent and once as a leaf.
+    """
+    out: dict[str, int] = {}
+
+    def walk(node, pre):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                p = f"{pre}.{k}" if pre else k
+                if v is None:
+                    continue
+                if isinstance(v, dict):
+                    walk(v, p)
+                elif isinstance(v, list) and v and isinstance(v[0], dict):
+                    for it in v:
+                        walk(it, p + "[]")
+                else:
+                    out[p] = out.get(p, 0) + 1
+        return out
+
+    return walk(obj, prefix)
+
+
+def merge(into: dict[str, int], more: dict[str, int]) -> None:
+    for k, v in more.items():
+        into[k] = into.get(k, 0) + v
+
+
+def layer_records() -> dict[str, dict[str, int]]:
+    """Every field path in both layers, by layer and record kind."""
+    found: dict[str, dict[str, int]] = {}
+    for layer in ("flora", "fauna"):
+        base = DATA / layer
+        if not base.exists():
+            continue
+        manifest = base / "index.json"
+        if manifest.exists():
+            found.setdefault(f"{layer}/manifest", {})
+            merge(found[f"{layer}/manifest"], field_paths(load(manifest)))
+        for kind, sub in (("zone", "zones"), ("palette", "palettes")):
+            d = base / sub
+            if not d.exists():
+                continue
+            key = f"{layer}/{kind}"
+            found.setdefault(key, {})
+            for path in sorted(d.glob("*.json")):
+                merge(found[key], field_paths(load(path)))
+    return found
+
+
+def is_machinery(path: str) -> bool:
+    leaf = [p for p in re.split(r"[.\[\]]+", path) if p][-1]
+    return leaf in MACHINERY_LEAVES
+
+
+def classify() -> dict:
+    """Every figure in both layers, sorted into the four states."""
+    found = layer_records()
+    src = renderer_text()
+    out = {
+        "kinds": {},
+        "unread": {},        # "<kind>:<path>" -> {"records": n}
+        "declared": {},      # "<kind>:<path>" -> state
+        "machinery": [],
+        "ghosts": [],        # declared read, expression not in the renderer
+        "phantoms": [],      # banked unread, and the renderer reads it
+        "shared": [],        # unread, leaf name read under another record kind
+        "opened": {layer: layer_is_opened(src, layer) for layer in ("flora", "fauna")},
+    }
+    # A leaf name declared read anywhere is a name the text scan cannot attribute
+    # to one record kind: `common` is read off a plant, and an animal has one
+    # too. Those paths are exempted from the reverse scan and listed, rather than
+    # given a scan that cannot fail honestly.
+    read_leaves = {[p for p in re.split(r"[.\[\]]+", path) if p][-1]
+                   for decl in READS.values() for path in decl}
+    for kind, paths in sorted(found.items()):
+        layer = kind.split("/")[0]
+        declared = READS.get(kind, {})
+        counts = {"figures": 0, "mesh": 0, "shown": 0, "probe": 0,
+                  "unread": 0, "machinery": 0, "records": len(paths)}
+        for path, n in sorted(paths.items()):
+            key = f"{kind}:{path}"
+            if path in declared:
+                state, expr = declared[path]
+                out["declared"][key] = state
+                counts["figures"] += 1
+                counts[state] += 1
+                if expr not in src:
+                    out["ghosts"].append((key, expr))
+                continue
+            if is_machinery(path):
+                counts["machinery"] += 1
+                out["machinery"].append(key)
+                continue
+            counts["figures"] += 1
+            counts["unread"] += 1
+            out["unread"][key] = {"records": n}
+            leaf = [p for p in re.split(r"[.\[\]]+", path) if p][-1]
+            if not out["opened"][layer]:
+                # The layer rule already settles it, absolutely: no renderer
+                # opens the directory, so no field in it is read.
+                continue
+            if leaf in read_leaves and leaf not in AMBIGUOUS_LEAVES:
+                out["shared"].append(key)
+                continue
+            if reads_leaf(src, path):
+                out["phantoms"].append(key)
+        out["kinds"][kind] = counts
+    # A declaration for a path that is no longer in the data is a ghost too: the
+    # map would go on asserting a read of a figure nobody ships.
+    for kind, declared in sorted(READS.items()):
+        present = found.get(kind, {})
+        for path in sorted(declared):
+            if path not in present:
+                out["ghosts"].append((f"{kind}:{path}", "the data no longer carries it"))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# K41's residual, asked of a read-set
+# ---------------------------------------------------------------------------
+
+def own_field_paths(node: dict, prefix: str) -> set[str]:
+    """The leaf paths a node's own citation supports.
+
+    Stops at any nested node that carries its own `sources`, which is the node
+    that citation supports instead.
+    """
+    out: set[str] = set()
+
+    def walk(n, pre, root):
+        if not isinstance(n, dict):
+            return
+        if not root and n.get("sources"):
+            return
+        for k, v in n.items():
+            p = f"{pre}.{k}" if pre else k
+            if v is None:
+                continue
+            if isinstance(v, dict):
+                walk(v, p, False)
+            elif isinstance(v, list) and v and isinstance(v[0], dict):
+                for it in v:
+                    walk(it, p + "[]", False)
+            else:
+                out.add(p)
+
+    walk(node, prefix, True)
+    return out
+
+
+def blocked_sources() -> set[str]:
+    out = set()
+    for path in sorted((DATA / "sources").glob("*.json")):
+        rec = load(path)
+        if isinstance(rec, dict) and rec.get("rights_status") in ("check_required", "restricted"):
+            out.add(rec["id"])
+    return out
+
+
+def citation_census(state: dict) -> dict:
+    """Where the unresolved-source citations of K41's residual actually sit.
+
+    A citation supports the record NODE it is written on, so the question a
+    read-set can answer is the ground side's coarse one: does the node this
+    citation supports carry at least one figure that reaches a vertex? A
+    species' `sources` covers its height, its cover fraction and its July
+    colour, all of them `mesh`; a zone's covers its cover fractions and its
+    prose. A node's OWN figures stop at the next node that cites its own
+    sources, so a zone does not inherit its species' geometry — otherwise every
+    citation in the file would be geometry-bearing by containment and the
+    number would mean nothing.
+    """
+    blocked = blocked_sources()
+    mesh_paths = {k for k, s in state["declared"].items() if s == "mesh"}
+    out = {}
+    for layer in ("flora", "fauna"):
+        base = DATA / layer
+        if not base.exists():
+            continue
+        tally = {"citations": 0, "blocked": 0, "blocked_on_mesh_node": 0}
+        for path in sorted(base.rglob("*.json")):
+            kind = ("manifest" if path.name == "index.json"
+                    else "palette" if path.parent.name == "palettes" else "zone")
+            key = f"{layer}/{kind}"
+
+            def walk(node, pre):
+                if isinstance(node, dict):
+                    cited = [s for s in (node.get("sources") or []) if isinstance(s, str)]
+                    if cited:
+                        tally["citations"] += len(cited)
+                        hit = [s for s in cited if s in blocked]
+                        tally["blocked"] += len(hit)
+                        if hit:
+                            own = own_field_paths(node, pre)
+                            if any(f"{key}:{p}" in mesh_paths for p in own):
+                                tally["blocked_on_mesh_node"] += len(hit)
+                    for k, v in node.items():
+                        p = f"{pre}.{k}" if pre else k
+                        if isinstance(v, dict):
+                            walk(v, p)
+                        elif isinstance(v, list):
+                            for it in v:
+                                if isinstance(it, dict):
+                                    walk(it, p + "[]")
+            walk(load(path), "")
+        out[layer] = tally
+    return out
+
+
+# ---------------------------------------------------------------------------
+# the assertions
+# ---------------------------------------------------------------------------
+
+def read_bank() -> dict[str, dict]:
+    if not BASELINE.exists():
+        return {}
+    return load(BASELINE).get("entries", {})
+
+
+def evaluate(state: dict, bank: dict[str, dict]) -> list[str]:
+    """The five assertions, as a pure function of what was measured."""
+    problems: list[str] = []
+
+    # 2 — a read declaration that is no longer a read.
+    for key, expr in state["ghosts"]:
+        problems.append(
+            f"{key} is declared a read of `{expr}` and the renderer does not contain it. "
+            f"A read-set that has stopped being true excuses every omission behind it — "
+            f"re-point the declaration at the expression that reads the field, or move the "
+            f"field to the unread bank with --update")
+
+    # 3a — absolute: a layer with no declared read is a layer the renderer must
+    # not open, and a layer with declared reads must be opened. This is the
+    # strong half of assertion 3 and the whole of it for `data/fauna`.
+    for layer, opened in sorted(state["opened"].items()):
+        declares = any(READS.get(f"{layer}/{k}") for k in ("zone", "manifest", "palette"))
+        if declares and not opened:
+            problems.append(
+                f"data/{layer} has declared reads and no renderer source opens the "
+                f"directory — every read declaration for this layer is describing a "
+                f"renderer that no longer exists")
+        if not declares and opened:
+            problems.append(
+                f"data/{layer} is declared unread in every record kind and a renderer "
+                f"source now opens the directory. The layer has a reader: give it a read "
+                f"map, because the whole of this layer's unread bank rests on nobody "
+                f"opening it")
+
+    # 3 — an unread figure the renderer reads.
+    for key in state["phantoms"]:
+        problems.append(
+            f"{key} is banked as reaching nothing and the renderer accesses it. Declare it "
+            f"mesh, shown or probe with the expression that reads it — a figure counted "
+            f"unread while it drives the scene is the map lying in the expensive direction")
+
+    # 4 — a new unread figure.
+    for key in sorted(set(state["unread"]) - set(bank)):
+        n = state["unread"][key]["records"]
+        problems.append(
+            f"{key} is a figure on {n} record(s) that no renderer reads, and it is not in "
+            f"{BASELINE.name}. Wire it up, or bank it with --update in this commit and say "
+            f"in the message why a figure nobody builds is shipped to a browser")
+
+    # 5 — absolute: the bank may not outlive the data.
+    for key in sorted(set(bank) - set(state["unread"])):
+        problems.append(
+            f"{key} is banked as unread and is no longer an unread figure — it was wired "
+            f"up, deleted or renamed. Re-run with --update in the commit that did it, so "
+            f"the bank records the repair rather than keeping its ghost")
+
+    # 1 — absolute: assertion 1 is structural. Every figure is either declared or
+    # banked, so an unbanked one is assertion 4 above; what is left to check is
+    # that the map was applied to something at all.
+    if not state["kinds"]:
+        problems.append("no flora or fauna records were found, so nothing was classified "
+                        "and a pass here means nothing")
+    return problems
+
+
+def measure() -> tuple[dict, list[str]]:
+    state = classify()
+    state["citations"] = citation_census(state)
+    return state, evaluate(state, read_bank())
+
+
+def print_census(c: dict) -> None:
+    print("Which of a flora or fauna figure reaches a vertex — ROADMAP K42.\n")
+    head = f"  {'record kind':<18}{'figures':>8}{'mesh':>7}{'shown':>7}{'probe':>7}{'unread':>8}"
+    print(head)
+    for kind, k in sorted(c["kinds"].items()):
+        print(f"  {kind:<18}{k['figures']:>8}{k['mesh']:>7}{k['shown']:>7}"
+              f"{k['probe']:>7}{k['unread']:>8}")
+    total = sum(k["figures"] for k in c["kinds"].values())
+    unread = sum(k["unread"] for k in c["kinds"].values())
+    print(f"\n  {unread} of {total} figure(s) reach nothing:")
+    for key in sorted(c["unread"]):
+        print(f"    {key:<56} on {c['unread'][key]['records']:>4} record(s)")
+    print(f"\n  {len(c['machinery'])} identity/provenance key(s) are not figures and are "
+          f"not asked")
+    for layer, opened in sorted(c["opened"].items()):
+        print(f"  data/{layer}: {'opened' if opened else 'NOT OPENED'} by any renderer "
+              f"source")
+    if c["shared"]:
+        print(f"  {len(c['shared'])} unread figure(s) share a leaf name with a read field, "
+              f"so no text scan can attribute the access and the entry is stated rather "
+              f"than proven:")
+        for key in sorted(c["shared"]):
+            print(f"    {key}")
+    for layer, t in sorted(c.get("citations", {}).items()):
+        print(f"  data/{layer}: {t['citations']} citation(s), {t['blocked']} of a source "
+              f"whose rights are unresolved, {t['blocked_on_mesh_node']} of those on a "
+              f"record node carrying a figure that reaches a vertex")
+
+
+def self_test() -> int:
+    """Break each assertion in memory, against the real tree."""
+    state = classify()
+    state["citations"] = citation_census(state)
+    bank = read_bank()
+    if not state["unread"] or not bank:
+        print("SELF-TEST FAIL: nothing measured, so no assertion can be exercised")
+        return 1
+
+    clean = evaluate(state, bank)
+    cases: list[tuple[str, dict, dict]] = []
+
+    s2 = copy.deepcopy(state)
+    s2["ghosts"].append(("flora/zone:cover.matrix_fraction", "zone.coverFractionNobodyWrote"))
+    cases.append(("2 a read declaration the renderer no longer contains", s2, bank))
+
+    s3 = copy.deepcopy(state)
+    s3["phantoms"].append(sorted(state["unread"])[0])
+    cases.append(("3 an unread figure the renderer reads", s3, bank))
+
+    s4 = copy.deepcopy(state)
+    s4["unread"]["flora/zone:cover.invented_fraction"] = {"records": 10}
+    cases.append(("4 a new figure nobody reads", s4, bank))
+
+    b5 = copy.deepcopy(bank)
+    b5["flora/zone:a_figure_that_left"] = {"records": 1}
+    cases.append(("5 a banked figure that left the data", state, b5))
+
+    s3a = copy.deepcopy(state)
+    s3a["opened"]["fauna"] = True
+    cases.append(("3a the renderer opens a layer declared unread", s3a, bank))
+
+    s3b = copy.deepcopy(state)
+    s3b["opened"]["flora"] = False
+    cases.append(("3a a layer with declared reads that nothing opens", s3b, bank))
+
+    ok = True
+    for label, s, b in cases:
+        fired = len(evaluate(s, b)) > len(clean)
+        print(f"  {'fires' if fired else 'SILENT'}  {label}")
+        ok = ok and fired
+
+    # The two scans are the load-bearing part of assertions 2 and 3, so they are
+    # exercised directly: each must be able to say yes AND no.
+    src = renderer_text()
+    checks = [
+        ("the comment stripper removes a line comment",
+         "kept" in strip_js_comments("const a = 1; // dropped\nconst b = 'kept';")
+         and "dropped" not in strip_js_comments("const a = 1; // dropped\nconst b = 'kept';")),
+        ("the comment stripper keeps a string that looks like one",
+         "//x" in strip_js_comments("const u = 'http://x';")),
+        ("the comment stripper removes a block comment",
+         "dropped" not in strip_js_comments("/* dropped */ const a = 1;")),
+        ("the renderer text no longer contains the comment that names an unread field",
+         "bare_soil_fraction: 0.45" not in src),
+        ("the reverse scan sees a read it should see",
+         reads_leaf(src, "cover.matrix_fraction")),
+        ("the reverse scan does not see a field nobody reads",
+         not reads_leaf(src, "cover.standing_water_fraction")),
+        ("the parent-qualified form is used for an ambiguous leaf",
+         not reads_leaf(src, "ground.rgb") and reads_leaf(src, "diffuseColor.rgb")),
+        ("the layer scan sees the layer the renderer does open",
+         layer_is_opened(src, "flora")),
+        ("the layer scan does not see the layer nothing opens",
+         not layer_is_opened(src, "fauna")),
+    ]
+    for label, passed in checks:
+        print(f"  {'ok   ' if passed else 'FAIL '}  {label}")
+        ok = ok and passed
+
+    print("SELF-TEST PASS" if ok else "SELF-TEST FAIL")
+    return 0 if ok else 1
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--gate", action="store_true", help="exit 1 on a divergence")
+    ap.add_argument("--quiet", action="store_true", help="print only the verdict")
+    ap.add_argument("--self-test", action="store_true",
+                    help="break each assertion in memory and check that it fires")
+    ap.add_argument("--update", action="store_true", help="rewrite the baseline")
+    args = ap.parse_args()
+
+    if args.self_test:
+        return self_test()
+
+    state, problems = measure()
+
+    if args.update:
+        BASELINE.write_text(json.dumps({
+            "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as "
+                    "of the last deliberate change. A figure is a leaf of a record that is "
+                    "not identity, file routing or provenance; 'reads' is scanned against "
+                    "renderers/web/js/*.js with the comments stripped. This is a "
+                    "measurement and not a permission: tools/measure_layer_reads.py holds "
+                    "it exact in both directions, so a new one fails and a wired-up one "
+                    "has to be un-banked here in the commit that wired it. Read ROADMAP "
+                    "K42 before adding a line.",
+            "entries": {k: state["unread"][k] for k in sorted(state["unread"])},
+        }, indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {BASELINE.relative_to(ROOT)} ({len(state['unread'])} entries)")
+        return 0
+
+    if not args.gate and not args.quiet:
+        print_census(state)
+
+    for p in problems:
+        print(f"FAIL  {p}", file=sys.stderr)
+    if problems:
+        return 1
+
+    total = sum(k["figures"] for k in state["kinds"].values())
+    unread = sum(k["unread"] for k in state["kinds"].values())
+    mesh = sum(k["mesh"] for k in state["kinds"].values())
+    fauna = sum(k["unread"] for kind, k in state["kinds"].items()
+                if kind.startswith("fauna/"))
+    if args.gate or args.quiet:
+        print(f"layer reads: {mesh} of {total} flora/fauna figure(s) reach a vertex or a "
+              f"pixel and {unread} reach nothing, {fauna} of those in data/fauna, which no "
+              f"renderer opens; the unread population is banked and may not grow")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

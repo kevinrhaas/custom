@@ -144,7 +144,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | KERNEL | ~~K40~~ | **DONE 2026-08-16** — it is **189, not 195**, and the rewrite was never scheduled: it is **open, in bake PR #175**, whose 280 derivatives decompose exactly as 189 palette-era + 90 placeholder→canonical upgrades + 1 terrain. The control this project has never had now exists (`tools/measure_web_reproduction.py`, chunked to fit the 10-minute ceiling) and it says **this runner reproduces the nightly's bytes on 189 of 189** — so the no-Blender strategy holds; what failed was carrying a step change through 38 files instead of 334. K39's vertex signature is **refuted** in both directions. **No step field** — a script hash would have gone red on all 334 four times, twice moving no byte. Read its box before quoting any reproduction number |
 | 2 | RENDERING | **R-W6(b)** | opened by K36(b): **R-W6's 16-bit ground is in the script and not in the shipped file** — 14 bits reproduces the committed terrain md5 for md5, and the 1,116-byte gap is R-W6's own quoted cost. The road is still on the 306 mm lattice R-BUG3c found buries it. **NEEDS ONE BAKE**, or the owner's word on regenerating geometry outside one |
 | — | KERNEL | ~~K41~~ | **DONE 2026-08-16** — *"the validator enforces this"* was false in the way that matters: the rights gate compares two fields of the SAME source record, so it can only fire on a violation an author has already written down, and **the pair it looks for has never existed** (38 unresolved sources, all `cross_check`/`text_only`; the 3 that declare `geometry` are a survey and two maps, all clear). Asked of the town instead, with the read-sets the generators already declare: **49 geometry-bearing attributes on 21 records, 35 on unresolved support alone, 16 of those graded `attested`** — the Sauganash, Wolf Point, the Green Tree, St Mary's. Banked and held. The reading that decides whether they are a fault is the OWNER's — three routes in its box. Read it before quoting any rights number |
-| 4 | KERNEL | **K42** | opened by K41: `data/flora` cites unresolved sources **202** times and `data/fauna` **30**, both are rendered, and neither layer has a `CONSUMED` map — so no gate here can say which of a zone's figures reaches a vertex. The map is worth more than the citations: it is `check_geometry_declarations`' question, never once asked of a plant. **No bake** |
+| — | KERNEL | ~~K42~~ | **DONE 2026-08-16** — the two layers' read-sets exist now, and they say **58 of 100 figures reach nothing**. K41's phrase *"both are rendered"* is **refuted**: `data/fauna` has no reader at all — no file under `renderers/` opens it and `publish.sh` never puts it on the site — while the scene's `layers` list, `docs/LIBERTIES.md` L2 and two validator messages all implied it does. In the flora, the manifest's own `_doc` claimed the ground colours were denormalised *"so the ground shader can work from one fetch"* and **`terrain.js` never opens `data/flora`**; the palettes carry **108** figures the renderer replaced with its own constants; **31** species record a July fruit nothing draws. K41's residual is answered: **202 of 202** flora citations sit on a node whose figures do reach a vertex, **30 of 30** fauna citations on a layer nothing draws. Read its box before quoting any flora or fauna read number |
+| 4 | KERNEL | **K43** | opened by K42: the three unread populations it measured are three different decisions and none of them is a gate's. The fauna layer needs the owner's word (leave it and stop implying otherwise, or give it a reader); the palettes' 108 tuning figures are a `TUNE`-versus-record question with no evidence in it and **no bake**; the July `fruit` on 31 species is the one with a research half, because `docs/LIBERTIES.md` does not record that omission |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -2510,6 +2511,101 @@ Watch: do **not** fold this into `tools/web_derivative_baseline.json`. That file
 record of FAULTS and repairs, deliberately rewritten only by a person banking a decision;
 a hash map that changes on every bake has the opposite lifecycle and would train everyone
 to run `--write-baseline` without reading it.
+
+### K42 — the read-set for the flora and fauna layers · **DONE 2026-08-16 — 58 of the two layers' 100 figures reach nothing, and one whole layer has no reader at all: no file under `renderers/` opens `data/fauna`, and `publish.sh` never puts it on the site**
+
+**Read this box before quoting any flora or fauna read number.** K41's residual, taken at
+face value: the buildings and the ground each declare which of their figures reaches a
+vertex, `tools/validate.py` turns each declaration into a rule, and the two layers with 293
+records between them had never been asked the question.
+
+**FINDING 1 — the count, and it is nearly evenly split.** **100 figures** across five record
+kinds (flora zone / manifest / palette, fauna zone / manifest), after identity, file routing,
+provenance and prose keys are stripped the way `compile_scene.ground_fields` strips them on
+the ground side. **38 reach a vertex or a pixel**, 2 are read only to be shown as text, 2 are
+read only into a diagnostic or a gate accessor, and **58 reach nothing at all**. One of the
+38 is worth naming because it is provenance everywhere else in this project and a colour
+here: `species[].confidence`, which the confidence view tints each plant by.
+
+**FINDING 2 — `data/fauna` has no reader, and three separate documents imply it does.** **139
+species records across 10 habitat zones**, 30 figures, **zero reads** — and the strong form of
+that is not a field scan but a directory one: **no file under `renderers/` names the layer**,
+and `tools/publish.sh` does not copy it, so `site/chicago/4d/data/` has no `fauna/` in it and a
+browser has never been offered the layer. Against that: `data/scenes/1835.json` lists `fauna`
+in its `layers`; `docs/LIBERTIES.md` L2 describes the July soundscape as shipped; and
+`tools/validate.py` demanded eight vocabulary blocks on the ground that *"a renderer reads this
+block"*. **This is not an argument for deleting anything** — AGENTS.md says the dataset is the
+durable artefact and renderers are disposable, so a sourced July soundscape nothing draws is
+banked work. The fault is that nothing said so, and a reader of any of those three documents
+would conclude the town has animals in it.
+
+**FINDING 3 — four unread things in the flora, one of which is a false sentence in the data.**
+(a) `data/flora/index.json`'s own `_doc` said the `ground_*` and `bare_soil_fraction` copies
+were denormalised into the manifest *"so the ground shader can work from one fetch"* — and
+**`terrain.js` never opens `data/flora`**; the sward's `bare_soil_fraction` is read off the
+zone record, by the smoke's cover gate, not by the ground. That sentence is rewritten to what
+is true. (b) `plantable_in_scene` is read by nothing in either place it is written: zones 7–9
+match nothing because their extents do not meet the modelled ground, not because of the flag.
+(c) **The palettes are 12 unread figures each, 108 in all** — `wind.{speed_mps,sway_deg,gust,
+wave_m}`, `lod.{near_m,mid_m,far_m}`, `budget.instances_{near,mid}` and `ground.{rgb,dry_rgb,
+wet_rgb}` — because `flora.js` tuned its own `TUNE` constants and reads only `greens` and
+`dry_accent`. (d) **31 flowering species record a July `fruit` nothing draws**, plus
+`cover.standing_water_fraction` on all ten zones and `cover.litter_fraction` on one.
+
+**FINDING 4 — K41's residual, answered, and the plants are on the wrong side of it.** All
+**202** unresolved-source citations in `data/flora` sit on a record node carrying at least one
+figure that reaches a vertex (a node's own figures stop at the next node that cites its own
+sources, so a zone does not inherit its species' geometry). All **30** in `data/fauna` sit on
+a layer nothing draws. Under K41's wide reading the flora layer is the worst-affected
+population in the project — worse proportionally than the 49 building attributes — and under
+the narrow reading it is untouched. **Same reading, same owner, same three routes as K41.**
+
+**WHAT SHIPPED.** `tools/measure_layer_reads.py` — census, `--gate`, `--self-test`,
+`--update` — and `tools/layer_reads_baseline.json`, 58 entries banked by layer, record kind
+and field path with the record count on each. Five assertions: **1** every figure present is
+classified; **2** every read declaration names an expression still in the renderer; **3**
+absolute in two halves — a layer with no declared reads may not be opened by any renderer
+source and a layer with them must be, then per figure a reverse property scan; **4** a new
+unread figure fails; **5** absolute, a banked entry that has left the data fails until it is
+un-banked in the commit that wired it up. All exercised in memory by `--self-test`, which
+`tools/check.sh` runs.
+
+**THE TWO METHOD NOTES worth carrying to the next parcel of this shape.** (a) **The map is
+Python and the reader is JavaScript**, which is `terrain_inputs.py`'s problem in a new
+costume — there the reason not to co-locate was the ground's hash, here it is a 26-minute
+smoke behind every renderer edit. Both buy the same thing the same way: **the declaration is
+scanned against the source it describes**. (b) **Strip the comments before scanning.**
+`flora.js` discusses `bare_soil_fraction: 0.45` in a comment three lines above the line that
+reads it, and `check_sidecar_contract` reported *itself* on its first run for exactly this.
+The stripper is exercised in the self-test in both directions, including a string that looks
+like a comment.
+
+**THE LIMIT, stated rather than discovered later.** A text scan cannot attribute a property
+access to one of two record kinds that both carry that field name — `bare_soil_fraction` is
+read off a zone and copied into the manifest — so **2 entries are exempted from the per-field
+scan and listed by name in the census** as stated rather than proven. The fauna half needs no
+exemption because the layer rule is absolute. The durable fix is the same one this project
+keeps arriving at from other directions: a renderer that declares its own read-set in a form
+the gate can import.
+
+**WHAT THIS PARCEL DOES NOT DECIDE, and the routes.** Whether an unread figure should be
+deleted, wired up or declared is three different answers. *The fauna layer*: (1) leave it and
+say so — the honest option, and it needs `data/scenes/1835.json`'s `layers` list and
+`docs/LIBERTIES.md` L2 to stop implying otherwise, which is a claim about the scene and the
+owner's; (2) give it a reader, which is a renderer parcel of real size and no bake; (3) do
+nothing, which is where the last three days left it. *The palettes*: their unread blocks are
+render tuning the renderer has re-tuned, so either the palette record stops carrying them or
+`flora.js` reads them — a `TUNE`-versus-record question with no evidence in it, and cheap.
+*The `fruit` on 31 species*: it is the one entry here with a research half, because a July
+fruit is a visible thing this scene omits and `docs/LIBERTIES.md` does not record the
+omission.
+
+**Verified:** `tools/check.sh` green with the two new steps; `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green. The desktop half was not run and is not claimed —
+~13 minutes against a 10-minute per-command ceiling; see the run-budget box at the top of this
+file. **No record moved and no asset changed**: the only data edit is one `_doc` sentence in
+`data/flora/index.json` that was false, and two `tools/validate.py` error messages that said
+a renderer reads a block no renderer reads.
 
 ### K41 — the rights rule tests a label, and the label is on the other side of the question · **DONE 2026-08-16 — the gate could only ever fire on a violation an author had already written down, and 49 geometry-bearing attributes on 21 records are built from sources nobody has checked**
 
