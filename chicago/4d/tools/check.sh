@@ -91,6 +91,16 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# Every generator asks whether the roof it is about to place stands in a platted street,
+# and no invented roof has ever been allowed to. Nothing had ever asked it of the records
+# a PERSON placed, so the answer arrived as anecdotes — three buildings in T-A9, two more
+# in T-A12 — and the distribution behind them was never measured (ROADMAP K30). It is 29
+# records, all of them documented and none of them generated. This holds that: a ratchet
+# on the 29, and an ABSOLUTE assertion that no generated roof laps a corridor, which the
+# placement gate already guarantees and which is therefore enforceable at zero.
+step "no building has newly been drawn standing in a platted street" \
+  python3 tools/measure_corridor_intrusion.py --gate --quiet
+
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
 # authored band; this holds them to it, and prints the census of what still is not —
