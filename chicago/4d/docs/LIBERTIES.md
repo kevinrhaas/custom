@@ -3774,6 +3774,63 @@ neither can grow quietly and a repair has to un-bank itself in the commit that m
 
 **Recorded:** 2026-08-16.
 
+**PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(b1)) — the sycamore is in the gallery, and the
+sentence above about how to weight it was the only part of this entry that needed correcting.**
+`['platanus_occidentalis', 2]` is in `COMMUNITIES.gallery.mix`, so the routed-archetyped-and-
+selected-by-nothing population is **0 of 20** where it was 1, and the floodplain wood holds the
+ten species its own record holds. *"Weighted at the density its own record carries"* is right and
+K45(b)'s own worked line — `['platanus_occidentalis', 1]` — is not: 1 is the bottom of the
+recorded `[1, 3]` band and **2** is its midpoint, which is the figure `trees.js` would have used
+whatever was written, because **the literal beside a species id is a fallback**. `mixes` is
+rebuilt at load as `records.density[id] ?? fallback` and `records.density` is the band's midpoint
+from the first `TIMBER_ZONES` entry naming the species. **Seventeen of the twenty-six mix entries
+are written to one number and place stems at another**; all twenty-six are banked in pairs now,
+and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about
+this entry. Half two of this entry — the **87.9 ha** — is untouched and stands.
+
+### L118 — The sycamore's pale limbs are two invented colours, and the mottling is still not drawn
+
+**Decision:** the American sycamore is drawn in **two bark tones that no source states** — a pale
+grey-brown bole and a cream-white upper bole and limb set — because the one thing its record
+singles the species out for is a colour, and until now the tree was drawn in the American elm's
+dark brown (**L116**, resolved by the same parcel, ROADMAP **K47**). Both hexes are inventions of
+this project. So is every other bark, foliage and ground colour in `renderers/web/js/trees.js`;
+what makes this one worth its own entry is that it is **conspicuous** — the palest wood in the
+scene, and the first thing a visitor will notice on that stretch of river.
+
+**What bounds the invention, and it is three things rather than taste.**
+
+1. **The record fixes the direction and the place.** `data/flora/zones/z05_riverbank_timber.json`
+   reads *"Rare, at its northern edge; white mottled bark flashing on the upper limbs."* Pale, and
+   **upper** — a sycamore's lower bole is the brown scaly half, which is why one tone would have
+   been the wrong repair even in the right colour.
+2. **This file's own barks fix the range.** The eighteen bark constants standing before this run
+   span `0x332e26` (black oak) to `0x6a6355` (white oak). The sycamore's bole is `0x7a7263` — just
+   past the palest of them, because the species is pale wood all over — and its limbs `0xd9d3c2`,
+   far outside that range on purpose, since *being the palest thing in the timber* is the whole of
+   what the record's sentence describes.
+3. **Warm off-white, not white.** A pure `0xffffff` limb reads as painted rather than as bark, and
+   the scene's other woods are all warm greys, so the cream is desaturated toward them.
+
+**What is still NOT drawn, stated plainly because the record's word is "mottled".** The tone break
+is between the bole and the limbs — one colour each — and the **mottling itself, the patchwork of
+cream against olive and grey within a single limb, is not drawn at all.** That needs a second
+material or a vertex-colour break inside one stem, which is R-W2b/R-W2c territory. A visitor can
+now identify the sycamore across the floodplain, which is what the sentence is about; a visitor
+standing under one sees a plain pale limb rather than a piebald one.
+
+**Consequence, stated so a reader can weigh it.** Nothing in `data/` moved and no attribute was
+regraded: the tree's presence, height, crown and July foliage remain the record's, and the colours
+were never a data attribute — no record in `data/flora/` carries a bark colour at all. The
+sycamore stands at 1–3 per hectare on the gallery bank, so this is a handful of stems, not a
+repainted wood.
+
+**How to resolve:** a source stating either colour, or the mottling drawn as a break within the
+limb. Until then the two hexes stay this project's, and `renderers/web/js/trees.js` says so at the
+entry that carries them.
+
+**Recorded:** 2026-08-16.
+
 
 ## Resolved
 
@@ -4111,4 +4168,93 @@ governs how many inflorescences appear on a `role: tree` record drawn by
 live in any single attribute — no record's confidence changes and no attribute is graded by it.
 Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the
 omission this resolves half of.
+**Recorded:** 2026-08-16.
+
+
+### L116 — The American sycamore is drawn as an American elm from the bark outwards
+
+**Decision:** the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with
+**`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band,
+its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and
+its confidence come from its own record, as they do for every species. It is the only placed
+species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks
+that fact by name, exactly, in both directions.
+
+**What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber`
+singles the species out for is its bark: *"Rare, at its northern edge; **white mottled bark
+flashing on the upper limbs**."* That sentence is the reason a sycamore is identifiable at 200 m
+in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor
+looking for a sycamore cannot find one by looking.
+
+**Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per
+species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind
+these records are a presettlement land survey and a regional vegetation reconstruction, and
+neither states a colour. Choosing a hex for "white mottled" is a straightforward invention, and it
+is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor
+noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry
+would put a highly visible guess into the frame on the authority of nobody. The substitution is
+recorded here instead, where it can be read.
+
+**Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record
+places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only
+its trunk is another species'. That is an omission plus a substitution, not an overstatement: no
+attribute is graded higher than its evidence and nothing in `data/` moved.
+
+**How to resolve:** a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either
+sourced or recorded here as invented in its own right; the mottling itself would need a second
+material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are
+in the same queue for the same reason. When it lands, the entry has to leave
+`drawn_as_another_species` with `--update` in the same commit.
+
+Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
+drawing convention in the same layer.
+**Recorded:** 2026-08-16.
+**Resolved:** 2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the
+species is drawn with its own bole, taper, diameter band, puff count and bark, and
+`drawn_as_another_species` is empty where it held this one substitution. The **How to resolve**
+line above offered a choice — sourced, or recorded as invented — and there was never a source to
+find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated
+bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the
+*mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed
+here.
+
+### L117 — Three canopy weights the records do not carry, kept because no record can carry them
+
+**Decision:** three of the twenty-six per-community canopy weights in `renderers/web/js/trees.js`
+sit **outside** the density band the zone record their own community cites, and they are kept as
+written rather than raised into the band. Since ROADMAP **K46** the written weight is the number
+that plants the stem, so each of these three is an ecological claim of this project's own. They
+are declared in their community's `departures` field, with the reason, and the renderer refuses to
+load an undeclared one.
+
+| entry | written | the band its community's zone records | what the number asserts |
+|---|---|---|---|
+| `gallery.mix.salix_amygdaloides` | 8 | z05 `[10, 25]` | the peachleaf willow is a bank tree: the gallery's two lists split ZONE 5's single band between them, 17 at the water's edge and 8 behind it |
+| `gallery.edgeMix.acer_saccharinum` | 8 | z05 `[15, 35]` | at the water's edge the mix goes to willow — the edge mix's own note, expressed as a weight, over ground ZONE 5 does not band separately |
+| `mesic_pocket.mix.ulmus_americana` | 12 | z06 `[40, 80]` | the elm is incidental in the fire-protected pocket, where the closing canopy is basswood, sugar maple and ironwood |
+
+**Why this is the honest form, and it is a fact about the DATASET rather than a preference.** The
+obvious repair is to key density by (zone, species) and let each community read the band from the
+zone its own `dossier` cites — which is what the file's comment has always claimed it did. It
+cannot be done: `wet_woods` cites **ZONE 6a** and `mesic_pocket` cites **ZONE 6b** and both resolve
+to the single record **`z06_dense_forest`**, whose elm band is the swamp thicket's reading. A
+zone-keyed density gives the elm 60 in both communities, and the 12 that makes it incidental in the
+pocket has nowhere in `data/` to live. The sub-community distinction is real, is recorded nowhere
+else in this project, and is the whole reason K46 kept the hand weights instead of deleting them.
+
+**Consequence, stated so a reader can weigh it.** All three departures are **downward** — measured
+across the twenty-six entries, 23 sit inside their own cited band, 3 fall below one and **none is
+above**. So the hand weights have never inflated a species beyond what a record supports; where
+they depart, they thin a species the record would have planted more of. Nothing in `data/` moved
+and no confidence grade changed: these are render weights, and every species' presence in its
+community remains the record's claim rather than this file's.
+
+**How to resolve:** a sub-community band in the dataset — ZONE 6a, 6b and 6c banded apart in
+`data/flora/zones/`, and ZONE 5's gallery banded apart from its edge — at which point each of
+these three becomes a reading of a record and leaves this entry with `--update` in the same commit.
+That is a research parcel, not a renderer one, and the three numbers above are what it has to
+account for.
+
+Related: **L114** and **L116**, the other two liberties in this layer, and ROADMAP **K45(b1)**,
+which measured the divergence this entry resolves.
 **Recorded:** 2026-08-16.

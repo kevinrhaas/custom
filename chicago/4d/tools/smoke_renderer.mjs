@@ -2536,6 +2536,132 @@ const terrainLoad = await page.evaluate(() => {
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
+    // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
+    // missing. `tools/measure_planting_reach.py` proves a record can be
+    // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
+    // species: the American sycamore is recorded, archetyped, weighted, banded
+    // and gated, and stood NOWHERE in the scene — 0 of 163 stems. A census of
+    // what was planted only exists inside a running renderer, so this is a
+    // smoke assertion rather than a static scan.
+    //
+    // The bar is the draw's own two guarantees rather than a percentage, so a
+    // renderer that went back to an independent draw fails it on both counts:
+    // an independent draw overshoots freely (the gallery elm's 25/116 over 115
+    // stems has a standard deviation of 4.4 stems) and it loses the tail (the
+    // sycamore's 1.98 came out 0). Anti-vacuity: a census with no planted list,
+    // or a list with no species in it, reads as a failure and not as a pass.
+    const draws = await page.evaluate(() => (
+      window.__chicago4d.trees.stats.draws ?? []
+    ).map((d) => ({
+      community: d.community,
+      list: d.list,
+      stems: d.stems,
+      species: d.species.map((s) => ({ id: s.id, expected: s.expected, drawn: s.drawn })),
+    })));
+    const planted = draws.filter((d) => d.stems > 0);
+    const absent = [];
+    const over = [];
+    let worstOver = 0;
+    let worstUnder = 0;
+    for (const d of planted) {
+      for (const s of d.species) {
+        const where = `${d.community}.${d.list}.${s.id}`;
+        worstOver = Math.max(worstOver, s.drawn - s.expected);
+        worstUnder = Math.max(worstUnder, s.expected - s.drawn);
+        if (s.drawn === 0 && s.expected >= 1) absent.push(`${where} owed ${s.expected.toFixed(2)}`);
+        if (s.drawn - s.expected >= 1) over.push(`${where} ${s.drawn} for ${s.expected.toFixed(2)}`);
+      }
+    }
+    check(`${label}: every species the stand owes a stem to stands in it`,
+      planted.length >= 3 && planted.every((d) => d.species.length > 0)
+      && absent.length === 0 && over.length === 0,
+      `${planted.length} planted list(s), ${planted.reduce((t, d) => t + d.stems, 0)} stems, `
+      + `${planted.reduce((t, d) => t + d.species.length, 0)} weighted species; worst `
+      + `overshoot ${worstOver.toFixed(2)} stem(s), worst shortfall `
+      + `${worstUnder.toFixed(2)}`
+      + `${absent.length ? `; DRAWN NOWHERE: ${absent.join(', ')}` : ''}`
+      + `${over.length ? `; OVER BY A STEM: ${over.join(', ')}` : ''}`);
+    // The species this parcel exists for, named rather than left to the
+    // aggregate above: a gate that only reports a count would go green on the
+    // day the sycamore came back and say nothing about it.
+    const gallery = planted.find((d) => d.community === 'gallery' && d.list === 'mix');
+    const sycamore = gallery?.species.find((s) => s.id === 'platanus_occidentalis');
+    check(`${label}: the American sycamore stands on the riverbank`,
+      !!sycamore && sycamore.drawn >= 1,
+      sycamore
+        ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
+          + `${gallery.stems} in the gallery`
+        : 'no gallery mix census at all');
+
+    // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
+    //
+    // K48 built the census above for the woody stems, which are 36 of this
+    // project's 154 plant records. The other 118 are drawn by `flora.js` off
+    // the same shape of weighted draw and had never been counted at all. This
+    // counts them, and it reports what the count found rather than gating it,
+    // for the reason R-M1 splits a measurement from its bar: the repair needs a
+    // per-species footprint the dataset does not carry for 25 records, so a bar
+    // set today would either fail over unresearched data or be met with an
+    // invented number. K49(b) is the fix and closes `unconvertible` first.
+    //
+    // What IS gated is that the instrument works: every slot dealt is a slot
+    // attributed to a species, and it is counting a populated sward rather than
+    // an empty one.
+    const sward = await page.evaluate(() => {
+      const s = window.__chicago4d.flora.stats;
+      return {
+        abundance: s.abundance,
+        draws: (s.draws ?? []).map((d) => ({
+          community: d.community, list: d.list, drawn: d.drawn,
+          species: d.species.map((x) => ({
+            id: x.id, unit: x.unit, share: x.share, stems: x.stems,
+            expected: x.expected, drawn: x.drawn,
+          })),
+        })),
+      };
+    });
+    const dealt = sward.draws.filter((d) => d.drawn > 0);
+    const unattributed = sward.draws.filter(
+      (d) => d.species.reduce((t, x) => t + x.drawn, 0) !== d.drawn);
+    check(`${label}: every slot the sward deals is counted against a species`,
+      dealt.length >= 1 && unattributed.length === 0
+      && dealt.every((d) => d.species.length >= 1),
+      `${dealt.length} populated list(s) of ${sward.draws.length}, `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots dealt`
+      + `${unattributed.length ? `; UNATTRIBUTED in ${unattributed.map((d) => (
+        `${d.community}.${d.list}`)).join(', ')}` : ''}`);
+    // Reported, not gated — the two numbers K49(b) has to move.
+    const ab = sward.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
+    const swardAbsent = [];
+    for (const d of dealt) {
+      for (const x of d.species) {
+        if (x.drawn === 0 && x.expected >= 1) {
+          swardAbsent.push(`${d.community}.${d.list}.${x.id} owed ${x.expected.toFixed(2)}`);
+        }
+      }
+    }
+    console.log(`  note  ${label}: sward abundance — ${ab.mixed.length} of ${ab.lists} lists `
+      + `mix an area with a count${ab.mixed.length ? ` (${ab.mixed.map((m) => (
+        `${m.zone}.${m.list} ${(m.countedShare * 100).toFixed(1)}% of slots dealt off counts`
+      )).join('; ')})` : ''}`);
+    console.log(`  note  ${label}: ${ab.unconvertible.length} record(s) give cover with no `
+      + `width_m, so no count can be derived without inventing a footprint`
+      + `${ab.unconvertible.length ? `: ${ab.unconvertible.map((u) => (
+        `${u.zone}.${u.list}.${u.id}`)).join(', ')}` : ''}`);
+    // THE TAIL FIGURE HERE IS ABOUT THIS FRAME, AND THAT IS A WARNING LABEL
+    // RATHER THAN A CAVEAT. The sward is re-dealt per rebuild, so this answers
+    // for the community the gate is standing in — the settled town, 68 slots,
+    // one of ten — and from there it reads "0 absent". Run in every community
+    // by `tools/measure_sward_draw.mjs` the same census returns SIX species
+    // owed a whole plant and drawn nowhere, over 6,780 slots (ROADMAP K49(a)).
+    // Quote that tool for a claim about the dataset and this line for a claim
+    // about the gate's own frame. The two figures above are dataset-wide and do
+    // not move with the camera.
+    console.log(`  note  ${label}: sward tail — ${swardAbsent.length} species owed a whole slot `
+      + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
+        `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them
     // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the

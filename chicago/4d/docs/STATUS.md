@@ -1,5 +1,306 @@
 # STATUS
 
+## Fixed 2026-08-16 — the six meadow plants are standing, and the screenshot the parcel asked for vetoed half its own repair
+
+**K49(b)**, the fix half of K49(a). A visitor can see it: **prairie dock is standing in the wet
+prairie**, two metres of scape over a metre-wide rosette, where its own recipe owed 3.23 of them
+and none stood. Water hemlock is beside it, wood nettle is on the forest floor, ninebark and wild
+garlic are on the riverbank, the compass plant is on the mesic prairie.
+
+**Measured, `tools/measure_sward_draw.mjs` on the published mirror, all eight communities:
+6,780 slots → 6,795, and 6 species owed a whole plant and drawn nowhere → 0.** The settled town —
+the one community the release smoke's own station stands in — still reports 0 absent, so the
+repair did not move the fault to the only place the gate can see.
+
+The construction is the one K49(a) prescribed: a rank-1 lattice `frac(c·α + r·β + k·γ + shift)` on
+the slot's own **world** coordinates (R3 generators), walked against the CDF `pick()` already
+walks. Stateless, so re-centring the lattice puts the same plant back and nothing changes species
+as you walk up to it. K48's account-keeping picker was not ported.
+
+**Three findings, and the second is the transferable one.**
+
+1. **The thinning has to be part of the same draw.** Ask "does a plant stand here" and "which
+   species" of two independent numbers and the survivors are a *random subsample* of a
+   low-discrepancy set — which is Poisson again in its tail, i.e. the fault being repaired.
+   `dealt()` asks both of one draw: `u < share` carries the plant, and `u`'s position inside
+   `[0, share)` walks the CDF. Same marginals, one stratified draw.
+2. **THE DENSE LAYERS CANNOT TAKE IT, AND THE CENSUS WOULD HAVE MERGED IT.** Applied to the near
+   and mid tufts as well, the same construction grew the west prairie **in visible rows with bare
+   ground between them** — a lattice band is a family of near-diagonal lines, invisible at two
+   planted slots in a hundred and unmissable at sixty. The census called that version an
+   improvement (worst shortfall 31.47 → 12.87) and every number was green; two `critic_shots`
+   frames at `prairie_west`, before and after, refused it in one look. The matrix lists were
+   losing **no** species to the tail, so the cost was all visible and the benefit all in a column
+   that already read zero. **The forb layer keeps the stratified draw; near and mid are
+   untouched, and their worst shortfall stays 31.47.** The successor is **K49(d)**.
+3. **The block size is set by planted slots, not by cells.** The Cranley–Patterson rotation that
+   breaks the lattice's diagonals is keyed on a world block; at 4×4 cells the forb layer plants
+   one or two per block, so the rotation was all that survived and **three** species still stood
+   nowhere. At 16×16 (~1,024 slots, ~54 m, about the forb ring's own width) none did.
+
+**Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute
+per-command ceiling). `tools/check.sh`, the mobile smoke on the published mirror, the census and
+both `critic_shots` frames are green. No `data/` change, no bake.
+
+## Found 2026-08-16 — six plants the meadow recipes owe a place to stand nowhere, and the gate's own station cannot see any of them
+
+**K49(a)**, the measurement half of K49. Nothing a visitor can see changed; the fixes are
+**K49(b)** (no research needed, stands six plants up) and **K49(c)**, both SEEN.
+
+K48 lost the American sycamore because a small weighted sample loses its rare end, and K49 asked
+whether the same is true of the sward — **118 of the 154 plant records**, against `trees.js`'s 36,
+and never once counted. It is true. Measured by `tools/measure_sward_draw.mjs` on the published
+mirror, standing the placer in every community in turn — **8 communities, 16 populated lists,
+6,780 slots dealt, worst shortfall 31.47 slots:**
+
+| species | owed | list | recorded as |
+|---|---|---|---|
+| **prairie dock** `silphium_terebinthinaceum` | **3.23** | `z01_wet_prairie.forb` | `density_per_ha` |
+| water hemlock `cicuta_maculata` | 2.62 | `z01_wet_prairie.forb` | `density_per_ha` |
+| wood nettle `laportea_canadensis` | 1.74 | `z06_dense_forest.forb` | `cover_fraction` |
+| ninebark `physocarpus_opulifolius` | 1.45 | `z05_riverbank_timber.forb` | `cover_fraction` |
+| compass plant `silphium_laciniatum` | 1.14 | `z02_mesic_prairie.forb` | `density_per_ha` |
+| wild garlic `allium_canadense` | 1.02 | `z05_riverbank_timber.forb` | `cover_fraction` |
+
+Prairie dock is a 2–3 m plant over a rosette 0.6–1.0 m across: the wet prairie is owed three of
+them and stands none.
+
+**And the harness could not see it, which is the finding that is not about flora.** The release
+smoke reads the same census, at whatever station the gate is standing in — the settled town, **68
+slots, one community of ten** — and from there the answer is "0 absent". A first draft of this
+entry quoted exactly that and called the sward's tail clean. It was the sample that was clean.
+Every per-frame figure the smoke prints has this shape, and the repair was to move the instrument,
+not to change what it counts.
+
+**A second fault sits underneath, one line earlier.** `pick()` deals SLOTS, and a slot is one drawn
+plant. `stems_per_m2` and `density_per_ha` are counts of plants; `cover_fraction` is an area of
+ground. `buildSpecies` normalises all three into one share, so *"covers 25 % of the ground"* is
+read as *"0.25 plants per square metre"* — the same sentence about a two-metre dogwood and about
+a wild garlic.
+
+**Six of twenty lists mix the two, dataset-wide** (so the figure does not move with the camera):
+`z06_dense_forest.forb` **96.5 %** of slots dealt off counts against species recorded as cover,
+`z08_lakeshore.matrix` 14.0 %, `z03_sedge_meadow.forb` 10.2 %, `z03_sedge_meadow.matrix` 3.8 %,
+`z09_sand_prairie.matrix` 0.7 %, `z10_settled_town.forb` 0.6 %. The forest understory is the
+extreme: ramps at 2.5 stems/m² take 96 % of that list against nine shrubs.
+
+**The repair is blocked on data, and that is why this is (a).** A conversion needs the plant's own
+footprint, and **25 records give a cover fraction with no `width_m`** — `poa_pratensis`, which is
+60 % of the town's lawn, and all three cover-recorded forbs of the sedge meadow among them. The
+placer's existing fallback is a walker-clearance radius, and it would dominate the answer:
+measured offline, it moves `poa_pratensis` from a 0.60 share to 0.99 while a recorded width moves
+`trifolium_repens` from 0.16 to 0.003. A gap the arithmetic turns on is recorded, not filled.
+
+**Reported and not gated**, on the R-M1 split — a bar today would either fail the build over
+unresearched data or be met with an invention. What IS gated is that the instrument works: every
+slot dealt is attributed to a species, over a populated sward.
+
+**Why the tail was not repaired in the same run.** K48's picker keeps running accounts, which is
+fine for a wood dealt once at load and wrong for a sward re-dealt from a world-anchored lattice on
+every re-centre: state makes a slot's species depend on the order slots were visited in, so the
+plant at your feet would change species as you walked up to it. The sward needs a stateless
+equivalent — a low-discrepancy assignment keyed on the slot's own coordinates — and that is a
+placement change whose failure mode is diagonal striping by species, which has to be looked at
+rather than counted. K49(b) carries the form and the check.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the
+mobile smoke against the published mirror and `tools/measure_sward_draw.mjs` are what this rests
+on. The two audit figures are dataset-wide and viewport-independent; the smoke's tail figure is
+the frame the gate stood in, and its note now says so in as many words.
+
+## Fixed 2026-08-16 — the sycamore is standing, and the density it was supposedly starved of was never the fault
+
+**K48**, and it refuted the premise it was opened on. The parcel said every species is planted at
+a third to two thirds of the density its own record carries. **Both repairs it named are
+unbuildable, and the arithmetic is in the record rather than in an opinion:**
+
+- **Rescaling the weights so every realised density lands inside its recorded band is an
+  unsolvable system in two of the four communities.** Realised densities sum to the stand density,
+  so the recorded floors have to fit under the stand ceiling. **`wet_woods`: floors sum to 100/ha
+  against a ceiling of 84. `gallery`: 75 against 62** in the South Division belt. No assignment of
+  weights exists.
+- **Deriving `perHa` from the mix sum contradicts the dossier row the weights are read out of** —
+  gallery at **116 trees/ha** against § ZONE 5's *"canopy 30–80 trees/ha"*, `wet_woods` at **153**
+  against § ZONE 6's *"overall canopy target 50–110 trees/ha"*.
+
+**So the record's density column is not a stand density**, which ZONE 6 states in its own words
+and which the mix comment in `trees.js` has said all along. The file was right and the parcel that
+doubted it was wrong. Nothing about a weight, a band, a density or a departure changed.
+
+**What was actually broken is the DRAW.** Every stem was an independent draw on its community's
+shares, and an independent draw loses the rare end of a distribution — the sycamore is 1.98
+expected over 115 gallery stems and the seeded shuffle dealt none, permanently, because the scene
+is seeded. The draw is now corrected against what it owes: proportional to `share × drawn −
+placed`, and a species already owed a whole stem takes the next one outright. Nothing overshoots
+by a stem and nothing owed a stem gets none, both by construction; stress-tested over **35,880**
+(mix, stand size, seed) cases — worst overshoot 0.99, worst shortfall 1.21, zero losses.
+
+**Measured on the published mirror, identical at 390×780 and 1280×800.** Sycamores standing
+**0 → 2**. Weighted entries standing nowhere **1 → 0**, out of 26. Worst overshoot 0.51 stems,
+worst shortfall 0.86. Stems 163 → 178 and thicket stools 214 → 213: `addTree` draws a tree's own
+shape from the same stream and takes a different number of draws per species, so the whole wood is
+re-dealt. Nothing that sets how many stems a hectare holds moved.
+
+**And the census K47 said was missing now exists.** `measure_planting_reach.py` proves a record can
+be *chosen*; `stats.draws` and two smoke assertions prove it is *drawn*. A renderer that went back
+to the independent draw fails both.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh` and the
+mobile smoke against the published mirror are what this rests on, plus a direct both-viewport
+census probe of the published build, which is where the desktop numbers above come from.
+
+## Found 2026-08-16 — the American sycamore is not in this town, and the bark it was given proves it
+
+**K47.** The parcel was claimed SEEN and delivered UNSEEN, and the inversion is the finding. The
+archetype is built — `SPECIES.platanus_occidentalis`, its own bole, taper, diameter band, puff
+count, and a two-tone bark whose pale upper limbs are the one thing `z05_riverbank_timber` singles
+the species out for. A screenshot from any stand in this town is unchanged, because **no sycamore
+is planted anywhere in the scene.**
+
+**Measured in the published build at 1280×800**, out of `api.trees.stats.species`: **163 woody
+stems, 115 of them in the gallery, 0 sycamores.** The mix weight is 2 of the gallery's 116, so 1.98
+were expected and the seeded draw returned none — 13.5 % likely on independent draws. Three other
+species stand as one stem each, so this is the tail of a distribution and not a special case: a
+115-draw sample cannot carry a 26-entry ecology.
+
+**The rule underneath it, and no gate has ever looked at it.** The gallery mix sums to **116**
+against a stand density of **[34, 62]/ha** south of the river and **[50, 78]/ha** north, so every
+literal is walked as a *share*: **each species is planted at 29–67 % of the density written beside
+it.** K46 made the literal the number that plants the stem and the record's band the constraint on
+that literal — and the literal is not the density. The sycamore's 2 sits at the midpoint of its
+recorded [1, 3]/ha and passes; the scene plants it at **0.59–1.34/ha**. That is ROADMAP **K48**,
+frame-wide, opened rather than started.
+
+**What this corrects.** K45(b1) and changelog **v139** both say a handful of stems along the river
+are now sycamores. They are not. The species became *selectable* — which is what that parcel's gate
+measures, correctly — and selectable is not drawn. `tools/measure_planting_reach.py` banks whether
+a record can be **chosen**; nothing banks whether it is **drawn**, and the drawn census lives only
+inside a running renderer. K48's cheap half is that census as a smoke assertion; it fails red on
+the sycamore today.
+
+**What did ship.** `docs/LIBERTIES.md` **L116** is resolved — no species in this scene wears
+another's archetype now — and the two invented bark tones are **L118** with their bounds stated.
+`trees.js` gained one optional field, `barkUpper`, on the upper bole and the limbs; every other
+species omits it and is byte-identical. The two-tone bark was **proved to draw** with the weight
+temporarily at 400 (pale trunks unmistakable at 70 m against the near-black boles beside them),
+and that experiment was reverted before the commit.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the gate's
+own self-test and the mobile smoke against the published mirror are what this rests on.
+
+## Fixed 2026-08-16 — the written weight plants the stem, and the tidy alternative was refuted by the shape of the dataset
+
+**K46**, the question K45(b1) measured and refused to answer. The literal in `COMMUNITIES` is now
+the number `pick()` walks; the record's band is the CONSTRAINT on it. 17 of the 26 mix entries
+change value and all 26 change standing.
+
+**Route 3 cannot be built, and that is the finding.** K46 named three routes and called route 3 —
+key `density` by (zone, species), each community reading the band from the zone its own `dossier`
+cites — "the one that says what the file's comment claims". `wet_woods` cites **ZONE 6a** and
+`mesic_pocket` cites **ZONE 6b** and **both resolve to the single record `z06_dense_forest`**,
+whose elm band `[40, 80]` is the swamp thicket's reading. Zone-keyed, the elm is 60 in both
+communities and the **12** that makes it incidental in the fire-protected pocket has nowhere in
+`data/` to live — route 3 destroys the exact reading it was proposed to restore. Route 1 discards
+it by its own admission. Route 2 is therefore not a preference between two ecologies; it is the
+only one of the three that can express the file, and the reason is the dataset's shape.
+
+**The measurement that made it safe: 23 inside, 3 below, 0 above.** Every literal was scored
+against the band of the zone its own community cites. **Not one hand weight is an inflation** —
+where the file departs from a record it thins a species, never claims more of one than the evidence
+carries. That is what licensed handing the hand weights the scene, and it is a number nobody had
+taken: K45(b1) compared the literal against the figure that overrode it, never against the band
+its own community cites.
+
+**What moved in the frame, and what did not.** `perHa` — the stand density that sets how many
+stems a wood carries — was never overridden and is untouched, so **no stem count changed**: no tree
+appeared, vanished or moved ground. Species share changed in three of the four communities. The
+silver maple falls from **29.4 % to 11.9 %** of the water's edge and the black willow rises from
+**50.0 % to 62.7 %**, which is the edge mix's own note (*"goes to willow"*) finally surviving the
+load. The elm rises from **25.6 % to 39.2 %** of the swamp thicket and falls from **22.4 % to
+12.2 %** of the mesic pocket — two readings of the dossier where there had been one.
+
+**The three departures are declared, not absorbed.** `gallery.mix.salix_amygdaloides` (8 against
+z05 `[10, 25]`), `gallery.edgeMix.acer_saccharinum` (8 against `[15, 35]`) and
+`mesic_pocket.mix.ulmus_americana` (12 against z06 `[40, 80]`) sit outside their cited bands, are
+each written down in their community's new `departures` field with the reason, and are
+`docs/LIBERTIES.md` **L117**. The renderer refuses to load an undeclared one — and refuses a
+**stale** one too: a departure repaired without dropping its note fails, because a declaration that
+outlives its fault is how a gate stops meaning anything.
+
+**Two open questions closed without being answered.** K45(b1)'s residue — `fraxinus_nigra` at 14
+against a midpoint of 15 — needed no explanation once the rule stopped being "the midpoint": that
+was a regularity 18 of 25 entries happened to follow, and 14 is inside z06's `[10, 20]`. And
+`ridge_oak`'s merged **ZONE 6c + ZONE 7**, which K45(b1) escalated to the owner, does not need
+deciding: with the record a constraint rather than a source the question is not *which band* but
+*is the weight admissible in one of them*, and all four oak weights are.
+
+**The frame was measured before and after on the same three stations**, and the control is the
+finding: `prairie_west` — the ground Andreas calls *"an open prairie, entirely free from timber"* —
+does not move (high-pass RMS far 20.79 → 20.78, near 19.61 → 19.61), while `river_bank`, standing
+in the community that changed most, moves hardest and in the direction the weights predict (far
+21.85 → 6.74, near 5.98 → 16.64). `CRITIC SHOTS OK` before and after, and the after-set reproduced
+across two processes, so the deltas are the change rather than the rasteriser. One swing is left
+unexplained and is recorded in the ROADMAP box rather than buried: `prairie_west`'s horizon-timber
+fraction falls 0.7026 → 0.5308 on desktop while barely moving on mobile.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the
+mobile smoke against the published mirror, the gate's own self-test and the critic shots are the
+verification that was done.
+
+## Fixed 2026-08-16 — the sycamore is planted, and the weight written beside every species in the tree mixes is not the weight that plants it
+
+**K45(b1)**, the separable third of K45(b). `['platanus_occidentalis', 2]` is in the gallery mix,
+so `tools/measure_planting_reach.py`'s routed-archetyped-and-selected-by-nothing bank is **0 of
+20** where it was 1, and the floodplain wood holds the ten species its own record holds. The
+American sycamore — *"rare, at its northern edge; white mottled bark flashing on the upper limbs"*
+— is in the frame for the first time, at a little under 2 % of that community's stems.
+
+**The prescribed weight was wrong twice, and the second one is the finding.** K45(b) and
+`docs/LIBERTIES.md` L114 both wrote the entry out as `['platanus_occidentalis', 1]`. **1 is the
+bottom of the recorded [1, 3] band and the file's rule is its midpoint** — 18 of the 25 standing
+entries sit exactly on their band's midpoint or its floor — so the number is **2**. And it would
+not have mattered what was written, because **the literal beside a species id is a fallback**:
+`mixes` is rebuilt at load as `records.density[id] ?? fallback`, and `records.density` is the
+midpoint of the band in the FIRST `TIMBER_ZONES` entry naming the species. **17 of the 26 entries
+are written to one number and place stems at another.**
+
+**Three of the seventeen would be read as an error from the frame.** `ulmus_americana` is written
+**60** in the swamp thicket and **12** in the mesic pocket — two different readings of the dossier
+— and is planted at **25** in both, z05's band being the first one the loader meets.
+`acer_saccharinum` is cut to **8** at the water's edge, where the file says in as many words that
+the mix *"goes to willow"*, and is planted there at **25**: nearly a third of the edge instead of
+a ninth of it. All five species written into more than one list take z05's band everywhere — the
+first-zone-wins rule K45(a) found deciding the spec, one field along.
+
+**Nothing was corrected, deliberately.** Which number ought to win is a claim about the ecology,
+and answering it moves stems in three of the four communities at once. That is **K46**, with the
+three routes written out and the frame it has to prove itself in. What changed today is that the
+divergence is banked in pairs — literal, running, and the zone the running one came from, exact
+both ways — and the derivation is scanned out of the renderer, so a `trees.js` that stops
+overriding the literal **raises** rather than comparing a number with itself. A mix entry weighted
+**0** now fails too: it would look planted, be unpickable, and be invisible to the assertion that
+counts species no mix holds.
+
+**And the sycamore is drawn as an elm from the bark outwards.** It is the **only** placed species
+with no `SPECIES` archetype of its own, so `SPECIES[sp.id] ?? SPECIES.ulmus_americana` gives it
+the elm's bole, taper, puff count and **bark colour** while its height, crown and foliage come
+from its record. The one thing that record singles the species out for is *"white mottled bark
+flashing on the upper limbs"* — so the tree is in the scene and cannot be identified in it. No
+flora record carries a bark colour at all, so a hex would have been a conspicuous invention on
+nobody's authority. Recorded as `docs/LIBERTIES.md` **L116** and banked exactly, both ways: a
+second species falling into the same hole fails the gate, and giving the sycamore its own
+archetype has to un-bank it in the same commit.
+
+**What is unverified, stated plainly.** `tools/check.sh` is green and `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` is green; **the desktop half was not run** — ~13 minutes
+against this runner's 10-minute per-command ceiling. The sycamore has not been looked at in a
+rendered frame: it is under 2 % of one community's stems and no station was chosen to stand near
+one.
+
 ## Fixed 2026-08-16 — the basswood is in flower, and the repair prescribed for it draws four pixels
 
 **K45(c)**, and it is the second of L113's three repairs. `trees.js` has a head path now: the

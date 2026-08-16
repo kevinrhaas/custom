@@ -274,7 +274,10 @@ const DEFAULT_PX_PER_RAD = 800 / (55 * Math.PI / 180);
  * the diameter at breast height, both straight out of the dossier's tables;
  * `dossier` names the section the row came from. The two greens are a shaded
  * and a sunlit July foliage colour — render tuning, not evidence, and the pair
- * the palette record will own once `data/flora/palettes/` is populated.
+ * the palette record will own once `data/flora/palettes/` is populated. `bark`
+ * is the bole, and the optional `barkUpper` the upper bole and limbs where a
+ * species is drawn in two tones; both are invented, as every colour here is,
+ * and a species that omits `barkUpper` is drawn in one tone as before.
  *
  * form: gallery = tall crowded floodplain tree · open = open-grown, short bole
  * and heavy horizontal limbs · lean = bank willow leaning over the water ·
@@ -317,6 +320,21 @@ const SPECIES = {
   juglans_nigra: { common: 'black walnut', dossier: 'ZONE 5',
     form: 'gallery', h: [18, 25], dbh: [0.35, 0.65], spreadK: 0.58, boleK: 0.48, puffs: 6,
     dark: 0x39552f, light: 0x718a49, bark: 0x3f382d,
+  },
+  // The one species carrying a second bark tone, and the only one whose record
+  // says anything about its bark at all: "white mottled bark flashing on the
+  // upper limbs" (`z05_riverbank_timber`). Both hexes are invented — no record
+  // in `data/flora/` carries a colour — and bounded by this file's own barks:
+  // the lower bole is the palest of the eighteen and the limbs are far paler
+  // than any of them, because being the palest thing in the timber is the whole
+  // of what that sentence describes. The MOTTLING is not drawn: the break is
+  // between bole and limb, not a patchwork within either. docs/LIBERTIES.md
+  // L118, ROADMAP K47. `dbh` sits at the top of this file's own height:diameter
+  // ratios (0.035 against the gallery's 0.023–0.031) — the stoutest bole on the
+  // bank, which is what a sycamore is; `boleK` forks it lower than the elm.
+  platanus_occidentalis: { common: 'American sycamore', dossier: 'ZONE 5',
+    form: 'gallery', h: [18, 25], dbh: [0.55, 0.95], spreadK: 0.62, boleK: 0.38, puffs: 6,
+    dark: 0x60783e, light: 0x9bb06c, bark: 0x7a7263, barkUpper: 0xd9d3c2,
   },
   salix_interior: { common: 'sandbar willow', dossier: 'ZONE 5',
     form: 'thicket', h: [2.2, 4.0], dbh: [0.04, 0.08], spreadK: 1.30, boleK: 0, puffs: 4,
@@ -371,25 +389,82 @@ const SPECIES = {
  * Weights are the dossier's per-species densities; `perHa` is the STAND density
  * the dossier gives for the community as a whole, which is the number that
  * governs — the per-species figures are microsite densities and sum higher.
+ *
+ * THE WEIGHT WRITTEN HERE IS THE WEIGHT THAT PLANTS THE STEM (ROADMAP K46).
+ * It was not, until 2026-08-16: `mixes` was rebuilt as
+ * `records.density[id] ?? fallback`, so one global midpoint per species — taken
+ * from whichever `TIMBER_ZONES` entry happened to name it first — overwrote
+ * every per-community weight below, and seventeen of the twenty-six entries ran
+ * at a number other than the one they are written to.
+ *
+ * K46 chose the literal, and the reason is a fact about the DATASET rather than
+ * a preference. The alternative — key the density by (zone, species) and let
+ * each community read the band from the zone its own `dossier` cites — cannot
+ * express what this table says, because `wet_woods` cites ZONE 6a and
+ * `mesic_pocket` cites ZONE 6b and BOTH resolve to the single record
+ * `z06_dense_forest`. A zone-keyed density gives the elm 60 in both, and the
+ * 12 that makes it incidental in the fire-protected pocket has nowhere to live.
+ * The sub-community reading is real and is recorded nowhere else in this
+ * project, so the file keeps it.
+ *
+ * The record is not discarded; it becomes the CONSTRAINT. Every weight below is
+ * checked at load against the band of each zone its community's `zones` names,
+ * and one that falls outside every such band is a claim no record carries: it
+ * must be declared in that community's `departures`, with the reason, or the
+ * load raises. Measured across the twenty-six entries: 23 sit inside their own
+ * cited band, 3 fall below one, and none is above — so the hand weights were
+ * never an inflation, and the three that depart are the three the prose already
+ * explains. `perHa` is the STAND density the dossier gives for the community as
+ * a whole, which is the number that governs — the per-species figures are
+ * microsite densities and sum higher.
+ *
+ * `zones` is the machine-readable form of the `dossier` line and is held equal
+ * to it by `tools/measure_planting_reach.py`, so the citation a reader sees and
+ * the bands the loader checks against cannot drift apart.
  */
 const COMMUNITIES = {
   gallery: {
     label: 'Riverbank & floodplain timber',
     dossier: 'ZONE 5 — “irregular gallery 30–120 m wide, canopy 30–80 trees/ha”',
+    zones: ['z05_riverbank_timber'],
     perHa: [34, 62],
     mix: [
       ['populus_deltoides', 14], ['acer_saccharinum', 25], ['ulmus_americana', 25],
       ['fraxinus_pennsylvanica', 22], ['quercus_bicolor', 10], ['celtis_occidentalis', 8],
       ['juglans_nigra', 2], ['salix_amygdaloides', 8],
+      // ROADMAP K45(b1). The American sycamore, at the midpoint of the [1, 3]
+      // its own z05 record carries. K45(b) prescribed a 1: the bottom of the
+      // band, and — under K46's rule, which plants the literal — a figure that
+      // would now have halved the handful of sycamores actually standing.
+      ['platanus_occidentalis', 2],
     ],
     /** At the water's edge the mix goes to willow, per the ZONE 5 densities. */
     edgeMix: [['salix_nigra', 42], ['salix_amygdaloides', 17], ['acer_saccharinum', 8]],
+    /**
+     * Weights that sit outside every band this community's `zones` record, and
+     * why. A departure is an ecological claim of this file's own — see
+     * docs/LIBERTIES.md L117 — so it is written down or the load raises.
+     */
+    departures: {
+      'mix.salix_amygdaloides':
+        'ZONE 5 bands the peachleaf willow at 10–25/ha across the whole gallery. This '
+        + 'file splits that one band between its two lists — 17 at the water’s edge, '
+        + 'inside the band, and 8 behind it — because the record describes a bank tree '
+        + 'and the gallery is 30–120 m wide. The split is this file’s; the two lists '
+        + 'together stand for the one recorded band.',
+      'edgeMix.acer_saccharinum':
+        'The edge mix exists to say what its own note says — at the water’s edge the mix '
+        + 'goes to willow — and ZONE 5 bands the silver maple for the gallery as a whole '
+        + '(15–35/ha) without banding the edge separately. Cutting it to 8 is how that '
+        + 'sentence is expressed as a weight; the number is this file’s.',
+    },
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
   },
   wet_woods: {
     label: 'Swampy timber thicket (the 1821 Walls note)',
     dossier: 'ZONE 6a — canopy 50–110/ha over the poorly drained clay',
+    zones: ['z06_dense_forest'],
     perHa: [52, 84],
     mix: [
       ['ulmus_americana', 60], ['fraxinus_pennsylvanica', 32], ['fraxinus_nigra', 14],
@@ -401,17 +476,32 @@ const COMMUNITIES = {
   mesic_pocket: {
     label: 'Fire-protected mesic pocket',
     dossier: 'ZONE 6b — east-of-water positions, the one place canopy closes',
+    zones: ['z06_dense_forest'],
     perHa: [64, 96],
     mix: [
       ['tilia_americana', 25], ['acer_saccharum', 20], ['quercus_rubra', 14],
       ['ostrya_virginiana', 27], ['ulmus_americana', 12],
     ],
+    departures: {
+      'mix.ulmus_americana':
+        'ZONE 6a, 6b and 6c share one record — `z06_dense_forest` — and its elm band, '
+        + '40–80/ha, is the swamp thicket’s reading: the elm dominates the poorly drained '
+        + 'clay. In the fire-protected pocket the closing canopy is basswood, sugar maple '
+        + 'and ironwood and the elm is incidental to it, which is what 12 says. No record '
+        + 'bands ZONE 6b apart from ZONE 6a, so this number is this file’s and is the '
+        + 'reason K46 kept the hand weights at all.',
+    },
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
   },
   ridge_oak: {
     label: 'Sand- and gravel-ridge oak stringers / bur oak savanna',
     dossier: 'ZONE 6c + ZONE 7 — 4–20/ha closed savanna, locally 1–4/ha open',
+    // The dossier merges two zones and K45(b1) left "which band does it mean?"
+    // as an open question. Under K46's rule it does not need answering: the
+    // record is a constraint, not a source, and all four weights here sit
+    // inside a band one of the two cited zones records.
+    zones: ['z06_dense_forest', 'z07_bur_oak_savanna'],
     perHa: [7, 24],
     mix: [
       ['quercus_macrocarpa', 30], ['quercus_alba', 24], ['quercus_velutina', 12],
@@ -728,7 +818,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
-  const density = {};
+  const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
   const heads = [];
@@ -737,13 +827,18 @@ async function loadTimberZones(dataBase, problems = []) {
     if (!entry) throw new Error(`flora/index.json names no zone ${id}`);
     const rec = await fetchOk(new URL(entry.file, manifestUrl));
     zonesRead.push(id);
+    bands[id] = {};
     for (const sp of rec.species ?? []) {
       if (sp.role !== 'tree' && sp.role !== 'thicket') continue;
       const form = FORM_OF[sp.form];
       if (!form) { unimplemented.add(sp.form); continue; }
+      // The recorded band, kept PER ZONE. It is the constraint a community's
+      // hand weight is checked against (ROADMAP K46) and no longer a value
+      // that replaces one: collapsing it to a first-zone-wins midpoint is
+      // exactly what overwrote seventeen of the twenty-six mix entries.
       const perHa = sp.abundance?.density_per_ha;
-      if (Array.isArray(perHa) && !(sp.id in density)) {
-        density[sp.id] = (perHa[0] + perHa[1]) / 2;
+      if (Array.isArray(perHa) && perHa.length === 2) {
+        bands[id][sp.id] = [perHa[0], perHa[1]];
       }
       if (specs[sp.id]) continue;
       const base = SPECIES[sp.id] ?? SPECIES.ulmus_americana;
@@ -781,7 +876,7 @@ async function loadTimberZones(dataBase, problems = []) {
       }
     }
   }
-  return { specs, density, unimplemented: [...unimplemented], zonesRead, heads };
+  return { specs, bands, unimplemented: [...unimplemented], zonesRead, heads };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1258,6 +1353,16 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
   // almost none of it is ever in direct sun, but bark is a lighter material
   // than a shaded leaf mass and must not go to a silhouette.
   const bark = linear(spec.bark).map((v) => v * BARK_ALBEDO);
+  // A second bark tone, for the one species whose record singles its bark out:
+  // the sycamore's upper limbs are the pale half of "white mottled bark
+  // flashing on the upper limbs", and the trunk under them is not. The tree was
+  // already drawn as three colours' worth of wood — lower bole, upper bole,
+  // limbs — so carrying the pale tone is a value, not a mesh. A species that
+  // does not declare one is unchanged: `barkUpper` falls back to `bark`.
+  // docs/LIBERTIES.md L118 owns the invention; ROADMAP K47.
+  const barkUpper = spec.barkUpper != null
+    ? linear(spec.barkUpper).map((v) => v * BARK_ALBEDO)
+    : bark;
   // Fire-scarred boles: blackened to 1–2 m on 20–40 % of trees in the savanna.
   const scarred = spec.fireScar && rnd() < 0.32;
   const bole = scarred ? [bark[0] * 0.34, bark[1] * 0.32, bark[2] * 0.30] : bark;
@@ -1280,7 +1385,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
       r0, r0 * 0.66, bole, 5, 0, 0.10, conf);
     addStem(buf, x + (topX - x) * 0.55, midY, z + (topZ - z) * 0.55,
       topX, groundY + boleH, topZ,
-      r0 * 0.66, r0 * 0.46, bark, 5, 0.10, 0.22, conf);
+      r0 * 0.66, r0 * 0.46, barkUpper, 5, 0.10, 0.22, conf);
   }
 
   // Where the foliage masses sit. `open` spreads them wide and low, `gallery`
@@ -1334,7 +1439,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
         lerp(fy, c[1], tip) - crownH * (openForm ? 0.12 : 0.04),
         lerp(fz, c[2], tip),
         r0 * (openForm ? 0.44 : 0.30), r0 * (openForm ? 0.20 : 0.11),
-        bark, 4, 0.20, 0.42, conf);
+        barkUpper, 4, 0.20, 0.42, conf);
     }
   }
 
@@ -1431,6 +1536,11 @@ export async function createTrees({
     // got one, which is the number that says whether the flower is IN the
     // scene rather than merely implemented.
     headSpecies: [], headStems: 0, heads: 0, headStations: [],
+    // ROADMAP K48. The DRAWN population, per community and per list: what each
+    // species' weight asks for against how many stems it actually got. K47
+    // found a species that is recorded, weighted, banded, gated — and absent
+    // from the frame, because nothing had ever counted what was drawn.
+    draws: [],
   };
 
   if (!hf?.loaded) {
@@ -1466,12 +1576,48 @@ export async function createTrees({
   }
   Object.assign(specs, records.specs);
 
-  /** Community mixes re-weighted by the density the records carry. */
+  /**
+   * The community mixes, weighted as they are written (ROADMAP K46).
+   *
+   * The record's band is the CONSTRAINT and not the value: a weight outside
+   * every band its own community's `zones` record is an ecological claim no
+   * source carries, so it must be declared in that community's `departures` or
+   * this raises. `problems` is what the repo smoke reads to decide whether the
+   * data loaded, which is the right severity — an undeclared departure means
+   * the file and the dataset disagree and nothing says which is meant.
+   */
   const mixes = {};
   for (const [key, c] of Object.entries(COMMUNITIES)) {
-    const w = (list) => list.filter(([id]) => specs[id])
-      .map(([id, fallback]) => [id, records.density[id] ?? fallback]);
-    mixes[key] = { mix: w(c.mix), edgeMix: c.edgeMix ? w(c.edgeMix) : null };
+    const cited = c.zones ?? [];
+    if (!cited.length) {
+      problems.push(`trees: the community ${key} names no zones, so nothing constrains `
+        + 'the weights it plants by');
+    }
+    const w = (list, listName) => list.filter(([id]) => specs[id]).map(([id, weight]) => {
+      const seen = cited.map((z) => records.bands[z]?.[id]).filter(Boolean);
+      const declared = c.departures?.[`${listName}.${id}`];
+      if (!seen.length) {
+        problems.push(`trees: ${key}.${listName}.${id} is weighted ${weight} and no zone `
+          + `this community cites (${cited.join(', ')}) records a density for it`);
+      } else if (!seen.some(([lo, hi]) => weight >= lo && weight <= hi)) {
+        if (!declared) {
+          problems.push(`trees: ${key}.${listName}.${id} is weighted ${weight}, outside `
+            + `every band its own community's zones record (${seen
+              .map(([lo, hi]) => `${lo}–${hi}`).join(', ')}) — declare it in `
+            + `${key}.departures with the reason, or move it inside the band`);
+        }
+      } else if (declared) {
+        // Exact the other way too. A departure that has been repaired leaves a
+        // note behind claiming the file disagrees with the dataset when it no
+        // longer does, and a stale declaration is how a gate stops meaning
+        // anything.
+        problems.push(`trees: ${key}.departures declares ${listName}.${id}, and its weight `
+          + `${weight} is inside a band its own zones record — drop the declaration in the `
+          + 'commit that brought it back inside');
+      }
+      return [id, weight];
+    });
+    mixes[key] = { mix: w(c.mix, 'mix'), edgeMix: c.edgeMix ? w(c.edgeMix, 'edgeMix') : null };
   }
 
   /* ---- 1. read the ground ------------------------------------------------ */
@@ -1669,13 +1815,114 @@ export async function createTrees({
   const maxTrees = stems.trees;
   const maxThickets = stems.thickets;
 
-  const pick = (mix, r) => {
+  /**
+   * WHICH SPECIES STANDS AT THIS STEM — drawn against its own running deficit.
+   *
+   * ROADMAP K48. The weights in `COMMUNITIES` are SHARES of the stand: `perHa`
+   * decides how many stems a hectare of this community holds and the mix
+   * decides what they are, so a species' expected count is `share × stems`.
+   * Until 2026-08-16 every stem was an INDEPENDENT draw on that share, and an
+   * independent draw loses the rare end of a distribution. The American
+   * sycamore is 2 of the gallery's 116 over 115 gallery stems — 1.98 expected —
+   * and the seeded shuffle dealt NONE. That is a 13.5 % outcome on independent
+   * draws, and because this scene is seeded it was not bad luck that would come
+   * out next time: it was permanent. Three more species stood as a single stem,
+   * so the sycamore was the tail of a distribution rather than a special case.
+   *
+   * So the draw is corrected against what it already owes. Each species carries
+   * `share × drawn − placed`, its shortfall at this stem, and the draw is made
+   * proportional to that shortfall instead of to the share — except that a
+   * species already owed a WHOLE stem takes the next one outright. Two bounds
+   * follow by construction, and they are what the smoke asserts:
+   *
+   *   - **Nothing overshoots by a stem.** `placed` only ever increments while
+   *     `placed < share × drawn`, so no species can end up more than one stem
+   *     above what its own weight asks for.
+   *   - **Nothing owed a whole stem gets none.** The moment a shortfall reaches
+   *     one stem the next stem is that species'.
+   *
+   * Stress-tested over 35,880 (mix, stand size, seed) cases on the four
+   * communities and the edge list, at stand sizes 4 to 900: worst overshoot
+   * 0.99 stems, worst shortfall 1.21, and not one species owed a whole stem
+   * standing nowhere. Without the outright rule the worst shortfall is 2.32 and
+   * 17 of those cases lose a species that the stand owed a stem to.
+   *
+   * It stays a DRAW. Which species stands at any one stem is still random
+   * except where a shortfall has reached a stem (22 % of them), so a stand does
+   * not come out combed the way a strict rotation over a raster scan order
+   * would.
+   *
+   * THE WHOLE WOOD IS RE-DEALT, and saying otherwise would be the easy lie
+   * here. This consumes exactly the one `rnd()` per stem the independent draw
+   * consumed, at the same point in the same stream — but `addTree` draws a
+   * tree's own bole, taper and puffs from that same stream and takes a
+   * different NUMBER of draws per species, so changing which species stands at
+   * one stem shifts every draw after it. Measured on the published mirror at
+   * both viewports: 163 stems became 178 and 214 thicket stools became 213.
+   * Nothing that decides HOW MANY stems a hectare holds changed — `perHa`,
+   * `edgeFade`, `clearedFactor` and the waterline gate are untouched — so that
+   * is the same Bernoulli placement re-dealt, not a denser wood.
+   *
+   * Nothing about WHERE a stem stands changes. This consumes exactly the one
+   * `rnd()` per stem the independent draw consumed, at the same point in the
+   * same stream, so the positions, the thickets, the shapes and every other
+   * consumer of that stream are untouched. What changes is which tree you are
+   * standing under.
+   *
+   * It also does not touch a weight, a density or a band — see K48's box for
+   * why neither of the two repairs that DO can be built.
+   */
+  const pickerFor = (community, list, mix) => {
+    const n = mix.length;
+    const census = { community, list, stems: 0, species: [] };
+    stats.draws.push(census);
+    if (!n) return () => null;
     let total = 0;
     for (const m of mix) total += m[1];
-    let t = r * total;
-    for (const m of mix) { t -= m[1]; if (t <= 0) return m[0]; }
-    return mix[mix.length - 1][0];
+    const share = mix.map((m) => (total > 0 ? m[1] / total : 1 / n));
+    const placed = new Array(n).fill(0);
+    const owed = new Array(n).fill(0);
+    let drawn = 0;
+    census.species = mix.map(([id, weight], i) => ({
+      id, weight, share: share[i], expected: 0, drawn: 0,
+    }));
+    return (r) => {
+      drawn++;
+      let sum = 0;
+      let most = 0;
+      for (let i = 0; i < n; i++) {
+        owed[i] = Math.max(0, share[i] * drawn - placed[i]);
+        sum += owed[i];
+        if (owed[i] > owed[most]) most = i;
+      }
+      // The raw shortfalls sum to exactly one stem — `drawn` of expectation
+      // against `drawn - 1` placed — so `sum` is only ever zero if every
+      // species has overshot, which the bound above forbids. The fallback, and
+      // the outright rule, are both the hungriest species rather than the last
+      // one written.
+      let k = most;
+      if (owed[most] < 1 && sum > 0) {
+        const t = r * sum;
+        let acc = 0;
+        for (let i = 0; i < n; i++) { acc += owed[i]; if (t < acc) { k = i; break; } }
+      }
+      placed[k]++;
+      census.stems = drawn;
+      for (let i = 0; i < n; i++) {
+        census.species[i].expected = share[i] * drawn;
+        census.species[i].drawn = placed[i];
+      }
+      return mix[k][0];
+    };
   };
+
+  const pickers = {};
+  for (const [key, m] of Object.entries(mixes)) {
+    pickers[key] = {
+      mix: pickerFor(key, 'mix', m.mix),
+      edgeMix: m.edgeMix ? pickerFor(key, 'edgeMix', m.edgeMix) : null,
+    };
+  }
   const bump = (obj, key) => { obj[key] = (obj[key] ?? 0) + 1; };
   /** Record a planted stem for the smoke suite, with the height it stands at. */
   const noteStation = (e, n, y) => {
@@ -1742,9 +1989,9 @@ export async function createTrees({
       if (bank < 3.0 && comm !== 'gallery_edge') continue;
       if (blocked(px, pz)) continue;
 
-      const m = mixes[key];
-      const mix = comm === 'gallery_edge' && m.edgeMix ? m.edgeMix : m.mix;
-      const id = pick(mix, rnd());
+      const p = pickers[key];
+      const pick = comm === 'gallery_edge' && p.edgeMix ? p.edgeMix : p.mix;
+      const id = pick(rnd());
       const spec = specs[id];
       if (!spec) continue;
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
