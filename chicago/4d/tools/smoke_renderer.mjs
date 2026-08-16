@@ -2583,6 +2583,140 @@ const terrainLoad = await page.evaluate(() => {
       `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
+
+    /**
+     * ROADMAP R-BUG5b — IS THE WOOD ON THE SCREEN THE WOOD THE STATION LIST
+     * DESCRIBES? The question three green gates never asked.
+     *
+     * Every woody check this project had — the two above, and
+     * `tools/measure_far_timber.py` — walks `stations`, the list the planter
+     * writes at the moment it decides to plant. `stations` records the point
+     * that was TESTED. Nothing anywhere read the geometry back and asked where
+     * the tree was DRAWN, so a fault that separates the two was invisible to
+     * all of them at once, and one was: the planter handed its ENU north
+     * straight to `addTree`, which takes a three world z, and `enuToWorld` is
+     * `(e, y, -n)` — so the whole near-field wood was drawn mirrored across the
+     * datum's east-west line. 391 stations, 0 wet; 64 of the same 391 wet at
+     * their mirror; 10,734 vertices of timber standing over open water, the
+     * worst 48 m from the nearest dry ground. That is the owner's line of
+     * crowns across the channel, and it survived #196 because #196 fixed the
+     * horizon band, which is a different body of timber.
+     *
+     * So this reads the merged buffers back, converts each vertex to ENU with
+     * the project's own `worldToEnu` convention, and asks two things of it:
+     *
+     *   1. every vertex stands within a crown's reach of SOME station, and
+     *   2. no vertex stands over the water mask further than a bank willow can
+     *      lean out over it.
+     *
+     * (1) is the structural half and is what could never have passed through
+     * this bug: under the mirror the nearest station to a vertex is twice its
+     * own northing away. (2) is the picture half, in the terms the owner
+     * reported it. Neither may be relaxed into a test of the placement — that
+     * is the test that was already green.
+     */
+    const drawnWood = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const terrain = a.terrain;
+      const stations = a.trees.group.userData.stations ?? [];
+      // Nearest station, on a 24 m hash — wider than any crown, so the nine
+      // cells around a vertex always contain its own stem if it has one.
+      const CELL = 24;
+      const key = (e, n) => `${Math.round(e / CELL)},${Math.round(n / CELL)}`;
+      const grid = new Map();
+      for (const s of stations) {
+        const k = key(s.e, s.n);
+        if (!grid.has(k)) grid.set(k, []);
+        grid.get(k).push(s);
+      }
+      const nearestStation = (e, n) => {
+        let best = Infinity;
+        for (let de = -1; de <= 1; de++) {
+          for (let dn = -1; dn <= 1; dn++) {
+            for (const s of grid.get(key(e + de * CELL, n + dn * CELL)) ?? []) {
+              const d = Math.hypot(s.e - e, s.n - n);
+              if (d < best) best = d;
+            }
+          }
+        }
+        return best;
+      };
+      // How far a wet point stands from the nearest dry ground, by expanding
+      // rings. Bounded: past the last radius the answer is "further than this
+      // gate cares about", which is already a failure.
+      const RADII = [2, 4, 8, 12, 16, 24, 32, 48];
+      const shoreDist = (e, n) => {
+        for (const r of RADII) {
+          for (let k = 0; k < 16; k++) {
+            const t = (k / 16) * Math.PI * 2;
+            if (!terrain.isWater(e + Math.cos(t) * r, n + Math.sin(t) * r)) return r;
+          }
+        }
+        return 99;
+      };
+      let verts = 0;
+      let stray = 0;
+      let worstStray = 0;
+      let wet = 0;
+      let offshore = 0;
+      let worstOffshore = 0;
+      let worstOffshoreAt = null;
+      let meshes = 0;
+      a.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^timber__/.test(o.name)) return;
+        meshes++;
+        o.updateWorldMatrix(true, false);
+        const pos = o.geometry.getAttribute('position');
+        const m = o.matrixWorld.elements;
+        for (let i = 0; i < pos.count; i++) {
+          const vx = pos.getX(i);
+          const vy = pos.getY(i);
+          const vz = pos.getZ(i);
+          const x = m[0] * vx + m[4] * vy + m[8] * vz + m[12];
+          const z = m[2] * vx + m[6] * vy + m[10] * vz + m[14];
+          // terrain.js worldToEnu: e = x, n = -z. The convention this whole
+          // check exists because something else did not follow.
+          const e = x;
+          const n = -z;
+          verts++;
+          const d = nearestStation(e, n);
+          if (d > worstStray) worstStray = d;
+          if (d > 24) stray++;
+          if (!terrain.isWater(e, n)) continue;
+          wet++;
+          const s = shoreDist(e, n);
+          if (s > 12) {
+            offshore++;
+            if (s > worstOffshore) {
+              worstOffshore = s;
+              worstOffshoreAt = { e: +e.toFixed(1), n: +n.toFixed(1) };
+            }
+          }
+        }
+      });
+      return { meshes, stations: stations.length, verts, stray,
+        worstStray: Number.isFinite(worstStray) ? +worstStray.toFixed(1) : null,
+        wet, offshore, worstOffshore, worstOffshoreAt };
+    });
+    // 24 m is the reach of the widest crown this file draws plus its lean, and
+    // is deliberately generous: the fault being hunted is off by twice a
+    // northing — hundreds of metres — not by a branch.
+    check(`${label}: every tree drawn stands at its own station`,
+      drawnWood.meshes > 0 && drawnWood.verts > 1000 && drawnWood.stations > 10
+      && drawnWood.stray === 0,
+      `${drawnWood.stray} of ${drawnWood.verts} vertices further than 24 m from any of `
+      + `${drawnWood.stations} stations across ${drawnWood.meshes} merged meshes; `
+      + `worst ${drawnWood.worstStray} m`);
+    // 12 m is a bank willow leaning out over the channel, which the sources put
+    // there on purpose (`lean` in SPECIES, and TREE_DRY_MARGIN_M's box). Timber
+    // standing further out than that is timber in the river.
+    check(`${label}: no timber is drawn out in the channel`,
+      drawnWood.offshore === 0,
+      `${drawnWood.offshore} vertices over water more than 12 m from dry ground `
+      + `(${drawnWood.wet} over water at all); worst ${drawnWood.worstOffshore} m`
+      + (drawnWood.worstOffshoreAt
+        ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
+
     // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
     // above walk `stations`, which the near-field planter writes and which
     // therefore describes a 632 m square; the owner's line of trees was four

@@ -1,5 +1,60 @@
 # STATUS
 
+## Fixed 2026-08-16 — the whole near-field wood was drawn mirrored, and that is why the trees were in the river
+
+**ROADMAP R-BUG5b**, the owner's report reopened after #196 shipped a fix that did not change what
+he could see. A visitor can see this one: from the south bank west of the forks, 4 ft up, ENE 076°,
+the line of crowns across the main stem is gone, the North Side is wooded and the south bank of the
+main stem opens out.
+
+### What was wrong
+
+`renderers/web/js/trees.js` asks every placement question in local ENU metres — `isWater(e, n)`,
+`communityAt(e, n)`, `surfaceHeight(e, n)`, `cellAt(e, n)`, `blocked(e, n)`, `noteStation(e, n, y)`
+— and then handed its ENU north straight to `addTree`, whose fifth argument is a three **world z**.
+`terrain.js`'s `enuToWorld` is `(e, y, -n)`. **Every tree was tested at `(px, pz)` and drawn at
+`(px, -pz)`: the entire near-field woodland mirrored about the datum's east–west line.** The repair
+is a named `worldZ(n) => -n` at the two `addTree` call sites. No density, weight, band, seed or
+waterline rule moved.
+
+### The numbers, measured on the build in the owner's screenshot
+
+**391** stations, **0** of them wet where the planter TESTED, **64** of the same 391 wet where it
+DREW. **12,285 of 77,688** drawn vertices over the water mask, **10,734** of them more than 4 m
+from dry ground, the worst **48 m** out — the middle of the channel. The proof of the mirror is a
+pair of readings: the nearest station to a vertex read as ENU `n = -z` is **infinite**, and read as
+`n = +z` is **13.1 m**, one crown radius.
+
+### The finding, and it is not the sign
+
+**Three gates agreed with each other and all three measured the same wrong thing.**
+`wetTreeStations`, `drownedTreeStations` and `tools/measure_far_timber.py` all walk `stations` —
+where the planter DECIDED to plant. That list is correct and always was. **Nothing had ever read
+the drawn geometry back.** A gate on a placement is not a gate on a picture, and this is the sixth
+time a green gate here has disagreed with the owner's window. `flora.js` had it right all along.
+Two new smoke gates close it: *every tree drawn stands at its own station* (structural — it cannot
+pass under a mirror) and *no timber is drawn out in the channel* (the report in its own terms).
+**Both were demonstrated RED against the unfixed published mirror before the fix went in.** K50
+opens the same question against `streets.js`, `buildings.js` and `ground.js`.
+
+### Parked on `hold`, and the reason is a finding rather than a failure
+
+`tools/check.sh` and the changelog contract are green, the two new gates went red on the unfixed
+mirror and green on the fixed one, and the mobile smoke is **225 passed / 1 failed**. The one
+failure is `the roads reach the screen from the air, at the aerial anchor`, and it is **not** a
+street regression — no street vertex moved and every street gate is still green. The mirrored wood
+was **hiding a fifth of that band's road probes**: on the same 186 projected probes, 250–600 m,
+seen goes **157 → 177** and perceptible **63 % → 55 %** against a 0.55 bar, because the twenty
+newly-visible stretches are fainter than the ones already in the sample. The 100–250 m band moves
+the other way on the same cause (46 → 60 seen, 80 % → 85 %). A visitor sees strictly more road than
+before. `ROAD_MIN_PERCEPTIBLE` is deliberately NOT lowered; the road work is R-W1 (`hold` PR #125)
+and R-M1b (no threshold source), both the owner's. Full table in ROADMAP § R-BUG5b.
+
+**Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute
+per-command ceiling). The before/after pair from the owner's pose is committed at
+`docs/evidence/r-bug5b-{before,after}.png`. R-BUG5's horizon-band clip is **not** retracted — it is
+a real second fault that was mistaken for this one.
+
 ## Shipped 2026-08-16 — the roads can be turned up, and the reason it took two days is the reason it is allowed
 
 **ROADMAP R-A1**, deferred on 2026-08-14 and unblocked on 2026-08-15 by R-BUG3. A **Road
