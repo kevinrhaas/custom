@@ -131,46 +131,51 @@
     },
     "species[].july.inflorescence.height_frac": {
       "carriers": 97,
-      "reached": 94,
-      "unreached": 3,
+      "reached": 96,
+      "unreached": 1,
       "readers": [
-        "flora.js"
+        "flora.js",
+        "trees.js"
       ],
       "state": "mesh"
     },
     "species[].july.inflorescence.rgb": {
       "carriers": 97,
-      "reached": 94,
-      "unreached": 3,
+      "reached": 96,
+      "unreached": 1,
       "readers": [
-        "flora.js"
+        "flora.js",
+        "trees.js"
       ],
       "state": "mesh"
     },
     "species[].july.inflorescence.shape": {
       "carriers": 97,
-      "reached": 94,
-      "unreached": 3,
+      "reached": 96,
+      "unreached": 1,
       "readers": [
-        "flora.js"
+        "flora.js",
+        "trees.js"
       ],
       "state": "mesh"
     },
     "species[].july.inflorescence.size_m": {
       "carriers": 97,
-      "reached": 94,
-      "unreached": 3,
+      "reached": 96,
+      "unreached": 1,
       "readers": [
-        "flora.js"
+        "flora.js",
+        "trees.js"
       ],
       "state": "mesh"
     },
     "species[].july.phenology": {
       "carriers": 154,
-      "reached": 118,
-      "unreached": 36,
+      "reached": 148,
+      "unreached": 6,
       "readers": [
-        "flora.js"
+        "flora.js",
+        "trees.js"
       ],
       "state": "mesh"
     },
@@ -200,16 +205,6 @@
       "shape": "berry_cluster",
       "phenology": "fruiting",
       "reason": "record-unrouted"
-    },
-    "z06_dense_forest/ostrya_virginiana": {
-      "shape": "cluster_terminal",
-      "phenology": "fruiting",
-      "reason": "reader-draws-no-head"
-    },
-    "z06_dense_forest/tilia_americana": {
-      "shape": "cluster_terminal",
-      "phenology": "flowering",
-      "reason": "reader-draws-no-head"
     }
   }
 }

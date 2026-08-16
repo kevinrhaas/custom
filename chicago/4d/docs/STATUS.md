@@ -1,5 +1,57 @@
 # STATUS
 
+## Fixed 2026-08-16 — the basswood is in flower, and the repair prescribed for it draws four pixels
+
+**K45(c)**, and it is the second of L113's three repairs. `trees.js` has a head path now: the
+**American basswood in bloom** and the **ironwood in fruit** are drawn from their own records —
+colour, size and height on the plant all as written — and `tools/measure_flora_reach.py` banks
+**one** headless flower where it banked three. The remaining one is the grape, whose `vine_drape`
+form no reader implements; it was never this repair's.
+
+**The prescribed repair is one step short, and the arithmetic says so rather than a judgement.**
+Handing `trees.js` `flora.js`'s `HEAD_OF_SHAPE` verbatim draws `cluster_terminal`'s **1 to 4**
+heads — a count calibrated for a forb, where the whole plant IS one flowering scape. The record's
+own `size_m` is 0.06–0.12 m for ONE inflorescence; at the 23 m slant range of a neighbouring crown
+(11 m up, 20 m out) 0.09 m subtends 0.0039 rad, which is **3.3 px** at this file's 833 px/rad. The
+crown carrying it is 10–16 m across, or **580 px** at the same range. Four 3-px specks on a 580-px
+crown would have banked a false pass on K44's own assertion 5. So size, colour and `height_frac`
+come from the record exactly and MULTIPLICITY is keyed to the recorded crown width — 1.6 per metre,
+clamped 6–26, **21** on a basswood and **9** on an ironwood — recorded as `docs/LIBERTIES.md`
+**L115**, deliberately erring low.
+
+**The woody layer has a July gate for the first time.** K44 measured that `july.phenology` was read
+by `flora.js` alone; CONTRACT.md §5.4 rule 1 now runs on both readers, and a record that is
+`vegetative` or `budding` and still carries an inflorescence is reported rather than drawn.
+`july.phenology` reaches **148 of 154** records where it reached 118, and the whole unreached
+population falls **339 → 301** of 1,880 pairs.
+
+**The gate was asserting one of its own facts instead of measuring it.** `TREES_JS`'s `shapes` and
+`draws_heads` were the literals `set()` and `False` — the one pair of routing facts in
+`measure_flora_reach.py` not scanned out of the reader. A head path added to `trees.js` would have
+gone on being reported as absent for as long as nobody edited that file, and because assertion 5 is
+exact in both directions it would have **passed while saying the opposite of what the renderer
+does**. Both are scanned now; a table with no emitter, or an emitter with no table, raises; and all
+of it is exercised by `--self-test`.
+
+**The honest limit, and it is the finding a screenshot would otherwise produce.** Both flowering
+species are in `mesic_pocket`, which is **20 of 159 stems**, and all **14** flowering stems stand
+north of N +174 m. The nearest committed scene anchor is **269.5 m** away (`south_water`), at which
+one inflorescence is **0.28 px**; the farthest is `from_above` at 547.5 m and 0.14 px. A visitor
+who walks north-east stands under a flowering basswood; a visitor who stays where this project
+poses them never sees one. That is where the mesic pocket falls on the modelled ground, not a fault
+in the head path. `tools/measure_head_reach.mjs` re-runs the table.
+
+**Cost:** **187 heads on 14 stems**, 1,496 of the timber layer's 113,890 triangles, and **no new
+draw call** — the heads merge into the same four chunk buffers at the same material.
+
+**What is unverified, stated plainly.** `tools/check.sh` is green and
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` is green at **219 passed / 0
+failed, zero page errors**; **the desktop half was not run** — ~13 minutes against this runner's
+10-minute per-command ceiling. `tools/measure_head_reach.mjs` is a measurement and is deliberately
+NOT in `tools/check.sh`: it drives a browser and costs ~40 s against a gate that holds itself to
+~90 s in total. The flower has not been looked at in a rendered frame at the range a visitor would
+see it from, because no station stands within 269 m of one.
+
 ## Measured 2026-08-16 — the repair yesterday's parcel prescribed draws nothing, and a researched tree has never been in the scene
 
 **K45(a)**, and it moves no record, no parameter and no renderer file. K44 found four researched

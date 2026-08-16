@@ -108,12 +108,19 @@ UNROUTED_REASONS = {
     "role-unrouted": "its `role` is in no reader's cohort",
 }
 
+# The functions that actually put an inflorescence into a buffer, one per
+# reader. `flora.js` instances its heads through `maybeHead`; `trees.js` merges
+# them through `addHead` (ROADMAP K45(c)). A reader that grows a third way to
+# draw a flower has to be named here, and until it is, this gate says its
+# cohort's flowers are not drawn — which is the safe direction to be wrong in.
+HEAD_EMITTERS = ("maybeHead", "addHead")
+
 # The reasons a recorded inflorescence draws no head.
 NO_HEAD_REASONS = {
     "record-unrouted": "the record reaches no reader at all",
     "reader-draws-no-head": "the reader that receives it has no head archetype",
-    "july-gate": "flora.js refuses a head on a vegetative or budding record",
-    "shape-no-archetype": "its recorded shape has no archetype in HEAD_OF_SHAPE",
+    "july-gate": "its reader refuses a head on a vegetative or budding record",
+    "shape-no-archetype": "its recorded shape has no archetype in its reader's table",
 }
 
 
@@ -178,6 +185,26 @@ def js_role_guard(src: str, where: str) -> set[str]:
     return {m.group(1), m.group(2)}
 
 
+def js_draws_heads(src: str, where: str) -> bool:
+    """Whether a reader has a head path at all, off its own code.
+
+    A shape table with entries in it is not the same claim as a renderer that
+    draws from it, so both halves are required: the archetype table, and a call
+    to one of the two emitters below. Named rather than pattern-guessed, because
+    a regex loose enough to match any future emitter is loose enough to match a
+    comment about one — and this file strips comments precisely so that it
+    cannot.
+    """
+    has_table = re.search(r"const \w*HEAD_OF_SHAPE\s*=\s*\{", src) is not None
+    draws = any(re.search(rf"\b{name}\s*\(", src) for name in HEAD_EMITTERS)
+    if has_table != draws:
+        raise LookupError(
+            f"{where} has a head archetype table and no emitter, or an emitter and no "
+            f"table ({has_table=}, {draws=}) — this gate cannot say whether a flower "
+            f"on its cohort is drawn, and guessing either way misreports every one")
+    return has_table
+
+
 def cohorts() -> dict:
     """Every routing declaration, scanned out of the two readers."""
     flora = renderer_source(FLORA_JS)
@@ -194,14 +221,23 @@ def cohorts() -> dict:
                       | js_set(flora, "FORB_FORMS", FLORA_JS)),
             "zones": set(zones),          # it iterates the manifest's own list
             "shapes": js_object_keys(flora, "HEAD_OF_SHAPE", FLORA_JS),
-            "draws_heads": True,
+            "draws_heads": js_draws_heads(flora, FLORA_JS),
         },
         TREES_JS: {
             "roles": js_role_guard(trees, TREES_JS),
             "forms": js_object_keys(trees, "FORM_OF", TREES_JS),
             "zones": js_array(trees, "TIMBER_ZONES", TREES_JS),
-            "shapes": set(),
-            "draws_heads": False,
+            # SCANNED, not declared, and that is a repair rather than a tidy-up.
+            # Until K45(c) these two fields were the literals `set()` and
+            # `False` — the one pair of routing facts in this gate that was
+            # asserted here instead of measured out of the reader. A head path
+            # added to `trees.js` would therefore have gone on being reported as
+            # absent for as long as nobody edited THIS file, and the assertion
+            # is exact in both directions, so it would have PASSED while saying
+            # the opposite of what the renderer does. Every other cohort field
+            # above is scanned for exactly this reason.
+            "shapes": js_object_keys(trees, "WOODY_HEAD_OF_SHAPE", TREES_JS),
+            "draws_heads": js_draws_heads(trees, TREES_JS),
         },
     }
 
@@ -592,6 +628,23 @@ def self_test() -> int:
          coh[TREES_JS]["roles"] == {"tree", "thicket"}),
         ("the head archetype table is not empty",
          len(coh[FLORA_JS]["shapes"]) > 0),
+        # K45(c). Both readers draw heads now, and both facts are scanned. The
+        # three cases below are the ones that matter: the scan is not a constant
+        # (it went False for `trees.js` for as long as that file had no head
+        # path, and this gate said so); a table with nothing drawing from it
+        # RAISES rather than reporting every flower on that cohort as drawn; and
+        # so does an emitter with no table.
+        ("both readers are scanned as drawing heads",
+         coh[FLORA_JS]["draws_heads"] and coh[TREES_JS]["draws_heads"]),
+        ("a reader with no head path at all scans False",
+         js_draws_heads("const FORM_OF = { a: 1 };", "synthetic.js") is False),
+        ("a head table with no emitter is refused",
+         raises(lambda: js_draws_heads("const HEAD_OF_SHAPE = {\n  spike: 1,\n};",
+                                       "synthetic.js"))),
+        ("an emitter with no head table is refused",
+         raises(lambda: js_draws_heads("addHead(buf, 1, 2, 3);", "synthetic.js"))),
+        ("the woody head table is read off trees.js",
+         "cluster_terminal" in coh[TREES_JS]["shapes"]),
         ("a routed record goes to the reader whose cohort holds it",
          route("z01_wet_prairie", {"role": "matrix", "form": "sedge_tussock"}, coh)
          == (FLORA_JS, None)),
@@ -607,9 +660,18 @@ def self_test() -> int:
         ("the two-scan figure reader sees the leaf both files read",
          {FLORA_JS, TREES_JS} <= figure_readers(coh["sources"])["species[].height_m"]
          ["readers"]),
+        # This case used to assert that `inflorescence.rgb`'s readers are
+        # EXACTLY {flora.js} — which tested the tree as it stood rather than the
+        # mechanism, and went red the moment K45(c) gave `trees.js` a head path
+        # that reads the same field. What it exists to prove is the property:
+        # `flora.js` reads that field off a local named `inflor`, `rgb` is an
+        # ambiguous leaf scanned parent-qualified, so the LEAF scan alone cannot
+        # see the read and only the declared expression can.
         ("…and the renamed local only the declaration can prove",
-         figure_readers(coh["sources"])["species[].july.inflorescence.rgb"]["readers"]
-         == {FLORA_JS}),
+         FLORA_JS in figure_readers(coh["sources"])
+         ["species[].july.inflorescence.rgb"]["readers"]
+         and not k42.reads_leaf(coh["sources"][FLORA_JS],
+                                "species[].july.inflorescence.rgb")),
     ]
     for label, passed in checks:
         print(f"  {'ok   ' if passed else 'FAIL '}  {label}")
