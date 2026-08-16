@@ -157,6 +157,21 @@ step "no reconstructed value is newly outside the band its own note cites" \
 step "the standing constraint reaches every record that claims it" \
   python3 tools/measure_review_constraint.py --gate
 
+# The same shape of question asked of AGENTS.md rule 6 — a check_required source
+# "may be cited in text but must not have assets derived from it", and
+# docs/PROVENANCE.md says the validator enforces it. What the validator compares
+# is two fields of the same source record: rights_status against the source's own
+# asset_use label, so it can only fire once an author has written the violation
+# down, and no source in this dataset ever has (ROADMAP K41). This asks the town
+# instead, using the read-sets the archetypes and the terrain generator already
+# declare. The population is banked by name: it may shrink and may not grow, and
+# a repair has to be recorded with --update in the commit that made it.
+step "no unresolved source is newly built into the town" \
+  python3 tools/measure_rights_derivation.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_rights_derivation.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
