@@ -1885,7 +1885,7 @@ it needs ~13 minutes against this harness's 10-minute per-command ceiling (see t
 box at the top of this file). This parcel changes no renderer file and no geometry, so the
 scene it would exercise is byte-for-byte the one the last run smoked.
 
-### K36(b) — give the site back the material names it was baked with · **UNCLAIMED · opened 2026-08-16 by K36(a) · Effort: S–M · NO BAKE, and that is the point**
+### K36(b) — give the site back the material names it was baked with · **CLAIMED 2026-08-16 · `steward/k36b-shipped-material-names` · opened by K36(a) · Effort: S–M · NO BAKE, and that is the point**
 
 The 38 assets in `tools/web_derivative_baseline.json` reach the browser as one
 `PaletteMaterial001` plus two generated PNGs. **This repair needs no Blender**: `assets/web/` is
