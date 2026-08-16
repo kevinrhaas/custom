@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_22",
- "name": "The Fitzgerald household — a reconstructed labourer (south division)",
+ "name": "The Tobin household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_22",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_22",
-   "name": "Terence Fitzgerald",
+   "name": "Patrick Tobin",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

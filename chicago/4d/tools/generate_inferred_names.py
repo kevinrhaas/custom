@@ -73,6 +73,43 @@ def pick(seq, key, salt):
     return seq[int.from_bytes(h[:4], "big") % len(seq)]
 
 
+def preference(pool, pid, salt):
+    """This person's OWN ordering of a pool — their whole list of preferences.
+
+    Not a single choice: the claim below walks this list until it finds a name
+    the bucket can still afford, so a person who is outbid falls back to their
+    own second choice rather than to whatever the arithmetic of their position
+    hands them. Keyed on the person's id, so the ordering is a property of the
+    person and moves nowhere when the town grows around them.
+    """
+    return sorted(pool, key=lambda n: hashlib.sha256(
+        f"{pid}:{salt}:{n}".encode()).hexdigest())
+
+
+def claim(pool, used, pid, salt, allowed=None):
+    """The least-used name this person is willing and permitted to take.
+
+    Least-used rather than unused, because two of the five buckets this layer
+    populates are BIGGER than their pool — 73 yankee men draw on 36 surnames —
+    so a surname must be reused and the only question is whether the reuse is
+    even. Holding every claim to the current floor keeps the counts within one of
+    each other, which is the spread the old index deal existed to produce.
+
+    Ties inside a count are broken by the person's OWN preference order, which is
+    what makes the result depend on who a person collides with rather than on how
+    many people sort ahead of them.
+
+    `allowed` rejects a candidate outright: it carries the one hard constraint,
+    that no two invented residents may end up with the same full name.
+    """
+    order = preference(pool, pid, salt)
+    for name in sorted(order, key=lambda n: used[n]):
+        if allowed is None or allowed(name):
+            used[name] += 1
+            return name
+    raise AssertionError(f"every name in a pool of {len(pool)} is refused for {pid}")
+
+
 def community_for(pools, occupation, pid):
     rule = pools["trade_weights"].get(occupation) or pools["trade_weights"]["_default"]
     bag = []
@@ -109,9 +146,34 @@ def build(preload: dict | None = None):
     # "Lyman" and four more under "Gilbert" out of 92 people. That is not just
     # untidy: a shared surname reads as kinship, and this layer claims no
     # relationship whatever between its households. So the community is chosen
-    # per person (pass one), and then each community's names are DEALT round its
-    # pool in a stable hash order (pass two), which spreads them as evenly as the
-    # pool allows and repeats only when a pool genuinely runs out.
+    # per person (pass one), and then each community's names are allocated in a
+    # stable hash order (pass two) under a rule that spreads them as evenly as
+    # the pool allows and repeats only when a pool genuinely runs out.
+    #
+    # WHAT PASS TWO USED TO DO, AND WHY IT CHANGED (ROADMAP K20). It dealt each
+    # bucket round its pool BY INDEX — person i took given[i % n]. That spreads
+    # perfectly and is stable across re-runs, which is what this file's own
+    # docstring promised and what `--check` proved. What nobody had measured is
+    # what it does when the town GROWS: an index is a function of how many people
+    # sort ahead of you, so one insertion shifts everybody behind it by one and
+    # renames them all. Measured with tools/measure_name_churn.py before the
+    # change: a single synthetic household renamed up to 73 of the 113
+    # reconstructed residents, 64.6 % of the layer, and never fewer than one.
+    #
+    # No name that came out of that was wrong — every name here is invented and
+    # graded `reconstructed`, so all readings are equally honest. It was a REVIEW
+    # defect: a block parcel adding four households shipped a diff in which its
+    # four real additions could not be found, and a name that drifted because
+    # something was actually wrong would have been invisible inside the noise.
+    # Two parcels measured it in passing (T-A2h: 25 of 94; T-A5: 17 of 33) and
+    # both read it as an oddity of their own diff rather than as a property.
+    #
+    # It now allocates by CLAIM instead: each person has their own deterministic
+    # ordering of the pool, and walking the same stable order, each takes the
+    # first name still at the floor of the use counts. The even spread survives —
+    # the floor rule is what enforces it — but a person's name now depends on who
+    # they actually collide with rather than on how many people precede them, so
+    # an insertion costs the people it displaces and nobody else.
     people = []
     sources = preload if preload is not None else {
         path: load(path) for path in sorted(HOUSEHOLDS.glob("*.json"))}
@@ -136,9 +198,31 @@ def build(preload: dict | None = None):
         community = by_id[cid]
         givens = community["given_female" if female else "given_male"]
         surnames = community["surnames"]
-        for i, rec in enumerate(bucket):
-            rec["given"] = givens[i % len(givens)]
-            rec["surname"] = surnames[i % len(surnames)]
+        # THE TWO HALVES OF A NAME ARE NOT THE SAME PROBLEM, and the old deal
+        # treated them as one by welding them to a shared index — everyone who
+        # drew "Ezra" also drew "Kimball", so the pair repeated whole every time
+        # the shorter pool wrapped.
+        #
+        # A repeated GIVEN name is what a real town looks like: five Johns among
+        # 73 men is unremarkable in 1835 and carries no claim about anybody. So a
+        # given name is simply each person's own first preference, with no ledger
+        # at all, which is the most insertion-local rule there is — a new
+        # neighbour cannot change what you are called.
+        #
+        # A repeated SURNAME is a claim, because a shared surname reads as
+        # kinship and this layer asserts no relationship whatever between its
+        # households. That one keeps the ledger and the floor rule.
+        used_surname = {n: 0 for n in surnames}
+        taken = set()
+        for rec in bucket:
+            pid = rec["person"]["id"]
+            given = preference(givens, pid, "given")[0]
+            # The one absolute: two invented residents may not be the same
+            # person. Without this guard the town shipped two Alvah Hastings.
+            surname = claim(surnames, used_surname, pid, "surname",
+                            allowed=lambda s, g=given: (g, s) not in taken)
+            taken.add((given, surname))
+            rec["given"], rec["surname"] = given, surname
 
     docs = {}
     for rec in people:

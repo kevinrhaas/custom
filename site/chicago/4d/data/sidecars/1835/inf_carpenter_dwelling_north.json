@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_carpenter_north_10",
-      "name": "The Eastman household — a reconstructed carpenter (north division)",
+      "name": "The Fairbanks household — a reconstructed carpenter (north division)",
       "division": "north",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_carpenter_dwelling_north is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Benjamin Eastman",
+          "name": "Ira Fairbanks",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "carpenter",

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_west_11",
- "name": "The Eastman household — a reconstructed labourer (west division)",
+ "name": "The Gilbert household — a reconstructed labourer (west division)",
  "division": "west",
  "head": "inf_labourer_west_11",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_west_11",
-   "name": "Charles Eastman",
+   "name": "Ezra Gilbert",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

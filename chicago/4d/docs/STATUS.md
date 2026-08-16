@@ -1,5 +1,50 @@
 # STATUS
 
+## New 2026-08-16 — one new household renamed 73 of 113 invented residents, not the 17-25 eleven parcels reported
+
+**K20 is done.** `tools/generate_inferred_names.py` dealt each `(community, sex)` pool round **by
+index**, so an invented name was a function of how many people sorted ahead of you. Eleven parcels
+measured the resulting churn in passing and reported 17-to-72; every one of them was a single
+sample at a single arbitrary point in a hash order. `tools/measure_name_churn.py` is the
+instrument — it inserts a synthetic household **in memory**, re-runs the allocator and counts who
+gets renamed — and over **240 insertions across all six trades** the distribution is not centred
+near a fifth of the layer: mean **40.4** for a carpenter, **worst 73 of 113**, and only **1 of 40**
+carpenter probes renamed nobody.
+
+**The allocator is now insertion-local: worst 10 of 113 on the same 240 probes, mean 4.6.** Each
+person has their own deterministic ordering of the pool and claims the least-used name they are
+permitted, so a name depends on who you collide with rather than on how many people precede you.
+A third of the improvement comes from **unwelding the given name from the surname**: a repeated
+given name is what a town looks like and claims nothing, so it is now each person's first
+preference with no ledger at all, while a surname — which reads as kinship — keeps the ledger and
+the floor rule.
+
+**The residual is the POOL, and the report proves that rather than asserting it.** Each probe
+prints its bucket's pressure. At **0.14x** (pool with room) an insertion renames **at most one**
+person — literally K20's acceptance criterion. At **2.03x** (36 surnames dealt to 73 men) it
+renames up to ten, because there is no spare name at the floor. **Ten renames at 2.03x is a pool
+that is too small; ten at 0.14x would be an allocator that is still not local.** Widening the
+pools is evidence work — more named 1835 Chicagoans out of Andreas and the rolls — not a tuning
+knob, and at 3x pressure the residual will climb again.
+
+**A bug the fix exposed:** unwelding the two halves let two people draw the same pair, and the
+first run shipped **two Alvah Hastings**. That is refused outright now and all 113 full names are
+distinct — true by accident before, true by assertion now.
+
+**The one-time cost is the whole layer**: **113 of 113 renamed across 101 household files**,
+recorded as **L111**. It invents nothing new — same pools, same grades, same `name_basis`
+citations and notes; a different invented name is the same claim about the same nobody.
+
+**What was and was NOT run, stated rather than implied.** `./tools/check.sh` — the dev gate — is
+**green**, including the new step (`measure_name_churn.py --gate`, ~2 s) and `compile_scene.py
+--all --check` over the 331 regenerated sidecars. `node tools/smoke_renderer.mjs` was run at
+**mobile (390x780) only, 214 passed / 0 failed**; the desktop half **was not run**, because a
+single foreground command on this runner is capped at ten minutes and the desktop half takes
+about thirteen (K21, measured). Nothing visual changed here — the diff is name strings in
+records and sidecars, no renderer file, no geometry, no material, no coordinate — so the risk the
+desktop half covers is not the risk this parcel carries. Say so rather than implying both halves
+ran.
+
 ## New 2026-08-16 — the town has no chimney material, and no record anywhere says what a roof is made of
 
 **R-W2a**, the material sheet, is written: `docs/RESEARCH/materials.md`. It is measured out of

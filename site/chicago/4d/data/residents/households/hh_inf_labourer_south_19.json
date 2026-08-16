@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_19",
- "name": "The Gilbert household — a reconstructed labourer (south division)",
+ "name": "The Metcalf household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_19",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_19",
-   "name": "Nathaniel Gilbert",
+   "name": "George Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

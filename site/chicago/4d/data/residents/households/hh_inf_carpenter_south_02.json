@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_02",
- "name": "The Cavanagh household — a reconstructed carpenter (south division)",
+ "name": "The Doyle household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_02",
-   "name": "John Cavanagh",
+   "name": "Michael Doyle",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -70,7 +70,7 @@
   },
   {
    "id": "inf_carpenter_south_02_j1",
-   "name": "Rufus Rice",
+   "name": "Hiram Nash",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_15",
- "name": "The Doyle household — a reconstructed labourer (south division)",
+ "name": "The Duffy household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_15",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_15",
-   "name": "Owen Doyle",
+   "name": "John Duffy",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

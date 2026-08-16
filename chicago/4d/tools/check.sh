@@ -249,6 +249,17 @@ PY
 step "the reconstructed residents' invented names re-derive" \
   python3 tools/generate_inferred_names.py --check
 
+# Re-deriving is not the same as being STABLE. The allocator dealt each pool by
+# index, so a name was a function of how many people sorted ahead of you and one
+# new household rewrote up to 73 of the 113 invented names — a diff in which the
+# parcel's real additions could not be found, and in which a name that drifted
+# because something was wrong would have been invisible (ROADMAP K20). Nothing
+# caught it because --check re-derives the town as it stands and never asks what
+# happens when it grows. This asks: it inserts a synthetic household in memory
+# and counts who gets renamed.
+step "one new household renames only the people it collides with" \
+  python3 tools/measure_name_churn.py --gate --probes 8 --quiet
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

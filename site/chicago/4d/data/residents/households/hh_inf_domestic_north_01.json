@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_domestic_north_01",
- "name": "The Brady household — a reconstructed domestic (north division)",
+ "name": "The McGuire household — a reconstructed domestic (north division)",
  "division": "north",
  "head": "inf_domestic_north_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_domestic_north_01",
-   "name": "Bridget Brady",
+   "name": "Mary McGuire",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

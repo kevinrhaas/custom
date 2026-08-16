@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_18",
- "name": "The Kelly household — a reconstructed labourer (south division)",
+ "name": "The Murphy household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_18",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_18",
-   "name": "Michael Kelly",
+   "name": "Michael Murphy",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_16",
- "name": "The Duffy household — a reconstructed labourer (south division)",
+ "name": "The McGuire household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_16",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_16",
-   "name": "Edward Duffy",
+   "name": "John McGuire",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

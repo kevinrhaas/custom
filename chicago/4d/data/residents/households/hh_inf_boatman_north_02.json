@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_boatman_north_02",
- "name": "The Marcotte household — a reconstructed boatman (north division)",
+ "name": "The Pothier household — a reconstructed boatman (north division)",
  "division": "north",
  "head": "inf_boatman_north_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_boatman_north_02",
-   "name": "Alexis Marcotte",
+   "name": "Toussaint Pothier",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

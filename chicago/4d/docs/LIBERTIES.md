@@ -3826,3 +3826,49 @@ not is now L31**: the letter gives two bents and never says where along the span
 the positions are still the archetype's, and the tint still cannot say so. The sentence in
 **Consequence** about the true bay count being "smaller than fifteen by an unknown margin" turned
 out to be true in the wrong direction and by a factor of five.
+
+### L111 — Every invented resident is called something else today, and nothing about any of them changed
+
+**Decision:** all **113** reconstructed residents in `data/residents/` were re-drawn from the same
+name pools under a new allocation rule, so **113 of 113 invented names changed** across **101
+household files** — and with them the household display names, which follow their head's surname.
+No person, household, roof, coordinate, grade, source citation or `name_basis` note moved. This
+entry exists because a reader who knew this town yesterday will not recognise a single invented
+name in it today, and that deserves a stated reason rather than a diff.
+
+**Why:** `tools/generate_inferred_names.py` dealt each community-and-sex pool round **by index**,
+so a name was a function of how many people sorted ahead of you and one new household rewrote up
+to **73 of 113** names as a side effect — measured across 240 synthetic insertions by the
+instrument this parcel commits, against the 17-to-72 range eleven parcels had reported in passing
+(ROADMAP **K20**). The rewrite buried each parcel's real additions inside its own noise. The
+allocator is now insertion-local — worst case **10**, and **1** in the buckets whose pools have
+room — and moving to it is a one-time rename of the whole layer, which K20 said from the start it
+would be.
+
+**What is and is not invented here.** The names were already invented and are still invented, to
+exactly the same degree and out of exactly the same pools: seeded from the 76 **attested**
+residents this project holds, cited on every record, graded `reconstructed`, and carrying the note
+that says THE NAME IS INVENTED and that the person is a hypothesis about a count and not anybody.
+A different invented name is the same claim about the same nobody, which is why this entry admits a
+**change of labels and no new liberty** — nothing here is a fact about Chicago that was not equally
+absent before.
+
+**One thing did get better rather than merely different.** The old rule welded each person's given
+name to their surname through a shared index; unwelding them let two people draw the same pair, and
+the first run of the new rule produced **two Alvah Hastings** — two invented residents who were the
+same person. That is now refused outright, and all 113 full names are distinct, which was true by
+accident before and is true by assertion now.
+
+**The residual, stated so nobody reads it as a fix that failed.** The surname pools are **2.03×**
+oversubscribed in this layer's four large buckets — 36 surnames dealt to 73 men — so a surname is
+used two or three times and a newcomer must displace somebody. Widening the pools is evidence work
+(more named 1835 Chicagoans out of Andreas and the census rolls), not a tuning knob, and until it
+happens the churn floor is the pool's and not the allocator's.
+
+**How to resolve:** nothing here is resolvable by evidence, because nothing here claims anything.
+The layer stops being invented one household at a time, as named occupants replace inferred ones —
+which is the resolution L83 and L84 already state.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a change of labels, and the
+inventions those labels sit on are already covered by **L83** and **L84**.
+**Recorded:** 2026-08-16.

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_15",
- "name": "The Goodrich household — a reconstructed carpenter (south division)",
+ "name": "The Hale household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_15",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_15",
-   "name": "Ezra Goodrich",
+   "name": "Elisha Hale",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

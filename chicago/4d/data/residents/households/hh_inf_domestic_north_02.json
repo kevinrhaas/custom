@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_domestic_north_02",
- "name": "The Barnes household — a reconstructed domestic (north division)",
+ "name": "The Kellogg household — a reconstructed domestic (north division)",
  "division": "north",
  "head": "inf_domestic_north_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_domestic_north_02",
-   "name": "Abigail Barnes",
+   "name": "Hannah Kellogg",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

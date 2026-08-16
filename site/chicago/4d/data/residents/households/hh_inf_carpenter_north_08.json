@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_north_08",
- "name": "The Bourassa household — a reconstructed carpenter (north division)",
+ "name": "The Laframboise household — a reconstructed carpenter (north division)",
  "division": "north",
  "head": "inf_carpenter_north_08",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_north_08",
-   "name": "Antoine Bourassa",
+   "name": "Joseph Laframboise",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -70,7 +70,7 @@
   },
   {
    "id": "inf_carpenter_north_08_j1",
-   "name": "Hiram Metcalf",
+   "name": "Orrin Sheldon",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {
