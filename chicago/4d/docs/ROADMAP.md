@@ -132,7 +132,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
 | 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
-| 3 | GROUND | **T-E5** | the public square **was a pond** in this project's own committed fauna data and renders as dry prairie with three public buildings on it. Opened by T-A16 |
+| — | GROUND | ~~T-E5(a)~~ | **DONE 2026-08-16** — the four in-town waters were deferred under one phrase and **three of the four are datable at the scene; the pond is not**. The sharpest finding is not the pond: **the scene draws the BRIDGE over the slough and not the slough**. On the square, date and extent are one question — a whole-block pond is refused by this project's own estray pen (**March 1832**) and log jail (**fall 1833**), and a partial one has no source. **No liberty owed, no grade moved.** Read its box before quoting any in-town water number |
+| 2 | GROUND | **T-E5(b)** | how much of the square was wet — opened by T-E5(a), and its first question is whether any source states an extent at all. **NEEDS A BAKE** |
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -144,6 +145,15 @@ schema change across 315 records with no source yet stating a roof covering, so 
 "unblocked" reads — and **T-E5**, whose ground half also needs a bake though its research and
 `docs/LIBERTIES.md` half does not. **The lane needs new parcels opened more than it needs the next
 one picked**, and the bake-shaped backlog is the reason: four parcels are waiting on a nightly.
+
+**T-E5 WAS THE LAST OF THOSE TWO AND IT IS TAKEN — 2026-08-16, T-E5(a).** The count above was
+right and the paragraph's own advice is now the binding one: **the lane needs new parcels opened
+more than it needs the next one picked.** T-E5's bake-free half is spent, its successor T-E5(b)
+needs a bake, and every other numbered pick still sits behind a bake, a `hold` PR or the owner. So
+the next runner-closable unit here is most likely **a parcel this file does not yet contain**, and
+the honest way to find one is the way T-E5(a) found its own: read a deferral, a `not_modelled`
+entry or a "deferred to parcel (c)" phrase and ask **what question it was never asked**. That is
+where four of the last six findings came from.
 
 **R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
 growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
@@ -3530,7 +3540,88 @@ reservation, water, or unmodelled ground.
 
 ---
 
-### T-E5 — the public square was a pond, and it renders as dry prairie · **UNCLAIMED · opened 2026-08-15 by T-A16 · Effort: M**
+### T-E5(a) — date the in-town water before anything models it · **DONE 2026-08-16**
+
+**The deferral asked about a place and was read as though it answered about a scene.** The
+terrain spec defers **four** in-town water features under one shared phrase — *"existence
+documented, geometry conjectural"* — and not one of them had ever been asked where it stands on
+**1835-07-01**. They do not answer alike, which is the whole finding:
+
+| dossier zone | feature | at 1835-07-01 | what dates it |
+|---|---|---|---|
+| 14 | The slough | **present** (inferred) | a structure this project already stands in the scene |
+| 15 | **The public-square pond** | **not established** (inferred) | nothing — and one document argues both ways |
+| 16 | The Frog Pond, Lake & LaSalle | present (inferred) | a newspaper, one year late to the day |
+| 17 | The Wells Street marsh | present (inferred) | the sentence that gives the slough gives what it drains |
+
+**The sharpest thing in it is not the pond: the scene draws a BRIDGE over a watercourse the
+scene does not contain.** `slough_log_bridge` is a committed structure standing on 1835-07-01 and
+the source runs that crossing *"until after 1840"*, so a visitor walks onto a timber crossing laid
+over open prairie. That is not an argument for cutting a conjectural channel — depth and width are
+still unsourced and parcel (c) still owns them — it is the proof that the four were never on one
+footing, which one shared phrase implied they were.
+
+**On the pond itself the answer is `not_established`, and deliberately not "it was not there".**
+One document, `chicagology_prefire273`, carries both sides. FOR: its slough sentence has the stream
+draining *"the pond and the marsh extending up Wells Street"* as a live feature of a drainage
+system whose bridge outlives the scene by five years. AGAINST, and the deferral weighed none of
+these three — the quotation dates nothing (*"was then"*, past tense against an **1857** present, in
+a document this project's own source record identifies as built on **Hubbard's Chicago of 1818**
+and **Davis's 1832** drawing); the dossier's own row calls the pond **seasonal** with water
+*"0.5–2 ft deep in spring"* against a scene dated **1 July**; and this project already stands the
+**estray pen** on the square's south-west corner from **March 1832** and the **log jail** on its
+north-west corner from the **fall of 1833**. A pound is not built in a pond.
+
+**The buildings do not refute a pond — they BOUND one, and that is why the date and the extent are
+one question.** A whole-block pond is refused by this project's own committed records; a partial
+one is untouched by them and is exactly T-E5's third question, which no source reached can answer.
+So the phrase's second half was never a detail to fill in later: the conjectural geometry is the
+thing that decides whether water stands under Chicago's first public building.
+
+**T-E5's fallback is discharged and NO LIBERTY IS OWED.** Its instruction was *"if it cannot be
+made honestly, the honest answer is a `docs/LIBERTIES.md` entry saying the square is drawn dry and
+why."* Nothing was invented, no confidence moved up, and the square was **already** drawn dry and
+already recorded as such in text a visitor can read. What was missing was the reason, and the
+reason is now in that same visitor-facing text — the four `why` strings `ground.js` renders. Prose
+in the spec is stripped from the terrain's staleness hash, so it cost no bake.
+
+**And it cost something downstream nobody would have gone looking for.**
+`data/fauna/zones/f04_marsh.json` rested **three claims** on the pond quotation as in-scene
+evidence, one of them saying so in as many words — muskrat `presence` and mallard `presence` were
+`attested` on **that quotation alone**, noted as *"direct evidence of animals present in numbers at
+a named location inside the scene box"*. **No grade moved**, and that is measured rather than
+convenient: what carries `attested` is Andreas's *"ducks and muskrats in the marshes"*, and the
+marshes he names **are** the habitat this zone plants — `z04_marsh`'s extent is a buffer of the
+mapped water, the river-shore strip, and has never reached the square. The animal is attested in
+the habitat the scene draws and is no longer attested at a named block the scene draws dry, and
+the notes now say which of the two they mean.
+
+**Shipped:** `data/terrain/1835_intown_water_dating.json` (authored, no coordinates, no geometry);
+`tools/measure_intown_water.py` + a `tools/check.sh` step holding the correspondence **in both
+directions**, so a fifth feature cannot be deferred undated and a dating entry cannot outlive the
+deferral it grades; the four visitor-facing `why` strings; the three fauna corrections;
+`docs/RESEARCH/public_square_pond.md`. **The gate was verified to fail** on four separate
+injections — an undated deferral, an `inferred` grade with its reasoning blanked, a zone number
+nothing defers, and a source that does not resolve — and to pass restored. A check that has never
+failed is not a check.
+
+**What it did NOT do:** it modelled, moved and sized nothing. All four features remain deferred to
+parcel (c), and no research dossier was edited — those are committed verbatim, which is why the
+disagreement lives in `docs/RESEARCH/`.
+
+### T-E5(b) — how much of the square was wet · **UNCLAIMED · opened 2026-08-16 by T-E5(a) · Effort: M · NEEDS A BAKE**
+
+What (a) deliberately did not answer. Its first question is not how to model an extent but
+**whether any source states one at all** — (a) found none, and the two corners this project has
+already built on are the only hard constraint anywhere in the evidence. Read
+`docs/RESEARCH/public_square_pond.md` § 3 before touching it: a partial pond fitted to clear the
+buildings is a number chosen to look right, which is the failure mode R-M1b is parked on and the
+one this project has been handed twice. If the honest answer is that no extent is recoverable,
+that is a finding and it belongs in `docs/LIBERTIES.md` — but (a) is not it, because (a) invented
+nothing. Ground geometry means a bake either way.
+
+<details>
+<summary><b>The original T-E5 brief, as opened by T-A16 on 2026-08-15</b></summary>
 
 `data/fauna/zones/f04_marsh.json` carries the finding in its own note: *"The Public Square —
 Randolph to Washington, Clark to LaSalle — 'was then a pond, where the Indians had trapped the
@@ -3558,6 +3649,8 @@ square therefore renders as dry prairie with a pound, a jail and a court-house s
 
 **Not urgent, and not a blocker for anything** — no roof is scheduled here now that T-A16 has
 reserved the block.
+
+</details>
 
 ## Bugs found and not yet fixed
 

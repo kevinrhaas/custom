@@ -1,5 +1,88 @@
 # STATUS
 
+## New 2026-08-16 — there is a bridge in this scene over a watercourse the scene does not contain
+
+**T-E5(a).** The terrain spec defers four in-town water features under one shared phrase —
+*"existence documented, geometry conjectural"*. Existence is a claim about a **place**; a scene is
+a **date**. Nobody had asked the second question of any of the four, and they do not answer it
+alike.
+
+| dossier zone | feature | at 1835-07-01 | what dates it |
+|---|---|---|---|
+| 14 | The slough | **present** (inferred) | a structure this project already stands in the scene |
+| 15 | **The public-square pond** | **not established** (inferred) | nothing — and one document argues both ways |
+| 16 | The Frog Pond, Lake & LaSalle | present (inferred) | a newspaper, one year late to the day |
+| 17 | The Wells Street marsh | present (inferred) | the sentence that gives the slough gives what it drains |
+
+**THE SHARPEST FINDING IS NOT THE POND.** `slough_log_bridge` — *The Slough Log Bridge, Water
+Street* — is a committed structure standing on 1835-07-01, and its own `documented_range` note
+quotes the source running that crossing *"until after 1840"*. Zone 14, the slough it crosses, is
+deferred and undrawn. **A visitor walks onto a timber crossing laid over open prairie**, and has
+been able to since the bridge landed. That is not an argument for cutting a conjectural channel —
+the depth and width are still unsourced and parcel (c) still owns them. It is the proof that the
+four were never on one footing, which one shared phrase implied they were.
+
+**On the pond the answer is `not_established`, and deliberately NOT "it was not there".** One
+document, `chicagology_prefire273`, carries both sides, and nobody had noticed that it does.
+**FOR:** its slough sentence has the stream draining *"the pond and the marsh extending up Wells
+Street"* as a live feature of a drainage system whose bridge outlives the scene by five years.
+**AGAINST**, and the deferral weighed none of these three:
+
+1. **The quotation dates nothing** — *"was then a pond"*, a past tense against an **1857** present,
+   in a document this project's own source record identifies as built on **Hubbard's Chicago as he
+   found it in 1818** and **Davis's 1832** drawing.
+2. **The dossier's own row says the wrong season** — row 15 reads *"seasonal … water 0.5–2 ft deep
+   **in spring**"*, and the scene date is **1 July**. The row stated a season; the deferral read a
+   scene.
+3. **Two county buildings already stand on that block, before the scene date** — the **estray
+   pen**, Chicago's first public building, on the south-west corner from **March 1832**, and the
+   **log jail** on the north-west corner from the **fall of 1833**. A pound is not built in a pond.
+
+**The buildings do not refute a pond — they BOUND one, and that is the whole result.** A
+whole-block pond is refused by this project's own committed records; a partial one is untouched by
+them and is exactly the deliverable T-E5's third question asked for, which no source reached can
+supply. So the date and the extent are **one question** and neither is settled. `existence
+documented, geometry conjectural` was true of a place and was being read as though it were true of
+the scene, and the geometry it called conjectural is not a detail to fill in later — it decides
+whether water stands under Chicago's first public building.
+
+**T-E5's fallback is discharged and NO LIBERTY IS OWED.** Its instruction was to write a
+`docs/LIBERTIES.md` entry saying the square is drawn dry if it could not be settled honestly.
+Nothing was invented, no confidence moved, and the square was **already** drawn dry and already
+recorded as such in text a visitor reads. What was missing was the reason, and the reason is now in
+that same visitor-facing text — the four `why` strings `ground.js` renders. Prose in the spec is
+stripped from the terrain's staleness hash, so it cost no bake.
+
+**AND IT COST SOMETHING DOWNSTREAM NOBODY WOULD HAVE GONE LOOKING FOR.**
+`data/fauna/zones/f04_marsh.json` rested **three claims** on the pond quotation as in-scene
+evidence — muskrat `presence` and mallard `presence` were `attested` on **that quotation alone**,
+the muskrat's note reading *"direct evidence of animals present in numbers at a named location
+inside the scene box"*. It is not: it is evidence about a place at an unknown time. **No grade
+moved**, and that is measured rather than convenient — what carries `attested` is Andreas's *"ducks
+and muskrats in the marshes"*, and the marshes he names **are** the habitat this zone plants
+(`z04_marsh`'s extent is a buffer of the mapped water, the river-shore strip, and has never reached
+the square). The animal is attested in the habitat the scene draws and is no longer attested at a
+named block the scene draws dry; the notes now say which of the two they mean.
+
+**The gate was verified to fail, on four separate injections.** An undated deferral, an `inferred`
+grade with its reasoning blanked, a zone number nothing defers, and a source that does not resolve
+— each exits 1 with the divergence named, and the restored file passes. It holds the correspondence
+in **both** directions, so a fifth in-town water feature cannot be deferred undated and a dating
+entry cannot outlive the deferral it grades. Which zones it covers is **declared**, not sniffed
+out of the prose `why`: a regex over prose reads like a rule until a name changes under it, which
+is what R-W4a was and what the smoke's own `/terrain|water/i` filter was.
+
+**Verified:** `tools/check.sh` green. `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs` green
+against the published mirror. **The desktop half was NOT run and this is not claimed as passed** —
+it needs ~13 minutes against this harness's 10-minute per-command ceiling, which the ROADMAP's run
+budget section records. This parcel changes no renderer file, no geometry and no coordinate; what
+it changes that a browser loads at all is four `why` strings in a sidecar and one changelog entry.
+
+**What it did NOT do:** it modelled, moved and sized nothing — all four features remain deferred.
+It edited no research dossier (those are committed verbatim, which is why the disagreement lives in
+`docs/RESEARCH/public_square_pond.md`). And it did not answer **how much** of the square was wet,
+which is **T-E5(b)** and needs a bake.
+
 ## New 2026-08-16 — the adoption rule nine block parcels supplied by hand is code now, and it changes nothing
 
 **K28 is done**, and the honest headline is that **not one household, roof or coordinate moved**.
