@@ -106,6 +106,7 @@ visible parcels were the hardest ones to find. Completed work now lives in its o
 not at the top of the queue.
 | # | lane | parcel | why first |
 |---|---|---|---|
+| **1** | RENDERING | **R-BUG5b — REOPENED, THE TREES ARE STILL IN THE RIVER** | **SEEN** | **The owner reshot it at 3:14 PM CT on the build whose What's-New says 'The trees standing in the river are gone — Fixed 1:31 PM CT'. The line across the channel and the scatter beside it are both still there.** #196 shipped a fix, a 484-line measurement tool and a smoke assertion, and the defect survived all three. **Do not touch trees.js until you can reproduce the owner's frame and see the trees in it.** Read the box |
 | — | RENDERING | ~~R-BUG5~~ | **DONE 2026-08-16** — it was the SKYLINE, not the planter. Both of the owner's populations are ONE body of far timber authored **between the two banks** of the main stem, 39 of 39 samples over water and **3.347 m** under its surface; the scatter is the horizon solver's own gap modulation breaking the same run into crowns. Both existing gates were green because both count the near-field planter's 632 m square, and **nothing had ever asked the five `FAR_TIMBER` polylines where they stand**. Read its box before quoting any horizon-timber number |
 | **1** | RENDERING | **R-BUG5(b)** | **NOT A PICK WITHOUT THE OWNER.** `main_stem_belt_east` now draws nothing, because none of it was on land. Where the South Water Street belt's near edge actually ran is a placement claim no source here settles — three routes are written up in R-BUG5's box for the owner to choose between |
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
@@ -404,6 +405,48 @@ it and then it is blocked on S9 street control and the terrain extensions, not o
 Acceptance numbers are copied from RENDERING §5 so a builder does not have to hold two
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
+
+### R-BUG5b — REOPENED: the trees are still in the river, and a fix said otherwise · **TOP OF THE QUEUE**
+
+**The owner reshot the river at 3:14 PM CT, standing 4 ft up on the south bank looking ENE 076°, on
+the build whose What's-New panel says — in the same screenshot — "The trees standing in the river
+are gone · Fixed · Aug 16, 2026, 1:31 PM CT". A straight line of crowns still runs across the
+channel, with scattered ones beside it. The two sights #196 said were "one thing seen twice" are
+both still there.**
+
+**#196 is not to be trusted as a starting point, and this is the point of the parcel.** It shipped
+`trees.js` (+74), `tools/measure_far_timber.py` (+484), a committed baseline and a new smoke
+assertion — and the thing a visitor sees did not change. **Three instruments agreed with each other
+and disagreed with the window.** That is now the FIFTH time on this project that a green gate and
+the owner's screen have disagreed, after R-BUG2, R-BUG3, R-BUG3c and R-BUG4.
+
+**The first job is NOT the trees. It is to reproduce the owner's frame and see them in it.** Until a
+harness stands at that pose and photographs the trees over the water, nothing measured about timber
+means anything, and any further fix is aimed at a target nobody has sighted.
+
+**Do this in order and do not skip to the third:**
+
+1. **Stand where the owner stood** — south bank of the main stem, 4 ft eye height, bearing 076°.
+   Screenshot it. **If the trees are not in your frame, your pose is wrong, not his screenshot.**
+2. **Make the gate FAIL on the current build.** #196's assertion passes today with the defect on
+   screen, so it is measuring something else — find out what, and say so, before changing it. A
+   check that passed through this bug is evidence about the check.
+3. **Only then** work out why the crowns are over water, and fix it.
+
+**One reading of #196 worth testing first, because it is cheap.** #196 changed `trees.js` and the
+tools — **it changed no data.** Its own account says the South Water timber belt is *written*
+between the two banks, every point over the channel, the worst 3.33 m under the surface. If the
+committed line still runs across the river and the fix only taught the renderer to cull crowns over
+water, then the cull is either not reaching this band, not reaching this viewpoint, or being applied
+in a space where the water test does not answer — the ENU-vs-world swap and the single `y = 0`
+water quad are both still live candidates from R-BUG5. **Fixing the record so the belt runs beside
+the street it is named after may be the honest repair, not culling the symptom.**
+
+**Acceptance, and it is stricter than #196's because #196 met its own and shipped a defect:**
+a screenshot from the owner's pose with no crown over water, posted in the PR **beside the "before"
+from the same pose**; the gate demonstrated FAILING on `dev` as it stands today and passing after;
+and the What's-New entry does not say "fixed" unless that pair of screenshots is in the PR.
+
 
 ### R-BUG5 — trees stand in the river · **DONE 2026-08-16 · it was the SKYLINE, not the planter**
 
