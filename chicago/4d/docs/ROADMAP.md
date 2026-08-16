@@ -122,6 +122,7 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
+| — | RENDERING | **K46** | **SEEN** | **unranked, opened 2026-08-16 by K45(b1) — rank it against the five above rather than taking it as an eleventh.** The hand-written weight in each species mix is a fallback and loses to the record's: **17 of 26 entries place stems at a different number from the one written**, the elm at 25 where its two communities say 60 and 12, the maple at 25 at a water's edge the file cuts it to 8 for. Deciding which wins changes the species composition of most of the timber in the scene. **No bake**; carries the full smoke and the critic shots |
 
 **If you are about to claim an UNSEEN parcel, stop and read the rule.** It needs one of three
 written exemptions: an owner-reported bug, the second half of a measure-then-fix split, or a gate
@@ -2730,6 +2731,13 @@ has to `--update` in the commit that makes it. `docs/LIBERTIES.md` **L114** is t
 See K45(b1) below before writing any mix entry. Changes one and two stand exactly as written.
 
 ### K45(b1) — the sycamore, and the weight beside it that nothing uses · **DONE 2026-08-16 — 17 of the 26 mix entries are written to one number and plant stems at another**
+
+**SEEN, weakly, and the honest sentence is in the changelog rather than hidden here:** a handful of
+stems along the river are now a different species, at their own recorded height, crown and foliage
+colour — so a screenshot from the same spot differs — but **finding 3 below is that they cannot be
+identified as sycamores**, because the archetype they borrow is the elm's. It also holds
+AGENTS.md's exemption 2 outright: K45(a) was the measurement half of this split and this is the
+fix half.
 
 **Read this box before quoting any mix weight.** K45(b)'s separable third change was *"one mix
 entry — `['platanus_occidentalis', 1]` … weighted at the [1, 3]/ha its own record carries"*, and
