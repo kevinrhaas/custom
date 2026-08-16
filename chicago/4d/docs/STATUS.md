@@ -1,5 +1,55 @@
 # STATUS
 
+## Fixed 2026-08-16 — the sycamore is planted, and the weight written beside every species in the tree mixes is not the weight that plants it
+
+**K45(b1)**, the separable third of K45(b). `['platanus_occidentalis', 2]` is in the gallery mix,
+so `tools/measure_planting_reach.py`'s routed-archetyped-and-selected-by-nothing bank is **0 of
+20** where it was 1, and the floodplain wood holds the ten species its own record holds. The
+American sycamore — *"rare, at its northern edge; white mottled bark flashing on the upper limbs"*
+— is in the frame for the first time, at a little under 2 % of that community's stems.
+
+**The prescribed weight was wrong twice, and the second one is the finding.** K45(b) and
+`docs/LIBERTIES.md` L114 both wrote the entry out as `['platanus_occidentalis', 1]`. **1 is the
+bottom of the recorded [1, 3] band and the file's rule is its midpoint** — 18 of the 25 standing
+entries sit exactly on their band's midpoint or its floor — so the number is **2**. And it would
+not have mattered what was written, because **the literal beside a species id is a fallback**:
+`mixes` is rebuilt at load as `records.density[id] ?? fallback`, and `records.density` is the
+midpoint of the band in the FIRST `TIMBER_ZONES` entry naming the species. **17 of the 26 entries
+are written to one number and place stems at another.**
+
+**Three of the seventeen would be read as an error from the frame.** `ulmus_americana` is written
+**60** in the swamp thicket and **12** in the mesic pocket — two different readings of the dossier
+— and is planted at **25** in both, z05's band being the first one the loader meets.
+`acer_saccharinum` is cut to **8** at the water's edge, where the file says in as many words that
+the mix *"goes to willow"*, and is planted there at **25**: nearly a third of the edge instead of
+a ninth of it. All five species written into more than one list take z05's band everywhere — the
+first-zone-wins rule K45(a) found deciding the spec, one field along.
+
+**Nothing was corrected, deliberately.** Which number ought to win is a claim about the ecology,
+and answering it moves stems in three of the four communities at once. That is **K46**, with the
+three routes written out and the frame it has to prove itself in. What changed today is that the
+divergence is banked in pairs — literal, running, and the zone the running one came from, exact
+both ways — and the derivation is scanned out of the renderer, so a `trees.js` that stops
+overriding the literal **raises** rather than comparing a number with itself. A mix entry weighted
+**0** now fails too: it would look planted, be unpickable, and be invisible to the assertion that
+counts species no mix holds.
+
+**And the sycamore is drawn as an elm from the bark outwards.** It is the **only** placed species
+with no `SPECIES` archetype of its own, so `SPECIES[sp.id] ?? SPECIES.ulmus_americana` gives it
+the elm's bole, taper, puff count and **bark colour** while its height, crown and foliage come
+from its record. The one thing that record singles the species out for is *"white mottled bark
+flashing on the upper limbs"* — so the tree is in the scene and cannot be identified in it. No
+flora record carries a bark colour at all, so a hex would have been a conspicuous invention on
+nobody's authority. Recorded as `docs/LIBERTIES.md` **L116** and banked exactly, both ways: a
+second species falling into the same hole fails the gate, and giving the sycamore its own
+archetype has to un-bank it in the same commit.
+
+**What is unverified, stated plainly.** `tools/check.sh` is green and `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` is green; **the desktop half was not run** — ~13 minutes
+against this runner's 10-minute per-command ceiling. The sycamore has not been looked at in a
+rendered frame: it is under 2 % of one community's stems and no station was chosen to stand near
+one.
+
 ## Fixed 2026-08-16 — the basswood is in flower, and the repair prescribed for it draws four pixels
 
 **K45(c)**, and it is the second of L113's three repairs. `trees.js` has a head path now: the

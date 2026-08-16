@@ -371,6 +371,19 @@ const SPECIES = {
  * Weights are the dossier's per-species densities; `perHa` is the STAND density
  * the dossier gives for the community as a whole, which is the number that
  * governs — the per-species figures are microsite densities and sum higher.
+ *
+ * READ THE NEXT SENTENCE BEFORE QUOTING A WEIGHT BELOW. Every one of these
+ * weights is a FALLBACK. `mixes` is rebuilt at load as
+ * `records.density[id] ?? fallback`, and `records.density` is the midpoint of
+ * the band in the FIRST `TIMBER_ZONES` entry that names the species — one
+ * figure per species for the whole town, whichever community is asking. So the
+ * per-community weighting written here does not survive: `ulmus_americana` is
+ * written 60 in the swamp thicket and 12 in the mesic pocket and runs at
+ * z05's 25 in both, and the silver maple this file cuts to 8 at the water's
+ * edge runs there at 25. Seventeen of the twenty-six entries below are written
+ * to one number and placed at another; `tools/measure_planting_reach.py` banks
+ * the pair for every entry, and ROADMAP **K46** is the parcel that decides
+ * which of the two should win.
  */
 const COMMUNITIES = {
   gallery: {
@@ -381,6 +394,11 @@ const COMMUNITIES = {
       ['populus_deltoides', 14], ['acer_saccharinum', 25], ['ulmus_americana', 25],
       ['fraxinus_pennsylvanica', 22], ['quercus_bicolor', 10], ['celtis_occidentalis', 8],
       ['juglans_nigra', 2], ['salix_amygdaloides', 8],
+      // ROADMAP K45(b1). The American sycamore, at the midpoint of the [1, 3]
+      // its own z05 record carries — which is also the number that runs, so
+      // this literal and `records.density` agree. K45(b) prescribed a 1: the
+      // bottom of the band, and a figure nothing would have used.
+      ['platanus_occidentalis', 2],
     ],
     /** At the water's edge the mix goes to willow, per the ZONE 5 densities. */
     edgeMix: [['salix_nigra', 42], ['salix_amygdaloides', 17], ['acer_saccharinum', 8]],

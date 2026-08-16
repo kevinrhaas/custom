@@ -3774,6 +3774,20 @@ neither can grow quietly and a repair has to un-bank itself in the commit that m
 
 **Recorded:** 2026-08-16.
 
+**PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(b1)) — the sycamore is in the gallery, and the
+sentence above about how to weight it was the only part of this entry that needed correcting.**
+`['platanus_occidentalis', 2]` is in `COMMUNITIES.gallery.mix`, so the routed-archetyped-and-
+selected-by-nothing population is **0 of 20** where it was 1, and the floodplain wood holds the
+ten species its own record holds. *"Weighted at the density its own record carries"* is right and
+K45(b)'s own worked line — `['platanus_occidentalis', 1]` — is not: 1 is the bottom of the
+recorded `[1, 3]` band and **2** is its midpoint, which is the figure `trees.js` would have used
+whatever was written, because **the literal beside a species id is a fallback**. `mixes` is
+rebuilt at load as `records.density[id] ?? fallback` and `records.density` is the band's midpoint
+from the first `TIMBER_ZONES` entry naming the species. **Seventeen of the twenty-six mix entries
+are written to one number and place stems at another**; all twenty-six are banked in pairs now,
+and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about
+this entry. Half two of this entry — the **87.9 ha** — is untouched and stands.
+
 
 ## Resolved
 
@@ -4111,4 +4125,44 @@ governs how many inflorescences appear on a `role: tree` record drawn by
 live in any single attribute — no record's confidence changes and no attribute is graded by it.
 Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the
 omission this resolves half of.
+**Recorded:** 2026-08-16.
+
+
+### L116 — The American sycamore is drawn as an American elm from the bark outwards
+
+**Decision:** the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with
+**`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band,
+its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and
+its confidence come from its own record, as they do for every species. It is the only placed
+species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks
+that fact by name, exactly, in both directions.
+
+**What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber`
+singles the species out for is its bark: *"Rare, at its northern edge; **white mottled bark
+flashing on the upper limbs**."* That sentence is the reason a sycamore is identifiable at 200 m
+in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor
+looking for a sycamore cannot find one by looking.
+
+**Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per
+species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind
+these records are a presettlement land survey and a regional vegetation reconstruction, and
+neither states a colour. Choosing a hex for "white mottled" is a straightforward invention, and it
+is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor
+noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry
+would put a highly visible guess into the frame on the authority of nobody. The substitution is
+recorded here instead, where it can be read.
+
+**Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record
+places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only
+its trunk is another species'. That is an omission plus a substitution, not an overstatement: no
+attribute is graded higher than its evidence and nothing in `data/` moved.
+
+**How to resolve:** a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either
+sourced or recorded here as invented in its own right; the mottling itself would need a second
+material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are
+in the same queue for the same reason. When it lands, the entry has to leave
+`drawn_as_another_species` with `--update` in the same commit.
+
+Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
+drawing convention in the same layer.
 **Recorded:** 2026-08-16.
