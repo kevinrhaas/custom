@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 150, title: 'The river’s edge holds still when you fly over it', kind: 'fix', ts: '2026-08-16T22:51:51.744Z', date: 'Aug 16, 2026, 5:51 PM CT',
+    items: [
+      'Fly out over the main stem and watch the bank as you drift: the shimmering line where the water meets the land is gone. It was reported by the owner, who described it exactly — the edges flicker, and only when flying.',
+      'The waterline in this scene is not drawn as a line. The river is a flat surface at the 1835 water level and the bank is wherever the ground rises through it, which is what keeps the edge you see honest — it cannot drift away from the surveyed river, because it IS the surveyed river. The cost of that design is that two surfaces meet exactly at the edge, and something has to decide which of them you are looking at.',
+      'That decision is made with a number whose precision runs out with distance, and how fast it runs out depends on how close the nearest thing the camera can see is allowed to be. It was fixed at ten centimetres — right for walking, and at three hundred metres up it left the two surfaces ten centimetres apart before the scene could tell them apart. Inside that band the winner was decided by rounding, and the smallest movement of your head re-rolled it.',
+      'So the nearest visible distance now opens as you climb and closes as you land. Walking is untouched to the digit. Nothing about the river, the ground or the water level moved — the edge is in exactly the same place, it is simply drawn by a scene that can now tell which surface is in front.',
+      'Measured rather than admired: move the camera two millimetres — five hundred times smaller than a pixel, so nothing can honestly change — and photograph the same view twice. Descending toward the forks, 15.6 % of the drawn bank changed between those two frames before, and 3.3 % after. A check that does this now refuses to pass.',
+      'One honest leftover: roofs, walls and tree canopies still speckle under the same test, on a cause this piece did not chase and did not guess at. It is written up and queued, and the first thing it has to do is prove its own instrument — the one used here to test a suspect turned out to change nothing at all, which is banked with it.',
+    ] },
   { v: 149, title: 'The sward is dealt by the plant, not by the patch', kind: 'fix', ts: '2026-08-16T22:10:33.155Z', date: 'Aug 16, 2026, 5:10 PM CT',
     items: [
       'Walk into any of the plant communities and what is standing in them has changed. Yesterday’s piece measured this and deliberately did not ship it; this is the shipping.',

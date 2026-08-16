@@ -59,6 +59,38 @@ const DETAIL = {
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
 
+/**
+ * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
+ *
+ * The owner reported the river's edge flickering when flying, and it is the
+ * depth buffer running out of numbers. A perspective depth buffer spends its
+ * precision near the camera: the smallest depth difference it can tell apart at
+ * a distance z is about z² / (near · 2^bits). At the fixed 0.1 m near this
+ * camera used to carry, two surfaces 350 m away had to be **10 cm** apart in
+ * depth before the buffer could say which was in front — and the river's edge
+ * is the one place in this scene where two surfaces are exactly co-planar by
+ * design (`terrain.js`: the bank line IS where the ground crosses y = 0, so the
+ * waterline can never drift out of step with the traced river). Inside that
+ * band the winner is decided by rounding, and a camera that moves two
+ * millimetres re-rolls it. That is the shimmer.
+ *
+ * Moving the near plane out with altitude fixes the CAUSE rather than picking a
+ * winner. The alternative — a `polygonOffset` on the water — would settle the
+ * tie by biasing the water toward the camera, and at 350 m one depth step is
+ * ~10 cm of ground: the drawn waterline would climb the bank by up to that
+ * much, which breaks the invariant the design exists to guarantee. Precision
+ * costs nothing and moves no edge.
+ *
+ * `min` is the walking value and is unchanged: `altitude` is the eye's height
+ * above the ground under it and is 0 on foot, so a walker gets exactly the
+ * camera they had before. `divisor` keeps the near plane at a twenty-fifth of
+ * the way to the ground — two orders inside anything the visitor could fly
+ * close to — and `max` caps it so that a low pass beside a building cannot clip
+ * its wall. `step` quantises the value so the projection matrix is rebuilt on a
+ * change worth having rather than every frame.
+ */
+const NEAR = { min: 0.1, max: 8, divisor: 25, step: 0.05 };
+
 /** The visitor's stored choice, read straight from the HUD's own settings blob so
  *  the two cannot disagree about which level is selected. Returns '' when they
  *  have never chosen, which is what lets the device guess stand. */
@@ -139,7 +171,7 @@ async function boot() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
 
   const scene3d = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 3000);
+  const camera = new THREE.PerspectiveCamera(62, 1, NEAR.min, 3000);
 
   progress(8, 'Reading the scene…');
   const loaded = await loadScene(YEAR, bases);
@@ -563,6 +595,23 @@ async function boot() {
    */
   let animationHold = false;
 
+  /**
+   * Hold the near plane at a twenty-fifth of the eye's height above the ground,
+   * quantised, between `NEAR.min` and `NEAR.max`. See the NEAR block at the top
+   * of this file for why the depth buffer needs it and why the water material
+   * must not be biased instead. Returns the value in force, for the harness.
+   */
+  function setNearFor(altitude) {
+    const wanted = THREE.MathUtils.clamp(
+      Math.round(((altitude || 0) / NEAR.divisor) / NEAR.step) * NEAR.step,
+      NEAR.min, NEAR.max);
+    if (Math.abs(camera.near - wanted) > 1e-6) {
+      camera.near = wanted;
+      camera.updateProjectionMatrix();
+    }
+    return camera.near;
+  }
+
   function tick() {
     // Keep visual simulation stable, but do not make a visitor crawl in direct
     // proportion to a slow renderer. At 2 fps the former 0.05 s clamp advanced
@@ -581,6 +630,9 @@ async function boot() {
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
+    // Before the render, after the walker: the near plane is a function of where
+    // the eye ended up this frame (R-BUG1, and the NEAR block above).
+    setNearFor(walker.state.altitude);
     world.follow(camera.position);
     flora.update(dt, camera);
     trees.update(dt, camera);
@@ -673,6 +725,9 @@ async function boot() {
         structures: loaded.registry.size,
         bytes: loaded.bytes,
         fps: Math.round(fps),
+        // R-BUG1: the near plane is no longer a constant, so a harness asking
+        // why an edge is or is not stable can read the number that decides it.
+        cameraNear: camera.near,
         budget: BUDGET,
         withinBudget: info.render.calls <= BUDGET.drawCalls
           && info.render.triangles <= BUDGET.triangles,

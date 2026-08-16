@@ -1,5 +1,72 @@
 # STATUS
 
+## Measured 2026-08-16 — the river's edge stops flickering, and it was the camera rather than the water
+
+**ROADMAP R-BUG1**, owner-reported on 2026-08-14 and open since: fly over the river and its edges
+shimmer. It is the depth buffer running out of numbers, and the cause is a camera setting that had
+nothing to do with the water at all.
+
+### What it was
+
+`main.js` carried a **fixed 0.1 m near plane** against a 3,000 m far plane. A perspective depth
+buffer resolves about `z² / (near · 2^bits)` at distance `z`, so at that near, two surfaces **350 m
+away had to be ~10 cm apart in depth** before the buffer could say which was in front. The
+waterline is the one place in this scene where two surfaces are **co-planar by design** —
+`terrain.js` draws no shoreline geometry, because the bank line IS where the ground crosses
+`y = 0`, which is what keeps the drawn edge from drifting out of step with the traced river. Inside
+that 10 cm band the winner was decided by rounding, and any camera movement re-rolled it.
+
+### The instrument: move the camera two millimetres
+
+`tools/measure_river_edge.mjs` stands at three aerial poses along the owner's own reproduction
+("fly to `from_above`, then descend toward the forks"), photographs each, nudges the camera 2 mm —
+about a five-hundredth of a pixel at these ranges, so no edge can honestly move — and photographs
+it again. The clock is held and the HUD hidden. **The same pose photographed twice with no nudge
+differs by 0 pixels at every station**, which is the control that makes the rest mean anything: a
+pixel that changes under the nudge changed because a depth tie resolved the other way.
+
+| station | altitude | bank line, px | bank flicker, before | after |
+|---|---|---|---|---|
+| `from_above` | 175 m | 21,457 | 672 · **3.1 %** | 583 · **2.7 %** |
+| `descend_main_stem` | 90 m | 16,994 | 2,648 · **15.6 %** | 560 · **3.3 %** |
+| `over_the_forks` | 45 m | 19,794 | 1,469 · **7.4 %** | 471 · **2.4 %** |
+
+Published mirror, 1280×800. `--gate` fails above **5 % of the bank line**: red at two of three
+stations before, green at all three after. The share is gated rather than the count, because a
+count is a number about the pose.
+
+### The fix is precision, and it moves no edge
+
+The near plane now opens with altitude — a twenty-fifth of the eye's height above the ground,
+quantised, clamped to 0.1–8 m. On foot `altitude` is 0, so **a walker's camera is unchanged to the
+digit**, which two new structural assertions in `tools/smoke_renderer.mjs` hold. The obvious
+alternative, a `polygonOffset` on the water material, was rejected against this parcel's own
+acceptance: it settles the tie by biasing the water toward the camera, and at 350 m one depth step
+is ~10 cm of ground, so the drawn waterline would climb the bank by up to that much. That is the
+invariant the design exists to guarantee. Precision costs nothing; a bias buys the same picture by
+lying about where the river is.
+
+### Most of what flickers is not the bank, and its suspect is UNTESTED rather than refuted
+
+Whole-frame changed pixels under the same nudge: 1,690 / 5,901 / 3,886 before, 1,568 / 1,883 /
+1,173 after. The continuous line along the bank is gone; what remains is **speckle on roofs, walls
+and canopies**, a second population with a different cause, opened as **R-BUG6**. The residual
+2.4–3.3 % at the bank is that same speckle falling within two pixels of a waterline, which is why
+the gate is not tighter.
+
+**And the flag written to test the obvious suspect changes nothing.** `--no-sun-shadow` drops
+`sun.castShadow` after boot to ask whether the shadow map's texel grid is the cause. It reported
+the numbers unchanged to the pixel — which reads as a refutation and is not one: its own control
+(put the shadow back, photograph again) changes **0 pixels**, so the flag never reaches the render.
+It now exits 2 on that control. *A diagnostic that changes nothing reports "not the cause" for the
+same reason a broken thermometer reports a steady temperature.*
+
+### Not claimed
+
+The desktop half of `tools/smoke_renderer.mjs` — ~13 minutes against this runner's 10-minute
+per-command ceiling. The mobile half was run and the measurement above is desktop-sized, which is
+the harder viewport for this defect: more pixels of bank line to disagree about.
+
 ## Measured 2026-08-16 — the sward is dealt on plants per m², and the route written off as hopeless is the one that reached the gate
 
 **ROADMAP K49(c2)**, the fix half of K49(c1)'s split, and a **SEEN** parcel: what is standing in
@@ -3699,7 +3766,9 @@ Two defects are recorded rather than fixed, both pinned by gates so they cannot 
 **79 of 742,581 terrain vertices face downward** (0.011 %, isolated, no visible artefact —
 ROADMAP T-BUG2, distinct from the black wedge that was fixed today), and **the river edge
 flickers when flying** (ROADMAP R-BUG1, almost certainly depth-buffer fighting between the
-water plane and the ground crossing it, owned by the R-W5 parcel).
+water plane and the ground crossing it, owned by the R-W5 parcel). *R-BUG1 was closed
+2026-08-16 — the guess in that sentence was right about the fight and wrong about the owner:
+it was the camera's near plane, not the water material. See the top of this file.*
 
 ## The second block repeated the shape, and refused one of its roofs
 

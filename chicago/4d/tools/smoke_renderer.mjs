@@ -4277,6 +4277,39 @@ const terrainLoad = await page.evaluate(() => {
       aboveShot.mean > 12 && aboveShot.litFraction > 0.5,
       `mean luminance ${aboveShot.mean?.toFixed(1)}`);
 
+    // R-BUG1 — the near plane opens with altitude, and closes again on foot.
+    // The owner's flickering river edge is the depth buffer running out of
+    // numbers at range, and precision at range is bought with the near plane:
+    // at the fixed 0.1 m this camera used to carry, two surfaces 350 m away had
+    // to be 10 cm apart before the buffer could order them, and the waterline is
+    // co-planar with the ground BY DESIGN. The pixel-level gate is
+    // `tools/measure_river_edge.mjs --gate` (it costs three frames a station and
+    // does not belong in a suite this size); this pins the mechanism that gate
+    // depends on, in the run that happens every merge. It is structural, not a
+    // threshold: a walker's camera must not change, and an aerial one must.
+    const nearPlane = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      await a.capture(4);
+      const flying = { near: a.stats().cameraNear, alt: a.player.altitude };
+      a.goTo('sauganash');
+      await new Promise((r) => setTimeout(r, 400));
+      await a.capture(4);
+      const walking = { near: a.stats().cameraNear, alt: a.player.altitude };
+      // Put the visitor back in the air. The free-fly tests below inherit this
+      // state — `teleport` with an `altitude_m` lands a GROUNDED walker straight
+      // back down, so a check that leaves the scene on foot fails the next one.
+      a.goTo('from_above');
+      await new Promise((r) => setTimeout(r, 400));
+      await a.capture(4);
+      return { flying, walking };
+    });
+    check(`${label}: the near plane opens with altitude`,
+      nearPlane.flying.near >= 1 && nearPlane.flying.near <= 8,
+      `near ${nearPlane.flying.near} m at ${nearPlane.flying.alt?.toFixed(0)} m up`);
+    check(`${label}: on foot the near plane is the walking value`,
+      Math.abs(nearPlane.walking.near - 0.1) < 1e-6,
+      `near ${nearPlane.walking.near} m at ${nearPlane.walking.alt?.toFixed(2)} m up`);
+
 
 
     // Terrain is a floor even in free-fly. Driven by pushing the eye under the
