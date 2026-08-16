@@ -46,6 +46,15 @@ was a regularity 18 of 25 entries happened to follow, and 14 is inside z06's `[1
 deciding: with the record a constraint rather than a source the question is not *which band* but
 *is the weight admissible in one of them*, and all four oak weights are.
 
+**The frame was measured before and after on the same three stations**, and the control is the
+finding: `prairie_west` — the ground Andreas calls *"an open prairie, entirely free from timber"* —
+does not move (high-pass RMS far 20.79 → 20.78, near 19.61 → 19.61), while `river_bank`, standing
+in the community that changed most, moves hardest and in the direction the weights predict (far
+21.85 → 6.74, near 5.98 → 16.64). `CRITIC SHOTS OK` before and after, and the after-set reproduced
+across two processes, so the deltas are the change rather than the rasteriser. One swing is left
+unexplained and is recorded in the ROADMAP box rather than buried: `prairie_west`'s horizon-timber
+fraction falls 0.7026 → 0.5308 on desktop while barely moving on mobile.
+
 **Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
 run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the
 mobile smoke against the published mirror, the gate's own self-test and the critic shots are the

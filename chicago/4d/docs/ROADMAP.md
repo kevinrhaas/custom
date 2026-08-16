@@ -2882,6 +2882,36 @@ are not theoretical. The renderer's own rule is scanned four ways — a loader t
 `records.density[id] ?? fallback`, that collapses the per-zone band, that stops comparing, or that
 stops reading `departures` all RAISE.
 
+**THE FRAME, MEASURED BEFORE AND AFTER ON THE SAME THREE STATIONS** (`critic_shots.mjs
+--metrics --stations river_bank,prairie_south,prairie_west`, source tree, desktop / mobile).
+`CRITIC SHOTS OK` both times — no budget breached — and the **after-set was run twice in separate
+processes and reproduced to every decimal below**, so these deltas are the change and not the
+rasteriser's last bit:
+
+| metric | station | before | after |
+|---|---|---|---|
+| high-pass RMS far | `river_bank` | 21.85 / 13.24 | **6.74 / 5.56** |
+| high-pass RMS near | `river_bank` | 5.98 / 29.86 | **16.64 / 29.11** |
+| crown fine-detail ratio | `river_bank` | 0.817 / 0.747 | 0.889 / 0.814 |
+| horizon TIMBER (all) | `river_bank` | 0.7128 / 0.6485 | 0.7077 / 0.6685 |
+| high-pass RMS far | `prairie_west` | 20.79 / 14.45 | **20.78 / 14.57** |
+| high-pass RMS near | `prairie_west` | 19.61 / 27.80 | **19.61 / 27.73** |
+| horizon TIMBER (all) | `prairie_west` | 0.7026 / 0.8719 | 0.5308 / 0.8625 |
+| horizon TIMBER (all) | `prairie_south` | 0.3359 / 0.2727 | 0.3282 / 0.2250 |
+
+**The control is the finding.** `prairie_west` is the station Andreas calls *"an open prairie,
+entirely free from timber"*, and its texture metrics do not move — 20.79 → 20.78 far, 19.61 →
+19.61 near. `river_bank` stands in the gallery, the community that changed most, and it moves
+hardest and in the direction the weights predict: far-field detail falls by two thirds as the
+interior loses peachleaf-willow share to elm and maple, and near-field detail more than doubles as
+the water's edge goes to black willow at the camera. A frame-wide ecological change that left the
+open-prairie control still is the evidence that it changed the timber and nothing else.
+
+**One swing not chased, and it is stated rather than buried:** `prairie_west`'s horizon-timber
+fraction falls 0.7026 → 0.5308 on desktop while barely moving on mobile (0.8719 → 0.8625). A
+one-viewport swing of that size on a metric **R-W4a owns** deserves its own look; this parcel did
+not take it, and no gate reads that figure today.
+
 **Verified:** `tools/check.sh` green; `python3 tools/measure_planting_reach.py --self-test` PASS
 (all 15 fire cases fire, all 27 scanner checks ok); `SMOKE_VIEWPORT=mobile node
 tools/smoke_renderer.mjs --published` green; critic shots re-measured. The desktop half was not run
