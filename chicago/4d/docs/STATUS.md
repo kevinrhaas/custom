@@ -1,5 +1,65 @@
 # STATUS
 
+## New 2026-08-16 — the town on the site has 75 textures, and the repository has none
+
+**K36(a).** The geometry a visitor downloads reaches them along four links —
+`data/` → `assets/gltf/` (the masters) → `assets/web/` (the shipped derivatives) →
+`site/chicago/4d/` (the published mirror). Link 1 is gated by the staleness check, link 3 by
+`check_published.mjs`, and **link 2 was gated by nothing at all**: no hash, no count, no
+assertion tied a shipped derivative to the master it was compressed from. It is also the link
+with the moving parts — two `gltf-transform` passes — and `tools/bake.sh`'s own comments record
+what has already come out of them: *"a bug that collapsed every building to a two-metre box
+shipped past a fully green gate — twice"*, and a `--texture-compress ktx2` flag that *"silently
+turned every derivative into an uncompressed copy of its master, in every environment, since
+this step was written"*. Both were found by a person reading the script.
+
+**FINDING 1 — the shipped town is textured and the baked town is not.** `optimize`'s palette
+pass folds the named materials of **38 of the 334 assets** into a single `PaletteMaterial001`
+carrying generated PNGs: **75 textures exist on the site that exist in no master**, and the
+names they replace — `log`, `chinking`, `board`, `roof`, `dark`, `interior` — are gone from the
+file a browser loads. Among them the Sauganash Hotel, the Wolf Point Tavern and its stable, the
+log jail, the estray pen, Cobweb Castle, the council house and eleven `recon_*` reconstructions.
+
+**The split is a COUNT, and it is exact.** Every asset whose master carries **five or six**
+materials is faulted — 31 of them `log_dwelling`, 6 `outbuilding`, 1 `frame_tavern` — and every
+asset carrying **four or fewer** is clean, all 296 of them, with no exception in either
+direction. That is the palette pass's own threshold rather than anything about logs (the tool
+names its output `PaletteMaterial001` and its documented minimum is five materials). So **the
+fault grows with the town on a boundary 275 assets are sitting exactly one material short of**:
+an archetype that gains a fifth surface — which is precisely what R-W2b is for — moves every
+asset it paints across the line. The ratchet is what makes that arrival loud.
+
+**FINDING 2 — R-W2a's material sheet is a sheet of the masters, and it says so in the wrong
+words.** `docs/RESEARCH/materials.md` opens by reasoning that *"the source and the shipped bytes
+have disagreed in this project before … a sheet that inventories intentions is worth nothing to
+a bake"*, and then measures `assets/gltf/**/*.glb` under the heading *"the surface census,
+measured from the shipped GLBs"*. Those are the masters. Its **"nothing in the town carries a
+texture of any kind"** is true of what this repository bakes and false of what the site serves,
+and **R-W2b — the next pick in that lane — plans to wire an atlas onto the material names that
+the publish path deletes on 38 assets.** The sheet is corrected in place; none of its five
+findings moves.
+
+**FINDING 3 — 90 assets ship uncompressed and nothing says so.** They are exactly the 90
+pure-Python placeholder GLBs, which `generators/inferred_placeholder.py` writes byte-identically
+into both trees; the 244 Blender-baked assets compress 5.29×. It is 508 KB, 11.4 % of the
+payload, and not a problem today — the point is that the bake reports a fallback copy as a
+warning line in a log nobody reads, and the only committed instrument that could notice is a
+25 MB total-size budget the tree is nowhere near.
+
+**WHAT DOES NOT MOVE, MEASURED.** Triangle counts are identical on all 334 pairs, so
+`--simplify false` has held; node names, `structure_id`/`phase_id` extras and mesh names all
+survive; `_CONFIDENCE` — how a visitor is told which parts we made up — reaches the site on
+every asset that carries it. The world bounding box agrees to at worst **2.63 rungs** of an
+asset's own extent (0.107 mm on a 2.7 m shed), and the terrain's 82.8 mm is **1.08 rungs** of
+its 5,020 m box, consistent with the 76.6 mm lattice R-W6 committed.
+
+**The gate is `tools/measure_web_derivatives.py --gate`, in `check.sh`, at 0.2 s and with no
+decoder** — every claim above is answerable from the glTF JSON chunk. Five absolute assertions
+(bijection, triangles, identity, contract attributes, bounding box) and one ratchet
+(`tools/web_derivative_baseline.json`, the 38). All eight failure modes were broken deliberately
+in `--self-test` and each fires. **The repair is K36(b)** — it regenerates 334 binary files, so
+it is a separate parcel and it does not need Blender.
+
 ## New 2026-08-16 — the constraint this project puts above the work was kept by the buildings and not by the people
 
 **K34.** AGENTS.md's standing constraint is the one sentence in this repository that outranks

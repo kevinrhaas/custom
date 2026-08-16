@@ -217,6 +217,19 @@ step "the ground mesh still meets the heightfield the walker samples" \
 step "changelog contract" \
   node tools/check-changelog.mjs
 
+# The link between the two: the shipped derivative against the master it was
+# compressed from. `--stale` gates data -> master and check_published.mjs gates
+# assets/web -> the mirror, and NOTHING gated the step in between, which is the one
+# with the moving parts — two gltf-transform passes whose own comments in bake.sh
+# record a bug that "collapsed every building to a two-metre box shipped past a fully
+# green gate — twice" (ROADMAP K36). Triangles, node identity, the contract's
+# attributes and the world bounding box are all answerable from the glTF JSON chunk,
+# so this costs a second and no decoder. The material half is a ratchet: 38 assets
+# reach the site with one PaletteMaterial where the master has five or six named
+# ones, and K36(b) owns that repair.
+step "the shipped derivative still describes the master's building" \
+  python3 tools/measure_web_derivatives.py --gate --quiet
+
 # Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
 # three parcels because the ground a browser loads was quantised by a publish
 # step AFTER the only gate that measured it, and every gate passed because every

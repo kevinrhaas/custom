@@ -27,6 +27,21 @@ in the town carries a texture of any kind (§1 item 9). Two independent generato
 the nine Blender **archetypes** (244 assets) and the pure-Python **inferred placeholder**
 (90 assets), and their palettes were written separately and have never been reconciled.
 
+**CORRECTION 2026-08-16 (K36(a)) — this sheet measures `assets/gltf/`, which is what this
+project BAKES, and the site serves `assets/web/`, which is not the same file.** The sentence
+above — *nothing in the town carries a texture of any kind* — is true of the masters and **false
+of what a browser downloads**: `gltf-transform optimize`'s palette pass folds the named materials
+of **38 of the 334 assets** into a single `PaletteMaterial001` carrying **75 generated PNGs that
+exist in no master**, and deletes their material names on the way. The split is exactly at the
+count: every asset with five or six materials is affected, every asset with four or fewer is
+not, and **275 assets sit one material short of the threshold**. §1 and §2 below are unchanged
+and correct **about the generators' output**, which is what an atlas is authored against — but a
+sheet whose own preamble warns that *"the source and the shipped bytes have disagreed in this
+project before"* should say which of the two it counted, so: the masters. **R-W2b must read
+ROADMAP K36(a) before wiring anything to a material NAME**, because on those 38 assets the name
+is not what ships. K36(b) owns the repair, and `tools/measure_web_derivatives.py` is the gate
+that will now say so out loud.
+
 **The five findings are worth more than the sheet.** They are in §4, and two of them —
 **the chimney is not a material in this project**, and **no record anywhere states a roof
 covering** — are the reason the town's roofs and stacks cannot be textured today even with a
@@ -35,7 +50,7 @@ document.
 
 ---
 
-## 1. The surface census, measured from the shipped GLBs
+## 1. The surface census, measured from the baked masters (`assets/gltf/`)
 
 Counts are material slots, across all 334 assets. Base colours are the `baseColorFactor`
 actually in the file. Every material in the town is `metallicFactor: 0`, unlit by any map,
