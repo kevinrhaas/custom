@@ -642,18 +642,19 @@ export async function createFlora({
     // NEAR: individual tufts, dense enough to close the ground.
     nearSet.ring(near.fade);
     scatter(camE, camN, tune.near.cell, tune.near.perCell,
-      near.lattice.outer, near.lattice.inner, 0x51ed27, cone,
-      (e, n, r, rng) => {
+      near.lattice.outer, near.lattice.inner, 0x51ed27, 'strata', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // The community's own recorded matrix cover decides whether this slot
         // carries a plant — the same rule the forb layer has always applied to
         // its own recorded densities, on the field the matrix layer ignored.
-        // It stays an INDEPENDENT draw, unlike the forb layer's: see `dealt`,
-        // and K49(b) for the two screenshots that decided it.
-        if (rng() > zone.matrixShare) return;
+        // Cover and species come off the slot's ONE stratified draw (K49(d)):
+        // the rank-1 lattice the forb layer uses stripes a dense layer, so this
+        // one is a block permutation instead. See `stratum` and `dealt`.
         const wet = water.isWater(e, n);
-        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
+          zone.matrixShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
@@ -679,20 +680,20 @@ export async function createFlora({
     // lattice grew by `fringe` to carry the ones it pushes IN, and paying for
     // the whole annulus would be paying for the amplitude twice.
     scatter(camE, camN, tune.mid.cell, tune.mid.perCell,
-      mid.lattice.outer, mid.lattice.inner, 0x9e3779, cone,
-      (e, n, r, rng) => {
+      mid.lattice.outer, mid.lattice.inner, 0x9e3779, 'strata', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         const off = fringeOf(e, n, mid.fringe);
         if (r > mid.fade[0] + off + step) return;
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // A clump card stands for the same matrix the near tufts do, so it is
-        // thinned by the same recorded cover — and by the same INDEPENDENT
-        // draw. Applying it to one layer and not the other would put a seam at
-        // the near/mid crossover exactly where the change of representation is
+        // thinned by the same recorded cover — and by the same STRATIFIED draw.
+        // Applying it to one layer and not the other would put a seam at the
+        // near/mid crossover exactly where the change of representation is
         // supposed to be invisible.
-        if (rng() > zone.matrixShare) return;
         const wet = water.isWater(e, n);
-        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
+          zone.matrixShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
@@ -708,7 +709,8 @@ export async function createFlora({
     rosetteSet.reset();
     const f = rings.forb;
     scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
-      f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng, _cellSeed, u) => {
+      f.lattice.outer, f.lattice.inner, 0x2545f9, 'lattice', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         // The forb ring ends within a metre of the mid ring, so the two
         // boundaries land on the same screen row and both have to be ragged or
         // the flowers alone would draw the line the grass no longer does.
@@ -1563,14 +1565,13 @@ function hash3(a, b, c) {
  * α, β, γ are 1/g, 1/g², 1/g³ for the root of g⁴ = g + 1 — the R3 quasirandom
  * generators, chosen for equidistribution rather than for looking irrational.
  *
- * THE MATRIX LAYERS KEEP THEIR INDEPENDENT DRAW, AND A SCREENSHOT IS WHY. Run
+ * THE MATRIX LAYERS DO NOT TAKE THIS LATTICE, AND A SCREENSHOT IS WHY. Run
  * on the near and mid tufts as well, this made the west prairie grow in ROWS:
  * the lattice band that decides whether a slot carries a plant is a family of
  * near-diagonal lines, invisible where two slots in a hundred are planted and
  * unmissable where sixty are. The matrix lists lost no species to the tail — the
  * cost was all visible and the benefit all in a column that already read zero.
- * A stratification that does not stripe a dense layer is K49(d), with both
- * frames in its box.
+ * They are stratified a different way instead — see `stratum`, K49(d).
  */
 const LD_A = 0.8191725133961644;
 const LD_B = 0.6710436067037893;
@@ -1596,6 +1597,133 @@ const LD_BLOCK_SALT = 0x2b1f3d7d;
 
 function frac(x) { return x - Math.floor(x); }
 
+/**
+ * ROADMAP K49(d) — THE DENSE LAYER'S STRATIFICATION, AND WHY IT IS NOT A LATTICE.
+ *
+ * K49(b) left the near and mid tufts on an independent `rng()` because the
+ * rank-1 lattice above ROWS the prairie. That was a veto on the construction,
+ * not on the goal: the matrix lists' worst shortfall was **31.47 slots** — the
+ * mesic prairie deals 793 slots between four grasses and one of them came up
+ * thirty-one short of the cover its own record states — and nothing had reduced
+ * it.
+ *
+ * The striping is not the rare end of the CDF, it is the common one. At
+ * `matrixShare ≈ 0.6` the test `u < share` selects most of a lattice, so the
+ * SELECTED SET inherits the lattice's structure and the field inherits it in
+ * turn. Any construction whose slot-to-`u` map has a direction in it will do
+ * this at that density. So the requirement is a stratification with no direction
+ * to read.
+ *
+ * A keyed pseudorandom BIJECTION over the block's slots is that. Every slot in a
+ * 16×16-cell block is dealt a distinct rank in `[0, n)`, so `u` takes each of the
+ * n equally spaced values exactly once: a CDF band of width w gets its exact
+ * count `round(w·n)` inside the block, not a Poisson draw around it. And because
+ * the map from slot to rank is a hashed permutation rather than an arithmetic
+ * progression, the ranks carry no gradient across the grid — the selected set is
+ * spatially indistinguishable from the independent draw it replaces, which is
+ * exactly what the screenshot in K49(b) demanded and the lattice could not give.
+ *
+ * A four-round Feistel network is the standard form and is used here: it is a
+ * bijection by construction (each round is invertible whatever the round
+ * function does), it needs no table, and it is a pure function of the slot's
+ * world coordinates, so re-centring the lattice puts the same plant back — the
+ * same promise `hash3` makes and K48's account-keeping picker cannot.
+ *
+ * ITS WEAKNESS, STATED RATHER THAN DISCOVERED: exactness over the BLOCK is not
+ * equidistribution over a sub-window, and the census reads zone ∩ ring, which is
+ * one. It bounds the error to what the block boundaries cut, instead of removing
+ * it. The matrix tail is already empty (K49(a) found no absent matrix species),
+ * so the tail is not what this is for — the shortfall is.
+ *
+ * ...and it has a SECOND face that cost two rows of the census. Rank is a
+ * deterministic function of position inside the block, so a filter that runs
+ * AFTER the deal on a spatial rule of its own — `station()` refusing a building
+ * footprint or the far side of a waterline — selects a BIASED set of ranks,
+ * where an independent draw would have been filtered without bias. The two rows
+ * that got worse are the two most heavily filtered, the settled town and the
+ * riverbank. That is the leading explanation and it is not proven; K49(e)
+ * measures it. Do not reach for `stratum` in a heavily filtered layer until it
+ * has.
+ */
+const STRAT_SALT = 0x7f4a7c15;
+/**
+ * ...and the block is FOUR cells square, not the lattice's sixteen, because
+ * K49(b) finding 3's rule — *the block size is set by PLANTED slots, not by
+ * cells* — points the other way for a dense layer. The forb layer plants a few
+ * per cent of what it deals and needed 1,024 slots to resolve a species band;
+ * the matrix layer plants `matrixShare ≈ 0.6` of them, thirty times the rate, so
+ * 64 slots already carry ~38 plants — more than the forb layer's 16×16 block
+ * ever did.
+ *
+ * And the small block is not merely sufficient, it is BETTER, for the reason the
+ * parcel's own weakness names: exactness holds over the block and the census
+ * reads a sub-window, so the error is whatever the window's partial blocks cut.
+ * A near ring is 15.2 m across and a 16-cell block is 11.8 m — the window
+ * contained about ONE whole block, so almost every slot read was in a partial
+ * one. At four cells it is 3.0 m and the same window holds ~20.
+ *
+ * So the rule has a FLOOR and a CEILING, and only the floor was written down.
+ * Measured, all five, on the matrix `deviation` of `tools/measure_sward_draw.mjs`
+ * — never on `worstShortfall`, which is a max of a max and ranks these in a
+ * different order:
+ *
+ * | block | m (near) | slots | matrix deviation |
+ * |---|---|---|---|
+ * | independent draw | — | — | 368.80 |
+ * | 1 cell | 0.74 | 4 | 2,725.88 |
+ * | 2 cells | 1.48 | 16 | 602.95 |
+ * | **4 cells** | **2.96** | **64** | **282.89** |
+ * | 8 cells | 5.92 | 256 | 303.30 |
+ * | 16 cells | 11.84 | 1,024 | 340.47 |
+ *
+ * The floor is not a soft one: at four slots per block `u ∈ {0.125, 0.375,
+ * 0.625, 0.875}`, so at `share ≈ 0.6` exactly two are planted and `u / share`
+ * takes TWO values — the CDF collapses onto two species and the deviation is
+ * seven times the fault being repaired.
+ */
+const STRAT_BLOCK_SHIFT = 2;
+
+/** One round-keyed Feistel pass over `2·half` bits. Invertible by construction,
+ *  so the map is a permutation of `[0, 2^(2·half))` whatever `hash3` returns. */
+function feistel(x, half, key) {
+  const mask = (1 << half) - 1;
+  let l = (x >>> half) & mask;
+  let r = x & mask;
+  for (let i = 0; i < 4; i++) {
+    const t = l ^ (hash3(r, key, i + 1) & mask);
+    l = r;
+    r = t;
+  }
+  return ((l << half) | r) >>> 0;
+}
+
+/**
+ * The slot's rank inside its block, as a `u` in `[0, 1)`.
+ *
+ * `half` is chosen so the Feistel's domain `2^(2·half)` covers `n`; when it
+ * overshoots (it does not at `perCell = 4`, where a 16×16 block holds exactly
+ * 1,024 slots and the domain is 1,024) the standard cycle-walk re-applies the
+ * permutation until the image lands back in range, which is still a bijection on
+ * `[0, n)`. The guard is a belt on a loop that provably terminates; falling back
+ * to the identity keeps `u` in range rather than returning a rank that is not a
+ * rank.
+ */
+function stratum(idx, n, half, key) {
+  let x = idx;
+  for (let guard = 0; guard < 24; guard++) {
+    x = feistel(x, half, key);
+    if (x < n) return (x + 0.5) / n;
+  }
+  return (idx + 0.5) / n;
+}
+
+/** The half-width the Feistel needs to cover `n` slots. */
+function stratumHalf(n) {
+  let bits = 1;
+  while ((1 << bits) < n) bits++;
+  return (bits + 1) >> 1;
+}
+
 function rngFrom(seed) {
   let s = seed >>> 0 || 1;
   return () => {
@@ -1607,8 +1735,15 @@ function rngFrom(seed) {
 }
 
 /** Walk the lattice cells around the camera, calling `emit` per jittered slot
- *  inside the ring. The grid is world-anchored, not camera-anchored. */
-function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
+ *  inside the ring. The grid is world-anchored, not camera-anchored.
+ *
+ *  `draw` picks how the slot's `u` — the one number that decides both whether it
+ *  carries a plant and which species (see `dealt`) — is constructed. `'lattice'`
+ *  is the rank-1 low-discrepancy sequence of K49(b), which the SPARSE forb layer
+ *  takes; `'strata'` is the block permutation of K49(d), which the DENSE matrix
+ *  layers take because the lattice stripes them. Both are pure functions of the
+ *  slot's world coordinates. */
+function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emit) {
   const c0 = Math.floor((camE - radius) / cell);
   const c1 = Math.ceil((camE + radius) / cell);
   const r0 = Math.floor((camN - radius) / cell);
@@ -1616,19 +1751,34 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
   const sub = Math.max(1, Math.round(Math.sqrt(perCell)));
   const rr = radius * radius;
   const ri = inner * inner;
+  // ROADMAP K49(d). The block is the stratum: every slot in it is dealt a
+  // distinct rank, so a CDF band gets its exact count rather than a Poisson one.
+  const strata = draw === 'strata';
+  const shiftBits = strata ? STRAT_BLOCK_SHIFT : LD_BLOCK_SHIFT;
+  const span = 1 << shiftBits;
+  const nSlots = span * span * perCell;
+  const half = stratumHalf(nSlots);
   for (let r = r0; r <= r1; r++) {
     for (let c = c0; c <= c1; c++) {
       const cellSeed = hash3(c, r, salt);
-      // ROADMAP K49(b). One rotation per 16×16-cell block of the WORLD lattice.
-      const shift = hash3(c >> LD_BLOCK_SHIFT, r >> LD_BLOCK_SHIFT, salt ^ LD_BLOCK_SALT)
-        / 4294967296;
+      // ROADMAP K49(b). One rotation per 16×16-cell block of the WORLD lattice —
+      // and, K49(d), one permutation key per the same block.
+      const blockHash = hash3(c >> shiftBits, r >> shiftBits,
+        salt ^ (strata ? STRAT_SALT : LD_BLOCK_SALT));
+      const shift = blockHash / 4294967296;
+      // The slot's index inside its own block. Arithmetic shift, so a block west
+      // or south of the origin indexes the same way as one east or north of it.
+      const base = ((c - ((c >> shiftBits) << shiftBits)) * span
+        + (r - ((r >> shiftBits) << shiftBits))) * perCell;
       for (let k = 0; k < perCell; k++) {
         const rng = rngFrom(hash3(cellSeed, k, 0x68bc21eb));
         // ROADMAP K49(b). The slot's own place in the deal: it decides BOTH
         // whether this slot carries a plant at all and which species it is, so
         // that the thinning cannot resample the species draw back into an
         // independent one. See `dealt`.
-        const u = frac(c * LD_A + r * LD_B + k * LD_C + shift);
+        const u = strata
+          ? stratum(base + k, nSlots, half, blockHash)
+          : frac(c * LD_A + r * LD_B + k * LD_C + shift);
         // A jittered sub-grid, not free scatter: free scatter leaves holes
         // the eye reads as bare soil and clusters it reads as one plant.
         const sx = k % sub;

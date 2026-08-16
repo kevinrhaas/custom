@@ -1,5 +1,65 @@
 # STATUS
 
+## Fixed 2026-08-16 — the grasses take an even deal after all, and the stratum size turns out to be a U-curve with a floor AND a ceiling
+
+**ROADMAP K49(d)**, the successor K49(b) opened when a screenshot vetoed half its own repair. A
+visitor can see it: on the **mesic prairie** the grass that was coming up **31.47 slots short** of
+its own recorded cover — the largest such gap in the scene — is now **3.67** short, and
+`prairie_west` does **not** stripe.
+
+### What it does
+
+Every slot in a small block of the world lattice is dealt a distinct rank by a four-round Feistel
+network keyed on that block. Being a bijection, `u` takes each of the n equally spaced values in
+`[0, 1)` exactly once, so a CDF band of width w gets `round(w·n)` slots instead of a Poisson draw
+around it — and because the slot→rank map is a hashed permutation rather than an arithmetic
+progression, it carries **no direction for the eye to follow**, which is precisely what K49(b)'s
+rank-1 lattice could not offer a dense layer. Verified as a permutation before being measured as a
+repair: 1,024 distinct ranks of 1,024 at three keys, and a 0.05-wide band inside `share = 0.6` gets
+exactly 31 of 614.
+
+### The numbers, on the published mirror
+
+| | before | after |
+|---|---|---|
+| worst matrix shortfall | 31.47 | 19.59 |
+| **total matrix deviation** (17 rows) | **368.80** | **282.89** |
+| matrix rows improved / unchanged / worse | — | **11 / 5 / 2** |
+| forb deviation | 107.18 | **107.18** |
+| draw calls, `prairie_west` desktop | 74 | 74 |
+
+The five unchanged rows are single-species lists: a list of one has nothing to stratify. The forb
+figure is identical **to the decimal**, which is the proof that the forb layer's own draw was not
+disturbed.
+
+### The finding that is not the fix — the stratum size has two bounds, and only one was written down
+
+K49(b) finding 3 gave the rule *the block size is set by PLANTED slots, not by cells*. That is a
+**floor**. There is a **ceiling** as well, and nothing had named it: exactness holds over the block
+while the census reads a sub-window, so the error is whatever the window's partial blocks cut, and a
+16-cell block is 11.8 m against a near ring 15.2 m across — about **one** whole block inside the
+window. Measured at five sizes, matrix deviation: **2,725.88** (1 cell) · 602.95 (2) · **282.89**
+(4) · 303.30 (8) · 340.47 (16), against 368.80 for the independent draw. The floor is sharp rather
+than soft — at four slots per block `u/share` takes **two values** and the whole CDF collapses onto
+two species. **The forb layer sits at the floor and the matrix layer at the ceiling**, which is why
+one number could never have served both.
+
+### What is NOT claimed
+
+- **Two rows got worse** — `z10_settled_town` 14.31 → 39.18 and `z05_riverbank_timber` reading the
+  wet-prairie list 6.37 → 8.87. The leading explanation is that rank is a deterministic function of
+  position, so a filter running after the deal on a spatial rule (building footprints, the
+  waterline) selects a biased set of ranks where an independent draw would not have been biased.
+  Both regressed rows are the two most heavily filtered — **but it is not proven**, and one row that
+  crosses water improved anyway. **K49(e)** is written to settle it.
+- **The desktop half of the smoke was not run** — ~13 minutes against this runner's 10-minute
+  per-command ceiling. `SMOKE_VIEWPORT=mobile --published` is green; the desktop claim is only the
+  `critic_shots` capture at `prairie_west`, which is a frame and not the gate.
+- `worstShortfall` was **not** the statistic this was decided on. It is a max of a max and it ranks
+  the five candidates in a different order (16 cells wins on it and is nearly the worst on
+  deviation). `tools/measure_sward_draw.mjs` now prints `deviation` per row and per layer for
+  exactly this reason.
+
 ## Fixed 2026-08-16 — the trees standing in the river are on the SKYLINE, and both woody gates were counting a different wood
 
 **ROADMAP R-BUG5, owner-reported with a screenshot: 31 ft up, bearing 044°, north-east across the
