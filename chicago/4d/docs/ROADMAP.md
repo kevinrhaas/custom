@@ -3085,7 +3085,7 @@ No `data/` change, so no bake.
 mirror, which is where every number above comes from. The desktop half of the smoke was not run
 and is not claimed — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(b) — stand the six absent species up · **UNCLAIMED · NEXT UP · SEEN · from K49(a) · Effort: M**
+### K49(b) — stand the six absent species up · **CLAIMED 2026-08-16 · SEEN · from K49(a) · Effort: M**
 
 **The half that puts a plant in the ground, and it is the one to take first** — it needs no
 research and no data at all. Six species are owed a whole plant and drawn nowhere; prairie dock
