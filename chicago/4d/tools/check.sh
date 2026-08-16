@@ -172,6 +172,19 @@ step "no unresolved source is newly built into the town" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_rights_derivation.py --self-test
 
+# K41's residual, and the question one layer out: the buildings and the ground
+# declare which of their figures reaches a vertex, and data/flora and data/fauna
+# never had. 100 figures across the two layers, 38 of them read by the renderer
+# and 58 by nothing at all — including the whole of data/fauna, which no file
+# under renderers/ opens and publish.sh does not copy to the site (ROADMAP K42).
+# The map is Python and the reader is JavaScript, so every declaration is scanned
+# against the renderer sources with the comments stripped, in both directions.
+step "every flora and fauna figure is declared read or banked unread" \
+  python3 tools/measure_layer_reads.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_layer_reads.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
