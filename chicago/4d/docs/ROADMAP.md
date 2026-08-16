@@ -1703,7 +1703,10 @@ programme are unchanged in aggregate (this moves families between schedule units
 raise or lower the target); the three open South Water blocks visibly change deal; `check.sh`
 green.
 
-### K30 — three documented stores stand in the middle of South Water Street · **UNCLAIMED · from T-A9 · Effort: S to measure, unknown to fix**
+### K30 — three documented stores stand in the middle of South Water Street · **CLAIMED 2026-08-16 — DO NOT PICK UP**
+
+Held by the overnight steward as **K30(a)**, the measuring half only, under the run-budget rule's
+measure-then-fix split. Expires 2026-08-17. Take T-I3 or T-E5 instead.
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
