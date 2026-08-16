@@ -1,5 +1,77 @@
 # STATUS
 
+## Shipped 2026-08-16 — the roads can be turned up, and the reason it took two days is the reason it is allowed
+
+**ROADMAP R-A1**, deferred on 2026-08-14 and unblocked on 2026-08-15 by R-BUG3. A **Road
+visibility** slider in Settings, default **off**, scaling the street ribbons' alpha from the
+recorded surface up to opaque.
+
+### Why a preference was refused on 2026-08-14 and is allowed now
+
+A control that boosts road contrast **converts a defect into a preference** and takes the
+pressure off fixing the default. On 2026-08-14 the default was a defect: the owner had reported
+roads invisible at his own feet, and R-BUG3 then measured that band at **1.5 L\* with 30 % of
+probes perceptible**. Shipping the slider then would have been a way of not fixing it.
+
+R-BUG3 fixed it on 2026-08-15 — that band now scores **3.1 L\* of a measured ceiling of 3.4,
+80 % perceptible**, on mobile, on the published mirror. So the precondition the deferral named is
+met and the aid is layered **on** a correct default rather than instead of one.
+
+**What it must not be allowed to retire.** R-BUG3 left the near band's *ceiling* at 3.4–4.3 L\*,
+the lowest of any band, with a fifth of near probes unable to clear the threshold even fully
+opaque. The honest fix for the ceiling is **R-W2**'s textured coverage. This slider does not
+touch it and does not discharge it.
+
+### What it is, and what it is not
+
+It is a viewing accommodation, like the units toggle. Contrast sensitivity varies and a phone
+screen in daylight is brutal — the exact condition R-BUG3 was reported from. It is **not a claim
+about how visible an 1835 street was**: nothing in `data/` moves, no width or centreline changes,
+and the settings copy says so on its face.
+
+`AID_GAIN` is `1 / 0.24`, because 0.24 is the faintest body alpha any surface authors (a lightly
+worn track at its crown), so full aid takes that one surface to opaque — which is exactly the
+ceiling R-BUG3 measured by forcing the near probes opaque. Below maximum it is a scale and the
+graded > worn > light ordering survives it, as it survives `NEAR_GAIN`. **At maximum every
+surface saturates and that ordering is gone**, which is stated in `streets.js` and here rather
+than buried: at that end the aid has stopped depicting a modelled attribute and is drawing a road
+you can follow.
+
+### The K24 constraint, inherited whole and asserted three ways
+
+Every band `roadContrast()` prints, and every figure `critic_shots.mjs` and `light_probe.mjs`
+take, measures the **default**. A preference that can move them is a way to launder a failing
+gate. So the smoke asserts all three halves, standing at `lake_market` where the road bands were
+just read:
+
+| assertion | mobile 390×780, published mirror |
+|---|---|
+| off with no stored preference | `uRoadAid` **0** |
+| raising it reaches the render | cell delta mean **0.26**, worst **6** at 48² |
+| dropping it back restores the frame | residual mean **0.00**, worst **0** |
+
+**The middle one is the one that had to be built rather than assumed**, and R-BUG1 is why: its
+`--no-sun-shadow` flag cleared a suspect it never reached, and reported "not the cause" for the
+same reason a broken thermometer reports a steady temperature. A control asserted only to be
+inert at its default is indistinguishable from a control wired to nothing.
+
+**And the instrument itself was measured rather than chosen.** The 12² signature the confidence
+view is graded on averages the aid away — at `lake_market` the roadway is about a tenth of the
+frame, and the first run scored **worst 2** against a restored residual of **0**: a real signal
+with no headroom to gate on. At 48² the same difference is **worst 6**. Both grids are printed;
+only 48² is gated, at a third under the measured figure.
+
+### Not claimed
+
+- **The desktop half of the smoke was not run** — ~13 min against this runner's 10-minute
+  per-command ceiling (ROADMAP § THE RUN BUDGET). Mobile 390×780 is green at **229 passed,
+  0 failed** on the published mirror. The aid's effect at 1280×800 should be larger, not smaller
+  (more road pixels in frame), but that is an expectation and not a measurement.
+- **No accessibility standard is claimed to be met.** This is a contrast aid, not a conformance
+  statement, and nothing here measures it against WCAG or any other bar.
+- **No liberty was taken.** `docs/LIBERTIES.md` is untouched: the default rendering is unchanged
+  to the digit, and the aid is a property of a visitor's screen rather than of the reconstruction.
+
 ## Measured 2026-08-16 — the river's edge stops flickering, and it was the camera rather than the water
 
 **ROADMAP R-BUG1**, owner-reported on 2026-08-14 and open since: fly over the river and its edges

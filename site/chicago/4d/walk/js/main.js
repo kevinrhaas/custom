@@ -332,6 +332,10 @@ async function boot() {
       } else if (key === 'fov') {
         camera.fov = value;
         camera.updateProjectionMatrix();
+      } else if (key === 'roadAid') {
+        // R-A1. A uniform on the shared street materials — no recompile, and
+        // the next frame carries it.
+        streets.setLegibilityAid(value);
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
       } else if (key === 'detail') {
@@ -410,6 +414,7 @@ async function boot() {
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
+  streets.setLegibilityAid(hud.settings.roadAid);
   navigation.setCompassVisible(hud.settings.compass);
   navigation.setMapVisible(hud.settings.overviewMap);
   navigation.setStreetVisible(hud.settings.streetNames);
@@ -689,6 +694,11 @@ async function boot() {
     get detail() { return detailLevel; },
     setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
+    // R-A1. The gates measure the DEFAULT, so they need to be able to read this
+    // back as well as set it: "the aid is off unless a visitor moved it" is an
+    // assertion, not a comment.
+    setRoadAid(v) { return streets.setLegibilityAid(v); },
+    get roadAid() { return streets.legibilityAid; },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
