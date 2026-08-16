@@ -122,7 +122,7 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
-| — | RENDERING | **K46** | **SEEN** | **unranked, opened 2026-08-16 by K45(b1) — rank it against the five above rather than taking it as an eleventh.** The hand-written weight in each species mix is a fallback and loses to the record's: **17 of 26 entries place stems at a different number from the one written**, the elm at 25 where its two communities say 60 and 12, the maple at 25 at a water's edge the file cuts it to 8 for. Deciding which wins changes the species composition of most of the timber in the scene. **No bake**; carries the full smoke and the critic shots |
+| — | RENDERING | ~~K46~~ | **SEEN** | **DONE 2026-08-16** — the written weight plants the stem, and route 3 was refuted by the DATASET: ZONE 6a and 6b are one record, so a zone-keyed density cannot hold the elm at 60 in the thicket and 12 in the pocket. 23 of 26 weights sit inside their own cited band, 3 below, **none above**. Read its box before quoting a mix weight or a species share |
 
 **If you are about to claim an UNSEEN parcel, stop and read the rule.** It needs one of three
 written exemptions: an owner-reported bug, the second half of a measure-then-fix split, or a gate
@@ -2817,7 +2817,108 @@ plant stops proving it the day the repair lands.
 --published` green. The desktop half was not run and is not claimed — ~13 minutes against a
 10-minute per-command ceiling; see the run-budget box at the top of this file.
 
-### K46 — the hand-written community weight, or the record's global one? · **UNCLAIMED · opened 2026-08-16 by K45(b1) · Effort: M · NO BAKE, and it carries the full smoke AND the critic shots**
+### K46 — the hand-written community weight, or the record's global one? · **DONE 2026-08-16 — the written weight wins, because the dataset cannot hold what it says**
+
+**SEEN. Read this box before quoting any mix weight or any species share.** The literal in
+`COMMUNITIES` is now the number that plants the stem, and the record's band is the CONSTRAINT on
+it. All 26 entries changed standing; 17 of them changed value.
+
+**THE FINDING, and it refutes route 3 without needing the owner.** K46 offered three routes and
+called route 3 — key `density` by (zone, species), each community reading the band from the zone
+its own `dossier` cites — "the one that says what the file's comment claims". **It cannot be
+built.** `wet_woods` cites **ZONE 6a** and `mesic_pocket` cites **ZONE 6b** and both resolve to the
+single record **`z06_dense_forest`**, whose elm band `[40, 80]` is the swamp thicket's reading. A
+zone-keyed density plants the elm at 60 in BOTH communities, and the **12** that makes it
+incidental in the fire-protected pocket has nowhere in `data/` to live. Route 3 destroys the exact
+reading it was proposed to restore. Route 1 (delete the weights) loses it too, by its own
+admission. So route 2 is not a preference — it is the only one of the three that can express the
+file, and the reason is the shape of the dataset rather than an argument about ecology.
+
+**THE MEASUREMENT THAT MADE IT SAFE, and it is the one nobody had taken.** Each literal was scored
+against the band of the zone its own community cites:
+
+| | count | of 26 |
+|---|---|---|
+| inside its own cited band | **23** | 88 % |
+| below one | **3** | 12 % |
+| **above one** | **0** | — |
+
+**Not one hand weight is an inflation.** That is what licensed handing them the scene: where the
+file departs from a record it thins a species, never claims more of one than the evidence carries.
+The three that depart are the three the file's own prose already explained — the peachleaf willow
+held out of the gallery interior, the silver maple cut at the water's edge, the elm made incidental
+in the pocket — and they are `docs/LIBERTIES.md` **L117** now, declared in each community's new
+`departures` field, with the renderer refusing to load an undeclared one.
+
+**WHAT MOVED IN THE FRAME.** No stem count changed — `perHa`, the stand density, was never
+overridden and is untouched — so no tree appeared, vanished, or moved ground. What changed is
+species share, in three of the four communities:
+
+| list · species | was | now | Δ |
+|---|---|---|---|
+| `gallery.edgeMix` · `acer_saccharinum` | 29.4 % | **11.9 %** | −17.5 pp |
+| `gallery.edgeMix` · `salix_nigra` | 50.0 % | **62.7 %** | +12.7 pp |
+| `wet_woods` · `ulmus_americana` | 25.6 % | **39.2 %** | +13.6 pp |
+| `mesic_pocket` · `ulmus_americana` | 22.4 % | **12.2 %** | −10.2 pp |
+| `gallery.mix` · `salix_amygdaloides` | 13.8 % | **6.9 %** | −6.9 pp |
+| `wet_woods` · `fraxinus_nigra` | 15.4 % | **9.2 %** | −6.2 pp |
+| `ridge_oak` · `quercus_macrocarpa` | 36.8 % | **40.5 %** | +3.8 pp |
+
+**THE RESIDUE K45(b1) LEFT IS RESOLVED, AND SO IS ITS OPEN OWNER QUESTION.** `fraxinus_nigra` at
+**14** against a midpoint of 15 needs no explanation: the rule was never "the midpoint" — that was
+a regularity 18 of 25 entries happened to follow — and 14 sits inside z06's `[10, 20]`. And
+`ridge_oak`'s merged **ZONE 6c + ZONE 7**, which K45(b1) sent to the owner, **does not need
+answering**: the record is a constraint, not a source, so the question is not *which band does it
+mean* but *is the weight admissible in one of them*, and all four oak weights are. A question
+dissolved by a rule change is worth more than a question answered.
+
+**WHAT SHIPPED.** `zones: [...]` per community, held equal to the `ZONE n` numbers in its own
+`dossier` prose by the gate, so the citation a reader sees and the bands the loader checks against
+cannot drift. `departures: {...}` with the reason per entry, exact BOTH ways — a departure repaired
+without dropping its note is `stale-departure` and fails. Assertion 5 in
+`tools/measure_planting_reach.py` rebuilt: it banks each weight, the bands its community cites and
+its verdict, and four faults are fired against synthetic bands on every run so the failing branches
+are not theoretical. The renderer's own rule is scanned four ways — a loader that goes back to
+`records.density[id] ?? fallback`, that collapses the per-zone band, that stops comparing, or that
+stops reading `departures` all RAISE.
+
+**THE FRAME, MEASURED BEFORE AND AFTER ON THE SAME THREE STATIONS** (`critic_shots.mjs
+--metrics --stations river_bank,prairie_south,prairie_west`, source tree, desktop / mobile).
+`CRITIC SHOTS OK` both times — no budget breached — and the **after-set was run twice in separate
+processes and reproduced to every decimal below**, so these deltas are the change and not the
+rasteriser's last bit:
+
+| metric | station | before | after |
+|---|---|---|---|
+| high-pass RMS far | `river_bank` | 21.85 / 13.24 | **6.74 / 5.56** |
+| high-pass RMS near | `river_bank` | 5.98 / 29.86 | **16.64 / 29.11** |
+| crown fine-detail ratio | `river_bank` | 0.817 / 0.747 | 0.889 / 0.814 |
+| horizon TIMBER (all) | `river_bank` | 0.7128 / 0.6485 | 0.7077 / 0.6685 |
+| high-pass RMS far | `prairie_west` | 20.79 / 14.45 | **20.78 / 14.57** |
+| high-pass RMS near | `prairie_west` | 19.61 / 27.80 | **19.61 / 27.73** |
+| horizon TIMBER (all) | `prairie_west` | 0.7026 / 0.8719 | 0.5308 / 0.8625 |
+| horizon TIMBER (all) | `prairie_south` | 0.3359 / 0.2727 | 0.3282 / 0.2250 |
+
+**The control is the finding.** `prairie_west` is the station Andreas calls *"an open prairie,
+entirely free from timber"*, and its texture metrics do not move — 20.79 → 20.78 far, 19.61 →
+19.61 near. `river_bank` stands in the gallery, the community that changed most, and it moves
+hardest and in the direction the weights predict: far-field detail falls by two thirds as the
+interior loses peachleaf-willow share to elm and maple, and near-field detail more than doubles as
+the water's edge goes to black willow at the camera. A frame-wide ecological change that left the
+open-prairie control still is the evidence that it changed the timber and nothing else.
+
+**One swing not chased, and it is stated rather than buried:** `prairie_west`'s horizon-timber
+fraction falls 0.7026 → 0.5308 on desktop while barely moving on mobile (0.8719 → 0.8625). A
+one-viewport swing of that size on a metric **R-W4a owns** deserves its own look; this parcel did
+not take it, and no gate reads that figure today.
+
+**Verified:** `tools/check.sh` green; `python3 tools/measure_planting_reach.py --self-test` PASS
+(all 15 fire cases fire, all 27 scanner checks ok); `SMOKE_VIEWPORT=mobile node
+tools/smoke_renderer.mjs --published` green; critic shots re-measured. The desktop half was not run
+and is not claimed — ~13 minutes against a 10-minute per-command ceiling; see the run-budget box at
+the top of this file.
+
+### K46 — the parcel as it was opened · **superseded by the box above**
 
 K45(b1) measured the divergence and refused to resolve it. The question is one sentence: **when a
 community's mix says a species is commoner in it than the species' own record does, which number

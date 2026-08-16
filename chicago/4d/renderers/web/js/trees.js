@@ -372,42 +372,81 @@ const SPECIES = {
  * the dossier gives for the community as a whole, which is the number that
  * governs — the per-species figures are microsite densities and sum higher.
  *
- * READ THE NEXT SENTENCE BEFORE QUOTING A WEIGHT BELOW. Every one of these
- * weights is a FALLBACK. `mixes` is rebuilt at load as
- * `records.density[id] ?? fallback`, and `records.density` is the midpoint of
- * the band in the FIRST `TIMBER_ZONES` entry that names the species — one
- * figure per species for the whole town, whichever community is asking. So the
- * per-community weighting written here does not survive: `ulmus_americana` is
- * written 60 in the swamp thicket and 12 in the mesic pocket and runs at
- * z05's 25 in both, and the silver maple this file cuts to 8 at the water's
- * edge runs there at 25. Seventeen of the twenty-six entries below are written
- * to one number and placed at another; `tools/measure_planting_reach.py` banks
- * the pair for every entry, and ROADMAP **K46** is the parcel that decides
- * which of the two should win.
+ * THE WEIGHT WRITTEN HERE IS THE WEIGHT THAT PLANTS THE STEM (ROADMAP K46).
+ * It was not, until 2026-08-16: `mixes` was rebuilt as
+ * `records.density[id] ?? fallback`, so one global midpoint per species — taken
+ * from whichever `TIMBER_ZONES` entry happened to name it first — overwrote
+ * every per-community weight below, and seventeen of the twenty-six entries ran
+ * at a number other than the one they are written to.
+ *
+ * K46 chose the literal, and the reason is a fact about the DATASET rather than
+ * a preference. The alternative — key the density by (zone, species) and let
+ * each community read the band from the zone its own `dossier` cites — cannot
+ * express what this table says, because `wet_woods` cites ZONE 6a and
+ * `mesic_pocket` cites ZONE 6b and BOTH resolve to the single record
+ * `z06_dense_forest`. A zone-keyed density gives the elm 60 in both, and the
+ * 12 that makes it incidental in the fire-protected pocket has nowhere to live.
+ * The sub-community reading is real and is recorded nowhere else in this
+ * project, so the file keeps it.
+ *
+ * The record is not discarded; it becomes the CONSTRAINT. Every weight below is
+ * checked at load against the band of each zone its community's `zones` names,
+ * and one that falls outside every such band is a claim no record carries: it
+ * must be declared in that community's `departures`, with the reason, or the
+ * load raises. Measured across the twenty-six entries: 23 sit inside their own
+ * cited band, 3 fall below one, and none is above — so the hand weights were
+ * never an inflation, and the three that depart are the three the prose already
+ * explains. `perHa` is the STAND density the dossier gives for the community as
+ * a whole, which is the number that governs — the per-species figures are
+ * microsite densities and sum higher.
+ *
+ * `zones` is the machine-readable form of the `dossier` line and is held equal
+ * to it by `tools/measure_planting_reach.py`, so the citation a reader sees and
+ * the bands the loader checks against cannot drift apart.
  */
 const COMMUNITIES = {
   gallery: {
     label: 'Riverbank & floodplain timber',
     dossier: 'ZONE 5 — “irregular gallery 30–120 m wide, canopy 30–80 trees/ha”',
+    zones: ['z05_riverbank_timber'],
     perHa: [34, 62],
     mix: [
       ['populus_deltoides', 14], ['acer_saccharinum', 25], ['ulmus_americana', 25],
       ['fraxinus_pennsylvanica', 22], ['quercus_bicolor', 10], ['celtis_occidentalis', 8],
       ['juglans_nigra', 2], ['salix_amygdaloides', 8],
       // ROADMAP K45(b1). The American sycamore, at the midpoint of the [1, 3]
-      // its own z05 record carries — which is also the number that runs, so
-      // this literal and `records.density` agree. K45(b) prescribed a 1: the
-      // bottom of the band, and a figure nothing would have used.
+      // its own z05 record carries. K45(b) prescribed a 1: the bottom of the
+      // band, and — under K46's rule, which plants the literal — a figure that
+      // would now have halved the handful of sycamores actually standing.
       ['platanus_occidentalis', 2],
     ],
     /** At the water's edge the mix goes to willow, per the ZONE 5 densities. */
     edgeMix: [['salix_nigra', 42], ['salix_amygdaloides', 17], ['acer_saccharinum', 8]],
+    /**
+     * Weights that sit outside every band this community's `zones` record, and
+     * why. A departure is an ecological claim of this file's own — see
+     * docs/LIBERTIES.md L117 — so it is written down or the load raises.
+     */
+    departures: {
+      'mix.salix_amygdaloides':
+        'ZONE 5 bands the peachleaf willow at 10–25/ha across the whole gallery. This '
+        + 'file splits that one band between its two lists — 17 at the water’s edge, '
+        + 'inside the band, and 8 behind it — because the record describes a bank tree '
+        + 'and the gallery is 30–120 m wide. The split is this file’s; the two lists '
+        + 'together stand for the one recorded band.',
+      'edgeMix.acer_saccharinum':
+        'The edge mix exists to say what its own note says — at the water’s edge the mix '
+        + 'goes to willow — and ZONE 5 bands the silver maple for the gallery as a whole '
+        + '(15–35/ha) without banding the edge separately. Cutting it to 8 is how that '
+        + 'sentence is expressed as a weight; the number is this file’s.',
+    },
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
   },
   wet_woods: {
     label: 'Swampy timber thicket (the 1821 Walls note)',
     dossier: 'ZONE 6a — canopy 50–110/ha over the poorly drained clay',
+    zones: ['z06_dense_forest'],
     perHa: [52, 84],
     mix: [
       ['ulmus_americana', 60], ['fraxinus_pennsylvanica', 32], ['fraxinus_nigra', 14],
@@ -419,17 +458,32 @@ const COMMUNITIES = {
   mesic_pocket: {
     label: 'Fire-protected mesic pocket',
     dossier: 'ZONE 6b — east-of-water positions, the one place canopy closes',
+    zones: ['z06_dense_forest'],
     perHa: [64, 96],
     mix: [
       ['tilia_americana', 25], ['acer_saccharum', 20], ['quercus_rubra', 14],
       ['ostrya_virginiana', 27], ['ulmus_americana', 12],
     ],
+    departures: {
+      'mix.ulmus_americana':
+        'ZONE 6a, 6b and 6c share one record — `z06_dense_forest` — and its elm band, '
+        + '40–80/ha, is the swamp thicket’s reading: the elm dominates the poorly drained '
+        + 'clay. In the fire-protected pocket the closing canopy is basswood, sugar maple '
+        + 'and ironwood and the elm is incidental to it, which is what 12 says. No record '
+        + 'bands ZONE 6b apart from ZONE 6a, so this number is this file’s and is the '
+        + 'reason K46 kept the hand weights at all.',
+    },
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
   },
   ridge_oak: {
     label: 'Sand- and gravel-ridge oak stringers / bur oak savanna',
     dossier: 'ZONE 6c + ZONE 7 — 4–20/ha closed savanna, locally 1–4/ha open',
+    // The dossier merges two zones and K45(b1) left "which band does it mean?"
+    // as an open question. Under K46's rule it does not need answering: the
+    // record is a constraint, not a source, and all four weights here sit
+    // inside a band one of the two cited zones records.
+    zones: ['z06_dense_forest', 'z07_bur_oak_savanna'],
     perHa: [7, 24],
     mix: [
       ['quercus_macrocarpa', 30], ['quercus_alba', 24], ['quercus_velutina', 12],
@@ -746,7 +800,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
-  const density = {};
+  const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
   const heads = [];
@@ -755,13 +809,18 @@ async function loadTimberZones(dataBase, problems = []) {
     if (!entry) throw new Error(`flora/index.json names no zone ${id}`);
     const rec = await fetchOk(new URL(entry.file, manifestUrl));
     zonesRead.push(id);
+    bands[id] = {};
     for (const sp of rec.species ?? []) {
       if (sp.role !== 'tree' && sp.role !== 'thicket') continue;
       const form = FORM_OF[sp.form];
       if (!form) { unimplemented.add(sp.form); continue; }
+      // The recorded band, kept PER ZONE. It is the constraint a community's
+      // hand weight is checked against (ROADMAP K46) and no longer a value
+      // that replaces one: collapsing it to a first-zone-wins midpoint is
+      // exactly what overwrote seventeen of the twenty-six mix entries.
       const perHa = sp.abundance?.density_per_ha;
-      if (Array.isArray(perHa) && !(sp.id in density)) {
-        density[sp.id] = (perHa[0] + perHa[1]) / 2;
+      if (Array.isArray(perHa) && perHa.length === 2) {
+        bands[id][sp.id] = [perHa[0], perHa[1]];
       }
       if (specs[sp.id]) continue;
       const base = SPECIES[sp.id] ?? SPECIES.ulmus_americana;
@@ -799,7 +858,7 @@ async function loadTimberZones(dataBase, problems = []) {
       }
     }
   }
-  return { specs, density, unimplemented: [...unimplemented], zonesRead, heads };
+  return { specs, bands, unimplemented: [...unimplemented], zonesRead, heads };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1484,12 +1543,48 @@ export async function createTrees({
   }
   Object.assign(specs, records.specs);
 
-  /** Community mixes re-weighted by the density the records carry. */
+  /**
+   * The community mixes, weighted as they are written (ROADMAP K46).
+   *
+   * The record's band is the CONSTRAINT and not the value: a weight outside
+   * every band its own community's `zones` record is an ecological claim no
+   * source carries, so it must be declared in that community's `departures` or
+   * this raises. `problems` is what the repo smoke reads to decide whether the
+   * data loaded, which is the right severity — an undeclared departure means
+   * the file and the dataset disagree and nothing says which is meant.
+   */
   const mixes = {};
   for (const [key, c] of Object.entries(COMMUNITIES)) {
-    const w = (list) => list.filter(([id]) => specs[id])
-      .map(([id, fallback]) => [id, records.density[id] ?? fallback]);
-    mixes[key] = { mix: w(c.mix), edgeMix: c.edgeMix ? w(c.edgeMix) : null };
+    const cited = c.zones ?? [];
+    if (!cited.length) {
+      problems.push(`trees: the community ${key} names no zones, so nothing constrains `
+        + 'the weights it plants by');
+    }
+    const w = (list, listName) => list.filter(([id]) => specs[id]).map(([id, weight]) => {
+      const seen = cited.map((z) => records.bands[z]?.[id]).filter(Boolean);
+      const declared = c.departures?.[`${listName}.${id}`];
+      if (!seen.length) {
+        problems.push(`trees: ${key}.${listName}.${id} is weighted ${weight} and no zone `
+          + `this community cites (${cited.join(', ')}) records a density for it`);
+      } else if (!seen.some(([lo, hi]) => weight >= lo && weight <= hi)) {
+        if (!declared) {
+          problems.push(`trees: ${key}.${listName}.${id} is weighted ${weight}, outside `
+            + `every band its own community's zones record (${seen
+              .map(([lo, hi]) => `${lo}–${hi}`).join(', ')}) — declare it in `
+            + `${key}.departures with the reason, or move it inside the band`);
+        }
+      } else if (declared) {
+        // Exact the other way too. A departure that has been repaired leaves a
+        // note behind claiming the file disagrees with the dataset when it no
+        // longer does, and a stale declaration is how a gate stops meaning
+        // anything.
+        problems.push(`trees: ${key}.departures declares ${listName}.${id}, and its weight `
+          + `${weight} is inside a band its own zones record — drop the declaration in the `
+          + 'commit that brought it back inside');
+      }
+      return [id, weight];
+    });
+    mixes[key] = { mix: w(c.mix, 'mix'), edgeMix: c.edgeMix ? w(c.edgeMix, 'edgeMix') : null };
   }
 
   /* ---- 1. read the ground ------------------------------------------------ */

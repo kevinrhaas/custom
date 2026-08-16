@@ -37,14 +37,20 @@ finding and an asymmetry quoted from memory is an anecdote.
 
 **And the weight beside the species id is a FALLBACK.** ROADMAP K45(b1). The
 literal in `COMMUNITIES` is documented as *"the dossier's per-species
-densities"*, and it is — but `mixes` is rebuilt at load as
-`records.density[id] ?? fallback`, and `records.density` is the midpoint of the
-first `TIMBER_ZONES` entry that names the species. So the number that places a
-stem is ONE GLOBAL FIGURE PER SPECIES, taken from whichever zone comes first in
-that list, and the per-community weighting the file writes by hand is overridden
-wherever a record carries a band. Both numbers are scanned below and banked side
-by side, because a literal that disagrees with what runs is a number a reader
-will quote.
+densities"*, and since ROADMAP K46 it is also the number that plants the stem.
+It was not until then: `mixes` was rebuilt as `records.density[id] ?? fallback`,
+one global midpoint per species taken from whichever `TIMBER_ZONES` entry named
+it first, and seventeen of the twenty-six entries ran at a number other than the
+one they are written to. K46 kept the literal because the alternative cannot
+express the file: `wet_woods` cites ZONE 6a and `mesic_pocket` cites ZONE 6b and
+both resolve to the one record `z06_dense_forest`, so a zone-keyed density gives
+the elm 60 in both and the 12 that makes it incidental has nowhere to live.
+
+The record is now the CONSTRAINT. Every weight is scanned against the band of
+each zone its community's `zones` field names, and one that falls outside every
+such band must be declared in that community's `departures`. Both the weight and
+its verdict are banked, so neither a moved number nor a departure that appears
+or disappears can pass unread.
 
     tools/measure_planting_reach.py             print the census
     tools/measure_planting_reach.py --gate      exit 1 on a divergence
@@ -78,13 +84,16 @@ FIVE ASSERTIONS.
     is banked as `outside-the-planter` and is drawn regardless, which is the
     routing-is-not-placement fact held in a file instead of in a paragraph.
 
-5.  **(absolute, banked both ways) Every mix entry's literal weight beside the
-    weight that actually runs**, and which zone the running one came from. A new
-    entry, a departed one or a moved number fails until it is re-banked, so the
-    fallback and the record can never drift apart unnoticed. The derivation
-    itself is scanned: if `trees.js` stops overriding the literal, or stops
-    taking the band's midpoint, this assertion RAISES rather than quietly
-    comparing a literal against itself.
+5.  **(absolute, banked both ways) Every mix entry's weight, the bands its own
+    community's zones record for that species, and whether it sits inside one.**
+    A new entry, a departed one, a moved number or a departure that appears or
+    disappears fails until it is re-banked. Each community's `zones` field is
+    held equal to the `ZONE n` numbers in its own `dossier` prose, so the
+    citation a reader sees and the bands the loader checks against cannot drift
+    apart. The rule itself is scanned: if `trees.js` goes back to overriding the
+    literal with a global midpoint, or stops checking the weight against the
+    cited bands at all, this assertion RAISES rather than quietly banking a
+    verdict nothing enforces.
 
 THE LIMIT, stated rather than discovered later. `standsDry` is one of several
 tests a stem must pass — `terrain.isWater()` is a traced mask, buildings block,
@@ -128,14 +137,19 @@ UNSELECTABLE_REASONS = {
     "in-no-community-mix": "its species is in no COMMUNITIES mix and at no addTree call site",
 }
 
-# Whether a mix entry's literal weight is the weight that places a stem.
-WEIGHT_VERDICTS = {
-    "the-literal-runs": "no record in TIMBER_ZONES carries a band for the species, so the "
-                        "literal is the weight",
-    "the-record-agrees": "a record's band midpoint replaces the literal, and they are the "
-                         "same number",
-    "the-record-overrides": "a record's band midpoint replaces the literal, and they are "
-                            "different numbers",
+# The weight in COMMUNITIES is the weight that places a stem (ROADMAP K46). The
+# verdict is about its STANDING against the record, which is now the constraint:
+# the first two are allowed to stand and the last three are faults.
+VERDICTS = {
+    "inside-its-band": "inside a band its own community's zones record",
+    "declared-departure": "outside every band its community cites, and declared with its "
+                          "reason in that community's `departures`",
+    "undeclared-departure": "outside every band its community cites, and declared nowhere "
+                            "— an ecological claim no source carries",
+    "stale-departure": "declared as a departure and no longer outside its cited bands — "
+                       "a note claiming a disagreement that has been repaired",
+    "no-band-in-its-zones": "no zone this community cites records a density for the "
+                            "species, so the weight is constrained by nothing",
 }
 
 # Whether a zone's declared extent box meets the ground the woody planter sweeps.
@@ -244,23 +258,43 @@ def community_mixes(src: str) -> dict[str, dict[str, list[str]]]:
 
 
 def mix_weights(src: str) -> dict[str, dict]:
-    """Every mix entry's literal weight, and the zones its community cites.
+    """Every mix entry's weight, the zones its community cites, and its departures.
 
-    The dossier line is read for its `ZONE n` numbers because the literal is a
-    PER-COMMUNITY figure — `ulmus_americana` is written 60 in the swamp thicket
-    and 12 in the mesic pocket — while the number that runs is one figure per
-    species for the whole town. Holding both is what lets the divergence be read
-    rather than argued.
+    The literal is a PER-COMMUNITY figure — `ulmus_americana` is written 60 in
+    the swamp thicket and 12 in the mesic pocket — and since ROADMAP K46 it is
+    the figure that plants the stem. Two independent statements of where it came
+    from are read here and held equal: the `dossier` prose a reader sees, and
+    the `zones` list the loader checks the weight against. They are the same
+    citation written twice, and a gate that read only one of them would let the
+    other drift.
     """
     out: dict[str, dict] = {}
     for key, block in community_blocks(src):
         dm = re.search(r"dossier:\s*'([^']*)'", block)
         if not dm:
             raise LookupError(f"{TREES_JS} community `{key}` no longer carries a `dossier` "
-                              f"line — it is where the literal weights say they come from, "
-                              f"and this gate reports the divergence against it")
+                              f"line — it is where the weights say they come from, and "
+                              f"this gate holds the machine-readable `zones` against it")
+        zm = re.search(r"zones:\s*\[([^\]]*)\]", block)
+        if not zm:
+            raise LookupError(f"{TREES_JS} community `{key}` declares no `zones` — it is "
+                              f"the list the loader takes its constraint bands from, and "
+                              f"a community with none is weighted by nothing at all")
+        zones = re.findall(r"'([^']*)'", zm.group(1))
+        dossier_zones = sorted(set(re.findall(r"ZONE (\d+)", dm.group(1))))
+        # The two citations, reconciled. `ZONE 6a`, `6b` and `6c` all live in the
+        # one record `z06_dense_forest`, which is the whole reason K46 kept the
+        # hand weights — so the comparison is on the zone NUMBER, not the suffix.
+        from_zones = sorted({re.sub(r"^z0?", "", z.split("_")[0]) for z in zones})
+        if from_zones != dossier_zones:
+            raise LookupError(f"{TREES_JS} community `{key}` cites ZONE "
+                              f"{', '.join(dossier_zones)} in its dossier and reads bands "
+                              f"from {', '.join(zones)} — the prose and the constraint "
+                              f"disagree about which record backs this community")
         out[key] = {
-            "dossier_zones": sorted(set(re.findall(r"ZONE (\d+)", dm.group(1)))),
+            "dossier_zones": dossier_zones,
+            "zones": zones,
+            "departures": sorted(re.findall(r"'((?:mix|edgeMix)\.\w+)':", block)),
             "lists": mix_entries(block, key),
         }
     return out
@@ -298,11 +332,13 @@ def archetype_fallback(src: str) -> tuple[set[str], str]:
 def timber_zone_order(src: str) -> list[str]:
     """`TIMBER_ZONES` in DECLARATION order, which `k44.js_array` discards.
 
-    The order is load-bearing for assertion 5 and for nothing else in this file:
-    `loadTimberZones` writes `density[sp.id]` only `if (!(sp.id in density))`, so
-    a species named by two zones takes its weight from whichever is listed first
-    — z05's band for five of the species the swamp thicket and the mesic pocket
-    weight by hand.
+    The order used to be load-bearing: `loadTimberZones` wrote `density[sp.id]`
+    only `if (!(sp.id in density))`, so a species named by two zones took its
+    weight from whichever was listed first — z05's band for five of the species
+    the swamp thicket and the mesic pocket weight by hand. ROADMAP K46 ended
+    that, and the order is scanned now to prove the list is still a list a
+    community's `zones` can name into: an unreadable `TIMBER_ZONES` would leave
+    every constraint band empty and every weight unchecked.
     """
     m = re.search(r"const TIMBER_ZONES\s*=\s*\[(.*?)\];", src, re.S)
     if not m:
@@ -313,23 +349,35 @@ def timber_zone_order(src: str) -> list[str]:
 
 
 def record_density_rule(src: str) -> None:
-    """Raise unless `trees.js` still overrides the literal with the record's midpoint.
+    """Raise unless `trees.js` still plants the literal and still checks it.
 
-    Assertion 5 compares a fallback against the weight that replaces it. If the
-    replacement goes away the comparison becomes a literal against itself, which
-    is the shape of gate that passes for years while measuring nothing — so the
-    two lines that make the claim true are scanned, not assumed.
+    ROADMAP K46's rule is two claims, and a gate that assumed either would be
+    banking a verdict nothing enforces. The first is that the weight written in
+    `COMMUNITIES` is the weight `pick()` walks — a renderer that went back to
+    `records.density[id] ?? fallback` would make every band verdict below a
+    statement about a number that no longer places anything. The second is that
+    the recorded band is still READ, per zone, and still compared: without the
+    comparison the departures are prose and this assertion is banking whether a
+    comment exists.
     """
-    if not re.search(r"density\[sp\.id\]\s*=\s*\(perHa\[0\]\s*\+\s*perHa\[1\]\)\s*/\s*2;", src):
-        raise LookupError(f"{TREES_JS} no longer takes a species' running weight as the "
-                          f"MIDPOINT of its recorded band — assertion 5 compares the "
-                          f"literal in COMMUNITIES against that number and cannot derive "
-                          f"it any other way")
-    if not re.search(r"records\.density\[id\]\s*\?\?\s*fallback", src):
-        raise LookupError(f"{TREES_JS} no longer rebuilds the community mixes as "
-                          f"`records.density[id] ?? fallback` — the literal weights would "
-                          f"then be the weights, and assertion 5 would be comparing a "
-                          f"number with itself")
+    if re.search(r"records\.density\[\s*id\s*\]\s*\?\?", src):
+        raise LookupError(f"{TREES_JS} has gone back to overriding the mix literal with "
+                          f"`records.density[id] ?? fallback` — ROADMAP K46 made the "
+                          f"written weight the one that plants the stem, and assertion 5 "
+                          f"reports band verdicts on a number that would no longer run")
+    if not re.search(r"bands\[id\]\[sp\.id\]\s*=\s*\[perHa\[0\], perHa\[1\]\];", src):
+        raise LookupError(f"{TREES_JS} no longer keeps each zone's recorded band PER ZONE "
+                          f"— it is the constraint every mix weight is checked against, "
+                          f"and a loader that collapses it has nothing left to check")
+    if not re.search(r"seen\.some\(\(\[lo, hi\]\) => weight >= lo && weight <= hi\)", src):
+        raise LookupError(f"{TREES_JS} no longer tests a mix weight against the bands its "
+                          f"own community's zones record — the departures below would be "
+                          f"comments, and this assertion would bank the existence of a "
+                          f"comment")
+    if not re.search(r"c\.departures\?\.\[`\$\{listName\}\.\$\{id\}`\]", src):
+        raise LookupError(f"{TREES_JS} no longer reads a community's `departures` when a "
+                          f"weight falls outside its cited band — an undeclared departure "
+                          f"has to be what raises, or declaring one means nothing")
 
 
 def direct_call_sites(src: str) -> tuple[int, set[str]]:
@@ -471,47 +519,58 @@ def boxes_overlap(box: dict, half: float) -> bool:
     return True
 
 
-def running_density(dec: dict, zones_read, records: dict[str, dict]) -> dict[str, tuple[float, str]]:
-    """`loadTimberZones`'s `density` table, re-derived here rather than assumed.
+def recorded_bands(dec: dict, zones_read, records: dict[str, dict]) -> dict[str, dict]:
+    """`loadTimberZones`'s `bands` table, re-derived here rather than assumed.
 
-    Same three guards, in the same order and for the same reason the renderer
-    has them: a role it does not take is skipped, a form it cannot draw is
-    skipped BEFORE the density is written, and the first zone to name a species
-    keeps it. A re-derivation that got any of those wrong would report a
-    divergence the renderer does not have.
+    Same two guards, in the same order and for the same reason the renderer has
+    them: a role it does not take is skipped, and a form it cannot draw is
+    skipped BEFORE the band is written. Kept PER ZONE, because that is the whole
+    of ROADMAP K46 — a species named by two zones has two bands, and collapsing
+    them to the first is what silently overwrote seventeen mix entries.
     """
-    order = ([z for z in dec["zone_order"] if z in zones_read]
-             + sorted(set(zones_read) - set(dec["zone_order"])))
-    density: dict[str, tuple[float, str]] = {}
-    for zid in order:
+    bands: dict[str, dict] = {}
+    for zid in sorted(zones_read):
+        out: dict[str, list] = {}
         for sp in records[zid].get("species", []):
             if sp.get("role") not in dec["roles"]:
                 continue
             if sp.get("form") not in dec["forms"]:
                 continue
             band = (sp.get("abundance") or {}).get("density_per_ha")
-            if isinstance(band, list) and len(band) == 2 and sp["id"] not in density:
-                density[sp["id"]] = ((band[0] + band[1]) / 2, zid)
-    return density
+            if isinstance(band, list) and len(band) == 2:
+                out[sp["id"]] = [band[0], band[1]]
+        bands[zid] = out
+    return bands
 
 
-def weight_census(dec: dict, density: dict[str, tuple[float, str]]) -> dict[str, dict]:
-    """Every mix entry, with the literal beside the weight that replaces it."""
+def weight_census(dec: dict, bands: dict[str, dict]) -> dict[str, dict]:
+    """Every mix entry's weight against the bands its own community cites.
+
+    Four verdicts, and only two of them are allowed to stand. `inside-its-band`
+    is the ordinary case. `declared-departure` is a weight outside every cited
+    band that the community writes down and explains. `undeclared-departure` and
+    `no-band-in-its-zones` are faults the renderer also raises on at load — they
+    are reported here so a run that never opens a browser still sees them.
+    """
     out: dict[str, dict] = {}
     for key, comm in sorted(dec["weights"].items()):
+        declared = set(comm["departures"])
         for name, entries in sorted(comm["lists"].items()):
-            for sp, literal in entries:
-                run = density.get(sp)
-                if run is None:
-                    verdict, running, source = "the-literal-runs", literal, None
+            for sp, weight in entries:
+                seen = {z: bands.get(z, {})[sp]
+                        for z in comm["zones"] if sp in bands.get(z, {})}
+                is_declared = f"{name}.{sp}" in declared
+                if not seen:
+                    verdict = "no-band-in-its-zones"
+                elif any(lo <= weight <= hi for lo, hi in seen.values()):
+                    verdict = ("stale-departure" if is_declared else "inside-its-band")
+                elif is_declared:
+                    verdict = "declared-departure"
                 else:
-                    running, source = run
-                    verdict = ("the-record-agrees" if running == literal
-                               else "the-record-overrides")
+                    verdict = "undeclared-departure"
                 out[f"{key}.{name}.{sp}"] = {
-                    "literal": literal,
-                    "running": running,
-                    "from_zone": source,
+                    "weight": weight,
+                    "cited_bands": {z: b for z, b in sorted(seen.items())},
                     "verdict": verdict,
                     "dossier_zones": comm["dossier_zones"],
                 }
@@ -555,7 +614,7 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
         for sp, zs in sorted(contributed.items())
         if sp not in dec["selectable"]
     }
-    weights = weight_census(dec, running_density(dec, zones_read, zone_records))
+    weights = weight_census(dec, recorded_bands(dec, zones_read, zone_records))
     # A species that can be selected but has no archetype of its own is drawn as
     # another species. It is the sycamore today, and it is the shape of thing
     # this file exists to refuse to leave implicit: assertion 3 counts a placed
@@ -586,11 +645,30 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
     }
     problems: list[str] = []
     for entry, w in weights.items():
-        if w["literal"] <= 0:
-            problems.append(f"the mix entry {entry} is weighted {w['literal']} — `pick()` "
+        if w["weight"] <= 0:
+            problems.append(f"the mix entry {entry} is weighted {w['weight']} — `pick()` "
                             f"walks a cumulative sum and can never return a zero-weighted "
                             f"id, so it is in a mix and selectable by nothing, which is "
                             f"the fault assertion 3 exists to catch wearing a disguise")
+        if w["verdict"] == "undeclared-departure":
+            bands = ", ".join(f"{z} {b[0]}–{b[1]}" for z, b in w["cited_bands"].items())
+            problems.append(f"the mix entry {entry} is weighted {w['weight']}, outside "
+                            f"every band its own community's zones record ({bands}). "
+                            f"Since ROADMAP K46 that number plants the stem, so it is an "
+                            f"ecological claim no source carries — declare it in the "
+                            f"community's `departures` with the reason, or move it inside "
+                            f"the band")
+        if w["verdict"] == "stale-departure":
+            problems.append(f"the mix entry {entry} declares a departure and its weight "
+                            f"{w['weight']} is inside a band its own zones record — drop "
+                            f"the declaration in the commit that brought it back inside, "
+                            f"or the note claims a disagreement that no longer exists")
+        if w["verdict"] == "no-band-in-its-zones":
+            comm = entry.rsplit(".", 2)[0]
+            zones = ", ".join(dec["weights"][comm]["zones"])
+            problems.append(f"the mix entry {entry} is weighted {w['weight']} and no zone "
+                            f"this community cites ({zones}) records a density for it — "
+                            f"the weight is constrained by nothing at all")
     if not state["contributed"]:
         problems.append("no woody record is routed to the timber reader at all — the "
                         "scan found nothing, which is a broken gate rather than a town "
@@ -683,35 +761,51 @@ def evaluate(state: dict, bank: dict) -> list[str]:
         if sd[sp] != bd[sp]:
             out.append(f"{sp} is now drawn as {sd[sp]} where it was drawn as {bd[sp]}")
 
-    # 5 — the literal weight beside the weight that runs, exact both ways. The
-    # bank is what stops a mix entry being written to one number and read as
-    # another: seventeen of the twenty-six already are, and a reader who quotes
-    # the file gets the wrong figure for every one of them (ROADMAP K45(b1)).
+    # 5 — the weight that plants the stem, against the bands its own community
+    # cites, exact both ways. Since ROADMAP K46 the written number IS the number,
+    # so what the bank protects is no longer a divergence between two figures but
+    # the standing of each one: a weight that moves, a band that moves under it,
+    # or a departure that appears or is quietly repaired away.
     if "weights" not in bank:
         out.append("the baseline predates assertion 5 and holds no mix weights at all — "
-                   "run --update once to bank the literal and the running weight for "
-                   "every entry")
+                   "run --update once to bank every entry's weight and its band verdict")
         return out
     sw, bw = state["weights"], bank["weights"]
+    if any("weight" not in v for v in bw.values()):
+        out.append("the baseline predates ROADMAP K46: it banks each entry's literal "
+                   "against the global midpoint that used to override it, and this gate "
+                   "now banks the weight that plants the stem against the bands its own "
+                   "community cites. Re-bank with --update in the commit that changed "
+                   "the rule")
+        return out
     for e in sorted(set(sw) - set(bw)):
         w = sw[e]
-        out.append(f"{e} is a mix entry this gate has never banked: literal {w['literal']}, "
-                   f"and what places a stem is {w['running']}"
-                   + (f" (the midpoint of the band {w['from_zone']} records)"
-                      if w["from_zone"] else " (no record carries a band for it)")
-                   + ". Re-bank with --update in the commit that added it")
+        bands = (", ".join(f"{z} {b[0]}–{b[1]}" for z, b in w["cited_bands"].items())
+                 or "no band in its community's zones")
+        out.append(f"{e} is a mix entry this gate has never banked: weighted "
+                   f"{w['weight']}, {VERDICTS[w['verdict']]} ({bands}). Re-bank with "
+                   f"--update in the commit that added it")
     for e in sorted(set(bw) - set(sw)):
         out.append(f"{e} is banked as a mix entry and is no longer one — un-bank it with "
                    f"--update in the commit that removed it, so a species leaving the "
                    f"scene is recorded rather than absorbed")
     for e in sorted(set(sw) & set(bw)):
         s, b = sw[e], bw[e]
-        for field in ("literal", "running", "from_zone", "verdict", "dossier_zones"):
+        if s["weight"] != b["weight"]:
+            out.append(f"{e}'s weight moved: {b['weight']} -> {s['weight']}. That is a "
+                       f"stem count in the frame — re-bank with --update and say in the "
+                       f"commit what evidence moved it")
+            continue
+        if s["verdict"] != b["verdict"]:
+            out.append(f"{e} was {VERDICTS[b['verdict']]} and is now "
+                       f"{VERDICTS[s['verdict']]} — re-bank with --update, and if it has "
+                       f"become a departure say in docs/LIBERTIES.md what the claim is")
+            continue
+        for field in ("cited_bands", "dossier_zones"):
             if s[field] != b[field]:
-                out.append(f"{e}'s {field} moved: {b[field]} -> {s[field]}. The literal is a "
-                           f"fallback and `records.density` is what runs — re-bank with "
-                           f"--update and say in the commit which of the two you meant to "
-                           f"move")
+                out.append(f"{e}'s {field} moved: {b[field]} -> {s[field]}. The record is "
+                           f"the constraint on this weight, so a band that moves under it "
+                           f"is re-banked in the commit that moved the record")
                 break
     return out
 
@@ -750,18 +844,19 @@ def print_census(state: dict) -> None:
         print(f"  {key:<14} {len(ids):>2}  {', '.join(ids)}")
 
     w = state["weights"]
-    overridden = [e for e, v in w.items() if v["verdict"] == "the-record-overrides"]
-    print(f"\nTHE WEIGHT BESIDE EACH SPECIES, AND THE WEIGHT THAT PLACES IT — "
-          f"{len(overridden)} of {len(w)} differ")
-    print(f"  {'entry':<48}{'literal':>8}{'runs':>8}  from")
+    departing = [e for e, v in w.items() if v["verdict"] != "inside-its-band"]
+    print(f"\nTHE WEIGHT THAT PLANTS EACH STEM, AGAINST THE BAND ITS COMMUNITY CITES — "
+          f"{len(w) - len(departing)} of {len(w)} inside")
+    print(f"  {'entry':<48}{'weight':>7}  {'cited band(s)':<34}verdict")
     for e, v in w.items():
-        mark = "  <-" if v["verdict"] == "the-record-overrides" else ""
-        print(f"  {e:<48}{v['literal']:>8.1f}{v['running']:>8.1f}  "
-              f"{v['from_zone'] or 'the literal':<24}{mark}")
-    print("  (the literal is a FALLBACK: `mixes` is rebuilt at load as "
-          "`records.density[id] ?? fallback`,\n   and `records.density` is the midpoint of "
-          "the band in the FIRST TIMBER_ZONE naming the\n   species — one figure per "
-          "species for the whole town, whatever a community writes)")
+        bands = " ".join(f"{z.split('_')[0]}[{b[0]:g}, {b[1]:g}]"
+                         for z, b in v["cited_bands"].items()) or "—"
+        short = v["verdict"] if v["verdict"] != "inside-its-band" else ""
+        print(f"  {e:<48}{v['weight']:>7.1f}  {bands:<34}{short}")
+    print("  (the weight written in COMMUNITIES is the weight `pick()` walks, and the "
+          "record's band\n   is the CONSTRAINT on it. A weight outside every band its "
+          "community's `zones` name\n   is declared in that community's `departures` with "
+          "its reason, or the load raises.)")
 
     print(f"\nROUTED, ARCHETYPED, AND SELECTED BY NOTHING — "
           f"{len(state['unselectable'])} of {len(state['contributed'])}")
@@ -849,39 +944,53 @@ def self_test() -> int:
 
     s5 = copy.deepcopy(state)
     first_entry = sorted(state["weights"])[0]
-    s5["weights"][first_entry]["literal"] += 3
-    cases.append(("5 a mix entry's literal weight edited and not re-banked", s5, bank))
+    s5["weights"][first_entry]["weight"] += 3
+    cases.append(("5 a mix entry's weight edited and not re-banked — which is a stem "
+                  "count in the frame", s5, bank))
 
     s5b = copy.deepcopy(state)
     s5b["weights"]["gallery.mix.a_species_added_to_the_mix"] = {
-        "literal": 1.0, "running": 1.0, "from_zone": None,
-        "verdict": "the-literal-runs", "dossier_zones": ["5"]}
+        "weight": 1.0, "cited_bands": {"z05_riverbank_timber": [1, 3]},
+        "verdict": "inside-its-band", "dossier_zones": ["5"]}
     cases.append(("5 a species added to a mix and not banked", s5b, bank))
 
     b5 = copy.deepcopy(bank)
     b5["weights"]["gallery.mix.a_species_that_left"] = {
-        "literal": 4.0, "running": 4.0, "from_zone": None,
-        "verdict": "the-literal-runs", "dossier_zones": ["5"]}
+        "weight": 4.0, "cited_bands": {"z05_riverbank_timber": [1, 8]},
+        "verdict": "inside-its-band", "dossier_zones": ["5"]}
     cases.append(("5 a banked mix entry that has been removed", state, b5))
 
+    # The record moving under a weight that did not move is the case K46's rule
+    # created: the band is the constraint now, so an edited record can turn a
+    # standing weight into a claim no source carries without a line of the
+    # renderer changing.
     b5r = copy.deepcopy(bank)
-    b5r["weights"][first_entry] = {**b5r["weights"][first_entry], "running": 99.0,
-                                   "verdict": "the-record-overrides"}
-    cases.append(("5 a record's band edited under a fixed literal", state, b5r))
+    b5r["weights"][first_entry] = {**b5r["weights"][first_entry],
+                                   "cited_bands": {"z05_riverbank_timber": [90, 99]}}
+    cases.append(("5 a record's band edited under an unchanged weight", state, b5r))
 
-    # THE CASE THIS HALF OF THE PARCEL EXISTS FOR, and it is K45(a)'s move
-    # applied to K45(b)'s own prescription. ROADMAP K45(b) and docs/LIBERTIES.md
-    # L114 both say the sycamore is "a one-line mix entry weighted at the density
-    # its own record carries", and K45(b) writes that line out as
-    # `['platanus_occidentalis', 1]`. Weighted at 1 the literal disagrees with
-    # the 2 that would place it, so the entry ships as a third dead number.
+    b5v = copy.deepcopy(bank)
+    b5v["weights"]["gallery.mix.salix_amygdaloides"] = {
+        **b5v["weights"]["gallery.mix.salix_amygdaloides"], "verdict": "inside-its-band"}
+    cases.append(("5 a declared departure that used to sit inside its band", state, b5v))
+
+    # K45(a)'s move applied to K45(b)'s own prescription, and K46 CHANGED WHAT IT
+    # CATCHES — recorded here rather than deleted, because a self-test case whose
+    # meaning has moved is worth more read than dropped. ROADMAP K45(b) and
+    # docs/LIBERTIES.md L114 prescribe `['platanus_occidentalis', 1]`. Under the
+    # old rule that 1 was a dead number: the 2 from `records.density` overrode it
+    # and nothing used it. Under K46's rule the 1 is admissible — z05 bands the
+    # sycamore at [1, 3] and 1 is its floor — and it is no longer a defect but a
+    # decision, halving the sycamores that stand. So what fires now is the weight
+    # having moved without being re-banked, which is the assertion K46 wants: the
+    # gate stopped being about a disagreement between two figures and became
+    # about a stem count in the frame.
     s5c = copy.deepcopy(state)
     syc = s5c["weights"].get("gallery.mix.platanus_occidentalis")
     if syc:
-        s5c["weights"]["gallery.mix.platanus_occidentalis"] = {
-            **syc, "literal": 1.0, "verdict": "the-record-overrides"}
-        cases.append(("5 K45(b)'s prescribed ['platanus_occidentalis', 1] — the literal "
-                      "disagreeing with the 2 that runs", s5c, bank))
+        s5c["weights"]["gallery.mix.platanus_occidentalis"] = {**syc, "weight": 1.0}
+        cases.append(("5 K45(b)'s prescribed ['platanus_occidentalis', 1] — admissible "
+                      "under K46's rule, and half the sycamores", s5c, bank))
 
     # THE CASE THIS PARCEL EXISTS FOR. docs/LIBERTIES.md L113 and ROADMAP K45
     # both say the lakeshore's four dune records are repaired by adding the zone
@@ -960,11 +1069,27 @@ def self_test() -> int:
          mix_entries("  x: {\n    mix: [\n      ['a', 1], ['b', 2],\n"
                      "      ['c', 3],\n    ],\n  },\n", "x")["mix"]
          == [("a", 1.0), ("b", 2.0), ("c", 3.0)]),
-        ("…and each community's dossier still says which ZONE its literals came from",
+        ("…and each community's dossier still says which ZONE its weights came from",
          all(c["dossier_zones"] for c in dec["weights"].values())),
         ("…and refuses a community that no longer says",
          raises(lambda: mix_weights(re.sub(r"dossier: '", "dossierWas: '", src)))),
-        ("the running weight is re-derived in TIMBER_ZONES order",
+        # The two citations are the same fact written twice — the prose a reader
+        # sees and the list the loader constrains against — and holding them
+        # equal is what stops a community reading bands out of a zone it does
+        # not claim. ZONE 6a/6b/6c all resolve to z06, which is K46's whole
+        # finding, so the comparison is on the zone NUMBER.
+        ("…and each community's machine-readable `zones` agrees with that prose",
+         all(c["zones"] for c in dec["weights"].values())),
+        ("…and refuses a community whose zones and dossier disagree",
+         raises(lambda: mix_weights(src.replace(
+             "zones: ['z05_riverbank_timber'],", "zones: ['z09_sand_prairie'],")))),
+        ("…and refuses a community that declares no zones at all",
+         raises(lambda: mix_weights(src.replace(
+             "zones: ['z06_dense_forest', 'z07_bur_oak_savanna'],", "")))),
+        ("the departures scanner reads the three this file declares",
+         sorted(d for c in dec["weights"].values() for d in c["departures"])
+         == ["edgeMix.acer_saccharinum", "mix.salix_amygdaloides", "mix.ulmus_americana"]),
+        ("TIMBER_ZONES is still a list a community's `zones` can name into",
          dec["zone_order"][0] == "z05_riverbank_timber"
          and set(dec["zone_order"]) == dec["zones"]),
         ("the archetype table and its fallback are read off the renderer",
@@ -973,15 +1098,57 @@ def self_test() -> int:
          raises(lambda: archetype_fallback(
              src.replace("SPECIES[sp.id] ?? SPECIES.ulmus_americana",
                          "SPECIES[sp.id] ?? SPECIES.no_such_tree")))),
-        ("the override rule is scanned out of the renderer, not assumed",
+        ("K46's rule is scanned out of the renderer, not assumed",
          record_density_rule(src) is None),
-        ("…and a renderer that stopped overriding the literal is refused",
+        # The regression this file exists to refuse is the ONE it was built to
+        # measure: the loader going back to a global midpoint that overwrites
+        # every hand weight. It is fired in memory on every run.
+        ("…and a renderer that went back to overriding the literal is refused",
          raises(lambda: record_density_rule(
-             src.replace("records.density[id] ?? fallback", "fallback")))),
-        ("…and one that stopped taking the band's midpoint is refused",
+             src + "\n const w = records.density[id] ?? fallback;\n"))),
+        ("…and one that stopped keeping the recorded band per zone is refused",
          raises(lambda: record_density_rule(
-             src.replace("density[sp.id] = (perHa[0] + perHa[1]) / 2;",
-                         "density[sp.id] = perHa[0];")))),
+             src.replace("bands[id][sp.id] = [perHa[0], perHa[1]];",
+                         "bands[sp.id] = perHa;")))),
+        ("…and one that stopped testing the weight against that band is refused",
+         raises(lambda: record_density_rule(src.replace(
+             "seen.some(([lo, hi]) => weight >= lo && weight <= hi)", "true")))),
+        ("…and one that stopped reading `departures` is refused",
+         raises(lambda: record_density_rule(src.replace(
+             "c.departures?.[`${listName}.${id}`]", "null")))),
+        # The census's own verdicts, fired against a synthetic band table: a gate
+        # that only ever sees the passing case is a gate whose failing branch has
+        # never run. All three faults are reachable here and none is reachable
+        # from the committed file, which is the point.
+        ("the census can say `undeclared-departure`",
+         weight_census({"weights": {"c": {"zones": ["z05_riverbank_timber"],
+                                          "dossier_zones": ["5"], "departures": [],
+                                          "lists": {"mix": [("ulmus_americana", 99.0)]}}}},
+                       {"z05_riverbank_timber": {"ulmus_americana": [15, 35]}}
+                       )["c.mix.ulmus_americana"]["verdict"] == "undeclared-departure"),
+        ("…and `declared-departure` for the same weight once it is written down",
+         weight_census({"weights": {"c": {"zones": ["z05_riverbank_timber"],
+                                          "dossier_zones": ["5"],
+                                          "departures": ["mix.ulmus_americana"],
+                                          "lists": {"mix": [("ulmus_americana", 99.0)]}}}},
+                       {"z05_riverbank_timber": {"ulmus_americana": [15, 35]}}
+                       )["c.mix.ulmus_americana"]["verdict"] == "declared-departure"),
+        ("…and `stale-departure` for one declared and no longer outside",
+         weight_census({"weights": {"c": {"zones": ["z05_riverbank_timber"],
+                                          "dossier_zones": ["5"],
+                                          "departures": ["mix.ulmus_americana"],
+                                          "lists": {"mix": [("ulmus_americana", 25.0)]}}}},
+                       {"z05_riverbank_timber": {"ulmus_americana": [15, 35]}}
+                       )["c.mix.ulmus_americana"]["verdict"] == "stale-departure"),
+        ("…and `no-band-in-its-zones` when the cited zone records none",
+         weight_census({"weights": {"c": {"zones": ["z07_bur_oak_savanna"],
+                                          "dossier_zones": ["7"], "departures": [],
+                                          "lists": {"mix": [("ulmus_americana", 25.0)]}}}},
+                       {"z07_bur_oak_savanna": {}}
+                       )["c.mix.ulmus_americana"]["verdict"] == "no-band-in-its-zones"),
+        ("…and every committed entry is one of the two verdicts that may stand",
+         all(v["verdict"] in ("inside-its-band", "declared-departure")
+             for v in state["weights"].values())),
         ("the heightfield is the int16 grid this gate reads",
          heightfield()["cols"] > 0),
     ]
@@ -1041,12 +1208,13 @@ def main() -> int:
             "drawn_as_another_species": state["drawn_as_another_species"],
             "weights": state["weights"],
         }, indent=2) + "\n", encoding="utf-8")
-        overridden = sum(1 for v in state["weights"].values()
-                         if v["verdict"] == "the-record-overrides")
+        departing = sum(1 for v in state["weights"].values()
+                        if v["verdict"] != "inside-its-band")
         print(f"wrote {BASELINE.relative_to(ROOT)} "
               f"({len(state['unselectable'])} unselectable species, "
               f"{len(state['zone_boxes'])} timber zone(s), "
-              f"{len(state['weights'])} mix entries, {overridden} of them overridden)")
+              f"{len(state['weights'])} mix entries, {departing} of them outside their "
+              f"community's own cited bands)")
         return 0
 
     if not args.gate and not args.quiet:
@@ -1062,15 +1230,15 @@ def main() -> int:
 
     if args.gate or args.quiet:
         g = state["ground"]
-        overridden = sum(1 for v in state["weights"].values()
-                         if v["verdict"] == "the-record-overrides")
+        departing = sum(1 for v in state["weights"].values()
+                        if v["verdict"] != "inside-its-band")
         print(f"planting reach: the woody planter sweeps a "
               f"{2 * state['planter']['half_m']:.0f} m square and reaches "
               f"{g['inside_pct']:.1f} % of the ground above its own dry floor "
               f"({g['outside_ha']:.1f} ha outside it); "
               f"{len(state['unselectable'])} routed woody species can be selected by no "
-              f"community mix; {overridden} of {len(state['weights'])} mix weights are "
-              f"written to one number and run at another. All three are banked and none "
+              f"community mix; {departing} of {len(state['weights'])} mix weights sit "
+              f"outside every band their own community cites. All three are banked and none "
               f"may worsen")
     return 0
 

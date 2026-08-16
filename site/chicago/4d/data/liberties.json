@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 116,
+  "count": 117,
   "liberties": [
     {
       "id": "L1",
@@ -9923,6 +9923,29 @@
         {
           "label": "How to resolve",
           "text": "a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either sourced or recorded here as invented in its own right; the mottling itself would need a second material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are in the same queue for the same reason. When it lands, the entry has to leave `drawn_as_another_species` with `--update` in the same commit. Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other drawing convention in the same layer."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L117",
+      "title": "Three canopy weights the records do not carry, kept because no record can carry them",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "three of the twenty-six per-community canopy weights in `renderers/web/js/trees.js` sit **outside** the density band the zone record their own community cites, and they are kept as written rather than raised into the band. Since ROADMAP **K46** the written weight is the number that plants the stem, so each of these three is an ecological claim of this project's own. They are declared in their community's `departures` field, with the reason, and the renderer refuses to load an undeclared one. | entry | written | the band its community's zone records | what the number asserts | |---|---|---|---| | `gallery.mix.salix_amygdaloides` | 8 | z05 `[10, 25]` | the peachleaf willow is a bank tree: the gallery's two lists split ZONE 5's single band between them, 17 at the water's edge and 8 behind it | | `gallery.edgeMix.acer_saccharinum` | 8 | z05 `[15, 35]` | at the water's edge the mix goes to willow — the edge mix's own note, expressed as a weight, over ground ZONE 5 does not band separately | | `mesic_pocket.mix.ulmus_americana` | 12 | z06 `[40, 80]` | the elm is incidental in the fire-protected pocket, where the closing canopy is basswood, sugar maple and ironwood | **Why this is the honest form, and it is a fact about the DATASET rather than a preference.** The obvious repair is to key density by (zone, species) and let each community read the band from the zone its own `dossier` cites — which is what the file's comment has always claimed it did. It cannot be done: `wet_woods` cites **ZONE 6a** and `mesic_pocket` cites **ZONE 6b** and both resolve to the single record **`z06_dense_forest`**, whose elm band is the swamp thicket's reading. A zone-keyed density gives the elm 60 in both communities, and the 12 that makes it incidental in the pocket has nowhere in `data/` to live. The sub-community distinction is real, is recorded nowhere else in this project, and is the whole reason K46 kept the hand weights instead of deleting them. **Consequence, stated so a reader can weigh it.** All three departures are **downward** — measured across the twenty-six entries, 23 sit inside their own cited band, 3 fall below one and **none is above**. So the hand weights have never inflated a species beyond what a record supports; where they depart, they thin a species the record would have planted more of. Nothing in `data/` moved and no confidence grade changed: these are render weights, and every species' presence in its community remains the record's claim rather than this file's."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a sub-community band in the dataset — ZONE 6a, 6b and 6c banded apart in `data/flora/zones/`, and ZONE 5's gallery banded apart from its edge — at which point each of these three becomes a reading of a record and leaves this entry with `--update` in the same commit. That is a research parcel, not a renderer one, and the three numbers above are what it has to account for. Related: **L114** and **L116**, the other two liberties in this layer, and ROADMAP **K45(b1)**, which measured the divergence this entry resolves."
         },
         {
           "label": "Recorded",

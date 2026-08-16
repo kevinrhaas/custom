@@ -1,5 +1,65 @@
 # STATUS
 
+## Fixed 2026-08-16 — the written weight plants the stem, and the tidy alternative was refuted by the shape of the dataset
+
+**K46**, the question K45(b1) measured and refused to answer. The literal in `COMMUNITIES` is now
+the number `pick()` walks; the record's band is the CONSTRAINT on it. 17 of the 26 mix entries
+change value and all 26 change standing.
+
+**Route 3 cannot be built, and that is the finding.** K46 named three routes and called route 3 —
+key `density` by (zone, species), each community reading the band from the zone its own `dossier`
+cites — "the one that says what the file's comment claims". `wet_woods` cites **ZONE 6a** and
+`mesic_pocket` cites **ZONE 6b** and **both resolve to the single record `z06_dense_forest`**,
+whose elm band `[40, 80]` is the swamp thicket's reading. Zone-keyed, the elm is 60 in both
+communities and the **12** that makes it incidental in the fire-protected pocket has nowhere in
+`data/` to live — route 3 destroys the exact reading it was proposed to restore. Route 1 discards
+it by its own admission. Route 2 is therefore not a preference between two ecologies; it is the
+only one of the three that can express the file, and the reason is the dataset's shape.
+
+**The measurement that made it safe: 23 inside, 3 below, 0 above.** Every literal was scored
+against the band of the zone its own community cites. **Not one hand weight is an inflation** —
+where the file departs from a record it thins a species, never claims more of one than the evidence
+carries. That is what licensed handing the hand weights the scene, and it is a number nobody had
+taken: K45(b1) compared the literal against the figure that overrode it, never against the band
+its own community cites.
+
+**What moved in the frame, and what did not.** `perHa` — the stand density that sets how many
+stems a wood carries — was never overridden and is untouched, so **no stem count changed**: no tree
+appeared, vanished or moved ground. Species share changed in three of the four communities. The
+silver maple falls from **29.4 % to 11.9 %** of the water's edge and the black willow rises from
+**50.0 % to 62.7 %**, which is the edge mix's own note (*"goes to willow"*) finally surviving the
+load. The elm rises from **25.6 % to 39.2 %** of the swamp thicket and falls from **22.4 % to
+12.2 %** of the mesic pocket — two readings of the dossier where there had been one.
+
+**The three departures are declared, not absorbed.** `gallery.mix.salix_amygdaloides` (8 against
+z05 `[10, 25]`), `gallery.edgeMix.acer_saccharinum` (8 against `[15, 35]`) and
+`mesic_pocket.mix.ulmus_americana` (12 against z06 `[40, 80]`) sit outside their cited bands, are
+each written down in their community's new `departures` field with the reason, and are
+`docs/LIBERTIES.md` **L117**. The renderer refuses to load an undeclared one — and refuses a
+**stale** one too: a departure repaired without dropping its note fails, because a declaration that
+outlives its fault is how a gate stops meaning anything.
+
+**Two open questions closed without being answered.** K45(b1)'s residue — `fraxinus_nigra` at 14
+against a midpoint of 15 — needed no explanation once the rule stopped being "the midpoint": that
+was a regularity 18 of 25 entries happened to follow, and 14 is inside z06's `[10, 20]`. And
+`ridge_oak`'s merged **ZONE 6c + ZONE 7**, which K45(b1) escalated to the owner, does not need
+deciding: with the record a constraint rather than a source the question is not *which band* but
+*is the weight admissible in one of them*, and all four oak weights are.
+
+**The frame was measured before and after on the same three stations**, and the control is the
+finding: `prairie_west` — the ground Andreas calls *"an open prairie, entirely free from timber"* —
+does not move (high-pass RMS far 20.79 → 20.78, near 19.61 → 19.61), while `river_bank`, standing
+in the community that changed most, moves hardest and in the direction the weights predict (far
+21.85 → 6.74, near 5.98 → 16.64). `CRITIC SHOTS OK` before and after, and the after-set reproduced
+across two processes, so the deltas are the change rather than the rasteriser. One swing is left
+unexplained and is recorded in the ROADMAP box rather than buried: `prairie_west`'s horizon-timber
+fraction falls 0.7026 → 0.5308 on desktop while barely moving on mobile.
+
+**Unverified, and stated rather than skipped:** the desktop half of `smoke_renderer.mjs` was not
+run — ~13 minutes against this runner's 10-minute per-command ceiling. `tools/check.sh`, the
+mobile smoke against the published mirror, the gate's own self-test and the critic shots are the
+verification that was done.
+
 ## Fixed 2026-08-16 — the sycamore is planted, and the weight written beside every species in the tree mixes is not the weight that plants it
 
 **K45(b1)**, the separable third of K45(b). `['platanus_occidentalis', 2]` is in the gallery mix,
