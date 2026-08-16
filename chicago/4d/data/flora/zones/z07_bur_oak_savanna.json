@@ -81,6 +81,12 @@
    "form": "grass_arching",
    "abundance": {"cover_fraction":[0.1,0.2]},
    "height_m": [0.8,1.2],
+   "width_m": [0.25,0.45],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["swink_wilhelm_1994"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. Reasoned from the two committed clumps standing beside it in this same record: Schizachyrium scoparium at [0.20, 0.35] m and Andropogon gerardii at [0.30, 0.60] m. § ZONE 7 names all three plus Carex pensylvanica as one \"graminoid ground matrix\" at 0.3-0.9 m, and Canada wild rye stands between the two in height, so its clump is taken between them. No source states the width."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [104,126,78],

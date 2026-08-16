@@ -1150,8 +1150,17 @@ function compileZones({ index, files }, terrain, problems, stats) {
  * the bar it will eventually be held to: the repair needs a footprint this
  * dataset does not carry for every species, so a gate here today would either
  * fail the build over data nobody has researched yet or be satisfied by an
- * invented number. Both are worse than a figure printed every run. K49(b) is
+ * invented number. Both are worse than a figure printed every run. K49(c) is
  * the fix, and it starts by closing `unconvertible`.
+ *
+ * K49(c1) CLOSED `unconvertible`: the twenty-five sward records that gave a
+ * cover and no footprint carry one now, each graded in its own
+ * `width_provenance` because no source states one, and `tools/validate.py`
+ * refuses a new sward record that carries a cover without a width. So this
+ * list is expected to be EMPTY and an entry in it is a defect rather than a
+ * research gap. `mixed` stays non-empty and stays a report: a list whose
+ * species record their abundance in different fields is a fact about the
+ * dataset, and it stops being a FAULT when K49(c2) deals the slots on `stems`.
  *
  * `mixed` is one row per (community, list) whose species do not agree on what
  * their abundance measures. `countedShare` is how much of that list's slot
@@ -1232,11 +1241,19 @@ function buildSpecies(sp, palette, problems, zoneId) {
    *
    * `stems` is the same abundance read as a count, and it is derivable only
    * where the record carries what converts an area into one: the plant's own
-   * `width_m`. Where it does not, this is NULL rather than a guess — the
-   * footprint the placer falls back on for walker clearance is a clearance
-   * radius, and using it here would put an invented number at the centre of the
-   * arithmetic that decides what the sward is made of. AGENTS.md rule 2: the
-   * gap is recorded, not filled. `auditAbundance` reports every one of them.
+   * `width_m` — what one drawn plant covers on the ground. Where it does not,
+   * this is NULL rather than a guess — the footprint the placer falls back on
+   * for walker clearance is a clearance radius, and using it here would put an
+   * invented number at the centre of the arithmetic that decides what the sward
+   * is made of. AGENTS.md rule 2: the gap is recorded, not filled.
+   *
+   * K49(c1): every sward record carries a width now, so `stems` is derivable
+   * for all 98 of them and `auditAbundance` reports none. It is still not what
+   * deals the slots — `weight` is, and moving the lottery onto `stems` is
+   * K49(c2), which is a split from this half because the conversion puts a
+   * species the census owes 1.10 slots to at the edge of the K49(f) tail gate.
+   * The numbers are committed in ROADMAP K49(c1) so the fix cannot redefine
+   * its own success.
    */
   const width = Array.isArray(sp.width_m) ? sp.width_m : null;
   let stems = null;

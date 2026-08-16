@@ -189,6 +189,17 @@
         0.9,
         1.3
       ],
+      "width_m": [
+        0.2,
+        0.4
+      ],
+      "width_provenance": {
+        "confidence": "inferred",
+        "sources": [
+          "white_1978_inai"
+        ],
+        "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. Bluejoint is listed in the same wet-meadow matrix (§ ZONE 1 and § ZONE 3) and is rhizomatous rather than tussock-forming, so a drawn shoot cluster is taken at or under that hummock: 0.20-0.40 m. The band is reasoned from the co-listed measurement, not stated by it."
+      },
       "july": {
         "phenology": "flowering",
         "foliage_rgb": [
@@ -316,6 +327,17 @@
         0.9,
         1.4
       ],
+      "width_m": [
+        0.3,
+        0.6
+      ],
+      "width_provenance": {
+        "confidence": "inferred",
+        "sources": [
+          "swink_wilhelm_1994"
+        ],
+        "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. Reasoned from this dataset's own committed Andropogon gerardii clump, [0.30, 0.60] m in this same record. § ZONE 1 gives switchgrass 0.9-1.4 m in July against big bluestem's 0.8-1.2 m and lists both as warm-season bunchgrasses of the one matrix, so the two clumps are taken as the same size class. No source states either width."
+      },
       "july": {
         "phenology": "vegetative",
         "foliage_rgb": [

@@ -1,5 +1,59 @@
 # STATUS
 
+## Measured 2026-08-16 — the sward's twenty-five missing footprints are in, and the conversion they unlock is committed unshipped
+
+**ROADMAP K49(c1)**, the measurement half of a measure-then-fix split. **Nothing a visitor can see
+changed today**, and the exemption claimed is the split's own: the fix half is K49(c2) and it now
+has a baseline it cannot re-derive to something kinder.
+
+### What was closed
+
+A record's abundance is one of three fields and they are not three spellings of one number:
+`stems_per_m2` and `density_per_ha` count plants, `cover_fraction` measures ground. The sward's
+placer deals SLOTS and a slot is one drawn plant, so a cover converts only through the plant's own
+`width_m`. **Twenty-five sward records carried a cover and no width**, and six of twenty lists were
+therefore dealing an area against a count — the dense forest's understory 96.5 % of its slots that
+way.
+
+All twenty-five now carry a footprint, graded in its own `width_provenance` block:
+**11 inferred** (reasoned from a footprint this dataset commits for a plant beside it in the same
+list) and **14 reconstructed** (bounded by the record's own height band and its dossier row's
+stated habit, recorded in `docs/LIBERTIES.md` **L119**). **None is attested: no source this project
+holds states a footprint for any of them.** The grade sits on the figure and not on the record
+because eight of the twenty-five are `attested` records, and a width written under that grade would
+be an argument promoted to an attestation. `tools/validate.py` now refuses a sward `cover_fraction`
+record with no `width_m`, and refuses a `width_provenance` that outranks the record it sits in.
+
+### What the conversion does, measured and NOT shipped
+
+Built, published and censused with `tools/measure_sward_draw.mjs` on the published mirror:
+`unconvertible` **25 → 0**, deviation from the recorded cover **matrix 219.19 → 197.46** and
+**forb 107.18 → 89.11** slots, worst shortfall **15.21 → 12.29**. The shares move by up to a factor
+of three — the forest's ramps 96.5 % → 89.3 % and its wood nettle 1.1 % → 6.3 %, the sand prairie's
+June grass 8.1 % → 24.0 %, the lakeshore's little bluestem 11.6 % → 30.1 %, the settled town's
+broadleaf plantain 25.2 % → 53.6 %.
+
+**And it is not merged, because it fails K49(f)'s tail gate by one species.** The sedge meadow's two
+bulrushes are identical records at 200/ha; the conversion deals them 1.90 % → 0.16 % of that list,
+which is **1.10 slots owed** over the census's 645-slot frame. One takes a slot, the other takes
+none. That is not a band narrower than one step — the fault K49(f) repaired — it is the tail of an
+unbiased deal at expectation 1.1, and two identical species landing on opposite sides of it is the
+proof. The assertion is right and was not weakened. K49(c2) carries three routes to reaching it.
+
+### The finding underneath, and it is about a field this project has always had
+
+The conversion is `cover / (π·(w/2)²)`, exact for non-overlapping cover — so it is honest only if
+the width measures what the cover measures. § ZONE 3 gives the tussock sedge **40–60 % cover** and,
+one sentence later, tussocks **0.3 m wide, 0.5–1.0 m apart**, which is **1–4 plants/m²** against the
+**6.62/m²** the conversion derives from that record's committed 0.31 m width. **The width is a base
+width and the cover is foliage cover.** `width_m` is a crown width on a tree and a clump width on a
+sedge, and nothing had ever asked whether those are one field. Where a dossier states a SPACING it
+states a density directly, which is better evidence than any width.
+
+**Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute per-command
+ceiling). `tools/check.sh`, the mobile smoke on the published mirror and the census are green. No
+bake: `data/flora/` reaches no GLB.
+
 ## Fixed 2026-08-16 — the even deal dealt the same sixty-four numbers everywhere, so two plants were absent from the whole scene
 
 **ROADMAP K49(f)**, opened and closed the same day K49(d) shipped the fault. A visitor can see it:

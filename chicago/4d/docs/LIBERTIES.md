@@ -4258,3 +4258,47 @@ account for.
 Related: **L114** and **L116**, the other two liberties in this layer, and ROADMAP **K45(b1)**,
 which measured the divergence this entry resolves.
 **Recorded:** 2026-08-16.
+
+### L119 — Fourteen invented plant footprints, because a cover cannot be counted without one
+
+**Decision:** fourteen of the twenty-five sward records that ROADMAP **K49(c1)** gave a `width_m`
+carry a footprint **nothing states and nothing in this dataset implies** — what one drawn plant
+covers on the ground — and they are graded `reconstructed` in their own `width_provenance` rather
+than left absent. They are: *Persicaria coccinea*, *Lycopus americanus*, *Boehmeria cylindrica*
+(sedge meadow); *Allium canadense* (riverbank); *Laportea canadensis*, *Ageratina altissima*,
+*Osmorhiza claytonii* (dense forest); and *Poa pratensis*, *Chenopodium album*, *Amaranthus
+retroflexus*, *Ambrosia artemisiifolia*, *Xanthium strumarium*, *Rumex crispus*, *Verbena
+urticifolia* (the settled town's trampled halo). The other eleven are `inferred`: each is reasoned
+from a footprint this dataset already commits for a plant standing beside it in the same list.
+
+**What bounded the invention.** Every one of the fourteen is bounded by its own record's
+`height_m` and by the growth habit its dossier row states — a basal rosette is banded under a
+branched annual, a shade forb at 0.2–0.6 m tall is given a leaf spread near its own height, a
+sod-forming turf grass is given the halo's own height band because it has no clump at all. Not one
+is bounded by how the sward looks: no width here was chosen, tried or adjusted against a render.
+
+**Why the gap could not be left open, which is the whole reason this entry exists.** A record's
+abundance is one of three fields and they are not three spellings of one number: `stems_per_m2` and
+`density_per_ha` count plants, `cover_fraction` measures ground. The sward's placer deals SLOTS and
+a slot is one drawn plant, so a cover has to become a count before it can be dealt against a
+density, and `width_m` is the only thing in a record that converts it. Twenty-five records carried
+a cover and no width, so six of the twenty lists were dealing an area against a count — the dense
+forest's understory dealt 96.5 % of its slots that way. Leaving the widths absent was not the
+neutral option: it left the arithmetic wrong AND undocumented.
+
+**The honest consequence, stated because it is large.** The footprint is now the number that
+decides what a list is made of. In the six mixed lists the shares move by up to a factor of three
+on the conversion — June grass 8.1 % → 24.0 % of the sand prairie's matrix, wood nettle 1.1 % →
+6.3 % of the forest floor — and for the fourteen above that movement rests on an invented figure.
+This is why they carry their own grade instead of the record's: the record's `confidence` grades
+what its sources say about the plant, and none of them says this.
+
+**How to resolve:** a measured clump or canopy width for any of the fourteen, from a source this
+project can cite, replaces the number and re-grades that record's `width_provenance` with
+`--update`-style bookkeeping in the same commit. A dossier sentence that states a SPACING rather
+than a width would do it too, and is the better evidence — § ZONE 3's *"tussocks … 0.5–1.0 m
+apart"* is one this project already holds for a record it did not need it for.
+
+Related: **L114**, **L116** and **L118** in this layer, and ROADMAP **K49(c1)**, which
+measured the conversion these widths make possible.
+**Recorded:** 2026-08-16.
