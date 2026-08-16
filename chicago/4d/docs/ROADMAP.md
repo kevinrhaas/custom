@@ -159,7 +159,7 @@ rationed.**
 | **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | — | RENDERING | ~~K49(c1)~~ | — | **DONE 2026-08-16 — the 25 footprints are in, `unconvertible` 25 → 0, and the conversion is measured and NOT shipped.** It moves the shares by up to 3× (June grass 8.1 % → 24.0 %, wood nettle 1.1 % → 6.3 %) and improves both deviations (matrix 219.19 → 197.46, forb 107.18 → 89.11), and it puts *Scirpus atrovirens* at **1.10 slots owed, 0 drawn** — K49(f)'s absolute gate. Read its box before dealing a sward slot off any number |
-| **1** | RENDERING | **K49(c2)** | **SEEN** | the fix half, with its baseline already committed: deal the sward on plants per m² and reach K49(f)'s tail gate rather than weakening it. Three routes are written up in K49(c1)'s box, and the first two are the same question K49(e) is measuring |
+| — | RENDERING | ~~K49(c2)~~ | **SEEN** | **DONE 2026-08-16 — the conversion is SHIPPED and the tail gate is green on the mirror: matrix deviation 219.19 → 154.19, forb 107.18 → 89.11, worst shortfall 15.21 → 8.50.** Route 1 was built and is **refuted at frame scale** (the sweep alone leaves *S. cyperinus* drawn nowhere at 1.11 owed, because a frame does not hold whole blocks — K49(e)'s question); route 3, which K49(c1) said was "not a route to green", **is** what got there. Read its box before proposing a construction to fix a tail |
 | — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
 | — | RENDERING | ~~K49~~ | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
 | — | RENDERING | ~~K47~~ | — | **DONE 2026-08-16 — and it inverted: claimed SEEN, delivered UNSEEN.** The sycamore's archetype is built and `drawn_as_another_species` is empty; the tree is **0 of 163 stems**. Read its box before quoting v139 or K45(b1) on what stands by the river |
@@ -3393,7 +3393,16 @@ mirror, five block sizes, table above · `tools/critic_shots.mjs --published --v
 --stations prairie_west` before and after. **The desktop half of the smoke was not run and is not
 claimed** — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(e) — does a spatial filter eat the stratification? · **UNCLAIMED · UNSEEN · opened 2026-08-16 by K49(d) · Effort: S**
+### K49(e) — does a spatial filter eat the stratification? · **UNCLAIMED · UNSEEN · opened 2026-08-16 by K49(d) · Effort: S · EVIDENCE ADDED 2026-08-16 by K49(c2)**
+
+**K49(c2) found a second symptom of the same suspect, and it is a stronger one than the census rows
+this parcel was opened on.** Its route-1 sweep makes the union of the blocks in a frame an exact
+stratification of the CDF at `1/(n·B)` — on paper. Measured, a species owed **1.11** slots was
+still drawn nowhere, which cannot happen if the union is exact. The ring and the view cone cut most
+blocks partially, so the rank a narrow band lands on is often a rank that was never dealt. Whoever
+takes this: the question is not only whether the filter biases the SET of ranks, it is what
+fraction of a block survives it, because that fraction is the ceiling on any tail guarantee this
+placer can offer.
 
 **It is UNSEEN and it has the written exemption: it is a gate-shaped measurement blocking a named
 SEEN parcel** — every future use of `stratum` in a filtered layer, and K49(c) is one.
@@ -3596,7 +3605,64 @@ project's `width_m` is a crown width on a tree and a clump width on a sedge, and
 asked whether those are the same field. Where a dossier states a SPACING it states a density
 directly, and that is better evidence than any width — K49(c2) owns it.
 
-### K49(c2) — deal the sward on plants per m² · **UNCLAIMED · SEEN · opened 2026-08-16 by K49(c1) · Effort: S–M**
+### K49(c2) — deal the sward on plants per m² · **DONE 2026-08-16 — the conversion is SHIPPED, and the route that was written off as "not a route to green" is the one that got there**
+
+**Read this box before proposing a construction to fix a tail.** The sward is dealt on plants per
+m² in every list, at K49(c1)'s committed baseline, and the tail gate is green on the published
+mirror. Measured with `tools/measure_sward_draw.mjs` against the mirror, at both viewports:
+
+| | dev (before) | K49(c1)'s conversion | shipped here |
+|---|---|---|---|
+| deviation from the record, matrix | 219.19 | 197.46 | **154.19** slots |
+| deviation from the record, forb | 107.18 | 89.11 | **89.11** slots |
+| worst shortfall, any row | 15.21 | 12.29 | **8.50** slots |
+| species owed a whole slot, drawn nowhere | 0 | 1 | **0** |
+
+**Finding 1 — ROUTE 1 WAS BUILT AND IT DOES NOT CLEAR THE TAIL.** The block phase is stratified
+across blocks now (`blockPhase`: a van der Corput sweep of the step `1/n`, indexed by the block's
+Morton code on one random start for the layer, so neighbouring blocks sit a quarter and a sixteenth
+of the step apart by construction rather than by luck). Measured on the conversion alone it takes
+the matrix deviation **197.46 → 156.51** and the worst shortfall to 8.50 — and *S. cyperinus* is
+**still drawn nowhere at 1.11 owed**. The promise in K49(c1)'s route 1 — "a species owed one slot
+in the frame would take one" — is **refuted at frame scale**, and the reason is K49(e)'s question:
+a frame does not hold whole blocks. The union of block grids is an exact stratification only if
+every block is fully realised, and the ring and the view cone cut most of them, so the rank a
+narrow band lands on is often a rank that was never dealt. **At an expectation of 1.1 slots no
+world-anchored construction can guarantee the draw**; the sweep buys variance, not a guarantee.
+It is kept because 197.46 → 156.51 on its own is the largest single move in this table.
+
+**Finding 2 — ROUTE 3 IS WHAT MADE IT GREEN, and K49(c1) said it would not.** Its exact words:
+"That does not on its own lift the bulrushes over the gate (measured: 0.24 %, 1.57 slots owed)".
+Measured here, it does — **with the sweep (154.19) and, tested separately, without it (191.48)**.
+The prediction was made on the share and not on the draw, which is the same mistake as reading a
+cover as a count: 1.57 owed is not 1.10 owed, and the extra half slot is the difference between
+a coin toss and a plant. `data/flora/zones/z03_sedge_meadow.json`'s *Carex stricta* now records
+`stems_per_m2: [1, 4]` — 1/s² for the **0.5–1.0 m apart** its own dossier row states — with an
+`abundance_provenance` block grading it `inferred` (the source states a spacing, not a count; the
+even-spacing arithmetic is ours) and `tools/validate.py` holds that block to the same rule
+`width_provenance` carries. It replaces a derived **6.62/m²**, and the cover figure is not lost:
+how much ground the matrix holds is the zone's own `cover.matrix_fraction`, which is what deals
+the slots. `z03_sedge_meadow.matrix` falls from **42.20 to 19.87** deviation and its worst
+shortfall from 15.21 to 6.18.
+
+**Finding 3 — THE SLOT COUNT DID NOT MOVE, and it is held by construction rather than by care.**
+`forbShare` is computed from a subset's `recorded` sum — the abundance exactly as written, in
+whatever unit — and the lottery from `stems`. The two numbers are now separate fields with
+separate jobs, so a future change to the lottery cannot thin the sward by accident.
+
+**What this does NOT do.** It does not touch `matrixShare` or `forbShare`'s tuning (a separate
+question, against the reference photographs), and it does not raise a confidence anywhere: the
+one figure that moved carries its own grade and no liberty was owed, because nothing was invented.
+The desktop half of the smoke was not run — the runner's ten-minute per-command ceiling does not
+fit it (see THE RUN BUDGET above); the mobile half is green at 224/0 and the census was run at
+both viewports.
+
+**Route 2 (a designated tail slot) was NOT built and is not needed** — the tail is green without a
+new construction in a filtered layer. Finding 1 is the argument against reaching for it later:
+the filter is what breaks the guarantee, so a construction inside the filter would inherit the
+same problem. K49(e) owns the measurement.
+
+The original parcel text follows.
 
 The fix half. The conversion is built and measured (the table above is its baseline and may not be
 re-derived to something kinder); what is missing is the tail. Three routes, none of them a change

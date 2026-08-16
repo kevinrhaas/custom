@@ -3357,6 +3357,20 @@ def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
             rep.error(where, f"width_provenance is '{wconf}' on a record graded '{rconf}' — a "
                              f"figure may not outrank the record it belongs to")
 
+    # ROADMAP K49(c2) — THE SAME RULE FOR AN ABUNDANCE THE SOURCE DID NOT STATE
+    # IN THE UNIT THE RECORD KEEPS IT IN. A dossier that gives a spacing states a
+    # count, and a dossier that gives a cover states an area; converting one into
+    # the other is arithmetic on top of the source, not the source. Where a
+    # record's abundance is that conversion it says so here, under its own grade,
+    # and that grade may no more outrank the record than a width's may.
+    apr = sp.get("abundance_provenance")
+    if apr is not None:
+        aconf = check_attested(where, "abundance_provenance", apr, source_ids, rep)
+        rconf = sp.get("confidence")
+        if aconf and rconf in CONFIDENCE and CONFIDENCE.index(aconf) < CONFIDENCE.index(rconf):
+            rep.error(where, f"abundance_provenance is '{aconf}' on a record graded '{rconf}' — "
+                             f"a figure may not outrank the record it belongs to")
+
     j = sp.get("july")
     if not isinstance(j, dict):
         rep.error(where, "july must be the phenology block for the scene date")

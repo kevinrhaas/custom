@@ -34,8 +34,8 @@
   },
   "figures": {
     "species[].abundance.cover_fraction": {
-      "carriers": 61,
-      "reached": 59,
+      "carriers": 60,
+      "reached": 58,
       "unreached": 2,
       "readers": [
         "flora.js"
@@ -53,8 +53,8 @@
       "state": "mesh"
     },
     "species[].abundance.stems_per_m2": {
-      "carriers": 21,
-      "reached": 18,
+      "carriers": 22,
+      "reached": 19,
       "unreached": 3,
       "readers": [
         "flora.js"

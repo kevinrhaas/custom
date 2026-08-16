@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 149, title: 'The sward is dealt by the plant, not by the patch', kind: 'fix', ts: '2026-08-16T22:10:33.155Z', date: 'Aug 16, 2026, 5:10 PM CT',
+    items: [
+      'Walk into any of the plant communities and what is standing in them has changed. Yesterday’s piece measured this and deliberately did not ship it; this is the shipping.',
+      'A plant record says how common a species is either as a count of plants or as the share of ground it covers, and which plant filled a place in the sward was being decided by whichever of the two its record happened to use — so a species covering a quarter of the ground was dealt places as though there were a quarter of a plant per square metre. Every list is now dealt on plants per square metre and on nothing else. How many plants stand in front of you has not moved; this changes which ones they are.',
+      'On the forest floor the wild leek falls from 96 to 89 in every hundred plants and the wood nettle rises from 1 to 6; on the sand prairie June grass goes from 8 to 24; in the town the broadleaf plantain goes from 25 to 54; on the lakeshore little bluestem goes from 12 to 30.',
+      'The sedge meadow changes most, and a source is the reason. Its research row gives the tussock sedge as hummocks a third of a metre across standing half a metre to a metre apart — which is a count, one to four plants per square metre, stated rather than derived. Read from its cover figure instead, the same plant was being dealt as though six and a half of them stood in every square metre. There are fewer tussocks in the meadow now and more bluejoint between them, which is what that row describes.',
+      'Both of the meadow’s bulrushes are still standing, and that is the thing that had to be true before any of this could ship: dealt on the cover figures alone, one of the two identical records took its single plant and the other took none. The tussock sedge’s own stated spacing is what keeps them both.',
+      'Each small square of ground now sweeps its starting point against its neighbours instead of taking one at random, which brings the grass lists’ disagreement with their own records down by a further fifth.',
+    ] },
   { v: 148, title: 'Nothing you can see changed: twenty-five plants get a size', kind: 'fix', ts: '2026-08-16T20:38:10.241Z', date: 'Aug 16, 2026, 3:38 PM CT',
     items: [
       'Nothing in the town looks different today, and saying so is the point. This is the piece of research the next one needs, and the next one is what moves the meadows.',
