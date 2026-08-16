@@ -123,7 +123,10 @@ rationed.**
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
-| **6** | RENDERING | **K49** | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
+| **1** | RENDERING | **K49(b)** | **SEEN** | **opened 2026-08-16 by K49(a) — needs no research, no data and no bake, and it stands six named plants up.** Measured over 6,780 slots in every community: **six species their own list owes a whole plant to are drawn nowhere**, prairie dock (a two-metre landmark) owed 3.23 of them in the wet prairie. K48's picker must NOT be ported — the sward is re-dealt from a world-anchored lattice and running state makes plants change species as you walk. Its box carries the stateless form and the one screenshot to check |
+| **7** | RENDERING | **K49(c)** | **SEEN** | **6 of 20 lists deal their slots off an area compared against a count** — the forest understory is 96 % ramps against eleven species recorded as cover. Blocked on 25 records that give a cover fraction and no `width_m`, so **its first half is research**; the smoke prints the list every run |
+| — | RENDERING | ~~K49(a)~~ | — | **DONE 2026-08-16.** The drawn census of the sward, in every community, + the abundance-unit audit. **And the lesson that is not about flora: the gate's own station reports 0 species absent, because it stands in one community of ten.** Read its box before quoting a flora share or a per-frame figure the smoke prints |
+| — | RENDERING | ~~K49~~ | **SEEN** | **opened 2026-08-16 by K48.** Every other weighted draw in this project is the same shape and none has been asked what its tail does — the 63 inferred households, the roof coverings, the massing-variety picker. K48's own finding is that a small weighted sample loses its rare end permanently when the seed is fixed. Pick one, census what it actually draws, and it is visible wherever the answer is a building |
 | — | RENDERING | ~~K47~~ | — | **DONE 2026-08-16 — and it inverted: claimed SEEN, delivered UNSEEN.** The sycamore's archetype is built and `drawn_as_another_species` is empty; the tree is **0 of 163 stems**. Read its box before quoting v139 or K45(b1) on what stands by the river |
 | — | RENDERING | ~~K46~~ | **SEEN** | **DONE 2026-08-16** — the written weight plants the stem, and route 3 was refuted by the DATASET: ZONE 6a and 6b are one record, so a zone-keyed density cannot hold the elm at 60 in the thicket and 12 in the pocket. 23 of 26 weights sit inside their own cited band, 3 below, **none above**. Read its box before quoting a mix weight or a species share |
 
@@ -2979,6 +2982,150 @@ tools/smoke_renderer.mjs --published` green. The desktop half was not run and is
 file. The two-tone bark was **proved to draw** before it was shipped: with the mix weight
 temporarily at 400 the pale trunks and limbs are unmistakable at 70 m against the near-black
 boles beside them, and that experiment was reverted before the commit.
+
+### K49(a) — census the sward's draw · **DONE 2026-08-16 — the tail loss is REAL here too (6 species, 6,780 slots), and it sits on top of a second fault: 6 of 20 lists deal their slots off an area compared against a count**
+
+**Read this box before quoting a flora share, and before proposing any change to a
+`cover_fraction`, a `density_per_ha` or a `stems_per_m2`.**
+
+K49 was opened by K48 on the reading that every weighted draw in this project loses its rare
+end the way the woody mix did. The sward is the biggest of them — **118 of this project's 154
+plant records**, against the 36 `trees.js` draws — and it had never been counted at all.
+
+**Measured on the published mirror by `tools/measure_sward_draw.mjs`, standing the placer in
+every community in turn: 8 communities, 16 populated lists, 6,780 slots dealt. Six species that
+their own list owes a whole plant to are drawn NOWHERE, and the worst shortfall is 31.47 slots.**
+
+| species | owed | its list | recorded as |
+|---|---|---|---|
+| **prairie dock** `silphium_terebinthinaceum` | **3.23** | `z01_wet_prairie.forb` | `density_per_ha` |
+| water hemlock `cicuta_maculata` | 2.62 | `z01_wet_prairie.forb` | `density_per_ha` |
+| wood nettle `laportea_canadensis` | 1.74 | `z06_dense_forest.forb` | `cover_fraction` |
+| ninebark `physocarpus_opulifolius` | 1.45 | `z05_riverbank_timber.forb` | `cover_fraction` |
+| compass plant `silphium_laciniatum` | 1.14 | `z02_mesic_prairie.forb` | `density_per_ha` |
+| wild garlic `allium_canadense` | 1.02 | `z05_riverbank_timber.forb` | `cover_fraction` |
+
+**Prairie dock is the one to look at**: a 2–3 m plant with a basal rosette 0.6–1.0 m across,
+which is to say a landmark, owed three of them in the wet prairie and standing none.
+
+**AND THE GATE'S OWN STATION CANNOT SEE ANY OF IT, which is the second finding and the more
+transferable one.** The release smoke reads the same census, but it reads it where the gate
+happens to be standing — the settled town, **68 slots, one community of ten** — and from there
+the honest answer is "0 species absent". A first draft of this box quoted that figure and
+concluded the sward's tail was clean. It is not; the sample was. **A census taken wherever the
+harness already stood is a census of that place**, and every per-frame measurement this project
+takes through the smoke has the same shape: `stats.sets`, `stats.instances`, the flower share.
+`tools/measure_sward_draw.mjs` exists because the fix was to change where the instrument stands,
+not what it counts.
+
+**And underneath the tail there is a second fault, in the arithmetic that makes the share.**
+`pick()` deals SLOTS, and a slot is one drawn plant. A record may state its abundance in three
+fields, and they are not three spellings of one number: `stems_per_m2` and `density_per_ha`
+are COUNTS of plants, `cover_fraction` is the AREA of ground the species holds. `buildSpecies`
+normalises all three into one share, which reads *"covers 25 % of the ground"* as *"0.25 plants
+per square metre"* — the same sentence about a two-metre dogwood and about a wild garlic, made
+identical by a division.
+
+**Measured, published mirror, mobile 390×780 — and dataset-wide, so it does not move with the
+camera:**
+
+| list | slots dealt off a count, against species recorded as an area |
+|---|---|
+| **`z06_dense_forest.forb`** | **96.5 %** |
+| `z08_lakeshore.matrix` | 14.0 % |
+| `z03_sedge_meadow.forb` | 10.2 % |
+| `z03_sedge_meadow.matrix` | 3.8 % |
+| `z09_sand_prairie.matrix` | 0.7 % |
+| `z10_settled_town.forb` | 0.6 % |
+
+**Six of twenty lists. The forest understory is the extreme**: ramps at 2.5 stems/m² take 96 %
+of that list against nine shrubs recorded as cover, so what a visitor walks through in the
+timber is decided by a comparison with no unit in it.
+
+**And the repair is blocked on data, which is why this is (a) and not the whole parcel.**
+Converting an area into a count needs the plant's own footprint, and **25 records state a
+cover fraction and carry no `width_m`** — including `poa_pratensis`, which holds 60 % of the
+town's lawn, and every one of the three cover-recorded forbs in the sedge meadow. The placer's
+existing fallback (`min(0.35, height × 0.16)`) is a WALKER-CLEARANCE radius, and putting it at
+the centre of the arithmetic that decides what the sward is made of would be an invented number
+driving the answer: measured offline, the fallback moves `poa_pratensis` from a 0.60 share to
+0.99 while a recorded width moves `trifolium_repens` from 0.16 to 0.003. **The conversion's
+outcome is dominated by exactly the records that do not carry the number it needs**, which is
+the definition of a gap that must be recorded rather than filled (AGENTS.md rule 2).
+
+**Reported and NOT gated**, on the R-M1 split: a bar set today would either fail the build over
+unresearched data or be satisfied by an invention. Both figures print every smoke run —
+`6 of 20 lists`, `25 records` — and `stats.draws` carries the drawn census beside them.
+
+**WHY THE TAIL WAS NOT FIXED IN THE SAME RUN, and it is not the same shape as K48.** K48's
+repair is a picker that keeps accounts: it carries `share × drawn − placed` and hands the next
+stem to whoever is owed most. That is legitimate for the wood, which is dealt ONCE at load. The
+sward is dealt again every time the lattice re-centres, over a WORLD-ANCHORED grid whose whole
+contract is that re-centring puts every plant back exactly where it was (`hash3`, and the comment
+above it). A picker with running state makes a slot's species depend on which slots were visited
+before it — so the plant at your feet would change species as you walked toward it. **The sward
+needs a stateless equivalent** — a low-discrepancy assignment keyed on the slot's own world
+coordinates, which is equidistributed over any window without carrying state between slots — and
+that is a placement change that has to be looked at in a screenshot for lattice striping before
+it ships. It is K49(b)'s second half, and it is why this parcel split.
+
+**Nothing a visitor can see changed, and the changelog says so.** This is the measurement half
+of a measure-then-fix split under AGENTS.md § THE VISIBLE-PROGRESS RULE exemption 2; **K49(b)
+is the fix and is SEEN.** The three merged entries before it (v140, v141, v142) are all visible,
+so the one-in-four cap is not touched.
+
+**Files:** `renderers/web/js/flora.js` (the census, the count reading, `auditAbundance`) ·
+`tools/measure_sward_draw.mjs` (new — the census read in every community, ~1 min, no frame it
+does not need) · `tools/smoke_renderer.mjs` (one gated assertion that the instrument attributes
+every slot, three reported figures) · ROADMAP + STATUS + the changelog + the published mirror.
+No `data/` change, so no bake.
+
+**Verified:** `tools/check.sh` green · `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green, 222 passed / 0 failed · `node tools/measure_sward_draw.mjs` on the published
+mirror, which is where every number above comes from. The desktop half of the smoke was not run
+and is not claimed — ~13 minutes against this runner's 10-minute per-command ceiling.
+
+### K49(b) — stand the six absent species up · **UNCLAIMED · NEXT UP · SEEN · from K49(a) · Effort: M**
+
+**The half that puts a plant in the ground, and it is the one to take first** — it needs no
+research and no data at all. Six species are owed a whole plant and drawn nowhere; prairie dock
+is owed 3.23 in the wet prairie and is a two-metre landmark. The repair is a stateless
+equivalent of K48's owed-draw: **a low-discrepancy assignment keyed on the slot's own world
+coordinates** — `frac(c·α + r·β + k·γ)` walked against the same CDF `pick()` already walks —
+which is equidistributed over any window, so a species owed a plant in the ring gets one,
+while staying a pure function of the slot and keeping the world-anchoring `hash3` promises.
+
+**Do not port K48's picker.** It carries running state, and the sward is re-dealt from a
+world-anchored lattice on every re-centre: state makes a slot's species depend on the order
+slots were visited in, and the plant at your feet changes species as you walk up to it.
+
+**The one thing to check before it ships is a screenshot, not a number.** A lattice sequence
+evaluated on lattice coordinates can align with the grid it is indexed by and stripe the field
+diagonally by species. `tools/critic_shots.mjs --stations` at the wet prairie is the check, and
+if it stripes, a per-window Cranley–Patterson rotation is the standard answer and keeps the
+equidistribution.
+
+**Verify with `node tools/measure_sward_draw.mjs`** — the same six names, and the run is done
+when none of them is on the list. Then re-run it in the settled town too: the gate's own station
+reports 0 absent today, and a repair must not make that the only place it is true.
+
+### K49(c) — give the sward's lists one unit · **UNCLAIMED · SEEN · from K49(a) · Effort: M, and its first half is RESEARCH**
+
+The other fault K49(a) measured and refused to guess at. **It starts with the 25 records**,
+because nothing else can be derived until they carry a footprint: find a clump width for each
+from its own dossier, or state in the record that none is attested and grade what follows
+accordingly. `tools/smoke_renderer.mjs` prints the list every run.
+
+Then convert every list to plants per m² and deal the slots on that basis. **Two things it must
+not do.** It must not change how many slots a list gets — `forbShare` and `matrixShare` are
+tuned against the reference photographs and are a separate question again. And it must not raise
+a confidence: a width read off a dossier is attested, a width argued from a related species is
+reasoned, and a width chosen to make the sward look right is invented and belongs in
+`docs/LIBERTIES.md`.
+
+**Why it is SEEN:** the forest understory is 96 % ramps today and the eleven species recorded
+beside them as an area hold 3.5 % of the slots between them. Any honest conversion moves that,
+and the riverbank, the sedge meadow and the lakeshore dune with it.
 
 ### K48 — the share was not the defect · **DONE 2026-08-16 — both repairs it named are impossible, and the sycamore was lost by the DRAW. 0 sycamores became 2**
 

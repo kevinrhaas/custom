@@ -425,6 +425,16 @@ export async function createFlora({
   const stats = {
     instances: 0, drawCalls: 0, triangles: 0, zones: 0, species: 0,
     unimplementedForms: [], unimplementedShapes: [], unzonedLandFraction: 0, rebuilds: 0,
+    // ROADMAP K49(a). The DRAWN population of the sward, per community and per
+    // list: what each species' recorded abundance asks for against how many
+    // slots it actually got in the frame the visitor is looking at. K48 built
+    // this for the woody stems and found a species that was recorded, weighted,
+    // banded, gated — and absent. Nothing had ever counted the sward, which is
+    // 118 of this project's 154 plant records.
+    draws: [],
+    // ROADMAP K49(a). Which of those lists deal their slots off numbers that
+    // are not in the same unit — see `auditAbundance`.
+    abundance: null,
   };
 
   const dataset = await loadFlora(dataBase, problems);
@@ -439,6 +449,66 @@ export async function createFlora({
     return inertRig(group, stats);
   }
   stats.zones = zones.length;
+
+  stats.abundance = auditAbundance(zones);
+
+  /**
+   * ROADMAP K49(a) — THE DRAWN CENSUS OF THE SWARD.
+   *
+   * One row per (community, list), reset on every rebuild: the sward is dealt
+   * from scratch each time the lattice re-centres, so this counts the
+   * population of the frame in front of the visitor rather than a total
+   * accumulated over a walk. It counts SLOTS DEALT — `stats.capped` is the
+   * separate question of whether a set then had room for them.
+   *
+   * `expected` is computed against the subset the slot was actually drawn from,
+   * not against the whole list: a species that may not stand over water is not
+   * owed the wet slots, and scoring it against them would report a shortfall
+   * every time the visitor stood at the river.
+   */
+  const censusIndex = new Map();
+  for (const z of zones) {
+    for (const [list, key] of [['matrix', 'graminoids'], ['forb', 'forbs']]) {
+      const items = z[key];
+      if (!items.length) continue;
+      const row = {
+        community: z.id, list, drawn: 0, drySlots: 0, wetSlots: 0,
+        species: items.map((s) => ({
+          id: s.id, unit: s.unit, share: s.weight, stems: s.stems, expected: 0, drawn: 0,
+        })),
+      };
+      const byId = new Map(row.species.map((s) => [s.id, s]));
+      // The shares the two subsets renormalise to, which is what `pick` walks.
+      const shares = items.map((s) => ({
+        row: byId.get(s.id),
+        dry: z.dry[key].items.includes(s) && z.dry[key].total > 0 ? s.weight / z.dry[key].total : 0,
+        wet: z.wet[key].items.includes(s) && z.wet[key].total > 0 ? s.weight / z.wet[key].total : 0,
+      }));
+      censusIndex.set(`${z.id}:${list}`, { row, byId, shares });
+      stats.draws.push(row);
+    }
+  }
+  const countDraw = (zone, list, sp, wet) => {
+    const c = censusIndex.get(`${zone.id}:${list}`);
+    if (!c) return;
+    c.row.drawn++;
+    if (wet) c.row.wetSlots++; else c.row.drySlots++;
+    const s = c.byId.get(sp.id);
+    if (s) s.drawn++;
+  };
+  const openCensus = () => {
+    for (const { row } of censusIndex.values()) {
+      row.drawn = 0;
+      row.drySlots = 0;
+      row.wetSlots = 0;
+      for (const s of row.species) { s.drawn = 0; s.expected = 0; }
+    }
+  };
+  const closeCensus = () => {
+    for (const { row, shares } of censusIndex.values()) {
+      for (const s of shares) s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+    }
+  };
 
   const water = waterField(terrain);
   const blocks = footprintCircles(footprints);
@@ -591,6 +661,7 @@ export async function createFlora({
         // independent draws of the same range, so a 2.0 m cordgrass spike
         // could stand over a 1.25 m tuft — which is the pair of flower heads
         // the critic found floating unattached in the open sky.
+        countDraw(zone, 'matrix', sp, wet);
         const h = placeGraminoid(nearSet, sp, e, y, n, rng);
         if (h > 0 && r <= near.head[0] + step) {
           maybeHead(heads, sp, e, y, n, rng, h, near.head);
@@ -622,6 +693,7 @@ export async function createFlora({
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
+        countDraw(zone, 'matrix', sp, wet);
         midSet.ring(ringAt(mid.fade, off, _ring));
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
@@ -652,6 +724,7 @@ export async function createFlora({
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
+        countDraw(zone, 'forb', sp, wet);
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
         const h = placeForb(set, sp, e, y, n, rng);
@@ -664,8 +737,10 @@ export async function createFlora({
   // Forbs and their heads share the head sets with the graminoids, so the two
   // ground rebuilds have to happen together or the heads would be half-cleared.
   function rebuildAll(camE, camN, cone) {
+    openCensus();
     rebuildGround(camE, camN, cone);
     rebuildForbs(camE, camN, cone);
+    closeCensus();
     for (const s of sets) s.commit();
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
     stats.sets = Object.fromEntries(sets.map((s) => [s.mesh.name, s.mesh.count]));
@@ -1061,6 +1136,54 @@ function compileZones({ index, files }, terrain, problems, stats) {
   return out.filter((z) => z.extent);
 }
 
+/**
+ * ROADMAP K49(a) — WHICH LISTS DEAL THEIR SLOTS OFF NUMBERS THAT ARE NOT IN THE
+ * SAME UNIT, and which records cannot be converted into one.
+ *
+ * Reported and NOT gated, deliberately, the way R-M1 splits a measurement from
+ * the bar it will eventually be held to: the repair needs a footprint this
+ * dataset does not carry for every species, so a gate here today would either
+ * fail the build over data nobody has researched yet or be satisfied by an
+ * invented number. Both are worse than a figure printed every run. K49(b) is
+ * the fix, and it starts by closing `unconvertible`.
+ *
+ * `mixed` is one row per (community, list) whose species do not agree on what
+ * their abundance measures. `countedShare` is how much of that list's slot
+ * lottery is currently held by its COUNT-recorded species — the share that is
+ * being compared against an area and therefore means nothing as it stands.
+ */
+function auditAbundance(zones) {
+  const mixed = [];
+  const unconvertible = [];
+  let lists = 0;
+  for (const z of zones) {
+    for (const [list, items] of [['matrix', z.graminoids], ['forb', z.forbs]]) {
+      if (!items.length) continue;
+      lists++;
+      let counted = 0;
+      let countedShare = 0;
+      let area = 0;
+      for (const s of items) {
+        if (s.unit === 'cover_fraction') {
+          area++;
+          // The weights are already normalised over the list, so `weight` IS
+          // the share of the slots this species is dealt today.
+          if (s.stems === null) unconvertible.push({ zone: z.id, list, id: s.id, share: s.weight });
+        } else if (s.unit !== 'none') {
+          counted++;
+          countedShare += s.weight;
+        }
+      }
+      if (counted > 0 && area > 0) {
+        mixed.push({
+          zone: z.id, list, species: items.length, counted, area, countedShare,
+        });
+      }
+    }
+  }
+  return { lists, mixed, unconvertible };
+}
+
 /** One species entry, reduced to numbers the placer can use per instance. */
 function buildSpecies(sp, palette, problems, zoneId) {
   const h = sp.height_m;
@@ -1090,14 +1213,52 @@ function buildSpecies(sp, palette, problems, zoneId) {
   else if (Array.isArray(ab.stems_per_m2)) weight = mid(ab.stems_per_m2);
   if (!(weight > 0)) weight = 0.01;
 
+  /**
+   * ROADMAP K49(a) — THREE UNITS, ONE SUM, AND THE SUM IS WHAT DEALS THE SLOTS.
+   *
+   * `pick()` deals SLOTS, and a slot is one drawn plant. The three abundance
+   * fields a record may carry are not three spellings of one number:
+   * `stems_per_m2` and `density_per_ha` are COUNTS of plants, `cover_fraction`
+   * is the AREA of ground the species holds. The block above normalises all
+   * three into one share, which reads "covers 25 % of the ground" as "0.25
+   * plants per square metre" — a claim about a two-metre dogwood and a claim
+   * about a wild garlic, made identical by a division.
+   *
+   * `stems` is the same abundance read as a count, and it is derivable only
+   * where the record carries what converts an area into one: the plant's own
+   * `width_m`. Where it does not, this is NULL rather than a guess — the
+   * footprint the placer falls back on for walker clearance is a clearance
+   * radius, and using it here would put an invented number at the centre of the
+   * arithmetic that decides what the sward is made of. AGENTS.md rule 2: the
+   * gap is recorded, not filled. `auditAbundance` reports every one of them.
+   */
+  const width = Array.isArray(sp.width_m) ? sp.width_m : null;
+  let stems = null;
+  let unit = 'none';
+  if (Array.isArray(ab.stems_per_m2)) {
+    unit = 'stems_per_m2';
+    stems = mid(ab.stems_per_m2);
+  } else if (Array.isArray(ab.density_per_ha)) {
+    unit = 'density_per_ha';
+    stems = mid(ab.density_per_ha) / 10000;
+  } else if (Array.isArray(ab.cover_fraction)) {
+    unit = 'cover_fraction';
+    if (width) stems = mid(ab.cover_fraction) / (Math.PI * (mid(width) * 0.5) ** 2);
+  }
+  if (stems !== null && !(stems > 0)) stems = null;
+
   return {
     id: sp.id ?? sp.binomial ?? 'unnamed',
     form: sp.form,
     role: sp.role,
     substrate: substrateOf(sp, problems, zoneId),
     weight,
+    /** The abundance field this species' weight was read out of, and that
+     *  same abundance as plants per m² where one is derivable. K49(a). */
+    unit,
+    stems,
     height: h,
-    width: Array.isArray(sp.width_m) ? sp.width_m : null,
+    width,
     shape: GRASS_SHAPE[sp.form] ?? { arch: 0.28, spread: 0.45 },
     base,
     alt,

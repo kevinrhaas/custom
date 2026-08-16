@@ -2593,6 +2593,75 @@ const terrainLoad = await page.evaluate(() => {
           + `${gallery.stems} in the gallery`
         : 'no gallery mix census at all');
 
+    // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
+    //
+    // K48 built the census above for the woody stems, which are 36 of this
+    // project's 154 plant records. The other 118 are drawn by `flora.js` off
+    // the same shape of weighted draw and had never been counted at all. This
+    // counts them, and it reports what the count found rather than gating it,
+    // for the reason R-M1 splits a measurement from its bar: the repair needs a
+    // per-species footprint the dataset does not carry for 25 records, so a bar
+    // set today would either fail over unresearched data or be met with an
+    // invented number. K49(b) is the fix and closes `unconvertible` first.
+    //
+    // What IS gated is that the instrument works: every slot dealt is a slot
+    // attributed to a species, and it is counting a populated sward rather than
+    // an empty one.
+    const sward = await page.evaluate(() => {
+      const s = window.__chicago4d.flora.stats;
+      return {
+        abundance: s.abundance,
+        draws: (s.draws ?? []).map((d) => ({
+          community: d.community, list: d.list, drawn: d.drawn,
+          species: d.species.map((x) => ({
+            id: x.id, unit: x.unit, share: x.share, stems: x.stems,
+            expected: x.expected, drawn: x.drawn,
+          })),
+        })),
+      };
+    });
+    const dealt = sward.draws.filter((d) => d.drawn > 0);
+    const unattributed = sward.draws.filter(
+      (d) => d.species.reduce((t, x) => t + x.drawn, 0) !== d.drawn);
+    check(`${label}: every slot the sward deals is counted against a species`,
+      dealt.length >= 1 && unattributed.length === 0
+      && dealt.every((d) => d.species.length >= 1),
+      `${dealt.length} populated list(s) of ${sward.draws.length}, `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots dealt`
+      + `${unattributed.length ? `; UNATTRIBUTED in ${unattributed.map((d) => (
+        `${d.community}.${d.list}`)).join(', ')}` : ''}`);
+    // Reported, not gated — the two numbers K49(b) has to move.
+    const ab = sward.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
+    const swardAbsent = [];
+    for (const d of dealt) {
+      for (const x of d.species) {
+        if (x.drawn === 0 && x.expected >= 1) {
+          swardAbsent.push(`${d.community}.${d.list}.${x.id} owed ${x.expected.toFixed(2)}`);
+        }
+      }
+    }
+    console.log(`  note  ${label}: sward abundance — ${ab.mixed.length} of ${ab.lists} lists `
+      + `mix an area with a count${ab.mixed.length ? ` (${ab.mixed.map((m) => (
+        `${m.zone}.${m.list} ${(m.countedShare * 100).toFixed(1)}% of slots dealt off counts`
+      )).join('; ')})` : ''}`);
+    console.log(`  note  ${label}: ${ab.unconvertible.length} record(s) give cover with no `
+      + `width_m, so no count can be derived without inventing a footprint`
+      + `${ab.unconvertible.length ? `: ${ab.unconvertible.map((u) => (
+        `${u.zone}.${u.list}.${u.id}`)).join(', ')}` : ''}`);
+    // THE TAIL FIGURE HERE IS ABOUT THIS FRAME, AND THAT IS A WARNING LABEL
+    // RATHER THAN A CAVEAT. The sward is re-dealt per rebuild, so this answers
+    // for the community the gate is standing in — the settled town, 68 slots,
+    // one of ten — and from there it reads "0 absent". Run in every community
+    // by `tools/measure_sward_draw.mjs` the same census returns SIX species
+    // owed a whole plant and drawn nowhere, over 6,780 slots (ROADMAP K49(a)).
+    // Quote that tool for a claim about the dataset and this line for a claim
+    // about the gate's own frame. The two figures above are dataset-wide and do
+    // not move with the camera.
+    console.log(`  note  ${label}: sward tail — ${swardAbsent.length} species owed a whole slot `
+      + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
+        `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them
     // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the
