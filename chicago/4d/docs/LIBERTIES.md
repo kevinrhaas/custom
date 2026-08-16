@@ -3696,6 +3696,71 @@ records describe. The vines need a `vine_drape` archetype, which is a renderer p
 size. Each of the three is a line this entry can be moved to **Resolved** for, and the gate will
 demand the bank be updated in the same commit.
 
+**CORRECTION, 2026-08-16 (ROADMAP K45(a)) — the first of those three repairs is wrong, and the
+paragraph above is kept verbatim because it was believed when it was written.** Adding
+`z08_lakeshore` to `TIMBER_ZONES` draws **zero** stems. That list is a **species table**:
+`trees.js` reads those zone files for height, crown width, July foliage, density and confidence,
+and then places from a hand-written `COMMUNITIES` mix — a zone's `extent` is read by `flora.js`
+and never by `trees.js`. Two of the four dune records (`populus_deltoides`, `salix_interior`)
+already take their spec from `z05_riverbank_timber` and the loader is first-zone-wins; the other
+two (`populus_tremuloides`, `populus_balsamifera`) are in no mix, so `pick()` can never return
+them. The real repair is a **dune community with a placement rule** plus the woody planter's
+square carried east over the ground it stands on — ROADMAP **K45(b)**, and see **L114** for the
+two omissions that measurement exposed. Nothing in the entry above about what a visitor does not
+see has changed; only the sentence about how to fix it.
+
+**Recorded:** 2026-08-16.
+
+
+### L114 — A researched tree that no mix can choose, and three quarters of the modelled ground the timber layer has never visited
+
+**Decision:** two omissions in the woody layer stay exactly as they are, and are recorded here
+rather than repaired, because both repairs are renderer parcels with their own smoke and their own
+questions (ROADMAP **K45(a)**, which measured them, and **K45(b)**, which is the fix).
+
+**What a visitor does not see, one.** `data/flora/zones/z05_riverbank_timber.json` carries the
+**American sycamore** — *Platanus occidentalis*, graded `inferred` off McBride & Bowles, with
+`density_per_ha` **[1, 3]**, a July height of 18–25 m, a crown of 12–18 m, and its appearance
+written down: *"Rare, at its northern edge; white mottled bark flashing on the upper limbs."* Its
+form is `tree_gallery`, which has an archetype. `trees.js` receives the record, builds a render
+spec from it — and **no community mix holds the species**, so `pick()` can never return it and not
+one sycamore stands in the scene. It is the only one of the **20** routed, archetyped woody
+species in that position. The white bark the record describes is the most conspicuous thing about
+the tree and it is nowhere in the frame.
+
+**What a visitor does not see, two.** The woody planting loop sweeps a **fixed square**, E/N
+−316..+316 m, while the heightfield S2e carried east runs **E −320..+1700, N −400..+400**. Of the
+192,844 heightfield nodes standing above the planter's own dry floor, **52,163 — 27.05 % — are
+inside that square and 140,681 are outside it: 87.9 ha of modelled dry land on which the timber
+layer has never placed a stem.** `flora.js` builds its lattice around the camera and follows the
+visitor over all of it, so a visitor who walks east leaves the trees behind at a line nothing
+draws and keeps the grass. That is a claim about the ground east of the town — that it carried no
+woody plant at all — which this project's own dossier does not make; `z08_lakeshore`'s box begins
+1,084 m east of the planter's edge and describes *"a scrub of sand cherry and leaning
+cottonwood"*.
+
+**Why, and it is one cause with two faces.** `trees.js` was written when the modelled ground was a
+640 m square and the woody records lived in the communities around the town, so a fixed sweep and
+a hand-written mix were both the whole of the world. The ground has since grown to four times the
+area and the dataset to 154 species records, and neither literal moved with them. Nothing caught
+it because every gate this project had asks a question one step short: `tools/validate.py` asks
+whether a record is well formed, K42 asks whether a figure is read by any renderer file, and K44
+asks whether the record reaches a reader. All three say yes about the sycamore.
+
+**Consequence, stated so a reader can weigh it.** The town's timber is right where it is drawn —
+this is not a claim that the gallery is wrong. What is unstated is the negative: the scene asserts
+by omission that 87.9 ha carries no tree, and that the floodplain wood holds nine species when its
+own record holds ten. Both are omissions rather than inventions, which is why they are here and
+not a confidence downgrade: no attribute is overstated, and nothing in `data/` moved.
+
+**How to resolve:** the sycamore is a one-line mix entry weighted at the density its own record
+carries, and it changes the frame, so it belongs to a parcel that runs the smoke — not to the
+measurement that found it. The 87.9 ha needs the planting loop's square carried out to the
+heightfield's own extent AND a community that can stand on dune sand, because the classifier the
+loop already has would read the beach as gallery bank and plant silver maple on it. ROADMAP
+**K45(b)** holds both. `tools/measure_planting_reach.py` banks both populations exactly, so
+neither can grow quietly and a repair has to un-bank itself in the commit that makes it.
+
 **Recorded:** 2026-08-16.
 
 

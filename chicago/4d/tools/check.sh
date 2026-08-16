@@ -202,6 +202,23 @@ step "every flora record reaches the reader its figures are read by" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_flora_reach.py --self-test
 
+# The step after that one, and it is a different question again. K44 measured
+# ROUTING — which reader is handed the record — and named the repair its finding
+# implies: "add z08_lakeshore to TIMBER_ZONES and the four dune records are
+# drawn". Measured, that repair draws nothing (ROADMAP K45(a)). TIMBER_ZONES is a
+# SPECIES table: trees.js takes height, crown, foliage and density out of those
+# files and then places from a hand-written COMMUNITIES mix, never from a zone's
+# extent — z07_bur_oak_savanna's declared box is 4.4 km outside the modelled
+# field and its oaks are drawn regardless. So a routed record whose species is in
+# no mix is drawn nowhere, which the American sycamore has been all along, and
+# the woody planter is a fixed 632 m square inside a field it reaches 27 % of.
+# Both populations are banked and neither may worsen.
+step "every routed woody record can be selected by something that places it" \
+  python3 tools/measure_planting_reach.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_planting_reach.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
