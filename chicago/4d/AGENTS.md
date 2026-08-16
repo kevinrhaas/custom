@@ -48,6 +48,43 @@ project's first target year. It is the most historically significant event of th
 Note also that the great Potawatomi gathering and the last war dance are **August 1835**,
 weeks after the 1835 scene date. Staging them in the 1835 scene would be wrong twice over.
 
+## THE VISIBLE-PROGRESS RULE — read this before choosing a parcel
+
+**Measured 2026-08-15, on the owner's report that the loop "just does organization and research
+and not actually applying to the application": 15 of the last 30 changelog entries say nothing
+you can see changed, and v124 to v137 is FOURTEEN CONSECUTIVE invisible runs.** That is not a
+drift, it is a streak, and it is the loop optimising for what this project praises. The culture
+here rewards measurement, refutation and honest gates — rightly — and the result is an agent that
+would rather find a defect in an instrument than put a building in the town.
+
+**So: a run must change something a visitor can SEE, and "see" means in the 3-D scene or on a
+card a visitor opens.** A new gate is not visible. A corrected metric is not visible. A source
+record is not visible. A refactor is not visible. All of those are real work and this project
+needs them; they are not what a run is FOR.
+
+**The three exemptions, and they are the only three.**
+
+1. **An owner-reported bug.** Fixing what the owner reported always outranks this rule.
+2. **The second half of a split whose first half was a measurement** — the R-BUG3c-a → R-BUG3c-b
+   shape, where landing the measurement red before the fix is what stops the fix redefining
+   success. The measurement half is exempt ONCE; the run after it must land the fix or say why.
+3. **A gate that is BLOCKING a visible parcel** — not one that would be nice to have. Name the
+   parcel it unblocks in the PR, or it is not this exemption.
+
+**The cap: at most ONE invisible run in any four.** If the last three merged changelog entries
+open with "Nothing you can see" — the phrase is the tell, so search for it — the next run MUST be
+visible, and the exemptions above do not extend it. If everything at the top of the queue is
+invisible, that is a fact about the queue and the run's job is to fix the queue: pull a visible
+parcel up and say in the PR why it was buried.
+
+**How to tell before you start.** Ask: when this merges, what will be different in a screenshot
+taken from the same spot? If the honest answer is "nothing", you are on an invisible parcel and
+you need one of the three exemptions, in writing, in the PR body.
+
+**And do not make a run visible by writing the changelog as though it were.** The entry describes
+what changed; if nothing in the scene changed, it says so. Gaming the phrase instead of the work
+is worse than the streak.
+
 ## The work-parcel contract
 
 Work is parceled so parallel agents never collide. If you are a subagent:
