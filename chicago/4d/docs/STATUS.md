@@ -1,5 +1,49 @@
 # STATUS
 
+## New 2026-08-16 — the town has no chimney material, and no record anywhere says what a roof is made of
+
+**R-W2a**, the material sheet, is written: `docs/RESEARCH/materials.md`. It is measured out of
+the shipped GLBs rather than read off the generators, because the source and the bytes have
+disagreed here before. **334 assets carry 1,353 material slots, resolving to 32 names, 41 base
+colours and 18 roughness values.** Every one is `metallicFactor 0`, `doubleSided`, `OPAQUE`,
+and carries no map of any kind — §1 item 9's "zero textures anywhere" is confirmed at the byte
+level, not quoted.
+
+**Two findings block texturing outright, and neither is a rendering problem.**
+
+- **The chimney is not a material in this project.** `frame_dwelling`, `frame_storefront` and
+  `log_dwelling` all build their stacks with `M_ROOF`, so **219 chimney stacks on 199 buildings
+  are painted with the roof's colour**, `0.34, 0.30, 0.27` at roughness 0.90. The 90 inferred
+  placeholders, meanwhile, ship a real `placeholder_chimney_brick`. The town has a brick
+  chimney material and the archetype buildings do not use it — and `log_dwelling`'s own
+  docstring argues that a frontier stack is stick-and-clay or fieldstone, a different object
+  from a framed house's brick stack, which renders identically to it. Opened as **R-W2c**, and
+  it opens with a research question rather than a palette.
+- **No record states a roof covering.** 315 records state a roof *type* and 309 a pitch;
+  **zero** say what the roof is made of. The board roof `outbuilding` argues for is separated
+  from a shingle field by **0.03 of roughness and nothing else** — identical colour, identical
+  name, in the shipped bytes. The repository's one direct attestation, the North Side school's
+  "sheeted and shingled roof", is read by nothing. Roofs cannot be textured until an attribute
+  exists to select the covering, and that is a schema change across 315 records.
+
+**And one documented fact is committed, correct, and rendered by nothing.** `cobweb_castle`
+carries `cladding: clapboard_part_way_up`, **`attested`**, sourced to `andreas_1884_v1` —
+David McKee's "the agency-house being afterward clapboarded part way up". It is a
+`log_dwelling`, which does not read `cladding` at all, and the value is not even in
+`CLADDINGS`. `cladding` is stated on 27 records and read on 22.
+
+**R-G1's "there is no roughness variation anywhere" is corrected, and the correction changes
+what W2 builds.** Between surfaces there are already 18 argued values spanning 0.15 to 1.00.
+What does not exist is variation *within* a surface: every square metre of every wall has one
+roughness, which is why nothing reads as painted, weathered or wet. **The deliverable is a
+roughness map, not better constants** — do not spend a round re-tuning the 18 numbers.
+
+**What was NOT run, stated rather than implied.** This parcel changed no code, no parameter
+and no record, so `node tools/smoke_renderer.mjs` was **not** run at either viewport and
+`tools/publish.sh` produced no mirror change beyond the changelog. `./tools/check.sh` passed
+green, and it is the dev gate. Nothing here has been rendered, because there is nothing here
+to render.
+
 ## New 2026-08-16 — a building has been taken out of the town, and the town's public buildings are three
 
 **T-I3(a).** The programme schedules six civic or public-service roofs and every generator has

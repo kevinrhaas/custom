@@ -110,6 +110,9 @@ desktop half belongs to a runner without the per-command ceiling.
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
+| 2 | RENDERING | **R-W2b** | wire R-W2a's committed sheet into the params and records. **Unblocked as of 2026-08-16** — the sheet exists, and it says which surfaces are real, what selects each one, and which two tiles cannot be sized until a source arrives |
+| 3 | RENDERING | **R-W2c** | opened by R-W2a: 219 chimney stacks on 199 buildings are painted with the roof's colour, while the 90 placeholders ship a real brick. Opens with a research question, not a palette. **NEEDS ONE BAKE** |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
 | — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
@@ -879,7 +882,7 @@ unchanged to the triangle; the same frame-difference budget R-W5a measured itsel
 
 | | parcel | scope |
 |---|---|---|
-| **R-W2a** | **the material sheet** · **CLAIMED 2026-08-16 · in flight on `steward/r-w2a-material-sheet`** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
+| **R-W2a** | ~~**the material sheet**~~ · **DONE 2026-08-16 — `docs/RESEARCH/materials.md`. Read its §4 before texturing anything: the chimney is not a material here, no record states a roof covering, and 27 % of the town is painted by a generator that shares no colour with the other 73 %** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
 | **R-W2b** | **wire the sheet in** | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
 
 **R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
@@ -898,6 +901,82 @@ differ only in hue; there is no roughness variation anywhere, so nothing reads a
 weathered or wet; and the Wau-Bun blue shutters at `sauganash` sit at the same value as the
 glazing beside them. The material sheet should name a roughness per surface, not only a colour
 and a tiling rate.
+
+### R-W2a — the material sheet · **DONE 2026-08-16 · `docs/RESEARCH/materials.md`**
+
+**Phase:** RENDERING §4 W2.1 · **Runner:** improve-runner · **Effort:** S (a document) ·
+**Files:** `docs/RESEARCH/materials.md` (new) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js`. No code, no parameter, no record — so no smoke, by the
+parcel's own definition.
+
+**The sheet is measured out of the shipped GLBs, not read off the source**, because this
+project has shipped a bug in that gap twice (B-BUG2). **334 assets carry 1,353 material
+slots** resolving to **32 names, 41 base colours and 18 roughness values**; every one is
+`metallicFactor 0`, `doubleSided`, `OPAQUE` and carries no map of any kind. It sizes every
+tile to a whole number of the surface's own committed module (32 clapboard courses of 0.14 m
+→ 4.48 m at 1024² → 228.6 px/m; 12 log courses of 0.34 m → 4.08 m → 251.0 px/m) so the tiles
+land inside §4 W2's 128–256 px/m band without a chosen-to-look-right number anywhere.
+
+**Five findings, none of them patched — this parcel ships a document:**
+
+1. **The chimney is not a material in this project.** `frame_dwelling`, `frame_storefront`
+   and `log_dwelling` build their stacks with `M_ROOF`: **219 stacks on 199 buildings are
+   painted with the roof's colour.** The 90 inferred placeholders ship a real
+   `placeholder_chimney_brick`. So the town *has* a brick chimney material and the archetype
+   buildings do not use it — and `log_dwelling`'s own docstring argues at length that a
+   frontier stack is stick-and-clay or fieldstone, a different object from a framed house's
+   brick stack, which renders identically to it. Opened as **R-W2c**.
+2. **No record anywhere states a roof covering.** 315 records state a roof *type* and 309 a
+   pitch; **zero** state what the roof is made of. All 234 `roof` slots are one colour, and
+   the board roof `outbuilding` argues for is separated from a shingle field by **0.03 of
+   roughness and nothing else**. The repository's one direct attestation — the North Side
+   school's "sheeted and shingled roof" — is read by nothing. Roofs cannot be textured until
+   an attribute exists to select the covering, and that is a schema change across 315 records.
+3. **A `documented` material fact is committed, correct, and rendered by nothing.**
+   `cobweb_castle` carries `cladding: clapboard_part_way_up`, **attested**, sourced to
+   `andreas_1884_v1` — and it is a `log_dwelling`, which does not read `cladding`, and the
+   value is not in `CLADDINGS`. `cladding` is stated on 27 records and read on 22.
+4. **27 % of the town is painted by a generator with no shared palette.** The 90 placeholders
+   share not one colour and not one roughness with the 244 archetype assets (their walls are
+   all 0.86, a value that appears nowhere else). They also read `roof_condition` — stated on
+   **218 records** — and `finish_key`, and **no archetype reads either**, so on 244 buildings
+   a weathered roof and a fresh one are the same pixel. An atlas that textures one path and
+   not the other splits the town visibly in half.
+5. **R-G1's "there is no roughness variation anywhere" is right about what matters and wrong
+   as written, and the difference decides what W2 builds.** *Between* surfaces there are 18
+   argued values spanning 0.15–1.00. What is absent is variation *within* a surface — every
+   square metre of every wall has one roughness, which is why nothing reads as weathered.
+   **The deliverable is a roughness map, not better constants.** Do not spend a round
+   re-tuning the 18 numbers.
+
+Two smaller ones on the record: `timber` is one name over two materials **3.2× apart in
+linear red** (only the outbuilding's ships — no record turns `framing_exposed` on), and one
+log wall in Chicago is a different timber from the other 52 (`frame_tavern` alone still
+imports `LOG_RGBA`, and the affected asset is the Sauganash's log wing, in front of the
+station named after it).
+
+**It also decides the licensing question W2.1 has to answer: generate the atlas, do not
+photograph it.** 38 of the project's 65 sources are `check_required`; the one full-resolution
+photograph committed is CC BY-SA 4.0 cleared for measurement and **explicitly not for any
+derived asset**; and the owner's twelve-view reference set says in its own README that it may
+drive materials as `inferred` — while being the same `chicagology_*` material
+`assets/LICENSES.md` gates. Procedural tiles built from the dimensional constants in the sheet
+need no new clearance and keep the property this project actually cares about.
+
+### R-W2c — the chimney is roof-coloured on 199 buildings · **UNCLAIMED · opened 2026-08-16 by R-W2a · Effort: S–M**
+
+219 stacks painted `roof` (finding 1 above). **It is not a palette fix, and picking the
+placeholder's brick would be the wrong half of it**: `log_dwelling` argues a stick-and-clay or
+fieldstone stack against the gable, `frame_dwelling` an interior brick stack at the gable end,
+and those are two materials, not one. So the parcel **opens with the research question** —
+what a Chicago chimney of 1835 was built of, by building type — and only then touches a
+palette. `docs/LIBERTIES.md` L26 already owns every chimney's *position*; whatever this lands
+owes the same treatment for its *fabric*.
+
+**Files:** `docs/RESEARCH/` (a dossier) · `generators/archetypes/*.py` (material index only) ·
+`generators/common/mesh.py` if a shared value is wanted. **NEEDS ONE BAKE** — it changes
+material assignment on committed geometry, so it cannot go green on the improve runner and
+should ship the research + palette half and say so.
 
 ### R-W3 — ambient occlusion and cascaded shadows · **UNCLAIMED · SPLIT**
 
