@@ -156,6 +156,7 @@ rationed.**
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
+| — | RENDERING | ~~R-BUG1~~ | **SEEN** | **DONE 2026-08-16 — the owner's flickering river edge was the NEAR PLANE, and 15.6 % of the drawn bank line is now 3.3 %.** A fixed 0.1 m near against a 3,000 m far leaves two surfaces 350 m away needing 10 cm of separation before the depth buffer can order them, and the waterline is co-planar BY DESIGN. The instrument is the finding: **move the camera 2 mm and photograph the same view twice** — the control is 0 px, so anything that changes is a tie. **Most of what flickers is not the bank (R-BUG6), and its suspect is UNTESTED because the flag written to test it changes nothing.** Read its box before biasing any surface to settle a tie |
 | **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | — | RENDERING | ~~K49(c1)~~ | — | **DONE 2026-08-16 — the 25 footprints are in, `unconvertible` 25 → 0, and the conversion is measured and NOT shipped.** It moves the shares by up to 3× (June grass 8.1 % → 24.0 %, wood nettle 1.1 % → 6.3 %) and improves both deviations (matrix 219.19 → 197.46, forb 107.18 → 89.11), and it puts *Scirpus atrovirens* at **1.10 slots owed, 0 drawn** — K49(f)'s absolute gate. Read its box before dealing a sward slot off any number |
@@ -1037,7 +1038,7 @@ so no bake and no new geometry.
 | | parcel | why it stands alone |
 |---|---|---|
 | **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
-| **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
+| **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA. It no longer carries **R-BUG1** — the flickering river edge was closed on its own 2026-08-16, and it was the camera's near plane rather than the water material. Still owns `terrain.js`'s water material. |
 
 **R-W5a is the whole queue's first parcel as of 2026-08-15, and it has NO dependency on R-W1.**
 The `After: R-W1` this section carried was inherited from the unsplit parcel and is true only of
@@ -1053,8 +1054,9 @@ explained — start there rather than reaching for a batching library.
 
 **Acceptance:** RENDERING §1 item 13 retired; draw calls still **≤ 80** in the main pass with
 extra passes accounted separately; triangles within the per-tier ceilings; zero page errors
-at both viewports. **Carries R-BUG1 below** — the river edge flickers when flying, and this
-is the parcel that owns the water surface.
+at both viewports. **R-BUG1 is DONE and was not this parcel's** — the flickering river edge was
+the depth buffer's precision, closed 2026-08-16 with no change to the water material at all. Read
+its box before reaching for a `polygonOffset` here.
 
 **From R-G1 (scored 3.8) — the draw-call budget is moving away from you, and lane 2 is what
 moves it.** Re-measured on the same renderer with 19 more structure records (242 → 261):
@@ -7032,7 +7034,92 @@ the number can only go down. Fixing this lowers the constant in the same PR.
 **Runner:** the no-Blender half is diagnosis — find the 79 in the generator's own output and
 say what makes them. The rebake arrives via `chicago-4d-bake.yml`.
 
-### R-BUG1 — the river edge flickers when flying · **UNCLAIMED**
+### R-BUG1 — the river edge flickers when flying · **DONE 2026-08-16 — it was the NEAR PLANE, and the fix moves no edge**
+
+**Read this box before biasing any surface to settle a depth tie.** The owner's flickering bank
+line is the depth buffer running out of numbers at range, and the cause is a camera setting
+rather than anything about the water: `main.js` carried a **fixed 0.1 m near plane** with a
+3,000 m far plane. A perspective depth buffer resolves about `z² / (near · 2^bits)` at distance
+`z`, so at the 0.1 m near, two surfaces **350 m away had to be ~10 cm apart in depth** before the
+buffer could order them — and the waterline is the one place in this scene where two surfaces are
+**co-planar by design** (`terrain.js`: the bank line IS where the ground crosses `y = 0`). Inside
+that band the winner is decided by rounding, and any camera movement re-rolls it.
+
+**The instrument, and it is the part worth carrying forward: MOVE THE CAMERA TWO MILLIMETRES.**
+`tools/measure_river_edge.mjs` stands at three aerial poses along the owner's own reproduction,
+photographs each, nudges the camera 2 mm — about a five-hundredth of a pixel at these ranges, so
+no edge can honestly move — and photographs it again. The clock is held, the HUD is hidden, and
+**the same pose photographed twice with no nudge differs by 0 pixels at every station**, which is
+the control that makes the rest of it mean anything. A pixel that changes under the nudge changed
+because a depth tie resolved the other way. Flicker is motion, and this is how a still frame
+answers a question about motion.
+
+| station | altitude | bank line, px | **bank flicker, before** | **after** |
+|---|---|---|---|---|
+| `from_above` (the scene anchor) | 175 m | 21,457 | 672 · **3.1 %** | 583 · **2.7 %** |
+| `descend_main_stem` | 90 m | 16,994 | 2,648 · **15.6 %** | 560 · **3.3 %** |
+| `over_the_forks` | 45 m | 19,794 | 1,469 · **7.4 %** | 471 · **2.4 %** |
+
+Measured on the PUBLISHED mirror at 1280×800. The gate is `--gate`, at **5 % of the bank line**:
+red at two of the three stations before, green at all three after with 1.7 points to spare. It is
+a SHARE and not a count on purpose — a count is a number about the pose.
+
+**The fix is precision, not a tie-break, and that distinction is the parcel's argument.** The near
+plane now opens with altitude (`NEAR` in `main.js`: a twenty-fifth of the eye's height above the
+ground, quantised, clamped to 0.1–8 m). On foot `altitude` is 0, so **a walker's camera is the
+camera they had before, to the digit**. The obvious alternative — a `polygonOffset` on the water
+material — was rejected on the acceptance this box was written with: it settles the tie by biasing
+the water toward the camera, and at 350 m one depth step is ~10 cm of ground, so the drawn
+waterline would climb the bank by up to that much. **That breaks the invariant the design exists
+to guarantee.** Precision costs nothing and moves no edge; a bias buys the same picture by
+lying about where the river is.
+
+**Finding — MOST OF WHAT FLICKERS IS NOT THE BANK, and it is now R-BUG6.** The whole-frame count
+under the same nudge is 1,690 / 5,901 / 3,886 px before and 1,568 / 1,883 / 1,173 after: the
+continuous magenta line along the bank in the before-mask is gone, and what is left is **speckle
+on roofs, walls and canopies** at every station. That is a second population with a different
+cause, and this parcel did not chase it. The residual 2.4–3.3 % at the bank is the same speckle
+falling within two pixels of a waterline, which is why the gate is not tighter.
+
+**And the suspect for it is UNTESTED rather than refuted, because the instrument was inert.**
+`--no-sun-shadow` was written to test the obvious candidate — the shadow camera follows the
+walker, so a moved camera re-rasterises the shadow map onto a shifted texel grid. It reported the
+numbers **unchanged to the pixel**, which read as a refutation. It is not: the flag's own control
+(put the shadow back, photograph again) changes **0 pixels**, so dropping `castShadow` after boot
+never reaches the render at all. The flag now **exits 2** on that control rather than printing a
+finding. *A diagnostic that changes nothing reports "not the cause" for the same reason a broken
+thermometer reports a steady temperature* — the sixth time on this project that a green reading
+came from an instrument pointed at nothing.
+
+**Files:** `renderers/web/js/main.js` (the `NEAR` block, `setNearFor`, `stats().cameraNear`) ·
+`tools/measure_river_edge.mjs` (new) · `tools/smoke_renderer.mjs` (two structural assertions on
+the near plane; the pixel gate stays in the tool, at three frames a station).
+
+**Not claimed:** the desktop half of the smoke — ~13 min against this runner's 10-minute
+per-command ceiling. The measurement itself was run at 1280×800, which is the harder viewport for
+this defect: more pixels of bank line to disagree about.
+
+### R-BUG6 — the town flickers too, and nobody knows why · **UNCLAIMED · UNSEEN · opened 2026-08-16 by R-BUG1 · Effort: S–M**
+
+**Under the 2 mm nudge, with the bank line fixed, 1,173–1,883 pixels of every aerial frame still
+change** — scattered over roofs, walls and tree canopies, not over the ground between them. The
+control is 0, so it is not noise. It is the same class of defect R-BUG1 just closed at the
+waterline: something in the frame is decided by a tie, and the tie is not stable.
+
+**Start by proving your instrument.** R-BUG1's shadow-map suspect is untested, not refuted:
+`measure_river_edge.mjs --no-sun-shadow` drops `sun.castShadow` after boot and changes **0 pixels
+of the drawn frame**, so the run that "cleared" the shadow map cleared nothing. A test that
+reaches the render has to rebuild the shadow state — or the scene — rather than flipping a flag on
+a light whose materials are already compiled. **Land that control green before quoting any
+number**, and the parcel's first commit is that control, not a fix.
+
+**Candidates, none of them measured:** the shadow map's texel grid moving with the camera; the
+buildings' `DoubleSide` faces meeting at a coplanar seam; the tree canopies' alpha-tested cards
+ordering differently; the confidence-view attribute path. `tools/measure_river_edge.mjs` takes
+`RIVER_STATIONS` and writes a magenta flicker mask with `--out`, which is how the bank line was
+separated from the rest by eye in the first place.
+
+**Runner:** lane 1, renderer only, no bake. It may run beside any town parcel.
 
 Reported by the owner 2026-08-14: flying over the river, its edges flicker. Almost certainly
 **z-fighting between the water plane at the datum (y = 0) and the terrain crossing it** — the
