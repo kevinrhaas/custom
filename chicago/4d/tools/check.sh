@@ -101,6 +101,18 @@ step "nothing unpermitted stands on refused ground, and the refusal still reache
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
+# building nobody named is the claim that an institution stood here and left no record
+# at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a
+# roof are three, all three are committed named records, and every other public function
+# in Chicago was carried on inside a private building. generate_block_infill.py has
+# refused the institutional families by name since L93, but only for the blocks — the
+# North, West and phase-one parcels ran before it existed and nothing had ever asked the
+# committed records. This asks all of them: absolute zero for I1 and I3, a ratchet at the
+# one anonymous I2 that L93 records rather than deletes.
+step "no anonymous roof claims to be a public building" \
+  python3 tools/measure_institutional_claims.py --gate --quiet
+
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
 # authored band; this holds them to it, and prints the census of what still is not —

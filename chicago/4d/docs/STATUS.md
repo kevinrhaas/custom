@@ -1,6 +1,72 @@
 # STATUS
 
-## New 2026-08-16 — the buildings in the streets are drawn wrong, not placed wrong, and the town's georeference is exonerated
+## New 2026-08-16 — a building has been taken out of the town, and the town's public buildings are three
+
+**T-I3(a).** The programme schedules six civic or public-service roofs and every generator has
+refused to mass one since L93, on the ground that the archetype behind the family speaks only
+garrison words. The refusal is now the research instead. **On 1835-07-01 the town's public
+buildings with a roof are three — `log_jail`, `council_house`, `chicago_lighthouse_1832` — and
+this project already had all three.** `estray_pen` is public and roofless. The enumeration is
+`docs/RESEARCH/civic_public_buildings_1835.md`, and every citation in it is Andreas: **no new
+source was needed and none was invented.**
+
+**The finding is the fourth building. The court-house was not built yet.** 332 structures resolved
+into the 1835 scene and 331 do; `cook_county_courthouse_1835` is re-dated to the fall and resolves
+into 1836 instead. Its record said, at length and honestly, that nothing it had reached fixed a
+month, and reasoned from a flat prior over a twelve-month window that the building was about half
+likely to be standing. **The window was never twelve months.** Andreas's town-period narrative:
+*"During the fall of the year (1835,) a one-story and basement brick court-house was erected on
+the northeast corner of the square, on Clark and Randolph streets"* (scan p. 369). His chronology
+lists it under 1835 at **November** (scan p. 1317). And the county Recorder *"removed his office
+toward the end of October to the new building recently erected by the county on the public
+square"* (scan p. 305). Three statements — a narrative, an index and a biography — and not one is
+earlier than the fall.
+
+**The dataset had already said so, in another file, for four days.** The physical-roof reconciliation gives this record `roof_count: 0` with the reasoning *"Production chronology places construction in fall 1835; no courthouse roof should stand on 1 July"* — committed 2026-08-12, one day after the structure record that stood the building on the square. So from 12 August one document in this dataset held the court-house unbuilt while another drew it, and nothing read the two together; the walkthrough's own release notes even carried the reconciliation's reading out to visitors — *"a courthouse that was not built until the autumn"* — while the walkthrough drew it. **The one that was right is the one with no citation at all.** The reconciliation's "production chronology" cites nothing; the record cites Andreas and says the opposite, because what it cited was a caption.
+
+**The citation the record had was a picture.** It cited *"a section headed 'THE FIRST
+COURT-HOUSE.' at scan p. 373"*. Scan p. 373 is a PLATE; those words are an engraving's caption,
+printed under *"Copyright secured by A. T. Andreas, 1884."* The paragraph that carries the date is
+four scan pages earlier. This is the second time in this project a citation has resolved to a
+heading rather than to a sentence, and it is the whole cause: every gate here asks whether a
+building is inside its lot, clear of the roadway, on permitted ground and clear of its neighbours.
+The gate that asks whether it existed yet is the date gate, and a range authored from a caption
+passes it perfectly.
+
+**Two of the record's own hedges are settled and both say it was better than it knew.** It warned
+that Andreas's north-east siting "is the 1837 BUILDING" and might be contaminating an 1835 record
+— Andreas gives that corner to this one, in the sentence that dates it. It ruled out brick because
+"the first brick building in Chicago is 1837" — that is the first brick HOUSE, and Andreas calls
+this court-house brick. **Neither is applied. Both need the bake**, because a changed form value
+stales the mesh; they are recorded on the record as amendments.
+
+**No anonymous roof may claim to be a public building, and that is now asserted.**
+`tools/measure_institutional_claims.py` runs in `check.sh` against every committed record rather
+than only the ones a generator is about to write — **absolute zero** for the worship and civic
+families, because they are enumerable, and a **ratchet at one** for the schools, naming the single
+anonymous North Division school L93 records rather than deletes. All three halves were broken
+deliberately before the gate was trusted.
+
+**What a slot would have been spent on is not a building.** The crosswalk says the family spans
+*"jail/blockhouse; engine/service; adapted offices"*, and every adapted office in Chicago that
+summer was a room in somebody's private premises. The United States Land Office was open from May
+1835 and transacting Beaubien's pre-emption four weeks before the scene date — and it was rooms on
+the east side of Lake Street, with Andreas noting that the Register and Receiver *"were usually at
+their private offices"*. The post office was a counter in Hogan's store. The county's own officers
+were private until late October. Three guards added to `data/exclusions.json`, and
+`first_fire_engine_house` amended because it dated the ENGINE while the HOUSE is later still.
+
+**What is NOT done, and it is the number.** Three of the six I3 slots are a count of nothing, and
+the target still says six. The inventory's arithmetic is closed — family targets sum into
+district-group rows, rows into district targets, districts into `roof_total: 665`, and
+`reconcile_665.py` asserts all three — so the three cannot simply be removed. The two exits are
+two different claims about the town (662 roofs, or three roofs that were not civic), the research
+settles neither, and choosing one would invent exactly the kind of aggregate this parcel just
+removed. **T-I3(b), blocked on the owner.** Also unmoved: `estray_pen`'s phase id still reads
+`pen_1833` after its year was corrected to 1832, because a phase id is half of a baked asset's
+filename.
+
+## 2026-08-16 — the buildings in the streets are drawn wrong, not placed wrong, and the town's georeference is exonerated
 
 **K30(b)**, the attributing half, and it moved nothing. K30(a) measured 29 buildings lapping
 a platted corridor and left the deep cluster without a cause. The cause is now a command,

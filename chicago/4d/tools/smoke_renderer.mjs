@@ -3609,9 +3609,22 @@ const terrainLoad = await page.evaluate(() => {
 
     // --- and the third category: researched, and still open -----------------
     // The exclusions answer "what did you find and leave out". They cannot hold
-    // a structure whose 1835 status nobody could settle — and one of those four
-    // is STANDING in the scene, so putting it on the not-here list would make
-    // that list false. It gets its own section and its own chip.
+    // a structure whose 1835 status nobody could settle — and two of those three
+    // are STANDING in the scene, so putting them on the not-here list would make
+    // that list false. They get their own section and their own chip.
+    //
+    // THE COURT-HOUSE WAS THE FOURTH AND IS NOT AN OPEN QUESTION ANY MORE
+    // (ROADMAP T-I3, 2026-08-16). Its question — "was it standing on 1 July
+    // 1835?" — is answered: Andreas dates it to the fall in three places, the
+    // record is re-dated, and it resolves into 1836 rather than into this scene.
+    // The entry was argued off the list, which is what that list's own doc says
+    // happens when the evidence arrives, so the expectations below moved from
+    // four entries to three. That is authored data changing under a gate, not an
+    // assertion being relaxed: every claim the court-house carried here is still
+    // claimed, of an entry that still needs it. The chip pair now runs the other
+    // way round as well — two standing against one unbuilt, where it was one
+    // against three — so the section is still held to discriminating between
+    // them rather than stamping one chip on everything.
     const open = await page.evaluate(() => {
       const mount = document.getElementById('uncertain');
       const entries = [...mount.querySelectorAll('details.uncertain')];
@@ -3627,7 +3640,7 @@ const terrainLoad = await page.evaluate(() => {
         rendered: entries.length,
         busy: mount.hasAttribute('aria-busy'),
         western: read(byName(/Western Hotel/)),
-        court: read(byName(/court-house/)),
+        cobweb: read(byName(/Cobweb Castle/)),
         caldwell: read(byName(/Caldwell/)),
         heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
           .replace(/\s+/g, ' '),
@@ -3642,16 +3655,16 @@ const terrainLoad = await page.evaluate(() => {
       };
     });
     check(`${label}: the open questions load`,
-      open.counted === 4 && !open.busy && open.rendered === open.counted,
+      open.counted === 3 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
-    // The discriminating pair, and it is the whole argument for the section: one
-    // of these four is a building the visitor can walk up to and three are empty
-    // ground. A section that stamped one chip on all four would have passed any
+    // The discriminating pair, and it is the whole argument for the section: two
+    // of these three are buildings the visitor can walk up to and one is empty
+    // ground. A section that stamped one chip on all three would have passed any
     // check for "there is a chip" — and would be lying about the Western Hotel.
-    check(`${label}: the standing one says it is standing and the unbuilt ones do not`,
+    check(`${label}: the standing ones say they are standing and the unbuilt one does not`,
       /standing here/.test(open.western.chip) && /inferred/.test(open.western.chip)
-      && open.court.chip === 'not built' && open.caldwell.chip === 'not built',
-      `western "${open.western.chip}" · court "${open.court.chip}"`);
+      && /standing here/.test(open.cobweb.chip) && open.caldwell.chip === 'not built',
+      `western "${open.western.chip}" · cobweb "${open.cobweb.chip}" · caldwell "${open.caldwell.chip}"`);
     // …and the doubt is not restated here in this section's own words. It names
     // the claim on the record that carries it, which is the same claim the
     // provenance card shows, so the two cannot drift.
@@ -3665,8 +3678,8 @@ const terrainLoad = await page.evaluate(() => {
     // naming one here would be inventing it.
     check(`${label}: an uncited open question says why it is uncited`,
       /No source record/i.test(open.caldwell.text)
-      && open.caldwell.cites.length === 0 && open.court.cites.length > 0,
-      `caldwell ${open.caldwell.cites.length} cite(s) · court ${open.court.cites.length}`);
+      && open.caldwell.cites.length === 0 && open.western.cites.length > 0,
+      `caldwell ${open.caldwell.cites.length} cite(s) · western ${open.western.cites.length}`);
     check(`${label}: the panel says what the third category is`,
       /still an open question/i.test(open.heading)
       && /standing in front of you/i.test(open.heading),

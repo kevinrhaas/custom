@@ -185,7 +185,7 @@
       "id": "first_fire_engine_house",
       "name": "Engine house / Engine Company No. 1",
       "reason": "The town's first fire engine was purchased 1 December 1835 for $894.38 — five months AFTER the scene date.",
-      "detail": "A tidy example of why the date gate matters: 1835 is the right year and still the wrong scene.",
+      "detail": "A tidy example of why the date gate matters: 1835 is the right year and still the wrong scene. AMENDED 2026-08-16 (ROADMAP T-I3), because this entry dated the ENGINE and the building is what a scene would show, and the building is later still. Andreas: 'Up to September, 1835, there was nothing like an organized Fire Department, or a fire engine in the town. Prior to that time buckets put out any fire that occurred, or it burned itself out' (Andreas I scan p. 299). The house came after the company: the committee appointed to find a site reported that the County Commissioners would give them 'leave to erect an engine house on the public square, on LaSalle Street, to occupy the same for and during the term of five years, without paying rent therefor', the clerk called for proposals for a house twelve by eighteen feet, the company had the limits widened to twenty-four by twelve, and 'On the 30th of December, 1835, Levi Blake contracted to build the engine house for $220' - and it was still not fairly completed when the chief engineer resigned on 17 February 1836 (scan p. 463). The town's own accounts book it in the year after: it 'had built an engine house costing $200' among the extraordinary liabilities of the year ending 1836. SO THE PUBLIC SQUARE HELD THREE COUNTY STRUCTURES BY 1837 AND EXACTLY ONE ON 1835-07-01 - Andreas's own summary of the new city says 'A court-house, a jail, and an engine-house adorned the present square', and on the scene date two of those three are unbuilt and the third, the log jail, is the only one this project may draw there.",
       "earliest_scene": "1836",
       "citations": [
         {
@@ -668,21 +668,13 @@
           ]
         }
       ]
-    }
-  ],
-  "uncertain_standard": "Structures whose status on this date is genuinely OPEN — neither built with confidence nor ruled out. They are the third category, and one of them is standing in front of you.",
-  "uncertain": [
+    },
     {
-      "id": "cook_county_courthouse",
-      "name": "First Cook County court-house",
-      "question": "Was it standing on 1 July 1835? The year is attested and no source reached fixes a month, so on the scene date it may be unbuilt, under construction, or just finished.",
-      "consequence": "Three different buildings on the public square, one of which is an empty lot. It cannot be placed until the month is fixed or a construction phase is argued from something better than a guess at a start date — and the well-known Doric-portico description is the 1837 building, not this one.",
-      "standing": false,
-      "no_source_record": "",
-      "dossier": {
-        "file": "docs/research/04-structures-south.md",
-        "anchor": "First Cook County court-house"
-      },
+      "id": "us_land_office_1835",
+      "name": "United States Land Office at Chicago",
+      "reason": "NOT A SEPARATE BUILDING — the office was open and working on the scene date and was carried on inside private premises. A kind guard, not a date guard, and the one an I3 slot is most likely to be spent on: the family's own crosswalk entry names 'adapted offices' as a thing it spans.",
+      "detail": "The office is the most conspicuous public FUNCTION in Chicago in the summer of 1835 and it never was a public building. Andreas's chronology puts its opening at 'May' 1835 — 'Opening of Government Land-Office at Chicago; great land craze' (Andreas I scan p. 1317) — and the Beaubien claim dates the working office to the week: Beaubien 'entered at the land office in Chicago, of which Edmund D. Taylor was Receiver, and James Whitlock Register, a pre-emption claim', his certificate 'was dated May 28, and recorded June 26' (scan p. 313 and the Beaubien Claim section). So it is open, staffed and transacting business four weeks before the scene date. What it is not is a roof: 'The location of the first United States Land Office in Chicago was on the east side of Lake Street, between Clark and Dearborn streets', and Andreas says in the same paragraph that 'the office of the Registers and Receivers were usually at their private offices' (scan p. 313). An address on the built-up side of Lake Street between two cross streets is a room in somebody's commercial building. Nothing reached says whose, so nothing here places the function on a committed record — the guard is only that a federal land office does not get a building of its own.",
+      "earliest_scene": null,
       "citations": [
         {
           "source_id": "andreas_1884_v1",
@@ -694,6 +686,43 @@
         }
       ]
     },
+    {
+      "id": "custom_house_chicago",
+      "name": "Chicago custom house",
+      "reason": "Eleven years later — Chicago was not a port of entry until 1846, and before that the district was tributary to Detroit.",
+      "detail": "A lake port with a lighthouse, two piers and a harbour under improvement invites the assumption, and there is nothing to it. Andreas: the district 'was a tributary to the Detroit District, and the revenue was collected by Seth Johnson, formerly an officer of the garrison, with the office at 38 Clark street'; Chicago was made a port of entry by the act of 16 July 1846 and William B. Snowhook was appointed Collector on 10 August 1846, 'some time during his administration removing the custom-house to No. 3 Clark Street' (Andreas I scan p. 325). Even then it is a street address rather than a purpose-built house — the first federal building comes much later.",
+      "earliest_scene": "1847",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)"
+        }
+      ]
+    },
+    {
+      "id": "chicago_town_hall",
+      "name": "Town hall or municipal building for the Town of Chicago",
+      "reason": "NOT A BUILDING — the town incorporated in August 1833 and never built itself a hall in the years this project models. The positive evidence runs the other way rather than being merely absent.",
+      "detail": "Two things Andreas records say it plainly, and neither is an argument from silence. The town had no ground of its own to build on: when its fire company wanted an engine house in December 1835 the committee had to report that the COUNTY Commissioners would give them 'leave to erect an engine house on the public square ... without paying rent therefor' (Andreas I scan p. 463) — the square is the county's, granted by the State in 1831 for the erection of public buildings, and the town is a tenant on it. And the town met and voted in taverns: 'The fourth and last election under the town system was held at the Tremont House June 6, 1836', and the first CITY election of May 1837 was polled at the Eagle Hotel, Lincoln's Coffee House, a private house, Cox's Chicago Hotel, the Canal Office and the Franklin House (scan pp. 369, 373). A corporation that holds its own elections in six other people's rooms four years after incorporating does not have a hall. The building that eventually served as City Hall is the Saloon Building of 1836, already excluded above, and it was private property.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)"
+        }
+      ]
+    }
+  ],
+  "uncertain_standard": "Structures whose status on this date is genuinely OPEN — neither built with confidence nor ruled out. They are the third category, and one of them is standing in front of you.",
+  "uncertain": [
     {
       "id": "cobweb_castle",
       "name": "The Indian Agency House (\"Cobweb Castle\")",

@@ -3570,6 +3570,74 @@ in July 1835. A named occupant replaces an inferred one; it never adds a househo
 `recon_1835_blk_randolph_dearborn_d3_01.occupants`
 **Recorded:** 2026-08-15.
 
+### L110 — A building taken out of the town, and the three public roofs that are all of them there were
+
+**Decision:** the first Cook County court-house **no longer stands in the 1835 scene**. Its record
+is kept and re-dated rather than deleted — `documented_range` opens 1835-10-01 instead of
+1835-01-01, so it resolves into 1836 and not into this scene — and 331 structures are included
+where 332 were. Nothing else moved: no coordinate, no footprint, no dimension and no confidence
+grade, and the town's roof ledger is unchanged because the physical-roof reconciliation had
+already given this record a roof count of zero on the same suspicion this entry settles.
+
+**This is the first record this project has taken OUT of a scene on evidence, and the removal is
+the honest direction.** The record modelled the court-house as complete on 1 July 1835 under a
+note saying in as many words that no source fixed a month and that a building finished somewhere
+in a twelve-month window is about half likely to be finished by 1 July. It reasoned well from what
+it had. What it had was a **caption**: its Andreas citation pointed at "a section headed 'THE
+FIRST COURT-HOUSE.' at scan p. 373", and scan p. 373 is a plate, the words printed under
+"Copyright secured by A. T. Andreas, 1884." The narrative is four scan pages earlier and fixes the
+season, and the chronology fixes the month at November, and a third passage has the county
+Recorder moving his office into "the new building recently erected by the county on the public
+square" toward the end of October. Three statements, none earlier than the fall.
+
+**The dataset had already contradicted itself about this for four days and no gate reads the two files together.** The physical-roof reconciliation gave the record `roof_count: 0` on 2026-08-12 — *"Production chronology places construction in fall 1835; no courthouse roof should stand on 1 July"* — one day after the structure record was committed standing it on the square, and the walkthrough's own release notes told visitors about *"a courthouse that was not built until the autumn"* while the walkthrough drew it. The reconciliation was right and cites nothing; the record was wrong and cites a caption.
+
+**What is admitted here is a year of a visitor seeing a building that was not there**, on the most
+looked-at block in the town — the public square carries the pen, the jail and, until today, a
+court-house — and the reason nothing caught it is worth more than the correction. Every gate this
+project had asked whether a building was inside its lot, clear of the roadway, on permitted ground
+and clear of its neighbours. The one that asks whether it existed yet is the date gate, and the
+date gate can only be as good as the range on the record. A range authored from a caption passes
+it perfectly.
+
+**Two further claims are now attested and are deliberately NOT applied.** Andreas gives the
+court-house the **north-east corner** of the square, in the same sentence that dates it, which
+refutes this record's own stated undercut that the north-east description belonged to the 1837
+building; and he gives it as **brick**, against the record's invented plank and the reasoning that
+brick is excluded before 1837 — a claim that is about the first brick *house* and not about a
+county building. Both are recorded on the record as amendments and neither changes a graded value,
+because a changed form value stales the placeholder mesh and geometry belongs to the nightly bake.
+An upgrade made in the same commit as the correction that took the building off screen would also
+be a promotion nobody could see. They belong to the parcel that re-bakes it.
+
+**The scope claim, stated so it can be disagreed with.** The enumeration behind this entry —
+`docs/RESEARCH/civic_public_buildings_1835.md` — is that Chicago's public buildings with a roof on
+1 July 1835 are **three**: the log jail, the council house and the lighthouse. The estray pen is
+public and roofless. Everything else a visitor might expect is either later (the court-house, the
+engine house, the market house, the custom house) or was a public FUNCTION carried on inside a
+private building (the post office, the United States Land Office, the county's own offices until
+late October 1835). That is a claim about completeness drawn from one book, and one book is how
+this project knows most of what it knows about 1835. A new source can add a building. What it may
+not do is add an anonymous one: `tools/measure_institutional_claims.py` now refuses, absolutely,
+any invented roof typed into the worship or civic families, and holds the schools at the one
+anonymous roof L93 already records.
+
+**Consequence:** a visitor standing on the public square in this scene sees the jail and the pen
+and open ground where the court-house was, which is what the sources describe, and the walkthrough's
+researched-exclusions panel gains three guards — the land office, the custom house and the town
+hall — saying why the town's most conspicuous public functions have no building. The programme
+still schedules six I3 roofs and every generator still refuses them; three of those six are now
+known to be a count of nothing, and correcting the number is an owner decision recorded as ROADMAP
+T-I3(b), because the two ways of correcting it are two different claims about how many roofs the
+town had.
+
+**How to resolve:** for the court-house, a month rather than a season — a contract, a commissioners'
+minute or a newspaper notice — and the bake that applies its attested corner and fabric. For the
+enumeration, any source naming a public building this list does not have; it arrives as a named
+record, never as a slot.
+
+**Recorded:** 2026-08-16.
+
 
 ## Resolved
 
