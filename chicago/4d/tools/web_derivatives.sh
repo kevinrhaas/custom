@@ -42,6 +42,33 @@
 # not produce them, and the next nightly bake will rewrite all 195 as unwelded files.
 # ROADMAP K40 owns the count, the payload delta and the decision. Do not quote "331 of
 # 334": it is the claim K40 exists to correct.
+#
+# COUNTED EXACTLY 2026-08-16 BY K40, with the control this script had never had —
+# `tools/measure_web_reproduction.py`, which runs THIS script over all 334 masters into a
+# scratch tree, chunked to fit the ten-minute per-command ceiling, and compares md5s.
+# The number is **142 of 334**, and the 192 failures decompose with nothing left over:
+# **189 reproduce byte-for-byte under `BAKE_PALETTE=1`** (the palette-era set, +48,836
+# bytes to regenerate, mean +258 each, 10,491 vertices merged) plus the three already
+# owned above — the two K37 placeholders and R-W6(b)'s terrain. Do not quote 195 either:
+# it is a VERTEX signature and K40 measured it against the exact set, where SIX welded
+# files reproduce here exactly (`optimize` dedups without the palette pass) and three
+# failures carry no weld. The signature is not the set and no gate is built on it.
+#
+# AND THE SENTENCE AT THE TOP IS TRUE AFTER ALL, WHICH IS THE POINT OF THE CONTROL:
+# on all 189, the bytes this script produces on a Blender-free runner are md5-identical
+# to the bytes the nightly bake put in PR #175. What was wrong was never the extraction —
+# it was that a step change had not been carried through the whole tree. Hence:
+#
+#   A CHANGE HERE THAT MOVES ANY DERIVATIVE'S BYTES REGENERATES ALL 334, NOT THE ONES
+#   THAT VISIBLY BROKE.
+#
+# K36(b) turned the palette pass off and regenerated the 38 assets whose material
+# identity it had broken; the other 195 kept bytes no step in this tree could produce,
+# and it cost three days and two parcels to find out. K40 decided against recording the
+# STEP beside the master for the same reason a hash of this file would be wrong: the
+# four commits that have changed this script since it was extracted moved 38, 3, 0 and 0
+# derivatives, so a script hash would have invalidated all 334 entries four times, twice
+# on a commit that moved no byte. See docs/RESEARCH/web-reproduction.md.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
