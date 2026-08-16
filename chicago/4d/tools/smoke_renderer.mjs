@@ -229,6 +229,26 @@ const ROAD_STATIONS = [
 ];
 const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
+// R-A1. How much of the frame the aid has to move at full strength before this
+// gate believes the control reaches the render at all.
+//
+// THE GRID IS THE MEASUREMENT AND IT WAS TAKEN, NOT ASSUMED. The 12² signature
+// the confidence view is graded on is the wrong instrument for this one, and
+// the first run said so: at `lake_market` the roadway is about a tenth of the
+// frame, so a whole-frame cell averages the aid away to a worst of 2 counts
+// against a restored residual of 0 — a real signal with no headroom to gate on.
+// A finer grid concentrates road pixels into cells that are mostly road without
+// changing what is being measured. Mobile 390×780, published mirror, full aid:
+//
+//   48²  mean 0.26, worst 6      12²  mean 0.29, worst 2
+//   restored residual, 48²:  mean 0.00, worst 0
+//
+// The floors below sit a third under the measured 48² figures and four counts
+// above the residual, so "the aid changed the frame" and "the aid changed
+// nothing" cannot both be true. Both grids are printed; only 48² is gated.
+const ROAD_AID_GRID = 48;
+const ROAD_AID_MIN_WORST = 4;
+const ROAD_AID_MIN_MEAN = 0.15;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
 async function roadContrast(page, station) {
@@ -2469,6 +2489,61 @@ const terrainLoad = await page.evaluate(() => {
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
     }
+
+    // --- R-A1, the road-legibility aid, and the three things it owes --------
+    //
+    // The aid is a viewing accommodation. Every band printed above measures the
+    // DEFAULT, and the whole reason this control was deferred for two days is
+    // that a preference which boosts road contrast can quietly become a way to
+    // launder a failing gate. So the aid owes three assertions and they are
+    // taken HERE, standing at `lake_market` where the bands were just read:
+    //
+    //   1. it is OFF with no stored preference — so every number above, and
+    //      every figure `critic_shots.mjs` and `light_probe.mjs` take, is the
+    //      recorded surface and not a visitor's dial;
+    //   2. raising it CHANGES the frame — because a control that reaches
+    //      nothing reports "no effect" for the same reason a broken thermometer
+    //      reports a steady temperature. R-BUG1's `--no-sun-shadow` cleared a
+    //      suspect it never touched; the instrument is proved before it is
+    //      quoted, not after;
+    //   3. dropping it back RESTORES the frame — which is what makes 1 and 2
+    //      compatible: the aid's existence changes no default.
+    const aidAtBoot = await page.evaluate(() => window.__chicago4d.roadAid);
+    check(`${label}: the road-legibility aid is off unless a visitor moves it`,
+      aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
+    const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
+    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
+    const dAid = signatureDistance(aidOff, aidOn);
+    const dAid12 = signatureDistance(aidOff12, aidOn12);
+    await page.evaluate(() => window.__chicago4d.setRoadAid(0));
+    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dAidBack = signatureDistance(aidOff, aidBack);
+    const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: raising the road-legibility aid reaches the render`,
+      aidSet === 1 && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
+      `set to ${aidSet}: cell delta mean ${dAid.mean?.toFixed(2)}, `
+      + `worst ${dAid.worst} (need worst>=${ROAD_AID_MIN_WORST}, `
+      + `mean>=${ROAD_AID_MIN_MEAN})`);
+    // With the clock held these are two captures of one unchanged scene, so an
+    // aid that left anything behind shows up as a residual the sway cannot
+    // explain. Same tolerance the confidence view is held to, for the same
+    // reason: it is readback noise, not weather.
+    check(`${label}: dropping the road-legibility aid restores the default frame`,
+      aidRestored === 0 && dAidBack.mean <= 0.1 && dAidBack.worst <= 3,
+      `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dAidBack.worst}`);
+    console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
+      + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
+      + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
+      + `${dAidBack.worst}`);
+
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
     // band the tree solver builds around the camera — from 175 m up there is no

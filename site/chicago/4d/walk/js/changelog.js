@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 151, title: 'You can turn the roads up if they are hard to see', kind: 'feature', ts: '2026-08-16T23:25:34.982Z', date: 'Aug 16, 2026, 6:25 PM CT',
+    items: [
+      'There is a new slider in Settings called Road visibility. It starts off, and off is exactly what you have been walking through until now — nothing about the default view has changed.',
+      'These streets are worn earth tracks through prairie grass, and how much bare earth shows through is a figure with evidence behind it, surface by surface. So the scene paints them as the record describes and not one shade bolder, which is why this is a slider and not a repaint.',
+      'But contrast is not the same thing for everyone, and a phone screen in daylight is brutal — which is the exact condition the faint-road problem was reported from in the first place. Raise the slider and the roads are painted more strongly, up to solid. It changes how they are drawn on your screen and nothing else: no street moves, no width changes, and no claim is made that 1835 Chicago looked bolder than this.',
+      'It ships now rather than in July because the default was fixed first. An aid like this is a way of turning a defect into a preference, so the rule was that it could only be built on top of a road that already reads — which was measured and repaired a day ago, at your feet where it was worst.',
+      'The checks that grade the scene all read the default position regardless of what you have chosen, so nobody can pass a test by moving this. Three of them now say so out loud: the slider is off unless you move it, moving it really does change the picture, and putting it back gives you the same frame you started with.',
+    ] },
   { v: 150, title: 'The river’s edge holds still when you fly over it', kind: 'fix', ts: '2026-08-16T22:51:51.744Z', date: 'Aug 16, 2026, 5:51 PM CT',
     items: [
       'Fly out over the main stem and watch the bank as you drift: the shimmering line where the water meets the land is gone. It was reported by the owner, who described it exactly — the edges flicker, and only when flying.',

@@ -143,6 +143,7 @@ rationed.**
 | # | lane | parcel | seen? | why |
 |---|---|---|---|---|
 | — | RENDERING | ~~K49(f)~~ | **SEEN** | **DONE 2026-08-16 — 2 species absent → 0, and the block's own phase pays for itself twice.** The even deal dealt the SAME 64 values of `u` in every block of the world, so a band narrower than 1/64 fell between two of them EVERYWHERE: **45 matrix bands, exactly 2 under one step, and exactly those 2 were the species drawn nowhere.** Matrix deviation **282.90 → 219.19**. Its finding is not the repair: **K49(e)'s leading explanation is refuted for the bigger of the two rows it was written about** — the settled town recovers 23.66 of its 24.87 regression on a change that touches no filter. Read its box before quoting K49(d) on a regressed row |
+| — | RENDERING | ~~R-A1~~ | **SEEN** | **DONE 2026-08-16 — the Road visibility slider, off by default, and the first parcel taken by PULLING A SEEN ROW UP when every numbered one was blocked.** Its finding is about gates, not roads: **an inertness assertion needs a liveness assertion beside it**, because "the default is unchanged" passes identically whether a control is wired correctly or wired to nothing — R-BUG1's dead `--no-sun-shadow` one parcel earlier. And the instrument was measured before its threshold was set: the 12² frame signature scores the aid at **worst 2 against a residual of 0**, the same difference at 48² is **worst 6**, and nothing about the scene changed between the two runs. Read its box before adding any preference to Settings |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -172,6 +173,17 @@ that is blocking a named SEEN parcel. "It would be good to have" is not one of t
 
 **And if the SEEN rows above are all blocked, that is the finding** — say so in the PR and pull a
 SEEN parcel up from the sections below rather than defaulting to another gate.
+
+**AND THAT IS WHAT HAPPENED — 2026-08-16, R-A1, the first run to take this paragraph rather than
+the table.** Every numbered SEEN pick was blocked (K30(c), T-E3, R-W2c, T-V1(b) need a bake; T-V2
+and R-W1 are parked on `hold`; R-W2b is a 315-record schema change with no source stating a roof
+covering), and the only unblocked NEXT UP row was **K49(e)**, which is UNSEEN — and the visible-
+progress cap forbade it: v148 is already the one invisible run in the last four, so a second would
+have made it two in four. So a SEEN parcel was pulled up from the sections below and shipped. **It
+took ~25 minutes of budget to establish that, which is what the box below exists to save** — but
+the pull-up route is now proven, and `R-A1`'s own section is the model: a parcel deferred for a
+reason, whose stated precondition another parcel has since met, is a SEEN pick hiding in the file.
+Search for *"deferred"* and *"unblocked"* the way T-E5(a) searched for `not_modelled`.
 
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
@@ -6367,7 +6379,58 @@ branch is re-run against them **without re-tuning the streets**; every existing 
 reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
 "every existing road band still reports", which R-M1a holds green by not gating anything.
 
-### R-A1 — a road-legibility accessibility aid · **CLAIMED 2026-08-16 · steward/r-a1-road-legibility-aid · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
+### R-A1 — a road-legibility accessibility aid · **DONE 2026-08-16 — shipped OFF by default, and the gate that proves it reaches the render had to be measured before it could be set**
+
+**Read this box before adding any other preference to Settings.**
+
+**What shipped.** A **Road visibility** slider, `roadAid` 0 → 1, default **0**. It scales the
+street ribbons' alpha last in `streets.js`'s fragment patch — after the thin-ribbon floor and
+R-BUG3's near lift — so it can never change which surface is fainter than which. `AID_GAIN` is
+`1 / 0.24`: 0.24 is the faintest body alpha any surface authors (light worn earth at its crown),
+so full aid takes that one surface to opaque, which is the ceiling R-BUG3 measured by forcing the
+near probes opaque. At `uRoadAid == 0` the two added lines reduce to `min(a * 1.0, MAX_ALPHA)` —
+the statement that was already there — so the default frame is the frame that shipped before the
+control existed.
+
+**Finding 1 — a "the default is unchanged" assertion is not enough, and R-BUG1 is why.** The
+obvious gate for a preference is that it is inert at its default. That assertion passes
+identically whether the control is wired correctly or **wired to nothing**, which is exactly the
+failure R-BUG1 banked one parcel ago: `--no-sun-shadow` cleared a suspect it never reached and
+reported "not the cause" for the same reason a broken thermometer reports a steady temperature.
+So the aid is gated three ways, not one — **off at boot**, **raising it changes the frame**,
+**dropping it restores the frame** — and the middle one is the load-bearing one. **The
+generalisation: an inertness assertion needs a liveness assertion beside it, or it is a test that
+a control exists rather than a test that it works.**
+
+**Finding 2 — the instrument had to be measured before the threshold could be set, and the
+default instrument was the wrong one.** The 12² frame signature the confidence view is graded on
+averages the aid away: at `lake_market` the roadway is about a tenth of the frame, and the first
+run scored **worst 2 counts against a restored residual of 0** — a real signal with no headroom to
+gate on. At **48²** the same difference is **worst 6, mean 0.26**, residual still **0.00 / 0**.
+Gated at worst ≥ 4 / mean ≥ 0.15, a third under the measurement. Both grids are printed.
+**Nothing about the scene changed between those two runs** — only how finely the frame was
+divided before it was compared, which is worth remembering the next time a delta gate reads
+"barely".
+
+**Why it was allowed to ship at all.** It was deferred 2026-08-14 because a contrast preference
+converts a defect into a preference. R-BUG3 made the default correct on 2026-08-15 (near band
+1.5 L\* / 30 % → **3.1 of a ceiling of 3.4 / 80 %** on mobile), which is the precondition the
+deferral itself named. **It does not discharge R-W2**: the near band's *ceiling* is still the
+lowest of any band and textured coverage is the honest fix for that.
+
+**Files:** `renderers/web/js/streets.js` (the uniform, `setLegibilityAid`) ·
+`renderers/web/js/hud.js` (`roadAid`, the range) · `renderers/web/js/main.js` (boot + `onSetting`
++ the harness handle) · `renderers/web/index.html` (the control and its note) ·
+`tools/smoke_renderer.mjs` (three assertions).
+
+**Not claimed:** the desktop half of the smoke — ~13 min against this runner's 10-minute
+per-command ceiling. Mobile 390×780 is green, 229 passed / 0 failed on the published mirror. No
+accessibility standard is claimed to be met, and `docs/LIBERTIES.md` is untouched: the default
+rendering is unchanged to the digit.
+
+**The original box, for the reasoning that gated it:**
+
+Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
 
 Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
 feature. A user control that boosts road contrast **converts a defect into a preference** and
@@ -7196,6 +7259,12 @@ this project has just measured as **1.86× the luminance and 2.85× the red** of
 must keep doing so. If a gate can be made to pass by moving this control, the control has become
 a way to launder a failure — add an assertion that the default rendering is unchanged by the
 setting's existence, and that the harness reads the default regardless of stored preference.
+
+**AND THAT PAIR IS NOT ENOUGH — copy R-A1's THIRD assertion (2026-08-16).** R-A1 shipped this
+exact shape of control for the roads and found that "off at boot" plus "the default is unchanged"
+both pass identically when a control is **wired to nothing**. It gates three ways: off at boot,
+**raising it changes the frame**, dropping it restores the frame. R-A1's box has the code, the
+grid it had to be measured at, and the numbers.
 
 **Open design question, worth deciding rather than defaulting:** a two-way choice between named
 rigs, or a continuous exposure slider with the calibrated point marked? The slider matches the
