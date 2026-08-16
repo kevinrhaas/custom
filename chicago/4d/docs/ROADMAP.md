@@ -2359,7 +2359,7 @@ was not run and is not claimed — ~13 minutes against this harness's 10-minute
 per-command ceiling; see the run-budget box at the top of this file. No vertex, material
 or pose moves in this parcel and no committed asset changed a byte.
 
-### K40 — 195 shipped derivatives were made by a step this repository no longer has · **UNCLAIMED · opened 2026-08-16 by K39 · Effort: M — 195 binary files, or the decision not to move them · NO BLENDER (gltf-transform only), but the desktop smoke half is the acceptance**
+### K40 — 195 shipped derivatives were made by a step this repository no longer has · **CLAIMED 2026-08-16 · `steward/k40-two-transformations` · opened 2026-08-16 by K39 · Effort: M — 195 binary files, or the decision not to move them · NO BLENDER (gltf-transform only), but the desktop smoke half is the acceptance**
 
 K39 needed a reproduction control and could not get one. `tools/web_derivatives.sh` does
 not produce the bytes on the site: **6 of 20 sampled derivatives reproduce, 14 do not,
