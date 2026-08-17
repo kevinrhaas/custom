@@ -249,6 +249,29 @@ const ROAD_GATED_BEYOND_M = 600;
 // The floors below sit a third under the measured 48² figures and four counts
 // above the residual, so "the aid changed the frame" and "the aid changed
 // nothing" cannot both be true. Both grids are printed; only 48² is gated.
+/**
+ * R-W3b(a) — the shadow rig `renderers/web/js/world.js` ships, asserted here as
+ * a number rather than read back off itself. Changing the reach or either map
+ * size there without changing it here fails the gate, which is the point: the
+ * texel size the reach is bought at is the claim, and a rig that quietly
+ * stretched one map over more ground would otherwise pass unremarked.
+ */
+const SHADOW_REACH_M = 120;
+const SHADOW_MAP_FULL = 2048;
+const SHADOW_MAP_LOW = 1024;
+/**
+ * How much the 48² frame signature must move when the reach is wound back to
+ * the pre-R-W3b(a) ±60 m.
+ *
+ * MEASURED BEFORE IT WAS SET, the way R-A1's box says an instrument owes:
+ * `tools/measure_shadow_reach.mjs --stations lake_market --reaches 120,60` on
+ * the published mirror moves 104 of 2,304 cells with a worst cell of **8** at
+ * 1280×800 over a 2048² map, and 86 cells with a worst of **8** at 390×780 over
+ * a 1024² one. Set at 4 — half the smaller of the two, and the same floor R-A1
+ * measured the road aid against on the same grid.
+ */
+const SHADOW_REACH_MIN_WORST = 4;
+
 const ROAD_AID_GRID = 48;
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
@@ -2615,6 +2638,50 @@ const terrainLoad = await page.evaluate(() => {
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
 
+    // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
+    //
+    // The rig is one orthographic box that follows the visitor, and its reach
+    // decides how much of the town can cast a shadow AT ALL: at the old ±60 m,
+    // measured at eight anchors on the published mirror, 5 to 8 of 331
+    // structures and 0 to 41 of 730 stems were inside it. Everything else met
+    // the ground with nothing under it.
+    //
+    // Two assertions, and the second is the one R-A1 says the first cannot do
+    // without: the rig CARRIES the documented reach at the documented texel
+    // size, and winding the reach back to the old ±60 m CHANGES the frame. A
+    // reach wired to nothing passes the first on its own.
+    const rig = await page.evaluate(() => window.__chicago4d.world.shadowRig);
+    const wantMap = touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL;
+    const wantTexel = (2 * SHADOW_REACH_M) / wantMap;
+    check(`${label}: the sun's shadow reaches ${SHADOW_REACH_M} m at the documented texel`,
+      rig.reachM === SHADOW_REACH_M && rig.mapSize === wantMap,
+      `±${rig.reachM} m over a ${rig.mapSize}² map = ${(rig.texelM * 100).toFixed(1)} cm `
+      + `per texel (want ±${SHADOW_REACH_M} m over ${wantMap}² = `
+      + `${(wantTexel * 100).toFixed(1)} cm)`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));
+    const reachOld = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dReach = signatureDistance(reachFull, reachOld);
+    const restored = await page.evaluate(
+      (m) => window.__chicago4d.world.setShadowReach(m), SHADOW_REACH_M);
+    const reachBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dReachBack = signatureDistance(reachFull, reachBack);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: the shadow reach reaches the render`,
+      woundBack === 60 && dReach.worst >= SHADOW_REACH_MIN_WORST,
+      `winding ±${SHADOW_REACH_M} m back to ±60 m moved the worst cell by `
+      + `${dReach.worst}, mean ${dReach.mean?.toFixed(2)} `
+      + `(need worst>=${SHADOW_REACH_MIN_WORST})`);
+    check(`${label}: restoring the shadow reach restores the frame`,
+      restored === SHADOW_REACH_M && dReachBack.mean <= 0.1 && dReachBack.worst <= 3,
+      `±${restored} m, residual mean ${dReachBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dReachBack.worst}`);
+    console.log(`        shadow reach: ±${rig.reachM} m at `
+      + `${(rig.texelM * 100).toFixed(1)} cm/texel · winding back to ±60 m moves `
+      + `worst cell ${dReach.worst}; restored residual worst ${dReachBack.worst}`);
     // --- K24, the brightness aid, and the same three things it owes ---------
     //
     // Owner-requested, and it carries a fourth assertion the road aid does not

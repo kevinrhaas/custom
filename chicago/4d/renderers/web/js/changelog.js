@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 163, title: 'The town casts shadows twice as far', kind: 'improvement', ts: '2026-08-17T08:32:38.477Z', date: 'Aug 17, 2026, 3:32 AM CT',
+    items: [
+      'Sunlight in this reconstruction only threw a shadow within 60 metres of wherever you were standing. Measured at the eight viewpoints in the menu: 5 to 8 of the town’s 331 buildings, and as few as none of its 730 trees. Everything else met the ground with nothing under it, which is what makes a distant building look pasted onto the grass.',
+      'It is 120 metres now. From the Green Tree Tavern 27 buildings cast a shadow instead of 8; from South Water Street 26 instead of 8, and 54 trees instead of 12.',
+      'Nothing you stand next to got softer to pay for it. The shadow map doubles along with the distance, so shadows are drawn at exactly the resolution they were before — 11.7 cm on a computer, 23.4 cm on a phone.',
+      'Why not further, since the fix is one number: each additional building brought into range is more work for the machine drawing the frame, and the budget this project holds itself to is 80 draw calls a frame. Measured at the worst viewpoint: 70 at 60 metres, 74 at 120, 78 at 150 and exactly 80 at 180. Going past 120 needs the scene batched differently, and that is written down as the next piece of work rather than guessed at here.',
+    ] },
   { v: 162, title: 'You can brighten the scene if it is hard to see', kind: 'feature', ts: '2026-08-17T07:24:04.789Z', date: 'Aug 17, 2026, 2:24 AM CT',
     items: [
       'Settings has a new Brightness slider. It starts at the position marked "Calibrated — the light as measured", and that is the light you have been walking in until now: nothing about the default view has changed.',
