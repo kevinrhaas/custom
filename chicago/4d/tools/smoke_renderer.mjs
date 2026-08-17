@@ -256,9 +256,42 @@ const ROAD_GATED_BEYOND_M = 600;
  * texel size the reach is bought at is the claim, and a rig that quietly
  * stretched one map over more ground would otherwise pass unremarked.
  */
-const SHADOW_REACH_M = 120;
-const SHADOW_MAP_FULL = 2048;
-const SHADOW_MAP_LOW = 1024;
+const SHADOW_REACH_M = 240;
+const SHADOW_MAP_FULL = 4096;
+const SHADOW_MAP_LOW = 2048;
+/**
+ * R-W5a2 — the whole untextured town is ONE batch, and it must stay one.
+ *
+ * This is the number the reach above is standing on. R-W3b(a) measured the reach
+ * as draw-call-bound because every batch entering the shadow box costs a call in
+ * the shadow pass as well as in the colour pass, and 16 batches is what made
+ * ±180 m hit the 80-call budget exactly. Merging them is what bought ±240 m, so
+ * a change that splits the town back into per-material batches has silently
+ * taken the reach's headroom with it — assert the cause here, not only the
+ * effect.
+ *
+ * 1 rather than "≤ 16" because the merge is total: colour and roughness are both
+ * per-vertex now and nothing else in the 1,353 measured material slots differs
+ * (R-W2a). A textured asset would legitimately raise this, and raising it is
+ * then a deliberate edit with a reach measurement beside it.
+ */
+const STRUCTURE_BATCHES = 1;
+/**
+ * How many distinct roughness values the merged batch must still carry, and how
+ * far the frame must move when they are flattened.
+ *
+ * The town ships **16** — the batch count R-W5a left behind, which is what those
+ * 16 batches were separating on. Set at 12 rather than 16 so a block landing
+ * with a finish the town already uses cannot fail the gate, and low enough that
+ * a merge which kept two or three finishes still reads as the loss it is.
+ *
+ * `ROUGHNESS_MIN_WORST` is MEASURED BEFORE IT IS SET, the way R-A1's box says an
+ * instrument owes: driving every building vertex to 0.02 moves the worst 48²
+ * cell by the figure the run prints beside this assertion, and the floor is set
+ * at roughly a third of the smaller viewport's reading.
+ */
+const ROUGHNESS_VALUES_MIN = 12;
+const ROUGHNESS_MIN_WORST = 4;
 /**
  * How much the 48² frame signature must move when the reach is wound back to
  * the pre-R-W3b(a) ±60 m.
@@ -2637,6 +2670,70 @@ const terrainLoad = await page.evaluate(() => {
       + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
+
+    // --- R-W5a2, the batch merge the reach below is standing on -------------
+    //
+    // Three assertions, and the shape is R-A1's: a count, the channel that count
+    // is bought with, and a proof the channel reaches the render. The first two
+    // on their own would pass identically on a town that had merged its batches
+    // by THROWING ROUGHNESS AWAY — one batch, one finish, every wall the same
+    // sheen — which is the failure that matters here and is not a crash.
+    const batchCensus = await page.evaluate(() => {
+      const bs = window.__chicago4d.buildings.batches;
+      const seen = new Set();
+      let min = Infinity, max = -Infinity;
+      for (const b of bs) {
+        const a = b.geometry.getAttribute('_roughness');
+        if (!a) continue;
+        for (let i = 0; i < a.array.length; i += 1) {
+          const v = a.array[i];
+          seen.add(v.toFixed(3));
+          if (v < min) min = v;
+          if (v > max) max = v;
+        }
+      }
+      return { batches: bs.length, values: seen.size, min, max };
+    });
+    check(`${label}: the untextured town is one batch`,
+      batchCensus.batches === STRUCTURE_BATCHES,
+      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}`);
+    check(`${label}: the batch still carries the town's finishes`,
+      batchCensus.values >= ROUGHNESS_VALUES_MIN
+        && batchCensus.min <= 0.30 && batchCensus.max >= 0.95,
+      `${batchCensus.values} distinct roughness values in the merged batch, `
+      + `${batchCensus.min}–${batchCensus.max} (want >=${ROUGHNESS_VALUES_MIN} spanning 0.30–0.95)`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const roughFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    await page.evaluate(() => {
+      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
+      window.__chiRoughSaved = a.array.slice();
+      a.array.fill(0.02);
+      a.needsUpdate = true;
+    });
+    const roughFlat = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dRough = signatureDistance(roughFull, roughFlat);
+    await page.evaluate(() => {
+      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
+      a.array.set(window.__chiRoughSaved);
+      a.needsUpdate = true;
+      delete window.__chiRoughSaved;
+    });
+    const roughBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dRoughBack = signatureDistance(roughFull, roughBack);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: the per-vertex roughness channel reaches the render`,
+      dRough.worst >= ROUGHNESS_MIN_WORST,
+      `driving every vertex to 0.02 moved the worst cell by ${dRough.worst}, `
+      + `mean ${dRough.mean?.toFixed(2)} (need worst>=${ROUGHNESS_MIN_WORST})`);
+    check(`${label}: restoring the roughness channel restores the frame`,
+      dRoughBack.mean <= 0.1 && dRoughBack.worst <= 3,
+      `residual mean ${dRoughBack.mean?.toFixed(2)}, worst-cell delta ${dRoughBack.worst}`);
+    console.log(`        batches: ${batchCensus.batches} · roughness `
+      + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
+      + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
+      + `${dRoughBack.worst}`);
 
     // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
     //
