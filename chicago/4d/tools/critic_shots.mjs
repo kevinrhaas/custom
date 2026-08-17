@@ -149,7 +149,7 @@ const SWEEP_STATIONS = [
 ];
 
 const scene = JSON.parse(fs.readFileSync(path.join(APP, 'data/scenes', `${YEAR}.json`), 'utf8'));
-const STATIONS = [
+const ALL_STATIONS = [
   ...scene.anchors.map((a) => ({
     id: a.id,
     label: a.label,
@@ -162,6 +162,28 @@ if (PICK.length && !STATIONS.length) {
   console.error(`no station matches --stations ${PICK.join(',')}`);
   process.exit(2);
 }
+
+/**
+ * `--stations a,b,c` — shoot a subset, WHILE ITERATING ONLY.
+ *
+ * The full rig is eleven stations at two viewports and takes about twelve
+ * minutes, which is the right cost for a baseline and the wrong cost for the
+ * tenth trial of a constant. A phase that has to wait twelve minutes to see a
+ * number tunes by eye instead, which is the failure G0 exists to end.
+ *
+ * It is deliberately NOT a way to report a subset as a result: a phase quotes
+ * the full table, and `tools/check.sh` and the baseline runs pass no filter. An
+ * unknown id fails loudly rather than silently shooting nothing, because a
+ * typo'd station that reports "OK" over zero frames is worse than no harness.
+ */
+const WANT = (value('--stations', '') || '').split(',').map((s) => s.trim()).filter(Boolean);
+const unknown = WANT.filter((id) => !ALL_STATIONS.some((s) => s.id === id));
+if (unknown.length) {
+  console.error(`unknown station(s): ${unknown.join(', ')}`);
+  console.error(`known: ${ALL_STATIONS.map((s) => s.id).join(', ')}`);
+  process.exit(2);
+}
+const STATIONS = WANT.length ? ALL_STATIONS.filter((s) => WANT.includes(s.id)) : ALL_STATIONS;
 
 const VIEWPORTS = [
   ['mobile', { width: 390, height: 780 }],

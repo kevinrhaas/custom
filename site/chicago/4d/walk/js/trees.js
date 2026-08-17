@@ -81,8 +81,24 @@ import * as THREE from 'three';
  * fails on any HTTP >= 400, so nothing here may probe for a file.
  */
 const TIMBER_ZONES = [
-  'z05_riverbank_timber', 'z06_dense_forest', 'z07_bur_oak_savanna', 'z10_settled_town',
+  'z05_riverbank_timber', 'z06_dense_forest', 'z07_bur_oak_savanna', 'z08_lakeshore',
+  'z10_settled_town',
 ];
+
+/**
+ * THE ZONE WHOSE GROUND THIS FILE ASKS THE SWARD FOR (ROADMAP K45(b) change one).
+ *
+ * Every other community here is selected from the heightfield — bank distance,
+ * land division, a generated relief field. The dune cannot be: what makes it a
+ * dune is the SUBSTRATE, and the substrate is not in the heightfield. It is in
+ * `data/flora/zones/z08_lakeshore.json`'s extent, which `flora.js` already
+ * resolves against every other zone's extent by priority to decide which sward
+ * a visitor is standing in. So this file asks that classifier rather than
+ * carrying a second copy of the beach: the cottonwoods stand on the sand you can
+ * SEE, and moving the zone moves both together. If the sward did not load, the
+ * answer is null and no dune is planted — the safe direction.
+ */
+const DUNE_ZONE = 'z08_lakeshore';
 
 /* -------------------------------------------------------------------------- */
 /* the physical constants this file reasons with                               */
@@ -127,6 +143,42 @@ const TREE_DRY_MARGIN_M = 0.20;
  * masses a person in 1835 would have named.
  */
 const CHANNEL_Y = -0.60;
+
+/**
+ * WHERE THE TIMBER STOPS IN THE EAST, and why these are street ids rather than
+ * two numbers written here.
+ *
+ * ROADMAP K45(b2). The woody planter used to sweep a fixed square, E/N
+ * −316..+316, inside a field S2e carried east to E +1700 — so 73 % of the
+ * modelled ground above the planter's own dry floor had never had a stem
+ * offered to it. Widening the sweep to the field is one line. Deciding what may
+ * grow on the ground it newly reaches is the parcel, and Andreas answers it for
+ * both divisions in the same sentence the gallery is already built from:
+ *
+ *   "On the South Side, a body of timber grew along the river, extending east
+ *    as far as WELLS STREET, and following the bend of the river, crossed Clark
+ *    Street, and extending south two or three miles" — and the North Side
+ *    carried "a body of thrifty heavy growth of timber", EXCEPTING "the sandy
+ *    hills near the lake and the marshy places".
+ *
+ * So the South Division belt has a documented east end — Wells Street — and the
+ * North Division one has a documented exception rather than a street: the sandy
+ * hills. `z09_sand_prairie` places the relict beach-ridge belt from the State
+ * Street break-of-slope east, and `generators/terrain_gen.py` builds that break
+ * between E +780 and +880 off the two State Street ground-control points. State
+ * Street is therefore where the North Division's timber gives way to the sand,
+ * and the woody community that belongs east of it — the open-dune poplars of
+ * `z08_lakeshore` — is ROADMAP K45(b) change one and is not built yet. Ground
+ * with no community is ground with no stem, which is the honest state of it.
+ *
+ * They are ids and not numbers because `data/streets/1835.json` already holds
+ * both centrelines, surveyed off Wright 1834, and a limit quoted from a street
+ * has to move when the street does. Wells stands at E +329.3 and State at
+ * E +825.8 in the committed data; the old square's east edge was E +316, so the
+ * South Division belt was accidentally within 13 m of its documented end all
+ * along and the North Division's was 510 m short of the sand.
+ */
+const TIMBER_EAST_LIMIT_STREETS = { south: 'wells', north: 'state' };
 
 /** Earth radius corrected for standard atmospheric refraction (k = 0.13). */
 const R_EFF = 6371000 / 0.87;
@@ -385,6 +437,64 @@ const SPECIES = {
 };
 
 /**
+ * THE ARCHETYPE TABLE IS KEYED BY SPECIES, AND A SPECIES CAN BE RECORDED TWICE.
+ *
+ * ROADMAP K45(b) change one, and it is the finding this parcel did not expect.
+ * `SPECIES` above says "one entry per woody species drawn", and until the
+ * lakeshore was routed here that was true. `populus_deltoides` is recorded in
+ * BOTH `z05_riverbank_timber` — `tree_gallery`, 22–30 m, 14–22 m crown, the
+ * emergent of the floodplain — AND `z08_lakeshore` — `tree_leaning`, 5–15 m,
+ * 6–14 m crown, *"isolated, half-buried and leaning, with a sand mound at the
+ * base"*. They are the same binomial and nothing else about them is the same.
+ *
+ * `loadTimberZones` keys its spec map by species id and takes the FIRST zone
+ * that names one, so with nothing here the dune would have been planted with
+ * twenty-five-metre gallery cottonwoods standing on the open beach — the record
+ * read, routed, banded, and drawn as another zone's tree. That is K47's fault
+ * one level in, and the reason it is caught here is that the dune is the first
+ * community whose cited zone re-describes a species another zone already had.
+ *
+ * So the archetype — what the record does NOT carry: bole diameter, fork
+ * height, foliage-mass count, lean, bark colour — may be given per zone. The
+ * record still wins on everything it states. Only the lakeshore needs an entry
+ * today; the general repair (a spec map keyed by zone AND species for every
+ * community) would redeal the whole town's specs and is its own parcel.
+ *
+ * **Every number below is invented, as every number in `SPECIES` is**, bounded
+ * by this file's own range and by the record's prose. docs/LIBERTIES.md L119.
+ */
+const ARCHETYPE_BY_ZONE = {
+  z08_lakeshore: {
+    // The dune pioneer. Stout for its height and forking low, because it is
+    // half-buried: `boleK` 0.30 is the lowest fork in this file after the open-
+    // grown oaks. `lean` 0.30 is the TOP of the range the file already uses
+    // (the two bank willows sit at 0.24 and 0.30) — the record's one visual
+    // claim about this tree is that it leans, so it takes the most this file
+    // has ever leant anything. Bark is the gallery cottonwood's own: same
+    // species, and no record anywhere states a bark colour.
+    populus_deltoides: { common: 'eastern cottonwood (dune form)', dossier: 'ZONE 8c',
+      form: 'lean', h: [5, 15], dbh: [0.30, 0.70], spreadK: 0.70, boleK: 0.30, puffs: 6,
+      dark: 0x3d5a2c, light: 0x86a252, bark: 0x6e6759, lean: 0.30,
+    },
+    // Quaking aspen: a narrow clonal stem, and the one tree here whose bark a
+    // visitor could name from thirty metres. 0xb9bdae is the palest BOLE in the
+    // scene by design and is still darker than the sycamore's upper limbs
+    // (0xd9d3c2, L118), which stay the palest wood in the timber.
+    populus_tremuloides: { common: 'quaking aspen', dossier: 'ZONE 8c',
+      form: 'columnar', h: [6, 12], dbh: [0.10, 0.25], spreadK: 0.42, boleK: 0.56, puffs: 5,
+      dark: 0x6e864e, light: 0x98a876, bark: 0xb9bdae,
+    },
+    // Balsam poplar: the same narrow crown in the damper hollows, on ordinary
+    // grey-brown wood — deliberately NOT the aspen's pale bole, because the two
+    // stand side by side at the same height and the bark is what separates them.
+    populus_balsamifera: { common: 'balsam poplar', dossier: 'ZONE 8c',
+      form: 'columnar', h: [6, 12], dbh: [0.12, 0.28], spreadK: 0.42, boleK: 0.54, puffs: 5,
+      dark: 0x58743e, light: 0x8a9c66, bark: 0x5d5748,
+    },
+  },
+};
+
+/**
  * The communities, and what fraction of the canopy each species holds in them.
  * Weights are the dossier's per-species densities; `perHa` is the STAND density
  * the dossier gives for the community as a whole, which is the number that
@@ -509,6 +619,39 @@ const COMMUNITIES = {
     ],
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
+  },
+  /**
+   * THE OPEN DUNE — ROADMAP K45(b) change one, and the first community here
+   * whose `perHa` is DERIVED rather than quoted.
+   *
+   * ZONE 8 gives no canopy figure, because a dune has no canopy. What it gives
+   * is three absolute per-hectare densities on three isolated trees — the dune
+   * cottonwood at 3–15/ha *"isolated, half-buried, leaning"*, the quaking aspen
+   * and the balsam poplar at 2–8/ha each in *"clonal patches"* — and on open
+   * sand those are not microsite densities competing for one canopy. They add.
+   * So the stand is their sum, [7, 31]/ha, and the mix takes each species'
+   * midpoint under K45(b1)'s rule: at the middle of the band the draw plants
+   * 9 + 5 + 5 per hectare, which is each record's own midpoint reproduced
+   * exactly. That is the test this arithmetic has to pass and the reason it is
+   * written this way rather than normalised to a hundred.
+   */
+  dune: {
+    label: 'Open-dune poplars on the lakeshore sand',
+    dossier: 'ZONE 8c — stabilised back-dune, isolated trees over marram and sand cherry',
+    zones: ['z08_lakeshore'],
+    perHa: [7, 31],
+    mix: [
+      ['populus_deltoides', 9], ['populus_tremuloides', 5], ['populus_balsamifera', 5],
+    ],
+    /**
+     * The dune's own species keep the dune's parameters. Without this the
+     * cottonwood on the beach is drawn with `z05_riverbank_timber`'s archetype,
+     * because the spec map is keyed by species id and the gallery is read
+     * first — see ARCHETYPE_BY_ZONE.
+     */
+    specsFrom: 'z08_lakeshore',
+    confidence: 'inferred',
+    sources: ['mnfi_open_dunes', 'cowles_1901'],
   },
 };
 
@@ -814,10 +957,50 @@ function woodyHeadOf(sp, zoneId, problems) {
  * rather than `problems`, because it is a gap in the RENDERER and `problems` is
  * what the repo smoke reads to decide whether the DATA loaded.
  */
+/**
+ * The eastings of the two streets `TIMBER_EAST_LIMIT_STREETS` names, read out of
+ * the street records the scene index already carries.
+ *
+ * A street here is a centreline of two or more points and it is not exactly
+ * north–south — Wells runs E +328.1 at N −400 to E +330.5 at N +7 — so the
+ * limit is the mean of its points' eastings. Half a metre of skew on a limit
+ * that decides whether a wood reaches a sand ridge 500 m further on is not
+ * worth carrying, and a mean cannot be wrong in the way picking one end can.
+ *
+ * They come from the scene index the sidecar loader already fetched rather than
+ * from a fetch of this file's own. `data/streets/1835.json` is compiled into
+ * that index and is NOT published as itself, so a second fetch 404s on the site
+ * while passing in the source tree — which is exactly the gap AGENTS.md says has
+ * shipped bugs twice, and it caught this one in the `--published` smoke.
+ *
+ * If the records cannot be read the limits FALL BACK to the old square's east
+ * edge and say so. That is the safe direction: the failure plants nothing new
+ * rather than planting a wood over the beach on a missing record.
+ */
+function timberEastLimits(streetRecords, problems = []) {
+  const fallback = { south: 316, north: 316, streets: {} };
+  const out = { south: 0, north: 0, streets: {} };
+  for (const [side, id] of Object.entries(TIMBER_EAST_LIMIT_STREETS)) {
+    const st = (streetRecords ?? []).find((s) => s.id === id);
+    const pts = st?.path_local_enu_m;
+    if (!Array.isArray(pts) || !pts.length) {
+      problems.push(`trees: the scene index carries no centreline for ${id}, which is the `
+        + `documented east end of the ${side} division's timber — the woody layer is held `
+        + 'at the old E +316 edge rather than planting a wood over the beach ridges');
+      return fallback;
+    }
+    const e = pts.reduce((a, p) => a + p[0], 0) / pts.length;
+    out[side] = e;
+    out.streets[side] = { id, name: st.name_1835 ?? id, east_m: Math.round(e * 10) / 10 };
+  }
+  return out;
+}
+
 async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
+  const byZone = {};
   const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
@@ -840,11 +1023,14 @@ async function loadTimberZones(dataBase, problems = []) {
       if (Array.isArray(perHa) && perHa.length === 2) {
         bands[id][sp.id] = [perHa[0], perHa[1]];
       }
-      if (specs[sp.id]) continue;
-      const base = SPECIES[sp.id] ?? SPECIES.ulmus_americana;
+      // The archetype this record is drawn with: the zone's own if it declares
+      // one, and otherwise the species table's. A zone entry is needed only
+      // where two zones describe the same species as different trees — see
+      // ARCHETYPE_BY_ZONE, which is the dune cottonwood against the gallery one.
+      const base = ARCHETYPE_BY_ZONE[id]?.[sp.id] ?? SPECIES[sp.id] ?? SPECIES.ulmus_americana;
       const dark = rgbHex(sp.july?.foliage_rgb);
       const light = rgbHex(sp.july?.foliage_rgb_alt);
-      specs[sp.id] = {
+      const spec = {
         ...base,
         common: sp.common ?? base.common,
         form,
@@ -864,19 +1050,26 @@ async function loadTimberZones(dataBase, problems = []) {
         head: woodyHeadOf(sp, id, problems),
         fromRecord: true,
       };
-      if (specs[sp.id].head) {
+      if (spec.head) {
         if (form === 'thicket') {
           problems.push(`trees: ${id}/${sp.id} is a thicket carrying a `
             + `'${sp.july.inflorescence.shape}' inflorescence, and the clonal path draws `
             + 'no head — its flower is not drawn');
-          specs[sp.id].head = null;
-        } else {
+          spec.head = null;
+        } else if (!heads.includes(sp.id)) {
           heads.push(sp.id);
         }
       }
+      // Kept BOTH ways. `byZone` is what a community citing this zone plants
+      // with; `specs` stays the first-zone-wins table every direct `addTree`
+      // call site and every community without a `specsFrom` still reads, so
+      // nothing outside the dune is redealt by this.
+      byZone[id] = byZone[id] ?? {};
+      byZone[id][sp.id] = spec;
+      if (!specs[sp.id]) specs[sp.id] = spec;
     }
   }
-  return { specs, bands, unimplemented: [...unimplemented], zonesRead, heads };
+  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1508,7 +1701,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
 export async function createTrees({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
   confidence = null, problems = [], lowSpec = false, detail = 'full',
-  pixelsPerRadian = null,
+  pixelsPerRadian = null, streetRecords = [], zoneAt = null,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1564,6 +1757,12 @@ export async function createTrees({
       + 'no woody vegetation placed');
     return { group, update() {}, stats, dispose() {} };
   }
+  // ROADMAP K45(b2). Read after the zones and before anything is placed: the
+  // planter now sweeps the whole modelled field, so the east end of the timber
+  // is a question that gets asked at every cell rather than never.
+  const eastLimit = timberEastLimits(streetRecords, problems);
+  stats.eastLimits = eastLimit.streets;
+
   stats.zoneRecords = records.zonesRead;
   stats.unimplementedForms = records.unimplemented;
   stats.speciesFromRecord = Object.keys(records.specs).length;
@@ -1575,6 +1774,31 @@ export async function createTrees({
     specs[id] = { ...base, conf: 0.5, crownW: null };
   }
   Object.assign(specs, records.specs);
+
+  /**
+   * The specs a NAMED community plants with (ROADMAP K45(b) change one).
+   *
+   * `specs` above is keyed by species id and the first zone to name a species
+   * wins it, which is right for every community that shares its trees with the
+   * gallery and wrong for exactly one: the dune, whose cottonwood is the same
+   * binomial as the gallery's and a different tree. A community may therefore
+   * name the zone its own species come from, and gets that zone's records laid
+   * over the shared table. Every other community reads the shared table
+   * unchanged, so nothing outside the dune is redealt by this.
+   */
+  const communitySpecs = {};
+  for (const [key, c] of Object.entries(COMMUNITIES)) {
+    if (!c.specsFrom) { communitySpecs[key] = specs; continue; }
+    const own = records.byZone?.[c.specsFrom];
+    if (!own) {
+      problems.push(`trees: the community ${key} plants with ${c.specsFrom}'s own species `
+        + 'parameters and that zone contributed none — its stems would be drawn as '
+        + 'another zone\'s tree');
+      communitySpecs[key] = specs;
+      continue;
+    }
+    communitySpecs[key] = { ...specs, ...own };
+  }
 
   /**
    * The community mixes, weighted as they are written (ROADMAP K46).
@@ -1760,8 +1984,32 @@ export async function createTrees({
     const y = data[i];
     if (terrain.isWater(e, n)) return null;      // authoritative traced water mask
     if (!standsDry(e, n)) return null;           // and not on the waterline either
+
+    // THE OPEN DUNE (ROADMAP K45(b) change one), asked BEFORE the divisions and
+    // their east limits, because it is a different claim from all of them. Those
+    // limits are where the river TIMBER ends — Andreas's belt stops at Wells
+    // Street and his North Division timber excepts "the sandy hills near the
+    // lake". The sandy hills are not an absence of vegetation; they are the
+    // lakeshore's own community, and ZONE 8 records three poplars standing on
+    // it. Where that ground is is the sward's answer and not this file's: see
+    // DUNE_ZONE. No sward, no dune.
+    if (zoneAt?.(e, n) === DUNE_ZONE) return 'dune';
+
     const d = div[i];
     if (d === WEST) return null;                // Andreas: open prairie, entirely
+
+    // THE EAST END OF THE TIMBER (ROADMAP K45(b2)). Before this parcel the
+    // planting loop's own square answered this by accident at E +316; now the
+    // loop sweeps the field and the answer has to come from the source. Andreas
+    // gives the South Division a street — the belt runs "east as far as Wells
+    // Street" — and the North Division an exception, "the sandy hills near the
+    // lake", which `z09_sand_prairie` places from the State Street break-of-
+    // slope east. Both are read from `data/streets/1835.json` at load; see
+    // TIMBER_EAST_LIMIT_STREETS. Ground east of the limit carries no woody
+    // community in this build: the open-dune poplars that belong on the sand are
+    // recorded, archetyped and not yet placed (ROADMAP K45(b) change one).
+    if (e > (d === NORTH ? eastLimit.north : eastLimit.south)) return null;
+
     const bank = dw[i];
 
     // ZONE 5: an irregular gallery 30–120 m wide. The width wanders rather than
@@ -1804,16 +2052,99 @@ export async function createTrees({
   // waterline margin: fewer of the same trees in the same places, never a
   // different wood. `lowSpec` is the device guess; an explicit choice outranks it.
   const level = lowSpec && detail === 'full' ? 'light' : detail;
+  /**
+   * The stem budget, scaled to the ground the loop now sweeps (ROADMAP K45(b2)).
+   *
+   * These were 820/520/300 trees and 420/270/170 thickets, set when the planter
+   * swept 52,163 of the field's dry nodes. It now sweeps all 192,844 of them —
+   * 3.70× the ground — and 300 is a number the widened wood REACHES: measured on
+   * this build, `light` planted exactly 300 trees, which is the cap truncating
+   * the sweep rather than a count. That truncation is not a thinning: the loop
+   * runs south to north, so a bound cap deletes the north end of the wood and
+   * leaves a straight edge across the town. Every figure below is its old value
+   * × 3.70, rounded, which keeps the budget the backstop it was written as.
+   *
+   * A cap that binds is now a REPORTED problem rather than a silent cut — see
+   * the check after the planting loop. That is the assertion this parcel owes:
+   * the reason the truncation could arrive unannounced is that nothing said so.
+   *
+   * FOUND ON THE WAY by K45(b2), and REPAIRED HERE (ROADMAP K45(b3)): the caps
+   * had never bound at all, so `light`, `balanced` and `full` planted the same
+   * wood in slightly different places. `step` is count-neutral by construction —
+   * the acceptance roll is `perHa * step² / 10000`, so halving the cell area
+   * doubles the number of cells and halves each one's chance — which means the
+   * timber's detail control WAS the caps, and the caps did nothing. `keep` below
+   * is the control the level actually needs, and the caps stay the backstop
+   * K45(b2) made them.
+   */
+
+  /**
+   * `keep` — THE DETAIL CONTROL, AND IT IS A THINNING RATHER THAN A CAP.
+   *
+   * ROADMAP K45(b3). A fraction on the acceptance roll thins the wood UNIFORMLY:
+   * every cell of the swept field is offered the same reduced chance, so a phone
+   * gets the same wood at a lower density — same species, same mix, same rules
+   * about where a stem may stand, fewer stems everywhere. A cap cannot do that.
+   * The loop runs south to north, so a cap that binds stops the planting partway
+   * and leaves a straight edge across the town: the same number of stems, and
+   * three quarters of a wood rather than a whole thinner one.
+   *
+   * WHERE THE NUMBERS COME FROM, because they are a choice and not a source.
+   * They are the levels' OWN triangle ceilings in `main.js` — 1,000,000 /
+   * 800,000 / 600,000 — read as a ratio. That is the only live per-level
+   * statement this renderer makes about how much geometry a level is for, and
+   * the release smoke holds each level to it. The obvious alternative, the ratio
+   * of the pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is NOT used: those
+   * were a backstop that never bound, so they are an intent nothing ever
+   * executed, and K45(b2) then multiplied them by 3.70. A number that has never
+   * had an effect is not evidence of what a level should draw.
+   *
+   * This is a RENDERING density, not a claim about the town: `perHa`, the mixes,
+   * `edgeFade`, `clearedFactor`, the waterline gate and the east limits are
+   * untouched, and `full` — what the gates and every published figure measure —
+   * keeps every stem it had. Recorded in docs/LIBERTIES.md.
+   */
   const STEMS = {
-    full:     { step: 4.0, trees: 820, thickets: 420 },
-    balanced: { step: 4.7, trees: 520, thickets: 270 },
-    light:    { step: 5.6, trees: 300, thickets: 170 },
+    full:     { step: 4.0, keep: 1.00, trees: 3030, thickets: 1550 },
+    balanced: { step: 4.7, keep: 0.80, trees: 1920, thickets: 1000 },
+    light:    { step: 5.6, keep: 0.60, trees: 1110, thickets: 630 },
   };
   const stems = STEMS[level] ?? STEMS.full;
   const step = stems.step;
   const cellArea = step * step;
+  const keep = stems.keep;
   const maxTrees = stems.trees;
   const maxThickets = stems.thickets;
+  stats.keep = keep;
+
+  /**
+   * THE POINT-BAR SCREEN'S OWN ROLL, AND WHY IT DOES NOT TAKE `keep`.
+   *
+   * ROADMAP K45(b3), measured rather than reasoned. The sandbar-willow branch
+   * rolls a FIXED per-cell chance, so unlike the tree roll it is not count-
+   * neutral in `step`: a coarser grid visits fewer bar cells and accepts the
+   * same fraction of each, and the screen thins with the sampling step. Measured
+   * on the published mirror before this parcel: 258 stools at `full`, 190 at
+   * `balanced`, 133 at `light` — 52 % of the screen gone on the level phones
+   * start at, as a side effect of a grid spacing, which nothing had ever said.
+   *
+   * That is the one population here that must NOT thin. A sandbar willow thicket
+   * is a screen and a screen needs its clumps to touch; the branch's own comment
+   * records that halving them left them standing as separate cushions on open
+   * sand. So the roll now scales with the cell it is offered — a bigger cell
+   * stands for more ground and takes a proportionally bigger chance — and `keep`
+   * is deliberately not applied to it.
+   *
+   * IT SATURATES, AND THE RESIDUAL IS STATED RATHER THAN HIDDEN. A probability
+   * cannot exceed 1, and at 0.84 in a 4 m cell both coarser steps clamp — so the
+   * screen recovers to every bar cell the grid offers and no further. The bar is
+   * a 6–9 m strip, so at a 5.6 m step there are simply fewer points on it than
+   * the screen wants stools. `light` therefore still carries a thinner screen
+   * than `full`; it is thinner because of what a coarse grid can resolve, which
+   * is honest, rather than because of an unstated 0.84.
+   */
+  const THICKET_ACCEPT = Math.min(1, 0.84 * (cellArea / 16));
+  stats.thicketAccept = THICKET_ACCEPT;
 
   /**
    * WHICH SPECIES STANDS AT THIS STEM — drawn against its own running deficit.
@@ -1960,9 +2291,30 @@ export async function createTrees({
     if (stats.lowestStationY === null || y < stats.lowestStationY) stats.lowestStationY = y;
   };
 
-  const half = 320 - step;
-  for (let n = -half; n <= half; n += step) {
-    for (let e = -half; e <= half; e += step) {
+  /**
+   * THE SWEPT DOMAIN — the modelled field, not a square inside it.
+   *
+   * ROADMAP K45(b2). This was `const half = 320 - step`, a square left over from
+   * the 640 m heightfield the scene began as; S2e carried the field to
+   * E −320..+1700, N −400..+400 and the square never moved, so 140,681 of the
+   * 192,844 heightfield nodes standing above the planter's own dry floor —
+   * 87.9 ha, 73 % of the walkable ground — had never had a stem offered to them,
+   * while `flora.js`'s sward lattice follows the visitor over all of it. The
+   * bounds are the heightfield's own, inset by one planting step so a stem's
+   * jitter cannot land outside the field it was sampled from.
+   *
+   * The loop is O(cells) and the field is about four times the square, so this
+   * is the cost this parcel had to measure rather than assume — it is in the
+   * ROADMAP box and in `stats`. What may GROW on the ground newly reached is
+   * `communityAt`'s answer, not this loop's: see TIMBER_EAST_LIMIT_STREETS.
+   */
+  const sweepE0 = originE + step;
+  const sweepE1 = originE + (cols - 1) * cellM - step;
+  const sweepN0 = originN + step;
+  const sweepN1 = originN + (rows - 1) * cellM - step;
+  stats.sweep = { e: [sweepE0, sweepE1], n: [sweepN0, sweepN1], step };
+  for (let n = sweepN0; n <= sweepN1; n += step) {
+    for (let e = sweepE0; e <= sweepE1; e += step) {
       const px = e + (rnd() - 0.5) * step * 0.92;
       const pz = n + (rnd() - 0.5) * step * 0.92;
       if (terrain.isWater(px, pz)) continue;
@@ -1983,13 +2335,27 @@ export async function createTrees({
       // Sandbar willow: "thickets 2–6 stems/m² on point bars". Point bars are
       // the low, freshly worked ground between the waterline and about half a
       // metre above it — which the heightfield resolves as a 6–9 m strip.
-      if (bank <= 9 && y <= 0.60) {
+      //
+      // A point bar is a RIVER feature and this test asks only about height and
+      // distance to water, so on the lakeshore it would read the beach as one
+      // and hang a willow screen along the open lake — which ZONE 8a refuses in
+      // as many words: the active beach is 85–98 % bare sand, "do not vegetate
+      // this". Measured on the committed heightfield the exclusion changes
+      // nothing today (0 of the dune's 2,687 dry nodes qualify; the nearest is
+      // 9.66 m from water against this branch's 9 m), and it is written because
+      // 0.66 m is the whole of that margin. The lakeshore's own willow scrub is
+      // recorded — `salix_cordata` at 15–50 clumps/ha, `salix_interior` — and is
+      // still planted by nothing; that is a stated omission, not this branch.
+      if (comm !== 'dune' && bank <= 9 && y <= 0.60) {
         if (stats.thickets >= maxThickets) continue;
         // Nearly every bar cell takes a stool. A sandbar-willow thicket is a
         // SCREEN, and a screen needs its clumps to touch: at a 4 m planting step
         // and a clump about 3 m across, thinning these to half was what left
-        // them standing as separate cushions on open sand.
-        if (rnd() > 0.84 || blocked(px, pz)) continue;
+        // them standing as separate cushions on open sand. `THICKET_ACCEPT` is
+        // that 0.84 carried to whatever cell the detail level offers, so the
+        // screen is the same screen at every setting rather than the sampling
+        // step's by-product (ROADMAP K45(b3)).
+        if (rnd() > THICKET_ACCEPT || blocked(px, pz)) continue;
         addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, worldZ(pz), rnd,
           0.8 + rnd() * 0.5);
         noteStation(px, pz, gy);
@@ -2013,7 +2379,11 @@ export async function createTrees({
         : 1;
       const perHa = lerp(range[0], range[1], noise2(px, pz, 58, 7))
         * clearedFactor(px, pz) * edgeFade;
-      if (rnd() > (perHa * cellArea) / 10000) continue;
+      // `keep` is the detail level's thinning and the ONLY thing here that is a
+      // rendering decision: `perHa` is the community's recorded density and
+      // `cellArea` is the ground this cell stands for, so the roll without it is
+      // the stand the record asks for (ROADMAP K45(b3)).
+      if (rnd() > (perHa * cellArea * keep) / 10000) continue;
       if (stats.trees >= maxTrees) continue;
       // A canopy tree needs its roots out of the channel; a bank willow does not.
       if (bank < 3.0 && comm !== 'gallery_edge') continue;
@@ -2022,7 +2392,9 @@ export async function createTrees({
       const p = pickers[key];
       const pick = comm === 'gallery_edge' && p.edgeMix ? p.edgeMix : p.mix;
       const id = pick(rnd());
-      const spec = specs[id];
+      // The community's own parameters where it declares them — the dune
+      // cottonwood is not the gallery cottonwood. See `communitySpecs`.
+      const spec = communitySpecs[key][id];
       if (!spec) continue;
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, worldZ(pz), rnd);
       noteStation(px, pz, gy);
@@ -2039,6 +2411,26 @@ export async function createTrees({
       bump(stats.communities, key);
       bump(stats.species, id);
     }
+  }
+
+  // THE BUDGET IS A BACKSTOP AND A BOUND BACKSTOP IS A DEFECT (ROADMAP K45(b2)).
+  // The loop sweeps south to north, so a cap reached partway through does not
+  // thin the wood — it deletes its north end and leaves a straight edge. That is
+  // what `light`'s old 300 did the moment the sweep reached the field, and it
+  // would have shipped looking like a rendering choice. `problems` is what the
+  // release smoke reads, so this is red rather than a console note.
+  //
+  // Since K45(b3) there IS a thinning instrument, so the remedy names it: `keep`
+  // is the number to lower, and the cap stays the thing that must never bind.
+  if (stats.trees >= maxTrees) {
+    problems.push(`trees: the ${level} stem budget bound at ${maxTrees} trees, so the `
+      + 'planting loop stopped partway north and the wood is cut off in a straight line '
+      + `rather than thinned — lower ${level}'s keep fraction, do not lower the budget`);
+  }
+  if (stats.thickets >= maxThickets) {
+    problems.push(`trees: the ${level} thicket budget bound at ${maxThickets} stools, so `
+      + 'the bank scrub stops partway north rather than thinning — raise the budget; the '
+      + 'point-bar screen is deliberately not thinned by detail');
   }
 
   /* ---- 4. the material --------------------------------------------------- */

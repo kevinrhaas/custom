@@ -1,8 +1,15 @@
 {
-  "_doc": "Whether a routed woody record can be PLACED. K44 measured which reader receives a record; trees.js receives one and then selects a species out of a hand-written COMMUNITIES mix, so a record it receives whose species is in no mix is drawn nowhere. `planter` and `ground` are the fixed square the timber loop sweeps and how much of the modelled field it reaches \u2014 it may grow and may not shrink. `unselectable` is the population, exact in both directions, and `drawn_as_another_species` is the placed species that have no archetype of their own. `zone_boxes` records that a TIMBER_ZONE's extent is never consulted by the reader it is routed to. `weights` is every mix entry's literal beside the weight that replaces it at load \u2014 the literal is a fallback, and `records.density` (the midpoint of the band in the first TIMBER_ZONE naming the species) is what places a stem. Held by tools/measure_planting_reach.py. Read ROADMAP K45(a) and K45(b1) before adding a line.",
+  "_doc": "Whether a routed woody record can be PLACED. K44 measured which reader receives a record; trees.js receives one and then selects a species out of a hand-written COMMUNITIES mix, so a record it receives whose species is in no mix is drawn nowhere. `planter` and `ground` are the domain the timber loop sweeps \u2014 since ROADMAP K45(b2) the modelled field inset by one planting step, not a fixed square inside it \u2014 and how much of the field it reaches; it may grow and may not shrink. `east_limits` is where the woody layer stops in the east and the street each limit is read from: Andreas ends the South Division belt at Wells Street and excepts the sandy hills near the lake from the North Division's timber. They are banked EXACTLY, in both directions \u2014 a wood that reaches further east is an argument about a source, not a repair. `unselectable` is the population, exact in both directions, and `drawn_as_another_species` is the placed species that have no archetype of their own. `zone_boxes` records that a TIMBER_ZONE's extent is never consulted by the reader it is routed to. `weights` is every mix entry's literal beside the weight that replaces it at load \u2014 the literal is a fallback, and `records.density` (the midpoint of the band in the first TIMBER_ZONE naming the species) is what places a stem. Held by tools/measure_planting_reach.py. Read ROADMAP K45(a) and K45(b1) before adding a line, and K45(b2) before moving an east limit.",
   "planter": {
-    "half_const_m": 320.0,
-    "half_m": 316.0,
+    "kind": "the modelled field inset by one planting step",
+    "sweep_e_m": [
+      -316.0,
+      1696.0
+    ],
+    "sweep_n_m": [
+      -396.0,
+      396.0
+    ],
     "dry_margin_m": 0.2,
     "steps_m": [
       4.0,
@@ -11,13 +18,25 @@
     ],
     "call_sites": 2
   },
+  "east_limits": {
+    "north": {
+      "street": "state",
+      "name_1835": "State Street",
+      "east_m": 825.8
+    },
+    "south": {
+      "street": "wells",
+      "name_1835": "Wells Street",
+      "east_m": 329.3
+    }
+  },
   "ground": {
     "dry_floor_m": 0.2,
     "nodes_above_floor": 192844,
-    "inside_planter": 52163,
-    "outside_planter": 140681,
-    "inside_pct": 27.05,
-    "outside_ha": 87.9,
+    "inside_planter": 189700,
+    "outside_planter": 3144,
+    "inside_pct": 98.37,
+    "outside_ha": 2.0,
     "field_e_m": [
       -320.0,
       1700.0
@@ -25,7 +44,10 @@
     "field_n_m": [
       -400.0,
       400.0
-    ]
+    ],
+    "east_limit_m": 825.8,
+    "reached_east_of_limit": 64385,
+    "reached_east_of_limit_ha": 40.2
   },
   "zone_boxes": {
     "z05_riverbank_timber": {
@@ -49,6 +71,19 @@
         ]
       }
     },
+    "z08_lakeshore": {
+      "verdict": "meets-the-planter",
+      "box": {
+        "e": [
+          1400,
+          1700
+        ],
+        "n": [
+          -400,
+          400
+        ]
+      }
+    },
     "z10_settled_town": {
       "verdict": "no-box",
       "box": null
@@ -57,6 +92,45 @@
   "unselectable": {},
   "drawn_as_another_species": {},
   "weights": {
+    "dune.mix.populus_deltoides": {
+      "weight": 9.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          3,
+          15
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
+    "dune.mix.populus_tremuloides": {
+      "weight": 5.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          2,
+          8
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
+    "dune.mix.populus_balsamifera": {
+      "weight": 5.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          2,
+          8
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
     "gallery.edgeMix.salix_nigra": {
       "weight": 42.0,
       "cited_bands": {

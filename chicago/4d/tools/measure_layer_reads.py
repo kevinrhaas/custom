@@ -71,11 +71,15 @@ FIVE ASSERTIONS.
 
 3.  **(absolute) Every unread figure is really unread**, in two halves. The
     strong half is the LAYER: a layer no renderer source opens has been read by
-    nothing in it, and that settles `data/fauna` entirely — no file under
-    `renderers/` names the directory, and `tools/publish.sh` does not copy it to
-    the site, so the browser has never been offered it. A layer that gains a
-    reader fails here, because the whole of its unread bank rests on nobody
-    opening it. The narrow half is per figure: the reverse scan looks for a
+    nothing in it, and a layer that gains a reader fails here, because the whole
+    of its unread bank rests on nobody opening it. **That is what happened.** It
+    settled `data/fauna` entirely until 2026-08-17, when ROADMAP K51 gave the
+    layer a reader — `renderers/web/js/fauna.js`, the Evidence panel's wildlife
+    section — and this assertion did exactly what it was built for: the thirty
+    figures behind that sentence had to be classified in the same commit instead
+    of resting on a claim that had quietly expired. All thirty are `shown` and
+    none is `mesh`; no animal is drawn in this scene. The narrow half is per
+    figure: the reverse scan looks for a
     property access of the leaf. Leaves whose bare name collides with the
     renderer's own vocabulary — `rgb` is a three.js shader field as well as a
     palette key — are declared in `AMBIGUOUS_LEAVES` and scanned
@@ -215,18 +219,80 @@ FLORA_PALETTE_READS: dict[str, tuple[str, str]] = {
     "dry_accent": ("mesh", "rgb(palette?.dry_accent)"),
 }
 
-# data/fauna has no reads at all. This is not an oversight in the map: no file
-# under renderers/ names the layer, and tools/publish.sh does not copy it to the
-# site, so the browser has never been offered it. Assertion 3 holds the whole
-# layer to that in the one direction that can be checked.
-FAUNA_READS: dict[str, tuple[str, str]] = {}
+# data/fauna HAS a reader as of ROADMAP K51, and every figure in it is `shown`.
+#
+# This block used to read "data/fauna has no reads at all", and assertion 3a was
+# written to fail the moment that stopped being true — because the whole of this
+# layer's unread bank rested on nobody opening the directory. That is the gate
+# working: `renderers/web/js/fauna.js` opens it, so the bank had to be discharged
+# figure by figure in the same commit rather than left standing behind a sentence
+# that had quietly expired.
+#
+# Every one of the thirty is `shown` and none is `mesh`: no animal is drawn in
+# this scene, and a state that said otherwise would be this map making a claim
+# about the town. `shown` is the honest word for a value a visitor reads on a
+# card, and the Evidence panel's wildlife section is a card.
+FAUNA_ZONE_READS: dict[str, tuple[str, str]] = {
+    # Which habitat this is, and whether its ground is drawn here at all. Two of
+    # the ten have no modelled extent in this scene and the card says so — a list
+    # that read the same either way would be a claim about the town.
+    "habitat": ("shown", "words(zone.habitat)"),
+    "in_modelled_extent": ("shown", "zone.in_modelled_extent"),
+    # A fauna zone carries no geometry of its own: it names the plant community
+    # whose extent it shares, which is what stops the two datasets drifting.
+    "extent_from.flora_zone": ("shown", "zone.extent_from?.flora_zone"),
+    "extent_from.kind": ("shown", "zone.extent_from?.kind"),
+    # July is the quietest wildlife date in the Chicago year, and the soundscape
+    # block is where each habitat says so in its own terms.
+    "soundscape.dawn_chorus": ("shown", "zone.soundscape?.dawn_chorus"),
+    "soundscape.hero": ("shown", "zone.soundscape?.hero"),
+    # The animal, as a visitor reads it.
+    "species[].common": ("shown", "sp.common || sp.id"),
+    "species[].class": ("shown", "rank(vocab.classes, a.class)"),
+    "species[].activity": ("shown", "words(sp.activity)"),
+    "species[].active_periods": ("shown", "sp.active_periods"),
+    # The three graded claims, each named at its call site so this scan can see
+    # it — see the note on `claimRow` for why they are not dug out of the claim.
+    "species[].july.status.value": ("shown", "july.status?.value"),
+    "species[].july.presence.value": ("shown", "july.presence?.value"),
+    "species[].july.abundance.value": ("shown", "july.abundance?.value"),
+    "species[].july.vocalization": ("shown", "words(july.vocalization)"),
+    "species[].july.behaviour": ("shown", "row('On 1 July', july.behaviour)"),
+    "species[].july.appearance": ("shown", "july.appearance"),
+    "species[].july.max_group": ("shown", "Number.isFinite(july.max_group)"),
+    # On eight records only: an animal present as sign alone still has something
+    # to show a visitor, and `presence: trace_only` is meaningless without it.
+    "species[].july.trace": ("shown", "row('Sign it leaves', july.trace)"),
+}
+
+FAUNA_MANIFEST_READS: dict[str, tuple[str, str]] = {
+    # The manifest's copies are denormalised on purpose — `tools/validate.py`
+    # fails the build if they disagree with the zone record — and the renderer
+    # reads them where a zone record is silent. One expression covers the three
+    # because one line does.
+    "zones[].habitat": ("shown", "zone.habitat ?? entry.habitat"),
+    "zones[].in_modelled_extent": ("shown", "zone.in_modelled_extent ?? entry.in_modelled_extent"),
+    "zones[].extent_from.flora_zone": ("shown", "zone.extent_from ?? entry.extent_from"),
+    "zones[].extent_from.kind": ("shown", "zone.extent_from ?? entry.extent_from"),
+    # The eight closed sets. Each is BOTH the order a list is sorted into and the
+    # list a visitor is shown under "the words on these cards" — a gloss invented
+    # in the renderer would be a vocabulary the dataset never agreed to.
+    "vocabulary.habitats": ("shown", "rank(vocab.habitats, a.habitat)"),
+    "vocabulary.classes": ("shown", "vocab.classes"),
+    "vocabulary.presence_modes": ("shown", "vocab.presence_modes"),
+    "vocabulary.july_status": ("shown", "vocab.july_status"),
+    "vocabulary.abundance": ("shown", "vocab.abundance"),
+    "vocabulary.vocalization": ("shown", "vocab.vocalization"),
+    "vocabulary.activity": ("shown", "vocab.activity"),
+    "vocabulary.active_periods": ("shown", "rank(vocab.active_periods, a)"),
+}
 
 READS: dict[str, dict[str, tuple[str, str]]] = {
     "flora/zone": FLORA_ZONE_READS,
     "flora/manifest": FLORA_MANIFEST_READS,
     "flora/palette": FLORA_PALETTE_READS,
-    "fauna/zone": FAUNA_READS,
-    "fauna/manifest": FAUNA_READS,
+    "fauna/zone": FAUNA_ZONE_READS,
+    "fauna/manifest": FAUNA_MANIFEST_READS,
 }
 
 STATES = ("mesh", "shown", "probe")
@@ -679,8 +745,14 @@ def self_test() -> int:
     b5["flora/zone:a_figure_that_left"] = {"records": 1}
     cases.append(("5 a banked figure that left the data", state, b5))
 
+    # A layer nothing declares a read for, opened by the renderer. It used to be
+    # `fauna` and ROADMAP K51 gave that layer a read map, at which point the case
+    # could no longer be constructed out of the repository's own state and went
+    # SILENT — a self-test that stops firing because the world moved is the same
+    # expired control the layer scan's negative half was. A synthetic layer name
+    # holds the assertion whatever this repository contains.
     s3a = copy.deepcopy(state)
-    s3a["opened"]["fauna"] = True
+    s3a["opened"]["a_layer_with_no_read_map"] = True
     cases.append(("3a the renderer opens a layer declared unread", s3a, bank))
 
     s3b = copy.deepcopy(state)
@@ -713,9 +785,15 @@ def self_test() -> int:
         ("the parent-qualified form is used for an ambiguous leaf",
          not reads_leaf(src, "ground.rgb") and reads_leaf(src, "diffuseColor.rgb")),
         ("the layer scan sees the layer the renderer does open",
-         layer_is_opened(src, "flora")),
-        ("the layer scan does not see the layer nothing opens",
-         not layer_is_opened(src, "fauna")),
+         layer_is_opened(src, "flora") and layer_is_opened(src, "fauna")),
+        # The negative half used to be `not layer_is_opened(src, "fauna")`, and
+        # ROADMAP K51 gave that layer a reader — at which point a control written
+        # against the repository's own state stops being a control and becomes a
+        # second copy of the measurement. It is a synthetic source now: a scanner
+        # that cannot say no about a directory nothing names is broken whatever
+        # this repository happens to contain today.
+        ("the layer scan does not see a layer a source does not open",
+         not layer_is_opened("const u = new URL('flora/index.json', dataBase);", "fauna")),
     ]
     for label, passed in checks:
         print(f"  {'ok   ' if passed else 'FAIL '}  {label}")
@@ -768,10 +846,17 @@ def main() -> int:
     mesh = sum(k["mesh"] for k in state["kinds"].values())
     fauna = sum(k["unread"] for kind, k in state["kinds"].items()
                 if kind.startswith("fauna/"))
+    shown = sum(k["shown"] for k in state["kinds"].values())
     if args.gate or args.quiet:
-        print(f"layer reads: {mesh} of {total} flora/fauna figure(s) reach a vertex or a "
-              f"pixel and {unread} reach nothing, {fauna} of those in data/fauna, which no "
-              f"renderer opens; the unread population is banked and may not grow")
+        # "which no renderer opens" stood on this line until ROADMAP K51, and by
+        # then it was false. A summary is a claim like any other here: `shown` is
+        # counted separately from `mesh` because a value a visitor reads on a
+        # card and a value that moves a vertex are different answers, and rolling
+        # them together is how a layer with no geometry starts sounding drawn.
+        print(f"layer reads: {mesh} of {total} flora/fauna figure(s) reach a vertex, "
+              f"{shown} reach a visitor as text on a card, {unread} reach nothing, "
+              f"{fauna} of those in data/fauna; the unread population is banked and "
+              f"may not grow")
     return 0
 
 

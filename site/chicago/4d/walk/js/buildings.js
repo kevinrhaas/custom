@@ -20,12 +20,13 @@
  *     id we recorded when we built the batch.
  *
  *  3. **One material per batch, and the batch does not care what colour the
- *     building is.** `BatchedMesh` renders one material, so the buildings become
- *     one batch per distinct material. Materials identical in every rendered
- *     respect are collapsed, and BASE COLOUR IS CARRIED PER VERTEX rather than
- *     per material (see `materialKey`), so two walls that differ only in paint
- *     share a draw call. The five materials of one tavern become a handful of
- *     draw calls and the five materials of a hundred taverns still do.
+ *     building is or how rough it is.** `BatchedMesh` renders one material, so
+ *     the buildings become one batch per distinct material. Materials identical
+ *     in every rendered respect are collapsed, and BASE COLOUR (R-W5a) and
+ *     ROUGHNESS (R-W5a2) ARE CARRIED PER VERTEX rather than per material (see
+ *     `materialKey`), so two walls that differ only in paint or finish share a
+ *     draw call. The whole untextured town is one draw call in the colour pass
+ *     and one in the shadow pass, and it stays one as blocks land.
  */
 
 import * as THREE from 'three';
@@ -142,6 +143,7 @@ function normalizeGeometry(src, matrix, material, confidence, label) {
 
   geo.setAttribute('position', toFloatAttribute(position, 3));
   geo.setAttribute('color', albedoAttribute(material, position.count));
+  geo.setAttribute('_roughness', roughnessAttribute(material, position.count));
   geo.setAttribute('normal', src.getAttribute('normal')
     ? toFloatAttribute(src.getAttribute('normal'), 3)
     : new THREE.BufferAttribute(new Float32Array(position.count * 3), 3));
@@ -187,8 +189,67 @@ function albedoAttribute(material, count) {
 }
 
 /**
+ * The material's roughness, written once per vertex — R-W5a2.
+ *
+ * The same trick as `albedoAttribute`, one step further, and it is exact for
+ * the same reason: a triangle never spans two source meshes, so all three of
+ * its vertices carry the identical float and the rasteriser's interpolation of
+ * three equal values is that value. What it replaces is `roughnessFactor =
+ * roughness` reading a per-material uniform — see `PER_VERTEX_ROUGHNESS`, which
+ * substitutes the attribute for the uniform and nothing else.
+ *
+ * Why this needed a shader patch when colour did not: `vertexColors` is a stock
+ * three feature with a `<color_fragment>` chunk behind it; roughness has no such
+ * chunk, so the attribute has to be declared, carried to the fragment stage and
+ * substituted into `<roughnessmap_fragment>` by hand.
+ *
+ * A material with a `roughnessMap` would break the substitution — the chunk it
+ * replaces multiplies the map's green channel in. Nothing in this dataset ships
+ * one (R-W2a: 1,353 material slots, zero textures of any kind), the batch key
+ * still separates on `roughnessMap`, and `PER_VERTEX_ROUGHNESS` refuses to
+ * install itself on a material that has one rather than silently dropping it.
+ */
+function roughnessAttribute(material, count) {
+  const r = typeof material?.roughness === 'number' ? material.roughness : 1;
+  const out = new Float32Array(count);
+  out.fill(r);
+  return new THREE.BufferAttribute(out, 1);
+}
+
+/**
+ * Carry `_roughness` from the attribute buffer to `roughnessFactor`.
+ *
+ * Chained the way `confidence.patch` chains — prior first, then ours — so the
+ * two patches compose on the same material in either order. The fragment
+ * substitution is the whole of it: three's `<roughnessmap_fragment>` is
+ * `float roughnessFactor = roughness;` plus a `USE_ROUGHNESSMAP` branch, so
+ * with no map this is the same statement with the uniform swapped for the
+ * varying.
+ */
+function perVertexRoughness(material) {
+  if (material.roughnessMap) return material;
+  const prior = material.onBeforeCompile;
+  material.onBeforeCompile = (shader, renderer) => {
+    if (typeof prior === 'function') prior(shader, renderer);
+    shader.vertexShader = 'attribute float _roughness;\nvarying float vChiRough;\n'
+      + shader.vertexShader.replace(
+        '#include <begin_vertex>',
+        '#include <begin_vertex>\n  vChiRough = _roughness;',
+      );
+    shader.fragmentShader = 'varying float vChiRough;\n'
+      + shader.fragmentShader.replace(
+        '#include <roughnessmap_fragment>',
+        'float roughnessFactor = vChiRough;',
+      );
+  };
+  material.needsUpdate = true;
+  return material;
+}
+
+/**
  * Two materials that render identically should not cost two draw calls — and
- * COLOUR IS NOT PART OF THE ANSWER, because colour is carried per vertex.
+ * NEITHER COLOUR NOR ROUGHNESS IS PART OF THE ANSWER, because both are carried
+ * per vertex.
  *
  * This is R-W5a, and the measurement is what makes the case. Every one of the
  * 47 building batches in the 2026-08-15 scene was the same
@@ -203,31 +264,40 @@ function albedoAttribute(material, count) {
  *
  * Taking `color` out of the key collapses those 47 to 16 and, far more
  * importantly, makes a new roof's paint FREE: a block can land any colour it
- * likes without adding a batch. Roughness is left in the key deliberately — it
- * would need a shader patch to carry per-vertex, and 16 batches is already
- * inside the budget with room. The remaining 16 → 1 is written up under R-W5a
- * in docs/ROADMAP.md with its own numbers.
+ * likes without adding a batch.
+ *
+ * **R-W5a2, 2026-08-17: roughness is out of the key too, and 16 became 1.** It
+ * is the shader patch R-W5a declined to write (`perVertexRoughness`), and the
+ * reason it was worth writing is not the colour pass: every batch that enters
+ * the sun's shadow box is a second draw call in the SHADOW pass, so the town's
+ * batch count was setting how far the sun could reach. R-W3b(a) measured the
+ * reach as draw-call-bound at ±120 m; this is what unbound it.
  *
  * `emissive` stays in the key: nothing in this dataset uses it, and if
  * something ever does, a glowing material is not something to merge silently
  * into a batch of dark ones.
  *
- * Roughness and metalness are compared at THREE DECIMALS, which costs two more
- * batches than it sounds and is not a tolerance dialled by eye. The town is
- * baked by two pipelines: the bespoke masters carry roughness as a float32
+ * Metalness is compared at THREE DECIMALS rather than exactly, and the reason
+ * is the town's two bake pipelines: the bespoke masters carry a float32
  * (`0.8999999761581421`) and the generated infill writes the decimal it
  * authored (`0.9`). Those are the same number to any renderer, and comparing
- * them exactly split the 0.90 and 0.88 buckets in two for no reason a visitor
- * could ever see. Nothing in the dataset uses two roughness values closer than
- * 0.01 on purpose.
+ * them exactly split buckets in two for no reason a visitor could ever see.
+ * (Roughness was in this key on the same footing until R-W5a2 took it out
+ * altogether; nothing in the dataset uses two roughness values closer than 0.01
+ * on purpose, which is why the quantisation was safe while it lasted.)
+ *
+ * `roughnessMap` stays in the key even though no asset in this dataset carries
+ * one, because `perVertexRoughness` cannot substitute for a chunk that samples
+ * a texture — so a mapped material must not be merged with an unmapped one.
  */
 function materialKey(m) {
   const near = (v) => (typeof v === 'number' ? v.toFixed(3) : '-');
   return [
     m.type,
     m.emissive?.getHexString() ?? '-',
-    near(m.roughness), near(m.metalness),
+    near(m.metalness),
     m.map?.uuid ?? '-', m.normalMap?.uuid ?? '-', m.aoMap?.uuid ?? '-',
+    m.roughnessMap?.uuid ?? '-',
     m.side, m.transparent ? 't' : 'o', m.alphaTest ?? 0, m.flatShading ? 'f' : 's',
   ].join('|');
 }
@@ -295,7 +365,12 @@ export function createBuildings({ registry, confidence, terrain }) {
         // multiply come out unchanged — see albedoAttribute.
         material.vertexColors = true;
         material.color = new THREE.Color(1, 1, 1);
-        material.name = `merged-r${(material.roughness ?? 1).toFixed(2)}`;
+        material.name = 'merged';
+        // Roughness now arrives per vertex too (R-W5a2). The material's own
+        // value is left where it is rather than whitened the way colour is:
+        // it is a straight substitution, not a multiply, so the uniform is
+        // simply never read once the patch is installed.
+        perVertexRoughness(material);
         confidence.patch(material);
         bucket = { material, entries: [] };
         groups.set(key, bucket);

@@ -919,9 +919,27 @@ function sunFromScene(group, uniforms, problems) {
   uniforms.uChiSun.value.copy(from).sub(to).normalize();
   const i = sun.intensity;
   uniforms.uChiSunCol.value.set(sun.color.r * i, sun.color.g * i, sun.color.b * i);
-  if (sky) {
+  // The sky fill, from the scene's published value rather than from a light.
+  //
+  // world.js used to deliver the fill as a HemisphereLight, which this could
+  // read; since W1 it delivers it as an environment map, which a Lambert
+  // material cannot see at all — three applies `scene.environment` to the
+  // physical materials only. Sniffing the light list would therefore have found
+  // nothing and left the sward on its default, lighting the prairie by one sky
+  // and the town beside it by another: the same class of error the sun above is
+  // traversed for rather than invented. `scene.userData.chiSkyFill` is the
+  // contract, the hemisphere light stays a fallback for any scene that still
+  // ships one, and a scene offering neither says so instead of guessing.
+  const fill = root.userData?.chiSkyFill;
+  if (Array.isArray(fill) && fill.length === 3) {
+    uniforms.uChiSky.value.set(fill[0], fill[1], fill[2]);
+  } else if (sky) {
     const j = sky.intensity;
     uniforms.uChiSky.value.set(sky.color.r * j, sky.color.g * j, sky.color.b * j);
+  } else {
+    problems.push('flora: the scene publishes no sky fill and carries no hemisphere '
+      + "light — the sward is lit by flora.js's own default ambient and may not "
+      + 'agree with the rest of the frame');
   }
   return true;
 }
@@ -2093,7 +2111,16 @@ function instSet(name, geometry, material, max) {
     push(e, y, n2, yaw, height, spread, arch, r, g, b, conf2, tilt = 0, tiltAz = 0, rise = 0) {
       if (n >= max) return false;
       if (tilt !== 0) {
-        _e.set(Math.cos(tiltAz) * tilt, yaw, Math.sin(tiltAz) * tilt, 'YXZ');
+        // The yaw is NOT passed to the Euler, and that is R-BUG7. It is the
+        // head's spin about its own stalk and the vertex program already
+        // applies it, off `aFlora.w`, before this matrix runs. Turning the
+        // whole tilted head by it a second time here spins `tiltAz` — the
+        // bearing the caller computed so the stalk would lean BACK to its own
+        // stem — to a uniformly random one. Four repairs in this file computed
+        // that bearing correctly and not one of them reached the geometry:
+        // measured on the published mirror, 38 drawn heads over 32 poses had
+        // their stalk foot in open air, the worst 58 cm from any stem.
+        _e.set(Math.cos(tiltAz) * tilt, 0, Math.sin(tiltAz) * tilt, 'YXZ');
         _m.makeRotationFromEuler(_e);
         _m.setPosition(e, y, -n2);
       } else {
@@ -2228,7 +2255,6 @@ function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
   const grass = sp.role === 'matrix' || sp.role === 'emergent';
   const range = sp.head.count;
   const many = grass ? 1 : range[0] + ((rng() * (range[1] - range[0] + 1)) | 0);
-  const spread = sp.width ? mid(sp.width) * 0.5 : plantH * 0.22;
   const tilt = sp.head.tilt;
   const top = plantH * sp.head.frac;
   const reach = PEDUNCLE[sp.head.kind] ?? 1.5;
@@ -2243,26 +2269,32 @@ function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
     // scene on one plane a metre and a half off the ground where a standing
     // eye can barely see it against the sky.
     const down = i === 0 ? 0 : sp.head.band * rng();
-    // ...and no further out than the branch under it can lean back and touch
-    // the stem. The stalk is `reach` head-sizes long and leans by `lean`, so
-    // that product IS the offset the plant can actually support.
-    const r = i === 0 ? 0
-      : Math.min(spread * (0.30 + rng() * 0.60) * (0.45 + 1.7 * down),
-        reach * size * Math.sin(lean) * 0.94);
-    // How far over its plant's base this head hangs. It is passed to the shader
-    // as well as added to y, because the shader has to bring the head DOWN with
-    // the plant as the ring fades it: a head left at the height the CPU put it
-    // would hang in the air over a shrinking stem.
+    // Where the flower ends up. It is not where the instance goes: since
+    // R-BUG7 the archetype's origin is the FOOT of its own stalk (see
+    // `peduncle`), so this is the height the head reaches once the stalk under
+    // it has been stood up and leaned over.
     const rise = top * (1 - down) * (0.94 + rng() * 0.10);
+    // ...and this is where the branch leaves the stem, which is the whole of
+    // the placement now. The stalk is `reach` head-sizes long and leans by
+    // `lean`, so it lifts the head `cos(lean)` of that and carries it
+    // `sin(lean)` of it out to the side — and BOTH come out of one rotation
+    // about a point that is on the plant, instead of out of a position and a
+    // lean that have to be kept in agreement. Four repairs went into keeping
+    // them in agreement and the fifth is not doing that again.
+    // Clamped into the plant, both ends. The upper clamp is what makes the
+    // assertion provable rather than measured: `foot <= plantH` and the shader
+    // scales both by the same ramp, so the stalk's foot is under the plant's
+    // own top at every fade, not just at the one the gate happened to stand at.
+    const foot = Math.min(plantH, Math.max(0, rise - reach * size * Math.cos(lean)));
     if (!set.push(
-      e + Math.sin(a) * r,
-      y + rise,
-      n + Math.cos(a) * r,
+      e,
+      y + foot,
+      n,
       rng() * Math.PI * 2, size, size, 0, _c.r, _c.g, _c.b, sp.conf, lean,
-      // Leaning OUTWARD, along the branch that carries it, so the stalk below
-      // it leans back toward the stem instead of hanging in the air.
-      i === 0 ? rng() * Math.PI * 2 : a + Math.PI / 2,
-      rise,
+      // Which way it leans out — a fresh bearing per head, so a plant's
+      // inflorescences ring its stem instead of all leaning one way.
+      a,
+      foot,
     )) return;
   }
 }
@@ -2546,7 +2578,24 @@ const PEDUNCLE = {
   compound: 2.0,
 };
 
-/** A thin stalk from the attachment point down, in the archetype's own units. */
+/**
+ * A thin stalk from the attachment point down, in the archetype's own units —
+ * and then the whole archetype is LIFTED so that the foot of that stalk sits at
+ * the origin. It is the last call in every head builder for exactly that
+ * reason.
+ *
+ * **Anchoring a head at its foot rather than at its flower is what makes
+ * "attached" an invariant instead of a number** (R-BUG7). The instance origin is
+ * then the point on the stem where the branch leaves it; the tilt rotates the
+ * head out about that point, so the offset from the stem is generated BY the
+ * stalk instead of being a second number that has to agree with it; and
+ * `chiFade` scales the whole thing about the foot, so a head slides down its own
+ * stalk as its plant shrinks instead of staying out at a fixed offset while the
+ * stalk that was supposed to reach it gets shorter. The head's rise is then
+ * `footRise <= plantHeight` and the shader's own descent gives
+ * `foot = base + footRise * fade <= base + height * fade = the plant's top` at
+ * EVERY fade — which is the assertion, proved rather than measured.
+ */
 function peduncle(g, drop = 1.5, wide = 0.022, k = 0.42) {
   for (let i = 0; i < 2; i++) {
     const a = (i / 2) * Math.PI;
@@ -2558,6 +2607,7 @@ function peduncle(g, drop = 1.5, wide = 0.022, k = 0.42) {
     const p3 = vert(g, dx, 0, dz, dx, 0.4, dz, k * 1.5, k * 1.5, k * 1.5, 0, 0);
     g.idx.push(p0, p1, p2, p1, p3, p2);
   }
+  for (let i = 1; i < g.pos.length; i += 3) g.pos[i] += drop;
 }
 
 /** A dense column: Liatris's button spike, Physostegia, Amorpha, the cattail's

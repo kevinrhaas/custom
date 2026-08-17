@@ -52,6 +52,9 @@ import { fileURLToPath } from 'node:url';
 // The critic harness's PNG reader and its CIE L*, so a road's contrast is
 // measured on the same scale as everything else this project quotes.
 import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metrics.mjs';
+// ROADMAP K50. The gate and `tools/measure_drawn_placement.mjs` run ONE census
+// rather than two readings of it — see that module's header for why.
+import { CENSUS } from './drawn_placement_census.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -246,9 +249,87 @@ const ROAD_GATED_BEYOND_M = 600;
 // The floors below sit a third under the measured 48² figures and four counts
 // above the residual, so "the aid changed the frame" and "the aid changed
 // nothing" cannot both be true. Both grids are printed; only 48² is gated.
+/**
+ * R-W3b(a) — the shadow rig `renderers/web/js/world.js` ships, asserted here as
+ * a number rather than read back off itself. Changing the reach or either map
+ * size there without changing it here fails the gate, which is the point: the
+ * texel size the reach is bought at is the claim, and a rig that quietly
+ * stretched one map over more ground would otherwise pass unremarked.
+ */
+const SHADOW_REACH_M = 240;
+const SHADOW_MAP_FULL = 4096;
+const SHADOW_MAP_LOW = 2048;
+/**
+ * R-W5a2 — the whole untextured town is ONE batch, and it must stay one.
+ *
+ * This is the number the reach above is standing on. R-W3b(a) measured the reach
+ * as draw-call-bound because every batch entering the shadow box costs a call in
+ * the shadow pass as well as in the colour pass, and 16 batches is what made
+ * ±180 m hit the 80-call budget exactly. Merging them is what bought ±240 m, so
+ * a change that splits the town back into per-material batches has silently
+ * taken the reach's headroom with it — assert the cause here, not only the
+ * effect.
+ *
+ * 1 rather than "≤ 16" because the merge is total: colour and roughness are both
+ * per-vertex now and nothing else in the 1,353 measured material slots differs
+ * (R-W2a). A textured asset would legitimately raise this, and raising it is
+ * then a deliberate edit with a reach measurement beside it.
+ */
+const STRUCTURE_BATCHES = 1;
+/**
+ * How many distinct roughness values the merged batch must still carry, and how
+ * far the frame must move when they are flattened.
+ *
+ * The town ships **16** — the batch count R-W5a left behind, which is what those
+ * 16 batches were separating on. Set at 12 rather than 16 so a block landing
+ * with a finish the town already uses cannot fail the gate, and low enough that
+ * a merge which kept two or three finishes still reads as the loss it is.
+ *
+ * `ROUGHNESS_MIN_WORST` is MEASURED BEFORE IT IS SET, the way R-A1's box says an
+ * instrument owes: driving every building vertex to 0.02 moves the worst 48²
+ * cell by the figure the run prints beside this assertion, and the floor is set
+ * at roughly a third of the smaller viewport's reading.
+ */
+const ROUGHNESS_VALUES_MIN = 12;
+const ROUGHNESS_MIN_WORST = 4;
+/**
+ * How much the 48² frame signature must move when the reach is wound back to
+ * the pre-R-W3b(a) ±60 m.
+ *
+ * MEASURED BEFORE IT WAS SET, the way R-A1's box says an instrument owes:
+ * `tools/measure_shadow_reach.mjs --stations lake_market --reaches 120,60` on
+ * the published mirror moves 104 of 2,304 cells with a worst cell of **8** at
+ * 1280×800 over a 2048² map, and 86 cells with a worst of **8** at 390×780 over
+ * a 1024² one. Set at 4 — half the smaller of the two, and the same floor R-A1
+ * measured the road aid against on the same grid.
+ */
+const SHADOW_REACH_MIN_WORST = 4;
+
 const ROAD_AID_GRID = 48;
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
+// K24. The brightness aid's own floors, and the reason they are not the road
+// aid's: exposure moves EVERY pixel, so the 12² whole-frame signature that was
+// too coarse for a roadway occupying a tenth of the frame is exactly the right
+// instrument here, and a finer grid would only cost time. Measured mobile
+// 390×780 on the published mirror at `lake_market`, full aid (+1 stop):
+//
+//   12²  mean 49.40, worst 51      restored residual, 12²:  mean 0.00, worst 0
+//
+// That is two orders of magnitude more signal than the road aid's 0.29 at the
+// same grid, which is the expected shape: one aid repaints a tenth of the frame
+// and the other regrades all of it.
+//
+// The floors sit at roughly a third of the measured figures and far above the
+// restored residual, so "the aid changed the frame" and "the aid changed
+// nothing" cannot both be true — R-A1's third assertion, which is the one a
+// control wired to nothing passes.
+const BRIGHT_AID_GRID = 12;
+const BRIGHT_AID_MIN_WORST = 17;
+const BRIGHT_AID_MIN_MEAN = 15;
+// The calibrated grade, asserted rather than assumed: every band, probe and
+// critic frame this suite takes is read here. world.js § BASE_EXPOSURE.
+const BASE_EXPOSURE = 0.95;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
 async function roadContrast(page, station) {
@@ -2556,6 +2637,11 @@ const terrainLoad = await page.evaluate(() => {
     const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
     const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
+    // K24. The raised READING, which until now this suite never took: both of
+    // the assertions around this one expect 0, so a frozen readback satisfied
+    // them and only a value that is meant to MOVE can find that out. See
+    // main.js § Live getters.
+    const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
     const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
     const dAid = signatureDistance(aidOff, aidOn);
@@ -2567,8 +2653,9 @@ const terrainLoad = await page.evaluate(() => {
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
 
     check(`${label}: raising the road-legibility aid reaches the render`,
-      aidSet === 1 && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
-      `set to ${aidSet}: cell delta mean ${dAid.mean?.toFixed(2)}, `
+      aidSet === 1 && aidLive === 1
+      && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
+      `set to ${aidSet}, reads back ${aidLive}: cell delta mean ${dAid.mean?.toFixed(2)}, `
       + `worst ${dAid.worst} (need worst>=${ROAD_AID_MIN_WORST}, `
       + `mean>=${ROAD_AID_MIN_MEAN})`);
     // With the clock held these are two captures of one unchanged scene, so an
@@ -2583,6 +2670,267 @@ const terrainLoad = await page.evaluate(() => {
       + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
+
+    // --- R-W5a2, the batch merge the reach below is standing on -------------
+    //
+    // Three assertions, and the shape is R-A1's: a count, the channel that count
+    // is bought with, and a proof the channel reaches the render. The first two
+    // on their own would pass identically on a town that had merged its batches
+    // by THROWING ROUGHNESS AWAY — one batch, one finish, every wall the same
+    // sheen — which is the failure that matters here and is not a crash.
+    const batchCensus = await page.evaluate(() => {
+      const bs = window.__chicago4d.buildings.batches;
+      const seen = new Set();
+      let min = Infinity, max = -Infinity;
+      for (const b of bs) {
+        const a = b.geometry.getAttribute('_roughness');
+        if (!a) continue;
+        for (let i = 0; i < a.array.length; i += 1) {
+          const v = a.array[i];
+          seen.add(v.toFixed(3));
+          if (v < min) min = v;
+          if (v > max) max = v;
+        }
+      }
+      return { batches: bs.length, values: seen.size, min, max };
+    });
+    check(`${label}: the untextured town is one batch`,
+      batchCensus.batches === STRUCTURE_BATCHES,
+      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}`);
+    check(`${label}: the batch still carries the town's finishes`,
+      batchCensus.values >= ROUGHNESS_VALUES_MIN
+        && batchCensus.min <= 0.30 && batchCensus.max >= 0.95,
+      `${batchCensus.values} distinct roughness values in the merged batch, `
+      + `${batchCensus.min}–${batchCensus.max} (want >=${ROUGHNESS_VALUES_MIN} spanning 0.30–0.95)`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const roughFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    await page.evaluate(() => {
+      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
+      window.__chiRoughSaved = a.array.slice();
+      a.array.fill(0.02);
+      a.needsUpdate = true;
+    });
+    const roughFlat = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dRough = signatureDistance(roughFull, roughFlat);
+    await page.evaluate(() => {
+      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
+      a.array.set(window.__chiRoughSaved);
+      a.needsUpdate = true;
+      delete window.__chiRoughSaved;
+    });
+    const roughBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dRoughBack = signatureDistance(roughFull, roughBack);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: the per-vertex roughness channel reaches the render`,
+      dRough.worst >= ROUGHNESS_MIN_WORST,
+      `driving every vertex to 0.02 moved the worst cell by ${dRough.worst}, `
+      + `mean ${dRough.mean?.toFixed(2)} (need worst>=${ROUGHNESS_MIN_WORST})`);
+    check(`${label}: restoring the roughness channel restores the frame`,
+      dRoughBack.mean <= 0.1 && dRoughBack.worst <= 3,
+      `residual mean ${dRoughBack.mean?.toFixed(2)}, worst-cell delta ${dRoughBack.worst}`);
+    console.log(`        batches: ${batchCensus.batches} · roughness `
+      + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
+      + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
+      + `${dRoughBack.worst}`);
+
+    // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
+    //
+    // The rig is one orthographic box that follows the visitor, and its reach
+    // decides how much of the town can cast a shadow AT ALL: at the old ±60 m,
+    // measured at eight anchors on the published mirror, 5 to 8 of 331
+    // structures and 0 to 41 of 730 stems were inside it. Everything else met
+    // the ground with nothing under it.
+    //
+    // Two assertions, and the second is the one R-A1 says the first cannot do
+    // without: the rig CARRIES the documented reach at the documented texel
+    // size, and winding the reach back to the old ±60 m CHANGES the frame. A
+    // reach wired to nothing passes the first on its own.
+    const rig = await page.evaluate(() => window.__chicago4d.world.shadowRig);
+    const wantMap = touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL;
+    const wantTexel = (2 * SHADOW_REACH_M) / wantMap;
+    check(`${label}: the sun's shadow reaches ${SHADOW_REACH_M} m at the documented texel`,
+      rig.reachM === SHADOW_REACH_M && rig.mapSize === wantMap,
+      `±${rig.reachM} m over a ${rig.mapSize}² map = ${(rig.texelM * 100).toFixed(1)} cm `
+      + `per texel (want ±${SHADOW_REACH_M} m over ${wantMap}² = `
+      + `${(wantTexel * 100).toFixed(1)} cm)`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));
+    const reachOld = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dReach = signatureDistance(reachFull, reachOld);
+    const restored = await page.evaluate(
+      (m) => window.__chicago4d.world.setShadowReach(m), SHADOW_REACH_M);
+    const reachBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dReachBack = signatureDistance(reachFull, reachBack);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: the shadow reach reaches the render`,
+      woundBack === 60 && dReach.worst >= SHADOW_REACH_MIN_WORST,
+      `winding ±${SHADOW_REACH_M} m back to ±60 m moved the worst cell by `
+      + `${dReach.worst}, mean ${dReach.mean?.toFixed(2)} `
+      + `(need worst>=${SHADOW_REACH_MIN_WORST})`);
+    check(`${label}: restoring the shadow reach restores the frame`,
+      restored === SHADOW_REACH_M && dReachBack.mean <= 0.1 && dReachBack.worst <= 3,
+      `±${restored} m, residual mean ${dReachBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dReachBack.worst}`);
+    console.log(`        shadow reach: ±${rig.reachM} m at `
+      + `${(rig.texelM * 100).toFixed(1)} cm/texel · winding back to ±60 m moves `
+      + `worst cell ${dReach.worst}; restored residual worst ${dReachBack.worst}`);
+
+    // --- R-BUG6, the shadow box moves in whole texels -----------------------
+    //
+    // The box follows the visitor. A shadow map is a raster fixed to that box,
+    // so re-centring it on their exact position slid the sample lattice by a
+    // fraction of a texel every frame and re-quantised every shadow edge in the
+    // scene — the crawl along an eave line, and 14–16 % of the whole-frame
+    // flicker `tools/measure_river_edge.mjs` catches under a 2 mm nudge.
+    //
+    // The invariant is exact, so it is asserted exactly rather than through a
+    // pixel signature: two positions a MILLIMETRE apart must put the shadow box
+    // in the same place to the bit. The equality is computed here, off
+    // `light.target.position`, which is the input three itself builds the shadow
+    // camera from — not off a reading the module makes about itself (K24).
+    //
+    // And it is asserted in BOTH directions, which is R-A1's lesson: "the box
+    // did not move" passes identically on a rig that snaps and on a rig whose
+    // follow() was never called, so the same millimetre with the snap OFF has to
+    // move it. The whole-texel half is the third: walk a long way and the box
+    // must land on the lattice, which is what says the quantisation is
+    // world-anchored rather than a copy of the walker.
+    const snapProbe = await page.evaluate((texel) => {
+      const api = window.__chicago4d;
+      const d = api.world.direction;
+      // `follow` is what the render loop calls every frame with the visitor's
+      // world position, so it is asked directly: no teleport and no capture, and
+      // the next drawn frame re-centres the box on the real walker anyway.
+      const centreAt = (x, z) => {
+        api.world.follow({ x, y: 0, z });
+        const t = api.world.light.target.position;
+        return { x: t.x, y: t.y, z: t.z };
+      };
+      /**
+       * THE DISTANCE THAT MATTERS IS ACROSS THE MAP, NOT ALONG THE SUN.
+       *
+       * The box is snapped on the two axes of the shadow map and deliberately not
+       * on the third: the centre keeps the walker's own component along the sun's
+       * direction, so it still slides by a tenth of a millimetre per millimetre
+       * walked (measured). That slide cannot re-quantise anything — an
+       * orthographic camera moved along its own view axis rasterises every world
+       * point to the identical texel, and the depth it writes and the depth it
+       * compares against shift together. So the perpendicular component is the
+       * claim, and asserting the raw distance instead would have failed a correct
+       * rig: it did, first time, at 0.107 mm.
+       */
+      const acrossMap = (p, q) => {
+        const v = { x: p.x - q.x, y: p.y - q.y, z: p.z - q.z };
+        const along = v.x * d.x + v.y * d.y + v.z * d.z;
+        return Math.hypot(v.x - along * d.x, v.y - along * d.y, v.z - along * d.z);
+      };
+      // A millimetre: 1/117 of a desktop texel, and three orders of magnitude
+      // under anything the walker's own stride resolves.
+      const a = centreAt(107, 103);
+      const snappedStep = acrossMap(a, centreAt(107.001, 103));
+      // The lattice PITCH, measured from outside and without the light's basis.
+      // Walk a metre in millimetres: each step can cross at most one lattice
+      // line of each axis, so every move the box makes across its map is one
+      // texel — or, if both axes cross on the same millimetre, a texel diagonal.
+      // Nothing else is possible on a lattice of this pitch, so the set of jump
+      // lengths IS the claim, and zero jumps would mean a box that never moves.
+      const jumps = [];
+      let prev = a;
+      for (let mm = 1; mm <= 1000; mm++) {
+        const c = centreAt(107 + mm / 1000, 103);
+        const j = acrossMap(prev, c);
+        if (j > 1e-9) jumps.push(j);
+        prev = c;
+      }
+      const wasOn = api.world.shadowRig.snapped;
+      api.world.setShadowSnap(false);
+      const loose = centreAt(107, 103);
+      const looseStep = acrossMap(loose, centreAt(107.001, 103));
+      api.world.setShadowSnap(wasOn);
+      const onLattice = jumps.every((j) => Math.abs(j - texel) < 1e-6
+        || Math.abs(j - texel * Math.SQRT2) < 1e-6);
+      return {
+        snappedStep,
+        looseStep,
+        jumps: jumps.length,
+        worstJumpTexels: jumps.length ? Math.max(...jumps.map((j) => j / texel)) : 0,
+        onLattice,
+        snapped: api.world.shadowRig.snapped,
+      };
+    }, rig.texelM);
+    check(`${label}: the shadow box holds still under a sub-texel step`,
+      snapProbe.snapped === true && snapProbe.snappedStep < 1e-9,
+      `a 1 mm walk moved the box ${(snapProbe.snappedStep * 1e6).toFixed(3)} µm across its `
+      + `map (texel ${(rig.texelM * 1000).toFixed(1)} mm); snapped=${snapProbe.snapped}`);
+    check(`${label}: the snap reaches the box — without it the same step moves it`,
+      snapProbe.looseStep > 0.0009,
+      `with the snap off a 1 mm walk moves the box `
+      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm across its map (want >0.9)`);
+    check(`${label}: the box moves in texels of its own map, and only in those`,
+      snapProbe.jumps > 0 && snapProbe.onLattice,
+      `a 1 m walk moved the box ${snapProbe.jumps} time(s), worst jump `
+      + `${snapProbe.worstJumpTexels.toFixed(4)} texels of `
+      + `${(rig.texelM * 100).toFixed(1)} cm (want every jump 1 or √2)`);
+    console.log(`        shadow snap: 1 mm moves the box `
+      + `${(snapProbe.snappedStep * 1e6).toFixed(2)} µm snapped, `
+      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm loose; a 1 m walk moves it `
+      + `${snapProbe.jumps} time(s), worst ${snapProbe.worstJumpTexels.toFixed(3)} texels`);
+    // --- K24, the brightness aid, and the same three things it owes ---------
+    //
+    // Owner-requested, and it carries a fourth assertion the road aid does not
+    // need: the grade itself. The road aid moves a uniform on the street
+    // materials, so nothing else in the suite can be reached through it; this
+    // one moves `toneMappingExposure`, which lights the ground, the water and
+    // every documented wall colour at once. That is the whole reason K24 was
+    // written as an accommodation rather than a second grade, and the way to
+    // hold it there is to assert the calibrated number a gate is standing at,
+    // not merely the slider's own bookkeeping. A control that can be used to
+    // launder a failing gate has become a different thing.
+    const brightAtBoot = await page.evaluate(() => window.__chicago4d.brightness);
+    const exposureAtBoot = await page.evaluate(() => window.__chicago4d.exposure);
+    check(`${label}: the brightness aid is off unless a visitor moves it`,
+      brightAtBoot === 0 && Math.abs(exposureAtBoot - BASE_EXPOSURE) < 1e-6,
+      `brightness ${brightAtBoot} stops, exposure ${exposureAtBoot} `
+      + `(calibrated ${BASE_EXPOSURE}) with no stored preference`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const brightOff = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const brightSet = await page.evaluate(() => window.__chicago4d.setBrightness(1));
+    const brightOn = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const exposureOn = await page.evaluate(() => window.__chicago4d.exposure);
+    const dBright = signatureDistance(brightOff, brightOn);
+    // Past the ceiling on purpose: the clamp is what keeps "one stop" a bound
+    // rather than a suggestion, and an unclamped slider is a way to reach an
+    // exposure no gate has ever read.
+    const brightClamped = await page.evaluate(() => window.__chicago4d.setBrightness(9));
+    await page.evaluate(() => window.__chicago4d.setBrightness(0));
+    const brightBack = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const dBrightBack = signatureDistance(brightOff, brightBack);
+    const brightRestored = await page.evaluate(() => window.__chicago4d.brightness);
+    const exposureRestored = await page.evaluate(() => window.__chicago4d.exposure);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: raising the brightness aid reaches the render`,
+      brightSet === 1 && brightClamped === 1
+      && Math.abs(exposureOn - BASE_EXPOSURE * 2) < 1e-6
+      && dBright.worst >= BRIGHT_AID_MIN_WORST && dBright.mean >= BRIGHT_AID_MIN_MEAN,
+      `set to ${brightSet} stop (9 clamps to ${brightClamped}), exposure ${exposureOn}: `
+      + `cell delta mean ${dBright.mean?.toFixed(2)}, worst ${dBright.worst} `
+      + `(need worst>=${BRIGHT_AID_MIN_WORST}, mean>=${BRIGHT_AID_MIN_MEAN})`);
+    check(`${label}: dropping the brightness aid restores the calibrated frame`,
+      brightRestored === 0 && Math.abs(exposureRestored - BASE_EXPOSURE) < 1e-6
+      && dBrightBack.mean <= 0.1 && dBrightBack.worst <= 3,
+      `brightness ${brightRestored} stops, exposure ${exposureRestored}, `
+      + `residual mean ${dBrightBack.mean?.toFixed(2)}, worst-cell delta `
+      + `${dBrightBack.worst}`);
+    console.log(`        brightness aid: +1 stop delta mean ${dBright.mean?.toFixed(2)} / worst `
+      + `${dBright.worst} at ${BRIGHT_AID_GRID}²; restored residual mean `
+      + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
@@ -2756,6 +3104,79 @@ const terrainLoad = await page.evaluate(() => {
       + `(${drawnWood.wet} over water at all); worst ${drawnWood.worstOffshore} m`
       + (drawnWood.worstOffshoreAt
         ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
+
+    /**
+     * ROADMAP K50 — the R-BUG5b question, asked of the two layers it has not
+     * been asked of.
+     *
+     * R-BUG5b was invisible to three green gates because every one of them
+     * asked where the wood was DECIDED and none read back where it was DRAWN.
+     * Four layers in this renderer decide in ENU and draw in three's world
+     * space, and the conversion between them is one sign: `enuToWorld` is
+     * `(e, y, -n)`. `flora.js` was measured clean by R-BUG5b itself; the
+     * ground is answered twice over — `the drawn ground matches the
+     * heightfield the town anchors to` above reads every field sample off the
+     * drawn surface, and `tools/measure_terrain_horizontal.mjs` holds its two
+     * horizontal axes. That leaves `buildings.js` and `streets.js`, and
+     * neither has ever had its geometry read back.
+     *
+     * What each layer DECIDED is committed and independent of the renderer:
+     * a structure's `placement.local_e/local_n` in its sidecar, and a street's
+     * `path_local_enu_m`. So both halves below compare the drawn vertices
+     * against the DATA, never against another number the renderer computed.
+     *
+     * The buildings half reads the batch's own position buffer through the
+     * instance matrix the renderer will hand the GPU — the same two structures
+     * `BatchedMesh.getBoundingBoxAt()` and `getMatrixAt()` read, walked inside
+     * the census so the gate needs no THREE in the page. A structure's anchor
+     * is its FRONTAGE and the body grows from it (K30(b): 331 of 333 footprints
+     * grow from the minimum corner), so the invariant is not "the centre is the
+     * anchor" but the weaker, sign-sensitive one: **the anchor lies inside the
+     * body's own plan footprint**, to a metre. Under a mirrored northing a
+     * building 200 m north of the datum is drawn 400 m from its anchor, which
+     * no footprint in this town spans.
+     *
+     * TWO THINGS THIS GATE MEASURED ABOUT ITSELF BEFORE IT MEASURED THE TOWN,
+     * and both are in `drawn_placement_census.mjs` where the code is:
+     *
+     *   1. **a per-INSTANCE box is not a building.** A structure joins one
+     *      batch per material it uses, so the first reading compared 1,310
+     *      "bodies" for a town of 331 structures and reported 279 strays — one
+     *      body's walls judged without its roof. `instanceBounds()` warns about
+     *      exactly this in its own comment. The census unions per structure id.
+     *   2. **the mirror test does not discriminate on a street grid.** Asking
+     *      whether a road vertex is nearer to a street at its mirrored northing
+     *      answered "yes" for 3,975 of 19,372 vertices on a build where every
+     *      vertex is inside its own track, because a reflected point on a grid
+     *      lands on another east-west street. It is reported and gates nothing;
+     *      what catches a mirrored ribbon is the half-width test, because a
+     *      reflected road runs where no centreline is recorded.
+     */
+    const drawnTown = await page.evaluate(`(${CENSUS.toString()})()`);
+    check(`${label}: every building is drawn around the anchor its record gives it`,
+      drawnTown.buildings.compared > 200 && drawnTown.buildings.unrecorded === 0
+      && drawnTown.buildings.outside === 0 && drawnTown.buildings.mirrorCloser === 0,
+      `${drawnTown.buildings.outside} of ${drawnTown.buildings.compared} structures whose own `
+      + `anchor falls outside their drawn footprint — unioned from `
+      + `${drawnTown.buildings.instances} instances in ${drawnTown.buildings.batches} batches, `
+      + `${drawnTown.buildings.verts} vertices read back; worst `
+      + `${drawnTown.buildings.worst.toFixed(2)} m`
+      + (drawnTown.buildings.worstId ? ` (${drawnTown.buildings.worstId}, span `
+        + `${drawnTown.buildings.worstSpan} m)` : '')
+      + `; ${drawnTown.buildings.mirrorCloser} nearer to the MIRROR of their anchor`
+      + (drawnTown.buildings.worstMirrorId ? ` (${drawnTown.buildings.worstMirrorId})` : '')
+      + `; ${drawnTown.buildings.unrecorded} instances with no readable placement`);
+    check(`${label}: every panel of road is drawn on a street the data records`,
+      drawnTown.streets.verts > 1000 && drawnTown.streets.records >= 17
+      && drawnTown.streets.stray === 0,
+      `${drawnTown.streets.stray} of ${drawnTown.streets.verts} drawn vertices further than `
+      + `half a track from any of ${drawnTown.streets.records} centrelines across `
+      + `${drawnTown.streets.meshes} meshes; worst ${drawnTown.streets.worst.toFixed(2)} m`
+      + (drawnTown.streets.worstAt
+        ? ` at E ${drawnTown.streets.worstAt.e} N ${drawnTown.streets.worstAt.n}` : '')
+      + `, ${drawnTown.streets.beyondBounds} off the grid altogether`
+      + `; ${drawnTown.streets.mirrorAlsoOnRoad} whose MIRRORED northing is also on a road `
+      + '(reported, not gated — see the census header)');
 
     // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
     // above walk `stations`, which the near-field planter writes and which
@@ -3216,6 +3637,123 @@ const terrainLoad = await page.evaluate(() => {
       `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst height `
       + `${(popIn.worst * 100).toFixed(1)}% of full`
       + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
+
+    // R-BUG7 — flower heads hanging in the sky with nothing under them. The
+    // owner photographed two of them over South Water Street on stalks that
+    // stop in mid-air, and **the same symptom had been repaired four times in
+    // `flora.js` by eye and asserted zero times here.** The two checks that
+    // sound like this one are not it: `floating` is about BUILDINGS hovering
+    // over their ground, and `floatingDry/floatingWet` asks where a water-lily
+    // RECORD is placed — and R-BUG5b proved that a placement test cannot see a
+    // drawing fault (391 stations dry, 10,734 vertices of timber in the river).
+    //
+    // So this reads the DRAWING back, off the instance buffers that went to the
+    // GPU: for every head that is actually drawn, the foot of its own stalk has
+    // to land inside a rooted plant's drawn body and under that plant's drawn
+    // top. The foot is taken from the archetype's own lowest vertex rather than
+    // from a constant here, so the assertion survives a change of anchoring.
+    // `tools/measure_head_support.mjs` is the same reading with the numbers.
+    const headSupport = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
+        * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
+      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+       *  for a patch of matrix and carries no head, so counting one as support
+       *  is a free pass — it is what made a first cut of this read zero. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette']);
+      /** Under a twentieth of full size a head is drawn at under two pixels at
+       *  the distances its own ring covers, and the fade has already taken it
+       *  most of the way into the ground. */
+      const FADE_FLOOR = 0.05;
+      const SLACK = 0.02; // a stem is centimetres thick; float is not a fault
+
+      const meshes = [];
+      a.flora.group.traverse((o) => { if (o.isInstancedMesh) meshes.push(o); });
+      const footOf = (g) => {
+        const p = g.getAttribute('position').array;
+        let lo = Infinity;
+        for (let i = 1; i < p.length; i += 3) if (p[i] < lo) lo = p[i];
+        return lo;
+      };
+      const nominal = new Map(meshes.map((m) => [m.name, footOf(m.geometry)]));
+
+      let drawn = 0; let unsupported = 0; let worst = null;
+      const anchors = a.scene?.anchors ?? [];
+      for (const anchor of anchors) {
+        for (const yaw of [0, 90, 180, 270]) {
+          a.walker.teleport({ local_e: anchor.local_e, local_n: anchor.local_n, yaw_deg: yaw });
+          // One frame is a rebuild — the sward is scattered from the camera on
+          // the step that carries it, which is what `popIn` above walks on.
+          a.step();
+          const cx = a.camera.position.x; const cz = a.camera.position.z;
+          // Every rooted plant, on a one-metre grid.
+          const grid = new Map();
+          for (const m of meshes) {
+            if (!ROOTED.has(m.name) || !m.count) continue;
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const z = mm[o + 14];
+              const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
+              const key = `${Math.floor(x)},${Math.floor(z)}`;
+              let b = grid.get(key);
+              if (!b) { b = []; grid.set(key, b); }
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * f, r: fl[i * 4 + 1] * f });
+            }
+          }
+          for (const m of meshes) {
+            if (!m.name.startsWith('flora-head-') || !m.count) continue;
+            const lo = nominal.get(m.name);
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            const rise = m.geometry.getAttribute('aChiRise').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const y = mm[o + 13]; const z = mm[o + 14];
+              const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
+              if (f <= FADE_FLOOR) continue;
+              drawn++;
+              const s = lo * fl[i * 4] * f;
+              const fx = x + mm[o + 4] * s;
+              const fy = y + mm[o + 5] * s - rise[i] * (1 - f);
+              const fz = z + mm[o + 6] * s;
+              let best = -Infinity;
+              for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
+                for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
+                  const b = grid.get(`${kx},${kz}`);
+                  if (!b) continue;
+                  for (const p of b) {
+                    if (p.top > best
+                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                  }
+                }
+              }
+              if (best < fy - SLACK) {
+                unsupported++;
+                const gap = best === -Infinity ? null : fy - best;
+                if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
+                  worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, orphan: best === -Infinity };
+                }
+              }
+            }
+          }
+        }
+      }
+      return { drawn, unsupported, worst, poses: anchors.length * 4 };
+    });
+    check(`${label}: every drawn flower head has a plant under its own stalk`,
+      headSupport.drawn > 500 && headSupport.unsupported === 0,
+      `${headSupport.unsupported} of ${headSupport.drawn} drawn heads over `
+      + `${headSupport.poses} poses had nothing under the foot of their own stalk`
+      + (headSupport.worst
+        ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
+          + `foot ${headSupport.worst.y.toFixed(2)} m `
+          + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+        : ''));
 
     // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
     // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
@@ -3938,6 +4476,70 @@ const terrainLoad = await page.evaluate(() => {
       /No people, anywhere/.test(lib.text) && /L1\b/.test(lib.text),
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
+
+    // --- the wildlife, in the same panel (ROADMAP K51) ---------------------
+    // `data/fauna/` was researched to the scene date, graded and cited, and read
+    // by nothing: no renderer source opened the directory and publish.sh did not
+    // copy it, so 139 animal records stopped at the repository while three
+    // documents implied a reader existed. These assertions are what stops that
+    // recurring — a section that 404s its layer on the published tree and works
+    // in the source tree is exactly the failure the flora manifest once shipped.
+    const fauna = await page.evaluate(() => {
+      const mount = document.getElementById('fauna');
+      const one = mount?.querySelector('details.fauna-sp');
+      return {
+        zones: window.__chicago4d.fauna?.zones ?? 0,
+        species: window.__chicago4d.fauna?.species ?? 0,
+        error: window.__chicago4d.fauna?.error ?? 'no fauna on the handle',
+        renderedZones: mount ? mount.querySelectorAll('details.fauna-zone').length : 0,
+        renderedSpecies: mount ? mount.querySelectorAll('details.fauna-sp').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        text: mount ? mount.textContent : '',
+        // The citation join is a separate fetch from a separate directory, and
+        // a card quoting a bare `source_id` is the failure it exists to stop.
+        cites: mount ? mount.querySelectorAll('.cites .cite-text').length : 0,
+        collapsed: one ? !one.open : false,
+        // The section's own prose plus the derived count sentence: the two
+        // places this panel could make a claim about the town rather than about
+        // the research.
+        prose: [document.getElementById('fauna-note')?.textContent ?? '',
+          ...[...document.querySelectorAll('[data-panel="evidence"] .legend-note')]
+            .map((n) => n.textContent)].join(' ').replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the wildlife list loads every habitat`,
+      fauna.zones === 10 && fauna.renderedZones === 10 && !fauna.busy,
+      `${fauna.zones} loaded / ${fauna.renderedZones} rendered (${fauna.error})`);
+    check(`${label}: every animal record in the layer is on the card`,
+      fauna.species === 139 && fauna.renderedSpecies === 139,
+      `${fauna.renderedSpecies} rendered of ${fauna.species}`);
+    // Discriminating rather than a count: the pigs are the signature street
+    // animal of this scene and the muskrat is the one the public-square pond
+    // quotation was re-graded around, so both are records whose absence would
+    // mean the zone files were not the thing being read.
+    check(`${label}: the card names what the records name`,
+      /pigs at large/.test(fauna.text) && /muskrat/.test(fauna.text)
+      && /Sus scrofa domesticus/.test(fauna.text),
+      fauna.text.slice(0, 160));
+    // The July gate is the hard part of this dataset and the reason it may not
+    // be read as a year list: several animals are here as sign or sound only.
+    check(`${label}: the card carries the July presence modes, not a species list`,
+      /trace only/.test(fauna.text) && /flightless moult/.test(fauna.text),
+      fauna.text.slice(0, 160));
+    check(`${label}: the animal records quote their sources, not their source ids`,
+      fauna.cites >= 20 && !/chicagology_prefire/.test(fauna.text),
+      `${fauna.cites} citation(s) rendered`);
+    check(`${label}: the animals start collapsed, like every other disclosure here`,
+      fauna.collapsed);
+    check(`${label}: the wildlife section does not overflow the panel`, fauna.overflow);
+    // The one thing this section must never imply. Nothing is drawn from the
+    // layer — no animal geometry exists — so the panel says so in words, and the
+    // day that stops being true this assertion is the one that should fail.
+    check(`${label}: the section says plainly that none of them is in the scene`,
+      /None of them is drawn in the scene/.test(fauna.prose)
+      && /this is the research, not a population/i.test(fauna.prose),
+      fauna.prose.slice(0, 200));
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a

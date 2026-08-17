@@ -450,6 +450,59 @@ def ground_claims(spec: dict, sources: dict) -> list[dict]:
     return claims
 
 
+def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
+    """The citations the fauna layer stands on, joined once for the walkthrough.
+
+    ROADMAP K51. `data/fauna/` is authored research and the renderer now reads it
+    straight — the zone records and the manifest are fetched by the browser as
+    they are committed, which is what makes the read map in
+    `tools/measure_layer_reads.py` scannable at all. What a zone record carries
+    is a list of `source_id`s, and a bare id on a card is not a citation: this
+    project's own argument is that a visitor should be able to judge the
+    evidence, and `renderers/web/js/citations.js`'s single citation renderer
+    wants the joined record — the rung, the words for the rung, what the page
+    reprints and the source's own stated limits.
+
+    So the join is done here, where every other join in this project is done, and
+    nowhere else. The fauna layer cites seven sources today; the file is keyed by
+    id because a species reaches it by id, and it carries no fauna figure of its
+    own — the animals are read from `data/fauna/`, not from here, and the census
+    that counts which figures reach a visitor must not have two answers.
+    """
+    cited: set[str] = set()
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    cited.update(str(v) for v in value)
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    index_path = DATA / "fauna" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    walk(index)
+    for entry in index.get("zones", []):
+        zone_path = DATA / "fauna" / entry.get("file", "")
+        if zone_path.exists():
+            walk(load(zone_path))
+
+    citations = cite(sorted(cited), sources)
+    emit(outdir / "fauna_sources.json", {
+        "scene": scene_id,
+        "standard": "Every source the animal records cite, joined once so the wildlife "
+                    "section of the Evidence panel quotes a source exactly the way the "
+                    "building card and the exclusions list do.",
+        "citations": {c["source_id"]: c for c in citations},
+    })
+    return len(citations)
+
+
 def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> int:
     """What the ground claims, for the visitor standing on it.
 
@@ -902,9 +955,10 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir,
                                   in_scene=resolved)
     ground = compile_ground(scene_id, scene, sources, outdir)
+    fauna_cites = compile_fauna_sources(scene_id, sources, outdir)
 
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
-          f"{ground} ground claim(s)"
+          f"{ground} ground claim(s), {fauna_cites} fauna source(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 
