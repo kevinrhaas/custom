@@ -1115,7 +1115,7 @@ arches down over them, bounded so no tip is pushed below the plant's base.
 lattice are untouched. The gate `tools/measure_sward_draw.mjs` is unaffected, as the parcel
 predicted, because no count moves.
 
-### K57 — the spray's GRAIN, which trades triangles against the size of a leaf mass · **UNCLAIMED · SEEN · opened 2026-08-17 by K56 · Effort: S–M**
+### K57 — the spray's GRAIN, which trades triangles against the size of a leaf mass · **CLAIMED 2026-08-17 · SEEN · opened 2026-08-17 by K56 · Effort: S–M**
 
 K56 answered *what a spray stands for* and moved the count. It did **not** answer the finer
 question underneath: at a fixed total plate area, is the shell better read as 32 masses of 0.4 m or
