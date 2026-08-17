@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 152, title: 'The whole wood was drawn on the wrong side of the river', kind: 'fix', ts: '2026-08-17T00:18:37.512Z', date: 'Aug 16, 2026, 7:18 PM CT',
+    items: [
+      'Yesterday this page said the trees standing in the river were gone. They were not \u2014 the photograph that proved it was taken on the very build that made the claim. What was actually wrong is bigger than the river.',
+      'The woodland you walk through is worked out one tree at a time. For every spot on a four-metre grid the scene asks: is this water, is it above the waterline, what grows here, is a building already on it. Only a spot that passes all of them gets a tree. Every one of those questions is asked in the project\u2019s map coordinates, where north is a positive number \u2014 and the drawing is done in a second set of coordinates where north is NEGATIVE. The step between the two was never taken. A tree tested ninety metres north of the forks was planted ninety metres SOUTH of them, and every tree in the wood the same way.',
+      'Where that mirror crosses the river, the trees stand in it. On the build in the photograph, sixty-four of the three hundred and ninety-one trees were drawn over open water, and the furthest piece of timber stood forty-eight metres out \u2014 the middle of the channel. That is the line of crowns, and the scattered ones beside it.',
+      'Three checks said this could not happen and all three were passing. Each of them examined the list of places the scene had DECIDED to put a tree, and that list is correct: not one entry of it is in the water. None ever looked at where a tree was actually DRAWN. A fault that separates the decision from the drawing was invisible to all three at once.',
+      'Yesterday\u2019s fix was not wrong \u2014 it found a real second fault, a belt of distant skyline timber written between the two banks, and that belt is still refused. It simply was not what the photograph showed.',
+      'The wood you see is now the wood this project recorded, and nothing about which trees grow where, how many there are, or the evidence behind any of it has changed. Every one of them has moved to the side of the river it was always recorded on: expect the North Side wooded and the south bank of the main stem open, which is what the sources describe.',
+    ] },
   { v: 151, title: 'You can turn the roads up if they are hard to see', kind: 'feature', ts: '2026-08-16T23:25:34.982Z', date: 'Aug 16, 2026, 6:25 PM CT',
     items: [
       'There is a new slider in Settings called Road visibility. It starts off, and off is exactly what you have been walking through until now — nothing about the default view has changed.',

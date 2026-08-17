@@ -37,18 +37,54 @@ pass under a mirror) and *no timber is drawn out in the channel* (the report in 
 **Both were demonstrated RED against the unfixed published mirror before the fix went in.** K50
 opens the same question against `streets.js`, `buildings.js` and `ground.js`.
 
-### Parked on `hold`, and the reason is a finding rather than a failure
+### The one red gate, and why the hold it was raised under does not survive being measured
 
 `tools/check.sh` and the changelog contract are green, the two new gates went red on the unfixed
-mirror and green on the fixed one, and the mobile smoke is **225 passed / 1 failed**. The one
-failure is `the roads reach the screen from the air, at the aerial anchor`, and it is **not** a
-street regression — no street vertex moved and every street gate is still green. The mirrored wood
-was **hiding a fifth of that band's road probes**: on the same 186 projected probes, 250–600 m,
-seen goes **157 → 177** and perceptible **63 % → 55 %** against a 0.55 bar, because the twenty
-newly-visible stretches are fainter than the ones already in the sample. The 100–250 m band moves
-the other way on the same cause (46 → 60 seen, 80 % → 85 %). A visitor sees strictly more road than
-before. `ROAD_MIN_PERCEPTIBLE` is deliberately NOT lowered; the road work is R-W1 (`hold` PR #125)
-and R-M1b (no threshold source), both the owner's. Full table in ROADMAP § R-BUG5b.
+mirror and green on the fixed one, and the mobile smoke is **230 passed / 1 failed**. The one
+failure is `the roads reach the screen from the air, at the aerial anchor` — the FLYING station.
+**On foot both road stations are green**, so nothing a walker sees regressed. No street vertex
+moved and every street gate is green.
+
+This parcel was first parked on `hold` asking the owner to accept the red. **That question was
+withdrawn on 2026-08-16 evening, because the premise was measurable and turned out to be false.**
+Both columns below were taken the same evening, same runner, mobile 390×780, published mirror,
+with nothing but `trees.js` between them — `dev` at 3ea4e00, and this branch rebased onto it.
+
+| aerial anchor, gated bands | `dev` (wood mirrored) | this branch (wood repaired) |
+|---|---|---|
+| 100–250 m — seen of 63 projected | 46 | **60** |
+| 100–250 m — perceptible | 80 % → **37 probes** | 85 % → **51 probes** |
+| 250–600 m — seen of 186 projected | 157 | **177** |
+| 250–600 m — perceptible | 62 % → **~97 probes** | 54 % → **~96 probes** |
+| **gated probes a visitor can see** | **203** | **237** |
+| **gated probes that are perceptible** | **~134** | **~147** |
+
+**The repaired build shows about thirteen MORE perceptible stretches of road, and scores lower.**
+That is not a paradox, it is the metric: `perceptible` is a ratio over probes **seen**, and `seen`
+is precisely the quantity an occluder shrinks. Hiding faint road raises the score.
+
+**This is R-BUG3's own lesson, surviving one level below where R-BUG3 fixed it.** `roadContrast()`
+already moved the decision of WHETHER to gate a band from "enough probes were seen" to "enough were
+PROJECTED", and the comment beside it says why: *"a band nobody can see reports n=0 and gates itself
+out, which is indistinguishable from a band with no road in it."* The band's SCORE still divides by
+`seen`. Score the same two bands against `nProjected` — fixed at 63 and 186 whatever stands in the
+way — and the picture is the opposite one:
+
+| 250–600 m, scored on projected | `dev` | this branch |
+|---|---|---|
+| perceptible of 186 | **52 %** | **52 %** |
+
+**`dev` is under the 0.55 bar too, and has been.** It reads 62 % only because twenty-nine of its
+186 probes are behind trees that should never have been there. The band did not regress today; it
+stopped being flattered. **`ROAD_MIN_PERCEPTIBLE` is deliberately NOT lowered** — and note that the
+honest denominator would not have let this branch pass either, so proposing it is not a way through
+the bar. The band's real fix is **R-W2**'s textured coverage (its ceiling is 4.8 L\* opaque); the
+denominator is **R-M1c**, opened by this parcel.
+
+**Landing with that gate knowingly red**, recorded here so no later run reads it as fresh breakage:
+the aerial 250–600 m band fails on merit, on `dev` as much as here, and the merge that exposed it is
+the one that stopped concealing it. Merging to dev is stage, not ship — production still stands
+where the owner last dispatched it.
 
 **Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute
 per-command ceiling). The before/after pair from the owner's pose is committed at

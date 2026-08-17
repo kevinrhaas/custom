@@ -119,6 +119,7 @@ not at the top of the queue.
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
+| **1** | RENDERING | **R-M1c** | **SEEN — it changes which builds pass.** The road score divides by probes **SEEN**, so anything standing in front of a faint stretch of road removes it from the denominator and the band scores higher for it. R-BUG5b hit this head-on: repairing the mirrored wood shows **34 more road probes and ~13 more perceptible ones**, and the band's score falls **62 % → 54 %**. Scored on `nProjected` — the denominator R-BUG3 already switched the *gating* decision to, for this exact reason — **both builds read 52 %, and `dev` has been under the 0.55 bar all along.** S, one function, no threshold moves; it makes scores strictly worse so it cannot be mistaken for a route through a gate |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
@@ -492,33 +493,56 @@ published mirror before the fix went in:**
 **Neither may ever be relaxed into a test of the placement. That is the test that was already
 green.**
 
-**PARKED ON `hold` — THE FIX IS RIGHT AND THE SUITE IS RED, AND THE TWO FACTS DO NOT CONTRADICT
-EACH OTHER.** With the wood repaired, `the roads reach the screen from the air, at the aerial
-anchor` fails. It is **not** a regression in the streets: not one street vertex moved, and every
-street gate — drape, wet vertices, the R-BUG4 panel invariant — is still green. **The mirrored wood
-was standing on top of the town and hiding a fifth of that band's road probes.** Measured on the
-same 186 projected probes, mobile, published mirror, everything but `trees.js` identical:
+**LANDED WITH ONE GATE KNOWINGLY RED, AND THE `hold` IT WAS FIRST PARKED UNDER WAS WITHDRAWN ON
+MEASUREMENT.** With the wood repaired, `the roads reach the screen from the air, at the aerial
+anchor` fails — the FLYING station; **both on-foot road stations are green**, so nothing a walker
+sees regressed. It is not a regression in the streets either: not one street vertex moved, and every
+street gate — drape, wet vertices, the R-BUG4 panel invariant — is still green.
 
-| 250–600 m band, `from_above` | mirrored wood | wood repaired |
+This parcel was first parked on `hold` asking the owner to accept that red. **The premise of the
+question was measurable, and measuring it reversed the answer.** Both columns below were taken the
+same evening on the same runner, mobile 390×780, published mirror, with nothing but `trees.js`
+between them — `dev` at 3ea4e00 and this branch rebased onto it. The earlier figures in this box
+were taken against the pre-R-BUG1 base and are superseded by these:
+
+| aerial anchor, gated bands | `dev` (wood mirrored) | wood repaired |
 |---|---|---|
-| probes **seen** | 157 of 186 | **177 of 186** |
-| median ΔL* | 2.7 | 2.3 |
-| **perceptible** | **63 %** | **55 %** (bar `ROAD_MIN_PERCEPTIBLE` 0.55) |
-| weber | 0.1105 | 0.0963 |
-| ground L\* | 53.8 | 52.8 |
+| 100–250 m — seen of 63 projected | 46 | **60** |
+| 100–250 m — perceptible | 80 % → **37 probes** | 85 % → **51 probes** |
+| 250–600 m — seen of 186 projected | 157 | **177** |
+| 250–600 m — median ΔL\* | 2.7 of 6.1 opaque | 2.3 of 4.8 opaque |
+| 250–600 m — perceptible | 62 % → **~97 probes** | 54 % → **~96 probes** |
+| 250–600 m — weber / ground L\* | 0.1104 / 53.9 | 0.0951 / 52.8 |
+| **gated probes a visitor can SEE** | **203** | **237** |
+| **gated probes that are PERCEPTIBLE** | **~134** | **~147** |
 
-**Twenty stretches of road became visible and they are fainter than the ones already in the sample,
-so the median fell.** The 100–250 m band moved the other way on the same cause — 46 of 63 seen
-becomes 60 of 63, and perceptible 80 % → 85 %. A visitor is shown strictly MORE road than before;
-what got worse is the average of a sample that stopped being flattered by an occluder.
+**The repaired build shows about thirteen MORE perceptible stretches of road and scores lower.**
+That is the metric, not the town: `perceptible` is a ratio over probes **seen**, and `seen` is
+exactly the quantity an occluder shrinks. **A gate whose score improves when something hides the
+thing it measures is dividing by the wrong number.**
 
-**So the gate is right, the fix is right, and the number under the bar is a pre-existing weakness
-this parcel uncovered rather than caused.** The two things that would close it are both the owner's:
-`ROAD_MIN_PERCEPTIBLE` must NOT be lowered — AGENTS.md § "never weaken an assertion to pass", and
-lowering a bar to admit the probes an occluder was hiding is the exact shape of that mistake — and
-the road-contrast work itself is **R-W1** (parked on `hold` PR #125) and **R-M1b** (blocked with no
-threshold source). This PR therefore goes to the owner with the wood fixed and the road band stated,
-rather than merging red or quietly re-cutting the bar.
+**This is R-BUG3's own lesson surviving one level below where R-BUG3 fixed it.** `roadContrast()`
+already moved the decision of WHETHER to gate a band from "enough probes were seen" to "enough were
+PROJECTED", and the comment beside it says exactly why: *"a band nobody can see reports n=0 and
+gates itself out, which is indistinguishable from a band with no road in it."* The band's SCORE
+still divides by `seen`. Score the same band on `nProjected` — fixed at 186 whatever stands in the
+way — and **`dev` reads 52 % and this branch reads 52 %.** `dev` is under the 0.55 bar too, and has
+been; it reports 62 % only because twenty-nine of its probes stand behind trees that were never
+supposed to be there. **The band did not regress today. It stopped being flattered.**
+
+**`ROAD_MIN_PERCEPTIBLE` is NOT lowered** — AGENTS.md § "never weaken an assertion to pass", and
+cutting a bar to admit the probes an occluder was hiding is the exact shape of that mistake. Note
+too that the honest denominator would not have let this branch through either, which is what makes
+it a finding rather than a route: it fails both builds. The band's real fix is **R-W2**'s textured
+coverage — its ceiling is 4.8 L\* opaque, so the contrast is there to be spent — and the denominator
+is **R-M1c**, opened below by this parcel. **R-W1** (`hold` PR #125) and **R-M1b** (no threshold
+source) remain the owner's.
+
+**Why it merged rather than waiting.** Holding a correct, visible, owner-reported fix behind a gate
+that was passing on an artefact of the very bug being fixed inverts what the gate is for. Merging to
+dev is stage, not ship: it publishes the `/dev/` preview only, and production moves solely on owner
+dispatch. Recorded here so no later run reads the red as fresh breakage — it is red on merit, red on
+`dev` as much as here, and it belongs to R-W2 and R-M1c.
 
 **What this leaves open, and it is a real question rather than a courtesy.** Every other layer that
 decides in ENU and draws in world space should be asked the same question by the same method —
@@ -6497,6 +6521,50 @@ which is backwards for a gate.
 branch is re-run against them **without re-tuning the streets**; every existing road band still
 reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
 "every existing road band still reports", which R-M1a holds green by not gating anything.
+
+### R-M1c — the road score divides by a number an occluder can shrink · **UNCLAIMED · SEEN (it changes which builds pass) · from R-BUG5b · Effort: S**
+
+**A gate whose score IMPROVES when something hides the thing it measures is dividing by the wrong
+number.** `roadContrast()` computes `perceptible` as `ds.filter(d >= 2).length / ds.length`, where
+`ds` runs over the probes **SEEN**. Anything standing between the camera and a faint stretch of road
+removes that stretch from the denominator, and the band scores higher for it.
+
+**This is R-BUG3's own lesson surviving one level below where R-BUG3 fixed it.** R-BUG3 already
+moved the decision of WHETHER to gate a band from "enough probes SEEN" to "enough PROJECTED", and
+its comment says why: *"a band nobody can see reports n=0 and gates itself out, which is
+indistinguishable from a band with no road in it."* The same argument applies to the score and was
+not applied to it. `nProjected` is the un-gameable denominator: it counts the road points that land
+in the frame, whatever is in front of them.
+
+**Measured, and this is not hypothetical — it is what R-BUG5b ran into.** Aerial anchor, 250–600 m,
+mobile, published mirror, same runner, same evening; the only difference is whether the near-field
+wood is drawn mirrored:
+
+| 250–600 m, aerial | wood mirrored (`dev` 3ea4e00) | wood repaired |
+|---|---|---|
+| seen | 157 of 186 | 177 of 186 |
+| perceptible, over **seen** (today's score) | **62 %** — passes 0.55 | **54 %** — fails |
+| perceptible, over **projected** | **52 %** | **52 %** |
+
+**The build with a bug that puts trees on top of the town scores EIGHT POINTS HIGHER than the build
+without it, and the honest denominator says both are the same and both are under the bar.** The
+0.55 bar has been passing on that band on the strength of an occluder.
+
+**Scope.** Change `perceptible`'s denominator to `nProjected`; keep `n` reported beside it so
+occlusion stays legible as occlusion (that is `nBare`'s job and it must not be lost). Then re-read
+every band at every station and write down what moves — this WILL turn bands red that read green
+today, and that is the parcel, not a side effect.
+
+**The thing this parcel must not do.** It must not arrive with `ROAD_MIN_PERCEPTIBLE` lowered to
+absorb what it uncovers. If honest scoring puts a band under the bar, the band is under the bar, and
+the fix is **R-W2**'s textured coverage or **R-W1**'s light — not a smaller number. Note that this
+change makes scores strictly WORSE, never better, so it cannot be mistaken for a route through a
+gate.
+
+**Files:** `tools/smoke_renderer.mjs` (`roadContrast`, ~line 497)
+**Acceptance:** the denominator is `nProjected`; `n` and `nBare` still print; the aerial 250–600 m
+band is shown reading the same on a mirrored-wood build and a repaired one; every band's new figure
+is recorded in the PR; no threshold moves.
 
 ### R-A1 — a road-legibility accessibility aid · **DONE 2026-08-16 — shipped OFF by default, and the gate that proves it reaches the render had to be measured before it could be set**
 

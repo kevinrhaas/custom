@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The whole wood was drawn on the wrong side of the river', kind: 'fix', ts: '', date: '',
+  { v: 152, title: 'The whole wood was drawn on the wrong side of the river', kind: 'fix', ts: '2026-08-17T00:18:37.512Z', date: 'Aug 16, 2026, 7:18 PM CT',
     items: [
       'Yesterday this page said the trees standing in the river were gone. They were not \u2014 the photograph that proved it was taken on the very build that made the claim. What was actually wrong is bigger than the river.',
       'The woodland you walk through is worked out one tree at a time. For every spot on a four-metre grid the scene asks: is this water, is it above the waterline, what grows here, is a building already on it. Only a spot that passes all of them gets a tree. Every one of those questions is asked in the project\u2019s map coordinates, where north is a positive number \u2014 and the drawing is done in a second set of coordinates where north is NEGATIVE. The step between the two was never taken. A tree tested ninety metres north of the forks was planted ninety metres SOUTH of them, and every tree in the wood the same way.',
