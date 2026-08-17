@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 171, title: 'The riverbank and meadow herbs are planted at their recorded numbers', kind: 'fix', ts: '2026-08-17T17:12:31.785Z', date: 'Aug 17, 2026, 12:12 PM CT',
+    items: [
+      'Yesterday’s note said four plant records state how much GROUND a plant holds and that figure was being added up as though it were a count of plants. That was fixed for the bushes. It is fixed for the herbs today, and it ran the other way for them: a plant 10 cm across covering 2.5 per cent of the ground is a great many plants, not a fortieth of one.',
+      'The ground layer under the riverbank timber was planted about a hundred times too thinly, and the sedge meadow ten times. Over the eight viewpoints the walkthrough measures, herbs go from 781 to 923 — the sedge meadow’s own from 31 to 84, and the riverbank’s from 4 to 50 where you stand in the wet woods looking back at it.',
+      'What you will actually see is modest, and it is worth saying so. These are small plants scattered under a dense grass layer: on the riverbank the picture changes by 0.15 per cent of its pixels, and at the sedge-meadow viewpoint you would not know. The number of plants moved by a fifth; the photograph barely did.',
+      'The town’s weeds do not move at all. Their layer was already asking for more plants than the planting grid can hold, and it still is — so the correction lands entirely outside the streets, which is the opposite of what was expected when this job was written down.',
+      'Nothing is invented and nothing was tuned. The conversion is the record’s own: the ground a species covers divided by the ground one plant of it covers, on widths already committed. No species changed its share, none is drawn nowhere, and the grass and bush layers are identical plant for plant.',
+      'Three more lists the job list called faulty turn out to be fine. The grass layer’s numbers never came from that sum — it reads how much ground the grass covers straight off the record — and the report naming them was printing a rule the renderer does not run.',
+    ] },
   { v: 170, title: 'The bushes fill out, and stop reading as giant single leaves', kind: 'fix', ts: '2026-08-17T16:25:59.406Z', date: 'Aug 17, 2026, 11:25 AM CT',
     items: [
       'Yesterday the wet woods got its shrub layer back — 156 bushes where 2 stood. Standing in it showed what nobody had seen before: the bush was designed when fourteen of them existed in the whole town, and repeated 158 times in one wood you could see straight through every one.',

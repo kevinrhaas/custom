@@ -156,7 +156,8 @@ rationed.**
 | — | RENDERING | ~~K54~~ | **SEEN** | **DONE 2026-08-17 — the two strata were sharing one lattice, and where the herb layer saturates it the deal is a subsample by head count. 4 bushes standing over the eight stations → 181.** The shrubs are dealt from their own pass at their own recorded clump density: `z06_dense_forest` **2 → 156** drawn and **40.1 %** of its recorded 94.9 % cover, the riverbank dogwood belt **20.1 % against a recorded 19.5 %**, matrix deviation unmoved to the second decimal and **0 of 98** pairs drawn nowhere. Two findings: **the slot count still mixed units** and planted the riverbank understory **8.8×** too thickly (K55), and **the instrument this parcel named cannot answer its question** — "deviation from the recorded cover" has measured the lattice against its own target since K49(c2). Read its box before quoting 89.11 or any deviation sum across two builds |
 | — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
 | **2** | RENDERING | **K57** | **SEEN** | **the shrub's leaf-spray GRAIN** — K56 doubled the spray count and closed the shell from 17.7 % to 30.9 %, and left the finer question open: at the same plate area, 32 masses of 0.4 m or 64 of 0.2 m? A triangle budget, not a preference. Opened 2026-08-17 by K56 |
-| **1** | RENDERING | **K55** | **SEEN** | **four herb lists deal their SLOT COUNT off a sum of areas and counts**, and two more are entirely area-recorded and so do not even register as mixed. It planted `z05`'s understory 8.8× too thickly; `z10_settled_town`'s weeds are the visible half. Opened 2026-08-17 by K54 with the arithmetic banked |
+| — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
+| **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -978,7 +979,66 @@ is the very quantity in question.
 **Files:** `renderers/web/js/flora.js` (`compileZones`, `dealt`) · `tools/measure_sward_draw.mjs`
 (a cover-share column) · `docs/LIBERTIES.md` if a share is authored.
 
-### K55 — four herb lists still deal their SLOT COUNT off a sum of areas and counts · **UNCLAIMED · SEEN · opened 2026-08-17 by K54 · Effort: S–M**
+### K55 — four herb lists still deal their SLOT COUNT off a sum of areas and counts · **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one: the riverbank's ground layer was planted 96× too THINLY**
+
+**The repair.** `SLOT_BASIS` is one object naming which sum each stratum's slot count is dealt off,
+and both lattice strata now read `stems`. The forb half is what moved; the arithmetic is K54's and
+was not re-derived.
+
+| forb layer | density before | after | ratio | forbShare before → after |
+|---|---|---|---|---|
+| `z05_riverbank_timber` | 0.025 /m² | **2.407** | **96×** | 0.072 → **1.0 (clamped)** |
+| `z10_settled_town` | 0.395 | **7.760** | 19.6× | 1.0 → **1.0, no slot moves** |
+| `z03_sedge_meadow` | 0.123 | **1.254** | 10.2× | 0.354 → **1.0 (clamped)** |
+| `z06_dense_forest` | 40.615 | **44.545** | 1.10× | 1.0 → 1.0 |
+| the other six | unchanged to the digit | | 1× | unchanged |
+
+Drawn, on the published mirror over the census's eight stations: **forb slots 781 → 923**,
+`z03_sedge_meadow`'s own layer **31 → 84** (cover 1.0 % → 2.8 % of a recorded 11.0 %),
+`z05_riverbank_timber`'s **1 → 16** at its own station and **4 → 50** standing in the wet woods, with
+a row at `z03` that did not exist before (**0 → 14**). Forb deviation per 100 slots **10.40 → 9.33**.
+**Matrix and shrub are unchanged to the second decimal** — 154.19 and 18.84, the same figures K54
+banked — and `0 of 98` pairs are drawn nowhere.
+
+### Finding 1 — a cover fraction read as a count is wrong in whichever direction the plant's own size points
+
+K54 measured this fault OVERSTATING by 8.8× and fixed it downward. The herb lists have it
+understating by up to 96×, and the two are the same division: `stems = cover ÷ π(width/2)²`, so the
+sign is decided by whether one plant covers more or less than a square metre. A 2.25 m dogwood
+clump covers ~4 m², so its cover fraction is a bigger number than its count; a 10 cm forb covers
+~0.008 m², so its cover fraction is ~125× smaller. **"Adding an area to a count" was banked here as
+over-planting because that is the case that was measured first**, and the queue inherited the
+direction along with the diagnosis.
+
+### Finding 2 — the report was naming three refusals as work, because it printed a default argument
+
+The parcel's own box suspected the matrix half was a refusal and it is: `matrixShare` comes off
+`cover.matrix_fraction` directly, and `subsetOn`'s `density` was **computed for the matrix and read
+by nobody**. The `basis` column that named `z03.matrix`, `z08.matrix` and `z09.matrix` as K55 work
+was printing `subsetOn`'s default parameter, not a fact about the renderer — so three of the parcel's
+six named rows were never faults at all. Both the renderer and the report read `SLOT_BASIS` now, and
+the matrix's entry is `null` rather than a label, so there is no number left to misread.
+
+### Finding 3 — it is SEEN, and only just: the count moved a fifth and the picture moved 0.15 %
+
+`docs/evidence/k55-{before,after}.png`, `z05_riverbank_timber` at E −300 / N +398 bearing 090°,
+1280×800 on the published mirror: **1,586 changed pixels of 1,024,000 (0.15 %)** — a scatter of white
+flower heads through the near grass. At the `z03_sedge_meadow` station the same comparison is **24
+pixels at 135° and nothing at 315°**, because the added plants are small and stand under a dense
+matrix layer. **The parcel's own prediction that `z10_settled_town`'s weeds were "the visible half"
+is refused by the table above**: that share was over the lattice ceiling before and after, so the
+one community a visitor spends the walk in is the one community that does not move. Quote the
+counts for this parcel, not a screenshot.
+
+### Successor — K58, the forb lattice's ceiling now binds six communities of ten
+
+`forbShare` clamps at one plant per slot, and K55 takes the clamped count from four communities to
+six (`z05` and `z03` join `z04`, `z08`, `z10`, `z06`). A clamped share means the record is asking for
+more plants than the lattice can carry, so the drawn cover is bounded by `TUNE.forb` rather than by
+any research figure — `z06_dense_forest` reaching 40.1 % of a recorded 94.9 % is that ceiling, not a
+data gap. Opened below.
+
+### K55 — original statement, for the record · **superseded by the box above**
 
 **The arithmetic is banked in K54 finding 1 and is not in dispute.** `subsetOn`'s `density` sums
 `s.recorded` — the abundance in whatever unit the record used — and `forbShareOf` reads that sum as
@@ -1071,6 +1131,32 @@ Cheap and visible: one archetype function, one before/after pair at the same sta
 triangle line printed by the smoke at both viewports is the budget half.
 
 **Files:** `renderers/web/js/flora.js` (`shrubGeometry`) · `docs/LIBERTIES.md` · `docs/evidence/`.
+
+### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **UNCLAIMED · SEEN · opened 2026-08-17 by K55 · Effort: M**
+
+`forbShareOf` is `min(1, density × cell² / perCell)`, and the clamp is a lattice ceiling of one
+plant per slot. K55 took the number of communities sitting ON that clamp from four to six — `z05`
+(2.407 plants/m² asked) and `z03` (1.254) join `z04` (14.5), `z06` (44.545), `z08` and `z10` (7.760).
+
+**What the clamp costs, stated plainly: those six layers are drawn at a density `TUNE.forb` chose
+and not at one any record states.** `z06_dense_forest` drawing 40.1 % of its recorded 94.9 % cover is
+that ceiling and not a research gap, and K54's box already flagged it as the one community whose
+shrub density reached it — the forb stratum has now joined it in five more.
+
+**It is not a free tune, which is why it is its own parcel.** The lattice's cell and `perCell` were
+fitted against the reference photographs on a closed prairie sward (L32), so raising either changes
+every community and costs geometry in exactly the two — `z06`, `z10` — that already carry the most.
+Candidate routes, none of them chosen here: a per-stratum cell; more than one plant per slot where
+the record asks for it; or accepting the ceiling and **printing the shortfall per community**, which
+is at least honest and is nearly free.
+
+**The measurement to land first**, and it fits in one census run: `tools/measure_sward_draw.mjs`
+already knows both numbers, so print `forbShare` beside the drawn cover per community and the size
+of the debt is visible without a single plant moving. `flora.communities()` exposes `forbShare`,
+`forbShareWet`, `shrubShare` and both densities as of K55, so nothing new needs wiring.
+
+**Files:** `renderers/web/js/flora.js` (`forbShareOf`, `TUNE.forb`) · `tools/measure_sward_draw.mjs`
+· `docs/STATUS.md` · `docs/evidence/`.
 
 ### K52 — nobody has censused what the residents' figures reach · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K51 · Effort: S–M**
 
