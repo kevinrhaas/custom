@@ -22,6 +22,8 @@
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
+ *   the bridge carries a walker . a deck is a surface you stand on, end to end,
+ *                                 and not the wading barrier under it
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   the roads reach the screen .. and are distinguishable from the ground they
@@ -2008,6 +2010,106 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: the walker is pushed out of a building footprint`,
       pushed.skipped || pushed.inside === false,
       `dropped at (${pushed.cx}, ${pushed.cn}), ended at (${pushed.e?.toFixed(2)}, ${pushed.n?.toFixed(2)})`);
+
+    // --- and you CAN stand on a bridge deck (T-0001) -----------------------
+    //
+    // The owner's question was "how would a wagon cross that?", and the first
+    // half of the answer is that a person cannot: the walker followed the
+    // heightfield, which over the river reports a wading barrier at 4.0 m, so a
+    // visitor set down on the North Branch bridge hovered 1.8 m above its planks
+    // and walked across thin air. This drives the crossing and asserts the DECK
+    // is under the boot for the whole span.
+    //
+    // Written as an exact equality rather than a tolerance, and that is the point
+    // of it: `placement.walk_surface_m` is the same `deck_height_m` the mesh was
+    // built from, so the number the walker stands on and the number the deck was
+    // drawn at are one value. A tolerance here would pass a renderer that had
+    // quietly grown a second definition, which is the fault docs/GLB-CONTRACT.md
+    // exists to prevent.
+    const crossing = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const deck = a.decks?.find((d) => d.id === 'north_branch_bridge');
+      if (!deck) return { missing: true };
+      const es = deck.pts.map((p) => p[0]);
+      const ns = deck.pts.map((p) => p[1]);
+      const west = Math.min(...es);
+      const east = Math.max(...es);
+      const mid = (Math.min(...ns) + Math.max(...ns)) / 2;
+      const on = (e, n) => {
+        let hit = false;
+        const pts = deck.pts;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+
+      // Start half a metre inside the west end, facing east down the deck.
+      a.walker.teleport({ local_e: west + 0.5, local_n: mid, yaw_deg: 90 });
+      const startedOn = a.walker.state.groundY;
+      let offDeck = 0;              // samples on the deck at the wrong height
+      let clearance = 0;            // worst eye-height error, on the deck
+      let firstE = null;
+      let lastE = null;
+      let leftE = null;             // where the walker ended up after the far end
+      a.intent.forward = 1;
+      a.intent.sprint = true;
+      for (let i = 0; i < 800; i += 1) {
+        a.walker.update(0.05, a.intent);
+        const s = a.walker.state;
+        if (on(s.e, s.n)) {
+          if (firstE === null) firstE = s.e;
+          lastE = s.e;
+          if (s.groundY !== deck.y) offDeck += 1;
+          clearance = Math.max(clearance, Math.abs(s.eyeY - s.groundY - a.walkBudget.eyeHeight));
+        } else if (lastE !== null && leftE === null) {
+          leftE = s.e;
+        }
+      }
+      a.intent.forward = 0;
+      a.intent.sprint = false;
+      const endState = { ...a.walker.state };
+      return {
+        deckY: deck.y,
+        span: east - west,
+        startedOn,
+        walked: firstE === null ? 0 : lastE - firstE,
+        offDeck,
+        clearance,
+        leftE,
+        // What the terrain alone would have said mid-span — the barrier this
+        // replaces. If this ever stops being well above the deck the assertion
+        // below has stopped proving anything.
+        barrier: a.terrain.walkHeight((west + east) / 2, mid),
+        endGroundY: endState.groundY,
+        endE: endState.e,
+      };
+    });
+    check(`${label}: the North Branch bridge has a walkable deck`,
+      !crossing.missing && crossing.deckY > 0,
+      crossing.missing ? 'no deck compiled for north_branch_bridge'
+        : `deck at ${crossing.deckY} m over the datum`);
+    check(`${label}: the walker crosses the bridge end to end on its deck`,
+      !crossing.missing
+      && crossing.walked >= crossing.span - 2
+      && crossing.offDeck === 0
+      && crossing.clearance < 1e-9,
+      `walked ${crossing.walked?.toFixed(1)} m of a ${crossing.span?.toFixed(1)} m deck, `
+      + `${crossing.offDeck} sample(s) not at deck height, worst standing clearance error `
+      + `${crossing.clearance?.toExponential(1)} m`);
+    check(`${label}: the deck, not the wading barrier, is what holds the walker up`,
+      !crossing.missing && crossing.barrier > crossing.deckY + 1
+      && crossing.startedOn === crossing.deckY,
+      `barrier ${crossing.barrier?.toFixed(2)} m vs deck ${crossing.deckY} m, `
+      + `stood at ${crossing.startedOn?.toFixed(2)} m`);
+    check(`${label}: and walks off the far end onto the bank`,
+      !crossing.missing && crossing.leftE !== null
+      && crossing.endGroundY < crossing.deckY,
+      `left the deck at E ${crossing.leftE?.toFixed(1)}, `
+      + `ended standing on ${crossing.endGroundY?.toFixed(2)} m at E ${crossing.endE?.toFixed(1)}`);
+
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     // --- the touch backend, on the mobile pass only ------------------------

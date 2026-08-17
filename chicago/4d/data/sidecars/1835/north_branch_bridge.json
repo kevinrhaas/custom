@@ -38,7 +38,8 @@
     "symbolic_location": "Across the North Branch on the Kinzie Street alignment, its west landing near the south-east corner of Kinzie and Canal Streets.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "water"
+    "vertical_anchor": "water",
+    "walk_surface_m": 2.22
   },
   "footprint": {
     "polygon": [

@@ -25,7 +25,8 @@
     "symbolic_location": "Anonymous reconstructed roof in the South Division block bounded by South Water, Wells, Lake and Franklin; a yard building off the block alley behind the Lake Street frontage",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

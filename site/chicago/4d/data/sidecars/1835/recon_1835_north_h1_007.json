@@ -25,7 +25,8 @@
     "symbolic_location": "Anonymous reconstructed roof in North Division cluster north_water_west; between the north bank and Michigan Street",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

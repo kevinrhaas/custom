@@ -109,6 +109,43 @@ def vertical_anchor(archetype: str) -> str:
     return getattr(mod, "VERTICAL_ANCHOR", "terrain")
 
 
+def walk_surface_m(structure: dict, phase: dict):
+    """The height, above this structure's own `y = 0`, of a surface a visitor may
+    STAND on — or `None` for the 330 structures that have no such surface.
+
+    Only bridges have one, and for a bridge it is the deck. The number is the
+    generator's own `deck_height_m`, read off the resolved parameter object rather
+    than recomputed here or measured off the GLB, for the same reason
+    `vertical_anchor` above reads its declaration off the parameter module: the
+    deck a visitor stands on and the deck the mesh draws have to be ONE number, and
+    two definitions agree until the day one of them matters. `mesh_inputs` already
+    imports these modules without Blender, so this costs the compile nothing.
+
+    Why the renderer cannot just measure it. The deck IS a distinct primitive in the
+    GLB, named by its material, so its top face is findable — but the material names
+    are not part of docs/GLB-CONTRACT.md, and a renderer keyed on one would be
+    reading a generator convention nobody promised to keep. The drawbridge also
+    carries gallows frames five metres above its deck, so the structure's bounding
+    box is not the answer either.
+
+    Silent on failure for the same reason `vertical_anchor` is: a parameter module
+    that will not import is the staleness gate's error to raise, with a better
+    message than a sidecar compile could give.
+    """
+    arch = structure.get("archetype")
+    if not arch:
+        return None
+    gen = str(ROOT / "generators")
+    if gen not in sys.path:
+        sys.path.insert(0, gen)
+    try:
+        mod = __import__(f"archetypes.{arch}_params", fromlist=["from_phase"])
+        value = getattr(mod.from_phase(phase), "deck_height_m", None)
+    except Exception:  # noqa: BLE001
+        return None
+    return round(float(value), 4) if value is not None else None
+
+
 def resolve_phase(structure: dict, target: dt.date):
     """Exactly one phase must cover the date — the same rule the validator and
     the generator apply. Duplicated deliberately in three places is worse than
@@ -939,6 +976,11 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 # not sample the heightfield for the second kind: mid-channel the
                 # ground surface is the river bed, and a bridge placed on it sinks.
                 "vertical_anchor": vertical_anchor(st["archetype"]),
+                # T-0001. How high above that anchor a visitor may STAND — a
+                # bridge deck, and nothing else in this dataset has one. `null`
+                # for a building, whose walkable surface is the ground the walker
+                # is already standing on.
+                "walk_surface_m": walk_surface_m(st, phase),
             },
             # Carry the footprint's own confidence, not just its geometry — a bare
             # polygon loses precisely the thing the confidence view exists to show.

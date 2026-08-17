@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 173, title: 'You can stand on the North Branch bridge now', kind: 'feature', ts: '2026-08-17T23:12:04.081Z', date: 'Aug 17, 2026, 6:12 PM CT',
+    items: [
+      'The bridges have always been there to look at. None of them was somewhere you could be: the walker follows the ground, and over the river the ground is a wall at the water\u2019s edge that stops you wading in. Set down on a bridge, you floated about six feet above its planks.',
+      'Now a deck is a surface. Open Go to and choose \u201cOn the North Branch bridge, mid-span\u201d: you arrive standing on the timbers, six feet over the water, and can walk the whole 72 metres of it and off the far end onto the bank.',
+      'The height you stand at is not a number anybody chose for the walk. It is the same measurement the bridge itself was built from \u2014 the six-foot clearance the 1883 settlers\u2019 account gives, plus the stringers and the planks \u2014 so your boots are on the deck you can see, not near it.',
+      'All four crossings in the town got this, including the drawbridge and the little slough culvert. The culvert is the odd one: the stream it crosses is not drawn in this scene, so its deck sits under the prairie, and there you walk on the grass rather than inside the hill.',
+      'What you still cannot do is walk UP onto a bridge from the riverbank, and it is worth saying plainly. The deck lands at the waterline, seven feet above it, and there is nothing to climb. The earth ramps and log abutments that answer that are the next half of this job.',
+    ] },
   { v: 172, title: 'The bushes fill out again, and keep their recorded width', kind: 'fix', ts: '2026-08-17T18:27:35.393Z', date: 'Aug 17, 2026, 1:27 PM CT',
     items: [
       'Yesterday the bushes went from sixteen leaf sprays to thirty-two and stopped reading as giant single leaves. That note left a question open: at the same total amount of leaf, would more and smaller masses read better? The answer is measured now, and it is no — because the leaf masses are what gives a bush its width, and its width is recorded.',

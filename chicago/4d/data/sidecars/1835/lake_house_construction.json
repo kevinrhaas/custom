@@ -31,7 +31,8 @@
     "symbolic_location": "North side of the river in Kinzie's Addition, on the block between Kinzie Street and Michigan Street east of Rush Street (today between East Kinzie Street and East Hubbard Street east of North Rush Street), fronting north onto Michigan Street.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

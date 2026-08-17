@@ -32,7 +32,8 @@
     "symbolic_location": "South-west corner of Lake Street and Clark Street (today West Lake Street at North Clark Street) - the south 25 ft of Lot 1, Block 34 - fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

@@ -29,7 +29,8 @@
     "symbolic_location": "North side of Lake Street between LaSalle Street and Clark Street (today West Lake Street) — the street is attested, the block is not.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

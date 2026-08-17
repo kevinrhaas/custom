@@ -32,7 +32,8 @@
     "symbolic_location": "In the rear of the Western Hotel at the south-east corner of Randolph and Canal Streets — that is, south of the hotel block, across the wagon yard, with the stable's long side parallel to Randolph.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

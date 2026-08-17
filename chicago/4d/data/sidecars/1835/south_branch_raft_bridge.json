@@ -36,7 +36,8 @@
     "symbolic_location": "Across the South Branch between Lake and Randolph Streets, its west landing on West Water Street (now Canal Street) below Wolf Point.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "water"
+    "vertical_anchor": "water",
+    "walk_surface_m": 2.22
   },
   "footprint": {
     "polygon": [

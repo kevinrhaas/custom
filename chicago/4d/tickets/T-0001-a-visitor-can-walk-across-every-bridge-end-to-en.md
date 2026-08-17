@@ -10,7 +10,7 @@ legacy_id: K10
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: run 8/17/2026, 4:56:22 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 ---
@@ -27,3 +27,30 @@ the deck at grade; geometry, needs the bake. Regrade `ground_contact` per bridge
 **Acceptance:** spawn on foot, walk across both branch bridges and the Dearborn drawbridge
 end to end without falling into the river; a smoke gate walks one and asserts deck height
 under the walker the whole way. Deep history: docs/ROADMAP.md § K10 (line ~9671).
+
+---
+
+**WHERE IT STANDS — half (1) has landed, half (2) has not.** The ticket stays open and
+stays where the owner put it; `claimed_by` is cleared so the next run may take the rest.
+
+**Shipped:** the walker stands on a deck. `placement.walk_surface_m` carries the
+generator's own `deck_height_m` into every sidecar, `walker.js` resolves the floor
+through one `surfaceAt()` that every path asks, and a scene anchor — *On the North
+Branch bridge, mid-span* — puts a visitor on the planks on foot. The smoke walks the
+North Branch crossing end to end and asserts the deck under the boot for the whole
+span, that the deck and not the 4.0 m wading barrier is what holds the walker up, and
+that they can walk off the far end onto the bank. All four decks in the dataset are
+walkable; the gate drives one, as the acceptance clause asks.
+
+**Not shipped, and it is the owner's actual question:** you still cannot get ONTO a
+deck from the bank. The deck lands on the traced 1834 waterline, where the ground is at
+zero and the deck is at 2.22 m, so the 0.35 m step-up rule refuses it exactly as it
+refuses a wall. That is half (2) — log abutments in the shallows and wagon-plausible
+approach gradients — and it is geometry: `generators/terrain_gen.py` needs Blender for
+the ground GLB, and the improve runner has none, so it belongs to the nightly bake.
+Nothing here was faked to look finished: no invented ramp, no widened step rule.
+
+**So the acceptance clause is NOT discharged.** It reads "spawn on foot, walk across …
+end to end without falling into the river", and a visitor who arrives at the new anchor
+can now do exactly that — but one who walks down Kinzie Street to the bridge cannot,
+and that is the reading the ticket is for.

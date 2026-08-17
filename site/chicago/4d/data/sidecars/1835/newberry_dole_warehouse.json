@@ -31,7 +31,8 @@
     "symbolic_location": "South bank of the main stem, on the South Water Street river frontage west of the built-up blocks, with its dock on the water. THE BANK IS DISPUTED — see the note; the north bank is the other reading and is not adopted here.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

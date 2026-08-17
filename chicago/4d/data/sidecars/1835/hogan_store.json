@@ -36,7 +36,8 @@
     "symbolic_location": "South bank of the main stem at the west end of the Lake Street / South Water Street block, near where the two streets converge east of Market Street; the north side of Lake Street, diagonally across it from the Sauganash.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

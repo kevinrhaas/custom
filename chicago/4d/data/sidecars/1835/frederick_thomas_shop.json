@@ -29,7 +29,8 @@
     "symbolic_location": "South side of South Water Street, two lots east of the Chicago American's office and east of Dearborn Street (today the south side of West Wacker Drive between North Dearborn and North State).",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

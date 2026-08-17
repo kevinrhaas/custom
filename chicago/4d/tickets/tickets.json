@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 4:56 PM",
+  "generated_ct": "Aug 17, 2026, 6:10 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14,7 +14,7 @@
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/17/2026, 4:56:22 PM CT",
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -613,6 +613,23 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0037",
+      "title": "The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 35
     }
   ]
 }

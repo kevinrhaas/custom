@@ -34,7 +34,8 @@
     "symbolic_location": "South-west corner of the public square (the block bounded by Randolph, Clark, Washington and LaSalle), at the Washington and LaSalle end.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
