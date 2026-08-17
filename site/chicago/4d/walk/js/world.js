@@ -105,12 +105,18 @@ const SKY_EXPOSURE = 0.045;
  * plain exponential (P = 1) fits the middle of the band and then overshoots the
  * last degree, which is exactly where the check is.
  *
- * WHAT IT IS NOT. It is not exposure and it is not a tone curve: the ground
- * matches the bar to a few counts already and nothing here can move it — the
- * patch multiplies `texColor` inside the SKY shader, which nothing else in the
- * scene samples (the PMREM environment built from it is disposed unused, see
- * below). It is not "add blue": blue is untouched, and every unit of the change
- * is red and green coming off.
+ * WHAT IT IS NOT. It is not exposure and it is not a tone curve: the patch
+ * multiplies `texColor` inside the SKY shader. It is not "add blue": blue is
+ * untouched, and every unit of the change is red and green coming off.
+ *
+ * WHAT IT NOW ALSO IS, since W1. This used to say the patch reached nothing but
+ * the backdrop, because the PMREM built from this sky was disposed unused. It is
+ * installed now, so the fit below no longer decides only what the horizon LOOKS
+ * like — it decides what colour the light coming from that horizon IS, and it
+ * reaches every wall in the town. The fit was made against a photograph and is
+ * the better authority for both jobs, but a future change to it is a change to
+ * the lighting and must be measured with `tools/light_probe.mjs`, not only with
+ * a capture of the sky.
  *
  * ITS ONE HONEST COST, so nobody has to rediscover it. The fit is azimuth-blind,
  * because the model's horizon goes achromatic in every direction and the defect
@@ -173,6 +179,97 @@ const HORIZON_RESTORE = {
  * changing it there splits the scene's idea of distance in three.
  */
 export const HORIZON_HAZE = 0x88a3c0;
+
+/**
+ * THE GROUND'S HALF OF THE ENVIRONMENT — a reflectance, not a colour.
+ *
+ * An environment map of an analytic sky has a defect nothing in the sky model
+ * can fix: the model is defined over the whole sphere, so it paints the ground
+ * half too, and it paints it BLUE. Install that as `scene.environment` and every
+ * downward-facing surface in the town — an eave's underside, the shaded side of
+ * a log wall, the interior of a crown — is lit by sky from below as well as
+ * above. That is not aerial physics, it is a hole in the model, and it is the
+ * whole of why the last attempt "swamped albedo": the environment it installed
+ * had no ground in it, so it replaced the warm bounce with more sky and every
+ * surface converged on the sky's hue regardless of what it was made of.
+ *
+ * So the environment is built with a ground in it. Its radiance is DERIVED, and
+ * from numbers already committed rather than picked:
+ *
+ *     L_ground = reflectance * E_horizontal / PI
+ *
+ * `reflectance` is the dun `0x7a6b4e` the hemisphere light already carried as
+ * its ground colour. Read as a reflectance — which is what its numbers already
+ * are, linear (0.195, 0.144, 0.074), a 15 % reflector — it is a plausible
+ * prairie-and-mud albedo and needs no new constant. What was missing was the
+ * other factor: the old rig applied that colour at a hand-picked intensity, so
+ * the bounce bore no relation to how much light was actually falling on the
+ * ground it was supposed to be bouncing off.
+ *
+ * `E_horizontal` is the light this scene actually delivers to a horizontal
+ * surface: the sun's own term, computed here from its colour, intensity and
+ * elevation, plus SKY_FILL_UP below.
+ */
+const GROUND_REFLECTANCE = 0x7a6b4e;
+
+/**
+ * The fill the environment actually delivers, MEASURED — and the discrepancy
+ * that came out of measuring it, which is the finding of this phase.
+ *
+ * `SKY_FILL_UP` is the irradiance on an upward-facing white Lambertian card from
+ * this environment at intensity 1, sun excluded, reported by a committed
+ * instrument:
+ *
+ *     node tools/light_probe.mjs
+ *
+ * `CALIBRATED_FILL_UP` is the same reading taken from the rig this phase
+ * replaces — a `HemisphereLight(0xa8c4e0, 0x7a6b4e, 2.4)` plus a second at 0.20.
+ *
+ *     measured 2026-08-14      R       G       B     luminance
+ *     the old hemisphere    1.0440  1.4565  1.9535     1.4047
+ *     this sky, at 1        0.3663  0.7916  1.5492     0.7558
+ *
+ * THE OLD FILL WAS NOT THE SKY. It delivered 1.86x the luminance of the sky it
+ * stood for and nearly three times the red, at a scene exposure calibrated so
+ * that same sky renders within a few units of a verified photograph. So the town
+ * was lit by a fill that contradicted its own backdrop, and every later
+ * calibration — the sward's density, the wall colours, the crown contrast — was
+ * measured under it.
+ *
+ * WHICH LEAVES A CHOICE, and it was made by measuring both halves of it rather
+ * than by argument. RENDERING §4 W1 says to rebalance "so total illuminance
+ * stays calibrated rather than doubled", which here means scaling the sky back
+ * UP by 1.858 to restore the luminance the old fill delivered. That was built
+ * and measured, and it fails the acceptance it was built to satisfy:
+ *
+ *     log wall R/B retained, against a white card in the same light
+ *       the old hemisphere fill                85 %
+ *       this environment at its own magnitude  76 %
+ *       this environment scaled to 1.858       62 %
+ *
+ * Scaling a sky that is genuinely blue — the calibrated zenith is B/R 4.2 —
+ * until it carries a hand-picked fill's luminance puts nearly three times the
+ * blue on every surface, and the browns converge toward it. That is the 2026-08
+ * failure this file already records, arrived at from the other direction.
+ *
+ * So the environment is installed at ITS OWN MAGNITUDE — `environmentIntensity`
+ * stays 1 and there is no invented scalar anywhere in the fill. The scene's
+ * total illuminance falls 16 % as a result, which is the honest consequence of
+ * lighting the town with the sky it is calibrated against, and every number it
+ * moves is measured in `docs/STATUS.md` rather than left to be discovered.
+ *
+ * NEITHER FIGURE IS FREE TO DRIFT. `tools/smoke_renderer.mjs` re-measures the
+ * fill through the same probe and fails if the rig has moved more than 5 % from
+ * what is written here, because a stale figure would mis-derive both the ground
+ * bounce and the intensity, and a bounce wrong in the direction of "too dark" is
+ * exactly the failure this phase exists to retire.
+ */
+const SKY_FILL_UP = [0.3663, 0.7916, 1.5492];
+const CALIBRATED_FILL_UP = [1.0440, 1.4565, 1.9535];
+/** The environment is installed as measured. Named, rather than left implicit,
+ *  because "1" here is a decision and not a default. */
+const ENV_INTENSITY = 1.0;
+const FILL_UP = SKY_FILL_UP.map((v) => v * ENV_INTENSITY);
 
 /**
  * Exponential-squared haze, tuned so it is nothing at conversational range,
@@ -400,42 +497,6 @@ export function createWorld({
   // a genuinely baffling failure to debug from the symptom, so it is written
   // down here rather than rediscovered. The disc goes straight back on for the
   // real render, where tone mapping handles it.
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const envScene = new THREE.Scene();
-  const skyParent = sky.parent;
-  sky.material.uniforms.showSunDisc.value = false;
-  envScene.add(sky);
-  const envRT = pmrem.fromScene(envScene);
-  skyParent.add(sky);
-  sky.material.uniforms.showSunDisc.value = true;
-  // NOT installed as scene.environment. Measured: at 0.40 it rendered a brown
-  // log wall at an R/B ratio of 1.08 against the 1.75 its base colour asks for,
-  // and even at 0.05 it only reached 1.14 — every surface converging on the sky
-  // colour regardless of what it was made of. For a project whose whole claim is
-  // that a documented white wall reads as white, an environment that overrides
-  // albedo is not a lighting choice, it is a data-integrity problem. The sky is
-  // kept as the visible backdrop; the lighting is the hemisphere fill plus the
-  // sun, which keep materials' hues intact. Revisit with a properly exposed HDRI
-  // rather than a PMREM of an analytic sky.
-  envRT.texture.dispose();
-  // Kept deliberately low. A PMREM of this sky is an intense, strongly BLUE
-  // light, and at any useful intensity it swamps albedo: measured at 0.40, a
-  // brown log wall rendered with an R/B ratio of 1.08 against the 1.75 its own
-  // base colour specifies — every surface converged on the sky colour and the
-  // building read as pale grey whatever it was made of. The environment is here
-  // for a touch of specular sky in the glazing, not to light the town. The fill
-  // that actually matters is the hemisphere light below, which can be given a
-  // warm ground bounce and therefore lets materials keep their hue.
-
-  pmrem.dispose();
-
-  // Sky above, warm ground bounce below — the cheap approximation of outdoor
-  // fill, and the one that keeps browns brown. Prairie and mud reflect warm, so
-  // the ground colour is a dun rather than a grey.
-  const hemi = new THREE.HemisphereLight(0xa8c4e0, 0x7a6b4e, 2.4);
-  hemi.name = 'sky-fill';
-  scene.add(hemi);
-
   const light = new THREE.DirectionalLight(0xfff2dc, 3.0);
   light.name = 'sun';
   light.castShadow = true;
@@ -457,11 +518,80 @@ export function createWorld({
   light.shadow.bias = -0.0004;
   light.shadow.normalBias = 0.045;
 
-  // A little bounce off the prairie and the lake so north elevations are not
-  // black. Hemisphere light, not ambient: the ground colour matters. Kept low
-  // because the sky environment above is already doing most of this job.
-  const bounce = new THREE.HemisphereLight(0xbfd4ea, 0x6d6b45, 0.20);
-  scene.add(bounce);
+  // THE FILL. One PMREM at boot, and it IS the fill — there is no hemisphere
+  // light any more. See GROUND_REFLECTANCE for why the environment is built with
+  // a ground in it, and why a sky-only environment is what swamped albedo the
+  // last time this was tried.
+  //
+  // THE SUN DISC MUST BE SWITCHED OFF for the pass. Its radiance runs to five or
+  // six figures in linear space, which overflows the half-float cube target
+  // PMREM blurs through; the overflow becomes Inf, the blur turns Inf into NaN,
+  // and a NaN environment map makes every lit surface in the scene render pure
+  // black while the sky itself — an unlit shader — keeps looking fine. That is a
+  // genuinely baffling failure to debug from the symptom, so it is written down
+  // here rather than rediscovered. The disc goes straight back on for the real
+  // render, where the direct sun is the directional light above and tone mapping
+  // handles the disc.
+  const sunHorizontal = new THREE.Color(light.color).multiplyScalar(
+    light.intensity * Math.max(0, Math.sin(sun.elevationDeg * DEG)));
+  const reflectance = new THREE.Color(GROUND_REFLECTANCE);
+  // L = reflectance * E_h / PI, with E_h the sun's horizontal term plus the
+  // measured sky fill. Written straight into the working colour space: this is a
+  // radiance, not a colour anyone authored, and pushing it through the sRGB
+  // transfer would darken it by a factor of three for no reason.
+  const groundRadiance = new THREE.Color().setRGB(
+    reflectance.r * (sunHorizontal.r + FILL_UP[0]) / Math.PI,
+    reflectance.g * (sunHorizontal.g + FILL_UP[1]) / Math.PI,
+    reflectance.b * (sunHorizontal.b + FILL_UP[2]) / Math.PI,
+    THREE.LinearSRGBColorSpace,
+  );
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envScene = new THREE.Scene();
+  const skyParent = sky.parent;
+  sky.material.uniforms.showSunDisc.value = false;
+  // The lower hemisphere, seen from inside. `renderOrder` is load-bearing: the
+  // Sky shader forces its own depth to the far plane and writes no depth, so the
+  // dome has to be drawn FIRST for the depth test to keep the sky off the ground
+  // half. Drawn second, it would be a sphere painted over a sky that had already
+  // won every pixel.
+  const groundGeo = new THREE.SphereGeometry(
+    1, 24, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+  const groundMat = new THREE.MeshBasicMaterial({
+    color: groundRadiance, side: THREE.BackSide, fog: false, toneMapped: false,
+  });
+  const groundDome = new THREE.Mesh(groundGeo, groundMat);
+  groundDome.renderOrder = -1;
+  envScene.add(groundDome);
+  envScene.add(sky);
+  const envRT = pmrem.fromScene(envScene);
+  skyParent.add(sky);
+  sky.material.uniforms.showSunDisc.value = true;
+  pmrem.dispose();
+
+  scene.environment = envRT.texture;
+  scene.environmentIntensity = ENV_INTENSITY;
+
+  /**
+   * THE FILL, STATED — because one important surface cannot read it.
+   *
+   * `scene.environment` reaches `MeshStandardMaterial` and nothing else: three
+   * applies a scene environment only to the physical materials, so the terrain,
+   * the streets, the buildings and the near timber receive this fill and the
+   * sward does not — `flora.js` draws with `MeshLambertMaterial` and its own
+   * shader, and it used to find the hemisphere light by traversing the scene.
+   *
+   * Removing the hemisphere light would therefore have darkened the prairie by
+   * the whole of its fill while every other surface was merely getting the same
+   * light from a better-shaped source. So the fill is published here as a value
+   * rather than left to be sniffed out of the light list, and flora.js reads it.
+   * It is the fill as installed, so the sward and the town are lit by one sky.
+   * It is the sky's own fill, so the sward moves with the town rather than
+   * staying lit by a fill the town no longer has. That is a real change to the
+   * prairie and a stated one, measured in docs/STATUS.md with this phase's
+   * frames — not a silent re-tune of a layer calibrated by another phase.
+   */
+  scene.userData.chiSkyFill = FILL_UP.slice();
 
   // Aerial perspective. Exponential-squared rather than the linear ramp it
   // replaces, because linear fog starts at nothing and then turns on: with
@@ -479,7 +609,9 @@ export function createWorld({
 
   const offset = new THREE.Vector3();
   return {
-    sky, light, bounce, sun, direction: dir.clone(),
+    sky, light, sun, direction: dir.clone(),
+    /** The environment map this rig installed, and the fill it delivers. */
+    environment: envRT.texture, skyFill: FILL_UP.slice(), envIntensity: ENV_INTENSITY,
     /** Keep the shadow frustum on the walker. Cheap; call every frame. */
     follow(position) {
       light.target.position.set(position.x, 0, position.z);
@@ -494,6 +626,8 @@ export function createWorld({
     },
     dispose() {
       envRT.dispose();
+      groundGeo.dispose();
+      groundMat.dispose();
       sky.geometry.dispose();
       sky.material.dispose();
     },

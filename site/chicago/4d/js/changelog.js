@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 157, title: 'There are trees on the lakeshore sand', kind: 'feature', ts: '2026-08-17T03:07:20.735Z', date: 'Aug 16, 2026, 10:07 PM CT',
+  { v: 158, title: 'There are trees on the lakeshore sand', kind: 'feature', ts: '2026-08-17T03:31:34.010Z', date: 'Aug 16, 2026, 10:31 PM CT',
     items: [
       'Walk east past the beach ridges to the lake and the sand is no longer bare: 88 trees stand on it — leaning cottonwoods with their trunks half buried, and narrow quaking aspen and balsam poplar behind them. It is the last piece of ground in this model that was swept for trees and given none.',
       'They are the three trees the research records for these dunes, at the densities it records — 9, 5 and 5 per hectare — and until today nothing in the scene could choose them. A week ago the walkthrough said in writing that the beach was empty on purpose rather than by accident. It is now planted on purpose.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'The dune cottonwood is the same species as the big cottonwoods along the river and is not the same tree — 5 to 15 metres against 22 to 30, leaning, forking low. It was nearly drawn as the river one: the scene keeps one shape per species and this is the first species recorded twice. The aspen is given a pale trunk so you can tell it from the balsam poplar beside it, which is our choice and is written up.',
       'Still bare, and stated rather than hidden: the older beach ridges west of the sand. Their own record carries no tree — only a bur-oak scrub nothing draws yet — so nothing was invented to fill them.',
       'Every tree in the town is dealt from one shuffle, so planting a new community redeals the individuals. Same rules, same species, same expected numbers; different trees in slightly different places.',
+    ] },
+  { v: 157, title: 'The town is lit by its own sky at last', kind: 'feature', ts: '2026-08-17T02:46:24.660Z', date: 'Aug 16, 2026, 9:46 PM CT',
+    items: [
+      'Until today the sky over this reconstruction and the light falling on it were two different skies. Overhead was a sky model calibrated against a verified July photograph of Illinois prairie. What actually lit the buildings was a pair of plain coloured lamps \u2014 one tinted blue for the sky, one for the ground \u2014 and nobody had ever measured the two against each other.',
+      'They did not agree. The old lamps put out nearly twice the light of the sky they stood for, and nearly three times the red. Every wall in town was lit by a sky that does not exist, at an exposure calibrated for one that does. The light now comes from the sky you can see, and the lamps are gone.',
+      'The visible result: there is no longer a single pure-black pixel in the standard views. At the river bank twelve thousand pixels used to be absolute black \u2014 leaves facing away from a high sun, lit by nothing. Now none are. Two other viewpoints did the same, eleven thousand and two thousand.',
+      'The catch, plainly: the scene is about a sixth dimmer than yesterday. That is what happens when you stop over-lighting a town. Scaling the sky back up to match the old total was built, measured and thrown away \u2014 a real sky is blue, and brightening it to carry a warm lamp\u2019s output washes the colour out of the walls, which is the fault this was meant to fix.',
+      'What it did not fix matters more than what it did. The darkest parts of a picture are better everywhere \u2014 nearly twice as good at the river bank \u2014 and still well short of a real photograph. The reason is not the light: the tree crowns are painted dark, so no lamp can reach them. That is written down and queued.',
+      'Behind all of it is a new instrument, and it is why the above are numbers rather than opinions. It puts a plain white card in the scene, points it six ways, and reads the light landing on it before any of the processing that turns a rendering into a picture \u2014 so it can tell a pale wall from a blue light.',
     ] },
   { v: 156, title: 'The animals of July 1835 are in the Evidence panel', kind: 'feature', ts: '2026-08-17T02:24:29.867Z', date: 'Aug 16, 2026, 9:24 PM CT',
     items: [
