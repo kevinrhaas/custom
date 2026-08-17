@@ -58,13 +58,19 @@ dune's 2,687 dry nodes today and the nearest miss is 0.66 m.
 
 ### Verified
 
-`./tools/check.sh` — **CHECK PASS**, with every moved bank re-banked in the same commit:
-`planting_reach_baseline.json` (0 unselectable species, 5 timber zones, 29 mix entries) and
-`flora_reach_baseline.json` (2 records, 14 figures). All three woody gates' self-tests fire.
-`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` — see the PR for the count.
+`./tools/check.sh` — **CHECK PASS**, before and after merging `dev`, with every moved bank
+re-banked in the same commit: `planting_reach_baseline.json` (0 unselectable species, 5 timber
+zones, 29 mix entries) and `flora_reach_baseline.json` (2 records, 14 figures). All three woody
+gates' self-tests fire. It is the dev gate, and it passed in CI on the PR as well.
 
-**Not claimed:** the desktop half of the smoke, ~13 min against this runner's 10-minute
-per-command ceiling.
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` — **237 passed / 2 failed** on
+this parcel's own tree, and **237 / 2 with the same two road-contrast checks and the same numbers**
+on a clean `origin/dev` worktree run the same way. The failures are the queue's, not this parcel's.
+
+**Not claimed, and the second half of this is new:** the desktop half of the smoke (~13 min against
+a 10-minute per-command ceiling) — and, after merging `dev` and its R-W1 lighting, **the mobile half
+too**: the post-merge run was killed by the ceiling at 230 passes, same two failures, no page error,
+with seven interaction and vendor checks unreached that all passed pre-merge.
 ## Landed on `dev` 2026-08-16 — the town was lit by a sky that does not exist, and the honest sky costs the roads
 
 > **⛔ NOT FOR PROMOTION.** `dev` may carry this; `main` may not, until the owner has walked the

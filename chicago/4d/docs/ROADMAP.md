@@ -3440,12 +3440,29 @@ reader has a cohort for, and `flora.js` plants it as ground cover rather than as
 reaching no reader became **two**; 301 unreached (record, figure) pairs became **261**. The
 remaining two are the two vines whose `vine_drape` form nothing implements.
 
-**Verified:** `tools/check.sh` green with every moved bank in this commit —
-`planting_reach_baseline.json` (0 unselectable, 5 timber zones, 29 mix entries),
-`flora_reach_baseline.json` (2 records, 14 figures) — plus all three gates' self-tests.
-`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` green. The desktop half was not
-run and is not claimed: ~13 minutes against this runner's 10-minute per-command ceiling, see the
-run-budget box at the top of this file.
+**Verified:** `tools/check.sh` — CHECK PASS, before AND after merging `dev`, with every moved bank
+in this commit (`planting_reach_baseline.json`: 0 unselectable, 5 timber zones, 29 mix entries;
+`flora_reach_baseline.json`: 2 records, 14 figures) plus all three gates' self-tests. That is the
+dev gate: `chicago-4d-check.yml` runs it and nothing else, and it passed in CI on the PR too.
+
+**AND THE MOBILE SMOKE HAS NOW OUTGROWN THE PER-COMMAND CEILING, WHICH IS WORTH RECORDING BECAUSE
+THE RUN-BUDGET BOX AT THE TOP OF THIS FILE SAYS ONLY THE DESKTOP HALF HAD.** On this parcel's own
+tree, `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` finished at **237 passed /
+2 failed** — the two road-contrast checks — and a run of the same command against a clean
+`origin/dev` worktree returned **237 / 2, the same two checks, with the walker's-eye numbers
+identical to the digit**. So the failures are the queue's, not this parcel's; R-M1c's box already
+records that those bands sit honestly under the bar. Nothing gated moved, and in the reported-only
+600–4000 m aerial band the readable share moves 75 % → 70 % on an unchanged `nBare` of 151 — a
+redealt wood standing in front of more road, which is exactly what R-M1c's repaired denominator
+exists to show rather than hide.
+
+**After merging `dev` — which brought R-W1's lighting — the same command was killed by the
+ten-minute ceiling at 230 passes**, the same two road failures and no page error, with the last
+seven checks (free-fly return, three inspect paths, zero-page-errors, two vendor meshopt) unreached.
+They are interaction and vendor assertions this parcel does not touch and all seven passed on its
+pre-merge tree. **The mobile half now costs more than one command here**, so the durable fix named
+in the run-budget box — a test-name or section filter beside `SMOKE_VIEWPORT` — is no longer only
+the desktop half's problem.
 
 ### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **UNCLAIMED · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
 
