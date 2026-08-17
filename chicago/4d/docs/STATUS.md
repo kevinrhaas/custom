@@ -1,5 +1,96 @@
 # STATUS
 
+## Fixed 2026-08-16 — the whole near-field wood was drawn mirrored, and that is why the trees were in the river
+
+**ROADMAP R-BUG5b**, the owner's report reopened after #196 shipped a fix that did not change what
+he could see. A visitor can see this one: from the south bank west of the forks, 4 ft up, ENE 076°,
+the line of crowns across the main stem is gone, the North Side is wooded and the south bank of the
+main stem opens out.
+
+### What was wrong
+
+`renderers/web/js/trees.js` asks every placement question in local ENU metres — `isWater(e, n)`,
+`communityAt(e, n)`, `surfaceHeight(e, n)`, `cellAt(e, n)`, `blocked(e, n)`, `noteStation(e, n, y)`
+— and then handed its ENU north straight to `addTree`, whose fifth argument is a three **world z**.
+`terrain.js`'s `enuToWorld` is `(e, y, -n)`. **Every tree was tested at `(px, pz)` and drawn at
+`(px, -pz)`: the entire near-field woodland mirrored about the datum's east–west line.** The repair
+is a named `worldZ(n) => -n` at the two `addTree` call sites. No density, weight, band, seed or
+waterline rule moved.
+
+### The numbers, measured on the build in the owner's screenshot
+
+**391** stations, **0** of them wet where the planter TESTED, **64** of the same 391 wet where it
+DREW. **12,285 of 77,688** drawn vertices over the water mask, **10,734** of them more than 4 m
+from dry ground, the worst **48 m** out — the middle of the channel. The proof of the mirror is a
+pair of readings: the nearest station to a vertex read as ENU `n = -z` is **infinite**, and read as
+`n = +z` is **13.1 m**, one crown radius.
+
+### The finding, and it is not the sign
+
+**Three gates agreed with each other and all three measured the same wrong thing.**
+`wetTreeStations`, `drownedTreeStations` and `tools/measure_far_timber.py` all walk `stations` —
+where the planter DECIDED to plant. That list is correct and always was. **Nothing had ever read
+the drawn geometry back.** A gate on a placement is not a gate on a picture, and this is the sixth
+time a green gate here has disagreed with the owner's window. `flora.js` had it right all along.
+Two new smoke gates close it: *every tree drawn stands at its own station* (structural — it cannot
+pass under a mirror) and *no timber is drawn out in the channel* (the report in its own terms).
+**Both were demonstrated RED against the unfixed published mirror before the fix went in.** K50
+opens the same question against `streets.js`, `buildings.js` and `ground.js`.
+
+### The one red gate, and why the hold it was raised under does not survive being measured
+
+`tools/check.sh` and the changelog contract are green, the two new gates went red on the unfixed
+mirror and green on the fixed one, and the mobile smoke is **230 passed / 1 failed**. The one
+failure is `the roads reach the screen from the air, at the aerial anchor` — the FLYING station.
+**On foot both road stations are green**, so nothing a walker sees regressed. No street vertex
+moved and every street gate is green.
+
+This parcel was first parked on `hold` asking the owner to accept the red. **That question was
+withdrawn on 2026-08-16 evening, because the premise was measurable and turned out to be false.**
+Both columns below were taken the same evening, same runner, mobile 390×780, published mirror,
+with nothing but `trees.js` between them — `dev` at 3ea4e00, and this branch rebased onto it.
+
+| aerial anchor, gated bands | `dev` (wood mirrored) | this branch (wood repaired) |
+|---|---|---|
+| 100–250 m — seen of 63 projected | 46 | **60** |
+| 100–250 m — perceptible | 80 % → **37 probes** | 85 % → **51 probes** |
+| 250–600 m — seen of 186 projected | 157 | **177** |
+| 250–600 m — perceptible | 62 % → **~97 probes** | 54 % → **~96 probes** |
+| **gated probes a visitor can see** | **203** | **237** |
+| **gated probes that are perceptible** | **~134** | **~147** |
+
+**The repaired build shows about thirteen MORE perceptible stretches of road, and scores lower.**
+That is not a paradox, it is the metric: `perceptible` is a ratio over probes **seen**, and `seen`
+is precisely the quantity an occluder shrinks. Hiding faint road raises the score.
+
+**This is R-BUG3's own lesson, surviving one level below where R-BUG3 fixed it.** `roadContrast()`
+already moved the decision of WHETHER to gate a band from "enough probes were seen" to "enough were
+PROJECTED", and the comment beside it says why: *"a band nobody can see reports n=0 and gates itself
+out, which is indistinguishable from a band with no road in it."* The band's SCORE still divides by
+`seen`. Score the same two bands against `nProjected` — fixed at 63 and 186 whatever stands in the
+way — and the picture is the opposite one:
+
+| 250–600 m, scored on projected | `dev` | this branch |
+|---|---|---|
+| perceptible of 186 | **52 %** | **52 %** |
+
+**`dev` is under the 0.55 bar too, and has been.** It reads 62 % only because twenty-nine of its
+186 probes are behind trees that should never have been there. The band did not regress today; it
+stopped being flattered. **`ROAD_MIN_PERCEPTIBLE` is deliberately NOT lowered** — and note that the
+honest denominator would not have let this branch pass either, so proposing it is not a way through
+the bar. The band's real fix is **R-W2**'s textured coverage (its ceiling is 4.8 L\* opaque); the
+denominator is **R-M1c**, opened by this parcel.
+
+**Landing with that gate knowingly red**, recorded here so no later run reads it as fresh breakage:
+the aerial 250–600 m band fails on merit, on `dev` as much as here, and the merge that exposed it is
+the one that stopped concealing it. Merging to dev is stage, not ship — production still stands
+where the owner last dispatched it.
+
+**Not claimed:** the desktop half of the smoke (~13 min against this runner's 10-minute
+per-command ceiling). The before/after pair from the owner's pose is committed at
+`docs/evidence/r-bug5b-{before,after}.png`. R-BUG5's horizon-band clip is **not** retracted — it is
+a real second fault that was mistaken for this one.
+
 ## Shipped 2026-08-16 — the roads can be turned up, and the reason it took two days is the reason it is allowed
 
 **ROADMAP R-A1**, deferred on 2026-08-14 and unblocked on 2026-08-15 by R-BUG3. A **Road

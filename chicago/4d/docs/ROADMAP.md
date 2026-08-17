@@ -106,8 +106,8 @@ visible parcels were the hardest ones to find. Completed work now lives in its o
 not at the top of the queue.
 | # | lane | parcel | why first |
 |---|---|---|---|
-| **1** | RENDERING | **R-BUG5b — REOPENED, THE TREES ARE STILL IN THE RIVER** | **SEEN** | **The owner reshot it at 3:14 PM CT on the build whose What's-New says 'The trees standing in the river are gone — Fixed 1:31 PM CT'. The line across the channel and the scatter beside it are both still there.** #196 shipped a fix, a 484-line measurement tool and a smoke assertion, and the defect survived all three. **Do not touch trees.js until you can reproduce the owner's frame and see the trees in it.** Read the box |
-| — | RENDERING | ~~R-BUG5~~ | **DONE 2026-08-16** — it was the SKYLINE, not the planter. Both of the owner's populations are ONE body of far timber authored **between the two banks** of the main stem, 39 of 39 samples over water and **3.347 m** under its surface; the scatter is the horizon solver's own gap modulation breaking the same run into crowns. Both existing gates were green because both count the near-field planter's 632 m square, and **nothing had ever asked the five `FAR_TIMBER` polylines where they stand**. Read its box before quoting any horizon-timber number |
+| — | RENDERING | ~~R-BUG5b~~ | **SEEN** | **DONE 2026-08-16 — it was the PLANTER after all, and the whole near-field wood was drawn mirrored.** The loop asks every question in ENU (`isWater`, `communityAt`, `surfaceHeight`, `blocked`, `noteStation`) and hands its ENU north straight to `addTree`, which takes a three world **z** — and `enuToWorld` is `(e, y, -n)`. So every tree was TESTED at `(px, pz)` and DRAWN at `(px, -pz)`: **391 stations, 0 wet, 64 of the same 391 wet at their mirror, 10,734 vertices of timber over open water and the worst 48 m from dry ground.** Three green gates all walk `stations`, which is the point that was TESTED — **nothing had ever read the geometry back**. Read its box before trusting any placement gate in this file |
+| — | RENDERING | ~~R-BUG5~~ | **DONE 2026-08-16 · a real second fault, but NOT the owner's picture (see R-BUG5b)** — it was the SKYLINE, not the planter. Both of the owner's populations are ONE body of far timber authored **between the two banks** of the main stem, 39 of 39 samples over water and **3.347 m** under its surface; the scatter is the horizon solver's own gap modulation breaking the same run into crowns. Both existing gates were green because both count the near-field planter's 632 m square, and **nothing had ever asked the five `FAR_TIMBER` polylines where they stand**. Read its box before quoting any horizon-timber number |
 | **1** | RENDERING | **R-BUG5(b)** | **NOT A PICK WITHOUT THE OWNER.** `main_stem_belt_east` now draws nothing, because none of it was on land. Where the South Water Street belt's near edge actually ran is a placement claim no source here settles — three routes are written up in R-BUG5's box for the owner to choose between |
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
@@ -119,6 +119,7 @@ not at the top of the queue.
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
+| **1** | RENDERING | **R-M1c** | **SEEN — it changes which builds pass.** The road score divides by probes **SEEN**, so anything standing in front of a faint stretch of road removes it from the denominator and the band scores higher for it. R-BUG5b hit this head-on: repairing the mirrored wood shows **34 more road probes and ~13 more perceptible ones**, and the band's score falls **62 % → 54 %**. Scored on `nProjected` — the denominator R-BUG3 already switched the *gating* decision to, for this exact reason — **both builds read 52 %, and `dev` has been under the 0.55 bar all along.** S, one function, no threshold moves; it makes scores strictly worse so it cannot be mistaken for a route through a gate |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
@@ -420,7 +421,137 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
-### R-BUG5b — REOPENED: the trees are still in the river, and a fix said otherwise · **TOP OF THE QUEUE**
+### R-BUG5b — the trees are still in the river · **DONE 2026-08-16 · the whole wood was drawn mirrored**
+
+**THE WOOD WAS TESTED IN ENU AND DRAWN IN WORLD SPACE, AND THE TWO POINT OPPOSITE WAYS.** The
+near-field planter in `renderers/web/js/trees.js` walks a 4 m grid and asks every question in local
+ENU metres — `terrain.isWater(e, n)`, `communityAt(e, n)`, `terrain.surfaceHeight(e, n)`,
+`cellAt(e, n)`, `blocked(e, n)`, `noteStation(e, n, y)`. Then it called
+`addTree(buf, spec, px, gy, pz, rnd)`, and `addTree`'s fifth argument is a **three world z**.
+`terrain.js`'s own `enuToWorld` is `(e, y, -n)`. The sign was never taken. **Every tree in the wood
+was tested at `(px, pz)` and drawn at `(px, -pz)` — the entire near-field woodland mirrored across
+the datum's east–west line through the forks.**
+
+**The numbers, measured on `dev` as it stood (the build in the owner's screenshot):**
+
+| | |
+|---|---|
+| stations recorded | **391** |
+| stations wet at the point that was TESTED | **0** — which is why every gate was green |
+| stations wet at the point that was DRAWN | **64** (16.4 %) |
+| drawn vertices over the water mask | **12,285 of 77,688** (15.8 %) |
+| …more than 4 m from the nearest dry ground | **10,734** |
+| worst distance from dry ground | **48 m** — at E 160.1, N 47.8, 0.61 m above the water |
+| nearest station to a vertex, read as ENU `n = -z` | **∞** (no station anywhere near the geometry) |
+| nearest station to a vertex, read as ENU `n = +z` | **13.1 m** — one crown radius. That is the proof |
+
+**THE FINDING IS NOT THE SIGN. It is that three gates agreed with each other and all three were
+measuring the same wrong thing.** `wetTreeStations`, `drownedTreeStations` and
+`tools/measure_far_timber.py` all walk `stations` — the list the planter writes at the moment it
+DECIDES to plant. That list is correct and always was; not one entry of it is in the water. **No
+check anywhere read the merged geometry back and asked where a tree was DRAWN**, so a fault that
+separates the decision from the drawing was invisible to all of them simultaneously. This is the
+generalisation, and it is the sixth green-gate-versus-window disagreement on this project: **a gate
+on a placement is not a gate on a picture. If a layer decides in one coordinate system and draws in
+another, only a gate that reads the drawn buffers back can see the step between them.**
+`renderers/web/js/flora.js` had it right the whole time — `_m.setPosition(e, y, -n2)` — which is
+exactly why the sward has never been in the channel and the wood always was.
+
+**R-BUG5 (#196) IS NOT RETRACTED, AND SAYING SO PRECISELY MATTERS.** `main_stem_belt_east` really
+is authored between the two banks, really is 39 of 39 samples over water, and really should not be
+drawn; that clip stands and its gate stands. What #196 got wrong is the ATTRIBUTION: it explained
+the owner's photograph with the horizon band, shipped, and told the owner it was fixed. The band
+was a second, genuine fault that happens to sit in the same direction from the same viewpoint. The
+lesson it paid for is the one its own box asked for and did not get — **reproduce the frame before
+choosing a cause.** This parcel's first commit was a screenshot, not a diagnosis.
+
+**How the frame was reproduced, so the next person does not have to find it again.** The owner's
+pose is `local_e -100, local_n -40, yaw_deg 76, altitude_m 1.22` — the south bank west of the
+forks, 4 ft up, ENE 076°, which is what the HUD reads in his screenshot. The line of crowns is
+at 130–190 m, over the main stem. `tools/shoot.mjs` puts the camera there in one command.
+
+**The repair** is one named function, `worldZ(n) => -n`, applied at the two `addTree` call sites,
+plus the comment block that says why it is named rather than inlined. Nothing about which trees
+grow where, how many stand, or the evidence behind any of it moved: `perHa`, `edgeFade`,
+`clearedFactor`, the waterline gate, the species draw and the seed are all untouched. **Every tree
+simply moved to the side of the river it was already recorded as standing on** — so the North
+Division's body of timber is now on the North Side, and the south bank of the main stem opens out,
+which is what the sources describe and what the town's own `blocked()` footprints were being tested
+against all along.
+
+**The two new gates, in `tools/smoke_renderer.mjs`, and both were demonstrated RED on the unfixed
+published mirror before the fix went in:**
+
+- *every tree drawn stands at its own station* — every vertex of the merged timber within 24 m of
+  some entry in `stations`. **This is the one that could never have passed through the bug**: under
+  the mirror the nearest station is twice the vertex's own northing away. Structural, not a
+  threshold.
+- *no timber is drawn out in the channel* — no vertex over the water mask further than 12 m from
+  dry ground, which is a bank willow's lean (see `TREE_DRY_MARGIN_M`'s box and `lean` in `SPECIES`)
+  and no more. This is the owner's report in the owner's terms.
+
+**Neither may ever be relaxed into a test of the placement. That is the test that was already
+green.**
+
+**LANDED WITH ONE GATE KNOWINGLY RED, AND THE `hold` IT WAS FIRST PARKED UNDER WAS WITHDRAWN ON
+MEASUREMENT.** With the wood repaired, `the roads reach the screen from the air, at the aerial
+anchor` fails — the FLYING station; **both on-foot road stations are green**, so nothing a walker
+sees regressed. It is not a regression in the streets either: not one street vertex moved, and every
+street gate — drape, wet vertices, the R-BUG4 panel invariant — is still green.
+
+This parcel was first parked on `hold` asking the owner to accept that red. **The premise of the
+question was measurable, and measuring it reversed the answer.** Both columns below were taken the
+same evening on the same runner, mobile 390×780, published mirror, with nothing but `trees.js`
+between them — `dev` at 3ea4e00 and this branch rebased onto it. The earlier figures in this box
+were taken against the pre-R-BUG1 base and are superseded by these:
+
+| aerial anchor, gated bands | `dev` (wood mirrored) | wood repaired |
+|---|---|---|
+| 100–250 m — seen of 63 projected | 46 | **60** |
+| 100–250 m — perceptible | 80 % → **37 probes** | 85 % → **51 probes** |
+| 250–600 m — seen of 186 projected | 157 | **177** |
+| 250–600 m — median ΔL\* | 2.7 of 6.1 opaque | 2.3 of 4.8 opaque |
+| 250–600 m — perceptible | 62 % → **~97 probes** | 54 % → **~96 probes** |
+| 250–600 m — weber / ground L\* | 0.1104 / 53.9 | 0.0951 / 52.8 |
+| **gated probes a visitor can SEE** | **203** | **237** |
+| **gated probes that are PERCEPTIBLE** | **~134** | **~147** |
+
+**The repaired build shows about thirteen MORE perceptible stretches of road and scores lower.**
+That is the metric, not the town: `perceptible` is a ratio over probes **seen**, and `seen` is
+exactly the quantity an occluder shrinks. **A gate whose score improves when something hides the
+thing it measures is dividing by the wrong number.**
+
+**This is R-BUG3's own lesson surviving one level below where R-BUG3 fixed it.** `roadContrast()`
+already moved the decision of WHETHER to gate a band from "enough probes were seen" to "enough were
+PROJECTED", and the comment beside it says exactly why: *"a band nobody can see reports n=0 and
+gates itself out, which is indistinguishable from a band with no road in it."* The band's SCORE
+still divides by `seen`. Score the same band on `nProjected` — fixed at 186 whatever stands in the
+way — and **`dev` reads 52 % and this branch reads 52 %.** `dev` is under the 0.55 bar too, and has
+been; it reports 62 % only because twenty-nine of its probes stand behind trees that were never
+supposed to be there. **The band did not regress today. It stopped being flattered.**
+
+**`ROAD_MIN_PERCEPTIBLE` is NOT lowered** — AGENTS.md § "never weaken an assertion to pass", and
+cutting a bar to admit the probes an occluder was hiding is the exact shape of that mistake. Note
+too that the honest denominator would not have let this branch through either, which is what makes
+it a finding rather than a route: it fails both builds. The band's real fix is **R-W2**'s textured
+coverage — its ceiling is 4.8 L\* opaque, so the contrast is there to be spent — and the denominator
+is **R-M1c**, opened below by this parcel. **R-W1** (`hold` PR #125) and **R-M1b** (no threshold
+source) remain the owner's.
+
+**Why it merged rather than waiting.** Holding a correct, visible, owner-reported fix behind a gate
+that was passing on an artefact of the very bug being fixed inverts what the gate is for. Merging to
+dev is stage, not ship: it publishes the `/dev/` preview only, and production moves solely on owner
+dispatch. Recorded here so no later run reads the red as fresh breakage — it is red on merit, red on
+`dev` as much as here, and it belongs to R-W2 and R-M1c.
+
+**What this leaves open, and it is a real question rather than a courtesy.** Every other layer that
+decides in ENU and draws in world space should be asked the same question by the same method —
+reading its buffers back rather than its intentions. `flora.js` is measured and clean.
+`streets.js`, `buildings.js` and `ground.js` have not been asked, and the ROADMAP entry for it is
+**K50** below.
+
+<details>
+<summary>The parcel as it was written when it was claimed (2026-08-16)</summary>
 
 **The owner reshot the river at 3:14 PM CT, standing 4 ft up on the south bank looking ENE 076°, on
 the build whose What's-New panel says — in the same screenshot — "The trees standing in the river
@@ -461,8 +592,20 @@ a screenshot from the owner's pose with no crown over water, posted in the PR **
 from the same pose**; the gate demonstrated FAILING on `dev` as it stands today and passing after;
 and the What's-New entry does not say "fixed" unless that pair of screenshots is in the PR.
 
+</details>
 
-### R-BUG5 — trees stand in the river · **DONE 2026-08-16 · it was the SKYLINE, not the planter**
+### K50 — ask every other layer the question that caught R-BUG5b · **UNCLAIMED · from R-BUG5b · Effort: S–M**
+
+R-BUG5b was invisible to three gates because all three asked where a layer DECIDED to put something
+and none read back where it was DRAWN. Four layers decide in ENU and draw in three's world space:
+`flora.js` (measured clean — `_m.setPosition(e, y, -n2)`), `streets.js`, `buildings.js` and
+`ground.js`. The method is committed and cheap: transform each layer's drawn vertices to ENU with
+`worldToEnu`'s own convention and compare them against the layer's own record of where it meant to
+put them. **UNSEEN if it finds nothing and SEEN the moment it does**, which is the honest way to
+scope it; it qualifies under the visible-progress rule's third exemption either way, as a gate on
+nothing less than trust in every other placement gate in the renderer.
+
+### R-BUG5 — trees stand in the river · **DONE 2026-08-16 · a real second fault, not the owner's picture**
 
 **The owner's two populations are ONE cause, and neither of them is a planted stem.** The report was
 a screenshot from 31 ft up, bearing 044°, north-east across the main stem: a straight LINE of woody
@@ -6378,6 +6521,50 @@ which is backwards for a gate.
 branch is re-run against them **without re-tuning the streets**; every existing road band still
 reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
 "every existing road band still reports", which R-M1a holds green by not gating anything.
+
+### R-M1c — the road score divides by a number an occluder can shrink · **UNCLAIMED · SEEN (it changes which builds pass) · from R-BUG5b · Effort: S**
+
+**A gate whose score IMPROVES when something hides the thing it measures is dividing by the wrong
+number.** `roadContrast()` computes `perceptible` as `ds.filter(d >= 2).length / ds.length`, where
+`ds` runs over the probes **SEEN**. Anything standing between the camera and a faint stretch of road
+removes that stretch from the denominator, and the band scores higher for it.
+
+**This is R-BUG3's own lesson surviving one level below where R-BUG3 fixed it.** R-BUG3 already
+moved the decision of WHETHER to gate a band from "enough probes SEEN" to "enough PROJECTED", and
+its comment says why: *"a band nobody can see reports n=0 and gates itself out, which is
+indistinguishable from a band with no road in it."* The same argument applies to the score and was
+not applied to it. `nProjected` is the un-gameable denominator: it counts the road points that land
+in the frame, whatever is in front of them.
+
+**Measured, and this is not hypothetical — it is what R-BUG5b ran into.** Aerial anchor, 250–600 m,
+mobile, published mirror, same runner, same evening; the only difference is whether the near-field
+wood is drawn mirrored:
+
+| 250–600 m, aerial | wood mirrored (`dev` 3ea4e00) | wood repaired |
+|---|---|---|
+| seen | 157 of 186 | 177 of 186 |
+| perceptible, over **seen** (today's score) | **62 %** — passes 0.55 | **54 %** — fails |
+| perceptible, over **projected** | **52 %** | **52 %** |
+
+**The build with a bug that puts trees on top of the town scores EIGHT POINTS HIGHER than the build
+without it, and the honest denominator says both are the same and both are under the bar.** The
+0.55 bar has been passing on that band on the strength of an occluder.
+
+**Scope.** Change `perceptible`'s denominator to `nProjected`; keep `n` reported beside it so
+occlusion stays legible as occlusion (that is `nBare`'s job and it must not be lost). Then re-read
+every band at every station and write down what moves — this WILL turn bands red that read green
+today, and that is the parcel, not a side effect.
+
+**The thing this parcel must not do.** It must not arrive with `ROAD_MIN_PERCEPTIBLE` lowered to
+absorb what it uncovers. If honest scoring puts a band under the bar, the band is under the bar, and
+the fix is **R-W2**'s textured coverage or **R-W1**'s light — not a smaller number. Note that this
+change makes scores strictly WORSE, never better, so it cannot be mistaken for a route through a
+gate.
+
+**Files:** `tools/smoke_renderer.mjs` (`roadContrast`, ~line 497)
+**Acceptance:** the denominator is `nProjected`; `n` and `nBare` still print; the aerial 250–600 m
+band is shown reading the same on a mirrored-wood build and a repaired one; every band's new figure
+is recorded in the PR; no threshold moves.
 
 ### R-A1 — a road-legibility accessibility aid · **DONE 2026-08-16 — shipped OFF by default, and the gate that proves it reaches the render had to be measured before it could be set**
 

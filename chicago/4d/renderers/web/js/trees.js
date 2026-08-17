@@ -1924,6 +1924,36 @@ export async function createTrees({
     };
   }
   const bump = (obj, key) => { obj[key] = (obj[key] ?? 0) + 1; };
+
+  /**
+   * ENU north -> three's world z, and it is a named function because leaving it
+   * implicit is what put the trees in the river.
+   *
+   * ROADMAP R-BUG5b. Every question this planter asks is asked in local ENU
+   * metres — `terrain.isWater(e, n)`, `communityAt(e, n)`, `surfaceHeight(e, n)`,
+   * `cellAt(e, n)`, `blocked(e, n)`, `noteStation(e, n, y)`. `addTree` takes a
+   * three WORLD z, and `enuToWorld` in terrain.js is `(e, y, -n)`: the two axes
+   * point OPPOSITE ways. Until 2026-08-16 the loop handed its ENU north
+   * straight to `addTree`, so every tree in the wood was TESTED at (px, pz) and
+   * DRAWN at (px, -pz) — the whole near-field wood mirrored across the datum's
+   * east-west line through the forks.
+   *
+   * That is the owner's screenshot, and it is why three green gates disagreed
+   * with his window. `wetTreeStations`, `drownedTreeStations` and
+   * `tools/measure_far_timber.py` all walk `stations`, which records the point
+   * that was TESTED — so they were describing a wood that was never drawn. 391
+   * stations, 0 of them wet; 64 of the same 391 wet at their mirror, and 10,734
+   * vertices of drawn timber standing up to 48 m from the nearest dry ground.
+   * `flora.js` had it right all along (`_m.setPosition(e, y, -n2)`), which is
+   * why the sward was never in the channel and the wood always was.
+   *
+   * The gate that holds it is `no drawn timber stands away from its own
+   * station` in the smoke: it reads the merged geometry back and asks whether
+   * the wood on the screen is the wood the station list describes. A test of
+   * the placement alone cannot see this class of fault and never could.
+   */
+  const worldZ = (n) => -n;
+
   /** Record a planted stem for the smoke suite, with the height it stands at. */
   const noteStation = (e, n, y) => {
     group.userData.stations.push({ e, n, y });
@@ -1960,7 +1990,7 @@ export async function createTrees({
         // and a clump about 3 m across, thinning these to half was what left
         // them standing as separate cushions on open sand.
         if (rnd() > 0.84 || blocked(px, pz)) continue;
-        addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, pz, rnd,
+        addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, worldZ(pz), rnd,
           0.8 + rnd() * 0.5);
         noteStation(px, pz, gy);
         stats.thickets++;
@@ -1994,7 +2024,7 @@ export async function createTrees({
       const id = pick(rnd());
       const spec = specs[id];
       if (!spec) continue;
-      addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
+      addTree(buffers[chunkOf(px, pz)], spec, px, gy, worldZ(pz), rnd);
       noteStation(px, pz, gy);
       stats.trees++;
       if (spec.head) {
