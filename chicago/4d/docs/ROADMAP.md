@@ -106,6 +106,7 @@ visible parcels were the hardest ones to find. Completed work now lives in its o
 not at the top of the queue.
 | # | lane | parcel | why first |
 |---|---|---|---|
+| **1** | RENDERING | **R-BUG7** | **SEEN · OWNER-REPORTED 2026-08-16, WITH A PHOTOGRAPH.** Yellow flower heads hang **above the horizon** on stalks that stop in mid-air — *"I guess they are supposed to be flowers but it does not connect."* South Water Street, bearing NNE 025°, on the `/dev/` preview. **This symptom has been repaired FOUR times in `flora.js` and one of those repairs calls it "a yellow star in the sky" in its own comment.** The finding is already available and it is R-BUG5b's: four fixes to the DRAWING and **not one gate that reads the drawing back** — the two checks that sound like it are about buildings hovering and about where a water-lily is PLACED. Two suspects are already refuted in its box (it is not the R-BUG5b sign fault; it is not a head surviving a dropped stem) — read it before spending a run re-refuting them. **Acceptance: a gate that requires plant geometry beneath every drawn head, demonstrated RED first** |
 | — | RENDERING | ~~R-BUG5b~~ | **SEEN** | **DONE 2026-08-16 — it was the PLANTER after all, and the whole near-field wood was drawn mirrored.** The loop asks every question in ENU (`isWater`, `communityAt`, `surfaceHeight`, `blocked`, `noteStation`) and hands its ENU north straight to `addTree`, which takes a three world **z** — and `enuToWorld` is `(e, y, -n)`. So every tree was TESTED at `(px, pz)` and DRAWN at `(px, -pz)`: **391 stations, 0 wet, 64 of the same 391 wet at their mirror, 10,734 vertices of timber over open water and the worst 48 m from dry ground.** Three green gates all walk `stations`, which is the point that was TESTED — **nothing had ever read the geometry back**. Read its box before trusting any placement gate in this file |
 | — | RENDERING | ~~R-BUG5~~ | **DONE 2026-08-16 · a real second fault, but NOT the owner's picture (see R-BUG5b)** — it was the SKYLINE, not the planter. Both of the owner's populations are ONE body of far timber authored **between the two banks** of the main stem, 39 of 39 samples over water and **3.347 m** under its surface; the scatter is the horizon solver's own gap modulation breaking the same run into crowns. Both existing gates were green because both count the near-field planter's 632 m square, and **nothing had ever asked the five `FAR_TIMBER` polylines where they stand**. Read its box before quoting any horizon-timber number |
 | **1** | RENDERING | **R-BUG5(b)** | **NOT A PICK WITHOUT THE OWNER.** `main_stem_belt_east` now draws nothing, because none of it was on land. Where the South Water Street belt's near edge actually ran is a placement claim no source here settles — three routes are written up in R-BUG5's box for the owner to choose between |
@@ -7402,6 +7403,75 @@ the near plane; the pixel gate stays in the tool, at three frames a station).
 **Not claimed:** the desktop half of the smoke — ~13 min against this runner's 10-minute
 per-command ceiling. The measurement itself was run at 1280×800, which is the harder viewport for
 this defect: more pixels of bank line to disagree about.
+
+### R-BUG7 — flower heads hang in the sky with nothing under them · **UNCLAIMED · SEEN · OWNER-REPORTED 2026-08-16 · Effort: M**
+
+**THE OWNER'S REPORT, and it is the fifth time this symptom has been fixed.** Standing on South
+Water Street on the `/dev/` preview at **bearing NNE 025°**, looking north across the main stem: two
+yellow flower heads float **above the horizon line**, each on a short stalk that **stops in mid-air**
+and reaches no plant. His words: *"yellow floating objects, I guess they are supposed to be flowers
+but it does not connect."* Both sit well above eye level with clear sky beneath them; the near one is
+the larger, so they are at different depths and this is not one stray instance.
+
+**FOUR PRIOR REPAIRS ARE WRITTEN INTO `renderers/web/js/flora.js` FOR THIS EXACT SYMPTOM, AND THE
+SYMPTOM IS IN PRODUCTION.** Read them before touching anything — each closed a real mechanism and
+none of them closed this:
+
+| where | what it fixed | its own words |
+|---|---|---|
+| ~line 666 | head and plant drew heights from independent draws of one range | *"the pair of flower heads the critic found floating unattached in the open sky"* |
+| ~line 2398 | every head archetype gained a **peduncle** below it | *"a flower that ends where its stalk should begin is the floating sprite the critic caught in the sky"* |
+| ~line 2409 | `PEDUNCLE` bounds how far a branched head may sit off the stem | *"lollipops hanging in the air beside the scape"* |
+| ~line 2532 | `rayGeometry` went from 9 rays to 14 so a disc is not a spider | *"at nine centimetres on a prairie-dock scape it was **a yellow star in the sky**"* |
+
+**THE FINDING IS ALREADY AVAILABLE AND IT IS R-BUG5b's: four fixes to the DRAWING, and not one gate
+that reads the drawing back.** `tools/smoke_renderer.mjs` has no assertion anywhere that a drawn
+flower head has plant geometry beneath it. The two things that sound like it are not it — the
+`floating` check near line 2057 is about **buildings** hovering over their ground, and
+`floatingDry/floatingWet` near line 2846 asks whether a water-lily *record* is **placed** on dry
+land, which is a placement test of exactly the kind R-BUG5b proved cannot see a drawing fault. **So
+this symptom has been repaired four times by eye and asserted zero times.**
+
+**TWO SUSPECTS ARE ALREADY REFUTED — do not spend the run on them again.**
+
+1. **It is NOT R-BUG5b's sign fault.** `flora.js`'s `push()` (~line 1968) takes ENU `n2` and does
+   `_m.setPosition(e, y, -n2)` **itself**, so every caller — heads included — is negated once and
+   only once. `maybeHead` passing `n + Math.cos(a) * r` is correct.
+2. **It is NOT a head surviving a dropped stem.** `placeForb` and `placeGraminoid` both end
+   `return set.push(...) ? h : 0`, and both call sites guard `if (h > 0)` before calling
+   `maybeHead`. The comment beside it already states the rule: *"a zero says the cap was reached and
+   nothing was drawn here, so nothing may be hung off it either."*
+
+**THE LIVE SUSPECTS, in the order worth testing.**
+
+1. **THE RING FADE LOWERS THE HEAD AND THE PLANT SEPARATELY.** `maybeHead` passes `rise` to the
+   shader as well as adding it to `y`, and the reason is written down: *"the shader has to bring the
+   head DOWN with the plant as the ring fades it: a head left at the height the CPU put it would
+   hang in the air over a shrinking stem."* The head and the plant are in **different instanced
+   sets with different ring parameters** (`near.head` / `ringAt(f.head, …)` against the plant's own
+   `f.fade`), and the only thing tying them together is a radius comparison at the call site
+   (`r <= f.head[0] + off + step`). **A radius comparison is not the same statement as "the stem
+   under this head is at full height".** If the plant's fade reaches zero before the head's does,
+   the documented failure mode is exactly the owner's photograph.
+2. **The ground the head is hung off may not be the ground the stem stands on.** `y = station(e, n,
+   zone, sp, wet)` is sampled once and used for both, but the shot is taken **across water**, and
+   the emergent/wet path is the least-travelled one in that function.
+3. **Scale.** A head is sized from the record's `inflorescence.size_m` through a nominal unit box;
+   a record with a bad `size_m` gives a head far too large for its plant, which reads as floating
+   even when it is attached. Cheap to rule in or out — print the drawn head size against its
+   plant's height and look at the tail.
+
+**THE ACCEPTANCE, and it is not negotiable, because four eyeball fixes is enough.** The repair ships
+with a gate that **reads the merged head geometry back and requires plant geometry beneath every
+head** — the same shape as R-BUG5b's *every tree drawn stands at its own station*, which is the one
+gate that could not have passed through that bug. Concretely: for every drawn flower-head instance,
+some plant instance of the same species within its own spread, whose drawn top reaches the head's
+stalk. **Demonstrate it RED on today's build before the fix goes in.** A gate on the placement is
+the gate that has been green through all four repairs.
+
+**Reproduce first, diagnose second** — R-BUG5b's rule, and the one #196 skipped. The pose is on
+South Water Street at NNE 025°; `tools/shoot.mjs` puts the camera there. **The first commit of this
+parcel should be a screenshot.**
 
 ### R-BUG6 — the town flickers too, and nobody knows why · **UNCLAIMED · UNSEEN · opened 2026-08-16 by R-BUG1 · Effort: S–M**
 
