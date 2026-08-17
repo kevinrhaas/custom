@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 3:41 PM",
+  "generated_ct": "Aug 17, 2026, 3:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -596,6 +596,23 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 33
+    },
+    {
+      "id": "T-0036",
+      "title": "The gate screen counts the town: buildings standing, people housed",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 34
     }
   ]
 }
