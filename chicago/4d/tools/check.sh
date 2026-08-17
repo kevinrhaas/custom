@@ -287,6 +287,15 @@ step "renderer modules parse" check_js
 step "the ground mesh still meets the heightfield the walker samples" \
   node tools/measure_terrain_fit.mjs --gate
 
+# The shrub archetype's own bounds, which are the only two numbers in it the
+# RESEARCH owns: the clump keeps the half-width its record states, and a leaf
+# spray stays a mass of leaves rather than shrinking towards a single leaf it
+# cannot draw at two triangles. K57 measured that "hold the total plate area and
+# refine the grain" trades the first for coverage, so the bound is a gate rather
+# than a paragraph. The third assertion is a ratchet on the coverage itself.
+step "the shrub keeps its recorded width and its shell is not see-through" \
+  node tools/measure_spray_grain.mjs --gate --quiet
+
 # The changelog contract, on every run rather than only when somebody remembers
 # it. AGENTS.md has always told an agent to run this by hand before merging, and
 # on 2026-08-13 the file was corrupted BY A MERGE — `.gitattributes` merges it

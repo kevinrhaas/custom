@@ -1,5 +1,92 @@
 # STATUS
 
+## Shipped 2026-08-17 — the parcel asked for a finer grain at the same plate area, and the plates are what carries the recorded width
+
+**ROADMAP K57**, opened by K56 six hours earlier: *at the same total plate area, is the shrub's shell
+better read as 32 masses of 0.4 m or 64 of 0.2 m?* **The question cannot be asked at a fixed plate
+area, and that is the finding.** The plates are what carries the clump's **recorded half-width** — the
+one horizontal number in this archetype the research owns — so a finer grain paid for out of the plate
+size pulls the whole bush in. 48 sprays ship, at the plate size K56 shipped.
+
+### Finding — holding the area spends a researched number on a rendering one
+
+Measured over 24 bearings by the new `tools/measure_spray_grain.mjs`, orthographic, on the archetype
+the scene draws:
+
+| candidate | plate area | foliage cover | worst bearing | stem cover | reach ÷ recorded half-width | plate on a 2.25 m hazel | triangles |
+|---|---|---|---|---|---|---|---|
+| 32 @ 1.000 — K56, shipped | 2.698 | 36.9 % | 33.0 % | 40.9 % | **0.990** | 37.3 cm | 72 |
+| 48 @ 0.816 — area held | 2.604 | 43.3 % | 39.3 % | 46.8 % | **0.930** | 29.3 cm | 104 |
+| 64 @ 0.707 — area held | 2.624 | 45.4 % | 41.5 % | 48.3 % | **0.890** | 25.8 cm | 136 |
+| 48 @ 1.000 — **SHIPPED** | 3.812 | **46.9 %** | **43.0 %** | **51.3 %** | **0.998** | 35.0 cm | **104** |
+| 64 @ 1.000 | 4.986 | 51.3 % | 47.3 % | 54.2 % | 0.997 | 34.6 cm | 136 |
+
+So the parcel's own candidate — 64 sprays at the shipped total area — buys 8.5 points of cover and
+pays **0.990 → 0.890** of the recorded half-width for them, taking the plate from 37 cm to 26 cm and
+within 2.6× of the 10 cm leaf that K56's whole diagnosis says two triangles cannot draw. **The grain
+trades against triangles, not against area**, and at the shipped plate size the count alone gives
+32 → 48 → 64 a cover of 36.9 % → 46.9 % → 51.3 %. Ten of the fourteen available points arrive with
+the first 32 triangles and four with the second, so **48 is where the return halves**. The remaining
+4.4 points are measured and deliberately unspent; a run that wants them can read what they cost.
+
+### Finding — K56's shell-fill figures were taken by a script nobody committed
+
+17.7 % → 30.9 % cannot be reproduced or re-pointed at a candidate, because the numbers only ever
+existed inside a function that imports three.js. Two things fix that, and the second is the reusable
+one:
+
+- `renderers/web/js/shrub-grain.js` — the archetype's stems, bands, spray plan and every corner, in a
+  module that **imports nothing**, so node reads the same arithmetic the browser draws. The extraction
+  was proved neutral before a number moved: **1,296 floats over 144 vertices, 0 differing, worst delta
+  exactly 0** against the original loop.
+- `tools/measure_spray_grain.mjs` — the instrument, ~7 s and no browser. Its `32 @ 1.000` row
+  reproduces K56's committed plate area of **2.698 to the digit**, which is the check that it measures
+  the town rather than a port of it. (Its `16 @ 1.000` row reads 1.387 against K56's 1.399 because the
+  pre-K56 bush had two spray bands and this table has three — the row is the count alone, and is
+  labelled that way.)
+
+**`--gate` runs in `tools/check.sh`** and asserts the two numbers the research owns rather than the
+one this run chose: reach ≥ 0.95 of the recorded half-width, and a spray ≥ 2× a 10 cm leaf so the
+"leaf mass" abstraction cannot quietly become a claim to draw a leaf. The third assertion is a ratchet
+— cover ≥ 40 % at **every** bearing, above K56's worst-bearing 33.0 % and below today's 43.0 %.
+
+### What a visitor sees
+
+`docs/evidence/k57-{before,after}.png`, the wet woods at E −54 / N +314 bearing 135°, 1280×800 on the
+published mirror — the same station K54 and K56 used. **38.8 % of the frame's pixels change.** The
+bushes cover 47 % of their own outline where they covered 37, and the dark stems under them are 51 %
+hidden where they were 41.
+
+**No census moved**, which is the assertion that this is a geometry change and nothing else:
+`tools/measure_sward_draw.mjs --gate` reads back every banked figure to the digit — 7,069 slots,
+deviation matrix **154.19** · forb **86.16** · shrub **18.84**, shrub instances **181** over eight
+stations, forb **923**, `z03_sedge_meadow` forb **84**, 0 of 98 pairs drawn nowhere.
+
+**Cost:** 72 triangles a shrub becomes 104. The census counts **167** shrubs standing in
+`z06_dense_forest` — not the 156 K54 and K56 quote, which K55 moved — so the wet woods' ring is
+**17,368 triangles, 1.7 %** of the scene's million. The spawn frame reads **541,701 → 541,733**, and
+that +32 is exactly one shrub: `tools/shoot.mjs` dumps its stats before it teleports, so its figure is
+the anchor's and never the station's. Worth knowing before quoting it as a scene total.
+
+### What is NOT verified
+
+**Neither half of `tools/smoke_renderer.mjs`, for the fifth parcel running.** See the note below; the
+blocker is unchanged and this run did not fix it. What ran green in the foreground instead:
+
+- `./tools/check.sh` — **CHECK PASS** in 22 s, which is this repo's actual dev gate
+  (`chicago-4d-check.yml` runs it and nothing else), including the new grain step.
+- `node tools/measure_spray_grain.mjs --gate` — **GATE: PASS**.
+- `node tools/measure_sward_draw.mjs --gate` on the published mirror — **GATE: PASS**, every figure
+  identical to the banked table.
+- `node tools/shoot.mjs` at the K56 station on the published mirror, before and after — **zero page
+  errors** both times, 35 draw calls of 80, within budget.
+
+**Unverified consequences, stated plainly:** no frame-time figure was taken, so "104 triangles is
+affordable" rests on the triangle count and the draw-call count and not on a measured frame; the
+`balanced` (800,000) and `light` (600,000) ceilings were not read back, though `full` sits at 54 % of
+its own and both lower levels draw strictly less; and the mobile viewport was not rendered at all, so
+the +32 triangles a shrub are unmeasured at 390×780.
+
 ## Shipped 2026-08-17 — the same fault ran BOTH WAYS, and for the herbs it under-planted the riverbank 96×
 
 **ROADMAP K55**, opened by K54 with its arithmetic banked and taken as the last list dealt off the

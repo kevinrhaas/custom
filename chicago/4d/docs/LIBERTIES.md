@@ -4572,3 +4572,45 @@ rather than a preference. ROADMAP **K57** carries it.
 Related: **L122** (the archetype this refines), **L123** (why the layer is drawn at two fifths of
 its recorded cover), and ROADMAP **K56**.
 **Recorded:** 2026-08-17.
+
+### L125 — Forty-eight leaf sprays, because refining the grain would have spent the recorded clump width on coverage
+
+**Decision:** the shrub archetype (**L122**, **L124**) now carries **forty-eight** leaf sprays where
+it carried thirty-two, and **the size of a spray is unchanged again** — 0.26–0.42 of the recorded
+clump radius, a 0.26–0.44 m mass on a hazel recorded 2.25 m across. ROADMAP **K57**.
+
+**The question K57 was written to answer, and why it could not be answered as asked.** L124 left it
+open: *at the same total plate area, is the shell better read as 32 masses of 0.4 m or 64 of 0.2 m?*
+Holding the total plate area is exactly what cannot be done here. The plates are what carries the
+clump's **recorded half-width** — the one horizontal number the research owns — so paying for a
+finer grain out of the plate size pulls the whole bush in. Measured over 24 bearings by
+`tools/measure_spray_grain.mjs`: 64 sprays at the shipped total area take the drawn reach from
+**0.990 of the recorded half-width to 0.890**, and the spray from 37 cm to 26 cm. It buys coverage
+— 36.9 % of the outline to 45.4 % — with a number that is not the renderer's to spend.
+
+**So the grain trades against triangles, and the invention is the count, again.** At the shipped
+plate size the count alone gives 32 → 48 → 64 sprays a foliage coverage of **36.9 % → 46.9 % →
+51.3 %**, for 72 → 104 → 136 triangles, with the reach unmoved at 0.990–0.998. Ten of the fourteen
+available points arrive with the first thirty-two triangles and four with the second, so **48 is
+where the return halves and 48 is what ships.** The remaining 4.4 points are measured and left
+unspent rather than taken quietly.
+
+**What is NOT claimed.** No source in this repository states a leaf-mass count for any of the
+twenty-one `shrub_low` records, and none is invented here that L122 and L124 did not already
+record — this is the same invention at a coarser dial. What is not invented: the silhouette, which
+still reaches **0.998** of the recorded half-width and never leaves the recorded height, and the
+census, which is identical plant for plant. Nothing about which shrub stands where moved.
+
+**And the bound is now a gate rather than a paragraph.** `tools/measure_spray_grain.mjs --gate` runs
+in `tools/check.sh` and asserts the two numbers the research owns — reach ≥ 0.95 of the recorded
+half-width, and a spray at least twice a 10 cm leaf so the mass abstraction cannot quietly become a
+claim to draw a leaf — plus a ratchet holding the coverage above 40 % at every bearing. L124's own
+figures were taken by a script that was never committed and cannot be reproduced; this one is the
+module the scene draws.
+
+**Cost:** 72 triangles per shrub becomes 104, which in the wet woods' ring of 167 is 17,368 of a
+1,000,000 ceiling — 1.7 %.
+
+Related: **L122** (the archetype), **L124** (the count this refines and the question it left open),
+**L123** (why the layer is drawn at two fifths of its recorded cover), and ROADMAP **K57**.
+**Recorded:** 2026-08-17.
