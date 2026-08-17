@@ -149,7 +149,8 @@ rationed.**
 | — | RENDERING | ~~K24~~ | **SEEN** | **DONE 2026-08-17 — the Brightness slider, off by default, and the SECOND parcel taken by pulling a SEEN row up when every numbered one was blocked.** Owner-requested on 2026-08-14 and deferred behind PR #125 by a sequencing note that turned out to be a claim about a diff nobody had checked: the aid is one constant and one method, not a `world.js` rewrite. **Its finding is about R-A1's gate rather than about light** — `Object.assign` copies what a getter returns, so `get roadAid()` had been a frozen `0` since it shipped, and both of R-A1's readback assertions expect `0`. The control was live; its report of itself was not. Read its box before adding any reading to `window.__chicago4d` |
 | — | RENDERING | ~~K51~~ | **SEEN** | **DONE 2026-08-17 — 139 researched animals reached no browser at all, and the whole layer is now a card in the Evidence panel.** Fauna figures reaching a visitor **0 of 30 → 30 of 30**; the dataset's unread population **58 of 100 → 28**. Its findings are about instruments, not animals: K42's assertion 3a **fired exactly as designed** the moment the directory was opened, and **two of that gate's own controls had been written against the repository's state** — one became a copy of the measurement and the other printed SILENT rather than failing. And `docs/LIBERTIES.md` **L2 said "ambient wildlife is rendered sparsely" for eight days while nothing was rendered at all**. Read its box before quoting any layer-read number |
 | — | RENDERING | ~~R-BUG6(a)~~ | **SEEN in motion** | **DONE 2026-08-17 — the shadow box was re-centred on the visitor's exact position, so its texel lattice slid under every step and re-quantised every shadow edge in the town.** It moves in whole texels now: with the camera held still and the box slid half a texel, `from_above` **2,023 changed pixels → 0** and `descend_main_stem` **5,650 → 0**. Three findings, and two of them are about instruments: **the control that "cleared the shadow map" was inert** (a compile-time flag is not a runtime handle — it moves 5,439 px now), and **a sub-pixel nudge cannot measure a shadow box at all** — scaled up to a half texel it changes 29,138 px with the fix and 28,784 without, sign included. The answer to the parcel's title: **the shadow map is 14–16 % of the town's flicker**, not the cause of it. Read its box before quoting any flicker number |
-| **1** | RENDERING | **R-BUG6(b)** | UNSEEN | the other **84 %** — co-planar depth ties, with `from_above` **1,108** px and `descend_main_stem` **2,008** px measured with the shadow map honestly switched off. R-W5a2 has already characterised the class; the instrument that works is `--box-drift`, not the nudge |
+| — | RENDERING | ~~R-BUG6(b)~~ | — | **DONE 2026-08-17 — the premise was wrong and two tests say so. The residual is NOT co-planar ties: switching the depth test from `LessEqual` to `Less` moves 36,187 px of the frame and only 13 of the 1,108 flickering ones (1.2 %), and 5× the depth precision leaves 604 of 607 surviving.** It is the town's own edges being resampled, which is antialiasing and not a defect — R-BUG1's near plane had already taken the real one. Three findings: **an exact tie is STABLE and a near tie is what flickers** (which is why 3.5 % of this frame is co-planar and none of it shimmers); the ownership instrument (`tools/measure_tie_class.mjs`, 0 unattributed, buildings + trees own 94.5 % of the flicker on 7.7 % of the frame); and **`measure_river_edge.mjs`'s bank mask counts the SKY as water** — rows 0–200 are 1,280 of 1,280 "waterish", so no bank-line pixel count from it is a statement about the river. Read its box before quoting any flicker or bank number |
+| **1** | RENDERING | **R-BUG6(c)** | UNSEEN | **NEEDS ONE BAKE.** The 36,187 co-planar pixels above are steady but arbitrary: two surfaces of different colours at one depth, with draw order picking the winner. A question about the models, opened by (b) |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -8336,7 +8337,10 @@ control, the whole-frame flicker under the 2 mm nudge on `dev` falls from **1,28
 `from_above` and **2,383 → 2,008** at `descend_main_stem` when the shadow map is taken out
 entirely: **the shadow map carries 14–16 % of it.** The snap banks about half of that (1,284 →
 1,184 and 2,383 → 2,195, and the gated bank share 2.9 % → 2.6 % and 3.4 % → 3.1 %); the other
-~84 % is co-planar depth ties, which is R-W5a2's class and is **R-BUG6(b)**, below. Do not quote
+~84 % is **NOT** co-planar depth ties — R-BUG6(b) refuted that on 2026-08-17 with the depth-function
+switch (13 of 1,108) and 5× the near plane (604 of 607 survive); it is the town's own edges being
+resampled. The sentence below stood for one day and is kept because the box it sits in is quoted.
+Do not quote
 the shadow map as the cause of the town's flicker.
 
 **FINDING 3 — THE NUDGE INSTRUMENT CANNOT MEASURE THE SHADOW BOX, AND THE ATTEMPT IS ON THE
@@ -8373,7 +8377,103 @@ mirror: **253 passed, 2 failed** — the same two road assertions `dev` already 
 does not fit the runner's ten-minute per-command ceiling (ROADMAP § THE RUN BUDGET) and did not
 run; every figure above is `measure_river_edge.mjs` at 1280×800 on the published mirror.
 
-### R-BUG6(b) — the other 84 %: co-planar ties · **CLAIMED 2026-08-17 (steward/r-bug6b-coplanar-ties) · opened 2026-08-17 by R-BUG6(a) · Effort: S–M**
+### R-BUG6(b) — the other 84 % is NOT co-planar ties · **DONE 2026-08-17 — the premise is refuted by the two tests that can settle it, and the residual is the town's own edges**
+
+**Phase:** lane 1, renderer only, no bake · **Runner:** improve-runner · **Files:**
+`tools/measure_tie_class.mjs` (new) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js` · `site/chicago/4d/**`. **No renderer file was changed, because
+nothing was found to change.**
+
+**THE ANSWER: 13 pixels of 1,108.** Three boxes of this file — R-BUG1's successor note,
+R-BUG6(a) finding 2 and the row in NEXT UP — said the residual flicker was "co-planar depth
+ties", by analogy with R-W5a2's batch merge. It is not. Two independent tests say so, and
+neither had been run:
+
+| test | what it can see | result |
+|---|---|---|
+| **the depth function** — `LessEqual` → `Less`, all 11 materials | changes a pixel **only** where two surfaces have exactly the same depth. It is the definition of co-planar, asked of the renderer | **36,187 px of the frame move — and only 13 of them are flickering pixels (1.2 %)** |
+| **the near plane** — 7 m → 35 m, 5× the depth precision | heals any tie decided by rounding rather than by geometry | **604 of 607 interior ties survive**; the whole frame goes 1,108 → 1,115 |
+
+So the remainder is neither co-planar nor precision-limited. **It is the scene's own geometric
+edges being resampled by a camera that moved** — which is what antialiasing is, is present in
+every correct renderer, and is not a defect. R-BUG1's near plane had already taken the real
+one.
+
+**FINDING 1 — AN EXACT TIE IS STABLE, AND THAT IS WHY THIS SCENE GOT AWAY WITH 36,187 PIXELS OF
+IT.** The depth-function switch moves **3.5 % of the whole frame**, so co-planar surfaces are
+everywhere in this town — and not one of them shimmers. The reason is the arithmetic nobody had
+written down: two surfaces at *exactly* the same depth quantise to the same value from every
+camera position, so the tie is broken by DRAW ORDER, which is deterministic and does not move
+when the visitor does. **It is the NEAR tie — a gap smaller than one depth quantum — that
+flickers, because the quantum boundary is what the camera moves.** The two look identical in a
+still frame and behave oppositely in motion, and this project had been reasoning about the
+first while measuring the second.
+
+**FINDING 2 — THE INSTRUMENT: A LAYER'S FOOTPRINT IS THE SET OF PIXELS THAT CHANGE WHEN YOU HIDE
+IT.** `tools/measure_tie_class.mjs` partitions the flicker by what is actually drawn there —
+exact ownership, decided by occlusion, the same way the depth buffer decides it. At
+`from_above`, with the shadow map off by R-BUG6(a)'s repaired control:
+
+| layer | footprint px | its flicker | share | interior | silhouette |
+|---|---|---|---|---|---|
+| structures | 22,175 | 556 | 50.2 % | 383 | 173 |
+| trees | 56,565 | 491 | 44.3 % | 211 | 280 |
+| ground | 721,346 | 35 | 3.2 % | 12 | 23 |
+| water | 178,210 | 22 | 2.0 % | 1 | 21 |
+| streets | 47,918 | 4 | 0.4 % | 0 | 4 |
+| flora | 0 | 0 | 0.0 % | 0 | 0 |
+| **unattributed** | — | **0** | — | — | — |
+
+Zero unattributed and zero control drift, so it is a partition of the whole set rather than a
+sample of it. **The buildings and the trees own 94.5 % of the flicker on 7.7 % of the frame** —
+which is the shape of "edges", not the shape of "surfaces".
+
+**FINDING 3 — AND THE TRAP IN MY OWN FIRST INSTRUMENT, WHICH IS WHY FINDING 1 NEEDED THE DEPTH
+FUNCTION.** The `interior` column above was built to separate ties from edges: a pixel whose
+owner's footprint surrounds it on all eight sides has nothing else drawn there, so a change
+looked like the layer fighting itself. **It is not sound, and the frames say so** — a roof
+against its own wall, a chimney against its own roof, one building in front of another and a
+shingle course against the course below are all *interior to the `structures` footprint* and
+all ordinary silhouettes. 607 "interior ties" survive at 5× precision precisely because 604 of
+them were never ties. **A footprint tells you WHO owns a pixel and cannot tell you WHY it
+moved**, and the column is kept, with this caveat printed beside it, because the ownership half
+is exact and useful.
+
+**FINDING 4 — `measure_river_edge.mjs`'s BANK MASK COUNTS THE SKY AS WATER.** Its water test is
+`b > r + 6 && g > r`, and July sky passes it: measured on the same frame, **rows 0–200 are 1,280
+of 1,280 "waterish"**, so `bank_px` = 33,328 is mostly the horizon and every roof and canopy
+silhouette against it. The gate is a *share*, so both halves are inflated and it has not been
+reading falsely — but **"784 of the bank line flickers" is not a statement about the river**, and
+the number should not be quoted as one. The layer footprints in the tool above are what a real
+bank mask would be built from: the boundary where the `water` footprint meets the `ground` one.
+Not fixed here — it is R-BUG1's gate and changing its denominator changes a shipped threshold,
+which is its own parcel.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. `SMOKE_VIEWPORT=mobile` on the published
+mirror. The desktop half does not fit the runner's ten-minute per-command ceiling (§ THE RUN
+BUDGET) and did not run; every figure above is `measure_tie_class.mjs` at 1280×800 on the
+published mirror, control 0 px and return-to-pose 0 px on every run.
+
+**What is left of R-BUG6, and it is not a renderer parcel.** The 36,187 co-planar pixels are
+stable, but they are two surfaces of possibly different colours drawn at the same depth, with
+draw order picking the winner — so *which* surface a visitor sees there is arbitrary even though
+it is steady. Whether that is 3.5 % of the frame painted the wrong colour is a question about
+the GEOMETRY, needs a bake, and is **R-BUG6(c)** below.
+
+### R-BUG6(c) — 3.5 % of the frame is two surfaces at one depth · **UNCLAIMED · opened 2026-08-17 by R-BUG6(b) · NEEDS ONE BAKE · Effort: M**
+
+The depth-function switch moves **36,187 pixels of a 1,024,000-pixel frame**. Every one of them
+is a place where two surfaces sit at exactly the same depth *and are not the same colour* — if
+they matched, the switch could not have moved the pixel. Draw order decides which one the
+visitor sees, and draw order is a property of the batch, not of the building.
+
+It is stable, so it is not flicker and not this parcel. It is a question about the models: which
+pairs of surfaces are coincident, is it the same pair on every archetype, and is the surface
+that currently wins the one the record intends? Start by attributing those pixels the way
+`measure_tie_class.mjs` attributes flicker, then look at the generator that emits the pair.
+**Needs a bake if the answer is to move a face**, which is why it is not folded into (b).
+
+### R-BUG6(b) — the parcel as written, kept for the record
 
 **The suspect list is one shorter and the remainder is measured**: with the shadow map switched
 off by the repaired control, `from_above` still flickers **1,108** pixels and
