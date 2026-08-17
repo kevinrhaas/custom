@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 158, title: 'There are trees on the lakeshore sand', kind: 'feature', ts: '2026-08-17T03:31:34.010Z', date: 'Aug 16, 2026, 10:31 PM CT',
+    items: [
+      'Walk east past the beach ridges to the lake and the sand is no longer bare: 88 trees stand on it — leaning cottonwoods with their trunks half buried, and narrow quaking aspen and balsam poplar behind them. It is the last piece of ground in this model that was swept for trees and given none.',
+      'They are the three trees the research records for these dunes, at the densities it records — 9, 5 and 5 per hectare — and until today nothing in the scene could choose them. A week ago the walkthrough said in writing that the beach was empty on purpose rather than by accident. It is now planted on purpose.',
+      'Where they stand is decided by the same thing that decides which grass you are walking on: the beach is drawn from a zone in the dataset, and the trees now stand on exactly that ground. Move the zone and both move together.',
+      'The dune cottonwood is the same species as the big cottonwoods along the river and is not the same tree — 5 to 15 metres against 22 to 30, leaning, forking low. It was nearly drawn as the river one: the scene keeps one shape per species and this is the first species recorded twice. The aspen is given a pale trunk so you can tell it from the balsam poplar beside it, which is our choice and is written up.',
+      'Still bare, and stated rather than hidden: the older beach ridges west of the sand. Their own record carries no tree — only a bur-oak scrub nothing draws yet — so nothing was invented to fill them.',
+      'Every tree in the town is dealt from one shuffle, so planting a new community redeals the individuals. Same rules, same species, same expected numbers; different trees in slightly different places.',
+    ] },
   { v: 157, title: 'The town is lit by its own sky at last', kind: 'feature', ts: '2026-08-17T02:46:24.660Z', date: 'Aug 16, 2026, 9:46 PM CT',
     items: [
       'Until today the sky over this reconstruction and the light falling on it were two different skies. Overhead was a sky model calibrated against a verified July photograph of Illinois prairie. What actually lit the buildings was a pair of plain coloured lamps \u2014 one tinted blue for the sky, one for the ground \u2014 and nobody had ever measured the two against each other.',

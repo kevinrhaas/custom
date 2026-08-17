@@ -71,6 +71,19 @@
         ]
       }
     },
+    "z08_lakeshore": {
+      "verdict": "meets-the-planter",
+      "box": {
+        "e": [
+          1400,
+          1700
+        ],
+        "n": [
+          -400,
+          400
+        ]
+      }
+    },
     "z10_settled_town": {
       "verdict": "no-box",
       "box": null
@@ -79,6 +92,45 @@
   "unselectable": {},
   "drawn_as_another_species": {},
   "weights": {
+    "dune.mix.populus_deltoides": {
+      "weight": 9.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          3,
+          15
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
+    "dune.mix.populus_tremuloides": {
+      "weight": 5.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          2,
+          8
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
+    "dune.mix.populus_balsamifera": {
+      "weight": 5.0,
+      "cited_bands": {
+        "z08_lakeshore": [
+          2,
+          8
+        ]
+      },
+      "verdict": "inside-its-band",
+      "dossier_zones": [
+        "8"
+      ]
+    },
     "gallery.edgeMix.salix_nigra": {
       "weight": 42.0,
       "cited_bands": {

@@ -158,7 +158,7 @@ rationed.**
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
-| **1a** | TOWN | **K45(b) change one** | **SEEN** | **the dune community.** 40.2 ha of modelled beach and relict ridge is swept by the planter and refused, because `z08_lakeshore`'s eastern cottonwood, quaking aspen and balsam poplar are in no mix. K45(b2) removed the hard part — `communityAt` already refuses everything east of State Street, so the `dune` branch does not have to out-argue the bank-distance test — and the densities are sourced. **NO BAKE**; it carries the smoke |
+| — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
 | **1b** | RENDERING | **K45(b3)** | SEEN on `light` | the timber's detail control is a cap that never binds and truncates the wood's north end when it does. A keep fraction per level, opened and measured by K45(b2). Small, and it is the one parcel here that a phone sees and a desktop does not |
 | — | RENDERING | ~~K45(b2)~~ | **SEEN** | **DONE 2026-08-16** — the planter sweeps the field (reach 27.05 % → 98.37 %), the timber gets the east end Andreas gives it, and `z05`'s own note had Wells Street 440 m from where the committed centreline puts it. Read its box before quoting a reach number or moving a woody east limit |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
@@ -3224,7 +3224,12 @@ parcel is a measurement, a bank, two gate steps, a correction to L113 and a chan
 entry. Nothing a visitor sees moved, which is the honest outcome when the repair on the
 table would have moved nothing either.
 
-### K45(b) — the lakeshore repair as it actually is · **UNCLAIMED · opened 2026-08-16 by K45(a) · Effort: M · NO BAKE, and it carries the smoke**
+### K45(b) — the lakeshore repair as it actually is · **SPENT 2026-08-17 — all three changes have landed · opened 2026-08-16 by K45(a)**
+
+> **NOT A PICK — there is nothing left in it.** Change three (the sycamore) landed as K45(b1),
+> change two (the planter's square) as K45(b2), and change one (the dune community) as
+> K45(b4) below. Its successors are **K45(b3)**, the detail control, and the willow scrub
+> K45(b4) leaves unplanted.
 
 K45(a) refuted the one-line version. What is left is two changes and one research question, and
 its numbers are all measured and committed — take them, do not re-derive them.
@@ -3351,6 +3356,113 @@ different individuals. Nothing was tuned to make that look better.
 10-minute per-command ceiling; see the run-budget box at the top of this file. The draw-call and
 triangle figures above are from a 1280×800 page load, which is the desktop geometry even though
 the desktop smoke did not run.
+
+### K45(b4) — the dune community, and the classifier that had to come from somewhere else · **DONE 2026-08-17 — 88 poplars on 4.30 ha of sand, and the beach's own record was never asked where it stood**
+
+**SEEN.** Walk east to the lake and there are trees where there were none. It holds no exemption
+and needs none.
+
+**Read this box before adding a species to a second zone, or before quoting a refused-hectares
+number.**
+
+**WHAT SHIPPED, one: the community.** `COMMUNITIES.dune` — `populus_deltoides` in its dune form at
+**9**/ha, `populus_tremuloides` and `populus_balsamifera` at **5** each, every one of them the
+midpoint of its own `z08_lakeshore` band under K45(b1)'s rule, over `perHa` **[7, 31]**. That stand
+density is **derived and not quoted**, which is a first here: ZONE 8 gives no canopy figure because
+a dune has no canopy, and on open sand three isolated-tree densities ADD rather than competing for
+one. The arithmetic is checkable in one line — at the middle of [7, 31] the draw plants 9 + 5 + 5
+per hectare, each record's own midpoint reproduced exactly — and that is why it is written that way
+rather than normalised to a hundred. Measured: **88 stems, 42 / 23 / 23**, against 41.7 / 23.2 /
+23.2 expected.
+
+**WHAT SHIPPED, two: the placement rule, and it is the interesting half.** K45(b) left three
+candidates — substrate, the zone extent, or distance to the lake. All three are the same question
+asked badly: **the heightfield does not carry substrate**, and the extent alone is not the
+classifier, because ten zones overlap and a priority order decides between them. `flora.js` already
+resolves exactly that, for the sward under the visitor's feet. So `communityAt` asks it —
+`zoneAt(e, n) === 'z08_lakeshore'` — and the wood stands on the sand that is DRAWN, not on a second
+copy of the beach that could drift from it. `trees.js` still reads no extent. A dead sward answers
+null and plants no dune, which is the safe direction.
+
+**FINDING 1 — the 40.2 ha K45(b2) banked as swept-and-refused was never 40.2 ha of woody
+omission.** Measured on the committed heightfield through the sward's own classifier: the ground
+east of the timber limits is **4.30 ha the lakeshore claims (2,687 dry nodes) and 33.6 ha of
+`z09_sand_prairie`** (20,991 nodes), the relict beach ridges. **z09's record carries no tree.** Its
+only woody entry is `quercus_velutina_grubs`, a `shrub_low` — a role no woody reader takes and
+`flora.js`'s business, not this layer's. So five sixths of the refused ground is refused by the
+dataset rather than by the renderer, and the parcel that reads "plant the 40.2 ha" was reading a
+number that had never been broken down. **The generalisation: a refused population is only a defect
+where something wanted to stand there, and nothing had asked WHICH records wanted to.**
+
+**FINDING 2 — `SPECIES` is keyed by species id, and that breaks the first time a species is
+recorded twice.** `populus_deltoides` is `z05_riverbank_timber`'s `tree_gallery`, 22–30 m tall with
+a 14–22 m crown, and `z08_lakeshore`'s `tree_leaning`, 5–15 m with a 6–14 m crown and a note that
+says *"isolated, half-buried and leaning"*. `loadTimberZones` keyed its spec map by species id and
+took the first zone to name one, so the dune was one line from being planted with twenty-five-metre
+floodplain cottonwoods — **the record read, routed, banded, gated, and drawn as another zone's
+tree**, which is L116's fault one level in and would have passed every gate this project had. The
+repair is narrow on purpose: `ARCHETYPE_BY_ZONE` lets a ZONE declare archetypes and a community name
+the zone it plants from (`specsFrom`), and only the lakeshore has an entry. **The general form —
+a spec map keyed by (zone, species) for every community — would redeal the whole town's specs**,
+because `ulmus_americana` and four others are named by two zones too, and it is its own parcel.
+
+**FINDING 3 — a gate that scans one table reports a false finding when a second table appears.**
+`measure_planting_reach.py` assertion 3b reports a placed species drawn with the fallback's bole
+and bark by scanning `SPECIES` alone, so it convicted both new poplars the moment they were
+planted **with their own archetypes committed three hundred lines above**. It reads
+`ARCHETYPE_BY_ZONE` now, per community rather than globally, and the bank is **0**. The scanner
+raises on an absent table rather than returning an empty set, which is this file's own rule and the
+reason the false finding was caught in one run rather than banked.
+
+**AND ONE SELF-TEST CASE WAS ASSERTING THE REPOSITORY RATHER THAN THE MECHANISM.**
+`measure_flora_reach.py` tested *"a woody record outside TIMBER_ZONES reaches nothing"* by naming
+`z08_lakeshore` — so this parcel turned it red by repairing the thing it was written about. It is
+asked of `z09_sand_prairie` now, with a note saying to move it again rather than delete it. That is
+the third instance of this shape in four days (R-A1's inertness assertion, K51's two controls), and
+the pattern is worth naming: **a case whose fixture is a defect dies when the defect is fixed.**
+
+**WHAT IT COSTS.** Trees **373 → 472** (88 dune stems and a redeal of the rest), timber triangles
+**167,830 → 186,442** against a 1,000,000-triangle scene budget, load 2.19 s. Timber draw calls
+**4 → 5**, against the ≤ 80-per-station budget R-W5a and K36(b) hold. The wood is dealt from one
+seeded stream in sweep order, so a new community **redeals every stem in the town**: same rules,
+same expected counts, different individuals. Nothing was tuned to make that look better.
+
+**WHAT IT REFUSES.** The river's point-bar branch is refused on the dune outright. It tests only
+height and distance to water, so on the lakeshore it would read the beach as a point bar and hang a
+willow screen along the open lake — which ZONE 8a refuses in as many words: 85–98 % bare sand, *"do
+not vegetate this"*. Measured, it changes nothing today — **0 of the dune's 2,687 dry nodes qualify,
+the nearest is 9.66 m from water against the branch's 9 m** — and it is written because 0.66 m is
+the whole of that margin.
+
+**WHAT IS STILL NOT PLANTED, stated rather than left to be discovered.** ZONE 8c's willow scrub —
+`salix_cordata` 15–50 clumps/ha, red-osier, juniper, sand cherry — is `shrub_low`, a role no woody
+reader has a cohort for, and `flora.js` plants it as ground cover rather than as scrub. Six records
+reaching no reader became **two**; 301 unreached (record, figure) pairs became **261**. The
+remaining two are the two vines whose `vine_drape` form nothing implements.
+
+**Verified:** `tools/check.sh` — CHECK PASS, before AND after merging `dev`, with every moved bank
+in this commit (`planting_reach_baseline.json`: 0 unselectable, 5 timber zones, 29 mix entries;
+`flora_reach_baseline.json`: 2 records, 14 figures) plus all three gates' self-tests. That is the
+dev gate: `chicago-4d-check.yml` runs it and nothing else, and it passed in CI on the PR too.
+
+**AND THE MOBILE SMOKE HAS NOW OUTGROWN THE PER-COMMAND CEILING, WHICH IS WORTH RECORDING BECAUSE
+THE RUN-BUDGET BOX AT THE TOP OF THIS FILE SAYS ONLY THE DESKTOP HALF HAD.** On this parcel's own
+tree, `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` finished at **237 passed /
+2 failed** — the two road-contrast checks — and a run of the same command against a clean
+`origin/dev` worktree returned **237 / 2, the same two checks, with the walker's-eye numbers
+identical to the digit**. So the failures are the queue's, not this parcel's; R-M1c's box already
+records that those bands sit honestly under the bar. Nothing gated moved, and in the reported-only
+600–4000 m aerial band the readable share moves 75 % → 70 % on an unchanged `nBare` of 151 — a
+redealt wood standing in front of more road, which is exactly what R-M1c's repaired denominator
+exists to show rather than hide.
+
+**After merging `dev` — which brought R-W1's lighting — the same command was killed by the
+ten-minute ceiling at 230 passes**, the same two road failures and no page error, with the last
+seven checks (free-fly return, three inspect paths, zero-page-errors, two vendor meshopt) unreached.
+They are interaction and vendor assertions this parcel does not touch and all seven passed on its
+pre-merge tree. **The mobile half now costs more than one command here**, so the durable fix named
+in the run-budget box — a test-name or section filter beside `SMOKE_VIEWPORT` — is no longer only
+the desktop half's problem.
 
 ### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **UNCLAIMED · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
 

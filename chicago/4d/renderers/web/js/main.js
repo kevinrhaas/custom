@@ -257,6 +257,12 @@ async function boot() {
     dataBase: bases.dataBase, terrain, footprints,
     growthBlocked: streets.blocksGrowth,
     confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+    // Which sward a point stands in, so the woody layer plants the lakeshore
+    // poplars on the ground the beach is actually drawn on rather than carrying
+    // a second copy of the zone extents (ROADMAP K45(b) change one). Both call
+    // sites build the sward first, and a dead `flora` would answer null, which
+    // plants no dune rather than planting one somewhere invented.
+    zoneAt: (e, n) => flora.zoneAt(e, n),
     ...detailOpts(),
   });
   scene3d.add(trees.group);
@@ -289,6 +295,7 @@ async function boot() {
         dataBase: bases.dataBase, terrain, footprints,
         growthBlocked: streets.blocksGrowth,
         confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+        zoneAt: (e, n) => flora.zoneAt(e, n),
         ...detailOpts(),
       });
       scene3d.add(trees.group);

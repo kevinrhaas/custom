@@ -648,8 +648,15 @@ def self_test() -> int:
         ("a routed record goes to the reader whose cohort holds it",
          route("z01_wet_prairie", {"role": "matrix", "form": "sedge_tussock"}, coh)
          == (FLORA_JS, None)),
+        # The example moved 2026-08-17 and the move is the point: this case named
+        # `z08_lakeshore`, and ROADMAP K45(b) change one put that zone into
+        # `TIMBER_ZONES` and its three poplars into the scene, so the case was
+        # asserting the repository's state rather than the mechanism. It is asked
+        # of `z09_sand_prairie`, which no reader's zone list holds — and if that
+        # zone is ever routed too, this case moves again rather than being
+        # deleted, because a routing gate needs a zone outside the list to test.
         ("a woody record outside TIMBER_ZONES reaches nothing",
-         route("z08_lakeshore", {"role": "tree", "form": "tree_columnar"}, coh)
+         route("z09_sand_prairie", {"role": "tree", "form": "tree_columnar"}, coh)
          == (None, "zone-not-read")),
         ("an unimplemented form reaches nothing",
          route("z05_riverbank_timber", {"role": "thicket", "form": "vine_drape"}, coh)

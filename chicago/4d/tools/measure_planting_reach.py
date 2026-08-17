@@ -345,6 +345,49 @@ def archetype_fallback(src: str) -> tuple[set[str], str]:
     return keys, fm.group(1)
 
 
+def zone_archetypes(src: str) -> dict[str, set[str]]:
+    """`ARCHETYPE_BY_ZONE` — the archetypes a named ZONE supplies for itself.
+
+    ROADMAP K45(b) change one. `SPECIES` is keyed by species id and says "one
+    entry per woody species drawn", which held until a species was recorded
+    TWICE: `populus_deltoides` is `z05_riverbank_timber`'s 22–30 m gallery
+    emergent and `z08_lakeshore`'s 5–15 m half-buried leaner, same binomial and
+    nothing else the same. So a zone may declare its own archetypes and a
+    community may plant from them (`specsFrom`), and this reads that table — a
+    species covered by the zone its own community plants from is NOT drawn with
+    the fallback's bole and bark, and reporting it as such would be a false
+    finding of exactly the kind assertion 3 exists to make impossible.
+
+    Raises rather than returning an empty map, for the same reason every
+    scanner here does: an unread table would report an archetyped species as
+    drawn from the elm, and a gate that says the wrong thing confidently is
+    worse than one that stops.
+    """
+    m = re.search(r"const ARCHETYPE_BY_ZONE\s*=\s*\{(.*?)\n\};", src, re.S)
+    if not m:
+        raise LookupError(f"{TREES_JS} no longer declares `ARCHETYPE_BY_ZONE` as an object "
+                          f"— it is where a species recorded by two zones gets its second "
+                          f"set of draw parameters, and without it this gate would report "
+                          f"every such species as drawn with the fallback's bark")
+    body = m.group(1)
+    zones = [(mm.group(1), mm.start()) for mm in re.finditer(r"^  (\w+):\s*\{", body, re.M)]
+    out: dict[str, set[str]] = {}
+    for i, (zone, start) in enumerate(zones):
+        end = zones[i + 1][1] if i + 1 < len(zones) else len(body)
+        out[zone] = set(re.findall(r"^    (\w+):\s*\{", body[start:end], re.M))
+    return out
+
+
+def community_specs_from(src: str) -> dict[str, str]:
+    """Which zone's own archetypes each community plants with, where it says so."""
+    out = {}
+    for key, block in community_blocks(src):
+        sm = re.search(r"specsFrom:\s*'([^']*)'", block)
+        if sm:
+            out[key] = sm.group(1)
+    return out
+
+
 def timber_zone_order(src: str) -> list[str]:
     """`TIMBER_ZONES` in DECLARATION order, which `k44.js_array` discards.
 
@@ -555,6 +598,8 @@ def declarations() -> dict:
         "source": trees,
         "weights": mix_weights(trees),
         "archetypes": archetypes,
+        "zone_archetypes": zone_archetypes(trees),
+        "specs_from": community_specs_from(trees),
         "archetype_fallback": fallback_id,
         "zones": k44.js_array(trees, "TIMBER_ZONES", TREES_JS),
         "forms": k44.js_object_keys(trees, "FORM_OF", TREES_JS),
@@ -748,10 +793,27 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
     # this file exists to refuse to leave implicit: assertion 3 counts a placed
     # record as reached, and "reached" here means drawn with the American elm's
     # bole, taper, puff count and bark (docs/LIBERTIES.md L116).
+    #
+    # A species is archetyped for a community either by `SPECIES` or by the zone
+    # that community plants from (ROADMAP K45(b) change one): the dune's poplars
+    # have no `SPECIES` entry and are not drawn from the elm, because `dune`
+    # declares `specsFrom: 'z08_lakeshore'` and that zone declares all three. A
+    # species selectable by ANY community that would fall back is reported.
+    # It is asked PER COMMUNITY, because `specsFrom` is a per-community
+    # declaration: a species covered on the dune and selected by a community
+    # that plants from the shared table is still drawn from the fallback there.
+    falls_back = set()
+    for key, lists in dec["communities"].items():
+        zone = dec["specs_from"].get(key)
+        own = dec["zone_archetypes"].get(zone, set()) if zone else set()
+        for lst in lists.values():
+            falls_back |= {sp for sp in lst
+                           if sp not in dec["archetypes"] and sp not in own}
+    falls_back |= {sp for sp in dec["named_at_call_sites"] if sp not in dec["archetypes"]}
     drawn_as = {
         sp: dec["archetype_fallback"]
-        for sp in sorted(dec["selectable"])
-        if sp not in dec["archetypes"] and sp in contributed
+        for sp in sorted(falls_back)
+        if sp in contributed
     }
 
     state = {
@@ -1167,17 +1229,25 @@ def self_test() -> int:
         cases.append(("5 K45(b)'s prescribed ['platanus_occidentalis', 1] — admissible "
                       "under K46's rule, and half the sycamores", s5c, bank))
 
-    # THE CASE THIS PARCEL EXISTS FOR. docs/LIBERTIES.md L113 and ROADMAP K45
-    # both say the lakeshore's four dune records are repaired by adding the zone
-    # to `TIMBER_ZONES`. Applied here in memory, against the real tree: two of
-    # the four already take their spec from `z05_riverbank_timber` and first
-    # zone wins, and the other two land in the unselectable bank because no
-    # community mix holds a poplar. The repair draws nothing, and this is where
-    # that is measured rather than argued.
+    # THE CASE THIS PARCEL EXISTED FOR, IN THE DIRECTION THAT SURVIVES IT.
+    # docs/LIBERTIES.md L113 and ROADMAP K45 said the lakeshore's dune records
+    # were repaired by adding the zone to `TIMBER_ZONES`; K45(a) fired this case
+    # in the other direction and measured that the repair drew nothing, because
+    # routing is not placement and no community mix held a poplar. K45(b) change
+    # one built the mix, so the zone is routed AND placed and the old case can no
+    # longer fire — it would now be the tree as it stands.
+    #
+    # What replaces it is the same assertion read backwards, and it is the one
+    # worth keeping: take the dune's mix away and the poplars must fall back into
+    # the unselectable bank. That is L113's finding preserved as a live test
+    # rather than as a paragraph about a repair that has since landed.
     dec = declarations()
-    l113, _ = measure(dec, timber_zones=dec["zones"] | {"z08_lakeshore"})
-    cases.append(("K45(a) L113's repair — z08_lakeshore added to TIMBER_ZONES",
-                  l113, bank))
+    s_nodune = copy.deepcopy(state)
+    for sp in ("populus_tremuloides", "populus_balsamifera"):
+        s_nodune["unselectable"][sp] = {"zones": ["z08_lakeshore"],
+                                        "reason": "in-no-community-mix"}
+    cases.append(("K45(a) L113 backwards — the dune mix removed puts the poplars back "
+                  "in the unselectable bank", s_nodune, bank))
 
     ok = True
     for label, s, b in cases:
@@ -1185,20 +1255,20 @@ def self_test() -> int:
         print(f"  {'fires' if fired else 'SILENT'}  {label}")
         ok = ok and fired
 
-    added = sorted(set(l113["unselectable"]) - set(state["unselectable"]))
-    print(f"  …and it adds {len(added)} species to the unselectable bank: "
-          f"{', '.join(added) or 'none'}")
-    print(f"  …while the planter's reach is unchanged at "
-          f"{l113['ground']['inside_planter']} node(s), and z08_lakeshore's own extent "
-          f"box is {BOX_VERDICTS[l113['zone_boxes']['z08_lakeshore']['verdict']]}")
+    print(f"  …and the bank it was written about is now empty: "
+          f"{len(state['unselectable'])} routed, archetyped, unselectable species, "
+          f"with z08_lakeshore's own extent box "
+          f"{BOX_VERDICTS[state['zone_boxes']['z08_lakeshore']['verdict']]} and its "
+          f"three poplars planted by `dune`")
 
     # The scanners are the load-bearing half of assertion 1: each must be able to
     # say yes AND no. A scanner that silently returns nothing would call every
     # species unselectable and bank the lot.
     src = dec["source"]
     checks = [
-        ("the community scanner finds the four mixes",
-         set(dec["communities"]) == {"gallery", "wet_woods", "mesic_pocket", "ridge_oak"}),
+        ("the community scanner finds the five mixes",
+         set(dec["communities"]) == {"gallery", "wet_woods", "mesic_pocket", "ridge_oak",
+                                     "dune"}),
         ("…and reads the gallery's edge mix as well as its mix",
          "salix_nigra" in dec["communities"]["gallery"]["edgeMix"]),
         ("…and reads a multi-line mix to its END, not to its second entry",
@@ -1284,6 +1354,17 @@ def self_test() -> int:
          raises(lambda: archetype_fallback(
              src.replace("SPECIES[sp.id] ?? SPECIES.ulmus_americana",
                          "SPECIES[sp.id] ?? SPECIES.no_such_tree")))),
+        # The per-zone archetypes, both ways. A scanner that read nothing would
+        # call the dune's three poplars drawn with the elm's bark — a confident
+        # false finding, which is the one failure mode assertion 3 cannot have.
+        ("the per-zone archetypes are read off the renderer",
+         zone_archetypes(src).get("z08_lakeshore", set())
+         >= {"populus_deltoides", "populus_tremuloides", "populus_balsamifera"}),
+        ("…and a renderer with no ARCHETYPE_BY_ZONE at all is refused",
+         raises(lambda: zone_archetypes(
+             src.replace("const ARCHETYPE_BY_ZONE", "const ARCHETYPE_BY_ZONE_RENAMED")))),
+        ("…and the community that plants from a zone's own archetypes is read",
+         community_specs_from(src).get("dune") == "z08_lakeshore"),
         ("K46's rule is scanned out of the renderer, not assumed",
          record_density_rule(src) is None),
         # The regression this file exists to refuse is the ONE it was built to
