@@ -604,6 +604,31 @@ and the What's-New entry does not say "fixed" unless that pair of screenshots is
 
 </details>
 
+### K51 — the fauna layer reaches a visitor · **CLAIMED 2026-08-17 — DO NOT PICK UP · from K42 · SEEN · Effort: M**
+
+K42 finding 2, taken: **`data/fauna` has no reader, and three separate documents imply it does.**
+139 animal records across ten habitat zones, 90 citations, every one of them researched to the
+July gate — and no file under `renderers/` names the directory, `tools/publish.sh` does not copy
+it, so a browser has never been offered the layer. K42 wrote three routes and this is route 2,
+*"give it a reader"*, which its own box says is a renderer parcel of real size and **no bake**.
+
+**It is a CARD, not a herd.** Nothing is drawn in the 3-D scene: the standing constraint on
+depicting people is untouched, and no animal geometry is proposed here. What a visitor gets is
+the Evidence panel section this dataset was always for — the ten habitats, what each reads as on
+1 July, and every species with its July status, presence mode, abundance, behaviour, voice and
+its sources. The visible-progress rule's own definition of SEEN is *"in the 3-D scene or on a
+card a visitor opens"*, and this is the second of those.
+
+**The gate it must pass through is the one K42 built.** `tools/measure_layer_reads.py` assertion
+3a fails the moment a layer with no declared reads gains a reader — deliberately, *"because the
+whole of this layer's unread bank rests on nobody opening it"*. So the parcel owes a read map for
+all 30 fauna figures, in the same commit, and the self-test's negative control has to move off
+`fauna` onto a synthetic source rather than the repository's own state.
+
+**Files:** `renderers/web/js/fauna.js` (new) · `renderers/web/index.html` · `renderers/web/js/main.js`
+· `renderers/web/css/*` · `tools/publish.sh` · `tools/compile_scene.py` (the citation join only)
+· `tools/measure_layer_reads.py` + its baseline · `tools/smoke_renderer.mjs`.
+
 ### K50 — ask every other layer the question that caught R-BUG5b · **UNCLAIMED · from R-BUG5b · Effort: S–M**
 
 R-BUG5b was invisible to three gates because all three asked where a layer DECIDED to put something
