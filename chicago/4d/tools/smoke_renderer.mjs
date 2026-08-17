@@ -3262,7 +3262,9 @@ const terrainLoad = await page.evaluate(() => {
       for (const anchor of anchors) {
         for (const yaw of [0, 90, 180, 270]) {
           a.walker.teleport({ local_e: anchor.local_e, local_n: anchor.local_n, yaw_deg: yaw });
-          a.step(); a.step();
+          // One frame is a rebuild — the sward is scattered from the camera on
+          // the step that carries it, which is what `popIn` above walks on.
+          a.step();
           const cx = a.camera.position.x; const cz = a.camera.position.z;
           // Every rooted plant, on a one-metre grid.
           const grid = new Map();
