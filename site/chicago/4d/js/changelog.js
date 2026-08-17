@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 170, title: 'The bushes fill out, and stop reading as giant single leaves', kind: 'fix', ts: '2026-08-17T16:25:59.406Z', date: 'Aug 17, 2026, 11:25 AM CT',
+    items: [
+      'Yesterday the wet woods got its shrub layer back — 156 bushes where 2 stood. Standing in it showed what nobody had seen before: the bush was designed when fourteen of them existed in the whole town, and repeated 158 times in one wood you could see straight through every one.',
+      'Each bush hangs leafy sprays over four woody stems. A spray is a shoot\u2019s worth of leaves, the same way a grass tuft here is a bundle of shoots — but sixteen of them covered under a fifth of the bush\u2019s outline, so each one hung alone against the sky and read as one enormous leaf. There are thirty-two now, they overlap, and the bushes have mass.',
+      'The size of a spray did NOT change, and that is the finding. Shrinking it towards the 10 cm of a real hazel leaf would have bought a smaller shape with more sky around it — two triangles cannot draw a leaf at any size, and the emptiness was the fault.',
+      'The lowest leaves now arch downwards. Nothing hung below where it grew from before, so the bushes were open at the bottom exactly where their dark stems are most exposed, and a bush with bare black sticks under it is what the before picture shows.',
+      'Nothing about which plant grows where moved: the same bushes, the same places, plant for plant. Each one costs 72 triangles instead of 40 — about 5,000 more in the whole wood, against a ceiling of a million.',
+      'How a bush branches remains our invention and is written up on the Evidence card. What is not invented is its outline, which is still the height and the width the research records.',
+    ] },
   { v: 169, title: 'The town’s people get a card of their own', kind: 'feature', ts: '2026-08-17T15:13:57.714Z', date: 'Aug 17, 2026, 10:13 AM CT',
     items: [
       'The Evidence panel has a new section: 173 households and 209 people researched into July 1835 — when each came, from where, why, where they lived and worked, and whether the sources place them here at all on 1 July.',

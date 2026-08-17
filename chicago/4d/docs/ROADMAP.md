@@ -154,7 +154,8 @@ rationed.**
 | **1** | RENDERING | **R-BUG6(c)** | UNSEEN | **NEEDS ONE BAKE.** The 36,187 co-planar pixels above are steady but arbitrary: two surfaces of different colours at one depth, with draw order picking the winner. A question about the models, opened by (b) |
 | — | RENDERING | ~~K53~~ | **SEEN** | **DONE 2026-08-17 — twenty-one shrub records were drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width.** Shrubs 0 → **14** drawn over 32 poses, clump width **0.40 m clamped → 1.80 m median**, and the census is identical plant for plant (2,201 forb-layer plants before, 2,187 + 14 after, every zone conserved). Its finding is the reason the number is 14 and not 140 — **the forb lottery deals by HEAD COUNT, so a hazel covering 7 m² competes as one plant against 40 wild leeks per m²**, and the wet woods' attested dominant shrub gets 0.2 % of the slots. Opened as **K54**. Read its box before quoting a shrub count |
 | — | RENDERING | ~~K54~~ | **SEEN** | **DONE 2026-08-17 — the two strata were sharing one lattice, and where the herb layer saturates it the deal is a subsample by head count. 4 bushes standing over the eight stations → 181.** The shrubs are dealt from their own pass at their own recorded clump density: `z06_dense_forest` **2 → 156** drawn and **40.1 %** of its recorded 94.9 % cover, the riverbank dogwood belt **20.1 % against a recorded 19.5 %**, matrix deviation unmoved to the second decimal and **0 of 98** pairs drawn nowhere. Two findings: **the slot count still mixed units** and planted the riverbank understory **8.8×** too thickly (K55), and **the instrument this parcel named cannot answer its question** — "deviation from the recorded cover" has measured the lattice against its own target since K49(c2). Read its box before quoting 89.11 or any deviation sum across two builds |
-| **2** | RENDERING | **K56** | **SEEN** | **the shrub's leaf spray is ~0.4 m and 158 of them now stand in one ring** — the archetype was designed at fourteen instances in the whole scene and nobody has looked at it repeated. One function, one before/after pair. Opened 2026-08-17 by K54 |
+| — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
+| **2** | RENDERING | **K57** | **SEEN** | **the shrub's leaf-spray GRAIN** — K56 doubled the spray count and closed the shell from 17.7 % to 30.9 %, and left the finer question open: at the same plate area, 32 masses of 0.4 m or 64 of 0.2 m? A triangle budget, not a preference. Opened 2026-08-17 by K56 |
 | **1** | RENDERING | **K55** | **SEEN** | **four herb lists deal their SLOT COUNT off a sum of areas and counts**, and two more are entirely area-recorded and so do not even register as mixed. It planted `z05`'s understory 8.8× too thickly; `z10_settled_town`'s weeds are the visible half. Opened 2026-08-17 by K54 with the arithmetic banked |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
@@ -1002,7 +1003,7 @@ LOTTERY only, which K49(c2) already put on `stems`. Check that before changing a
 **Files:** `renderers/web/js/flora.js` (`subsetOn`, `forbShareOf`) · `tools/measure_sward_draw.mjs`
 baselines · `docs/STATUS.md`.
 
-### K56 — the shrub's leaf spray is scaled off the clump width, and 158 of them in one ring is the first look anyone has had at that · **UNCLAIMED · SEEN · opened 2026-08-17 by K54 · Effort: S**
+### K56 — the shrub's leaf spray is scaled off the clump width, and 158 of them in one ring is the first look anyone has had at that · **DONE 2026-08-17 — the spray is a leaf MASS, so the size was never the number: sixteen of them covered 17.7 % of the shell and you could see straight through every clump**
 
 `shrubGeometry`'s sprays are a fraction of the recorded half-width (L122), so a `corylus_americana`
 recorded 2.25 m across carries sprays about 0.4 m long. At fourteen instances scattered over the
@@ -1017,6 +1018,57 @@ triangles. **Decide which, write it into L122 or a new liberty, and only then ch
 
 Cheap and visible: one archetype function, one before/after pair at the station K54 used, and
 `tools/measure_sward_draw.mjs` is unaffected because no count moves.
+
+**Files:** `renderers/web/js/flora.js` (`shrubGeometry`) · `docs/LIBERTIES.md` · `docs/evidence/`.
+
+**THE ANSWER TO THE QUESTION THE PARCEL ASKED, because it decides which number moves.** A spray
+stands for **a mass of leaves on one shoot**, not a leaf. That is the same abstraction the tree
+canopy's plates and the near tuft's bundle of shoots already use in this renderer, and it is the
+only one two triangles can carry: a hazel leaf is ~10 cm and no scaling off the clump width
+produces one. So the honest reading of the 0.4 m spray is **not wrong**, and shrinking it would
+have bought a smaller plate with more sky around it. Written into `docs/LIBERTIES.md` as **L124**
+before any number changed, which is the order the parcel asked for.
+
+**WHAT THE LOOKING FOUND, and it is the count.** Summed over the archetype's own loop, the sixteen
+sprays' plates cover **17.7 %** of the shell they are spread over — a clump a visitor sees straight
+through, which is why an isolated plate reads as one enormous leaf: nothing overlaps it. **32
+sprays cover 30.9 %.** `docs/evidence/k56-{before,after}.png`, the same station K54 used (E −54 /
+N +314, bearing 135°) at 1280×800 on the published mirror.
+
+| | before | after |
+|---|---|---|
+| leaf sprays per shrub | 16 | **32** |
+| spray bands | 2 | **3, the lowest arching DOWN** |
+| plate area, archetype units² | 1.399 | **2.698** |
+| shell fill | 17.7 % | **30.9 %** |
+| triangles per shrub | 40 | **72** (+5,056 in the wet woods' ring, of a 1,000,000 ceiling) |
+| spray length on a 2.25 m clump | 0.26–0.44 m | **0.26–0.44 m — unchanged** |
+| drawn reach, as a fraction of the recorded half-width | 0.91 | **0.98** |
+
+**FINDING — nothing in the first cut hung below its own attachment.** All sixteen sprays rose, so
+the shell stayed open exactly where the four stems are most exposed, and `k0 = shade(0.16)` makes
+those stems a black stick wherever foliage does not cover them — which the archetype's own comment
+had feared in the abstract and the before frame shows happening. The lowest of the three bands now
+arches down over them, bounded so no tip is pushed below the plant's base.
+
+**No census moved.** Same species in the same places, plant for plant; `spread`, `height` and the
+lattice are untouched. The gate `tools/measure_sward_draw.mjs` is unaffected, as the parcel
+predicted, because no count moves.
+
+### K57 — the spray's GRAIN, which trades triangles against the size of a leaf mass · **UNCLAIMED · SEEN · opened 2026-08-17 by K56 · Effort: S–M**
+
+K56 answered *what a spray stands for* and moved the count. It did **not** answer the finer
+question underneath: at a fixed total plate area, is the shell better read as 32 masses of 0.4 m or
+64 of 0.2 m? That is a grain question and it costs triangles — 32 sprays is 72 triangles a shrub,
+64 would be 136 — so it needs a **frame-time and triangle budget measured in the wet woods**, where
+158 of them stand in one ring and the matrix layer is densest, rather than a preference.
+
+**What bounds the answer.** The plate may not shrink below the size at which it reads as a single
+leaf against its neighbours, which is the fault K56 diagnosed and would rebuild at a smaller scale
+if the count did not rise with it. So grain and count move together or not at all.
+
+Cheap and visible: one archetype function, one before/after pair at the same station, and the
+triangle line printed by the smoke at both viewports is the budget half.
 
 **Files:** `renderers/web/js/flora.js` (`shrubGeometry`) · `docs/LIBERTIES.md` · `docs/evidence/`.
 

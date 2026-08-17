@@ -4527,3 +4527,48 @@ because the wet woods is also where the matrix layer is densest.
 Related: **L122** (the archetype these plants are drawn with), **L32** (the lattice density this
 ceiling comes from), and ROADMAP **K54**.
 **Recorded:** 2026-08-17.
+
+### L124 — A shrub's leaf spray is a mass of leaves, not a leaf, and thirty-two of them is what closes the shell
+
+**Decision:** each of the shrub archetype's leaf sprays (**L122**) stands for **a season's leaves
+on one shoot** — a mass, not a single leaf — and there are now **thirty-two** of them where there
+were sixteen (ROADMAP **K56**). Their size is unchanged: 0.26–0.42 of the recorded clump radius,
+which on a hazel recorded 2.25 m across is a spray 0.26–0.44 m long.
+
+**Why the size is the wrong number to have moved.** K56 was opened on the observation that a
+0.4 m spray is nowhere near the ~10 cm of an actual hazel leaf, and asked what the spray STANDS
+FOR before any number changed. It stands for a leaf mass, on the same footing as the tree canopy's
+plates and the near tuft's bundle of shoots in this renderer — none of those is one leaf either,
+and two triangles cannot carry one at any size. **So shrinking the spray would not have bought a
+leaf; it would have bought a smaller plate with more sky around it.**
+
+**What the looking found instead, and it is the count.** Summed over the archetype's own loop, the
+sixteen sprays' plates cover **17.7 %** of the shell they are spread over. That is a clump a
+visitor sees straight through — `docs/evidence/k56-before.png`, 158 of them in one ring — and an
+isolated plate with sky on both sides reads as one enormous leaf precisely BECAUSE nothing overlaps
+it. Thirty-two cover **30.9 %** and overlap: `docs/evidence/k56-after.png`, the same station.
+
+**The second invention here, stated separately because it is a habit and not a count.** The lowest
+of the three spray bands **arches downward** over the stems. Nothing in the first cut hung below its
+own attachment, so the shell stayed open exactly where the four stems are most exposed, and those
+stems are drawn dark on purpose (this module's only occlusion term) — so an open lower shell reads
+as black sticks. A drooping outer shoot is bounded on the other side instead: it may fall at most
+half way back to the ground from its attachment, so no tip is pushed below the plant's own base.
+
+**What is NOT claimed.** No source in this repository states the leaf-mass count, the band heights
+or the droop for any of the twenty-one `shrub_low` records — this is the same invention L122
+recorded, at a finer grain, and it remains bounded by the record's own two numbers: the drawn
+silhouette still reaches 0.98 of the recorded half-width and no tip leaves the recorded height. No
+species gets a habit of its own, nothing about which shrub stands where moved, and no count of
+plants changed — `tools/measure_sward_draw.mjs` reads back the same census, plant for plant.
+
+**Cost, since it is a triangle count and not free:** 40 triangles per shrub becomes 72, which in
+the wet woods' ring is +5,056 of a 1,000,000 ceiling.
+
+**How to resolve:** a finer grain — more, smaller sprays at the same total plate area — is a real
+question this parcel did not answer, because it trades triangles against grain and needs a budget
+rather than a preference. ROADMAP **K57** carries it.
+
+Related: **L122** (the archetype this refines), **L123** (why the layer is drawn at two fifths of
+its recorded cover), and ROADMAP **K56**.
+**Recorded:** 2026-08-17.
