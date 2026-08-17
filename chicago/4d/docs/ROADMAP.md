@@ -8373,7 +8373,7 @@ mirror: **253 passed, 2 failed** — the same two road assertions `dev` already 
 does not fit the runner's ten-minute per-command ceiling (ROADMAP § THE RUN BUDGET) and did not
 run; every figure above is `measure_river_edge.mjs` at 1280×800 on the published mirror.
 
-### R-BUG6(b) — the other 84 %: co-planar ties · **UNCLAIMED · UNSEEN · opened 2026-08-17 by R-BUG6(a) · Effort: S–M**
+### R-BUG6(b) — the other 84 %: co-planar ties · **CLAIMED 2026-08-17 (steward/r-bug6b-coplanar-ties) · opened 2026-08-17 by R-BUG6(a) · Effort: S–M**
 
 **The suspect list is one shorter and the remainder is measured**: with the shadow map switched
 off by the repaired control, `from_above` still flickers **1,108** pixels and
