@@ -5270,6 +5270,27 @@ the other end.
 anchor` fails and is **inherited from `dev` unchanged to the digit** (85 % / 54 %) — R-BUG5b's
 knowingly-red band. No threshold moved, no band widened, no station dropped.
 
+**Before and after are committed** at `docs/evidence/t-v2-{before,after}.png` — desktop 1280×800,
+published mirror, salvaged from PR #205.
+
+> ### The 100–250 m band may belong to K30(c), not to the light — salvaged from PR #205
+>
+> **The loop reached this parcel independently on 2026-08-17 (PR #205, closed as superseded) and
+> found the same anchor and the same healed far band.** Two of its observations are not in the
+> merged parcel and are worth more than the duplication cost:
+>
+> **It is this stretch of street, not the middle distance in general.** On the same run
+> `lake_market` — the other station standing on a roadway — reads **3.3 L\* and 100 %** in the very
+> band `south_water` fails at 52 %. So a threshold that is wrong for on-street poses is *not* the
+> explanation; something about this stretch is.
+>
+> **And here is the candidate: 13 of the 17 deep corridor intrusions K30(a) measured are South
+> Water records.** The stretch this band covers is also the stretch with buildings drawn standing
+> *in the roadway* — and **25 of the 67 projected probes in that band are not seen at all**.
+> A building standing on the road is a building standing on the probes. **K30(c) is the repair, it
+> needs a bake, and it is #1 in NEXT UP** — so this band should be re-read after K30(c) lands
+> before anyone treats it as a lighting or threshold problem.
+
 ### T-V2c — the `south_water` baseline row measures a different place now · **UNCLAIMED · UNSEEN · from T-V2 · Effort: XS**
 
 `tools/critic_shots.mjs` drives the scene anchors through `goTo`, so T-V2 moved a **baseline
@@ -7793,6 +7814,18 @@ the gate that has been green through all four repairs.
 **Reproduce first, diagnose second** — R-BUG5b's rule, and the one #196 skipped. The pose is on
 South Water Street at NNE 025°; `tools/shoot.mjs` puts the camera there. **The first commit of this
 parcel should be a screenshot.**
+
+**A SECOND INSTANCE IS ALREADY COMMITTED, AT A DIFFERENT STATION, IN AN IMAGE SHOT FOR ANOTHER
+PARCEL.** `docs/evidence/t-v2-after.png` — the on-street South Water view, **bearing 090°, desktop
+1280×800**, taken to show T-V2's anchor move — carries a **pale flower head at roof height at the
+right-hand edge of the frame**, beside the storefront row, with clear sky behind it. Different
+bearing, different viewport, different day, same symptom. Two things follow:
+
+1. **The repro is cheap and does not need the owner's exact pose.** Two of the three committed
+   South Water frames show it. Start with the ones already in the tree.
+2. **It is not confined to looking across water**, which weakens live suspect 2 (`station()` on the
+   emergent path over the river) before anyone spends a run on it — this frame looks *down a dry
+   street* with the river off to the left. Suspect 1, the ring fade, survives that; check it first.
 
 ### R-BUG6 — the town flickers too, and nobody knows why · **UNCLAIMED · UNSEEN · opened 2026-08-16 by R-BUG1 · Effort: S–M**
 
