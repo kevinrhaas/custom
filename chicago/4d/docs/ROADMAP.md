@@ -782,7 +782,7 @@ the three gates in it that read the flora sets by NAME were extended to `flora-s
 the new set is inside them rather than invisible to them — but that extension is unexecuted here and
 is the first thing to run on a runner without the ceiling.
 
-### K54 — the forb lottery deals by head count, and the shrub layer is the population it loses · **UNCLAIMED · SEEN · opened 2026-08-17 by K53 · Effort: M**
+### K54 — the forb lottery deals by head count, and the shrub layer is the population it loses · **CLAIMED 2026-08-17 · route 2 · SEEN · opened 2026-08-17 by K53 · Effort: M**
 
 **The arithmetic is banked in K53 finding 2 and is not in dispute.** The forb layer deals ~220
 slots over the ring; each slot is one plant; species compete for slots on `stems`, plants per m².
