@@ -151,6 +151,7 @@ rationed.**
 | — | RENDERING | ~~R-BUG6(a)~~ | **SEEN in motion** | **DONE 2026-08-17 — the shadow box was re-centred on the visitor's exact position, so its texel lattice slid under every step and re-quantised every shadow edge in the town.** It moves in whole texels now: with the camera held still and the box slid half a texel, `from_above` **2,023 changed pixels → 0** and `descend_main_stem` **5,650 → 0**. Three findings, and two of them are about instruments: **the control that "cleared the shadow map" was inert** (a compile-time flag is not a runtime handle — it moves 5,439 px now), and **a sub-pixel nudge cannot measure a shadow box at all** — scaled up to a half texel it changes 29,138 px with the fix and 28,784 without, sign included. The answer to the parcel's title: **the shadow map is 14–16 % of the town's flicker**, not the cause of it. Read its box before quoting any flicker number |
 | — | RENDERING | ~~R-BUG6(b)~~ | — | **DONE 2026-08-17 — the premise was wrong and two tests say so. The residual is NOT co-planar ties: switching the depth test from `LessEqual` to `Less` moves 36,187 px of the frame and only 13 of the 1,108 flickering ones (1.2 %), and 5× the depth precision leaves 604 of 607 surviving.** It is the town's own edges being resampled, which is antialiasing and not a defect — R-BUG1's near plane had already taken the real one. Three findings: **an exact tie is STABLE and a near tie is what flickers** (which is why 3.5 % of this frame is co-planar and none of it shimmers); the ownership instrument (`tools/measure_tie_class.mjs`, 0 unattributed, buildings + trees own 94.5 % of the flicker on 7.7 % of the frame); and **`measure_river_edge.mjs`'s bank mask counts the SKY as water** — rows 0–200 are 1,280 of 1,280 "waterish", so no bank-line pixel count from it is a statement about the river. Read its box before quoting any flicker or bank number |
 | **1** | RENDERING | **R-BUG6(c)** | UNSEEN | **NEEDS ONE BAKE.** The 36,187 co-planar pixels above are steady but arbitrary: two surfaces of different colours at one depth, with draw order picking the winner. A question about the models, opened by (b) |
+| **1** | RENDERING | **K53** | **SEEN** | **CLAIMED 2026-08-17.** Twenty-one shrub records across eight zones are drawn with the forb archetype — one stalk and four leaves — and the recorded clump width is clamped away to keep them looking like forbs. The wet woods' *attested* dominant shrub is a wand. No bake, no new record: the numbers are all committed and read |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -680,6 +681,33 @@ larger parcel behind a bake. The narrower successor is **K52**: the same questio
 censused which of its figures reach a visitor. The read map covers flora and fauna and the two
 generators declare their own `CONSUMED`; the population layer is declared by nothing, which is the
 state `data/fauna` was in this morning.
+
+### K53 — every shrub in the town is drawn as a giant forb · **CLAIMED 2026-08-17 · SEEN · opened 2026-08-17 from K45(b4) · Effort: M**
+
+**The whole shrub layer is drawn with `forbGeometry()`** — one 12-triangle herbaceous stalk with
+four broad leaves, scaled to the record's height. Twenty-one records across eight zones carry
+`form: 'shrub_low'`, and `FORB_FORMS` contains that string, so a 3 m American hazel, a 2.5 m
+elderberry, a multi-stemmed black-oak grub and a *sprawling mat* of sand cherry are all the same
+wand of leaves at four different sizes. `placeForb`'s own comment names the damage and treats the
+symptom: *"a riverbank shrub recorded at two metres across therefore grew sixty-centimetre leaves"*
+— so the recorded clump width is CLAMPED to 0.40 m of spread, which is the shrub layer being made
+narrow enough to look like a forb rather than being drawn as a shrub.
+
+**It is SEEN and needs no exemption.** `corylus_americana` is the wet woods' *attested* dominant
+shrub at 20–50 % cover — the dossier's own headline finding, with *"under-rendering hazel is the
+specific mistake this record exists to prevent"* written beside it — and it is a wand. So is the
+elder at the gallery edge, the dogwood on the river bank, the currant in the fenced dooryards and
+the willow scrub on the lakeshore back slope, which is the population K45(b4) recorded as *"still
+not planted"* in as many words.
+
+**What it is NOT:** it is not a new record, not a new density and not a bake. Every number this
+draws with — height, clump width, foliage greens, the July head — is committed and already read;
+the archetype that consumes them is what is missing. The shrub form itself is a **reconstruction**
+and gets a `docs/LIBERTIES.md` entry, exactly as the nine flower archetypes did.
+
+**Files:** `renderers/web/js/flora.js` (a `shrubGeometry` archetype, a set beside `rosetteSet`, a
+`placeShrub`) · `data/liberties.json` + `docs/LIBERTIES.md` · the flora gates' baselines if a read
+moves · `renderers/web/js/changelog.js` · `site/chicago/4d/` · `docs/STATUS.md`.
 
 ### K52 — nobody has censused what the residents' figures reach · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K51 · Effort: S–M**
 
