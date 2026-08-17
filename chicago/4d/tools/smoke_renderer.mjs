@@ -3939,6 +3939,70 @@ const terrainLoad = await page.evaluate(() => {
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
 
+    // --- the wildlife, in the same panel (ROADMAP K51) ---------------------
+    // `data/fauna/` was researched to the scene date, graded and cited, and read
+    // by nothing: no renderer source opened the directory and publish.sh did not
+    // copy it, so 139 animal records stopped at the repository while three
+    // documents implied a reader existed. These assertions are what stops that
+    // recurring — a section that 404s its layer on the published tree and works
+    // in the source tree is exactly the failure the flora manifest once shipped.
+    const fauna = await page.evaluate(() => {
+      const mount = document.getElementById('fauna');
+      const one = mount?.querySelector('details.fauna-sp');
+      return {
+        zones: window.__chicago4d.fauna?.zones ?? 0,
+        species: window.__chicago4d.fauna?.species ?? 0,
+        error: window.__chicago4d.fauna?.error ?? 'no fauna on the handle',
+        renderedZones: mount ? mount.querySelectorAll('details.fauna-zone').length : 0,
+        renderedSpecies: mount ? mount.querySelectorAll('details.fauna-sp').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        text: mount ? mount.textContent : '',
+        // The citation join is a separate fetch from a separate directory, and
+        // a card quoting a bare `source_id` is the failure it exists to stop.
+        cites: mount ? mount.querySelectorAll('.cites .cite-text').length : 0,
+        collapsed: one ? !one.open : false,
+        // The section's own prose plus the derived count sentence: the two
+        // places this panel could make a claim about the town rather than about
+        // the research.
+        prose: [document.getElementById('fauna-note')?.textContent ?? '',
+          ...[...document.querySelectorAll('[data-panel="evidence"] .legend-note')]
+            .map((n) => n.textContent)].join(' ').replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the wildlife list loads every habitat`,
+      fauna.zones === 10 && fauna.renderedZones === 10 && !fauna.busy,
+      `${fauna.zones} loaded / ${fauna.renderedZones} rendered (${fauna.error})`);
+    check(`${label}: every animal record in the layer is on the card`,
+      fauna.species === 139 && fauna.renderedSpecies === 139,
+      `${fauna.renderedSpecies} rendered of ${fauna.species}`);
+    // Discriminating rather than a count: the pigs are the signature street
+    // animal of this scene and the muskrat is the one the public-square pond
+    // quotation was re-graded around, so both are records whose absence would
+    // mean the zone files were not the thing being read.
+    check(`${label}: the card names what the records name`,
+      /pigs at large/.test(fauna.text) && /muskrat/.test(fauna.text)
+      && /Sus scrofa domesticus/.test(fauna.text),
+      fauna.text.slice(0, 160));
+    // The July gate is the hard part of this dataset and the reason it may not
+    // be read as a year list: several animals are here as sign or sound only.
+    check(`${label}: the card carries the July presence modes, not a species list`,
+      /trace only/.test(fauna.text) && /flightless moult/.test(fauna.text),
+      fauna.text.slice(0, 160));
+    check(`${label}: the animal records quote their sources, not their source ids`,
+      fauna.cites >= 20 && !/chicagology_prefire/.test(fauna.text),
+      `${fauna.cites} citation(s) rendered`);
+    check(`${label}: the animals start collapsed, like every other disclosure here`,
+      fauna.collapsed);
+    check(`${label}: the wildlife section does not overflow the panel`, fauna.overflow);
+    // The one thing this section must never imply. Nothing is drawn from the
+    // layer — no animal geometry exists — so the panel says so in words, and the
+    // day that stops being true this assertion is the one that should fail.
+    check(`${label}: the section says plainly that none of them is in the scene`,
+      /None of them is drawn in the scene/.test(fauna.prose)
+      && /this is the research, not a population/i.test(fauna.prose),
+      fauna.prose.slice(0, 200));
+
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
     // hand-written paraphrase of it — a restatement with nothing holding it to

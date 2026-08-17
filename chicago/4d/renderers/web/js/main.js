@@ -29,6 +29,7 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { mountExclusions } from './exclusions.js';
+import { mountFauna } from './fauna.js';
 import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
 
@@ -376,6 +377,19 @@ async function boot() {
   // nowhere a visitor could read it.
   api.ground = await mountGround({
     mount: document.getElementById('ground'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
+  // And what was LIVING here, which no building carries at all. The animal
+  // records were researched to the scene date, graded, cited — and read by
+  // nothing: ROADMAP K42 measured that no renderer source opened the directory
+  // and the publish step did not copy it, so the layer stopped at the
+  // repository. Nothing of it is drawn; this is the record, on a card.
+  api.fauna = await mountFauna({
+    mount: document.getElementById('fauna'),
+    noteMount: document.getElementById('fauna-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,

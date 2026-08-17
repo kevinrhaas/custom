@@ -145,6 +145,7 @@ rationed.**
 |---|---|---|---|---|
 | — | RENDERING | ~~K49(f)~~ | **SEEN** | **DONE 2026-08-16 — 2 species absent → 0, and the block's own phase pays for itself twice.** The even deal dealt the SAME 64 values of `u` in every block of the world, so a band narrower than 1/64 fell between two of them EVERYWHERE: **45 matrix bands, exactly 2 under one step, and exactly those 2 were the species drawn nowhere.** Matrix deviation **282.90 → 219.19**. Its finding is not the repair: **K49(e)'s leading explanation is refuted for the bigger of the two rows it was written about** — the settled town recovers 23.66 of its 24.87 regression on a change that touches no filter. Read its box before quoting K49(d) on a regressed row |
 | — | RENDERING | ~~R-A1~~ | **SEEN** | **DONE 2026-08-16 — the Road visibility slider, off by default, and the first parcel taken by PULLING A SEEN ROW UP when every numbered one was blocked.** Its finding is about gates, not roads: **an inertness assertion needs a liveness assertion beside it**, because "the default is unchanged" passes identically whether a control is wired correctly or wired to nothing — R-BUG1's dead `--no-sun-shadow` one parcel earlier. And the instrument was measured before its threshold was set: the 12² frame signature scores the aid at **worst 2 against a residual of 0**, the same difference at 48² is **worst 6**, and nothing about the scene changed between the two runs. Read its box before adding any preference to Settings |
+| — | RENDERING | ~~K51~~ | **SEEN** | **DONE 2026-08-17 — 139 researched animals reached no browser at all, and the whole layer is now a card in the Evidence panel.** Fauna figures reaching a visitor **0 of 30 → 30 of 30**; the dataset's unread population **58 of 100 → 28**. Its findings are about instruments, not animals: K42's assertion 3a **fired exactly as designed** the moment the directory was opened, and **two of that gate's own controls had been written against the repository's state** — one became a copy of the measurement and the other printed SILENT rather than failing. And `docs/LIBERTIES.md` **L2 said "ambient wildlife is rendered sparsely" for eight days while nothing was rendered at all**. Read its box before quoting any layer-read number |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -604,7 +605,86 @@ and the What's-New entry does not say "fixed" unless that pair of screenshots is
 
 </details>
 
-### K51 — the fauna layer reaches a visitor · **CLAIMED 2026-08-17 — DO NOT PICK UP · from K42 · SEEN · Effort: M**
+### K51 — the fauna layer reaches a visitor · **DONE 2026-08-17 — 139 animal records were read by nothing, and the gate that was supposed to notice had been told to expect it**
+
+**Read this box before quoting any layer-read number taken before today.** The census line printed
+by `tools/measure_layer_reads.py --gate` ended in the words *"which no renderer opens"* until this
+parcel, and by then that clause was a claim rather than a measurement: it was true when K42 wrote
+it and the gate had no way to keep it true. It is gone, and the line now separates a figure that
+moves a vertex from one a visitor reads on a card, because rolling the two together is how a layer
+with no geometry starts sounding drawn.
+
+**What shipped.** The Evidence panel's *What was living here* section: ten habitats in the
+manifest's own order, and inside each one every species researched into it — **139 records**, each
+with its July status, its presence mode, its abundance, what it would be doing, what it would look
+like, its voice, the sign it leaves, and the sources behind the three graded claims. The citations
+are the joined records `citations.js` renders everywhere else, not bare ids.
+
+**Numbers, measured rather than promised.** Fauna figures reaching a visitor: **0 of 30 → 30 of
+30**. Whole-dataset: **58 of 100 figures reached nothing → 28**, and `data/fauna`'s share of that
+is **30 → 0**. Habitats on the card **10 of 10**, species **139 of 139**, citations rendered **54**,
+zero page errors at 390×780.
+
+**FINDING 1 — the gate did exactly what it was built for, and that is the part worth carrying.**
+K42 wrote assertion 3a to fail *the moment* a layer with no declared reads gains a reader —
+*"because the whole of this layer's unread bank rests on nobody opening it"* — and it fired on the
+first commit that opened the directory. Thirty figures had to be classified in the same commit
+instead of riding on a sentence that had quietly expired. **A gate written against an absence has
+to name the event that ends the absence**, or the absence becomes permanent by default.
+
+**FINDING 2 — two of that gate's own controls were written against the repository's state, and
+both went silent when the state moved.** Its self-test asserted `not layer_is_opened(src, "fauna")`
+and constructed its 3a case by setting `opened["fauna"] = True`. Opening the layer turned the first
+into a second copy of the measurement and the second into a case that could not be built at all —
+it printed **SILENT** rather than failing, which is the quieter of the two ways a control dies.
+Both are synthetic now: a scanner that cannot say *no* about a directory nothing names is broken
+whatever this repository happens to contain today. **This is the sixth time on this project that a
+green reading came from an instrument pointed at nothing**, and the first where the instrument was
+a self-test rather than a flag.
+
+**FINDING 3 — `docs/LIBERTIES.md` L2 has said "ambient wildlife is rendered sparsely" since
+2026-08-09, and nothing was rendered at all.** Not sparsely: none. The entry's own revision of
+2026-08-11 added a paragraph of measured detail about a dataset no renderer had opened, which is
+how a liberty about the scene becomes a liberty about a file. L2 now states what the renderer does
+— nothing is drawn, heard or traced — and keeps the decision as the standing intent for whenever
+animals *are* drawn.
+
+**What it does NOT do.** No animal is in the 3-D scene, no animal geometry is proposed, and the
+standing constraint on depicting people is untouched. Every one of the thirty read declarations is
+`shown` and none is `mesh`, deliberately: a state that said otherwise would be the read map making
+a claim about the town. K42's route 1 — *"leave it and say so"*, which needs `data/scenes/1835.json`
+and L2 to stop implying a reader — is **half discharged**: L2 is corrected here, and the `layers`
+list is now honest for a different reason, because the layer does reach the browser.
+
+**Files:** `renderers/web/js/fauna.js` (new) · `renderers/web/index.html` ·
+`renderers/web/js/main.js` · `renderers/web/css/walk.css` · `tools/publish.sh` ·
+`tools/check_published.mjs` (the copy rule) · `tools/compile_scene.py` (the citation join only) ·
+`tools/measure_layer_reads.py` + `tools/layer_reads_baseline.json` · `tools/smoke_renderer.mjs` ·
+`docs/LIBERTIES.md` L2.
+
+**Not claimed:** the desktop half of the smoke — ~13 min against this runner's 10-minute
+per-command ceiling; see the run-budget box at the top of this file. The section was photographed
+at 1280×800 by hand and reads correctly there.
+
+**What it opens.** K42's third route, *give it a reader in the scene*, is untouched and is a much
+larger parcel behind a bake. The narrower successor is **K52**: the same question asked of
+`data/residents/` — that layer IS published and IS read by the building card, and nothing has ever
+censused which of its figures reach a visitor. The read map covers flora and fauna and the two
+generators declare their own `CONSUMED`; the population layer is declared by nothing, which is the
+state `data/fauna` was in this morning.
+
+### K52 — nobody has censused what the residents' figures reach · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K51 · Effort: S–M**
+
+`tools/measure_layer_reads.py` covers `data/flora` and `data/fauna`; `generators/archetypes/*_params.py`
+and `generators/terrain_inputs.py` declare their own `CONSUMED`. **`data/residents/` is declared by
+nothing.** It is published (`tools/publish.sh` copies it) and the building card names the households
+attached to a structure, so unlike this morning's fauna the layer certainly has *a* reader — which
+makes it the harder question, not the easier one: a layer with one reader is exactly where an
+unread figure hides, because "the browser has it" reads as "somebody looks at it". 96 researched
+people, 113 invented names, and no answer to which of their figures a visitor ever sees.
+
+**It is UNSEEN and carries no exemption**, so it is not a pick while the visible queue has picks in
+it. Take it the way K51's own gate was taken: as the second half of a parcel that ends in a card.
 
 K42 finding 2, taken: **`data/fauna` has no reader, and three separate documents imply it does.**
 139 animal records across ten habitat zones, 90 citations, every one of them researched to the

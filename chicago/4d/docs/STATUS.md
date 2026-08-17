@@ -1,5 +1,64 @@
 # STATUS
 
+## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
+
+**ROADMAP K51**, from K42 finding 2. `data/fauna/` holds **139 animal records across ten habitat
+zones**, every one stated for 1 July 1835 rather than for the year, every graded claim carrying its
+reasoning and its sources. No file under `renderers/` named the directory. `tools/publish.sh` did
+not copy it. **A browser had never been offered the layer**, while `data/scenes/1835.json` listed
+`fauna` among the scene's layers and `docs/LIBERTIES.md` L2 described how sparsely that wildlife
+was *rendered*.
+
+It is now the Evidence panel's **What was living here** section, and nothing about the 3-D scene
+changed: no animal is drawn, no animal geometry is proposed, and the standing constraint on
+depicting people is untouched. The section says so in words, and the smoke asserts the sentence.
+
+### What a visitor gets
+
+Ten habitats in the manifest's own order; inside each, its `reads_as` sentence, what the dawn
+chorus does there on this date, whether its ground is drawn in this scene at all, and every species
+grouped in the manifest's class order. Each animal opens to its July status, whether it would be
+seen, heard or found only as sign, how many, what it would be doing, what it would look like, its
+voice in July, the sign it leaves — and the reasoning and citations behind the three graded claims,
+rendered by the same `citations.js` the building card uses.
+
+| | before | after |
+|---|---|---|
+| fauna figures reaching a visitor | **0 of 30** | **30 of 30** |
+| the whole flora+fauna dataset, unread | **58 of 100** | **28 of 100** |
+| `data/fauna`'s share of the unread bank | **30** | **0** |
+| habitats on the card / in the layer | — | **10 / 10** |
+| species on the card / in the layer | — | **139 / 139** |
+| citations rendered on the section | — | **54** |
+
+### Three findings, and none of them is about animals
+
+**1. K42's gate fired exactly as designed.** Its assertion 3a fails the moment a layer with no
+declared reads gains a reader, *"because the whole of this layer's unread bank rests on nobody
+opening it"*. Opening the directory turned the whole dev gate red on the first commit, and the
+thirty figures had to be classified in the same commit rather than riding on a sentence that had
+expired. A gate written against an absence has to name the event that ends the absence.
+
+**2. Two of that gate's own controls were written against the repository's state.** The self-test
+asserted `not layer_is_opened(src, "fauna")` and built its 3a case by setting `opened["fauna"]`.
+The first became a second copy of the measurement; the second could no longer be constructed and
+printed **SILENT** rather than failing — the quieter of the two ways a control dies. Both are
+synthetic strings now. That is the sixth green reading on this project taken from an instrument
+pointed at nothing, and the first where the instrument was a self-test.
+
+**3. L2 said "ambient wildlife is rendered sparsely" and nothing was rendered.** Not sparsely:
+none. Its 2026-08-11 revision added a paragraph of measured detail about a dataset no renderer had
+ever opened. L2 now states what the renderer does and keeps the decision as standing intent.
+
+### Verified
+
+`./tools/check.sh` — **CHECK PASS**, with the publish-sync gate carrying a new `COPIES` rule for
+`data/fauna/` (it caught the eleven published files that traced to no source, which is the rule
+working). `tools/measure_layer_reads.py --gate` and `--self-test` green.
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` — see the PR for the count.
+
+**Not claimed:** the desktop half of the smoke, ~13 min against this runner's 10-minute
+per-command ceiling. The section was photographed at 1280×800 by hand and reads correctly.
 ## Fixed 2026-08-16 — the woody planter sweeps the modelled field, and the timber has the east end its own source gives it
 
 **K45(b2)**, the second of K45(b)'s two changes. The planting loop's fixed square —
