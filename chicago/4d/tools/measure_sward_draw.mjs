@@ -265,10 +265,15 @@ console.log(`\nabundance units: ${ab.mixed.length} of ${ab.lists} lists mix an a
 for (const m of ab.mixed) {
   console.log(`  - ${m.zone}.${m.list}: ${(m.countedShare * 100).toFixed(1)}% of slots dealt off `
     + `counts, against ${m.area} species recorded as an area`
-    // ROADMAP K54. A mixed list whose SLOT COUNT is dealt off the recorded sum is
-    // still adding cover fractions to plants per m²; one dealt off `stems` is not.
-    + ` — slot count off '${m.basis ?? 'recorded'}'`
-    + (m.basis === 'stems' ? '' : ' (K55)'));
+    // ROADMAP K54 opened this column and K55 closed the question it asked. A
+    // mixed list whose SLOT COUNT is dealt off the recorded sum is still adding
+    // cover fractions to plants per m²; one dealt off `stems` is not; and a
+    // MATRIX list is dealt off neither, because `cover.matrix_fraction` answers
+    // that question directly. `basis` is `flora.js`'s own `SLOT_BASIS` now, so
+    // a row can no longer report a rule the renderer does not run.
+    + (m.basis === null
+      ? " — slot count off cover.matrix_fraction, not this sum (lottery only)"
+      : ` — slot count off '${m.basis}'`));
 }
 if (errors.length) console.log(`\npage errors: ${errors.length}\n  ${errors.join('\n  ')}`);
 

@@ -846,6 +846,21 @@ export async function createFlora({
       return zones.map((z) => ({
         id: z.id, matrixShare: z.matrixShare, bareSoil: z.bareSoil,
         graminoids: z.graminoids.length,
+        /** ROADMAP K55. The other two strata's slot chances, which K55 moves and
+         *  which nothing outside this module could read until it did — the
+         *  drawn census could see the plants that arrived and not the number
+         *  that asked for them, so a share sitting on its 1.0 clamp looked
+         *  exactly like one that had been tuned there. `z10_settled_town` is
+         *  the case: K55 multiplies its forb density and draws the same 146
+         *  plants, because both sides of the change are over the ceiling. */
+        forbShare: z.forbShare,
+        forbShareWet: z.forbShareWet,
+        shrubShare: z.shrubShare,
+        /** The sum each is dealt off, so a reader can tell a share that is
+         *  clamped from one that is small. `null` for the matrix by
+         *  `SLOT_BASIS` — its slot count is `matrixShare` above. */
+        forbDensity: z.dry.forbs.density,
+        shrubDensity: z.dry.shrubs.density,
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
@@ -1062,6 +1077,28 @@ async function loadFlora(dataBase, problems) {
   return { index, files };
 }
 
+/**
+ * ROADMAP K55 — WHICH SUM EACH STRATUM'S SLOT COUNT IS DEALT OFF, IN ONE PLACE.
+ *
+ * A slot count is a number of plants standing on a square metre of ground, so
+ * the only sum that can answer it is a sum of plants per square metre. Both
+ * lattice-dealt strata now read `stems`, which is the record's own abundance in
+ * that unit whatever field it was written in.
+ *
+ * **The matrix is `null`, and that is the parcel's own refusal made explicit.**
+ * K55 was opened against four lists and named three matrix ones among them, but
+ * a matrix slot count is `cover.matrix_fraction` read off the record directly —
+ * it has never come off this sum, so there was nothing in those rows to move.
+ * The sum was computed for the matrix anyway and read by nobody, which is how a
+ * report came to name three refusals as work: the column printed the DEFAULT
+ * argument rather than a fact about the renderer. `null` deletes the number
+ * instead of relabelling it, so the next reader gets nothing to misuse.
+ *
+ * `auditAbundance` prints from this same object, so the report cannot drift
+ * from the rule again.
+ */
+const SLOT_BASIS = { matrix: null, forb: 'stems', shrub: 'stems' };
+
 /** Per zone: a weighted graminoid list, a weighted forb list, colours, extent. */
 function compileZones({ index, files }, terrain, problems, stats) {
   const seenForms = new Set();
@@ -1153,17 +1190,23 @@ function compileZones({ index, files }, terrain, problems, stats) {
      *
      * `stems` is the record's own abundance read as a count — K49(c1) closed
      * the last gap in it, so all 98 sward records carry one — and the lottery
-     * is normalised over THAT. The recorded sum is kept separately and is what
-     * still sets `forbShare`, so **the number of slots does not move**: this
-     * changes what fills a slot, never how many are filled. `matrixShare` is
-     * read off the record directly and was never in the arithmetic at all.
+     * is normalised over THAT. The recorded sum was kept separately and set
+     * `forbShare`, so K49(c2) moved no slot at all: it changed what fills a
+     * slot, never how many are filled. `matrixShare` is read off the record
+     * directly and was never in the arithmetic at all.
      *
      * The shares it moves are quoted in ROADMAP K49(c1), measured before this
      * half was written so it could not choose its own bar.
+     *
+     * ROADMAP K55 FINISHED IT, and the slot count moves this time — the two
+     * lattice strata are dealt off `stems` as well (`SLOT_BASIS`), so the sum
+     * below survives only as the lottery's fallback for a species with no
+     * derivable count. There is no such species today.
      */
     for (const s of [...graminoids, ...forbs, ...shrubs]) {
       /** The abundance exactly as recorded, in whatever unit the record used.
-       *  It sets how many slots the list is dealt and nothing else. */
+       *  Read only where `stems` is null, which K49(c1) closed across all 98
+       *  sward records — it is the fallback and not a second opinion. */
       s.recorded = s.weight;
       s.weight = s.stems ?? s.recorded;
     }
@@ -1211,27 +1254,32 @@ function compileZones({ index, files }, terrain, problems, stats) {
     // lilies' 6.5 % share of that sward — the record's `matrix_fraction` says
     // 0.75 there, and it does not stop meaning 0.75 because two of its species
     // cannot stand on a bank.
-    const subsetOn = (list, wet, basis = 'recorded') => {
+    const subsetOn = (list, wet, basis) => {
       const items = list.filter((s) => (
         wet ? s.substrate !== 'soil' : s.substrate !== 'open_water'));
       return {
         items,
         total: items.reduce((a, s) => a + s.weight, 0),
-        /** ROADMAP K49(c2). The subset's abundance AS RECORDED — the number of
-         *  slots is dealt off this, not off the lottery, so moving the lottery
-         *  onto plants per m² leaves every slot count where it was.
+        /** The subset's abundance summed as PLANTS PER SQUARE METRE, which is
+         *  the unit a slot count is in. `SLOT_BASIS` says which sum each
+         *  stratum's is dealt off, and for the matrix the honest answer is that
+         *  there is no sum: `null`, so a reader that reaches for one gets
+         *  nothing rather than a number that means nothing.
          *
-         *  ROADMAP K54: the SHRUB list is dealt off `stems` instead, and that is
-         *  not an inconsistency — it is the same rule read in the same unit. A
-         *  slot count is a count of plants per square metre, and sixteen of the
-         *  twenty-one shrub records state their abundance as an AREA of ground
-         *  covered. Summing those cover fractions as though they were counts is
-         *  exactly K49(a)'s fault, and it was still live here: it planted
-         *  `z05_riverbank_timber`'s understory at 8.8× its own recorded density
-         *  and `z07_bur_oak_savanna`'s hazel at 4×. `stems` is that same
-         *  recorded cover divided by what one clump covers — the record's own
-         *  conversion, not a new number. */
-        density: items.reduce((a, s) => a + (basis === 'stems' ? (s.stems ?? 0) : s.recorded), 0),
+         *  ROADMAP K49(c2) moved the LOTTERY onto `stems` and left the slot
+         *  count on the recorded sum, saying so. K54 moved the SHRUB stratum's
+         *  count across. K55 moves the FORB stratum's, which is the last one
+         *  dealt off this sum at all — a list mixing a cover fraction with a
+         *  count was adding an area to a number of plants, exactly K49(a)'s
+         *  fault one level up, and the two entirely area-recorded forb lists
+         *  (`z05_riverbank_timber`, `z10_settled_town`) never registered as
+         *  mixed because a list needs both units to look inconsistent.
+         *
+         *  `stems` is not a new number: it is the record's own cover divided by
+         *  what one plant of that species covers, `stems × π(width/2)²`
+         *  inverted, on the width K49(c1) put on all 98 sward records. */
+        density: basis === null ? null
+          : items.reduce((a, s) => a + (s.stems ?? 0), 0),
       };
     };
 
@@ -1244,14 +1292,14 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const forbShareOf = (subset) => Math.min(
       1, subset.density * cell * cell / TUNE.forb.perCell);
     const dry = {
-      graminoids: subsetOn(graminoids, false),
-      forbs: subsetOn(forbs, false),
-      shrubs: subsetOn(shrubs, false, 'stems'),
+      graminoids: subsetOn(graminoids, false, SLOT_BASIS.matrix),
+      forbs: subsetOn(forbs, false, SLOT_BASIS.forb),
+      shrubs: subsetOn(shrubs, false, SLOT_BASIS.shrub),
     };
     const wet = {
-      graminoids: subsetOn(graminoids, true),
-      forbs: subsetOn(forbs, true),
-      shrubs: subsetOn(shrubs, true, 'stems'),
+      graminoids: subsetOn(graminoids, true, SLOT_BASIS.matrix),
+      forbs: subsetOn(forbs, true, SLOT_BASIS.forb),
+      shrubs: subsetOn(shrubs, true, SLOT_BASIS.shrub),
     };
     out.push({
       id: entry.id,
@@ -1330,10 +1378,15 @@ function compileZones({ index, files }, terrain, problems, stats) {
  * `stems` and said in as many words that the slot count was left on the recorded
  * sum; a list dealt off `recorded` while mixing an area with a count is
  * therefore still adding cover fractions to plants per m², and that arithmetic
- * planted `z05_riverbank_timber`'s understory at 8.8× its own record. K54 fixed
- * the shrub half of it by dealing that stratum off `stems`; four herb lists
- * (`z03`, `z05`, `z06`, `z10`) still carry it, and this column is what names
- * them. See K55.
+ * planted `z05_riverbank_timber`'s understory at 8.8× its own record.
+ *
+ * ROADMAP K55 CLOSED IT, and `basis` now comes from `SLOT_BASIS` rather than
+ * from a rule written twice. Both lattice strata read `stems`; the matrix reads
+ * `null` because its slot count is `cover.matrix_fraction` and never this sum,
+ * so its `mixed` row is about the LOTTERY only and there is nothing in it to
+ * move. That is why the column used to name three matrix rows as K55 work: it
+ * printed `subsetOn`'s default argument, not what the renderer does with the
+ * list. A mixed row is a fact about the dataset from here on, not a defect.
  */
 function auditAbundance(zones) {
   const mixed = [];
@@ -1361,7 +1414,7 @@ function auditAbundance(zones) {
       if (counted > 0 && area > 0) {
         mixed.push({
           zone: z.id, list, species: items.length, counted, area, countedShare,
-          basis: list === 'shrub' ? 'stems' : 'recorded',
+          basis: SLOT_BASIS[list] ?? null,
         });
       }
     }

@@ -1,5 +1,81 @@
 # STATUS
 
+## Shipped 2026-08-17 — the same fault ran BOTH WAYS, and for the herbs it under-planted the riverbank 96×
+
+**ROADMAP K55**, opened by K54 with its arithmetic banked and taken as the last list dealt off the
+wrong sum. `SLOT_BASIS` is now one object naming which sum each stratum's slot count comes off, read
+by both `flora.js` and `tools/measure_sward_draw.mjs`, and both lattice strata read `stems`.
+
+| forb layer | density before | after | ratio | `forbShare` before → after |
+|---|---|---|---|---|
+| `z05_riverbank_timber` | 0.025 /m² | **2.407** | **96×** | 0.072 → **1.0, clamped** |
+| `z10_settled_town` | 0.395 | **7.760** | 19.6× | 1.0 → **1.0, no slot moves** |
+| `z03_sedge_meadow` | 0.123 | **1.254** | 10.2× | 0.354 → **1.0, clamped** |
+| `z06_dense_forest` | 40.615 | **44.545** | 1.10× | 1.0 → 1.0 |
+| the other six | unchanged to the digit | | 1× | unchanged |
+
+Drawn, `node tools/measure_sward_draw.mjs --gate` on the published mirror: **forb slots 781 → 923**
+over the census's eight stations, `z03_sedge_meadow`'s own layer **31 → 84** (cover 1.0 % → 2.8 % of
+a recorded 11.0 %), `z05_riverbank_timber`'s **1 → 16** at its own station and **4 → 50** standing in
+the wet woods, plus a `z05` row at `z03` that did not exist (**0 → 14**). Forb deviation per 100
+slots **10.40 → 9.33**. **Matrix 154.19 and shrub 18.84 are K54's banked figures to the second
+decimal**, and `0 of 98` pairs are drawn nowhere — which is the assertion that nothing but the forb
+slot count moved.
+
+### Finding 1 — the sign of this fault is decided by the plant's own size, and the queue inherited the wrong one
+
+`stems = cover ÷ π(width/2)²`. A 2.25 m dogwood clump covers about 4 m², so reading its cover
+fraction as a count OVER-states it — K54's 8.8×. A 10 cm forb covers about 0.008 m², so the same
+reading UNDER-states it by about 125×. The fault was banked as over-planting because that is the
+case measured first, and K55's own statement inherited the direction along with the diagnosis:
+it predicted `z05`'s understory was "8.8× too thick" when its herb layer was 96× too thin.
+
+### Finding 2 — three of the six named rows were never faults; the column printed a default argument
+
+The parcel suspected the matrix half was a refusal, and it is. `matrixShare` is
+`cover.matrix_fraction` read off the record, so `subsetOn`'s `density` was **computed for the matrix
+and read by nobody** — and `auditAbundance` reported `basis: list === 'shrub' ? 'stems' : 'recorded'`,
+which is `subsetOn`'s default parameter rather than anything the renderer does. `z03.matrix`,
+`z08.matrix` and `z09.matrix` were named as K55 work on that basis. Both sides now read `SLOT_BASIS`,
+whose matrix entry is `null`, so the report prints *"slot count off cover.matrix_fraction, not this
+sum (lottery only)"* and there is no number left to misread.
+
+### Finding 3 — it is SEEN, and only just: the count moved a fifth and the frame moved 0.15 %
+
+`docs/evidence/k55-{before,after}.png` — `z05_riverbank_timber`, E −300 / N +398, bearing 090°,
+1280×800 on the published mirror, before shot with `HEAD`'s `flora.js` swapped into the same mirror
+so nothing else differs: **1,586 changed pixels of 1,024,000 (0.15 %)**, a scatter of white flower
+heads through the near grass. The `z03_sedge_meadow` station changes **24 pixels at bearing 135° and
+nothing visible at 315°**, because the added plants are small and stand under a dense matrix layer.
+**And the parcel's predicted visible half is refused outright**: `z10_settled_town`'s share was over
+the lattice ceiling before and after, so the one community a visitor spends the walk in does not
+move a plant. Quote the counts for this parcel, not a screenshot.
+
+Opened by this parcel: **K58** — the clamp above is now load-bearing in six communities of ten, so
+those layers are drawn at a density `TUNE.forb` chose rather than one any record states.
+`flora.communities()` gained `forbShare`, `forbShareWet`, `shrubShare` and both densities in this
+change precisely so K58 can read them; before it, a share sitting on its clamp and one tuned there
+were indistinguishable from outside the module.
+
+### What is NOT verified
+
+**Neither half of `tools/smoke_renderer.mjs`, for the fifth consecutive parcel.** See the K56
+section below: the suite has outgrown this runner's ten-minute per-command ceiling at both
+viewports, and backgrounding it is forbidden, so it is recorded as unrun rather than claimed.
+
+What ran in the foreground and passed:
+
+- `./tools/check.sh` — **CHECK PASS**, which is this repo's dev gate (`chicago-4d-check.yml`).
+- `node tools/measure_sward_draw.mjs --gate` on the published mirror — **GATE: PASS**, 7,069 slots
+  in 22 lists, 0 of 98 pairs drawn nowhere.
+- `node tools/shoot.mjs` at four station/bearing pairs on the published mirror — **zero page
+  errors**, 35 draw calls of 80, 541,701 triangles of 1,000,000.
+
+**Unverified consequences, stated plainly:** the mobile viewport was not rendered, so the 142 extra
+forb instances were never measured at the detail level a phone gets; no frame-time figure was taken
+anywhere; and the two clamped communities K55 creates are asserted from `flora.communities()` rather
+than from a drawn count, because a clamped share draws the same slots however far past 1.0 it is.
+
 ## Shipped 2026-08-17 — a shrub's leaf spray is a MASS of leaves, and sixteen of them covered 17.7 % of the bush
 
 **ROADMAP K56**, opened by K54 six hours earlier on the observation that the shrub archetype was
