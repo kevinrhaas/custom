@@ -52,6 +52,9 @@ import { fileURLToPath } from 'node:url';
 // The critic harness's PNG reader and its CIE L*, so a road's contrast is
 // measured on the same scale as everything else this project quotes.
 import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metrics.mjs';
+// ROADMAP K50. The gate and `tools/measure_drawn_placement.mjs` run ONE census
+// rather than two readings of it — see that module's header for why.
+import { CENSUS } from './drawn_placement_census.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -2756,6 +2759,79 @@ const terrainLoad = await page.evaluate(() => {
       + `(${drawnWood.wet} over water at all); worst ${drawnWood.worstOffshore} m`
       + (drawnWood.worstOffshoreAt
         ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
+
+    /**
+     * ROADMAP K50 — the R-BUG5b question, asked of the two layers it has not
+     * been asked of.
+     *
+     * R-BUG5b was invisible to three green gates because every one of them
+     * asked where the wood was DECIDED and none read back where it was DRAWN.
+     * Four layers in this renderer decide in ENU and draw in three's world
+     * space, and the conversion between them is one sign: `enuToWorld` is
+     * `(e, y, -n)`. `flora.js` was measured clean by R-BUG5b itself; the
+     * ground is answered twice over — `the drawn ground matches the
+     * heightfield the town anchors to` above reads every field sample off the
+     * drawn surface, and `tools/measure_terrain_horizontal.mjs` holds its two
+     * horizontal axes. That leaves `buildings.js` and `streets.js`, and
+     * neither has ever had its geometry read back.
+     *
+     * What each layer DECIDED is committed and independent of the renderer:
+     * a structure's `placement.local_e/local_n` in its sidecar, and a street's
+     * `path_local_enu_m`. So both halves below compare the drawn vertices
+     * against the DATA, never against another number the renderer computed.
+     *
+     * The buildings half reads the batch's own position buffer through the
+     * instance matrix the renderer will hand the GPU — the same two structures
+     * `BatchedMesh.getBoundingBoxAt()` and `getMatrixAt()` read, walked inside
+     * the census so the gate needs no THREE in the page. A structure's anchor
+     * is its FRONTAGE and the body grows from it (K30(b): 331 of 333 footprints
+     * grow from the minimum corner), so the invariant is not "the centre is the
+     * anchor" but the weaker, sign-sensitive one: **the anchor lies inside the
+     * body's own plan footprint**, to a metre. Under a mirrored northing a
+     * building 200 m north of the datum is drawn 400 m from its anchor, which
+     * no footprint in this town spans.
+     *
+     * TWO THINGS THIS GATE MEASURED ABOUT ITSELF BEFORE IT MEASURED THE TOWN,
+     * and both are in `drawn_placement_census.mjs` where the code is:
+     *
+     *   1. **a per-INSTANCE box is not a building.** A structure joins one
+     *      batch per material it uses, so the first reading compared 1,310
+     *      "bodies" for a town of 331 structures and reported 279 strays — one
+     *      body's walls judged without its roof. `instanceBounds()` warns about
+     *      exactly this in its own comment. The census unions per structure id.
+     *   2. **the mirror test does not discriminate on a street grid.** Asking
+     *      whether a road vertex is nearer to a street at its mirrored northing
+     *      answered "yes" for 3,975 of 19,372 vertices on a build where every
+     *      vertex is inside its own track, because a reflected point on a grid
+     *      lands on another east-west street. It is reported and gates nothing;
+     *      what catches a mirrored ribbon is the half-width test, because a
+     *      reflected road runs where no centreline is recorded.
+     */
+    const drawnTown = await page.evaluate(`(${CENSUS.toString()})()`);
+    check(`${label}: every building is drawn around the anchor its record gives it`,
+      drawnTown.buildings.compared > 200 && drawnTown.buildings.unrecorded === 0
+      && drawnTown.buildings.outside === 0 && drawnTown.buildings.mirrorCloser === 0,
+      `${drawnTown.buildings.outside} of ${drawnTown.buildings.compared} structures whose own `
+      + `anchor falls outside their drawn footprint — unioned from `
+      + `${drawnTown.buildings.instances} instances in ${drawnTown.buildings.batches} batches, `
+      + `${drawnTown.buildings.verts} vertices read back; worst `
+      + `${drawnTown.buildings.worst.toFixed(2)} m`
+      + (drawnTown.buildings.worstId ? ` (${drawnTown.buildings.worstId}, span `
+        + `${drawnTown.buildings.worstSpan} m)` : '')
+      + `; ${drawnTown.buildings.mirrorCloser} nearer to the MIRROR of their anchor`
+      + (drawnTown.buildings.worstMirrorId ? ` (${drawnTown.buildings.worstMirrorId})` : '')
+      + `; ${drawnTown.buildings.unrecorded} instances with no readable placement`);
+    check(`${label}: every panel of road is drawn on a street the data records`,
+      drawnTown.streets.verts > 1000 && drawnTown.streets.records >= 17
+      && drawnTown.streets.stray === 0,
+      `${drawnTown.streets.stray} of ${drawnTown.streets.verts} drawn vertices further than `
+      + `half a track from any of ${drawnTown.streets.records} centrelines across `
+      + `${drawnTown.streets.meshes} meshes; worst ${drawnTown.streets.worst.toFixed(2)} m`
+      + (drawnTown.streets.worstAt
+        ? ` at E ${drawnTown.streets.worstAt.e} N ${drawnTown.streets.worstAt.n}` : '')
+      + `, ${drawnTown.streets.beyondBounds} off the grid altogether`
+      + `; ${drawnTown.streets.mirrorAlsoOnRoad} whose MIRRORED northing is also on a road `
+      + '(reported, not gated — see the census header)');
 
     // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
     // above walk `stations`, which the near-field planter writes and which

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 161, title: 'Nothing you can see changed: the town is where it says', kind: 'improvement', ts: '2026-08-17T06:38:20.982Z', date: 'Aug 17, 2026, 1:38 AM CT',
+    items: [
+      'Every building and every road here was checked against the records that place them — by reading back the shapes actually drawn on your screen, rather than the instructions that put them there. 331 buildings, 533,346 corners; 17 streets, 19,372. Not one is out of place.',
+      'It is worth asking because it has gone wrong. Last week the whole wood by the river was drawn on the far bank while three separate checks called it fine: every one of them asked where the trees were meant to go, and none looked at where they ended up.',
+      'The new check was deliberately broken first, to prove it works. Mirroring the town across the river line makes it report 329 of the 331 buildings adrift, the worst by 1,239 metres. A check that has only ever seen a correct town has proved nothing.',
+      'Two ways of asking the question turned out to be wrong, and both are written down. Judging a building by one of its materials — its walls without its roof — flagged 279 of them on a town that is entirely correct. And on a street grid a mirrored road lands on another street often enough that mirroring is no test at all.',
+      'What it is for: the next piece of work moves 29 buildings that are drawn standing in the roadway. Nothing in this project had ever read the buildings back, so nothing could have told that work whether it landed.',
+    ] },
   { v: 160, title: 'The willow screen is back on a phone', kind: 'fix', ts: '2026-08-17T05:32:34.721Z', date: 'Aug 17, 2026, 12:32 AM CT',
     items: [
       'Settings offers a scene-detail choice — full, balanced or light — and a phone starts on light. Measured this week: it planted the same wood at all three. 472 trees, 470, 437, which is one wood dealt three times.',
