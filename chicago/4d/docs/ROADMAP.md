@@ -8301,7 +8301,12 @@ bearing, different viewport, different day, same symptom. Two things follow:
    emergent path over the river) before anyone spends a run on it — this frame looks *down a dry
    street* with the river off to the left. Suspect 1, the ring fade, survives that; check it first.
 
-### R-BUG6 — the town flickers too, and nobody knows why · **UNCLAIMED · UNSEEN · opened 2026-08-16 by R-BUG1 · Effort: S–M**
+### R-BUG6 — the town flickers too, and nobody knows why · **CLAIMED 2026-08-17 — DO NOT PICK UP · expires 2026-08-18 · opened 2026-08-16 by R-BUG1 · Effort: S–M**
+
+> **Held by the steward improve run of 2026-08-17 (lane 1, renderer only).** It is repairing the
+> control the box below calls untested, then testing the first suspect on the list — the shadow
+> map's texel grid moving with the camera. Take **K49(e)** or **R-M1d** instead; both are lane 1
+> and neither touches `world.js` or `tools/measure_river_edge.mjs`.
 
 **Under the 2 mm nudge, with the bank line fixed, 1,173–1,883 pixels of every aerial frame still
 change** — scattered over roofs, walls and tree canopies, not over the ground between them. The
