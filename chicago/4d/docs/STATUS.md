@@ -1,5 +1,83 @@
 # STATUS
 
+## Shipped 2026-08-17 — a shrub's leaf spray is a MASS of leaves, and sixteen of them covered 17.7 % of the bush
+
+**ROADMAP K56**, opened by K54 six hours earlier on the observation that the shrub archetype was
+designed and photographed at fourteen instances in the whole scene and the wet woods now carries
+**158 in one ring**. The parcel asked the right question in the right order — *what does a spray
+STAND FOR, before any number changes* — and the answer decides which number moves.
+
+**A spray stands for a season's leaves on one shoot.** That is the same abstraction the tree
+canopy's plates and the near tuft's bundle of shoots already use here, and it is the only one two
+triangles can carry: a hazel leaf is about 10 cm and no scaling off the clump width produces one.
+So **the 0.4 m spray is not the fault, and shrinking it would have bought a smaller plate with more
+sky around it.** Recorded as **L124** before the geometry was touched.
+
+### Finding — the fault is the COUNT, and it is 17.7 % of a shell
+
+Summed over the archetype's own loop, the sixteen sprays' plates cover **17.7 %** of the shell they
+are spread over. A visitor sees straight through every clump, and an isolated plate with sky on both
+sides of it reads as one enormous leaf precisely BECAUSE nothing overlaps it — which is why the size
+looked like the culprit.
+
+| | before | after |
+|---|---|---|
+| leaf sprays per shrub | 16 | **32** |
+| spray bands | 2 | **3, the lowest arching DOWN** |
+| plate area, archetype units² | 1.399 | **2.698** |
+| shell fill | **17.7 %** | **30.9 %** |
+| triangles per shrub | 40 | **72** — +5,056 in the wet woods' ring, of a 1,000,000 ceiling |
+| spray length on a 2.25 m clump | 0.26–0.44 m | **0.26–0.44 m, unchanged** |
+| drawn reach ÷ recorded half-width | 0.91 | **0.98** |
+
+### Finding — nothing in the first cut hung below its own attachment
+
+All sixteen sprays rose, so the shell stayed open exactly where the four stems are most exposed —
+and `k0 = shade(0.16)` makes a stem a black stick wherever foliage does not cover it, which the
+archetype's own comment feared in the abstract and `docs/evidence/k56-before.png` shows happening.
+The lowest of the three bands now arches down over them, bounded so no tip is pushed below the
+plant's own base.
+
+`docs/evidence/k56-{before,after}.png`, the same station K54 used (E −54 / N +314, bearing 135°) at
+1280×800 on the published mirror. **No census moved:** same species in the same places, plant for
+plant; `spread`, `height` and the lattice are untouched, so `tools/measure_sward_draw.mjs` reads
+back what it read yesterday — which the parcel predicted, because no count moves.
+
+Opened by this parcel and **not** answered: **K57**, the spray's GRAIN — at the same total plate
+area, is the shell better read as 32 masses of 0.4 m or 64 of 0.2 m? That trades triangles against
+grain and needs a measured budget in the wet woods rather than a preference.
+
+### What is NOT verified
+
+**Neither half of `tools/smoke_renderer.mjs`.** `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` was started in the foreground and killed at 570 s without reaching a verdict, so the
+run has the same gap K45(b4), K53, K54 and K52 all recorded: the suite has outgrown this runner's
+ten-minute per-command ceiling at BOTH viewports, and the honest thing is to say so rather than
+background it. **This is now a four-parcel-old blocker on the lane, not an incident.**
+
+What ran in the foreground instead, and passed:
+
+- `./tools/check.sh` — **CHECK PASS**, which is this repo's dev gate (`chicago-4d-check.yml`).
+- `node tools/measure_sward_draw.mjs --gate` on the published mirror — **GATE: PASS**, and every
+  figure is identical to K54's banked table to the digit: shrub instances 181 over 8 stations,
+  156 in `z06_dense_forest` at 40.1 % of a recorded 94.9 %, `z05_riverbank_timber` 20.1 % of 19.5 %,
+  deviation `shrub 10.41 over 181`. That identity IS the assertion that no count moved.
+- `node tools/shoot.mjs site/chicago/4d /walk/` over all seven visitor anchors on the published
+  mirror — **zero page errors**, 35 draw calls of 80, **541,701 triangles of 1,000,000** at `full`
+  detail (541,668 before, measured at the spawn anchor where one shrub stands).
+
+**Unverified consequences, stated plainly:** the triangle ceilings at `balanced` (800,000) and
+`light` (600,000) were not read back, though `full` sits at 54 % of its own and both lower levels
+draw strictly less; the mobile viewport (390×780) was not rendered at all, so the +32 triangles a
+shrub were never measured at the detail level a phone gets; and no assertion about the wet woods'
+frame time was taken, which is the half **K57** says a grain change needs before it moves.
+
+
+`tools/shoot.mjs` gained a `--at e,n,yaw[,name]` flag, because an archetype before/after pair needs
+one arbitrary station and the tool only had the visitor anchors, none of which stands in a plant
+community. Its positional arguments are now read with flags removed, which also fixes `--at`
+before the output directory silently becoming the output directory.
+
 ## Shipped 2026-08-17 — seventeen households were in the dataset and on no page, and the layer's one reader is why
 
 **ROADMAP K52.** `data/residents/` was the layer that already had a reader, which is why K51's

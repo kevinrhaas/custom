@@ -3066,7 +3066,8 @@ function rosetteGeometry() {
 
 /**
  * The shrub: four woody stems out of one root and a broad leafy shell over
- * them, in the same nominal box every other archetype uses — one tall, one
+ * them — thirty-two leaf sprays in three bands, the lowest arching down over the
+ * stems (K56) — in the same nominal box every other archetype uses — one tall, one
  * across, so `height_m` scales the stems and the recorded clump half-width
  * scales the spread (`placeShrub`).
  *
@@ -3086,9 +3087,10 @@ function rosetteGeometry() {
  * arrangement inside it is invented. Nothing here reads a figure the record
  * does not carry.
  *
- * Cost: 40 triangles against the forb's 12 and the near tuft's 27. It is drawn
- * from the forb lattice, so it takes slots the forb archetype used to take
- * rather than adding any.
+ * Cost: 72 triangles against the forb's 12 and the near tuft's 27 — 40 until
+ * K56 raised the spray count, which is the +32. It is drawn from the forb
+ * lattice, so it takes slots the forb archetype used to take rather than adding
+ * any, and 158 of them in the wet woods' ring is +5,056 triangles there.
  */
 function shrubGeometry() {
   const g = emptyGeo();
@@ -3123,34 +3125,54 @@ function shrubGeometry() {
     g.idx.push(a, b, c, b, d, c);
     tops.push([dx, dz, lean, top]);
   }
-  // Sixteen small leafy sprays, not four big ones. A shrub's mass is its
-  // OUTER SHELL — the reason it reads as a bush rather than as a candelabra —
-  // and the first cut of this archetype hung one 60 cm paddle off each stem,
-  // which is the wand's own failure at a larger size. Each stem carries a
-  // spray at its head and one part way up it, and eight more fill the shell
-  // between them, at two heights so the silhouette is round rather than flat.
+  // Thirty-two sprays, and the COUNT is what K56 moved. A spray is a leaf MASS
+  // — a season's leaves on one shoot, the same abstraction the tree canopy uses
+  // in this renderer and the same one the near tuft uses for a bundle of shoots
+  // — so its size is a rendering choice bounded by the plant's own shell, and it
+  // is not the thing that was wrong. What was wrong is that sixteen of them
+  // cover **17.7 % of that shell**: every clump could be seen straight through,
+  // and an isolated plate with sky on both sides of it reads as one enormous
+  // leaf rather than as foliage. Thirty-two cover 30.9 % and overlap, which is
+  // the whole difference between a bush and a candelabra carrying paddles.
+  //
+  // Three bands rather than two, and the LOWEST one arches DOWN. Nothing in the
+  // first cut hung below its own attachment, so the shell was open exactly where
+  // the four stems are most exposed — and `k0 = shade(0.16)` is a black stick
+  // wherever foliage does not cover it, which is what the comment above feared
+  // and what `docs/evidence/k56-before.png` shows happening.
+  const BANDS = [
+    { top: 0.66, lean: 0.28, scale: 0.94, droop: false },
+    { top: 0.46, lean: 0.44, scale: 0.86, droop: false },
+    { top: 0.28, lean: 0.40, scale: 0.78, droop: true },
+  ];
+  const FILL = 24;
   const sprays = [];
   for (const [dx, dz, lean, top] of tops) {
-    sprays.push([dx, dz, lean, top, 1.00]);
-    sprays.push([dx, dz, lean * 0.62, top * 0.60, 0.86]);
+    sprays.push([dx, dz, lean, top, 1.00, false]);
+    sprays.push([dx, dz, lean * 0.62, top * 0.60, 0.86, false]);
   }
-  for (let i = 0; i < 8; i++) {
-    const phi = (i / 8) * Math.PI * 2 + 0.9 + rng() * 0.5;
-    const high = i % 2 === 0;
+  for (let i = 0; i < FILL; i++) {
+    const band = BANDS[i % BANDS.length];
+    const phi = (i / FILL) * Math.PI * 2 + 0.9 + rng() * 0.5;
     sprays.push([Math.sin(phi), Math.cos(phi),
-      (high ? 0.30 : 0.44) + rng() * 0.26,
-      (high ? 0.62 : 0.34) + rng() * 0.22, high ? 0.94 : 0.80]);
+      band.lean + rng() * 0.22, band.top + rng() * 0.16, band.scale, band.droop]);
   }
-  for (const [dx, dz, lean, top, scale] of sprays) {
-    // Small enough to read as leaves rather than as blades: 0.26-0.42 of the
-    // clump radius against the first cut's 0.42-0.72, which on a 1.8 m hazel
-    // is a 30 cm spray instead of a 60 cm paddle.
+  for (const [dx, dz, lean, top, scale, droop] of sprays) {
+    // UNCHANGED by K56, deliberately: 0.26-0.42 of the clump radius, which on a
+    // 2.25 m hazel is a 0.26-0.44 m mass of leaves. A hazel LEAF is about 10 cm
+    // and no scaling off the clump width can produce one at two triangles, so
+    // shrinking this number would not have bought a leaf — it would have bought
+    // a smaller plate with more sky around it, and emptied the shell further.
     const len = (0.26 + rng() * 0.16) * scale;
     const half = (0.15 + rng() * 0.09) * scale;
     // The tip never leaves the nominal box: a plant is as tall as its record
     // says, and a spray that overshot 1.0 would make every shrub in the town
-    // taller than the height the census reads back off it.
-    const rise = Math.min(0.05 + rng() * 0.09, 1 - top);
+    // taller than the height the census reads back off it. A drooping shoot is
+    // bounded the other way instead — it may fall at most half way back to the
+    // ground from its own attachment, so no tip is ever pushed below y = 0.
+    const rise = droop
+      ? -Math.min(0.06 + rng() * 0.10, top * 0.5)
+      : Math.min(0.05 + rng() * 0.09, 1 - top);
     const bx = dx * lean;
     const bz = dz * lean;
     const k0 = shade(0.24 + top * 0.30);
