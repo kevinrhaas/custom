@@ -33,7 +33,7 @@ under the walker the whole way. Deep history: docs/ROADMAP.md § K10 (line ~9671
 **WHERE IT STANDS — half (1) has landed, half (2) has not.** The ticket stays open and
 stays where the owner put it; `claimed_by` is cleared so the next run may take the rest.
 
-**Shipped:** the walker stands on a deck. `placement.walk_surface_m` carries the
+**Shipped in PR #231:** the walker stands on a deck. `placement.walk_surface_m` carries the
 generator's own `deck_height_m` into every sidecar, `walker.js` resolves the floor
 through one `surfaceAt()` that every path asks, and a scene anchor — *On the North
 Branch bridge, mid-span* — puts a visitor on the planks on foot. The smoke walks the

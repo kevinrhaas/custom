@@ -39,4 +39,4 @@ whole panel; a liberty may contain any phrase without failing a gate about the o
 questions; and the guard still fires when a hand-typed count IS put back in the heading
 (prove it, the way this suite proves its other assertions fire when broken).
 
-Found by T-0001's run, which measured the same failure on `origin/dev` before merging.
+Found by T-0001's run (PR #231), which measured the same failure on `origin/dev` before merging.
