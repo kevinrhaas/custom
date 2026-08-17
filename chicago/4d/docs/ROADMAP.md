@@ -3464,7 +3464,7 @@ pre-merge tree. **The mobile half now costs more than one command here**, so the
 in the run-budget box — a test-name or section filter beside `SMOKE_VIEWPORT` — is no longer only
 the desktop half's problem.
 
-### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **UNCLAIMED · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
+### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **CLAIMED 2026-08-17 · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
 
 K45(b2) finding 2 measured it: `step` is count-neutral, so `light`, `balanced` and `full` plant the
 same wood, and the only thing that could differentiate them — the `STEMS` caps — truncates the
