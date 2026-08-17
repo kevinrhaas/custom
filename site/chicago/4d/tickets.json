@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 3:08 PM",
+  "generated_ct": "Aug 17, 2026, 3:41 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -515,7 +515,7 @@
     {
       "id": "T-0031",
       "title": "Where did the South Water timber belt stand",
-      "state": "blocked-owner",
+      "state": "open",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
@@ -525,14 +525,14 @@
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "Three routes, three different claims: derive the belt from the street centreline (asserts a side Andreas never states) - leave it researched-but-unplaceable (loses documented timber from the skyline) - withdraw the record like the public square",
+      "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": null
+      "queue_rank": 30
     },
     {
       "id": "T-0032",
       "title": "The six-roof civic target counts three that were never built",
-      "state": "blocked-owner",
+      "state": "open",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -542,31 +542,31 @@
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "Two exits, two claims about the town: roof_total 665 to 662 (the authored total was over) - or the three roofs existed and were not civic, re-typed into ordinary families (the split was wrong)",
+      "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": null
+      "queue_rank": 31
     },
     {
       "id": "T-0033",
       "title": "Set the two road-contrast bars from a source",
-      "state": "blocked-owner",
+      "state": "withdrawn",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "R-M1b",
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "The photograph named as the derivation source contains no dirt track. Options: commit a second reference photo of a real track (R-REF2) - cite a published detection threshold (a claim about eyes, not roads) - freeze the current baseline labelled provisional",
+      "blocked_on": "Owner ruling 2026-08-17: keep the current bars as the provisional baseline until he complains again; no derivation work now",
       "needs_bake": false,
       "queue_rank": null
     },
     {
       "id": "T-0034",
       "title": "Raise the bloom, which has no bar left to raise it to",
-      "state": "blocked-owner",
+      "state": "open",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
@@ -576,9 +576,26 @@
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "The 4-6 percent flower target is unsourced and does not reproduce, and the bloom is planted from sourced density_per_ha. Moving it is a data change needing source support - three routes in R-W4c(b1)'s box",
+      "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": null
+      "queue_rank": 32
+    },
+    {
+      "id": "T-0035",
+      "title": "Flowers grow up out of the ground as you approach instead of fading in",
+      "state": "open",
+      "epic": "FLORA",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 33
     }
   ]
 }
