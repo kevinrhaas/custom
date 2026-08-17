@@ -154,6 +154,7 @@ rationed.**
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
+| **4** | RENDERING | **R-W3b(a)** | **SEEN** | **CLAIMED 2026-08-17 · the shadow reach.** The sun's shadow camera is a ±60 m box that follows the visitor, so nothing beyond 60 m casts a shadow on anything — the mid-field town and the whole river timber sit on the ground with no contact at all. Pulled up because every numbered SEEN row above it is bake-blocked (K30(c), R-W2b/c) and this one touches `renderers/web/js/world.js` only |
 | 8 | RENDERING | **R-W5a2** | UNSEEN | the last 16 batches → 1. **Not needed for the budget.** Take it only when the lane has nothing SEEN left, which is not now |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
@@ -1675,7 +1676,7 @@ filed together only because RENDERING §4 groups them:**
 | | parcel | scope |
 |---|---|---|
 | **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other (mean 0.265, 69 % of texels below half). It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
-| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. |
+| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, CLAIMED — and R-W3b(b) — true cascades, only if (a)'s measurement says one map cannot pay for the reach.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
 **The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.
