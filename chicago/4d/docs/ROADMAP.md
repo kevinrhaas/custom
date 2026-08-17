@@ -955,19 +955,30 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 **What it did not do:** re-anchor the §5 targets by measuring a reference plate through
 `tools/critic_metrics.mjs`. That is still a one-line job and still not done.
 
-### R-W1 — calibrated light and environment · **LANDED ON `dev` 2026-08-16 · NOT FOR PROMOTION UNTIL THE CONDITION BELOW IS MET**
+### R-W1 — calibrated light and environment · **SHIPPED TO PRODUCTION 2026-08-17 ON THE OWNER'S RULING**
 
-> ## ⛔ RELEASE CONDITION — `dev` may carry this; `main` may not, yet
+> ## ✅ RELEASE CONDITION — DISCHARGED BY THE OWNER, 2026-08-17
 >
-> **R-W1 must not be promoted to production until EITHER the owner has walked the `/dev/`
-> preview and approved the look, OR R-W2 has bought the road contrast back.** It is on `dev`
-> so that there is something to walk; that is what the tier is for. Whoever runs the next
-> promotion reads this box first, and if neither condition is met, **revert this parcel on a
-> branch and promote without it** rather than shipping it unreviewed.
+> **The condition below was put to Kevin before the promotion that carried this parcel, with the
+> cost stated and three options offered — ship it, re-measure first, or promote without it. He
+> chose to ship it.** The parcel went to production in the same promotion as K24's brightness
+> slider, which is the accommodation he asked for on 2026-08-14 when he was first told this scene
+> would be ~16 % dimmer.
 >
-> The reason is one number: **`south_water` 250–600 m falls from 71 % of probes perceptible to
-> 16 %.** That band was healthy and is now nearly dead, and the far road down a street is the
-> exact complaint the owner has raised twice.
+> **The cost is real and is not retracted.** `south_water` 250–600 m fell from **71 % of probes
+> perceptible to 16 %** when this landed on `dev`, and the far road down a street is a complaint
+> he has raised twice. **R-W2**'s textured coverage is still the parcel that buys it back, and it
+> stays #1 on the rendering lane for that reason. If a later run finds that band still dead, the
+> answer is R-W2 — not a smaller bar, and not a revert of the light.
+>
+> **The figure is also older than the build it shipped in.** It was taken on `dev` at 836fa84;
+> K24, the doubled shadow reach (R-W3b/R-W5a2) and R-BUG6(a)/(b) all landed after it and none was
+> re-measured against this band. **Do not quote 16 % as this build's number** — it is the number
+> this parcel cost on the day it landed. Re-read it before using it to argue anything.
+>
+> *Original condition, kept because the reasoning is the record:* R-W1 was not to be promoted
+> until the owner had walked the `/dev/` preview and approved the look, or R-W2 had bought the
+> contrast back. It was held on `dev` for exactly that purpose, and released by the first route.
 
 **The light was wrong and this parcel is right about it.** Measured on an upward-facing white
 Lambertian card, sun excluded, on the rebased branch: the old `HemisphereLight` rig put out
