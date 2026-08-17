@@ -3,8 +3,8 @@
 T-0001 — A visitor can walk across every bridge, end to end
 T-0002 — Weathered facades: unpainted boards, no two buildings alike
 T-0003 — Town furniture: fences, signboards, wagons, porches, docks
-T-0035 — Flowers grow up out of the ground as you approach instead of fading in
 T-0036 — The gate screen counts the town: buildings standing, people housed
+T-0035 — Flowers grow up out of the ground as you approach instead of fading in
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0006 — Image-accuracy passes on the landmark buildings
