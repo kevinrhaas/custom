@@ -3142,7 +3142,12 @@ parcel is a measurement, a bank, two gate steps, a correction to L113 and a chan
 entry. Nothing a visitor sees moved, which is the honest outcome when the repair on the
 table would have moved nothing either.
 
-### K45(b) — the lakeshore repair as it actually is · **UNCLAIMED · opened 2026-08-16 by K45(a) · Effort: M · NO BAKE, and it carries the smoke**
+### K45(b) — the lakeshore repair as it actually is · **CHANGE ONE CLAIMED 2026-08-17 — DO NOT PICK UP · opened 2026-08-16 by K45(a) · Effort: M · NO BAKE, and it carries the smoke**
+
+> **CLAIMED 2026-08-17, expires 2026-08-18** — a steward run holds change one (the dune
+> community: `z08_lakeshore`'s three poplars, the placement rule, and the gate re-bank it
+> forces). Changes two and three are already spent. Take **K45(b3)** instead, which is the
+> other runner-closable row in this lane and touches the detail control rather than the mix.
 
 K45(a) refuted the one-line version. What is left is two changes and one research question, and
 its numbers are all measured and committed — take them, do not re-derive them.
