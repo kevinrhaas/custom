@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-16 — the South Water viewpoint stands in South Water Street, and the far-band collapse it was parked for does not reproduce
+
+**ROADMAP T-V2**, built on 2026-08-15 and parked on `hold` PR #135 for two days. The anchor a
+visitor is offered under the name **South Water Street** — the business street of 1835 Chicago —
+stood at **(260, −95)**: 101 m south of the committed centreline of the street it is named for, in
+a field, with that street a band of roofs on the horizon and about 60 % of the frame grass. It now
+stands at **(329.8, 7.0)**, in the street at the Wells corner, looking east.
+
+**Neither half of the coordinate is new evidence.** The easting is the Wells junction the sixteen
+South Water records are themselves offset from, quoted verbatim in their own position notes; the
+northing is `data/streets/1835.json`'s South Water centreline at that easting. A camera is not a
+placement: no building moved, no dimension changed, no confidence tier changed anywhere.
+
+### The parcel was parked on a measurement that has since stopped being true
+
+The `hold` said the far band **collapsed to 0.5 L\* and 30 % perceptible** when the camera moved
+into the street, and asked whether a threshold set against an oblique view should be asserting
+250–600 m of road seen down its own length. **Re-measured on today's `dev` (c701833), that band
+reads 2.1 L\* and 71 %.** R-BUG3's near lift, R-BUG5b's wood and R-A1 all landed in between. The
+question the parcel was held for was answered by other work while it waited.
+
+### What the move is actually worth, and it is the R-M1c fault again
+
+Mobile 390×780, published mirror, same runner. `nProjected` is how much of that band's road is in
+the frame at all; `n` is how much of it the marker pass can see:
+
+| `south_water` band | old stand, in the field | new stand, in the street |
+|---|---|---|
+| 2–40 m | **not gated** — 1 probe projects | ΔL\* 4.1, **90 %**, n 10 of 10 |
+| 40–100 m | ΔL\* 4.1, 100 %, n 28 of 34 | ΔL\* 3.5, 87 %, n 15 of 15 |
+| 100–250 m | ΔL\* 3.7, 100 %, n 25 of **96** | ΔL\* 2.2, **52 %**, n 42 of **67** |
+| 250–600 m | ΔL\* 15.8, 100 %, n **6 of 510** | ΔL\* 2.1, 71 %, n 100 of **423** |
+| **gated probes PERCEPTIBLE** | **31** | **93** |
+
+**The old stand scored 100 % on six probes of five hundred and ten.** The new stand shows
+**seventy-one** perceptible stretches of that same band and scores 71 %. Across both gated bands the
+street view puts **three times as much readable road** in front of a visitor — 93 stretches against
+31 — and the gate records it as a regression, because `perceptible` divides by probes **SEEN** and
+the field stand could not see 98.8 % of the band it was scoring. Scored on `nProjected`, the honest
+denominator: **5.1 % → 19.0 %.**
+
+This is the second independent demonstration of **R-M1c** in one evening, from a different station
+and a different cause. R-BUG5b found it by removing an occluder; this finds it by pointing the
+instrument at road it can actually reach.
+
+### Landed with two bands red, neither of them this parcel's to fix
+
+`the roads reach the screen from the walker's eye, down an open street` fails on **100–250 m at
+52 %** against the 55 % bar — three points, on a station where the honest denominator says the move
+*improved* both gated bands. `the roads reach the screen from the air, at the aerial anchor` also
+fails and is **inherited from `dev` unchanged** (85 % / 54 %, identical to the digit) — R-BUG5b's
+knowingly-red band, not this parcel's. **No threshold moved, no band widened, no station dropped.**
+The bar belongs to R-W2 (coverage) and R-M1c (the denominator); **T-V2b is folded into R-M1c**,
+because "a threshold set against an oblique view" turns out to be the same fault seen from the
+other end.
+
+**Not claimed:** the desktop half of the smoke, and the critic-shots baseline re-shoot the parcel's
+own box asks for — `south_water` is a baseline station, so its row in the STATUS baseline table is
+now measured from a different place and must be restated rather than compared. That is carried as
+T-V2c rather than silently left as two incomparable numbers under one name.
+
 ## Fixed 2026-08-16 — the whole near-field wood was drawn mirrored, and that is why the trees were in the river
 
 **ROADMAP R-BUG5b**, the owner's report reopened after #196 shipped a fix that did not change what
