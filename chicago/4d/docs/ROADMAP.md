@@ -712,7 +712,14 @@ all 30 fauna figures, in the same commit, and the self-test's negative control h
 · `renderers/web/css/*` · `tools/publish.sh` · `tools/compile_scene.py` (the citation join only)
 · `tools/measure_layer_reads.py` + its baseline · `tools/smoke_renderer.mjs`.
 
-### K50 — ask every other layer the question that caught R-BUG5b · **UNCLAIMED · from R-BUG5b · Effort: S–M**
+### K50 — ask every other layer the question that caught R-BUG5b · **CLAIMED 2026-08-17 — DO NOT PICK UP · from R-BUG5b · Effort: S–M**
+
+**Held by `steward/k50-drawn-vs-decided` (branch off `dev`, 2026-08-17).** It takes the two layers
+R-BUG5b's method has not been pointed at — `buildings.js` and `streets.js`. The ground half is
+already answered and should not be redone: `smoke_renderer.mjs` reads the drawn ground back against
+`heightfield.bin` at every field sample ("the drawn ground matches the heightfield the town anchors
+to") and `tools/measure_terrain_horizontal.mjs` holds its two horizontal axes. `flora.js` was
+measured clean by R-BUG5b itself. **Take K52, K35 or R-BUG6 instead while this is in flight.**
 
 R-BUG5b was invisible to three gates because all three asked where a layer DECIDED to put something
 and none read back where it was DRAWN. Four layers decide in ENU and draw in three's world space:
