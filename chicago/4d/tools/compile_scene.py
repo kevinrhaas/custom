@@ -450,6 +450,55 @@ def ground_claims(spec: dict, sources: dict) -> list[dict]:
     return claims
 
 
+def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int:
+    """The citations the residents layer stands on, joined once for the panel.
+
+    ROADMAP K52, and the argument is `compile_fauna_sources`'s exactly. What a
+    household record carries is a list of `source_id`s and a bare id on a card is
+    not a citation, so the join is done here, where every other join in this
+    project is done, and `renderers/web/js/citations.js` renders it.
+
+    THE DIFFERENCE FROM FAUNA IS THE SHAPE OF THE READ. The browser fetches the
+    manifest and then one household record per row a visitor opens, so this file
+    must cover every household — not only the ones a building sidecar reaches.
+    It carries no resident figure of its own: the people are read from
+    `data/residents/`, and a census of which figures reach a visitor must not
+    have two answers to the same question.
+    """
+    cited: set[str] = set()
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    cited.update(str(v) for v in value)
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    index_path = DATA / "residents" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    walk(index)
+    for entry in index.get("households", []):
+        household_path = DATA / "residents" / entry.get("file", "")
+        if household_path.exists():
+            walk(load(household_path))
+
+    citations = cite(sorted(cited), sources)
+    emit(outdir / "residents_sources.json", {
+        "scene": scene_id,
+        "standard": "Every source the household records cite, joined once so the people "
+                    "section of the Evidence panel quotes a source exactly the way the "
+                    "building card and the exclusions list do.",
+        "citations": {c["source_id"]: c for c in citations},
+    })
+    return len(citations)
+
+
 def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
     """The citations the fauna layer stands on, joined once for the walkthrough.
 
@@ -956,9 +1005,11 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                                   in_scene=resolved)
     ground = compile_ground(scene_id, scene, sources, outdir)
     fauna_cites = compile_fauna_sources(scene_id, sources, outdir)
+    resident_cites = compile_residents_sources(scene_id, sources, outdir)
 
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
-          f"{ground} ground claim(s), {fauna_cites} fauna source(s)"
+          f"{ground} ground claim(s), {fauna_cites} fauna source(s), "
+          f"{resident_cites} resident source(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 

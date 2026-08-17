@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 169, title: 'The town’s people get a card of their own', kind: 'feature', ts: '2026-08-17T15:13:57.714Z', date: 'Aug 17, 2026, 10:13 AM CT',
+    items: [
+      'The Evidence panel has a new section: 173 households and 209 people researched into July 1835 — when each came, from where, why, where they lived and worked, and whether the sources place them here at all on 1 July.',
+      'Seventeen of those households reached nowhere. A household only ever appeared on the card of a building it lived or worked in, and where neither is recorded it attached to no building — so 20 people sat in the dataset and on no page. Mark Beaubien, who kept the Sauganash and in whose house the town voted to incorporate itself, is one of them.',
+      'Two thirds of every record that did appear stayed in the file as well: the arrival year, where the family came from, why they came, whether the sources really place them here, and each person’s age, sex and the basis of their name. All of it is on the card now, each figure carrying its grade and the reasoning behind it.',
+      'The reasoning is usually the finding. Beaubien’s arrival year is “the figure in general circulation”, carried as a conjecture that cites nothing — recorded that way precisely so a reader can see it is not evidence.',
+      'Ten people who were researched and are NOT residents are published too: someone who arrived after the scene date, someone the sources put at Chicago but not as a household of it, and one this project believes was here and cannot cite. The gap is shown rather than filled.',
+      'Nobody is drawn. No human figure stands in this reconstruction and none is proposed here — this is the research, on a card a visitor opens.',
+    ] },
   { v: 168, title: 'The wet woods have a shrub layer at last', kind: 'fix', ts: '2026-08-17T14:26:54.755Z', date: 'Aug 17, 2026, 9:26 AM CT',
     items: [
       'This morning’s note ended with a number: only 14 bushes stood across the eight viewpoints, because every plant in the understory competed for the same places and one hazel counted the same as one wild leek. Across those viewpoints there are 181 now.',

@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-17 — seventeen households were in the dataset and on no page, and the layer's one reader is why
+
+**ROADMAP K52.** `data/residents/` was the layer that already had a reader, which is why K51's
+successor named it the *harder* question: `tools/compile_scene.py`'s `compile_residents()`
+attaches a household to a building sidecar and `popup.js` names it on the building card, so
+"the browser has it" read as "somebody looks at it". The join reaches a building through
+`lives_at` or `works_at`.
+
+| | households | person entries |
+|---|---|---|
+| in `data/residents/` | 173 | 209 |
+| reachable through a building card | 156 | 189 |
+| **reachable nowhere** | **17** | **20** |
+
+**The seventeen are the ones whose residence and workplace are both unattested at the scene
+date** — so the layer was dropping records for being poorly evidenced, which is the opposite
+of what this project's confidence model is for. The Mark Beaubien household is one of them:
+he had left the Sauganash by 1834 and the Exchange by August 1834, where he slept on
+1 July 1835 is not in the record, `lives_at` is `null`, and the join drops the most famous
+household in the town.
+
+### Finding 1 — a reader is not a read map
+
+The join copies id, name, division, the relation and its note, and a person's name,
+relationship, grade and occupation word. `arrival`, `origin`, `reason_for_coming`,
+`party_size_on_arrival`, `present_on_scene_date`, `touches_removal`, a person's `sex`,
+`age_on_scene_date`, `birth_year`, `name_basis` and their own `sources`, the occupation's
+grade and reasoning, and the ten `researched_not_resident` findings all stopped at the
+repository. The last of those is the sharpest: its own manifest doc calls it *"as load-bearing
+as the households"*, and it includes a person this project believes was here and cannot cite,
+*"recorded so that the gap is visible rather than quietly filled"*.
+
+### Finding 2 — K42's assertion 3a did not fire, and that is a hole
+
+`tools/measure_layer_reads.py` scans `flora` and `fauna` by name, so `residents` gaining a
+reader tripped nothing. The fauna parcel was caught by its own instrument; this one was
+caught by reading the join by hand. Extending the census to this layer is **K52(b)** and is
+not done — the tool's kinds, baseline and negative control are all written around the other
+two layers.
+
+### What shipped, and what it does not do
+
+The Evidence panel's people section: the manifest in one fetch, all 173 households with their
+division, people and grade tallies, the 17 marked on their own rows, and the full record
+fetched the first time a row is opened. Every graded claim carries its value, its confidence,
+its reasoning and its joined citations (11 sources, joined by
+`compile_residents_sources()`). **Nothing is drawn** — L1 stands, no human figure is in the
+scene, and nothing went into `docs/LIBERTIES.md` because nothing was invented.
+
+### What is NOT verified
+
+The desktop half of `smoke_renderer.mjs` does not fit the runner's ten-minute per-command
+ceiling and did not run. The mobile half ran on the published mirror: **263 passed, 2 failed**,
+both failures the road-contrast bands `dev` already carries red (§ *Landed with two bands red*,
+below) and neither this parcel's — it changes no 3-D rendering at all.
+
 ## Shipped 2026-08-17 — the shrub layer is a stratum and now has its own lattice: 4 bushes standing become 181
 
 **ROADMAP K54**, route 2, opened by K53 six hours earlier with its arithmetic banked. The forb
