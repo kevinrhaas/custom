@@ -151,6 +151,34 @@ of `docs/LIBERTIES.md`. The bar was never "only build what is proven" — it is 
 what you built."** Those are different, and the second one is compatible with building a great deal
 more than this loop has been building.
 
+## THE QUEUE — how work is chosen (since 2026-08-17)
+
+**`tickets/` is the single operational answer to "what next".** The owner asked for it
+directly: his requests were getting lost inside an 11,000-line ROADMAP, and he could not
+reorder priorities without editing prose. Read `tickets/README.md` — it is one page and it
+is the contract. The short form:
+
+- **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
+  `needs_bake` on the improve runner, with the skip stated in the PR). `node
+  tools/ticket.mjs list --workable` prints the same order.
+- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`.
+- **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
+  `block --owner "the question"` — the question goes in the ticket, where the owner will
+  actually see it, not only in a PR body.
+- **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
+  "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
+  rule is what makes his priorities durable across runs.
+- **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
+  starts. This is not optional bookkeeping; an owner request going untracked for days is
+  the exact failure this system exists to close.
+- `tools/check.sh` runs `ticket.mjs check`: duplicate ids, queue drift, stale BOARD, a
+  block with no stated question — all merge-refusing.
+
+**`docs/ROADMAP.md` is no longer the backlog.** It remains the *reasoning archive* — the
+parcel boxes hold measurements, refutations and acceptance clauses that tickets link into,
+and nothing there is deleted. Its NEXT UP table is tombstoned with a pointer here. STATUS.md
+remains the honest narrative of what shipped; the *state* of work lives in tickets alone.
+
 ## The work-parcel contract
 
 Work is parceled so parallel agents never collide. If you are a subagent:

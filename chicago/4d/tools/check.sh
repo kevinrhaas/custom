@@ -304,6 +304,12 @@ step "the shrub keeps its recorded width and its shell is not see-through" \
 step "changelog contract" \
   node tools/check-changelog.mjs
 
+# The ticket queue: the operational "what next" the owner ordered on 2026-08-17
+# after his own requests went untraceable in the ROADMAP. Duplicate ids, queue
+# drift, a stale BOARD, a block with no stated question — all merge-refusing.
+step "ticket queue" \
+  node tools/ticket.mjs check
+
 # The link between the two: the shipped derivative against the master it was
 # compressed from. `--stale` gates data -> master and check_published.mjs gates
 # assets/web -> the mirror, and NOTHING gated the step in between, which is the one

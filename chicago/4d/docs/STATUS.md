@@ -1,5 +1,21 @@
 # STATUS
 
+## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
+
+**On the owner's direct request.** His words: tracking "what i have asked for and what you
+and the loop are working on" had become impossible — his own K-series requests sat below
+line 9,300 of an 11,400-line ROADMAP with no status tags (K10, "walkable bridges", was
+asked for in August and never entered any queue), and reordering priorities meant editing
+prose. The operational state now lives in **`tickets/`**: one markdown file per ticket,
+`QUEUE.md` as the single priority order (owner-ordered; agents append and remove only),
+`BOARD.md`/`tickets.json` generated, `tools/ticket.mjs check` gating it in check.sh, and
+the board mirrored to the site for Manager. **34 tickets seeded**: every open ROADMAP
+parcel (with `legacy_id`), the owner's six recovered K-asks at the top of the queue, and
+the four standing owner decisions as `blocked-owner` tickets with their options inline.
+ROADMAP's NEXT UP table is frozen with a tombstone; the deep boxes remain the reasoning
+archive. AGENTS.md § THE QUEUE is the new contract.
+
+
 ## Shipped 2026-08-17 — the parcel asked for a finer grain at the same plate area, and the plates are what carries the recorded width
 
 **ROADMAP K57**, opened by K56 six hours earlier: *at the same total plate area, is the shrub's shell

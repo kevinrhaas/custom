@@ -76,6 +76,12 @@ if [ -f renderers/web/js/changelog.js ]; then
   cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"
 fi
 
+# The ticket board, for Manager and any fleet reader: tickets.json is generated
+# by tools/ticket.mjs (check.sh refuses a stale one), mirrored verbatim here.
+if [ -f tickets/tickets.json ]; then
+  cp -f tickets/tickets.json "$SITE/tickets.json"
+fi
+
 # Web-derivative assets only — never the masters. assets/web/ is produced by
 # tools/web_derivatives.sh (which tools/bake.sh calls and nothing else does);
 # the staleness of that directory against assets/gltf/ is settled at the top of
