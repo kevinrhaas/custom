@@ -30,3 +30,7 @@ T-0027 — How much of the public square was wet
 T-0028 — Build out the remaining anonymous blocks
 T-0029 — The nightly bake check is red on K38 derivative baselines
 T-0030 — A queue card in Manager reading tickets.json
+T-0031 — Where did the South Water timber belt stand
+T-0032 — The six-roof civic target counts three that were never built
+T-0034 — Raise the bloom, which has no bar left to raise it to
+T-0035 — Flowers grow up out of the ground as you approach instead of fading in

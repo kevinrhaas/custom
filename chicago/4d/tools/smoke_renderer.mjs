@@ -151,6 +151,13 @@ const TYPES = {
  * **0.3 L\* with 14 % of probes perceptible**; the aerial anchor at 100-250 m
  * scored **1.1 L\* with 0 %**. Both are FAILURES under the thresholds below,
  * which is the point — the check names the fault when the fault is put back.
+ *
+ * PROVENANCE OF THE NUMBERS (T-0033 / R-M1b, owner ruling 2026-08-17): these
+ * bars are a PROVISIONAL BASELINE, not derived from a source — the photograph
+ * R-M1 named as the derivation source contains no dirt track, and the owner
+ * ruled "keep this baseline until I complain about it more later". Do not
+ * describe them as derived, and do not spend a run re-deriving them unless the
+ * owner reopens the question.
  */
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
