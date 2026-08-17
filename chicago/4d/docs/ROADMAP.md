@@ -681,7 +681,7 @@ censused which of its figures reach a visitor. The read map covers flora and fau
 generators declare their own `CONSUMED`; the population layer is declared by nothing, which is the
 state `data/fauna` was in this morning.
 
-### K52 — nobody has censused what the residents' figures reach · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K51 · Effort: S–M**
+### K52 — nobody has censused what the residents' figures reach · **CLAIMED 2026-08-17, expires 2026-08-20 · taken as the card its own box names, so SEEN · opened 2026-08-17 by K51 · Effort: S–M**
 
 `tools/measure_layer_reads.py` covers `data/flora` and `data/fauna`; `generators/archetypes/*_params.py`
 and `generators/terrain_inputs.py` declare their own `CONSUMED`. **`data/residents/` is declared by
