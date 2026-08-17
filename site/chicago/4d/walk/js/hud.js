@@ -28,6 +28,11 @@ const DEFAULT_SETTINGS = {
   // shipped before it existed. It is a viewing accommodation, not an
   // alternative reconstruction — see streets.js § R-A1 and ROADMAP R-A1.
   roadAid: 0,
+  // K24, owner-requested. Brightness is OFF at 0 stops and 0 is the calibrated
+  // grade the scene has always rendered at. Same standing as roadAid: a viewing
+  // accommodation, never an alternative reconstruction — see world.js
+  // § BASE_EXPOSURE and ROADMAP K24.
+  brightness: 0,
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
   // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
   detail: '',
@@ -366,6 +371,13 @@ export function createHud({
   // different claim about the town.
   wireRange('s-road-aid', 'v-road-aid', 'roadAid',
     (v) => (v <= 0 ? 'Off — the roads as recorded' : `+${Math.round(v * 100)}%`));
+  // K24. Stops, not percent, and the calibrated position is named on its face
+  // for the eye-height reason: this control brightens your screen, and the
+  // readout has to make it impossible to read the brighter end as a claim that
+  // the town was brighter. A stop is also the honest unit — it is what the
+  // ceiling is bounded in (world.js § BASE_EXPOSURE).
+  wireRange('s-brightness', 'v-brightness', 'brightness',
+    (v) => (v <= 0 ? 'Calibrated — the light as measured' : `+${v.toFixed(2)} stop`));
 
   const units = $('s-units');
   if (units) {

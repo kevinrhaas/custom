@@ -275,6 +275,28 @@ const SHADOW_REACH_MIN_WORST = 4;
 const ROAD_AID_GRID = 48;
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
+// K24. The brightness aid's own floors, and the reason they are not the road
+// aid's: exposure moves EVERY pixel, so the 12² whole-frame signature that was
+// too coarse for a roadway occupying a tenth of the frame is exactly the right
+// instrument here, and a finer grid would only cost time. Measured mobile
+// 390×780 on the published mirror at `lake_market`, full aid (+1 stop):
+//
+//   12²  mean 49.40, worst 51      restored residual, 12²:  mean 0.00, worst 0
+//
+// That is two orders of magnitude more signal than the road aid's 0.29 at the
+// same grid, which is the expected shape: one aid repaints a tenth of the frame
+// and the other regrades all of it.
+//
+// The floors sit at roughly a third of the measured figures and far above the
+// restored residual, so "the aid changed the frame" and "the aid changed
+// nothing" cannot both be true — R-A1's third assertion, which is the one a
+// control wired to nothing passes.
+const BRIGHT_AID_GRID = 12;
+const BRIGHT_AID_MIN_WORST = 17;
+const BRIGHT_AID_MIN_MEAN = 15;
+// The calibrated grade, asserted rather than assumed: every band, probe and
+// critic frame this suite takes is read here. world.js § BASE_EXPOSURE.
+const BASE_EXPOSURE = 0.95;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
 async function roadContrast(page, station) {
@@ -2582,6 +2604,11 @@ const terrainLoad = await page.evaluate(() => {
     const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
     const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
+    // K24. The raised READING, which until now this suite never took: both of
+    // the assertions around this one expect 0, so a frozen readback satisfied
+    // them and only a value that is meant to MOVE can find that out. See
+    // main.js § Live getters.
+    const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
     const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
     const dAid = signatureDistance(aidOff, aidOn);
@@ -2593,8 +2620,9 @@ const terrainLoad = await page.evaluate(() => {
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
 
     check(`${label}: raising the road-legibility aid reaches the render`,
-      aidSet === 1 && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
-      `set to ${aidSet}: cell delta mean ${dAid.mean?.toFixed(2)}, `
+      aidSet === 1 && aidLive === 1
+      && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
+      `set to ${aidSet}, reads back ${aidLive}: cell delta mean ${dAid.mean?.toFixed(2)}, `
       + `worst ${dAid.worst} (need worst>=${ROAD_AID_MIN_WORST}, `
       + `mean>=${ROAD_AID_MIN_MEAN})`);
     // With the clock held these are two captures of one unchanged scene, so an
@@ -2654,6 +2682,57 @@ const terrainLoad = await page.evaluate(() => {
     console.log(`        shadow reach: ±${rig.reachM} m at `
       + `${(rig.texelM * 100).toFixed(1)} cm/texel · winding back to ±60 m moves `
       + `worst cell ${dReach.worst}; restored residual worst ${dReachBack.worst}`);
+    // --- K24, the brightness aid, and the same three things it owes ---------
+    //
+    // Owner-requested, and it carries a fourth assertion the road aid does not
+    // need: the grade itself. The road aid moves a uniform on the street
+    // materials, so nothing else in the suite can be reached through it; this
+    // one moves `toneMappingExposure`, which lights the ground, the water and
+    // every documented wall colour at once. That is the whole reason K24 was
+    // written as an accommodation rather than a second grade, and the way to
+    // hold it there is to assert the calibrated number a gate is standing at,
+    // not merely the slider's own bookkeeping. A control that can be used to
+    // launder a failing gate has become a different thing.
+    const brightAtBoot = await page.evaluate(() => window.__chicago4d.brightness);
+    const exposureAtBoot = await page.evaluate(() => window.__chicago4d.exposure);
+    check(`${label}: the brightness aid is off unless a visitor moves it`,
+      brightAtBoot === 0 && Math.abs(exposureAtBoot - BASE_EXPOSURE) < 1e-6,
+      `brightness ${brightAtBoot} stops, exposure ${exposureAtBoot} `
+      + `(calibrated ${BASE_EXPOSURE}) with no stored preference`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const brightOff = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const brightSet = await page.evaluate(() => window.__chicago4d.setBrightness(1));
+    const brightOn = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const exposureOn = await page.evaluate(() => window.__chicago4d.exposure);
+    const dBright = signatureDistance(brightOff, brightOn);
+    // Past the ceiling on purpose: the clamp is what keeps "one stop" a bound
+    // rather than a suggestion, and an unclamped slider is a way to reach an
+    // exposure no gate has ever read.
+    const brightClamped = await page.evaluate(() => window.__chicago4d.setBrightness(9));
+    await page.evaluate(() => window.__chicago4d.setBrightness(0));
+    const brightBack = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
+    const dBrightBack = signatureDistance(brightOff, brightBack);
+    const brightRestored = await page.evaluate(() => window.__chicago4d.brightness);
+    const exposureRestored = await page.evaluate(() => window.__chicago4d.exposure);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: raising the brightness aid reaches the render`,
+      brightSet === 1 && brightClamped === 1
+      && Math.abs(exposureOn - BASE_EXPOSURE * 2) < 1e-6
+      && dBright.worst >= BRIGHT_AID_MIN_WORST && dBright.mean >= BRIGHT_AID_MIN_MEAN,
+      `set to ${brightSet} stop (9 clamps to ${brightClamped}), exposure ${exposureOn}: `
+      + `cell delta mean ${dBright.mean?.toFixed(2)}, worst ${dBright.worst} `
+      + `(need worst>=${BRIGHT_AID_MIN_WORST}, mean>=${BRIGHT_AID_MIN_MEAN})`);
+    check(`${label}: dropping the brightness aid restores the calibrated frame`,
+      brightRestored === 0 && Math.abs(exposureRestored - BASE_EXPOSURE) < 1e-6
+      && dBrightBack.mean <= 0.1 && dBrightBack.worst <= 3,
+      `brightness ${brightRestored} stops, exposure ${exposureRestored}, `
+      + `residual mean ${dBrightBack.mean?.toFixed(2)}, worst-cell delta `
+      + `${dBrightBack.worst}`);
+    console.log(`        brightness aid: +1 stop delta mean ${dBright.mean?.toFixed(2)} / worst `
+      + `${dBright.worst} at ${BRIGHT_AID_GRID}²; restored residual mean `
+      + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the

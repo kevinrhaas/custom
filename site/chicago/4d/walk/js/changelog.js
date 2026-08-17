@@ -1,10 +1,19 @@
 export const CHANGELOG = [ // newest first
-  { v: 162, title: 'The town casts shadows twice as far', kind: 'improvement', ts: '2026-08-17T07:59:57.588Z', date: 'Aug 17, 2026, 2:59 AM CT',
+  { v: 163, title: 'The town casts shadows twice as far', kind: 'improvement', ts: '2026-08-17T08:32:38.477Z', date: 'Aug 17, 2026, 3:32 AM CT',
     items: [
       'Sunlight in this reconstruction only threw a shadow within 60 metres of wherever you were standing. Measured at the eight viewpoints in the menu: 5 to 8 of the town’s 331 buildings, and as few as none of its 730 trees. Everything else met the ground with nothing under it, which is what makes a distant building look pasted onto the grass.',
       'It is 120 metres now. From the Green Tree Tavern 27 buildings cast a shadow instead of 8; from South Water Street 26 instead of 8, and 54 trees instead of 12.',
       'Nothing you stand next to got softer to pay for it. The shadow map doubles along with the distance, so shadows are drawn at exactly the resolution they were before — 11.7 cm on a computer, 23.4 cm on a phone.',
       'Why not further, since the fix is one number: each additional building brought into range is more work for the machine drawing the frame, and the budget this project holds itself to is 80 draw calls a frame. Measured at the worst viewpoint: 70 at 60 metres, 74 at 120, 78 at 150 and exactly 80 at 180. Going past 120 needs the scene batched differently, and that is written down as the next piece of work rather than guessed at here.',
+    ] },
+  { v: 162, title: 'You can brighten the scene if it is hard to see', kind: 'feature', ts: '2026-08-17T07:24:04.789Z', date: 'Aug 17, 2026, 2:24 AM CT',
+    items: [
+      'Settings has a new Brightness slider. It starts at the position marked "Calibrated — the light as measured", and that is the light you have been walking in until now: nothing about the default view has changed.',
+      'The scene is lit by a sky whose colour was matched against a July photograph taken at this latitude, so the default is a measurement rather than a taste. That is why the slider names its starting point instead of showing a number — moving off it should feel like a choice you made.',
+      'Raise it and the whole scene opens up, by up to one photographic stop. It changes the exposure and nothing else: no wall, roof, road or tree is a different colour underneath it, and the brighter end is not a second guess at how 1835 looked. Use it for a dim room, a bright window, or a phone at arm’s length.',
+      'You asked for this when we made the light dimmer and more accurate at the same time. It was the right trade for the town’s colours and the wrong one for anyone who then could not see them, and a dial hands that back to you rather than picking for you.',
+      'Every check this project grades itself with still reads the calibrated position whatever you choose, so nobody can pass a test by moving this slider. Three of them say so out loud: it is off unless you move it, moving it really does change the picture, and putting it back gives you exactly the frame you started with.',
+      'Building it found that the road slider shipped yesterday had been reporting its position from memory rather than reading it — the switch worked, the label on the switch did not. Both now read the live setting.',
     ] },
   { v: 161, title: 'Nothing you can see changed: the town is where it says', kind: 'improvement', ts: '2026-08-17T06:38:20.982Z', date: 'Aug 17, 2026, 1:38 AM CT',
     items: [

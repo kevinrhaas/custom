@@ -56,6 +56,30 @@ const DEG = Math.PI / 180;
 const SKY_EXPOSURE = 0.045;
 
 /**
+ * The calibrated exposure the whole scene is graded at, and the one number the
+ * brightness aid is allowed to move.
+ *
+ * K24. `toneMappingExposure` lights the ground, the water and every documented
+ * wall colour together — which is exactly why SKY_EXPOSURE above refuses to use
+ * it, and exactly why a visitor-facing brightness control has to be built as an
+ * accommodation rather than as a second grade. 0.95 is the calibrated position:
+ * every gate in `tools/smoke_renderer.mjs`, every frame `tools/critic_shots.mjs`
+ * takes and every reading `tools/light_probe.mjs` reports is taken here, and the
+ * aid below is off at boot so they stay taken here.
+ *
+ * The ceiling is ONE PHOTOGRAPHIC STOP — a doubling, 0.95 → 1.90 — and the stop
+ * is the bound rather than a number chosen for how it looks. A stop is the unit
+ * a camera's own exposure compensation is calibrated in, it is the largest
+ * correction that still reads as the same photograph, and past it ACES rolls the
+ * sunlit roofs and the sky together into a flat highlight: the scene stops
+ * getting easier to see and starts losing the surfaces this project documents.
+ * A visitor who cannot see the town at +1 stop has a problem the renderer should
+ * not answer by inventing a brighter 1835.
+ */
+const BASE_EXPOSURE = 0.95;
+const MAX_BRIGHTNESS_STOPS = 1;
+
+/**
  * Putting the colour back into Preetham's horizon.
  *
  * THE DEFECT. Follow the model down to the horizon and watch the wavelength
@@ -413,7 +437,7 @@ export function createWorld({
 }) {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.95;
+  renderer.toneMappingExposure = BASE_EXPOSURE;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = lowSpec ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
@@ -648,6 +672,7 @@ export function createWorld({
     mapSize: light.shadow.mapSize.x,
     texelM: (2 * half) / light.shadow.mapSize.x,
   };
+  let brightness = 0;
   return {
     sky, light, sun, direction: dir.clone(),
     /** The environment map this rig installed, and the fill it delivers. */
@@ -677,6 +702,29 @@ export function createWorld({
       shadowRig.texelM = (2 * r) / light.shadow.mapSize.x;
       return r;
     },
+    /**
+     * K24. The visitor's brightness aid, in stops above the calibrated grade.
+     *
+     * It multiplies the tone-mapping exposure and touches nothing else: no
+     * light's intensity, no material, no sky uniform, no fog. So it cannot
+     * become a second reconstruction — there is no setting of it under which a
+     * wall is a different colour in the data than it was — and dropping it back
+     * to 0 returns the calibrated frame exactly, which is the third assertion
+     * the smoke takes of it.
+     *
+     * @param {number} stops 0 = calibrated, clamped to [0, MAX_BRIGHTNESS_STOPS]
+     */
+    setBrightness(stops) {
+      const s = Math.min(MAX_BRIGHTNESS_STOPS, Math.max(0, Number(stops) || 0));
+      brightness = s;
+      renderer.toneMappingExposure = BASE_EXPOSURE * (2 ** s);
+      return s;
+    },
+    /** The aid's current position, so a gate can assert it rather than assume it. */
+    get brightness() { return brightness; },
+    /** The calibrated position, named so the HUD does not restate the number. */
+    baseExposure: BASE_EXPOSURE,
+    maxBrightnessStops: MAX_BRIGHTNESS_STOPS,
     /** Keep the shadow frustum on the walker. Cheap; call every frame. */
     follow(position) {
       light.target.position.set(position.x, 0, position.z);

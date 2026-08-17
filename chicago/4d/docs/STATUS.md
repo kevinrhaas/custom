@@ -35,6 +35,86 @@ ran green, and the desktop draw-call figures above come from
 `tools/measure_shadow_reach.mjs --frames 4` at 1280×800 at all eight anchors rather than from the
 gate itself.
 
+## Shipped 2026-08-17 — the visitor can choose the light, and the switch shipped yesterday was reporting its position from memory
+
+**ROADMAP K24**, owner-requested 2026-08-14: *"Can you make this an option in settings?"*, asked
+on being told that R-W1's calibrated sky makes the scene 16 % dimmer and that holding the old
+brightness would collapse albedo retention to 62 %. A **Brightness** slider in Settings, default
+**0 stops** — the calibrated grade — opening the tone-mapping exposure by up to **one photographic
+stop** (0.95 → 1.90).
+
+### It dissolves the trade-off rather than picking a side, and the ceiling is a unit rather than a taste
+
+"Correct and dim" against "bright and wrong" is a false choice when the visitor can be handed the
+dial. What makes it safe is that the dial moves **one scalar on the tone mapper** and nothing else:
+no light intensity, no material, no sky uniform, no fog, nothing in `data/`. There is no position
+of it under which a wall is a different colour than the record says it is — which is the difference
+between an accommodation and a second reconstruction, and it is why this could ship while R-W1
+itself is still parked on PR #125.
+
+**The ceiling is one stop because a stop is the unit, not because one stop looked right.** It is
+what a camera's own exposure compensation is calibrated in; it is the largest correction that still
+reads as the same photograph; and past it ACES rolls the sunlit roofs and the sky together into a
+flat highlight, so the scene stops getting easier to see and starts losing the surfaces this
+project documents.
+
+**The design question K24 left open is decided: a slider, not a two-way toggle**, following the
+eye-height precedent — and the readout names the calibrated position (`Calibrated — the light as
+measured`) rather than showing a bare zero, for exactly the eye-height reason. A named default
+makes moving off it a visible choice instead of a silent drift. `world.js` was touched in **two
+places** (`BASE_EXPOSURE`, and a `setBrightness` on the returned world) rather than rewritten, so
+PR #125's lighting rewrite conflicts with a constant and a method instead of a rewritten file — the
+sequencing note in K24's box said "after #125", and this is why it did not have to be.
+
+### The K24 constraint, asserted four ways — and the fourth is the finding
+
+| assertion | mobile 390×780, published mirror |
+|---|---|
+| off with no stored preference | `brightness` **0** stops, `exposure` **0.95** |
+| raising it reaches the render | cell delta mean **49.40**, worst **51** at 12² |
+| the ceiling holds | `setBrightness(9)` clamps to **1**, `exposure` **1.90** |
+| dropping it back restores the calibrated frame | residual mean **0.00**, worst **0** |
+
+The instrument needed no measuring for once: exposure regrades every pixel, so the 12² whole-frame
+signature that was too coarse for R-A1's roadway gives **49.40** here against R-A1's **0.29** at
+the same grid. Floors are set at roughly a third of the measured figures.
+
+**THE FINDING IS THE THIRD ROW, AND IT IS ABOUT R-A1 RATHER THAN ABOUT LIGHT.** `exposure` is the
+first reading on the test harness whose expected value **moves**, and the first thing it reported
+was `0.95` on a frame that had just changed by 45 counts. The cause is in `main.js` and its own
+comment had already named it: `Object.assign` **invokes a getter and copies the value**, so any
+`get x()` written inside the big `Object.assign(api, {…})` literal is frozen at its boot-time
+answer. `get roadAid()` shipped inside that literal with R-A1 yesterday and has been **a constant
+0 ever since**.
+
+**Both of R-A1's readback assertions expect 0** — off at boot, and back to 0 when dropped — so a
+frozen 0 passed both of them, and the third assertion reads a frame signature and never touched
+the getter. **The road aid itself was always live**; the thing that was wired to nothing was the
+report of its position. That is R-A1's own finding one level in: *an assertion that can only ever
+see one value is not an assertion*, and the way to catch it is a reading whose right answer
+changes. `roadAid`, `brightness` and `exposure` are all defined in the `Object.defineProperties`
+block now, the smoke asserts the road aid **reads back 1** when it is raised, and the rule is
+written where the mistake was made: anything whose answer changes after boot is defined there, and
+a getter in the literal is a frozen snapshot.
+
+### Not claimed
+
+- **The desktop half of the smoke was not run** — ~13 min against this runner's 10-minute
+  per-command ceiling (ROADMAP § THE RUN BUDGET). Mobile 390×780 on the published mirror is
+  **232 passed, 2 failed**, and **both failures are `dev`'s own**: `the roads reach the screen
+  from the air, at the aerial anchor` (the gate R-BUG5b / #201 merged with and wrote up) and
+  `…from the walker's eye, down an open street` (the gate T-V2 / #135 merged with and wrote up).
+  Measured rather than assumed — `origin/dev` at `51655e65`, same runner, same command:
+  **229 passed, 2 failed**, the same two assertions. The +3 is exactly this parcel's three new
+  gates: it adds no failure, and it weakens no threshold, band or station. The road-aid gate got
+  **stricter**.
+- **No accessibility standard is claimed to be met.** This is a viewing aid, not a conformance
+  statement, and nothing here measures it against WCAG or any other bar.
+- **No liberty was taken and no confidence moved.** `docs/LIBERTIES.md` is untouched: the default
+  rendering is unchanged, and the aid makes no claim about 1835.
+- **It does not discharge R-W1 or R-M1b.** PR #125's road-gate failure occurs at the *default*
+  setting, and a preference control does not change it — K24's box said so on 2026-08-14 and it is
+  still true.
 
 ## Measured 2026-08-17 — the two layers nobody had ever read back are not mirrored, and neither half of R-BUG5b's instrument transferred
 

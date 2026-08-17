@@ -346,6 +346,10 @@ async function boot() {
         // R-A1. A uniform on the shared street materials — no recompile, and
         // the next frame carries it.
         streets.setLegibilityAid(value);
+      } else if (key === 'brightness') {
+        // K24. One scalar on the tone mapper — no recompile, no relight, and
+        // the next frame carries it.
+        world.setBrightness(value);
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
       } else if (key === 'detail') {
@@ -438,6 +442,7 @@ async function boot() {
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
   streets.setLegibilityAid(hud.settings.roadAid);
+  world.setBrightness(hud.settings.brightness);
   navigation.setCompassVisible(hud.settings.compass);
   navigation.setMapVisible(hud.settings.overviewMap);
   navigation.setStreetVisible(hud.settings.streetNames);
@@ -721,7 +726,10 @@ async function boot() {
     // back as well as set it: "the aid is off unless a visitor moved it" is an
     // assertion, not a comment.
     setRoadAid(v) { return streets.setLegibilityAid(v); },
-    get roadAid() { return streets.legibilityAid; },
+    // K24. The setter side only. Every LIVE reading — roadAid, brightness,
+    // exposure — is defined below, because a getter written in this literal is
+    // read once by Object.assign and frozen. See the note there.
+    setBrightness(v) { return world.setBrightness(v); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
@@ -794,10 +802,28 @@ async function boot() {
   // Live getters, defined rather than assigned: Object.assign COPIES the value
   // a getter returns at assignment time, which would have frozen these at their
   // boot-time answer and made every later reading wrong.
+  //
+  // K24 FOUND THAT THE NOTE ABOVE WAS TRUE AND THAT THE LITERAL HAD BEEN
+  // ACQUIRING GETTERS ANYWAY. `get roadAid()` shipped inside the Object.assign
+  // literal with R-A1 and was frozen at 0 from the moment it was written. Its
+  // two gates both assert `=== 0` — off at boot, and back to 0 when dropped —
+  // so a constant 0 passed both, and the third gate (raising it changes the
+  // frame) reads a frame signature and never touched the getter. The control
+  // itself was always live; the READBACK was the dead thing, which is R-A1's
+  // own finding one level in: an assertion that can only ever see one value is
+  // not an assertion. The brightness aid caught it because `exposure` is the
+  // first of these readings whose expected value MOVES.
+  //
+  // So the rule, and it is why this block is the only place a live reading may
+  // be written: anything on the harness whose answer changes after boot is
+  // defined HERE. A getter in the literal above is a frozen snapshot.
   Object.defineProperties(api, {
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },
+    roadAid: { get: () => streets.legibilityAid, enumerable: true },
+    brightness: { get: () => world.brightness, enumerable: true },
+    exposure: { get: () => renderer.toneMappingExposure, enumerable: true },
   });
 
   progress(100, 'Ready');
