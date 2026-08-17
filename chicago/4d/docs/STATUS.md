@@ -1,5 +1,62 @@
 # STATUS
 
+## Measured 2026-08-17 — the flicker left after the shadow fix is NOT co-planar ties, and two tests say so
+
+R-BUG6(a) fixed the shadow crawl and left 1,108 pixels at `from_above` it could not explain,
+attributing them to "co-planar depth ties" — a phrase this file, the ROADMAP row and R-BUG1's
+successor note all repeated, on no measurement. **R-BUG6(b) ran the two tests that can settle it
+and the attribution is refuted.**
+
+| test | what it can see | result |
+|---|---|---|
+| depth function `LessEqual` → `Less`, all 11 materials | changes a pixel **only** where two surfaces sit at exactly the same depth | 36,187 px of the frame move; **13 of them are flickering pixels — 1.2 %** |
+| near plane 7 m → 35 m (5× the depth precision) | heals any tie decided by rounding | **604 of 607 survive**; whole frame 1,108 → 1,115 |
+
+What is left is the town's own geometric edges being resampled by a camera that moved. That is
+antialiasing, it is in every correct renderer, and R-BUG1's altitude-dependent near plane had
+already taken the real defect.
+
+### Finding 1 — an exact tie is STABLE; it is the near tie that flickers
+
+3.5 % of this frame is exactly co-planar and none of it shimmers, which had looked like luck and
+is arithmetic: two surfaces at the *same* depth quantise identically from every camera position,
+so the winner is fixed by draw order and draw order does not move when the visitor does. A gap
+*smaller than one quantum* is the one the camera re-rolls. The two are indistinguishable in a
+still frame and opposite in motion, and this project had been reasoning about the first while
+measuring the second.
+
+### Finding 2 — a layer's footprint is the set of pixels that change when you hide it
+
+`tools/measure_tie_class.mjs`. Exact ownership, decided by occlusion the way the depth buffer
+decides it: structures 556 of the 1,108, trees 491, ground 35, water 22, streets 4, flora 0,
+**unattributed 0**, control 0 px and return-to-pose 0 px. Buildings and trees own **94.5 % of the
+flicker on 7.7 % of the frame** — the shape of edges, not of surfaces.
+
+### Finding 3 — and the trap in that instrument's own second column
+
+Its `interior` column was meant to separate ties from edges: a pixel surrounded by its owner's
+footprint has nothing else drawn there. **It is not sound.** A roof against its own wall, a
+chimney against its own roof and one building in front of another are all interior to the
+`structures` footprint and all ordinary silhouettes — which is why 604 of 607 "interior ties"
+survived 5× precision. A footprint says WHO owns a pixel and cannot say WHY it moved. The column
+is kept with the caveat printed beside it, because the ownership half is exact.
+
+### Finding 4 — the river-edge gate counts the sky as water
+
+`measure_river_edge.mjs` calls a pixel wet when `b > r + 6 && g > r`, and a July sky passes:
+measured on the same frame, **rows 0–200 are 1,280 of 1,280 "waterish"**. So its `bank_px` =
+33,328 is mostly the horizon plus every roof and canopy silhouette against it. The gate is a
+share and both halves inflate together, so it has not passed anything it should have failed —
+but its pixel counts are not counts of the river and must not be quoted as such.
+
+### What is NOT verified
+
+The desktop half of `smoke_renderer.mjs` does not fit the runner's ten-minute per-command
+ceiling and did not run. No renderer file was changed by this parcel, so there was nothing for
+it to regress. R-BUG6(c) — whether the 36,187 co-planar pixels show the surface their record
+intends — needs a bake and is not answered here.
+
+
 ## Fixed 2026-08-17 — the shadow grid slid a fraction of a texel under every step
 
 **ROADMAP R-BUG6(a).** The sun has one orthographic shadow box and it follows the visitor. It was

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 166, title: 'Nothing you can see changed: the remaining shimmer is not a fault', kind: 'improvement', ts: '2026-08-17T12:35:06.913Z', date: 'Aug 17, 2026, 7:35 AM CT',
+    items: [
+      'Yesterday\u2019s note said the shimmer left over when you fly \u2014 after the sun\u2019s shadow grid was fixed \u2014 was two surfaces meeting edge-on and the picture deciding differently each frame. That was written down three times and never tested. It is wrong.',
+      'There is a way to ask the question exactly. The picture is drawn with a rule that says which of two surfaces you see when they are at the same distance; swap it for the opposite rule and the only pixels that can change are the ones where two surfaces really are at the very same distance. 36,187 pixels of the view from above change. Just 13 of them are among the 1,108 that shimmer \u2014 about one in a hundred.',
+      'The second test agrees. Giving the picture five times more precision to tell distances apart leaves 604 of 607 shimmering pixels shimmering, and the whole count slightly worse rather than better.',
+      'So what is left is the town\u2019s own edges \u2014 a roof against a wall, a chimney against a roof, one tree in front of another \u2014 being redrawn as you move past them. Every picture on every screen does that. The real fault was the one fixed last week, when the nearest visible distance was allowed to open as you climb.',
+      'It also found that the check watching the river\u2019s edge counts the sky as water: the test for \u201Cblue-green\u201D passes on a July sky, so the top quarter of the frame is inside it. The check still works, because it measures a proportion and both halves grew together \u2014 but the pixel counts it prints are not counts of the river, and that is now written down beside them.',
+    ] },
   { v: 165, title: 'Shadow edges stop crawling as you walk', kind: 'fix', ts: '2026-08-17T11:12:16.886Z', date: 'Aug 17, 2026, 6:12 AM CT',
     items: [
       'Every shadow in this reconstruction is drawn into a grid of squares that follows you around, 11.7 cm to a square on a computer. Because it followed your exact position, the grid slid a fraction of a square with every step you took — so every shadow edge in the scene was redrawn slightly differently, several times a second, while nothing in the town had moved. Along an eave or a fence line that reads as a crawl.',
