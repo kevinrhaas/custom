@@ -1,5 +1,74 @@
 # STATUS
 
+## Measured 2026-08-16 — the road check could be passed by planting a tree in front of the road
+
+**ROADMAP R-M1c.** **Nothing a visitor can see changed today**, and the exemption claimed is the
+third one: this is a gate on nothing less than every road-contrast percentage this project has
+quoted, and it is the parcel that unblocked a queue of four.
+
+### What was wrong
+
+`roadContrast()` scored `perceptible` as `ds.filter(d >= 2).length / ds.length`, where `ds` runs
+over the probes the marker pass could see **through** the vegetation. A stretch of road standing
+behind a tree left the sample instead of failing in it, so **anything that occluded a faint road
+raised the score.**
+
+### The proof is the stability, not any one number
+
+One band, three builds, the same evening, the same runner, mobile, published mirror. The only
+difference between the columns is what the near-field wood is doing:
+
+| aerial anchor, 250–600 m | wood mirrored (`dev` 3ea4e00) | repaired (R-BUG5b) | widened (K45(b2)) |
+|---|---|---|---|
+| probes **seen** | 157 | 177 | 163 |
+| probes **bare** | **182** | **182** | **182** |
+| readable stretches | ~97 | ~96 | ~96 |
+| score over `seen` — the old one | **62 %** passes | **54 %** fails | **59 %** passes |
+| score over `nBare` — this parcel | **53.3 %** | **52.7 %** | **52.7 %** |
+
+**The old score swung eight points three times while the number of readable stretches never moved
+off ninety-six.** The build carrying a bug that drew the entire wood on the wrong side of the river
+scored **highest of the three**, and K45(b2) — parked on `hold` since 2026-08-16 for *costing* this
+band two points — would have gone **green by planting more timber in front of the same road.**
+
+### The instrument was already built, already printing, and already carried the diagnosis
+
+The `shotMF` pass photographs the same probes with the sward and the trees hidden. Its own comment,
+written two parcels ago, states this finding in full: *"A probe marked here but not in `shotM` is a
+road that is ON SCREEN and COVERED BY VEGETATION, **which the marked-only denominator drops instead
+of failing**."* It was built as a diagnostic, `nBare` has been printed in every band line since, and
+**nothing ever divided by it.**
+
+### Why `nBare` and not `nProjected`
+
+They are different claims about what a visitor is owed. A road behind a store is a road a visitor
+legitimately cannot see, and scoring on `nProjected` would demand X-ray vision through the town's
+own buildings. Vegetation is ours, it moves when we change it, and it must not be able to launder a
+faint road out of the sample. `seen ⊆ bare` always, so this can only ever **lower** a score — it is
+not a route through a bar, and it did not become one.
+
+### What moved, measured at every station
+
+**Exactly two figures in the whole suite**, and only one of them is gated:
+
+| | before | after |
+|---|---|---|
+| `from_above` 250–600 m (**gated**) | 54 % of 177 seen | **53 % of 182 bare** |
+| `from_above` 600–4000 m (reported only) | 96 % of 111 seen | 71 % of 151 bare |
+
+Everywhere else `nBare == seen`, so nothing changed: `south_water` still reads 90 / 87 / 52 / 71 and
+`lake_market` still reads 60 / 100 / 100 / 98. **The suite is 229 passed / 2 failed — the same two
+failures, and the same verdict, as `dev`.** This parcel flips nothing. It makes one number honest
+and takes away the way to bribe it.
+
+**`ROAD_MIN_PERCEPTIBLE` was not moved**, and the aerial band is still under it — which is the real
+state of that stretch of road and always was. Its fix is **R-W2**'s textured coverage; its ceiling
+is 4.8 L\* opaque, so the contrast is there to be spent.
+
+**Not claimed:** the desktop half of the smoke (~13 min against the 10-minute per-command ceiling).
+Every road-contrast percentage quoted in this repository before today was taken on the old
+denominator and is not comparable with one taken after it.
+
 ## Shipped 2026-08-16 — the South Water viewpoint stands in South Water Street, and the far-band collapse it was parked for does not reproduce
 
 **ROADMAP T-V2**, built on 2026-08-15 and parked on `hold` PR #135 for two days. The anchor a

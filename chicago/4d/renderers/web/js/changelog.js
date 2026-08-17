@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 154, title: 'A road check could be passed by planting a tree', kind: 'fix', ts: '2026-08-17T01:41:31.748Z', date: 'Aug 16, 2026, 8:41 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is a repair to one of the measurements that grade it, and the reason it is worth telling you about is that the measurement has been quietly wrong for as long as it has existed.',
+      'One of these checks asks how much of the road you can actually make out at various distances. It counted the stretches of road it could see, then asked what share of those were distinct enough from the grass. The flaw is in the word \u201csee\u201d: a stretch hidden behind a tree left the count altogether, rather than counting as road you cannot make out. So anything standing in front of a faint road raised the score.',
+      'That is not a hypothetical. Three versions of this town were measured on the same evening, differing only in what the trees were doing: the version with a bug that drew the entire wood on the wrong side of the river scored the HIGHEST of the three, and a change that plants more timber would have scored higher still. Across all three the number of readable stretches of road never moved off ninety-six \u2014 but the score swung eight points.',
+      'It now divides by the road that is there once the grass and the trees are set aside \u2014 so a road hidden behind a tree counts against the score instead of vanishing from it. Road hidden behind a building still does not count against it, because you are not meant to see through a store.',
+      'The figure this repairs was already being photographed and printed on every run, as a diagnostic, with a note beside it saying exactly what was wrong. Nothing had ever divided by it. Read the same way, the three versions now score within half a point of each other \u2014 and all three are below the bar, which is the honest state of that stretch of road and always was. The bar was not moved.',
+    ] },
   { v: 153, title: 'The viewpoint called South Water Street was standing in a field', kind: 'improvement', ts: '2026-08-17T01:16:16.116Z', date: 'Aug 16, 2026, 8:16 PM CT',
     items: [
       'The Go to menu offers a viewpoint called South Water Street \u2014 the business street of 1835 Chicago, where the stores, the auction room, the two newspaper offices and the forwarding warehouses stood. Choosing it put you in a meadow, with the street a thin band of roofs on the horizon and about six tenths of the picture grass.',

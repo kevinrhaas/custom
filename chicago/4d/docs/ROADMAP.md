@@ -119,7 +119,7 @@ not at the top of the queue.
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
-| **1** | RENDERING | **R-M1c** | **SEEN — it changes which builds pass.** The road score divides by probes **SEEN**, so anything standing in front of a faint stretch of road removes it from the denominator and the band scores higher for it. R-BUG5b hit this head-on: repairing the mirrored wood shows **34 more road probes and ~13 more perceptible ones**, and the band's score falls **62 % → 54 %**. Scored on `nProjected` — the denominator R-BUG3 already switched the *gating* decision to, for this exact reason — **both builds read 52 %, and `dev` has been under the 0.55 bar all along.** S, one function, no threshold moves; it makes scores strictly worse so it cannot be mistaken for a route through a gate |
+| — | RENDERING | ~~R-M1c~~ | **SEEN** | **DONE 2026-08-16 — the road score divided by probes SEEN, so an occluder RAISED it.** One band, three builds, one evening: **seen 157 → 177 → 163** and the old score **62 % → 54 % → 59 %**, while the number of readable stretches never moved off **96** and `nBare` was **182 in all three**. The build with the whole wood on the wrong side of the river scored HIGHEST; K45(b2) would have gone green by planting more timber in front of the road. **The instrument was already built and already printing** — `shotMF`'s own comment says the marked-only denominator "drops instead of failing" — and nothing had ever divided by it. Scored on `nBare`: **53.3 / 52.7 / 52.7 %**, under the 0.55 bar in all three. Read its box before quoting any road-contrast percentage taken before this date |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
@@ -6572,27 +6572,42 @@ removes that stretch from the denominator, and the band scores higher for it.
 moved the decision of WHETHER to gate a band from "enough probes SEEN" to "enough PROJECTED", and
 its comment says why: *"a band nobody can see reports n=0 and gates itself out, which is
 indistinguishable from a band with no road in it."* The same argument applies to the score and was
-not applied to it. `nProjected` is the un-gameable denominator: it counts the road points that land
-in the frame, whatever is in front of them.
+not applied to it.
 
-**Measured, and this is not hypothetical — it is what R-BUG5b ran into.** Aerial anchor, 250–600 m,
-mobile, published mirror, same runner, same evening; the only difference is whether the near-field
-wood is drawn mirrored:
+**THE INSTRUMENT WAS ALREADY BUILT AND ALREADY PRINTING.** The `shotMF` marker pass photographs the
+same probes with the sward and the trees hidden, and its own comment states this parcel's finding in
+full: *"A probe marked here but not in `shotM` is a road that is ON SCREEN and COVERED BY
+VEGETATION, **which the marked-only denominator drops instead of failing**."* It was written as a
+diagnostic, it has been reported in every band line for two parcels, and nothing ever divided by it.
 
-| 250–600 m, aerial | wood mirrored (`dev` 3ea4e00) | wood repaired |
-|---|---|---|
-| seen | 157 of 186 | 177 of 186 |
-| perceptible, over **seen** (today's score) | **62 %** — passes 0.55 | **54 %** — fails |
-| perceptible, over **projected** | **52 %** | **52 %** |
+**`nBare` is the denominator, NOT `nProjected` — and the difference is a claim about what a visitor
+is owed.** A road behind a store is a road a visitor legitimately cannot see, and scoring against
+`nProjected` would demand X-ray vision through the town's own buildings. Vegetation is different:
+it is ours, it moves when we change it, and it must not be able to launder a faint road out of the
+sample. `seen ⊆ bare` always, so the change can only ever LOWER a score.
 
-**The build with a bug that puts trees on top of the town scores EIGHT POINTS HIGHER than the build
-without it, and the honest denominator says both are the same and both are under the bar.** The
-0.55 bar has been passing on that band on the strength of an occluder.
+**Measured on one band across three builds the same evening, and the case is the stability rather
+than any single number.** Aerial anchor, 250–600 m, mobile, published mirror, same runner. The only
+difference between the columns is what the near-field wood is doing:
 
-**Scope.** Change `perceptible`'s denominator to `nProjected`; keep `n` reported beside it so
-occlusion stays legible as occlusion (that is `nBare`'s job and it must not be lost). Then re-read
-every band at every station and write down what moves — this WILL turn bands red that read green
-today, and that is the parcel, not a side effect.
+| aerial, 250–600 m | wood mirrored (`dev` 3ea4e00) | wood repaired (R-BUG5b) | wood widened (K45(b2)) |
+|---|---|---|---|
+| probes **seen** | 157 | 177 | 163 |
+| probes **bare** | **182** | **182** | **182** |
+| perceptible probes | ~97 | ~96 | ~96 |
+| score over **seen** (the old one) | **62 %** — passes | **54 %** — fails | **59 %** — passes |
+| score over **bare** (this parcel) | **53.3 %** | **52.7 %** | **52.7 %** |
+
+**The old score swung eight points three times while the number of readable stretches of road never
+moved off ninety-six.** The build with a bug that stood the whole wood on the wrong side of the
+river scored HIGHEST of the three; K45(b2) would have gone green by planting more timber in front of
+the same road. The honest score is flat to half a point, and it is **under the 0.55 bar in all
+three** — which is the real state of that band and always was.
+
+**Scope.** Change `perceptible`'s denominator from `ds.length` to `nBare`; keep `n`, `nBare` and
+`nProjected` all printing so occlusion stays legible as occlusion. Then re-read every band at every
+station and write down what moves — this WILL turn bands red that read green today, and that is the
+parcel, not a side effect.
 
 **The thing this parcel must not do.** It must not arrive with `ROAD_MIN_PERCEPTIBLE` lowered to
 absorb what it uncovers. If honest scoring puts a band under the bar, the band is under the bar, and
@@ -6601,8 +6616,8 @@ change makes scores strictly WORSE, never better, so it cannot be mistaken for a
 gate.
 
 **Files:** `tools/smoke_renderer.mjs` (`roadContrast`, ~line 497)
-**Acceptance:** the denominator is `nProjected`; `n` and `nBare` still print; the aerial 250–600 m
-band is shown reading the same on a mirrored-wood build and a repaired one; every band's new figure
+**Acceptance:** the denominator is `nBare`; `n`, `nBare` and `nProjected` all still print; the
+aerial 250–600 m band is shown reading the same on a mirrored-wood build and a repaired one; every band's new figure
 is recorded in the PR; no threshold moves.
 
 ### R-A1 — a road-legibility accessibility aid · **DONE 2026-08-16 — shipped OFF by default, and the gate that proves it reaches the render had to be measured before it could be set**
