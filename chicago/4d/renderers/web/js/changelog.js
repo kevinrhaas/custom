@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 164, title: 'The shadows reach twice as far again', kind: 'improvement', ts: '2026-08-17T09:53:11.256Z', date: 'Aug 17, 2026, 4:53 AM CT',
+    items: [
+      'This morning the sun threw a shadow within 120 metres of wherever you were standing. It is 240 now. From the Green Tree Tavern 49 of the town’s 331 buildings cast a shadow instead of 27, and 70 of its 730 trees instead of none; from South Water Street it is 91 buildings instead of 26 and 239 trees instead of 54.',
+        'Nothing you stand next to got softer to pay for it, for the third time running: the shadow map doubles along with the box, so shadows are still drawn at 11.7 cm on a computer and 23.4 cm on a phone.',
+        'What paid for it was not the sun. This morning’s entry said the reach was limited by how many separate lots of work the machine has to hand the graphics card, and that the town was sixteen of them — one per surface finish, because a matt wall and a glossy one could not be drawn together. The finish is now written into the shapes themselves, so the whole town is ONE lot, in the picture and in the shadow pass alike. At the worst viewpoint the frame costs 50 of its 80 allowed, where this morning it cost 74.',
+        'The town is otherwise the same picture. Photographed from seven places, 942 pixels of 7,168,000 changed, and every one of them is where two surfaces meet exactly edge-on and the order they are drawn in decides which you see. Not one triangle was added or removed.',
+        'Why stop at 240 metres: holding that sharpness over a 480-metre square needs a shadow map 4,096 pixels on a side, which is about as large as it is polite to ask a web browser for. Further than this has to be bought by spending sharpness somewhere, and that is written down as the next piece of work rather than guessed at here.',
+    ] },
   { v: 163, title: 'The town casts shadows twice as far', kind: 'improvement', ts: '2026-08-17T08:32:38.477Z', date: 'Aug 17, 2026, 3:32 AM CT',
     items: [
       'Sunlight in this reconstruction only threw a shadow within 60 metres of wherever you were standing. Measured at the eight viewpoints in the menu: 5 to 8 of the town’s 331 buildings, and as few as none of its 730 trees. Everything else met the ground with nothing under it, which is what makes a distant building look pasted onto the grass.',

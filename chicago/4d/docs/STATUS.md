@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-17 — the shadows reach ±240 m, because the whole town became one draw call
+
+**ROADMAP R-W5a2 + R-W3b(a2)**, taken as one parcel: the batch merge is the enabler and the reach
+is the payoff, and R-W3b(a) — six hours earlier — had already measured the reach as **draw-call-
+bound** and named this merge as what unbinds it.
+
+`buildings.js` grouped the town into one `BatchedMesh` per distinct material, and after R-W5a took
+base colour out of that key the only field left splitting it was **roughness**: 16 batches for 16
+finishes. Roughness is now carried per vertex the way colour is (`_roughness` plus a substitution
+of three's `<roughnessmap_fragment>`), and the town is **one batch** — one call in the colour pass
+and one in the shadow pass.
+
+| anchor | dev: ±120 m, 16 batches | shipped: ±240 m, 1 batch |
+|---|---|---|
+| `green_tree` | **74** of 80 calls | **50** |
+| `forks` | 73 | 47 |
+| `south_water` | 69 | 41 |
+| `from_above` | 69 | 44 |
+
+**The reach doubled at the SAME texel size** — 4096² desktop / 2048² phone over a 480 m box is
+11.7 cm and 23.4 cm, the figures this rig has resolved since R-W3b(a). Counted off the data:
+`green_tree` **27 → 49** of 331 structures and **0 → 70** of 730 stems; `south_water` **26 → 91**
+and **54 → 239**; `forks` **16 → 46** and **17 → 151**. Evidence pair at `green_tree` in
+`docs/evidence/r-w5a2-{before,after}.png`.
+
+### The finding: a batch merge is not pixel-identical, and a frame MEAN cannot see why
+
+R-W5a's acceptance — whole-frame mean |Δ| under 0.01 of an 8-bit count — passes here four times
+over, at **0.0024**. It is the wrong statistic for this operation. Shot at seven poses, 1280×800:
+**942 pixels of 7,168,000 changed, the worst by 90 counts.** They are scattered singletons at roof
+and wall junctions, and the cause is that merging sixteen batches into one **reorders the
+submission of co-planar triangles that were tying in the depth buffer**. That is **R-BUG6's** own
+class of defect reached from a direction it did not consider: a batching change can move a tie
+without touching a material, a bias or a near plane. A merge parcel owes a changed-pixel COUNT and
+a worst-pixel figure beside the mean.
+
+The other 6,999,058 pixels are identical to the byte, which is the proof that the per-vertex
+substitution is exact: had it silently failed, the whole town would have rendered at one roughness
+and millions of pixels would have moved.
+
+### What is NOT verified
+
+The **desktop half of `tools/smoke_renderer.mjs` does not fit the improve runner's ten-minute
+per-command ceiling** and did not run (ROADMAP § THE RUN BUDGET). `SMOKE_VIEWPORT=mobile` on the
+published mirror is **250 passed, 2 failed** against `origin/dev`'s **246 passed, 2 failed**,
+measured on the same runner with the same command: the same two road assertions `dev` already
+carries, and the +4 is exactly this parcel's four new gates. `tools/check.sh` is **CHECK PASS**.
+Every desktop figure above comes from `tools/measure_shadow_reach.mjs` and
+`tools/measure_shipped_batches.mjs` at 1280×800 on the published mirror, not from the gate.
+
+**4096² is asserted, not profiled.** Nothing here measures shadow-map memory or fill on real
+hardware; the frame-time readings are swiftshader's and moved by under 2 %, consistent with
+R-W3b(a)'s finding that the pass is geometry-bound. A phone that cannot allocate 2048² is not
+something this runner can observe.
+
+
 ## Fixed 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else
 
 **ROADMAP R-W3b(a)**, the reach half of the cascaded-shadows parcel. The sun has one orthographic

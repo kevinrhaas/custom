@@ -156,7 +156,7 @@ rationed.**
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
 | — | RENDERING | ~~R-W3b(a)~~ | **SEEN** | **DONE 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else: 5 to 8 of 331 structures and 0 to 41 of 730 stems, measured at all eight anchors.** It is ±120 m now, at the SAME texel size (the map doubles with the box), and `green_tree` goes 8 → 27 structures, `south_water` 8 → 26 and 12 → 54 stems. **Its finding is the ceiling: the reach is DRAW-CALL-bound, not fill-bound** — every batch entering the box is another call in the shadow pass, and the worst anchor reads 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at 180, which is the budget**, with the town still two thirds outside the box. Read its box before raising the number |
-| 8 | RENDERING | **R-W5a2** | UNSEEN | the last 16 batches → 1. **Not needed for the budget.** Take it only when the lane has nothing SEEN left, which is not now |
+| — | RENDERING | ~~R-W5a2 + R-W3b(a2)~~ | **SEEN** | **DONE 2026-08-17 — 16 batches → 1, and the reach went straight from ±120 m to ±240 m on the calls it freed.** Roughness is the last thing that was splitting the town, and it is per-vertex now; the worst anchor reads **50 draw calls of 80 where it read 74 this morning**, at the SAME 11.7 cm texel. `green_tree` 27 → **49** of 331 structures and 0 → **70** of 730 stems; `south_water` 26 → **91** and 54 → **239**. **Its finding is that the batch merge is not neutral after all** — 942 pixels of 7,168,000 move across seven poses, all of them depth ties between co-planar surfaces of different materials, which is R-BUG6's own class one draw call in. Read its box before quoting a draw-call figure taken before this date |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
@@ -1539,7 +1539,101 @@ having an instance in that frame; it is not worth chasing now that the term is z
   ties at coincident surfaces resolving the other way under a changed draw order. Worst single
   pixel 93/255; **whole-frame mean |Δ| 0.003–0.005 of one 8-bit count**. No surface is repainted.
 
-### R-W5a2 — the last 16 batches → 1 · **UNCLAIMED · from R-W5a · Effort: S**
+### R-W5a2 + R-W3b(a2) — the last 16 batches → 1, and the reach it buys spent · **DONE 2026-08-17 — ±120 m became ±240 m at the same texel, and the batch merge is not the pixel-identical operation it was written up as**
+
+**Phase:** RENDERING §4 W5 + §4 W3 · **Runner:** improve-runner · **Files:**
+`renderers/web/js/buildings.js` (`roughnessAttribute`, `perVertexRoughness`, `materialKey`) ·
+`renderers/web/js/world.js` (`SHADOW_REACH_M`, the shadow block) · `tools/smoke_renderer.mjs`
+(four new assertions) · `docs/evidence/r-w5a2-{before,after}.png` · `site/chicago/4d/**`.
+
+**It was taken as ONE parcel on purpose.** R-W5a2 alone is UNSEEN by its own row and the visible-
+progress cap forbade a second invisible run in four (v161 is the one). But R-W3b(a), six hours
+earlier, had measured the shadow reach as **draw-call-bound** and named this parcel as what unbinds
+it — so the batch merge is the enabler and the reach is the payoff, and shipping the enabler alone
+would have been an invisible run whose whole point was the visible one it declined to take.
+
+**Finding 1 — the shadow pass is where the batch count was actually being spent.** R-W5a2's box
+priced the merge at "about 15 draw calls at every station", which is the COLOUR pass alone. Every
+batch that enters the sun's ortho box is a second call in the shadow pass, so the true saving grows
+with the reach and the town's batch count was setting how far the sun could see. Measured on the
+published mirror at 1280×800, at the eight scene anchors:
+
+| anchor | dev, ±120 m, 16 batches | this, ±240 m, 1 batch |
+|---|---|---|
+| `green_tree` | **74** of 80 | **50** |
+| `forks` | 73 | 47 |
+| `south_water` | 69 | 41 |
+| `from_above` | 69 | 44 |
+| `lake_market` | 65 | 37 |
+| `sauganash_wing` | 64 | 36 |
+| `first_post_office` | 62 | 39 |
+| `sauganash` | 61 | 34 |
+
+**What the reach buys, counted off the DATA** the way R-W3b(a) counted it — each structure's
+`placement.local_e/local_n`, each planted stem's own station, against the shadow camera's matrices:
+
+| anchor | structures inside, ±120 m | at ±240 m | stems, ±120 m | at ±240 m |
+|---|---|---|---|---|
+| `green_tree` | 27 of 331 | **49** | 0 of 730 | **70** |
+| `south_water` | 26 | **91** | 54 | **239** |
+| `forks` | 16 | **46** | 17 | **151** |
+
+**±240 and not more, and this time the ceiling is resolution rather than calls.** 4096² over a
+480 m box is **11.7 cm per texel** — the same figure this rig has resolved since R-W3b(a), and the
+2048² phone map holds **23.4 cm**, likewise unchanged. ±360 m would need 6144² to hold that, or it
+buys reach by blurring the eave shadow a visitor is standing under, which is the trade R-W3b(a)
+refused. The route past here is **R-W3b(b)**, true cascades, and it is now a resolution parcel
+rather than a budget one: at ±240 m the worst anchor sits **30 calls under budget**, where before
+this it sat 6.
+
+**FINDING 2, AND IT IS THE ONE TO CARRY FORWARD — a batch merge is not pixel-identical, and
+R-W5a's acceptance could not have seen why.** The acceptance both halves of R-W5a inherit is
+"whole-frame mean |Δ| under 0.01 of an 8-bit count", and this passes it four times over at
+**0.0024**. But the mean is the wrong statistic for this operation: shot at seven poses, 1280×800,
+**942 pixels of 7,168,000 changed, and the worst of them by 90 counts** — a whole surface, not a
+rounding. They are scattered singletons over roofs and wall junctions, and the cause is that
+merging sixteen batches into one **reorders the submission of co-planar triangles that were tying
+in the depth buffer**, so the tie resolves the other way. That is **R-BUG6's** exact class of defect
+(*"something in the frame is decided by a tie, and the tie is not stable"*), reached from a
+direction R-BUG6 did not consider: a batching change can move a tie without touching a material, a
+bias or a near plane. **The generalisation: an acceptance stated as a frame MEAN cannot distinguish
+"nothing changed" from "a few hundred pixels changed completely", and the second is what a
+reordering does.** A merge parcel owes a changed-pixel COUNT and a worst-pixel figure beside the
+mean, which is what this box quotes and what R-W5a's does not.
+
+**Why the per-vertex substitution is exact where it is exact, and it is not an argument, it is
+6,999,058 pixels.** Roughness is written once per vertex from the source material, so all three
+vertices of any triangle carry the identical float — a triangle never spans two source meshes — and
+the interpolation of three equal values is that value. `perVertexRoughness` replaces
+`#include <roughnessmap_fragment>` with `float roughnessFactor = vChiRough;`, which is that chunk
+verbatim minus a `USE_ROUGHNESSMAP` branch no asset in this dataset takes (R-W2a: 1,353 material
+slots, **zero** textures). If the substitution had silently failed, the whole town would have
+rendered at ONE roughness and millions of pixels would have moved; 6,999,058 of 7,168,000 are
+identical to the byte, which is a stronger proof than any assertion.
+
+**The gate, and it is R-A1's shape.** Four assertions, of which the first two would pass identically
+on a town that merged its batches by throwing roughness away — one batch, one sheen, every wall the
+same — so the third is the one that does the work: the town is **1** batch; the merged batch still
+carries **16** distinct roughness values spanning **0.25–0.98**; driving every vertex to 0.02 moves
+the worst 48² cell by **13** (floor 4, a third of the reading, measured before it was set); and
+restoring the channel returns the frame with residual **0**. `STRUCTURE_BATCHES = 1` is asserted as
+an equality rather than a ceiling deliberately: a textured asset would legitimately raise it, and
+raising it should be an edit with a reach measurement beside it, because the reach is standing on
+this number.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. `SMOKE_VIEWPORT=mobile` on the published mirror:
+**250 passed, 2 failed** against `origin/dev`'s **246 passed, 2 failed** on the same runner and the
+same command — the same two road assertions `dev` already carries (R-BUG5b/#201 and T-V2/#135), and
+the +4 is exactly this parcel's four new gates. No threshold, band or station was weakened. **The
+desktop half of the smoke does not fit the runner's ten-minute per-command ceiling and did not run**
+(ROADMAP § THE RUN BUDGET); the desktop figures above are `measure_shadow_reach.mjs` and
+`measure_shipped_batches.mjs` at 1280×800 on the published mirror.
+
+**Superseded numbers.** Any draw-call figure in this file taken before 2026-08-17 is a 16-batch
+figure — including R-W5a's own 16, K36(b)'s 56-vs-16 and R-W3b(a)'s 70/74/78/80 ladder. The town
+is one batch now and the ladder must be re-measured before it is quoted.
+
+#### R-W5a2 — the parcel as written, kept for the record
 
 **Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a (done)
 
@@ -1556,6 +1650,8 @@ channel is the proof the pattern works inside a `BatchedMesh` here.
 
 **Take it only when the lane has nothing sharper.** The budget is met with 5 calls of headroom at
 the worst station and the growth term is already zero, so this buys margin, not a fix.
+*(Overtaken 2026-08-17: the margin WAS the fix — see finding 1 above. The paragraph priced the
+colour pass and the shadow pass was where the count was being spent.)*
 
 **Files:** `renderers/web/js/buildings.js` · `renderers/web/js/confidence.js` (chaining only)
 
@@ -1708,6 +1804,12 @@ gate at the first station that adds a batch**, with two thirds of the town still
 and the route past ±120 m is fewer batches — **R-W5a2**, "the last 16 batches → 1", which this
 parcel therefore promotes from "not needed for the budget" to the thing that unblocks the reach —
 or true cascades, **R-W3b(b)**. Raising the constant alone will not get there.
+
+**AND R-W5a2 TOOK THAT ROUTE THE SAME DAY — the ladder above is a 16-batch ladder and is
+superseded.** With the town merged to one batch the same worst anchor reads **48 calls at ±120 m
+and 50 at ±240**, so the shipped reach is **±240 m at 4096²/2048², still 11.7 / 23.4 cm per
+texel**. Read R-W5a2's box for the new table; do not quote 70/74/78/80 for anything but the
+16-batch scene they were taken on.
 
 **The gate, and the liveness assertion R-A1 says it owes.** `tools/smoke_renderer.mjs` asserts at
 `lake_market` that the rig carries ±120 m over the right map for its tier, AND that winding the

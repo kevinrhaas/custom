@@ -321,7 +321,7 @@ const HAZE_DENSITY = 0.00125;
  * coverage it buys and the draw-call ceiling that decides the number are in that
  * block — read it before changing this.
  */
-export const SHADOW_REACH_M = 120;
+export const SHADOW_REACH_M = 240;
 
 /**
  * Solar azimuth and elevation, NOAA's algorithm.
@@ -553,27 +553,47 @@ export function createWorld({
   // whole river timber were floating, and no amount of light fixes that, because
   // the geometry was being clipped out of the depth map before it was drawn.
   //
-  // 120 m doubles the reach and the map doubles with it, so THE TEXEL SIZE IS
+  // 120 m doubled the reach and the map doubled with it, so THE TEXEL SIZE WAS
   // UNCHANGED — 11.7 cm on desktop, 23.4 cm on a phone, exactly what the old rig
-  // resolved. Nothing a visitor stands next to got softer to buy this.
+  // resolved. Nothing a visitor stands next to got softer to buy it.
   //
-  // WHY 120 AND NOT MORE, and it is the parcel's finding: **the reach is
-  // draw-call-bound, not fill-bound.** Every batch that enters the box is another
-  // draw call in the shadow pass, and the budget is 80. Measured worst station
-  // (`green_tree`): 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at
-  // 180** — the ceiling, with the town still only a third inside the box. So the
-  // route past 120 m is fewer batches (ROADMAP R-W5a2) or true cascades
-  // (R-W3b(b)), not a bigger number here. Raising this constant alone will fail
-  // the draw-call gate before it finishes the town.
+  // R-W3b(a) STOPPED AT 120 m FOR ONE REASON, and it was not resolution: **the
+  // reach is draw-call-bound, not fill-bound.** Every batch that enters the box
+  // is another draw call in the shadow pass, and the budget is 80. Measured then
+  // at the worst station (`green_tree`): 70 calls at 60 m, 74 at 120, 78 at 150
+  // and **exactly 80 at 180** — the ceiling, with the town still two thirds
+  // outside the box. It named the two routes past it: fewer batches (R-W5a2) or
+  // true cascades (R-W3b(b)).
+  //
+  // **240 m, 2026-08-17 — R-W5a2 took the first route and the ceiling moved.**
+  // Carrying roughness per vertex collapsed the town's 16 building batches to
+  // ONE, which is one call saved in the colour pass and one saved in the shadow
+  // pass for every batch that was entering the box. Re-measured on the published
+  // mirror, same instrument, same anchors: `green_tree` reads **48 calls at
+  // ±120 m and 50 at ±240**, `south_water` 40 and 41, `forks` 47 and 47 — against
+  // the 74 the same station read before the merge. The reach doubled again and
+  // the frame is 30 calls under budget instead of 6.
+  //
+  // WHY 240 AND NOT MORE, and it is a resolution answer this time rather than a
+  // budget one. The map has to double with the box or the texel grows, and 4096²
+  // is the largest map worth asking a browser for: 2·240/4096 is **11.7 cm**, the
+  // same texel this rig has resolved since R-W3b(a), and 2·240/2048 is **23.4 cm**
+  // on a phone, likewise unchanged. ±360 m would need 6144² to hold that, or it
+  // buys its reach by blurring the eave shadow a visitor is standing under —
+  // which is the trade R-W3b(a) refused and this parcel is not reopening. Past
+  // here the honest route is still R-W3b(b), true cascades, which spends texels
+  // where they are looked at instead of spreading them evenly over 480 m.
   const half = SHADOW_REACH_M;
   const cam = light.shadow.camera;
   cam.left = -half; cam.right = half; cam.top = half; cam.bottom = -half;
   cam.near = 1; cam.far = 900;
   cam.updateProjectionMatrix();
-  // 2048 over a 240 m frustum is 11.7 cm per texel — the same as the 1024 the
-  // old 120 m frustum carried, and finer than the shadow of a clapboard eave
-  // needs. The phone's map doubles too, for the same reason and the same result.
-  light.shadow.mapSize.setScalar(lowSpec ? 1024 : 2048);
+  // 4096 over a 480 m frustum is 11.7 cm per texel — the same figure the 2048
+  // over 240 m carried, and the 1024 over 120 m before that. The phone's map
+  // doubles too, for the same reason and the same result. `bias` and
+  // `normalBias` below are in world units and are calibrated to the TEXEL, not
+  // to the reach, which is why holding the texel size is what lets them stand.
+  light.shadow.mapSize.setScalar(lowSpec ? 2048 : 4096);
   light.shadow.bias = -0.0004;
   light.shadow.normalBias = 0.045;
 
