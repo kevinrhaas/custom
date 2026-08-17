@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 156, title: 'The animals of July 1835 are in the Evidence panel', kind: 'feature', ts: '2026-08-17T02:24:29.867Z', date: 'Aug 16, 2026, 9:24 PM CT',
+    items: [
+      'Open the menu, then Evidence, and there is a new section: What was living here. Ten habitats — wet prairie, marsh, the timber, the river, the town itself — and inside each one every animal researched into it, 139 of them.',
+      'Each says what it was doing on 1 July, whether you would have seen it, only heard it, or found nothing but its tracks, how many of it, and the sources behind all three. The pigs are in the streets, and there is an 1833 ordinance forbidding it to prove they were.',
+      'July is the quietest wildlife date in the Chicago year, and the list is stated for that day rather than for the year. The ducks are flightless and hiding, the prairie chicken’s lek is over, most of the birds have stopped singing, and the loudest thing after dark is a frog pond a newspaper complained about.',
+      'None of them is drawn. There are no animals in the scene and none is proposed here — this is the research, published where you can read it.',
+      'It had never left the repository. The records were written a week ago, graded and cited, and nothing on the site had ever fetched them: no part of the walkthrough named the folder and the publishing step did not copy it, while three separate documents said otherwise.',
+    ] },
   { v: 155, title: 'The wood no longer stops at an invisible line east of town', kind: 'feature', ts: '2026-08-17T01:50:32.625Z', date: 'Aug 16, 2026, 8:50 PM CT',
     items: [
       'Walk east from the forks and the trees used to run out. Not thin out — stop, along a straight line about 316 metres from the middle of town, with the grass carrying on past it. Trees now stand out to the beach ridges: 147 of them east of that old line, where there was one.',

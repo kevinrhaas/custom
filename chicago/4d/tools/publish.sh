@@ -140,6 +140,17 @@ if [ -d data/flora ]; then
   cp -a data/flora "$SITE/data/flora"
 fi
 
+# The animal layer (ROADMAP K51). Same argument as the residents above, and it
+# was open longer: 139 records across ten habitat zones, every one graded to
+# 1 July 1835 and cited, and until this line no browser had ever been offered
+# the directory — while data/scenes/1835.json listed `fauna` among the scene's
+# layers and two other documents implied a reader existed. Nothing here is
+# drawn; the Evidence panel's wildlife section reads it as text.
+if [ -d data/fauna ]; then
+  rm -rf "$SITE/data/fauna"
+  cp -a data/fauna "$SITE/data/fauna"
+fi
+
 # every URL-targeted directory needs an index.html or Pages 404s the bare path
 [ -f "$SITE/index.html" ] || cat > "$SITE/index.html" <<'HTML'
 <!doctype html>

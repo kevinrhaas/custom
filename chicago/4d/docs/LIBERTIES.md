@@ -94,7 +94,15 @@ one direction only — sound carries where sight does not, and the loudest thing
 are insects, frogs and livestock rather than birds. The validator enforces each of these as schema
 (`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not
 a hope about it.
-**Recorded:** 2026-08-09. **Revised:** 2026-08-11.
+**What the renderer actually does (2026-08-17, ROADMAP K51):** *nothing*, and the word "rendered"
+in the decision above has been an overstatement for the life of this entry. No animal is drawn,
+heard or traced in the walkthrough; there is no fauna geometry and no audio. K42 measured the
+reason — no renderer source opened `data/fauna/` and `tools/publish.sh` did not copy it, so the
+layer never left the repository. As of today it reaches a visitor as **text**: the Evidence
+panel's *What was living here* section publishes all 139 records with their July status, presence
+mode, abundance, behaviour, voice and sources. That is a card and not a population, and the
+decision above stays the standing intent for whenever animals are drawn.
+**Recorded:** 2026-08-09. **Revised:** 2026-08-17.
 
 ### L3 — Vertical exaggeration available but off by default
 **Decision:** the renderer may offer a vertical-exaggeration toggle; it defaults to off.

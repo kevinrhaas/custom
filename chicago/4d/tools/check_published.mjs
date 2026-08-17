@@ -50,6 +50,7 @@ const COPIES = [
   ['data/sidecars/', 'data/sidecars/'],
   ['data/residents/', 'data/residents/'],
   ['data/flora/', 'data/flora/'],
+  ['data/fauna/', 'data/fauna/'],
 ];
 
 /**
