@@ -468,13 +468,22 @@ export async function createFlora({
    */
   const censusIndex = new Map();
   for (const z of zones) {
-    for (const [list, key] of [['matrix', 'graminoids'], ['forb', 'forbs']]) {
+    for (const [list, key] of [['matrix', 'graminoids'], ['forb', 'forbs'], ['shrub', 'shrubs']]) {
       const items = z[key];
       if (!items.length) continue;
       const row = {
         community: z.id, list, drawn: 0, drySlots: 0, wetSlots: 0,
         species: items.map((s) => ({
           id: s.id, unit: s.unit, share: s.weight, stems: s.stems, expected: 0, drawn: 0,
+          /** ROADMAP K54. The clump this species' record gives, and the ground
+           *  cover that density implies — `stems × π(width/2)²`, which for a
+           *  cover-recorded species is its own recorded `cover_fraction` back
+           *  again. It is here so a census can ask the question K54 asks: not
+           *  only whether the head count is faithful, but whether the GROUND
+           *  the sample covers is. */
+          width: s.width ? mid(s.width) : null,
+          cover: s.stems !== null && s.width
+            ? s.stems * Math.PI * (mid(s.width) * 0.5) ** 2 : null,
         })),
       };
       const byId = new Map(row.species.map((s) => [s.id, s]));
@@ -740,13 +749,42 @@ export async function createFlora({
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         countDraw(zone, 'forb', sp, wet);
-        const shrub = sp.form === 'shrub_low';
-        const set = shrub ? shrubSet
-          : sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
+        const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
-        const h = shrub
-          ? placeShrub(set, sp, e, y, n, rng)
-          : placeForb(set, sp, e, y, n, rng);
+        const h = placeForb(set, sp, e, y, n, rng);
+        if (h > 0 && r <= f.head[0] + off + step) {
+          maybeHead(heads, sp, e, y, n, rng, h, ringAt(f.head, off, _headRing));
+        }
+      });
+
+    // ROADMAP K54 — THE SHRUB STRATUM, ON ITS OWN PASS OVER THE SAME RING.
+    //
+    // Same lattice geometry, same fade ring, a different SALT: the two draws
+    // have to be independent, because a shrub stands over the herb layer rather
+    // than instead of it, and sharing one stratified draw would make every
+    // shrub slot a slot the herbs did not get. That is the whole defect this
+    // parcel repairs, and reusing `u` would rebuild it one line lower down.
+    //
+    // Everything else is the forb pass, unchanged: the fringe, the walker
+    // clearance, the station rules and the head. `placeShrub` reads `width_m` as
+    // the clump diameter it is on a shrub (K53).
+    scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
+      f.lattice.outer, f.lattice.inner, 0x7b5c1d, 'lattice', cone,
+      (e, n, r, rng, _cellSeed, u) => {
+        const off = fringeOf(e, n, f.fringe);
+        if (r > f.fade[0] + off + step) return;
+        const zone = finder(e, n);
+        if (!zone || !zone.shrubs.length) return;
+        const wet = water.isWater(e, n);
+        const sp = dealt(wet ? zone.wet.shrubs : zone.dry.shrubs,
+          wet ? zone.shrubShareWet : zone.shrubShare, u);
+        if (!sp) return;
+        const y = station(e, n, zone, sp, wet);
+        if (y === null) return;
+        if (crowdsTheWalker(sp, r)) return;
+        countDraw(zone, 'shrub', sp, wet);
+        shrubSet.ring(ringAt(f.fade, off, _ring));
+        const h = placeShrub(shrubSet, sp, e, y, n, rng);
         if (h > 0 && r <= f.head[0] + off + step) {
           maybeHead(heads, sp, e, y, n, rng, h, ringAt(f.head, off, _headRing));
         }
@@ -795,8 +833,10 @@ export async function createFlora({
     substrates() {
       return zones.map((z) => ({
         id: z.id,
-        dry: z.dry.graminoids.items.concat(z.dry.forbs.items).map((s) => s.id),
-        wet: z.wet.graminoids.items.concat(z.wet.forbs.items).map((s) => s.id),
+        dry: z.dry.graminoids.items.concat(z.dry.forbs.items, z.dry.shrubs.items)
+          .map((s) => s.id),
+        wet: z.wet.graminoids.items.concat(z.wet.forbs.items, z.wet.shrubs.items)
+          .map((s) => s.id),
       }));
     },
     /** What each compiled community carries out of its record, so the gate can
@@ -1053,6 +1093,27 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const palette = files.get(`palette:${rec.palette ?? entry.palette}`) ?? null;
     const graminoids = [];
     const forbs = [];
+    /**
+     * ROADMAP K54 — THE SHRUB LAYER IS A STRATUM, NOT A TALL FORB, AND IT IS
+     * DEALT ON ITS OWN LATTICE.
+     *
+     * K53 drew the twenty-one `shrub_low` records with their own archetype and
+     * measured why only fourteen of them stood: they were competing for the
+     * forb layer's slots on plants per square metre, against a wild leek at 40.
+     * A slot is one plant and the forb lattice carries one plant per 2.89 m² of
+     * ground, so where the herb layer's own density saturates that lattice —
+     * which it does in five of the ten communities — the deal becomes a
+     * count-proportional SUBSAMPLE, and a subsample by count thins the shrubs
+     * by the whole saturation ratio. In the wet woods that ratio is 117.
+     *
+     * The two are not competing for the same ground in the first place. A hazel
+     * clump stands OVER the leeks, and its record says so: nine `shrub_low`
+     * records in `z06_dense_forest` sum to 92 % ground cover while the herb
+     * layer beneath them is recorded separately at 40 plants per m². So the
+     * shrubs are dealt from their OWN lattice pass, at their own recorded
+     * density, and nothing is taken from the herb layer to pay for them.
+     */
+    const shrubs = [];
 
     for (const sp of rec.species) {
       if (!OUR_ROLES.has(sp.role)) continue;          // trees.js draws the rest
@@ -1072,6 +1133,7 @@ function compileZones({ index, files }, terrain, problems, stats) {
       if (!built) continue;
       stats.species++;
       if (isGrass) graminoids.push(built);
+      else if (built.form === 'shrub_low') shrubs.push(built);
       else forbs.push(built);
     }
 
@@ -1099,14 +1161,14 @@ function compileZones({ index, files }, terrain, problems, stats) {
      * The shares it moves are quoted in ROADMAP K49(c1), measured before this
      * half was written so it could not choose its own bar.
      */
-    for (const s of [...graminoids, ...forbs]) {
+    for (const s of [...graminoids, ...forbs, ...shrubs]) {
       /** The abundance exactly as recorded, in whatever unit the record used.
        *  It sets how many slots the list is dealt and nothing else. */
       s.recorded = s.weight;
       s.weight = s.stems ?? s.recorded;
     }
     const lotOf = (list) => list.reduce((t, s) => t + s.weight, 0);
-    for (const list of [graminoids, forbs]) {
+    for (const list of [graminoids, forbs, shrubs]) {
       const total = lotOf(list);
       if (total > 0) for (const s of list) s.weight /= total;
     }
@@ -1149,7 +1211,7 @@ function compileZones({ index, files }, terrain, problems, stats) {
     // lilies' 6.5 % share of that sward — the record's `matrix_fraction` says
     // 0.75 there, and it does not stop meaning 0.75 because two of its species
     // cannot stand on a bank.
-    const subsetOn = (list, wet) => {
+    const subsetOn = (list, wet, basis = 'recorded') => {
       const items = list.filter((s) => (
         wet ? s.substrate !== 'soil' : s.substrate !== 'open_water'));
       return {
@@ -1157,32 +1219,58 @@ function compileZones({ index, files }, terrain, problems, stats) {
         total: items.reduce((a, s) => a + s.weight, 0),
         /** ROADMAP K49(c2). The subset's abundance AS RECORDED — the number of
          *  slots is dealt off this, not off the lottery, so moving the lottery
-         *  onto plants per m² leaves every slot count where it was. */
-        density: items.reduce((a, s) => a + s.recorded, 0),
+         *  onto plants per m² leaves every slot count where it was.
+         *
+         *  ROADMAP K54: the SHRUB list is dealt off `stems` instead, and that is
+         *  not an inconsistency — it is the same rule read in the same unit. A
+         *  slot count is a count of plants per square metre, and sixteen of the
+         *  twenty-one shrub records state their abundance as an AREA of ground
+         *  covered. Summing those cover fractions as though they were counts is
+         *  exactly K49(a)'s fault, and it was still live here: it planted
+         *  `z05_riverbank_timber`'s understory at 8.8× its own recorded density
+         *  and `z07_bur_oak_savanna`'s hazel at 4×. `stems` is that same
+         *  recorded cover divided by what one clump covers — the record's own
+         *  conversion, not a new number. */
+        density: items.reduce((a, s) => a + (basis === 'stems' ? (s.stems ?? 0) : s.recorded), 0),
       };
     };
 
     const cell = TUNE.forb.cell;
+    /** Chance one lattice slot of the forb-ring cell carries a plant: the
+     *  subset's own plants per m² times the ground one slot stands for. The
+     *  clamp is the lattice's ceiling of one plant per slot and is the only
+     *  bound in it — see K54's note on the wet woods, the one community whose
+     *  recorded shrub density reaches it. */
     const forbShareOf = (subset) => Math.min(
       1, subset.density * cell * cell / TUNE.forb.perCell);
-    const dry = { graminoids: subsetOn(graminoids, false), forbs: subsetOn(forbs, false) };
-    const wet = { graminoids: subsetOn(graminoids, true), forbs: subsetOn(forbs, true) };
+    const dry = {
+      graminoids: subsetOn(graminoids, false),
+      forbs: subsetOn(forbs, false),
+      shrubs: subsetOn(shrubs, false, 'stems'),
+    };
+    const wet = {
+      graminoids: subsetOn(graminoids, true),
+      forbs: subsetOn(forbs, true),
+      shrubs: subsetOn(shrubs, true, 'stems'),
+    };
     out.push({
       id: entry.id,
       zone: entry.zone,
       extent: rec.extent ?? entry.extent ?? null,
       priority: rec.extent?.priority ?? entry.priority ?? 0,
       standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water'
-        && (wet.graminoids.items.length > 0 || wet.forbs.items.length > 0),
+        && (wet.graminoids.items.length > 0 || wet.forbs.items.length > 0
+          || wet.shrubs.items.length > 0),
       graminoids,
       forbs,
+      shrubs,
       /** The same two lists split by `substrate`: what may be planted on the
        *  dry side of the waterline, and what may be planted over water. */
       dry,
       wet,
       /** Every drawn species of this community by id, so a gate can ask the
        *  placer about one by name. */
-      byId: new Map([...graminoids, ...forbs].map((s) => [s.id, s])),
+      byId: new Map([...graminoids, ...forbs, ...shrubs].map((s) => [s.id, s])),
       /** Chance a matrix lattice slot is used at all: the record's own
        *  `cover.matrix_fraction`. Clamped only because a fraction over 1 would
        *  be a bookkeeping error the validator already refuses. */
@@ -1192,6 +1280,11 @@ function compileZones({ index, files }, terrain, problems, stats) {
        *  per side, because the legal subset is what stands there. */
       forbShare: forbShareOf(dry.forbs),
       forbShareWet: forbShareOf(wet.forbs),
+      /** ROADMAP K54. The same question of the shrub stratum's own lattice, off
+       *  its own recorded clump density. Nothing here is taken from the forb
+       *  layer: the two passes are independent draws over the same ring. */
+      shrubShare: forbShareOf(dry.shrubs),
+      shrubShareWet: forbShareOf(wet.shrubs),
       matColor: meanColor(graminoids, palette),
       palette,
     });
@@ -1231,13 +1324,24 @@ function compileZones({ index, files }, terrain, problems, stats) {
  * their abundance measures. `countedShare` is how much of that list's slot
  * lottery is currently held by its COUNT-recorded species — the share that is
  * being compared against an area and therefore means nothing as it stands.
+ *
+ * ROADMAP K54 — AND `basis` IS WHICH SUM THE LIST'S SLOT COUNT IS DEALT OFF,
+ * because that is where the mixing still bites. K49(c2) moved the LOTTERY onto
+ * `stems` and said in as many words that the slot count was left on the recorded
+ * sum; a list dealt off `recorded` while mixing an area with a count is
+ * therefore still adding cover fractions to plants per m², and that arithmetic
+ * planted `z05_riverbank_timber`'s understory at 8.8× its own record. K54 fixed
+ * the shrub half of it by dealing that stratum off `stems`; four herb lists
+ * (`z03`, `z05`, `z06`, `z10`) still carry it, and this column is what names
+ * them. See K55.
  */
 function auditAbundance(zones) {
   const mixed = [];
   const unconvertible = [];
   let lists = 0;
   for (const z of zones) {
-    for (const [list, items] of [['matrix', z.graminoids], ['forb', z.forbs]]) {
+    for (const [list, items] of [['matrix', z.graminoids], ['forb', z.forbs],
+      ['shrub', z.shrubs]]) {
       if (!items.length) continue;
       lists++;
       let counted = 0;
@@ -1257,6 +1361,7 @@ function auditAbundance(zones) {
       if (counted > 0 && area > 0) {
         mixed.push({
           zone: z.id, list, species: items.length, counted, area, countedShare,
+          basis: list === 'shrub' ? 'stems' : 'recorded',
         });
       }
     }

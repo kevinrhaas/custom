@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 168, title: 'The wet woods have a shrub layer at last', kind: 'fix', ts: '2026-08-17T14:26:54.755Z', date: 'Aug 17, 2026, 9:26 AM CT',
+    items: [
+      'This morning’s note ended with a number: only 14 bushes stood across the eight viewpoints, because every plant in the understory competed for the same places and one hazel counted the same as one wild leek. Across those viewpoints there are 181 now.',
+      'The wet timber north-east of the forks is the change you can see. Standing in it, 156 shrubs are drawn where 2 were — hazel, red-osier and grey dogwood, winterberry, hawthorn, sumac, wild plum, brambles and the low clumps of black oak — and the ground they cover goes from a fraction of a per cent to 40 per cent of what the research records for them.',
+      'On the river bank the dogwood belt is now drawn as its records describe it: the bushes cover 20.1 per cent of the ground where the research says 19.5 per cent. Scattered single herbs there are fewer, and that is the same correction — four of those records state how much GROUND the plant holds, and that figure was being added up as though it were a count of plants, which planted the herbs beneath them nearly nine times too thickly.',
+      'Bushes and herbs no longer take places from each other, because in a wood they do not: a hazel clump stands over the wild leeks rather than instead of them. They are planted from two independent passes now, so nothing was taken from the flowers to pay for the shrubs.',
+      'Nothing about the mix changed and nothing was tuned to make this look better. Every plant is dealt from the same research figures, no species has vanished from the scene, and the prairie and the sedge meadow are drawn exactly as they were.',
+      'One place falls short of its record and it is written up: the wet woods ask for a nearly closed canopy of shrubs and get two fifths of it, because the planting grid carries one plant per patch of ground. The gap is printed by the measuring tool rather than rounded away.',
+    ] },
   { v: 167, title: 'The bushes are bushes now, not oversized weeds', kind: 'fix', ts: '2026-08-17T13:33:20.715Z', date: 'Aug 17, 2026, 8:33 AM CT',
     items: [
       'Twenty-one plants in this reconstruction are shrubs — hazel, elder, dogwood, wild plum, brambles, currant in the dooryards, juniper and sand cherry on the lakeshore, and the low clumps of black oak the fires kept knocking back. Every one of them was drawn as a single herbaceous stalk with four big leaves, the same shape a prairie flower gets, stretched to whatever height the record gave it.',
