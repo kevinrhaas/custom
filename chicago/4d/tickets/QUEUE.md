@@ -34,3 +34,4 @@ T-0031 — Where did the South Water timber belt stand
 T-0032 — The six-roof civic target counts three that were never built
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0035 — Flowers grow up out of the ground as you approach instead of fading in
+T-0036 — The gate screen counts the town: buildings standing, people housed
