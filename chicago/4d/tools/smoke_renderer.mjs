@@ -478,6 +478,11 @@ async function roadContrast(page, station) {
       // is on screen and invisible fails here instead of quietly leaving the
       // sample; `nBare` is what tells occlusion apart from flatness, which is
       // the distinction three gates in a row failed to draw.
+      //
+      // R-M1c: `nBare` is now also what `perceptible` is SCORED on. See its
+      // box below — it was a diagnostic for two parcels before anything
+      // divided by it, and the score it replaced could be raised by planting
+      // a tree in front of a road.
       nProjected: inBand.length,
       nBare: inBand.filter((p) => markedBare(p.x, p.y)).length,
       // The ceiling: the same probes with the ribbon forced opaque. It says how
@@ -494,7 +499,40 @@ async function roadContrast(page, station) {
       weber: median(wb),
       weberN: wb.length,
       groundL: median(gl),
-      perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
+      /**
+       * ROADMAP R-M1c. THE DENOMINATOR IS `nBare`, NOT `seen`.
+       *
+       * This read `/ ds.length` — the probes the marker pass could see THROUGH
+       * the vegetation — until 2026-08-16. That makes the score go UP when
+       * something stands in front of a faint stretch of road, because the
+       * stretch leaves the sample instead of failing in it. **A gate that
+       * improves when an occluder hides the thing it measures is dividing by
+       * the wrong number**, and this one did, for as long as it has existed.
+       *
+       * The instrument to fix it was already here and already printing. The
+       * `shotMF` pass hides the sward and the trees for exactly this reason and
+       * its own comment says so: *"a road that is ON SCREEN and COVERED BY
+       * VEGETATION, which the marked-only denominator drops instead of
+       * failing."* It was built as a diagnostic and never wired to the score.
+       *
+       * `nBare` is the right denominator rather than `nProjected` because a
+       * road behind a STORE is a road a visitor legitimately cannot see, and
+       * demanding it read would be demanding X-ray vision. Vegetation is
+       * different: it is ours, it moves when we change it, and it must not be
+       * able to launder a faint road out of the sample. `seen ⊆ bare` always,
+       * so this can only ever LOWER a score — it is not a route through a bar.
+       *
+       * Measured on one band across three builds the same evening, where
+       * `seen` swung 157→177→163 and the old score swung 62 %→54 %→59 %
+       * (aerial, 250–600 m: wood mirrored, wood repaired by R-BUG5b, wood
+       * widened by K45(b2)). `nBare` was **182 in all three**, and this score
+       * reads **53.3 / 52.7 / 52.7 %**. The town did not change by eight
+       * points three times; the sample did.
+       */
+      perceptible: (() => {
+        const nBare = inBand.filter((p) => markedBare(p.x, p.y)).length;
+        return nBare ? ds.filter((d) => d >= 2).length / nBare : 0;
+      })(),
       gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };
   });
@@ -2468,6 +2506,8 @@ const terrainLoad = await page.evaluate(() => {
     // test from "enough probes were SEEN" to "enough probes were PROJECTED" —
     // under the old test a band nobody can see reports n=0 and gates itself
     // out, which is indistinguishable from a band with no road in it.
+    // R-M1c finished that argument one level down: the band's SCORE divided by
+    // `seen` too, so an occluder raised it. It divides by `nBare` now.
     for (const station of ROAD_STATIONS) {
       const road = await roadContrast(page, { id: station.id, kind: station.kind });
       const bands = road.bands.filter((b) => b.gated);
@@ -2476,7 +2516,7 @@ const terrainLoad = await page.evaluate(() => {
       const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
         + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
           : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-            + `${(b.perceptible * 100).toFixed(0)} % perceptible, `
+            + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
             // R-M1a. Both halves of the owner's ruling, measured beside the bar
             // they are going to join: Weber says how distinguishable the road
             // is whatever the exposure, groundL says whether there is light to
