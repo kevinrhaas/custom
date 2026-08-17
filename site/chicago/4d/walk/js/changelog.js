@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 172, title: 'The bushes fill out again, and keep their recorded width', kind: 'fix', ts: '2026-08-17T18:27:35.393Z', date: 'Aug 17, 2026, 1:27 PM CT',
+    items: [
+      'Yesterday the bushes went from sixteen leaf sprays to thirty-two and stopped reading as giant single leaves. That note left a question open: at the same total amount of leaf, would more and smaller masses read better? The answer is measured now, and it is no — because the leaf masses are what gives a bush its width, and its width is recorded.',
+      'Sixty-four smaller sprays covering the same total area pull the bush in from 0.99 of the width its record states to 0.89. That is paying for foliage with a number the research owns, so instead the masses stay the size they are and there are forty-eight of them.',
+      'What you see: standing in the wet woods, the bushes cover 47 per cent of their own outline where they covered 37, and the dark woody stems under them are 51 per cent hidden where they were 41. Fewer black sticks, more bush.',
+      'Where it stops is measured too. Sixty-four sprays would give another 4 points of cover for as many triangles again as the first sixteen bought ten — so forty-eight is where the return halves, and the rest is written down and left unspent rather than taken quietly.',
+      'Nothing about which plant grows where moved: the same bushes in the same places, plant for plant, and no bush is taller or wider than its record says. Each costs 104 triangles instead of 72, about 17,000 in the whole wood against a ceiling of a million.',
+      'How a bush branches is still our invention and is on the Evidence card. It is now also a check: the two numbers the research does own — the recorded width, and a leaf mass staying plainly bigger than one leaf — are asserted on every commit rather than described in a note.',
+    ] },
   { v: 171, title: 'The riverbank and meadow herbs are planted at their recorded numbers', kind: 'fix', ts: '2026-08-17T17:12:31.785Z', date: 'Aug 17, 2026, 12:12 PM CT',
     items: [
       'Yesterday’s note said four plant records state how much GROUND a plant holds and that figure was being added up as though it were a count of plants. That was fixed for the bushes. It is fixed for the herbs today, and it ran the other way for them: a plant 10 cm across covering 2.5 per cent of the ground is a great many plants, not a fortieth of one.',

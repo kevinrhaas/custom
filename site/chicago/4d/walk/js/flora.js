@@ -47,6 +47,10 @@
  */
 
 import * as THREE from 'three';
+// The shrub archetype's LAYOUT, in a module that imports nothing, so
+// `tools/measure_spray_grain.mjs` can measure the grain without a browser and
+// without a second copy of the corner arithmetic. See K57.
+import { SHRUB_GRAIN, shrubLayout } from './shrub-grain.js';
 
 /** docs/PROVENANCE.md's three levels, as the shader reads them. */
 const LEVEL = { attested: 0.0, inferred: 0.5, reconstructed: 1.0 };
@@ -3119,8 +3123,8 @@ function rosetteGeometry() {
 
 /**
  * The shrub: four woody stems out of one root and a broad leafy shell over
- * them — thirty-two leaf sprays in three bands, the lowest arching down over the
- * stems (K56) — in the same nominal box every other archetype uses — one tall, one
+ * them — forty-eight leaf sprays in three bands, the lowest arching down over the
+ * stems (K56, K57) — in the same nominal box every other archetype uses — one tall, one
  * across, so `height_m` scales the stems and the recorded clump half-width
  * scales the spread (`placeShrub`).
  *
@@ -3140,104 +3144,55 @@ function rosetteGeometry() {
  * arrangement inside it is invented. Nothing here reads a figure the record
  * does not carry.
  *
- * Cost: 72 triangles against the forb's 12 and the near tuft's 27 — 40 until
- * K56 raised the spray count, which is the +32. It is drawn from the forb
- * lattice, so it takes slots the forb archetype used to take rather than adding
- * any, and 158 of them in the wet woods' ring is +5,056 triangles there.
+ * Cost: 104 triangles against the forb's 12 and the near tuft's 27 — 40 until
+ * K56 raised the spray count to 32 and K57 to 48, each +32. It is drawn from the
+ * forb lattice, so it takes slots the forb archetype used to take rather than
+ * adding any, and the 167 of them the census counts in the wet woods' ring is
+ * 17,368 triangles there, 1.7 % of the scene's million. The layout and the grain are `shrub-grain.js`;
+ * what they cost and what they buy is `tools/measure_spray_grain.mjs --gate`.
  */
 function shrubGeometry() {
   const g = emptyGeo();
   const rng = rngFrom(0x5c123b00);
-  const STEMS = 4;
-  const tops = [];
-  for (let i = 0; i < STEMS; i++) {
-    // Fanned, not radial: a clonal clump leans its stems out around one root,
-    // and an even fan of four reads as a candelabra from every bearing.
-    const phi = (i / STEMS) * Math.PI * 2 + rng() * 0.8;
-    const dx = Math.sin(phi);
-    const dz = Math.cos(phi);
-    const lean = 0.30 + rng() * 0.25;
-    const top = 0.55 + rng() * 0.33;
-    // A stem's thickness is in the archetype's units, so it scales with the
-    // clump: about 3 cm on a 2.4 m hazel and 1 cm on a 1 m sand cherry, which
-    // is the right direction and the right order for both.
-    const w = 0.030;
-    const px = -dz * w;
-    const pz = dx * w;
+  // The stems, the bands, the spray plan and every corner are `shrub-grain.js`,
+  // which imports nothing — so the grain can be measured in a second without a
+  // browser, and the measurement reads the SAME arithmetic the scene draws. The
+  // seed and the generator stay here, because a measurement that re-seeds is
+  // measuring a different bush.
+  const { stems, sprays } = shrubLayout(rng, SHRUB_GRAIN);
+  for (const s of stems) {
     // Woody, but not a silhouette: `color.g` is this module's only occlusion
     // term, so a stem written at 0.05 is a black stick where the foliage does
     // not cover it, and a shrub's stems are exposed for the lower half of it.
     const k0 = shade(0.16);
     const k1 = shade(0.42);
-    const a = vert(g, px, 0, pz, dx, 0.35, dz, k0, k0, k0, 0, 0);
-    const b = vert(g, -px, 0, -pz, dx, 0.35, dz, k0, k0, k0, 0, 0);
-    const c = vert(g, dx * lean + px, top, dz * lean + pz, dx, 0.35, dz,
-      k1, k1, k1, dx, dz);
-    const d = vert(g, dx * lean - px, top, dz * lean - pz, dx, 0.35, dz,
-      k1, k1, k1, dx, dz);
+    const [p0, p1, p2, p3] = s.corners;
+    const a = vert(g, p0[0], p0[1], p0[2], s.dx, 0.35, s.dz, k0, k0, k0, 0, 0);
+    const b = vert(g, p1[0], p1[1], p1[2], s.dx, 0.35, s.dz, k0, k0, k0, 0, 0);
+    const c = vert(g, p2[0], p2[1], p2[2], s.dx, 0.35, s.dz,
+      k1, k1, k1, s.dx, s.dz);
+    const d = vert(g, p3[0], p3[1], p3[2], s.dx, 0.35, s.dz,
+      k1, k1, k1, s.dx, s.dz);
     g.idx.push(a, b, c, b, d, c);
-    tops.push([dx, dz, lean, top]);
   }
-  // Thirty-two sprays, and the COUNT is what K56 moved. A spray is a leaf MASS
-  // — a season's leaves on one shoot, the same abstraction the tree canopy uses
-  // in this renderer and the same one the near tuft uses for a bundle of shoots
-  // — so its size is a rendering choice bounded by the plant's own shell, and it
-  // is not the thing that was wrong. What was wrong is that sixteen of them
-  // cover **17.7 % of that shell**: every clump could be seen straight through,
-  // and an isolated plate with sky on both sides of it reads as one enormous
-  // leaf rather than as foliage. Thirty-two cover 30.9 % and overlap, which is
-  // the whole difference between a bush and a candelabra carrying paddles.
-  //
-  // Three bands rather than two, and the LOWEST one arches DOWN. Nothing in the
-  // first cut hung below its own attachment, so the shell was open exactly where
-  // the four stems are most exposed — and `k0 = shade(0.16)` is a black stick
-  // wherever foliage does not cover it, which is what the comment above feared
-  // and what `docs/evidence/k56-before.png` shows happening.
-  const BANDS = [
-    { top: 0.66, lean: 0.28, scale: 0.94, droop: false },
-    { top: 0.46, lean: 0.44, scale: 0.86, droop: false },
-    { top: 0.28, lean: 0.40, scale: 0.78, droop: true },
-  ];
-  const FILL = 24;
-  const sprays = [];
-  for (const [dx, dz, lean, top] of tops) {
-    sprays.push([dx, dz, lean, top, 1.00, false]);
-    sprays.push([dx, dz, lean * 0.62, top * 0.60, 0.86, false]);
-  }
-  for (let i = 0; i < FILL; i++) {
-    const band = BANDS[i % BANDS.length];
-    const phi = (i / FILL) * Math.PI * 2 + 0.9 + rng() * 0.5;
-    sprays.push([Math.sin(phi), Math.cos(phi),
-      band.lean + rng() * 0.22, band.top + rng() * 0.16, band.scale, band.droop]);
-  }
-  for (const [dx, dz, lean, top, scale, droop] of sprays) {
-    // UNCHANGED by K56, deliberately: 0.26-0.42 of the clump radius, which on a
-    // 2.25 m hazel is a 0.26-0.44 m mass of leaves. A hazel LEAF is about 10 cm
-    // and no scaling off the clump width can produce one at two triangles, so
-    // shrinking this number would not have bought a leaf — it would have bought
-    // a smaller plate with more sky around it, and emptied the shell further.
-    const len = (0.26 + rng() * 0.16) * scale;
-    const half = (0.15 + rng() * 0.09) * scale;
-    // The tip never leaves the nominal box: a plant is as tall as its record
-    // says, and a spray that overshot 1.0 would make every shrub in the town
-    // taller than the height the census reads back off it. A drooping shoot is
-    // bounded the other way instead — it may fall at most half way back to the
-    // ground from its own attachment, so no tip is ever pushed below y = 0.
-    const rise = droop
-      ? -Math.min(0.06 + rng() * 0.10, top * 0.5)
-      : Math.min(0.05 + rng() * 0.09, 1 - top);
-    const bx = dx * lean;
-    const bz = dz * lean;
-    const k0 = shade(0.24 + top * 0.30);
-    const k1 = shade(Math.min(1, 0.58 + top * 0.40));
-    const a = vert(g, bx - dz * half * 0.5, top, bz + dx * half * 0.5,
-      dx * 0.3, 0.9, dz * 0.3, k0, k0, k0, dx, dz);
-    const b = vert(g, bx + dz * half * 0.5, top, bz - dx * half * 0.5,
-      dx * 0.3, 0.9, dz * 0.3, k0, k0, k0, dx, dz);
-    const c = vert(g, bx + dx * len - dz * half, top + rise, bz + dz * len + dx * half,
-      dx * 0.3, 0.9, dz * 0.3, k1, k1, k1, dx, dz);
-    const d = vert(g, bx + dx * len + dz * half, top + rise, bz + dz * len - dx * half,
-      dx * 0.3, 0.9, dz * 0.3, k1, k1, k1, dx, dz);
+  // The COUNT is what K56 moved and the GRAIN is what K57 set: sixteen plates
+  // covered 17.7 % of the shell and could be seen straight through, thirty-two
+  // covered 30.9 %, and the finer question — the same total plate area as more,
+  // smaller masses — is answered by `tools/measure_spray_grain.mjs` rather than
+  // by preference. `SHRUB_GRAIN` in `shrub-grain.js` carries the answer and the
+  // reasoning; the shading is all that is left here.
+  for (const p of sprays) {
+    const k0 = shade(0.24 + p.top * 0.30);
+    const k1 = shade(Math.min(1, 0.58 + p.top * 0.40));
+    const [p0, p1, p2, p3] = p.corners;
+    const a = vert(g, p0[0], p0[1], p0[2],
+      p.dx * 0.3, 0.9, p.dz * 0.3, k0, k0, k0, p.dx, p.dz);
+    const b = vert(g, p1[0], p1[1], p1[2],
+      p.dx * 0.3, 0.9, p.dz * 0.3, k0, k0, k0, p.dx, p.dz);
+    const c = vert(g, p2[0], p2[1], p2[2],
+      p.dx * 0.3, 0.9, p.dz * 0.3, k1, k1, k1, p.dx, p.dz);
+    const d = vert(g, p3[0], p3[1], p3[2],
+      p.dx * 0.3, 0.9, p.dz * 0.3, k1, k1, k1, p.dx, p.dz);
     g.idx.push(a, b, c, b, d, c);
   }
   return finishGeo(g, 'flora-shrub');
