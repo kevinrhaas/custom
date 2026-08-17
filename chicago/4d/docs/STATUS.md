@@ -57,13 +57,30 @@ those layers are drawn at a density `TUNE.forb` chose rather than one any record
 change precisely so K58 can read them; before it, a share sitting on its clamp and one tuned there
 were indistinguishable from outside the module.
 
-### What is NOT verified
+### Verified, and the mobile half got further than the last four parcels did
 
-**Neither half of `tools/smoke_renderer.mjs`, for the fifth consecutive parcel.** See the K56
-section below: the suite has outgrown this runner's ten-minute per-command ceiling at both
-viewports, and backgrounding it is forbidden, so it is recorded as unrun rather than claimed.
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published`, foreground, killed by a 555 s
+`timeout` before printing its verdict — the trailing `page.click: Target page … has been closed` is
+that kill. What it logged before then: **178 assertions passed and exactly 2 failed**, and the two
+are `south_water` and `from_above` road contrast, **still red exactly as R-W1 and T-V2 recorded
+them** (see the R-BUG7 section below for the same pair). No other failure.
 
-What ran in the foreground and passed:
+**The parcel's own layer is inside the part that ran**, which is why this is a verification and not
+a shrug — at 390×780, on the published mirror:
+
+- `pass  every slot the sward deals is counted against a species`
+- `pass  every species the stand owes a stem to stands in it`
+- `pass  detailed flora roots share the terrain and water surfaces`
+- `pass  emergent flora stays within eight metres of a riverbank`
+- `pass  no elevated flora sheet can masquerade as a second terrain layer`
+- `note  sward tail — 0 species owed a whole slot and drawn nowhere`
+- `note  sward abundance — 6 of 27 lists mix an area with a count`, the same six, unchanged: a
+  mixed list is a fact about the dataset and no longer a defect.
+
+**Not claimed: the desktop half**, ~13 minutes against this runner's ten-minute per-command
+ceiling, and not the verdict line at either viewport.
+
+What else ran in the foreground and passed:
 
 - `./tools/check.sh` — **CHECK PASS**, which is this repo's dev gate (`chicago-4d-check.yml`).
 - `node tools/measure_sward_draw.mjs --gate` on the published mirror — **GATE: PASS**, 7,069 slots
@@ -71,10 +88,10 @@ What ran in the foreground and passed:
 - `node tools/shoot.mjs` at four station/bearing pairs on the published mirror — **zero page
   errors**, 35 draw calls of 80, 541,701 triangles of 1,000,000.
 
-**Unverified consequences, stated plainly:** the mobile viewport was not rendered, so the 142 extra
-forb instances were never measured at the detail level a phone gets; no frame-time figure was taken
-anywhere; and the two clamped communities K55 creates are asserted from `flora.communities()` rather
-than from a drawn count, because a clamped share draws the same slots however far past 1.0 it is.
+**Unverified consequences, stated plainly:** no frame-time figure was taken anywhere, and the
+desktop half never ran; the two newly clamped communities are asserted from `flora.communities()`
+rather than from a drawn count, because a clamped share draws the same slots however far past 1.0 it
+is — which is K58's whole point.
 
 ## Shipped 2026-08-17 — a shrub's leaf spray is a MASS of leaves, and sixteen of them covered 17.7 % of the bush
 
