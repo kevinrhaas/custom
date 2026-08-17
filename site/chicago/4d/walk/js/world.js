@@ -691,7 +691,63 @@ export function createWorld({
     reachM: half,
     mapSize: light.shadow.mapSize.x,
     texelM: (2 * half) / light.shadow.mapSize.x,
+    /** R-BUG6. Whether `follow` quantises the box onto its own texel grid. */
+    snapped: true,
   };
+
+  /**
+   * R-BUG6 — THE SHADOW BOX MOVES IN WHOLE TEXELS, NOT WITH THE WALKER.
+   *
+   * The box follows the visitor, so before this it was re-centred on their exact
+   * position every frame. A shadow map is a raster: its samples are a lattice
+   * fixed to the box, so sliding the box by a fraction of a texel re-quantises
+   * every shadow edge in the scene at once. Nothing in the world moved and every
+   * boundary is redrawn slightly differently — which is what a visitor sees as
+   * crawl along an eave line. Measured with the camera held perfectly still and
+   * the box slid half a texel (`measure_river_edge.mjs --box-drift`): 2,023
+   * changed pixels at `from_above` and 5,650 at `descend_main_stem`, both **0**
+   * with the rounding below. The 2 mm nudge that opened R-BUG6 sees only 1.7 % of
+   * this, because 2 mm is 1.7 % of a texel — see that parcel's finding 3 before
+   * measuring a shadow box by moving a camera.
+   *
+   * The fix is the standard one and it is arithmetic rather than a tuning: round
+   * the centre onto a world-anchored lattice of the box's OWN texel size, in the
+   * light's own plane. Two consequences worth stating:
+   *
+   *   - the offset is at most half a texel — 5.9 cm on desktop, 11.7 cm on a
+   *     phone — so no shadow moves anywhere a visitor could measure it, and
+   *     nothing about the reach, the map size or the texel size changes;
+   *   - the rounding is in LIGHT space, on the two axes of the map, so the box
+   *     never moves along the sun's direction. Depth is untouched, which is what
+   *     keeps `bias` and `normalBias` calibrated to the texel the way the block
+   *     above says they are.
+   *
+   * The lattice has to be anchored to the world rather than to the walker, or
+   * the rounding would simply follow them and quantise nothing.
+   */
+  const snapRight = new THREE.Vector3();
+  const snapUp = new THREE.Vector3();
+  {
+    // The basis three itself will use: the shadow camera is placed at the light
+    // and aimed at the target, so its right and up axes are fixed as long as the
+    // sun is (the sun here is one date and one time — see the module header).
+    const basis = new THREE.Matrix4().lookAt(
+      dir.clone().multiplyScalar(320), new THREE.Vector3(), cam.up,
+    );
+    snapRight.setFromMatrixColumn(basis, 0);
+    snapUp.setFromMatrixColumn(basis, 1);
+  }
+  const snapCentre = new THREE.Vector3();
+  function centreFor(position) {
+    snapCentre.set(position.x, 0, position.z);
+    if (!shadowRig.snapped) return snapCentre;
+    const texel = shadowRig.texelM;
+    const e = snapCentre.dot(snapRight);
+    const u = snapCentre.dot(snapUp);
+    return snapCentre
+      .addScaledVector(snapRight, Math.round(e / texel) * texel - e)
+      .addScaledVector(snapUp, Math.round(u / texel) * texel - u);
+  }
   let brightness = 0;
   return {
     sky, light, sun, direction: dir.clone(),
@@ -745,13 +801,26 @@ export function createWorld({
     /** The calibrated position, named so the HUD does not restate the number. */
     baseExposure: BASE_EXPOSURE,
     maxBrightnessStops: MAX_BRIGHTNESS_STOPS,
-    /** Keep the shadow frustum on the walker. Cheap; call every frame. */
+    /** Keep the shadow frustum on the walker, quantised onto its own texel grid
+     *  (R-BUG6 — see `centreFor`). Cheap; call every frame. */
     follow(position) {
-      light.target.position.set(position.x, 0, position.z);
+      light.target.position.copy(centreFor(position));
       light.target.updateMatrixWorld();
       offset.copy(dir).multiplyScalar(320);
       light.position.copy(light.target.position).add(offset);
       light.updateMatrixWorld();
+    },
+    /**
+     * Harness only — R-BUG6's own liveness handle, and it exists for the reason
+     * R-A1 wrote down: "the box did not move" passes identically on a rig that
+     * quantises and on a rig whose `follow` is never called, so the gate takes
+     * the same millimetre with this off and requires the box to MOVE. It is also
+     * how `--box-drift` photographs the before state on the shipped build.
+     */
+    setShadowSnap(on) {
+      shadowRig.snapped = !!on;
+      light.shadow.needsUpdate = true;
+      return shadowRig.snapped;
     },
     describe() {
       return `sun ${sun.elevationDeg.toFixed(1)}° up, bearing ${sun.azimuthDeg.toFixed(1)}°`
