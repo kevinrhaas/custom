@@ -4455,3 +4455,41 @@ until it does, and they are at least a number this renderer already acts on.
 
 Related: **L120** and **L114**, the other entries about this wood, and ROADMAP **K45(b3)**.
 **Recorded:** 2026-08-17.
+
+### L122 — The shrub archetype: four stems, sixteen leaf sprays, and a branching habit no source describes
+
+**Decision:** the twenty-one records that carry `form: 'shrub_low'` — hazel, elder, buttonbush,
+red-osier and grey dogwood, ninebark, winterberry, hawthorn, sumac, wild plum, brambles,
+meadowsweet, currant, sand cherry, sand-dune willow, common juniper and the black-oak grubs — are
+drawn with **a woody archetype of four stems rising from one root and sixteen leaf sprays over
+them** (ROADMAP **K53**). Until today they were drawn with the forb archetype: one herbaceous
+stalk, four broad leaves, and a clump width clamped to 0.40 m however wide the record said the
+plant was.
+
+**What the records carry and what they do not.** Every dimension the archetype is scaled by is
+committed and cited: July height, clump width, the two foliage greens, the July inflorescence and
+its colour. **Nothing in this repository states the branching habit of any of them** — how many
+stems a Chicago hazel throws, how far they lean, where the leaf mass sits on them. That is the
+invention, and it is bounded on both sides by the record: the stems rise to 0.55–0.88 of the
+recorded height and lean out to 0.30–0.55 of the recorded half-width, so the plant's **silhouette
+is the record's own two numbers** and only the arrangement inside it is invented.
+
+**Why invent it rather than leave the wand.** Three of these records describe multi-stemmed
+plants in their own committed text — the black-oak grubs are *"multi-stemmed low clonal oak
+sprouting from an old root system"*, the wild plum is *"thicket-forming"*, the sand cherry a *"low
+sprawling mat 1–3 m across"* — and a single stalk cannot read as any of the three at any size. So
+the choice was not between an invention and the evidence; it was between an invention that is
+recorded here and one that was already in the file, unrecorded, and wrong.
+
+**What is NOT claimed.** No species is drawn with a distinguishing habit of its own: a hazel and a
+dogwood of the same recorded height and width are the same geometry in two greens, exactly as the
+nine flower archetypes share a shape across species. Nothing about which shrub stands where moved
+— the drawn census is identical, plant for plant, before and after.
+
+**How to resolve:** a per-species habit — stem count, forking height, leaf size — for the few
+species a dossier describes closely enough to carry one. `corylus_americana` is the candidate,
+because it is the one the wet-woods dossier singles out.
+
+Related: **L115** and **L119**, the other entries about how the sward's plants are drawn, and
+ROADMAP **K53**.
+**Recorded:** 2026-08-17.

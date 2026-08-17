@@ -228,7 +228,8 @@ function audit() {
   // stands for a patch of matrix, no head is ever hung from one, and counting
   // them as support is how a first cut of this measurement read 0 unsupported
   // while the evidence frame showed the fault.
-  const CARRIES_HEADS = new Set(['flora-near', 'flora-forb', 'flora-rosette']);
+  const CARRIES_HEADS = new Set(['flora-near', 'flora-forb', 'flora-rosette',
+    'flora-shrub']);
   const CELL = 1.0;
   const grid = new Map();
   let plants = 0;
