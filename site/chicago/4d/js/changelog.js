@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 167, title: 'The town’s people get a card of their own', kind: 'feature', ts: '2026-08-17T15:09:23.393Z', date: 'Aug 17, 2026, 10:09 AM CT',
+  { v: 169, title: 'The town’s people get a card of their own', kind: 'feature', ts: '2026-08-17T15:13:57.714Z', date: 'Aug 17, 2026, 10:13 AM CT',
     items: [
       'The Evidence panel has a new section: 173 households and 209 people researched into July 1835 — when each came, from where, why, where they lived and worked, and whether the sources place them here at all on 1 July.',
       'Seventeen of those households reached nowhere. A household only ever appeared on the card of a building it lived or worked in, and where neither is recorded it attached to no building — so 20 people sat in the dataset and on no page. Mark Beaubien, who kept the Sauganash and in whose house the town voted to incorporate itself, is one of them.',
@@ -7,6 +7,24 @@ export const CHANGELOG = [ // newest first
       'The reasoning is usually the finding. Beaubien’s arrival year is “the figure in general circulation”, carried as a conjecture that cites nothing — recorded that way precisely so a reader can see it is not evidence.',
       'Ten people who were researched and are NOT residents are published too: someone who arrived after the scene date, someone the sources put at Chicago but not as a household of it, and one this project believes was here and cannot cite. The gap is shown rather than filled.',
       'Nobody is drawn. No human figure stands in this reconstruction and none is proposed here — this is the research, on a card a visitor opens.',
+    ] },
+  { v: 168, title: 'The wet woods have a shrub layer at last', kind: 'fix', ts: '2026-08-17T14:26:54.755Z', date: 'Aug 17, 2026, 9:26 AM CT',
+    items: [
+      'This morning’s note ended with a number: only 14 bushes stood across the eight viewpoints, because every plant in the understory competed for the same places and one hazel counted the same as one wild leek. Across those viewpoints there are 181 now.',
+      'The wet timber north-east of the forks is the change you can see. Standing in it, 156 shrubs are drawn where 2 were — hazel, red-osier and grey dogwood, winterberry, hawthorn, sumac, wild plum, brambles and the low clumps of black oak — and the ground they cover goes from a fraction of a per cent to 40 per cent of what the research records for them.',
+      'On the river bank the dogwood belt is now drawn as its records describe it: the bushes cover 20.1 per cent of the ground where the research says 19.5 per cent. Scattered single herbs there are fewer, and that is the same correction — four of those records state how much GROUND the plant holds, and that figure was being added up as though it were a count of plants, which planted the herbs beneath them nearly nine times too thickly.',
+      'Bushes and herbs no longer take places from each other, because in a wood they do not: a hazel clump stands over the wild leeks rather than instead of them. They are planted from two independent passes now, so nothing was taken from the flowers to pay for the shrubs.',
+      'Nothing about the mix changed and nothing was tuned to make this look better. Every plant is dealt from the same research figures, no species has vanished from the scene, and the prairie and the sedge meadow are drawn exactly as they were.',
+      'One place falls short of its record and it is written up: the wet woods ask for a nearly closed canopy of shrubs and get two fifths of it, because the planting grid carries one plant per patch of ground. The gap is printed by the measuring tool rather than rounded away.',
+    ] },
+  { v: 167, title: 'The bushes are bushes now, not oversized weeds', kind: 'fix', ts: '2026-08-17T13:33:20.715Z', date: 'Aug 17, 2026, 8:33 AM CT',
+    items: [
+      'Twenty-one plants in this reconstruction are shrubs — hazel, elder, dogwood, wild plum, brambles, currant in the dooryards, juniper and sand cherry on the lakeshore, and the low clumps of black oak the fires kept knocking back. Every one of them was drawn as a single herbaceous stalk with four big leaves, the same shape a prairie flower gets, stretched to whatever height the record gave it.',
+      'They are now drawn as shrubs: four woody stems out of one root with a leafy shell over them. Walk the river bank or the lakeshore back slope and there are bushes standing over the grass where there were pale wands.',
+      'The width in the record finally means something. A shrub recorded as sprawling one to three metres across was being squeezed to 40 cm — a limit that exists so a flower does not grow metre-long leaves, and that had been applied to the bushes too. The clumps now stand as wide as their records say: 1.8 m across, typically.',
+      'Nothing about which plant grows where changed. The same 2,201 plants are drawn from the same shuffle in the same places, and 14 of them are shrubs — plant for plant, before and after.',
+      'How the bush branches is our invention and is written up: no source here says how many stems a Chicago hazel throws or how far they lean. What is not invented is its outline, which is the height and the width the research records.',
+      'Measured while doing it, and queued rather than hidden: only 14 shrubs stand across the eight viewpoints, because the planting lottery deals by head count and one hazel counts the same as one wild leek. The wet woods record hazel as covering a fifth to a half of their ground and it is drawn as one plant in two hundred.',
     ] },
   { v: 166, title: 'Nothing you can see changed: the remaining shimmer is not a fault', kind: 'improvement', ts: '2026-08-17T12:35:06.913Z', date: 'Aug 17, 2026, 7:35 AM CT',
     items: [

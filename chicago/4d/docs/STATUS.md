@@ -56,6 +56,127 @@ ceiling and did not run. The mobile half ran on the published mirror: **263 pass
 both failures the road-contrast bands `dev` already carries red (§ *Landed with two bands red*,
 below) and neither this parcel's — it changes no 3-D rendering at all.
 
+## Shipped 2026-08-17 — the shrub layer is a stratum and now has its own lattice: 4 bushes standing become 181
+
+**ROADMAP K54**, route 2, opened by K53 six hours earlier with its arithmetic banked. The forb
+lattice carries **one plant per 2.89 m² of ground**, so where the herb layer's own recorded density
+saturates it the deal becomes a count-proportional SUBSAMPLE — and a subsample by head count thins
+the shrubs by the whole saturation ratio, which in the wet woods is **117**. The two strata are not
+competing for that ground in the first place: a hazel clump stands OVER the leeks, and the records
+say so separately (nine `shrub_low` records in `z06_dense_forest` summing to 94.9 % cover, above a
+herb layer recorded at 40 plants/m²). So the shrubs are dealt from **their own lattice pass over the
+same ring**, at their own recorded clump density, and nothing is taken from the herb layer to pay
+for them.
+
+| `tools/measure_sward_draw.mjs`, published mirror, 8 communities stood in | before | after |
+|---|---|---|
+| shrub instances standing, summed over the 8 stations | **4** | **181** |
+| shrubs drawn standing in `z06_dense_forest` | 2 | **156** |
+| drawn shrub cover there, against a recorded 94.9 % | ~0 | **40.1 %** |
+| drawn shrub cover, `z05_riverbank_timber`, recorded 19.5 % | 2.0 % *(whole forb list)* | **20.1 %** |
+| deviation per 100 slots — matrix | 2.58 over 5,965 | **2.58 over 5,965** |
+| deviation per 100 slots — forb | 10.56 over 844 | **10.40 over 781** |
+| deviation per 100 slots — shrub | — | **10.41 over 181** |
+| (list, species) pairs owed a whole slot and drawn nowhere | 0 of 98 | **0 of 98** |
+
+**K49(c2)'s gain is kept and the raw sums cannot show it**, which is why the tool now prints the
+per-100-slot figure: the deviation is an absolute sum over slots and this parcel split one list into
+two, so `forb 89.11` became `forb 81.22 + shrub 18.84` at unchanged per-slot fidelity. The matrix
+layer is untouched to the second decimal.
+
+### Finding 1 — the slot count still mixed units, and it planted the riverbank understory 8.8× too thickly
+
+K49(c2) moved the LOTTERY onto `stems` and said in as many words that the slot count was left on
+the recorded sum. That sum adds cover fractions to plants per m², and sixteen of the twenty-one
+shrub records state an area: `z05_riverbank_timber`'s forb share was **0.636 where its herb records
+give 0.072**, and `z07_bur_oak_savanna`'s hazel was planted at **4×** its own recorded clump
+density. Dealing the shrub stratum off `stems` fixes it for that stratum. **Four herb lists still
+carry it — `z03`, `z05`, `z06`, `z10` — and the tool now names them; opened as K55.**
+
+### Finding 2 — the census tool's headline label had been wrong since K49(c2), and K54's own box quoted it
+
+`expected` is `share × slots` and `share` is the species' share of the LOTTERY, so
+"deviation from the recorded cover" measures the lattice's disagreement with its own target
+distribution, not with any record. K54's box cited that line as the instrument for judging which
+quantity the sample reproduces; it cannot answer that question. The tool prints a real **cover**
+column now — drawn ground cover against recorded ground cover, per community — and its first
+denominator was wrong in R-M1c's exact way: dividing a community's plants by the whole ring reported
+17.9 % where the community holds a fifth of the ring. It divides by the community's own **measured
+plantable ground** inside the ring.
+
+### Finding 3 — what the pair of screenshots shows, and it is not only more plants
+
+`docs/evidence/k54-{before,after}.png`, same station (E −54 / N +314, bearing 135°), published
+mirror at 1280×800: **before** is an open field with a log building 15 m away and one shrub in the
+corner; **after** is a thicket the building shows through. Flora triangles at that station
+**46,904 → 58,868**, and the herb layer is untouched — forb 194 → 195, rosette 35 → 31 — which is the
+arithmetic proof that nothing was taken to pay for the shrubs. It is also the first look anyone has
+had at this archetype REPEATED: it was designed and photographed at fourteen instances in the whole
+scene and there are 158 in one ring, where its ~0.4 m leaf sprays are a community's near-field
+texture. Opened as **K56**, which asks what a spray stands for before it changes a number.
+
+### What is NOT verified
+
+Neither half of `tools/smoke_renderer.mjs` — the desktop half has never fitted this runner's
+ten-minute per-command ceiling and the mobile half has outgrown it too (K45(b4), K53). Its flora
+gates read the sets by NAME and `flora-shrub` is already inside all of them (K53), and no set, ring
+or archetype was added here — only the pass that fills one. **Unverified consequences, stated:** the
+scene was not measured at `full` detail, where the shrub lattice offers ~1,113 slots against the
+set's 900-instance cap, so a saturated community may cap there — the forb set has the identical
+lattice and cap and sits just under it today. What ran in the foreground: `tools/check.sh` (CHECK
+PASS, the dev gate), `tools/measure_sward_draw.mjs --gate` (PASS, both columns above), zero page
+errors in every run.
+
+
+## Shipped 2026-08-17 — the shrub layer was drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width
+
+**ROADMAP K53**, from K45(b4)'s *"still not planted"* note. Twenty-one records across eight zones
+carry `form: 'shrub_low'` and `FORB_FORMS` contains that string, so hazel, elder, buttonbush,
+dogwood, ninebark, hawthorn, sumac, wild plum, brambles, meadowsweet, currant, sand cherry, dune
+willow, juniper and the black-oak grubs were all drawn as **one herbaceous stalk with four broad
+leaves**, scaled to the record's height — and their recorded clump width was clamped to 0.40 m,
+because `placeForb`'s leaf archetype cannot survive a two-metre width.
+
+`shrubGeometry()` is four woody stems from one root under sixteen leaf sprays, 40 triangles against
+the forb's 12, on its own set `flora-shrub` dealt from the same forb lattice.
+
+| measured at 8 anchors × 4 bearings, published mirror, 1280×800 | before | after |
+|---|---|---|
+| plants drawn with the shrub archetype | **0** | **14** |
+| clump width | 0.40 m (the forb clamp) | **1.80 m median** |
+| forb-layer plants, all archetypes | 2,201 | **2,201** (2,187 + 14) |
+| flora triangles, worst view | 41,754 | 41,772 |
+
+**Nothing was redealt.** Per zone as well as in total — `z08_lakeshore` 131 → 122 + 9,
+`z05_riverbank_timber` 61 → 57 + 4, `z06_dense_forest` 222 → 221 + 1 — so the sward census reads the
+same 6,809 slots and the same 154.19 / 89.11 deviations K49(c2) banked.
+
+### Finding — only fourteen of them stand, and the reason is the lottery rather than the archetype
+
+The forb layer deals ~220 slots over its ring and species compete for them on `stems`, plants per
+m². The conversion for a cover-recorded species is `cover / (π · (width/2)²)`, so a hazel covering
+7 m² of ground is **0.088 plants/m²** against `allium_tricoccum`'s **40**. Shrub share of each
+zone's forb list: `z10_settled_town` **0.1 %**, `z06_dense_forest` **1.0 %**, `z08_lakeshore` 2.6 %,
+`z05_riverbank_timber` 3.0 %, `z09_sand_prairie` 7.6 %. **`corylus_americana` is `attested` at
+20–50 % ground cover and is drawn as 1 plant of 221.**
+
+The count is not wrong — one hazel is one plant — but a ~220-slot sample dealt by head count
+reproduces the population's head count and none of its ground cover. K49(c2) moved this lottery onto
+counts deliberately, so moving it is a decision and not a repair: banked with its arithmetic and
+opened as **K54**.
+
+### What is NOT verified
+
+Neither half of `tools/smoke_renderer.mjs` ran: the desktop half has never fitted this runner's
+ten-minute per-command ceiling and K45(b4) recorded the mobile half outgrowing it too. The three
+smoke gates that read the flora sets by NAME — rooted-plant anchoring, the pop-in walk, head
+support — plus `tools/measure_head_support.mjs` were extended to `flora-shrub` in the same commit,
+so the new set is inside them rather than invisible to them, **and that extension is unexecuted
+here.** What did run, in the foreground: `tools/check.sh` (CHECK PASS, the dev gate),
+`tools/measure_sward_draw.mjs --gate` (PASS), and the instance read-back above, with zero page
+errors in every run.
+
+
 ## Measured 2026-08-17 — the flicker left after the shadow fix is NOT co-planar ties, and two tests say so
 
 R-BUG6(a) fixed the shadow crawl and left 1,108 pixels at `from_above` it could not explain,

@@ -2381,7 +2381,8 @@ const terrainLoad = await page.evaluate(() => {
       let worstPlantRoot = 0;
       let waterPlants = 0;
       let deepWaterPlants = 0;
-      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette']) {
+      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette',
+        'flora-shrub']) {
         const mesh = a.flora.group.getObjectByName(name);
         const matrix = mesh?.instanceMatrix?.array;
         if (!matrix) continue;
@@ -3555,7 +3556,7 @@ const terrainLoad = await page.evaluate(() => {
     // rings, and then an actual walk, which is the one that would have caught it.
     const popIn = await page.evaluate(() => {
       const a = window.__chicago4d;
-      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette'];
+      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette', 'flora-shrub'];
       const rings = a.flora.rings;
       const inset = Object.entries(rings.layers).map(([id, r]) => ({
         id,
@@ -3661,7 +3662,7 @@ const terrainLoad = await page.evaluate(() => {
       /** Sets a head is ever hung from. A mid clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
        *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette']);
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
       /** Under a twentieth of full size a head is drawn at under two pixels at
        *  the distances its own ring covers, and the fade has already taken it
        *  most of the way into the ground. */

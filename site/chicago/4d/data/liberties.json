@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 121,
+  "count": 123,
   "liberties": [
     {
       "id": "L1",
@@ -10046,6 +10046,56 @@
         {
           "label": "How to resolve",
           "text": "a frame-time measurement on a real phone replaces the borrowed ratio with a measured one. The instrument for it does not exist here yet; the ceilings are the honest stand-in until it does, and they are at least a number this renderer already acts on. Related: **L120** and **L114**, the other entries about this wood, and ROADMAP **K45(b3)**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-17."
+        }
+      ]
+    },
+    {
+      "id": "L122",
+      "title": "The shrub archetype: four stems, sixteen leaf sprays, and a branching habit no source describes",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-17",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the twenty-one records that carry `form: 'shrub_low'` — hazel, elder, buttonbush, red-osier and grey dogwood, ninebark, winterberry, hawthorn, sumac, wild plum, brambles, meadowsweet, currant, sand cherry, sand-dune willow, common juniper and the black-oak grubs — are drawn with **a woody archetype of four stems rising from one root and sixteen leaf sprays over them** (ROADMAP **K53**). Until today they were drawn with the forb archetype: one herbaceous stalk, four broad leaves, and a clump width clamped to 0.40 m however wide the record said the plant was. **What the records carry and what they do not.** Every dimension the archetype is scaled by is committed and cited: July height, clump width, the two foliage greens, the July inflorescence and its colour. **Nothing in this repository states the branching habit of any of them** — how many stems a Chicago hazel throws, how far they lean, where the leaf mass sits on them. That is the invention, and it is bounded on both sides by the record: the stems rise to 0.55–0.88 of the recorded height and lean out to 0.30–0.55 of the recorded half-width, so the plant's **silhouette is the record's own two numbers** and only the arrangement inside it is invented. **Why invent it rather than leave the wand.** Three of these records describe multi-stemmed plants in their own committed text — the black-oak grubs are *\"multi-stemmed low clonal oak sprouting from an old root system\"*, the wild plum is *\"thicket-forming\"*, the sand cherry a *\"low sprawling mat 1–3 m across\"* — and a single stalk cannot read as any of the three at any size. So the choice was not between an invention and the evidence; it was between an invention that is recorded here and one that was already in the file, unrecorded, and wrong. **What is NOT claimed.** No species is drawn with a distinguishing habit of its own: a hazel and a dogwood of the same recorded height and width are the same geometry in two greens, exactly as the nine flower archetypes share a shape across species. Nothing about which shrub stands where moved — the drawn census is identical, plant for plant, before and after."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a per-species habit — stem count, forking height, leaf size — for the few species a dossier describes closely enough to carry one. `corylus_americana` is the candidate, because it is the one the wet-woods dossier singles out. Related: **L115** and **L119**, the other entries about how the sward's plants are drawn, and ROADMAP **K53**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-17."
+        }
+      ]
+    },
+    {
+      "id": "L123",
+      "title": "The wet woods' shrub layer is drawn at two fifths of the cover its records claim, because a lattice slot carries one plant",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-17",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the shrub stratum is dealt from **its own lattice pass**, at its own recorded clump density, independently of the herb layer it stands over (ROADMAP **K54**). That pass inherits the forb lattice's one plant per slot — 2.89 m² of ground — so a community whose records ask for more clumps than that ceiling allows is drawn at the ceiling. **Measured, `z06_dense_forest` is the one community of ten where it binds:** nine `shrub_low` records there sum to **94.9 %** ground cover and the drawn layer reaches **40.1 %** of it. Every other community is drawn at its recorded density — the riverbank timber's dogwood belt reads **20.1 % drawn against 19.5 % recorded**. **What is NOT invented.** No share, no cap and no tuning number was authored for this. The slot density is the forb layer's own (L32), the clump density is the record's own `cover_fraction` divided by what one clump covers, and the ceiling is the lattice's existing `min(1, …)` — the same clamp the herb layer has always had, which the wet woods' herb records also reach. The invention is only that the shortfall is ACCEPTED rather than paid for with a denser lattice. **Why accept it.** The wet woods' own records describe a nearly closed shrub canopy, and the honest alternatives both cost more than they buy: a finer lattice for one community spends the geometry budget on the community a visitor can see least far into, and a second clump per slot would draw plants inside each other. A layer at two fifths of a closed canopy still reads as a thicket; at 1 % — which is what it was, 2 plants of 158 — it read as a wood with no shrubs in it."
+        },
+        {
+          "label": "Consequence, stated plainly",
+          "text": "a shrub count taken in `z06_dense_forest` is a floor, not the record's figure, and `tools/measure_sward_draw.mjs` prints drawn cover against recorded cover in every community so the gap is visible wherever it is quoted."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a per-community lattice cell, sized off that community's own summed clump density rather than the forb layer's. It needs a frame-time measurement in the wet woods first, because the wet woods is also where the matrix layer is densest. Related: **L122** (the archetype these plants are drawn with), **L32** (the lattice density this ceiling comes from), and ROADMAP **K54**."
         },
         {
           "label": "Recorded",
