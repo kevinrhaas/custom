@@ -146,6 +146,7 @@ rationed.**
 |---|---|---|---|---|
 | — | RENDERING | ~~K49(f)~~ | **SEEN** | **DONE 2026-08-16 — 2 species absent → 0, and the block's own phase pays for itself twice.** The even deal dealt the SAME 64 values of `u` in every block of the world, so a band narrower than 1/64 fell between two of them EVERYWHERE: **45 matrix bands, exactly 2 under one step, and exactly those 2 were the species drawn nowhere.** Matrix deviation **282.90 → 219.19**. Its finding is not the repair: **K49(e)'s leading explanation is refuted for the bigger of the two rows it was written about** — the settled town recovers 23.66 of its 24.87 regression on a change that touches no filter. Read its box before quoting K49(d) on a regressed row |
 | — | RENDERING | ~~R-A1~~ | **SEEN** | **DONE 2026-08-16 — the Road visibility slider, off by default, and the first parcel taken by PULLING A SEEN ROW UP when every numbered one was blocked.** Its finding is about gates, not roads: **an inertness assertion needs a liveness assertion beside it**, because "the default is unchanged" passes identically whether a control is wired correctly or wired to nothing — R-BUG1's dead `--no-sun-shadow` one parcel earlier. And the instrument was measured before its threshold was set: the 12² frame signature scores the aid at **worst 2 against a residual of 0**, the same difference at 48² is **worst 6**, and nothing about the scene changed between the two runs. Read its box before adding any preference to Settings |
+| — | RENDERING | ~~K24~~ | **SEEN** | **DONE 2026-08-17 — the Brightness slider, off by default, and the SECOND parcel taken by pulling a SEEN row up when every numbered one was blocked.** Owner-requested on 2026-08-14 and deferred behind PR #125 by a sequencing note that turned out to be a claim about a diff nobody had checked: the aid is one constant and one method, not a `world.js` rewrite. **Its finding is about R-A1's gate rather than about light** — `Object.assign` copies what a getter returns, so `get roadAid()` had been a frozen `0` since it shipped, and both of R-A1's readback assertions expect `0`. The control was live; its report of itself was not. Read its box before adding any reading to `window.__chicago4d` |
 | — | RENDERING | ~~K51~~ | **SEEN** | **DONE 2026-08-17 — 139 researched animals reached no browser at all, and the whole layer is now a card in the Evidence panel.** Fauna figures reaching a visitor **0 of 30 → 30 of 30**; the dataset's unread population **58 of 100 → 28**. Its findings are about instruments, not animals: K42's assertion 3a **fired exactly as designed** the moment the directory was opened, and **two of that gate's own controls had been written against the repository's state** — one became a copy of the measurement and the other printed SILENT rather than failing. And `docs/LIBERTIES.md` **L2 said "ambient wildlife is rendered sparsely" for eight days while nothing was rendered at all**. Read its box before quoting any layer-read number |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
@@ -8204,7 +8205,36 @@ a branch protects nothing. Respect any claim you find. Claims carry an expiry, a
 one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
 Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
 
-### K24 — Let the visitor choose the light · **UNCLAIMED · owner-requested 2026-08-14 · AFTER #125**
+### K24 — Let the visitor choose the light · **DONE 2026-08-17 · owner-requested 2026-08-14**
+
+> **SHIPPED: a Brightness slider, 0 stops (the calibrated grade) to +1 stop, default off.** The
+> design question the box left open is decided — **a slider, and the readout names the calibrated
+> position** rather than showing a bare zero, on the eye-height precedent. The ceiling is **one
+> photographic stop** because a stop is the unit a correction like this is bounded in, not because
+> one stop looked right; past it ACES rolls the roofs and the sky into one flat highlight.
+>
+> **It did NOT have to wait for #125.** The sequencing note below was right that `world.js` is
+> what #125 rewrites and wrong that this needed the file: the aid is one constant (`BASE_EXPOSURE`)
+> and one method on the returned world, so #125 conflicts with two additions rather than a
+> rewritten file. **A sequencing note is a claim about a DIFF, and it should be checked against the
+> diff before it defers a parcel for three days.**
+>
+> **THE FINDING IS ABOUT R-A1'S READBACK, NOT ABOUT LIGHT.** `exposure` is the first reading on
+> `window.__chicago4d` whose expected value MOVES, and it reported `0.95` on a frame that had just
+> changed by 45 counts. `Object.assign` **invokes a getter and copies the value**, so
+> `get roadAid()` — written inside the `Object.assign(api, {…})` literal by R-A1 one day earlier —
+> **has been a constant 0 since it shipped**. Both of R-A1's readback gates assert `=== 0`, so a
+> frozen 0 passed both; the liveness gate reads a frame signature and never touched it. The control
+> was always live and the REPORT of its position was the dead thing. Fixed, plus a gate that the
+> road aid reads back **1** when raised. **Read this before adding any reading to the harness:
+> anything whose answer changes after boot goes in `Object.defineProperties`, and an assertion that
+> can only ever see one value is not an assertion.**
+>
+> Measured, mobile 390×780, published mirror: off at boot `brightness 0 / exposure 0.95`; +1 stop
+> moves the 12² signature **mean 49.40, worst 51**; `setBrightness(9)` clamps to **1**; restored
+> residual **0.00 / 0**. Full write-up in `docs/STATUS.md`.
+
+### K24 — the parcel as written, kept for the record
 
 Owner, on being told R-W1 makes the scene 16 % dimmer and that holding the old brightness would
 collapse albedo retention to 62 %: *"Can you make this an option in settings?"*
