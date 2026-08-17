@@ -2068,24 +2068,83 @@ export async function createTrees({
    * the check after the planting loop. That is the assertion this parcel owes:
    * the reason the truncation could arrive unannounced is that nothing said so.
    *
-   * FOUND ON THE WAY, and left open rather than fixed here: the caps had never
-   * bound at all, so `light`, `balanced` and `full` have always planted the same
+   * FOUND ON THE WAY by K45(b2), and REPAIRED HERE (ROADMAP K45(b3)): the caps
+   * had never bound at all, so `light`, `balanced` and `full` planted the same
    * wood in slightly different places. `step` is count-neutral by construction —
    * the acceptance roll is `perHa * step² / 10000`, so halving the cell area
    * doubles the number of cells and halves each one's chance — which means the
-   * timber's detail control is the caps, and the caps did nothing. Making it
-   * mean something is a uniform thinning, not a cap, and it is its own parcel.
+   * timber's detail control WAS the caps, and the caps did nothing. `keep` below
+   * is the control the level actually needs, and the caps stay the backstop
+   * K45(b2) made them.
+   */
+
+  /**
+   * `keep` — THE DETAIL CONTROL, AND IT IS A THINNING RATHER THAN A CAP.
+   *
+   * ROADMAP K45(b3). A fraction on the acceptance roll thins the wood UNIFORMLY:
+   * every cell of the swept field is offered the same reduced chance, so a phone
+   * gets the same wood at a lower density — same species, same mix, same rules
+   * about where a stem may stand, fewer stems everywhere. A cap cannot do that.
+   * The loop runs south to north, so a cap that binds stops the planting partway
+   * and leaves a straight edge across the town: the same number of stems, and
+   * three quarters of a wood rather than a whole thinner one.
+   *
+   * WHERE THE NUMBERS COME FROM, because they are a choice and not a source.
+   * They are the levels' OWN triangle ceilings in `main.js` — 1,000,000 /
+   * 800,000 / 600,000 — read as a ratio. That is the only live per-level
+   * statement this renderer makes about how much geometry a level is for, and
+   * the release smoke holds each level to it. The obvious alternative, the ratio
+   * of the pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is NOT used: those
+   * were a backstop that never bound, so they are an intent nothing ever
+   * executed, and K45(b2) then multiplied them by 3.70. A number that has never
+   * had an effect is not evidence of what a level should draw.
+   *
+   * This is a RENDERING density, not a claim about the town: `perHa`, the mixes,
+   * `edgeFade`, `clearedFactor`, the waterline gate and the east limits are
+   * untouched, and `full` — what the gates and every published figure measure —
+   * keeps every stem it had. Recorded in docs/LIBERTIES.md.
    */
   const STEMS = {
-    full:     { step: 4.0, trees: 3030, thickets: 1550 },
-    balanced: { step: 4.7, trees: 1920, thickets: 1000 },
-    light:    { step: 5.6, trees: 1110, thickets: 630 },
+    full:     { step: 4.0, keep: 1.00, trees: 3030, thickets: 1550 },
+    balanced: { step: 4.7, keep: 0.80, trees: 1920, thickets: 1000 },
+    light:    { step: 5.6, keep: 0.60, trees: 1110, thickets: 630 },
   };
   const stems = STEMS[level] ?? STEMS.full;
   const step = stems.step;
   const cellArea = step * step;
+  const keep = stems.keep;
   const maxTrees = stems.trees;
   const maxThickets = stems.thickets;
+  stats.keep = keep;
+
+  /**
+   * THE POINT-BAR SCREEN'S OWN ROLL, AND WHY IT DOES NOT TAKE `keep`.
+   *
+   * ROADMAP K45(b3), measured rather than reasoned. The sandbar-willow branch
+   * rolls a FIXED per-cell chance, so unlike the tree roll it is not count-
+   * neutral in `step`: a coarser grid visits fewer bar cells and accepts the
+   * same fraction of each, and the screen thins with the sampling step. Measured
+   * on the published mirror before this parcel: 258 stools at `full`, 190 at
+   * `balanced`, 133 at `light` — 52 % of the screen gone on the level phones
+   * start at, as a side effect of a grid spacing, which nothing had ever said.
+   *
+   * That is the one population here that must NOT thin. A sandbar willow thicket
+   * is a screen and a screen needs its clumps to touch; the branch's own comment
+   * records that halving them left them standing as separate cushions on open
+   * sand. So the roll now scales with the cell it is offered — a bigger cell
+   * stands for more ground and takes a proportionally bigger chance — and `keep`
+   * is deliberately not applied to it.
+   *
+   * IT SATURATES, AND THE RESIDUAL IS STATED RATHER THAN HIDDEN. A probability
+   * cannot exceed 1, and at 0.84 in a 4 m cell both coarser steps clamp — so the
+   * screen recovers to every bar cell the grid offers and no further. The bar is
+   * a 6–9 m strip, so at a 5.6 m step there are simply fewer points on it than
+   * the screen wants stools. `light` therefore still carries a thinner screen
+   * than `full`; it is thinner because of what a coarse grid can resolve, which
+   * is honest, rather than because of an unstated 0.84.
+   */
+  const THICKET_ACCEPT = Math.min(1, 0.84 * (cellArea / 16));
+  stats.thicketAccept = THICKET_ACCEPT;
 
   /**
    * WHICH SPECIES STANDS AT THIS STEM — drawn against its own running deficit.
@@ -2292,8 +2351,11 @@ export async function createTrees({
         // Nearly every bar cell takes a stool. A sandbar-willow thicket is a
         // SCREEN, and a screen needs its clumps to touch: at a 4 m planting step
         // and a clump about 3 m across, thinning these to half was what left
-        // them standing as separate cushions on open sand.
-        if (rnd() > 0.84 || blocked(px, pz)) continue;
+        // them standing as separate cushions on open sand. `THICKET_ACCEPT` is
+        // that 0.84 carried to whatever cell the detail level offers, so the
+        // screen is the same screen at every setting rather than the sampling
+        // step's by-product (ROADMAP K45(b3)).
+        if (rnd() > THICKET_ACCEPT || blocked(px, pz)) continue;
         addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, worldZ(pz), rnd,
           0.8 + rnd() * 0.5);
         noteStation(px, pz, gy);
@@ -2317,7 +2379,11 @@ export async function createTrees({
         : 1;
       const perHa = lerp(range[0], range[1], noise2(px, pz, 58, 7))
         * clearedFactor(px, pz) * edgeFade;
-      if (rnd() > (perHa * cellArea) / 10000) continue;
+      // `keep` is the detail level's thinning and the ONLY thing here that is a
+      // rendering decision: `perHa` is the community's recorded density and
+      // `cellArea` is the ground this cell stands for, so the roll without it is
+      // the stand the record asks for (ROADMAP K45(b3)).
+      if (rnd() > (perHa * cellArea * keep) / 10000) continue;
       if (stats.trees >= maxTrees) continue;
       // A canopy tree needs its roots out of the channel; a bank willow does not.
       if (bank < 3.0 && comm !== 'gallery_edge') continue;
@@ -2353,15 +2419,18 @@ export async function createTrees({
   // what `light`'s old 300 did the moment the sweep reached the field, and it
   // would have shipped looking like a rendering choice. `problems` is what the
   // release smoke reads, so this is red rather than a console note.
+  //
+  // Since K45(b3) there IS a thinning instrument, so the remedy names it: `keep`
+  // is the number to lower, and the cap stays the thing that must never bind.
   if (stats.trees >= maxTrees) {
     problems.push(`trees: the ${level} stem budget bound at ${maxTrees} trees, so the `
       + 'planting loop stopped partway north and the wood is cut off in a straight line '
-      + 'rather than thinned — raise the budget or thin uniformly');
+      + `rather than thinned — lower ${level}'s keep fraction, do not lower the budget`);
   }
   if (stats.thickets >= maxThickets) {
     problems.push(`trees: the ${level} thicket budget bound at ${maxThickets} stools, so `
-      + 'the bank scrub stops partway north rather than thinning — raise the budget or '
-      + 'thin uniformly');
+      + 'the bank scrub stops partway north rather than thinning — raise the budget; the '
+      + 'point-bar screen is deliberately not thinned by detail');
   }
 
   /* ---- 4. the material --------------------------------------------------- */

@@ -4417,3 +4417,41 @@ settle the lean without settling the colour, and would be worth taking on its ow
 Related: **L114**, the omission this repair closes, **L116** and **L118**, the other two entries
 about wood this project invented, and ROADMAP **K45(b)**.
 **Recorded:** 2026-08-17.
+
+### L121 — The wood is thinner on a phone by a fraction nothing states, and the ratio is borrowed from the renderer's own triangle ceilings
+
+**Decision:** the scene-detail control now plants a **uniform fraction** of the timber — 100 % at
+`full`, **80 %** at `balanced`, **60 %** at `light` (ROADMAP **K45(b3)**). So a visitor on a phone
+walks a town with two thirds of the trees a desktop draws, at the same species, in the same
+communities, under the same rules about where a stem may stand.
+
+**Nothing states those fractions and nothing could.** They are not a claim about 1835: the wood a
+record asks for is `full`'s, which is unchanged to the stem, and the two lower settings are a
+rendering decision about a device. The invention is the RATIO, and it is bounded by the only live
+per-level statement this renderer makes about how much geometry a level is for — the triangle
+ceilings in `main.js`, **1,000,000 / 800,000 / 600,000**, which the release smoke already holds
+each level to. 1 / 0.8 / 0.6 is those ceilings read as a ratio and nothing else.
+
+**The alternative that was rejected, and why it is the weaker one.** The pre-K45(b2) stem caps were
+820 / 520 / 300, a ratio of 1 / 0.634 / 0.366, and they are the only other per-level numbers this
+file has ever carried. They are not used because **they never bound**: measured, the three levels
+planted 472, 470 and 437 trees, so those caps are an intent nothing ever executed, and K45(b2) then
+multiplied all three by 3.70 for a wider sweep. A number that has never had an effect is not
+evidence of what a level should draw.
+
+**What is NOT thinned, and it is the point of the entry.** The sandbar-willow point-bar screen
+keeps its stools at every level. A screen needs its clumps to touch, so thinning it does not make a
+lighter screen, it makes separate cushions on open sand — which is what the sampling grid had been
+doing silently (258 stools at `full`, 190 at `balanced`, **133** at `light`).
+
+**Consequence.** A screenshot taken at `light` is not a screenshot of this reconstruction's wood,
+and no figure in this repository is quoted at `light`: every banked measurement, every gate and
+every published number is `full`. `tools/measure_timber_detail.mjs --gate` holds that — `full`
+keeps 100 % of its stems and every level keeps the north end of the wood.
+
+**How to resolve:** a frame-time measurement on a real phone replaces the borrowed ratio with a
+measured one. The instrument for it does not exist here yet; the ceilings are the honest stand-in
+until it does, and they are at least a number this renderer already acts on.
+
+Related: **L120** and **L114**, the other entries about this wood, and ROADMAP **K45(b3)**.
+**Recorded:** 2026-08-17.

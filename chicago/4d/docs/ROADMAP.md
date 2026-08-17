@@ -159,7 +159,7 @@ rationed.**
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
-| **1b** | RENDERING | **K45(b3)** | SEEN on `light` | the timber's detail control is a cap that never binds and truncates the wood's north end when it does. A keep fraction per level, opened and measured by K45(b2). Small, and it is the one parcel here that a phone sees and a desktop does not |
+| — | RENDERING | ~~K45(b3)~~ | **SEEN on `light`** | **DONE 2026-08-17 — the control was inert for the wood and was quietly halving the one thing that must not thin.** Measured before the repair: the three levels planted **472 / 470 / 437 trees** — one wood planted three times, exactly as K45(b2) predicted — while the point-bar willow screen went **258 / 190 / 133 stools**, because the thicket roll is a fixed per-cell chance and a coarser grid visits fewer bar cells. **So the only thing scene detail did was break the screen its own comment says must not be broken.** `keep` is now a fraction on the tree acceptance roll (1 / 0.80 / 0.60, the levels' own triangle ceilings read as a ratio — L121) and the thicket roll scales with its cell instead: **`light` 437 → 257 trees and 133 → 182 stools**, scene triangles **416,222 → 370,738**, `full` unchanged to the stem, and the wood reaches N +391.8 m at `light` against `full`'s +397.7. Read its box before quoting a stem count at any level but `full` |
 | — | RENDERING | ~~K45(b2)~~ | **SEEN** | **DONE 2026-08-16** — the planter sweeps the field (reach 27.05 % → 98.37 %), the timber gets the east end Andreas gives it, and `z05`'s own note had Wells Street 440 m from where the committed centreline puts it. Read its box before quoting a reach number or moving a woody east limit |
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
@@ -3464,16 +3464,87 @@ pre-merge tree. **The mobile half now costs more than one command here**, so the
 in the run-budget box — a test-name or section filter beside `SMOKE_VIEWPORT` — is no longer only
 the desktop half's problem.
 
-### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **CLAIMED 2026-08-17 · opened 2026-08-16 by K45(b2) · Effort: S · NO BAKE, and it carries the smoke**
+### K45(b3) — the timber's detail control is a cap that never binds, and a cap is the wrong instrument · **DONE 2026-08-17 — the control did nothing to the wood and was halving the one population that must not thin**
 
-K45(b2) finding 2 measured it: `step` is count-neutral, so `light`, `balanced` and `full` plant the
-same wood, and the only thing that could differentiate them — the `STEMS` caps — truncates the
-north of the wood rather than thinning it when it binds. K45(b2) raised the caps so they do not
-bind and made a bound one loud, which is a backstop and not a control. **The repair is a keep
-fraction per detail level applied to the acceptance roll**, so a phone gets the same wood at lower
-density instead of three quarters of one, and the caps stay what they now are. It is SEEN on
-`light` and UNSEEN on `full`; take it with a mobile shot, and note that `flora.js` answers the same
-question for the sward and is worth reading first rather than reinventing.
+K45(b2) finding 2 predicted half of this: `step` is count-neutral, so `light`, `balanced` and `full`
+plant the same wood, and the only thing that could differentiate them — the `STEMS` caps —
+truncates the north of the wood rather than thinning it when it binds. K45(b2) raised the caps so
+they do not bind and made a bound one loud, which is a backstop and not a control. The repair is a
+keep fraction per detail level applied to the acceptance roll, so a phone gets the same wood at
+lower density instead of three quarters of one, and the caps stay what they now are.
+
+**THE MEASUREMENT CAME FIRST AND IT FOUND A SECOND FAULT THE PARCEL WAS NOT WRITTEN ABOUT.** The
+new instrument is `tools/measure_timber_detail.mjs`, which walks the visitor's own `setDetail`
+through all three levels on the PUBLISHED mirror and asks two questions of each — how many stems,
+and *how far north do they reach and in what shape*. Run against `dev` before a line was changed:
+
+| level | trees | stools | stems | timber tris | scene tris | northernmost stem |
+|---|---|---|---|---|---|---|
+| `full` | 472 | 258 | 730 | 186,442 | 511,919 | N +397.7 m |
+| `balanced` | 470 | 190 | 660 | 161,674 | 466,814 | N +396.3 m |
+| `light` | 437 | 133 | 570 | 136,382 | 416,222 | N +391.7 m |
+
+**FINDING 1 — the tree count confirms K45(b2): 472 / 470 / 437 is one wood planted three times.**
+The spread is a draw's, not a control's — the acceptance roll is `perHa · step² / 10000` over
+~190,000 cells, so the count is near-Poisson and 437 sits 1.6 σ under 472. Nothing in the detail
+control had ever moved the timber.
+
+**FINDING 2, AND IT IS THE ONE NOBODY WAS LOOKING FOR — the only thing scene detail DID do was
+halve the sandbar-willow screen, which is the one population in this file that must not be
+thinned.** The point-bar branch rolls a **fixed** per-cell chance (0.84), so unlike the tree roll it
+is not count-neutral in `step`: a coarser grid visits fewer bar cells and accepts the same fraction
+of each. **258 → 190 → 133 stools, 52 % of the screen gone at `light`, purely as a by-product of a
+grid spacing, on the level phones start at.** The branch's own comment records exactly why that is
+wrong — *"a screen needs its clumps to touch … thinning these to half was what left them standing
+as separate cushions on open sand"* — and the code four lines below it was doing the thinning. **A
+comment that states an invariant is not a gate**, and this one had been true and unenforced since
+the branch was written.
+
+**THE REPAIR, both halves.** `keep` is a fraction on the tree acceptance roll — 1 / 0.80 / 0.60,
+the levels' OWN triangle ceilings in `main.js` read as a ratio, recorded as **L121** because the
+ratio is invented and the ceilings are what bound it. The pre-K45(b2) caps' ratio (1 / 0.634 /
+0.366) was the obvious alternative and is rejected in writing: those caps never bound, so they are
+an intent nothing ever executed. The thicket roll now scales with the cell it is offered and
+saturates at 1 — `THICKET_ACCEPT = min(1, 0.84 · cellArea / 16)` — and does **not** take `keep`.
+
+| level | trees | stools | stems | timber tris | scene tris | northernmost stem |
+|---|---|---|---|---|---|---|
+| `full` | 472 (=) | 258 (=) | 730 (=) | 186,442 (=) | 511,919 (=) | N +397.7 m |
+| `balanced` | **373** | **232** | 605 | 156,358 | 453,026 | N +396.4 m |
+| `light` | **257** | **182** | 439 | 115,234 | **370,738** | N +391.8 m |
+
+`full` is unchanged to the stem, which is the invariant that matters: every banked figure in this
+repository is `full`'s. `light` loses 180 trees and gains 49 stools, and its scene comes down
+45,484 triangles (−10.9 %).
+
+**FINDING 3 — the screen cannot be fully recovered at a coarse step, and the residual is stated
+rather than tuned away.** A probability cannot exceed 1: at 0.84 in a 4 m cell, both coarser steps
+clamp, so the screen accepts every bar cell the grid offers and no more. The bar is a 6–9 m strip,
+so a 5.6 m grid simply has fewer points on it than the screen wants stools — `light` recovers to
+182 of 258 (70.5 %) and stops. That is a limit of what a coarse grid can resolve, which is honest;
+0.84 was not. Closing the rest means sub-cell sampling on the bar, and it is not this parcel's.
+
+**WHAT THE GATE HOLDS.** `tools/measure_timber_detail.mjs --gate`, against
+`tools/timber_detail_baseline.json`, 17 assertions green: each level declares the keep fraction the
+baseline banks and plants that share of `full`'s trees; **the wood still reaches the north end of
+the field at every level and its northernmost tenth keeps its share of the stems** — the pair that
+tells a thinning from a truncation, and the pair a stem count alone cannot; the screen holds ≥ 65 %
+of `full`'s stools; and no level reports a bound budget. The tolerance on the tree share is 0.09
+rather than 0.06 **because the sampling step moves the count on its own** — 472/470/437 before any
+keep existed — so the tolerance has to carry the grid's drift as well as the draw's, and a tighter
+number would have been a gate tuned to one seed.
+
+**READ THIS BEFORE QUOTING A STEM COUNT.** Every figure this project publishes is `full`'s. A
+screenshot or a census taken at `light` is now a different wood by construction, and that is new
+since 2026-08-17: before it, the levels were interchangeable and nothing said so either way.
+
+**FOR THE NEXT PARCEL.** `step` is now a pure sampling resolution — it costs planting-loop CPU at
+load and buys no geometry — and `keep` is the whole of the density control. The two are orthogonal
+for the first time, which is what makes a per-level frame-time measurement worth taking: it would
+replace L121's borrowed ratio with a measured one. `flora.js` was read first as the parcel asked,
+and its instrument does not transfer: the sward's LOW is a *shallower field* (smaller rings), which
+works because the sward is planted into a ring that follows the visitor. The wood has no ring — it
+is planted over the whole field once — so density is the only lever it has.
 
 ### K45(b1) — the sycamore, and the weight beside it that nothing uses · **DONE 2026-08-16 — 17 of the 26 mix entries are written to one number and plant stems at another**
 
