@@ -156,7 +156,7 @@ rationed.**
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
 | — | RENDERING | ~~R-W3b(a)~~ | **SEEN** | **DONE 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else: 5 to 8 of 331 structures and 0 to 41 of 730 stems, measured at all eight anchors.** It is ±120 m now, at the SAME texel size (the map doubles with the box), and `green_tree` goes 8 → 27 structures, `south_water` 8 → 26 and 12 → 54 stems. **Its finding is the ceiling: the reach is DRAW-CALL-bound, not fill-bound** — every batch entering the box is another call in the shadow pass, and the worst anchor reads 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at 180, which is the budget**, with the town still two thirds outside the box. Read its box before raising the number |
-| 8 | RENDERING | **R-W5a2** | UNSEEN | the last 16 batches → 1. **Not needed for the budget.** Take it only when the lane has nothing SEEN left, which is not now |
+| 8 | RENDERING | **R-W5a2 + R-W3b(a2)** | **SEEN** | **CLAIMED 2026-08-17** — the last 16 batches → 1, and the ~15 draw calls that buys spent immediately on the shadow reach R-W3b(a) measured as draw-call-bound at ±120 m. The batch merge alone is UNSEEN; taken together with the reach it unblocks, a screenshot from the same spot has shadows under buildings that had none |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
@@ -1539,7 +1539,7 @@ having an instance in that frame; it is not worth chasing now that the term is z
   ties at coincident surfaces resolving the other way under a changed draw order. Worst single
   pixel 93/255; **whole-frame mean |Δ| 0.003–0.005 of one 8-bit count**. No surface is repainted.
 
-### R-W5a2 — the last 16 batches → 1 · **UNCLAIMED · from R-W5a · Effort: S**
+### R-W5a2 — the last 16 batches → 1 · **CLAIMED 2026-08-17 · from R-W5a · Effort: S · taken WITH the reach it buys (R-W3b(a2)), which is what makes it SEEN**
 
 **Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a (done)
 
