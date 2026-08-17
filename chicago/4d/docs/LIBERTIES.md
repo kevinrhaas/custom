@@ -4493,3 +4493,37 @@ because it is the one the wet-woods dossier singles out.
 Related: **L115** and **L119**, the other entries about how the sward's plants are drawn, and
 ROADMAP **K53**.
 **Recorded:** 2026-08-17.
+
+### L123 — The wet woods' shrub layer is drawn at two fifths of the cover its records claim, because a lattice slot carries one plant
+
+**Decision:** the shrub stratum is dealt from **its own lattice pass**, at its own recorded clump
+density, independently of the herb layer it stands over (ROADMAP **K54**). That pass inherits the
+forb lattice's one plant per slot — 2.89 m² of ground — so a community whose records ask for more
+clumps than that ceiling allows is drawn at the ceiling. **Measured, `z06_dense_forest` is the one
+community of ten where it binds:** nine `shrub_low` records there sum to **94.9 %** ground cover
+and the drawn layer reaches **40.1 %** of it. Every other community is drawn at its recorded
+density — the riverbank timber's dogwood belt reads **20.1 % drawn against 19.5 % recorded**.
+
+**What is NOT invented.** No share, no cap and no tuning number was authored for this. The slot
+density is the forb layer's own (L32), the clump density is the record's own `cover_fraction`
+divided by what one clump covers, and the ceiling is the lattice's existing `min(1, …)` — the same
+clamp the herb layer has always had, which the wet woods' herb records also reach. The invention
+is only that the shortfall is ACCEPTED rather than paid for with a denser lattice.
+
+**Why accept it.** The wet woods' own records describe a nearly closed shrub canopy, and the
+honest alternatives both cost more than they buy: a finer lattice for one community spends the
+geometry budget on the community a visitor can see least far into, and a second clump per slot
+would draw plants inside each other. A layer at two fifths of a closed canopy still reads as a
+thicket; at 1 % — which is what it was, 2 plants of 158 — it read as a wood with no shrubs in it.
+
+**Consequence, stated plainly:** a shrub count taken in `z06_dense_forest` is a floor, not the
+record's figure, and `tools/measure_sward_draw.mjs` prints drawn cover against recorded cover in
+every community so the gap is visible wherever it is quoted.
+
+**How to resolve:** a per-community lattice cell, sized off that community's own summed clump
+density rather than the forb layer's. It needs a frame-time measurement in the wet woods first,
+because the wet woods is also where the matrix layer is densest.
+
+Related: **L122** (the archetype these plants are drawn with), **L32** (the lattice density this
+ceiling comes from), and ROADMAP **K54**.
+**Recorded:** 2026-08-17.
