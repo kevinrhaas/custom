@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_harness_maker_south_01",
- "name": "The Fisk household — a reconstructed harness maker (south division)",
+ "name": "The Hastings household — a reconstructed harness maker (south division)",
  "division": "south",
  "head": "inf_harness_maker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_harness_maker_south_01",
-   "name": "Benjamin Fisk",
+   "name": "Hiram Hastings",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -116,7 +116,7 @@
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the D3 family's key geometry parameters do not speak to paint or finish, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous instance."
         }
       },
       "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
@@ -137,7 +137,7 @@
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred carpenter's household (13 of 14 this layer infers): hh_inf_carpenter_south_13 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred carpenter's household (13 of 20 this layer infers): hh_inf_carpenter_south_13 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
   },
   "reconstruction": {
     "status": "inferred_anonymous",

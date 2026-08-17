@@ -113,7 +113,7 @@
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the A1 family's key geometry parameters do not speak to a board gap, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous instance."
     },
     "paint": {
       "value": "unpainted",
@@ -121,7 +121,7 @@
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the A1 family's key geometry parameters do not speak to paint or finish, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous instance."
     },
     "function": {
       "value": "stable",
@@ -144,7 +144,7 @@
   "residents": [
     {
       "household": "hh_inf_teamster_south_01",
-      "name": "The Rice household — a reconstructed teamster (south division)",
+      "name": "The Parmelee household — a reconstructed teamster (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "recon_1835_south_a1_046 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -154,7 +154,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Rufus Rice",
+          "name": "Joseph Parmelee",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "teamster",

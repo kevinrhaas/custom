@@ -36,7 +36,6 @@ import argparse
 import importlib
 import json
 import math
-import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -45,7 +44,6 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 STRUCTURES = DATA / "structures"
 RECIPE_PATH = DATA / "reconstruction" / "1835_platted_block_parcels.json"
-CROSSWALK_PATH = DATA / "reconstruction" / "1835_family_archetype_crosswalk.json"
 INVENTORY_PATH = DATA / "reconstruction" / "1835_building_inventory.json"
 LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
 SOURCE_ID = "owner_chicago_1835_reconstruction_spec_2026"
@@ -54,6 +52,17 @@ PREFIX = "recon_1835_blk_"
 
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
+
+# T-E2's refused ground is resolved from the committed traces rather than stored, so the
+# generator asks the same command the gate does instead of keeping its own copy.
+from band_notes import split_notes  # noqa: E402
+from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
+from measure_no_build_ground import reservation_ring  # noqa: E402
+
+
+def no_build_rings() -> dict[str, list[tuple[float, float]]]:
+    ring, _madison, _section = reservation_ring()
+    return {"fort_dearborn_reservation": ring, "river_mouth_sand_bar": bar_ring()}
 
 # An adopted roof's `occupants` block is authored ONCE, in the household programme's
 # ledger, and handed to whichever generator owns the roof — the arrangement the three
@@ -65,6 +74,13 @@ from inferred_occupancy import occupancy  # noqa: E402
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+
+# The family band, and the one rule that turns it into an instance's dimensions. It
+# used to live in this file; the North Division parcel needed the same arithmetic and
+# had a retyped constant instead, so the rule moved to one module both import
+# (ROADMAP T-V1).
+from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
+                          stable_fraction, storeys, wall_height_m)
 
 OCCUPANCY = occupancy()
 
@@ -81,12 +97,6 @@ MAX_RELIEF_M = 0.30
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def stable_fraction(key: str, slot: int) -> float:
-    import hashlib
-    raw = hashlib.sha256(f"{key}:{slot}".encode()).digest()
-    return int.from_bytes(raw[:4], "big") / 0xFFFFFFFF
 
 
 INVENTED_NOTE = (
@@ -108,83 +118,6 @@ def invented(value, reason: str) -> dict:
 # --------------------------------------------------------------------------
 # the family table, read from the crosswalk
 # --------------------------------------------------------------------------
-
-FOOTPRINT_RE = re.compile(r"^\s*(\d+)x(\d+)\s*-\s*(\d+)x(\d+)")
-RANGE_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$")
-
-
-def families() -> dict[str, dict]:
-    """Per-family geometry and archetype, as the crosswalk authors them."""
-    table: dict[str, dict] = {}
-    for fam in load(CROSSWALK_PATH)["families"]:
-        geom = fam.get("key_geometry_parameters") or {}
-        entry = {
-            "label": fam.get("label"),
-            "archetype": fam.get("current_placeholder_archetype"),
-            "levels": geom.get("levels"),
-            "eave_ft": geom.get("eave_ft"),
-            "band_ft": None,
-        }
-        m = FOOTPRINT_RE.match(str(geom.get("footprint_ft") or ""))
-        if m:
-            entry["band_ft"] = [int(m.group(1)), int(m.group(2)),
-                                int(m.group(3)), int(m.group(4))]
-        table[fam["id"]] = entry
-    return table
-
-
-def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, float]:
-    """A rectangle sampled deterministically inside the family's authored band.
-
-    The sampling is the phase-one parcel's, unchanged, so the same family reads the
-    same size distribution wherever it stands.
-    """
-    lo_w, lo_d, hi_w, hi_d = band_ft
-    width_ft = lo_w + (hi_w - lo_w) * (.18 + .70 * stable_fraction(key, 1))
-    depth_ft = lo_d + (hi_d - lo_d) * (.15 + .72 * stable_fraction(key, 2))
-    width, depth = width_ft * .3048, depth_ft * .3048
-    # The implemented frame dwelling is eaves-front. Families whose band reaches a
-    # gable-front proportion are held inside the archetype that exists rather than
-    # being drawn as something the generator cannot build.
-    if family.startswith(("D", "H")) and family not in ("D1", "D2") and depth > width * 1.46:
-        width = min(hi_w * .3048, depth / 1.46)
-    return round(width, 3), round(depth, 3)
-
-
-def storeys(levels: str) -> tuple[float, bool]:
-    """(storeys, has a loft) from the crosswalk's `levels` string."""
-    text = str(levels or "1").strip()
-    loft = "loft" in text
-    head = text.split("+")[0].strip()
-    try:
-        return float(head), loft
-    except ValueError:
-        raise SystemExit(f"cannot read a storey count from levels '{levels}'")
-
-
-# A door has to fit under a wall, and two of the small ancillary families are authored
-# with an eave band whose bottom is below the height the implemented outbuilding needs
-# to carry its own man door plus a header — A3 runs 6-7 ft, and a sample at 1.891 m is
-# refused by name. The band is not wrong: the phase-one parcel's privies stand at
-# 2.05 m, which is 6.73 ft and inside it. Uniform sampling across the band is what is
-# wrong. So the sample is taken from the part of the authored band the archetype can
-# actually build, and a family whose whole band is below that floor fails loudly rather
-# than being quietly raised out of its own typology.
-DOOR_HEADROOM_M = 2.05
-
-
-def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0) -> float:
-    m = RANGE_RE.match(str(eave_ft or ""))
-    if not m:
-        raise SystemExit(f"{family}: eave height '{eave_ft}' is not a numeric band")
-    lo, hi = float(m.group(1)) * .3048, float(m.group(2)) * .3048
-    if floor > hi:
-        raise SystemExit(f"{family}: the authored eave band {eave_ft} ft tops out at "
-                         f"{hi:.2f} m, below the {floor:.2f} m its archetype needs to "
-                         f"carry a door")
-    lo = max(lo, floor)
-    return round(lo + (hi - lo) * stable_fraction(key, 8), 3)
-
 
 # --------------------------------------------------------------------------
 # the families this generator refuses to mass, and why each one
@@ -218,15 +151,23 @@ REFUSED_FAMILIES = {
         "than quietly removed, and it is not a precedent this generator extends.)"
     ),
     "I3": (
-        "civic or public-service structures. The family resolves through the "
-        "fort_structure placeholder, whose whole vocabulary of building kinds is "
-        "garrison words — quarters, barracks, blockhouse, magazine, store, guard, "
-        "sutler, artillery — and none of them names the adapted office or the engine "
-        "house the crosswalk says this family spans. Massing an anonymous town civic "
-        "building through it would stand a garrison building in the middle of the "
-        "platted town. The crosswalk states the precondition itself: the six-roof "
-        "aggregate 'spans unlike functions; they must reconcile to named public "
-        "records before selecting construction'."
+        "civic or public-service structures. THE REFUSAL IS NOW THE RESEARCH RATHER "
+        "THAN THE ARCHETYPE (ROADMAP T-I3, docs/RESEARCH/civic_public_buildings_1835.md): "
+        "the town's public buildings on 1835-07-01 are enumerable and every one of them "
+        "is already a committed named record — the log jail, the council house and the "
+        "lighthouse. The court-house went up in the fall of 1835 and the engine house was "
+        "contracted on 30 December 1835; the estray pen is roofless; and every other "
+        "public function in the town, the post office and the United States Land Office "
+        "and the county's own offices among them, was carried on inside a private "
+        "building. There is no unnamed civic roof for a slot to be spent on. (The "
+        "archetype argument stands and was the original ground: the family resolves "
+        "through the fort_structure placeholder, whose whole vocabulary of building kinds "
+        "is garrison words — quarters, barracks, blockhouse, magazine, store, guard, "
+        "sutler, artillery — so massing one would also stand a garrison building in the "
+        "middle of the platted town.) The crosswalk stated the precondition itself: the "
+        "six-roof aggregate 'spans unlike functions; they must reconcile to named public "
+        "records before selecting construction'. Three of those six slots are now known "
+        "to be a count of nothing, and correcting the target is T-I3(b)."
     ),
 }
 
@@ -262,16 +203,46 @@ def finish_for(key: str) -> tuple[str, str]:
     return "mixed_patch", "unpainted"
 
 
+def door_kind(family: str) -> str:
+    """What has to get through the opening, which is a claim about the building's use."""
+    if family in ("W1", "W3", "F1", "A2"):
+        return "wagon"
+    if family in ("W2", "A1"):
+        return "stable"
+    return "man"
+
+
+def band_note(family: str) -> str:
+    """The sentence that defends every invented form value, and it is a source claim.
+
+    Kept in one place because K33 restricts where it may be attached, and a claim that
+    is authored in one file and audited in another drifts. See tools/band_notes.py.
+    """
+    return (f"Type-level choice within the {family} band in the supplied reconstruction "
+            "specification; it is not evidence for this anonymous instance.")
+
+
 def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
-    """Form values, with the storey count and eave height read off the crosswalk."""
-    why = (f"Type-level choice within the {family} band in the supplied reconstruction "
-           "specification; it is not evidence for this anonymous instance.")
+    """Form values, with the storey count and eave height read off the crosswalk.
+
+    `_form_body` authors every value exactly as it always has, with the citation
+    attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
+    the values whose family authors nothing for it to point at, and says instead what
+    the value actually is — the reconstruction generator's type default.
+    """
+    return split_notes(_form_body(family, spec, key, width, paint), family,
+                       band_note(family))
+
+
+def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
+    why = band_note(family)
     levels, loft = storeys(spec["levels"])
     construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
-    # Only the door-carrying outbuilding families take the headroom floor; a house's
-    # eave band is far above it and clamping there would be inventing a storey height.
-    floor = DOOR_HEADROOM_M if family.startswith(("A", "W")) or family in ("D2", "F1") else 0.0
-    wall = wall_height_m(family, spec["eave_ft"], key, floor)
+    # The door is chosen before the eave because the eave floor depends on it: a wagon
+    # door needs a metre more wall than a man door, and asking for the floor without
+    # naming the door is how a band gets sampled below what the archetype can build.
+    door = door_kind(family)
+    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door))
 
     if family == "D1":
         return {
@@ -314,11 +285,6 @@ def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dic
         raise SystemExit(f"{family} has no form rule in this generator; add one before "
                          f"a recipe uses it")
 
-    door = "man"
-    if family in ("W1", "W3", "F1", "A2"):
-        door = "wagon"
-    elif family in ("W2", "A1"):
-        door = "stable"
     roof = "shed" if family in ("D2", "A3", "A4") else "gable"
     material = "plank"
     if family == "A1":
@@ -764,6 +730,29 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
             if gap < MIN_SEPARATION_M:
                 raise SystemExit(f"{sid} stands {gap:.2f} m from {other_id}")
 
+    # ground that was ever open to a private builder. The five tests around this one
+    # ask where a roof stands relative to other roofs, to lot lines, to the roadway and
+    # to the shape of the land. None of them asks whether the ground was for sale, and
+    # T-A16 found that hole inside the plat before T-E2 found the larger one outside it:
+    # the United States Reservation and the sand bar are a quarter of the modelled land
+    # in this scene and nothing refused a dwelling on either.
+    refused = load(DATA / "reconstruction" / "1835_no_build_ground.json")
+    rings = no_build_rings()
+    for region in refused["regions"]:
+        polygon = rings[region["id"]]
+        permitted = {p["structure_id"]
+                     for p in region["what_may_stand_here"]["permitted"]}
+        for sid, poly in mine:
+            if sid in permitted:
+                continue
+            if any(point_in_ring(p, polygon) for p in poly):
+                raise SystemExit(
+                    f"{sid} stands on {region['name']}, which took no anonymous roof "
+                    f"in 1835. The refusal is authored in 1835_no_build_ground.json and "
+                    f"graded `{region['confidence']}`; read it before writing a recipe "
+                    "here, and withdraw the refusal with its evidence rather than "
+                    "working around it.")
+
     # buildable ground, on the surface the walker uses
     field = Heightfield.load(DATA / "terrain" / "epochs" / "e1834_harbor_cut")
     if field is None:
@@ -814,6 +803,20 @@ def records_from_inputs() -> list[dict]:
     datum = load(DATA / "datum.json")
     records: list[dict] = []
     for block in recipe["blocks"]:
+        # Ground the town held in common is refused BY NAME and before anything is
+        # built, because the failure it would otherwise produce is the wrong one:
+        # a reserved block reaches here with no lots, so a recipe on it would die
+        # with "lot 3 is not in the grid" and read as a stale lot number rather
+        # than as a claim about 1835 (ROADMAP T-A16).
+        hold = (lots_by_id.get(block["block_id"]) or {}).get("reserved")
+        if hold:
+            raise SystemExit(
+                f"{block['block_id']} is reserved ground — {hold['name']} — and takes no "
+                f"anonymous roof. The reservation is authored in {hold['authored_in']} "
+                f"and graded `{hold['confidence']}`; read it before writing a recipe "
+                "entry here, and withdraw the reservation with its evidence rather than "
+                "working around it."
+            )
         records += build_block(block, table, lots_by_id, datum)
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):

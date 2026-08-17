@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_north_04",
- "name": "The Pratt household — a reconstructed cooper (north division)",
+ "name": "The Crandall household — a reconstructed cooper (north division)",
  "division": "north",
  "head": "inf_cooper_north_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_north_04",
-   "name": "Elisha Pratt",
+   "name": "Eli Crandall",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

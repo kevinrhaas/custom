@@ -58,7 +58,7 @@
     <p class="gate-keys gate-touch">
       Left thumb to walk · drag the right side to look · tap a building to inspect
     </p>
-    <p class="gate-build" id="gate-build">build b537308 · Aug 15, 2026, 11:42 AM CT</p>
+    <p class="gate-build" id="gate-build">build 51655e6 · Aug 16, 2026, 8:42 PM CT</p>
   </div>
 </div>
 <div id="hud" class="hud" hidden>
@@ -224,6 +224,17 @@
         view is uncomfortable; it changes only the camera, never the town.</p>
       <label class="field"><span>Field of view <b id="v-fov"></b></span>
         <input type="range" id="s-fov" min="55" max="100" step="1"></label>
+      <!-- R-A1. An accessibility aid layered on a default that was measured
+           correct, never a substitute for one. It must not read as a claim
+           about how visible an 1835 street was — see streets.js § R-A1. -->
+      <label class="field"><span>Road visibility <b id="v-road-aid"></b></span>
+        <input type="range" id="s-road-aid" min="0" max="1" step="0.05"></label>
+      <p class="legend-note" id="road-aid-note">These are worn earth tracks through prairie
+        grass, and how much bare earth shows is a modelled figure with its own evidence behind
+        it — so the default paints them exactly as the record describes. Raise this if they are
+        hard to follow: on a phone in daylight, or if faint contrast is difficult to see. It
+        changes nothing but how strongly the roads are painted on your screen, and it is not a
+        claim that 1835 Chicago's streets looked bolder than this.</p>
       <label class="field row"><span>Scene detail</span>
         <select id="s-detail">
           <option value="full">Full — every plant and tree</option>

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_drover_south_01",
- "name": "The Parmelee household — a reconstructed drover (south division)",
+ "name": "The Wilcox household — a reconstructed drover (south division)",
  "division": "south",
  "head": "inf_drover_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_drover_south_01",
-   "name": "Orrin Parmelee",
+   "name": "Levi Wilcox",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

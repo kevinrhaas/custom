@@ -1777,12 +1777,6 @@
       "asset": "gltf/cobweb_castle__log_1820.glb"
     },
     {
-      "id": "cook_county_courthouse_1835",
-      "name": "First Cook County court-house",
-      "sidecar": "sidecars/1835/cook_county_courthouse_1835.json",
-      "asset": "gltf/cook_county_courthouse_1835__wood_1835.glb"
-    },
-    {
       "id": "council_house",
       "name": "Council House",
       "sidecar": "sidecars/1835/council_house.json",
@@ -2263,6 +2257,96 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_blk_lake_market_a1_06",
+      "name": "Reconstructed A1 stable #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_a1_06.json",
+      "asset": "gltf/recon_1835_blk_lake_market_a1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_a3_07",
+      "name": "Reconstructed A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_a3_07.json",
+      "asset": "gltf/recon_1835_blk_lake_market_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_d1_05",
+      "name": "Reconstructed D1 older log dwelling #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_d1_05.json",
+      "asset": "gltf/recon_1835_blk_lake_market_d1_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_d2_04",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_d2_04.json",
+      "asset": "gltf/recon_1835_blk_lake_market_d2_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_d3_03.json",
+      "asset": "gltf/recon_1835_blk_lake_market_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_d4_02.json",
+      "asset": "gltf/recon_1835_blk_lake_market_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_market_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_market_d5_01.json",
+      "asset": "gltf/recon_1835_blk_lake_market_d5_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_a3_08",
+      "name": "Reconstructed A3 privy #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_a3_08.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_a3_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_a4_07",
+      "name": "Reconstructed A4 woodshed or storage shed #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_a4_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_a4_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_c2_01",
+      "name": "Reconstructed C2 store-residence #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_c2_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_c2_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d1_06",
+      "name": "Reconstructed D1 older log dwelling #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d1_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d2_05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d6_04",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d6_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d6_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_h1_03",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_h1_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_h1_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_h2_02",
+      "name": "Reconstructed H2 merchant or professional house #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_h2_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_h2_02__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_clinton_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a1_06.json",
@@ -2357,6 +2441,54 @@
       "name": "Reconstructed D5 deep-plan frame cottage #02",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d5_02.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_a1_07",
+      "name": "Reconstructed A1 stable #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_a1_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_a1_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_a3_08",
+      "name": "Reconstructed A3 privy #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_a3_08.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_a3_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d1_06",
+      "name": "Reconstructed D1 older log dwelling #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d1_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d2_05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d3_04",
+      "name": "Reconstructed D3 one-room frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d3_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d3_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d4_03",
+      "name": "Reconstructed D4 two-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d4_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d4_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d5_02",
+      "name": "Reconstructed D5 deep-plan frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d5_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d5_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_franklin_d6_01",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_franklin_d6_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_franklin_d6_01__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_market_a1_07",
@@ -2467,6 +2599,72 @@
       "asset": "gltf/recon_1835_blk_randolph_wells_h2_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_south_water_clark_a3_05",
+      "name": "Reconstructed A3 privy #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_a3_05.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_a3_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d1_04",
+      "name": "Reconstructed D1 older log dwelling #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d1_04.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d3_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d4_02.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d5_01.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_d5_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_a3_06",
+      "name": "Reconstructed A3 privy #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_a3_06.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_a3_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d1_05",
+      "name": "Reconstructed D1 older log dwelling #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d1_05.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d1_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d2_04",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d2_04.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d3_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d4_02.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d5_01.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_south_water_franklin_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_franklin_a1_06.json",
@@ -2507,6 +2705,48 @@
       "name": "Reconstructed D5 deep-plan frame cottage #01",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_franklin_d5_01.json",
       "asset": "gltf/recon_1835_blk_south_water_franklin_d5_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_a1_06",
+      "name": "Reconstructed A1 stable #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a1_06.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_a1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_a3_07",
+      "name": "Reconstructed A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a3_07.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d1_04",
+      "name": "Reconstructed D1 older log dwelling #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d1_04.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d2_05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d2_05.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d3_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d4_02.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d5_01.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d5_01__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_wells_a1_07",
@@ -3445,5 +3685,7 @@
       "asset": "gltf/wright_building_to_let_b__documented_1835.glb"
     }
   ],
-  "excluded_by_date": []
+  "excluded_by_date": [
+    "cook_county_courthouse_1835"
+  ]
 }

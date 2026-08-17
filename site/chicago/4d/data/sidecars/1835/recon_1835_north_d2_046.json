@@ -89,7 +89,7 @@
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D2 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the D2 family's key geometry parameters do not speak to a door type, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous North Division instance."
     },
     "door_side": {
       "value": "front",
@@ -97,7 +97,7 @@
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D2 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the D2 family's key geometry parameters do not speak to a door side, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous North Division instance."
     },
     "loft": {
       "value": false,
@@ -121,7 +121,7 @@
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D2 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+      "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the D2 family's key geometry parameters do not speak to paint or finish, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous North Division instance."
     },
     "function": {
       "value": "rough plank dwelling or shanty",
@@ -144,7 +144,7 @@
   "residents": [
     {
       "household": "hh_inf_laundress_north_03",
-      "name": "The Cobb household — a reconstructed laundress (north division)",
+      "name": "The Goodrich household — a reconstructed laundress (north division)",
       "division": "north",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d2_046 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -154,7 +154,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Lucy Cobb",
+          "name": "Susan Goodrich",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "laundress",

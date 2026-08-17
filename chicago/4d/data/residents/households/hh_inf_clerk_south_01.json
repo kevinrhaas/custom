@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_clerk_south_01",
- "name": "The Bacon household — a reconstructed clerk (south division)",
+ "name": "The Wilcox household — a reconstructed clerk (south division)",
  "division": "south",
  "head": "inf_clerk_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_clerk_south_01",
-   "name": "John Bacon",
+   "name": "Erastus Wilcox",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

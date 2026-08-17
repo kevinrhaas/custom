@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_south_01",
- "name": "The Stebbins household — a reconstructed blacksmith (south division)",
+ "name": "The Sheldon household — a reconstructed blacksmith (south division)",
  "division": "south",
  "head": "inf_blacksmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_south_01",
-   "name": "Calvin Stebbins",
+   "name": "Ira Sheldon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_blacksmith_south_01_j1",
-   "name": "Asa Hale",
+   "name": "William Bacon",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

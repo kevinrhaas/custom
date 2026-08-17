@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 160,
-  "persons": 196,
+  "households": 173,
+  "persons": 209,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 100
+   "reconstructed": 113
   }
  },
  "households": [
@@ -250,7 +250,7 @@
    "lives_at": null,
    "works_at": "cobweb_castle",
    "present_on_scene_date": "present",
-   "review_required": false
+   "review_required": true
   },
   {
    "id": "hh_calhoun_john",
@@ -1011,6 +1011,90 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_15",
+   "file": "households/hh_inf_carpenter_south_15.json",
+   "head": "inf_carpenter_south_15",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_lasalle_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_16",
+   "file": "households/hh_inf_carpenter_south_16.json",
+   "head": "inf_carpenter_south_16",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_clark_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_17",
+   "file": "households/hh_inf_carpenter_south_17.json",
+   "head": "inf_carpenter_south_17",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_dearborn_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_18",
+   "file": "households/hh_inf_carpenter_south_18.json",
+   "head": "inf_carpenter_south_18",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_lake_market_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_19",
+   "file": "households/hh_inf_carpenter_south_19.json",
+   "head": "inf_carpenter_south_19",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_franklin_d3_04",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_20",
+   "file": "households/hh_inf_carpenter_south_20.json",
+   "head": "inf_carpenter_south_20",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_dearborn_d3_01",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1468,6 +1552,104 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_south_water_wells_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_17",
+   "file": "households/hh_inf_labourer_south_17.json",
+   "head": "inf_labourer_south_17",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_lasalle_d1_04",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_18",
+   "file": "households/hh_inf_labourer_south_18.json",
+   "head": "inf_labourer_south_18",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_clark_d1_04",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_19",
+   "file": "households/hh_inf_labourer_south_19.json",
+   "head": "inf_labourer_south_19",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_dearborn_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_20",
+   "file": "households/hh_inf_labourer_south_20.json",
+   "head": "inf_labourer_south_20",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_lake_market_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_21",
+   "file": "households/hh_inf_labourer_south_21.json",
+   "head": "inf_labourer_south_21",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_franklin_d1_06",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_22",
+   "file": "households/hh_inf_labourer_south_22.json",
+   "head": "inf_labourer_south_22",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_clark_d1_06",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_23",
+   "file": "households/hh_inf_labourer_south_23.json",
+   "head": "inf_labourer_south_23",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_dearborn_d1_04",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_02",
- "name": "The Wilcox household — a reconstructed teamster (north division)",
+ "name": "The Newell household — a reconstructed teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_02",
-   "name": "Ira Wilcox",
+   "name": "Silas Newell",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

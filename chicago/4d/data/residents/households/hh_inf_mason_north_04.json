@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_north_04",
- "name": "The Lecuyer household — a reconstructed mason (north division)",
+ "name": "The Chevalier household — a reconstructed mason (north division)",
  "division": "north",
  "head": "inf_mason_north_04",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_north_04",
-   "name": "Charles Lecuyer",
+   "name": "Antoine Chevalier",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

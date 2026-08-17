@@ -47,88 +47,11 @@ echo "== generate + bake"
 
 echo
 echo "== web derivatives"
-if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
-  mkdir -p assets/web
-  # `--texture-compress ktx2` shells out to the KTX-Software `ktx` binary, and
-  # gltf-transform aborts the WHOLE optimize when it is absent — meshopt included.
-  # ubuntu-latest does not ship `ktx` and neither does the dev container, so that
-  # flag silently turned every derivative into an uncompressed copy of its master,
-  # in every environment, since this step was written. Nothing has a texture yet,
-  # so ask for KTX2 only where it can actually run.
-  # KTX2 IS OFF, AND THE `ktx` BINARY BEING PRESENT IS NOT ENOUGH TO TURN IT ON.
-  #
-  # This used to read `if command -v ktx; then --texture-compress ktx2`, which
-  # asks the wrong question. Whether the TOOL can write KTX2 says nothing about
-  # whether the RENDERER can read it — and it cannot: the vendored GLTFLoader
-  # only handles KHR_texture_basisu after `setKTX2Loader()` is called, nothing
-  # calls it, and no Basis transcoder is vendored (it would need to be, since
-  # renderers/web/ takes no CDN).
-  #
-  # Observed the moment `ktx` was installed on the runner (bake run
-  # 31773216178): three derivatives came back with KTX2 textures, and the smoke
-  # got `THREE.GLTFLoader: setKTX2Loader must be called before loading KTX2
-  # textures` for each of them. An asset that throws in the loader is an asset
-  # that is not in the scene, so it also took out the raycast, inspection and
-  # ground-contact checks downstream. The bake never reached its push step, so
-  # none of it left the runner.
-  #
-  # Turning this on is part of W2 (docs/RENDERING.md), and the order is: wire
-  # KTX2Loader + a vendored transcoder into the renderer FIRST, prove it loads a
-  # textured asset, and only then set BAKE_KTX2=1 here.
-  compress=(--compress meshopt)
-  if [ "${BAKE_KTX2:-0}" = "1" ]; then
-    if command -v ktx >/dev/null 2>&1; then
-      echo "   BAKE_KTX2=1 — asking for KTX2 textures (the renderer MUST have setKTX2Loader wired)"
-      compress+=(--texture-compress ktx2)
-    else
-      echo "   BAKE_KTX2=1 but no ktx binary on PATH; meshopt only"
-    fi
-  fi
-
-  # NEVER SIMPLIFY. `optimize` runs mesh simplification BY DEFAULT, and on this
-  # dataset that is not an optimisation, it is damage:
-  #
-  #   • The terrain is already decimated, deliberately, by generators/terrain_gen.py
-  #     at a tolerance it MEASURES — it ray-casts the decimated mesh against the
-  #     heightfield and refuses to export past 30 mm of drift. That number is the
-  #     promise that the ground you stand on is the ground you see. A second,
-  #     blind simplification pass with its own error budget breaks the promise
-  #     silently and leaves nothing to measure it against.
-  #   • Observed, not theorised: the ground went from 56,463 vertices per tile to
-  #     about 100, and 33 of one tile's 99 remaining vertices came back with
-  #     normals pointing DOWNWARD (normal.y = -1) — a hard-edged black polygon
-  #     across the south-east of the town, visible from the air. The terrain had
-  #     never been through this step before (it was the one asset gltf-transform
-  #     had never run over), so nobody had seen what it does to a large, low-relief
-  #     surface.
-  #   • The buildings are authored low-poly from archetype parameters. There is no
-  #     fat here for a simplifier to find, and the same class of normal damage on a
-  #     clapboard wall would be far harder to spot.
-  #
-  # meshopt still does the compression work; simplification was never what made
-  # the payload small.
-  compress+=(--simplify false)
-  fellback=0
-  for f in assets/gltf/*.glb; do
-    [ -e "$f" ] || continue
-    out="assets/web/$(basename "$f")"
-    npx --yes @gltf-transform/cli optimize "$f" "$out" \
-      "${compress[@]}" 2>&1 | tail -2 || {
-        echo "   optimize failed for $(basename "$f"); copying the master through"
-        cp "$f" "$out"; fellback=$((fellback + 1)); }
-    printf '   %s  %s -> %s bytes\n' "$(basename "$f")" \
-      "$(stat -c%s "$f")" "$(stat -c%s "$out")"
-  done
-  # Say it once, at the end, where it cannot scroll past unnoticed. A fallback
-  # copy is CORRECT but fat, and a fat payload is what fails the 25 MB gate —
-  # so the reason has to be visible next to the number.
-  if [ "$fellback" -gt 0 ]; then
-    echo "   WARNING: $fellback derivative(s) fell back to an uncompressed master copy"
-  fi
-else
-  echo "   gltf-transform unavailable; copying masters to assets/web unoptimised"
-  mkdir -p assets/web && cp -f assets/gltf/*.glb assets/web/ 2>/dev/null || true
-fi
+# Lifted out whole by K36(b) into `tools/web_derivatives.sh`, so a
+# Blender-free runner can regenerate the derivatives from the committed
+# masters and MEASURE the result. The flags, the bit depths and the reasons
+# all live over there, and this is their only caller.
+tools/web_derivatives.sh
 
 echo
 echo "== sidecars"

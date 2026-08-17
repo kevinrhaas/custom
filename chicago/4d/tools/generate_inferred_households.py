@@ -53,7 +53,9 @@ PREFIX = "hh_inf_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import label  # noqa: E402
+from measure_adoption_tests import floor_evidence  # noqa: E402
 
 
 def load(path: Path):
@@ -411,8 +413,12 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
 
     spec_note = (f"Type-level choice within the {b['family']} band in the reconstruction "
                  f"specification; it is not evidence for this building.")
-    form = inferred_form(b["archetype"], b["family"], spec_note, w,
-                         building_documented=documented)
+    # ROADMAP K33: the citation is restricted to the values the family actually authors
+    # something for, BEFORE the programme's own overrides land — those carry authored
+    # notes of their own and are not this parcel's to rewrite.
+    form = split_notes(inferred_form(b["archetype"], b["family"], spec_note, w,
+                                     building_documented=documented),
+                       b["family"], spec_note)
     for key, value in (form_over or {}).items():
         form[key] = attested(value, "reconstructed", [ANDREAS] if documented else [SPEC],
                              p.get("form_note") or spec_note)
@@ -694,6 +700,57 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             if family not in crosswalk:
                 raise SystemExit(f"{sid} names family {family}, which is not in "
                                  f"1835_family_archetype_crosswalk.json")
+
+    # K28 — the two clauses rule 6 gained on 2026-08-16, gated so they are rules
+    # rather than the habit nine block parcels supplied them with.
+    #
+    # An ADOPTION is a household living under a roof this programme did not raise:
+    # the roof was already on the plat, put there by a block parcel, and rule 6 is
+    # the only thing standing between a drawing and a claim about the town's trade
+    # mix. `reconstruction.block_id` is what makes the block readable off the roof.
+    raised = {b["id"] for b in programme["buildings"]}
+    census = {e["occupation"]: e for e in programme["occupation_census"]}
+    adoptions: dict[tuple[str, str], list[str]] = {}
+    for h in households:
+        sid = h.get("lives_at")
+        if not sid or sid in raised:
+            continue
+        doc = by_id.get(sid) or (load(STRUCTURES / f"{sid}.json")
+                                 if (STRUCTURES / f"{sid}.json").exists() else None)
+        block = ((doc or {}).get("reconstruction") or {}).get("block_id")
+        if not block:
+            continue
+        adoptions.setdefault((block, h["occupation"]), []).append(h["id"])
+
+        # rule 6 test 1, clause (iii): the trade's OWN committed argument has to
+        # call its count a floor. Method rule 3's list of unbounded trades is a
+        # statement about where a number came from, not that the number is too
+        # low, and reading test 1 off that list would let a block being dealt a D2
+        # hand the laundresses a floor they never claimed. The predicate is
+        # imported from tools/measure_adoption_tests.py rather than restated, so
+        # the gate and the report can never disagree about what a floor is.
+        entry = census.get(h["occupation"])
+        if entry is None:
+            raise SystemExit(f"{h['id']} is a {h['occupation']}, which the occupation "
+                             f"census does not carry, so rule 6 test 1 cannot be read")
+        if not floor_evidence(entry["argument"]):
+            raise SystemExit(
+                f"{h['id']} adopts the block roof {sid}, but the {h['occupation']} "
+                f"argument never states in its own committed text that its count is a "
+                f"floor, so rule 6 test 1 fails (K28 clause iii). If that count really "
+                f"is a floor, argue it in the trade's own argument from the town — not "
+                f"as a side effect of a block being dealt this roof")
+
+    # rule 6 clause (ii): one adoption per trade per block parcel. Passing all
+    # three tests is permission, not an instruction; without the cap the
+    # granularity of the plat sets the rate at which this census grows, which is
+    # the fitting-the-model-to-the-drawing rule 6 opens by forbidding.
+    for (block, trade), ids in sorted(adoptions.items()):
+        if len(ids) > 1:
+            raise SystemExit(
+                f"{block} adopts {len(ids)} {trade} households ({', '.join(sorted(ids))}): "
+                f"rule 6 caps a block parcel at ONE adoption per trade (K28 clause ii). "
+                f"Passing all three tests is permission and not an instruction")
 
     # the 665-roof programme is a ceiling, not a budget to overspend
     inventory = load(INVENTORY)

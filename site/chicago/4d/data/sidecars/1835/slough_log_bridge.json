@@ -134,6 +134,6 @@
     }
   ],
   "research_note": "THE SMALLEST STRUCTURE IN THIS PARCEL AND ONE OF THE MOST INFORMATIVE, because it is the only built thing in the dataset that exists to answer the terrain. Chicago's South Division drained through a slough that ran from the Public Square pond, past the Tremont House site at Lake and Dearborn, to the river at the foot of State Street; where it crossed Water Street the town had to bridge it, and the bridge was still needed after 1840. TWO WARNINGS TRAVEL WITH THIS RECORD. First, do not size it from the branch bridges: their ten-foot width and six-foot clearance are documented for THEM, and a record that borrowed those numbers would be dressing a culvert as a river crossing — this one takes only the width as a yardstick and refuses the clearance outright, which is why clearance_m is the record's one flatly conjectural dimension. Second, it is placed at its attested crossing rather than being pulled inside the modelled terrain, so it stands outside the box and declares it; the slough itself is unmodelled, so a visitor sees a bridge over nothing. That is an honest picture of the project's state — the structures parcel has run ahead of the terrain epoch on the east side — and it is fixed by extending the terrain, not by moving the bridge. See docs/research/01-terrain-hydrology.md sections 2.2 and its hydrology inventory zone 14, which carries the slough's route as documented and its width and depth as conjectural.",
-  "research_doc": "docs/RESEARCH/slough_log_bridge.md",
+  "research_doc": "",
   "review_required": false
 }

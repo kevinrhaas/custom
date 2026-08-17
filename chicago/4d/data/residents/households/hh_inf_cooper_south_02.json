@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_south_02",
- "name": "The Wadsworth household — a reconstructed cooper (south division)",
+ "name": "The Goodrich household — a reconstructed cooper (south division)",
  "division": "south",
  "head": "inf_cooper_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_south_02",
-   "name": "Horace Wadsworth",
+   "name": "Henry Goodrich",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_cooper_south_02_a1",
-   "name": "Silas Rice",
+   "name": "Jared Leland",
    "relationship": "apprentice",
    "grade": "reconstructed",
    "occupation": {

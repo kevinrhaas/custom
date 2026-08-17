@@ -425,6 +425,16 @@ export async function createFlora({
   const stats = {
     instances: 0, drawCalls: 0, triangles: 0, zones: 0, species: 0,
     unimplementedForms: [], unimplementedShapes: [], unzonedLandFraction: 0, rebuilds: 0,
+    // ROADMAP K49(a). The DRAWN population of the sward, per community and per
+    // list: what each species' recorded abundance asks for against how many
+    // slots it actually got in the frame the visitor is looking at. K48 built
+    // this for the woody stems and found a species that was recorded, weighted,
+    // banded, gated — and absent. Nothing had ever counted the sward, which is
+    // 118 of this project's 154 plant records.
+    draws: [],
+    // ROADMAP K49(a). Which of those lists deal their slots off numbers that
+    // are not in the same unit — see `auditAbundance`.
+    abundance: null,
   };
 
   const dataset = await loadFlora(dataBase, problems);
@@ -439,6 +449,66 @@ export async function createFlora({
     return inertRig(group, stats);
   }
   stats.zones = zones.length;
+
+  stats.abundance = auditAbundance(zones);
+
+  /**
+   * ROADMAP K49(a) — THE DRAWN CENSUS OF THE SWARD.
+   *
+   * One row per (community, list), reset on every rebuild: the sward is dealt
+   * from scratch each time the lattice re-centres, so this counts the
+   * population of the frame in front of the visitor rather than a total
+   * accumulated over a walk. It counts SLOTS DEALT — `stats.capped` is the
+   * separate question of whether a set then had room for them.
+   *
+   * `expected` is computed against the subset the slot was actually drawn from,
+   * not against the whole list: a species that may not stand over water is not
+   * owed the wet slots, and scoring it against them would report a shortfall
+   * every time the visitor stood at the river.
+   */
+  const censusIndex = new Map();
+  for (const z of zones) {
+    for (const [list, key] of [['matrix', 'graminoids'], ['forb', 'forbs']]) {
+      const items = z[key];
+      if (!items.length) continue;
+      const row = {
+        community: z.id, list, drawn: 0, drySlots: 0, wetSlots: 0,
+        species: items.map((s) => ({
+          id: s.id, unit: s.unit, share: s.weight, stems: s.stems, expected: 0, drawn: 0,
+        })),
+      };
+      const byId = new Map(row.species.map((s) => [s.id, s]));
+      // The shares the two subsets renormalise to, which is what `pick` walks.
+      const shares = items.map((s) => ({
+        row: byId.get(s.id),
+        dry: z.dry[key].items.includes(s) && z.dry[key].total > 0 ? s.weight / z.dry[key].total : 0,
+        wet: z.wet[key].items.includes(s) && z.wet[key].total > 0 ? s.weight / z.wet[key].total : 0,
+      }));
+      censusIndex.set(`${z.id}:${list}`, { row, byId, shares });
+      stats.draws.push(row);
+    }
+  }
+  const countDraw = (zone, list, sp, wet) => {
+    const c = censusIndex.get(`${zone.id}:${list}`);
+    if (!c) return;
+    c.row.drawn++;
+    if (wet) c.row.wetSlots++; else c.row.drySlots++;
+    const s = c.byId.get(sp.id);
+    if (s) s.drawn++;
+  };
+  const openCensus = () => {
+    for (const { row } of censusIndex.values()) {
+      row.drawn = 0;
+      row.drySlots = 0;
+      row.wetSlots = 0;
+      for (const s of row.species) { s.drawn = 0; s.expected = 0; }
+    }
+  };
+  const closeCensus = () => {
+    for (const { row, shares } of censusIndex.values()) {
+      for (const s of shares) s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+    }
+  };
 
   const water = waterField(terrain);
   const blocks = footprintCircles(footprints);
@@ -572,16 +642,19 @@ export async function createFlora({
     // NEAR: individual tufts, dense enough to close the ground.
     nearSet.ring(near.fade);
     scatter(camE, camN, tune.near.cell, tune.near.perCell,
-      near.lattice.outer, near.lattice.inner, 0x51ed27, cone,
-      (e, n, r, rng) => {
+      near.lattice.outer, near.lattice.inner, 0x51ed27, 'strata', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // The community's own recorded matrix cover decides whether this slot
         // carries a plant — the same rule the forb layer has always applied to
         // its own recorded densities, on the field the matrix layer ignored.
-        if (rng() > zone.matrixShare) return;
+        // Cover and species come off the slot's ONE stratified draw (K49(d)):
+        // the rank-1 lattice the forb layer uses stripes a dense layer, so this
+        // one is a block permutation instead. See `stratum` and `dealt`.
         const wet = water.isWater(e, n);
-        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
+          zone.matrixShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
@@ -591,6 +664,7 @@ export async function createFlora({
         // independent draws of the same range, so a 2.0 m cordgrass spike
         // could stand over a 1.25 m tuft — which is the pair of flower heads
         // the critic found floating unattached in the open sky.
+        countDraw(zone, 'matrix', sp, wet);
         const h = placeGraminoid(nearSet, sp, e, y, n, rng);
         if (h > 0 && r <= near.head[0] + step) {
           maybeHead(heads, sp, e, y, n, rng, h, near.head);
@@ -606,22 +680,24 @@ export async function createFlora({
     // lattice grew by `fringe` to carry the ones it pushes IN, and paying for
     // the whole annulus would be paying for the amplitude twice.
     scatter(camE, camN, tune.mid.cell, tune.mid.perCell,
-      mid.lattice.outer, mid.lattice.inner, 0x9e3779, cone,
-      (e, n, r, rng) => {
+      mid.lattice.outer, mid.lattice.inner, 0x9e3779, 'strata', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         const off = fringeOf(e, n, mid.fringe);
         if (r > mid.fade[0] + off + step) return;
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // A clump card stands for the same matrix the near tufts do, so it is
-        // thinned by the same recorded cover. Applying it to one layer and not
-        // the other would put a seam at the near/mid crossover exactly where
-        // the change of representation is supposed to be invisible.
-        if (rng() > zone.matrixShare) return;
+        // thinned by the same recorded cover — and by the same STRATIFIED draw.
+        // Applying it to one layer and not the other would put a seam at the
+        // near/mid crossover exactly where the change of representation is
+        // supposed to be invisible.
         const wet = water.isWater(e, n);
-        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
+          zone.matrixShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
+        countDraw(zone, 'matrix', sp, wet);
         midSet.ring(ringAt(mid.fade, off, _ring));
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
@@ -633,7 +709,8 @@ export async function createFlora({
     rosetteSet.reset();
     const f = rings.forb;
     scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
-      f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng) => {
+      f.lattice.outer, f.lattice.inner, 0x2545f9, 'lattice', cone,
+      (e, n, r, rng, _cellSeed, u) => {
         // The forb ring ends within a metre of the mid ring, so the two
         // boundaries land on the same screen row and both have to be ragged or
         // the flowers alone would draw the line the grass no longer does.
@@ -644,14 +721,16 @@ export async function createFlora({
         // The forb layer's density is the zone's OWN summed density_per_ha, so a
         // sparse community stays sparse. `share` is the chance this lattice slot
         // is used at all — of the half of the community that may stand on this
-        // side of the waterline, which is why there are two of them.
+        // side of the waterline, which is why there are two of them. It and the
+        // species come off the slot's ONE low-discrepancy draw; see `dealt`.
         const wet = water.isWater(e, n);
-        if (rng() > (wet ? zone.forbShareWet : zone.forbShare)) return;
-        const sp = pick(wet ? zone.wet.forbs : zone.dry.forbs, rng());
+        const sp = dealt(wet ? zone.wet.forbs : zone.dry.forbs,
+          wet ? zone.forbShareWet : zone.forbShare, u);
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
+        countDraw(zone, 'forb', sp, wet);
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
         const h = placeForb(set, sp, e, y, n, rng);
@@ -664,8 +743,10 @@ export async function createFlora({
   // Forbs and their heads share the head sets with the graminoids, so the two
   // ground rebuilds have to happen together or the heads would be half-cleared.
   function rebuildAll(camE, camN, cone) {
+    openCensus();
     rebuildGround(camE, camN, cone);
     rebuildForbs(camE, camN, cone);
+    closeCensus();
     for (const s of sets) s.commit();
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
     stats.sets = Object.fromEntries(sets.map((s) => [s.mesh.name, s.mesh.count]));
@@ -941,8 +1022,6 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const palette = files.get(`palette:${rec.palette ?? entry.palette}`) ?? null;
     const graminoids = [];
     const forbs = [];
-    let forbPerM2 = 0;
-    let coverSum = 0;
 
     for (const sp of rec.species) {
       if (!OUR_ROLES.has(sp.role)) continue;          // trees.js draws the rest
@@ -961,16 +1040,45 @@ function compileZones({ index, files }, terrain, problems, stats) {
       const built = buildSpecies(sp, palette, problems, entry.id);
       if (!built) continue;
       stats.species++;
-      if (isGrass) {
-        graminoids.push(built);
-        coverSum += built.weight;
-      } else {
-        forbs.push(built);
-        forbPerM2 += built.weight;
-      }
+      if (isGrass) graminoids.push(built);
+      else forbs.push(built);
     }
-    if (coverSum > 0) for (const g of graminoids) g.weight /= coverSum;
-    if (forbPerM2 > 0) for (const f of forbs) f.weight /= forbPerM2;
+
+    /**
+     * ROADMAP K49(c2) — THE LOTTERY IS DEALT ON PLANTS PER SQUARE METRE, AND
+     * THE SLOT COUNT IS NOT.
+     *
+     * Two different questions had been answered off one number. How many slots
+     * a list is dealt is a question about GROUND — the forb layer's own summed
+     * density, the matrix layer's recorded `matrix_fraction` — and which
+     * species fills a dealt slot is a question about the POPULATION standing on
+     * it. K49(a) found the second one being answered by normalising three
+     * different units against each other, so a species recorded as covering
+     * 25 % of the ground was dealt slots as though it were 0.25 plants per
+     * square metre, against a neighbour recorded at 6 plants per square metre.
+     * The two-metre dogwood and the wild garlic, made identical by a division.
+     *
+     * `stems` is the record's own abundance read as a count — K49(c1) closed
+     * the last gap in it, so all 98 sward records carry one — and the lottery
+     * is normalised over THAT. The recorded sum is kept separately and is what
+     * still sets `forbShare`, so **the number of slots does not move**: this
+     * changes what fills a slot, never how many are filled. `matrixShare` is
+     * read off the record directly and was never in the arithmetic at all.
+     *
+     * The shares it moves are quoted in ROADMAP K49(c1), measured before this
+     * half was written so it could not choose its own bar.
+     */
+    for (const s of [...graminoids, ...forbs]) {
+      /** The abundance exactly as recorded, in whatever unit the record used.
+       *  It sets how many slots the list is dealt and nothing else. */
+      s.recorded = s.weight;
+      s.weight = s.stems ?? s.recorded;
+    }
+    const lotOf = (list) => list.reduce((t, s) => t + s.weight, 0);
+    for (const list of [graminoids, forbs]) {
+      const total = lotOf(list);
+      if (total > 0) for (const s of list) s.weight /= total;
+    }
 
     // How much of the ground a community's matrix actually covers is AUTHORED,
     // per zone, in the record's own `cover` block — and nothing in this
@@ -1013,12 +1121,19 @@ function compileZones({ index, files }, terrain, problems, stats) {
     const subsetOn = (list, wet) => {
       const items = list.filter((s) => (
         wet ? s.substrate !== 'soil' : s.substrate !== 'open_water'));
-      return { items, total: items.reduce((a, s) => a + s.weight, 0) };
+      return {
+        items,
+        total: items.reduce((a, s) => a + s.weight, 0),
+        /** ROADMAP K49(c2). The subset's abundance AS RECORDED — the number of
+         *  slots is dealt off this, not off the lottery, so moving the lottery
+         *  onto plants per m² leaves every slot count where it was. */
+        density: items.reduce((a, s) => a + s.recorded, 0),
+      };
     };
 
     const cell = TUNE.forb.cell;
     const forbShareOf = (subset) => Math.min(
-      1, subset.total * forbPerM2 * cell * cell / TUNE.forb.perCell);
+      1, subset.density * cell * cell / TUNE.forb.perCell);
     const dry = { graminoids: subsetOn(graminoids, false), forbs: subsetOn(forbs, false) };
     const wet = { graminoids: subsetOn(graminoids, true), forbs: subsetOn(forbs, true) };
     out.push({
@@ -1061,6 +1176,63 @@ function compileZones({ index, files }, terrain, problems, stats) {
   return out.filter((z) => z.extent);
 }
 
+/**
+ * ROADMAP K49(a) — WHICH LISTS DEAL THEIR SLOTS OFF NUMBERS THAT ARE NOT IN THE
+ * SAME UNIT, and which records cannot be converted into one.
+ *
+ * Reported and NOT gated, deliberately, the way R-M1 splits a measurement from
+ * the bar it will eventually be held to: the repair needs a footprint this
+ * dataset does not carry for every species, so a gate here today would either
+ * fail the build over data nobody has researched yet or be satisfied by an
+ * invented number. Both are worse than a figure printed every run. K49(c) is
+ * the fix, and it starts by closing `unconvertible`.
+ *
+ * K49(c1) CLOSED `unconvertible`: the twenty-five sward records that gave a
+ * cover and no footprint carry one now, each graded in its own
+ * `width_provenance` because no source states one, and `tools/validate.py`
+ * refuses a new sward record that carries a cover without a width. So this
+ * list is expected to be EMPTY and an entry in it is a defect rather than a
+ * research gap. `mixed` stays non-empty and stays a report: a list whose
+ * species record their abundance in different fields is a fact about the
+ * dataset, and it stops being a FAULT when K49(c2) deals the slots on `stems`.
+ *
+ * `mixed` is one row per (community, list) whose species do not agree on what
+ * their abundance measures. `countedShare` is how much of that list's slot
+ * lottery is currently held by its COUNT-recorded species — the share that is
+ * being compared against an area and therefore means nothing as it stands.
+ */
+function auditAbundance(zones) {
+  const mixed = [];
+  const unconvertible = [];
+  let lists = 0;
+  for (const z of zones) {
+    for (const [list, items] of [['matrix', z.graminoids], ['forb', z.forbs]]) {
+      if (!items.length) continue;
+      lists++;
+      let counted = 0;
+      let countedShare = 0;
+      let area = 0;
+      for (const s of items) {
+        if (s.unit === 'cover_fraction') {
+          area++;
+          // The weights are already normalised over the list, so `weight` IS
+          // the share of the slots this species is dealt today.
+          if (s.stems === null) unconvertible.push({ zone: z.id, list, id: s.id, share: s.weight });
+        } else if (s.unit !== 'none') {
+          counted++;
+          countedShare += s.weight;
+        }
+      }
+      if (counted > 0 && area > 0) {
+        mixed.push({
+          zone: z.id, list, species: items.length, counted, area, countedShare,
+        });
+      }
+    }
+  }
+  return { lists, mixed, unconvertible };
+}
+
 /** One species entry, reduced to numbers the placer can use per instance. */
 function buildSpecies(sp, palette, problems, zoneId) {
   const h = sp.height_m;
@@ -1090,14 +1262,60 @@ function buildSpecies(sp, palette, problems, zoneId) {
   else if (Array.isArray(ab.stems_per_m2)) weight = mid(ab.stems_per_m2);
   if (!(weight > 0)) weight = 0.01;
 
+  /**
+   * ROADMAP K49(a) — THREE UNITS, ONE SUM, AND THE SUM IS WHAT DEALS THE SLOTS.
+   *
+   * `pick()` deals SLOTS, and a slot is one drawn plant. The three abundance
+   * fields a record may carry are not three spellings of one number:
+   * `stems_per_m2` and `density_per_ha` are COUNTS of plants, `cover_fraction`
+   * is the AREA of ground the species holds. The block above normalises all
+   * three into one share, which reads "covers 25 % of the ground" as "0.25
+   * plants per square metre" — a claim about a two-metre dogwood and a claim
+   * about a wild garlic, made identical by a division.
+   *
+   * `stems` is the same abundance read as a count, and it is derivable only
+   * where the record carries what converts an area into one: the plant's own
+   * `width_m` — what one drawn plant covers on the ground. Where it does not,
+   * this is NULL rather than a guess — the footprint the placer falls back on
+   * for walker clearance is a clearance radius, and using it here would put an
+   * invented number at the centre of the arithmetic that decides what the sward
+   * is made of. AGENTS.md rule 2: the gap is recorded, not filled.
+   *
+   * K49(c1): every sward record carries a width now, so `stems` is derivable
+   * for all 98 of them and `auditAbundance` reports none. It is still not what
+   * deals the slots — `weight` is, and moving the lottery onto `stems` is
+   * K49(c2), which is a split from this half because the conversion puts a
+   * species the census owes 1.10 slots to at the edge of the K49(f) tail gate.
+   * The numbers are committed in ROADMAP K49(c1) so the fix cannot redefine
+   * its own success.
+   */
+  const width = Array.isArray(sp.width_m) ? sp.width_m : null;
+  let stems = null;
+  let unit = 'none';
+  if (Array.isArray(ab.stems_per_m2)) {
+    unit = 'stems_per_m2';
+    stems = mid(ab.stems_per_m2);
+  } else if (Array.isArray(ab.density_per_ha)) {
+    unit = 'density_per_ha';
+    stems = mid(ab.density_per_ha) / 10000;
+  } else if (Array.isArray(ab.cover_fraction)) {
+    unit = 'cover_fraction';
+    if (width) stems = mid(ab.cover_fraction) / (Math.PI * (mid(width) * 0.5) ** 2);
+  }
+  if (stems !== null && !(stems > 0)) stems = null;
+
   return {
     id: sp.id ?? sp.binomial ?? 'unnamed',
     form: sp.form,
     role: sp.role,
     substrate: substrateOf(sp, problems, zoneId),
     weight,
+    /** The abundance field this species' weight was read out of, and that
+     *  same abundance as plants per m² where one is derivable. K49(a). */
+    unit,
+    stems,
     height: h,
-    width: Array.isArray(sp.width_m) ? sp.width_m : null,
+    width,
     shape: GRASS_SHAPE[sp.form] ?? { arch: 0.28, spread: 0.45 },
     base,
     alt,
@@ -1375,6 +1593,282 @@ function hash3(a, b, c) {
   return (h ^ (h >>> 16)) >>> 0;
 }
 
+/**
+ * ROADMAP K49(b) — THE FORB SLOT'S DRAW, AND WHY IT IS NOT `rng()`.
+ *
+ * A slot's species used to come off the same xorshift stream as its jitter: an
+ * independent uniform draw per slot. Independent draws lose their rare end. Six
+ * species their own community's recipe owes a whole plant to were drawn NOWHERE
+ * across 6,780 slots (K49(a)) — prairie dock, a two-metre landmark, owed 3.23 of
+ * them in the wet prairie and standing none. **All six were forb lists**, which
+ * is why this is the forb layer's draw and not the sward's.
+ *
+ * The repair is a low-discrepancy assignment: a rank-1 lattice
+ * `frac(c·α + r·β + k·γ)` on the slot's OWN world lattice coordinates, walked
+ * against the same CDF `pick()` already walks. It is equidistributed over any
+ * window, so a band of the CDF the width of prairie dock's share gets its count
+ * to within one slot instead of to within a Poisson tail — and it is a pure
+ * function of the slot, so re-centring the lattice puts the same species back in
+ * the same place, which is the promise `hash3` makes and K48's owed-draw picker
+ * cannot keep (its running state would change the plant at your feet as you
+ * walked up to it).
+ *
+ * α, β, γ are 1/g, 1/g², 1/g³ for the root of g⁴ = g + 1 — the R3 quasirandom
+ * generators, chosen for equidistribution rather than for looking irrational.
+ *
+ * THE MATRIX LAYERS DO NOT TAKE THIS LATTICE, AND A SCREENSHOT IS WHY. Run
+ * on the near and mid tufts as well, this made the west prairie grow in ROWS:
+ * the lattice band that decides whether a slot carries a plant is a family of
+ * near-diagonal lines, invisible where two slots in a hundred are planted and
+ * unmissable where sixty are. The matrix lists lost no species to the tail — the
+ * cost was all visible and the benefit all in a column that already read zero.
+ * They are stratified a different way instead — see `stratum`, K49(d).
+ */
+const LD_A = 0.8191725133961644;
+const LD_B = 0.6710436067037893;
+const LD_C = 0.5497004779019702;
+/**
+ * ...and the rotation that keeps the lattice from repeating the same diagonal
+ * across the whole field. A rank-1 lattice puts a thin CDF band on a family of
+ * parallel lines through the index grid; a Cranley–Patterson rotation — one
+ * offset added to a whole block — breaks that family at the block edge while
+ * preserving the equidistribution inside it, and it is keyed on the WORLD block
+ * index, so it re-centres with the lattice rather than with the camera.
+ *
+ * SIXTEEN cells square, not four, and the census set the number. The block has
+ * to hold enough PLANTED slots for a species' band to be resolved inside it, and
+ * the forb layer plants a few per cent of what it deals: at four cells (64
+ * slots, one or two flowers) the rotation was all that survived — an independent
+ * draw in a costume — and the census still found three species owed a whole
+ * plant and standing nowhere. At sixteen (1,024 slots, ~54 m, about the width of
+ * the ring itself) it found none.
+ */
+const LD_BLOCK_SHIFT = 4;
+const LD_BLOCK_SALT = 0x2b1f3d7d;
+
+function frac(x) { return x - Math.floor(x); }
+
+/**
+ * ROADMAP K49(d) — THE DENSE LAYER'S STRATIFICATION, AND WHY IT IS NOT A LATTICE.
+ *
+ * K49(b) left the near and mid tufts on an independent `rng()` because the
+ * rank-1 lattice above ROWS the prairie. That was a veto on the construction,
+ * not on the goal: the matrix lists' worst shortfall was **31.47 slots** — the
+ * mesic prairie deals 793 slots between four grasses and one of them came up
+ * thirty-one short of the cover its own record states — and nothing had reduced
+ * it.
+ *
+ * The striping is not the rare end of the CDF, it is the common one. At
+ * `matrixShare ≈ 0.6` the test `u < share` selects most of a lattice, so the
+ * SELECTED SET inherits the lattice's structure and the field inherits it in
+ * turn. Any construction whose slot-to-`u` map has a direction in it will do
+ * this at that density. So the requirement is a stratification with no direction
+ * to read.
+ *
+ * A keyed pseudorandom BIJECTION over the block's slots is that. Every slot in a
+ * 16×16-cell block is dealt a distinct rank in `[0, n)`, so `u` takes each of the
+ * n equally spaced values exactly once: a CDF band of width w gets its exact
+ * count `round(w·n)` inside the block, not a Poisson draw around it. And because
+ * the map from slot to rank is a hashed permutation rather than an arithmetic
+ * progression, the ranks carry no gradient across the grid — the selected set is
+ * spatially indistinguishable from the independent draw it replaces, which is
+ * exactly what the screenshot in K49(b) demanded and the lattice could not give.
+ *
+ * A four-round Feistel network is the standard form and is used here: it is a
+ * bijection by construction (each round is invertible whatever the round
+ * function does), it needs no table, and it is a pure function of the slot's
+ * world coordinates, so re-centring the lattice puts the same plant back — the
+ * same promise `hash3` makes and K48's account-keeping picker cannot.
+ *
+ * ITS WEAKNESS, STATED RATHER THAN DISCOVERED: exactness over the BLOCK is not
+ * equidistribution over a sub-window, and the census reads zone ∩ ring, which is
+ * one. It bounds the error to what the block boundaries cut, instead of removing
+ * it. The matrix tail is already empty (K49(a) found no absent matrix species),
+ * so the tail is not what this is for — the shortfall is.
+ *
+ * THAT LAST SENTENCE WAS WRONG WITHIN THE DAY, AND K49(f) IS WHY. The tail was
+ * empty when it was written and this construction emptied it the other way: a
+ * fixed grid of `u` puts every band narrower than one step out of the scene
+ * ALTOGETHER, and two of the dataset's forty-five matrix bands are. Read
+ * `stratum`'s own doc block below before changing anything here — the repair is
+ * the block's phase, and it also recovers most of the regression the paragraph
+ * below blames on a filter.
+ *
+ * ...and it has a SECOND face that cost two rows of the census. Rank is a
+ * deterministic function of position inside the block, so a filter that runs
+ * AFTER the deal on a spatial rule of its own — `station()` refusing a building
+ * footprint or the far side of a waterline — selects a BIASED set of ranks,
+ * where an independent draw would have been filtered without bias. The two rows
+ * that got worse are the two most heavily filtered, the settled town and the
+ * riverbank. That is the leading explanation and it is not proven; K49(e)
+ * measures it. Do not reach for `stratum` in a heavily filtered layer until it
+ * has. (K49(f), same day: **refuted for the settled town**, which recovers
+ * 39.18 → 15.52 on the phase alone, against a pre-K49(d) 14.31. The riverbank
+ * keeps a residual 1.30 and that is all K49(e) has left to explain.)
+ */
+const STRAT_SALT = 0x7f4a7c15;
+/**
+ * ...and the block is FOUR cells square, not the lattice's sixteen, because
+ * K49(b) finding 3's rule — *the block size is set by PLANTED slots, not by
+ * cells* — points the other way for a dense layer. The forb layer plants a few
+ * per cent of what it deals and needed 1,024 slots to resolve a species band;
+ * the matrix layer plants `matrixShare ≈ 0.6` of them, thirty times the rate, so
+ * 64 slots already carry ~38 plants — more than the forb layer's 16×16 block
+ * ever did.
+ *
+ * And the small block is not merely sufficient, it is BETTER, for the reason the
+ * parcel's own weakness names: exactness holds over the block and the census
+ * reads a sub-window, so the error is whatever the window's partial blocks cut.
+ * A near ring is 15.2 m across and a 16-cell block is 11.8 m — the window
+ * contained about ONE whole block, so almost every slot read was in a partial
+ * one. At four cells it is 3.0 m and the same window holds ~20.
+ *
+ * So the rule has a FLOOR and a CEILING, and only the floor was written down.
+ * Measured, all five, on the matrix `deviation` of `tools/measure_sward_draw.mjs`
+ * — never on `worstShortfall`, which is a max of a max and ranks these in a
+ * different order:
+ *
+ * | block | m (near) | slots | matrix deviation |
+ * |---|---|---|---|
+ * | independent draw | — | — | 368.80 |
+ * | 1 cell | 0.74 | 4 | 2,725.88 |
+ * | 2 cells | 1.48 | 16 | 602.95 |
+ * | **4 cells** | **2.96** | **64** | **282.89** |
+ * | 8 cells | 5.92 | 256 | 303.30 |
+ * | 16 cells | 11.84 | 1,024 | 340.47 |
+ *
+ * The floor is not a soft one: at four slots per block `u ∈ {0.125, 0.375,
+ * 0.625, 0.875}`, so at `share ≈ 0.6` exactly two are planted and `u / share`
+ * takes TWO values — the CDF collapses onto two species and the deviation is
+ * seven times the fault being repaired.
+ */
+const STRAT_BLOCK_SHIFT = 2;
+
+/** One round-keyed Feistel pass over `2·half` bits. Invertible by construction,
+ *  so the map is a permutation of `[0, 2^(2·half))` whatever `hash3` returns. */
+function feistel(x, half, key) {
+  const mask = (1 << half) - 1;
+  let l = (x >>> half) & mask;
+  let r = x & mask;
+  for (let i = 0; i < 4; i++) {
+    const t = l ^ (hash3(r, key, i + 1) & mask);
+    l = r;
+    r = t;
+  }
+  return ((l << half) | r) >>> 0;
+}
+
+/**
+ * The slot's rank inside its block, as a `u` in `[0, 1)`.
+ *
+ * `half` is chosen so the Feistel's domain `2^(2·half)` covers `n`; when it
+ * overshoots (it does not at `perCell = 4`, where a 16×16 block holds exactly
+ * 1,024 slots and the domain is 1,024) the standard cycle-walk re-applies the
+ * permutation until the image lands back in range, which is still a bijection on
+ * `[0, n)`. The guard is a belt on a loop that provably terminates; falling back
+ * to the identity keeps `u` in range rather than returning a rank that is not a
+ * rank.
+ *
+ * ROADMAP K49(f) — AND THE GRID IT LANDS ON HAS TO MOVE, or the tail of the CDF
+ * is not thin, it is EMPTY.
+ *
+ * The permutation decides which slot gets which rank. It does not change the SET
+ * of `u` the block deals, which without `phase` is `{(k + 0.5) / n}` — the same n
+ * numbers in every block of the world, for ever. A species owns a CDF band of
+ * width `share × weight`, so a band narrower than `1/n` can contain none of them,
+ * and then it contains none of them EVERYWHERE: the species is not rare in the
+ * scene, it is absent from it, deterministically, at every station. That is the
+ * exact fault K49(b) repaired in the forb lists — and it came back in the matrix
+ * lists the moment K49(d) handed them a fixed grid. (The forb layer never had it:
+ * its lattice `u` already carries the block's `shift`.)
+ *
+ * `phase` is the block's own offset, wrapped — a systematic sample with a random
+ * start, which is the textbook form for exactly this reason. The n values stay
+ * equally spaced, so the block is still an exact stratification and K49(d)'s
+ * deviation result is untouched in construction; what changes is that a band of
+ * width w now falls on a dealt value in about `w · n` of the blocks instead of in
+ * all of them or none, which is the unbiased answer. A species owed a plant per
+ * hundred square metres gets one per hundred square metres.
+ */
+function stratum(idx, n, half, key, phase) {
+  let x = idx;
+  for (let guard = 0; guard < 24; guard++) {
+    x = feistel(x, half, key);
+    if (x < n) return frac((x + 0.5) / n + phase);
+  }
+  return frac((idx + 0.5) / n + phase);
+}
+
+/**
+ * ROADMAP K49(c2) — AND THE PHASE HAS TO SWEEP THE STEP, or a species owed ONE
+ * plant in the frame gets it on a coin toss.
+ *
+ * K49(f) gave every block its own RANDOM phase, which is unbiased and is what
+ * fixed the species drawn nowhere in the WORLD: a band of width `w` lands on a
+ * dealt value in about `w · n` of the blocks instead of in all of them or none.
+ * What it does not fix is the frame. A band with `w · n = 0.077` — the sedge
+ * meadow's two bulrushes, measured — is a coin toss per block, and over the
+ * fourteen blocks a station's ring holds it comes up empty about a third of the
+ * time. The species is owed 1.10 slots and draws none, at random, which is the
+ * one thing K49(f)'s gate is absolute about.
+ *
+ * So the phases are STRATIFIED ACROSS BLOCKS as well as within one. The block's
+ * phase is `globalShift + vdc(morton(block)) / n`: a van der Corput sweep of the
+ * step `[0, 1/n)`, indexed by the block's Morton code, on a random global start.
+ * Three properties, and the parcel needs all three:
+ *
+ * - **The set inside a block is untouched** — the n values are still equally
+ *   spaced by `1/n`, so it is still an exact stratification and K49(d)'s
+ *   deviation result stands by construction.
+ * - **Adjacent blocks get maximally separated phases.** Reversing the bits of
+ *   the Morton code sends the block coordinates' LOW bits to the top of the
+ *   fraction, so the four blocks of any aligned 2×2 group hold phases exactly
+ *   `1/4` of the step apart, sixteen of a 4×4 group `1/16` apart. A band wider
+ *   than the sweep's spacing is then hit BY CONSTRUCTION rather than by luck.
+ * - **It stays unbiased.** `globalShift` is one random start for the layer, so
+ *   a band of width `w` still lands in `w · n` of the blocks on average; what
+ *   changes is the variance, which is the whole complaint.
+ */
+function blockPhase(c, r, n, globalShift) {
+  return frac(globalShift + vdc(morton(c, r)) / n);
+}
+
+/** Interleave two block coordinates into one Morton code. Biased into the
+ *  unsigned range first, so a block west or south of the origin indexes the
+ *  same way as one east or north of it. */
+function morton(c, r) {
+  return ((spread16(r + 0x8000) << 1) | spread16(c + 0x8000)) >>> 0;
+}
+
+/** One 16-bit value spread into the even bits of a 32-bit word. */
+function spread16(n) {
+  let x = n & 0xffff;
+  x = (x | (x << 8)) & 0x00ff00ff;
+  x = (x | (x << 4)) & 0x0f0f0f0f;
+  x = (x | (x << 2)) & 0x33333333;
+  x = (x | (x << 1)) & 0x55555555;
+  return x >>> 0;
+}
+
+/** The van der Corput sequence in base 2: the index with its bits reversed,
+ *  read as a fraction. Consecutive indices are far apart by construction, which
+ *  is the property `blockPhase` is built on. */
+function vdc(i) {
+  let x = i >>> 0;
+  x = ((x & 0x55555555) << 1) | ((x >>> 1) & 0x55555555);
+  x = ((x & 0x33333333) << 2) | ((x >>> 2) & 0x33333333);
+  x = ((x & 0x0f0f0f0f) << 4) | ((x >>> 4) & 0x0f0f0f0f);
+  x = ((x & 0x00ff00ff) << 8) | ((x >>> 8) & 0x00ff00ff);
+  return (((x >>> 16) | (x << 16)) >>> 0) / 4294967296;
+}
+
+/** The half-width the Feistel needs to cover `n` slots. */
+function stratumHalf(n) {
+  let bits = 1;
+  while ((1 << bits) < n) bits++;
+  return (bits + 1) >> 1;
+}
+
 function rngFrom(seed) {
   let s = seed >>> 0 || 1;
   return () => {
@@ -1386,8 +1880,15 @@ function rngFrom(seed) {
 }
 
 /** Walk the lattice cells around the camera, calling `emit` per jittered slot
- *  inside the ring. The grid is world-anchored, not camera-anchored. */
-function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
+ *  inside the ring. The grid is world-anchored, not camera-anchored.
+ *
+ *  `draw` picks how the slot's `u` — the one number that decides both whether it
+ *  carries a plant and which species (see `dealt`) — is constructed. `'lattice'`
+ *  is the rank-1 low-discrepancy sequence of K49(b), which the SPARSE forb layer
+ *  takes; `'strata'` is the block permutation of K49(d), which the DENSE matrix
+ *  layers take because the lattice stripes them. Both are pure functions of the
+ *  slot's world coordinates. */
+function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emit) {
   const c0 = Math.floor((camE - radius) / cell);
   const c1 = Math.ceil((camE + radius) / cell);
   const r0 = Math.floor((camN - radius) / cell);
@@ -1395,11 +1896,50 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
   const sub = Math.max(1, Math.round(Math.sqrt(perCell)));
   const rr = radius * radius;
   const ri = inner * inner;
+  // ROADMAP K49(d). The block is the stratum: every slot in it is dealt a
+  // distinct rank, so a CDF band gets its exact count rather than a Poisson one.
+  const strata = draw === 'strata';
+  const shiftBits = strata ? STRAT_BLOCK_SHIFT : LD_BLOCK_SHIFT;
+  const span = 1 << shiftBits;
+  const nSlots = span * span * perCell;
+  const half = stratumHalf(nSlots);
+  // ROADMAP K49(c2). ONE random start for the whole layer, not one per block:
+  // the sweep is what separates neighbouring blocks, and a per-block random
+  // start would put it back where K49(f) left it.
+  const globalShift = hash3(salt, STRAT_SALT, 0x9e3779b9) / 4294967296;
   for (let r = r0; r <= r1; r++) {
     for (let c = c0; c <= c1; c++) {
       const cellSeed = hash3(c, r, salt);
+      // ROADMAP K49(b). One rotation per 16×16-cell block of the WORLD lattice —
+      // and, K49(d), one permutation key per the same block.
+      const bc = c >> shiftBits;
+      const br = r >> shiftBits;
+      const blockHash = hash3(bc, br, salt ^ (strata ? STRAT_SALT : LD_BLOCK_SALT));
+      // ROADMAP K49(c2). The lattice takes a Cranley–Patterson rotation, which
+      // wants an independent offset per block; the stratification takes a phase
+      // that SWEEPS its own step across neighbouring blocks, because a random
+      // one leaves a narrow band to a coin toss in the frame. See `blockPhase`.
+      const shift = strata
+        ? blockPhase(bc, br, nSlots, globalShift)
+        : blockHash / 4294967296;
+      // The slot's index inside its own block. Arithmetic shift, so a block west
+      // or south of the origin indexes the same way as one east or north of it.
+      const base = ((c - ((c >> shiftBits) << shiftBits)) * span
+        + (r - ((r >> shiftBits) << shiftBits))) * perCell;
       for (let k = 0; k < perCell; k++) {
         const rng = rngFrom(hash3(cellSeed, k, 0x68bc21eb));
+        // ROADMAP K49(b). The slot's own place in the deal: it decides BOTH
+        // whether this slot carries a plant at all and which species it is, so
+        // that the thinning cannot resample the species draw back into an
+        // independent one. See `dealt`.
+        // ROADMAP K49(f). `shift` is the block's offset and BOTH draws take it:
+        // the lattice adds it to a rank-1 sequence, the stratification wraps its
+        // grid of ranks by it. Without it the strata deal the same n values of
+        // `u` in every block of the world and a CDF band narrower than `1/n` is
+        // drawn nowhere at all.
+        const u = strata
+          ? stratum(base + k, nSlots, half, blockHash, shift)
+          : frac(c * LD_A + r * LD_B + k * LD_C + shift);
         // A jittered sub-grid, not free scatter: free scatter leaves holes
         // the eye reads as bare soil and clusters it reads as one plant.
         const sx = k % sub;
@@ -1417,7 +1957,7 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
         // because that ring must not flicker as you turn on the spot.
         if (cone && d > CONE_KEEP_M
           && ((e - camE) * cone.fe + (n - camN) * cone.fn) / d < cone.cos) continue;
-        emit(e, n, d, rng, cellSeed);
+        emit(e, n, d, rng, cellSeed, u);
       }
     }
   }
@@ -1440,6 +1980,29 @@ function pick(subset, u) {
     if (target <= acc) return item;
   }
   return list[list.length - 1];
+}
+
+/**
+ * ROADMAP K49(b) — the slot's whole deal, out of ONE low-discrepancy draw.
+ *
+ * A lattice slot is asked two questions in a row: does the community's recorded
+ * cover put a plant here at all (`share`), and if so which species (`pick`). Ask
+ * them of two independent numbers and the second one's equidistribution is
+ * spent: the surviving slots are a random subsample of the lattice, and a random
+ * subsample of a low-discrepancy set is back to Poisson in its tail — which is
+ * the fault K49(a) measured.
+ *
+ * So the two questions share one draw. `u` below the share carries the plant,
+ * and its position INSIDE `[0, share)` is what walks the CDF: species i then
+ * owns a band of width `share × weight_i`, and the lattice hits every band at
+ * its own rate. That is the whole repair — the same marginal probabilities, in
+ * one stratified draw instead of two independent ones.
+ *
+ * Returns null when the slot carries nothing.
+ */
+function dealt(subset, share, u) {
+  if (!(share > 0) || u >= share) return null;
+  return pick(subset, u / share);
 }
 
 /* -------------------------------------------------------------------------- */

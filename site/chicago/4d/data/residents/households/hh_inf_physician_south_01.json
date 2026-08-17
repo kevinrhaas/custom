@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_physician_south_01",
- "name": "The Dickinson household — a reconstructed physician (south division)",
+ "name": "The Rice household — a reconstructed physician (south division)",
  "division": "south",
  "head": "inf_physician_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_physician_south_01",
-   "name": "Joseph Dickinson",
+   "name": "Reuben Rice",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

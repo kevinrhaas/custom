@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_gunsmith_south_01",
- "name": "The Kelly household — a reconstructed gunsmith (south division)",
+ "name": "The Burke household — a reconstructed gunsmith (south division)",
  "division": "south",
  "head": "inf_gunsmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_gunsmith_south_01",
-   "name": "Michael Kelly",
+   "name": "James Burke",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 100,
+  "count": 119,
   "liberties": [
     {
       "id": "L1",
@@ -8874,6 +8874,492 @@
       ]
     },
     {
+      "id": "L101",
+      "title": "Five invented dwellings on the business front's third block, and the name churn that came with them",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_018"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_lasalle` — bounded by South Water, Clark, Lake and LaSalle — now carries **seven anonymous roofs**: five dwellings, one per lot on five of its six free lots, and two yard buildings off the block alley. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the seven are adopted — the D3 one-room cottage on lot 0 as a fifteenth inferred carpenter household, the D1 log cabin on lot 7 as a seventeenth labouring one — and the other five stay anonymous count-units. Lot 6, the South Water and Clark corner, is held by the Chicago Democrat's office and lot 5 by Thomas Church's store; neither is touched. **This is the first block of the row that arrived with a documented roof on BOTH faces, and it changes what the frontage argument is being tested against.** L99 and L100 admitted that the programme deals ordinary dwellings onto South Water Street because it apportions families by DISTRICT and has no notion of what a street was for; that admission stands unchanged and is now tripled. What is new is the Lake face. The two blocks before this one had an empty back street to put their meanest roofs on, so the \"best roofs to the business front\" arrangement cost nothing to apply. Here Thomas Church's store already stands on the Lake frontage, and the arrangement was applied anyway — the log cabin and the plank shanty went to Lake, one of them beside a documented store. That is the same invention as before and not a larger one, but it is being made with less room, and the parcel says so rather than letting the pattern look automatic. **The measurement this block owes its reader, and it is bigger than either of L100's.** Church's store is seated on lot 5 by T-A7's first test — **59.3 m² of its 92.9 m²** is there against **33.6 m² on lot 3** — but **22.1 m² of that lot 3 lap falls inside lot 3's buildable inset**, so a lot the schedule reads as free carries a documented building across its Clark-end frontage corner. That is the third and by far the largest instance of the case T-A7 measured and deliberately declined to call occupancy (J. H. Kinzie's store at 9.7 m² and none of it buildable; `recon_1835_west_018` at 11.9 m²). It is 2.4 % of lot 3's buildable area, so the lot is still worth a roof, and the parcel does not pretend the lot is empty: the shanty is offset **west** of its lot centre, away from the store, and clears it by **7.56 m** against a 3 m separation gate. That 7.56 m is the closest any roof of this parcel comes to anything already standing; the deep-plan cottage is 20.55 m from the Democrat's office and every other new roof is 25 m or better. The recipe cleared every placement gate on its first run and **no tool changed**. **Both adoptable trades were offered a second roof again, and the repetition is the finding.** Rule 6 admits a roof only where the trade's committed argument calls its own count a floor, the roof's family is one this layer already houses that trade in, and the roof's division is too. Read literally, four of this block's five dwellings pass for one trade or the other: the D3 and the D4 for carpenters, the D1 and the D2 for labourers — **exactly the pair of double candidacies T-A9 met**. One roof per trade was adopted and the other two refused, on T-A9's reading and recorded here as **a choice, not a rule**. What T-A9 could not know, being the first block to meet the case, is that the case is not a one-off: two consecutive blocks have now dealt both floor trades both of the families they are housed in, which is what a block of five or six dwellings in this division looks like when the schedule deals it. Rule 6's silence is therefore a defect rather than an edge case, and **ROADMAP K28** — already open — now has a second block of evidence rather than a single precedent."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its seventh platted block and its third on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive — flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **281 → 288** against the 665-roof target; **377 remain**, 39 of them on ground the project has coverage for. Inferred households move 88 → 90 and inferred persons 100 → 102; two more anonymous roofs stop being anonymous. **AND THE FIFTH MEASUREMENT OF K20 IS THE WORST ONE YET, BY A FACTOR OF THREE.** Inserting two households renamed **72 of the 100 carried-over invented persons** — against 19-of-98 at T-A9, 32-of-96 at T-A8, 25-of-94 at T-A2h and 17-of-33-touched at T-A5. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 102, so this is churn and not a provenance failure. But the earlier entries described it as a fifth of the layer being rewritten as a side effect, and that description no longer holds: on this parcel it was nearly three quarters. The cause is visible in `tools/generate_inferred_names.py` and is not randomness — names are dealt round-robin through each community-and-sex pool in a stable hash order of person id, so a single new person landing early in a large bucket shifts every name after it. The variance between 19 and 72 is which bucket position the new ids happened to hash into. K20's own text says the fix belongs in its own parcel rather than riding along with a block; it is left riding along, visibly, for the fifth time, and this entry is the number that should retire the argument that the churn is small."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. The commercial-frontage question (K29) is discharged by any evidence that states what stood on South Water Street between LaSalle and Clark in July 1835 — a directory, an assessment roll or a fire-insurance sheet would settle it — and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_lasalle_*.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L102",
+      "title": "Four invented dwellings and a privy on the fourth block of the business front, and the first block where the \"better end\" can be pointed at",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_018"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_clark` — bounded by South Water, Dearborn, Lake and Clark — now carries **five anonymous roofs**: four dwellings, one per lot on four of its five free lots, and one privy in the yard of lot 4 off the block alley. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the five are adopted — the D3 one-room cottage on lot 5 as a sixteenth inferred carpenter household, the D1 log cabin on lot 3 as an eighteenth labouring one — and the other three stay anonymous count-units. Lot 0 is held by Harmon & Loomis's store, lot 6 by John Bates Jr.'s auction room and lot 7 by the first Tremont House; none of the three is touched. **THE END RULE HAS BEEN ASSERTED BY THREE PARCELS AS A DIRECTION AND THIS IS THE FIRST BLOCK WHERE THE THING AT THE GOOD END CAN BE NAMED AND MEASURED.** T-A8, T-A9 and T-A10 each put their better roofs nearer \"the town-centre end\" and further from \"the end that runs back toward the wharves\", which was a reading of the town rather than a measurement of anything. This block's east end is Dearborn Street, and the **Dearborn Street drawbridge** — the only crossing of the main stem in July 1835, a committed structure record whose south abutment stands at the foot of Dearborn on South Water — is 35.6 m from the frontage of lot 6 and **101.7 m from lot 0**, with lots 4 and 2 at **55.5 m and 78.1 m** in between. The gradient runs the same way on the back street (lot 7 at 126.3 m to lot 1 at 158.2 m). So the arrangement is still an invention — no source says a better house stood nearer the bridge — but it is now an invention with a stated and re-derivable criterion instead of a compass direction, and the lot left open is the one **farthest of the eight from the only bridge in town**. **And the frontage half of the same rule meets its first counter-example on this block, which is recorded rather than argued away.** Three parcels have called South Water the valuable face and Lake the back street. On this block the **largest documented footprint stands on Lake**: the first Tremont House at 139.3 m², against 92.9 m² for the auction room, 92.9 m² for Harmon & Loomis's store and 46.5 m² for Pruyne & Kimball's drug store. A hotel choosing the Lake and Dearborn corner is evidence about 1835 and the frontage rule is not; the rule is kept because it is a typology for where *anonymous* dwellings of different tiers go, and this entry says plainly that the block's own documented evidence does not support extending it into a claim about which street was worth more. **The T-A7 lap case has a fourth instance and it is the first that costs the lot nothing at all.** Pruyne & Kimball's drug store laps lot 2 by **4.66 m² of its 46.5 m²**, and **0.00 m² of that lap is inside lot 2's buildable inset** — the whole of it lies in the 1.5 m margin strip along the frontage. Two of its four corners sit 0.70 m and 0.65 m inside the platted lot line and the other two stand 5.4 m out in the roadway; measured against the corridors it intrudes **5.55 m into South Water**. Against L100's 22.1 m² inside the inset on `blk_south_water_lasalle`, Kinzie's 9.7 m² and `recon_1835_west_018`'s 11.9 m², the case now has four measured points spanning the whole range from \"entirely in the strip\" to \"a fifth of it buildable\". **The offset that answered the last block's lap was measured here and refused, which is the more useful half of the finding.** T-A10 moved its shanty west to clear Church's store. The same move on lot 2 buys **0.03 m at 1.5 m of offset and 0.33 m at 3.0 m**, and the 3 m version costs 1.26 m of lot-line margin; half a metre of extra setback buys **0.50 m** on its own. The reason is geometric and worth stating once: Church's store stood deep inside its lot, so sliding along the frontage moved a building away from it, while the drug store stands *in the roadway*, so only standing further back from the street helps. The cottage is set back 7.5 m and clears the drug store by **6.83 m** against a 3 m separation gate — the closest approach anywhere in this parcel. The lateral offsets that remain are ordinary jitter and are described as jitter, not as clearance. **Five South Division households live in a D5, this block was dealt a D5, and none of them took it — the first time a parcel has written down why.** Rule 6's second and third tests (the roof's family and division are ones this layer already houses the trade in) pass for the baker, the butcher, the blacksmith and both clerks. Every one of them fails the first test, and two fail it emphatically: the baker's committed argument says one baker is inferred \"and only one, because a bakehouse serves a great many people and nothing attests a second\", and the butcher's infers a single household. Three consecutive blocks have now dealt a D5 and none has recorded the question; the answer is that test one is doing all the work, and a rule whose refusals are never written down is indistinguishable from a rule nobody applied. **A third consecutive block offered the carpenters a second roof and a third refusal is recorded.** The D4 two-room cottage on lot 2 passes all three tests as literally as T-A9's and T-A10's did. Held to one per trade again, as a choice and not a rule — but three for three means the case is the ordinary shape of a South Division block rather than a recurring edge, and **ROADMAP K28** should be settled rather than collecting a fourth precedent. The labourers were offered only one roof here (no D2 was dealt), the first block since T-A8 where that question did not arise. **One thing about the derived occupancy, found while reading it and affecting nothing.** Bates's auction room fronts **east onto Dearborn** by its own record, and is seated on lot 6, a *South Water*-face lot, because `tools/plat_occupancy.py` seats a building by the area it covers and the K7 division gives a block two faces of four lots and no lot facing the cross street. That is the right answer for occupancy — the lot is covered and cannot carry another roof — but a reader should not infer a frontage from a lot index."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its eighth platted block and its fourth on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive — flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **288 → 293** against the 665-roof target; **372 remain**, 34 of them on ground the project has coverage for. Inferred households move 90 → 92 and inferred persons 102 → 104; two more anonymous roofs stop being anonymous. **The sixth K20 measurement is the smallest ever recorded, and it is the same mechanism.** Two new households renamed **7 of the 102 carried-over invented persons** — against 72-of-100 at T-A10, 19-of-98 at T-A9, 32-of-96 at T-A8 and 25-of-94 at T-A2h. Nothing was fixed between T-A10 and this parcel; the churn is a function of where the two new person ids hash into their community-and-sex pools, exactly as L101 said, and this measurement is the confirmation rather than an improvement. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 104. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. The commercial-frontage question (K29) is discharged by any evidence that states what stood on South Water Street between Clark and Dearborn in July 1835 — a directory, an assessment roll or a fire-insurance sheet would settle it — and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_clark_*.inferred_1835.position`, `recon_1835_blk_south_water_clark_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L103",
+      "title": "Five invented dwellings and a privy on the last block of the business front, and the block where the two readings of the \"better end\" point in opposite directions",
+      "section": "per_subject",
+      "subjects": [
+        "mansion_house"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_dearborn` — bounded by South Water, State, Lake and Dearborn — now carries **six anonymous roofs**: five dwellings, one per lot on five of its six free lots, and one privy in the yard of lot 0 off the block alley. It is the **fifth and last block of the South Water row**: State Street is the platted town's eastern limit, and the fort's reservation lies beyond it. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the six are adopted — the D3 one-room cottage on lot 4 as a seventeenth inferred carpenter household, the D1 log cabin on lot 5 as a nineteenth labouring one — and the rest stay anonymous count-units. Lot 1 is held by the Mansion House and lot 6 by the Chappel infant school; neither is touched. **THE TWO READINGS OF THE END RULE SEPARATE ON THIS BLOCK, AND THE PARCEL FOLLOWS THE ONE T-A11 COMMITTED.** Four parcels have put their better roofs nearer \"the town-centre end\", and T-A11 replaced that compass direction with a measurement: the distance to the **Dearborn Street drawbridge**, the only crossing of the main stem in July 1835. On the four blocks before this one the bridge lay to the EAST and the two readings agreed, so nothing distinguished them. Here the bridge is at this block's **west** end, at the foot of Dearborn, and they disagree: lot 0's frontage is **36.4 m** from it, lots 2 and 4 are **57.7 m** and **81.7 m**, and lot 6 — the compass reading's \"better\" end — is **106.6 m**. The back street runs the same way, **126.4 m** at lot 1 to **161.1 m** at lot 7. The stated criterion is followed, so this block's best dwellings stand at its **west** end and the row's arrangement reverses direction for the first time. The arrangement remains an invention; what it now has is a criterion that can be re-derived and, on this block, contradicted. **A THIRD CRITERION WAS TRIED AND IS RECORDED AS UNDECIDABLE RATHER THAN QUIETLY DROPPED.** The bridge is one landmark, so the parcel asked a question with no radius and no landmark in it: where is the *mass* of documented building, and which lot is nearest to it? The footprint-weighted centroid of every documented roof in the dataset — **83 roofs, 19,145 m²** — lands at local **E 939, N 123**, which is EAST of this block, and makes lot 6 the nearest lot at **189.9 m** against lot 0's **250.8 m**. Excluding the Fort Dearborn reservation — 13 roofs and 10,460 m² of it — moves the centroid to **E 737, N 88**, effectively this block's west end, and reverses the answer: lot 0 at **95.0 m** against lot 6's **115.9 m**. So the criterion turns entirely on whether a military reservation counts as part of the town, which is a judgment and not a measurement, and its whole spread across the north tier without the fort is **20.9 m** against the bridge's **70.2 m**. It is recorded here because a criterion that cannot decide is worth more written down than re-attempted by the next block parcel of some other row. **K30 gains two more cases and they are on the same street as the first three.** Both of this block's documented South Water buildings stand in the platted roadway. The **Chicago American office** (92.9 m²) intrudes **6.91 m** into the South Water corridor, and **Frederick Thomas's shop** (55.7 m²) intrudes **6.25 m** — so **148.6 m² of documented building on this block's north frontage stands on ground the plat calls street**. With T-A9's three (H. Jones's grocery at 4.5 m, Philo Carpenter's store at 6.6 m, P. F. W. Peck's at 8.2 m) that is **five documented buildings, all on South Water, all between 4.5 and 8.2 m in** — which is the distribution K30 asked for and points at one street rather than a uniform bias across the grid. Nothing was moved: a position with a source outranks a corridor this project derived, and K30 owns the resolution. **The T-A7 lap case has a fifth instance, and it is the largest lap that still costs a lot nothing.** The Chicago American office laps lot 0 by **10.74 m² of its 92.9 m²** with **0.00 m² inside lot 0's buildable inset** — the whole of it in the 1.5 m margin strip. Two of its corners sit **0.78 m** and **0.70 m** inside the platted lot line and the other two stand **6.92 m** and **6.84 m** out in the road. Against T-A11's drug store (4.66 m², 0.00 m² buildable) and L100's 22.1 m² inside the inset, the case now has five measured points, and the two most recent are the two that cost nothing. **T-A11's refusal of the lateral offset is confirmed on a second block and the numbers are cleaner.** From the committed placement of the D5 on lot 0 — 7.5 m of setback, 1.5 m of lateral jitter — moving a further **1.5 m** west buys **0.01 m** of clearance from the American office and costs **0.76 m** of lot-line margin; **3.0 m** west buys **0.22 m** and costs **2.26 m**; half a metre of extra setback buys **0.50 m** and costs neither. The office stands square across the frontage out in the roadway, so sliding along the frontage moves nothing — the same geometry T-A11 found, measured independently. Nothing was moved: the cottage already clears it by **6.79 m** against a 3 m gate. The closest approach in the parcel is the D4 on lot 2, **7.01 m** from Frederick Thomas's shop. **The D5 was dealt again and refused again, on the reasoning T-A11 wrote down.** Ten households in this layer live in a D5 and five of them are South Division — the baker, the butcher, the blacksmith and both clerks — and every one of the five fails rule 6's first test, two of them emphatically. That refusal is now a citation rather than an argument, which is what writing it down bought. **A fourth consecutive block offered the carpenters a second roof, and the labourers' second-roof question returned after skipping one block.** The D4 on lot 2 and the D2 on lot 3 each pass all three tests read literally, and both are refused on the same conservative reading, as a choice and not a rule. T-A11 asked that a fourth precedent not be collected and that **ROADMAP K28** be settled instead; the row has now closed with the question open. Of its five blocks, one dealt neither floor trade a second roof, one dealt it to the carpenters alone, and three dealt it to both."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its ninth platted block and its fifth — the last — on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **293 → 299** against the 665-roof target; **366 remain**, 28 of them on ground the project has coverage for. Inferred households move 92 → 94 and inferred persons 104 → 106; two more anonymous roofs stop being anonymous. **The seventh K20 measurement is 59 of 104**, against 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between: the churn is a function of where two new person ids hash into their community-and-sex pools, and five measurements spanning 7 % to 72 % are what a stable hash order looks like when it is perturbed at a random position. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 106. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Any evidence that states what stood on South Water Street between Dearborn and State in July 1835 — a directory, an assessment roll, a fire-insurance sheet — discharges the commercial-frontage question (K29) for this block, and until then the family mix on it is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_dearborn_*.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L104",
+      "title": "Five invented dwellings, a stable and a privy on the first block off the business front, and the block where the \"better end\" stops meaning anything",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "mansion_house",
+        "sauganash_hotel",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_lake_market_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_lake_market_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_lake_market` — bounded by Lake, Franklin, Randolph and Market — now carries **seven anonymous roofs**: five dwellings, one per lot on five of its six free lots, a stable in the yard of lot 6 and a privy in the yard of lot 5, both off the block alley. It is the **first block of this parcel shape that is not on South Water Street**, one row back, at the western limit of the platted South Division against the south branch. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the seven are adopted — the D3 one-room cottage on lot 2 as an eighteenth inferred carpenter household, the D1 log cabin on lot 5 as a twentieth labouring one — and the rest stay anonymous count-units. Lots 0 and 1 arrive taken and neither is touched. **THE FACE RULE WAS ASSERTED FIVE TIMES AND IS MEASURED HERE, BECAUSE NEITHER OF THIS BLOCK'S FACES IS SOUTH WATER.** T-A8 through T-A12 sent their better dwellings to the business front and their meanest to the back street, and named the front by the street's documented use — which says nothing at all about a block bounded by Lake and Randolph. So the question was asked of the committed record instead: **counting every documented or inferred structure whose footprint centroid stands within 25 m of a street's committed centreline, Lake Street carries 12 and Randolph Street carries 2** (and South Water 9). Lake's twelve are the Sauganash Hotel, the Green Tree Tavern, the Exchange Coffee House, the Tremont House, the Mansion House, both churches, Hogan's store, Goss & Cobb's saddlery, Pierce's blacksmith shop, Dole's south warehouse and Philo Carpenter's log drug store; Randolph's two are the log jail and the Western Hotel. The rule is therefore inherited on a measurement rather than on a habit — **but the rule itself is still the invention it always was.** No source says a better dwelling stood on the better street. What the measurement establishes is only which of these two streets the town's own record treats as the front. **THE END RULE'S ORDER SURVIVES AND ITS MEANING DOES NOT, WHICH IS THE FINDING.** T-A11's criterion — distance to the **Dearborn Street drawbridge**, the only crossing of the main stem in July 1835 — runs **532.2 m** at lot 6, **554.9 m** at lot 4, **577.6 m** at lot 2 and **600.4 m** at lot 0 on the Lake frontage, with the back street from **576.3 m** at lot 7 to **640.0 m** at lot 1. The order is the same order it has given on every block, and the arrangement follows it. What has changed is the size of the difference being ordered. On T-A12's block the far end of the front face stood **2.93 times** as far from the bridge as the near end; here it stands **1.13 times** as far. The absolute spread of the front face is **68.2 m** against T-A12's 70.2 m — the same block, moved half a kilometre — so the criterion is now separating two lots that are, in any terms a resident would have used, **the same distance from the bridge**. It was followed anyway, and the reason is recorded rather than the result defended: a committed criterion applied where it is weak stays re-derivable, and swapping to a second criterion on the block where the first stops flattering the answer is how an invention starts to look like a finding. **At this distance the arrangement is closer to arbitrary than on any block of the row, and that is an admission and not a defence.** **K30 gets its first control measurement, on a street that is not South Water.** K30 records five documented buildings standing **4.5 m to 8.2 m** inside the platted South Water corridor and asks whether that is a fault of one stretch of street or a uniform bias across the grid. This block carries the first two documented roofs measured against a different corridor: the **Sauganash Hotel** intrudes **0.19 m** into the Lake corridor and **Philo Carpenter's log drug store 0.22 m** — a twentieth to a fortieth of the South Water figures, and near enough to standing exactly on the kerb line to be inside the plat's own precision. **Two cases are not a survey**, and this entry does not claim they settle it; they are the control K30 did not have, and they point away from a uniform grid bias. Nothing was moved: a position with a source outranks a corridor this project derived. **The block's two documented roofs share one lot, and the occupancy map names the smaller of them.** The Sauganash Hotel puts **94.33 m² of its 96.0 m²** on lot 0 (67.66 m² inside the buildable inset) and Philo Carpenter's log drug store **28.58 m² of its 29.7 m²** (19.43 m² inside it). The source says the shop stood immediately east of and against the Sauganash's public bar, and the two footprints touch at **0.00 m** — so this is the record agreeing with itself rather than a collision. `tools/plat_occupancy.py` names the first holder by id, which is the log shop, so **the town's most-documented building is not the one the occupancy map credits with its own corner.** It costs this parcel nothing, because the lot is taken either way and the map's job is to say a lot is taken by something nameable — but anyone reading the derived occupancy table for what stands where will read the wrong building's name off this lot. **T-A7's lap case has a sixth instance and it is the only one that costs nothing twice.** The packer's dwelling seated on lot 1 laps lot 3 by **9.57 m²** with **0.00 m² inside lot 3's buildable inset**, and lot 3 is the lot this parcel leaves open. **A sixth block offered both floor trades a second roof, and it is the first that is not on South Water Street.** The D4 two-room cottage on lot 4 and the D2 plank shanty on lot 7 each pass rule 6's three tests read literally, and both are refused on the same conservative reading, as a choice and not a rule. T-A11 read three consecutive cases as evidence that the double candidacy is the ordinary shape of a South WATER block; this block shows it is the ordinary shape of **a South Division block of five dwellings, wherever it stands**, so the sample **ROADMAP K28** has to settle is larger than the row that produced it."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its tenth platted block and the first off the business front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **299 → 306** against the 665-roof target; **359 remain, 21 of them on ground the project has coverage for** (was 28). Inferred households move 94 → 96 and inferred persons 106 → 108; two more anonymous roofs stop being anonymous. **The eighth K20 measurement is 67 of 106**, against 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between; six measurements now span 7 % to 72 % and the mechanism is L101's. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 108. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Any evidence that states what stood on Lake Street between Market and Franklin in July 1835 — a directory, an assessment roll, a fire-insurance sheet — discharges the commercial-frontage question (K29) for this block, and until then the family mix on it is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_lake_market_*.inferred_1835.position`, `recon_1835_blk_lake_market_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L105",
+      "title": "Six invented dwellings, a stable and a privy on a block with no front, and the face rule made a command because its first measurement did not reproduce",
+      "section": "per_subject",
+      "subjects": [
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_randolph_franklin` — bounded by Randolph, Wells, Washington and Franklin — now carries **eight anonymous roofs**: six dwellings, one per lot on six of its seven free lots, a stable in the yard of lot 6 and a privy in the yard of lot 3, both off the block alley. It is the first block of this parcel shape on the row **two streets back** from the business front, and the first **neither of whose faces the town's own record calls a front**. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the eight are adopted — the D3 one-room cottage on lot 7 as a nineteenth inferred carpenter household, the D1 log cabin on lot 3 as a twenty-first labouring one — and the rest stay anonymous count-units. Lot 2 arrives taken, by Harmon's log cabin, and is not touched. **THE FACE RULE'S FIRST MEASUREMENT DOES NOT REPRODUCE, AND THAT IS THIS ENTRY'S FIRST ADMISSION.** T-A13 (L104, immediately above) chose between Lake and Randolph by counting structures within 25 m of each street's committed centreline and recorded **Lake 12, Randolph 2, South Water 9**. Those three numbers cannot be recovered from the committed record under the filter L104's own text states — \"every documented or inferred structure whose footprint centroid stands within 25 m\" — and the filter that would produce them is not written down anywhere in this repository. **L104's numbers are left standing verbatim, because this document is append-only and was true as written**; what is corrected is the method, not the entry. The measurement is now a committed command, `tools/measure_street_frontage.py`, so the next block inherits something it can run. **MEASURED BY THAT COMMAND, THE ANSWER FOR THIS BLOCK IS NOT CLOSE.** Counting structure records whose footprint centroid stands within 25 m of a committed centreline, and reporting the three evidence layers separately rather than merged: **Randolph carries 7 research-layer records and 7 inferred-household buildings; Washington carries 1 research-layer record and no inferred-household building at all.** Randolph's seven are Newberry & Dole's south-branch slaughterhouse, the log jail, the Cook County courthouse, both Wright buildings to let, Harmon's log cabin and the Western Hotel. **Washington Street's entire documented 1835 frontage is the estray pen** — the town's pound for stray animals. So the three best dwellings the schedule deals take Randolph's three free lots and the three meanest take Washington."
+        },
+        {
+          "label": "The rule is still the invention it always was",
+          "text": "no source says a better dwelling stood on the better street. What the measurement establishes is only which of two streets the town's own record treats as the front. **THE THIRD LAYER IS EXCLUDED, AND THIS BLOCK IS THE DEMONSTRATION OF WHY.** The anonymous roofs the block parcels themselves place stood at **15 on Randolph and 9 on Washington** when this arrangement was chosen, and read **18 and 12** the moment this parcel built. A face rule that counted that layer would be reading the programme's own output back as evidence — the row of blocks built along South Water is the entire reason South Water looks built up in it — and would drift a little further from the town's record with every block. The tool reports the layers separately and never sums them. **THE END RULE'S SPREAD HAS THINNED FOR THE SECOND BLOCK RUNNING.** T-A11's criterion — distance to the **Dearborn Street drawbridge**, the only crossing of the main stem in July 1835 — runs **527.8 m** at lot 6, **546.1 m** at lot 4 and **584.0 m** at lot 0 on the Randolph frontage, with the back street from **568.5 m** at lot 7 to **621.0 m** at lot 1. The order is the order the criterion has given on every block. The far end of the front face stands **1.11 times** as far from the bridge as the near end, against T-A13's 1.13 and T-A12's 2.93, and the absolute spread of the front face is **56.2 m** against T-A13's 68.2 m. As at T-A13, the criterion is separating lots that a resident would have called the same distance from the bridge, and **the arrangement it produces is closer to arbitrary than ordered.** It was followed anyway, for T-A13's reason and recorded here rather than defended. **THE \"SECOND ROOF\" QUESTION IS NOT WHAT SIX BLOCKS HAVE CALLED IT.** Every block of this shape since T-A9 has recorded the D4 and the D2 it was dealt as *second* roofs for the carpenters and the labourers, passing rule 6's three tests read literally and refused on a conservative reading. Both were dealt here and both are refused again. But the D4 is also the **first** roof of the **teamsters**, and the D2 the first roof of the **laundresses** — two more of the four trades method rule 2 argues from the town's building rate rather than from a roof cap, each housed in that one family and in no other, and each already placed in the South Division. Both pass all three tests, and **no block parcel has ever named them.** Sixteen anonymous D2 and D4 roofs stand in the South Division today under exactly that description. **ROADMAP K28** is therefore settling a larger question than the one it was opened on: not whether a trade may take a second roof, but whether rule 6 admits a roof for a trade that has not asked for one."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its eleventh platted block and its first on a row with no front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **306 → 314** against the 665-roof target; **351 remain, 13 of them on ground the project has coverage for** (was 21). Inferred households move 96 → 98 and inferred persons 108 → 110; two more anonymous roofs stop being anonymous. **The ninth K20 measurement is 61 of 108**, against 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between; seven measurements now span 7 % to 72 % and the mechanism is L101's. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 110. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Any evidence that states what stood on Randolph or Washington Street between Franklin and Wells in July 1835 — a directory, an assessment roll, a fire-insurance sheet — bounds the arrangement above, and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_franklin_*.inferred_1835.position`, `recon_1835_blk_randolph_franklin_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L106",
+      "title": "A store and the town's two best houses invented opposite the courthouse, and the adoption tests made a command because two of the last block's three candidacies do not reproduce",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_clark_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_randolph_clark` — bounded by Randolph, Dearborn, Washington and Clark — now carries **eight anonymous roofs**: a store-residence, five dwellings on five more of its seven free lots, a woodshed in the yard of lot 6 and a privy in the yard of lot 3, both off the block alley. It is the twelfth block of this parcel shape, the first to be dealt **both** of the crosswalk's larger house families together (`H1` and `H2`), and the first block parcel to stand a **`C2` store-residence** — though four `C2` roofs already stand elsewhere in the town and `blk_randolph_wells` built an `H1` and an `H2` at T-A2, so what is new is the combination and not the families. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. One of the eight is adopted — the `D1` log cabin on lot 3, as the twenty-second inferred labouring household — and the rest stay anonymous count-units. Lot 0 arrives taken, by the inferred gunsmith's shop, and is not touched. **THE SCHEDULE PUT THE TOWN'S BETTER HOUSES OPPOSITE THE COURTHOUSE, AND THAT IS A COINCIDENCE.** This block's west face stands across Clark Street from the public square block, which carries the Cook County courthouse, both Wright buildings to let and the estray pen; its east face is Dearborn Street, the street of the only crossing of the main stem in July 1835. Being dealt the merchant house, the larger one-and-a-half-storey house and the store on that block reads like the programme recognising where it is. It is not: the apportionment is a district remainder spread across schedule units by `tools/reconcile_665.py`, which knows nothing about what stands across the street. **The agreement is recorded here so that no later parcel mistakes it for evidence**, which is the same failure mode the third-layer exclusion at L105 exists to prevent. **THE FACE RULE REPRODUCES EXACTLY, WHICH IS THE FIRST TIME THAT SENTENCE CAN BE WRITTEN.** `tools/measure_street_frontage.py randolph washington`, the command L105 committed: **Randolph 7 research-layer records and 7 inferred-household buildings, Washington 1 and 0** — the same 14 against 1 that L105 measured on the same pair of streets, from a tool rather than from a memory. Washington Street's entire documented 1835 frontage is still the estray pen. So Randolph's three free lots take the better roofs. The rule is still the invention it always was: no source says a better dwelling stood on the better street. **THE FACE RULE WAS EXTENDED HERE, NOT APPLIED, AND THE EXTENSION IS THE THING TO ARGUE WITH.** As committed at T-A13 and T-A14 the rule ranks **dwellings**; this is the first block that had to place a **store**. The extension made is that a store-residence's claim on the better frontage is functional rather than social — it is the only roof of the six whose purpose requires that a stranger can find it. So the `C2` takes Randolph and the `D6` one-and-a-half-storey cottage, which would have taken that lot under the rule as written, goes to the head of the back street. **This is an invention about which street a shopkeeper would have chosen, made by an agent and not by a source**, and it is flagged as ROADMAP K32 so the next block dealt a commercial family follows it or refutes it rather than re-deciding it privately. **THE END RULE IS EXHAUSTED ON THIS BLOCK AND THE REASON IS GEOMETRIC.** T-A11's criterion — distance to the Dearborn Street drawbridge — runs **318.3 m** at lot 6, **321.1 m** at lot 4 and **325.8 m** at lot 2 on the Randolph frontage, and 376.4 / 378.8 / 382.7 / 388.2 m behind. The far end of the front face stands **1.02 times** as far from the bridge as the near end, against T-A14's 1.11, T-A13's 1.13 and T-A12's 2.93, and the front face's absolute spread is **7.5 m** — less than a third of one lot's 24.6 m frontage. The bridge bears **10.4° east of north** from the block centre while the block face runs east–west, so the criterion sees only sin(10.4°) = **18 %** of any displacement along the street: the 49.3 m between the lot 2 and lot 6 centroids projects to 8.9 m of range, and 7.5 m is what survives. **A criterion that separates three lots by 7.5 m is not ordering them, it is breaking a tie with rounding.** It was followed anyway, for T-A13's reason, and the successor question is opened as ROADMAP K31 rather than answered here. On this block a stronger criterion agrees with it — lot 6 is the block's corner on Dearborn Street, the street that carries the bridge — which is why following the exhausted rule costs nothing here and is exactly what K31 must not assume elsewhere. **TWO OF L105's THREE ADOPTION CANDIDACIES DO NOT REPRODUCE, AND THIS IS THIS ENTRY'S SHARPEST ADMISSION.** L105 recorded that the `D2` its block was dealt passes all three of method rule 6's tests for the **laundresses** and the `D4` for the **teamsters**, both being trades method rule 3 argues from the town's building rate rather than from a roof cap. Tests 2 and 3 hold for both. **Test 1 does not.** Rule 6 asks whether the trade's *own argument* states in its committed text that its count is **a floor rather than a bound**, and neither of those two arguments contains any such statement — the only occurrence of the word in the laundress argument is Andreas's *\"with the floor covered besides\"*, which is a plank floor in a boarding house. Only the **carpenters** and the **labourers** state it, and they have since they were written. L105's sentences stay verbatim, because this document is append-only and the candidacies it named are real under the other reading; what is corrected is the method. `tools/measure_adoption_tests.py` is committed with this parcel so the next block **runs** rule 6 instead of recalling it, and prints the sentence each verdict rests on. **ROADMAP K28's question narrows as a result**: not \"may a trade that has not asked for a roof be given one\", but \"does test 1 mean the trade's own text or method rule 3's list of unbounded trades\" — two readings that disagree for exactly two trades. **THE `D2` IS REFUSED FOR THE EIGHTH TIME, AND THIS TIME THE TESTS WERE RUN.** Measured by the new command, exactly one trade passes all three on a South Division `D2`: the **labourers**, taking a second roof, on the same conservative reading that has refused it seven times before. The `D1` on lot 3 passes for the labourers as a first roof of its own kind and is adopted. The `C2`, both `H` roofs and the `D6` pass for no trade at all — the grocers hold the `C2` family in this division but their count is capped by a roof target rather than stated as a floor, and the boarding-house keepers hold `H1` and `H2` only in the North Division."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its twelfth platted block, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **314 → 322** against the 665-roof target; **343 remain, 5 of them on ground the project has coverage for** (was 13). Inferred households move 98 → 99 and inferred persons 110 → 111; one more anonymous roof stops being anonymous. The eight roofs ship as **flagged placeholder GLBs** — no Blender runs on the improve runner — so their massing is the archetype's until the nightly bake reaches them. **The tenth K20 measurement is 12 of 110** carried-over invented persons renamed, against 61-of-108 at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Eight measurements now span 7 % to 72 % with nothing fixed or broken between them, and this is the second-lowest. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 111. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Anything that states what stood on Randolph or Washington Street between Clark and Dearborn in July 1835 — a directory, an assessment roll, a fire-insurance sheet — bounds the arrangement above, and the block facing the courthouse across Clark Street is likelier than most to have left such a record. Until then the family mix here is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_clark_*.inferred_1835.position`, `recon_1835_blk_randolph_clark_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L107",
+      "title": "The town's public square was being offered to invented houses, and two documented ones were already standing on it",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the block bounded by Randolph, Clark, Washington and LaSalle — **the public square** — is withdrawn from the buildable town. It is no longer subdivided into lots, it is dealt no roofs by the 665-roof programme, a recipe naming it is refused by name, and a gate fails if anything stands on it that the reservation does not permit. Three structures are permitted and stay exactly where they are: the **estray pen** on the square's south-west corner, the **log jail** on its north-west, and the **first Cook County court-house**. Two are not, and have moved: **both of John Wright's buildings to let**, which were standing on the square and are now on the Randolph Street frontage of the two blocks directly across Randolph from it."
+        },
+        {
+          "label": "Why",
+          "text": "the plat module subdivides every block it can build into four lots to a face, because that is what the Thompson module says a block is. It has no way to ask whether a particular block was ever offered in lots, and `tools/reconcile_665.py` reads its output as the ground available to the town. So the square arrived in the schedule as eight ordinary lots with four free, and was dealt an `A1`, a `D3`, a `D4` and a `D5` — four invented private roofs on ground the county was using. ROADMAP T-A16 claimed it as an ordinary block parcel and could not build it. **THE RESERVATION IS INFERRED AND THE BLOCK'S IDENTITY IS NOT.** Andreas names this block *the square* and *the court-house square* and puts three of the county's own buildings on it: the estray pen, Chicago's first public building, on its south-west corner in March 1833; the log jail on its north-west corner in the fall of 1833; the first Cook County court-house in 1835. This project's own ground control labels its corners in the same words — `data/traces/gcp/wright_1834_gcps.json` marks LaSalle and Randolph *NW corner of the Public Square block*. What is **inferred** is the consequence: that the ground was not for sale, and that no anonymous dwelling may be scheduled onto it. No source this project holds says in terms that the block was reserved from sale, so the grade is the middle tier and the reasoning is written down instead — a block carrying the county's pound, jail and court-house is ground the county is using; the same dossier's own reading of the rest of it is *open, unimproved, fenced or unfenced prairie block*; and the one further period description of it reached is water: *\"Our public Square was then a pond, where the Indians had trapped the muskrat, and where the first settlers hunted ducks.\"* Three readings from three directions and not one of them is a house. **THE POND IS DOCUMENTED AND IS NOT MODELLED.** The terrain carries no standing water on this block and the marsh flora zone is a buffer of the mapped water, so the square renders as dry prairie with three public buildings on it. That is a second false statement about the same ground, smaller than the one being fixed and not fixed here; it is opened as ROADMAP T-E5 rather than closed quietly. **THE OLD PLACEMENT PASSED EVERY GATE THIS PROJECT HAD, WHICH IS THE FINDING.** The two Wright cottages were put in *\"the South Division band the recipes use for ordinary dwellings\"* and that band ran straight across the square. Their placement was tested for clearance from other buildings, for its own lot lines, for the platted roadway and for buildable ground — every question this project knew how to ask about a position, and not one of them was whether the ground was for sale. They stood there from the day the household layer landed. L106, written the day before this entry, describes the square as the block \"which carries the Cook County courthouse, both Wright buildings to let and the estray pen\" and reads straight past it. **WHERE THEY WENT, AND BY WHAT RULE.** Each building takes the nearest free platted lot that no committed block recipe has already spoken for — the recipes name their open lots and say why, and taking one would rewrite a parcel that has already landed. Under that rule building *a* moves **83 m** to lot 7 of `blk_lake_wells` and building *b* **69 m** to lot 7 of `blk_lake_lasalle`, both on the Randolph Street frontage, facing the square they were wrongly standing on. The coordinates are computed from the committed lot polygons through the same lot frame and 5.0 m setback that places every anonymous roof in the town, not typed. **What is still invented is everything that was invented before**: the block, the lot, the setback — and now also that the two buildings stood near each other at all. The earlier record placed them together; the ground to keep them on one block was 200 m further away and faced two different streets, so the pair is split and the split is stated rather than the distance being hidden behind a better-sounding sentence. One advertisement offering two buildings was never a statement that they shared a holding."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town loses four scheduled roofs from ground it should never have been offered. Standing roofs are unchanged at **322**; **343 remain, 1 of them on ground the project has coverage for** (was 5), because the square held four of the five. The reserved block is reported in the schedule as `platted_block_reserved` / `state: reserved` rather than as `at_capacity`, which would have been a claim that the square was built out — the opposite of what the evidence says. The plat grid drops from 152 lots to **144**: eight conjectural lot lines this project had drawn across public ground are withdrawn with the reservation, and `lots_per_face_withheld` records what the module would have drawn so the withdrawal is visible rather than looking like a block the generator failed on. **The eleventh K20 measurement is 0 of 111** carried-over invented persons renamed, against 12-of-110 at T-A15, 61-of-108 at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. It is zero for a structural reason rather than a lucky one — this parcel inserts and removes no person, so the allocator has nothing to shift — which is the first evidence in nine measurements about **what** perturbs it. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any statement of the square's tenure — a canal commissioners' plat text, a county record, a deed or an assessment roll — would move this reservation from `inferred` to `attested` or refute it outright, and a refutation is welcome: the file is authored data, the withdrawal is one entry, and `tools/measure_reserved_ground.py` prints what would change. Anything that gives either Wright building a street or a corner retires the placement half entirely. Until then the square is empty of private roofs because the evidence says it was public ground, and the positions of the two cottages remain claimed by the entry that has always claimed them rather than by this one."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L108",
+      "title": "A quarter of the modelled land was federal ground or a sand bar, and nothing refused a house on either",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "two grounds outside the plat are withdrawn from the buildable town. The **United States Reservation** — the 75.69-acre military reservation east of State Street — and the **sand bar across the river mouth** take no roof of the 665-roof programme's anonymous infill. Seventeen structure records stand on them and every one keeps its place: the fort's stockade, parade and eleven buildings, the garrison garden, the 1832 lighthouse, Col. Jean Baptiste Beaubien's homestead and barn, and the south pier, which touches both because a pier run out from a shore through a bar does. Nothing moved and nothing was deleted. The refusal is authored in `data/reconstruction/1835_no_build_ground.json`, enforced in `tools/generate_block_infill.py`, and gated by `tools/measure_no_build_ground.py --gate` as a step of `tools/check.sh`."
+        },
+        {
+          "label": "Why",
+          "text": "the infill generators test a placement for clearance from its neighbours, for its own lot lines, for the platted roadway, for modelled terrain and for relief. Not one of those five asks whether the ground was ever open to a private builder. L107 found that hole inside the plat two parcels ago; outside the plat it is larger, and nobody had measured it. **32.10 ha of the 121.18 ha of modelled land standing above the water surface in this scene — 26.5 % of it — is the reservation (22.57 ha) or the bar (9.53 ha).** Every gate this project had would have let an invented dwelling for an invented household stand on any of it. **THE REFUSAL IS DOCUMENTED AND THE BOUNDARY IS INFERRED, and they are graded separately because they are not the same claim.** Andreas I, scan p. 183 gives the reservation as 75.69 acres, the southwest fractional quarter of Section 10, T39N R14E. It was unplatted in 1835 — the August 1833 town order has South Water Street pitched only *from the United States Reservation to Randolph Street* — and State Street was the town's own eastern boundary on the south side, with the reservation beyond it. It was federal ground under an active claim on the scene date: Beaubien's pre-emption certificate for the whole of it is dated 1835-05-28 and was recorded 1835-06-26 at $94.61, about five weeks old on 1835-07-01. Ground the United States has not sold, that carries no street and no lot line, is not ground on which to invent a dwelling. The bar needs no argument beyond what it is, and the committed trace already declines to claim any elevation for it at all: *a bar is a surface a few feet of lake stage moves, no source gives its height.* **THE INVENTION IS THE BOUNDARY, AND IT IS DERIVED RATHER THAN DRAWN.** Not one vertex is authored. The reservation's west and south sides are the two survey lines of the fractional quarter, resolved from a single committed control point — `wright_1834_gcps.json` G1, State & Madison, whose own note has said since the datum work that it is the *PLSS section corner: sections 9/10/15/16* and that *Madison's line continues east as the reservation's south boundary* — carried on the plat's east-west bearing, which Lake, Randolph and Washington agree on to the sixth decimal. Its third side is the committed waterline whose own name in the trace is *the Fort Dearborn reservation's lake shore*. The bar is the committed `bar` polygon, unmodified. The tool re-derives all of it on every `check.sh`, the same discipline `data/datum.json` is held to. **AND THE DERIVED POLYGON DOES NOT AGREE WITH THE DOCUMENTED ACREAGE, WHICH IS RECORDED RATHER THAN TUNED AWAY: 65.70 acres against Andreas's 75.69, 13.2 % short.** Three candidate causes and not one of them measured — a fractional quarter is surveyed to the lake's meander line, which lies east of the 1834 waterline and encloses the water of the old southward channel; the traced shore carries +/-20 m because it is drafted off a cadastral plat; and the shore trace's own note says it leaves its window south of Madison. **So the polygon is a floor, not the reservation**, and the honest consequence is stated as an assertion rather than a hope: no cell of the committed heightfield standing above the water surface, east of the west line, north of Madison and south of the main stem, falls outside the two polygons. The count is **zero**, it is re-counted on every `check.sh`, and it is the assertion that will fail when T-E3 extends the terrain past the traced shore."
+        },
+        {
+          "label": "Consequence",
+          "text": "no invented roof stands anywhere it would not have stood, because none was there to move — the gate lands green on the day it is written. Every recipe so far has been keyed to a platted block and the reservation was never platted, so the ground was spared by the order the work happened in rather than by any rule. What the parcel removes is an answer that was never available: the 177 roofs the schedule holds in `south_plat_beyond_committed_control` wait on street control reaching east of State and south of Washington, and the ground immediately east of State is not coming at any date."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a survey plat of the reservation, or the Book of Original Entry, would move the boundary from `inferred` toward the acreage it is 13.2 % short of and would say where the meander line ran. A source stating in terms what the reservation permitted would settle the permission list. The refusal itself is unlikely to move; the boundary is what wants better evidence."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L109",
+      "title": "Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_blk_randolph_dearborn_d1_04",
+        "recon_1835_blk_randolph_dearborn_d3_01"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_dearborn_d1_04",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_dearborn_d3_01",
+          "phase": null,
+          "aspect": "occupants"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or regraded.** The roofs' presence, position and footprint were invented before the adoption and are invented after it; what each gains is an argued occupant instead of a blank. This is the backfill the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the last block of this parcel shape to be asked the question. **The block was measured rather than remembered, which is the only reason the next paragraph exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5, and — as at eight blocks before this one — a \"second roof\" for each of the two trades: the D4 on lot 6 for the carpenters and the D2 on lot 5 for the labourers. **WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already houses the trade in, and its third whether the roof's division is. The layer houses trades in (family, division) PAIRS, and the rule states in its own text that *the three tests are independent* — so the two tests read the two projections of that table, and a roof can pass on a family taken out of one division and a division taken out of another family. Both second roofs are exactly that: - one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen carpenters this layer houses in the **South** Division live in a D3; - four labouring households live in a D2, and all four stand in the **North** or the **West**; all eleven labourers this layer houses in the **South** Division live in a D1. `tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family, division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1 narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28 has been collecting evidence on since T-A9. **The liberty admitted here is that this project has been refusing something it never measured.** Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not one of them checked that the layer had ever housed that trade in that family in that division, and none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the conservative reading gave the same answer either way, which is luck rather than method. **AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports and gates nothing; K28 decides, with both facts committed."
+        },
+        {
+          "label": "Consequence",
+          "text": "104 anonymous roofs now carry an argued occupant rather than 102, and the town holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn (L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition is a hypothesis and not a person, and that the roof itself is still an invention. **The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110 at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every `name_basis` kept its pool citation, and `check.sh` re-derives all 113."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same evidence the block itself wants — parcel-level tax, deed or assessment records naming who held and occupied these lots on Randolph or Washington between Dearborn and State in July 1835. A named occupant replaces an inferred one; it never adds a household to the census."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_dearborn_d1_04.occupants`, `recon_1835_blk_randolph_dearborn_d3_01.occupants`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L110",
+      "title": "A building taken out of the town, and the three public roofs that are all of them there were",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the first Cook County court-house **no longer stands in the 1835 scene**. Its record is kept and re-dated rather than deleted — `documented_range` opens 1835-10-01 instead of 1835-01-01, so it resolves into 1836 and not into this scene — and 331 structures are included where 332 were. Nothing else moved: no coordinate, no footprint, no dimension and no confidence grade, and the town's roof ledger is unchanged because the physical-roof reconciliation had already given this record a roof count of zero on the same suspicion this entry settles. **This is the first record this project has taken OUT of a scene on evidence, and the removal is the honest direction.** The record modelled the court-house as complete on 1 July 1835 under a note saying in as many words that no source fixed a month and that a building finished somewhere in a twelve-month window is about half likely to be finished by 1 July. It reasoned well from what it had. What it had was a **caption**: its Andreas citation pointed at \"a section headed 'THE FIRST COURT-HOUSE.' at scan p. 373\", and scan p. 373 is a plate, the words printed under \"Copyright secured by A. T. Andreas, 1884.\" The narrative is four scan pages earlier and fixes the season, and the chronology fixes the month at November, and a third passage has the county Recorder moving his office into \"the new building recently erected by the county on the public square\" toward the end of October. Three statements, none earlier than the fall. **The dataset had already contradicted itself about this for four days and no gate reads the two files together.** The physical-roof reconciliation gave the record `roof_count: 0` on 2026-08-12 — *\"Production chronology places construction in fall 1835; no courthouse roof should stand on 1 July\"* — one day after the structure record was committed standing it on the square, and the walkthrough's own release notes told visitors about *\"a courthouse that was not built until the autumn\"* while the walkthrough drew it. The reconciliation was right and cites nothing; the record was wrong and cites a caption. **What is admitted here is a year of a visitor seeing a building that was not there**, on the most looked-at block in the town — the public square carries the pen, the jail and, until today, a court-house — and the reason nothing caught it is worth more than the correction. Every gate this project had asked whether a building was inside its lot, clear of the roadway, on permitted ground and clear of its neighbours. The one that asks whether it existed yet is the date gate, and the date gate can only be as good as the range on the record. A range authored from a caption passes it perfectly. **Two further claims are now attested and are deliberately NOT applied.** Andreas gives the court-house the **north-east corner** of the square, in the same sentence that dates it, which refutes this record's own stated undercut that the north-east description belonged to the 1837 building; and he gives it as **brick**, against the record's invented plank and the reasoning that brick is excluded before 1837 — a claim that is about the first brick *house* and not about a county building. Both are recorded on the record as amendments and neither changes a graded value, because a changed form value stales the placeholder mesh and geometry belongs to the nightly bake. An upgrade made in the same commit as the correction that took the building off screen would also be a promotion nobody could see. They belong to the parcel that re-bakes it. **The scope claim, stated so it can be disagreed with.** The enumeration behind this entry — `docs/RESEARCH/civic_public_buildings_1835.md` — is that Chicago's public buildings with a roof on 1 July 1835 are **three**: the log jail, the council house and the lighthouse. The estray pen is public and roofless. Everything else a visitor might expect is either later (the court-house, the engine house, the market house, the custom house) or was a public FUNCTION carried on inside a private building (the post office, the United States Land Office, the county's own offices until late October 1835). That is a claim about completeness drawn from one book, and one book is how this project knows most of what it knows about 1835. A new source can add a building. What it may not do is add an anonymous one: `tools/measure_institutional_claims.py` now refuses, absolutely, any invented roof typed into the worship or civic families, and holds the schools at the one anonymous roof L93 already records."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor standing on the public square in this scene sees the jail and the pen and open ground where the court-house was, which is what the sources describe, and the walkthrough's researched-exclusions panel gains three guards — the land office, the custom house and the town hall — saying why the town's most conspicuous public functions have no building. The programme still schedules six I3 roofs and every generator still refuses them; three of those six are now known to be a count of nothing, and correcting the number is an owner decision recorded as ROADMAP T-I3(b), because the two ways of correcting it are two different claims about how many roofs the town had."
+        },
+        {
+          "label": "How to resolve",
+          "text": "for the court-house, a month rather than a season — a contract, a commissioners' minute or a newspaper notice — and the bake that applies its attested corner and fabric. For the enumeration, any source naming a public building this list does not have; it arrives as a named record, never as a slot."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L113",
+      "title": "Six researched plants are handed to no renderer at all, and the woody layer draws no flower",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "six of the 154 species records in `data/flora/` reach **no reader**, and three recorded July inflorescences on records that *are* read draw **no flower**. Nothing is deleted and no grade moves — every one of them stays committed, cited and shipped to the browser. The omission is recorded here, and `tools/measure_flora_reach.py` holds all three populations exact so none of them can grow quietly (ROADMAP **K44**). **What a visitor does not see.** Four are the lakeshore's woody scrub — **eastern cottonwood, quaking aspen, balsam poplar and sandbar willow**, three of them graded `attested` off the Michigan Natural Features Inventory's open-dune survey and Cowles 1901 — and the zone's own `reads_as` sentence promises them in as many words: *\"a scrub of sand cherry and leaning cottonwood\"*. The sand cherry is drawn and the cottonwood is not. Two are the riverbank's vines, **riverbank grape and Virginia creeper**, whose `vine_drape` form the manifest publishes in `forms_unimplemented` — that one is a stated gap rather than a silent one, and it is recorded here because a published list of unimplemented forms is a note to a programmer, not to a visitor. The three flowerless records are the **American basswood in bloom** (its record: *\"pale flower clusters on their strap bracts, heavily bee-worked\"*, colour and size both written down), the **ironwood in fruit**, and the grape. **Why, and it is a routing rule rather than a decision anybody made.** `renderers/web/js/flora.js` draws five of the manifest's seven roles and fifteen of its forms, over every zone. `renderers/web/js/trees.js` draws the other two roles, five forms, and **four of the ten zones** — a `TIMBER_ZONES` list written when the woody records lived only in the timber communities, which `z08_lakeshore` was never added to. Neither file is wrong on its own terms; the gap is between them, and it is invisible from either. It is also invisible from the read-set that was supposed to catch exactly this: K42 measured which FIGURES a renderer reads, and every figure these records carry is read — on somebody else's record. **Consequence, stated so a reader can weigh it.** Wherever the lakeshore community is planted it is planted without its trees — bare sand, marram and sand cherry — which is a claim about the dune this project's own dossier does not make. (Whether that community reaches modelled ground at all today is a separate open question, ROADMAP K42 finding 4b; this entry is about what happens when it does.) In the timber, July's most conspicuous bloom is missing: a basswood in flower is what the record describes and the drawn tree is plain foliage. And the same routing has one more visible edge — a plant's `common` name and its July `appearance` sentence are read by `trees.js` alone, so of 154 plant records the **30** woody ones can be named to a visitor and the **124** herbaceous ones cannot. **What this entry does NOT admit, because the measurement refuted it.** K42 reported that *\"31 flowering plants record the fruit they carry in July, which nothing draws\"*, and ROADMAP K43 was opened to record that omission here. It is not owed. **29 of the 31 are drawn**, in the fruit's own recorded colour, shape, size and height on the plant — the cattail's brown spadix, the dogwood's white berry cluster, the iris's green capsule — because a fruiting head is drawn from `july.inflorescence` exactly as a flowering one is. What no renderer reads is the **boolean** `inflorescence.fruit`, which `tools/validate.py` requires whenever `phenology` is `fruiting` and which is therefore the one part of that record already implied by another field. The two exceptions are the grape and the ironwood, and both are in the paragraph above for a different reason than the one K42 gave."
+        },
+        {
+          "label": "How to resolve",
+          "text": "three separate repairs, none of them a bake. Add `z08_lakeshore` to `TIMBER_ZONES` and the four dune records are drawn by the archetypes that already exist. Give `trees.js` a head path and the basswood and the ironwood get the flower and the fruit their records describe. The vines need a `vine_drape` archetype, which is a renderer parcel of real size. Each of the three is a line this entry can be moved to **Resolved** for, and the gate will demand the bank be updated in the same commit. **CORRECTION, 2026-08-16 (ROADMAP K45(a)) — the first of those three repairs is wrong, and the paragraph above is kept verbatim because it was believed when it was written.** Adding `z08_lakeshore` to `TIMBER_ZONES` draws **zero** stems. That list is a **species table**: `trees.js` reads those zone files for height, crown width, July foliage, density and confidence, and then places from a hand-written `COMMUNITIES` mix — a zone's `extent` is read by `flora.js` and never by `trees.js`. Two of the four dune records (`populus_deltoides`, `salix_interior`) already take their spec from `z05_riverbank_timber` and the loader is first-zone-wins; the other two (`populus_tremuloides`, `populus_balsamifera`) are in no mix, so `pick()` can never return them. The real repair is a **dune community with a placement rule** plus the woody planter's square carried east over the ground it stands on — ROADMAP **K45(b)**, and see **L114** for the two omissions that measurement exposed. Nothing in the entry above about what a visitor does not see has changed; only the sentence about how to fix it."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16. **PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(c)) — the second of the three repairs is done, and it was one step short of what this entry said it was.** `trees.js` has a head path now, and the **American basswood in bloom** and the **ironwood in fruit** are drawn from their own records: `tools/measure_flora_reach.py` banks **one** headless flower where it banked three, and the remaining one is the grape, whose `vine_drape` form is still unimplemented and which was never this repair's. What the sentence above got wrong is the size of it — handing `trees.js` `flora.js`'s own `HEAD_OF_SHAPE` verbatim draws `cluster_terminal`'s **1 to 4** heads, a count calibrated for a forb whose whole plant is one flowering scape, and four 3-pixel specks on a 580-pixel crown is not a tree in flower. The multiplicity that makes it one is **L115**. The first repair remains refuted (K45(a)) and the third — the vines — is untouched."
+        }
+      ]
+    },
+    {
+      "id": "L114",
+      "title": "A researched tree that no mix can choose, and three quarters of the modelled ground the timber layer has never visited",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "two omissions in the woody layer stay exactly as they are, and are recorded here rather than repaired, because both repairs are renderer parcels with their own smoke and their own questions (ROADMAP **K45(a)**, which measured them, and **K45(b)**, which is the fix). **What a visitor does not see, one.** `data/flora/zones/z05_riverbank_timber.json` carries the **American sycamore** — *Platanus occidentalis*, graded `inferred` off McBride & Bowles, with `density_per_ha` **[1, 3]**, a July height of 18–25 m, a crown of 12–18 m, and its appearance written down: *\"Rare, at its northern edge; white mottled bark flashing on the upper limbs.\"* Its form is `tree_gallery`, which has an archetype. `trees.js` receives the record, builds a render spec from it — and **no community mix holds the species**, so `pick()` can never return it and not one sycamore stands in the scene. It is the only one of the **20** routed, archetyped woody species in that position. The white bark the record describes is the most conspicuous thing about the tree and it is nowhere in the frame. **What a visitor does not see, two.** The woody planting loop sweeps a **fixed square**, E/N −316..+316 m, while the heightfield S2e carried east runs **E −320..+1700, N −400..+400**. Of the 192,844 heightfield nodes standing above the planter's own dry floor, **52,163 — 27.05 % — are inside that square and 140,681 are outside it: 87.9 ha of modelled dry land on which the timber layer has never placed a stem.** `flora.js` builds its lattice around the camera and follows the visitor over all of it, so a visitor who walks east leaves the trees behind at a line nothing draws and keeps the grass. That is a claim about the ground east of the town — that it carried no woody plant at all — which this project's own dossier does not make; `z08_lakeshore`'s box begins 1,084 m east of the planter's edge and describes *\"a scrub of sand cherry and leaning cottonwood\"*. **Why, and it is one cause with two faces.** `trees.js` was written when the modelled ground was a 640 m square and the woody records lived in the communities around the town, so a fixed sweep and a hand-written mix were both the whole of the world. The ground has since grown to four times the area and the dataset to 154 species records, and neither literal moved with them. Nothing caught it because every gate this project had asks a question one step short: `tools/validate.py` asks whether a record is well formed, K42 asks whether a figure is read by any renderer file, and K44 asks whether the record reaches a reader. All three say yes about the sycamore. **Consequence, stated so a reader can weigh it.** The town's timber is right where it is drawn — this is not a claim that the gallery is wrong. What is unstated is the negative: the scene asserts by omission that 87.9 ha carries no tree, and that the floodplain wood holds nine species when its own record holds ten. Both are omissions rather than inventions, which is why they are here and not a confidence downgrade: no attribute is overstated, and nothing in `data/` moved."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the sycamore is a one-line mix entry weighted at the density its own record carries, and it changes the frame, so it belongs to a parcel that runs the smoke — not to the measurement that found it. The 87.9 ha needs the planting loop's square carried out to the heightfield's own extent AND a community that can stand on dune sand, because the classifier the loop already has would read the beach as gallery bank and plant silver maple on it. ROADMAP **K45(b)** holds both. `tools/measure_planting_reach.py` banks both populations exactly, so neither can grow quietly and a repair has to un-bank itself in the commit that makes it."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16. **PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(b1)) — the sycamore is in the gallery, and the sentence above about how to weight it was the only part of this entry that needed correcting.** `['platanus_occidentalis', 2]` is in `COMMUNITIES.gallery.mix`, so the routed-archetyped-and- selected-by-nothing population is **0 of 20** where it was 1, and the floodplain wood holds the ten species its own record holds. *\"Weighted at the density its own record carries\"* is right and K45(b)'s own worked line — `['platanus_occidentalis', 1]` — is not: 1 is the bottom of the recorded `[1, 3]` band and **2** is its midpoint, which is the figure `trees.js` would have used whatever was written, because **the literal beside a species id is a fallback**. `mixes` is rebuilt at load as `records.density[id] ?? fallback` and `records.density` is the band's midpoint from the first `TIMBER_ZONES` entry naming the species. **Seventeen of the twenty-six mix entries are written to one number and place stems at another**; all twenty-six are banked in pairs now, and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about this entry. Half two of this entry — the **87.9 ha** — is untouched and stands."
+        }
+      ]
+    },
+    {
+      "id": "L118",
+      "title": "The sycamore's pale limbs are two invented colours, and the mottling is still not drawn",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the American sycamore is drawn in **two bark tones that no source states** — a pale grey-brown bole and a cream-white upper bole and limb set — because the one thing its record singles the species out for is a colour, and until now the tree was drawn in the American elm's dark brown (**L116**, resolved by the same parcel, ROADMAP **K47**). Both hexes are inventions of this project. So is every other bark, foliage and ground colour in `renderers/web/js/trees.js`; what makes this one worth its own entry is that it is **conspicuous** — the palest wood in the scene, and the first thing a visitor will notice on that stretch of river. **What bounds the invention, and it is three things rather than taste.** 1. **The record fixes the direction and the place.** `data/flora/zones/z05_riverbank_timber.json` reads *\"Rare, at its northern edge; white mottled bark flashing on the upper limbs.\"* Pale, and **upper** — a sycamore's lower bole is the brown scaly half, which is why one tone would have been the wrong repair even in the right colour. 2. **This file's own barks fix the range.** The eighteen bark constants standing before this run span `0x332e26` (black oak) to `0x6a6355` (white oak). The sycamore's bole is `0x7a7263` — just past the palest of them, because the species is pale wood all over — and its limbs `0xd9d3c2`, far outside that range on purpose, since *being the palest thing in the timber* is the whole of what the record's sentence describes. 3. **Warm off-white, not white.** A pure `0xffffff` limb reads as painted rather than as bark, and the scene's other woods are all warm greys, so the cream is desaturated toward them. **What is still NOT drawn, stated plainly because the record's word is \"mottled\".** The tone break is between the bole and the limbs — one colour each — and the **mottling itself, the patchwork of cream against olive and grey within a single limb, is not drawn at all.** That needs a second material or a vertex-colour break inside one stem, which is R-W2b/R-W2c territory. A visitor can now identify the sycamore across the floodplain, which is what the sentence is about; a visitor standing under one sees a plain pale limb rather than a piebald one. **Consequence, stated so a reader can weigh it.** Nothing in `data/` moved and no attribute was regraded: the tree's presence, height, crown and July foliage remain the record's, and the colours were never a data attribute — no record in `data/flora/` carries a bark colour at all. The sycamore stands at 1–3 per hectare on the gallery bank, so this is a handful of stems, not a repainted wood."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source stating either colour, or the mottling drawn as a break within the limb. Until then the two hexes stay this project's, and `renderers/web/js/trees.js` says so at the entry that carries them."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
       "id": "L40",
       "title": "Two thirds of the town stands on ground that has not been built",
       "section": "resolved",
@@ -9368,6 +9854,152 @@
         {
           "label": "Resolved",
           "text": "2026-08-10 — the mesh shows two bents, so this entry moves here, and not before, which is what the Revised line above said it was waiting for. `pier_spacing_m` is gone from the record and from the archetype: `pier_count: 2, documented` replaces it, `pier_kind` is `bent`, and `bridge_timber` builds four heavy logs under a cap at each of them. The parameter changed rather than the number, because a spacing is a builder's convenience nobody would remember and a count is what a user of a bridge does. **What this entry admitted is discharged and what it did not is now L31**: the letter gives two bents and never says where along the span they stood, so the positions are still the archetype's, and the tint still cannot say so. The sentence in **Consequence** about the true bay count being \"smaller than fifteen by an unknown margin\" turned out to be true in the wrong direction and by a factor of five."
+        }
+      ]
+    },
+    {
+      "id": "L111",
+      "title": "Every invented resident is called something else today, and nothing about any of them changed",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "all **113** reconstructed residents in `data/residents/` were re-drawn from the same name pools under a new allocation rule, so **113 of 113 invented names changed** across **101 household files** — and with them the household display names, which follow their head's surname. No person, household, roof, coordinate, grade, source citation or `name_basis` note moved. This entry exists because a reader who knew this town yesterday will not recognise a single invented name in it today, and that deserves a stated reason rather than a diff."
+        },
+        {
+          "label": "Why",
+          "text": "`tools/generate_inferred_names.py` dealt each community-and-sex pool round **by index**, so a name was a function of how many people sorted ahead of you and one new household rewrote up to **73 of 113** names as a side effect — measured across 240 synthetic insertions by the instrument this parcel commits, against the 17-to-72 range eleven parcels had reported in passing (ROADMAP **K20**). The rewrite buried each parcel's real additions inside its own noise. The allocator is now insertion-local — worst case **10**, and **1** in the buckets whose pools have room — and moving to it is a one-time rename of the whole layer, which K20 said from the start it would be. **What is and is not invented here.** The names were already invented and are still invented, to exactly the same degree and out of exactly the same pools: seeded from the 76 **attested** residents this project holds, cited on every record, graded `reconstructed`, and carrying the note that says THE NAME IS INVENTED and that the person is a hypothesis about a count and not anybody. A different invented name is the same claim about the same nobody, which is why this entry admits a **change of labels and no new liberty** — nothing here is a fact about Chicago that was not equally absent before. **One thing did get better rather than merely different.** The old rule welded each person's given name to their surname through a shared index; unwelding them let two people draw the same pair, and the first run of the new rule produced **two Alvah Hastings** — two invented residents who were the same person. That is now refused outright, and all 113 full names are distinct, which was true by accident before and is true by assertion now. **The residual, stated so nobody reads it as a fix that failed.** The surname pools are **2.03×** oversubscribed in this layer's four large buckets — 36 surnames dealt to 73 men — so a surname is used two or three times and a newcomer must displace somebody. Widening the pools is evidence work (more named 1835 Chicagoans out of Andreas and the census rolls), not a tuning knob, and until it happens the churn floor is the pool's and not the allocator's."
+        },
+        {
+          "label": "How to resolve",
+          "text": "nothing here is resolvable by evidence, because nothing here claims anything. The layer stops being invented one household at a time, as named occupants replace inferred ones — which is the resolution L83 and L84 already state. This entry discharges no `Covers:` claim, deliberately. It admits a change of labels, and the inventions those labels sit on are already covered by **L83** and **L84**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L112",
+      "title": "The rate at which a drawing may grow this census is a convention, and it is one roof per trade per block",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "method rule 6 of `data/reconstruction/1835_inferred_household_programme.json` gained a fourth clause on 2026-08-16 (ROADMAP **K28**): a block parcel may adopt **at most one anonymous roof per trade**, however many of that trade's families the schedule happens to deal it. No household, roof, coordinate, grade or source citation moved — all **21** block adoptions standing that day already obeyed it — so this entry admits a **rule** rather than a change to the town. **Why it is a liberty at all.** Nothing in any source says a Chicago trade acquired one household per city block, and nothing could: the block is an artefact of **this project's own drawing order** — the sequence in which ROADMAP's T-A parcels happen to fill the plat — not a unit anybody in 1835 would recognise. The cap therefore ties the growth rate of an invented layer to an arbitrary grid. The same two roofs dealt to two blocks would both have been adopted, and under this clause the same two roofs on one block yield one household. **That asymmetry is invented.** **Why it was adopted anyway, stated so a reader can disagree with it.** The alternative is no cap, and then the granularity of the plat sets the rate at which this census grows — a block of eight dwellings could raise the labourers by three in an afternoon because a schedule that knows nothing about the census happened to deal three of their families. Rule 6 opens by forbidding exactly that: the trade mix is a claim about the TOWN and not about what has been drawn. Given a choice between an arbitrary rate and an arbitrary rate **set by the drawing**, the clause takes the first and writes it down. It is also the counterweight to the permissive half of the same decision — K28 kept rule 6's tests as two projections of the housing table rather than narrowing them to pairs, which widens *which* roofs are eligible, and the cap is what bounds *how fast* any of them may move a count. **What it costs, named rather than left for a reader to find.** A trade that could honestly have taken two roofs on one block takes one, and the second household waits for the next block instead of being refused outright — so the cap **delays** rather than **denies**, and the layer is slightly smaller at any given moment than an uncapped reading would make it. Nine block parcels between T-A9 and T-A3h had already applied it by hand and recorded the refusal each time, so this clause changes the future and not the past."
+        },
+        {
+          "label": "How to resolve",
+          "text": "by evidence about the trades rather than about the blocks. The cap exists because the census's counts are argued from the town's building rate and documented volumes, which is a loose enough instrument that a drawing could out-run it. A trade whose count is pinned to a documented figure needs no cap at all, because its ceiling is real; the clause becomes dead letter for every trade that gets one. This entry discharges no `Covers:` claim, deliberately. It admits a method convention governing how many invented households exist, which is the kind of decision the header of this file says does not live in any single attribute. The inventions the convention paces are already covered by **L83**, **L84**, **L99**, **L100** and **L101**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L115",
+      "title": "How many flowers a tree carries, which no record states",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the number of inflorescences drawn on a woody stem is **invented**, keyed to that tree's own recorded crown width at 1.6 heads per metre and clamped to 6–26. The record's `july.inflorescence.size_m` — the size of ONE inflorescence — is used exactly as written, and so are its colour and its `height_frac`. Only the multiplicity is this project's (ROADMAP **K45(c)**, `renderers/web/js/trees.js` → `WOODY_HEAD_OF_SHAPE`). **Why nothing else was possible.** `data/flora/` gives the density of PLANTS per hectare and the size of one inflorescence, and says nothing anywhere about how many a plant carries. That is the same gap `flora.js` records in **L35** for the herbaceous layer, and it is a gap in the sources rather than in the transcription: the dossiers behind these records are a presettlement land survey and a regional vegetation reconstruction, neither of which counts flowers. **Why it is not simply L35's number.** `flora.js` keys its count to the plant's architecture and lands `cluster_terminal` on **1 to 4**, which is right for a forb — the whole plant is one flowering scape. On a basswood it is wrong by orders of magnitude in the direction that matters, and the arithmetic is the reason rather than the judgement: the record's own 0.06–0.12 m cluster at the 23 m slant range of a neighbouring crown (11 m up, 20 m out) subtends 0.0039 rad, which is **3.3 px** at the renderer's 833 px per radian. The crown carrying it is 10–16 m across, which is **580 px** at the same range. Four 3-px specks on a 580-px crown is four pixels of noise, and it would have satisfied every gate this project has while drawing, to a visitor, nothing at all. **What it costs, named.** A basswood's 13 m crown lands on 21 heads and an ironwood's 5.5 m crown on 9. A real basswood in full bloom carries very many more than 21 cymes, so this is an **under**-statement of the bloom and not an over-statement — chosen in that direction because the alternative is a pale cap over the whole crown, at which point the tree stops reading as a tree in flower and starts reading as a tree of a different colour. Both ends of the clamp are legibility decisions, not botany, and they are written as constants (`HEADS_MIN`, `HEADS_MAX`) so a reader can find them. On the build this was recorded against the whole invention amounts to **187 heads on 14 stems**, 1,496 of the timber layer's 113,890 triangles, and **no new draw call**. **What it does NOT invent.** The size, the colour, the height on the plant and whether a head is drawn at all all come from the record. The July gate is CONTRACT.md §5.4 rule 1 and refuses a head on a `vegetative` or `budding` record however many the count would allow — the woody layer had no July gate before this (K44), because `july.phenology` was read by `flora.js` alone. **And the honest limit, which is not about the count.** The two flowering species are both in the `mesic_pocket` community, which is **20 of 159 stems**, and every one of the 14 flowering stems stands north of N +174 m. **The nearest committed scene anchor is 269 m away** — `south_water` — at which range one inflorescence is **0.28 px**. A visitor who walks north-east will stand under a flowering basswood; a visitor who stays at any anchor the project itself poses will never see one. That is a fact about where the mesic pocket falls on the modelled ground, not about this liberty, and it is written down here so nobody re-derives it from a screenshot. `tools/measure_head_reach.mjs` re-runs the whole table."
+        },
+        {
+          "label": "How to resolve",
+          "text": "by evidence about the flower rather than about the renderer. A count in a source — a phenological note, a bee-forage estimate, anything that states how many cymes a mature basswood carries — replaces the constant outright, and the clamp with it. This entry discharges no `Covers:` claim, deliberately. It admits a **drawing convention** that governs how many inflorescences appear on a `role: tree` record drawn by `renderers/web/js/trees.js`, which is the kind of decision the header of this file says does not live in any single attribute — no record's confidence changes and no attribute is graded by it. Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the omission this resolves half of."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L116",
+      "title": "The American sycamore is drawn as an American elm from the bark outwards",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with **`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band, its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and its confidence come from its own record, as they do for every species. It is the only placed species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks that fact by name, exactly, in both directions. **What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber` singles the species out for is its bark: *\"Rare, at its northern edge; **white mottled bark flashing on the upper limbs**.\"* That sentence is the reason a sycamore is identifiable at 200 m in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor looking for a sycamore cannot find one by looking. **Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind these records are a presettlement land survey and a regional vegetation reconstruction, and neither states a colour. Choosing a hex for \"white mottled\" is a straightforward invention, and it is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry would put a highly visible guess into the frame on the authority of nobody. The substitution is recorded here instead, where it can be read. **Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only its trunk is another species'. That is an omission plus a substitution, not an overstatement: no attribute is graded higher than its evidence and nothing in `data/` moved."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either sourced or recorded here as invented in its own right; the mottling itself would need a second material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are in the same queue for the same reason. When it lands, the entry has to leave `drawn_as_another_species` with `--update` in the same commit. Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other drawing convention in the same layer."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        },
+        {
+          "label": "Resolved",
+          "text": "2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the species is drawn with its own bole, taper, diameter band, puff count and bark, and `drawn_as_another_species` is empty where it held this one substitution. The **How to resolve** line above offered a choice — sourced, or recorded as invented — and there was never a source to find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the *mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed here."
+        }
+      ]
+    },
+    {
+      "id": "L117",
+      "title": "Three canopy weights the records do not carry, kept because no record can carry them",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "three of the twenty-six per-community canopy weights in `renderers/web/js/trees.js` sit **outside** the density band the zone record their own community cites, and they are kept as written rather than raised into the band. Since ROADMAP **K46** the written weight is the number that plants the stem, so each of these three is an ecological claim of this project's own. They are declared in their community's `departures` field, with the reason, and the renderer refuses to load an undeclared one. | entry | written | the band its community's zone records | what the number asserts | |---|---|---|---| | `gallery.mix.salix_amygdaloides` | 8 | z05 `[10, 25]` | the peachleaf willow is a bank tree: the gallery's two lists split ZONE 5's single band between them, 17 at the water's edge and 8 behind it | | `gallery.edgeMix.acer_saccharinum` | 8 | z05 `[15, 35]` | at the water's edge the mix goes to willow — the edge mix's own note, expressed as a weight, over ground ZONE 5 does not band separately | | `mesic_pocket.mix.ulmus_americana` | 12 | z06 `[40, 80]` | the elm is incidental in the fire-protected pocket, where the closing canopy is basswood, sugar maple and ironwood | **Why this is the honest form, and it is a fact about the DATASET rather than a preference.** The obvious repair is to key density by (zone, species) and let each community read the band from the zone its own `dossier` cites — which is what the file's comment has always claimed it did. It cannot be done: `wet_woods` cites **ZONE 6a** and `mesic_pocket` cites **ZONE 6b** and both resolve to the single record **`z06_dense_forest`**, whose elm band is the swamp thicket's reading. A zone-keyed density gives the elm 60 in both communities, and the 12 that makes it incidental in the pocket has nowhere in `data/` to live. The sub-community distinction is real, is recorded nowhere else in this project, and is the whole reason K46 kept the hand weights instead of deleting them. **Consequence, stated so a reader can weigh it.** All three departures are **downward** — measured across the twenty-six entries, 23 sit inside their own cited band, 3 fall below one and **none is above**. So the hand weights have never inflated a species beyond what a record supports; where they depart, they thin a species the record would have planted more of. Nothing in `data/` moved and no confidence grade changed: these are render weights, and every species' presence in its community remains the record's claim rather than this file's."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a sub-community band in the dataset — ZONE 6a, 6b and 6c banded apart in `data/flora/zones/`, and ZONE 5's gallery banded apart from its edge — at which point each of these three becomes a reading of a record and leaves this entry with `--update` in the same commit. That is a research parcel, not a renderer one, and the three numbers above are what it has to account for. Related: **L114** and **L116**, the other two liberties in this layer, and ROADMAP **K45(b1)**, which measured the divergence this entry resolves."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
+        }
+      ]
+    },
+    {
+      "id": "L119",
+      "title": "Fourteen invented plant footprints, because a cover cannot be counted without one",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-16",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "fourteen of the twenty-five sward records that ROADMAP **K49(c1)** gave a `width_m` carry a footprint **nothing states and nothing in this dataset implies** — what one drawn plant covers on the ground — and they are graded `reconstructed` in their own `width_provenance` rather than left absent. They are: *Persicaria coccinea*, *Lycopus americanus*, *Boehmeria cylindrica* (sedge meadow); *Allium canadense* (riverbank); *Laportea canadensis*, *Ageratina altissima*, *Osmorhiza claytonii* (dense forest); and *Poa pratensis*, *Chenopodium album*, *Amaranthus retroflexus*, *Ambrosia artemisiifolia*, *Xanthium strumarium*, *Rumex crispus*, *Verbena urticifolia* (the settled town's trampled halo). The other eleven are `inferred`: each is reasoned from a footprint this dataset already commits for a plant standing beside it in the same list. **What bounded the invention.** Every one of the fourteen is bounded by its own record's `height_m` and by the growth habit its dossier row states — a basal rosette is banded under a branched annual, a shade forb at 0.2–0.6 m tall is given a leaf spread near its own height, a sod-forming turf grass is given the halo's own height band because it has no clump at all. Not one is bounded by how the sward looks: no width here was chosen, tried or adjusted against a render. **Why the gap could not be left open, which is the whole reason this entry exists.** A record's abundance is one of three fields and they are not three spellings of one number: `stems_per_m2` and `density_per_ha` count plants, `cover_fraction` measures ground. The sward's placer deals SLOTS and a slot is one drawn plant, so a cover has to become a count before it can be dealt against a density, and `width_m` is the only thing in a record that converts it. Twenty-five records carried a cover and no width, so six of the twenty lists were dealing an area against a count — the dense forest's understory dealt 96.5 % of its slots that way. Leaving the widths absent was not the neutral option: it left the arithmetic wrong AND undocumented. **The honest consequence, stated because it is large.** The footprint is now the number that decides what a list is made of. In the six mixed lists the shares move by up to a factor of three on the conversion — June grass 8.1 % → 24.0 % of the sand prairie's matrix, wood nettle 1.1 % → 6.3 % of the forest floor — and for the fourteen above that movement rests on an invented figure. This is why they carry their own grade instead of the record's: the record's `confidence` grades what its sources say about the plant, and none of them says this."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a measured clump or canopy width for any of the fourteen, from a source this project can cite, replaces the number and re-grades that record's `width_provenance` with `--update`-style bookkeeping in the same commit. A dossier sentence that states a SPACING rather than a width would do it too, and is the better evidence — § ZONE 3's *\"tussocks … 0.5–1.0 m apart\"* is one this project already holds for a record it did not need it for. Related: **L114**, **L116** and **L118** in this layer, and ROADMAP **K49(c1)**, which measured the conversion these widths make possible."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-16."
         }
       ]
     }

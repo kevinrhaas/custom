@@ -24,6 +24,10 @@ const DEFAULT_SETTINGS = {
   // It lives here so a visitor can raise it for comfort without the project
   // quietly restating the average height of an 1830s adult as something else.
   speed: 1.45, eyeHeight: 1.68, fov: 72, quality: 1.5,
+  // R-A1. The road-legibility aid is OFF by default and off is the frame that
+  // shipped before it existed. It is a viewing accommodation, not an
+  // alternative reconstruction — see streets.js § R-A1 and ROADMAP R-A1.
+  roadAid: 0,
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
   // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
   detail: '',
@@ -355,6 +359,13 @@ export function createHud({
   const paintEye = wireRange('s-eye', 'v-eye', 'eyeHeight',
     (v) => `${formatStature(v, settings.units)}${Math.abs(v - 1.68) < 0.01 ? ' — period eye level' : ''}`);
   wireRange('s-fov', 'v-fov', 'fov', (v) => `${Math.round(v)}°`);
+  // R-A1, and it copies the eye-height precedent for the same reason: the
+  // default position is the one the evidence and R-BUG3's measurement put
+  // there, so the readout names it rather than showing a bare zero. Moving off
+  // it is then a visible choice about your screen, not a silent drift into a
+  // different claim about the town.
+  wireRange('s-road-aid', 'v-road-aid', 'roadAid',
+    (v) => (v <= 0 ? 'Off — the roads as recorded' : `+${Math.round(v * 100)}%`));
 
   const units = $('s-units');
   if (units) {

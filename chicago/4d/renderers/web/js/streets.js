@@ -108,6 +108,44 @@ const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
  * scaling. Nothing in `data/` moves, no recorded cover changes, and the mean
  * coverage the record states is still what the picture shows at the distance
  * where a mixture is what a pixel means. Recorded in `docs/LIBERTIES.md`.
+ *
+ * ---------------------------------------------------------------------------
+ * R-A1 — THE ACCESSIBILITY AID, AND WHY IT IS ALLOWED TO EXIST.
+ *
+ * A user control that boosts road contrast converts a defect into a preference
+ * and takes the pressure off fixing the default, which is why this was
+ * deliberately deferred on 2026-08-14. It ships now because R-BUG3 made the
+ * default correct on 2026-08-15: the near band scores 3.1 L\* of a measured
+ * ceiling of 3.4 on mobile. The aid is layered ON a correct default; it is not
+ * a substitute for one, and it must never be allowed to retire R-W2's textured
+ * coverage, which is the honest fix for the ceiling itself.
+ *
+ * What it is: a viewing accommodation, like the units toggle. Contrast
+ * sensitivity varies and a phone screen in sunlight is brutal — which is the
+ * exact condition R-BUG3 was reported from. It is NOT a claim about how visible
+ * an 1835 street was, and nothing in `data/` moves when it is used.
+ *
+ * THE DEFAULT IS OFF AND OFF IS ARITHMETICALLY THE OLD SHADER. `uRoadAid` is 0
+ * unless a visitor moves the slider, and at 0 the two lines below reduce to
+ * `min(a * 1.0, MAX_ALPHA)` — which is the statement that was already there.
+ * That is the K24 constraint inherited whole: `tools/critic_shots.mjs`,
+ * `tools/light_probe.mjs` and every band in `smoke_renderer.mjs` measure the
+ * default, so a gate must not be passable by moving this control. The smoke
+ * asserts all three halves of that — the uniform reads 0 with no stored
+ * preference, raising it CHANGES the frame, and dropping it back restores the
+ * frame — because a control that does not reach the render reports "no effect"
+ * for the same reason a broken thermometer reports a steady temperature
+ * (R-BUG1's `--no-sun-shadow`).
+ *
+ * WHAT IT COSTS AT MAXIMUM, stated rather than buried. `AID_GAIN` is
+ * `1 / 0.24`: 0.24 is the faintest body alpha any surface authors (a lightly
+ * worn track at its crown), so at full aid the faintest road reaches opaque —
+ * which is exactly the ceiling R-BUG3 measured by forcing the near probes
+ * opaque. Below maximum the gain is a scale and the graded > worn > light
+ * ordering survives it, the same way it survives `NEAR_GAIN`. AT maximum every
+ * surface saturates and that ordering is gone: the aid has stopped depicting a
+ * modelled attribute and is drawing a road you can follow. That is the point of
+ * it, and it is why the readout names the default rather than only a number.
  */
 const MIN_TRACK_PX = 2.0;
 const MAX_THIN_BOOST = 6.0;
@@ -115,6 +153,9 @@ const MAX_ALPHA = 0.92;
 const NEAR_FULL_M = 15.0;
 const NEAR_FADE_M = 40.0;
 const NEAR_GAIN = 2.4;
+// R-A1. The faintest authored body alpha is 0.28 - 0.04 = 0.24 (light worn
+// earth at the crown); this takes that one surface to opaque at full aid.
+const AID_GAIN = 1 / 0.24;
 
 function pointSegment(e, n, a, b) {
   const dx = b[0] - a[0];
@@ -307,7 +348,7 @@ function roadTexture(surface) {
   return texture;
 }
 
-function meshOf(surface, buf, confidence) {
+function meshOf(surface, buf, confidence, aidUniform) {
   if (!buf.idx.length) return null;
   const geo = new THREE.BufferGeometry();
   geo.name = `streets-${surface}`;
@@ -349,7 +390,8 @@ function meshOf(surface, buf, confidence) {
   // sync, and correct under any field of view. Set BEFORE confidence.patch(),
   // which chains whatever it finds here rather than replacing it.
   mat.onBeforeCompile = (shader) => {
-    shader.fragmentShader = shader.fragmentShader.replace(
+    shader.uniforms.uRoadAid = aidUniform;
+    shader.fragmentShader = `uniform float uRoadAid;\n${shader.fragmentShader}`.replace(
       '#include <map_fragment>',
       `#include <map_fragment>
       {
@@ -363,6 +405,15 @@ function meshOf(surface, buf, confidence) {
         float near = 1.0 - smoothstep(${NEAR_FULL_M.toFixed(1)}, ${NEAR_FADE_M.toFixed(1)}, eyeM);
         float gain = mix(1.0, ${NEAR_GAIN.toFixed(2)}, near);
         diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
+        // R-A1, and it is LAST on purpose: the aid scales whatever the
+        // recorded surface and the two fixes above arrived at, so it can never
+        // change which road is fainter than which. At uRoadAid == 0 this is
+        // min(a * 1.0, ${MAX_ALPHA.toFixed(2)}) — the line immediately above,
+        // re-applied — so the default frame is the frame that shipped before
+        // the control existed.
+        diffuseColor.a = min(
+          diffuseColor.a * mix(1.0, ${AID_GAIN.toFixed(4)}, uRoadAid),
+          mix(${MAX_ALPHA.toFixed(2)}, 1.0, uRoadAid));
       }`,
     );
   };
@@ -383,8 +434,11 @@ export function createStreets({ terrain, records = [], confidence = null } = {})
   const buffers = new Map();
   for (const record of prepared) addRecord(buffers, record, terrain);
   const resources = [];
+  // R-A1. One uniform object shared by every surface's material, so the aid
+  // cannot end up applied to the graded tracks and not the worn ones.
+  const aidUniform = { value: 0 };
   for (const [surface, buf] of buffers) {
-    const built = meshOf(surface, buf, confidence);
+    const built = meshOf(surface, buf, confidence, aidUniform);
     if (!built) continue;
     group.add(built.mesh);
     resources.push(built);
@@ -449,6 +503,18 @@ export function createStreets({ terrain, records = [], confidence = null } = {})
     status,
     hitsAt,
     blocksGrowth,
+    /**
+     * R-A1. The road-legibility aid, 0 (off, the default) to 1 (the faintest
+     * surface opaque). A uniform, so it costs no recompile and takes effect on
+     * the next frame; the gates read `legibilityAid` to prove it is 0 when
+     * nobody has touched it.
+     */
+    setLegibilityAid(v) {
+      const next = Math.max(0, Math.min(1, Number(v) || 0));
+      aidUniform.value = next;
+      return next;
+    },
+    get legibilityAid() { return aidUniform.value; },
     dispose() {
       for (const r of resources) {
         r.geo.dispose();

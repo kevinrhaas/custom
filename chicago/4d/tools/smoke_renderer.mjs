@@ -152,6 +152,23 @@ const TYPES = {
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
+
+/**
+ * ROADMAP R-BUG5 — the bodies of far timber whose authored polyline crosses
+ * water, read from the same file `tools/measure_far_timber.py` writes rather
+ * than restated here.
+ *
+ * Two readers of one number: the Python censuses `data/terrain/…/heightfield.bin`
+ * and this censuses the mask the browser loaded off the published mirror. They
+ * must agree, and importing the baseline is what makes disagreement a failure
+ * instead of a discrepancy nobody compares.
+ */
+const FAR_TIMBER_BANKED_BY_ID = Object.fromEntries(
+  Object.entries(JSON.parse(
+    fs.readFileSync(path.join(HERE, 'far_timber_baseline.json'), 'utf8'),
+  ).bodies).map(([id, entry]) => [id, entry.wet]),
+);
+const FAR_TIMBER_BANKED = Object.keys(FAR_TIMBER_BANKED_BY_ID);
 /**
  * R-M1a — THE TWO NUMBERS THE BARS ABOVE CANNOT SEE, MEASURED AND NOT YET GATED.
  *
@@ -212,6 +229,26 @@ const ROAD_STATIONS = [
 ];
 const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
+// R-A1. How much of the frame the aid has to move at full strength before this
+// gate believes the control reaches the render at all.
+//
+// THE GRID IS THE MEASUREMENT AND IT WAS TAKEN, NOT ASSUMED. The 12² signature
+// the confidence view is graded on is the wrong instrument for this one, and
+// the first run said so: at `lake_market` the roadway is about a tenth of the
+// frame, so a whole-frame cell averages the aid away to a worst of 2 counts
+// against a restored residual of 0 — a real signal with no headroom to gate on.
+// A finer grid concentrates road pixels into cells that are mostly road without
+// changing what is being measured. Mobile 390×780, published mirror, full aid:
+//
+//   48²  mean 0.26, worst 6      12²  mean 0.29, worst 2
+//   restored residual, 48²:  mean 0.00, worst 0
+//
+// The floors below sit a third under the measured 48² figures and four counts
+// above the residual, so "the aid changed the frame" and "the aid changed
+// nothing" cannot both be true. Both grids are printed; only 48² is gated.
+const ROAD_AID_GRID = 48;
+const ROAD_AID_MIN_WORST = 4;
+const ROAD_AID_MIN_MEAN = 0.15;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
 async function roadContrast(page, station) {
@@ -441,6 +478,11 @@ async function roadContrast(page, station) {
       // is on screen and invisible fails here instead of quietly leaving the
       // sample; `nBare` is what tells occlusion apart from flatness, which is
       // the distinction three gates in a row failed to draw.
+      //
+      // R-M1c: `nBare` is now also what `perceptible` is SCORED on. See its
+      // box below — it was a diagnostic for two parcels before anything
+      // divided by it, and the score it replaced could be raised by planting
+      // a tree in front of a road.
       nProjected: inBand.length,
       nBare: inBand.filter((p) => markedBare(p.x, p.y)).length,
       // The ceiling: the same probes with the ribbon forced opaque. It says how
@@ -457,7 +499,40 @@ async function roadContrast(page, station) {
       weber: median(wb),
       weberN: wb.length,
       groundL: median(gl),
-      perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
+      /**
+       * ROADMAP R-M1c. THE DENOMINATOR IS `nBare`, NOT `seen`.
+       *
+       * This read `/ ds.length` — the probes the marker pass could see THROUGH
+       * the vegetation — until 2026-08-16. That makes the score go UP when
+       * something stands in front of a faint stretch of road, because the
+       * stretch leaves the sample instead of failing in it. **A gate that
+       * improves when an occluder hides the thing it measures is dividing by
+       * the wrong number**, and this one did, for as long as it has existed.
+       *
+       * The instrument to fix it was already here and already printing. The
+       * `shotMF` pass hides the sward and the trees for exactly this reason and
+       * its own comment says so: *"a road that is ON SCREEN and COVERED BY
+       * VEGETATION, which the marked-only denominator drops instead of
+       * failing."* It was built as a diagnostic and never wired to the score.
+       *
+       * `nBare` is the right denominator rather than `nProjected` because a
+       * road behind a STORE is a road a visitor legitimately cannot see, and
+       * demanding it read would be demanding X-ray vision. Vegetation is
+       * different: it is ours, it moves when we change it, and it must not be
+       * able to launder a faint road out of the sample. `seen ⊆ bare` always,
+       * so this can only ever LOWER a score — it is not a route through a bar.
+       *
+       * Measured on one band across three builds the same evening, where
+       * `seen` swung 157→177→163 and the old score swung 62 %→54 %→59 %
+       * (aerial, 250–600 m: wood mirrored, wood repaired by R-BUG5b, wood
+       * widened by K45(b2)). `nBare` was **182 in all three**, and this score
+       * reads **53.3 / 52.7 / 52.7 %**. The town did not change by eight
+       * points three times; the sample did.
+       */
+      perceptible: (() => {
+        const nBare = inBand.filter((p) => markedBare(p.x, p.y)).length;
+        return nBare ? ds.filter((d) => d >= 2).length / nBare : 0;
+      })(),
       gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };
   });
@@ -1180,8 +1255,41 @@ const terrainLoad = await page.evaluate(() => {
       && ev(/Wau-Bun/).limits.length === 0,
       `Wright ${JSON.stringify(ev(/Wright/).limits)} · `
       + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).limits)}`);
-    check(`${label}: popup links the research dossier`,
-      /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
+    // --- the dossier link, which is a link and not a string ----------------
+    // The assertion this replaces tested `picked.text` for the path, and it
+    // passed on every run for months while every one of the 332 cards linked to
+    // a 404: `publish.sh` leaves `docs/` out of the payload by design, so a
+    // path relative to the walkthrough resolved in the source tree and nowhere a
+    // visitor stands (ROADMAP K26). The text was right the whole time. So this
+    // reads the HREF the card actually offers, and asserts it leaves the site —
+    // that is the property, because nothing served from this origin can satisfy
+    // it. And the discriminating case beside it: a record whose dossier nobody
+    // has written must offer no link at all rather than a plausible one.
+    const dossier = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const a = [...document.querySelectorAll('#popup a')]
+          .find((el) => /docs\/RESEARCH\//.test(el.getAttribute('href') ?? ''));
+        return {
+          href: a?.href ?? '',
+          offSite: !!a && new URL(a.href).origin !== window.location.origin,
+          text: document.getElementById('popup')?.textContent ?? '',
+        };
+      };
+      return { linked: read('sauganash_hotel'), unwritten: read('temple_building') };
+    });
+    check(`${label}: the card's dossier link leaves the payload it is not in`,
+      dossier.linked.offSite
+      && /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/blob\//.test(dossier.linked.href)
+      && dossier.linked.href.endsWith('/chicago/4d/docs/RESEARCH/sauganash_hotel.md'),
+      `href ${dossier.linked.href || '(none)'} · offSite ${dossier.linked.offSite}`);
+    check(`${label}: a building with no dossier written offers no dossier link`,
+      !dossier.unwritten.href && /no dossier written/.test(dossier.unwritten.text),
+      `href ${dossier.unwritten.href || '(none)'} · `
+      + `${dossier.unwritten.text.slice(-160)}`);
+
+    // Restore the card the assertions after this one are written against.
+    await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
 
     // --- what the chip cannot say: whether you are looking at it -----------
     // A confidence chip grades the evidence. It says nothing about whether the
@@ -2349,6 +2457,24 @@ const terrainLoad = await page.evaluate(() => {
         drownedTreeStations: drownedTreeStations.length,
         lowestTreeStation, waterY,
         treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
+        // ROADMAP R-BUG5. The population both woody checks above are blind to:
+        // `stations` is written only inside the near-field planter's 632 m
+        // square, so the five FAR_TIMBER bodies drawn as a horizon silhouette
+        // have never been asked where they stand. Measured against the mask the
+        // BROWSER loaded, not the one in data/ — tools/measure_far_timber.py
+        // asks the committed bytes and this project has twice shipped a bug
+        // living exactly in that gap.
+        farTimberWater: a.trees.farTimberWater?.() ?? null,
+        // ...and the clip that keeps them off the screen, exercised. The band is
+        // solved around the camera, so this stands far enough back that
+        // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
+        // it: from the spawn point it is 329 m away and one metre inside the
+        // near cut-off, which is a green gate that has run nothing.
+        horizonWetSkipped: (() => {
+          a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
+          a.step();
+          return a.trees.stats?.horizonWetSkipped ?? null;
+        })(),
         anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
         worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
@@ -2380,6 +2506,8 @@ const terrainLoad = await page.evaluate(() => {
     // test from "enough probes were SEEN" to "enough probes were PROJECTED" —
     // under the old test a band nobody can see reports n=0 and gates itself
     // out, which is indistinguishable from a band with no road in it.
+    // R-M1c finished that argument one level down: the band's SCORE divided by
+    // `seen` too, so an occluder raised it. It divides by `nBare` now.
     for (const station of ROAD_STATIONS) {
       const road = await roadContrast(page, { id: station.id, kind: station.kind });
       const bands = road.bands.filter((b) => b.gated);
@@ -2388,7 +2516,7 @@ const terrainLoad = await page.evaluate(() => {
       const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
         + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
           : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-            + `${(b.perceptible * 100).toFixed(0)} % perceptible, `
+            + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
             // R-M1a. Both halves of the owner's ruling, measured beside the bar
             // they are going to join: Weber says how distinguishable the road
             // is whatever the exposure, groundL says whether there is light to
@@ -2401,6 +2529,61 @@ const terrainLoad = await page.evaluate(() => {
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
     }
+
+    // --- R-A1, the road-legibility aid, and the three things it owes --------
+    //
+    // The aid is a viewing accommodation. Every band printed above measures the
+    // DEFAULT, and the whole reason this control was deferred for two days is
+    // that a preference which boosts road contrast can quietly become a way to
+    // launder a failing gate. So the aid owes three assertions and they are
+    // taken HERE, standing at `lake_market` where the bands were just read:
+    //
+    //   1. it is OFF with no stored preference — so every number above, and
+    //      every figure `critic_shots.mjs` and `light_probe.mjs` take, is the
+    //      recorded surface and not a visitor's dial;
+    //   2. raising it CHANGES the frame — because a control that reaches
+    //      nothing reports "no effect" for the same reason a broken thermometer
+    //      reports a steady temperature. R-BUG1's `--no-sun-shadow` cleared a
+    //      suspect it never touched; the instrument is proved before it is
+    //      quoted, not after;
+    //   3. dropping it back RESTORES the frame — which is what makes 1 and 2
+    //      compatible: the aid's existence changes no default.
+    const aidAtBoot = await page.evaluate(() => window.__chicago4d.roadAid);
+    check(`${label}: the road-legibility aid is off unless a visitor moves it`,
+      aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
+    const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
+    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
+    const dAid = signatureDistance(aidOff, aidOn);
+    const dAid12 = signatureDistance(aidOff12, aidOn12);
+    await page.evaluate(() => window.__chicago4d.setRoadAid(0));
+    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const dAidBack = signatureDistance(aidOff, aidBack);
+    const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+
+    check(`${label}: raising the road-legibility aid reaches the render`,
+      aidSet === 1 && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
+      `set to ${aidSet}: cell delta mean ${dAid.mean?.toFixed(2)}, `
+      + `worst ${dAid.worst} (need worst>=${ROAD_AID_MIN_WORST}, `
+      + `mean>=${ROAD_AID_MIN_MEAN})`);
+    // With the clock held these are two captures of one unchanged scene, so an
+    // aid that left anything behind shows up as a residual the sway cannot
+    // explain. Same tolerance the confidence view is held to, for the same
+    // reason: it is readback noise, not weather.
+    check(`${label}: dropping the road-legibility aid restores the default frame`,
+      aidRestored === 0 && dAidBack.mean <= 0.1 && dAidBack.worst <= 3,
+      `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dAidBack.worst}`);
+    console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
+      + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
+      + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
+      + `${dAidBack.worst}`);
+
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
     // band the tree solver builds around the camera — from 175 m up there is no
@@ -2440,6 +2623,160 @@ const terrainLoad = await page.evaluate(() => {
       `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
+
+    /**
+     * ROADMAP R-BUG5b — IS THE WOOD ON THE SCREEN THE WOOD THE STATION LIST
+     * DESCRIBES? The question three green gates never asked.
+     *
+     * Every woody check this project had — the two above, and
+     * `tools/measure_far_timber.py` — walks `stations`, the list the planter
+     * writes at the moment it decides to plant. `stations` records the point
+     * that was TESTED. Nothing anywhere read the geometry back and asked where
+     * the tree was DRAWN, so a fault that separates the two was invisible to
+     * all of them at once, and one was: the planter handed its ENU north
+     * straight to `addTree`, which takes a three world z, and `enuToWorld` is
+     * `(e, y, -n)` — so the whole near-field wood was drawn mirrored across the
+     * datum's east-west line. 391 stations, 0 wet; 64 of the same 391 wet at
+     * their mirror; 10,734 vertices of timber standing over open water, the
+     * worst 48 m from the nearest dry ground. That is the owner's line of
+     * crowns across the channel, and it survived #196 because #196 fixed the
+     * horizon band, which is a different body of timber.
+     *
+     * So this reads the merged buffers back, converts each vertex to ENU with
+     * the project's own `worldToEnu` convention, and asks two things of it:
+     *
+     *   1. every vertex stands within a crown's reach of SOME station, and
+     *   2. no vertex stands over the water mask further than a bank willow can
+     *      lean out over it.
+     *
+     * (1) is the structural half and is what could never have passed through
+     * this bug: under the mirror the nearest station to a vertex is twice its
+     * own northing away. (2) is the picture half, in the terms the owner
+     * reported it. Neither may be relaxed into a test of the placement — that
+     * is the test that was already green.
+     */
+    const drawnWood = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const terrain = a.terrain;
+      const stations = a.trees.group.userData.stations ?? [];
+      // Nearest station, on a 24 m hash — wider than any crown, so the nine
+      // cells around a vertex always contain its own stem if it has one.
+      const CELL = 24;
+      const key = (e, n) => `${Math.round(e / CELL)},${Math.round(n / CELL)}`;
+      const grid = new Map();
+      for (const s of stations) {
+        const k = key(s.e, s.n);
+        if (!grid.has(k)) grid.set(k, []);
+        grid.get(k).push(s);
+      }
+      const nearestStation = (e, n) => {
+        let best = Infinity;
+        for (let de = -1; de <= 1; de++) {
+          for (let dn = -1; dn <= 1; dn++) {
+            for (const s of grid.get(key(e + de * CELL, n + dn * CELL)) ?? []) {
+              const d = Math.hypot(s.e - e, s.n - n);
+              if (d < best) best = d;
+            }
+          }
+        }
+        return best;
+      };
+      // How far a wet point stands from the nearest dry ground, by expanding
+      // rings. Bounded: past the last radius the answer is "further than this
+      // gate cares about", which is already a failure.
+      const RADII = [2, 4, 8, 12, 16, 24, 32, 48];
+      const shoreDist = (e, n) => {
+        for (const r of RADII) {
+          for (let k = 0; k < 16; k++) {
+            const t = (k / 16) * Math.PI * 2;
+            if (!terrain.isWater(e + Math.cos(t) * r, n + Math.sin(t) * r)) return r;
+          }
+        }
+        return 99;
+      };
+      let verts = 0;
+      let stray = 0;
+      let worstStray = 0;
+      let wet = 0;
+      let offshore = 0;
+      let worstOffshore = 0;
+      let worstOffshoreAt = null;
+      let meshes = 0;
+      a.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^timber__/.test(o.name)) return;
+        meshes++;
+        o.updateWorldMatrix(true, false);
+        const pos = o.geometry.getAttribute('position');
+        const m = o.matrixWorld.elements;
+        for (let i = 0; i < pos.count; i++) {
+          const vx = pos.getX(i);
+          const vy = pos.getY(i);
+          const vz = pos.getZ(i);
+          const x = m[0] * vx + m[4] * vy + m[8] * vz + m[12];
+          const z = m[2] * vx + m[6] * vy + m[10] * vz + m[14];
+          // terrain.js worldToEnu: e = x, n = -z. The convention this whole
+          // check exists because something else did not follow.
+          const e = x;
+          const n = -z;
+          verts++;
+          const d = nearestStation(e, n);
+          if (d > worstStray) worstStray = d;
+          if (d > 24) stray++;
+          if (!terrain.isWater(e, n)) continue;
+          wet++;
+          const s = shoreDist(e, n);
+          if (s > 12) {
+            offshore++;
+            if (s > worstOffshore) {
+              worstOffshore = s;
+              worstOffshoreAt = { e: +e.toFixed(1), n: +n.toFixed(1) };
+            }
+          }
+        }
+      });
+      return { meshes, stations: stations.length, verts, stray,
+        worstStray: Number.isFinite(worstStray) ? +worstStray.toFixed(1) : null,
+        wet, offshore, worstOffshore, worstOffshoreAt };
+    });
+    // 24 m is the reach of the widest crown this file draws plus its lean, and
+    // is deliberately generous: the fault being hunted is off by twice a
+    // northing — hundreds of metres — not by a branch.
+    check(`${label}: every tree drawn stands at its own station`,
+      drawnWood.meshes > 0 && drawnWood.verts > 1000 && drawnWood.stations > 10
+      && drawnWood.stray === 0,
+      `${drawnWood.stray} of ${drawnWood.verts} vertices further than 24 m from any of `
+      + `${drawnWood.stations} stations across ${drawnWood.meshes} merged meshes; `
+      + `worst ${drawnWood.worstStray} m`);
+    // 12 m is a bank willow leaning out over the channel, which the sources put
+    // there on purpose (`lean` in SPECIES, and TREE_DRY_MARGIN_M's box). Timber
+    // standing further out than that is timber in the river.
+    check(`${label}: no timber is drawn out in the channel`,
+      drawnWood.offshore === 0,
+      `${drawnWood.offshore} vertices over water more than 12 m from dry ground `
+      + `(${drawnWood.wet} over water at all); worst ${drawnWood.worstOffshore} m`
+      + (drawnWood.worstOffshoreAt
+        ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
+
+    // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
+    // above walk `stations`, which the near-field planter writes and which
+    // therefore describes a 632 m square; the owner's line of trees was four
+    // hundred metres out, in the FAR_TIMBER band, where neither check has ever
+    // looked. Both halves are asserted: the solver refused water on this build
+    // (a number that would be zero if the clip were removed OR if the run never
+    // stood far enough back to reach the belt), and the browser's own census
+    // agrees with what `tools/far_timber_baseline.json` banks — the mask the
+    // page loaded and the mask in `data/` being the same mask is exactly the
+    // R-BUG3c-class assumption that has cost this project two parcels.
+    const farTimberWet = (streetLayer.farTimberWater ?? [])
+      .filter((b) => b.wet > 0);
+    check(`${label}: the horizon band refuses to draw timber over water`,
+      streetLayer.horizonWetSkipped > 0
+      && farTimberWet.length === FAR_TIMBER_BANKED.length
+      && farTimberWet.every((b) => b.wet === FAR_TIMBER_BANKED_BY_ID[b.id]),
+      `${streetLayer.horizonWetSkipped} samples clipped at the mask; census `
+      + (farTimberWet.map((b) => `${b.id} ${b.wet}/${b.samples} wet, `
+        + `${b.worstDepthM.toFixed(3)} m deep`).join(' · ') || 'nothing in water')
+      + ` against banked ${JSON.stringify(FAR_TIMBER_BANKED_BY_ID)}`);
 
     // The horizon timber, in the two ways it was failing to read as timber.
     //
@@ -2502,6 +2839,245 @@ const terrainLoad = await page.evaluate(() => {
       Math.abs(horizon.pxPerRad - expectedPxPerRad) < expectedPxPerRad * 0.02,
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
+
+    // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
+    // missing. `tools/measure_planting_reach.py` proves a record can be
+    // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
+    // species: the American sycamore is recorded, archetyped, weighted, banded
+    // and gated, and stood NOWHERE in the scene — 0 of 163 stems. A census of
+    // what was planted only exists inside a running renderer, so this is a
+    // smoke assertion rather than a static scan.
+    //
+    // The bar is the draw's own two guarantees rather than a percentage, so a
+    // renderer that went back to an independent draw fails it on both counts:
+    // an independent draw overshoots freely (the gallery elm's 25/116 over 115
+    // stems has a standard deviation of 4.4 stems) and it loses the tail (the
+    // sycamore's 1.98 came out 0). Anti-vacuity: a census with no planted list,
+    // or a list with no species in it, reads as a failure and not as a pass.
+    const draws = await page.evaluate(() => (
+      window.__chicago4d.trees.stats.draws ?? []
+    ).map((d) => ({
+      community: d.community,
+      list: d.list,
+      stems: d.stems,
+      species: d.species.map((s) => ({ id: s.id, expected: s.expected, drawn: s.drawn })),
+    })));
+    const planted = draws.filter((d) => d.stems > 0);
+    const absent = [];
+    const over = [];
+    let worstOver = 0;
+    let worstUnder = 0;
+    for (const d of planted) {
+      for (const s of d.species) {
+        const where = `${d.community}.${d.list}.${s.id}`;
+        worstOver = Math.max(worstOver, s.drawn - s.expected);
+        worstUnder = Math.max(worstUnder, s.expected - s.drawn);
+        if (s.drawn === 0 && s.expected >= 1) absent.push(`${where} owed ${s.expected.toFixed(2)}`);
+        if (s.drawn - s.expected >= 1) over.push(`${where} ${s.drawn} for ${s.expected.toFixed(2)}`);
+      }
+    }
+    check(`${label}: every species the stand owes a stem to stands in it`,
+      planted.length >= 3 && planted.every((d) => d.species.length > 0)
+      && absent.length === 0 && over.length === 0,
+      `${planted.length} planted list(s), ${planted.reduce((t, d) => t + d.stems, 0)} stems, `
+      + `${planted.reduce((t, d) => t + d.species.length, 0)} weighted species; worst `
+      + `overshoot ${worstOver.toFixed(2)} stem(s), worst shortfall `
+      + `${worstUnder.toFixed(2)}`
+      + `${absent.length ? `; DRAWN NOWHERE: ${absent.join(', ')}` : ''}`
+      + `${over.length ? `; OVER BY A STEM: ${over.join(', ')}` : ''}`);
+    // The species this parcel exists for, named rather than left to the
+    // aggregate above: a gate that only reports a count would go green on the
+    // day the sycamore came back and say nothing about it.
+    const gallery = planted.find((d) => d.community === 'gallery' && d.list === 'mix');
+    const sycamore = gallery?.species.find((s) => s.id === 'platanus_occidentalis');
+    check(`${label}: the American sycamore stands on the riverbank`,
+      !!sycamore && sycamore.drawn >= 1,
+      sycamore
+        ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
+          + `${gallery.stems} in the gallery`
+        : 'no gallery mix census at all');
+
+    // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
+    //
+    // K48 built the census above for the woody stems, which are 36 of this
+    // project's 154 plant records. The other 118 are drawn by `flora.js` off
+    // the same shape of weighted draw and had never been counted at all. This
+    // counts them, and it reports what the count found rather than gating it,
+    // for the reason R-M1 splits a measurement from its bar: the repair needs a
+    // per-species footprint the dataset does not carry for 25 records, so a bar
+    // set today would either fail over unresearched data or be met with an
+    // invented number. K49(b) is the fix and closes `unconvertible` first.
+    //
+    // What IS gated is that the instrument works: every slot dealt is a slot
+    // attributed to a species, and it is counting a populated sward rather than
+    // an empty one.
+    const sward = await page.evaluate(() => {
+      const s = window.__chicago4d.flora.stats;
+      return {
+        abundance: s.abundance,
+        draws: (s.draws ?? []).map((d) => ({
+          community: d.community, list: d.list, drawn: d.drawn,
+          species: d.species.map((x) => ({
+            id: x.id, unit: x.unit, share: x.share, stems: x.stems,
+            expected: x.expected, drawn: x.drawn,
+          })),
+        })),
+      };
+    });
+    const dealt = sward.draws.filter((d) => d.drawn > 0);
+    const unattributed = sward.draws.filter(
+      (d) => d.species.reduce((t, x) => t + x.drawn, 0) !== d.drawn);
+    check(`${label}: every slot the sward deals is counted against a species`,
+      dealt.length >= 1 && unattributed.length === 0
+      && dealt.every((d) => d.species.length >= 1),
+      `${dealt.length} populated list(s) of ${sward.draws.length}, `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots dealt`
+      + `${unattributed.length ? `; UNATTRIBUTED in ${unattributed.map((d) => (
+        `${d.community}.${d.list}`)).join(', ')}` : ''}`);
+    // Reported, not gated — the two numbers K49(b) has to move.
+    const ab = sward.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
+    const swardAbsent = [];
+    for (const d of dealt) {
+      for (const x of d.species) {
+        if (x.drawn === 0 && x.expected >= 1) {
+          swardAbsent.push(`${d.community}.${d.list}.${x.id} owed ${x.expected.toFixed(2)}`);
+        }
+      }
+    }
+    console.log(`  note  ${label}: sward abundance — ${ab.mixed.length} of ${ab.lists} lists `
+      + `mix an area with a count${ab.mixed.length ? ` (${ab.mixed.map((m) => (
+        `${m.zone}.${m.list} ${(m.countedShare * 100).toFixed(1)}% of slots dealt off counts`
+      )).join('; ')})` : ''}`);
+    console.log(`  note  ${label}: ${ab.unconvertible.length} record(s) give cover with no `
+      + `width_m, so no count can be derived without inventing a footprint`
+      + `${ab.unconvertible.length ? `: ${ab.unconvertible.map((u) => (
+        `${u.zone}.${u.list}.${u.id}`)).join(', ')}` : ''}`);
+    // THE TAIL FIGURE HERE IS ABOUT THIS FRAME, AND THAT IS A WARNING LABEL
+    // RATHER THAN A CAVEAT. The sward is re-dealt per rebuild, so this answers
+    // for the community the gate is standing in — the settled town, 68 slots,
+    // one of ten — and from there it reads "0 absent". Run in every community
+    // by `tools/measure_sward_draw.mjs` the same census returns SIX species
+    // owed a whole plant and drawn nowhere, over 6,780 slots (ROADMAP K49(a)).
+    // Quote that tool for a claim about the dataset and this line for a claim
+    // about the gate's own frame. The two figures above are dataset-wide and do
+    // not move with the camera.
+    console.log(`  note  ${label}: sward tail — ${swardAbsent.length} species owed a whole slot `
+      + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
+      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
+        `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
+    // ROADMAP K49(f) — AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
+    //
+    // The paragraph above is the reason this exists: the tail figure it prints
+    // is honest and it is blind, because one station is one community of ten,
+    // and the ten do not share a species list. K49(d) handed the matrix lists a
+    // fixed grid of `u`, which put wild rice out of the marsh and the prickly
+    // pear off the sand prairie in the same commit — and this gate, standing in
+    // the settled town, read "0 absent" through all of it.
+    //
+    // It costs a page.evaluate and no frames: `flora.update` is handed a
+    // synthetic camera at a plantable point inside each community in turn, which
+    // is what `tools/measure_sward_draw.mjs` does and the same entry point the
+    // render loop uses. The camera is put back afterwards, so nothing downstream
+    // reads a sward dealt at the last station visited.
+    //
+    // The bar is ABSOLUTE and it is on the SCENE, not on a station: a species
+    // counts as absent only where no station drew it at all while some station's
+    // list owed it a whole slot. That is what "drawn nowhere" means, and the
+    // distinction is not pedantry — a list is read from more than one community
+    // (the wet prairie's is read at four stations), the ring is a few blocks
+    // across, and a species owed 1.2 slots in one ring can legitimately take
+    // both of them in the next one. The fault this gate exists for is not a
+    // station missing a plant; it is a plant that is nowhere. `expected` is the
+    // list's own recorded share of the slots dealt, so this asserts the deal
+    // against the record rather than against a baseline.
+    const everywhere = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      const wanted = a.flora.substrates().map((z) => z.id);
+      const spots = {};
+      for (let e = -900; e <= 1200 && Object.keys(spots).length < wanted.length; e += 6) {
+        for (let n = -700; n <= 700; n += 6) {
+          const z = a.flora.zoneAt(e, n);
+          if (z && !spots[z] && a.flora.plantableAt(e, n)) spots[z] = [e, n];
+        }
+      }
+      const started = a.detail;
+      const levels = [];
+      for (const level of a.detailOrder) {
+        await a.setDetail(level);
+        const rows = [];
+        for (const [zone, [e, n]] of Object.entries(spots)) {
+          const camera = {
+            getWorldPosition: (v) => { v.set(e, 1.7, -n); return v; },
+            getWorldDirection: (v) => { v.set(0, 0, -1); return v; },
+          };
+          a.flora.update(0.016, camera);
+          a.flora.update(0.016, camera);
+          for (const d of a.flora.stats.draws) {
+            if (d.drawn <= 0) continue;
+            rows.push({
+              at: zone,
+              community: d.community,
+              list: d.list,
+              drawn: d.drawn,
+              species: d.species.map((s) => ({
+                id: s.id, drawn: s.drawn, expected: s.expected,
+              })),
+            });
+          }
+        }
+        levels.push({ level, rows });
+      }
+      // Put the visitor's own detail level and the walker's own camera back
+      // before anything else reads either.
+      await a.setDetail(started);
+      if (a.camera) {
+        a.flora.update(0.016, a.camera);
+        a.flora.update(0.016, a.camera);
+      }
+      return { spots: Object.keys(spots), levels };
+    });
+    // Summed over every station, per (community, list, species) — the scene's
+    // answer, at one detail level.
+    const swardCensus = (rows) => {
+      const tally = new Map();
+      for (const r of rows) {
+        for (const s of r.species) {
+          const key = `${r.community}.${r.list}.${s.id}`;
+          const t = tally.get(key) ?? { drawn: 0, owed: 0, at: [] };
+          t.drawn += s.drawn;
+          t.owed = Math.max(t.owed, s.expected);
+          if (s.expected >= 1) t.at.push(r.at);
+          tally.set(key, t);
+        }
+      }
+      return {
+        pairs: tally.size,
+        lists: new Set(rows.map((r) => `${r.community}.${r.list}`)).size,
+        slots: rows.reduce((t, r) => t + r.drawn, 0),
+        nowhere: [...tally.entries()].filter(([, t]) => t.drawn === 0 && t.owed >= 1)
+          .map(([k, t]) => `${k} owed ${t.owed.toFixed(2)} at ${t.at.join('/')}`),
+      };
+    };
+    const censuses = everywhere.levels.map((l) => ({ level: l.level, ...swardCensus(l.rows) }));
+    const richest = censuses[0] ?? { pairs: 0, lists: 0, slots: 0, nowhere: ['no census taken'] };
+    check(`${label}: no sward species its own list owes a plant to is drawn nowhere, `
+      + `in ANY community`,
+      everywhere.spots.length >= 2 && richest.pairs >= 2 && richest.nowhere.length === 0,
+      `${everywhere.spots.length} communities stood in, ${richest.lists} populated list(s), `
+      + `${richest.pairs} (list, species) pairs, ${richest.slots} slots dealt at detail `
+      + `'${richest.level}'`
+      + `${richest.nowhere.length ? `; DRAWN NOWHERE: ${richest.nowhere.join(', ')}` : ''}`);
+    // Reported, not gated: the same census at the levels a visitor can turn the
+    // scene down to. THE RESIDUAL IS REAL AND IS NAMED RATHER THAN GATED AWAY —
+    // at 'light' the wet prairie's prairie dock, owed 1.09 of the 2,670 slots
+    // that level deals, can take none. It is the FORB layer, which K49(f) did
+    // not touch, and one plant either side of an expectation of 1.09 is a
+    // sample rather than an exclusion. Quote the gated line for a claim about
+    // the deal, and this one for a claim about what a phone on 'light' shows.
+    console.log(`  note  ${label}: sward census by detail — ${censuses.map((c) => (
+      `${c.level} ${c.slots} slots, ${c.nowhere.length} drawn nowhere`
+      + `${c.nowhere.length ? ` (${c.nowhere.join('; ')})` : ''}`)).join('  ·  ')}`);
 
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them
@@ -3576,9 +4152,22 @@ const terrainLoad = await page.evaluate(() => {
 
     // --- and the third category: researched, and still open -----------------
     // The exclusions answer "what did you find and leave out". They cannot hold
-    // a structure whose 1835 status nobody could settle — and one of those four
-    // is STANDING in the scene, so putting it on the not-here list would make
-    // that list false. It gets its own section and its own chip.
+    // a structure whose 1835 status nobody could settle — and two of those three
+    // are STANDING in the scene, so putting them on the not-here list would make
+    // that list false. They get their own section and their own chip.
+    //
+    // THE COURT-HOUSE WAS THE FOURTH AND IS NOT AN OPEN QUESTION ANY MORE
+    // (ROADMAP T-I3, 2026-08-16). Its question — "was it standing on 1 July
+    // 1835?" — is answered: Andreas dates it to the fall in three places, the
+    // record is re-dated, and it resolves into 1836 rather than into this scene.
+    // The entry was argued off the list, which is what that list's own doc says
+    // happens when the evidence arrives, so the expectations below moved from
+    // four entries to three. That is authored data changing under a gate, not an
+    // assertion being relaxed: every claim the court-house carried here is still
+    // claimed, of an entry that still needs it. The chip pair now runs the other
+    // way round as well — two standing against one unbuilt, where it was one
+    // against three — so the section is still held to discriminating between
+    // them rather than stamping one chip on everything.
     const open = await page.evaluate(() => {
       const mount = document.getElementById('uncertain');
       const entries = [...mount.querySelectorAll('details.uncertain')];
@@ -3594,7 +4183,7 @@ const terrainLoad = await page.evaluate(() => {
         rendered: entries.length,
         busy: mount.hasAttribute('aria-busy'),
         western: read(byName(/Western Hotel/)),
-        court: read(byName(/court-house/)),
+        cobweb: read(byName(/Cobweb Castle/)),
         caldwell: read(byName(/Caldwell/)),
         heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
           .replace(/\s+/g, ' '),
@@ -3609,16 +4198,16 @@ const terrainLoad = await page.evaluate(() => {
       };
     });
     check(`${label}: the open questions load`,
-      open.counted === 4 && !open.busy && open.rendered === open.counted,
+      open.counted === 3 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
-    // The discriminating pair, and it is the whole argument for the section: one
-    // of these four is a building the visitor can walk up to and three are empty
-    // ground. A section that stamped one chip on all four would have passed any
+    // The discriminating pair, and it is the whole argument for the section: two
+    // of these three are buildings the visitor can walk up to and one is empty
+    // ground. A section that stamped one chip on all three would have passed any
     // check for "there is a chip" — and would be lying about the Western Hotel.
-    check(`${label}: the standing one says it is standing and the unbuilt ones do not`,
+    check(`${label}: the standing ones say they are standing and the unbuilt one does not`,
       /standing here/.test(open.western.chip) && /inferred/.test(open.western.chip)
-      && open.court.chip === 'not built' && open.caldwell.chip === 'not built',
-      `western "${open.western.chip}" · court "${open.court.chip}"`);
+      && /standing here/.test(open.cobweb.chip) && open.caldwell.chip === 'not built',
+      `western "${open.western.chip}" · cobweb "${open.cobweb.chip}" · caldwell "${open.caldwell.chip}"`);
     // …and the doubt is not restated here in this section's own words. It names
     // the claim on the record that carries it, which is the same claim the
     // provenance card shows, so the two cannot drift.
@@ -3632,8 +4221,8 @@ const terrainLoad = await page.evaluate(() => {
     // naming one here would be inventing it.
     check(`${label}: an uncited open question says why it is uncited`,
       /No source record/i.test(open.caldwell.text)
-      && open.caldwell.cites.length === 0 && open.court.cites.length > 0,
-      `caldwell ${open.caldwell.cites.length} cite(s) · court ${open.court.cites.length}`);
+      && open.caldwell.cites.length === 0 && open.western.cites.length > 0,
+      `caldwell ${open.caldwell.cites.length} cite(s) · western ${open.western.cites.length}`);
     check(`${label}: the panel says what the third category is`,
       /still an open question/i.test(open.heading)
       && /standing in front of you/i.test(open.heading),
@@ -3936,6 +4525,39 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: the view from above renders`,
       aboveShot.mean > 12 && aboveShot.litFraction > 0.5,
       `mean luminance ${aboveShot.mean?.toFixed(1)}`);
+
+    // R-BUG1 — the near plane opens with altitude, and closes again on foot.
+    // The owner's flickering river edge is the depth buffer running out of
+    // numbers at range, and precision at range is bought with the near plane:
+    // at the fixed 0.1 m this camera used to carry, two surfaces 350 m away had
+    // to be 10 cm apart before the buffer could order them, and the waterline is
+    // co-planar with the ground BY DESIGN. The pixel-level gate is
+    // `tools/measure_river_edge.mjs --gate` (it costs three frames a station and
+    // does not belong in a suite this size); this pins the mechanism that gate
+    // depends on, in the run that happens every merge. It is structural, not a
+    // threshold: a walker's camera must not change, and an aerial one must.
+    const nearPlane = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      await a.capture(4);
+      const flying = { near: a.stats().cameraNear, alt: a.player.altitude };
+      a.goTo('sauganash');
+      await new Promise((r) => setTimeout(r, 400));
+      await a.capture(4);
+      const walking = { near: a.stats().cameraNear, alt: a.player.altitude };
+      // Put the visitor back in the air. The free-fly tests below inherit this
+      // state — `teleport` with an `altitude_m` lands a GROUNDED walker straight
+      // back down, so a check that leaves the scene on foot fails the next one.
+      a.goTo('from_above');
+      await new Promise((r) => setTimeout(r, 400));
+      await a.capture(4);
+      return { flying, walking };
+    });
+    check(`${label}: the near plane opens with altitude`,
+      nearPlane.flying.near >= 1 && nearPlane.flying.near <= 8,
+      `near ${nearPlane.flying.near} m at ${nearPlane.flying.alt?.toFixed(0)} m up`);
+    check(`${label}: on foot the near plane is the walking value`,
+      Math.abs(nearPlane.walking.near - 0.1) < 1e-6,
+      `near ${nearPlane.walking.near} m at ${nearPlane.walking.alt?.toFixed(2)} m up`);
 
 
 

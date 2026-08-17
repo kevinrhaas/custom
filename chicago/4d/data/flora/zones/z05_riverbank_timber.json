@@ -389,6 +389,12 @@
    "form": "sedge_tussock",
    "abundance": {"cover_fraction":[0.15,0.35]},
    "height_m": [0.3,0.7],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["chicagology_prefire273"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. The shore sedge here is an unresolved aggregate rather than a determination, so it is given the measured tussock's band widened downward to cover the finer shore species the aggregate may contain."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [82,110,58],
@@ -407,6 +413,12 @@
    "form": "forb_basal_scape",
    "abundance": {"cover_fraction":[0.01,0.04]},
    "height_m": [0.3,0.5],
+   "width_m": [0.08,0.15],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["chicagology_prefire273"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 5 gives wild garlic as \"patches on the sedge-grass shore\", 0.3-0.5 m tall, with an umbel of bulbils — Andreas's \"wild onions... among sedge grass\" — and no width. A single onion's basal leaf tuft is a decimetre-scale object whatever the scape's height, so 0.08-0.15 m. This is the smallest footprint in the sward and therefore the densest conversion; it is invented. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [104,134,76],

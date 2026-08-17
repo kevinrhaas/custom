@@ -1257,19 +1257,19 @@
     },
     {
       "dossier_zone": 14,
-      "why": "the slough from the public-square pond to the river at the foot of State Street is now INSIDE the box (its mouth is at about E +830). Deferred to ROADMAP S2e parcel (c), hydrology: its route is documented and its width and depth are conjectural, and cutting a conjectural channel through the block where the business district stands is a decision that belongs with the other watercourses, not smuggled in with the ground."
+      "why": "the slough from the public-square pond to the river at the foot of State Street is now INSIDE the box (its mouth is at about E +830). Deferred to ROADMAP S2e parcel (c), hydrology: its route is documented and its width and depth are conjectural, and cutting a conjectural channel through the block where the business district stands is a decision that belongs with the other watercourses, not smuggled in with the ground. DATED AT THE SCENE, AND THE SCENE ALREADY DRAWS THE BRIDGE OVER IT: the Slough Log Bridge stands on Water Street on 1835-07-01 and the source runs that crossing past 1840, so a visitor walks onto a timber crossing laid over open prairie. The date is inferred from the crossing, not from the watercourse — data/terrain/1835_intown_water_dating.json zone 14."
     },
     {
       "dossier_zone": 15,
-      "why": "the public-square pond (Randolph/Washington, Clark/LaSalle, about E +550) is inside the box now. Deferred to parcel (c) for the same reason: existence documented, geometry conjectural."
+      "why": "the public-square pond (Randolph/Washington, Clark/LaSalle, about E +550) is inside the box now. Deferred to parcel (c): existence documented, geometry conjectural. AND ITS DATE IS NOT ESTABLISHED, which is a different thing from its geometry and was never asked. The quotation dates nothing — 'was then a pond', a past tense set against an 1857 present, in a document this project records as built on Hubbard's Chicago of 1818 and Davis's 1832 drawing; the dossier row calls the pond SEASONAL and puts its water at 0.5-2 ft deep IN SPRING against a scene dated 1 July; and this project already stands the estray pen on the square's south-west corner from March 1832 and the log jail on its north-west corner from the fall of 1833. A pound is not built in a pond. Against all of that, the same page's slough sentence has the stream draining 'the pond' as a live feature. So the extent and the date are one question and neither is settled — data/terrain/1835_intown_water_dating.json zone 15."
     },
     {
       "dossier_zone": 16,
-      "why": "the Frog Pond at Lake and LaSalle (about E +480) is inside the box now. Deferred to parcel (c)."
+      "why": "the Frog Pond at Lake and LaSalle (about E +480) is inside the box now. Deferred to parcel (c). It is the only one of the four in-town waters with a day and a month on it, and the day is a year late: the Chicago American of 9 July 1836 complains of standing water inhabited by frogs at that corner. Same week of the same season, one year after the scene, and the step back to 1835 is an inference this project records as one — data/terrain/1835_intown_water_dating.json zone 16."
     },
     {
       "dossier_zone": 17,
-      "why": "the Wells Street marsh (about E +600) is inside the box now. Deferred to parcel (c)."
+      "why": "the Wells Street marsh (about E +600) is inside the box now. Deferred to parcel (c). It arrives in the same sentence as the slough and on the same terms — the stream drained 'the pond and the marsh extending up Wells Street' — so whatever dates the slough dates what the slough drains. What is missing here is the EXTENT and not the date: the dossier's own tag is 'documented qualitatively' and 'broad, ill-defined' is the whole of the geometry any source reached supplies — data/terrain/1835_intown_water_dating.json zone 17."
     },
     {
       "dossier_zone": 24,

@@ -38,6 +38,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 # as the dwellings and shops of inferred households (docs/ROADMAP.md K1). The link is
 # data, not a hand edit: this generator still re-derives every record byte for byte,
 # and the occupancy block arrives from the household programme's ledger.
+from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 
 OCCUPANCY = occupancy()
@@ -105,9 +106,29 @@ def finish_for(seq: int) -> tuple[str, str]:
     return key, paint
 
 
+def band_note(family: str) -> str:
+    """The sentence that defends every invented form value, and it is a source claim.
+
+    Kept in one place because K33 restricts where it may be attached, and a claim that
+    is authored in one file and audited in another drifts. See tools/band_notes.py.
+    """
+    return (f"Type-level choice within the {family} band in the supplied reconstruction "
+            "specification; it is not evidence for this anonymous North Division instance.")
+
+
 def form_for(family: str, seq: int, paint: str) -> dict:
-    why = (f"Type-level choice within the {family} band in the supplied reconstruction "
-           "specification; it is not evidence for this anonymous North Division instance.")
+    """The family's form values, with the band citation restricted to what it can cite.
+
+    `_form_body` authors every value exactly as it always has, with the citation
+    attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
+    the values whose family authors nothing for it to point at, and says instead what
+    the value actually is — the reconstruction generator's type default.
+    """
+    return split_notes(_form_body(family, seq, paint), family, band_note(family))
+
+
+def _form_body(family: str, seq: int, paint: str) -> dict:
+    why = band_note(family)
     frame = "balloon_frame" if seq % 2 else "braced_frame"
 
     if family == "D1":

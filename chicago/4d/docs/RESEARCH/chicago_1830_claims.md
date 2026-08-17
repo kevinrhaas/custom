@@ -133,3 +133,43 @@ recorded, not carried over from this list.
    Book of Original Entry would settle which tracts were entered before 1835-07-01.
 3. **Whether the plate's drawn structures were standing on 1835-07-01.** Each is a per-record
    question; the plate's nominal 1830 date is not an answer, in either direction.
+
+---
+
+## T-E2's disposition of every structure the plate draws
+
+Added **2026-08-15 by parcel T-E2**, whose acceptance requires that *every named claim
+from the sheet is either a structure record, an exclusion with a citation, or listed as
+an open question — nothing silently dropped.* The reading list above is transcribed from
+leaf `n240`; this is what this project has done with each entry. **A row saying "open
+question" is a disposition, not an omission** — it is the only honest one for a building
+whose survival to 1835-07-01 nobody here has tested.
+
+| the plate draws | disposition | where |
+|---|---|---|
+| Fort Dearborn, with its garden, grove and field | **records** — the stockade, parade and eleven buildings, plus the garrison garden | `data/structures/fort_dearborn_*.json`; all fifteen are on the reservation and permitted by `1835_no_build_ground.json` |
+| the Kinzie house | **exclusion with a citation** — gone by the scene date, "dilapidated beyond repair" from 1832 | `data/exclusions.json` → `kinzie_house` |
+| Billy Caldwell's frame house | **watch list, with the question stated** — existence itself is unverified, and the record sits inside AGENTS.md's standing constraint on 1835 and Indigenous history | `data/exclusions.json` → `watch_list` → `billy_caldwell_house` |
+| the slaughter house on the north branch (Clybourn's, on the reading of the engraved hand) | **record** | `data/structures/clybourn_slaughterhouse.json` |
+| Miller's house | **record** | `data/structures/miller_house.json` |
+| Robinson's trading house | **record**, paired with Caldwell's in one entry | `data/structures/robinson_caldwell_cabins.json` |
+| "Entered by John Baptiste Beaubien" (a tract name) | **not a house, by the plate's own note** — but Beaubien's dwelling and barn are records, on the reservation and permitted | `data/structures/jb_beaubien_homestead.json`, `beaubien_barn.json` |
+| "102½ Acres Entered by Robert A. Kinzie" (a tract name) | **not a house, by the plate's own note.** Robert Kinzie's store is a separate record with its own evidence | `data/structures/robert_kinzie_store.json` |
+| Mark Beaubien's | **OPEN QUESTION.** Andreas puts it "on what is now Michigan Avenue, about where the Exposition building now stands" — on or beside the reservation, south of the fort — and Mark had left the Sauganash by 1834. Neither its footprint nor its survival to 1835-07-01 has been tested here. It is not in the dataset and is not excluded | `docs/research/04-structures-south.md` line 217 |
+| Elijah Wentworth's cabin | **OPEN QUESTION.** No record, no exclusion, no siting read at full resolution | — |
+| La Framboise's cabin and store | **OPEN QUESTION.** As above | — |
+| Porter's log cabin | **OPEN QUESTION.** As above | — |
+| "Present Court House Square" | **an anachronism of the plate**, handled in the table above; the block itself is reserved ground on other evidence | `data/reconstruction/1835_reserved_ground.json` |
+
+**Four open questions, and they are the same question four times: was it standing on
+1835-07-01, and where exactly?** The plate cannot answer either half — it is a
+land-title compilation of 1884 with a nominal date of 1830 — so none of them can be
+closed from this sheet, which is why T-E2 lists them rather than inventing dispositions
+for them. Three of the four (Wentworth, La Framboise, Porter) are almost certainly
+outside the modelled area; **Mark Beaubien's is not**, and it is the one worth taking
+first.
+
+**What T-E2 did NOT do, so it is not assumed:** it made no new structure record and no
+new exclusion. Every disposition above already existed, and the parcel's own work was
+the ground rather than the buildings — which is the reason the four open questions are
+still open after it.
