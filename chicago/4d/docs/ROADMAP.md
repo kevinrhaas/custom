@@ -120,7 +120,7 @@ not at the top of the queue.
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | — | RENDERING | ~~R-M1c~~ | **SEEN** | **DONE 2026-08-16 — the road score divided by probes SEEN, so an occluder RAISED it.** One band, three builds, one evening: **seen 157 → 177 → 163** and the old score **62 % → 54 % → 59 %**, while the number of readable stretches never moved off **96** and `nBare` was **182 in all three**. The build with the whole wood on the wrong side of the river scored HIGHEST; K45(b2) would have gone green by planting more timber in front of the road. **The instrument was already built and already printing** — `shotMF`'s own comment says the marked-only denominator "drops instead of failing" — and nothing had ever divided by it. Scored on `nBare`: **53.3 / 52.7 / 52.7 %**, under the 0.55 bar in all three. Read its box before quoting any road-contrast percentage taken before this date |
-| 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| — | RENDERING | ~~R-W1~~ | **SEEN** | **LANDED ON `dev` 2026-08-16 — the light was wrong by 1.9× and 2.9× red against its own sky, and the honest sky costs the roads.** Literal black pixels 12,063 → 0 at three stations; `south_water` 250–600 m falls **71 % → 16 %**. **NOT FOR PROMOTION** until the owner walks `/dev/` or R-W2 buys the contrast back — read its release-condition box before any promotion. Its third finding is R-M1d: the suite reported **229/2 before and after**, because a station already red on another band hides a 55-point collapse |
 | — | RENDERING | ~~R-W2a~~ | **DONE 2026-08-16** — the material sheet, measured out of the shipped GLBs: **1,353 material slots, 32 names, 41 colours, 18 roughness values, zero textures**. Five findings, and two of them block texturing outright: **the chimney is not a material here** (219 stacks painted `roof`) and **no record states a roof covering** (315 roof types, 0 coverings). Read `docs/RESEARCH/materials.md` §4 before quoting any material number |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
 | — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
@@ -152,7 +152,7 @@ rationed.**
 | — | TOWN | ~~T-V2~~ | **DONE 2026-08-16** — the anchor named South Water Street stood 101 m from it, in a field. Now in the street at Wells, both coordinates read from committed data. **It sat on `hold` two days on a number other parcels had already fixed**: the far band it was parked for reads **2.1 L\* / 71 %** today, not 0.5 / 30 %. Its real finding is R-M1c's, from a second direction — the field stand scored **100 % on six probes of 510** and the street stand shows **93 perceptible stretches against 31** and scores lower. T-V2b folded into R-M1c; baseline re-shoot is T-V2c |
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
-| 7 | RENDERING | **R-W1** | SEEN | calibrated light and environment; R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 (`hold`), one assertion short — R-M1a's contrast scoring is the instrument that separates its two candidate causes* |
+| **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
 | 8 | RENDERING | **R-W5a2** | UNSEEN | the last 16 batches → 1. **Not needed for the budget.** Take it only when the lane has nothing SEEN left, which is not now |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
@@ -181,7 +181,9 @@ SEEN parcel up from the sections below rather than defaulting to another gate.
 
 **AND THAT IS WHAT HAPPENED — 2026-08-16, R-A1, the first run to take this paragraph rather than
 the table.** Every numbered SEEN pick was blocked (K30(c), T-E3, R-W2c, T-V1(b) need a bake; T-V2
-and R-W1 are parked on `hold`; R-W2b is a 315-record schema change with no source stating a roof
+and R-W1 were parked on `hold` — **both landed 2026-08-16 when the whole `hold` queue was worked
+down; see R-M1c for why three of the four holds were one instrument fault**; R-W2b is a 315-record
+schema change with no source stating a roof
 covering), and the only unblocked NEXT UP row was **K49(e)**, which is UNSEEN — and the visible-
 progress cap forbade it: v148 is already the one invisible run in the last four, so a second would
 have made it two in four. So a SEEN parcel was pulled up from the sections below and shipped. **It
@@ -884,50 +886,129 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 **What it did not do:** re-anchor the §5 targets by measuring a reference plate through
 `tools/critic_metrics.mjs`. That is still a one-line job and still not done.
 
-### R-W1 — calibrated light and environment · **PARKED on PR #125 (`hold`) — DO NOT REDO**
+### R-W1 — calibrated light and environment · **LANDED ON `dev` 2026-08-16 · NOT FOR PROMOTION UNTIL THE CONDITION BELOW IS MET**
 
-**The work is done and measured; it is one assertion short of green.** Take the branch
-`steward/r-w1-calibrated-light`, not a blank sheet.
+> ## ⛔ RELEASE CONDITION — `dev` may carry this; `main` may not, yet
+>
+> **R-W1 must not be promoted to production until EITHER the owner has walked the `/dev/`
+> preview and approved the look, OR R-W2 has bought the road contrast back.** It is on `dev`
+> so that there is something to walk; that is what the tier is for. Whoever runs the next
+> promotion reads this box first, and if neither condition is met, **revert this parcel on a
+> branch and promote without it** rather than shipping it unreviewed.
+>
+> The reason is one number: **`south_water` 250–600 m falls from 71 % of probes perceptible to
+> 16 %.** That band was healthy and is now nearly dead, and the far road down a street is the
+> exact complaint the owner has raised twice.
 
-> ### THE BLOCKER IS SETTLED. DO NOT RE-DERIVE IT.
->
-> **A run burned its entire 150-minute budget on 2026-08-14 (`31848983349`) re-deriving this
-> and was cancelled mid-smoke with nothing committed.** The answer below was obtained in one
-> targeted measurement. Start from it.
->
-> The PR named two candidate causes. **Cause 1 (the scene is 16 % dimmer) is CONFIRMED.
-> Cause 2 (a near-uniform indirect specular term compressing road against grass) is REFUTED.**
->
-> Measured with the gate's own probe construction at `from_above`, desktop 1280×800, source
-> tree, `dev@d762a19` vs branch `9c69a93` — but recording **linear luminance** alongside ΔL\*,
-> because the two causes have opposite signatures there: dimming is multiplicative and
-> preserves the road/ground ratio; a specular pedestal is additive and collapses it.
->
-> | band | Weber contrast dev → branch | ΔL\* | perceptible |
-> |---|---|---|---|
-> | 100–250 m (n=11) | 0.1217 → 0.1176 (**−3.4 %**) | 2.87 → 2.60 | 91 % → 91 % |
-> | 250–600 m (n=326) | 0.0940 → 0.0904 (**−3.8 %**) | 2.36 → 2.12 | 63 % → **52 %** |
->
-> Ground scales ×0.862, road ×0.866. **The ratio moved 0.4 %** — the road is physically as
-> distinguishable as it was; the scene is darker and ΔL\* is compressive.
->
-> **What actually fails is narrower than "the aerial band":** the median 2.12 clears the 1.8
-> bar. It is the *fraction* bar in the farthest gated band only — **52 % perceptible against
-> 55 % required**, a three-point miss. 100–250 m never moved.
->
-> **Do not re-tune the street alpha.** It tunes content to a metric artefact, makes roads more
-> contrasty than the sky lighting them warrants, and guarantees another re-tune at every
-> lighting change — the streets were tuned under the rig this PR proved was 1.86× too bright.
->
-> **The owner has ruled: the gate scores contrast plus a floor. See `R-M1`.** Once R-M1 lands,
-> re-run this branch's gate against the new metric — do not re-tune the streets to satisfy the
-> old one. Full working: `kevinrhaas/custom#125` (issue comment, 2026-08-14).
+**The light was wrong and this parcel is right about it.** Measured on an upward-facing white
+Lambertian card, sun excluded, on the rebased branch: the old `HemisphereLight` rig put out
+**1.9× the luminance and ~2.9× the red of the sky it was standing under**. Every calibration this
+project has made — the sward's density, the wall colours, the crown contrast — was taken under a
+fill that contradicted its own backdrop.
 
-Everything else it needs is in the PR and in `docs/STATUS.md` § "the town was lit by a sky that
-does not exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
-(R-W4, R-W5, R-W2, R-W3) are untouched by it and R-W4 is the one to take instead; any
-lane-2 or lane-3 parcel may run alongside it, since this one touches only
-`renderers/web/js/world.js`, `tools/smoke_renderer.mjs` and the vendor manifest.
+**And it is expensive, in the place that is already sore.** The scene is ~16 % dimmer, so road
+contrast falls almost everywhere. Mobile, published mirror, honest denominator (R-M1c), against
+`dev` at 836fa84:
+
+| station · band | `dev` | R-W1 | |
+|---|---|---|---|
+| `south_water` 2–40 m | 90 % | 90 % | — |
+| `south_water` 40–100 m | 87 % | 80 % | −7 |
+| `south_water` 100–250 m | 52 % ✗ | 33 % ✗ | −19 |
+| **`south_water` 250–600 m** | **71 % ✓** | **16 % ✗** | **−55** |
+| `from_above` 100–250 m | 85 % | 78 % | −7 |
+| `from_above` 250–600 m | 53 % ✗ | 50 % ✗ | −3 |
+| `lake_market` 40–100 m | 100 % | 93 % | −7 |
+| `lake_market` 250–600 m | 98 % | 100 % | +2 |
+
+**THE SUITE REPORTS 229 / 2 BEFORE AND 229 / 2 AFTER, AND THAT IS A THIRD INSTRUMENT FINDING.**
+The count is identical because `south_water` was *already* red on its 100–250 m band, so a band
+collapsing from 71 % to 16 % **changed no verdict and appears nowhere in the summary**. A
+station-level check hides a band-level regression, and a reader comparing tallies would conclude
+this parcel cost nothing. Opened as **R-M1d**: the suite should report a band that moves against
+its own last figure, not only a station that crosses a bar.
+
+**What it buys, and this is real too.** Literal black pixels go to zero at all three metric
+stations — `river_bank` **12,063 → 0**, `first_post_office` **11,015 → 0**, `prairie_south`
+**2,315 → 0** — and the decile L\* rises everywhere, nearly doubling at `river_bank` (0.93 → 1.78).
+§1 item 11 is retired and item 7's "no literal (0,0,0)" half with it.
+
+**The sequencing conclusion, stated because it is the actual answer:** R-W1 is **correct and
+premature**. It belongs *with or after* **R-W2**'s textured coverage, which is the parcel that buys
+the contrast back. Landing it before R-W2 trades a documented, owner-reported defect for a
+less-visible correctness win. It is on `dev` and not in production precisely so that trade is
+visible to the person entitled to make it.
+
+Everything below is the parcel as written on 2026-08-14, kept because it records the reasoning;
+the branch has been rebased onto `dev` and its figures re-measured above.
+
+**What shipped on the branch.** `scene.environment` is a PMREM of the calibrated sky **with
+a ground half in it**, and the ground half is the finding: an analytic sky model is defined
+over the whole sphere, so a sky-only environment paints the ground blue and lights every
+downward-facing surface in the town with sky from below. That is what "swamped albedo" in
+the 2026-08 attempt this file records. The ground half's radiance is DERIVED —
+`reflectance x E_horizontal / PI`, with the reflectance the dun the hemisphere light already
+carried as its ground colour, read as what its numbers already are (a 15 % reflector). No
+new constant, and the bounce is finally tied to how much light is falling on the ground it
+is bouncing off. The hemisphere lights are gone.
+
+**THE FINDING, and it outlives the parcel: the old fill was not the sky.** Measured with the
+new instrument, the `HemisphereLight(0xa8c4e0, 0x7a6b4e, 2.4)` rig delivered **1.86x the
+luminance and 2.85x the red** of the very sky this project calibrated against a verified
+photograph. The town was lit by a sky that does not exist, at an exposure set for one that
+does, and every calibration since — the sward's density, the wall colours, the crown
+contrast — was measured under it.
+
+**Measured, desktop, at the three worst stations** (`node tools/critic_shots.mjs --metrics
+--stations river_bank,first_post_office,prairie_south`):
+
+| station | literal black px | decile L\* | crown G−B |
+|---|---|---|---|
+| `river_bank` | 12,063 → **0** | 0.93 → 1.78 | 47.8 → 33.7 |
+| `first_post_office` | 11,015 → **0** | 5.35 → 6.20 | 12.2 → 15.7 |
+| `prairie_south` | 2,315 → **0** | 7.09 → 7.97 | 19.9 → 10.7 |
+
+So **§1 item 11 is retired** (an environment is installed and it does not override albedo),
+**item 7's "no literal (0,0,0)" half is retired**, and **item 8 holds** — every station stays
+over the ≥ +10 crown target. Fill on downward-facing surfaces is up 30 %.
+
+**What did NOT clear, with the arithmetic rather than an excuse.** The decile target of
+L\* ≥ 14 is not reachable by lighting and the numbers say why. An interior crown vertex
+carries `CROWN_SHADE_FLOOR = 0.060` folded into its own vertex colour, so its albedo is the
+record's foliage green times 0.06 — **0.24 % reflectance, darker than charcoal**. Even at a
+floor of 1.0, i.e. no self-shadowing at all, that surface reaches only L\* ≈ 12 under this
+rig. R-G1 was right that the metric reads canopy rather than shadow; what this parcel adds is
+that the canopy is dark in the ALBEDO, where no environment can reach it. **The next lever is
+`CROWN_SHADE_FLOOR` in `trees.js`, and it is a separate calibration** — the constant's own
+committed check is the Weber contrast the reference photograph's tree mass holds (0.625,
+against 0.655 here), so raising it has to be paid for there and not smuggled through a
+lighting parcel.
+
+**WHY IT IS PARKED — one real regression, named.** `tools/smoke_renderer.mjs` reports **403
+passed, 4 failed**; three were an unstamped changelog and are fixed. The fourth is
+**`the roads reach the screen from the air, at the aerial anchor`** — R-BUG2's own gate,
+added yesterday, which requires ΔL\* ≥ 1.8 and ≥ 55 % of probes perceptible. `south_water`
+still passes; only the aerial band fails. **Do not weaken it.** Two candidates worth
+separating before touching anything: the scene is 16 % dimmer overall, and the environment
+adds an indirect specular term to the terrain that is near-uniform across road and grass and
+therefore compresses their ratio. The second would be the more interesting fault and is
+testable on its own — the roads were tuned yesterday under the brighter rig, so a re-tune may
+be owed, but it belongs to whichever parcel proves which cause it is.
+
+**A note on the plan this deviates from.** RENDERING §4 W1 asks for `tools/gen_sky_env.py`
+and a committed `.hdr` loaded through a vendored `RGBELoader`. That was not built, on purpose:
+the sky in this renderer is already fitted to a verified photograph inside its own shader
+(SKY_EXPOSURE, HORIZON_RESTORE), so a Python re-implementation would be a SECOND sky that must
+be kept in step with the first, and RENDERING's own acceptance asks the environment and the
+backdrop to agree in hue at the horizon. A PMREM of the shader agrees by construction. No
+binary asset, no vendor change, no licence entry. **This is a proposal, not a settled
+amendment** — RENDERING §4 W1 still reads as written and the owner may prefer the .hdr.
+
+**Files on the branch:** `renderers/web/js/world.js` · `renderers/web/js/flora.js` (reads the
+fill from `scene.userData.chiSkyFill`, because a Lambert material cannot see
+`scene.environment` and the sward would otherwise have kept a fill the town no longer has) ·
+`tools/light_probe.mjs` (new) · `tools/critic_shots.mjs` (`--stations`) ·
+`renderers/web/js/changelog.js` · `site/chicago/4d/` · `docs/`
 
 **Phase:** RENDERING §4 W1 · **Runner:** improve-runner · **Effort:** M · **After:** R-G0
 
@@ -6772,6 +6853,34 @@ which is backwards for a gate.
 branch is re-run against them **without re-tuning the streets**; every existing road band still
 reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
 "every existing road band still reports", which R-M1a holds green by not gating anything.
+
+### R-M1d — a band can collapse without the suite saying anything · **UNCLAIMED · UNSEEN · from R-W1 · Effort: S**
+
+**The gate is per STATION and the measurement is per BAND, so a band that falls off a cliff under a
+station that is already red is invisible.** R-W1 took `south_water` 250–600 m from **71 % of probes
+perceptible to 16 %** — a 55-point collapse in the far road down a street — and the suite reported
+**229 passed / 2 failed** before and **229 passed / 2 failed** after. Identical. Nothing in the
+summary moved, because that station was already failing on its *100–250 m* band, and `bad.length
+=== 0` cannot distinguish one bad band from two.
+
+**A reader comparing tallies would have concluded the parcel cost nothing.** That is the same shape
+of blindness as R-M1c one step up: there, an occluder could raise a score without anyone seeing;
+here, a regression can happen without anyone seeing. Both are the suite reporting a verdict where a
+figure was needed.
+
+**Scope.** Bank each gated band's last figure and REPORT any band that moves against its own bank
+by more than a stated margin, whatever the station's verdict. It is a report, not a new bar — the
+thresholds stay exactly where they are — but it must be loud enough that a run cannot land a
+55-point drop and describe the suite as unchanged. `roadContrast()` already returns everything
+needed; nothing new has to be measured.
+
+**Watch the direction.** This must not become a ratchet that forbids a band from ever falling —
+R-W1 shows a band can fall for an honest reason. The requirement is that the fall is *stated in the
+PR*, not that it is forbidden.
+
+**Files:** `tools/smoke_renderer.mjs` (the `ROAD_STATIONS` loop), plus a banked figures file
+**Acceptance:** replay R-W1's branch against `dev` and show the tool naming `south_water` 250–600 m
+71 % → 16 % without being told where to look; no threshold moves; a band that rises is reported too.
 
 ### R-M1c — the road score divides by a number an occluder can shrink · **UNCLAIMED · SEEN (it changes which builds pass) · from R-BUG5b · Effort: S**
 
