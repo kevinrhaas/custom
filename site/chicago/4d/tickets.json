@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 3:56 PM",
+  "generated_ct": "Aug 17, 2026, 4:09 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -68,7 +68,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": 5
     },
     {
       "id": "T-0005",
@@ -85,7 +85,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 6
     },
     {
       "id": "T-0006",
@@ -102,7 +102,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": 7
     },
     {
       "id": "T-0007",
@@ -119,7 +119,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 8
     },
     {
       "id": "T-0008",
@@ -136,7 +136,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 9
     },
     {
       "id": "T-0009",
@@ -153,7 +153,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 8
+      "queue_rank": 10
     },
     {
       "id": "T-0010",
@@ -170,7 +170,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 9
+      "queue_rank": 11
     },
     {
       "id": "T-0011",
@@ -187,7 +187,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 10
+      "queue_rank": 12
     },
     {
       "id": "T-0012",
@@ -204,7 +204,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 11
+      "queue_rank": 13
     },
     {
       "id": "T-0013",
@@ -221,7 +221,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 12
+      "queue_rank": 14
     },
     {
       "id": "T-0014",
@@ -238,7 +238,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 13
+      "queue_rank": 15
     },
     {
       "id": "T-0015",
@@ -255,7 +255,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 16
     },
     {
       "id": "T-0016",
@@ -272,7 +272,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 17
     },
     {
       "id": "T-0017",
@@ -289,7 +289,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 18
     },
     {
       "id": "T-0018",
@@ -306,7 +306,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 19
     },
     {
       "id": "T-0019",
@@ -323,7 +323,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 20
     },
     {
       "id": "T-0020",
@@ -340,7 +340,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 21
     },
     {
       "id": "T-0021",
@@ -357,7 +357,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 22
     },
     {
       "id": "T-0022",
@@ -374,7 +374,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 23
     },
     {
       "id": "T-0023",
@@ -391,7 +391,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 24
     },
     {
       "id": "T-0024",
@@ -408,7 +408,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 25
     },
     {
       "id": "T-0025",
@@ -425,7 +425,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 26
     },
     {
       "id": "T-0026",
@@ -442,7 +442,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 25
+      "queue_rank": 27
     },
     {
       "id": "T-0027",
@@ -459,7 +459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 26
+      "queue_rank": 28
     },
     {
       "id": "T-0028",
@@ -476,7 +476,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 27
+      "queue_rank": 29
     },
     {
       "id": "T-0029",
@@ -493,7 +493,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 30
     },
     {
       "id": "T-0030",
@@ -510,7 +510,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 31
     },
     {
       "id": "T-0031",
@@ -527,7 +527,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 32
     },
     {
       "id": "T-0032",
@@ -544,7 +544,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 33
     },
     {
       "id": "T-0033",
@@ -578,7 +578,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 34
     },
     {
       "id": "T-0035",
@@ -595,7 +595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 3
     },
     {
       "id": "T-0036",
@@ -612,7 +612,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 4
     }
   ]
 }
