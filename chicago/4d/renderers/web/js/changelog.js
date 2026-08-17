@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 152, title: 'South Water Street, seen from South Water Street', kind: 'fix', ts: '2026-08-17T00:30:03.099Z', date: 'Aug 16, 2026, 7:30 PM CT',
+    items: [
+      'Open Go to and choose “South Water Street, looking east”. You now arrive in the street itself: a graded-earth track running east, the storefront row on your right, the river on your left and the lighthouse on the horizon. Until today that viewpoint stood in a meadow 101 m south of the street it is named after, with the street a band of roofs on the skyline.',
+      'Nothing in the town moved. This is a camera and not a building — no street, footprint, dimension, grade or confidence changed, and no claim about 1835 changed with them.',
+      'Where it stands is read off the record rather than chosen by eye. The easting is the Wells corner that the sixteen South Water Street records are themselves measured from; the northing is this street’s own committed centreline at that easting, which runs through the dry half of the platted riverfront corridor.',
+      'What the new view shows is not all flattering, and that is the point of standing in it: the track reads strongly at your feet and out to about a hundred metres, and past that it thins into the grass. Standing in a field, nobody could see that.',
+    ] },
   { v: 151, title: 'You can turn the roads up if they are hard to see', kind: 'feature', ts: '2026-08-16T23:25:34.982Z', date: 'Aug 16, 2026, 6:25 PM CT',
     items: [
       'There is a new slider in Settings called Road visibility. It starts off, and off is exactly what you have been walking through until now — nothing about the default view has changed.',

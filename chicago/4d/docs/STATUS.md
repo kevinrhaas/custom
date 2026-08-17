@@ -1,5 +1,61 @@
 # STATUS
 
+## Measured 2026-08-17 — the South Water anchor stands in its own street, and the band that parked it in August fixed itself
+
+**ROADMAP T-V2**, first built as PR #135 on 2026-08-15 and parked there. The viewpoint the Go to
+menu offers under the name **South Water Street, looking east** stood at **(260, −95)** — 101 m
+south of the committed centreline of that street, in a field, with the street a band of roofs on
+the skyline and about 60 % of the frame grass. It stands at **(329.8, 7.0)** now, in the roadway at
+the Wells corner, looking east, pitch 0. Before and after, from the published mirror at 1280×800,
+are committed at `docs/evidence/t-v2-before.png` and `docs/evidence/t-v2-after.png`.
+
+**Neither half of the coordinate is new evidence** — the easting is the West Upper Wacker / North
+Wells junction the sixteen South Water records are themselves offset from, and the northing is
+`data/streets/1835.json`'s own South Water centreline at that easting, a committed vertex of the
+path (`[330, 7]`). **A camera is not a placement**: no structure, street, dimension, grade or
+confidence moved.
+
+### The far band that parked #135 is green, and nothing about the gate changed
+
+Measured at the same pose, mobile 390×780, published mirror:
+
+| band | #135, 2026-08-15 (desktop) | 2026-08-17 `dev` (mobile) |
+|---|---|---|
+| 40–100 m | 3.1 L\*, 87 % | **3.5 L\*, 87 %** |
+| 100–250 m | 2.2 L\*, 55 % | **2.2 L\*, 52 %** (n 42) |
+| **250–600 m** | **0.5 L\*, 30 %** | **2.1 L\*, 71 %** (n 100) |
+
+**R-BUG3c**, **R-BUG4** and **R-BUG3** all landed after #135 took its figures — the ground was
+being quantised onto a 306 mm lattice *after* the only gate that measured it, whole road panels
+were being deleted for a wet corner, and the near band was repaired. #135 was parked on a question
+about thresholds; the answer is that it was a question about the road, and the road was repaired
+underneath it.
+
+### What is still red, and it is one band on one stretch
+
+`the roads reach the screen from the walker's eye, down an open street` fails on **100–250 m: 52 %
+of probes perceptible against the 55 % bar** — 22 of 42 — with ΔL\* 2.2 clearing the 1.8 bar.
+**It is not a property of the middle distance.** `lake_market`, the other station standing on a
+roadway, reads **3.3 L\* and 100 %** in that band on the same run, and `from_above` passes. It is
+this stretch of South Water Street, and the committed screenshot shows it: the track reads at the
+eye and out to about a hundred metres and then thins into the grass.
+
+**A reading worth testing before anyone tunes anything**: 13 of the 17 deep corridor intrusions
+K30(a) measured are South Water records, so the stretch this band covers is also the stretch that
+has buildings drawn standing in it. 25 of the 67 projected probes in that band are not seen at all.
+**K30(c)** is the repair for that and needs a bake.
+
+### Not claimed, and nothing was weakened
+
+- **No assertion was touched.** No threshold, band, station or `ROAD_GATED_BEYOND_M`;
+  `tools/smoke_renderer.mjs` is not in the diff. The camera moved and a gate went red on a fact
+  about the road that a station standing in a meadow could not see.
+- **The desktop half of the smoke was not run** — ~13 min against this runner's 10-minute
+  per-command ceiling. Mobile is **228 passed, 1 failed** on the published mirror, and the one
+  failure is the band above.
+- **The baseline station moved**, so `south_water` rows in the critic tables taken before
+  2026-08-17 are a different viewpoint and are not comparable to rows taken after it.
+
 ## Shipped 2026-08-16 — the roads can be turned up, and the reason it took two days is the reason it is allowed
 
 **ROADMAP R-A1**, deferred on 2026-08-14 and unblocked on 2026-08-15 by R-BUG3. A **Road

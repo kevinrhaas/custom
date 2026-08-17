@@ -147,7 +147,7 @@ rationed.**
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
-| **4** | TOWN | **T-V2** | **SEEN** | the `south_water` anchor stands 101 m from its own street, in a field. Moving it changes what a visitor is shown when they use Go to — PR #135 is built and measured and parked on the far-band question that R-M1b has now unblocked |
+| — | TOWN | ~~T-V2~~ | **SEEN** | **BUILT AND MEASURED 2026-08-17, parked on ONE band.** The anchor stands in the street now and the before/after pair is committed under `docs/evidence/`. **The far band that parked PR #135 fixed itself**: 250–600 m went 0.5 L\* / 30 % → **2.1 L\* / 71 %** on the same pose, because R-BUG3c, R-BUG4 and R-BUG3 all landed after #135 measured. What is left is 100–250 m at **52 % against a 55 % bar**, on the stretch that holds 13 of K30's 17 deep intrusions — `lake_market` reads 100 % in the same band on the same run. Read its box before quoting any on-street road number |
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | 7 | RENDERING | **R-W1** | SEEN | calibrated light and environment; R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 (`hold`), one assertion short — R-M1a's contrast scoring is the instrument that separates its two candidate causes* |
@@ -4792,7 +4792,32 @@ tier of every dimension unchanged (this adds variety, not knowledge); `tools/aud
 --strict` green; and the `south_water`, `prairie_west` and `prairie_south` critic frames re-shot
 and quoted. **Needs the bake for the massing to reach the site** — ship the data half and say so.
 
-### T-V2 — the `south_water` anchor points at a field · **UNCLAIMED · NEXT UP · from R-G1**
+### T-V2 — the `south_water` anchor points at a field · **BUILT AND MEASURED 2026-08-17 · PARKED ON ONE BAND · from R-G1**
+
+> **THE FAR-BAND QUESTION THAT PARKED PR #135 IS ANSWERED, AND THE ANSWER IS THAT IT WENT AWAY.**
+> #135 was parked on 2026-08-15 because the 250–600 m road band collapsed to **0.5 L\*, 30 %
+> perceptible** from the new on-street pose, and nobody could say whether that was a rendering
+> fault or a threshold set against an oblique view. Re-measured on 2026-08-17 `dev` at the same
+> pose, mobile, published mirror: **2.1 L\*, 71 % perceptible (n 100)**. Nothing about the gate
+> or the pose changed; **R-BUG3c** (the publish step quantising the ground and burying the road by
+> up to 228 mm), **R-BUG4** (whole road panels deleted for a wet corner) and **R-BUG3**'s
+> near-field work all landed after #135 took its numbers. The parcel was parked on a defect in the
+> road, and the road was repaired underneath it.
+>
+> **What is left is ONE band, three points short, and it is not the middle distance in general.**
+> 100–250 m reads **ΔL\* 2.2 (bar 1.8, green) with 52 % of probes perceptible against a 55 % bar** —
+> 22 of 42. On the same run `lake_market`, the other station that stands on a roadway, reads
+> **3.3 L\* and 100 %** in that band. So it is *this stretch of South Water Street*, and the
+> screenshot shows it: the track reads at the eye and out to ~100 m and thins into the grass past
+> that. **13 of the 17 deep corridor intrusions K30 measured are South Water records** — the
+> stretch the band covers is also the stretch buildings are drawn standing in, and K30(c) is the
+> repair for that and needs a bake.
+>
+> **Not merged, and no assertion was touched.** Not a threshold, not a band, not a station, not
+> `ROAD_GATED_BEYOND_M`, and `tools/smoke_renderer.mjs` is not in the diff at all. The camera moved
+> and one gate went red on a fact about the road that a station standing in a meadow could not see.
+> **This is the same question PR #201 is parked on** — an honest change that reveals more road, and
+> a road-contrast bar that reads the sample it is given — and one ruling unblocks both.
 
 **Phase:** lane 2, data only · **Effort:** XS — one record, no code
 
