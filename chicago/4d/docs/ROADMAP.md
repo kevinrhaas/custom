@@ -978,7 +978,7 @@ is the very quantity in question.
 **Files:** `renderers/web/js/flora.js` (`compileZones`, `dealt`) · `tools/measure_sward_draw.mjs`
 (a cover-share column) · `docs/LIBERTIES.md` if a share is authored.
 
-### K55 — four herb lists still deal their SLOT COUNT off a sum of areas and counts · **UNCLAIMED · SEEN · opened 2026-08-17 by K54 · Effort: S–M**
+### K55 — four herb lists still deal their SLOT COUNT off a sum of areas and counts · **CLAIMED 2026-08-17 · branch `steward/k55-slot-count-basis` · SEEN · opened 2026-08-17 by K54 · Effort: S–M**
 
 **The arithmetic is banked in K54 finding 1 and is not in dispute.** `subsetOn`'s `density` sums
 `s.recorded` — the abundance in whatever unit the record used — and `forbShareOf` reads that sum as
