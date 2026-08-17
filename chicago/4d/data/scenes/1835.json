@@ -49,6 +49,13 @@
       "yaw_deg": 75.0
     },
     {
+      "id": "north_branch_bridge_deck",
+      "label": "On the North Branch bridge, mid-span",
+      "local_e": -81.59,
+      "local_n": 262.02,
+      "yaw_deg": 90.0
+    },
+    {
       "id": "green_tree",
       "label": "Green Tree Tavern, Lake and Canal",
       "local_e": -159.7,

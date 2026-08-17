@@ -16,6 +16,86 @@ ROADMAP's NEXT UP table is frozen with a tombstone; the deep boxes remain the re
 archive. AGENTS.md § THE QUEUE is the new contract.
 
 
+## Shipped 2026-08-17 — the bridge is a surface now, and you still cannot get onto it from the bank
+
+**T-0001, half one of two.** The owner's ask was one sentence — *"How would a wagon cross
+that?"* — and the walkthrough's answer was that nothing could, not even a person on foot.
+The walker was a capsule sliding on the heightfield, and `terrain.walkHeight()` reports a
+**4.0 m wading barrier** over open water so a visitor stops at the river's edge instead of
+walking into the channel bed. The barrier sits ABOVE every deck in the dataset, so a
+visitor set down on the North Branch bridge hovered 1.8 m over its planks — the float
+`docs/LIBERTIES.md` L9 recorded as unreachable, which stopped being true the moment a
+crossing was somewhere a visitor could be sent.
+
+**What the deck's height is, and why it is not measured off the mesh.** `deck_height_m` is
+already resolved by `generators/archetypes/bridge_timber_params.py` — the attested 1.83 m
+clearance plus the stringer and plank depths, 2.22 m for the three river crossings and
+0.83 m for the slough culvert. `tools/compile_scene.py` now carries that number into every
+sidecar as `placement.walk_surface_m`, by the same route and for the same stated reason it
+already carries `vertical_anchor`: two definitions of one number agree until the day one of
+them matters. The parameter modules import without Blender, so this costs the compile
+nothing and needs no bake. `null` on the other 327 structures, which keeps the sidecar one
+shape everywhere. `docs/GLB-CONTRACT.md` carries it as an additive row.
+
+Reading the deck's top face off the GLB was the other candidate and was rejected on the
+contract: the deck IS its own primitive, findable by its material being named `deck`, but
+material names are pinned nowhere in GLB-CONTRACT.md, and the drawbridge's gallows frames
+stand five metres above its deck so the bounding box answers a different question.
+
+**The renderer half is one function.** `walker.js` grew `surfaceAt()`, and every path that
+ever asked how high the floor is — walking, the step-up test, teleporting, landing out of
+free-fly, resettling after an eye-height change — goes through it. That was the point of
+routing all of them rather than the walk loop alone: a walker that agreed with itself on
+some paths is how you stand on a bridge and fall through it when you stop moving. Its two
+rules are asymmetric on purpose. **Over water the deck wins outright**, because the barrier
+is a navigation rule about a river you have no boat for and a bridge is the thing that
+answers it. **Over land the higher surface wins**, because the slough this fourth bridge
+crosses is not modelled in this terrain epoch and its deck therefore lies about 0.4 m
+INSIDE the prairie — letting the deck win there would sink a visitor into a hill to walk a
+bridge over a stream that is not drawn.
+
+**A visitor can reach it.** `data/scenes/1835.json` gains *On the North Branch bridge,
+mid-span*, a standing viewpoint at the deck's own centre looking east down it. Without it
+the feature was reachable only by flying out over the channel and dropping, which is not
+how anybody would find it.
+
+### What the gate says
+
+Four new assertions, all green at both viewports: the crossing has a walkable deck; the
+walker crosses it **end to end** with the deck under the boot for every sample and the
+standing clearance exact to better than 1e-9 m; the **deck and not the barrier** is what
+holds them up (the barrier reads 4.0 m at mid-span, the deck 2.22 m); and they walk off the
+far end down onto the bank. The height assertion is an exact equality rather than a
+tolerance, which is the whole point of sourcing the number from the params: a tolerance
+would pass a renderer that had quietly grown a second definition.
+
+### Not claimed — and this is the owner's actual question
+
+**You still cannot step ONTO a deck from the bank, and nothing here pretends otherwise.**
+Both branch decks land exactly on the traced 1834 waterline, where the ground crosses zero
+by construction; the deck top is 2.22 m. The 0.35 m step-up rule refuses a 2.2 m riser the
+way it refuses a wall, and it should. Half two of T-0001 — log abutments in the shallows
+(the 1883 old-settlers statement puts them there) and wagon-plausible approach gradients
+meeting the deck at grade — is TERRAIN, and `generators/terrain_gen.py` needs Blender for
+the ground GLB. The improve runner has none, so it belongs to the nightly bake. **No ramp
+was faked and no threshold was widened to make this run look finished.** The ticket stays
+open, at the top of the queue where the owner put it, with `claimed_by` cleared.
+
+Three assertions fail, and **all three are `origin/dev`'s own at `3114e061`**, measured on
+this runner rather than assumed. The two road-contrast stations are the pair STATUS has
+carried since #135 and #201. The third — `the panel states that once too — and counts
+nothing by hand` — is newly *observed* rather than newly broken: it has been red since K53
+(#221) shipped a liberty whose reasoning opens "Three of these records describe
+multi-stemmed plants", and the guard scans the whole Evidence panel instead of the heading
+it means. The desktop half of the smoke has never fitted this runner's ten-minute
+per-command ceiling, which is why nobody had seen it. Measured directly against a clean
+`origin/dev` worktree with a one-assertion probe: FAIL there too, same `occurrences: 1`,
+same liberty. Filed as **T-0037**.
+
+Runs: `tools/check.sh` PASS. `SMOKE_VIEWPORT=desktop` on the source tree, 263 passed /
+3 failed. `SMOKE_VIEWPORT=mobile --published`, 266 passed / 3 failed. 39 draw calls
+against a budget of 80, unchanged.
+
 ## Shipped 2026-08-17 — the parcel asked for a finer grain at the same plate area, and the plates are what carries the recorded width
 
 **ROADMAP K57**, opened by K56 six hours earlier: *at the same total plate area, is the shrub's shell

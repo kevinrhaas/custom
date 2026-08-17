@@ -33,7 +33,8 @@
     "symbolic_location": "Where South Water Street crossed the slough, a little west of the slough's mouth at the foot of State (Wolcott) Street, on the south bank of the main stem. Outside the modelled terrain box.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "water"
+    "vertical_anchor": "water",
+    "walk_surface_m": 0.83
   },
   "footprint": {
     "polygon": [

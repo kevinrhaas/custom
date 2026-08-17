@@ -21,7 +21,7 @@ import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
 import { createPointerLockBackend, isTyping } from './controls/pointerlock.js';
 import { createTouchBackend, prefersTouch } from './controls/touch.js';
-import { createWalker, footprintsFrom, WALK } from './walker.js';
+import { createWalker, footprintsFrom, decksFrom, WALK } from './walker.js';
 import { createFlora } from './flora.js';
 import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
@@ -207,8 +207,12 @@ async function boot() {
   scene3d.add(buildings.group);
 
   const footprints = footprintsFrom(loaded.registry);
+  // The bridge decks, which are the one walkable surface the heightfield does not
+  // carry — the wall you are kept out of and the deck you stand on are the same
+  // polygon read two ways, so both come off the same footprints. T-0001.
+  const decks = decksFrom(loaded.registry);
   const spawn = anchorFor(loaded.scene, params.get('anchor')) ?? loaded.scene.spawn ?? {};
-  const walker = createWalker({ camera, terrain, footprints, spawn });
+  const walker = createWalker({ camera, terrain, footprints, decks, spawn });
   walker.apply();
 
   // The dated street layer is a skin on the heightfield, never a replacement
@@ -835,6 +839,7 @@ async function boot() {
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },
+    decks: { get: () => decks, enumerable: false },
     roadAid: { get: () => streets.legibilityAid, enumerable: true },
     brightness: { get: () => world.brightness, enumerable: true },
     exposure: { get: () => renderer.toneMappingExposure, enumerable: true },

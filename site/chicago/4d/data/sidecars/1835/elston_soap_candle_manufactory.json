@@ -28,7 +28,8 @@
     "symbolic_location": "East bank of the North Branch above the forks, outside the built-up streets. NO LOCATION IS ATTESTED — the advertisement gives no address.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

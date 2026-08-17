@@ -32,7 +32,8 @@
     "symbolic_location": "West side of Dearborn Street between Lake Street and South Water Street, fronting east onto Dearborn; placed at the middle of that block face, which the source does not state.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

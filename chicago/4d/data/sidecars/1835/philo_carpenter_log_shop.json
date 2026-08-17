@@ -35,7 +35,8 @@
     "symbolic_location": "Lake Street near the river, on the south side, immediately east of and against the Sauganash Hotel — the source says immediately adjacent to the Sauganash's public bar.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

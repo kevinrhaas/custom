@@ -36,7 +36,8 @@
     "symbolic_location": "Across the main stem of the Chicago River in line with Dearborn Street, its south abutment at the foot of Dearborn on South Water Street.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "water"
+    "vertical_anchor": "water",
+    "walk_surface_m": 2.22
   },
   "footprint": {
     "polygon": [

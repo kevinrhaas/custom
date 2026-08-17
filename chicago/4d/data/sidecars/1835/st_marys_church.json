@@ -35,7 +35,8 @@
     "symbolic_location": "The south-west quadrant of Lake Street and State Street - south side of Lake, west of State - on a canal lot beside the military reservation; fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

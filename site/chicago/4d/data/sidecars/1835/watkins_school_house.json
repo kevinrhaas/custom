@@ -30,7 +30,8 @@
     "symbolic_location": "North side of Michigan Street between Cass Street and Rush Street (today the north side of West Hubbard Street between North Wabash Avenue and North Rush Street), on the north bank in Kinzie's Addition; fronting south onto Michigan.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

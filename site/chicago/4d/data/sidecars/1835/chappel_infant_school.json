@@ -30,7 +30,8 @@
     "symbolic_location": "West side of State Street between South Water Street and Lake Street, just outside the western edge of the military reservation; fronting east onto State.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

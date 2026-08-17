@@ -33,7 +33,8 @@
     "symbolic_location": "On the Fort Dearborn reservation at what Andreas calls the corner of South Water Street and Michigan Avenue (today East Wacker Drive at North Michigan Avenue) — the south-west corner on one Andreas passage and the north-east on another; this coordinate takes the south-west.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

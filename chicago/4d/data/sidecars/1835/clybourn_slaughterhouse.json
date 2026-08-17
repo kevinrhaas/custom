@@ -30,7 +30,8 @@
     "symbolic_location": "DISPLACED. The attested site is the east (south) bank of the North Branch, south of the Bloomingdale Road and opposite the later North Chicago Rolling Mills — roughly 3 km north-north-west of the forks and far outside the modelled terrain. This coordinate stands at the northern edge of modelled ground on the east bank of the North Branch instead.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

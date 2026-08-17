@@ -1,11 +1,11 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 4:09 PM",
+  "generated_ct": "Aug 17, 2026, 6:10 PM",
   "tickets": [
     {
       "id": "T-0001",
       "title": "A visitor can walk across every bridge, end to end",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -595,7 +595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 4
     },
     {
       "id": "T-0036",
@@ -612,7 +612,24 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0037",
+      "title": "The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 35
     }
   ]
 }

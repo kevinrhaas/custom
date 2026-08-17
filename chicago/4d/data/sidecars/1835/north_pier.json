@@ -33,7 +33,8 @@
     "symbolic_location": "The north side of the 1834 cut through the sand bar, running from the north bank at the river mouth east-south-east into Lake Michigan.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "water"
+    "vertical_anchor": "water",
+    "walk_surface_m": 1.524
   },
   "footprint": {
     "polygon": [

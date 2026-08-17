@@ -36,7 +36,8 @@
     "symbolic_location": "The corner of South Water Street and Clark Street (today West Wacker Drive at North Clark Street); the south-west corner on Andreas's reading, which is the reading this coordinate takes.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

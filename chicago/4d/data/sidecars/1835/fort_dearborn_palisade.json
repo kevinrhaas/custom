@@ -38,7 +38,8 @@
     "symbolic_location": "The south bank of the Chicago River inside the bend, on the Fort Dearborn Reservation at the river mouth; the site of the modern Michigan Avenue bridge's south approach.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

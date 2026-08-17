@@ -35,3 +35,4 @@ T-0030 — A queue card in Manager reading tickets.json
 T-0031 — Where did the South Water timber belt stand
 T-0032 — The six-roof civic target counts three that were never built
 T-0034 — Raise the bloom, which has no bar left to raise it to
+T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it

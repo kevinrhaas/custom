@@ -34,7 +34,8 @@
     "symbolic_location": "North side, near the Agency House at the foot of State Street, on the riverbank strip west of the agency house.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

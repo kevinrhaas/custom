@@ -33,7 +33,8 @@
     "symbolic_location": "South-west corner of South Water Street and Dearborn Street (today the south side of West Wacker Drive at North Dearborn Street), on Lot 1; the Dearborn Street drawbridge landed at the foot of Dearborn a few paces north of it.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
