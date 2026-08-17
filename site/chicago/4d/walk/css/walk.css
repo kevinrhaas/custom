@@ -468,6 +468,34 @@ body.is-touch .gate-touch { display: block; }
    silently prints an unknown word is a card that hides a broken gate. */
 .fauna-unknown { border-color: var(--con); color: var(--con); }
 
+/* The people section (ROADMAP K52) reuses the same box for the fourth time, and
+   the nesting is the wildlife section's exactly: a household is a liberty-shaped
+   entry with its people inside it, indented and unboxed so 173 households do not
+   read as boxes inside boxes. */
+.res-people { display: grid; gap: 4px; padding: 2px 10px 10px 14px; }
+.res-person { background: rgb(255 255 255 / 2%); }
+.res-person .lib-body .sw, .res-person summary .sw,
+.res-hh summary .sw, .res-fields .sw {
+  display: inline-block; vertical-align: 0; margin: 0 4px 0 0;
+}
+/* The reasoning behind a graded claim, under the value it grades — the same
+   ranking, and the same styling, the wildlife cards use. On this layer it
+   carries more weight than anywhere else in the panel: a household's note
+   routinely explains that the figure above it is NOT evidence. */
+.res-why { display: block; margin-top: 3px; color: var(--ink-dim); font-size: 11px; line-height: 1.45; }
+.res-role { color: var(--ink-dim); font-size: 11px; margin-left: 6px; }
+.res-chips { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: 6px; }
+.res-chip {
+  font-size: 10.5px; color: var(--ink-dim); border: 1px solid var(--edge);
+  border-radius: 999px; padding: 0 6px; white-space: nowrap;
+}
+/* The seventeen households this project could not put on a building card. The
+   chip is the finding, so it is the one thing in the list drawn in the
+   conjectural colour rather than the dim one. */
+.res-orphan { border-color: var(--con); color: var(--con); }
+.res-hh summary { display: flex; flex-wrap: wrap; align-items: baseline; }
+.res-hh .lib-title { text-transform: capitalize; }
+
 /* A claim the ground makes about itself, in the same box for the same reason.
    The confidence chip sits in the summary because the grade IS the headline
    here: a visitor scanning the list should be able to see, without opening

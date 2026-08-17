@@ -150,6 +150,7 @@ rationed.**
 | — | RENDERING | ~~K51~~ | **SEEN** | **DONE 2026-08-17 — 139 researched animals reached no browser at all, and the whole layer is now a card in the Evidence panel.** Fauna figures reaching a visitor **0 of 30 → 30 of 30**; the dataset's unread population **58 of 100 → 28**. Its findings are about instruments, not animals: K42's assertion 3a **fired exactly as designed** the moment the directory was opened, and **two of that gate's own controls had been written against the repository's state** — one became a copy of the measurement and the other printed SILENT rather than failing. And `docs/LIBERTIES.md` **L2 said "ambient wildlife is rendered sparsely" for eight days while nothing was rendered at all**. Read its box before quoting any layer-read number |
 | — | RENDERING | ~~R-BUG6(a)~~ | **SEEN in motion** | **DONE 2026-08-17 — the shadow box was re-centred on the visitor's exact position, so its texel lattice slid under every step and re-quantised every shadow edge in the town.** It moves in whole texels now: with the camera held still and the box slid half a texel, `from_above` **2,023 changed pixels → 0** and `descend_main_stem` **5,650 → 0**. Three findings, and two of them are about instruments: **the control that "cleared the shadow map" was inert** (a compile-time flag is not a runtime handle — it moves 5,439 px now), and **a sub-pixel nudge cannot measure a shadow box at all** — scaled up to a half texel it changes 29,138 px with the fix and 28,784 without, sign included. The answer to the parcel's title: **the shadow map is 14–16 % of the town's flicker**, not the cause of it. Read its box before quoting any flicker number |
 | — | RENDERING | ~~R-BUG6(b)~~ | — | **DONE 2026-08-17 — the premise was wrong and two tests say so. The residual is NOT co-planar ties: switching the depth test from `LessEqual` to `Less` moves 36,187 px of the frame and only 13 of the 1,108 flickering ones (1.2 %), and 5× the depth precision leaves 604 of 607 surviving.** It is the town's own edges being resampled, which is antialiasing and not a defect — R-BUG1's near plane had already taken the real one. Three findings: **an exact tie is STABLE and a near tie is what flickers** (which is why 3.5 % of this frame is co-planar and none of it shimmers); the ownership instrument (`tools/measure_tie_class.mjs`, 0 unattributed, buildings + trees own 94.5 % of the flicker on 7.7 % of the frame); and **`measure_river_edge.mjs`'s bank mask counts the SKY as water** — rows 0–200 are 1,280 of 1,280 "waterish", so no bank-line pixel count from it is a statement about the river. Read its box before quoting any flicker or bank number |
+| — | TOWN | ~~K52~~ | **SEEN** | **DONE 2026-08-17 — the layer that already had a reader was hiding seventeen households, and the reader is the reason nobody looked.** A household reaches a visitor only through a building it `lives_at` or `works_at`, so the 17 whose residence AND workplace are both unattested on 1 July 1835 attached to no building and appeared **on no card anywhere** — 20 person entries, one of them the **Mark Beaubien** household, dropped for exactly the thin evidence that makes its record interesting. And the join carried a third of each record it did reach: arrival, origin, reason for coming, presence, a person's age, sex, name basis and sources, and all ten `researched_not_resident` findings reached nothing. **K42's assertion 3a did not fire** — the census tool names `flora` and `fauna` only, which is K52(b). The third parcel taken by pulling a SEEN row up when every numbered one was bake-blocked. Read its box before assuming a layer with a reader is a layer that is read |
 | **1** | RENDERING | **R-BUG6(c)** | UNSEEN | **NEEDS ONE BAKE.** The 36,187 co-planar pixels above are steady but arbitrary: two surfaces of different colours at one depth, with draw order picking the winner. A question about the models, opened by (b) |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
@@ -681,7 +682,78 @@ censused which of its figures reach a visitor. The read map covers flora and fau
 generators declare their own `CONSUMED`; the population layer is declared by nothing, which is the
 state `data/fauna` was in this morning.
 
-### K52 — nobody has censused what the residents' figures reach · **CLAIMED 2026-08-17, expires 2026-08-20 · taken as the card its own box names, so SEEN · opened 2026-08-17 by K51 · Effort: S–M**
+### K52 — nobody has censused what the residents' figures reach · **DONE 2026-08-17 — the layer with a reader was hiding seventeen households, and the reader is why nobody looked**
+
+**The census answer, and it is worse than the fauna one it was written to be safer than.**
+`data/residents/` had exactly one reader: `tools/compile_scene.py`'s `compile_residents()`
+attaches a household to a building's sidecar and `popup.js` names it on the building card.
+That join reaches a building through `lives_at` or `works_at` — so **a household whose
+residence AND workplace are both unattested at the scene date attaches to nothing and
+appeared on no card anywhere in this project.**
+
+| | households | person entries |
+|---|---|---|
+| in `data/residents/` | 173 | 209 |
+| reachable through a building card | 156 | 189 |
+| **reachable nowhere, before today** | **17** | **20** |
+
+**One of the seventeen is the Mark Beaubien household** — the man who built the Sauganash,
+whose house held the incorporation election of 10 August 1833, and whose own record calls
+itself *"the most famous household in the town and one of the thinnest records in this
+parcel."* He is unreachable for exactly the reason his record is interesting: he had left
+the Sauganash by 1834 and the Exchange by August 1834, so where he slept on 1 July 1835 is
+not in the record, `lives_at` is `null`, and the join drops him. **The layer was dropping
+records for being poorly evidenced, which is the opposite of what the confidence model is
+for.**
+
+**Finding 2 — a reader is not a read map, and this one carried a third of each record it
+did reach.** `compile_residents()` copies id, name, division, the relation, its note, and a
+person's name, relationship, grade and occupation *word*. Everything else stopped at the
+repository: `arrival`, `origin`, `reason_for_coming`, `party_size_on_arrival`,
+`present_on_scene_date`, `touches_removal`, a person's `sex`, `age_on_scene_date`,
+`birth_year`, `name_basis` and their own `sources`, the occupation's grade and reasoning,
+and the ten `researched_not_resident` findings whose own manifest doc calls them *"as
+load-bearing as the households"*. **This is what K52's box predicted in as many words** — *"a
+layer with one reader is exactly where an unread figure hides, because 'the browser has it'
+reads as 'somebody looks at it'."* It was right, and the hiding place was bigger than the
+fauna layer's, which at least had the decency to have no reader at all.
+
+**Finding 3 — K42's assertion 3a did NOT fire here, and that is a hole rather than a pass.**
+`tools/measure_layer_reads.py` scans `flora` and `fauna` and nothing else, so giving
+`residents` a reader tripped no gate. The fauna parcel was caught by its own instrument; this
+one was caught by reading the join. **Extending the census tool to `data/residents/` is not
+done and is opened as K52(b)** — the tool is built around flora/fauna figure kinds and the
+extension is its own parcel, not a line in this one.
+
+**What shipped.** `renderers/web/js/residents.js`, the Evidence panel's people section: the
+manifest in one fetch, all 173 households listed with their division, their people and their
+grade tallies, the 17 marked on their own rows in the conjectural colour, and each household's
+full record fetched the first time its row is opened. Every graded claim shows its value, its
+confidence swatch, its reasoning and its joined citations; the ten researched non-residents
+are published with theirs. **Nothing is drawn** — L1 and the standing constraint on depicting
+people are untouched, and nothing in `docs/LIBERTIES.md` needed a line because nothing was
+invented: this parcel published records that already existed.
+
+**Files:** `renderers/web/js/residents.js` (new) · `renderers/web/index.html` ·
+`renderers/web/js/main.js` · `renderers/web/css/walk.css` ·
+`tools/compile_scene.py` (`compile_residents_sources`, the citation join, 11 sources) ·
+`tools/smoke_renderer.mjs` (ten assertions) · `data/sidecars/1835/residents_sources.json`.
+
+**Not verified here:** the desktop half of the smoke does not fit the runner's ten-minute
+per-command ceiling (§ THE RUN BUDGET). The mobile half ran on the published mirror: **263
+passed, 2 failed**, and both failures are the road-contrast bands `dev` already carries red —
+see `docs/STATUS.md` § *Landed with two bands red*. This parcel changes no 3-D rendering.
+
+### K52(b) — extend the read census to `data/residents/` · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K52 · Effort: S–M**
+
+`tools/measure_layer_reads.py` covers `flora` and `fauna` by name — its kinds, its baseline
+and its self-test's negative control are all written around those two — so `residents` gaining
+a reader today fired nothing. K52 answered the question by hand (finding 1 and finding 2
+above, both measured off the join); what it did not do is put the answer under a gate, so the
+next figure this layer adds can go unread exactly as the last 20 did.
+
+**It is UNSEEN and carries no exemption of its own.** Take it the way K52 was taken, or behind
+a parcel that ends in something visible.
 
 `tools/measure_layer_reads.py` covers `data/flora` and `data/fauna`; `generators/archetypes/*_params.py`
 and `generators/terrain_inputs.py` declare their own `CONSUMED`. **`data/residents/` is declared by

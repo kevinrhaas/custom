@@ -4477,6 +4477,89 @@ const terrainLoad = await page.evaluate(() => {
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
 
+    // --- the town's people, in the same panel (ROADMAP K52) ----------------
+    // The residents layer is the one that had a reader already: a household
+    // travels in its building's sidecar and the building card names it. That is
+    // why nothing caught it — `compile_residents()` reaches a building through
+    // `lives_at` or `works_at`, so a household with neither attested at the
+    // scene date attaches to no building and appeared on NO card anywhere. The
+    // first two assertions are that count, because a regression here would be
+    // silent in exactly the way the original fault was.
+    const residents = await page.evaluate(async () => {
+      const mount = document.getElementById('residents');
+      const rows = mount ? [...mount.querySelectorAll('details.res-hh')] : [];
+      // The lazy read: a row's body arrives on first open, from the household
+      // record rather than the manifest. An unopened row proves only that the
+      // manifest loaded, so one is opened here and read back.
+      const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
+      const collapsed = rows.length ? rows.every((r) => !r.open) : false;
+      if (target) {
+        target.open = true;
+        for (let i = 0; i < 100 && target.querySelector('.res-hh-body .legend-note'); i++) {
+          await new Promise((r) => setTimeout(r, 50));
+        }
+      }
+      return {
+        households: window.__chicago4d.residents?.households ?? 0,
+        persons: window.__chicago4d.residents?.persons ?? 0,
+        offCard: window.__chicago4d.residents?.offCard ?? -1,
+        notResident: window.__chicago4d.residents?.notResident ?? 0,
+        error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
+        rendered: rows.length,
+        orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        collapsed,
+        openedId: target?.dataset.id ?? '',
+        openedText: target ? target.textContent.replace(/\s+/g, ' ') : '',
+        openedPeople: target ? target.querySelectorAll('details.res-person').length : 0,
+        openedCites: target ? target.querySelectorAll('.cites .cite-text').length : 0,
+        text: mount ? mount.textContent.replace(/\s+/g, ' ') : '',
+        prose: [document.getElementById('residents-note')?.textContent ?? '',
+          ...[...document.querySelectorAll('[data-panel="evidence"] .legend-note')]
+            .map((n) => n.textContent)].join(' ').replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: every household in the layer is on the card`,
+      residents.households === 173 && residents.rendered === 173 && !residents.busy,
+      `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
+    check(`${label}: the 209 person entries are counted`, residents.persons === 209,
+      `${residents.persons}`);
+    // The finding itself, asserted as a number so it cannot quietly grow back:
+    // 17 households reach no building sidecar, and each is marked on its own row.
+    check(`${label}: the households no building card can reach are marked`,
+      residents.offCard === 17 && residents.orphanChips === 17,
+      `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
+    check(`${label}: the researched non-residents are published too`,
+      residents.notResident === 10, `${residents.notResident}`);
+    // The lazy read, proved by opening the household that IS the finding: Mark
+    // Beaubien has neither residence nor workplace attested on 1 July 1835, so
+    // this record reached no visitor at all before this section.
+    check(`${label}: opening a household fetches its record`,
+      residents.openedId === 'hh_beaubien_mark' && residents.openedPeople === 2
+      && /the original proprietor|Sauganash/.test(residents.openedText),
+      `${residents.openedId}: ${residents.openedPeople} person row(s)`);
+    // The reasoning is the finding on this layer, and the arrival year is the
+    // sharpest case of it: a figure carried explicitly so a reader can see it is
+    // NOT evidence. A card printing the value without the note would invert it.
+    check(`${label}: a graded claim carries its reasoning, not just its value`,
+      /general circulation/.test(residents.openedText)
+      && /not evidence/.test(residents.openedText),
+      residents.openedText.slice(0, 200));
+    check(`${label}: the household records quote their sources, not their source ids`,
+      residents.openedCites >= 1 && !/andreas_1884_v1/.test(residents.text),
+      `${residents.openedCites} citation(s) rendered`);
+    check(`${label}: the households start collapsed, like every other disclosure here`,
+      residents.collapsed);
+    check(`${label}: the people section does not overflow the panel`, residents.overflow);
+    // The one thing this section must never imply, and the constraint that
+    // outranks every other consideration in this project: v1 draws no human
+    // figures, and the removal of August 1835 is not staged anywhere.
+    check(`${label}: the section says plainly that nobody is drawn`,
+      /Nobody is drawn/.test(residents.prose)
+      && /this is the research, not a population/i.test(residents.prose),
+      residents.prose.slice(0, 200));
+
     // --- the wildlife, in the same panel (ROADMAP K51) ---------------------
     // `data/fauna/` was researched to the scene date, graded and cited, and read
     // by nothing: no renderer source opened the directory and publish.sh did not

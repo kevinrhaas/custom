@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 167, title: 'The town’s people get a card of their own', kind: 'feature', ts: '2026-08-17T15:09:23.393Z', date: 'Aug 17, 2026, 10:09 AM CT',
+    items: [
+      'The Evidence panel has a new section: 173 households and 209 people researched into July 1835 — when each came, from where, why, where they lived and worked, and whether the sources place them here at all on 1 July.',
+      'Seventeen of those households reached nowhere. A household only ever appeared on the card of a building it lived or worked in, and where neither is recorded it attached to no building — so 20 people sat in the dataset and on no page. Mark Beaubien, who kept the Sauganash and in whose house the town voted to incorporate itself, is one of them.',
+      'Two thirds of every record that did appear stayed in the file as well: the arrival year, where the family came from, why they came, whether the sources really place them here, and each person’s age, sex and the basis of their name. All of it is on the card now, each figure carrying its grade and the reasoning behind it.',
+      'The reasoning is usually the finding. Beaubien’s arrival year is “the figure in general circulation”, carried as a conjecture that cites nothing — recorded that way precisely so a reader can see it is not evidence.',
+      'Ten people who were researched and are NOT residents are published too: someone who arrived after the scene date, someone the sources put at Chicago but not as a household of it, and one this project believes was here and cannot cite. The gap is shown rather than filled.',
+      'Nobody is drawn. No human figure stands in this reconstruction and none is proposed here — this is the research, on a card a visitor opens.',
+    ] },
   { v: 166, title: 'Nothing you can see changed: the remaining shimmer is not a fault', kind: 'improvement', ts: '2026-08-17T12:35:06.913Z', date: 'Aug 17, 2026, 7:35 AM CT',
     items: [
       'Yesterday\u2019s note said the shimmer left over when you fly \u2014 after the sun\u2019s shadow grid was fixed \u2014 was two surfaces meeting edge-on and the picture deciding differently each frame. That was written down three times and never tested. It is wrong.',

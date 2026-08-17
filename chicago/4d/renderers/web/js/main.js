@@ -30,6 +30,7 @@ import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
+import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
 
@@ -388,6 +389,19 @@ async function boot() {
   // nowhere a visitor could read it.
   api.ground = await mountGround({
     mount: document.getElementById('ground'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
+  // And WHO was living here. This layer had a reader already — a household
+  // travels in its building's sidecar and the building card names it — which
+  // is exactly why nobody noticed that a household with no attested residence
+  // and no attested workplace attaches to no building and so reached no card
+  // anywhere: ROADMAP K52. Nothing of it is drawn; this is the record, on a card.
+  api.residents = await mountResidents({
+    mount: document.getElementById('residents'),
+    noteMount: document.getElementById('residents-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,

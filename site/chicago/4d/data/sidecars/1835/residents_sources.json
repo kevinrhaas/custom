@@ -1,0 +1,219 @@
+{
+  "scene": "1835",
+  "standard": "Every source the household records cite, joined once so the people section of the Evidence panel quotes a source exactly the way the building card and the exclusions list do.",
+  "citations": {
+    "andreas_1884_v1": {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "baptisthistoryhomepage": {
+      "source_id": "baptisthistoryhomepage",
+      "citation": "\"Early Chicago Baptist Churches and Ministers.\" Baptist History Homepage. A verbatim transcription of A. T. Andreas, History of Chicago, Volume 1 (1884), pp. 315-325, from the Google Books scan, scanned and formatted by Jim Duvall.",
+      "url": "https://baptisthistoryhomepage.com/illinois.chicg.bp.chs.mns.html",
+      "archived_url": "https://web.archive.org/web/20240526195448/http://baptisthistoryhomepage.com/illinois.chicg.bp.chs.mns.html",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "two storeys, frame construction",
+        "upper storey for school, lower for religious purposes",
+        "cost about nine hundred dollars",
+        "erected NEAR the corner of Franklin and South Water streets",
+        "standing and ready for use by 16 August 1833",
+        "subscription started and headed with $100 by Dr John T. Temple, who reached Chicago about 4 July 1833",
+        "the name \"Temple Building\"",
+        "shared use by Methodists, Presbyterians and Baptists until the Presbyterian church was dedicated 4 January 1834",
+        "the First Baptist Church organised 19 October 1833 with nineteen members, fourteen founders named",
+        "that only Jesse Walker's log house at the Point was built for worship earlier"
+      ],
+      "what_it_does_not_supply": [
+        "which corner of Franklin and South Water",
+        "any dimension in feet",
+        "roof form, fenestration, finish or orientation",
+        "how long the building stood, or its fate",
+        "Grenville T. Sproat's school, which is not on this page"
+      ]
+    },
+    "chicago_democrat_1833_11_26": {
+      "source_id": "chicago_democrat_1833_11_26",
+      "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "that a named trade was being carried on in Chicago in November 1833",
+        "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+        "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833 — with NO address, so it cannot disambiguate his two shops",
+        "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833 — with NO address, so it does NOT corroborate the Clark/South Water corner Andreas gives them",
+        "W. Kimball's 'New Store' at the corner of South Water and Clark — a SECOND, independently attested occupant of that junction in the same issue, signed",
+        "Peter Cohen, clothier and grocer, self-reported at the EAST END OF SOUTH WATER-STREET, and trading in Chicago before Nov 1833 ('old customers ... past favors')",
+        "Goss & Cobb, saddle and harness makers, self-reported on the corner of Lake and Canal streets",
+        "Matthias Mason & Co., blacksmiths, on 'Main-street, nearly opposite Graves' Tavern' — a street name this project does not otherwise hold",
+        "B. Jones, grocery and provision store, and separately a storage/forwarding/commission business — both ads give NO street",
+        "Newberry & Dole, forwarding and commission merchants — no address",
+        "John Wright, cut nails and general merchandise; and TWO BUILDINGS TO LET until 1 June 1834",
+        "Daniel Elston & [illegible], soap and candle manufactory, paying cash for tallow and house ashes",
+        "a tavern stand kept by Chester Ingersoll, 'lately occupied by Mr. Wm. W. WATTLES', dated 4 October 1833",
+        "the house of Chester Ingersoll used as the district polling place, 9 December 1833",
+        "THE VILLAGE ORDINANCES of 7 November 1833, complete — the richest single item in the paper",
+        "Ordinance 1: the corporate limits surveyed ALONG the northern United States' Pier 'to the termination thereof' — the pier as an existing, walkable structure with a definite landward end",
+        "Ordinance 5: 'either of the bridges in said town' and their 'plank or any piece of timber' — EXACTLY TWO bridges on 7 Nov 1833, of plank-and-timber construction",
+        "Ordinance 6: wooden buildings with wooden and lath-and-plaster partitions, heated by STOVES not fireplaces, pipes passing through roof or side wall and carried 18 inches above the roof, guarded by stone-ware pipe, brick, tin or sheet iron",
+        "Ordinance 9: timber, stone, brick, boxes and barrels stacked in the streets",
+        "Ordinances 3, 7 and 8: hogs at large, horses run through the streets, stallions",
+        "the schooner Austerlitz, Capt. Smith, from Buffalo, arrived about the 1[9]th inst. with a full cargo of merchandise for citizens of this village and cleared on the 21st IN BALLAST",
+        "a school established in the village by Mr. Sproat of Boston, already running on 26 Nov 1833",
+        "a public auction of United States property held AT FORT DEARBORN, 2 December 1833",
+        "the village population passing 'more than eight hundred souls' in late 1833"
+      ],
+      "what_it_does_not_supply": [
+        "any building's dimensions",
+        "any building's form, material, storey count or fenestration",
+        "the specific corner of any junction it names — the imprint says 'on the corner of', and which of the four is not in the sentence",
+        "evidence that any building named here still stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period, and the population went from 800 to 3,265 in between",
+        "any building footprint or plan",
+        "any length or width for the piers",
+        "any corroboration of the estray pen — see the negative finding in the note"
+      ]
+    },
+    "chicagology_first_post_office": {
+      "source_id": "chicagology_first_post_office",
+      "citation": "\"Chicago's First Post Office.\" Chicagology, transcribing J. Seymour Currey, \"U. S. Government and Post Office Buildings,\" Fort Dearborn Magazine, December 1922.",
+      "url": "https://chicagology.com/chicagopostoffice/firstpostoffice/",
+      "archived_url": "https://web.archive.org/web/20260517202635/https://chicagology.com/chicagopostoffice/firstpostoffice/",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "transcribes": [
+        {
+          "work": "J. Seymour Currey, 'U. S. Government and Post Office Buildings', Fort Dearborn Magazine — the establishment of the post office at Chicago and its first three keepers",
+          "date": "1922-12",
+          "tier": 4,
+          "note": "Carries the post office's establishment on 31 March 1831 under Jonathan N. Bailey, the log building at South Water and Lake with Hogan's store in it, the succession of Hogan on 2 November 1832 and of Sidney Abell on 3 March 1837 — the chronology behind data/structures/hogan_store.json, where Andreas is preferred at every point the two differ. A 1922 compilation naming no authority for these particular facts: later scholarship, rung 4. The 66 ft plat sentence lower on the page is NOT part of this article and is not declared."
+        }
+      ],
+      "what_it_supplies": [
+        "the post office's establishment date, 31 March 1831, and its first three postmasters",
+        "a log building at the intersection of South Water and Lake, near the east end of the bridge, with Hogan's store in it",
+        "the mail schedule year by year, 1831-1837, quoted from M. H. Putney's 'Historical Notes'"
+      ],
+      "what_it_does_not_supply": [
+        "the Thompson 1830 street module — the 66 ft sentence on this page carries no attribution and is not Currey's article; see the note",
+        "any dimension of the log building; that comes from Andreas, twice, at twenty by forty-five feet",
+        "a reliable date for the office leaving Lake and South Water: it says November 1832, Andreas says about July 1834 in two independent passages"
+      ]
+    },
+    "chicagology_prefire021": {
+      "source_id": "chicagology_prefire021",
+      "citation": "\"Tremont House.\" Chicagology. Compiling city-directory entries 1846-1870, an uncredited building summary, Chicago Illustrated (January 1866) by James W. Sheahan, and a reader's letter headed \"THE FOUR TREMONTS\", Chicago Tribune, 2 February 1874.",
+      "url": "https://chicagology.com/prefire/prefire021/",
+      "archived_url": "https://web.archive.org/web/20260411172619/https://chicagology.com/prefire/prefire021/",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "built 1833 at the north-west corner of Lake and Dearborn streets",
+        "frame / wooden construction, twice attested in period texts on the page",
+        "\"a mere shell, without any sidewalk around it\", poorly furnished, rooms not entirely carpeted, beds often without a pillow",
+        "Ira Couch became proprietor the year after it was built, i.e. 1834",
+        "the corner impassable to the stage in early spring, passengers walking some two blocks",
+        "destroyed by fire in the fall of 1839",
+        "kept by the Couch brothers (Chicago Illustrated, 1866)"
+      ],
+      "what_it_does_not_supply": [
+        "an independent storey count - the only one on the page is an uncredited modern summary sentence",
+        "any dimension, plan or roof form",
+        "the builder's name (Alanson Sweet is not on this page)",
+        "the first proprietor Starr Foot, or the 1835 sale to Mallory & Able",
+        "anything reliable in its header metadata block, which describes the later Tremonts"
+      ]
+    },
+    "chicagology_prefire275": {
+      "source_id": "chicagology_prefire275",
+      "citation": "\"Early Street Maps of Chicago.\" Chicagology. A gallery of reproduced early Chicago maps - Thompson 1830, the Kinzie manuscript map hand-dated 1833, Wright 1834, Wabonsia 1835, Andreas's 1830 landownership map, Wolf's Point 1853 and both states of the Conley/Stelzer map - with an uncredited editorial ADDENDUM on the town's first streets and roads.",
+      "url": "https://chicagology.com/prefire/prefire275/",
+      "archived_url": "https://web.archive.org/web/20260517032650/https://chicagology.com/prefire/prefire275/",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "the existence of a first store building on Lake Street, a two-story frame structure, built by Thomas Church",
+        "the first Tremont House at the north-west corner of Dearborn and Lake, 1833",
+        "Lake Street as the main street of the town from 1833",
+        "the first Court House \"followed in 1835\"",
+        "South Water Street as the town's first street, \"a muddy, narrow trail running east and west along the south bank\"",
+        "the Milwaukee Trace / Northwest Plank Road and the Barry Point Trail and Nine-mile Swamp route out of town",
+        "a finding aid to the early Chicago map literature",
+        "Thompson 1830 street width 80 ft and alley width 18 ft, uncited"
+      ],
+      "what_it_does_not_supply": [
+        "a date for Thomas Church's store",
+        "a block, lot or corner for it",
+        "any dimension for it",
+        "usable reproductions of the maps it gathers - re-source from the holding institution",
+        "reliable bibliographic data for the Conley/Stelzer map",
+        "any citation whatever for its addendum"
+      ]
+    },
+    "drloih_fort_dearborn": {
+      "source_id": "drloih_fort_dearborn",
+      "citation": "\"The Complete History of the First and Second Fort Dearborn in Chicago.\" Digital Research Library of Illinois History Journal, June 2018.",
+      "url": "https://drloihjournal.blogspot.com/2018/06/history-of-the-first-and-second-fort-dearborn-in-Chicago.html",
+      "archived_url": "http://web.archive.org/web/20260801093006/https://drloihjournal.blogspot.com/2018/06/history-of-the-first-and-second-fort-dearborn-in-Chicago.html",
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "the commandants of the second fort with dates, 1832-1836",
+        "the date of the final evacuation, 29 December 1836"
+      ],
+      "what_it_does_not_supply": [
+        "any independent architectural evidence for the second fort",
+        "footnotes"
+      ]
+    },
+    "drloih_hotels": {
+      "source_id": "drloih_hotels",
+      "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "drloih_wolf_point": {
+      "source_id": "drloih_wolf_point",
+      "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kinzie_waubun_1856": {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
+    "owner_chicago_1835_reconstruction_spec_2026": {
+      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
+      "url": "",
+      "archived_url": "",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
+        "Thirty-five architectural family definitions with dimensional and massing bands.",
+        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
+        "A required distinction between named documentary landmarks and anonymous inferred infill."
+      ],
+      "what_it_does_not_supply": [
+        "A surviving July 1835 building census or parcel-by-parcel roof register.",
+        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
+        "Authority to replace stronger building-specific evidence already represented in the dataset."
+      ]
+    }
+  }
+}
