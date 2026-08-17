@@ -3829,8 +3829,30 @@ placement rule — and it is the whole of what is left of this entry.
 limits (exact, in both directions) and the refused hectares, so neither the reach nor the limit
 can move without a commit that says so.
 
-Related: **L113**, which recorded the four dune trees this leaves unplaced, and **L116**, the
-sycamore's borrowed bark.
+**AND THAT IS THE END OF IT — RESOLVED 2026-08-17 (ROADMAP K45(b) change one). The sand has
+trees on it.** `COMMUNITIES.dune` stands the three recorded poplars on the lakeshore: the eastern
+cottonwood in its dune form, the quaking aspen and the balsam poplar, weighted at each record's
+own midpoint — 9, 5 and 5 per hectare — over a stand density of **[7, 31]/ha** that is the sum of
+those three bands rather than a canopy figure, because ZONE 8 records no canopy and on open sand
+the three densities add. **88 stems stand on 4.30 ha of dry lakeshore** where none did.
+
+**Where they stand is the sward's answer, not this file's.** Every other community here is chosen
+from the heightfield, and a dune cannot be: what makes it a dune is the substrate. So `trees.js`
+asks `flora.js`'s zone classifier — the one that already decides which sward a visitor is standing
+in, by the committed extents and their priorities — and plants the dune where the beach is DRAWN.
+The 40.2 ha refused east of the timber limits is now **4.30 ha of dry lakeshore planted** and the
+rest is `z09_sand_prairie`, whose own record carries no tree at all: its only woody entry is the
+bur-oak grub, a `shrub_low` no woody reader takes. That is a stated omission of a different kind
+and it is not this entry's.
+
+**One omission does survive, named so it is not lost.** ZONE 8c also records willow scrub —
+`salix_cordata` at 15–50 clumps/ha, `salix_interior`, red-osier and juniper — and none of it is
+planted: the shrub roles are no woody reader's cohort. The river's point-bar branch is explicitly
+refused on the dune, because a point bar is a river feature and ZONE 8a says the active beach is
+85–98 % bare sand, *"do not vegetate this"*.
+
+Related: **L113**, which recorded the four dune trees this leaves unplaced, **L116**, the
+sycamore's borrowed bark, and **L120**, the dune archetypes this repair had to invent.
 
 ### L118 — The sycamore's pale limbs are two invented colours, and the mottling is still not drawn
 
@@ -4346,3 +4368,52 @@ apart"* is one this project already holds for a record it did not need it for.
 Related: **L114**, **L116** and **L118** in this layer, and ROADMAP **K49(c1)**, which
 measured the conversion these widths make possible.
 **Recorded:** 2026-08-16.
+
+### L120 — The dune poplars' bole, taper and bark, and a pale trunk chosen so two trees can be told apart
+
+**Decision:** the three trees now standing on the lakeshore — the eastern cottonwood in its dune
+form, the quaking aspen and the balsam poplar (ROADMAP **K45(b)** change one) — are drawn with
+**bole diameters, fork heights, foliage-mass counts, a lean and three bark colours that no source
+states.** The records carry what a record can carry — species, July height, crown width, July
+foliage colour, density and confidence, all `attested` off the MNFI open-dune survey and Cowles
+1901 — and none of them describes a trunk.
+
+**What bounded each invention.** The dune cottonwood forks at **0.30** of its bole, the lowest in
+this file after the open-grown oaks, and leans at **0.30**, the top of the range the file already
+uses (its two bank willows sit at 0.24 and 0.30): the record's one visual claim about this tree is
+*"isolated, half-buried and leaning, with a sand mound at the base"*, so it takes the most this
+project has ever leant anything and no more. Its bark is the gallery cottonwood's own hex, because
+it is the same species. The aspen and the balsam poplar take narrow crowns from their own recorded
+`width_m` of 3–6 m and bole diameters of 0.10–0.25 m and 0.12–0.28 m — the two thinnest boles in
+the file, on the two shortest canopy trees in it.
+
+**The one invention that is a CHOICE rather than a bound, stated as such.** The aspen's bark is
+**0xb9bdae**, the palest bole in the scene. Nothing in this dataset states it. It is chosen for two
+reasons and both are admitted: a quaking aspen's white-green trunk is the most widely known thing
+about the species, and — the reason it is a liberty — **the aspen and the balsam poplar are the
+same height, the same crown and the same form**, so without a difference in the wood a visitor
+cannot tell that two species are standing there. The balsam poplar keeps an ordinary grey-brown.
+The pale tone stays darker than the sycamore's upper limbs (**L118**), which remain the palest
+wood in the timber.
+
+**Why this could not be left open.** `SPECIES` says *"one entry per woody species drawn"* and the
+loader keys it by species id, so a species recorded by two zones takes the FIRST zone's archetype.
+`populus_deltoides` is recorded twice — `z05_riverbank_timber`'s 22–30 m gallery emergent and
+`z08_lakeshore`'s 5–15 m half-buried leaner — and with nothing written here the beach would have
+been planted with twenty-five-metre floodplain cottonwoods: the record read, routed, banded, and
+drawn as another zone's tree. That is **L116**'s fault one level in. Leaving the archetype absent
+was not the neutral option.
+
+**Consequence.** Three trees are drawn from parameters this file invented, on ground whose species,
+count and density come from the records. Nothing in `data/` moved, no confidence grade changed, and
+the substitution `tools/measure_planting_reach.py` banks — a placed species drawn with another
+species' bole and bark — is **0** rather than 2, because the archetypes are their own.
+
+**How to resolve:** a measured trunk diameter, bark colour or lean for any of the three, from a
+source this project can cite, replaces the invented figure in the same commit that re-banks it. A
+photograph of a Lake Michigan open-dune cottonwood in the repository's own reference set would
+settle the lean without settling the colour, and would be worth taking on its own.
+
+Related: **L114**, the omission this repair closes, **L116** and **L118**, the other two entries
+about wood this project invented, and ROADMAP **K45(b)**.
+**Recorded:** 2026-08-17.

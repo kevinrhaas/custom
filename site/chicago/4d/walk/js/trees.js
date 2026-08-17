@@ -81,8 +81,24 @@ import * as THREE from 'three';
  * fails on any HTTP >= 400, so nothing here may probe for a file.
  */
 const TIMBER_ZONES = [
-  'z05_riverbank_timber', 'z06_dense_forest', 'z07_bur_oak_savanna', 'z10_settled_town',
+  'z05_riverbank_timber', 'z06_dense_forest', 'z07_bur_oak_savanna', 'z08_lakeshore',
+  'z10_settled_town',
 ];
+
+/**
+ * THE ZONE WHOSE GROUND THIS FILE ASKS THE SWARD FOR (ROADMAP K45(b) change one).
+ *
+ * Every other community here is selected from the heightfield — bank distance,
+ * land division, a generated relief field. The dune cannot be: what makes it a
+ * dune is the SUBSTRATE, and the substrate is not in the heightfield. It is in
+ * `data/flora/zones/z08_lakeshore.json`'s extent, which `flora.js` already
+ * resolves against every other zone's extent by priority to decide which sward
+ * a visitor is standing in. So this file asks that classifier rather than
+ * carrying a second copy of the beach: the cottonwoods stand on the sand you can
+ * SEE, and moving the zone moves both together. If the sward did not load, the
+ * answer is null and no dune is planted — the safe direction.
+ */
+const DUNE_ZONE = 'z08_lakeshore';
 
 /* -------------------------------------------------------------------------- */
 /* the physical constants this file reasons with                               */
@@ -421,6 +437,64 @@ const SPECIES = {
 };
 
 /**
+ * THE ARCHETYPE TABLE IS KEYED BY SPECIES, AND A SPECIES CAN BE RECORDED TWICE.
+ *
+ * ROADMAP K45(b) change one, and it is the finding this parcel did not expect.
+ * `SPECIES` above says "one entry per woody species drawn", and until the
+ * lakeshore was routed here that was true. `populus_deltoides` is recorded in
+ * BOTH `z05_riverbank_timber` — `tree_gallery`, 22–30 m, 14–22 m crown, the
+ * emergent of the floodplain — AND `z08_lakeshore` — `tree_leaning`, 5–15 m,
+ * 6–14 m crown, *"isolated, half-buried and leaning, with a sand mound at the
+ * base"*. They are the same binomial and nothing else about them is the same.
+ *
+ * `loadTimberZones` keys its spec map by species id and takes the FIRST zone
+ * that names one, so with nothing here the dune would have been planted with
+ * twenty-five-metre gallery cottonwoods standing on the open beach — the record
+ * read, routed, banded, and drawn as another zone's tree. That is K47's fault
+ * one level in, and the reason it is caught here is that the dune is the first
+ * community whose cited zone re-describes a species another zone already had.
+ *
+ * So the archetype — what the record does NOT carry: bole diameter, fork
+ * height, foliage-mass count, lean, bark colour — may be given per zone. The
+ * record still wins on everything it states. Only the lakeshore needs an entry
+ * today; the general repair (a spec map keyed by zone AND species for every
+ * community) would redeal the whole town's specs and is its own parcel.
+ *
+ * **Every number below is invented, as every number in `SPECIES` is**, bounded
+ * by this file's own range and by the record's prose. docs/LIBERTIES.md L119.
+ */
+const ARCHETYPE_BY_ZONE = {
+  z08_lakeshore: {
+    // The dune pioneer. Stout for its height and forking low, because it is
+    // half-buried: `boleK` 0.30 is the lowest fork in this file after the open-
+    // grown oaks. `lean` 0.30 is the TOP of the range the file already uses
+    // (the two bank willows sit at 0.24 and 0.30) — the record's one visual
+    // claim about this tree is that it leans, so it takes the most this file
+    // has ever leant anything. Bark is the gallery cottonwood's own: same
+    // species, and no record anywhere states a bark colour.
+    populus_deltoides: { common: 'eastern cottonwood (dune form)', dossier: 'ZONE 8c',
+      form: 'lean', h: [5, 15], dbh: [0.30, 0.70], spreadK: 0.70, boleK: 0.30, puffs: 6,
+      dark: 0x3d5a2c, light: 0x86a252, bark: 0x6e6759, lean: 0.30,
+    },
+    // Quaking aspen: a narrow clonal stem, and the one tree here whose bark a
+    // visitor could name from thirty metres. 0xb9bdae is the palest BOLE in the
+    // scene by design and is still darker than the sycamore's upper limbs
+    // (0xd9d3c2, L118), which stay the palest wood in the timber.
+    populus_tremuloides: { common: 'quaking aspen', dossier: 'ZONE 8c',
+      form: 'columnar', h: [6, 12], dbh: [0.10, 0.25], spreadK: 0.42, boleK: 0.56, puffs: 5,
+      dark: 0x6e864e, light: 0x98a876, bark: 0xb9bdae,
+    },
+    // Balsam poplar: the same narrow crown in the damper hollows, on ordinary
+    // grey-brown wood — deliberately NOT the aspen's pale bole, because the two
+    // stand side by side at the same height and the bark is what separates them.
+    populus_balsamifera: { common: 'balsam poplar', dossier: 'ZONE 8c',
+      form: 'columnar', h: [6, 12], dbh: [0.12, 0.28], spreadK: 0.42, boleK: 0.54, puffs: 5,
+      dark: 0x58743e, light: 0x8a9c66, bark: 0x5d5748,
+    },
+  },
+};
+
+/**
  * The communities, and what fraction of the canopy each species holds in them.
  * Weights are the dossier's per-species densities; `perHa` is the STAND density
  * the dossier gives for the community as a whole, which is the number that
@@ -545,6 +619,39 @@ const COMMUNITIES = {
     ],
     confidence: 'inferred',
     sources: ['chicagology_prefire273'],
+  },
+  /**
+   * THE OPEN DUNE — ROADMAP K45(b) change one, and the first community here
+   * whose `perHa` is DERIVED rather than quoted.
+   *
+   * ZONE 8 gives no canopy figure, because a dune has no canopy. What it gives
+   * is three absolute per-hectare densities on three isolated trees — the dune
+   * cottonwood at 3–15/ha *"isolated, half-buried, leaning"*, the quaking aspen
+   * and the balsam poplar at 2–8/ha each in *"clonal patches"* — and on open
+   * sand those are not microsite densities competing for one canopy. They add.
+   * So the stand is their sum, [7, 31]/ha, and the mix takes each species'
+   * midpoint under K45(b1)'s rule: at the middle of the band the draw plants
+   * 9 + 5 + 5 per hectare, which is each record's own midpoint reproduced
+   * exactly. That is the test this arithmetic has to pass and the reason it is
+   * written this way rather than normalised to a hundred.
+   */
+  dune: {
+    label: 'Open-dune poplars on the lakeshore sand',
+    dossier: 'ZONE 8c — stabilised back-dune, isolated trees over marram and sand cherry',
+    zones: ['z08_lakeshore'],
+    perHa: [7, 31],
+    mix: [
+      ['populus_deltoides', 9], ['populus_tremuloides', 5], ['populus_balsamifera', 5],
+    ],
+    /**
+     * The dune's own species keep the dune's parameters. Without this the
+     * cottonwood on the beach is drawn with `z05_riverbank_timber`'s archetype,
+     * because the spec map is keyed by species id and the gallery is read
+     * first — see ARCHETYPE_BY_ZONE.
+     */
+    specsFrom: 'z08_lakeshore',
+    confidence: 'inferred',
+    sources: ['mnfi_open_dunes', 'cowles_1901'],
   },
 };
 
@@ -893,6 +1000,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
+  const byZone = {};
   const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
@@ -915,11 +1023,14 @@ async function loadTimberZones(dataBase, problems = []) {
       if (Array.isArray(perHa) && perHa.length === 2) {
         bands[id][sp.id] = [perHa[0], perHa[1]];
       }
-      if (specs[sp.id]) continue;
-      const base = SPECIES[sp.id] ?? SPECIES.ulmus_americana;
+      // The archetype this record is drawn with: the zone's own if it declares
+      // one, and otherwise the species table's. A zone entry is needed only
+      // where two zones describe the same species as different trees — see
+      // ARCHETYPE_BY_ZONE, which is the dune cottonwood against the gallery one.
+      const base = ARCHETYPE_BY_ZONE[id]?.[sp.id] ?? SPECIES[sp.id] ?? SPECIES.ulmus_americana;
       const dark = rgbHex(sp.july?.foliage_rgb);
       const light = rgbHex(sp.july?.foliage_rgb_alt);
-      specs[sp.id] = {
+      const spec = {
         ...base,
         common: sp.common ?? base.common,
         form,
@@ -939,19 +1050,26 @@ async function loadTimberZones(dataBase, problems = []) {
         head: woodyHeadOf(sp, id, problems),
         fromRecord: true,
       };
-      if (specs[sp.id].head) {
+      if (spec.head) {
         if (form === 'thicket') {
           problems.push(`trees: ${id}/${sp.id} is a thicket carrying a `
             + `'${sp.july.inflorescence.shape}' inflorescence, and the clonal path draws `
             + 'no head — its flower is not drawn');
-          specs[sp.id].head = null;
-        } else {
+          spec.head = null;
+        } else if (!heads.includes(sp.id)) {
           heads.push(sp.id);
         }
       }
+      // Kept BOTH ways. `byZone` is what a community citing this zone plants
+      // with; `specs` stays the first-zone-wins table every direct `addTree`
+      // call site and every community without a `specsFrom` still reads, so
+      // nothing outside the dune is redealt by this.
+      byZone[id] = byZone[id] ?? {};
+      byZone[id][sp.id] = spec;
+      if (!specs[sp.id]) specs[sp.id] = spec;
     }
   }
-  return { specs, bands, unimplemented: [...unimplemented], zonesRead, heads };
+  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1583,7 +1701,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
 export async function createTrees({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
   confidence = null, problems = [], lowSpec = false, detail = 'full',
-  pixelsPerRadian = null, streetRecords = [],
+  pixelsPerRadian = null, streetRecords = [], zoneAt = null,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1656,6 +1774,31 @@ export async function createTrees({
     specs[id] = { ...base, conf: 0.5, crownW: null };
   }
   Object.assign(specs, records.specs);
+
+  /**
+   * The specs a NAMED community plants with (ROADMAP K45(b) change one).
+   *
+   * `specs` above is keyed by species id and the first zone to name a species
+   * wins it, which is right for every community that shares its trees with the
+   * gallery and wrong for exactly one: the dune, whose cottonwood is the same
+   * binomial as the gallery's and a different tree. A community may therefore
+   * name the zone its own species come from, and gets that zone's records laid
+   * over the shared table. Every other community reads the shared table
+   * unchanged, so nothing outside the dune is redealt by this.
+   */
+  const communitySpecs = {};
+  for (const [key, c] of Object.entries(COMMUNITIES)) {
+    if (!c.specsFrom) { communitySpecs[key] = specs; continue; }
+    const own = records.byZone?.[c.specsFrom];
+    if (!own) {
+      problems.push(`trees: the community ${key} plants with ${c.specsFrom}'s own species `
+        + 'parameters and that zone contributed none — its stems would be drawn as '
+        + 'another zone\'s tree');
+      communitySpecs[key] = specs;
+      continue;
+    }
+    communitySpecs[key] = { ...specs, ...own };
+  }
 
   /**
    * The community mixes, weighted as they are written (ROADMAP K46).
@@ -1841,6 +1984,17 @@ export async function createTrees({
     const y = data[i];
     if (terrain.isWater(e, n)) return null;      // authoritative traced water mask
     if (!standsDry(e, n)) return null;           // and not on the waterline either
+
+    // THE OPEN DUNE (ROADMAP K45(b) change one), asked BEFORE the divisions and
+    // their east limits, because it is a different claim from all of them. Those
+    // limits are where the river TIMBER ends — Andreas's belt stops at Wells
+    // Street and his North Division timber excepts "the sandy hills near the
+    // lake". The sandy hills are not an absence of vegetation; they are the
+    // lakeshore's own community, and ZONE 8 records three poplars standing on
+    // it. Where that ground is is the sward's answer and not this file's: see
+    // DUNE_ZONE. No sward, no dune.
+    if (zoneAt?.(e, n) === DUNE_ZONE) return 'dune';
+
     const d = div[i];
     if (d === WEST) return null;                // Andreas: open prairie, entirely
 
@@ -2122,7 +2276,18 @@ export async function createTrees({
       // Sandbar willow: "thickets 2–6 stems/m² on point bars". Point bars are
       // the low, freshly worked ground between the waterline and about half a
       // metre above it — which the heightfield resolves as a 6–9 m strip.
-      if (bank <= 9 && y <= 0.60) {
+      //
+      // A point bar is a RIVER feature and this test asks only about height and
+      // distance to water, so on the lakeshore it would read the beach as one
+      // and hang a willow screen along the open lake — which ZONE 8a refuses in
+      // as many words: the active beach is 85–98 % bare sand, "do not vegetate
+      // this". Measured on the committed heightfield the exclusion changes
+      // nothing today (0 of the dune's 2,687 dry nodes qualify; the nearest is
+      // 9.66 m from water against this branch's 9 m), and it is written because
+      // 0.66 m is the whole of that margin. The lakeshore's own willow scrub is
+      // recorded — `salix_cordata` at 15–50 clumps/ha, `salix_interior` — and is
+      // still planted by nothing; that is a stated omission, not this branch.
+      if (comm !== 'dune' && bank <= 9 && y <= 0.60) {
         if (stats.thickets >= maxThickets) continue;
         // Nearly every bar cell takes a stool. A sandbar-willow thicket is a
         // SCREEN, and a screen needs its clumps to touch: at a 4 m planting step
@@ -2161,7 +2326,9 @@ export async function createTrees({
       const p = pickers[key];
       const pick = comm === 'gallery_edge' && p.edgeMix ? p.edgeMix : p.mix;
       const id = pick(rnd());
-      const spec = specs[id];
+      // The community's own parameters where it declares them — the dune
+      // cottonwood is not the gallery cottonwood. See `communitySpecs`.
+      const spec = communitySpecs[key][id];
       if (!spec) continue;
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, worldZ(pz), rnd);
       noteStation(px, pz, gy);

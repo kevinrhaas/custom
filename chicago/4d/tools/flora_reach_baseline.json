@@ -10,26 +10,6 @@
       "role": "thicket",
       "form": "vine_drape",
       "reason": "form-not-implemented"
-    },
-    "z08_lakeshore/populus_balsamifera": {
-      "role": "tree",
-      "form": "tree_columnar",
-      "reason": "zone-not-read"
-    },
-    "z08_lakeshore/populus_deltoides": {
-      "role": "tree",
-      "form": "tree_leaning",
-      "reason": "zone-not-read"
-    },
-    "z08_lakeshore/populus_tremuloides": {
-      "role": "tree",
-      "form": "tree_columnar",
-      "reason": "zone-not-read"
-    },
-    "z08_lakeshore/salix_interior": {
-      "role": "thicket",
-      "form": "thicket_clonal",
-      "reason": "zone-not-read"
     }
   },
   "figures": {
@@ -39,16 +19,6 @@
       "unreached": 2,
       "readers": [
         "flora.js"
-      ],
-      "state": "mesh"
-    },
-    "species[].abundance.density_per_ha": {
-      "carriers": 72,
-      "reached": 69,
-      "unreached": 3,
-      "readers": [
-        "flora.js",
-        "trees.js"
       ],
       "state": "mesh"
     },
@@ -63,8 +33,8 @@
     },
     "species[].common": {
       "carriers": 154,
-      "reached": 30,
-      "unreached": 124,
+      "reached": 34,
+      "unreached": 120,
       "readers": [
         "trees.js"
       ],
@@ -72,8 +42,8 @@
     },
     "species[].confidence": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
+      "reached": 152,
+      "unreached": 2,
       "readers": [
         "flora.js",
         "trees.js"
@@ -82,8 +52,8 @@
     },
     "species[].form": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
+      "reached": 152,
+      "unreached": 2,
       "readers": [
         "flora.js",
         "trees.js"
@@ -92,8 +62,8 @@
     },
     "species[].height_m": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
+      "reached": 152,
+      "unreached": 2,
       "readers": [
         "flora.js",
         "trees.js"
@@ -102,8 +72,8 @@
     },
     "species[].july.appearance": {
       "carriers": 154,
-      "reached": 30,
-      "unreached": 124,
+      "reached": 34,
+      "unreached": 120,
       "readers": [
         "trees.js"
       ],
@@ -111,17 +81,7 @@
     },
     "species[].july.foliage_rgb": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
-      "readers": [
-        "flora.js",
-        "trees.js"
-      ],
-      "state": "mesh"
-    },
-    "species[].july.foliage_rgb_alt": {
-      "carriers": 10,
-      "reached": 8,
+      "reached": 152,
       "unreached": 2,
       "readers": [
         "flora.js",
@@ -171,8 +131,8 @@
     },
     "species[].july.phenology": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
+      "reached": 152,
+      "unreached": 2,
       "readers": [
         "flora.js",
         "trees.js"
@@ -181,18 +141,8 @@
     },
     "species[].role": {
       "carriers": 154,
-      "reached": 148,
-      "unreached": 6,
-      "readers": [
-        "flora.js",
-        "trees.js"
-      ],
-      "state": "mesh"
-    },
-    "species[].width_m": {
-      "carriers": 109,
-      "reached": 106,
-      "unreached": 3,
+      "reached": 152,
+      "unreached": 2,
       "readers": [
         "flora.js",
         "trees.js"

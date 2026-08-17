@@ -1,5 +1,71 @@
 # STATUS
 
+## Shipped 2026-08-17 — there are trees on the lakeshore sand, and the sward decided where
+
+**ROADMAP K45(b4)**, the last of K45(b)'s three changes. `z08_lakeshore` records three trees for
+the open dune — the eastern cottonwood in its dune form at 3–15/ha, the quaking aspen and the
+balsam poplar at 2–8 each, all `attested` off the MNFI open-dune survey and Cowles 1901 — and no
+community mix could choose any of them, so the beach carried no woody stem. **88 poplars now stand
+on 4.30 ha of dry lakeshore**: 42 cottonwood, 23 aspen, 23 balsam poplar, against 41.7 / 23.2 /
+23.2 expected from the weights.
+
+**The stand density is derived, which is a first here.** ZONE 8 gives no canopy figure, because a
+dune has no canopy — so `perHa` is **[7, 31]**, the sum of the three recorded bands, and each mix
+weight is its own record's midpoint. At the middle of that range the draw plants 9 + 5 + 5 per
+hectare, which is each record's own midpoint reproduced exactly.
+
+**Where they stand is `flora.js`'s answer, not `trees.js`'s.** Every other woody community here is
+selected from the heightfield, and a dune cannot be: what makes it a dune is the substrate. The
+sward already resolves ten overlapping zone extents by priority to decide which grass a visitor is
+standing in, so the timber asks it. The wood stands on the sand that is DRAWN, and moving the zone
+moves both together. `trees.js` still reads no extent of its own.
+
+| | before | after |
+|---|---|---|
+| stems on the lakeshore | **0** | **88** on 4.30 ha |
+| trees in the near field | 373 | **472** |
+| flora records reaching no reader | 6 | **2** |
+| unreached (record, figure) pairs | 301 | **261** |
+| placed species drawn as another species | — | **0** |
+| timber triangles / draw calls | 167,830 / 4 | **186,442 / 5** |
+
+### Three findings, and the first one shrinks the parcel that follows it
+
+**1. The 40.2 ha banked as swept-and-refused was never 40.2 ha of woody omission.** Broken down
+through the sward's own classifier: **4.30 ha is lakeshore and 33.6 ha is `z09_sand_prairie`**,
+whose record carries no tree at all — its only woody entry is the bur-oak grub, a `shrub_low` no
+woody reader takes. Five sixths of the refused ground is refused by the dataset, not the renderer.
+
+**2. `SPECIES` is keyed by species id, and that breaks the first time a species is recorded twice.**
+`populus_deltoides` is the gallery's 22–30 m emergent AND the dune's 5–15 m half-buried leaner. The
+loader took the first zone to name a species, so the beach was one line from being planted with
+twenty-five-metre floodplain cottonwoods — read, routed, banded, gated, and drawn as another zone's
+tree. `ARCHETYPE_BY_ZONE` + a community's `specsFrom` fixes it for the lakeshore only; the general
+form would redeal every community's specs and is its own parcel.
+
+**3. A gate that scans one table reports a false finding when a second table appears.**
+`measure_planting_reach.py` convicted both new poplars of being drawn with the elm's bark while
+their own archetypes sat committed three hundred lines above. It reads the second table now, per
+community, and the bank is 0. Separately, `measure_flora_reach.py` had a self-test case that named
+`z08_lakeshore` as its example of an unrouted zone — a control whose fixture was the defect, so
+repairing the defect turned it red. That is the third of that shape in four days.
+
+**Still not planted, stated rather than left to be found:** ZONE 8c's willow scrub — `salix_cordata`
+at 15–50 clumps/ha, red-osier, juniper, sand cherry — is `shrub_low`, a role no woody reader has a
+cohort for. And the river's point-bar branch is now refused on the dune outright, because ZONE 8a
+says the active beach is 85–98 % bare sand, *"do not vegetate this"*; measured, it caught 0 of the
+dune's 2,687 dry nodes today and the nearest miss is 0.66 m.
+
+### Verified
+
+`./tools/check.sh` — **CHECK PASS**, with every moved bank re-banked in the same commit:
+`planting_reach_baseline.json` (0 unselectable species, 5 timber zones, 29 mix entries) and
+`flora_reach_baseline.json` (2 records, 14 figures). All three woody gates' self-tests fire.
+`SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs --published` — see the PR for the count.
+
+**Not claimed:** the desktop half of the smoke, ~13 min against this runner's 10-minute
+per-command ceiling.
+
 ## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
 
 **ROADMAP K51**, from K42 finding 2. `data/fauna/` holds **139 animal records across ten habitat
