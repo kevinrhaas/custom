@@ -1,7 +1,7 @@
 ---
 id: T-0001
 title: A visitor can walk across every bridge, end to end
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -10,7 +10,7 @@ legacy_id: K10
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/17/2026, 4:56:22 PM CT
 blocked_on: null
 needs_bake: false
 ---
