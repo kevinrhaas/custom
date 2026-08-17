@@ -712,7 +712,70 @@ all 30 fauna figures, in the same commit, and the self-test's negative control h
 · `renderers/web/css/*` · `tools/publish.sh` · `tools/compile_scene.py` (the citation join only)
 · `tools/measure_layer_reads.py` + its baseline · `tools/smoke_renderer.mjs`.
 
-### K50 — ask every other layer the question that caught R-BUG5b · **UNCLAIMED · from R-BUG5b · Effort: S–M**
+### K50 — ask every other layer the question that caught R-BUG5b · **DONE 2026-08-17 — both layers draw where they decided, and the instrument that caught R-BUG5b does not transfer whole**
+
+**The answer is: nothing is mirrored.** 331 structures unioned out of 1,310 drawn instances,
+**533,346 vertices read back** through the instance matrices the renderer hands the GPU, and
+**19,372 road vertices** read back off the ribbon:
+
+| layer | population read back | anchors outside their own drawn footprint | nearer to their MIRROR |
+|---|---|---|---|
+| `buildings.js` | 331 structures · 533,346 vertices | **0**, worst **0.00 m** | **0** |
+| `streets.js` | 19,372 vertices · 3 meshes · 17 centrelines | **0** off every centreline, worst **0.00 m** | not a discriminator — see finding 2 |
+
+Measured on the **published mirror** at 1280×800, against the DATA rather than against another
+renderer number: a structure's `placement.local_e/local_n` in its sidecar and a street's
+`path_local_enu_m`. The ground half was not redone — `smoke_renderer.mjs` already reads the drawn
+surface back against `heightfield.bin` at every field sample and `tools/measure_terrain_horizontal.mjs`
+holds its two horizontal axes — and `flora.js` was measured clean by R-BUG5b itself. **All four
+layers named in this parcel are now answered.**
+
+**Finding 1 — a per-INSTANCE box is not a building, and the first reading of this census said 279
+of 1,310 bodies were misplaced.** A structure joins one batch per material it uses, so it holds
+several instances and any one of them is walls, or roof, or trim. Judging a building by one of its
+materials produced a **21 % false-positive rate** on a town that is entirely correct — worst
+"stray" 24.45 m on `fort_dearborn_palisade`. `buildings.js` `instanceBounds()` warns about exactly
+this in its own comment, for exactly the reason a size gate once passed a town of collapsed boxes:
+*"a building is walls plus roof plus trim, and any one of those alone is not the building."*
+**A new gate on this layer that does not union per structure id is measuring a material.**
+
+**Finding 2 — the mirror test does not discriminate on a street grid, and R-BUG5b's instrument
+therefore does not transfer.** Asking whether a drawn road vertex is nearer to a street at its
+mirrored northing answered *yes* for **3,975 of 19,372** vertices on a build where every single
+vertex is inside its own track. Two causes, both structural: reflect a point across an east-west
+line in a **grid** town and it lands on another east-west street; and a vertex at the EDGE of its
+own track scores worse than a mirror landing mid-track, by construction. So the streets gate is the
+**half-width test alone** — which a mirrored ribbon cannot pass, because a reflected road runs
+where no centreline is recorded — and the mirror figure is printed as a diagnostic that gates
+nothing. What transferred from R-BUG5b was the QUESTION, not the instrument.
+
+**Finding 3 — the gate was proved RED before it was believed.** `--refute` injects R-BUG5b's exact
+fault into the live scene (the sign of each instance matrix's z translation; the sign of every
+drawn road vertex's z) and re-runs the same census:
+
+| | clean | fault injected |
+|---|---|---|
+| buildings outside their footprint | 0 of 331 | **329 of 331**, worst **1,238.89 m** |
+| buildings nearer their mirror | 0 | **324** |
+| road vertices off every centreline | 0 of 19,372 | **15,397**, worst 222.30 m, **5,010** off the grid altogether |
+
+The two buildings that survive the mirror are the two standing on the datum's own east-west line,
+which is arithmetic rather than a hole. This is R-A1's finding taken seriously one parcel on: *an
+assertion that can only ever see one value is not an assertion*, and a placement gate that has only
+run on a correct build has demonstrated nothing.
+
+**What it unblocks, named as the visible-progress rule requires: `K30(c)`** — the queue's #1 SEEN
+pick, *"29 buildings on eight streets are drawn standing in the roadway… redraw the bodies onto the
+correct side of their own frontage."* K30(c) changes where 331 bodies are drawn relative to their
+records, and until today **no gate in this project read the buildings layer's geometry back at
+all**. The census is its acceptance instrument and its before-picture: worst anchor-outside-footprint
+**0.00 m**, worst anchor-to-nearest-corner **47.11 m**.
+
+**Files:** `tools/drawn_placement_census.mjs` (new — the census, shared) ·
+`tools/measure_drawn_placement.mjs` (new — the instrument, ~1 min at one viewport) ·
+`tools/smoke_renderer.mjs` (two gates, both viewports). The census lives in ONE module that both
+import, because R-BUG5's own box records `measure_far_timber.py` and the browser disagreeing until
+they were made to agree sample for sample.
 
 R-BUG5b was invisible to three gates because all three asked where a layer DECIDED to put something
 and none read back where it was DRAWN. Four layers decide in ENU and draw in three's world space:

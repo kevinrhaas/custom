@@ -1,5 +1,71 @@
 # STATUS
 
+## Measured 2026-08-17 — the two layers nobody had ever read back are not mirrored, and neither half of R-BUG5b's instrument transferred
+
+**ROADMAP K50**, opened by R-BUG5b. Nothing a visitor can see changed today; this is the gate that
+tells the next parcel whether it moved a building where it meant to. It carries the visible-progress
+rule's third exemption, and the parcel it unblocks is named below rather than implied.
+
+### The answer
+
+| layer | population read back | anchors outside their own drawn footprint | nearer to their MIRROR |
+|---|---|---|---|
+| `buildings.js` | 331 structures unioned from 1,310 instances · **533,346 vertices** | **0**, worst **0.00 m** | **0** |
+| `streets.js` | **19,372 vertices** · 3 meshes · 17 centrelines | **0** off every centreline, worst **0.00 m** | not a discriminator — see below |
+
+Measured on the PUBLISHED mirror at 1280×800, through the instance matrices the renderer hands the
+GPU, and compared against the DATA — a structure's `placement.local_e/local_n` in its sidecar, a
+street's `path_local_enu_m` — never against another number the renderer computed. The ground half
+was already answered twice (the drawn surface against `heightfield.bin` at every field sample, and
+`tools/measure_terrain_horizontal.mjs` on its two horizontal axes) and `flora.js` was measured clean
+by R-BUG5b itself. **All four layers R-BUG5b named are now answered.**
+
+### Three findings, and two of them are about the instrument
+
+**1. A per-INSTANCE box is not a building, and the first reading of this census reported 279 of
+1,310 bodies misplaced.** A structure joins one batch per material it uses, so any one instance is
+walls, or roof, or trim. Judging a building by one of its materials gave a **21 % false-positive
+rate on a town that is entirely correct**, worst 24.45 m on `fort_dearborn_palisade`. `buildings.js`
+`instanceBounds()` warns about precisely this in its own comment, for precisely the reason a size
+gate once passed a town of collapsed boxes. **Any new gate on this layer that does not union per
+structure id is measuring a material, not a building.**
+
+**2. The mirror test does not discriminate on a street grid.** Asked whether a drawn road vertex is
+nearer to a street at its mirrored northing, it answered *yes* for **3,975 of 19,372** vertices on a
+build where every vertex is inside its own track. Reflect a point across an east-west line in a grid
+town and it lands on another east-west street; and a vertex at the EDGE of its own track scores
+worse than a mirror landing mid-track, by construction. So the streets gate is the **half-width test
+alone** — which a mirrored ribbon cannot pass, because a reflected road runs where no centreline is
+recorded — and the mirror figure is printed as a diagnostic that gates nothing. R-BUG5b's question
+transferred; its instrument did not.
+
+**3. The gate was proved RED before it was believed.** `--refute` injects R-BUG5b's exact fault into
+the live scene — the sign of each instance matrix's z translation, the sign of every drawn road
+vertex's z — and re-runs the same census code:
+
+| | clean | fault injected |
+|---|---|---|
+| buildings outside their footprint | 0 of 331 | **329 of 331**, worst **1,238.89 m** |
+| buildings nearer their mirror | 0 | **324** |
+| road vertices off every centreline | 0 of 19,372 | **15,397**, worst 222.30 m, **5,010** off the grid altogether |
+
+The two buildings that survive the mirror are the two standing on the datum's own east-west line,
+which is arithmetic rather than a hole in the gate. This is R-A1's finding one parcel on: *an
+assertion that can only ever see one value is not an assertion.*
+
+### What it unblocks
+
+**`K30(c)`**, the queue's #1 SEEN pick — *29 buildings on eight streets are drawn standing in the
+roadway; redraw the bodies onto the correct side of their own frontage.* It changes where 331 bodies
+are drawn relative to their records, and **until today no gate in this project read the buildings
+layer's geometry back at all**. Its before-picture is here: worst anchor-outside-footprint
+**0.00 m**, worst anchor-to-nearest-corner **47.11 m**.
+
+`tools/drawn_placement_census.mjs` holds the census; `tools/measure_drawn_placement.mjs` runs it as
+an instrument in about a minute at one viewport; `tools/smoke_renderer.mjs` runs the same function
+as two release gates at both viewports. One module, because a gate that paraphrases its instrument
+can pass a build the instrument fails.
+
 ## Fixed 2026-08-17 — scene detail did nothing to the wood, and the only thing it did do was halve the willow screen
 
 **ROADMAP K45(b3)**, opened by K45(b2) finding 2. The Settings panel's scene-detail control offers
