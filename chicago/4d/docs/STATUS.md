@@ -1,5 +1,74 @@
 # STATUS
 
+## Fixed 2026-08-17 — scene detail did nothing to the wood, and the only thing it did do was halve the willow screen
+
+**ROADMAP K45(b3)**, opened by K45(b2) finding 2. The Settings panel's scene-detail control offers
+`full` / `balanced` / `light`, and a phone starts at `light`. K45(b2) had already worked out that
+the control could not be moving the timber — the acceptance roll is `perHa · step² / 10000`, so a
+coarser grid visits proportionally fewer cells and accepts proportionally more at each, and the
+`STEMS` caps that were the only other difference had never bound. This parcel measured it, and
+found a second fault nobody had asked about.
+
+### What the three levels actually planted, measured on `dev` before a line changed
+
+`tools/measure_timber_detail.mjs`, new here, walks the visitor's own `setDetail` through all three
+levels on the PUBLISHED mirror and asks two questions of each — how many stems, and **how far north
+do they reach and in what shape**. The second question is the one a stem count cannot answer: a
+truncated wood and a thinned wood can plant the same number of trees.
+
+| level | trees | stools | stems | timber tris | scene tris |
+|---|---|---|---|---|---|
+| `full` | 472 | 258 | 730 | 186,442 | 511,919 |
+| `balanced` | 470 | 190 | 660 | 161,674 | 466,814 |
+| `light` | 437 | 133 | 570 | 136,382 | 416,222 |
+
+**472 / 470 / 437 is one wood planted three times** — the spread is a near-Poisson draw's, 1.6 σ,
+not a control's. And **258 / 190 / 133**: the sandbar-willow point-bar screen was losing 52 % of its
+stools at `light`. That branch rolls a *fixed* per-cell chance, so unlike the tree roll it is not
+count-neutral in the sampling step. The screen is the one population in this file that must not be
+thinned, and its own comment says so four lines above the roll doing the thinning: *"a screen needs
+its clumps to touch … thinning these to half was what left them standing as separate cushions on
+open sand."* **A comment that states an invariant is not a gate.**
+
+### The repair, and what it costs
+
+`keep` is a fraction on the tree acceptance roll — **1 / 0.80 / 0.60**, which is the levels' own
+triangle ceilings in `main.js` (1,000,000 / 800,000 / 600,000) read as a ratio. That ratio is an
+invention and is recorded as **L121**, with the alternative named and rejected in writing: the
+pre-K45(b2) caps' ratio (1 / 0.634 / 0.366) is not used because those caps *never bound*, so they
+are an intent nothing ever executed. The thicket roll now scales with the cell it is offered
+(`min(1, 0.84 · cellArea / 16)`) and deliberately does **not** take `keep`.
+
+| level | trees | stools | stems | timber tris | scene tris | northernmost stem |
+|---|---|---|---|---|---|---|
+| `full` | 472 (=) | 258 (=) | 730 (=) | 186,442 (=) | 511,919 (=) | N +397.7 m |
+| `balanced` | **373** | **232** | 605 | 156,358 | 453,026 | N +396.4 m |
+| `light` | **257** | **182** | 439 | 115,234 | **370,738** | N +391.8 m |
+
+`full` is unchanged to the stem — every banked figure in this repository is `full`'s. `light` sheds
+45,484 scene triangles (−10.9 %) and keeps the north end of the wood.
+
+### Unverified, and stated
+
+- **The screen does not fully recover at a coarse step, and is not tuned to.** A probability cannot
+  exceed 1, so both coarser steps clamp: `light` reaches 182 of `full`'s 258 stools (70.5 %) and
+  stops, because a 6–9 m point bar sampled on a 5.6 m grid has fewer points than the screen wants
+  stools. Closing the rest needs sub-cell sampling on the bar and is not this parcel's.
+- **The 1 / 0.8 / 0.6 ratio is borrowed, not measured.** No frame-time measurement on a real phone
+  exists here. The ceilings are the honest stand-in and L121 says how to replace them.
+- **No claim is made about `light` looking *right*.** What is asserted is that it is the same wood
+  at a lower density rather than three quarters of one, and the gate asserts that as reach and
+  distribution rather than as an opinion about a screenshot.
+
+### Verified
+
+`./tools/check.sh` PASS (21 s). `node tools/measure_timber_detail.mjs --gate` — **17 assertions, 0
+failures**, on the published mirror. `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` at 390×780 — the release gate at the viewport this parcel is SEEN on. **Not claimed:
+the desktop half**, ~13 minutes against this runner's ten-minute per-command ceiling; the
+measurement table above was taken at 1280×800, which is the viewport the parcel does not change
+(`full` is unchanged to the stem).
+
 ## Fixed 2026-08-17 — the owner's floating flowers, and four repairs that computed the right number and had it thrown away
 
 **R-BUG7, owner-reported 2026-08-16 with a photograph.** Yellow flower heads hanging above the

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 160, title: 'The willow screen is back on a phone', kind: 'fix', ts: '2026-08-17T05:32:34.721Z', date: 'Aug 17, 2026, 12:32 AM CT',
+    items: [
+      'Settings offers a scene-detail choice — full, balanced or light — and a phone starts on light. Measured this week: it planted the same wood at all three. 472 trees, 470, 437, which is one wood dealt three times.',
+      'The one thing it did change was the sandbar willow. That is a thicket on the low mud at the water’s edge, and it is meant to read as a screen, with the clumps touching. On light it was down to 133 stools from 258 — half the screen gone, as a side effect of how coarsely the ground was being sampled rather than any decision. The code had a note beside it saying exactly why that was wrong, four lines above the line doing it.',
+      'Now: light draws 60 per cent of the trees, spread evenly over the whole town, and keeps the screen. Walk the bank at light and the willows are a thicket again; look inland and the wood is the same wood, thinner.',
+      'Full is untouched, to the stem. Every number this project publishes is measured there, and light is now honestly a different wood rather than an interchangeable one.',
+      'What it buys a slow machine: 45,484 fewer triangles on light, about a ninth of the scene. The wood still runs to the north edge of the modelled ground at every setting — a thinner wood, not a shorter one, which is the check that now guards it.',
+    ] },
   { v: 159, title: 'The flowers are joined to their plants', kind: 'fix', ts: '2026-08-17T04:51:53.130Z', date: 'Aug 16, 2026, 11:51 PM CT',
     items: [
       'The owner photographed two yellow flower heads hanging in the sky over South Water Street, each on a short stalk that stopped in mid-air. They are on their plants now, and so is every other flower in the town.',
