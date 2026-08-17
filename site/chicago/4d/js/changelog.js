@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 153, title: 'The viewpoint called South Water Street was standing in a field', kind: 'improvement', ts: '2026-08-17T01:16:16.116Z', date: 'Aug 16, 2026, 8:16 PM CT',
+    items: [
+      'The Go to menu offers a viewpoint called South Water Street \u2014 the business street of 1835 Chicago, where the stores, the auction room, the two newspaper offices and the forwarding warehouses stood. Choosing it put you in a meadow, with the street a thin band of roofs on the horizon and about six tenths of the picture grass.',
+      'It now puts you in the street, at the Wells Street corner, looking east. Jones\u2019s grocery is a few paces ahead on your right, the row runs away east past Carpenter\u2019s and Peck\u2019s toward Clark Street, and the river is on your left where the wharves were. The wheel ruts are under your feet.',
+      'The old stand was a hundred and one metres south of the middle of the street it was named for. It was a placeholder from before any of the sixteen South Water buildings had been positioned, and the scene file said so in writing: it pointed roughly at the right corner and was to be moved once those buildings landed. They landed. It never moved.',
+      'Nothing was invented to move it. The east\u2013west position is the street corner those sixteen buildings are themselves measured from; the north\u2013south position is the middle of the street as this project has already drawn it, a little south of the modern junction because the 1835 street ran on the dry half of the riverfront. A camera is not a building: nothing about the town moved and no new claim was made about anything.',
+      'Standing on the road for the first time also photographed a fault nothing had been close enough to see \u2014 the far end of the street, seen down its own length rather than obliquely across open prairie, reads far more faintly than the checks assume. That is written down as a question about the check rather than patched over here.',
+    ] },
   { v: 152, title: 'The whole wood was drawn on the wrong side of the river', kind: 'fix', ts: '2026-08-17T00:18:37.512Z', date: 'Aug 16, 2026, 7:18 PM CT',
     items: [
       'Yesterday this page said the trees standing in the river were gone. They were not \u2014 the photograph that proved it was taken on the very build that made the claim. What was actually wrong is bigger than the river.',

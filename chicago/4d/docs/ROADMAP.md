@@ -148,7 +148,7 @@ rationed.**
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
-| **4** | TOWN | **T-V2** | **SEEN** | the `south_water` anchor stands 101 m from its own street, in a field. Moving it changes what a visitor is shown when they use Go to — PR #135 is built and measured and parked on the far-band question that R-M1b has now unblocked |
+| — | TOWN | ~~T-V2~~ | **DONE 2026-08-16** — the anchor named South Water Street stood 101 m from it, in a field. Now in the street at Wells, both coordinates read from committed data. **It sat on `hold` two days on a number other parcels had already fixed**: the far band it was parked for reads **2.1 L\* / 71 %** today, not 0.5 / 30 %. Its real finding is R-M1c's, from a second direction — the field stand scored **100 % on six probes of 510** and the street stand shows **93 perceptible stretches against 31** and scores lower. T-V2b folded into R-M1c; baseline re-shoot is T-V2c |
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | 7 | RENDERING | **R-W1** | SEEN | calibrated light and environment; R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 (`hold`), one assertion short — R-M1a's contrast scoring is the instrument that separates its two candidate causes* |
@@ -189,7 +189,8 @@ Search for *"deferred"* and *"unblocked"* the way T-E5(a) searched for `not_mode
 **THE TABLE ABOVE IS NEARLY OUT OF PICKS THIS RUNNER CAN CLOSE — counted 2026-08-16 by K28, and
 stated here because the next run will otherwise spend a third of its budget rediscovering it.**
 Of the numbered picks left standing, **T-V1(b), K30(c), T-E3 and R-W2c all say NEEDS A BAKE** and
-cannot go green on the improve runner; **T-V2 and R-W1 are parked on `hold` PRs #135 and #125**;
+cannot go green on the improve runner; **T-V2 landed 2026-08-16 (its `hold` was withdrawn — the
+number it was parked on had been fixed by other parcels), and R-W1 is still on `hold` PR #125**;
 **R-W4c(b2), T-I3(b) and R-M1b are blocked on the owner**; and **R-W5a2's own box says to take it
 only when the lane has nothing sharper**. That leaves **R-W2b** — whose R-W2a finding 2 makes it a
 schema change across 315 records with no source yet stating a roof covering, so it is larger than
@@ -4935,21 +4936,59 @@ tier of every dimension unchanged (this adds variety, not knowledge); `tools/aud
 --strict` green; and the `south_water`, `prairie_west` and `prairie_south` critic frames re-shot
 and quoted. **Needs the bake for the massing to reach the site** — ship the data half and say so.
 
-### T-V2 — the `south_water` anchor points at a field · **UNCLAIMED · NEXT UP · from R-G1**
+### T-V2 — the `south_water` anchor points at a field · **DONE 2026-08-16 · and the far band it was held for does not reproduce**
 
 **Phase:** lane 2, data only · **Effort:** XS — one record, no code
 
 R-G1 scored composition **4** at `south_water`: about 60 % of the frame is foreground grass and
-the business street the anchor is named for is a 40-pixel band on the horizon. An anchor a
-visitor is offered from the navigation menu should show the thing it is named after. Move the
-anchor in `data/scenes/1835.json` onto the street — the surveyed corners the sixteen South Water
-records already carry are the coordinates to use — keep the pitch at 0, and re-shoot. **This
-moves a camera, not a building**, and it is the cheapest point on R-G1's whole table.
+the business street the anchor is named for is a 40-pixel band on the horizon. The anchor moved
+from **(260, −95)** to **(329.8, 7.0)** — into the street at the Wells corner, looking east, pitch
+0. **Neither half is new evidence**: the easting is the Wells junction the sixteen South Water
+records are themselves offset from (quoted in their own position notes) and the northing is
+`data/streets/1835.json`'s South Water centreline at that easting. **This moves a camera, not a
+building.**
 
-**Watch:** `tools/critic_shots.mjs` drives the eight scene anchors through `goTo`, so moving this
-one moves a baseline station. Re-shoot the full desktop and mobile sets and restate the
-`south_water` row in the STATUS baseline table rather than leaving two incomparable numbers
-under one name — the whole point of the harness is that two rounds can be compared.
+**IT SAT ON `hold` FOR TWO DAYS ON A NUMBER THAT OTHER WORK HAD ALREADY FIXED.** The park said the
+250–600 m band **collapsed to 0.5 L\* / 30 % perceptible** from the street, and asked whether a
+threshold set against an oblique view should assert that band at all — opened as T-V2b. Re-measured
+on `dev` at c701833, after R-BUG3's near lift, R-BUG5b's wood and R-A1: **that band reads 2.1 L\*
+and 71 %.** The question was answered by other parcels while this one waited.
+
+**What the move is worth, and it is R-M1c again from a second direction.** Mobile, published
+mirror, same runner. `nProjected` is the road in the frame; `n` is what the marker pass can see:
+
+| `south_water` band | old stand, in the field | new stand, in the street |
+|---|---|---|
+| 2–40 m | **not gated** — 1 probe projects | ΔL\* 4.1, **90 %**, n 10 of 10 |
+| 40–100 m | ΔL\* 4.1, 100 %, n 28 of 34 | ΔL\* 3.5, 87 %, n 15 of 15 |
+| 100–250 m | ΔL\* 3.7, 100 %, n 25 of **96** | ΔL\* 2.2, **52 %**, n 42 of **67** |
+| 250–600 m | ΔL\* 15.8, 100 %, n **6 of 510** | ΔL\* 2.1, 71 %, n 100 of **423** |
+| **gated probes PERCEPTIBLE** | **31** | **93** |
+
+**The old stand scored 100 % on six probes of five hundred and ten** — it could not see 98.8 % of
+the band it was grading. The new stand shows **seventy-one** perceptible stretches of that band and
+scores 71 %. Three times the readable road in front of a visitor, recorded as a regression. On
+`nProjected`: **5.1 % → 19.0 %**. **T-V2b is therefore folded into R-M1c** — "a threshold set
+against an oblique view" is the same fault as "a score divided by what an occluder left", seen from
+the other end.
+
+**Landed with two bands red.** `walker's eye` fails on 100–250 m at 52 % against 55 %; `aerial
+anchor` fails and is **inherited from `dev` unchanged to the digit** (85 % / 54 %) — R-BUG5b's
+knowingly-red band. No threshold moved, no band widened, no station dropped.
+
+### T-V2c — the `south_water` baseline row measures a different place now · **UNCLAIMED · UNSEEN · from T-V2 · Effort: XS**
+
+`tools/critic_shots.mjs` drives the scene anchors through `goTo`, so T-V2 moved a **baseline
+station**. Every `south_water` row in the STATUS baseline table was shot from the field stand and
+the next round will be shot from the street: **two incomparable numbers under one name**, which is
+precisely what the harness exists to prevent.
+
+Re-shoot the full desktop and mobile sets and **restate** the row rather than letting the next
+comparison silently straddle a camera move. Note in passing what the parked PR already measured at
+the old commit — moving the anchor took **flower load 0.0575 → 0.0002** and **draw calls 109 → 94
+desktop, 104 → 79 mobile**, because looking east down the street culls the prairie the old stand
+faced across — so the new row should be cheaper as well as different, and a round that does not show
+that has measured something else.
 
 ### T-I3(a) — the civic roofs, reconciled to named records · **DONE 2026-08-16**
 
