@@ -151,6 +151,8 @@ rationed.**
 | — | RENDERING | ~~R-BUG6(a)~~ | **SEEN in motion** | **DONE 2026-08-17 — the shadow box was re-centred on the visitor's exact position, so its texel lattice slid under every step and re-quantised every shadow edge in the town.** It moves in whole texels now: with the camera held still and the box slid half a texel, `from_above` **2,023 changed pixels → 0** and `descend_main_stem` **5,650 → 0**. Three findings, and two of them are about instruments: **the control that "cleared the shadow map" was inert** (a compile-time flag is not a runtime handle — it moves 5,439 px now), and **a sub-pixel nudge cannot measure a shadow box at all** — scaled up to a half texel it changes 29,138 px with the fix and 28,784 without, sign included. The answer to the parcel's title: **the shadow map is 14–16 % of the town's flicker**, not the cause of it. Read its box before quoting any flicker number |
 | — | RENDERING | ~~R-BUG6(b)~~ | — | **DONE 2026-08-17 — the premise was wrong and two tests say so. The residual is NOT co-planar ties: switching the depth test from `LessEqual` to `Less` moves 36,187 px of the frame and only 13 of the 1,108 flickering ones (1.2 %), and 5× the depth precision leaves 604 of 607 surviving.** It is the town's own edges being resampled, which is antialiasing and not a defect — R-BUG1's near plane had already taken the real one. Three findings: **an exact tie is STABLE and a near tie is what flickers** (which is why 3.5 % of this frame is co-planar and none of it shimmers); the ownership instrument (`tools/measure_tie_class.mjs`, 0 unattributed, buildings + trees own 94.5 % of the flicker on 7.7 % of the frame); and **`measure_river_edge.mjs`'s bank mask counts the SKY as water** — rows 0–200 are 1,280 of 1,280 "waterish", so no bank-line pixel count from it is a statement about the river. Read its box before quoting any flicker or bank number |
 | **1** | RENDERING | **R-BUG6(c)** | UNSEEN | **NEEDS ONE BAKE.** The 36,187 co-planar pixels above are steady but arbitrary: two surfaces of different colours at one depth, with draw order picking the winner. A question about the models, opened by (b) |
+| — | RENDERING | ~~K53~~ | **SEEN** | **DONE 2026-08-17 — twenty-one shrub records were drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width.** Shrubs 0 → **14** drawn over 32 poses, clump width **0.40 m clamped → 1.80 m median**, and the census is identical plant for plant (2,201 forb-layer plants before, 2,187 + 14 after, every zone conserved). Its finding is the reason the number is 14 and not 140 — **the forb lottery deals by HEAD COUNT, so a hazel covering 7 m² competes as one plant against 40 wild leeks per m²**, and the wet woods' attested dominant shrub gets 0.2 % of the slots. Opened as **K54**. Read its box before quoting a shrub count |
+| **1** | RENDERING | **K54** | **SEEN** | **the shrub layer is dealt 0.1–7.6 % of its list's slots**, measured, because K49(c2)'s count-based lottery under-draws exactly the plants that are big. The wet woods' hazel is `attested` at 20–50 % ground cover and is drawn as 1 plant of 221. Opened 2026-08-17 by K53 with the arithmetic banked |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -680,6 +682,135 @@ larger parcel behind a bake. The narrower successor is **K52**: the same questio
 censused which of its figures reach a visitor. The read map covers flora and fauna and the two
 generators declare their own `CONSUMED`; the population layer is declared by nothing, which is the
 state `data/fauna` was in this morning.
+
+### K53 — every shrub in the town is drawn as a giant forb · **DONE 2026-08-17 — the archetype is in, the recorded width is drawn, and the reason only fourteen of them stand is measured**
+
+**The whole shrub layer is drawn with `forbGeometry()`** — one 12-triangle herbaceous stalk with
+four broad leaves, scaled to the record's height. Twenty-one records across eight zones carry
+`form: 'shrub_low'`, and `FORB_FORMS` contains that string, so a 3 m American hazel, a 2.5 m
+elderberry, a multi-stemmed black-oak grub and a *sprawling mat* of sand cherry are all the same
+wand of leaves at four different sizes. `placeForb`'s own comment names the damage and treats the
+symptom: *"a riverbank shrub recorded at two metres across therefore grew sixty-centimetre leaves"*
+— so the recorded clump width is CLAMPED to 0.40 m of spread, which is the shrub layer being made
+narrow enough to look like a forb rather than being drawn as a shrub.
+
+**It is SEEN and needs no exemption.** `corylus_americana` is the wet woods' *attested* dominant
+shrub at 20–50 % cover — the dossier's own headline finding, with *"under-rendering hazel is the
+specific mistake this record exists to prevent"* written beside it — and it is a wand. So is the
+elder at the gallery edge, the dogwood on the river bank, the currant in the fenced dooryards and
+the willow scrub on the lakeshore back slope, which is the population K45(b4) recorded as *"still
+not planted"* in as many words.
+
+**What it is NOT:** it is not a new record, not a new density and not a bake. Every number this
+draws with — height, clump width, foliage greens, the July head — is committed and already read;
+the archetype that consumes them is what is missing. The shrub form itself is a **reconstruction**
+and gets a `docs/LIBERTIES.md` entry, exactly as the nine flower archetypes did.
+
+**Files:** `renderers/web/js/flora.js` (a `shrubGeometry` archetype, a set beside `rosetteSet`, a
+`placeShrub`) · `data/liberties.json` + `docs/LIBERTIES.md` · the flora gates' baselines if a read
+moves · `renderers/web/js/changelog.js` · `site/chicago/4d/` · `docs/STATUS.md`.
+
+**WHAT SHIPPED.** `shrubGeometry()` — four woody stems from one root, sixteen leaf sprays over
+them, 40 triangles against the forb's 12 — on its own instanced set `flora-shrub`, dealt from the
+forb lattice so it takes slots the forb archetype used to take rather than adding any. `placeShrub`
+reads `width_m` as what it is on a shrub: the clump diameter. **Measured on the published mirror, at
+all eight anchors and four bearings each:**
+
+| | before | after |
+|---|---|---|
+| plants drawn with the shrub archetype | **0** | **14** |
+| clump width | 0.40 m, the forb clamp | **1.80 m median, 2.00 m worst** |
+| forb-layer plants, all archetypes | 2,201 | 2,187 + 14 = **2,201** |
+| flora triangles, worst view | 41,754 | 41,772 |
+
+**The census is identical plant for plant**, per zone as well as in total (`z08_lakeshore` 131 →
+122 + 9, `z05_riverbank_timber` 61 → 57 + 4, `z06_dense_forest` 222 → 221 + 1). Nothing was redealt,
+no density moved, and no record changed: this parcel changes what a plant is DRAWN as and nothing
+else, which is why the sward census gate reads the same 6,809 slots and the same 154.19 / 89.11
+deviations K49(c2) banked.
+
+**FINDING 1 — the wands were only survivable because the width was clamped away.** `placeForb`
+clamps spread to 0.40 m, and its own comment says why: *"a riverbank shrub recorded at two metres
+across therefore grew sixty-centimetre leaves"*. That is the leaf archetype being protected from a
+number that was never a leaf. `prunus_pumila`'s committed appearance is *"low sprawling mats 1-3 m
+across"* and it was drawn 0.7 m wide and vertical. **A clamp that exists to protect one archetype
+from another's data is a missing archetype, stated as a bound.**
+
+**FINDING 2 — and it is why this is fourteen plants and not a hundred and forty: the forb lottery
+deals by HEAD COUNT, so it under-draws exactly the plants that are big.** K49(c2) moved the lottery
+onto `stems` — plants per m² — to fix the opposite fault, a species recorded as covering 25 % of the
+ground being dealt as 0.25 plants/m². The conversion for a cover-recorded species is
+`cover / (π · (width/2)²)`, so a hazel that covers 7 m² of ground converts to 0.088 plants/m² and
+competes for slots against `allium_tricoccum` at **40 plants/m²**. Measured over each zone's forb
+list, the shrubs' share of the lottery is:
+
+| zone | shrub share of the forb list | the species that takes the rest |
+|---|---|---|
+| `z10_settled_town` | **0.1 %** | four weeds at 0.4–1.1 plants/m² |
+| `z06_dense_forest` | **1.0 %** | `allium_tricoccum`, 99.0 % |
+| `z08_lakeshore` | 2.6 % | `artemisia_campestris`, `campanula_rotundifolia` |
+| `z05_riverbank_timber` | 3.0 % | `allium_canadense`, 97.0 % |
+| `z09_sand_prairie` | 7.6 % | `allium_cernuum`, `monarda_punctata` |
+
+So `corylus_americana`, **attested** at 20–50 % ground cover and named in its own note as the
+specific under-rendering this record exists to prevent, is drawn as **1 plant of 221** in the wet
+woods. The count is not wrong — one hazel IS one plant — but the layer is a SAMPLE of ~220 slots
+against a population of tens of thousands, and a sample drawn by count reproduces the population's
+head count while reproducing none of its ground cover. **Both readings are defensible and this
+parcel changes neither**; the numbers are banked and the question is opened as **K54** rather than
+retuned here, because K49(c2) moved this lottery deliberately and moving it back is a decision, not
+a repair.
+
+**FINDING 3 — the first cut of the archetype was the wand at a larger size.** Four stems each
+carrying one 60 cm paddle reads as a candelabra, not a bush; the shot showed it and the fix was
+sixteen small sprays over two heights rather than four big ones. **A silhouette is made by its
+outer shell**, which is the same thing `trees.js` says about a crown in its own comment — and it is
+worth writing down that the archetype had to be LOOKED at, twice, after it measured correct.
+
+**Verified:** `tools/check.sh` — CHECK PASS (the dev gate; `chicago-4d-check.yml` runs it and
+nothing else), after `tools/publish.sh` in the same commit. `tools/measure_sward_draw.mjs --gate` —
+PASS, 0 of 98 (list, species) pairs drawn nowhere, 6,809 slots, deviations unmoved. The before/after
+readings above are `flora-shrub`/`flora-forb`/`flora-rosette` instance counts and their `aFlora`
+attributes read back off the published mirror at 1280×800, against a worktree of `origin/dev` for
+the before column. Evidence: `docs/evidence/k53-{before,after}.png`, the river-bank stand at
+E −288 / N +368 facing SSE. **Zero page errors** in every run.
+
+**NOT verified here:** neither half of `tools/smoke_renderer.mjs`. The desktop half has never fitted
+this runner's ten-minute per-command ceiling and K45(b4) recorded the mobile half outgrowing it too;
+the three gates in it that read the flora sets by NAME were extended to `flora-shrub` in this commit
+(rooted-plant anchoring, the pop-in walk, head support) plus `tools/measure_head_support.mjs`, so
+the new set is inside them rather than invisible to them — but that extension is unexecuted here and
+is the first thing to run on a runner without the ceiling.
+
+### K54 — the forb lottery deals by head count, and the shrub layer is the population it loses · **UNCLAIMED · SEEN · opened 2026-08-17 by K53 · Effort: M**
+
+**The arithmetic is banked in K53 finding 2 and is not in dispute.** The forb layer deals ~220
+slots over the ring; each slot is one plant; species compete for slots on `stems`, plants per m².
+A hazel covering 7 m² of ground is 0.088 plants/m² and a wild leek is 40, so the wet woods are
+drawn as leeks with one shrub in them, and the shrub layer their own dossier calls the dominant
+one takes **1.0 %** of the deal.
+
+**The question is which quantity a SAMPLE should reproduce.** By head count the current deal is
+exactly right and the frame is wrong; by ground cover the frame would be right and the head count
+wrong. Three routes, none of them free:
+
+1. **Deal a fixed share of the slots to the shrub sub-list**, off the recorded `cover_fraction` —
+   the field the shrubs mostly carry — and deal the rest by count as today. Honest, cheap, and it
+   makes the layer's slot mix a second authored quantity that no record states.
+2. **Give the shrubs their own lattice**, the way `trees.js` has one: a sparse layer dealt on
+   plants per hectare over a wider radius, which is what a shrub layer physically is. The most
+   faithful and the largest.
+3. **Leave it and say so on the card.** The layer is a count-faithful sample; the Evidence panel
+   could say that a drawn plant is one plant and that ground cover is not what the sward reproduces.
+
+**Do not take this as a tuning.** K49(c2) moved this lottery onto counts deliberately and measured
+the improvement; whatever lands here has to keep that gain (matrix 154.19 / forb 89.11 deviation,
+0 species drawn nowhere) and say which quantity it is now faithful to. **`tools/measure_sward_draw.mjs`
+already prints everything needed to judge it** — it reports the deviation from recorded cover, which
+is the very quantity in question.
+
+**Files:** `renderers/web/js/flora.js` (`compileZones`, `dealt`) · `tools/measure_sward_draw.mjs`
+(a cover-share column) · `docs/LIBERTIES.md` if a share is authored.
 
 ### K52 — nobody has censused what the residents' figures reach · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K51 · Effort: S–M**
 

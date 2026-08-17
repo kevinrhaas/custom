@@ -561,6 +561,14 @@ export async function createFlora({
   // with the generic forb it became a leafy giant that filled the foreground.
   const rosetteSet = instSet('flora-rosette', rosetteGeometry(), bladeMat,
     Math.max(48, Math.round(tune.cap.forb * 0.45)));
+  // ...and a shrub is not a stem with leaves up it either (K53). Twenty-one
+  // records across eight zones carry `form: 'shrub_low'` — hazel, elder,
+  // dogwood, buttonbush, the lakeshore's sand cherry and the black-oak grubs —
+  // and every one of them was drawn with the forb above, which is one wand of
+  // four leaves however wide the record says the clump is. The wet woods' own
+  // dossier calls hazel the most common shrub-layer plant there was and says
+  // under-rendering it is the specific mistake to avoid; it was a wand.
+  const shrubSet = instSet('flora-shrub', shrubGeometry(), bladeMat, tune.cap.forb);
   // One instanced set per ARCHETYPE, so the geometry a species gets is the
   // shape its record names. The flat horizontal plate is gone; nothing draws
   // one, because at 1.68 m eye height a corymb at 0.7 m is seen 11 degrees off
@@ -576,7 +584,7 @@ export async function createFlora({
     corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, tune.cap.head),
     compound: instSet('flora-head-compound', compoundGeometry(), headMat, tune.cap.head),
   };
-  const sets = [nearSet, midSet, forbSet, rosetteSet, ...Object.values(heads)];
+  const sets = [nearSet, midSet, forbSet, rosetteSet, shrubSet, ...Object.values(heads)];
   for (const s of sets) { group.add(s.mesh); disposables.push(s.mesh.geometry); }
 
   // ---- placement --------------------------------------------------------- //
@@ -598,7 +606,7 @@ export async function createFlora({
   /** Which ring each rooted set is drawn on. A rosette is a forb. */
   const ringOfSet = {
     'flora-near': rings.near, 'flora-mid': rings.mid,
-    'flora-forb': rings.forb, 'flora-rosette': rings.forb,
+    'flora-forb': rings.forb, 'flora-rosette': rings.forb, 'flora-shrub': rings.forb,
   };
 
   /** A community that stands in no water, for the plantable-ground question the
@@ -707,6 +715,7 @@ export async function createFlora({
   function rebuildForbs(camE, camN, cone) {
     forbSet.reset();
     rosetteSet.reset();
+    shrubSet.reset();
     const f = rings.forb;
     scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
       f.lattice.outer, f.lattice.inner, 0x2545f9, 'lattice', cone,
@@ -731,9 +740,13 @@ export async function createFlora({
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         countDraw(zone, 'forb', sp, wet);
-        const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
+        const shrub = sp.form === 'shrub_low';
+        const set = shrub ? shrubSet
+          : sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
-        const h = placeForb(set, sp, e, y, n, rng);
+        const h = shrub
+          ? placeShrub(set, sp, e, y, n, rng)
+          : placeForb(set, sp, e, y, n, rng);
         if (h > 0 && r <= f.head[0] + off + step) {
           maybeHead(heads, sp, e, y, n, rng, h, ringAt(f.head, off, _headRing));
         }
@@ -2215,6 +2228,9 @@ function placeForb(set, sp, e, y, n, rng) {
   // plant also scales its leaves. `width_m` is the CLUMP diameter, and a
   // riverbank shrub recorded at two metres across therefore grew sixty-
   // centimetre leaves and filled the river-bank shot with pale green arrowheads.
+  // The shrubs have their own archetype now (K53, `placeShrub`), so this clamp
+  // no longer stands between a two-metre clump and its own recorded width — it
+  // bounds the leaf of an actual forb, which is what it was always for.
   // Clamped to the size a broad prairie leaf actually is — EXCEPT for a basal
   // rosette, whose recorded width IS the leaf span and whose whole diagnosis is
   // that the leaves are huge (prairie dock, 0.6-1.0 m across the rosette).
@@ -2224,6 +2240,37 @@ function placeForb(set, sp, e, y, n, rng) {
     : THREE.MathUtils.clamp(sp.width ? mid(sp.width) * 0.45 : h * 0.26, 0.07, 0.40);
   const c = tint(sp, rng() * 0.6, rng()).map((x) => x * patchOf(e, n));
   return set.push(e, y, n, rng() * Math.PI * 2, h, spread, 0.1 + rng() * 0.2,
+    c[0], c[1], c[2], sp.conf) ? h : 0;
+}
+
+/**
+ * A shrub, which is a different plant from a tall forb in the two ways a
+ * visitor can see: it is WOODY and MULTI-STEMMED from the ground, and its
+ * clump is as wide as the record says rather than as wide as a leaf.
+ *
+ * `width_m` is the reading that changes. On a forb it is a clump diameter that
+ * has to be clamped to 0.40 m or the leaves become arrowheads (`placeForb`);
+ * on a shrub it is the thing itself — *"low sprawling mats 1-3 m across"* is
+ * `prunus_pumila`'s own recorded appearance, and drawn through `placeForb` that
+ * plant came out as a 70 cm wand. So the recorded half-width IS the spread
+ * here, and the archetype is authored to fill it.
+ *
+ * The floor and the ceiling are the records' own range and not a taste: the
+ * narrowest shrub width in `data/flora` is 0.6 m (`quercus_velutina_grubs` in
+ * the wet woods) and the widest 3.5 m (`crataegus_spp`), so 0.30-1.75 m of
+ * half-width passes every one of the twenty-one records through unchanged and
+ * still refuses a mis-typed 30 m clump.
+ *
+ * `arch` is small on purpose. A woody stem does not bend to the wind the way a
+ * forb's does, and the same slot carries the wind sway — 0.04-0.12 against the
+ * forb's 0.10-0.30 is the difference between a bush moving and a bush swaying.
+ */
+function placeShrub(set, sp, e, y, n, rng) {
+  const h = sp.height[0] + (sp.height[1] - sp.height[0]) * rng();
+  const spread = THREE.MathUtils.clamp(
+    sp.width ? mid(sp.width) * 0.5 : h * 0.45, 0.30, 1.75);
+  const c = tint(sp, rng() * 0.6, rng()).map((x) => x * patchOf(e, n));
+  return set.push(e, y, n, rng() * Math.PI * 2, h, spread, 0.04 + rng() * 0.08,
     c[0], c[1], c[2], sp.conf) ? h : 0;
 }
 
@@ -2910,6 +2957,110 @@ function rosetteGeometry() {
     g.idx.push(a, b, c, b, d, c);
   }
   return finishGeo(g, 'flora-rosette');
+}
+
+/**
+ * The shrub: four woody stems out of one root and a broad leafy shell over
+ * them, in the same nominal box every other archetype uses — one tall, one
+ * across, so `height_m` scales the stems and the recorded clump half-width
+ * scales the spread (`placeShrub`).
+ *
+ * **Multi-stemmed from the ground is the whole diagnosis, not decoration.** It
+ * is what separates a shrub from a tree above it and from a forb beside it, and
+ * three of these records say so in their own text: the black-oak grubs are
+ * *"multi-stemmed low clonal oak sprouting from an old root system"*, the plum
+ * is *"thicket-forming"*, the sand cherry a *"low sprawling mat"*. A single
+ * stalk cannot read as any of those at any size.
+ *
+ * **The proportions are a RECONSTRUCTION and are recorded as one** (`docs/
+ * LIBERTIES.md`). No source in this repository states the branching habit of a
+ * Chicago hazel or a river-bank dogwood, and the alternative to inventing one
+ * within bounds is the wand that is there today. What bounds it: the stems rise
+ * to 0.55-0.95 of the recorded height and lean out to 0.30-0.55 of the recorded
+ * half-width, so the SILHOUETTE is the record's own two numbers and only the
+ * arrangement inside it is invented. Nothing here reads a figure the record
+ * does not carry.
+ *
+ * Cost: 40 triangles against the forb's 12 and the near tuft's 27. It is drawn
+ * from the forb lattice, so it takes slots the forb archetype used to take
+ * rather than adding any.
+ */
+function shrubGeometry() {
+  const g = emptyGeo();
+  const rng = rngFrom(0x5c123b00);
+  const STEMS = 4;
+  const tops = [];
+  for (let i = 0; i < STEMS; i++) {
+    // Fanned, not radial: a clonal clump leans its stems out around one root,
+    // and an even fan of four reads as a candelabra from every bearing.
+    const phi = (i / STEMS) * Math.PI * 2 + rng() * 0.8;
+    const dx = Math.sin(phi);
+    const dz = Math.cos(phi);
+    const lean = 0.30 + rng() * 0.25;
+    const top = 0.55 + rng() * 0.33;
+    // A stem's thickness is in the archetype's units, so it scales with the
+    // clump: about 3 cm on a 2.4 m hazel and 1 cm on a 1 m sand cherry, which
+    // is the right direction and the right order for both.
+    const w = 0.030;
+    const px = -dz * w;
+    const pz = dx * w;
+    // Woody, but not a silhouette: `color.g` is this module's only occlusion
+    // term, so a stem written at 0.05 is a black stick where the foliage does
+    // not cover it, and a shrub's stems are exposed for the lower half of it.
+    const k0 = shade(0.16);
+    const k1 = shade(0.42);
+    const a = vert(g, px, 0, pz, dx, 0.35, dz, k0, k0, k0, 0, 0);
+    const b = vert(g, -px, 0, -pz, dx, 0.35, dz, k0, k0, k0, 0, 0);
+    const c = vert(g, dx * lean + px, top, dz * lean + pz, dx, 0.35, dz,
+      k1, k1, k1, dx, dz);
+    const d = vert(g, dx * lean - px, top, dz * lean - pz, dx, 0.35, dz,
+      k1, k1, k1, dx, dz);
+    g.idx.push(a, b, c, b, d, c);
+    tops.push([dx, dz, lean, top]);
+  }
+  // Sixteen small leafy sprays, not four big ones. A shrub's mass is its
+  // OUTER SHELL — the reason it reads as a bush rather than as a candelabra —
+  // and the first cut of this archetype hung one 60 cm paddle off each stem,
+  // which is the wand's own failure at a larger size. Each stem carries a
+  // spray at its head and one part way up it, and eight more fill the shell
+  // between them, at two heights so the silhouette is round rather than flat.
+  const sprays = [];
+  for (const [dx, dz, lean, top] of tops) {
+    sprays.push([dx, dz, lean, top, 1.00]);
+    sprays.push([dx, dz, lean * 0.62, top * 0.60, 0.86]);
+  }
+  for (let i = 0; i < 8; i++) {
+    const phi = (i / 8) * Math.PI * 2 + 0.9 + rng() * 0.5;
+    const high = i % 2 === 0;
+    sprays.push([Math.sin(phi), Math.cos(phi),
+      (high ? 0.30 : 0.44) + rng() * 0.26,
+      (high ? 0.62 : 0.34) + rng() * 0.22, high ? 0.94 : 0.80]);
+  }
+  for (const [dx, dz, lean, top, scale] of sprays) {
+    // Small enough to read as leaves rather than as blades: 0.26-0.42 of the
+    // clump radius against the first cut's 0.42-0.72, which on a 1.8 m hazel
+    // is a 30 cm spray instead of a 60 cm paddle.
+    const len = (0.26 + rng() * 0.16) * scale;
+    const half = (0.15 + rng() * 0.09) * scale;
+    // The tip never leaves the nominal box: a plant is as tall as its record
+    // says, and a spray that overshot 1.0 would make every shrub in the town
+    // taller than the height the census reads back off it.
+    const rise = Math.min(0.05 + rng() * 0.09, 1 - top);
+    const bx = dx * lean;
+    const bz = dz * lean;
+    const k0 = shade(0.24 + top * 0.30);
+    const k1 = shade(Math.min(1, 0.58 + top * 0.40));
+    const a = vert(g, bx - dz * half * 0.5, top, bz + dx * half * 0.5,
+      dx * 0.3, 0.9, dz * 0.3, k0, k0, k0, dx, dz);
+    const b = vert(g, bx + dz * half * 0.5, top, bz - dx * half * 0.5,
+      dx * 0.3, 0.9, dz * 0.3, k0, k0, k0, dx, dz);
+    const c = vert(g, bx + dx * len - dz * half, top + rise, bz + dz * len + dx * half,
+      dx * 0.3, 0.9, dz * 0.3, k1, k1, k1, dx, dz);
+    const d = vert(g, bx + dx * len + dz * half, top + rise, bz + dz * len - dx * half,
+      dx * 0.3, 0.9, dz * 0.3, k1, k1, k1, dx, dz);
+    g.idx.push(a, b, c, b, d, c);
+  }
+  return finishGeo(g, 'flora-shrub');
 }
 
 /** Smooth value noise, 0..1. No texture, no table. */

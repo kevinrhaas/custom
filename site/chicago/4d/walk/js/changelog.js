@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 167, title: 'The bushes are bushes now, not oversized weeds', kind: 'fix', ts: '2026-08-17T13:33:20.715Z', date: 'Aug 17, 2026, 8:33 AM CT',
+    items: [
+      'Twenty-one plants in this reconstruction are shrubs — hazel, elder, dogwood, wild plum, brambles, currant in the dooryards, juniper and sand cherry on the lakeshore, and the low clumps of black oak the fires kept knocking back. Every one of them was drawn as a single herbaceous stalk with four big leaves, the same shape a prairie flower gets, stretched to whatever height the record gave it.',
+      'They are now drawn as shrubs: four woody stems out of one root with a leafy shell over them. Walk the river bank or the lakeshore back slope and there are bushes standing over the grass where there were pale wands.',
+      'The width in the record finally means something. A shrub recorded as sprawling one to three metres across was being squeezed to 40 cm — a limit that exists so a flower does not grow metre-long leaves, and that had been applied to the bushes too. The clumps now stand as wide as their records say: 1.8 m across, typically.',
+      'Nothing about which plant grows where changed. The same 2,201 plants are drawn from the same shuffle in the same places, and 14 of them are shrubs — plant for plant, before and after.',
+      'How the bush branches is our invention and is written up: no source here says how many stems a Chicago hazel throws or how far they lean. What is not invented is its outline, which is the height and the width the research records.',
+      'Measured while doing it, and queued rather than hidden: only 14 shrubs stand across the eight viewpoints, because the planting lottery deals by head count and one hazel counts the same as one wild leek. The wet woods record hazel as covering a fifth to a half of their ground and it is drawn as one plant in two hundred.',
+    ] },
   { v: 166, title: 'Nothing you can see changed: the remaining shimmer is not a fault', kind: 'improvement', ts: '2026-08-17T12:35:06.913Z', date: 'Aug 17, 2026, 7:35 AM CT',
     items: [
       'Yesterday\u2019s note said the shimmer left over when you fly \u2014 after the sun\u2019s shadow grid was fixed \u2014 was two surfaces meeting edge-on and the picture deciding differently each frame. That was written down three times and never tested. It is wrong.',
