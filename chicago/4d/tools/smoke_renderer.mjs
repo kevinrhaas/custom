@@ -2779,6 +2779,107 @@ const terrainLoad = await page.evaluate(() => {
     console.log(`        shadow reach: ±${rig.reachM} m at `
       + `${(rig.texelM * 100).toFixed(1)} cm/texel · winding back to ±60 m moves `
       + `worst cell ${dReach.worst}; restored residual worst ${dReachBack.worst}`);
+
+    // --- R-BUG6, the shadow box moves in whole texels -----------------------
+    //
+    // The box follows the visitor. A shadow map is a raster fixed to that box,
+    // so re-centring it on their exact position slid the sample lattice by a
+    // fraction of a texel every frame and re-quantised every shadow edge in the
+    // scene — the crawl along an eave line, and 14–16 % of the whole-frame
+    // flicker `tools/measure_river_edge.mjs` catches under a 2 mm nudge.
+    //
+    // The invariant is exact, so it is asserted exactly rather than through a
+    // pixel signature: two positions a MILLIMETRE apart must put the shadow box
+    // in the same place to the bit. The equality is computed here, off
+    // `light.target.position`, which is the input three itself builds the shadow
+    // camera from — not off a reading the module makes about itself (K24).
+    //
+    // And it is asserted in BOTH directions, which is R-A1's lesson: "the box
+    // did not move" passes identically on a rig that snaps and on a rig whose
+    // follow() was never called, so the same millimetre with the snap OFF has to
+    // move it. The whole-texel half is the third: walk a long way and the box
+    // must land on the lattice, which is what says the quantisation is
+    // world-anchored rather than a copy of the walker.
+    const snapProbe = await page.evaluate((texel) => {
+      const api = window.__chicago4d;
+      const d = api.world.direction;
+      // `follow` is what the render loop calls every frame with the visitor's
+      // world position, so it is asked directly: no teleport and no capture, and
+      // the next drawn frame re-centres the box on the real walker anyway.
+      const centreAt = (x, z) => {
+        api.world.follow({ x, y: 0, z });
+        const t = api.world.light.target.position;
+        return { x: t.x, y: t.y, z: t.z };
+      };
+      /**
+       * THE DISTANCE THAT MATTERS IS ACROSS THE MAP, NOT ALONG THE SUN.
+       *
+       * The box is snapped on the two axes of the shadow map and deliberately not
+       * on the third: the centre keeps the walker's own component along the sun's
+       * direction, so it still slides by a tenth of a millimetre per millimetre
+       * walked (measured). That slide cannot re-quantise anything — an
+       * orthographic camera moved along its own view axis rasterises every world
+       * point to the identical texel, and the depth it writes and the depth it
+       * compares against shift together. So the perpendicular component is the
+       * claim, and asserting the raw distance instead would have failed a correct
+       * rig: it did, first time, at 0.107 mm.
+       */
+      const acrossMap = (p, q) => {
+        const v = { x: p.x - q.x, y: p.y - q.y, z: p.z - q.z };
+        const along = v.x * d.x + v.y * d.y + v.z * d.z;
+        return Math.hypot(v.x - along * d.x, v.y - along * d.y, v.z - along * d.z);
+      };
+      // A millimetre: 1/117 of a desktop texel, and three orders of magnitude
+      // under anything the walker's own stride resolves.
+      const a = centreAt(107, 103);
+      const snappedStep = acrossMap(a, centreAt(107.001, 103));
+      // The lattice PITCH, measured from outside and without the light's basis.
+      // Walk a metre in millimetres: each step can cross at most one lattice
+      // line of each axis, so every move the box makes across its map is one
+      // texel — or, if both axes cross on the same millimetre, a texel diagonal.
+      // Nothing else is possible on a lattice of this pitch, so the set of jump
+      // lengths IS the claim, and zero jumps would mean a box that never moves.
+      const jumps = [];
+      let prev = a;
+      for (let mm = 1; mm <= 1000; mm++) {
+        const c = centreAt(107 + mm / 1000, 103);
+        const j = acrossMap(prev, c);
+        if (j > 1e-9) jumps.push(j);
+        prev = c;
+      }
+      const wasOn = api.world.shadowRig.snapped;
+      api.world.setShadowSnap(false);
+      const loose = centreAt(107, 103);
+      const looseStep = acrossMap(loose, centreAt(107.001, 103));
+      api.world.setShadowSnap(wasOn);
+      const onLattice = jumps.every((j) => Math.abs(j - texel) < 1e-6
+        || Math.abs(j - texel * Math.SQRT2) < 1e-6);
+      return {
+        snappedStep,
+        looseStep,
+        jumps: jumps.length,
+        worstJumpTexels: jumps.length ? Math.max(...jumps.map((j) => j / texel)) : 0,
+        onLattice,
+        snapped: api.world.shadowRig.snapped,
+      };
+    }, rig.texelM);
+    check(`${label}: the shadow box holds still under a sub-texel step`,
+      snapProbe.snapped === true && snapProbe.snappedStep < 1e-9,
+      `a 1 mm walk moved the box ${(snapProbe.snappedStep * 1e6).toFixed(3)} µm across its `
+      + `map (texel ${(rig.texelM * 1000).toFixed(1)} mm); snapped=${snapProbe.snapped}`);
+    check(`${label}: the snap reaches the box — without it the same step moves it`,
+      snapProbe.looseStep > 0.0009,
+      `with the snap off a 1 mm walk moves the box `
+      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm across its map (want >0.9)`);
+    check(`${label}: the box moves in texels of its own map, and only in those`,
+      snapProbe.jumps > 0 && snapProbe.onLattice,
+      `a 1 m walk moved the box ${snapProbe.jumps} time(s), worst jump `
+      + `${snapProbe.worstJumpTexels.toFixed(4)} texels of `
+      + `${(rig.texelM * 100).toFixed(1)} cm (want every jump 1 or √2)`);
+    console.log(`        shadow snap: 1 mm moves the box `
+      + `${(snapProbe.snappedStep * 1e6).toFixed(2)} µm snapped, `
+      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm loose; a 1 m walk moves it `
+      + `${snapProbe.jumps} time(s), worst ${snapProbe.worstJumpTexels.toFixed(3)} texels`);
     // --- K24, the brightness aid, and the same three things it owes ---------
     //
     // Owner-requested, and it carries a fourth assertion the road aid does not

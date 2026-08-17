@@ -148,6 +148,8 @@ rationed.**
 | — | RENDERING | ~~R-A1~~ | **SEEN** | **DONE 2026-08-16 — the Road visibility slider, off by default, and the first parcel taken by PULLING A SEEN ROW UP when every numbered one was blocked.** Its finding is about gates, not roads: **an inertness assertion needs a liveness assertion beside it**, because "the default is unchanged" passes identically whether a control is wired correctly or wired to nothing — R-BUG1's dead `--no-sun-shadow` one parcel earlier. And the instrument was measured before its threshold was set: the 12² frame signature scores the aid at **worst 2 against a residual of 0**, the same difference at 48² is **worst 6**, and nothing about the scene changed between the two runs. Read its box before adding any preference to Settings |
 | — | RENDERING | ~~K24~~ | **SEEN** | **DONE 2026-08-17 — the Brightness slider, off by default, and the SECOND parcel taken by pulling a SEEN row up when every numbered one was blocked.** Owner-requested on 2026-08-14 and deferred behind PR #125 by a sequencing note that turned out to be a claim about a diff nobody had checked: the aid is one constant and one method, not a `world.js` rewrite. **Its finding is about R-A1's gate rather than about light** — `Object.assign` copies what a getter returns, so `get roadAid()` had been a frozen `0` since it shipped, and both of R-A1's readback assertions expect `0`. The control was live; its report of itself was not. Read its box before adding any reading to `window.__chicago4d` |
 | — | RENDERING | ~~K51~~ | **SEEN** | **DONE 2026-08-17 — 139 researched animals reached no browser at all, and the whole layer is now a card in the Evidence panel.** Fauna figures reaching a visitor **0 of 30 → 30 of 30**; the dataset's unread population **58 of 100 → 28**. Its findings are about instruments, not animals: K42's assertion 3a **fired exactly as designed** the moment the directory was opened, and **two of that gate's own controls had been written against the repository's state** — one became a copy of the measurement and the other printed SILENT rather than failing. And `docs/LIBERTIES.md` **L2 said "ambient wildlife is rendered sparsely" for eight days while nothing was rendered at all**. Read its box before quoting any layer-read number |
+| — | RENDERING | ~~R-BUG6(a)~~ | **SEEN in motion** | **DONE 2026-08-17 — the shadow box was re-centred on the visitor's exact position, so its texel lattice slid under every step and re-quantised every shadow edge in the town.** It moves in whole texels now: with the camera held still and the box slid half a texel, `from_above` **2,023 changed pixels → 0** and `descend_main_stem` **5,650 → 0**. Three findings, and two of them are about instruments: **the control that "cleared the shadow map" was inert** (a compile-time flag is not a runtime handle — it moves 5,439 px now), and **a sub-pixel nudge cannot measure a shadow box at all** — scaled up to a half texel it changes 29,138 px with the fix and 28,784 without, sign included. The answer to the parcel's title: **the shadow map is 14–16 % of the town's flicker**, not the cause of it. Read its box before quoting any flicker number |
+| **1** | RENDERING | **R-BUG6(b)** | UNSEEN | the other **84 %** — co-planar depth ties, with `from_above` **1,108** px and `descend_main_stem` **2,008** px measured with the shadow map honestly switched off. R-W5a2 has already characterised the class; the instrument that works is `--box-drift`, not the nudge |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
@@ -1126,7 +1128,7 @@ at the top). Each half below is one coherent change with one smoke.
 | | parcel | why it stands alone |
 |---|---|---|
 | ~~**R-W4a**~~ | ~~fix the horizon-timber metric~~ · **DONE 2026-08-15** | The headline figure counted gable ends as trees and the acceptance number was unmeasurable. It is measurable now, and it is much worse than it read. Findings below. |
-| **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
+| ~~**R-W4b**~~ | ~~the ring seam~~ · **ALREADY SHIPPED 2026-08-13 (PR #95) — NOT A PICK.** Noticed 2026-08-17 by R-BUG6(a) while choosing a parcel: every lattice slot has carried its own outer radius since that commit (`fringeOf`, `LOBE_M`, `TUNE.mid.fringe = 3.0`), the spread went **1.4 px → 5.9 px** at 1280×800 and 17.4 px at 390×780, and a gate holds it. **This row stayed pickable for four days and cost this run part of its budget** — see `docs/STATUS.md` § *the sward ended on a straight line*. | 
 | ~~**R-W4c**~~ | ~~flower load~~ · **(a) and (b1) DONE 2026-08-15, (b2) IS THE TUNING HALF** | `0.0012` was not a count of flowers: the recipe's hue cut at 50° runs through the middle of a July prairie's bloom and misses **94.5 %** of it. The render's true bloom at `prairie_west` is **2.19 %**, not 0.12 %. **And there is no 4–6 % target to tune to** — R-W4c(b1) found it unsourced on one half and unreproducible on the other. Findings under R-W4c(a) and R-W4c(b1) below — **read both before quoting any flower number, and before tuning anything**. |
 | **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
 
@@ -8301,12 +8303,92 @@ bearing, different viewport, different day, same symptom. Two things follow:
    emergent path over the river) before anyone spends a run on it — this frame looks *down a dry
    street* with the river off to the left. Suspect 1, the ring fade, survives that; check it first.
 
-### R-BUG6 — the town flickers too, and nobody knows why · **CLAIMED 2026-08-17 — DO NOT PICK UP · expires 2026-08-18 · opened 2026-08-16 by R-BUG1 · Effort: S–M**
+### R-BUG6(a) — the shadow grid slid under every step, and the control that cleared it was inert · **DONE 2026-08-17 · SEEN in motion · opened 2026-08-16 by R-BUG1**
 
-> **Held by the steward improve run of 2026-08-17 (lane 1, renderer only).** It is repairing the
-> control the box below calls untested, then testing the first suspect on the list — the shadow
-> map's texel grid moving with the camera. Take **K49(e)** or **R-M1d** instead; both are lane 1
-> and neither touches `world.js` or `tools/measure_river_edge.mjs`.
+**Phase:** lane 1, renderer only · **Runner:** improve-runner · **Files:**
+`renderers/web/js/world.js` (`centreFor`, `follow`, `setShadowSnap`, `shadowRig.snapped`) ·
+`tools/measure_river_edge.mjs` (the repaired control, `--box-drift`, `--snap-off`,
+`RIVER_NUDGE_M`) · `tools/smoke_renderer.mjs` (three assertions) · `site/chicago/4d/**`.
+
+**THE SHIPPED FIX: the shadow box moves in whole texels.** It follows the visitor, and it was
+re-centred on their exact position every frame — so the map's sample lattice slid a fraction of a
+texel with every step and re-quantised every shadow edge in the scene while nothing in the world
+moved. The centre is now rounded onto a world-anchored lattice of the box's own texel size, in the
+light's own plane. **Measured with the camera held perfectly still and the box slid half a texel
+(58.6 mm): `from_above` 2,023 changed pixels → 0, `descend_main_stem` 5,650 → 0.**
+
+The correction is at most half a texel — 5.9 cm desktop, 11.7 cm phone — and it is **only ever
+across the map, never along the sun**, so the reach, the map size, the 11.7 cm texel and the `bias`
+/ `normalBias` calibrated to it are all untouched.
+
+**FINDING 1 — THE CONTROL THAT "CLEARED THE SHADOW MAP" COULD NOT HAVE CLEARED ANYTHING, AND NOW
+IT MOVES 5,439 PIXELS.** `--no-sun-shadow` dropped `sun.castShadow` after boot and changed 0
+pixels of the frame, which this box read as "the flag never reached the render". The mechanism is
+compilation: `castShadow` is read when a material's program is built, so flipping it later leaves
+every shader still sampling `directionalShadowMap[0]` — and the map itself is still hanging in the
+texture unit from the last frame that had one. The repaired handle switches `renderer.shadowMap`
+off **and marks every material `needsUpdate`**, which rebuilds each program against the new
+`NUM_DIR_LIGHT_SHADOWS`. **The generalisation: a renderer flag read at compile time is not a
+runtime handle, and a diagnostic that flips one is measuring the scene it meant to exclude.**
+
+**FINDING 2 — THE ANSWER TO THIS PARCEL'S TITLE, AND IT IS MOSTLY NOT THE SUN.** With the repaired
+control, the whole-frame flicker under the 2 mm nudge on `dev` falls from **1,284 → 1,108** at
+`from_above` and **2,383 → 2,008** at `descend_main_stem` when the shadow map is taken out
+entirely: **the shadow map carries 14–16 % of it.** The snap banks about half of that (1,284 →
+1,184 and 2,383 → 2,195, and the gated bank share 2.9 % → 2.6 % and 3.4 % → 3.1 %); the other
+~84 % is co-planar depth ties, which is R-W5a2's class and is **R-BUG6(b)**, below. Do not quote
+the shadow map as the cause of the town's flicker.
+
+**FINDING 3 — THE NUDGE INSTRUMENT CANNOT MEASURE THE SHADOW BOX, AND THE ATTEMPT IS ON THE
+RECORD.** 2 mm slides the lattice by 1.7 % of a texel, so the nudge sees 1.7 % of a defect a
+walking visitor meets twelve texels of per second. Nudging by a half texel instead to scale it up
+**fails**: at `from_above` a 58.6 mm nudge changes **29,138** pixels with the snap on and **28,784**
+with it off — the camera move resamples the whole frame and swamps the box, sign included. **A
+sub-pixel nudge is an instrument for depth ties only.** The right instrument moves the BOX and not
+the camera, which is what `--box-drift` does: it freezes `follow`, places the box twice half a
+texel apart, and photographs one identical pose. That is where the 2,023 → 0 above comes from.
+
+**FINDING 4 — THE INSTRUMENT COULD NOT RUN ON THIS RUNNER AT ALL, AND THE REASON IS A WAIT.**
+Every capture in `measure_river_edge.mjs` timed out: `elementHandle.screenshot()` waits for the
+element to be *stable* — two consecutive animation frames with an unchanged box — and one frame of
+this scene under SwiftShader takes about ten seconds, so two do not fit Playwright's 30 s action
+timeout. Measured: element capture fails at 12 s where `page.screenshot()` returns in 10.2 s from
+the same page. The tool photographs the page now, with an assertion that the canvas fills the
+viewport so the substitution is proven rather than assumed. **A stability wait is the wrong wait in
+a harness that holds the clock on purpose.**
+
+**The gate.** Three assertions, and the middle one is R-A1's: the box holds still across a
+sub-texel step (**2.4 × 10⁻¹⁵ m** across the map, float noise); with `setShadowSnap(false)` the
+same millimetre moves it **0.994 mm**, so the snap reaches the box rather than being asserted into
+existence; and a 1 m walk moves it **5 times at the phone's 23.4 cm texel and 11 at the desktop's
+11.7 cm, every jump exactly 1.000 texel**, which is the lattice pitch measured from outside. **The first version of that first assertion demanded the box
+hold still ABSOLUTELY and failed a correct rig at 0.107 mm** — the centre keeps the walker's
+component along the sun, where an orthographic camera rasterises every world point to the same
+texel and the written and compared depths shift together. The invariant is *across the map*, and
+`world.direction` is what the assertion projects onto.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. `SMOKE_VIEWPORT=mobile` on the published
+mirror: **253 passed, 2 failed** — the same two road assertions `dev` already carries
+(R-BUG5b/#201 and T-V2/#135), and the +3 is exactly this parcel's three gates. The desktop half
+does not fit the runner's ten-minute per-command ceiling (ROADMAP § THE RUN BUDGET) and did not
+run; every figure above is `measure_river_edge.mjs` at 1280×800 on the published mirror.
+
+### R-BUG6(b) — the other 84 %: co-planar ties · **UNCLAIMED · UNSEEN · opened 2026-08-17 by R-BUG6(a) · Effort: S–M**
+
+**The suspect list is one shorter and the remainder is measured**: with the shadow map switched
+off by the repaired control, `from_above` still flickers **1,108** pixels and
+`descend_main_stem` **2,008** under the 2 mm nudge. Those are ties, and R-W5a2 has already
+characterised the class from the other direction — merging sixteen batches into one moved 942
+pixels, *"all of them depth ties between co-planar surfaces of different materials"*.
+
+**Start where R-W5a2 ended, not where R-BUG1 did.** The candidates left are the buildings'
+`DoubleSide` faces meeting at a coplanar seam, the canopies' alpha-tested cards ordering
+differently, and the confidence-view attribute path; the shadow map is spent. `--box-drift` is
+the shape of instrument that works here — hold the camera still and move the one thing under
+suspicion — and `--no-sun-shadow` is now a control that reaches the render, so a run can
+subtract the shadow's share honestly rather than assuming it.
+
+### R-BUG6 — the parcel as written, kept for the record
 
 **Under the 2 mm nudge, with the bank line fixed, 1,173–1,883 pixels of every aerial frame still
 change** — scattered over roofs, walls and tree canopies, not over the ground between them. The

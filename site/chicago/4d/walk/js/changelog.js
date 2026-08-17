@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 165, title: 'Shadow edges stop crawling as you walk', kind: 'fix', ts: '2026-08-17T11:12:16.886Z', date: 'Aug 17, 2026, 6:12 AM CT',
+    items: [
+      'Every shadow in this reconstruction is drawn into a grid of squares that follows you around, 11.7 cm to a square on a computer. Because it followed your exact position, the grid slid a fraction of a square with every step you took — so every shadow edge in the scene was redrawn slightly differently, several times a second, while nothing in the town had moved. Along an eave or a fence line that reads as a crawl.',
+      'The grid now moves in whole squares instead. Measured by holding the camera perfectly still and sliding the grid half a square: 2,023 pixels of the view from above used to change, and 5,650 of the view descending over the main stem. Both are zero now.',
+      'No shadow has moved anywhere you could see it. The correction is at most half a square — under 6 cm — and it is only ever sideways, never toward or away from the sun, so how sharp shadows are and how far they reach are exactly as they were this morning.',
+      'It also settles a little of the shimmer the river edge still has when you fly: the whole frame changes 1,184 pixels under a hair-thin camera movement where it changed 1,284, and the flickering share of the drawn bank falls from 2.9 to 2.6 per cent at the same spot.',
+      'Most of that shimmer is still there and it is not the sun. Switching the shadows off entirely only accounts for about a seventh of it, which is written down with the numbers rather than guessed at — the rest is two surfaces meeting edge-on and the picture deciding differently each frame which one you see.',
+    ] },
   { v: 164, title: 'The shadows reach twice as far again', kind: 'improvement', ts: '2026-08-17T09:53:11.256Z', date: 'Aug 17, 2026, 4:53 AM CT',
     items: [
       'This morning the sun threw a shadow within 120 metres of wherever you were standing. It is 240 now. From the Green Tree Tavern 49 of the town’s 331 buildings cast a shadow instead of 27, and 70 of its 730 trees instead of none; from South Water Street it is 91 buildings instead of 26 and 239 trees instead of 54.',

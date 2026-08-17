@@ -1,5 +1,96 @@
 # STATUS
 
+## Fixed 2026-08-17 — the shadow grid slid a fraction of a texel under every step
+
+**ROADMAP R-BUG6(a).** The sun has one orthographic shadow box and it follows the visitor. It was
+re-centred on their exact position every frame, and a shadow map is a **raster**: its samples are a
+lattice fixed to that box, so sliding the box by a fraction of a texel re-quantises every shadow
+edge in the scene at once. Nothing in the world moves and every boundary is redrawn slightly
+differently — the crawl along an eave line, and it got worse the day the reach went to ±240 m,
+because shadow edges now cover the whole town instead of 60 m of it.
+
+The centre is rounded onto a **world-anchored lattice of the box's own texel size**, in the light's
+own plane. The offset is at most half a texel (5.9 cm desktop, 11.7 cm phone) and it is only ever
+across the map, never along the sun — so the reach, the map size, the 11.7 / 23.4 cm texel and the
+`bias` and `normalBias` calibrated to that texel are all untouched.
+
+**Measured with the camera held perfectly still and the box slid half a texel — the only honest way
+to isolate it (finding 3):**
+
+| station | changed pixels, box slid ½ texel |
+|---|---|
+| `from_above`, 175 m | **2,023 → 0** |
+| `descend_main_stem`, 90 m | **5,650 → 0** |
+
+Under R-BUG1's own 2 mm nudge, on the published mirror at 1280×800: whole-frame flicker
+**1,284 → 1,184** and **2,383 → 2,195**, and the gated bank share **2.9 % → 2.6 %** and
+**3.4 % → 3.1 %**.
+
+### Finding 1 — the control that "cleared the shadow map" was inert, and now it moves 5,439 pixels
+
+`measure_river_edge.mjs --no-sun-shadow` dropped `sun.castShadow` after boot and changed **0
+pixels**, which R-BUG6 recorded as a flag that never reached the render. The mechanism is
+compilation: `castShadow` is read when a material's program is built, so flipping it afterwards
+leaves every shader in the scene still sampling `directionalShadowMap[0]`, and the map itself is
+still hanging in the texture unit from the last frame that had one. The scene keeps its shadows and
+the flag reports success. The handle is now `renderer.shadowMap.enabled` **plus a `needsUpdate` on
+every material in the scene**, which rebuilds each program against the new
+`NUM_DIR_LIGHT_SHADOWS`. Putting the shadow back changes **5,439** pixels of the first station's
+frame, which is the liveness number this diagnostic never had.
+
+**Carry this forward: a renderer flag read at compile time is not a runtime handle.** Three of this
+project's diagnostics flip one.
+
+### Finding 2 — the town's flicker is mostly NOT the sun, and now there is a number
+
+With the repaired control, taking the shadow map out of the frame entirely on `dev` moves the
+whole-frame flicker from **1,284 → 1,108** at `from_above` and **2,383 → 2,008** at
+`descend_main_stem`. So **the shadow map carries 14–16 %** of what R-BUG6 was opened to explain,
+and the snap banks about half of that. The remaining ~84 % is co-planar depth ties — R-W5a2's
+class, reached from the other direction — and is opened as **R-BUG6(b)** with those numbers as its
+baseline. The parcel's title asked why the town flickers; the answer is "a seventh of it is this",
+and saying so is the point.
+
+### Finding 3 — a sub-pixel nudge cannot measure the shadow box, and scaling it up fails
+
+2 mm slides the lattice by 1.7 % of a texel. A visitor walking at 1.4 m/s slides it twelve texels a
+second, so the nudge understates the defect by about sixty times. The obvious repair — nudge by a
+half texel instead — **does not work, and the measurement is kept because it is the interesting
+part**: at `from_above` a 58.6 mm nudge changes **29,138** pixels with the snap on and **28,784**
+with it off. The camera move resamples the whole frame, swamps the box, and even reverses the sign.
+
+**A sub-pixel nudge is an instrument for depth ties only.** To measure the box, move the box:
+`--box-drift` freezes `follow`, places the box twice half a texel apart, and photographs one
+identical pose. Every pixel of that difference is the shadow map re-quantising, which is the
+2,023 → 0 in the table above.
+
+### Finding 4 — the instrument could not run on this runner, and the reason was a wait
+
+Every capture timed out. `elementHandle.screenshot()` waits for the element to be *stable* — two
+consecutive animation frames with an unchanged bounding box — and one frame of this scene under
+SwiftShader takes about ten seconds, so two of them do not fit Playwright's 30 s action timeout.
+Measured on the published mirror: element capture fails at 12 s where `page.screenshot()` returns
+in **10.2 s** from the same page. The tool photographs the page now, with an assertion that the
+canvas fills the viewport at the origin so the substitution is proven rather than assumed. **A
+stability wait is the wrong wait in a harness that holds the clock on purpose**, and it is worth
+checking the other Playwright tools here for the same idiom.
+
+### The gate, and the assertion that failed a correct rig
+
+Three assertions, and the middle one is R-A1's liveness clause. The box holds still across a
+sub-texel step (**2.4 × 10⁻¹⁵ m** across the map, which is float noise); with
+`world.setShadowSnap(false)` the same millimetre moves it **0.994 mm**; and a 1 m walk moves it
+**5 times on the phone's 23.4 cm texel and 11 on the desktop's 11.7 cm, every jump exactly 1.000
+texel** — the lattice pitch measured from outside, without the light's basis.
+
+**The first version of the first assertion demanded the box hold still absolutely, and failed a
+correct rig at 0.107 mm.** The centre keeps the walker's own component along the sun's direction,
+because quantising that would move the box in depth for no benefit. An orthographic camera
+translated along its own view axis rasterises every world point to the identical texel, and the
+depth it writes and the depth it compares against shift together — so the invariant is *across the
+map*, and the assertion projects onto `world.direction` to say so. **An invariant asserted one axis
+too widely fails the code that satisfies it.**
+
 ## Shipped 2026-08-17 — the shadows reach ±240 m, because the whole town became one draw call
 
 **ROADMAP R-W5a2 + R-W3b(a2)**, taken as one parcel: the batch merge is the enabler and the reach

@@ -78,8 +78,37 @@ const PORT = Number(process.env.RIVER_PORT || 4193);
 const YEAR = process.env.RIVER_YEAR || '1835';
 
 /** The nudge, in metres. Sub-pixel at every station below by three orders of
- *  magnitude — see the header. */
-const NUDGE_M = 0.002;
+ *  magnitude — see the header.
+ *
+ *  `RIVER_NUDGE_M` overrides it, and R-BUG6 is why: 2 mm slides the shadow map's
+ *  texel grid by 1.7 % of a texel, so it catches 1.7 % of the shadow crawl a
+ *  visitor walking at 1.4 m/s sees twelve texels of every second. Nudging by a
+ *  HALF TEXEL instead, with `--snap-off` and without, measures that crawl paired
+ *  against identical parallax — the two frames have moved the camera by the same
+ *  amount, so the difference between the two numbers is the shadow box alone. */
+const NUDGE_M = Number(process.env.RIVER_NUDGE_M || 0.002);
+/** R-BUG6's handle, for the paired measurement above. Not a gate run. */
+const snapOff = process.argv.includes('--snap-off');
+/**
+ * R-BUG6 — MOVE THE SHADOW BOX AND NOT THE CAMERA.
+ *
+ * The nudge in the header answers a question about depth ties, and it can only
+ * answer it while the nudge is far below a pixel. It is therefore the WRONG
+ * instrument for the shadow box: 2 mm slides the box by 1.7 % of a texel, and a
+ * nudge big enough to slide it a whole texel (58.6 mm here) also resamples the
+ * whole frame — measured 2026-08-17 at `from_above`, where a half-texel nudge
+ * changes ~29,000 pixels with the snap on and ~28,800 with it off, so the camera
+ * move swamps the thing being measured and even reverses its sign.
+ *
+ * So this drift holds the camera perfectly still and moves the BOX: `follow` is
+ * frozen for the duration, the box is placed twice half a texel apart, and the
+ * two frames are photographed from one identical pose. Every pixel of the
+ * difference is the shadow map re-quantising, which is what a walking visitor
+ * sees as crawl along an eave line. With the snap on the two placements round to
+ * the same lattice cell and the difference is zero, which is the fix stated as a
+ * measurement rather than as an invariant.
+ */
+const boxDrift = process.argv.includes('--box-drift');
 /** A changed pixel: any channel moved by more than this. 8-bit sRGB output, so
  *  2 counts is above dither and far below a surface swap (water against bank is
  *  tens of counts). */
@@ -175,21 +204,86 @@ await page.evaluate(() => {
   document.head.append(style);
 });
 
-if (noSunShadow) {
-  const dropped = await page.evaluate(() => {
-    const sun = window.__chicago4d.scene3d?.getObjectByName('sun');
-    if (!sun) return false;
-    sun.castShadow = false;
-    return true;
-  });
-  if (!dropped) {
-    console.error('no object named "sun" — the shadow diagnostic cannot run');
-    process.exit(2);
-  }
-  console.log('DIAGNOSTIC: the sun casts no shadow in these frames. Not a gate run.\n');
+/**
+ * PUT THE SHADOW MAP IN OR OUT OF THE FRAME, and reach the render doing it.
+ *
+ * The first version of this diagnostic dropped `sun.castShadow` after boot and
+ * changed **0 pixels**, which is what ROADMAP R-BUG6 means by "the shadow
+ * suspect is untested, not refuted". The reason is compilation: `castShadow` is
+ * read when a material's program is built, so flipping it later leaves every
+ * shader in the scene still sampling `directionalShadowMap[0]` — and the map
+ * itself is still hanging in the texture unit from the last frame that had one.
+ * The scene keeps its shadows and the flag reports success.
+ *
+ * So the handle is the shadow map's own switch plus a recompile: every material
+ * in the scene is marked `needsUpdate`, which rebuilds each program against the
+ * new `NUM_DIR_LIGHT_SHADOWS`. That is what actually takes the shadow out of the
+ * picture, and the liveness proof below is the number that says so.
+ */
+async function setSunShadow(on) {
+  return page.evaluate(async (want) => {
+    const api = window.__chicago4d;
+    api.renderer.shadowMap.enabled = want;
+    api.scene3d.traverse((o) => {
+      const m = o.material;
+      if (!m) return;
+      for (const one of Array.isArray(m) ? m : [m]) one.needsUpdate = true;
+    });
+    for (let i = 0; i < 4; i++) await api.capture(4);
+    return api.renderer.shadowMap.enabled;
+  }, on);
 }
 
+if (snapOff) {
+  const was = await page.evaluate(() => window.__chicago4d.world.setShadowSnap(false));
+  if (was !== false) {
+    console.error('the shadow snap would not switch off — the paired measurement is void');
+    process.exit(2);
+  }
+  console.log('DIAGNOSTIC: the shadow box follows the camera unquantised (R-BUG6 before).'
+    + '\nNot a gate run.\n');
+}
+
+if (noSunShadow) {
+  if (!(await page.evaluate(() => !!window.__chicago4d?.renderer?.shadowMap))) {
+    console.error('no renderer on the harness — the shadow diagnostic cannot run');
+    process.exit(2);
+  }
+  await setSunShadow(false);
+  console.log('DIAGNOSTIC: the shadow map is switched off and every material recompiled '
+    + 'without it.\nNot a gate run.\n');
+}
+
+/**
+ * THE FRAME IS TAKEN OFF THE PAGE, NOT OFF THE ELEMENT, and the assertion below
+ * is what makes those the same picture.
+ *
+ * `elementHandle.screenshot()` waits for the element to be *stable* — two
+ * consecutive animation frames with an unchanged box — before it fires. On a
+ * runner without a GPU one frame of this scene takes about ten seconds under
+ * SwiftShader, so two of them do not fit inside Playwright's 30 s action
+ * timeout and every capture in this tool timed out (measured 2026-08-17, on the
+ * published mirror: element capture fails at 12 s, page capture returns in
+ * 10.2 s from the same page). A stability wait is the wrong wait here anyway:
+ * the whole instrument holds the clock precisely so that nothing moves.
+ *
+ * `page.screenshot()` has no such wait, and it photographs the viewport. The
+ * canvas is full-bleed at the origin, so the two are the same pixels — asserted
+ * here rather than assumed, because if the canvas ever stops filling the
+ * viewport this substitution would silently start measuring the page around it.
+ */
 const canvas = (await page.$('#view')) ?? (await page.$('canvas'));
+{
+  const box = await canvas.boundingBox();
+  const ok = box && box.x === 0 && box.y === 0
+    && box.width === VIEWPORT.width && box.height === VIEWPORT.height;
+  if (!ok) {
+    console.error(`the canvas does not fill the viewport (${JSON.stringify(box)} against `
+      + `${VIEWPORT.width}x${VIEWPORT.height}) — a page capture would not be a frame capture`);
+    process.exit(2);
+  }
+}
+const shot = async () => decodePng(await page.screenshot());
 
 async function stand(pose) {
   return page.evaluate(async (p) => {
@@ -362,24 +456,46 @@ const rows = [];
 let shadowEffectPx = null;
 for (const st of STATIONS) {
   const arrived = await stand(st.pose);
-  const a = decodePng(await canvas.screenshot());
+  const a = await shot();
   if (noSunShadow && shadowEffectPx === null) {
-    await page.evaluate(async () => {
-      window.__chicago4d.scene3d.getObjectByName('sun').castShadow = true;
-      for (let i = 0; i < 4; i++) await window.__chicago4d.capture(4);
+    await setSunShadow(true);
+    shadowEffectPx = diff(a, await shot()).changed;
+    await setSunShadow(false);
+  }
+  let driftPx = null;
+  if (boxDrift) {
+    const driftM = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.__chiRealFollow = api.world.follow.bind(api.world);
+      api.__chiBoxAt = async (dx) => {
+        const p = api.camera.position;
+        api.__chiRealFollow({ x: p.x + dx, y: 0, z: p.z });
+        for (let i = 0; i < 2; i++) await api.capture(4);
+      };
+      // The loop calls `world.follow(camera.position)` every frame; freezing it
+      // is what lets the box stand somewhere the camera is not.
+      api.world.follow = () => {};
+      await api.__chiBoxAt(0);
+      return api.world.shadowRig.texelM / 2;
     });
-    shadowEffectPx = diff(a, decodePng(await canvas.screenshot())).changed;
-    await page.evaluate(async () => {
-      window.__chicago4d.scene3d.getObjectByName('sun').castShadow = false;
-      for (let i = 0; i < 4; i++) await window.__chicago4d.capture(4);
+    const held = await shot();
+    await page.evaluate((d) => window.__chicago4d.__chiBoxAt(d), driftM);
+    const drifted = await shot();
+    driftPx = { m: driftM, changed: diff(held, drifted).changed };
+    await page.evaluate(() => {
+      const api = window.__chicago4d;
+      api.world.follow = api.__chiRealFollow;
     });
+    console.log(`  ${st.id}: moving the shadow box ${(driftM * 1000).toFixed(1)} mm `
+      + `— half a texel — with the camera held still changes `
+      + `${driftPx.changed} pixels`);
   }
   // The control: same pose, same everything, photographed again. Two frames of
   // an unchanged scene must be identical, and if they are not, nothing else
   // here means anything.
-  const control = decodePng(await canvas.screenshot());
+  const control = await shot();
   await stand({ ...st.pose, local_e: st.pose.local_e + NUDGE_M });
-  const b = decodePng(await canvas.screenshot());
+  const b = await shot();
   const bank = bankMask(a);
   const nudged = diff(a, b, bank);
   const still = diff(a, control, bank);
@@ -410,7 +526,8 @@ server.close();
 
 const w = (s, n) => String(s).padStart(n);
 console.log(`R-BUG1 — the river edge under a ${NUDGE_M * 1000} mm camera nudge · `
-  + `${VIEWPORT.width}x${VIEWPORT.height}\n`);
+  + `${VIEWPORT.width}x${VIEWPORT.height}`
+  + `${snapOff ? ' · SHADOW SNAP OFF' : ''}${noSunShadow ? ' · NO SHADOW MAP' : ''}\n`);
 console.log('station              control   bank px   bank flicker    share   swaps    whole frame');
 for (const r of rows) {
   console.log(`${r.id.padEnd(20)} ${w(r.control_changed_px, 7)} ${w(r.bank_px, 9)} `
