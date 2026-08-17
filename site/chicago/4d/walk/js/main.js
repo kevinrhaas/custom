@@ -255,7 +255,8 @@ async function boot() {
   let trees = await createTrees({
     dataBase: bases.dataBase, terrain, footprints,
     growthBlocked: streets.blocksGrowth,
-    confidence, problems, pixelsPerRadian, ...detailOpts(),
+    confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+    ...detailOpts(),
   });
   scene3d.add(trees.group);
 
@@ -286,7 +287,8 @@ async function boot() {
       trees = await createTrees({
         dataBase: bases.dataBase, terrain, footprints,
         growthBlocked: streets.blocksGrowth,
-        confidence, problems, pixelsPerRadian, ...detailOpts(),
+        confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+        ...detailOpts(),
       });
       scene3d.add(trees.group);
       api.flora = flora;

@@ -1,5 +1,53 @@
 # STATUS
 
+## Fixed 2026-08-16 — the woody planter sweeps the modelled field, and the timber has the east end its own source gives it
+
+**K45(b2)**, the second of K45(b)'s two changes. The planting loop's fixed square —
+`const half = 320 - step`, E/N −316..+316, left over from the 640 m heightfield this scene began
+as — is replaced by the heightfield's own extent inset by one planting step. **Reach goes from
+52,163 to 189,700 of the field's 192,844 dry nodes: 27.05 % → 98.37 %**, and the 87.9 ha the timber
+layer had never offered a stem to is **2.0 ha of one-step rim**. **147 stems stand east of the old
+edge where one did**; 377 stems became 640.
+
+**Ground the loop reaches is not ground a wood may stand on, and the classifier had no eastern
+answer at all.** `communityAt` asks distance-to-water, so on the beach the lake is water and the
+gallery mix — silver maple and elm — would have been planted on open sand. Andreas ends both
+divisions in the sentence `z05_riverbank_timber` is already built from: the South Side belt runs
+*"east as far as Wells Street"*, the North Side's timber excepts *"the sandy hills near the lake"*.
+There is now one east limit per division, **read at load from `data/streets/1835.json`** — Wells at
+**E +329.3**, State Street at **E +825.8**, the break-of-slope where `z09_sand_prairie` starts the
+relict beach ridges. **64,385 nodes, 40.2 ha, are swept and refused**: a stated omission where an
+unstated one stood. The dune community that belongs there is K45(b) change one and is not built.
+
+**`z05_riverbank_timber`'s own note put Wells Street 440 m east of where it is.** The committed
+centreline runs E +328.1 to +330.5 — **nine metres** east of the 640 m box's edge, not 440. The
+conclusion the note drew survived, on nine metres of margin rather than four hundred, and a belt
+read as running 440 m past the box would have licensed a gallery over the beach ridges the moment
+the planter widened. Corrected in the record and in the manifest. Three other flora zone notes
+state distances of the same shape and none has been checked.
+
+**The timber's detail control has never done anything, and widening the sweep turned that from
+harmless into a defect.** `step` is count-neutral by construction, so the `STEMS` caps are the whole
+of the control — and at 163 trees they had never bound. Widened, `light` plants **387 trees and the
+cap bound at exactly 300**. That is not a thinning: the loop runs south to north, so a bound cap
+deletes the north end of the wood and leaves a straight edge, on phones, which start at `light`.
+Caps raised by 3.70× (the ratio of ground now swept) and **a bound cap is now a `problems` entry**,
+which the release smoke reads as a failure. The real repair — a keep fraction rather than a cap —
+is ROADMAP **K45(b3)**.
+
+**Cost, measured at 1280×800 rather than estimated:** load **1.98 s → 2.13 s**, timber triangles
+**108,804 → 175,136**, whole scene **~393k → 459k** against a 1,000,000 budget, **draw calls
+unchanged at 59** against ≤ 80. The four quadrant buffers are now 2 km wide, so culling is coarse —
+free at 175k triangles, the wrong shape at 500k, and a tiled chunker trades draw calls for it.
+
+**Not tuned to look better:** no mix, weight, density, confidence or archetype moved. But the wood
+is dealt from one seeded stream in sweep order, so a wider sweep **redeals every stem in town** —
+same rules, same expected counts, different individuals.
+
+**Verified:** `tools/check.sh` green; `SMOKE_VIEWPORT=mobile node tools/smoke_renderer.mjs
+--published` green. **The desktop half of the smoke was not run and is not claimed** — ~13 minutes
+against this runner's 10-minute per-command ceiling.
+
 ## Measured 2026-08-16 — the road check could be passed by planting a tree in front of the road
 
 **ROADMAP R-M1c.** **Nothing a visitor can see changed today**, and the exemption claimed is the

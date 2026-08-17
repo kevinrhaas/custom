@@ -128,6 +128,42 @@ const TREE_DRY_MARGIN_M = 0.20;
  */
 const CHANNEL_Y = -0.60;
 
+/**
+ * WHERE THE TIMBER STOPS IN THE EAST, and why these are street ids rather than
+ * two numbers written here.
+ *
+ * ROADMAP K45(b2). The woody planter used to sweep a fixed square, E/N
+ * −316..+316, inside a field S2e carried east to E +1700 — so 73 % of the
+ * modelled ground above the planter's own dry floor had never had a stem
+ * offered to it. Widening the sweep to the field is one line. Deciding what may
+ * grow on the ground it newly reaches is the parcel, and Andreas answers it for
+ * both divisions in the same sentence the gallery is already built from:
+ *
+ *   "On the South Side, a body of timber grew along the river, extending east
+ *    as far as WELLS STREET, and following the bend of the river, crossed Clark
+ *    Street, and extending south two or three miles" — and the North Side
+ *    carried "a body of thrifty heavy growth of timber", EXCEPTING "the sandy
+ *    hills near the lake and the marshy places".
+ *
+ * So the South Division belt has a documented east end — Wells Street — and the
+ * North Division one has a documented exception rather than a street: the sandy
+ * hills. `z09_sand_prairie` places the relict beach-ridge belt from the State
+ * Street break-of-slope east, and `generators/terrain_gen.py` builds that break
+ * between E +780 and +880 off the two State Street ground-control points. State
+ * Street is therefore where the North Division's timber gives way to the sand,
+ * and the woody community that belongs east of it — the open-dune poplars of
+ * `z08_lakeshore` — is ROADMAP K45(b) change one and is not built yet. Ground
+ * with no community is ground with no stem, which is the honest state of it.
+ *
+ * They are ids and not numbers because `data/streets/1835.json` already holds
+ * both centrelines, surveyed off Wright 1834, and a limit quoted from a street
+ * has to move when the street does. Wells stands at E +329.3 and State at
+ * E +825.8 in the committed data; the old square's east edge was E +316, so the
+ * South Division belt was accidentally within 13 m of its documented end all
+ * along and the North Division's was 510 m short of the sand.
+ */
+const TIMBER_EAST_LIMIT_STREETS = { south: 'wells', north: 'state' };
+
 /** Earth radius corrected for standard atmospheric refraction (k = 0.13). */
 const R_EFF = 6371000 / 0.87;
 
@@ -814,6 +850,45 @@ function woodyHeadOf(sp, zoneId, problems) {
  * rather than `problems`, because it is a gap in the RENDERER and `problems` is
  * what the repo smoke reads to decide whether the DATA loaded.
  */
+/**
+ * The eastings of the two streets `TIMBER_EAST_LIMIT_STREETS` names, read out of
+ * the street records the scene index already carries.
+ *
+ * A street here is a centreline of two or more points and it is not exactly
+ * north–south — Wells runs E +328.1 at N −400 to E +330.5 at N +7 — so the
+ * limit is the mean of its points' eastings. Half a metre of skew on a limit
+ * that decides whether a wood reaches a sand ridge 500 m further on is not
+ * worth carrying, and a mean cannot be wrong in the way picking one end can.
+ *
+ * They come from the scene index the sidecar loader already fetched rather than
+ * from a fetch of this file's own. `data/streets/1835.json` is compiled into
+ * that index and is NOT published as itself, so a second fetch 404s on the site
+ * while passing in the source tree — which is exactly the gap AGENTS.md says has
+ * shipped bugs twice, and it caught this one in the `--published` smoke.
+ *
+ * If the records cannot be read the limits FALL BACK to the old square's east
+ * edge and say so. That is the safe direction: the failure plants nothing new
+ * rather than planting a wood over the beach on a missing record.
+ */
+function timberEastLimits(streetRecords, problems = []) {
+  const fallback = { south: 316, north: 316, streets: {} };
+  const out = { south: 0, north: 0, streets: {} };
+  for (const [side, id] of Object.entries(TIMBER_EAST_LIMIT_STREETS)) {
+    const st = (streetRecords ?? []).find((s) => s.id === id);
+    const pts = st?.path_local_enu_m;
+    if (!Array.isArray(pts) || !pts.length) {
+      problems.push(`trees: the scene index carries no centreline for ${id}, which is the `
+        + `documented east end of the ${side} division's timber — the woody layer is held `
+        + 'at the old E +316 edge rather than planting a wood over the beach ridges');
+      return fallback;
+    }
+    const e = pts.reduce((a, p) => a + p[0], 0) / pts.length;
+    out[side] = e;
+    out.streets[side] = { id, name: st.name_1835 ?? id, east_m: Math.round(e * 10) / 10 };
+  }
+  return out;
+}
+
 async function loadTimberZones(dataBase, problems = []) {
   const manifestUrl = new URL('flora/index.json', dataBase);
   const manifest = await fetchOk(manifestUrl);
@@ -1508,7 +1583,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
 export async function createTrees({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
   confidence = null, problems = [], lowSpec = false, detail = 'full',
-  pixelsPerRadian = null,
+  pixelsPerRadian = null, streetRecords = [],
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1564,6 +1639,12 @@ export async function createTrees({
       + 'no woody vegetation placed');
     return { group, update() {}, stats, dispose() {} };
   }
+  // ROADMAP K45(b2). Read after the zones and before anything is placed: the
+  // planter now sweeps the whole modelled field, so the east end of the timber
+  // is a question that gets asked at every cell rather than never.
+  const eastLimit = timberEastLimits(streetRecords, problems);
+  stats.eastLimits = eastLimit.streets;
+
   stats.zoneRecords = records.zonesRead;
   stats.unimplementedForms = records.unimplemented;
   stats.speciesFromRecord = Object.keys(records.specs).length;
@@ -1762,6 +1843,19 @@ export async function createTrees({
     if (!standsDry(e, n)) return null;           // and not on the waterline either
     const d = div[i];
     if (d === WEST) return null;                // Andreas: open prairie, entirely
+
+    // THE EAST END OF THE TIMBER (ROADMAP K45(b2)). Before this parcel the
+    // planting loop's own square answered this by accident at E +316; now the
+    // loop sweeps the field and the answer has to come from the source. Andreas
+    // gives the South Division a street — the belt runs "east as far as Wells
+    // Street" — and the North Division an exception, "the sandy hills near the
+    // lake", which `z09_sand_prairie` places from the State Street break-of-
+    // slope east. Both are read from `data/streets/1835.json` at load; see
+    // TIMBER_EAST_LIMIT_STREETS. Ground east of the limit carries no woody
+    // community in this build: the open-dune poplars that belong on the sand are
+    // recorded, archetyped and not yet placed (ROADMAP K45(b) change one).
+    if (e > (d === NORTH ? eastLimit.north : eastLimit.south)) return null;
+
     const bank = dw[i];
 
     // ZONE 5: an irregular gallery 30–120 m wide. The width wanders rather than
@@ -1804,10 +1898,34 @@ export async function createTrees({
   // waterline margin: fewer of the same trees in the same places, never a
   // different wood. `lowSpec` is the device guess; an explicit choice outranks it.
   const level = lowSpec && detail === 'full' ? 'light' : detail;
+  /**
+   * The stem budget, scaled to the ground the loop now sweeps (ROADMAP K45(b2)).
+   *
+   * These were 820/520/300 trees and 420/270/170 thickets, set when the planter
+   * swept 52,163 of the field's dry nodes. It now sweeps all 192,844 of them —
+   * 3.70× the ground — and 300 is a number the widened wood REACHES: measured on
+   * this build, `light` planted exactly 300 trees, which is the cap truncating
+   * the sweep rather than a count. That truncation is not a thinning: the loop
+   * runs south to north, so a bound cap deletes the north end of the wood and
+   * leaves a straight edge across the town. Every figure below is its old value
+   * × 3.70, rounded, which keeps the budget the backstop it was written as.
+   *
+   * A cap that binds is now a REPORTED problem rather than a silent cut — see
+   * the check after the planting loop. That is the assertion this parcel owes:
+   * the reason the truncation could arrive unannounced is that nothing said so.
+   *
+   * FOUND ON THE WAY, and left open rather than fixed here: the caps had never
+   * bound at all, so `light`, `balanced` and `full` have always planted the same
+   * wood in slightly different places. `step` is count-neutral by construction —
+   * the acceptance roll is `perHa * step² / 10000`, so halving the cell area
+   * doubles the number of cells and halves each one's chance — which means the
+   * timber's detail control is the caps, and the caps did nothing. Making it
+   * mean something is a uniform thinning, not a cap, and it is its own parcel.
+   */
   const STEMS = {
-    full:     { step: 4.0, trees: 820, thickets: 420 },
-    balanced: { step: 4.7, trees: 520, thickets: 270 },
-    light:    { step: 5.6, trees: 300, thickets: 170 },
+    full:     { step: 4.0, trees: 3030, thickets: 1550 },
+    balanced: { step: 4.7, trees: 1920, thickets: 1000 },
+    light:    { step: 5.6, trees: 1110, thickets: 630 },
   };
   const stems = STEMS[level] ?? STEMS.full;
   const step = stems.step;
@@ -1960,9 +2078,30 @@ export async function createTrees({
     if (stats.lowestStationY === null || y < stats.lowestStationY) stats.lowestStationY = y;
   };
 
-  const half = 320 - step;
-  for (let n = -half; n <= half; n += step) {
-    for (let e = -half; e <= half; e += step) {
+  /**
+   * THE SWEPT DOMAIN — the modelled field, not a square inside it.
+   *
+   * ROADMAP K45(b2). This was `const half = 320 - step`, a square left over from
+   * the 640 m heightfield the scene began as; S2e carried the field to
+   * E −320..+1700, N −400..+400 and the square never moved, so 140,681 of the
+   * 192,844 heightfield nodes standing above the planter's own dry floor —
+   * 87.9 ha, 73 % of the walkable ground — had never had a stem offered to them,
+   * while `flora.js`'s sward lattice follows the visitor over all of it. The
+   * bounds are the heightfield's own, inset by one planting step so a stem's
+   * jitter cannot land outside the field it was sampled from.
+   *
+   * The loop is O(cells) and the field is about four times the square, so this
+   * is the cost this parcel had to measure rather than assume — it is in the
+   * ROADMAP box and in `stats`. What may GROW on the ground newly reached is
+   * `communityAt`'s answer, not this loop's: see TIMBER_EAST_LIMIT_STREETS.
+   */
+  const sweepE0 = originE + step;
+  const sweepE1 = originE + (cols - 1) * cellM - step;
+  const sweepN0 = originN + step;
+  const sweepN1 = originN + (rows - 1) * cellM - step;
+  stats.sweep = { e: [sweepE0, sweepE1], n: [sweepN0, sweepN1], step };
+  for (let n = sweepN0; n <= sweepN1; n += step) {
+    for (let e = sweepE0; e <= sweepE1; e += step) {
       const px = e + (rnd() - 0.5) * step * 0.92;
       const pz = n + (rnd() - 0.5) * step * 0.92;
       if (terrain.isWater(px, pz)) continue;
@@ -2039,6 +2178,23 @@ export async function createTrees({
       bump(stats.communities, key);
       bump(stats.species, id);
     }
+  }
+
+  // THE BUDGET IS A BACKSTOP AND A BOUND BACKSTOP IS A DEFECT (ROADMAP K45(b2)).
+  // The loop sweeps south to north, so a cap reached partway through does not
+  // thin the wood — it deletes its north end and leaves a straight edge. That is
+  // what `light`'s old 300 did the moment the sweep reached the field, and it
+  // would have shipped looking like a rendering choice. `problems` is what the
+  // release smoke reads, so this is red rather than a console note.
+  if (stats.trees >= maxTrees) {
+    problems.push(`trees: the ${level} stem budget bound at ${maxTrees} trees, so the `
+      + 'planting loop stopped partway north and the wood is cut off in a straight line '
+      + 'rather than thinned — raise the budget or thin uniformly');
+  }
+  if (stats.thickets >= maxThickets) {
+    problems.push(`trees: the ${level} thicket budget bound at ${maxThickets} stools, so `
+      + 'the bank scrub stops partway north rather than thinning — raise the budget or '
+      + 'thin uniformly');
   }
 
   /* ---- 4. the material --------------------------------------------------- */
