@@ -287,6 +287,19 @@ const FILL_UP = SKY_FILL_UP.map((v) => v * ENV_INTENSITY);
 const HAZE_DENSITY = 0.00125;
 
 /**
+ * ROADMAP R-W3b(a) — HOW FAR FROM THE VISITOR THE SUN'S SHADOW REACHES, in
+ * metres, as the half-width of the orthographic box that follows them.
+ *
+ * Exported because it is a claim a gate can read: `tools/smoke_renderer.mjs`
+ * asserts that the shipped rig carries this reach at the texel size the block
+ * beside `light.shadow` documents, and `tools/measure_shadow_reach.mjs` prints
+ * what each candidate value would cost. The full reasoning, the measured
+ * coverage it buys and the draw-call ceiling that decides the number are in that
+ * block — read it before changing this.
+ */
+export const SHADOW_REACH_M = 120;
+
+/**
  * Solar azimuth and elevation, NOAA's algorithm.
  *
  * @param {object} o
@@ -505,16 +518,38 @@ export function createWorld({
   scene.add(light);
   scene.add(light.target);
 
-  // One tight shadow camera that follows the walker. +/-60 m covers what you can
-  // actually resolve on foot; a town-sized frustum would waste every texel.
-  const half = 60;
+  // One shadow camera that follows the walker, and its reach is what decides how
+  // much of the town can cast a shadow at all — ROADMAP R-W3b(a).
+  //
+  // IT USED TO BE +/-60 m, on the reasoning that this covers what you can resolve
+  // on foot. Measured on the published mirror at eight anchors, that box holds
+  // **5 to 8 of the town's 331 structures and 0 to 41 of its 730 stems**: from
+  // South Water Street 8 buildings and 12 trees cast a shadow and the other 323
+  // and 718 meet the ground with nothing under them. The mid-field town and the
+  // whole river timber were floating, and no amount of light fixes that, because
+  // the geometry was being clipped out of the depth map before it was drawn.
+  //
+  // 120 m doubles the reach and the map doubles with it, so THE TEXEL SIZE IS
+  // UNCHANGED — 11.7 cm on desktop, 23.4 cm on a phone, exactly what the old rig
+  // resolved. Nothing a visitor stands next to got softer to buy this.
+  //
+  // WHY 120 AND NOT MORE, and it is the parcel's finding: **the reach is
+  // draw-call-bound, not fill-bound.** Every batch that enters the box is another
+  // draw call in the shadow pass, and the budget is 80. Measured worst station
+  // (`green_tree`): 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at
+  // 180** — the ceiling, with the town still only a third inside the box. So the
+  // route past 120 m is fewer batches (ROADMAP R-W5a2) or true cascades
+  // (R-W3b(b)), not a bigger number here. Raising this constant alone will fail
+  // the draw-call gate before it finishes the town.
+  const half = SHADOW_REACH_M;
   const cam = light.shadow.camera;
   cam.left = -half; cam.right = half; cam.top = half; cam.bottom = -half;
   cam.near = 1; cam.far = 900;
   cam.updateProjectionMatrix();
-  // 1024 over a 120 m frustum is about 12 cm per texel — finer than the shadow
-  // of a clapboard eave needs, and a quarter of the fill cost of 2048.
-  light.shadow.mapSize.setScalar(lowSpec ? 512 : 1024);
+  // 2048 over a 240 m frustum is 11.7 cm per texel — the same as the 1024 the
+  // old 120 m frustum carried, and finer than the shadow of a clapboard eave
+  // needs. The phone's map doubles too, for the same reason and the same result.
+  light.shadow.mapSize.setScalar(lowSpec ? 1024 : 2048);
   light.shadow.bias = -0.0004;
   light.shadow.normalBias = 0.045;
 
@@ -608,10 +643,40 @@ export function createWorld({
   scene.fog = new THREE.FogExp2(HORIZON_HAZE, HAZE_DENSITY);
 
   const offset = new THREE.Vector3();
+  const shadowRig = {
+    reachM: half,
+    mapSize: light.shadow.mapSize.x,
+    texelM: (2 * half) / light.shadow.mapSize.x,
+  };
   return {
     sky, light, sun, direction: dir.clone(),
     /** The environment map this rig installed, and the fill it delivers. */
     environment: envRT.texture, skyFill: FILL_UP.slice(), envIntensity: ENV_INTENSITY,
+    /**
+     * R-W3b(a). The shadow rig as a claim rather than as three internals: how
+     * far from the visitor a shadow can be cast, and how coarsely it is
+     * resolved. A gate reading `light.shadow.camera.right` reads the same
+     * number, but reading it here is reading what this module MEANT.
+     */
+    shadowRig,
+    /**
+     * Harness only — set the reach and report what took effect.
+     *
+     * It exists because of R-A1's finding: an assertion that the rig carries a
+     * documented reach passes identically whether the reach reaches the screen
+     * or reaches nothing. The gate winds the reach back to the pre-R-W3b(a)
+     * ±60 m, photographs the same held frame and requires it to CHANGE — which
+     * is a thing you cannot ask without being able to move the number.
+     */
+    setShadowReach(metres) {
+      const r = Math.max(1, Number(metres) || 0);
+      cam.left = -r; cam.right = r; cam.top = r; cam.bottom = -r;
+      cam.updateProjectionMatrix();
+      light.shadow.needsUpdate = true;
+      shadowRig.reachM = r;
+      shadowRig.texelM = (2 * r) / light.shadow.mapSize.x;
+      return r;
+    },
     /** Keep the shadow frustum on the walker. Cheap; call every frame. */
     follow(position) {
       light.target.position.set(position.x, 0, position.z);

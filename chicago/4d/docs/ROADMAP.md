@@ -154,7 +154,7 @@ rationed.**
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
-| **4** | RENDERING | **R-W3b(a)** | **SEEN** | **CLAIMED 2026-08-17 · the shadow reach.** The sun's shadow camera is a ±60 m box that follows the visitor, so nothing beyond 60 m casts a shadow on anything — the mid-field town and the whole river timber sit on the ground with no contact at all. Pulled up because every numbered SEEN row above it is bake-blocked (K30(c), R-W2b/c) and this one touches `renderers/web/js/world.js` only |
+| — | RENDERING | ~~R-W3b(a)~~ | **SEEN** | **DONE 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else: 5 to 8 of 331 structures and 0 to 41 of 730 stems, measured at all eight anchors.** It is ±120 m now, at the SAME texel size (the map doubles with the box), and `green_tree` goes 8 → 27 structures, `south_water` 8 → 26 and 12 → 54 stems. **Its finding is the ceiling: the reach is DRAW-CALL-bound, not fill-bound** — every batch entering the box is another call in the shadow pass, and the worst anchor reads 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at 180, which is the budget**, with the town still two thirds outside the box. Read its box before raising the number |
 | 8 | RENDERING | **R-W5a2** | UNSEEN | the last 16 batches → 1. **Not needed for the budget.** Take it only when the lane has nothing SEEN left, which is not now |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
 | — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
@@ -1666,6 +1666,64 @@ owes the same treatment for its *fabric*.
 material assignment on committed geometry, so it cannot go green on the improve runner and
 should ship the research + palette half and say so.
 
+### R-W3b(a) — the shadow reach · **DONE 2026-08-17 — the sun lit the town and shadowed 8 buildings of 331, and the ceiling is draw calls rather than fill**
+
+**The answer is 60 m, and it was costing the whole mid-field.** `world.js` gives the sun ONE
+orthographic shadow camera, a box that follows the visitor, and everything outside it is clipped
+out of the depth map before it is drawn — so it casts no shadow on anything. Counted off the DATA
+(each structure's `placement.local_e/local_n`, each planted stem's own station) against the shadow
+camera's own matrices, on the published mirror at 1280×800:
+
+| anchor | structures inside, ±60 m | inside at ±120 m | stems, ±60 m | at ±120 m |
+|---|---|---|---|---|
+| `south_water` | **8** of 331 | **26** | **12** of 730 | **54** |
+| `green_tree` | 8 | 27 | 0 | 0 |
+| `sauganash` | 5 | 16 | 34 | 76 |
+| `lake_market` | 5 | 13 | 33 | 73 |
+| `forks` | 5 | 16 | 0 | 17 |
+| `from_above` | **1** | 8 | 41 | 55 |
+
+**Shipped: ±120 m, and the map doubles with it — 2048² desktop, 1024² phone — so the texel size is
+UNCHANGED at 11.7 cm and 23.4 cm.** That is the whole reason the number is 120 and not 150: nothing
+a visitor stands next to got softer to buy the distance. The before/after pair in
+`docs/evidence/r-w3b-{before,after}.png` is shot at `green_tree` at both rigs AS THEY SHIP — the
+first pair taken for this parcel compared ±60 m at 2048² against ±120 m at 2048², which is a
+comparison of two texel sizes and made the near wall look like the change.
+
+**THE FINDING — the reach is DRAW-CALL-bound, not fill-bound, and that is the opposite of what a
+shadow map is usually limited by.** Every batch that enters the box is another draw call in the
+shadow pass (three renders it inside `render()`, after `info.reset()`, so `renderer.info` counts
+it). Measured at the worst anchor, `green_tree`:
+
+| reach | draw calls | triangles | structures inside |
+|---|---|---|---|
+| ±60 m (shipped before) | 70 | 742,256 | 8 |
+| ±120 m (**shipped now**) | **74** | 772,268 | 27 |
+| ±150 m | 78 | 825,146 | 33 |
+| ±180 m | **80 — the budget exactly** | 830,690 | 38 |
+
+The budget is 80 (`main.js` `BUDGET.drawCalls`) and the smoke asserts it. So **±180 m fails the
+gate at the first station that adds a batch**, with two thirds of the town still outside the box,
+and the route past ±120 m is fewer batches — **R-W5a2**, "the last 16 batches → 1", which this
+parcel therefore promotes from "not needed for the budget" to the thing that unblocks the reach —
+or true cascades, **R-W3b(b)**. Raising the constant alone will not get there.
+
+**The gate, and the liveness assertion R-A1 says it owes.** `tools/smoke_renderer.mjs` asserts at
+`lake_market` that the rig carries ±120 m over the right map for its tier, AND that winding the
+reach back to ±60 m CHANGES the frame — because a reach wired to nothing passes the first
+assertion identically. The threshold was measured before it was set: winding back moves 104 of
+2,304 cells with a worst cell of 8 at 1280×800 and 86 with a worst of 8 at 390×780, and the gate
+asks for 4. `world.setShadowReach()` exists for that assertion and nothing else.
+
+**Files:** `renderers/web/js/world.js` (`SHADOW_REACH_M`, the shadow block, `shadowRig`,
+`setShadowReach`) · `tools/measure_shadow_reach.mjs` (new — the instrument) ·
+`tools/smoke_renderer.mjs` (two assertions) · `docs/evidence/r-w3b-{before,after}.png`.
+
+**Not verified here:** the desktop half of the smoke does not fit the runner's ten-minute
+per-command ceiling (ROADMAP § THE RUN BUDGET), so the desktop assertions were run through
+`measure_shadow_reach.mjs` at 1280×800 rather than through the gate itself. The draw-call figures
+above are that measurement, at every anchor.
+
 ### R-W3 — ambient occlusion and cascaded shadows · **UNCLAIMED · SPLIT**
 
 **Phase:** RENDERING §4 W3 · **Effort:** M · **After:** R-W2
@@ -1676,7 +1734,7 @@ filed together only because RENDERING §4 groups them:**
 | | parcel | scope |
 |---|---|---|
 | **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other (mean 0.265, 69 % of texels below half). It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
-| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, CLAIMED — and R-W3b(b) — true cascades, only if (a)'s measurement says one map cannot pay for the reach.** |
+| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, DONE — and R-W3b(b) — true cascades, which (a)'s measurement says is now the only route past ±120 m that does not start by cutting batches.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
 **The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.

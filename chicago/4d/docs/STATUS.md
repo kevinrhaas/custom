@@ -1,5 +1,41 @@
 # STATUS
 
+## Fixed 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else
+
+**ROADMAP R-W3b(a)**, the reach half of the cascaded-shadows parcel. The sun has one orthographic
+shadow camera that follows the visitor, and everything outside it is clipped out of the depth map
+before it is drawn. Counted off the DATA — each structure's `placement.local_e/local_n`, each
+planted stem's own station, tested against the shadow camera's own matrices, on the published
+mirror:
+
+| anchor | structures inside, ±60 m | at ±120 m | stems, ±60 m | at ±120 m |
+|---|---|---|---|---|
+| `south_water` | **8** of 331 | **26** | **12** of 730 | **54** |
+| `green_tree` | 8 | 27 | 0 | 0 |
+| `sauganash` | 5 | 16 | 34 | 76 |
+| `lake_market` | 5 | 13 | 33 | 73 |
+| `from_above` | **1** | 8 | 41 | 55 |
+
+Shipped at **±120 m with the map doubled to match** — 2048² on desktop, 1024² on a phone — so the
+texel size is unchanged at 11.7 cm and 23.4 cm. Nothing in the near field got softer to buy the
+distance, which is what the evidence pair at `green_tree` is shot to show.
+
+### The finding: the reach is draw-call-bound, not fill-bound
+
+Every batch entering the box is another draw call in the shadow pass. At `green_tree`, the worst
+anchor: **70 calls at ±60 m, 74 at ±120, 78 at ±150 and exactly 80 at ±180** — and 80 is the
+budget the smoke asserts, reached with two thirds of the town still outside the box. So the route
+past ±120 m is **R-W5a2** (fewer batches) or **R-W3b(b)** (true cascades), not a bigger constant.
+
+### What is NOT verified
+
+The desktop half of `tools/smoke_renderer.mjs` does not fit the improve runner's ten-minute
+per-command ceiling, so it did not run here. `SMOKE_VIEWPORT=mobile` ran green, `tools/check.sh`
+ran green, and the desktop draw-call figures above come from
+`tools/measure_shadow_reach.mjs --frames 4` at 1280×800 at all eight anchors rather than from the
+gate itself.
+
+
 ## Measured 2026-08-17 — the two layers nobody had ever read back are not mirrored, and neither half of R-BUG5b's instrument transferred
 
 **ROADMAP K50**, opened by R-BUG5b. Nothing a visitor can see changed today; this is the gate that
