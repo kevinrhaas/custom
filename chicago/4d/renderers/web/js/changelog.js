@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 159, title: 'The flowers are joined to their plants', kind: 'fix', ts: '2026-08-17T04:51:53.130Z', date: 'Aug 16, 2026, 11:51 PM CT',
+    items: [
+      'The owner photographed two yellow flower heads hanging in the sky over South Water Street, each on a short stalk that stopped in mid-air. They are on their plants now, and so is every other flower in the town.',
+      'The stalk under a flower was being aimed back at its own stem correctly and then turned to a random bearing before it was drawn, so it swung out past the plant instead of back to it. Four earlier repairs had aimed it; none of them survived that turn.',
+      'A flower is now hung by the FOOT of its stalk, at the point on the stem where the branch leaves it, so where it ends up is worked out from the stalk rather than being a second number that had to agree. Walk up to a tall white umbel by the storefronts and the heads stand on a candelabra of stalks instead of floating beside one.',
+      'Measured on the published site, at eight places in the town facing four ways each: 38 of 11,752 drawn flower heads had nothing under them, the worst 58 cm from any stem. It is 0 now, and the check that reads it is part of the release gate.',
+    ] },
   { v: 158, title: 'There are trees on the lakeshore sand', kind: 'feature', ts: '2026-08-17T03:31:34.010Z', date: 'Aug 16, 2026, 10:31 PM CT',
     items: [
       'Walk east past the beach ridges to the lake and the sand is no longer bare: 88 trees stand on it — leaning cottonwoods with their trunks half buried, and narrow quaking aspen and balsam poplar behind them. It is the last piece of ground in this model that was swept for trees and given none.',

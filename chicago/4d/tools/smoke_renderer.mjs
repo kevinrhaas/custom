@@ -3217,6 +3217,123 @@ const terrainLoad = await page.evaluate(() => {
       + `${(popIn.worst * 100).toFixed(1)}% of full`
       + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
 
+    // R-BUG7 — flower heads hanging in the sky with nothing under them. The
+    // owner photographed two of them over South Water Street on stalks that
+    // stop in mid-air, and **the same symptom had been repaired four times in
+    // `flora.js` by eye and asserted zero times here.** The two checks that
+    // sound like this one are not it: `floating` is about BUILDINGS hovering
+    // over their ground, and `floatingDry/floatingWet` asks where a water-lily
+    // RECORD is placed — and R-BUG5b proved that a placement test cannot see a
+    // drawing fault (391 stations dry, 10,734 vertices of timber in the river).
+    //
+    // So this reads the DRAWING back, off the instance buffers that went to the
+    // GPU: for every head that is actually drawn, the foot of its own stalk has
+    // to land inside a rooted plant's drawn body and under that plant's drawn
+    // top. The foot is taken from the archetype's own lowest vertex rather than
+    // from a constant here, so the assertion survives a change of anchoring.
+    // `tools/measure_head_support.mjs` is the same reading with the numbers.
+    const headSupport = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
+        * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
+      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+       *  for a patch of matrix and carries no head, so counting one as support
+       *  is a free pass — it is what made a first cut of this read zero. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette']);
+      /** Under a twentieth of full size a head is drawn at under two pixels at
+       *  the distances its own ring covers, and the fade has already taken it
+       *  most of the way into the ground. */
+      const FADE_FLOOR = 0.05;
+      const SLACK = 0.02; // a stem is centimetres thick; float is not a fault
+
+      const meshes = [];
+      a.flora.group.traverse((o) => { if (o.isInstancedMesh) meshes.push(o); });
+      const footOf = (g) => {
+        const p = g.getAttribute('position').array;
+        let lo = Infinity;
+        for (let i = 1; i < p.length; i += 3) if (p[i] < lo) lo = p[i];
+        return lo;
+      };
+      const nominal = new Map(meshes.map((m) => [m.name, footOf(m.geometry)]));
+
+      let drawn = 0; let unsupported = 0; let worst = null;
+      const anchors = a.scene?.anchors ?? [];
+      for (const anchor of anchors) {
+        for (const yaw of [0, 90, 180, 270]) {
+          a.walker.teleport({ local_e: anchor.local_e, local_n: anchor.local_n, yaw_deg: yaw });
+          // One frame is a rebuild — the sward is scattered from the camera on
+          // the step that carries it, which is what `popIn` above walks on.
+          a.step();
+          const cx = a.camera.position.x; const cz = a.camera.position.z;
+          // Every rooted plant, on a one-metre grid.
+          const grid = new Map();
+          for (const m of meshes) {
+            if (!ROOTED.has(m.name) || !m.count) continue;
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const z = mm[o + 14];
+              const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
+              const key = `${Math.floor(x)},${Math.floor(z)}`;
+              let b = grid.get(key);
+              if (!b) { b = []; grid.set(key, b); }
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * f, r: fl[i * 4 + 1] * f });
+            }
+          }
+          for (const m of meshes) {
+            if (!m.name.startsWith('flora-head-') || !m.count) continue;
+            const lo = nominal.get(m.name);
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            const rise = m.geometry.getAttribute('aChiRise').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const y = mm[o + 13]; const z = mm[o + 14];
+              const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
+              if (f <= FADE_FLOOR) continue;
+              drawn++;
+              const s = lo * fl[i * 4] * f;
+              const fx = x + mm[o + 4] * s;
+              const fy = y + mm[o + 5] * s - rise[i] * (1 - f);
+              const fz = z + mm[o + 6] * s;
+              let best = -Infinity;
+              for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
+                for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
+                  const b = grid.get(`${kx},${kz}`);
+                  if (!b) continue;
+                  for (const p of b) {
+                    if (p.top > best
+                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                  }
+                }
+              }
+              if (best < fy - SLACK) {
+                unsupported++;
+                const gap = best === -Infinity ? null : fy - best;
+                if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
+                  worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, orphan: best === -Infinity };
+                }
+              }
+            }
+          }
+        }
+      }
+      return { drawn, unsupported, worst, poses: anchors.length * 4 };
+    });
+    check(`${label}: every drawn flower head has a plant under its own stalk`,
+      headSupport.drawn > 500 && headSupport.unsupported === 0,
+      `${headSupport.unsupported} of ${headSupport.drawn} drawn heads over `
+      + `${headSupport.poses} poses had nothing under the foot of their own stalk`
+      + (headSupport.worst
+        ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
+          + `foot ${headSupport.worst.y.toFixed(2)} m `
+          + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+        : ''));
+
     // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
     // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
     // 450, razor straight across all 1280 columns. Measured the way the finding
