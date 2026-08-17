@@ -7858,7 +7858,7 @@ the near plane; the pixel gate stays in the tool, at three frames a station).
 per-command ceiling. The measurement itself was run at 1280×800, which is the harder viewport for
 this defect: more pixels of bank line to disagree about.
 
-### R-BUG7 — flower heads hang in the sky with nothing under them · **UNCLAIMED · SEEN · OWNER-REPORTED 2026-08-16 · Effort: M**
+### R-BUG7 — flower heads hang in the sky with nothing under them · **CLAIMED 2026-08-17 · SEEN · OWNER-REPORTED 2026-08-16 · Effort: M**
 
 **THE OWNER'S REPORT, and it is the fifth time this symptom has been fixed.** Standing on South
 Water Street on the `/dev/` preview at **bearing NNE 025°**, looking north across the main stem: two
