@@ -1,7 +1,7 @@
 ---
 id: T-0052
 title: Garden pickets and dooryard enclosures on the town's house lots
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K5
 parent: T-0038
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 236
 claimed_by: run 8/18/2026, 1:22:26 AM CT
 blocked_on: null
 needs_bake: false
