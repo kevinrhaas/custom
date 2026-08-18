@@ -4540,6 +4540,7 @@ const terrainLoad = await page.evaluate(() => {
       // most any plant already on screen gains between two frames a pace apart.
       let shortest = 1;
       let shortestAt = null;
+      let drawnPlants = 0;
       let grew = 0;
       let grewAt = null;
       for (let k = 0; k < 20; k++) {
@@ -4553,7 +4554,12 @@ const terrainLoad = await page.evaluate(() => {
             const d0 = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
             if (a.flora.fadeAt(plant.name, d0, plant.outer) > 0) {
               const h0 = a.flora.heightAt(plant.name, d0, plant.outer);
-              if (h0 < shortest) { shortest = h0; shortestAt = { set: plant.name, d: d0, h: h0 }; }
+              // `<=`, not `<`: the reading has to record that it READ something.
+              // With `<` against a starting 1 the shortest plant of a healthy
+              // field never sets it, and "no plant was ever drawn" would be
+              // indistinguishable from "none was ever short".
+              if (h0 <= shortest) { shortest = h0; shortestAt = { set: plant.name, d: d0, h: h0 }; }
+              drawnPlants++;
             }
           }
           const was = prev.seen.get(key);
@@ -4582,7 +4588,7 @@ const terrainLoad = await page.evaluate(() => {
         prev = now;
       }
       return { inset, arrivals, worst, worstAt, shortest, shortestAt, grew, grewAt,
-        drawnSeen: shortestAt !== null, pace: PACE, step: rings.step };
+        drawnPlants, pace: PACE, step: rings.step };
     });
     check(`${label}: every flora fade ring is inset inside its own lattice`,
       popIn.inset.length === 3
@@ -4607,8 +4613,8 @@ const terrainLoad = await page.evaluate(() => {
     // the first would pass on a ramp that starts at 99%, the second would pass
     // on a scene where nothing ever arrives at all.
     check(`${label}: a plant is drawn at its own height, faint, never short`,
-      popIn.arrivals >= 20 && popIn.drawnSeen && popIn.shortest === 1 && popIn.grew === 0,
-      `${popIn.arrivals} arrivals; shortest of every drawn plant over the walk `
+      popIn.arrivals >= 20 && popIn.drawnPlants > 500 && popIn.shortest === 1 && popIn.grew === 0,
+      `${popIn.arrivals} arrivals, ${popIn.drawnPlants} plant-frames drawn; shortest `
       + `${(popIn.shortest * 100).toFixed(1)}% of its own height`
       + (popIn.shortestAt ? ` (${popIn.shortestAt.set} at ${popIn.shortestAt.d.toFixed(2)} m)` : '')
       + `; worst gain over one ${popIn.pace} m pace ${(popIn.grew * 100).toFixed(1)}%`
