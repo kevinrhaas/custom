@@ -1,5 +1,52 @@
 # STATUS
 
+## Shipped 2026-08-18 — the Green Tree's frontage: plank walks, a board crossing, a named board on a post
+
+**T-0082, the third of the four pieces T-0042 was split into.** T-0080 shipped the yard and
+T-0081 the wagon shed; this is the STREET side of the same building. **T-0083** (the building's
+own fabric, `needs_bake`) is still open and holds its place in QUEUE.
+
+**What a visitor sees.** A 1.83 m plank walk along both of the inn's street walls, its deck
+0.11 m out of the mud on 55 mm boards; a 1.22 m crossing of four boards running from that walk
+across Canal Street and 0.6 m past the far edge of the travelled track; and a 3.60 m post at the
+Lake-and-Canal corner carrying a 1.30 × 0.55 m board, hung from a 1.55 m cross-arm, **lettered
+GREEN TREE**. All of it is pickable and all of it opens the inn's card. The warrant is two of the
+owner's reference views, written up at `data/sources/assets/owner_brief_2026_08_18/README.md`:
+image 6 (Braunhold 1838) gives *"post-mounted hanging signboard at the corner; plank sidewalks
+with board crossings"*, image 7 (Trowbridge) gives *"the hanging 'GREEN TREE' sign on its post"*.
+
+**THE LETTERING is the one decision that was argued rather than derived**, and it is the first
+lettering this renderer has ever drawn. L25 leaves the town's one documented board blank and L130
+leaves twenty-four more blank, for a reason that does not reach this one: L25's subject is an
+IMAGE nobody described, and this board's subject is a NAME the plate states in as many words and
+`data/structures/green_tree_tavern.json` already carries. So the WORDING is graded `inferred`
+against the plate and drawn; the LETTERFORM — face, size, spacing, paint colour, absence of wear
+— is invented and claimed at **L135**. No other board in the town is lettered.
+
+**The wall board is withdrawn, in writing.** `tools/generate_business_signboards.py` grew a
+clause 6: a frontage that carries a named board on a post at its corner does not also get a blank
+board hung on its wall by rule. The refusal and its reason are in
+`data/signage/town_business_signboards.json`; the blank-board count falls from 24 to 23.
+
+**WHERE is derived from a building AND a street**, which no layer here had done before. A wall
+gets a walk only if a street centreline lies OUTWARD of it within 22 m and the walk's outer edge
+still clears that street's own travelled track; the crossing runs until it is past the far edge
+of that track; the post stands 2.93 m out from each of the two walls that make the corner. Two of
+the inn's four walls are refused for want of a street, in writing. Every dimension is invented —
+nothing in this project measures a Chicago sidewalk of 1835.
+
+**What the gate now holds.** Seven new assertions in `tools/smoke_renderer.mjs`, none relaxed:
+the census, every vertex graded `reconstructed`, the decks tying into the ground they cross
+(measured: 0.012 m below grade at worst, 0.112 m of deck above it), the post standing on its own
+terrain sample with the board's underside 2.78 m up, the painted name matching the record's own
+wording and grade, the layer reaching the screen from Canal Street, and a pick on the layer
+opening the inn. `tools/check.sh` re-derives `data/frontage/green_tree_frontage.json` byte for
+byte.
+
+**Known and not fixed here: the sward grows through the deck.** The flora layer does not know the
+walk exists, so grass and forbs stand up through the planks. It is filed as its own ticket rather
+than patched in this parcel.
+
 ## Shipped 2026-08-18 — the Green Tree's wagon shed, and the covered wagon under it
 
 **T-0081, the second of the four pieces T-0042 was split into.** T-0080 shipped the yard; this

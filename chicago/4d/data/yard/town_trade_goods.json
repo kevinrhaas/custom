@@ -131,7 +131,7 @@
       "tavern_inn"
     ],
     "excluded_trades_note": "Smithies, cooperages, tanneries, brickyards, packing and slaughter houses, manufactories, stables, warehouses without a counter, the churches, the schools, the court-house, the jail, the agency house and every dwelling are outside the trade list. Several of them plainly kept stuff outside — a cooperage most of all — but what they kept was tools and material rather than a merchant's stock on a public frontage, and the rule would be guessing. The fort's provision store and sutler's store are refused separately and in writing: federal ground, no corporation street in front of the door.",
-    "placement_note": "The goods stand at the end of the frontage the SIGNBOARD does not occupy. tools/generate_business_signboards.py hangs its board 1.7 m toward +u of the facade's centre, so this piles from the -u end and the door between them stays clear — two layers derived from the same wall that would otherwise be derived into each other."
+    "placement_note": "The goods stand at the end of the frontage the SIGNBOARD does not occupy. tools/generate_business_signboards.py hangs its board 1.7 m toward +u of the facade's centre, so this piles from the -u end and the door between them stays clear — two layers derived from the same wall that would otherwise be derived into each other. The Green Tree is the one frontage here with no wall board to keep clear of (T-0082 moved its board to a post at the street corner), and the goods pile from the same end anyway: the barrels were derived before the board moved and moving them now would be a change nothing asked for."
   },
   "frontages": [
     {

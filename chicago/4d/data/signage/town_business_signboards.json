@@ -26,7 +26,7 @@
     "note": "Board 0.88 x 0.50 m and 50 mm thick, hung by two straps 0.20 m below a 1.15 m bracket arm, 1.7 m to one side of the facade's centre and clear of the eave. Not one of those numbers is a record's: they are copied from generators/archetypes/log_dwelling.py::_sign, the wolf sign's own geometry, so that the town has one convention for hanging a board rather than two. The tone is the weathered board of the archetype's SIGN_RGBA."
   },
   "rule": {
-    "note": "A named record (not inf_/recon_, not 'Reconstructed'), a PUBLIC TRADE whose customer arrived on foot off the street, that trade attested or inferred rather than reconstructed, standing on the scene date, and no sign on the record already. Read the clauses and their reasons in tools/generate_business_signboards.py.",
+    "note": "A named record (not inf_/recon_, not 'Reconstructed'), a PUBLIC TRADE whose customer arrived on foot off the street, that trade attested or inferred rather than reconstructed, standing on the scene date, no sign on the record already, and no named board already standing on a post at its corner on the frontage layer. Read the clauses and their reasons in tools/generate_business_signboards.py.",
     "public_trades": [
       "auction_room",
       "boarding_house",
@@ -290,41 +290,6 @@
         [
           -138.33,
           -126.68
-        ]
-      ]
-    },
-    {
-      "structure_id": "green_tree_tavern",
-      "name": "Green Tree Tavern",
-      "trade": "tavern_inn",
-      "trade_confidence": "attested",
-      "why_a_board": "a public house takes its custom from the road",
-      "confidence": "reconstructed",
-      "anchor_local_enu_m": [
-        -147.49,
-        -90.69
-      ],
-      "facade_bearing_deg": 270.0,
-      "arm_height_m": 2.55,
-      "wall_height_m": 5.0,
-      "wall_height_from": "the record",
-      "frontage_m": 7.62,
-      "ground_quad_local_enu_m": [
-        [
-          -135.3,
-          -96.2
-        ],
-        [
-          -135.3,
-          -88.58
-        ],
-        [
-          -147.49,
-          -88.58
-        ],
-        [
-          -147.49,
-          -96.2
         ]
       ]
     },
@@ -894,6 +859,11 @@
       "structure_id": "frederick_thomas_shop",
       "trade": "shop",
       "why": "the trade itself is reconstructed. A sign for a business this project reconstructed would be an invention resting on an invention."
+    },
+    {
+      "structure_id": "green_tree_tavern",
+      "trade": "tavern_inn",
+      "why": "it carries a NAMED board on its own post at the street corner instead. Images 6 and 7 of data/sources/assets/owner_brief_2026_08_18/README.md both show ONE board at this inn, post-mounted at the corner and lettered GREEN TREE; it is drawn from data/frontage/green_tree_frontage.json by renderers/web/js/frontage.js (T-0082, docs/LIBERTIES.md L135). A blank board hung on the wall as well would be this layer drawing the same claim a second time, in a weaker tier than the plates support."
     },
     {
       "structure_id": "inf_grocery_west",
