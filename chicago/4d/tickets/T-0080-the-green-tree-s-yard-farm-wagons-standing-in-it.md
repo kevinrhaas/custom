@@ -1,7 +1,7 @@
 ---
 id: T-0080
 title: The Green Tree's yard: farm wagons standing in it, and the bench at its front wall
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K2
 parent: T-0042
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 244
 claimed_by: run 8/18/2026, 9:52:48 AM CT
 blocked_on: null
 needs_bake: false
