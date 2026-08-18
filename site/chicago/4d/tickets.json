@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 8:06 AM",
+  "generated_ct": "Aug 18, 2026, 8:43 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1049,6 +1049,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 44
+    },
+    {
+      "id": "T-0061",
+      "title": "Shed roofs have no gable ends, so 55 buildings are open to the sky",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 45
     }
   ]
 }
