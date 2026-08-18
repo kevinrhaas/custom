@@ -2,7 +2,6 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0086 — The sward ends at a radius instead of receding into the distance
 T-0084 — A wagon tongue is drawn as a plank on edge, not a pole
 T-0087 — The wagon box floats: no bolsters, no reach, no hounds
 T-0004 — Raise and graduate the river banks at the fort reach
@@ -68,3 +67,4 @@ T-0060 — The smoke's mobile half no longer fits the runner's ten-minute comman
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
+T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
