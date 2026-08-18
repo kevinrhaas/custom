@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 188, title: 'A wagon\u2019s tongue is a pole, not a plank', kind: 'fix', ts: '2026-08-18T22:09:22.911Z', date: 'Aug 18, 2026, 5:09 PM CT',
+    items: [
+      'Every wagon in this town had a heavy dark board lying in the grass ahead of it, sloping down from the front axle. That board is the tongue \u2014 the pole a team is hitched to \u2014 and it was being drawn half a metre deep.',
+      'It is a pole now: a couple of inches thick, the same all the way along, lying on its own slope from the axle down to the grass. Same wagon, same length, same place \u2014 a shaft instead of a slab.',
+      'The slope is now something we state rather than something the old drawing hid inside a slab: the pole runs down to the ground because nothing is hitched to it. It is written down as our invention alongside the wagon\u2019s other made-up sizes.',
+      'One thing this does not fix, and you can still see it: the wagon box stands clear of its axles with nothing in between. The gear that should be under there is separate work and it is on the list.',
+    ] },
   { v: 187, title: 'The meadow no longer stops at a circle', kind: 'feature', ts: '2026-08-18T21:14:37.523Z', date: 'Aug 18, 2026, 4:14 PM CT',
     items: [
       'Stand anywhere in the open and the grass used to end a few paces out, at a soft circle around you, with bare green ground running from there to the houses and the horizon. On a phone that circle was thirteen metres across.',
