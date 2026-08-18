@@ -1,7 +1,7 @@
 ---
 id: T-0050
 title: The Western Hotel's wagon yard, and the enclosure layer it takes
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K5
 parent: T-0038
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-17
+pr: 234
 claimed_by: run 8/17/2026, 8:59:50 PM CT
 blocked_on: null
 needs_bake: false
@@ -34,4 +34,4 @@ which the trains were driven. There were entrances to the yard from both streets
 whole of it — a yard, a place, two gateways. `western_hotel_stable.stable_1834.form.wagon_yard` has
 carried it as `attested` with `geometry: "absent"` since 2026-08-11.
 
-**Links:** `docs/ROADMAP.md` K5 (a) · `docs/LIBERTIES.md` L10, L60 · PR #NNN.
+**Links:** `docs/ROADMAP.md` K5 (a) · `docs/LIBERTIES.md` L10, L60 · PR #234.
