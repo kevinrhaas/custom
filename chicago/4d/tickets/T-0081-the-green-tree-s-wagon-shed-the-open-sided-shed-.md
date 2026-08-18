@@ -1,7 +1,7 @@
 ---
 id: T-0081
 title: The Green Tree's wagon shed: the open-sided shed at the left gable, a covered wagon under it
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: K2
 parent: T-0042
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-18
+pr: 246
+claimed_by: run 8/18/2026, 11:49:04 AM CT
 blocked_on: null
 needs_bake: false
 ---

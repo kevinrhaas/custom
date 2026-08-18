@@ -1,5 +1,65 @@
 # STATUS
 
+## Shipped 2026-08-18 — the Green Tree's wagon shed, and the covered wagon under it
+
+**T-0081, the second of the four pieces T-0042 was split into.** T-0080 shipped the yard; this
+is the shed the same plate shows. **T-0082** (frontage: sign, walks, verges) and **T-0083** (the
+building's own fabric, `needs_bake`) are still open and hold their place in QUEUE.
+
+**What a visitor sees.** An open-sided wagon shed standing against the north side of the inn —
+three posts, a plate, a lean-to roof falling away from the wall — with a canvas-topped farm wagon
+in the bay and its tongue down on the grass outside. It is pickable and it opens the inn's card,
+the same contract the wagons, the bench and the signboards keep. The warrant is the Trowbridge
+drawing (`data/sources/assets/owner_brief_2026_08_18/README.md`, image 7), which shows an
+open-sided wagon shed attached at the left of the house with a covered wagon under it. Neither a
+shed nor a tilt existed anywhere in this renderer before.
+
+**WHICH WALL is derived, and it is the one judgement in the parcel.** The plate's word is "left",
+which describes a viewpoint rather than a building. Three committed facts pick the wall and not
+one of them is the plate: the placement record puts the front on Canal and the long side on Lake,
+T-0080's two wagons already stand off the rear wall, and that leaves the north side wall — the
+only one of the four that is neither a street frontage nor occupied. A wagon shed is entered off
+a yard rather than off a corporation street, which is the same answer a third way.
+
+**WHAT IS NOT HONOURED, said out loud.** The plate puts the shed at a GABLE. `frame_tavern` lays
+this building's ridge along its longer axis (12.19 m against 7.62 m), which puts its gables on
+the front and the rear and makes the north wall an eaves wall — so this stands at the left END of
+the elevation and not at a gable. Correcting the fabric to the three views is bake-gated and is
+**T-0083's**; this parcel does not pre-empt it, and the shed moves if that work moves the gables.
+
+**HOW BIG is arithmetic on numbers already in the record**: the bay is the wagon's own 3.05 m
+body with 0.50 m of air at each end by the 3.20 m of ground `WAGON_CLEAR_M` gives a parked wagon;
+the open eave stands 2.95 m up, 0.35 m over the 2.60 m tilt it has to cover; the plate meets the
+wall 3.63 m up at 12 degrees. The lean-to's head is checked against the building's own recorded
+5.0 m wall height and a shed that would stand through the clapboard is refused in writing. All of
+it is `reconstructed` and claimed at **L134**, which also records what this is NOT: John Gray's
+low one-storey additions at each end of the house are attributes of the BUILDING, dated three to
+six years after the scene and deliberately excluded from its footprint. This does not date them.
+
+**The layer is still one draw call.** A tilt is canvas and must not read as timber, so the yard
+layer's colour moved onto the geometry — one material, `vertexColors`, two tones — rather than
+growing a second mesh for one arch. The confidence view still tints it: `confidence.patch()`
+inserts after `<color_fragment>`, which is where the vertex colour is multiplied in.
+
+**The rule re-derives.** `tools/generate_yard_goods.py` grew `_green_tree_wagon_shed()` and
+`tools/check.sh` re-derives `data/yard/town_trade_goods.json` byte for byte.
+
+**Verified.** `./tools/check.sh` CHECK PASS. `node tools/check-changelog.mjs` OK, 184 entries,
+latest v184. Three new smoke assertions, all green at 1280×800 on the published mirror: the shed
+is a lean-to whose eave clears its tilt; nothing standing in its bay reaches through the inn's
+wall (deepest −1.60 m against a −1.65 m bound), out past its eaves or up through its own roof;
+and the layer carries exactly two vertex tones across exactly one mesh.
+
+**What is NOT verified, and it is T-0060.** The full smoke did not finish either viewport inside
+this runner's ten-minute command ceiling — the desktop half reached 148 passed / 1 failed (the
+known `the roads reach the screen` gate, dev's own) and was killed in the road-contrast section,
+which sits AFTER the yard block and BEFORE the `zero page errors` line. So the gate's own
+page-error assertion did not run. It was taken separately instead, on the published mirror at
+**390×780 and 1280×800**, booting to `ready`, dismissing both overlays and standing in the yard:
+**zero page errors, zero failed requests, zero console errors, no yard problems**, census 4
+wagons / 1 bench / 1 shed / 1 mesh at both widths. That is the assertion, taken by hand, and it
+is stated here rather than implied.
+
 ## Shipped 2026-08-18 — wagons in the Green Tree's yard, and a bench at its door
 
 **T-0080, the first of four pieces T-0042 was split into.** The parent ticket asked for an

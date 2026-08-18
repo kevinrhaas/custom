@@ -4,7 +4,6 @@ T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
-T-0081 — The Green Tree's wagon shed: the open-sided shed at the left gable, a covered wagon under it
 T-0082 — The Green Tree's frontage: its named signboard on a post, plank walks, verges and fence-line brush
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0043 — Image-accuracy pass: the Sauganash
@@ -64,3 +63,4 @@ T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
+T-0084 — A wagon tongue is drawn as a plank on edge, not a pole

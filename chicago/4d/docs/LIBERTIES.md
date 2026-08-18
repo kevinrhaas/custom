@@ -4192,6 +4192,50 @@ bar, and the bar moved because the owner moved it.
 **Recorded:** 2026-08-18.
 
 
+### L134 — A wagon shed at the Green Tree, and the covered wagon standing in it
+**Decision:** an open-sided wagon shed stands against the north side wall of the Green Tree
+Tavern with a covered wagon under it. The wall it is attached to, the bay it covers, its two
+plate heights, the fall between them, the section of its posts and plates, and the tilt's rise
+and overhang are all invented and graded `reconstructed` in `data/yard/town_trade_goods.json`.
+**Why:** the Trowbridge drawing of this inn — `data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7 — shows an **open-sided wagon shed attached at the left of the house with a covered
+wagon standing under it**. That is a TIER 5 pictorial source on the ruling L133 already applied
+to the same plate: it may drive furniture and setting and it may never drive a coordinate. So
+the shed is taken from the picture and its stand is derived from the building's own committed
+footprint. Neither a shed nor a tilt existed anywhere in this renderer before; the owner's
+ruling of 2026-08-18 — *"you are totally fine to be liberal with adding reconstructed items
+when i ask for things, you can just label and mark them as such"* — is the warrant for building
+one rather than filing the ask.
+**Consequence:** four things here are inventions a visitor should be able to name. **Which
+wall.** The plate's word is "left", which describes a viewpoint rather than a building, so it is
+read as the end away from the streets: the placement record puts the front on Canal and the long
+side on Lake, T-0080's two wagons already stand off the rear wall, and the north side wall is
+the only one of the four that is neither a street frontage nor occupied. Three committed facts
+agree, and not one of them is the plate. **It is not a gable, and the entry says so rather than
+letting the word pass.** `frame_tavern` lays this building's ridge along its longer axis, which
+puts its gables on the front and the rear and makes the north wall an eaves wall — so the shed
+stands at the left END of the elevation and not at a gable. Correcting the fabric to the three
+views is bake-gated and is T-0083's; this entry does not pre-empt it. **How big.** The bay is
+the wagon's own 3.05 m body with half a metre of air at each end by the 3.20 m of ground a
+parked wagon is already given, the open eave stands a hand's breadth over the tilt it has to
+cover, and the roof falls 12 degrees — every one of those a bound rather than a measurement.
+**The tilt.** Canvas on bows, 1.10 m of rise, open at both ends; the bows are not drawn for the
+reason the barrels' hoops are not, and the canvas tone is chosen weathered rather than white
+because white duck at noon would be the brightest thing in the town. Turn `reconstructed` off in
+the confidence view and the whole shed and its wagon go with the rest of the layer.
+**What this is NOT:** the low one-storey additions John Gray describes at each end of this house
+(`green_tree_tavern.attributes.side_additions`, `inferred`, `geometry: absent`). Those are
+attributes of the BUILDING, described three to six years after the scene date and deliberately
+excluded from its footprint for that reason. This is a yard structure on the yard's own ground,
+it does not date them, and it must not be read as having built them.
+**How to resolve:** the plate identified and held as a proper source record (T-0075), which
+would say who drew it and when and how much of it is observation; the lot geometry on Wright
+1834 or Hathaway 1834, which would replace the invented yard with a traced line; or the fabric
+pass at T-0083, which would settle where this building's gables actually are and may move the
+shed to one of them.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

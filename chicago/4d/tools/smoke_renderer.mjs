@@ -1240,6 +1240,7 @@ for (const [label, viewport, touch] of [
       const frontages = y?.frontages ?? [];
       const wagons = y?.wagons ?? [];
       const benches = y?.benches ?? [];
+      const sheds = y?.sheds ?? [];
       const items = [];
       for (const f of frontages) {
         for (const it of f.items ?? []) {
@@ -1258,6 +1259,16 @@ for (const [label, viewport, touch] of [
       let benchVerts = 0;
       let benchStray = 0;
       let benchInside = 0;
+      // T-0081. The shed is a BAY, not a point: what has to hold is that nothing
+      // standing in it — its own timber or the covered wagon under it — reaches
+      // through the inn's wall, out past its eaves or up through its roof. So it
+      // is measured in the shed's own frame and it is measured FIRST, because the
+      // wagon under it shares its centre and would otherwise absorb the roof.
+      let shedVerts = 0;
+      let shedOut = -Infinity;    // furthest out from the wall, along its normal
+      let shedIn = Infinity;      // deepest toward the wall (negative is behind it)
+      let shedHigh = -Infinity;
+      let shedLow = Infinity;
       let lowest = Infinity;
       let highest = -Infinity;
       const conf = g?.getAttribute('_confidence');
@@ -1276,6 +1287,27 @@ for (const [label, viewport, touch] of [
           const n = -pos.getZ(i);
           lowest = Math.min(lowest, pos.getY(i));
           highest = Math.max(highest, pos.getY(i));
+          // The shed's bay first: along the wall and out of it, in the shed's own
+          // frame. The wagon's tongue reaches past the bay and is left to the
+          // wagon bound below, which is exactly where it belongs.
+          let inBay = false;
+          for (const sh of sheds) {
+            const sb = ((sh.bearing_deg ?? 0) * Math.PI) / 180;
+            const de = e - sh.at_local_enu_m[0];
+            const dn = n - sh.at_local_enu_m[1];
+            const along = de * Math.cos(sb) - dn * Math.sin(sb);
+            const out = de * Math.sin(sb) + dn * Math.cos(sb);
+            if (Math.abs(along) > (sh.length_m ?? 0) / 2 + 0.4) continue;
+            if (Math.abs(out) > (sh.depth_m ?? 0) / 2 + 0.5) continue;
+            shedVerts++;
+            shedOut = Math.max(shedOut, out);
+            shedIn = Math.min(shedIn, out);
+            shedHigh = Math.max(shedHigh, pos.getY(i));
+            shedLow = Math.min(shedLow, pos.getY(i));
+            inBay = true;
+            break;
+          }
+          if (inBay) continue;
           // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
           // own bound rather than lumped in with the casks.
           const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
@@ -1322,19 +1354,40 @@ for (const [label, viewport, touch] of [
         benchStray,
         benchInside,
         benches,
+        shedVerts,
+        shedOut,
+        shedIn,
+        shedSpan: Number.isFinite(shedLow) ? shedHigh - shedLow : null,
+        shed: sheds[0] ?? null,
+        sheds: sheds.length,
+        // One material, one draw call, and the tilt still reads as canvas: the
+        // colour is per vertex, so the layer must carry exactly two of them.
+        tones: (() => {
+          const c = g?.getAttribute('color');
+          if (!c) return 0;
+          const seen = new Set();
+          for (let i = 0; i < c.count; i++) {
+            seen.add(`${c.getX(i).toFixed(4)},${c.getY(i).toFixed(4)},`
+              + `${c.getZ(i).toFixed(4)}`);
+          }
+          return seen.size;
+        })(),
         span: Number.isFinite(lowest) ? highest - lowest : null,
         frontages: frontages.length,
         items: items.length,
         wagon: wagons.find((w) => w.in_enclosure === 'western_hotel_wagon_yard') ?? null,
-        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'),
+        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'
+          && !w.under_shed),
+        tiltWagon: wagons.find((w) => w.under_shed) ?? null,
       };
     });
     check(`${label}: the yard layer stands the record's goods`,
       goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
-        && goods.census?.wagons === 3 && goods.census?.benches === 1,
+        && goods.census?.wagons === 4 && goods.census?.benches === 1
+        && goods.census?.sheds === 1,
       `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
       + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon(s), `
-      + `${goods.census?.benches} bench(es), `
+      + `${goods.census?.benches} bench(es), ${goods.census?.sheds} shed(s), `
       + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
     check(`${label}: the whole yard layer is one draw call`,
       goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
@@ -1387,6 +1440,41 @@ for (const [label, viewport, touch] of [
         && goods.benchInside >= -0.20,
       `${goods.benchVerts} bench vertices, furthest ${goods.benchStray?.toFixed(2)} m `
       + `from its anchor, deepest ${goods.benchInside?.toFixed(3)} m behind it`);
+
+    // T-0081. THE WAGON SHED, which is the first roof this layer has ever drawn.
+    // The record claims a bay, two plate heights and a fall between them; a shed
+    // whose head is not above its eave is not a lean-to, and one whose eave does
+    // not clear the tilt is a shed the covered wagon cannot stand in.
+    const tiltTop = 0.95 + 0.55 + 1.10;   // bed + body + the tilt's rise
+    check(`${label}: the Green Tree's wagon shed is a lean-to that clears its tilt`,
+      goods.sheds === 1 && goods.shed?.confidence === 'reconstructed'
+        && goods.shed?.head_m > goods.shed?.eave_m
+        && goods.shed?.eave_m >= tiltTop
+        && goods.shed?.length_m >= 3.05 && goods.shed?.depth_m >= 3.2
+        && goods.shed?.clearance_m >= 1.0
+        && goods.tiltWagon?.tilt === true,
+      `${goods.sheds} shed(s), bay ${goods.shed?.length_m} x ${goods.shed?.depth_m} m, `
+      + `eave ${goods.shed?.eave_m} m over a ${tiltTop.toFixed(2)} m tilt, head `
+      + `${goods.shed?.head_m} m, ${goods.shed?.clearance_m} m clear, covered wagon `
+      + `${goods.tiltWagon ? goods.tiltWagon.id : 'MISSING'}`);
+    // And it is BUILT inside its own bay. Nothing standing in it may reach back
+    // through the inn's clapboard, out past the eaves the record gives it, or up
+    // through its own roof — the three ways a transposed axis or a dropped sign
+    // would show, and none of them is visible from a census.
+    check(`${label}: nothing in the shed's bay reaches through its wall or its roof`,
+      goods.shedVerts > 0
+        && goods.shedIn >= -(goods.shed?.depth_m / 2 + 0.05)
+        && goods.shedOut <= goods.shed?.depth_m / 2 + 0.35
+        && goods.shedSpan > 2.8 && goods.shedSpan <= goods.shed?.head_m + 0.25,
+      `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
+      + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
+      + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
+    // The canvas is canvas. The layer stayed ONE draw call when the tilt arrived,
+    // which is only possible because the colour moved onto the geometry — so the
+    // buffer has to carry exactly two tones, timber and duck.
+    check(`${label}: the tilt is drawn in canvas and the layer is still one mesh`,
+      goods.tones === 2 && goods.meshes === 1,
+      `${goods.tones} vertex tone(s) across ${goods.meshes} mesh(es)`);
 
     // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
     // out. The Tremont House's south front on Lake Street carries the longest
