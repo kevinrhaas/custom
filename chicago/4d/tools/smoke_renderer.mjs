@@ -1240,6 +1240,7 @@ for (const [label, viewport, touch] of [
       const frontages = y?.frontages ?? [];
       const wagons = y?.wagons ?? [];
       const benches = y?.benches ?? [];
+      const sheds = y?.sheds ?? [];
       const items = [];
       for (const f of frontages) {
         for (const it of f.items ?? []) {
@@ -1258,6 +1259,16 @@ for (const [label, viewport, touch] of [
       let benchVerts = 0;
       let benchStray = 0;
       let benchInside = 0;
+      // T-0081. The shed is a BAY, not a point: what has to hold is that nothing
+      // standing in it — its own timber or the covered wagon under it — reaches
+      // through the inn's wall, out past its eaves or up through its roof. So it
+      // is measured in the shed's own frame and it is measured FIRST, because the
+      // wagon under it shares its centre and would otherwise absorb the roof.
+      let shedVerts = 0;
+      let shedOut = -Infinity;    // furthest out from the wall, along its normal
+      let shedIn = Infinity;      // deepest toward the wall (negative is behind it)
+      let shedHigh = -Infinity;
+      let shedLow = Infinity;
       let lowest = Infinity;
       let highest = -Infinity;
       const conf = g?.getAttribute('_confidence');
@@ -1276,6 +1287,27 @@ for (const [label, viewport, touch] of [
           const n = -pos.getZ(i);
           lowest = Math.min(lowest, pos.getY(i));
           highest = Math.max(highest, pos.getY(i));
+          // The shed's bay first: along the wall and out of it, in the shed's own
+          // frame. The wagon's tongue reaches past the bay and is left to the
+          // wagon bound below, which is exactly where it belongs.
+          let inBay = false;
+          for (const sh of sheds) {
+            const sb = ((sh.bearing_deg ?? 0) * Math.PI) / 180;
+            const de = e - sh.at_local_enu_m[0];
+            const dn = n - sh.at_local_enu_m[1];
+            const along = de * Math.cos(sb) - dn * Math.sin(sb);
+            const out = de * Math.sin(sb) + dn * Math.cos(sb);
+            if (Math.abs(along) > (sh.length_m ?? 0) / 2 + 0.4) continue;
+            if (Math.abs(out) > (sh.depth_m ?? 0) / 2 + 0.5) continue;
+            shedVerts++;
+            shedOut = Math.max(shedOut, out);
+            shedIn = Math.min(shedIn, out);
+            shedHigh = Math.max(shedHigh, pos.getY(i));
+            shedLow = Math.min(shedLow, pos.getY(i));
+            inBay = true;
+            break;
+          }
+          if (inBay) continue;
           // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
           // own bound rather than lumped in with the casks.
           const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
@@ -1322,19 +1354,40 @@ for (const [label, viewport, touch] of [
         benchStray,
         benchInside,
         benches,
+        shedVerts,
+        shedOut,
+        shedIn,
+        shedSpan: Number.isFinite(shedLow) ? shedHigh - shedLow : null,
+        shed: sheds[0] ?? null,
+        sheds: sheds.length,
+        // One material, one draw call, and the tilt still reads as canvas: the
+        // colour is per vertex, so the layer must carry exactly two of them.
+        tones: (() => {
+          const c = g?.getAttribute('color');
+          if (!c) return 0;
+          const seen = new Set();
+          for (let i = 0; i < c.count; i++) {
+            seen.add(`${c.getX(i).toFixed(4)},${c.getY(i).toFixed(4)},`
+              + `${c.getZ(i).toFixed(4)}`);
+          }
+          return seen.size;
+        })(),
         span: Number.isFinite(lowest) ? highest - lowest : null,
         frontages: frontages.length,
         items: items.length,
         wagon: wagons.find((w) => w.in_enclosure === 'western_hotel_wagon_yard') ?? null,
-        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'),
+        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'
+          && !w.under_shed),
+        tiltWagon: wagons.find((w) => w.under_shed) ?? null,
       };
     });
     check(`${label}: the yard layer stands the record's goods`,
       goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
-        && goods.census?.wagons === 3 && goods.census?.benches === 1,
+        && goods.census?.wagons === 4 && goods.census?.benches === 1
+        && goods.census?.sheds === 1,
       `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
       + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon(s), `
-      + `${goods.census?.benches} bench(es), `
+      + `${goods.census?.benches} bench(es), ${goods.census?.sheds} shed(s), `
       + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
     check(`${label}: the whole yard layer is one draw call`,
       goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
@@ -1388,6 +1441,41 @@ for (const [label, viewport, touch] of [
       `${goods.benchVerts} bench vertices, furthest ${goods.benchStray?.toFixed(2)} m `
       + `from its anchor, deepest ${goods.benchInside?.toFixed(3)} m behind it`);
 
+    // T-0081. THE WAGON SHED, which is the first roof this layer has ever drawn.
+    // The record claims a bay, two plate heights and a fall between them; a shed
+    // whose head is not above its eave is not a lean-to, and one whose eave does
+    // not clear the tilt is a shed the covered wagon cannot stand in.
+    const tiltTop = 0.95 + 0.55 + 1.10;   // bed + body + the tilt's rise
+    check(`${label}: the Green Tree's wagon shed is a lean-to that clears its tilt`,
+      goods.sheds === 1 && goods.shed?.confidence === 'reconstructed'
+        && goods.shed?.head_m > goods.shed?.eave_m
+        && goods.shed?.eave_m >= tiltTop
+        && goods.shed?.length_m >= 3.05 && goods.shed?.depth_m >= 3.2
+        && goods.shed?.clearance_m >= 1.0
+        && goods.tiltWagon?.tilt === true,
+      `${goods.sheds} shed(s), bay ${goods.shed?.length_m} x ${goods.shed?.depth_m} m, `
+      + `eave ${goods.shed?.eave_m} m over a ${tiltTop.toFixed(2)} m tilt, head `
+      + `${goods.shed?.head_m} m, ${goods.shed?.clearance_m} m clear, covered wagon `
+      + `${goods.tiltWagon ? goods.tiltWagon.id : 'MISSING'}`);
+    // And it is BUILT inside its own bay. Nothing standing in it may reach back
+    // through the inn's clapboard, out past the eaves the record gives it, or up
+    // through its own roof — the three ways a transposed axis or a dropped sign
+    // would show, and none of them is visible from a census.
+    check(`${label}: nothing in the shed's bay reaches through its wall or its roof`,
+      goods.shedVerts > 0
+        && goods.shedIn >= -(goods.shed?.depth_m / 2 + 0.05)
+        && goods.shedOut <= goods.shed?.depth_m / 2 + 0.35
+        && goods.shedSpan > 2.8 && goods.shedSpan <= goods.shed?.head_m + 0.25,
+      `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
+      + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
+      + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
+    // The canvas is canvas. The layer stayed ONE draw call when the tilt arrived,
+    // which is only possible because the colour moved onto the geometry — so the
+    // buffer has to carry exactly two tones, timber and duck.
+    check(`${label}: the tilt is drawn in canvas and the layer is still one mesh`,
+      goods.tones === 2 && goods.meshes === 1,
+      `${goods.tones} vertex tone(s) across ${goods.meshes} mesh(es)`);
+
     // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
     // out. The Tremont House's south front on Lake Street carries the longest
     // group on the layer — four casks, an empty on its side and two cases — so
@@ -1424,6 +1512,173 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a barrel opens the business it stands at`,
       goodsPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
+
+    // --- the Green Tree's frontage (T-0082) -------------------------------
+    //
+    // The fifth layer drawn from the dataset rather than baked, and the first
+    // derived from a building AND a street at once. Its failure modes are its
+    // own: a deck laid on one height floats at one end of a frontage and is
+    // buried at the other, and a name painted on a board is the first lettering
+    // this renderer has ever drawn — a texture that fails to compose leaves a
+    // board that looks perfectly finished and says nothing. Neither is visible
+    // to any dataset gate in this repo, because both are decided at load.
+    const frontage = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const f = a?.frontage;
+      const terrain = a?.terrain;
+      const mesh = (f?.group?.children ?? []).find((c) => c.name === 'frontage');
+      const letters = (f?.group?.children ?? []).find((c) => c.name === 'frontage-lettering');
+      const g = mesh?.geometry;
+      const post = f?.posts?.[0] ?? null;
+      let sink = Infinity;
+      let deckTop = -Infinity;
+      let highest = -Infinity;
+      let boardLow = Infinity;
+      let ungraded = 0;
+      let notReconstructed = 0;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g) {
+        const pos = g.getAttribute('position');
+        const postGround = post
+          ? terrain.surfaceHeight(post.at_local_enu_m[0], post.at_local_enu_m[1]) : null;
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const y = pos.getY(i);
+          const n = -pos.getZ(i);
+          const ground = terrain.surfaceHeight(e, n);
+          if (Number.isFinite(ground)) {
+            const d = y - ground;
+            highest = Math.max(highest, d);
+            // The deck: everything under a metre. The post and its board are
+            // measured against the post's own ground below, because a pole is
+            // not laid on the land the way a walk is.
+            if (d < 1.0) { sink = Math.min(sink, d); deckTop = Math.max(deckTop, d); }
+          }
+          if (Number.isFinite(postGround) && y - postGround > 2.0) {
+            boardLow = Math.min(boardLow, y - postGround);
+          }
+        }
+      }
+      return {
+        census: f?.census ?? null,
+        meshes: f?.group?.children?.length ?? 0,
+        names: (f?.group?.children ?? []).map((c) => c.name),
+        verts: g?.getAttribute('position')?.count ?? 0,
+        letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
+        letterMap: !!letters?.material?.map,
+        timberMap: !!mesh?.material?.map,
+        lettering: f?.lettering ?? null,
+        recordText: post?.text ?? null,
+        textGrade: post?.text_confidence ?? null,
+        postHeight: post?.post_height_m ?? null,
+        clearOfTrack: post?.clear_of_track_m ?? null,
+        walks: f?.walks ?? [],
+        sink, deckTop, highest, boardLow, ungraded, notReconstructed,
+        problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
+      };
+    });
+    check(`${label}: the frontage layer lays the record's walks and stands its post`,
+      frontage.census?.walks === 2 && frontage.census?.crossings === 1
+        && frontage.census?.posts === 1 && frontage.census?.refused === 2
+        && frontage.verts > 0 && frontage.problems.length === 0,
+      `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
+      + `${frontage.census?.posts} post(s), ${frontage.verts} vertices, `
+      + `${frontage.census?.refused} wall(s) refused, `
+      + `problems [${frontage.problems.join(' | ') || 'none'}]`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex. No source record in
+    // this repository states that a walk stood on this ground on 1 July 1835
+    // (L135), and a single vertex claiming inferred or attested would be this
+    // layer overstating the one thing it must not.
+    check(`${label}: every frontage vertex is graded reconstructed`,
+      frontage.ungraded === 0 && frontage.notReconstructed === 0 && frontage.verts > 0,
+      `${frontage.ungraded} out of range, ${frontage.notReconstructed} claiming better `
+      + 'than reconstructed');
+    // THE DECK TIES INTO THE GROUND IT CROSSES. Every board samples the terrain
+    // under its own centre, so no part of a walk may hang over the land or be
+    // swallowed by it. The record lays the deck 0.11 m up on 55 mm boards with a
+    // stringer reaching to grade, so the whole layer under a metre lives in a
+    // band about 0.13 m deep; the bounds here are that band with room for the
+    // difference between a sample at a board's centre and one at its corner.
+    check(`${label}: the plank decks tie into the ground they cross`,
+      frontage.sink >= -0.06 && frontage.deckTop > 0.05 && frontage.deckTop <= 0.18,
+      `deepest ${frontage.sink?.toFixed(3)} m below grade, highest deck vertex `
+      + `${frontage.deckTop?.toFixed(3)} m above it`);
+    // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
+    // height came from a number beside the mesh rather than from a terrain sample
+    // floats; a board hung too low is one a visitor walks through.
+    check(`${label}: the named board hangs on a post that stands on the ground`,
+      Math.abs(frontage.highest - frontage.postHeight) <= 0.05
+        && frontage.boardLow >= 2.4 && frontage.clearOfTrack > 0,
+      `post ${frontage.highest?.toFixed(2)} m over its grade against a recorded `
+      + `${frontage.postHeight} m, board's underside ${frontage.boardLow?.toFixed(2)} m up, `
+      + `${frontage.clearOfTrack} m clear of the travelled track`);
+    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
+    // renderer (L135), and it is the record's wording rather than the renderer's:
+    // a board whose painted name drifted from the record would be this project
+    // inventing a sign, which is exactly what L25 and L130 refuse. Two meshes and
+    // no more — timber in one draw call, and the painted name in the second,
+    // which is the only thing here that may carry a texture.
+    check(`${label}: the board carries the record's own name, painted`,
+      frontage.census?.lettered === 1 && frontage.letterVerts >= 6
+        && frontage.letterMap === true && frontage.timberMap === false
+        && frontage.lettering === frontage.recordText
+        && frontage.recordText === 'GREEN TREE'
+        && frontage.textGrade === 'inferred'
+        && frontage.meshes === 2,
+      `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
+      + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
+      + `"${frontage.recordText}" graded ${frontage.textGrade}`);
+
+    // AND IT READS FROM THE STREET, which is what a walk and a signboard are FOR.
+    // Stand out on Canal Street where a traveller coming up to the inn stands and
+    // hold the clock, so the grass cannot supply the difference. Same bar as the
+    // goods, the fence gates and the signboard: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -163, local_n: -99, yaw_deg: 80, pitch_deg: 0 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const frontWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = false; });
+    const frontWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = true; });
+    const dFront = signatureDistance(frontWith, frontWithout);
+    check(`${label}: the walk and its board reach the screen from the street`,
+      dFront.worst >= 6 && dFront.mean >= 0.3,
+      `cell delta mean ${dFront.mean?.toFixed(2)}, worst ${dFront.worst} (need worst>=6)`);
+
+    // A board on a post at a corner is the nearest thing to the crosshair when a
+    // visitor walks up to that corner, so aiming at it has to open the inn. This
+    // asks the LAYER rather than the app's pick, because the app would answer the
+    // same building from the wall behind it and the assertion would pass while
+    // the layer picked nothing at all.
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -155.0, local_n: -101.0, yaw_deg: 68, pitch_deg: 12 }));
+    await page.waitForTimeout(600);
+    const frontagePick = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          // A plain {x, y} is all `Raycaster.setFromCamera` reads, and it saves
+          // this file reaching for the app's three namespace to build a Vector2.
+          const hit = a.frontage.pickAt({ x, y }, a.camera);
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the frontage opens the inn it belongs to`,
+      frontagePick.includes('green_tree_tavern'),
+      `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
 
     // --- the river wharves (T-0041) --------------------------------------
     //

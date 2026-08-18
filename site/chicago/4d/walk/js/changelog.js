@@ -1,4 +1,22 @@
 export const CHANGELOG = [ // newest first
+  { v: 185, title: 'The Green Tree gets its name on a board, and plank walks', kind: 'feature', ts: '2026-08-18T18:34:50.398Z', date: 'Aug 18, 2026, 1:34 PM CT',
+    items: [
+      'The Green Tree Inn stands at Lake and Canal with bare grass running up to its walls. Two old views of it show the same street furniture: plank sidewalks with board crossings, and a hanging signboard on a post at the corner carrying the house\u2019s name.',
+      'All of it is there now. A six-foot plank walk runs along both street walls, raised out of the mud on its boards; a narrower crossing of four boards runs from it across Canal Street and out onto the dry ground beyond; and a post at the corner carries a board lettered GREEN TREE, hung from a cross-arm well over a walker\u2019s head.',
+      'That board is the first lettering this reconstruction has ever drawn. Every other sign in the town is a blank plank, and stays one \u2014 nothing states what any of them said. This one is different because the drawing states the name, and leaving it blank would have been throwing away what we hold.',
+      'The blank board that used to hang on this inn\u2019s wall is gone. The pictures show one board here and it is on the post, so the wall board is refused in writing rather than quietly dropped.',
+      'Where the walk may lie is the street\u2019s decision, not ours: it is laid off the wall only where a street runs outside it and the deck still clears the travelled track. Two of the inn\u2019s four walls are refused for want of a street.',
+      'The walk, the crossing and the post are all our reconstruction \u2014 no source measures a Chicago sidewalk of 1835. Turn \u201creconstructed\u201d off in the confidence view and the frontage goes back to grass.',
+    ] },
+  { v: 184, title: 'The Green Tree\u2019s wagon shed, and the covered wagon under it', kind: 'feature', ts: '2026-08-18T17:28:03.148Z', date: 'Aug 18, 2026, 12:28 PM CT',
+    items: [
+      'The same drawing of the Green Tree Inn that put wagons in its yard shows one more thing standing against the house: an open-sided wagon shed, with a covered wagon in under its roof. Neither a shed nor a tilted wagon existed anywhere in this town before today.',
+      'It stands against the north side of the inn now \u2014 posts, a plate and a lean-to roof falling away from the wall, open on three sides, with a canvas-topped farm wagon standing in the bay and its tongue down on the grass outside. Aim at any of it and the inn\u2019s card opens.',
+      'Which wall is derived rather than chosen. The drawing says \u201cat the left\u201d, which describes where the artist stood; the inn\u2019s own record puts its front on Canal Street and its long side on Lake, and the two wagons shipped yesterday already stand off the back wall. The north side is the only one of the four that is neither a street frontage nor already taken \u2014 and a wagon shed is entered off a yard.',
+      'The size is arithmetic on numbers already here: the bay is the wagon\u2019s own length with half a metre of air at each end, by the ground a parked wagon is given, and the open eave stands a hand\u2019s breadth over the canvas it has to cover.',
+      'All of it is our reconstruction and says so. Nothing states that this inn had a shed, what it was built of or how big it was, so turn \u201creconstructed\u201d off in the confidence view and the shed and its wagon go with the rest of the yard.',
+      'One thing the drawing shows that this does not: it puts the shed at a gable end, and the way this building is modelled today its gables face front and back. Correcting the house itself is separate work, and the shed will move if it moves.',
+    ] },
   { v: 183, title: 'Wagons in the Green Tree\u2019s yard, and a bench at its door', kind: 'feature', ts: '2026-08-18T15:00:02.100Z', date: 'Aug 18, 2026, 10:00 AM CT',
     items: [
       'A drawing of the Green Tree Inn \u2014 the town\u2019s first house built to be a hotel, out at Lake and Canal \u2014 shows farm wagons standing in its yard and a bench against its front wall. Until today the inn stood on swept ground with a few barrels by the door.',

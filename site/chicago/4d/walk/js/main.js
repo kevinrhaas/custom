@@ -31,6 +31,7 @@ import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
+import { createFrontage } from './frontage.js';
 import { createWharves } from './wharves.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
@@ -281,6 +282,20 @@ async function boot() {
   });
   scene3d.add(yard.group);
   api.yard = yard;
+
+  // The frontage works — the plank walks along a building's street walls, the
+  // board crossing over the road and the named board on its post at the corner
+  // (T-0082). Derived geometry like the fences, the boards and the goods, so it
+  // needs no bake — but it is the first layer derived from a building AND a
+  // street at once: where a walk may lie is decided by the travelled track's own
+  // half-width out of data/streets/1835.json. Mounted after the yard because the
+  // two divide one building's ground between them — the yard layer owns what
+  // stands on its own lot and this owns what lies in the street outside it.
+  const frontage = await createFrontage({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(frontage.group);
+  api.frontage = frontage;
 
   // The river docks at the two forwarding warehouses whose own records state
   // one (T-0041). Derived geometry like the fences, the boards and the goods, so
@@ -639,6 +654,17 @@ async function boot() {
     if (goods && (!hit || goods.distance < hit.distance)) {
       const record = loaded.registry.get(goods.id);
       if (record) hit = { ...goods, record };
+    }
+    /**
+     * And so can the walk under a visitor's feet, or the board on its post at
+     * the corner — which is the whole function of a sign: it stands out at the
+     * street edge, so from the road it is nearer to the crosshair than the inn
+     * behind it. Both open the building whose frontage they are (T-0082).
+     */
+    const frontageHit = frontage.pickAt(ndc, camera);
+    if (frontageHit && (!hit || frontageHit.distance < hit.distance)) {
+      const record = loaded.registry.get(frontageHit.id);
+      if (record) hit = { ...frontageHit, record };
     }
     /**
      * And so can a wharf, which is the largest thing on any of these derived

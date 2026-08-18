@@ -189,6 +189,17 @@ if [ -d data/wharves ]; then
   cp -a data/wharves "$SITE/data/wharves"
 fi
 
+# The frontage layer — the plank walks, the board crossing and the named board
+# on its post that stand between a building and the street it fronts on, drawn by
+# renderers/web/js/frontage.js straight from these numbers. Same argument as the
+# enclosures, the signage, the yard and the wharves above and the same failure if
+# it is left out: no GLB carries any of it, so an unmirrored directory is a 404 on
+# the deployed site while the dev tree lays every board perfectly.
+if [ -d data/frontage ]; then
+  rm -rf "$SITE/data/frontage"
+  cp -a data/frontage "$SITE/data/frontage"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"

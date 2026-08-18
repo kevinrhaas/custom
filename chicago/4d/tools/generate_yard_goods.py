@@ -153,6 +153,22 @@ GREEN_TREE_ID = "green_tree_tavern"
 GT_WALL_CLEAR_M = 1.0      # a wagon stands this far off the rear wall it is drawn up to
 GT_WAGON_MAX = 3           # the yard's own width decides the count; this is its ceiling
 
+# THE WAGON SHED AT THE GREEN TREE — ticket T-0081, the second thing the Trowbridge
+# drawing puts on this inn's ground: an OPEN-SIDED WAGON SHED with a COVERED WAGON
+# standing under it. Everything here is a size, never a place; where the shed stands
+# is derived from the committed footprint the same way the wagons' stands were.
+GT_SHED_END_M = 0.50       # air past each end of the wagon's body, along the wall
+GT_SHED_HEADROOM_M = 0.35  # clear air over the tilt at the open eave
+GT_SHED_PITCH_DEG = 12.0   # the lean-to's fall, out from the wall it leans on
+GT_SHED_POST_M = 0.14      # 5.5 in square posts under the open side
+GT_SHED_PLATE_M = 0.16     # the plates and the rafters over them
+
+# THE TILT — the covered wagon's canvas, on bows over the same farm wagon body the
+# yard already draws. A rise and an overhang, and nothing else: the bows under it
+# are not drawn for the reason the barrels' hoops are not.
+WAGON_TILT_RISE_M = 1.10       # the canvas's rise over the body's top rail
+WAGON_TILT_OVERHANG_M = 0.12   # the canvas pulled past the end bows
+
 # THE BENCH. A backless plank bench, recorded converted from feet: 6 ft long, 14 in
 # deep, 18 in to the seat, on two plank ends. Not one of those numbers is a record's.
 BENCH_L_M = 1.83
@@ -473,23 +489,24 @@ def build_wagons(cars: dict) -> tuple[list, list]:
 # the Green Tree's yard                                                        #
 # --------------------------------------------------------------------------- #
 
-def build_green_tree_yard(cars: dict) -> tuple[list, list, list]:
-    """The wagons and the bench the Trowbridge view puts at this one inn.
+def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
+    """The wagons, the bench and the wagon shed the Trowbridge view puts at this inn.
 
     The plate gives the FURNITURE — wagons in the yard, a bench against the front
-    wall — and a tier-5 retrospective view may not give a position. So every stand
-    here is derived from `data/structures/green_tree_tavern.json`'s own committed
-    footprint and placement, and any stand that comes out inside another building's
-    committed wall is refused in writing rather than nudged.
+    wall, an open-sided wagon shed with a covered wagon under it — and a tier-5
+    retrospective view may not give a position. So every stand here is derived from
+    `data/structures/green_tree_tavern.json`'s own committed footprint and placement,
+    and any stand that comes out inside another building's committed wall is refused
+    in writing rather than nudged.
     """
     sc = cars.get(GREEN_TREE_ID)
     if not sc:
-        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+        return [], [], [], [{"structure_id": GREEN_TREE_ID, "why": (
             "the inn is not standing in data/sidecars/1835 — nothing is put in its yard.")}]
     place = sc.get("placement") or {}
     poly = (sc.get("footprint") or {}).get("polygon") or []
     if place.get("local_e") is None or len(poly) < 3:
-        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+        return [], [], [], [{"structure_id": GREEN_TREE_ID, "why": (
             "the inn has no placed footprint — nothing in its yard can be derived.")}]
 
     u0 = min(p[0] for p in poly)
@@ -572,9 +589,12 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list]:
 
     # ---- the bench --------------------------------------------------------- #
     # AGAINST THE FRONT WALL, at the end of the frontage the goods do not occupy.
-    # The barrels pile from the -u end and the signboard hangs 1.7 m toward +u of
-    # the centre at 2.55 m up, so the +u end at ground level is the clear one — the
-    # same division of one wall three layers already make.
+    # The barrels pile from the -u end, so the +u end at ground level is the clear
+    # one — the same division of one wall three layers already make. Until T-0082
+    # this inn also carried a wall board hung 1.7 m toward +u at 2.55 m up, which
+    # was the third of the three; that board now stands on a post at the street
+    # corner and the frontage layer owns it, and the bench is unmoved because it
+    # was never the board it had to miss — it is 2 m under where the board hung.
     benches: list = []
     u_c = u1 - END_CLEAR_M - BENCH_L_M / 2
     if u_c - BENCH_L_M / 2 < u0:
@@ -604,7 +624,166 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list]:
             ),
         })
 
-    return wagons, benches, refused
+    # ---- the wagon shed, and the covered wagon standing in it -------------- #
+    sheds, shed_wagons, shed_refused = _green_tree_wagon_shed(sc, place, poly, walls)
+    wagons.extend(shed_wagons)
+    refused.extend(shed_refused)
+
+    return wagons, benches, sheds, refused
+
+
+def _green_tree_wagon_shed(sc: dict, place: dict, poly: list,
+                           walls: list) -> tuple[list, list, list]:
+    """The open-sided wagon shed at the inn's yard end, and the tilt under it.
+
+    WHAT THE PLATE GIVES: an open-sided wagon shed attached at the left of the
+    house with a covered wagon standing under it. WHAT IT MAY NOT GIVE: which
+    wall, and how big. Both are derived here.
+
+    WHICH WALL, and this is the one judgement in the function. The plate's word is
+    "left", which is a word about a viewpoint and not about a building — so it is
+    read as *the end of the elevation away from the streets*, and three committed
+    facts say the same wall. The placement record puts the front on Canal (west)
+    and the long side on Lake (south), so the yard is the north and east ground.
+    T-0080's two farm wagons already stand off the east (rear) wall, one metre
+    clear of it. That leaves the NORTH side wall, which is the only wall of this
+    inn that is neither a street frontage nor already occupied — and a wagon shed
+    is a yard building, entered off the yard rather than off a corporation street.
+    WHAT IS NOT HONOURED, said out loud rather than smoothed over: the committed
+    massing runs this building's ridge along its depth (`frame_tavern` lays the
+    ridge on the longer axis, 12.19 m here against 7.62 m), which puts its GABLES
+    on the front and the rear and makes the north wall an eaves wall. So the shed
+    stands at the left END and not at a gable, and the gable half of the plate is
+    a correction to the building's fabric, which is bake-gated and is T-0083's.
+
+    HOW BIG is arithmetic on numbers this record already carries: the bay is as
+    long as the wagon's body with half a metre of air at each end, as deep as the
+    ground `WAGON_CLEAR_M` gives a parked wagon, and its open eave stands a
+    hand's breadth over the tilt it has to cover.
+    """
+    refused: list = []
+    u0 = min(p[0] for p in poly)
+    u1 = max(p[0] for p in poly)
+    v0 = min(p[1] for p in poly)
+    v1 = max(p[1] for p in poly)
+    side_run = v1 - v0                      # the north wall's own run, 40 ft here
+    bearing = float(place.get("rotation_deg") or 0.0)
+    # The outward normal of the +u wall as a compass bearing. The facade's normal
+    # is +v and its bearing is the placement's rotation, and +u is a quarter turn
+    # from +v in this frame — the same derivation `_to_enu` does, read backwards.
+    out_bearing = (bearing + 90.0) % 360.0
+
+    depth = 2 * WAGON_CLEAR_M                       # out from the wall
+    length = WAGON_BODY_L_M + 2 * GT_SHED_END_M     # along the wall
+    tilt_top = WAGON_BED_Y_M + WAGON_BODY_H_M + WAGON_TILT_RISE_M
+    eave = tilt_top + GT_SHED_HEADROOM_M            # the open side's plate
+    head = eave + depth * math.tan(math.radians(GT_SHED_PITCH_DEG))
+
+    if length > side_run:
+        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+            f"a bay long enough for a wagon is {length:.2f} m and the side wall runs "
+            f"{side_run:.2f} m — no shed is drawn rather than one longer than the "
+            "wall it leans on.")}]
+    # A lean-to is spiked to a wall UNDER that wall's own eaves. The record states
+    # this building's wall height, so the constraint is checkable rather than
+    # eyeballed, and a shed that would stand through the clapboard is refused.
+    wall_h = ((sc.get("attributes") or {}).get("wall_height_m") or {}).get("value")
+    if isinstance(wall_h, (int, float)) and head + GT_SHED_PLATE_M > wall_h:
+        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+            f"the lean-to's plate would meet the wall {head + GT_SHED_PLATE_M:.2f} m "
+            f"up and the record gives this building {wall_h:.2f} m of wall — no shed "
+            "is drawn rather than one through the first-floor windows.")}]
+
+    # The bay stands at the YARD end of that wall: it starts at the rear wall's own
+    # plane and runs forward, so it is behind the Canal frontage the sign, the bench
+    # and the barrels occupy, and it never reaches the Lake Street corner.
+    v_c = v0 + length / 2
+    u_c = u1 + depth / 2
+    e, nn = _to_enu(u_c, v_c, place)
+
+    # Clearance is measured from the covered ground's own corners, not from its
+    # centre: a 3.2 x 4.05 m roof is the largest thing this layer has ever put on
+    # the ground and its centre clearing a wall says nothing about its corners.
+    corners = [_to_enu(u, v, place) for u, v in (
+        (u1, v0), (u1, v0 + length), (u1 + depth, v0 + length), (u1 + depth, v0))]
+    clear = min([_dist_to_polygon(c, w) for c in corners for _, w in walls] or [1e9])
+    if clear < GT_WALL_CLEAR_M:
+        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+            f"the shed's covered ground comes within {clear:.2f} m of another "
+            f"committed wall, under the {GT_WALL_CLEAR_M:.2f} m a building is given — "
+            "no shed is drawn rather than one built into a neighbour.")}]
+
+    shed = {
+        "id": "green_tree_tavern_wagon_shed",
+        "belongs_to": GREEN_TREE_ID,
+        "kind": "wagon_shed",
+        "confidence": "reconstructed",
+        "at_local_enu_m": [_round(e), _round(nn)],
+        "bearing_deg": _round(out_bearing, 1),
+        "length_m": _round(length),
+        "depth_m": _round(depth),
+        "eave_m": _round(eave),
+        "head_m": _round(head),
+        "clearance_m": _round(min(clear, 999.0)),
+        "note": (
+            "AN OPEN-SIDED WAGON SHED AT THE INN'S YARD END, and the picture is the "
+            "whole reason it is here. The Trowbridge drawing of this inn "
+            "(data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows an "
+            "open-sided wagon shed attached at the left of the house with a covered "
+            "wagon standing under it — a tier-5 retrospective view, which may drive "
+            "furniture and setting and may never drive a coordinate. WHICH WALL IS "
+            "DERIVED: the placement record puts the front on Canal and the long side "
+            "on Lake, T-0080's wagons already stand off the rear wall, and that leaves "
+            "the north side wall — the only one of this inn's four that is neither a "
+            "street frontage nor already occupied, and a wagon shed is entered off a "
+            "yard rather than off a corporation street. WHAT IS NOT HONOURED: the "
+            "committed massing lays this building's ridge along its longer axis, which "
+            "puts its gables on the front and the rear, so this stands at the left END "
+            "and not at a gable; the gable is a correction to the building's fabric and "
+            "is bake-gated (T-0083). HOW BIG IS ARITHMETIC on numbers already here: the "
+            f"bay is {length:.2f} m along the wall (the wagon's body and "
+            f"{GT_SHED_END_M:.2f} m of air at each end) by {depth:.2f} m out from it "
+            f"(the ground a parked wagon is given), its open eave stands {eave:.2f} m "
+            f"up ({GT_SHED_HEADROOM_M:.2f} m over the tilt it covers) and its plate "
+            f"meets the wall {head:.2f} m up at {GT_SHED_PITCH_DEG:.0f} degrees. What "
+            "is invented is that this inn had a wagon shed on 1 July 1835 and every "
+            "dimension of it: docs/LIBERTIES.md L134. NOT THE SAME THING as the low "
+            "one-storey additions John Gray describes at each end of the house — those "
+            "are attributes of the BUILDING, dated three to six years after the scene "
+            "and deliberately excluded from its footprint; this is a yard structure on "
+            "the yard's own ground, and it does not date them."
+        ),
+    }
+
+    # The covered wagon standing under it, on the same centre as the bay: a shed
+    # a wagon cannot stand in is not what the plate shows. It is the yard's own
+    # farm wagon with a tilt over it, laid along the wall because that is the way
+    # a 4.05 m bay takes a 3.05 m body, tongue down and out of the open end.
+    wagon = {
+        "id": "green_tree_tavern_shed_wagon",
+        "belongs_to": GREEN_TREE_ID,
+        "under_shed": shed["id"],
+        "tilt": True,
+        "confidence": "reconstructed",
+        "at_local_enu_m": [_round(e), _round(nn)],
+        "bearing_deg": _round((out_bearing + 90.0) % 360.0, 1),
+        "clearance_m": _round(min(clear, 999.0)),
+        "note": (
+            "THE COVERED WAGON UNDER THE SHED, from the same plate and standing on the "
+            "same derived centre as the bay over it. It is the farm wagon this record "
+            "already draws — the body, the wheels and the tongue are L131's invented "
+            "numbers and have not moved — with a TILT added: canvas on bows, "
+            f"{WAGON_TILT_RISE_M:.2f} m of rise over the body's top rail and "
+            f"{WAGON_TILT_OVERHANG_M:.2f} m pulled past the end bows, open at both "
+            "ends. The bows themselves are not drawn, for the reason the barrels' "
+            "hoops are not: under the canvas there is nothing to see. It lies ALONG "
+            "the wall because that is how a 4.05 m bay takes a 3.05 m body, with the "
+            "tongue down and out of the open end into the yard. What is invented is "
+            "the wagon, the tilt and the fact that either stood here on 1 July 1835: "
+            "docs/LIBERTIES.md L131 and L134."
+        ),
+    }
+    return [shed], [wagon], refused
 
 
 # --------------------------------------------------------------------------- #
@@ -612,14 +791,15 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list]:
 # --------------------------------------------------------------------------- #
 
 def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
-           benches: list) -> dict:
+           benches: list, sheds: list) -> dict:
     items = sum(len(f["items"]) for f in frontages)
     return {
         "_doc": (
             "Goods standing at the town's trading frontages — barrels and cases on the "
             "footway at the taverns and the stores, the wagons standing in the yard a "
-            "source calls a wagon yard and in the Green Tree's, and the bench against "
-            "that inn's front wall. NOT structure records and NOT geometry that comes out "
+            "source calls a wagon yard and in the Green Tree's, the bench against that "
+            "inn's front wall and the open-sided wagon shed at its yard end with a "
+            "covered wagon under it. NOT structure records and NOT geometry that comes out "
             "of Blender: a barrel on a footway is a small object standing on ground this "
             "project has already drawn, so it is derived from the committed footprints "
             "and placements and drawn at load by renderers/web/js/yard.js — the same "
@@ -644,6 +824,7 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
             "objects": items,
             "wagons": len(wagons),
             "benches": len(benches),
+            "sheds": len(sheds),
         },
         "existence": {
             "value": True,
@@ -771,6 +952,63 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                     "with its other sizes so the renderer reaches for no number of its own."
                 ),
             },
+            "wagon_tilt_m": {
+                "value": [WAGON_TILT_RISE_M, WAGON_TILT_OVERHANG_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED. The covered wagon's canvas rises 1.10 m over the body's "
+                    "top rail — about 3 ft 7 in, which is the height a person has to "
+                    "have to sit under a tilt — and is pulled 0.12 m past the end bows. "
+                    "Nothing attests a covered wagon at this inn or anywhere in this "
+                    "town; the Trowbridge drawing of the Green Tree shows one standing "
+                    "under its wagon shed and the ordinary width of the same farm wagon "
+                    "body is what the arch springs from. THE BOWS ARE NOT DRAWN AS "
+                    "SEPARATE GEOMETRY, the barrels' hoops' argument exactly: under the "
+                    "canvas there is nothing to see. The tilt is open at both ends, "
+                    "which is what the plate shows and is also the honest half — a "
+                    "gathered canvas end is a shape nothing here can state."
+                ),
+            },
+            "shed_bay_m": {
+                "value": [WAGON_BODY_L_M + 2 * GT_SHED_END_M, 2 * WAGON_CLEAR_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED, but it is arithmetic on numbers this record already "
+                    "carries rather than a pair of figures picked to look right: the "
+                    "bay is the wagon's own 3.05 m body with 0.50 m of air at each end, "
+                    "by the 3.20 m of ground WAGON_CLEAR_M gives a parked wagon. "
+                    "Nothing measures this shed, and no source states that the Green "
+                    "Tree had one — the Trowbridge drawing shows it. Its stand is "
+                    "derived from the committed footprint and is argued on the shed's "
+                    "own record."
+                ),
+            },
+            "shed_timber_m": {
+                "value": [GT_SHED_POST_M, GT_SHED_PLATE_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED — 0.14 m posts under the open side and 0.16 m plates and "
+                    "rafters over them, which is a 5.5 in stick and a 6 in one. HOW the "
+                    "shed is drawn rather than a claim about this one, kept on the "
+                    "record with its other sizes so the renderer reaches for no number "
+                    "of its own, the same division bench_plank_m makes."
+                ),
+            },
+            "shed_pitch_deg": {
+                "value": GT_SHED_PITCH_DEG,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED. A lean-to falling 12 degrees away from the wall it is "
+                    "spiked to — 0.68 m over the bay's 3.20 m. Nothing states the "
+                    "shed's roof, its pitch or its covering. What bounds it is the "
+                    "shape: the roof has to shed water away from the house and has to "
+                    "clear the tilt at its low edge, and 12 degrees is the shallowest "
+                    "fall that does both over this depth. The roof is drawn as boards "
+                    "in the layer's own timber, not as shingles: nothing says which, "
+                    "and boards are what an open shed in this town was likeliest to "
+                    "carry."
+                ),
+            },
             "marks": {
                 "value": None,
                 "confidence": "reconstructed",
@@ -816,12 +1054,17 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                 "occupy. tools/generate_business_signboards.py hangs its board 1.7 m "
                 "toward +u of the facade's centre, so this piles from the -u end and the "
                 "door between them stays clear — two layers derived from the same wall "
-                "that would otherwise be derived into each other."
+                "that would otherwise be derived into each other. The Green Tree is the "
+                "one frontage here with no wall board to keep clear of (T-0082 moved its "
+                "board to a post at the street corner), and the goods pile from the same "
+                "end anyway: the barrels were derived before the board moved and moving "
+                "them now would be a change nothing asked for."
             ),
         },
         "frontages": frontages,
         "wagons": wagons,
         "benches": benches,
+        "sheds": sheds,
         "refused": refused,
         "wagons_refused": wagons_refused,
         "research_note": (
@@ -837,7 +1080,12 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
             "roadway though the ordinance is about roadways; and the wagons in this town "
             "still stand at two addresses out of hundreds — the yard a source names for "
             "wagons, and the one inn a picture shows them in. T-0064 is the ticket for "
-            "the rest of a frontier town's traffic."
+            "the rest of a frontier town's traffic. THE SHED IS THE FIRST ROOF THIS "
+            "LAYER HAS EVER DRAWN, and it is worth saying what that does not mean: it "
+            "is not a structure record, it has no archetype and it is not baked, "
+            "because it is derived from a committed footprint the way a fence and a "
+            "signboard are. If a second yard building is ever wanted the question to "
+            "ask first is whether it belongs here or in data/structures/."
         ),
     }
 
@@ -850,10 +1098,10 @@ def main() -> int:
     ids, cars = _standing()
     frontages, refused = build_frontages(ids, cars)
     wagons, wagons_refused = build_wagons(cars)
-    gt_wagons, benches, gt_refused = build_green_tree_yard(cars)
+    gt_wagons, benches, sheds, gt_refused = build_green_tree_yard(cars)
     wagons = wagons + gt_wagons
     wagons_refused = wagons_refused + gt_refused
-    text = json.dumps(record(frontages, refused, wagons, wagons_refused, benches),
+    text = json.dumps(record(frontages, refused, wagons, wagons_refused, benches, sheds),
                       indent=2, ensure_ascii=False) + "\n"
     objects = sum(len(f["items"]) for f in frontages)
     if args.check:
@@ -865,14 +1113,14 @@ def main() -> int:
                   f"rule in tools/generate_yard_goods.py")
             return 1
         print(f"verified {objects} object(s) on {len(frontages)} trading frontage(s), "
-              f"{len(wagons)} wagon(s) and {len(benches)} bench(es) "
-              f"({len(refused)} frontage(s) refused with a reason)")
+              f"{len(wagons)} wagon(s), {len(benches)} bench(es) and {len(sheds)} "
+              f"shed(s) ({len(refused)} frontage(s) refused with a reason)")
         return 0
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)} — {objects} object(s) on {len(frontages)} "
-          f"frontage(s), {len(wagons)} wagon(s), {len(benches)} bench(es) "
-          f"({len(refused)} refused)")
+          f"frontage(s), {len(wagons)} wagon(s), {len(benches)} bench(es), "
+          f"{len(sheds)} shed(s) ({len(refused)} refused)")
     return 0
 
 

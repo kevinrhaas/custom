@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 11:16 AM",
+  "generated_ct": "Aug 18, 2026, 2:28 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -71,7 +71,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": 5
     },
     {
       "id": "T-0005",
@@ -88,7 +88,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 4
+      "queue_rank": 6
     },
     {
       "id": "T-0006",
@@ -1414,7 +1414,7 @@
     {
       "id": "T-0081",
       "title": "The Green Tree's wagon shed: the open-sided shed at the left gable, a covered wagon under it",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1422,17 +1422,17 @@
       "legacy_id": "K2",
       "parent": "T-0042",
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-18",
+      "pr": "246",
+      "claimed_by": "run 8/18/2026, 11:49:04 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0082",
       "title": "The Green Tree's frontage: its named signboard on a post, plank walks, verges and fence-line brush",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1440,12 +1440,12 @@
       "legacy_id": "K2",
       "parent": "T-0042",
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-18",
+      "pr": "247",
+      "claimed_by": "run 8/18/2026, 1:16:10 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": null
     },
     {
       "id": "T-0083",
@@ -1467,6 +1467,42 @@
     },
     {
       "id": "T-0084",
+      "title": "A wagon tongue is drawn as a plank on edge, not a pole",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0085",
+      "title": "The sward grows up through the Green Tree's plank walk",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0086",
       "title": "The sward ends at a radius instead of receding into the distance",
       "state": "open",
       "epic": "FLORA",
@@ -1482,6 +1518,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
+    },
+    {
+      "id": "T-0087",
+      "title": "The wagon box floats: no bolsters, no reach, no hounds",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
     }
   ]
 }

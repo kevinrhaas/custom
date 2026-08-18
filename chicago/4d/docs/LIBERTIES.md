@@ -4192,6 +4192,100 @@ bar, and the bar moved because the owner moved it.
 **Recorded:** 2026-08-18.
 
 
+### L134 — A wagon shed at the Green Tree, and the covered wagon standing in it
+**Decision:** an open-sided wagon shed stands against the north side wall of the Green Tree
+Tavern with a covered wagon under it. The wall it is attached to, the bay it covers, its two
+plate heights, the fall between them, the section of its posts and plates, and the tilt's rise
+and overhang are all invented and graded `reconstructed` in `data/yard/town_trade_goods.json`.
+**Why:** the Trowbridge drawing of this inn — `data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7 — shows an **open-sided wagon shed attached at the left of the house with a covered
+wagon standing under it**. That is a TIER 5 pictorial source on the ruling L133 already applied
+to the same plate: it may drive furniture and setting and it may never drive a coordinate. So
+the shed is taken from the picture and its stand is derived from the building's own committed
+footprint. Neither a shed nor a tilt existed anywhere in this renderer before; the owner's
+ruling of 2026-08-18 — *"you are totally fine to be liberal with adding reconstructed items
+when i ask for things, you can just label and mark them as such"* — is the warrant for building
+one rather than filing the ask.
+**Consequence:** four things here are inventions a visitor should be able to name. **Which
+wall.** The plate's word is "left", which describes a viewpoint rather than a building, so it is
+read as the end away from the streets: the placement record puts the front on Canal and the long
+side on Lake, T-0080's two wagons already stand off the rear wall, and the north side wall is
+the only one of the four that is neither a street frontage nor occupied. Three committed facts
+agree, and not one of them is the plate. **It is not a gable, and the entry says so rather than
+letting the word pass.** `frame_tavern` lays this building's ridge along its longer axis, which
+puts its gables on the front and the rear and makes the north wall an eaves wall — so the shed
+stands at the left END of the elevation and not at a gable. Correcting the fabric to the three
+views is bake-gated and is T-0083's; this entry does not pre-empt it. **How big.** The bay is
+the wagon's own 3.05 m body with half a metre of air at each end by the 3.20 m of ground a
+parked wagon is already given, the open eave stands a hand's breadth over the tilt it has to
+cover, and the roof falls 12 degrees — every one of those a bound rather than a measurement.
+**The tilt.** Canvas on bows, 1.10 m of rise, open at both ends; the bows are not drawn for the
+reason the barrels' hoops are not, and the canvas tone is chosen weathered rather than white
+because white duck at noon would be the brightest thing in the town. Turn `reconstructed` off in
+the confidence view and the whole shed and its wagon go with the rest of the layer.
+**What this is NOT:** the low one-storey additions John Gray describes at each end of this house
+(`green_tree_tavern.attributes.side_additions`, `inferred`, `geometry: absent`). Those are
+attributes of the BUILDING, described three to six years after the scene date and deliberately
+excluded from its footprint for that reason. This is a yard structure on the yard's own ground,
+it does not date them, and it must not be read as having built them.
+**How to resolve:** the plate identified and held as a proper source record (T-0075), which
+would say who drew it and when and how much of it is observation; the lot geometry on Wright
+1834 or Hathaway 1834, which would replace the invented yard with a traced line; or the fabric
+pass at T-0083, which would settle where this building's gables actually are and may move the
+shed to one of them.
+**Recorded:** 2026-08-18.
+
+
+### L135 — The Green Tree's frontage: plank walks nobody recorded, and the first lettering this project has drawn
+**Decision:** the Green Tree Tavern's two street walls carry a **plank walk** 1.83 m wide laid
+0.20 m off the wall, its deck 0.11 m over the ground on 55 mm boards at a 0.26 m pitch; a **board
+crossing** 1.22 m wide and four boards laid the way a foot travels runs from that walk across
+Canal Street and 0.6 m past the far edge of the travelled track; and a **3.60 m post** with a
+1.55 m cross-arm stands at the Lake-and-Canal corner, 2.93 m out from each of the two walls, with
+a 1.30 x 0.55 m board hanging under the arm **lettered GREEN TREE**. All of it is drawn by
+`renderers/web/js/frontage.js` from `data/frontage/green_tree_frontage.json`, which
+`tools/generate_frontage_works.py` derives and `tools/check.sh` re-derives byte for byte.
+**Why:** two of the owner's reference views of this inn describe the ground in front of it, and
+`data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 6, the
+Braunhold engraving of 1838: *"post-mounted hanging signboard at the corner; plank sidewalks with
+board crossings"*; image 7, the Trowbridge drawing: *"the hanging 'GREEN TREE' sign on its post"*.
+Both are tier-5 pictorial and retrospective, so they may drive setting and may never drive a
+coordinate. WHERE everything stands is therefore derived from three committed things — the
+footprint, the placement, and the street's own travelled-track half-width out of
+`data/streets/1835.json` — and a wall with no street outward of it, or a walk that would lie in the
+travelled way, is refused in writing rather than nudged. Two of the four walls are refused here for
+exactly that reason.
+**What bounds the invention, and it is split in two.** THE FACT of a walk, a crossing and a board
+on a post at this inn is the plates'. Every DIMENSION is invented: nothing in this project measures
+a Chicago sidewalk of 1835, so 6 ft is two people passing and the rest is ordinary sawn stock. And
+that a walk stood on this ground at noon on 1 July 1835 is invented, the same claim L133 and L134
+make for the wagons and the shed beside it.
+**THE LETTERING, which is the part that needed arguing rather than deriving.** L25 leaves the
+town's one documented board blank, and L130 leaves twenty-four more blank on the same reasoning.
+**That reasoning does not reach this board.** L25's subject is an IMAGE nobody has described — no
+source says how the wolf was painted, and a wolf drawn from imagination would be the most
+conspicuous invention in the scene. This board's subject is a NAME; image 7 states it in as many
+words; and the name is already committed on `data/structures/green_tree_tavern.json`. Leaving it
+blank would not be caution, it would be discarding evidence the project holds, which is the
+reading AGENTS.md § RECONSTRUCTED IS A TIER exists to refuse. So the WORDING is graded `inferred`
+against the plate and drawn, and what stays invented and is claimed here is the **letterform**: a
+serif face, its size fitted to a board whose width is itself derived, its spacing, its dark-brown
+paint and the absence of any wear on it. No other board in the town is lettered, because nothing
+states what any of them said.
+**Consequence:** `tools/generate_business_signboards.py` now REFUSES this frontage in writing
+(clause 6) rather than also hanging a blank board on its wall. The plates show one board at this
+inn and it is on a post, so the town no longer draws the same claim twice — and the refusal is
+visible in `data/signage/town_business_signboards.json` rather than being a silent omission. The
+count of blank business boards falls from twenty-four to twenty-three, which is what L130's own
+title should now be read against.
+**How to resolve:** a Chicago town order on sidewalks — the corporation legislated wooden walks
+within a few years of 1835, and an order of the right date would give a width and a material at a
+stroke; any tax, insurance or sale description naming a walk in front of a lot; or holding the
+Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
+path this entry cites into a `source_id` and the lettering's warrant into a citation.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

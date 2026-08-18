@@ -94,6 +94,27 @@ PUBLIC_TRADES = {
 # Clause 3.
 TRADE_GRADES = {"attested", "documented", "inferred"}
 
+# Clause 6, added 2026-08-18 with ticket T-0082. A frontage whose OWN reference view
+# shows a board on a POST at the corner does not also get a blank board hung on its
+# wall by this rule. The Green Tree is the first: images 6 and 7 of the owner's brief
+# (data/sources/assets/owner_brief_2026_08_18/README.md) both show one board at this
+# inn and both put it on a post carrying the house's name, which is now drawn by the
+# frontage layer (data/frontage/green_tree_frontage.json, docs/LIBERTIES.md L135).
+# Hanging a second, blank board on the wall as well would be the town drawing the
+# same claim twice — and drawing it a second time in a weaker tier than the plate
+# supports. The refusal is stated in the record rather than being a silent omission.
+POST_BOARD_IDS = {
+    "green_tree_tavern": (
+        "it carries a NAMED board on its own post at the street corner instead. "
+        "Images 6 and 7 of data/sources/assets/owner_brief_2026_08_18/README.md both "
+        "show ONE board at this inn, post-mounted at the corner and lettered GREEN "
+        "TREE; it is drawn from data/frontage/green_tree_frontage.json by "
+        "renderers/web/js/frontage.js (T-0082, docs/LIBERTIES.md L135). A blank board "
+        "hung on the wall as well would be this layer drawing the same claim a second "
+        "time, in a weaker tier than the plates support."
+    ),
+}
+
 # THE BOARD, and why these numbers are here rather than in the record. Arm length,
 # board size and the two hangers are how a board is DRAWN, not a claim about any
 # shop — the same division the enclosure layer makes between a fence's line (the
@@ -187,6 +208,11 @@ def build_record() -> tuple[list, list]:
                 f"the trade itself is {grade}. A sign for a business this project "
                 "reconstructed would be an invention resting on an invention.")})
             continue                                            # clause 3
+
+        if sid in POST_BOARD_IDS:
+            refused.append({"structure_id": sid, "trade": trade,
+                            "why": POST_BOARD_IDS[sid]})
+            continue                                            # clause 6
 
         struct = _load(STRUCTURES / f"{sid}.json")
         already = [ph.get("id") for ph in struct.get("phases", [])
@@ -328,9 +354,10 @@ def record(signs: list, refused: list) -> dict:
             "note": (
                 "A named record (not inf_/recon_, not 'Reconstructed'), a PUBLIC TRADE "
                 "whose customer arrived on foot off the street, that trade attested or "
-                "inferred rather than reconstructed, standing on the scene date, and "
-                "no sign on the record already. Read the clauses and their reasons in "
-                "tools/generate_business_signboards.py."
+                "inferred rather than reconstructed, standing on the scene date, no "
+                "sign on the record already, and no named board already standing on a "
+                "post at its corner on the frontage layer. Read the clauses and their "
+                "reasons in tools/generate_business_signboards.py."
             ),
             "public_trades": sorted(PUBLIC_TRADES),
             "excluded_trades_note": (

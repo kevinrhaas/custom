@@ -1,5 +1,112 @@
 # STATUS
 
+## Shipped 2026-08-18 — the Green Tree's frontage: plank walks, a board crossing, a named board on a post
+
+**T-0082, the third of the four pieces T-0042 was split into.** T-0080 shipped the yard and
+T-0081 the wagon shed; this is the STREET side of the same building. **T-0083** (the building's
+own fabric, `needs_bake`) is still open and holds its place in QUEUE.
+
+**What a visitor sees.** A 1.83 m plank walk along both of the inn's street walls, its deck
+0.11 m out of the mud on 55 mm boards; a 1.22 m crossing of four boards running from that walk
+across Canal Street and 0.6 m past the far edge of the travelled track; and a 3.60 m post at the
+Lake-and-Canal corner carrying a 1.30 × 0.55 m board, hung from a 1.55 m cross-arm, **lettered
+GREEN TREE**. All of it is pickable and all of it opens the inn's card. The warrant is two of the
+owner's reference views, written up at `data/sources/assets/owner_brief_2026_08_18/README.md`:
+image 6 (Braunhold 1838) gives *"post-mounted hanging signboard at the corner; plank sidewalks
+with board crossings"*, image 7 (Trowbridge) gives *"the hanging 'GREEN TREE' sign on its post"*.
+
+**THE LETTERING is the one decision that was argued rather than derived**, and it is the first
+lettering this renderer has ever drawn. L25 leaves the town's one documented board blank and L130
+leaves twenty-four more blank, for a reason that does not reach this one: L25's subject is an
+IMAGE nobody described, and this board's subject is a NAME the plate states in as many words and
+`data/structures/green_tree_tavern.json` already carries. So the WORDING is graded `inferred`
+against the plate and drawn; the LETTERFORM — face, size, spacing, paint colour, absence of wear
+— is invented and claimed at **L135**. No other board in the town is lettered.
+
+**The wall board is withdrawn, in writing.** `tools/generate_business_signboards.py` grew a
+clause 6: a frontage that carries a named board on a post at its corner does not also get a blank
+board hung on its wall by rule. The refusal and its reason are in
+`data/signage/town_business_signboards.json`; the blank-board count falls from 24 to 23.
+
+**WHERE is derived from a building AND a street**, which no layer here had done before. A wall
+gets a walk only if a street centreline lies OUTWARD of it within 22 m and the walk's outer edge
+still clears that street's own travelled track; the crossing runs until it is past the far edge
+of that track; the post stands 2.93 m out from each of the two walls that make the corner. Two of
+the inn's four walls are refused for want of a street, in writing. Every dimension is invented —
+nothing in this project measures a Chicago sidewalk of 1835.
+
+**What the gate now holds.** Seven new assertions in `tools/smoke_renderer.mjs`, none relaxed:
+the census, every vertex graded `reconstructed`, the decks tying into the ground they cross
+(measured: 0.012 m below grade at worst, 0.112 m of deck above it), the post standing on its own
+terrain sample with the board's underside 2.78 m up, the painted name matching the record's own
+wording and grade, the layer reaching the screen from Canal Street, and a pick on the layer
+opening the inn. `tools/check.sh` re-derives `data/frontage/green_tree_frontage.json` byte for
+byte.
+
+**Known and not fixed here: the sward grows through the deck.** The flora layer does not know the
+walk exists, so grass and forbs stand up through the planks. It is filed as its own ticket rather
+than patched in this parcel.
+
+## Shipped 2026-08-18 — the Green Tree's wagon shed, and the covered wagon under it
+
+**T-0081, the second of the four pieces T-0042 was split into.** T-0080 shipped the yard; this
+is the shed the same plate shows. **T-0082** (frontage: sign, walks, verges) and **T-0083** (the
+building's own fabric, `needs_bake`) are still open and hold their place in QUEUE.
+
+**What a visitor sees.** An open-sided wagon shed standing against the north side of the inn —
+three posts, a plate, a lean-to roof falling away from the wall — with a canvas-topped farm wagon
+in the bay and its tongue down on the grass outside. It is pickable and it opens the inn's card,
+the same contract the wagons, the bench and the signboards keep. The warrant is the Trowbridge
+drawing (`data/sources/assets/owner_brief_2026_08_18/README.md`, image 7), which shows an
+open-sided wagon shed attached at the left of the house with a covered wagon under it. Neither a
+shed nor a tilt existed anywhere in this renderer before.
+
+**WHICH WALL is derived, and it is the one judgement in the parcel.** The plate's word is "left",
+which describes a viewpoint rather than a building. Three committed facts pick the wall and not
+one of them is the plate: the placement record puts the front on Canal and the long side on Lake,
+T-0080's two wagons already stand off the rear wall, and that leaves the north side wall — the
+only one of the four that is neither a street frontage nor occupied. A wagon shed is entered off
+a yard rather than off a corporation street, which is the same answer a third way.
+
+**WHAT IS NOT HONOURED, said out loud.** The plate puts the shed at a GABLE. `frame_tavern` lays
+this building's ridge along its longer axis (12.19 m against 7.62 m), which puts its gables on
+the front and the rear and makes the north wall an eaves wall — so this stands at the left END of
+the elevation and not at a gable. Correcting the fabric to the three views is bake-gated and is
+**T-0083's**; this parcel does not pre-empt it, and the shed moves if that work moves the gables.
+
+**HOW BIG is arithmetic on numbers already in the record**: the bay is the wagon's own 3.05 m
+body with 0.50 m of air at each end by the 3.20 m of ground `WAGON_CLEAR_M` gives a parked wagon;
+the open eave stands 2.95 m up, 0.35 m over the 2.60 m tilt it has to cover; the plate meets the
+wall 3.63 m up at 12 degrees. The lean-to's head is checked against the building's own recorded
+5.0 m wall height and a shed that would stand through the clapboard is refused in writing. All of
+it is `reconstructed` and claimed at **L134**, which also records what this is NOT: John Gray's
+low one-storey additions at each end of the house are attributes of the BUILDING, dated three to
+six years after the scene and deliberately excluded from its footprint. This does not date them.
+
+**The layer is still one draw call.** A tilt is canvas and must not read as timber, so the yard
+layer's colour moved onto the geometry — one material, `vertexColors`, two tones — rather than
+growing a second mesh for one arch. The confidence view still tints it: `confidence.patch()`
+inserts after `<color_fragment>`, which is where the vertex colour is multiplied in.
+
+**The rule re-derives.** `tools/generate_yard_goods.py` grew `_green_tree_wagon_shed()` and
+`tools/check.sh` re-derives `data/yard/town_trade_goods.json` byte for byte.
+
+**Verified.** `./tools/check.sh` CHECK PASS. `node tools/check-changelog.mjs` OK, 184 entries,
+latest v184. Three new smoke assertions, all green at 1280×800 on the published mirror: the shed
+is a lean-to whose eave clears its tilt; nothing standing in its bay reaches through the inn's
+wall (deepest −1.60 m against a −1.65 m bound), out past its eaves or up through its own roof;
+and the layer carries exactly two vertex tones across exactly one mesh.
+
+**What is NOT verified, and it is T-0060.** The full smoke did not finish either viewport inside
+this runner's ten-minute command ceiling — the desktop half reached 148 passed / 1 failed (the
+known `the roads reach the screen` gate, dev's own) and was killed in the road-contrast section,
+which sits AFTER the yard block and BEFORE the `zero page errors` line. So the gate's own
+page-error assertion did not run. It was taken separately instead, on the published mirror at
+**390×780 and 1280×800**, booting to `ready`, dismissing both overlays and standing in the yard:
+**zero page errors, zero failed requests, zero console errors, no yard problems**, census 4
+wagons / 1 bench / 1 shed / 1 mesh at both widths. That is the assertion, taken by hand, and it
+is stated here rather than implied.
+
 ## Shipped 2026-08-18 — wagons in the Green Tree's yard, and a bench at its door
 
 **T-0080, the first of four pieces T-0042 was split into.** The parent ticket asked for an
