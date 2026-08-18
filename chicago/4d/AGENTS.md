@@ -151,6 +151,17 @@ of `docs/LIBERTIES.md`. The bar was never "only build what is proven" — it is 
 what you built."** Those are different, and the second one is compatible with building a great deal
 more than this loop has been building.
 
+**The owner doubled down, 2026-08-18, verbatim: "in general i think you are being too cautious on
+adding items to the scene. you are totally fine to be liberal with adding reconstructed items when i
+ask for things, you can just label and mark them as such."** He said it while overriding, one by
+one, the conservative readings the loop had settled into: only the two attested docks ("you can add
+more docks!"), no boats ("you can add boats correct for the era! they would exist"), wagons only at
+attested doors ("of course there would be more wagons all over the place in a frontier town"), signs
+only where attested ("you need to add more signage … it is fine if they are reconstructions"). The
+pattern to learn: **when the owner asks for something, the scene needing it IS the justification** —
+build it at the reconstructed tier, label it, record the liberty, and do not ration it to the
+attested instances. The rationing instinct is the bug this section exists to fix.
+
 ## THE QUEUE — how work is chosen (since 2026-08-17)
 
 **`tickets/` is the single operational answer to "what next".** The owner asked for it

@@ -8,6 +8,23 @@ T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0042 — Image-accuracy pass: the Green Tree Tavern
 T-0043 — Image-accuracy pass: the Sauganash
 T-0044 — Image-accuracy pass: the next two landmark plates
+T-0077 — The Lake Street row at Dearborn, from the Tremont plate
+T-0078 — The South Water river row, from the 1834 view
+T-0079 — Reconstructed infill across the remaining core blocks
+T-0062 — More docks: the river gets its working waterfront
+T-0063 — Boats correct for the era, on the water
+T-0064 — More wagons, all over a frontier town
+T-0065 — Period names, brands and labels on the goods
+T-0066 — Signboards carry the location's name, and no two are alike
+T-0067 — Fenced ground is not prairie: yards, gardens and pens
+T-0068 — More fences: the town encloses its property
+T-0069 — Fences line the streets, and plank sidewalks run beside them
+T-0070 — The jail made accurate to its engraving
+T-0071 — The Dearborn drawbridge area, improved to its engravings
+T-0072 — The Wolf Tavern's pole sign, from its documentation
+T-0074 — Trees and bushes kept around the houses
+T-0075 — Hold the 2026-08-18 owner brief as source records
+T-0076 — Buildings are named for their people, not their spec codes
 T-0007 — Wire the material sheet into the records: repaint the town
 T-0008 — 199 chimneys are painted roof-colour
 T-0009 — Redraw 29 building bodies out of the roadway
