@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 7:18 PM",
+  "generated_ct": "Aug 17, 2026, 9:08 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -71,7 +71,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 8
+      "queue_rank": 9
     },
     {
       "id": "T-0005",
@@ -88,7 +88,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 10
     },
     {
       "id": "T-0006",
@@ -123,7 +123,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 14
     },
     {
       "id": "T-0008",
@@ -140,7 +140,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 15
     },
     {
       "id": "T-0009",
@@ -157,7 +157,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 15
+      "queue_rank": 16
     },
     {
       "id": "T-0010",
@@ -174,7 +174,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 16
+      "queue_rank": 17
     },
     {
       "id": "T-0011",
@@ -191,7 +191,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 17
+      "queue_rank": 18
     },
     {
       "id": "T-0012",
@@ -208,7 +208,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 18
+      "queue_rank": 19
     },
     {
       "id": "T-0013",
@@ -225,7 +225,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 19
+      "queue_rank": 20
     },
     {
       "id": "T-0014",
@@ -242,7 +242,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 20
+      "queue_rank": 21
     },
     {
       "id": "T-0015",
@@ -259,7 +259,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 22
     },
     {
       "id": "T-0016",
@@ -276,7 +276,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 23
     },
     {
       "id": "T-0017",
@@ -293,7 +293,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 24
     },
     {
       "id": "T-0018",
@@ -310,7 +310,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 25
     },
     {
       "id": "T-0019",
@@ -327,7 +327,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 26
     },
     {
       "id": "T-0020",
@@ -344,7 +344,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 27
     },
     {
       "id": "T-0021",
@@ -361,7 +361,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 28
     },
     {
       "id": "T-0022",
@@ -378,7 +378,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 29
     },
     {
       "id": "T-0023",
@@ -395,7 +395,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 30
     },
     {
       "id": "T-0024",
@@ -412,7 +412,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 31
     },
     {
       "id": "T-0025",
@@ -429,7 +429,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 32
     },
     {
       "id": "T-0026",
@@ -446,7 +446,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 32
+      "queue_rank": 33
     },
     {
       "id": "T-0027",
@@ -463,7 +463,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 33
+      "queue_rank": 34
     },
     {
       "id": "T-0028",
@@ -480,7 +480,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 34
+      "queue_rank": 35
     },
     {
       "id": "T-0029",
@@ -497,7 +497,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 36
     },
     {
       "id": "T-0030",
@@ -514,7 +514,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 37
     },
     {
       "id": "T-0031",
@@ -531,7 +531,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 38
     },
     {
       "id": "T-0032",
@@ -548,7 +548,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 39
     },
     {
       "id": "T-0033",
@@ -582,7 +582,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 40
     },
     {
       "id": "T-0035",
@@ -599,7 +599,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 8
     },
     {
       "id": "T-0036",
@@ -616,7 +616,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 7
     },
     {
       "id": "T-0037",
@@ -633,12 +633,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 41
     },
     {
       "id": "T-0038",
       "title": "Fences and enclosures: the estray pen, wagon yards, garden pickets",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -646,12 +646,12 @@
       "legacy_id": "K5",
       "parent": "T-0003",
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/17/2026, 7:46:38 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0039",
@@ -669,7 +669,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 4
     },
     {
       "id": "T-0040",
@@ -687,7 +687,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 5
     },
     {
       "id": "T-0041",
@@ -705,7 +705,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": 6
     },
     {
       "id": "T-0042",
@@ -723,7 +723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 11
     },
     {
       "id": "T-0043",
@@ -741,7 +741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 12
     },
     {
       "id": "T-0044",
@@ -759,7 +759,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 13
     },
     {
       "id": "T-0045",
@@ -813,7 +813,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 42
     },
     {
       "id": "T-0048",
@@ -850,6 +850,78 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 1
+    },
+    {
+      "id": "T-0050",
+      "title": "The Western Hotel's wagon yard, and the enclosure layer it takes",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0038",
+      "opened": "2026-08-17",
+      "closed": "2026-08-17",
+      "pr": "234",
+      "claimed_by": "run 8/17/2026, 8:59:50 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0051",
+      "title": "The estray pen is a fence, and the model still gives it a roof",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0038",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0052",
+      "title": "Garden pickets and dooryard enclosures on the town's house lots",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0038",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0053",
+      "title": "A patched lit material silently inherits another layer's shader program",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 43
     }
   ]
 }

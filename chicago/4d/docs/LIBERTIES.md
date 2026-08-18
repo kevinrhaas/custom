@@ -234,6 +234,20 @@ November 1833 implies have nowhere to go.
 is the strongest chip this project has, and it sits over a building with no stable within a
 hundred metres of it; the record now declares `geometry: "absent"` and the gate holds that
 declaration to this entry.
+**Revised:** 2026-08-18 — **THE YARD IS DRAWN.** `data/enclosures/western_hotel_wagon_yard.json`
+and `renderers/web/js/enclosures.js` are the enclosure archetype's renderer half, and this entry
+is what asked for them: a perimeter, a fence type and the two attested gateways, with no roof and
+no footprint. The sentence above — "a yard is an enclosure … and `outbuilding` builds a building"
+— is no longer a reason for the yard to be absent from the scene, and standing in the rear of the
+Western Hotel you are now standing inside a fenced yard with a gate onto Canal and a gate onto
+Randolph. **What is NOT resolved, and why this entry stays open.** `western_hotel_stable
+.stable_1834.form.wagon_yard` still declares `geometry: "absent"` and still belongs here, because
+that declaration is about the OUTBUILDING ARCHETYPE'S MESH, which contains no yard and never
+will; the yard is a second record drawn by a second layer. `western_hotel.frame_1834.form.stables`
+is untouched for the same reason. And the fence itself is an invention from end to end — see
+**L127**, which claims it. Clybourn's stockyard and the pig pens the November 1833 town code
+implies are still unbuilt, and the estray pen (**L60**) is still a roofed box: this layer makes
+both of those buildable, and neither is built here.
 
 ### L11 — Western Hotel: one completed phase on a disputed date, rather than a construction phase
 **Decision:** modelled as complete and in operation on 1835-07-01, on the 1834 build date, with
@@ -4676,3 +4690,42 @@ Related: **L22** (wall surfaces are the archetype's, not the record's — this i
 rather than resolved), **L120** (a pale trunk chosen so two trees can be told apart, the same
 invention in the flora), and tickets **T-0048** (this half) and **T-0049** (the board half, which needs the bake).
 **Recorded:** 2026-08-17.
+
+### L127 — The Western Hotel's wagon yard: an attested yard, and a fence nobody described
+**Decision:** the yard behind the Western Hotel is drawn as a **post-and-rail fence, 1.37 m high,
+three rail courses, posts at 2.9 m**, enclosing the ground between the hotel and its stable and
+reaching both street frontages, with a **4.27 m gateway on Canal and another on Randolph**. It is
+drawn by `renderers/web/js/enclosures.js` from `data/enclosures/western_hotel_wagon_yard.json` —
+the first record in this project that carries a perimeter instead of a footprint.
+**Why:** what a source states is one clause. *"In the rear was the large stable and the yard into
+which the trains were driven. There were entrances to the yard from both streets."* That is a
+yard, in a stated place, with two stated gateways, and it is the whole of the evidence. Everything
+else in the paragraph above is invented — and the alternative was the ten days this entry has
+already spent as **L10**, where the yard that *was* the west-side teamsters' house as a visitor
+experienced it was left out of the model entirely because the only archetype that would take it
+built a building.
+**What bounds the invention, since that is what `reconstructed` means here.** The OUTLINE is
+mostly derived rather than chosen: the west line is the hotel's own west wall continued south, the
+south line is the stable's north face, the north line is the hotel's south wall, and each of those
+is a committed coordinate in `data/sidecars/1835/`. The one free coordinate is the east line, and
+it is set by the Randolph gateway rather than picked — the hotel stands on the corner, so a yard
+"in the rear" can only reach Randolph by a neck past the hotel's east gable, and a 14-ft gateway
+with a post either side does not fit in less. The FENCE is invented outright: post-and-rail over
+a worm fence (which needs three metres of ground either side and would not fit between a hotel and
+its stable) and over close boarding (which would make the yard a room, where the source's picture
+is of teams driven in off the street); 4 ft 6 in because a yard fence turns a team and does not
+have to hold a horse that means to leave — that is the pound's job, and the pound is on the public
+square; three courses because that is what fills 4 ft 6 in; 2.9 m because that is the span a sawn
+rail carries. Not one of those numbers is attested and the record says so on every one of them.
+**Consequence:** a visitor standing behind the Western Hotel sees a specific fence, and no source
+describes any fence there. The confidence view is the honest counterweight and it is wired: every
+vertex of this layer is graded `reconstructed`, so hiding that level removes the whole fence and
+leaves the yard as the sources leave it — an open piece of ground between two buildings. **The
+ground inside the fence is not drawn.** A yard that wagon trains entered daily was not prairie
+sward, and it is still prairie sward here, because nothing states whether it was worn earth,
+gravel, plank or mud and a wear pattern is not something this record can bound. That is the
+larger of the two admissions and it is deliberately left standing rather than guessed.
+**How to resolve:** a Chicago or Cook County fence ordinance of the 1830s would settle the height
+and the courses in one line — a lawful-fence specification is exactly the kind of thing such an
+order carries; an insurance or tax description of the lot would settle the rest.
+**Recorded:** 2026-08-18.

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 175, title: 'The Western Hotel\u2019s wagon yard is a yard again', kind: 'feature', ts: '2026-08-18T01:58:35.780Z', date: 'Aug 17, 2026, 8:58 PM CT',
+    items: [
+      '\u201cIn the rear was the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.\u201d That one sentence is the west-side teamsters\u2019 house as anybody who used it would have described it \u2014 and until today the model showed a hotel standing in open prairie.',
+      'There is a yard behind the Western Hotel now: a three-rail fence about four and a half feet high, running from the hotel\u2019s back wall down to its stable, with a gateway onto Canal Street and another onto Randolph. Come round the east end of the hotel and you walk in through the second one.',
+      'Its shape is mostly not ours. The west line is the hotel\u2019s own wall carried south and the south line is the stable\u2019s front, both off coordinates already in the dataset; and the gateways can only be where they are, because the hotel sits on the corner, so a yard behind it reaches Randolph by a neck past the east gable or not at all.',
+      'The fence itself is invented from end to end and says so. No source describes any fence here \u2014 not its kind, its height, its rails or its posts \u2014 so every stick is graded as our reconstruction. Switch \u201creconstructed\u201d off in the confidence view and the whole fence goes, leaving the open ground the sources leave.',
+      'What is still missing is worth naming. Inside a yard that took wagon trains daily the ground is still drawn as meadow grass, because nothing says what it was worn down to; you walk through the fence rather than round it; and the town\u2019s other enclosures \u2014 the estray pen, still drawn as a roofed box, and Clybourn\u2019s stockyard \u2014 are not built. This is the layer they get built on.',
+    ] },
   { v: 174, title: 'No two buildings in the town are the same colour', kind: 'feature', ts: '2026-08-17T23:48:43.178Z', date: 'Aug 17, 2026, 6:48 PM CT',
     items: [
       'Until today the town was painted by archetype: every frame house took one brown, every log wall another, so two neighbours built to the same pattern were the same colour to the last decimal. Ten pairs of buildings standing within sight of each other were drawn identically. None are now.',

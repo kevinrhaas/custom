@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-18 — the Western Hotel's wagon yard, and the first enclosure this project can draw
+
+**T-0038 (piece 1 of 4 of T-0003, legacy K5).** `docs/LIBERTIES.md` **L10** and **L60** have been
+waiting on the same missing thing since 2026-08-09 and 2026-08-11, and both name it in the same
+words: *"an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated, taking a perimeter
+rather than a footprint."* Without it the Western Hotel's yard — the thing the west-side teamsters'
+house actually WAS to anybody who used it — was left out of the model entirely, and Chicago's first
+public building, a pound, is drawn as a roofed shed because the only archetype that would take a low
+walled rectangle cannot build a roofless one.
+
+**What shipped is the renderer half of that archetype, and it needs no bake.** An enclosure carries
+a polyline, a fence type, a height and its gateways, so `renderers/web/js/enclosures.js` builds it
+at load from `data/enclosures/` the way `streets.js` builds a wagon track — no GLB, no `assets/`,
+nothing for the nightly. The whole layer is **one draw call**; the fence drapes on
+`terrain.surfaceHeight()` at every post and refuses a post whose foot is in the river mask; every
+vertex carries `_confidence`, so hiding `reconstructed` removes the fence and leaves the ground the
+sources leave.
+
+**The population is one record and it is the attested one.** `western_hotel_wagon_yard` — 23 posts,
+two runs, two gateways — off one clause: *"In the rear was the large stable and the yard into which
+the trains were driven. There were entrances to the yard from both streets."*
+
+**Three things this run had to be honest about.**
+
+1. **The outline is mostly derived and the fence is entirely invented, and those are different
+   grades.** The west line is the hotel's own west wall carried south, the south line is the
+   stable's north face, both off committed sidecar coordinates; the east line is the single free
+   coordinate and is set by the Randolph gateway rather than picked, because the hotel stands on the
+   corner and a yard behind it can reach Randolph only by a neck past its east gable. The fence
+   type, height, courses, post rhythm and section are invented outright and are claimed in **L127**.
+2. **The ground inside the yard is not drawn, and is the larger residual.** A yard that took wagon
+   trains daily was not prairie sward and it is still prairie sward here, because nothing states
+   whether it was worn earth, gravel, plank or mud. Left standing rather than guessed.
+3. **A latent renderer trap was found by walking into it, and it cost most of the run.** The first
+   build drew a perfectly correct fence in SOLID BLACK at both viewports, in full sun, with no page
+   error and no shader warning. three caches a compiled program under a key ending in
+   `material.customProgramCacheKey()`, whose default is `onBeforeCompile.toString()` — the hook's
+   SOURCE TEXT, not the closure. Every material `confidence.patch()` touches therefore reports the
+   same key, so a plain patched `MeshStandardMaterial` is parameter-for-parameter the twin of a
+   mapless building material out of `buildings.js` and was handed that layer's program, which reads
+   per-vertex `_roughness` and facade-tone attributes this geometry never bound. Unpatching the
+   material lit it perfectly, which is exactly what made the cause hard to see. Fixed here with the
+   layer's own cache key; **the general trap is not fixed and is filed as its own ticket** — any
+   future layer that patches a plain lit material walks into the same collision.
+
+**What this does NOT do.** `western_hotel_stable.stable_1834.form.wagon_yard` still declares
+`geometry: "absent"` and still belongs to L10: that declaration is about the outbuilding archetype's
+mesh, which contains no yard and never will. The estray pen is still a roofed box, Clybourn's
+stockyard is still unbuilt, and the pig pens the November 1833 town code implies still have nowhere
+to go. All three are now buildable on this layer and none is built here.
+
+**Verification.** `tools/check.sh` green. `tools/smoke_renderer.mjs` gained five assertions for the
+layer — it draws its records, it is one draw call, every vertex is graded, no member stands outside
+its own authored run, and the fence CHANGES THE FRAME from inside the yard — and all five pass at
+390×780 and at 1280×800.
+
 ## Shipped 2026-08-17 — no two buildings in the town are drawn the same colour
 
 **T-0048 (the tone half of T-0002, legacy K4).** The owner's report was that the buildings "read as

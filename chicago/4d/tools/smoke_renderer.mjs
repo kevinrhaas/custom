@@ -855,6 +855,90 @@ for (const [label, viewport, touch] of [
       `placed y ${anchored.y?.toFixed(2)}, bed ${anchored.bed?.toFixed(2)} m, `
       + `terrain anchor would give ${anchored.terrainAnchor?.toFixed(2)} m`);
 
+    // --- the enclosure layer (T-0038) ---------------------------------------
+    //
+    // A fence is the first thing this project has drawn from a PERIMETER rather
+    // than a footprint, and it is drawn by the renderer rather than baked, so
+    // every one of these questions is answerable here and nowhere else. The last
+    // one is the acceptance clause of its ticket: not "the data loaded" but "you
+    // can see it from where a visitor stands".
+    const encl = await page.evaluate(() => {
+      const e = window.__chicago4d.enclosures;
+      const mesh = e?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const box = { minE: Infinity, maxE: -Infinity, minN: Infinity, maxN: -Infinity };
+      for (const r of e?.records ?? []) {
+        for (const run of r.runs ?? []) {
+          for (const [pe, pn] of run.path_local_enu_m ?? []) {
+            box.minE = Math.min(box.minE, pe); box.maxE = Math.max(box.maxE, pe);
+            box.minN = Math.min(box.minN, pn); box.maxN = Math.max(box.maxN, pn);
+          }
+        }
+      }
+      let worst = 0;
+      if (g) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e0 = pos.getX(i);
+          const n0 = -pos.getZ(i);
+          worst = Math.max(worst,
+            box.minE - e0, e0 - box.maxE, box.minN - n0, n0 - box.maxN);
+        }
+      }
+      const conf = g?.getAttribute('_confidence');
+      let ungraded = 0;
+      if (conf) for (let i = 0; i < conf.count; i++) {
+        if (!(conf.getX(i) >= 0 && conf.getX(i) <= 1)) ungraded++;
+      }
+      return {
+        census: e?.census ?? null,
+        meshes: e?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf, ungraded,
+        outsideRuns: Number.isFinite(worst) ? worst : null,
+        ids: (e?.records ?? []).map((r) => r.id),
+      };
+    });
+    check(`${label}: the enclosure layer draws its records`,
+      encl.census?.enclosures >= 1 && encl.census?.posts > 0 && encl.verts > 0,
+      `${encl.census?.enclosures} enclosure(s), ${encl.census?.posts} posts, `
+      + `${encl.verts} vertices, ${encl.census?.dropped} member(s) refused, `
+      + `ids [${encl.ids.join(', ')}]`);
+    check(`${label}: the whole enclosure layer is one draw call`,
+      encl.meshes === 1, `${encl.meshes} mesh(es) in the group`);
+    // Unmarked geometry rendering as though it were evidence is the one failure
+    // the confidence view exists to prevent, and a layer built in JS can put a
+    // vertex on screen without ever passing through the GLB contract that would
+    // have caught it.
+    check(`${label}: every fence vertex carries a confidence grade`,
+      encl.hasConfidence && encl.ungraded === 0,
+      `attribute ${encl.hasConfidence ? 'present' : 'MISSING'}, ${encl.ungraded} out of range`);
+    // The fence stands where the record puts it. The tolerance is the post's own
+    // half-section plus a rail's, which is the most a member can legitimately
+    // overhang the line its own centre is authored on.
+    check(`${label}: no fence member stands outside its own authored run`,
+      encl.outsideRuns !== null && encl.outsideRuns <= 0.15,
+      `worst overhang ${encl.outsideRuns?.toFixed(3)} m beyond the authored extent`);
+
+    // AND IT READS. Stand in the Western Hotel's yard, hold the clock so the
+    // grass cannot supply the difference, and compare the frame with the layer
+    // hidden. A fence nobody can see from the ground is the visible-progress
+    // rule's own failure case, so it is asserted rather than described.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: -127.7, local_n: -292 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const yardWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const yardWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dYard = signatureDistance(yardWith, yardWithout);
+    check(`${label}: the yard fence reaches the screen from inside the yard`,
+      dYard.worst >= 6 && dYard.mean >= 0.3,
+      `cell delta mean ${dYard.mean?.toFixed(2)}, worst ${dYard.worst} (need worst>=6)`);
+
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);
