@@ -24,7 +24,10 @@
  *    generalised it to two dozen boards, and it generalises again with force:
  *    nothing this project holds says what was in any barrel in Chicago on this
  *    date, still less whose it was.
- *  * It is ONE draw call for the whole layer, like the fences and the boards.
+ *  * It is ONE draw call for the whole layer, like the fences and the boards —
+ *    and it stayed one draw call when the canvas arrived. A tilt is not timber
+ *    and must not read as timber, so the layer carries a per-vertex colour and
+ *    keeps a single material, rather than growing a second mesh for one arch.
  *  * It marks itself. Every vertex carries `_confidence` at `reconstructed`,
  *    because the FACT of goods on these frontages is reconstructed — the
  *    weakest thing deciding that the vertex exists at all. So the whole layer
@@ -33,6 +36,11 @@
  *  * It answers a pick. A barrel belongs to the business whose door it stands
  *    at, so clicking it opens that business's card — the same contract the
  *    signboards keep.
+ *  * It draws A ROOF, once: the open-sided wagon shed at the Green Tree's yard
+ *    end (T-0081), posts and plates and a lean-to over a covered wagon. It is
+ *    still not a structure record and still not baked — it is derived from that
+ *    inn's committed footprint the way a fence is derived from a perimeter — and
+ *    the record argues which wall and how big. This file only draws it.
  *  * It draws NO PEOPLE, and the bench at the Green Tree is where that bites.
  *    The Trowbridge view of that inn shows a bench of SITTERS against its front
  *    wall; AGENTS.md's standing constraint is not relaxed by a plate, so what is
@@ -75,6 +83,23 @@ const TONGUE_T_M = 0.055;
  */
 const GOODS_COLOUR = 0x8a7a5f;
 
+/**
+ * And the tilt's canvas, which is the one thing on this layer that is not wood.
+ * A wagon cover of the period is hemp or cotton duck, weathered and grey-buff
+ * rather than white — white canvas at noon would be the brightest thing in the
+ * town. Carried as a VERTEX COLOUR so the layer keeps one material and one draw
+ * call: `mat.color` is left white and every vertex is tinted, which is also why
+ * `THREE.Color` is used to convert (the attribute is read in the working colour
+ * space, so an sRGB hex pushed raw would be visibly wrong).
+ */
+const CANVAS_COLOUR = 0xbfb49b;
+
+/** The tilt: how many facets the canvas arch is drawn with. */
+const TILT_SEGS = 8;
+
+/** The shed's roof boards, as thick as a board and no thicker. */
+const DECK_T_M = 0.04;
+
 /* -------------------------------------------------------------------------- */
 /* primitives                                                                  */
 /* -------------------------------------------------------------------------- */
@@ -111,6 +136,7 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
         buf.pos.push(p[i][0], p[i][1], p[i][2]);
         buf.nrm.push(n[0], n[1], n[2]);
         buf.conf.push(level);
+        buf.col.push(buf.tint[0], buf.tint[1], buf.tint[2]);
       }
     }
   }
@@ -121,6 +147,51 @@ function tri(buf, a, b, c, n, level) {
     buf.pos.push(p[0], p[1], p[2]);
     buf.nrm.push(n[0], n[1], n[2]);
     buf.conf.push(level);
+    // `buf.tint` is the colour the caller is currently drawing in, in the
+    // renderer's working colour space. Every primitive on this layer goes
+    // through here or through `pushBox`, so nothing can be emitted untinted.
+    buf.col.push(buf.tint[0], buf.tint[1], buf.tint[2]);
+  }
+}
+
+/**
+ * A box given as a centre and three half-edge vectors, for the timber `pushBox`
+ * cannot draw: a rafter and a roof deck are SLOPED, and `pushBox`'s long axis is
+ * horizontal by construction. The three vectors must be mutually perpendicular —
+ * every caller builds them from one cross product, so they are.
+ */
+function pushBoxV(buf, c, ea, eb, ec0, level) {
+  // A box is symmetrical in each of its three axes, so flipping one half-edge
+  // changes nothing about the solid — and it is what makes the winding below
+  // right whichever way round a caller happened to build its frame.
+  const hand = (ea[1] * eb[2] - ea[2] * eb[1]) * ec0[0]
+    + (ea[2] * eb[0] - ea[0] * eb[2]) * ec0[1]
+    + (ea[0] * eb[1] - ea[1] * eb[0]) * ec0[2];
+  const ec = hand < 0 ? [-ec0[0], -ec0[1], -ec0[2]] : ec0;
+  const unit = (v) => {
+    const L = Math.hypot(v[0], v[1], v[2]) || 1;
+    return [v[0] / L, v[1] / L, v[2] / L];
+  };
+  const P = (a, b, d) => [
+    c[0] + ea[0] * a + eb[0] * b + ec[0] * d,
+    c[1] + ea[1] * a + eb[1] * b + ec[1] * d,
+    c[2] + ea[2] * a + eb[2] * b + ec[2] * d,
+  ];
+  const na = unit(ea);
+  const nb = unit(eb);
+  const nc = unit(ec);
+  const neg = (v) => [-v[0], -v[1], -v[2]];
+  const faces = [
+    [P(1, -1, -1), P(1, 1, -1), P(1, 1, 1), P(1, -1, 1), na],
+    [P(-1, 1, -1), P(-1, -1, -1), P(-1, -1, 1), P(-1, 1, 1), neg(na)],
+    [P(-1, 1, -1), P(-1, 1, 1), P(1, 1, 1), P(1, 1, -1), nb],
+    [P(-1, -1, 1), P(-1, -1, -1), P(1, -1, -1), P(1, -1, 1), neg(nb)],
+    [P(-1, -1, 1), P(1, -1, 1), P(1, 1, 1), P(-1, 1, 1), nc],
+    [P(1, -1, -1), P(-1, -1, -1), P(-1, 1, -1), P(1, 1, -1), neg(nc)],
+  ];
+  for (const [a, b, d, e, n] of faces) {
+    tri(buf, a, b, d, n, level);
+    tri(buf, a, d, e, n, level);
   }
 }
 
@@ -263,6 +334,58 @@ function pushWheel(buf, cx, cy, cz, axle, radius, level) {
     level);
 }
 
+/**
+ * THE TILT — the covered wagon's canvas, drawn as an elliptical arch swept along
+ * the body. `cy` is the springing line (the body's top rail), `rise` the canvas's
+ * height over it and `halfW` its half-width, so the section is the ellipse the
+ * bows make and not a half-round, which is what a tilt actually is.
+ *
+ * IT IS DRAWN TWICE, front and back, and that is deliberate. A canvas is a
+ * surface with no thickness worth drawing, so a single-sided sweep would vanish
+ * from inside the shed the moment a visitor walked under it — and this layer has
+ * ONE material, which it keeps, so `side: DoubleSide` is not available without
+ * making every barrel on the layer double-sided too. Sixteen extra triangles is
+ * the cheaper answer.
+ *
+ * The ends are left OPEN. The record says why: a gathered canvas end is a shape
+ * nothing this project holds can state, and the plate shows the arch.
+ */
+function pushTilt(buf, cx, cy, cz, fx, fz, sx, sz, halfLen, halfW, rise, level) {
+  const at = (seg, end) => {
+    const t = (seg / TILT_SEGS) * Math.PI;
+    const across = halfW * Math.cos(t);
+    const up = rise * Math.sin(t);
+    const along = end * halfLen;
+    return [
+      cx + fx * along + sx * across,
+      cy + up,
+      cz + fz * along + sz * across,
+    ];
+  };
+  // The outward normal of an ellipse at parameter t, which is NOT its radius.
+  const normalAt = (seg) => {
+    const t = (seg / TILT_SEGS) * Math.PI;
+    const na = (Math.cos(t) / halfW);
+    const nb = (Math.sin(t) / rise);
+    const L = Math.hypot(na, nb) || 1;
+    return [(sx * na) / L, nb / L, (sz * na) / L];
+  };
+  for (let i = 0; i < TILT_SEGS; i += 1) {
+    const a = at(i, -1);
+    const b = at(i, 1);
+    const c = at(i + 1, 1);
+    const d = at(i + 1, -1);
+    const n0 = normalAt(i);
+    const n1 = normalAt(i + 1);
+    const n = [(n0[0] + n1[0]) / 2, (n0[1] + n1[1]) / 2, (n0[2] + n1[2]) / 2];
+    tri(buf, a, b, c, n, level);
+    tri(buf, a, c, d, n, level);
+    const flip = [-n[0], -n[1], -n[2]];
+    tri(buf, a, c, b, flip, level);
+    tri(buf, a, d, c, flip, level);
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* the objects                                                                 */
 /* -------------------------------------------------------------------------- */
@@ -386,6 +509,120 @@ function buildWagon(buf, wagon, form, terrain, level, problems) {
   pushBox(buf, x + fx * midAlong, midY, z + fz * midAlong, fx, fz,
     form.wagonTongue / 2, TONGUE_T_M / 2,
     Math.max(TONGUE_T_M / 2, (rootY - tipY) / 2), level);
+  // AND THE TILT, on the wagons the record marks covered. The canvas springs
+  // from the body's top rail, is pulled a little past the end bows, and is the
+  // only thing on this layer drawn in something other than the timber tone.
+  if (wagon.tilt) {
+    const [rise, over] = form.wagonTilt;
+    buf.tint = buf.canvas;
+    pushTilt(buf, x, bed + H, z, fx, fz, sx, sz, L / 2 + over, W / 2, rise, level);
+    buf.tint = buf.timber;
+  }
+  return true;
+}
+
+/**
+ * THE OPEN-SIDED WAGON SHED. A lean-to spiked to a wall: a plate on that wall at
+ * `head_m`, a plate on posts at `eave_m` out at `depth_m`, rafters between them
+ * and a boarded deck over the lot. Three sides open, which is what makes it a
+ * wagon shed and not an outbuilding — and what lets a visitor see the covered
+ * wagon standing in it.
+ *
+ * EVERY NUMBER COMES FROM THE RECORD. The bay, the depth, the two plate heights
+ * and the bearing are the record's claims; how many posts hold the front and how
+ * many rafters cross it are this file's, the same division the barrel's stave
+ * count and the wheel's spokes already make.
+ */
+function buildShed(buf, shed, form, terrain, level, problems) {
+  const at = shed.at_local_enu_m;
+  if (!Array.isArray(at) || at.length !== 2) return false;
+  const base = groundAt(terrain, at[0], at[1]);
+  if (base === null) {
+    problems.push(`yard: ${shed.id} has no ground under it — no shed is drawn`);
+    return false;
+  }
+  const len = shed.length_m ?? 0;
+  const depth = shed.depth_m ?? 0;
+  const eave = shed.eave_m ?? 0;
+  const head = shed.head_m ?? 0;
+  if (!(len > 0 && depth > 0 && head > eave && eave > 0)) {
+    problems.push(`yard: ${shed.id} is not a shed the record can draw — it is skipped`);
+    return false;
+  }
+  const [post, plate] = form.shedTimber;
+  const b = ((shed.bearing_deg ?? 0) * Math.PI) / 180;
+  // Same frame as every other object here: along the wall is (cos b, sin b) in
+  // world XZ and out of the wall is (sin b, -cos b).
+  const ax = Math.cos(b);
+  const az = Math.sin(b);
+  const ox = Math.sin(b);
+  const oz = -Math.cos(b);
+  const x = at[0];
+  const z = -at[1];
+  // The wall face and the open front, either side of the record's own centre.
+  const wallOff = -depth / 2;
+  const frontOff = depth / 2;
+  const P = (along, out, y) => [
+    x + ax * along + ox * out, base + y, z + az * along + oz * out,
+  ];
+
+  // ---- the posts under the open side ------------------------------------- //
+  // One at each end of the bay and enough between them that no span of the
+  // plate exceeds 2.5 m, which is as far as a plate of this section carries.
+  const posts = Math.max(2, Math.ceil(len / 2.5) + 1);
+  for (let i = 0; i < posts; i += 1) {
+    const along = -len / 2 + (i * len) / (posts - 1);
+    // Set in by half their own thickness so the plate lands on them square.
+    const a2 = Math.max(-len / 2 + post / 2, Math.min(len / 2 - post / 2, along));
+    const p = P(a2, frontOff - post / 2, (eave - plate) / 2);
+    pushBox(buf, p[0], p[1], p[2], ax, az, post / 2, post / 2,
+      (eave - plate) / 2, level);
+  }
+  // ---- the two plates ----------------------------------------------------- //
+  const front = P(0, frontOff - post / 2, eave - plate / 2);
+  pushBox(buf, front[0], front[1], front[2], ax, az, len / 2, post / 2,
+    plate / 2, level);
+  const wall = P(0, wallOff + plate / 2, head - plate / 2);
+  pushBox(buf, wall[0], wall[1], wall[2], ax, az, len / 2, plate / 2,
+    plate / 2, level);
+
+  // ---- the rafters and the deck over them --------------------------------- //
+  // The slope, from the wall plate down to the front plate. `run` is the ground
+  // it covers and `drop` the fall over it; both come from the record.
+  const run = depth - post / 2 - plate / 2;
+  const drop = head - eave;
+  const sLen = Math.hypot(run, drop);
+  const su = [(ox * run) / sLen, -drop / sLen, (oz * run) / sLen];
+  // The roof's own normal: across the slope and across the bay, pointing up.
+  let rn = [az * su[1] * -1, az * su[0] - ax * su[2], ax * su[1]];
+  const rl = Math.hypot(rn[0], rn[1], rn[2]) || 1;
+  rn = [rn[0] / rl, rn[1] / rl, rn[2] / rl];
+  if (rn[1] < 0) rn = [-rn[0], -rn[1], -rn[2]];
+  const mid = P(0, (wallOff + plate / 2 + frontOff - post / 2) / 2,
+    (head + eave) / 2 - plate);
+  const rafters = Math.max(2, Math.round(len) + 1);
+  for (let i = 0; i < rafters; i += 1) {
+    const along = -len / 2 + (i * len) / (rafters - 1);
+    const a2 = Math.max(-len / 2 + plate / 4, Math.min(len / 2 - plate / 4, along));
+    const c = [mid[0] + ax * a2, mid[1], mid[2] + az * a2];
+    pushBoxV(buf, c,
+      [su[0] * (sLen / 2), su[1] * (sLen / 2), su[2] * (sLen / 2)],
+      [ax * (plate / 4), 0, az * (plate / 4)],
+      [rn[0] * (plate / 2), rn[1] * (plate / 2), rn[2] * (plate / 2)], level);
+  }
+  // The boarded deck: over the rafters, overhanging the front plate so the drip
+  // clears the posts, and a hand's width past each end of the bay.
+  const over = 0.2;
+  const deckC = [
+    mid[0] + su[0] * (over / 2) + rn[0] * (plate / 2 + DECK_T_M / 2),
+    mid[1] + su[1] * (over / 2) + rn[1] * (plate / 2 + DECK_T_M / 2),
+    mid[2] + su[2] * (over / 2) + rn[2] * (plate / 2 + DECK_T_M / 2),
+  ];
+  pushBoxV(buf, deckC,
+    [su[0] * (sLen / 2 + over / 2), su[1] * (sLen / 2 + over / 2),
+      su[2] * (sLen / 2 + over / 2)],
+    [ax * (len / 2 + 0.15), 0, az * (len / 2 + 0.15)],
+    [rn[0] * (DECK_T_M / 2), rn[1] * (DECK_T_M / 2), rn[2] * (DECK_T_M / 2)], level);
   return true;
 }
 
@@ -418,6 +655,8 @@ function readForm(record) {
     wagonTongue: 2.75,
     bench: v('bench_size_m', [1.83, 0.36, 0.46]),
     benchPlank: v('bench_plank_m', 0.045),
+    wagonTilt: v('wagon_tilt_m', [1.1, 0.12]),
+    shedTimber: v('shed_timber_m', [0.14, 0.16]),
   };
 }
 
@@ -437,8 +676,9 @@ export async function createYardGoods({
     frontages: [],
     wagons: [],
     benches: [],
+    sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
-      benches: 0, refused: 0 },
+      benches: 0, sheds: 0, refused: 0 },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -464,7 +704,22 @@ export async function createYardGoods({
     } catch (err) { return [y.id, null, err.message]; }
   }));
 
-  const buf = { pos: [], nrm: [], conf: [] };
+  /**
+   * THE TINT IS PART OF THE BUFFER, not of the material. One material, one draw
+   * call, and a per-vertex colour is what lets the tilt's canvas be canvas
+   * without a second mesh — `buf.tint` is whatever the current primitive is
+   * being drawn in and every push reads it. Converted through `THREE.Color`
+   * because the attribute is read in the renderer's working colour space and
+   * these constants are sRGB hexes.
+   */
+  const timber = new THREE.Color(GOODS_COLOUR);
+  const canvasTone = new THREE.Color(CANVAS_COLOUR);
+  const buf = {
+    pos: [], nrm: [], conf: [], col: [],
+    timber: [timber.r, timber.g, timber.b],
+    canvas: [canvasTone.r, canvasTone.g, canvasTone.b],
+    tint: [timber.r, timber.g, timber.b],
+  };
   /**
    * WHICH BUSINESS A TRIANGLE BELONGS TO. The layer is one draw call, so a hit
    * on the mesh knows nothing about which barrel it landed on unless each
@@ -522,6 +777,19 @@ export async function createYardGoods({
       out.census.benches += 1;
       out.census.objects += 1;
     }
+    for (const shed of record.sheds ?? []) {
+      const from = buf.pos.length / 9;
+      if (!buildShed(buf, shed, form, terrain, LEVEL[shed.confidence] ?? level,
+        problems)) continue;
+      // Same pick contract as the wagons and the bench: the shed at an inn's
+      // yard end belongs to that inn, so aiming at it opens the inn's card.
+      if (shed.belongs_to) {
+        spans.push({ id: shed.belongs_to, from, to: buf.pos.length / 9 });
+      }
+      out.sheds.push(shed);
+      out.census.sheds += 1;
+      out.census.objects += 1;
+    }
   }
   if (!buf.pos.length) {
     if (out.census.records) {
@@ -534,10 +802,17 @@ export async function createYardGoods({
   geo.setAttribute('position', new THREE.Float32BufferAttribute(buf.pos, 3));
   geo.setAttribute('normal', new THREE.Float32BufferAttribute(buf.nrm, 3));
   geo.setAttribute('_confidence', new THREE.Float32BufferAttribute(buf.conf, 1));
+  geo.setAttribute('color', new THREE.Float32BufferAttribute(buf.col, 3));
   geo.computeBoundingSphere();
 
+  /**
+   * White, and the colour comes off the geometry. `<color_fragment>` multiplies
+   * the vertex colour into the diffuse, and `confidence.patch()` tints AFTER
+   * that include — so the amber of the confidence view still reads on a canvas
+   * tilt exactly as it does on a barrel.
+   */
   const mat = new THREE.MeshStandardMaterial({
-    color: new THREE.Color(GOODS_COLOUR), roughness: 0.88, metalness: 0.0,
+    color: 0xffffff, vertexColors: true, roughness: 0.88, metalness: 0.0,
   });
   mat.name = 'yard-goods-timber';
   confidence?.patch(mat);
