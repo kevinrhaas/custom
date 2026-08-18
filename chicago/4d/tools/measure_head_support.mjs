@@ -24,9 +24,16 @@
  * The arithmetic, all of it copied from `flora.js` so the two cannot drift:
  *
  *   fade(ring, d)    = clamp01((ring.x - d) / ring.y) * innerRamp   (the GLSL)
- *   plant top        = y + height * fade(plantRing, d)
- *   head origin      = matrix translation, lowered by rise * (1 - fade(headRing, d))
- *   stalk foot       = head origin + M * (0, minY(archetype) * size * fade, 0)
+ *   drawn?           = fade > 0
+ *   plant top        = y + height                      (T-0035: no height ramp)
+ *   head origin      = the matrix translation, and nothing lowers it
+ *   stalk foot       = head origin + M * (0, minY(archetype) * size, 0)
+ *
+ * Until T-0035 the ring ramp scaled the geometry and every line above carried a
+ * `* fade`: a plant was drawn at `fade` of its height, a head's origin was
+ * lowered by `rise * (1 - fade)` to keep it on the shrinking stem, and this file
+ * reproduced both. The ramp is COVERAGE now — `flora.js` § `heightOf` — so a
+ * drawn plant is drawn whole and the descent has nothing left to chase.
  *
  * The stalk foot is read off the ARCHETYPE — the lowest vertex of the geometry
  * the set is drawn with — rather than assumed, so the same measurement reads a
@@ -238,11 +245,12 @@ function audit() {
     for (const p of read(m)) {
       const d = Math.hypot(p.x - camX, p.z - camZ);
       const f = fadeOf(p.ring[0], p.ring[1], p.ring[2], p.ring[3], d);
-      const top = p.y + p.h * f;
+      if (f <= 0) continue;
+      const top = p.y + p.h;
       // The drawn body's horizontal reach: the archetypes are built in a unit
       // box and the shader scales xz by `aFlora.y`, so `spread` IS the radius
-      // of the leafy envelope, shrunk by the same fade.
-      const rec = { x: p.x, z: p.z, top, set: m.name, h: p.h, r: p.spread * f, fade: f };
+      // of the leafy envelope — at its whole size, since T-0035.
+      const rec = { x: p.x, z: p.z, top, set: m.name, h: p.h, r: p.spread, fade: f };
       plants++;
       const kx = Math.floor(p.x / CELL); const kz = Math.floor(p.z / CELL);
       const key = `${kx},${kz}`;
@@ -309,13 +317,14 @@ function audit() {
       drawn++;
       const size = p.h;
       // The stalk foot, through the instance matrix's own +Y column (which is
-      // where the per-instance tilt lives), then the shader's world-space
-      // descent. `nominalFoot` is signed, so this one expression covers a head
-      // anchored at its flower and a head anchored at its foot.
-      const stalk = nominalFoot * size * f;
-      const drop = p.rise * (1 - f);
+      // where the per-instance tilt lives). `nominalFoot` is signed, so this one
+      // expression covers a head anchored at its flower and a head anchored at
+      // its foot. `p.rise` is still read off the instance and still reported —
+      // it is how far this origin stands over its plant's base — but since
+      // T-0035 nothing lowers the head by any part of it.
+      const stalk = nominalFoot * size;
       const fx = p.x + p.uy[0] * stalk;
-      const fy = p.y + p.uy[1] * stalk - drop;
+      const fy = p.y + p.uy[1] * stalk;
       const fz = p.z + p.uy[2] * stalk;
       const candidates = under(fx, fz);
       let best = -Infinity; let bestSet = null;

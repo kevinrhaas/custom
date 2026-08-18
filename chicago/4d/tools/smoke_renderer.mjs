@@ -4528,12 +4528,48 @@ const terrainLoad = await page.evaluate(() => {
       let arrivals = 0;
       let worst = 0;
       let worstAt = null;
+      // T-0035. The owner's second report on this ring: the flowers "do not fade
+      // in as you walk towards, they grow up". The first report was answered by
+      // making the ramp smoother; this one is answered by taking it off the
+      // geometry, so the reading that settles it is the DRAWN HEIGHT of a plant
+      // over the same walk. Two numbers, and neither is asked of ARRIVALS only:
+      // the inset means a plant arrives at coverage zero, so an arrival-only
+      // reading of its height would be asked of a plant that is not yet drawn
+      // and would pass on anything. So: the shortest any plant is drawn at in
+      // any frame of the walk, over every plant that is drawn at all, and the
+      // most any plant already on screen gains between two frames a pace apart.
+      let shortest = 1;
+      let shortestAt = null;
+      let grew = 0;
+      let grewAt = null;
       for (let k = 0; k < 20; k++) {
         a.walker.teleport({ local_e: prev.e + prev.fe * PACE, local_n: prev.n + prev.fn * PACE });
         a.step();
         const now = snap();
         for (const [key, plant] of now.seen) {
-          if (prev.seen.has(key)) continue;
+          {
+            // Every drawn plant, arriving or not: how much of its own height is
+            // it drawn at, this frame, at this distance?
+            const d0 = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
+            if (a.flora.fadeAt(plant.name, d0, plant.outer) > 0) {
+              const h0 = a.flora.heightAt(plant.name, d0, plant.outer);
+              if (h0 < shortest) { shortest = h0; shortestAt = { set: plant.name, d: d0, h: h0 }; }
+            }
+          }
+          const was = prev.seen.get(key);
+          if (was) {
+            // Already on screen a pace ago, and still here: it may not have got
+            // any taller in between.
+            const dWas = Math.hypot(plant.e - prev.e, plant.n - prev.n) || 1e-6;
+            const dNow = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
+            const hWas = a.flora.heightAt(plant.name, dWas, plant.outer);
+            const hNow = a.flora.heightAt(plant.name, dNow, plant.outer);
+            if (hWas > 0 && hNow - hWas > grew) {
+              grew = hNow - hWas;
+              grewAt = { set: plant.name, from: hWas, to: hNow, d: dNow };
+            }
+            continue;
+          }
           const d = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
           // Only what is in front of the walker. A plant may also arrive across
           // the view-cone edge, which is 62 degrees wide against a frame that is
@@ -4545,7 +4581,8 @@ const terrainLoad = await page.evaluate(() => {
         }
         prev = now;
       }
-      return { inset, arrivals, worst, worstAt, pace: PACE, step: rings.step };
+      return { inset, arrivals, worst, worstAt, shortest, shortestAt, grew, grewAt,
+        drawnSeen: shortestAt !== null, pace: PACE, step: rings.step };
     });
     check(`${label}: every flora fade ring is inset inside its own lattice`,
       popIn.inset.length === 3
@@ -4555,11 +4592,30 @@ const terrainLoad = await page.evaluate(() => {
     // The bound is one pace, not zero: the rebuild fires on the frame that
     // carries the walker past the step, so it can overshoot by however far that
     // one frame moved. 0.15 m of a 2.2 m near band is 7%.
-    check(`${label}: a plant in front of the walker never arrives already grown`,
+    check(`${label}: a plant in front of the walker never arrives already visible`,
       popIn.arrivals >= 20 && popIn.worst <= 0.10,
-      `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst height `
+      `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst coverage `
       + `${(popIn.worst * 100).toFixed(1)}% of full`
       + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
+
+    // T-0035, and it is the owner's report read back off the drawing rather
+    // than off the shader source: "the flowers still seem like they grow out of
+    // the ground as you approach them, they do not fade in as you walk towards,
+    // they grow up." A plant may arrive at any coverage the ring gives it — the
+    // check above is the one that holds that faint — but it may not arrive
+    // SHORT, and it may not gain height between two frames. Both halves matter:
+    // the first would pass on a ramp that starts at 99%, the second would pass
+    // on a scene where nothing ever arrives at all.
+    check(`${label}: a plant is drawn at its own height, faint, never short`,
+      popIn.arrivals >= 20 && popIn.drawnSeen && popIn.shortest === 1 && popIn.grew === 0,
+      `${popIn.arrivals} arrivals; shortest of every drawn plant over the walk `
+      + `${(popIn.shortest * 100).toFixed(1)}% of its own height`
+      + (popIn.shortestAt ? ` (${popIn.shortestAt.set} at ${popIn.shortestAt.d.toFixed(2)} m)` : '')
+      + `; worst gain over one ${popIn.pace} m pace ${(popIn.grew * 100).toFixed(1)}%`
+      + (popIn.grewAt
+        ? ` (${popIn.grewAt.set} ${(popIn.grewAt.from * 100).toFixed(0)} -> `
+          + `${(popIn.grewAt.to * 100).toFixed(0)}% at ${popIn.grewAt.d.toFixed(2)} m)`
+        : ''));
 
     // R-BUG7 — flower heads hanging in the sky with nothing under them. The
     // owner photographed two of them over South Water Street on stalks that
@@ -4585,9 +4641,9 @@ const terrainLoad = await page.evaluate(() => {
        *  for a patch of matrix and carries no head, so counting one as support
        *  is a free pass — it is what made a first cut of this read zero. */
       const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
-      /** Under a twentieth of full size a head is drawn at under two pixels at
-       *  the distances its own ring covers, and the fade has already taken it
-       *  most of the way into the ground. */
+      /** Under a twentieth of coverage the screen-door dither is writing one
+       *  pixel in twenty of a head that is already only a few across at the
+       *  distances its own ring covers. */
       const FADE_FLOOR = 0.05;
       const SLACK = 0.02; // a stem is centimetres thick; float is not a fault
 
@@ -4621,10 +4677,15 @@ const terrainLoad = await page.evaluate(() => {
               const o = i * 16;
               const x = mm[o + 12]; const z = mm[o + 14];
               const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
+              // T-0035: the ring ramp is coverage, not height. A plant is drawn
+              // whole or not at all, so the drawn top and the drawn reach are
+              // the record's own numbers and the ramp only says WHETHER.
+              if (f <= 0) continue;
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]);
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * f, r: fl[i * 4 + 1] * f });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h });
             }
           }
           for (const m of meshes) {
@@ -4640,9 +4701,12 @@ const terrainLoad = await page.evaluate(() => {
               const f = fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz));
               if (f <= FADE_FLOOR) continue;
               drawn++;
-              const s = lo * fl[i * 4] * f;
+              // `rise` is still read back — it is what puts this head over its
+              // plant's base — but the world-space descent that used to subtract
+              // `rise * (1 - fade)` from it is gone with the scale it chased.
+              const s = lo * fl[i * 4];
               const fx = x + mm[o + 4] * s;
-              const fy = y + mm[o + 5] * s - rise[i] * (1 - f);
+              const fy = y + mm[o + 5] * s;
               const fz = z + mm[o + 6] * s;
               let best = -Infinity;
               for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
@@ -4659,7 +4723,8 @@ const terrainLoad = await page.evaluate(() => {
                 unsupported++;
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
-                  worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, orphan: best === -Infinity };
+                  worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
+                    orphan: best === -Infinity };
                 }
               }
             }
@@ -4674,7 +4739,7 @@ const terrainLoad = await page.evaluate(() => {
       + `${headSupport.poses} poses had nothing under the foot of their own stalk`
       + (headSupport.worst
         ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
-          + `foot ${headSupport.worst.y.toFixed(2)} m `
+          + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
         : ''));
 

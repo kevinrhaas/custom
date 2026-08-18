@@ -1,5 +1,43 @@
 # STATUS
 
+## Shipped 2026-08-18 — plants fade in instead of growing out of the ground
+
+**T-0035, an owner report of 2026-08-17:** *"the flowers still seem like they grow out of the ground
+as you approach them, they do not fade in as you walk towards, they grow up."* **"Still" is the
+finding.** This is his second report on the same ring; the first was answered by making the ramp
+smoother rather than by taking it off the geometry, and a smooth growth is still a growth.
+
+**The ring ramp is coverage now, not height.** `renderers/web/js/flora.js` hands it to the fragment
+shader and resolves it with the ordered 4x4 Bayer screen-door dither the confidence view already
+uses on an unevidenced wall — so a plant stands at the height its record gives it from the first
+frame it is drawn at all, and what changes with distance is how much of it is written. Outside the
+ring it collapses to a point rather than rasterising a full-size plant to discard every fragment,
+and each plant offsets its dither threshold by a hash of its own world position so sixteen dither
+levels against a ramp in distance do not read as sixteen rings about the walker.
+
+**What is measured, on the published mirror at 390x780:**
+
+| reading | before | after |
+|---|---|---|
+| shortest drawn plant over a 3 m walk | 0.02 % of its own height | **100.0 %** |
+| height gained by a plant already on screen, per 0.15 m pace | up to the ramp's own slope | **0.0 %** |
+| arrivals over the same walk / worst arrival coverage | — | 53 / **0.0 %** |
+| draw calls · triangles | 41 · 611,823 | **41 · 611,823** |
+
+**What is NOT measured, and it is the honest limit of this.** The gate reads the instance buffers
+and the module's own statement of what the vertex program does with them (`flora.js` § `heightOf`),
+not the pixels. That is the same footing every other flora gate in this suite stands on — `fadeAt`
+has been the shared mirror since the ring was built — and it is load-bearing here rather than
+decorative: `tools/measure_head_support.mjs` and the smoke's R-BUG7 gate scale a plant's top and a
+stalk's foot by the same mirror, so a height ramp reintroduced without changing it breaks them.
+**What no gate here can tell you is whether the stipple LOOKS like a fade**, which is an owner
+check from spawn.
+
+**R-BUG7 survives simpler.** The world-space head descent — a flower head sliding down its own stalk
+to stay on a shrinking plant — is deleted with the scale it existed to chase. `maybeHead`'s clamp
+gives `foot <= plantH` and nothing scales either side of it now; the smoke's every-drawn-head gate
+is unchanged in what it asserts and green.
+
 ## Shipped 2026-08-18 — the front screen counts the town
 
 **T-0036, an owner ask of 2026-08-17:** *"on the front (gate) screen, show the number of buildings
