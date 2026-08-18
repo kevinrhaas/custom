@@ -68,6 +68,14 @@ step "inferred placeholder GLBs match their records" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# The dooryard garden pickets are the first record on the enclosure layer whose evidence
+# is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
+# and no source puts a garden on any lot in this town. So the answer to "why this lot" is
+# a RULE, and a rule that is not re-derived is a list somebody typed: this re-runs it
+# against the committed lots, footprints, functions and households (ROADMAP K5 (a), T-0052).
+step "the dooryard garden pickets re-derive from the rule that chose their lots" \
+  python3 tools/generate_dooryard_pickets.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules

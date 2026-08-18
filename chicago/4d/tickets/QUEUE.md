@@ -44,3 +44,5 @@ T-0037 — The liberties gate reads the whole Evidence panel, so a liberty sayin
 T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
+T-0055 — Hold the Kinzie-view plate as a source record
+T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level

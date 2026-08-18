@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 10:31 PM",
+  "generated_ct": "Aug 18, 2026, 2:24 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -890,7 +890,7 @@
     {
       "id": "T-0052",
       "title": "Garden pickets and dooryard enclosures on the town's house lots",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -900,7 +900,7 @@
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/18/2026, 1:22:26 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
@@ -940,6 +940,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 43
+    },
+    {
+      "id": "T-0055",
+      "title": "Hold the Kinzie-view plate as a source record",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 44
+    },
+    {
+      "id": "T-0056",
+      "title": "The enclosure layer pays its full triangle cost at every scene-detail level",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 45
     }
   ]
 }

@@ -25,6 +25,12 @@
  *    and nothing here is a collision surface — the walker stands on the same
  *    heightfield it always did and walks THROUGH a fence, which is a stated
  *    shortcoming rather than an oversight (see the note in the changelog).
+ *  * It knows two fences. `post_and_rail` is the open horizontal thing the wagon
+ *    yard and the pound are built from: posts, and courses spanning between them.
+ *    `picket` is the Kinzie-view plate's garden fence — the same posts and two
+ *    stringers, closed with a run of vertical pales at the record's own pale width
+ *    and gap. The difference is not decoration: a rail fence turns a team and you see
+ *    the yard through it, and a picket fence keeps poultry out of the vegetables.
  *  * It refuses water. A post whose foot is in the river mask is dropped, the
  *    way `trees.js` refuses a stem below the waterline. A fence marching into
  *    the water would be a claim about a shoreline this layer knows nothing of.
@@ -60,6 +66,14 @@ const RAIL_H_M = 0.13;
  */
 const WOOD = 0x8d8272;
 
+/**
+ * Pale stock, in metres. Same argument as the rail above: a pale's THICKNESS is how a
+ * stick is drawn, where its WIDTH and the gap beside it are the fence's rhythm and
+ * belong to the record — `picket_width_m` and `picket_gap_m` — because they are what
+ * decides whether a visitor is looking at a fence or at a wall.
+ */
+const PALE_T_M = 0.022;
+
 /** A drop this steep between neighbouring posts is a bank, not a yard. */
 const MAX_STEP_M = 1.5;
 
@@ -67,8 +81,15 @@ const MAX_STEP_M = 1.5;
 /* geometry                                                                    */
 /* -------------------------------------------------------------------------- */
 
-/** One box, 12 triangles, flat-shaded from its own face normals. */
-function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
+/**
+ * One box, 12 triangles, flat-shaded from its own face normals — or 10 with
+ * `skipUnderside`, which is what a pale takes. A picket fence is thousands of very
+ * small boxes and the underside of every one of them is buried in the ground it
+ * stands on; at 3 500 pales that face is 7 000 triangles nobody can ever see, and
+ * the scene's `light` detail ceiling is the tightest of the three.
+ */
+function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level,
+                 skipUnderside = false) {
   // `u` is the horizontal unit vector along the box; `v` is horizontal and
   // perpendicular to it. Up is world Y, always: a leaning fence post is a
   // claim about ground this layer does not make.
@@ -91,7 +112,7 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
     [[4, 7, 6], [4, 6, 5], [0, 1, 0]],
     [[0, 1, 2], [0, 2, 3], [0, -1, 0]],
   ];
-  for (const [t1, t2, n] of faces) {
+  for (const [t1, t2, n] of (skipUnderside ? faces.slice(0, 5) : faces)) {
     for (const tri of [t1, t2]) {
       for (const i of tri) {
         buf.pos.push(p[i][0], p[i][1], p[i][2]);
@@ -176,6 +197,9 @@ function buildRecord(buf, record, terrain, problems) {
   const courses = Math.max(1, Math.round(form.rail_courses?.value ?? 3));
   const spacing = Math.max(1, form.post_spacing_m?.value ?? 2.9);
   const postHalf = (form.post_size_m?.value ?? 0.14) / 2;
+  const picket = (form.fence_type?.value ?? 'post_and_rail') === 'picket';
+  const paleW = Math.max(0.02, form.picket_width_m?.value ?? 0.089);
+  const palePitch = paleW + Math.max(0.01, form.picket_gap_m?.value ?? 0.089);
   // The weakest grade on anything that decides where a stick of this fence is.
   // In practice that is the fence type, and no fence type in this dataset is
   // anything but invented; the max is here so the day a source describes one,
@@ -186,6 +210,7 @@ function buildRecord(buf, record, terrain, problems) {
   );
 
   let posts = 0;
+  let pales = 0;
   let dropped = 0;
   for (const run of record.runs ?? []) {
     const path = run.path_local_enu_m;
@@ -232,10 +257,31 @@ function buildRecord(buf, record, terrain, problems) {
         const ux = de / len;
         const uz = -dn / len;
         for (let c = 1; c <= courses; c++) {
-          const h = height * (c / courses) - RAIL_H_M / 2;
+          // On a rail fence the courses ARE the fence, so the top one is the top of
+          // it. On a picket fence they are stringers behind the pales and want to sit
+          // inside the height, or the top rail reads as a cap rail nobody described.
+          const f = picket
+            ? (courses > 1 ? 0.22 + 0.58 * ((c - 1) / (courses - 1)) : 0.55)
+            : c / courses;
+          const h = height * f - RAIL_H_M / 2;
           pushBox(buf,
             (a.e + b.e) / 2, (a.y + b.y) / 2 + h, -(a.n + b.n) / 2,
             ux, uz, len / 2, RAIL_W_M / 2, RAIL_H_M / 2, level);
+        }
+        if (picket) {
+          // The pales, centred on the run line exactly as the posts and rails are.
+          // Nailing them to one face would be more like a real fence and would push
+          // timber off the line the record authored, which is the one thing the
+          // layer's own gate measures; the interpenetration costs nothing on screen.
+          const count = Math.max(1, Math.floor(len / palePitch));
+          const first = (len - (count - 1) * palePitch) / 2;
+          for (let k = 0; k < count; k++) {
+            const f = (first + k * palePitch) / len;
+            pushBox(buf,
+              a.e + de * f, a.y + (b.y - a.y) * f + height / 2, -(a.n + dn * f),
+              ux, uz, paleW / 2, PALE_T_M / 2, height / 2, level, true);
+            pales++;
+          }
         }
       }
     }
@@ -244,7 +290,7 @@ function buildRecord(buf, record, terrain, problems) {
     problems.push(`enclosures: ${record.id} drew nothing — every post stood in water `
       + 'or the record carries no run with two points');
   }
-  return { posts, dropped, firstTri, lastTri: buf.pos.length / 9 };
+  return { posts, pales, dropped, firstTri, lastTri: buf.pos.length / 9 };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -267,7 +313,7 @@ export async function createEnclosures({
 } = {}) {
   const group = new THREE.Group();
   group.name = 'enclosures';
-  const out = { group, records: [], census: { enclosures: 0, posts: 0, dropped: 0 },
+  const out = { group, records: [], census: { enclosures: 0, posts: 0, pales: 0, dropped: 0 },
     // Replaced once there is a mesh to raycast; a layer that drew nothing still
     // answers a pick, with nothing.
     pickAt: () => null,
@@ -314,13 +360,15 @@ export async function createEnclosures({
   const spans = [];
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`enclosures: ${id} — ${why}`); continue; }
-    const { posts, dropped, firstTri, lastTri } = buildRecord(buf, record, terrain, problems);
+    const { posts, pales, dropped, firstTri, lastTri } =
+      buildRecord(buf, record, terrain, problems);
     if (record.structure_id && lastTri > firstTri) {
       spans.push({ id: record.structure_id, from: firstTri, to: lastTri });
     }
     out.records.push(record);
     out.census.enclosures++;
     out.census.posts += posts;
+    out.census.pales += pales;
     out.census.dropped += dropped;
   }
   if (!buf.pos.length) return out;

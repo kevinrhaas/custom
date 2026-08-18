@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 177, title: 'Fenced gardens behind eighteen of the town\u2019s houses', kind: 'feature', ts: '2026-08-18T06:30:21.962Z', date: 'Aug 18, 2026, 1:30 AM CT',
+    items: [
+      'The one picture this project has of a Chicago garden is the Kinzie-view plate: the long low house, a row of Lombardy poplars, and picket-fenced garden plots. The house is on the wrong side of the river and gone before 1835, so it stays out of the scene \u2014 but the fence is a treatment, and the town\u2019s house lots had nothing behind them at all.',
+      'Eighteen of them do now. Walk the back of a block in the South Division and there is a paled garden plot behind the house, about four feet high, close enough set that you read it as a fence rather than a rail, with a gap in the side facing the back door.',
+      'Which houses is a rule, not a hand-picked list, and the rule is the honest part: one building on a platted lot, a dwelling by both its type and its use, and a household recorded as living in it. The Mansion House, the infant school and the Temple Building sit alone on a lot and are not houses. John Wright\u2019s two buildings to let get none \u2014 their own records say the tenant cannot be named.',
+      'Where each fence stands is derived rather than drawn by eye: every corner comes from the committed lot lines and the house\u2019s own footprint. Five more lots asked for one and were refused in writing, because the house already stands at the back of its lot \u2014 one of them seven metres past its own rear line.',
+      'The fences are our invention and say so. Nothing in this project\u2019s sources puts a garden on any lot in this town, so turn \u201creconstructed\u201d off in the confidence view and all eighteen disappear, leaving the houses on open ground.',
+      'Still not drawn: the ground inside them. A kitchen garden is beds and bare earth, and it is meadow grass here, because nothing says what was grown on any lot in Chicago in 1835.',
+    ] },
   { v: 176, title: 'The town pound is a fence again, and its roof is gone', kind: 'feature', ts: '2026-08-18T03:28:56.883Z', date: 'Aug 17, 2026, 10:28 PM CT',
     items: [
       'Chicago\u2019s first public building was the estray pen \u2014 the pound on the south-west corner of the public square, where stray cattle, and for a few months prisoners, were held. Andreas describes it in one clause: \u201ca small wooden enclosure and quite roofless\u201d. Until today this model drew it as a log box with a roof on it.',
