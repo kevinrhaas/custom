@@ -36,6 +36,44 @@ tickets link into them. A ticket is the index card; the box is the file.
    it lands at the **bottom** of QUEUE. Agents never reorder QUEUE; only the owner
    does. That one rule is what makes the owner's priorities durable.
 
+## Sizing: effort is measured in RUNS, and L must be split
+
+The owner asked whether tickets should carry work points, split past a threshold.
+Points are a proxy; the thing they proxy for here is concrete and already binding:
+**can ONE run take this from claim to a merged, gated, visibly-changed `dev`?** A run
+has hard edges — a ~150-minute budget, a 10-minute per-command ceiling the desktop
+smoke does not fit inside, and the bake boundary. So the unit is the run.
+
+| effort | means |
+|---|---|
+| `XS` | part of a run |
+| `S` | one run |
+| `M` | one run, tight — or one run plus a bake |
+| `L` | **more than one run — must be split before it can be claimed** |
+
+**The test is the acceptance clause: if a ticket needs more than one demonstration to
+be done, it is more than one ticket.** `ticket.mjs claim` refuses an `L`, and
+`ticket.mjs check` refuses one sitting in the queue — sizing is the author's job, not
+a problem for whoever picks it up.
+
+```
+node tools/ticket.mjs split T-0003 "first piece" "second piece" [...]
+```
+
+The parent becomes state `split` (the grouping record, out of the queue, keeping the
+full ask and its links) and **the children take its exact place in QUEUE.md** — a split
+clarifies what the work is, it never re-prioritises it.
+
+**This rule was bought, not guessed.** On the loop's first run under this queue it took
+T-0001 (walkable bridges), could only ship the walker-deck half, titled the PR
+`T-0001(1/2)` and left the ticket `claimed` — it invented a notation because the system
+had no way to say "this is two runs".
+
+**Open-ended programmes get a different shape.** A ticket whose scope is "keep going"
+(every remaining block, every landmark plate) is not sizeable at all. Make it **one
+unit**, and put the succession in its acceptance: *the run that closes this files the
+next one's ticket before it closes*. T-0028 is the worked example.
+
 ## States
 
 `open` → `claimed` → `review` (PR open) → `done` · side exits: `blocked-owner`

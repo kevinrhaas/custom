@@ -1,14 +1,15 @@
 ---
 id: T-0006
 title: Image-accuracy passes on the landmark buildings
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
 effort: M
 legacy_id: K2
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-17
 pr: null
 claimed_by: null
 blocked_on: null

@@ -1,13 +1,18 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0001 — A visitor can walk across every bridge, end to end
+T-0046 — Bridge approach earthworks meet the deck at grade
 T-0002 — Weathered facades: unpainted boards, no two buildings alike
-T-0003 — Town furniture: fences, signboards, wagons, porches, docks
+T-0038 — Fences and enclosures: the estray pen, wagon yards, garden pickets
+T-0039 — Signboards on the businesses that attest one
+T-0040 — Wagons, barrels and yard clutter at the taverns and stores
+T-0041 — Wharves, docks and the river landings
 T-0036 — The gate screen counts the town: buildings standing, people housed
 T-0035 — Flowers grow up out of the ground as you approach instead of fading in
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
-T-0006 — Image-accuracy passes on the landmark buildings
+T-0042 — Image-accuracy pass: the Green Tree Tavern
+T-0043 — Image-accuracy pass: the Sauganash
+T-0044 — Image-accuracy pass: the next two landmark plates
 T-0007 — Wire the material sheet into the records: repaint the town
 T-0008 — 199 chimneys are painted roof-colour
 T-0009 — Redraw 29 building bodies out of the roadway
@@ -29,7 +34,7 @@ T-0024 — May the face rule rank a store
 T-0025 — Three records carry the standing constraint and say why nowhere
 T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
-T-0028 — Build out the remaining anonymous blocks
+T-0028 — Build out the NEXT anonymous block (one per run)
 T-0029 — The nightly bake check is red on K38 derivative baselines
 T-0030 — A queue card in Manager reading tickets.json
 T-0031 — Where did the South Water timber belt stand
