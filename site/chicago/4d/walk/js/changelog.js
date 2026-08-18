@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 174, title: 'No two buildings in the town are the same colour', kind: 'feature', ts: '2026-08-17T23:48:43.178Z', date: 'Aug 17, 2026, 6:48 PM CT',
+    items: [
+      'Until today the town was painted by archetype: every frame house took one brown, every log wall another, so two neighbours built to the same pattern were the same colour to the last decimal. Ten pairs of buildings standing within sight of each other were drawn identically. None are now.',
+      'Every building has its own tone — a little lighter or darker, a little warmer or cooler than the one beside it, on its walls, roof, trim and chimney together. Neighbours differ by about ten per cent in shade, which is what a street of separately built, separately weathered houses looks like.',
+      'The older a building is, the more it has silvered. Forty-five of them are old enough to show it, and the fort — nineteen years in the weather by July 1835 — is the greyest thing in the reconstruction. A whitewashed wall greys at half the rate, because lime was renewed; brick and stone do not grey at all.',
+      'The two buildings a source actually describes are left exactly as they were. The Sauganash is the white the sources call it, to the bit, and so is St Mary’s. Where a record says what colour something was, nothing here touches it.',
+      'The rest is our invention and says so on the Evidence card. No source in this project states the colour of any wall in 1835 Chicago, so the shades are reconstructed within a stated range and the reasoning is written down. The buildings the town invented to fill its blocks carry no age, so they are not silvered — that is a gap, not a claim that they are new.',
+      'What has not changed: no board is a different width, no building gained a texture, and the town still draws in a single pass, so nothing runs slower on a phone. Board irregularity is the next half of this job.',
+    ] },
   { v: 173, title: 'You can stand on the North Branch bridge now', kind: 'feature', ts: '2026-08-17T23:12:04.081Z', date: 'Aug 17, 2026, 6:12 PM CT',
     items: [
       'The bridges have always been there to look at. None of them was somewhere you could be: the walker follows the ground, and over the river the ground is a wall at the water\u2019s edge that stops you wading in. Set down on a bridge, you floated about six feet above its planks.',

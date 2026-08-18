@@ -31,6 +31,7 @@
 
 import * as THREE from 'three';
 import { enuToWorld, bearingToYaw, toFloatAttribute } from './terrain.js';
+import { toneFor, toneFactors, NEUTRAL_TONE } from './facades.js';
 
 /** Walk up until something claims a structure_id. Returns null if nothing does. */
 export function structureIdOf(object) {
@@ -136,13 +137,16 @@ function applyExistence(geo, rule) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
-function normalizeGeometry(src, matrix, material, confidence, label) {
+function normalizeGeometry(src, matrix, material, confidence, label, tone) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
 
+  const c = material?.color;
+  const base = [c ? c.r : 1, c ? c.g : 1, c ? c.b : 1];
+  const factors = toneFactors(base[0], base[1], base[2], tone ?? NEUTRAL_TONE);
   geo.setAttribute('position', toFloatAttribute(position, 3));
-  geo.setAttribute('color', albedoAttribute(material, position.count));
+  geo.setAttribute('color', albedoAttribute(base, factors, position.count));
   geo.setAttribute('_roughness', roughnessAttribute(material, position.count));
   geo.setAttribute('normal', src.getAttribute('normal')
     ? toFloatAttribute(src.getAttribute('normal'), 3)
@@ -163,11 +167,12 @@ function normalizeGeometry(src, matrix, material, confidence, label) {
   if (!src.getAttribute('normal')) geo.computeVertexNormals();
 
   const warning = confidence.ensureAttribute(geo, label);
-  return { geo, warning };
+  return { geo, warning, base, factors };
 }
 
 /**
- * The material's base colour, written once per vertex.
+ * The material's base colour, written once per vertex — times its building's
+ * own facade tone.
  *
  * `material.color` is already in the renderer's linear working space (three
  * converts on assignment, and glTF's `baseColorFactor` is linear to begin
@@ -175,12 +180,18 @@ function normalizeGeometry(src, matrix, material, confidence, label) {
  * the `color` attribute with no colour-space conversion of its own. So copying
  * `.r/.g/.b` straight in and leaving the shared material white is EXACTLY the
  * arithmetic that was happening before — the same product, in a different
- * order. That exactness is the whole licence for this: a documented white wall
- * still renders at the value its record claims, to the bit.
+ * order.
+ *
+ * **T-0002 puts one more factor in that product and nothing else changes.**
+ * `facades.js` returns a per-channel factor for this structure — silvering by
+ * age, plus a per-building jitter — and the exactness above is what makes the
+ * factor safe to apply here: a documented white wall still renders at the value
+ * its record claims, to the bit, because `toneFor` hands an attested paint the
+ * identity tone and 1 x 1 is 1. See `facades.js` for what is invented and
+ * `docs/LIBERTIES.md` L126 for its bounds.
  */
-function albedoAttribute(material, count) {
-  const c = material?.color;
-  const r = c ? c.r : 1, g = c ? c.g : 1, b = c ? c.b : 1;
+function albedoAttribute(base, factors, count) {
+  const r = base[0] * factors[0], g = base[1] * factors[1], b = base[2] * factors[2];
   const out = new Float32Array(count * 3);
   for (let i = 0; i < count; i += 1) {
     out[i * 3] = r; out[i * 3 + 1] = g; out[i * 3 + 2] = b;
@@ -313,8 +324,12 @@ export function createBuildings({ registry, confidence, terrain }) {
   group.name = 'structures';
   const problems = [];
 
-  // material key -> { material, entries: [{ record, geo }] }
+  // material key -> { material, entries: [{ record, geo, factors }] }
   const groups = new Map();
+  /** structure id -> the facade tone applied to every one of its surfaces. */
+  const tones = new Map();
+  /** The colour ranges `setWeathering` rewrites: one row per source mesh. */
+  const toneRanges = [];
   /** structure id -> its footprint extent in its own local frame, so a building
    *  can be stood on the lowest ground UNDER it rather than under its origin.
    *  Filled in the load loop because placement needs it. */
@@ -341,12 +356,20 @@ export function createBuildings({ registry, confidence, terrain }) {
       continue;
     }
 
+    // T-0002. One tone per STRUCTURE, resolved once and multiplied into every
+    // surface the structure owns — walls, roof, trim, stack alike. Per
+    // structure rather than per material because on 38 of the shipped assets
+    // the material names are gone (ROADMAP K36(a)), and a rule that reads names
+    // would skip exactly those buildings.
+    const tone = toneFor(record.sidecar);
+    tones.set(record.id, tone);
+
     for (const { mesh, matrix } of meshes) {
       const label = `${record.id}/${mesh.name || 'mesh'}`;
       const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       let prepared;
       try {
-        prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label);
+        prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label, tone);
         // After the channel exists and is float — see existenceFloor for why the
         // building's own existence grade governs what its parts may claim.
         applyExistence(prepared.geo, existenceFloor(record));
@@ -375,7 +398,7 @@ export function createBuildings({ registry, confidence, terrain }) {
         bucket = { material, entries: [] };
         groups.set(key, bucket);
       }
-      bucket.entries.push({ record, geo: prepared.geo });
+      bucket.entries.push({ record, geo: prepared.geo, factors: prepared.factors });
       totalTris += prepared.geo.getIndex().count / 3;
 
       // Grow this structure's local footprint as its parts arrive — see
@@ -484,9 +507,19 @@ export function createBuildings({ registry, confidence, terrain }) {
     batch.customDepthMaterial = depthMaterial;
     batch.userData.batchIndex = [];
 
-    for (const { record, geo } of bucket.entries) {
+    for (const { record, geo, factors } of bucket.entries) {
       const geometryId = batch.addGeometry(geo);
       const instanceId = batch.addInstance(geometryId);
+      // T-0002. Where this mesh's colours ended up inside the batch, so the
+      // tone can be wound back and forth at runtime — see setWeathering.
+      const range = batch.getGeometryRangeAt(geometryId);
+      toneRanges.push({
+        batch,
+        id: record.id,
+        start: range.vertexStart,
+        count: range.vertexCount,
+        factors,
+      });
       batch.setMatrixAt(instanceId, placements.get(record.id));
       batch.userData.batchIndex[instanceId] = record.id;
       record.instanceId = instanceId;
@@ -521,6 +554,50 @@ export function createBuildings({ registry, confidence, terrain }) {
     batches.push(batch);
   }
 
+  /**
+   * How much of the facade tone is applied, 0..1 — T-0002's runtime handle.
+   *
+   * It exists because of R-BUG6(a)'s finding: a compile-time flag is not a
+   * runtime handle, and a gate that cannot turn a thing OFF cannot prove it is
+   * on. With this, the suite photographs the same held frame at 1 and at 0 and
+   * measures the difference, which is the only evidence that the tone reaches
+   * the render rather than merely reaching an array.
+   *
+   * The rewrite is exact enough to restore: each range is scaled by the ratio
+   * between the factor it should carry now and the one it carries, so a round
+   * trip to 0 and back leaves float dust rather than a changed frame — and the
+   * gate asserts the restored frame, not just the changed one.
+   *
+   * A visitor never calls it. It is not a setting; the tone is what the town
+   * looks like.
+   */
+  let weathering = 1;
+  function setWeathering(value) {
+    const t = Math.max(0, Math.min(1, Number(value)));
+    if (!Number.isFinite(t) || t === weathering) return weathering;
+    const touched = new Set();
+    for (const row of toneRanges) {
+      const attr = row.batch.geometry.getAttribute('color');
+      if (!attr) continue;
+      const a = attr.array;
+      const scale = [0, 1, 2].map((i) => {
+        const target = 1 + (row.factors[i] - 1) * t;
+        const applied = 1 + (row.factors[i] - 1) * weathering;
+        return applied === 0 ? 1 : target / applied;
+      });
+      const end = row.start + row.count;
+      for (let v = row.start; v < end; v += 1) {
+        a[v * 3] *= scale[0];
+        a[v * 3 + 1] *= scale[1];
+        a[v * 3 + 2] *= scale[2];
+      }
+      touched.add(attr);
+    }
+    for (const attr of touched) attr.needsUpdate = true;
+    weathering = t;
+    return weathering;
+  }
+
   const raycaster = new THREE.Raycaster();
   raycaster.far = 400;
 
@@ -531,6 +608,54 @@ export function createBuildings({ registry, confidence, terrain }) {
     triangles: totalTris,
     /** Draw calls these buildings cost in the colour pass. */
     get drawCalls() { return batches.length; },
+
+    /** T-0002's runtime handle: 1 is the town as it ships, 0 is every building
+     *  back on its archetype's flat colour. */
+    setWeathering,
+    get weathering() { return weathering; },
+
+    /**
+     * What tone each structure was given and what its vertices were actually
+     * written with, keyed by structure id.
+     *
+     * Both halves are here on purpose. The tone is the INTENT — what
+     * `facades.js` decided from the record — and `drawn` is the READBACK, summed
+     * off the colour attribute that goes into the batch. A gate that only ever
+     * reads the intent cannot tell a live rule from a dead one, which is the
+     * mistake K24 found in R-A1's own gate; a gate that reads both can.
+     */
+    facadeTones() {
+      const sums = new Map();
+      for (const row of toneRanges) {
+        const attr = row.batch.geometry.getAttribute('color');
+        if (!attr) continue;
+        const a = attr.array;
+        let seen = sums.get(row.id);
+        if (!seen) { seen = { sum: [0, 0, 0], n: 0, surfaces: new Set() }; sums.set(row.id, seen); }
+        const end = row.start + row.count;
+        for (let v = row.start; v < end; v += 1) {
+          seen.sum[0] += a[v * 3];
+          seen.sum[1] += a[v * 3 + 1];
+          seen.sum[2] += a[v * 3 + 2];
+        }
+        seen.n += row.count;
+        if (row.count) {
+          seen.surfaces.add([a[row.start * 3], a[row.start * 3 + 1], a[row.start * 3 + 2]]
+            .map((v) => v.toFixed(6)).join(','));
+        }
+      }
+      const out = {};
+      for (const [id, tone] of tones) {
+        const d = sums.get(id);
+        out[id] = {
+          ...tone,
+          vertices: d ? d.n : 0,
+          surfaces: d ? d.surfaces.size : 0,
+          drawn: d && d.n ? [d.sum[0] / d.n, d.sum[1] / d.n, d.sum[2] / d.n] : null,
+        };
+      }
+      return out;
+    },
 
     /**
      * Every structure's rendered size, in metres, keyed by structure id.

@@ -1,7 +1,7 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
-T-0002 — Weathered facades: unpainted boards, no two buildings alike
+T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0038 — Fences and enclosures: the estray pen, wagon yards, garden pickets
 T-0039 — Signboards on the businesses that attest one
 T-0040 — Wagons, barrels and yard clutter at the taverns and stores
@@ -41,3 +41,4 @@ T-0031 — Where did the South Water timber belt stand
 T-0032 — The six-roof civic target counts three that were never built
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
+T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal

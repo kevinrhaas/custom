@@ -302,6 +302,35 @@ const STRUCTURE_BATCHES = 1;
 const ROUGHNESS_VALUES_MIN = 12;
 const ROUGHNESS_MIN_WORST = 4;
 /**
+ * T-0002, the facade tones — how many distinct ones the town must draw, how
+ * near two structures have to be to count as neighbours, and how far the frame
+ * must move when the tone is wound off.
+ *
+ * MEASURED BEFORE THEY WERE SET, with `tools/measure_facade_variety.mjs` on the
+ * published mirror: **331 distinct tones across 331 structures**, and winding
+ * the tone to 0 moves the worst 48² cell by **10** (mean 0.27) at 1280x800. At
+ * the smaller viewport the same reading was **7** at the ±10 % jitter this
+ * parcel shipped with before the frames said it was too little. The floors are
+ * set at 300 tones (a town that lost the jitter and kept only the age silvering
+ * would draw about 45), worst 3 and mean 0.03 — under half and a third of the
+ * smaller of those readings, the same margins `ROUGHNESS_MIN_WORST` and the
+ * road aid took.
+ *
+ * `FACADE_PAIR_M` is 60 m because that is what "neighbouring" means in a town
+ * whose platted blocks are 126 m long: the nearest structure within a block
+ * face. The assertion on those pairs is an INVARIANT, not a number — no two
+ * neighbours drawn the same colour — because the archetype town had **10 of
+ * 321** such pairs identical to the bit and the whole ask is that it has none.
+ */
+const FACADE_TONES_MIN = 300;
+const FACADE_PAIR_M = 60;
+const FACADE_MIN_WORST = 3;
+const FACADE_MIN_MEAN = 0.03;
+/** How many structures must change colour when the tone is wound off: 329 are
+ *  eligible today and two are excluded by attestation, so anything near the
+ *  town's own size proves the channel is not dead on most of it. */
+const FACADE_MOVED_MIN = 300;
+/**
  * How much the 48² frame signature must move when the reach is wound back to
  * the pre-R-W3b(a) ±60 m.
  *
@@ -2844,6 +2873,116 @@ const terrainLoad = await page.evaluate(() => {
       + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
       + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
       + `${dRoughBack.worst}`);
+
+    // --- T-0002, the facade tones ------------------------------------------
+    //
+    // The owner's report was that the buildings "read as freshly painted and
+    // identical", and the second half was exact: a wall took its colour from
+    // its ARCHETYPE, so two neighbours of the same archetype were the same
+    // brown to the bit — 10 of 321 adjacent pairs, measured.
+    //
+    // Four assertions, and they are shaped by R-A1's finding and K24's. The
+    // census and the invariant say the town wears many faces; the INERTNESS
+    // assertion says the two records a source speaks for were not touched, to
+    // the bit; and the liveness pair says the difference reaches a pixel and
+    // comes back. The first two would pass identically on a tone that never
+    // left its array, which is exactly the failure R-A1's dead readback was.
+    const facades = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const tones = api.buildings.facadeTones();
+      return Object.entries(tones).map(([id, t]) => {
+        const p = api.buildings.positionOf(id);
+        return {
+          id, drawn: t.drawn, eligible: t.eligible, confidence: t.confidence,
+          x: p ? p.x : null, z: p ? p.z : null,
+        };
+      });
+    });
+    const facadeLum = (c) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    const facadeDrawn = facades.filter((r) => r.drawn);
+    const facadeTones = new Set(
+      facadeDrawn.map((r) => r.drawn.map((v) => v.toFixed(6)).join(','))).size;
+    const facadePlaced = facadeDrawn.filter((r) => Number.isFinite(r.x));
+    let facadeTwins = 0;
+    let facadePairs = 0;
+    for (const a of facadePlaced) {
+      let best = null;
+      let bd = Infinity;
+      for (const b of facadePlaced) {
+        if (b === a) continue;
+        const d = Math.hypot(a.x - b.x, a.z - b.z);
+        if (d < bd) { bd = d; best = b; }
+      }
+      if (best && bd <= FACADE_PAIR_M) {
+        facadePairs += 1;
+        if (Math.abs(facadeLum(a.drawn) - facadeLum(best.drawn)) < 1e-6) facadeTwins += 1;
+      }
+    }
+    const attested = facades.filter((r) => r.confidence === 'attested');
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
+    const flatFacades = await page.evaluate(() => {
+      const t = window.__chicago4d.buildings.facadeTones();
+      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
+    });
+    const toneOffShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const toneBack = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(1));
+    const backFacades = await page.evaluate(() => {
+      const t = window.__chicago4d.buildings.facadeTones();
+      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
+    });
+    const toneBackShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dTone = signatureDistance(toneOn, toneOffShot);
+    const dToneBack = signatureDistance(toneOn, toneBackShot);
+
+    const facadeMoved = facadeDrawn.filter((r) => {
+      const flat = flatFacades[r.id];
+      return flat && r.drawn.some((v, i) => Math.abs(v - flat[i]) > 1e-6);
+    }).length;
+    const attestedMoved = attested.filter((r) => {
+      const flat = flatFacades[r.id];
+      return r.drawn && flat && flat.some((v, i) => v !== r.drawn[i]);
+    });
+    const restoreError = Math.max(0, ...facadeDrawn.map((r) => {
+      const back = backFacades[r.id];
+      return back ? Math.max(...r.drawn.map((v, i) => Math.abs(v - back[i]))) : 0;
+    }));
+
+    check(`${label}: the town wears more than one face`,
+      facadeTones >= FACADE_TONES_MIN,
+      `${facadeTones} distinct drawn facade tones across ${facadeDrawn.length} `
+      + `structures (want >=${FACADE_TONES_MIN})`);
+    check(`${label}: no two neighbouring buildings are drawn the same colour`,
+      facadePairs > 0 && facadeTwins === 0,
+      `${facadeTwins} of ${facadePairs} nearest-neighbour pairs within `
+      + `${FACADE_PAIR_M} m are drawn identically (want 0)`);
+    // The honesty half of this parcel, and the one assertion here that must
+    // never be relaxed: `facades.js` hands an attested paint the identity tone,
+    // so a record a source speaks for is drawn at the colour its archetype
+    // baked whether the tone is on or off. Bit-exact, not close.
+    check(`${label}: a documented paint is never modulated`,
+      attested.length >= 1 && attestedMoved.length === 0,
+      `${attested.length} record(s) with attested paint, ${attestedMoved.length} `
+      + `changed when the tone was wound off (want 0): `
+      + `${attested.map((r) => r.id).join(', ') || 'none found'}`);
+    check(`${label}: the facade tones reach the render`,
+      toneOff === 0 && facadeMoved >= FACADE_MOVED_MIN
+        && dTone.worst >= FACADE_MIN_WORST && dTone.mean >= FACADE_MIN_MEAN,
+      `winding the tone off changed ${facadeMoved} structure(s) (want >=${FACADE_MOVED_MIN}) `
+      + `and moved the worst cell by ${dTone.worst}, mean ${dTone.mean?.toFixed(2)} `
+      + `(need worst>=${FACADE_MIN_WORST}, mean>=${FACADE_MIN_MEAN})`);
+    check(`${label}: restoring the facade tones restores the frame`,
+      toneBack === 1 && restoreError <= 1e-6
+        && dToneBack.mean <= 0.1 && dToneBack.worst <= 3,
+      `weathering ${toneBack}, worst per-structure restore error `
+      + `${restoreError.toExponential(2)}, residual mean ${dToneBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dToneBack.worst}`);
+    console.log(`        facades: ${facadeTones} tones · ${facadeTwins}/${facadePairs} `
+      + `neighbour pairs identical · winding off moves worst cell ${dTone.worst}, `
+      + `mean ${dTone.mean?.toFixed(2)}; restored worst ${dToneBack.worst}`);
 
     // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
     //
