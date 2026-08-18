@@ -44,3 +44,4 @@ T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
+T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
