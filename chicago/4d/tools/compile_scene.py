@@ -942,7 +942,16 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "name": st["name"],
             "aka": st.get("aka", []),
             "archetype": st["archetype"],
-            "asset": f"gltf/{st['id']}__{phase['id']}.glb",
+            # A phase whose geometry moved to another layer has no GLB, and the
+            # sidecar says so in the field the loader reads rather than by
+            # naming a file that is not there. `drawn_by` travels with it so the
+            # renderer can say WHAT draws it instead — a null asset alone would
+            # be indistinguishable from a bake that failed to land. The estray
+            # pen is the first: a pound is a fence, and the roof it wore until
+            # 2026-08-18 existed only because `outbuilding` cannot build a
+            # roofless structure (docs/LIBERTIES.md L60, T-0051).
+            "asset": None if phase.get("drawn_by")
+                     else f"gltf/{st['id']}__{phase['id']}.glb",
             "scene": scene_id,
             "target_date": scene["target_date"],
             # Was it here at all? The scene date falls inside this span by
@@ -1023,6 +1032,13 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "research_doc": research_doc(st),
             "review_required": st.get("review_required", False),
         }
+        # Written ONLY on the phases that have it, unlike `residents`, which is
+        # written empty everywhere so the card reads one shape. The difference is
+        # that this one is a rare exception rather than a per-record field: 330
+        # sidecars carrying `drawn_by: null` would be 330 files of diff saying
+        # nothing, in a mirror that is published byte-for-byte.
+        if phase.get("drawn_by"):
+            sidecar["drawn_by"] = phase["drawn_by"]["layer"]
         if st.get("reconstruction"):
             sidecar["reconstruction"] = st["reconstruction"]
         emit(outdir / f"{st['id']}.json", sidecar)

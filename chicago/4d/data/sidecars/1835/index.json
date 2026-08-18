@@ -1804,7 +1804,7 @@
       "id": "estray_pen",
       "name": "Estray pen",
       "sidecar": "sidecars/1835/estray_pen.json",
-      "asset": "gltf/estray_pen__pen_1833.glb"
+      "asset": null
     },
     {
       "id": "exchange_coffee_house",

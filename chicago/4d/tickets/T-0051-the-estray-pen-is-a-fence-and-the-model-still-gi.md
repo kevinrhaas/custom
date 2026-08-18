@@ -1,7 +1,7 @@
 ---
 id: T-0051
 title: The estray pen is a fence, and the model still gives it a roof
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: K5
 parent: T-0038
 opened: 2026-08-17
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-17
+pr: 235
+claimed_by: run 8/17/2026, 9:40:46 PM CT
 blocked_on: null
 needs_bake: false
 ---

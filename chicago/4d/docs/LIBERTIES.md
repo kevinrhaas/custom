@@ -1424,35 +1424,6 @@ pp. 305 and 431, read for a street number or a neighbour rather than for the sch
 **Covers:** `chappel_infant_school.log_1833.position`, `watkins_school_house.house_1833.position`.
 **Recorded:** 2026-08-11.
 
-### L60 — The estray pen is a fence, and the model gives it a roof
-**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
-public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
-8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
-Every one of those values is tagged `conjectural`.
-**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
-enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
-project has no generator that builds an enclosure — `palisade` is named in the schema and has no
-module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
-cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
-working policy for this parcel is that an absent building is invisible while a conjectural one is
-legible and correctable.
-**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
-about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
-close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
-probably was not there rather than a finding about a roof that was. The material is invented too,
-and the live alternative would look completely different: most frontier pounds were split-rail or
-post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
-wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
-survives of the evidence in the mesh is a rectangle of about the right size in about the right
-place.
-**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
-taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
-state of the public square itself, the garrison gardens and every yard in the town, and it is
-the honest fix. A town or county order establishing the pound would settle the size and the
-material at the same time.
-**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
-**Recorded:** 2026-08-11.
-
 ### L61 — The first court-house is built finished, on a date that may predate it
 **Decision:** the first Cook County court-house is built on the public square as a completed
 one-room wooden building 24 × 18 ft. Its position within the square and every attribute of its
@@ -3912,6 +3883,43 @@ entry that carries them.
 **Recorded:** 2026-08-16.
 
 
+### L128 — The town pound's fence: six feet, five rails, and not one of them recorded
+**Decision:** the estray pen on the south-west corner of the public square is drawn as a **post-and-rail
+fence 1.83 m high, five rail courses, posts 0.18 m square at 2.44 m**, closing the same 9.144 × 6.096 m
+rectangle its structure record has always carried, with a **1.35 m gateway centred in the north side** and no
+gate leaf hung in it. It is drawn by `renderers/web/js/enclosures.js` from `data/enclosures/estray_pen.json`;
+`data/structures/estray_pen.json` builds no mesh at all now and remains the evidence record.
+**Why:** because the alternative was the roof. **L60** stood for a week over a log box with a shed roof on
+it, admitting in as many words that a pound is an enclosure, that nothing mentions a roof, and that the only
+archetype which would build a low walled rectangle could not build a roofless one. The enclosure layer built
+for the Western Hotel's yard (**L127**) can, so the pen is a fence. That much is a repair. What it costs is
+this entry: the pen is now a *specific* fence, and no source describes any fence here at all.
+**What bounds the invention, since that is what `reconstructed` means.** The OUTLINE is not new — it is the
+committed footprint re-expressed as a perimeter, and its own invention is still claimed at L60. The MATERIAL
+is the reading the retired record wrote down against itself: *"THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR
+POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely
+different — open, horizontal, see-through — from what this record builds."* It is a swing from one invention
+to the other invention already on the record, not from an invention to a finding. The HEIGHT is bounded by
+the use and by the fence beside it: 6 ft, where the wagon yard's is 4 ft 6 in for the reason L127 gives —
+*"a yard fence turns a team and does not have to hold a horse that means to leave — that is the pound's
+job"* — and the pound's job additionally included holding prisoners for the first months of its life. The
+retired 2.4 m was not evidence either: that record says plainly it was "the minimum this archetype will
+accept with a gate a beast can be led through". FIVE courses puts a rail every 0.37 m against the yard's
+0.46 m, because a fence a calf steps through is not a pound; 2.44 m bays and 0.18 m posts because a pound
+fence is leaned on. The GATEWAY keeps the retired mesh's own 1.35 m clear width and its north-side
+convention, deliberately, so that this run changes the roof and not a set of numbers restated in passing.
+**Consequence:** a visitor crossing the public square sees the town's first public building as a fence, which
+is what the sources say it was, and every stick of that fence is invented. The confidence view is the
+counterweight and it is wired: every vertex of this layer is graded `reconstructed`, so hiding that level
+removes the pen entirely and leaves the corner as the sources leave it — an empty piece of prairie with a
+municipal function attached to it. **The ground inside the pen is not drawn**, exactly as at the wagon yard:
+a pound's yard was not sward and it is still sward here, because nothing states what it was.
+**How to resolve:** a town or county order establishing the pound. Such an order carries a pound-keeper's fee
+schedule and often a size and a materials specification, and it would settle the material, the height and the
+rectangle together — which is the same document L60 has been waiting for since it was written.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
@@ -4729,3 +4737,46 @@ larger of the two admissions and it is deliberately left standing rather than gu
 and the courses in one line — a lawful-fence specification is exactly the kind of thing such an
 order carries; an insurance or tax description of the lot would settle the rest.
 **Recorded:** 2026-08-18.
+
+
+### L60 — The estray pen is a fence, and the model gives it a roof
+**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
+public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
+8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
+Every one of those values is tagged `conjectural`.
+**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
+enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
+project has no generator that builds an enclosure — `palisade` is named in the schema and has no
+module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
+cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
+working policy for this parcel is that an absent building is invisible while a conjectural one is
+legible and correctable.
+**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
+about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
+close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
+probably was not there rather than a finding about a roof that was. The material is invented too,
+and the live alternative would look completely different: most frontier pounds were split-rail or
+post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
+wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
+survives of the evidence in the mesh is a rectangle of about the right size in about the right
+place.
+**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
+taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
+state of the public square itself, the garrison gardens and every yard in the town, and it is
+the honest fix. A town or county order establishing the pound would settle the size and the
+material at the same time.
+**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
+**Recorded:** 2026-08-11.
+
+**Resolved:** 2026-08-18 (T-0051). The enclosure layer arrived and the pen was the second record on it.
+`data/enclosures/estray_pen.json` walks the same 30 × 20 ft rectangle, on the same corner, as a **roofless
+post-and-rail perimeter with a gateway**, drawn by `renderers/web/js/enclosures.js` at load and needing no
+bake. The five invented values this entry claimed — `construction`, `roof_type`, `roof_pitch_deg`,
+`wall_height_m` and `door` — are **retired from the record rather than re-graded**, the GLB and its manifest
+entry are deleted, and the phase carries a `drawn_by` block that `tools/validate.py` holds to all of that.
+Andreas is now quoted for the thing he actually says: *"the 'pen' was a small wooden enclosure and quite
+roofless"*. What this entry still covers, and what keeps it worth reading, is the **footprint** — the
+rectangle, its size and its corner-of-a-block placement are as invented as they ever were, and the fence
+that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix
+this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
+wants the pen baked with the rest of the town still needs one.

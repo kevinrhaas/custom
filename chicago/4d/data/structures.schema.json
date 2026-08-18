@@ -296,6 +296,24 @@
         "change_note": {
           "type": "string",
           "description": "What changed at the start of this phase, and on what evidence."
+        },
+
+        "drawn_by": {
+          "type": "object",
+          "description": "Present ONLY when this phase's geometry is drawn by a layer other than a baked GLB — today that means data/enclosures/ and renderers/web/js/enclosures.js, for a thing that is a BOUNDARY rather than a building. A phase carrying this block builds no mesh: tools/validate.py resolves no archetype parameters for it, no manifest entry or GLB may exist for it, tools/compile_scene.py writes `asset: null` into its sidecar, and the walker takes no obstruction from its footprint. The record stays the evidence record — position, footprint, dating, function and citations — and the named record carries only the geometry. First used by the estray pen, whose roof existed solely because the outbuilding archetype cannot build a roofless structure (docs/LIBERTIES.md L60).",
+          "additionalProperties": false,
+          "required": ["layer", "record", "note"],
+          "properties": {
+            "layer": { "enum": ["enclosures"] },
+            "record": {
+              "type": "string",
+              "description": "Repository-relative path of the record that carries the geometry. Checked to exist, and to name this structure back."
+            },
+            "note": {
+              "type": "string",
+              "description": "Why the geometry left this record, and what was retired rather than re-graded when it did."
+            }
+          }
         }
       }
     }

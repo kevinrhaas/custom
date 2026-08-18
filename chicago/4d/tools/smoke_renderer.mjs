@@ -939,6 +939,67 @@ for (const [label, viewport, touch] of [
       dYard.worst >= 6 && dYard.mean >= 0.3,
       `cell delta mean ${dYard.mean?.toFixed(2)}, worst ${dYard.worst} (need worst>=6)`);
 
+    // --- the town pound is a fence, not a box (T-0051) -----------------------
+    //
+    // Chicago's first public building is an enclosure — Andreas: "a small wooden
+    // enclosure and quite roofless" — and it stood in this town as a roofed log
+    // box because the only archetype that would build a low walled rectangle
+    // cannot build a roofless one. Its geometry now lives on the layer above,
+    // and a record whose mesh moves layers can go wrong in four ways that no
+    // dataset gate can see: the GLB can still load, the card can become
+    // unreachable, the retired footprint can stay behind as an invisible wall,
+    // and the fence can fail to draw at all. One assertion each.
+    const pen = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const rec = api.loaded?.registry?.get?.('estray_pen')
+        ?? api.registry?.get?.('estray_pen') ?? null;
+      return {
+        inLayer: (api.enclosures?.records ?? []).some((r) => r.id === 'estray_pen'),
+        asset: rec ? rec.sidecar?.asset ?? null : 'NO RECORD',
+        drawnBy: rec?.sidecar?.drawn_by ?? null,
+        hasGltf: !!rec?.gltf,
+        obstructs: (api.footprints ?? []).some((f) => f.id === 'estray_pen'),
+      };
+    });
+    check(`${label}: the estray pen is drawn as an enclosure and bakes no mesh`,
+      pen.inLayer && pen.asset === null && pen.drawnBy === 'enclosures' && !pen.hasGltf,
+      `on the layer ${pen.inLayer}, sidecar asset ${JSON.stringify(pen.asset)}, `
+      + `drawn_by ${pen.drawnBy}, gltf loaded ${pen.hasGltf}`);
+    check(`${label}: the retired box leaves no invisible wall on the public square`,
+      !pen.obstructs, `walker footprint present: ${pen.obstructs}`);
+
+    // Stand in the pound and look around it. Two questions in one stand: can you
+    // SEE it (the visible-progress rule's own test), and can you still open the
+    // card behind it — which used to come free with a roof to click on and now
+    // has to be earned by picking the fence itself.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: 473.07, local_n: -374.26 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const penWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const penWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dPen = signatureDistance(penWith, penWithout);
+    check(`${label}: the pen reaches the screen from inside the pen`,
+      dPen.worst >= 6 && dPen.mean >= 0.3,
+      `cell delta mean ${dPen.mean?.toFixed(2)}, worst ${dPen.worst} (need worst>=6)`);
+
+    const penPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.6, -0.3, 0, 0.3, 0.6]) {
+        for (const y of [-0.4, -0.2, 0, 0.2]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the pen's fence still opens the pen's card`,
+      penPick.includes('estray_pen'),
+      `20 aims returned [${[...new Set(penPick)].join(', ') || 'nothing'}]`);
+
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);
