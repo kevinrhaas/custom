@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 179, title: 'Barrels at the stores, and a wagon in the hotel yard', kind: 'feature', ts: '2026-08-18T10:45:58.575Z', date: 'Aug 18, 2026, 5:45 AM CT',
+    items: [
+      'The town\u2019s own first ordinances, printed in November 1833, legislate against timber, stone, brick, boxes and barrels stacked in the streets. A corporation does not forbid what nobody does \u2014 and until today Chicago stood on swept ground.',
+      'Twenty-six trading frontages have goods out now: casks by the door at the Sauganash, the Tremont and the Green Tree, cases stacked at the stores along South Water Street, an empty barrel laid on its side outside the taverns. Aim at one and it opens the business it belongs to.',
+      'One wagon, and only one. Nothing this project holds puts a wagon anywhere in Chicago on any day; one place is named for them \u2014 the yard behind the Western Hotel, \u201cthe yard into which the trains were driven\u201d \u2014 so the wagon stands there and nowhere else, out in the middle of the yard where it is furthest from every wall.',
+      'Which doors get goods is a rule, not a list: a named business, a trade whose stock arrived in boxes and barrels, and that trade attested or reasoned rather than invented. The fort\u2019s provision store and the sutler\u2019s are refused \u2014 federal ground, and no town street in front of the door.',
+      'No barrel carries a brand, a merchant\u2019s name or a mark of any kind, and no case is labelled. Nothing surviving says what was in any barrel in Chicago that summer, still less whose it was.',
+      'The goods are our invention and say so. Switch \u201creconstructed\u201d off in the confidence view and every one of them goes. Still not drawn: the ordinance\u2019s timber, stone and brick, which belong to whichever building was going up that week; and nothing stands in a roadway, though the roadway is what the ordinance is about.',
+    ] },
   { v: 178, title: 'Two dozen shop signs hang over the footway', kind: 'feature', ts: '2026-08-18T07:54:42.885Z', date: 'Aug 18, 2026, 2:54 AM CT',
     items: [
       'This town had one signboard \u2014 the painted wolf at the forks, the only sign any source in this project names. Every other store, tavern and counting-room announced itself to nobody at all.',

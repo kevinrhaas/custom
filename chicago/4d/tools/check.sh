@@ -84,6 +84,14 @@ step "the dooryard garden pickets re-derive from the rule that chose their lots"
 step "the business signboards re-derive from the rule that chose their frontages" \
   python3 tools/generate_business_signboards.py --check
 
+# The yard goods are the third record of this shape and the first whose evidence is an
+# ORDINANCE: the village corporation legislated in November 1833 about timber, stone,
+# brick, boxes and barrels stacked in the streets, which attests the treatment and not one
+# location. So "which frontage gets goods" is a rule again, re-derived here against the
+# committed sidecars and the wagon-yard perimeter (ROADMAP K5 (c), T-0040).
+step "the yard goods re-derive from the rule that chose their frontages" \
+  python3 tools/generate_yard_goods.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules

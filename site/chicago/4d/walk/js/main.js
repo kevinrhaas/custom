@@ -30,6 +30,7 @@ import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
 import { createSignage } from './signage.js';
+import { createYardGoods } from './yard.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -251,6 +252,20 @@ async function boot() {
   });
   scene3d.add(signage.group);
   api.signage = signage;
+
+  // The goods a working town left standing on its own ground — barrels and
+  // cases on the footway at the taverns and the stores, and one wagon in the
+  // yard a source calls a wagon yard (T-0040). Derived geometry like the fences
+  // and the boards, so it needs no bake either. Mounted AFTER the signage
+  // because the two are derived from the same wall and deliberately share it:
+  // the board hangs 1.7 m one side of the facade's centre and the goods pile
+  // from the other end. Unlike a board, a barrel stands on the TERRAIN rather
+  // than on the building's wall base — it is resting on the ground it is on.
+  const yard = await createYardGoods({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(yard.group);
+  api.yard = yard;
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -572,6 +587,18 @@ async function boot() {
     if (board && (!hit || board.distance < hit.distance)) {
       const record = loaded.registry.get(board.id);
       if (record) hit = { ...board, record };
+    }
+    /**
+     * And so can a barrel at a shop door, which is where a visitor's crosshair
+     * actually lands when they walk up to a frontage: the goods stand half a
+     * metre out from the wall, so they are nearer than it. A barrel opens the
+     * business whose door it stands at, and the wagon opens the hotel whose
+     * yard it stands in (T-0040).
+     */
+    const goods = yard.pickAt(ndc, camera);
+    if (goods && (!hit || goods.distance < hit.distance)) {
+      const record = loaded.registry.get(goods.id);
+      if (record) hit = { ...goods, record };
     }
     if (!hit) {
       popup.close();

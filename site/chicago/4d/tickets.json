@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 3:50 AM",
+  "generated_ct": "Aug 18, 2026, 5:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -674,7 +674,7 @@
     {
       "id": "T-0040",
       "title": "Wagons, barrels and yard clutter at the taverns and stores",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -684,7 +684,7 @@
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/18/2026, 4:47:00 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
@@ -976,6 +976,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 43
+    },
+    {
+      "id": "T-0057",
+      "title": "Ordinance 9's other half: timber, stone and brick stacked on the lots that were building",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 44
     }
   ]
 }

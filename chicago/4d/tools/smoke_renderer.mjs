@@ -1176,6 +1176,161 @@ for (const [label, viewport, touch] of [
       boardPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(boardPick)].join(', ') || 'nothing'}]`);
 
+    // --- the goods at the trading frontages (T-0040) -------------------------
+    //
+    // The third layer drawn from the dataset rather than baked, and the first
+    // one whose objects stand on the GROUND rather than on a building. That is
+    // where its failure modes live and they are not the signboards': a barrel
+    // hung off the wall base like a board would float or sink wherever the
+    // footway is not level, and a barrel is a body of revolution built from a
+    // frame this file has never had to check before, so a transposed axis puts
+    // a hundred and fifty casks inside the shops they belong to. Every dataset
+    // gate in this repo would pass through all of that. So the geometry is
+    // measured against the record here, and nowhere else.
+    const goods = await page.evaluate(() => {
+      const y = window.__chicago4d.yard;
+      const mesh = y?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const frontages = y?.frontages ?? [];
+      const wagons = y?.wagons ?? [];
+      const items = [];
+      for (const f of frontages) {
+        for (const it of f.items ?? []) {
+          items.push({ e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
+            b: ((it.bearing_deg ?? 0) * Math.PI) / 180 });
+        }
+      }
+      let ungraded = 0;
+      let notReconstructed = 0;
+      let worstStray = 0;      // furthest a vertex sits from its own object's anchor
+      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
+      let wagonVerts = 0;
+      let lowest = Infinity;
+      let highest = -Infinity;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g && items.length) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          lowest = Math.min(lowest, pos.getY(i));
+          highest = Math.max(highest, pos.getY(i));
+          // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
+          // own bound rather than lumped in with the casks.
+          const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
+            n - wg.at_local_enu_m[1]) <= 4.6);
+          if (w) { wagonVerts++; continue; }
+          let best = null;
+          let bestD = Infinity;
+          for (const it of items) {
+            const d = Math.hypot(e - it.e, n - it.n);
+            if (d < bestD) { bestD = d; best = it; }
+          }
+          worstStray = Math.max(worstStray, bestD);
+          // Positive is out of the wall, along the facade's own normal.
+          const outward = (e - best.e) * Math.sin(best.b) + (n - best.n) * Math.cos(best.b);
+          worstInside = Math.min(worstInside, outward);
+        }
+      }
+      return {
+        census: y?.census ?? null,
+        meshes: y?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        tris: (g?.getAttribute('position')?.count ?? 0) / 3,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        worstInside,
+        wagonVerts,
+        span: Number.isFinite(lowest) ? highest - lowest : null,
+        frontages: frontages.length,
+        items: items.length,
+        wagon: wagons[0] ?? null,
+      };
+    });
+    check(`${label}: the yard layer stands the record's goods`,
+      goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
+        && goods.census?.wagons === 1,
+      `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
+      + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon, `
+      + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
+    check(`${label}: the whole yard layer is one draw call`,
+      goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. That goods
+    // stood at these doors on this day is invented (L131) and a single vertex
+    // claiming to be inferred or attested would be this layer overstating the
+    // one thing it must not.
+    check(`${label}: every yard-goods vertex is graded reconstructed`,
+      goods.hasConfidence && goods.ungraded === 0 && goods.notReconstructed === 0,
+      `attribute ${goods.hasConfidence ? 'present' : 'MISSING'}, ${goods.ungraded} out `
+      + `of range, ${goods.notReconstructed} claiming better than reconstructed`);
+    // A cask is 0.53 m at the bilge and a case 1.05 m long, so nothing on a
+    // frontage legitimately reaches 0.75 m from its own anchor — a transposed
+    // axis or a dropped rotation would be metres out, not centimetres.
+    check(`${label}: no barrel or case strays from the frontage it stands at`,
+      goods.worstStray > 0 && goods.worstStray <= 0.75,
+      `furthest vertex ${goods.worstStray?.toFixed(2)} m from its own object's anchor`);
+    // And the goods stand ON the footway, not inside the shop. The record stands
+    // them 0.55 m out from the facade plane and the widest thing here is a case
+    // 0.72 m across, so 0.45 m back from an anchor is still 0.10 m clear of the
+    // wall; a sign flip anywhere in the frame would put them a metre inside it.
+    check(`${label}: every object stands outside its own facade`,
+      goods.worstInside >= -0.45,
+      `deepest vertex ${goods.worstInside?.toFixed(3)} m behind its object's anchor`);
+    // The wagon is drawn, in the yard whose own name is the attestation, with
+    // the clearance the record derived for it.
+    check(`${label}: the one wagon stands in the yard it is named for`,
+      goods.wagonVerts > 0 && goods.wagon?.in_enclosure === 'western_hotel_wagon_yard'
+        && goods.wagon?.clearance_m >= 1.6,
+      `${goods.wagonVerts} wagon vertices, ${goods.wagon?.clearance_m} m clear in `
+      + `${goods.wagon?.in_enclosure}`);
+
+    // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
+    // out. The Tremont House's south front on Lake Street carries the longest
+    // group on the layer — four casks, an empty on its side and two cases — so
+    // stand where a person walking past them stands, 3.2 m off the wall, and
+    // hold the clock so the grass cannot supply the difference. Same bar as the
+    // two fence gates and the signboard: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 684.9, local_n: -104.3, yaw_deg: 0, pitch_deg: -10 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const goodsWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.yard.group.visible = false; });
+    const goodsWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.yard.group.visible = true; });
+    const dGoods = signatureDistance(goodsWith, goodsWithout);
+    check(`${label}: the goods reach the screen from the footway`,
+      dGoods.worst >= 6 && dGoods.mean >= 0.3,
+      `cell delta mean ${dGoods.mean?.toFixed(2)}, worst ${dGoods.worst} (need worst>=6)`);
+
+    // A barrel at a shop door is the nearest thing to the crosshair when a
+    // visitor walks up to that door, so aiming at one has to open the business
+    // it belongs to rather than the wall behind it.
+    const goodsPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a barrel opens the business it stands at`,
+      goodsPick.includes('tremont_house_1'),
+      `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
+
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);

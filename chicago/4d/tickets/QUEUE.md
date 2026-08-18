@@ -44,3 +44,4 @@ T-0053 — A patched lit material silently inherits another layer's shader progr
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
+T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
