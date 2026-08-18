@@ -142,6 +142,24 @@ WAGON_FRONT_WHEEL_D_M = 1.07  # 3 ft 6 in
 WAGON_TONGUE_M = 2.75
 WAGON_CLEAR_M = 1.6        # the half-width of ground a parked wagon needs round it
 
+# THE GREEN TREE'S YARD — ticket T-0080, and the first place in this town where a
+# PICTURE rather than a rule says what stood outside a door. The Trowbridge drawing
+# of the inn (data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows
+# farm wagons standing in the yard and a bench against the front wall. It is a tier-5
+# retrospective view and may drive furniture and setting as this project's third tier,
+# never a coordinate — so WHAT is here comes from the plate and WHERE is derived from
+# the committed footprint, the same division every layer on this ground keeps.
+GREEN_TREE_ID = "green_tree_tavern"
+GT_WALL_CLEAR_M = 1.0      # a wagon stands this far off the rear wall it is drawn up to
+GT_WAGON_MAX = 3           # the yard's own width decides the count; this is its ceiling
+
+# THE BENCH. A backless plank bench, recorded converted from feet: 6 ft long, 14 in
+# deep, 18 in to the seat, on two plank ends. Not one of those numbers is a record's.
+BENCH_L_M = 1.83
+BENCH_SEAT_D_M = 0.36
+BENCH_SEAT_H_M = 0.46
+BENCH_PLANK_T_M = 0.045
+
 
 def _load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -452,16 +470,156 @@ def build_wagons(cars: dict) -> tuple[list, list]:
 
 
 # --------------------------------------------------------------------------- #
+# the Green Tree's yard                                                        #
+# --------------------------------------------------------------------------- #
+
+def build_green_tree_yard(cars: dict) -> tuple[list, list, list]:
+    """The wagons and the bench the Trowbridge view puts at this one inn.
+
+    The plate gives the FURNITURE — wagons in the yard, a bench against the front
+    wall — and a tier-5 retrospective view may not give a position. So every stand
+    here is derived from `data/structures/green_tree_tavern.json`'s own committed
+    footprint and placement, and any stand that comes out inside another building's
+    committed wall is refused in writing rather than nudged.
+    """
+    sc = cars.get(GREEN_TREE_ID)
+    if not sc:
+        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+            "the inn is not standing in data/sidecars/1835 — nothing is put in its yard.")}]
+    place = sc.get("placement") or {}
+    poly = (sc.get("footprint") or {}).get("polygon") or []
+    if place.get("local_e") is None or len(poly) < 3:
+        return [], [], [{"structure_id": GREEN_TREE_ID, "why": (
+            "the inn has no placed footprint — nothing in its yard can be derived.")}]
+
+    u0 = min(p[0] for p in poly)
+    u1 = max(p[0] for p in poly)
+    v0 = min(p[1] for p in poly)
+    v1 = max(p[1] for p in poly)
+    front_w = u1 - u0                     # the front wall's own width, 25 ft here
+    bearing = float(place.get("rotation_deg") or 0.0)      # the facade bearing
+
+    walls = [(sid, w) for sid, w in
+             ((sid, _footprint_world(other)) for sid, other in cars.items()
+              if sid != GREEN_TREE_ID) if len(w) >= 3]
+
+    refused: list = []
+
+    # ---- the wagons -------------------------------------------------------- #
+    # THE YARD'S DEPTH IS THE HOUSE'S OWN FRONT WIDTH. Nothing measures this yard,
+    # and a yard has to be some depth before a wagon can be put in it; the only
+    # length this record holds for the building is its footprint, so the ground
+    # behind the rear wall is taken to run back as far as the front is wide. It is
+    # an invention and is claimed as one — but it is bounded by the building rather
+    # than picked, and it never reaches the next street.
+    yard_depth = front_w
+    reach = GT_WALL_CLEAR_M + WAGON_BODY_L_M + WAGON_TONGUE_M
+    wagons: list = []
+    if reach > yard_depth:
+        refused.append({"structure_id": GREEN_TREE_ID, "why": (
+            f"a wagon with its tongue down reaches {reach:.2f} m back from the wall and "
+            f"the yard is taken as {yard_depth:.2f} m deep — no wagon is drawn rather "
+            "than one standing in the next lot.")})
+    else:
+        # Drawn up square to the rear wall, tongues out into the yard: the wagons
+        # stand across the yard, not along it, because the rear wall is the only
+        # line in the record to be square to.
+        v_centre = v0 - (GT_WALL_CLEAR_M + WAGON_BODY_L_M / 2)
+        lo = u0 + WAGON_CLEAR_M
+        hi = u1 - WAGON_CLEAR_M
+        pitch = 2 * WAGON_CLEAR_M
+        n = 0 if hi < lo else min(GT_WAGON_MAX, int((hi - lo) / pitch) + 1)
+        if n == 0:
+            refused.append({"structure_id": GREEN_TREE_ID, "why": (
+                f"the rear wall is {front_w:.2f} m wide and a parked wagon needs "
+                f"{2 * WAGON_CLEAR_M:.2f} m of it — no stand fits.")})
+        # From the FAR end of the wall inward, so the order does not depend on which
+        # way the footprint happens to be wound.
+        for i in range(n):
+            u = hi - i * pitch
+            e, nn = _to_enu(u, v_centre, place)
+            clear = min([_dist_to_polygon((e, nn), w) for _, w in walls] or [1e9])
+            if clear < WAGON_CLEAR_M:
+                refused.append({"structure_id": GREEN_TREE_ID, "why": (
+                    f"the stand at local E {_round(e)} N {_round(nn)} is {clear:.2f} m "
+                    f"from the nearest committed wall, under the {WAGON_CLEAR_M:.2f} m a "
+                    "parked wagon needs — that wagon is not drawn.")})
+                continue
+            wagons.append({
+                "id": f"green_tree_tavern_yard_wagon_{i + 1}",
+                "belongs_to": GREEN_TREE_ID,
+                "confidence": "reconstructed",
+                "at_local_enu_m": [_round(e), _round(nn)],
+                "bearing_deg": _round((bearing + 180.0) % 360.0, 1),
+                "clearance_m": _round(min(clear, 999.0)),
+                "note": (
+                    "A FARM WAGON IN THE GREEN TREE'S YARD, and the picture is the whole "
+                    "reason it is here. The Trowbridge drawing of this inn "
+                    "(data/sources/assets/owner_brief_2026_08_18/README.md, image 7) "
+                    "shows farm wagons standing in its yard — a tier-5 retrospective "
+                    "view, which may drive furniture and setting and may never drive a "
+                    "coordinate. So WHERE is derived: the wagons stand drawn up square "
+                    "to the rear wall, tongues out, "
+                    f"{GT_WALL_CLEAR_M:.2f} m clear of it, spaced at the "
+                    f"{2 * WAGON_CLEAR_M:.2f} m of ground a parked wagon needs, laid in "
+                    "from the far end of that wall. The yard is taken to run back as far "
+                    "as the front is wide, which is the only length this record has. "
+                    "What is invented is the depth of that yard, that a wagon stood in it "
+                    "at noon on 1 July 1835, and the wagon itself: docs/LIBERTIES.md L131 "
+                    "and L133."
+                ),
+            })
+
+    # ---- the bench --------------------------------------------------------- #
+    # AGAINST THE FRONT WALL, at the end of the frontage the goods do not occupy.
+    # The barrels pile from the -u end and the signboard hangs 1.7 m toward +u of
+    # the centre at 2.55 m up, so the +u end at ground level is the clear one — the
+    # same division of one wall three layers already make.
+    benches: list = []
+    u_c = u1 - END_CLEAR_M - BENCH_L_M / 2
+    if u_c - BENCH_L_M / 2 < u0:
+        refused.append({"structure_id": GREEN_TREE_ID, "why": (
+            f"the front wall is {front_w:.2f} m and a {BENCH_L_M:.2f} m bench with "
+            f"{END_CLEAR_M:.2f} m of end clearance does not stand on it — no bench.")})
+    else:
+        e, nn = _to_enu(u_c, v1 + BENCH_SEAT_D_M / 2, place)
+        benches.append({
+            "id": "green_tree_tavern_front_bench",
+            "belongs_to": GREEN_TREE_ID,
+            "kind": "bench",
+            "confidence": "reconstructed",
+            "at_local_enu_m": [_round(e), _round(nn)],
+            "bearing_deg": _round(bearing, 1),
+            "note": (
+                "THE BENCH AGAINST THE FRONT WALL, and the people on it are not drawn. "
+                "The Trowbridge drawing of this inn "
+                "(data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows a "
+                "bench of sitters against the front wall of the Green Tree. THE SITTERS "
+                "ARE REFERENCE ONLY — AGENTS.md's standing constraint on depicting people "
+                "is not relaxed by a plate, and v1 ships no human figures at all — so what "
+                "is taken from the picture is the BENCH, which is the buildable fact in it. "
+                "Its stand is derived: against the front wall at the +u end, "
+                f"{END_CLEAR_M:.2f} m in from the end of the frontage, which is the end "
+                "the barrels do not pile at. Its size is invented: docs/LIBERTIES.md L133."
+            ),
+        })
+
+    return wagons, benches, refused
+
+
+# --------------------------------------------------------------------------- #
 # the record                                                                   #
 # --------------------------------------------------------------------------- #
 
-def record(frontages: list, refused: list, wagons: list, wagons_refused: list) -> dict:
+def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
+           benches: list) -> dict:
     items = sum(len(f["items"]) for f in frontages)
     return {
         "_doc": (
             "Goods standing at the town's trading frontages — barrels and cases on the "
-            "footway at the taverns and the stores, and one wagon in the yard a source "
-            "calls a wagon yard. NOT structure records and NOT geometry that comes out "
+            "footway at the taverns and the stores, the wagons standing in the yard a "
+            "source calls a wagon yard and in the Green Tree's, and the bench against "
+            "that inn's front wall. NOT structure records and NOT geometry that comes out "
             "of Blender: a barrel on a footway is a small object standing on ground this "
             "project has already drawn, so it is derived from the committed footprints "
             "and placements and drawn at load by renderers/web/js/yard.js — the same "
@@ -485,6 +643,7 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list) -
             "frontages": len(frontages),
             "objects": items,
             "wagons": len(wagons),
+            "benches": len(benches),
         },
         "existence": {
             "value": True,
@@ -590,6 +749,28 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list) -
                     "claimed in the same liberty."
                 ),
             },
+            "bench_size_m": {
+                "value": [BENCH_L_M, BENCH_SEAT_D_M, BENCH_SEAT_H_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED. A backless plank bench 6 ft long, 14 in deep and 18 in to "
+                    "the seat, on two plank ends, recorded converted. The Trowbridge view "
+                    "of the Green Tree shows a bench against the front wall and shows how "
+                    "long it is only against the people sitting on it, who are reference "
+                    "and are not drawn — so the length is read off the wall it stands "
+                    "against rather than off them, and the section is a joiner's plank of "
+                    "the period and nothing more. Nothing attests any of it."
+                ),
+            },
+            "bench_plank_m": {
+                "value": BENCH_PLANK_T_M,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED — 45 mm of sawn plank for the seat and its two ends. HOW a "
+                    "bench is drawn rather than a claim about this one, kept on the record "
+                    "with its other sizes so the renderer reaches for no number of its own."
+                ),
+            },
             "marks": {
                 "value": None,
                 "confidence": "reconstructed",
@@ -640,6 +821,7 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list) -
         },
         "frontages": frontages,
         "wagons": wagons,
+        "benches": benches,
         "refused": refused,
         "wagons_refused": wagons_refused,
         "research_note": (
@@ -652,9 +834,10 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list) -
             "1830s frontages actually opened at their holding institutions. WHAT THIS "
             "RECORD IS STILL SHORT OF, stated rather than left to be noticed: Ordinance "
             "9's timber, stone and brick are not drawn at all; nothing stands in a "
-            "roadway though the ordinance is about roadways; and there is exactly one "
-            "wagon in a town of 3,265 people because exactly one place in it is named "
-            "for wagons."
+            "roadway though the ordinance is about roadways; and the wagons in this town "
+            "still stand at two addresses out of hundreds — the yard a source names for "
+            "wagons, and the one inn a picture shows them in. T-0064 is the ticket for "
+            "the rest of a frontier town's traffic."
         ),
     }
 
@@ -667,7 +850,10 @@ def main() -> int:
     ids, cars = _standing()
     frontages, refused = build_frontages(ids, cars)
     wagons, wagons_refused = build_wagons(cars)
-    text = json.dumps(record(frontages, refused, wagons, wagons_refused),
+    gt_wagons, benches, gt_refused = build_green_tree_yard(cars)
+    wagons = wagons + gt_wagons
+    wagons_refused = wagons_refused + gt_refused
+    text = json.dumps(record(frontages, refused, wagons, wagons_refused, benches),
                       indent=2, ensure_ascii=False) + "\n"
     objects = sum(len(f["items"]) for f in frontages)
     if args.check:
@@ -678,13 +864,15 @@ def main() -> int:
             print(f"YARD GOODS DRIFT\n  - {OUT.relative_to(ROOT)} has drifted from the "
                   f"rule in tools/generate_yard_goods.py")
             return 1
-        print(f"verified {objects} object(s) on {len(frontages)} trading frontage(s) "
-              f"and {len(wagons)} wagon ({len(refused)} frontage(s) refused with a reason)")
+        print(f"verified {objects} object(s) on {len(frontages)} trading frontage(s), "
+              f"{len(wagons)} wagon(s) and {len(benches)} bench(es) "
+              f"({len(refused)} frontage(s) refused with a reason)")
         return 0
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)} — {objects} object(s) on {len(frontages)} "
-          f"frontage(s), {len(wagons)} wagon ({len(refused)} refused)")
+          f"frontage(s), {len(wagons)} wagon(s), {len(benches)} bench(es) "
+          f"({len(refused)} refused)")
     return 0
 
 
