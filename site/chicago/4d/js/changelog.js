@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 178, title: 'Two dozen shop signs hang over the footway', kind: 'feature', ts: '2026-08-18T07:54:42.885Z', date: 'Aug 18, 2026, 2:54 AM CT',
+    items: [
+      'This town had one signboard \u2014 the painted wolf at the forks, the only sign any source in this project names. Every other store, tavern and counting-room announced itself to nobody at all.',
+      'Twenty-four frontages carry a board now: a plank on a bracket swinging out over the footway at the Tremont House, the Sauganash, the Green Tree, Peck\u2019s store, both printing offices and the shops along South Water Street. Aim at one and it opens the business behind it.',
+      'Every board is blank, and that is the discipline rather than an omission. Nothing surviving gives the wording, the device or the colour of a single Chicago sign of these years \u2014 the wolf\u2019s included \u2014 so two dozen invented shop names would be the largest fiction in the scene.',
+      'Which frontages is a rule, not a list: a named business, a trade whose customer arrived on foot off the street, and that trade attested or reasoned rather than invented. Warehouses, smithies and slaughter-houses get none, because their custom came by name and by cart. Frederick Thomas\u2019s shop is refused outright \u2014 no source reached says what he sold.',
+      'The boards are our invention and say so. Switch \u201creconstructed\u201d off in the confidence view and all twenty-four come down, leaving the town as the sources leave it: mute, with one wolf sign at the forks.',
+      'One piece of evidence went the other way. This work was supposed to rest partly on a hanging sign in an 1859 photograph of the Green Tree; our own record for that plate says it has never been opened at the museum that holds it, so it underwrites nothing here and is struck.',
+    ] },
   { v: 177, title: 'Fenced gardens behind eighteen of the town\u2019s houses', kind: 'feature', ts: '2026-08-18T06:30:21.962Z', date: 'Aug 18, 2026, 1:30 AM CT',
     items: [
       'The one picture this project has of a Chicago garden is the Kinzie-view plate: the long low house, a row of Lombardy poplars, and picket-fenced garden plots. The house is on the wrong side of the river and gone before 1835, so it stays out of the scene \u2014 but the fence is a treatment, and the town\u2019s house lots had nothing behind them at all.',

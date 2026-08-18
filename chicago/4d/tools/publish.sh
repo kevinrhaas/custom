@@ -152,6 +152,16 @@ if [ -d data/enclosures ]; then
   cp -a data/enclosures "$SITE/data/enclosures"
 fi
 
+# The signage layer — the boards on the town's business frontages, drawn by
+# renderers/web/js/signage.js straight from these numbers. Same argument as the
+# enclosures above and the same failure if it is left out: no GLB carries any of
+# it, so an unmirrored directory is a 404 on the deployed site while the dev tree
+# hangs every board perfectly.
+if [ -d data/signage ]; then
+  rm -rf "$SITE/data/signage"
+  cp -a data/signage "$SITE/data/signage"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"

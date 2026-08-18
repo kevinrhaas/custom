@@ -1,5 +1,55 @@
 # STATUS
 
+## Shipped 2026-08-18 — two dozen shop signs, in a town that documents one
+
+**T-0039 (piece 2 of 4 of T-0003, legacy K5 (b)).** `docs/ROADMAP.md` K5 (b) asked for
+*"signboards on businesses — attested (the Green Tree plate's hanging sign; the wolf sign
+documented) — parameter exists in `frame_storefront`, switch it on per record, lettering stays
+undrawn (L25)"*. Worked strictly, that clause was already finished, and this is the finding the
+ticket turned up:
+
+* **Exactly ONE structure record in this dataset attests a sign** — `wolf_point_tavern`
+  `form.sign`, the painted wolf, and it has hung in that building's GLB since the archetype grew
+  a `sign` parameter. Nothing else in 332 records carries the attribute.
+* **The Green Tree plate is NOT SEEN.** `data/sources/chm_green_tree_1859.json` says so itself:
+  the image could not be retrieved, the identification comes from aggregator metadata rather than
+  the holding institution, and `verified` is false. The hanging sign K5 (b) cites it for is not
+  evidence this project holds. It is struck from the argument rather than repeated, and the
+  roadmap box now says so.
+* **The archetype route needs a bake.** `frame_storefront`'s `sign` parameter is Blender's, and
+  there is no Blender on the improve runner. So switching it on per record would have shipped
+  nothing visible.
+
+So the boards are a `reconstructed` layer instead, on the enclosure layer's own argument: a
+signboard is a plank on a bracket hanging off a wall this project has already drawn, its position
+is arithmetic on the committed footprint and placement, and it therefore needs no bake.
+
+**What shipped.** `data/signage/` (manifest + one generated record),
+`renderers/web/js/signage.js` (one draw call, own program cache key, every vertex graded
+`reconstructed`, pickable to the business behind it), `tools/generate_business_signboards.py`,
+and a `tools/check.sh` step that re-derives the record byte for byte. **24 boards**, chosen by a
+rule and not a list: a named record, a PUBLIC TRADE whose customer arrived on foot off the street,
+that trade `attested` or `inferred` rather than `reconstructed`, standing on the scene date, and
+no sign on the record already. **4 frontages are refused in writing** — Frederick Thomas's shop
+(its own record says no source reached says what he sold), the reconstructed grocery and the
+reconstructed physician's office (anonymous slots), and the Wolf Point Tavern (it already has the
+only real board in the town).
+
+**What is invented, and it is one thing.** The FACT of a board on those 24 frontages —
+`docs/LIBERTIES.md` **L130**. The board's geometry is not new invention: arm, board and hangers
+are `generators/archetypes/log_dwelling.py::_sign`'s own numbers, so the town has one convention
+for hanging a board rather than two. **No board carries lettering, an image or a trade device**,
+which is L25 generalised: no source gives the wording, device or colour of a single Chicago sign
+of these years, the wolf's included.
+
+**Not claimed.** That any of these particular buildings hung a board — the confidence view takes
+all 24 down. That the trade list is the only defensible one: warehouses, packing houses, smithies,
+cooperages, tanneries, brickyards, manufactories and stables are excluded on a judgement about
+whose custom arrived on foot, and that judgement is recorded in the generator and in L130 rather
+than derived from a source. And nothing here is baked, so a scene wanting these boards as solid
+timber still needs the generator half of K5 (b).
+
+
 ## Shipped 2026-08-18 — fenced gardens behind eighteen of the town's houses
 
 **T-0052 (piece 3 of 3 of T-0038, legacy K5).** The Kinzie-view plate shows *"picket-fenced garden

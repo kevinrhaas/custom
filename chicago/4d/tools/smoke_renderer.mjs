@@ -1045,6 +1045,137 @@ for (const [label, viewport, touch] of [
       dGarden.worst >= 6 && dGarden.mean >= 0.3,
       `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
 
+    // --- the business signboards (T-0039) ------------------------------------
+    //
+    // A second layer drawn from the dataset rather than baked, and the first one
+    // that hangs geometry OFF a building instead of standing it on the ground.
+    // That is where its failure modes live: a board is positioned by arithmetic
+    // on the footprint, the placement and the facade bearing, so one sign error
+    // anywhere in that chain puts two dozen planks inside the walls, or floating
+    // in the road behind them, and every dataset gate in this repo would pass.
+    // So the geometry is measured against the record here, and nowhere else.
+    const boards = await page.evaluate(() => {
+      const s = window.__chicago4d.signage;
+      const mesh = s?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const signs = s?.signs ?? [];
+      let ungraded = 0;
+      let notReconstructed = 0;
+      let worstStray = 0;      // furthest a vertex sits from its own anchor
+      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g && signs.length) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          let best = null;
+          let bestD = Infinity;
+          for (const sg of signs) {
+            const d = Math.hypot(e - sg.anchor_local_enu_m[0], n - sg.anchor_local_enu_m[1]);
+            if (d < bestD) { bestD = d; best = sg; }
+          }
+          worstStray = Math.max(worstStray, bestD);
+          const b = ((best.facade_bearing_deg ?? 0) * Math.PI) / 180;
+          // Positive is out of the wall, along the facade's own normal.
+          const outward = (e - best.anchor_local_enu_m[0]) * Math.sin(b)
+            + (n - best.anchor_local_enu_m[1]) * Math.cos(b);
+          worstInside = Math.min(worstInside, outward);
+        }
+      }
+      return {
+        census: s?.census ?? null,
+        meshes: s?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        worstInside,
+        signs: signs.length,
+        ids: signs.map((sg) => sg.structure_id),
+      };
+    });
+    check(`${label}: the signage layer hangs the record's boards`,
+      boards.census?.boards >= 20 && boards.signs === boards.census?.boards
+        && boards.verts > 0,
+      `${boards.census?.boards} board(s) from ${boards.census?.records} record(s), `
+      + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
+    check(`${label}: the whole signage layer is one draw call`,
+      boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. The fact of
+    // a board on these frontages is invented (L130) and a single vertex claiming
+    // to be inferred or attested would be this layer overstating the one thing
+    // it must not.
+    check(`${label}: every signboard vertex is graded reconstructed`,
+      boards.hasConfidence && boards.ungraded === 0 && boards.notReconstructed === 0,
+      `attribute ${boards.hasConfidence ? 'present' : 'MISSING'}, ${boards.ungraded} out `
+      + `of range, ${boards.notReconstructed} claiming better than reconstructed`);
+    // The board hangs on the wall it belongs to. The bracket is 1.15 m and the
+    // board 0.88 m across, so nothing legitimately reaches 2.2 m from its anchor
+    // — a transposed axis or a dropped rotation would be metres out, not
+    // centimetres.
+    check(`${label}: no signboard strays from the frontage it hangs on`,
+      boards.worstStray > 0 && boards.worstStray <= 2.2,
+      `furthest vertex ${boards.worstStray?.toFixed(2)} m from its own anchor`);
+    // And it hangs OUT of the wall, not into the parlour behind it. The strut's
+    // own half-section is the only thing entitled to sit on the wall plane.
+    check(`${label}: every signboard hangs outside its own facade`,
+      boards.worstInside >= -0.05,
+      `deepest vertex ${boards.worstInside?.toFixed(3)} m behind the facade plane`);
+
+    // AND IT READS FROM THE STREET, which is the whole point of a sign. Stand on
+    // the footway in front of the Tremont House — a south-facing hotel frontage —
+    // hold the clock so the grass cannot supply the difference, and compare the
+    // frame with the layer hidden.
+    //
+    // THE STAND IS 3.5 m AND THAT NUMBER IS LOAD-BEARING, so it is explained
+    // rather than left as a coordinate. A board is 0.88 x 0.50 m. Measured on
+    // this runner from 8 m back it is plainly on screen — the crosshair picks it
+    // — and the 12-cell signature reads worst 4, because one cell of a 12x12
+    // grid is wider than the whole board at that range and averages it away. The
+    // answer is to stand where a person reading a sign stands, not to widen the
+    // grid or drop the threshold: at 3.5 m the same measurement reads worst 11 /
+    // mean 0.55 on desktop and 17 / 0.72 on mobile, against the SAME bar the two
+    // fence gates above use.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 678.5, local_n: -104.06, yaw_deg: 0, pitch_deg: 8 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const signWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.signage.group.visible = false; });
+    const signWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.signage.group.visible = true; });
+    const dSign = signatureDistance(signWith, signWithout);
+    check(`${label}: the hotel's board reaches the screen from the street`,
+      dSign.worst >= 6 && dSign.mean >= 0.3,
+      `cell delta mean ${dSign.mean?.toFixed(2)}, worst ${dSign.worst} (need worst>=6)`);
+
+    // A sign is a thing you read and then walk into, so aiming at the board has
+    // to open the business behind it and not the wall past it.
+    const boardPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.2, -0.1, 0, 0.1, 0.2]) {
+        for (const y of [-0.1, 0, 0.1, 0.2, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a signboard opens the business behind it`,
+      boardPick.includes('tremont_house_1'),
+      `25 aims returned [${[...new Set(boardPick)].join(', ') || 'nothing'}]`);
+
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);
