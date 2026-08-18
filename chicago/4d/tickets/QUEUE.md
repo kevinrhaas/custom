@@ -2,7 +2,6 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0041 — Wharves, docks and the river landings
 T-0036 — The gate screen counts the town: buildings standing, people housed
 T-0035 — Flowers grow up out of the ground as you approach instead of fading in
 T-0004 — Raise and graduate the river banks at the fort reach
@@ -44,3 +43,5 @@ T-0054 — Every liberty appended since L111 lands under the Resolved heading an
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
+T-0058 — A visitor can walk out along a wharf deck
+T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
