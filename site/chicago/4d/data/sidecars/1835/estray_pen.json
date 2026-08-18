@@ -8,7 +8,7 @@
     "Chicago's first public building"
   ],
   "archetype": "outbuilding",
-  "asset": "gltf/estray_pen__pen_1833.glb",
+  "asset": null,
   "scene": "1835",
   "target_date": "1835-07-01",
   "documented_range": {
@@ -20,7 +20,7 @@
     ],
     "note": "MARCH 1832, AND THE YEAR THIS RECORD CITED ANDREAS FOR IS NOT A YEAR ANDREAS GIVES. Until 2026-08-16 the range opened at 1833-03-01, under a note reading 'MARCH 1833 IS ATTESTED AS A MONTH AND CONTESTED AS A YEAR ... The dossier notes that some accounts give 1832 instead'. Andreas gives 1832 in both places he treats the pen, and 1833 in neither. The narrative: 'The result of this generosity on the part of the State was seen in March, 1832, when, through the architectural skill of Samuel Miller, contractor, there arose upon the southwest corner of the square, the so-called \"estray-pen.\" Although sometimes designated and dignified as \"the first public building ever erected in Chicago,\" the \"pen\" was a small wooden enclosure and quite roofless' (Andreas I scan p. 365). The chronological index: the entry 'First public building (the \"Estray Pen\") erected' stands under the heading 1832, between '1832 - (January) - First Methodist quarterly meeting' and '(April) - First street leading to the lake laid out' (scan p. 1315). The month was read off that index correctly and the year off the wrong heading. NOTHING IN THE SCENE MOVES. The pen stands on 1835-07-01 under either reading and is roofless under both - which is why it is worth saying that the correction is to the CITATION and not to the town: a note that cites a source for a value the source does not carry is wrong in the way this project cares most about, whether or not anything visible depends on it. THE RANGE IS NOW WIDE, AND HONESTLY SO: 1832-03-01 is the first day of the attested month in the attested year, and 1835-12-31 remains A HOUSEKEEPING BOUND, NOT A REMOVAL DATE. Nothing reached says when the pen came down. What IS attested is that its role as a place of confinement ended in the fall of 1833 when the log jail went up at the other corner of the same block - which is a change of use, not of fabric, and does not close the phase. ROADMAP T-I3."
   },
-  "change_note": "The estray pen erected on the south-west corner of the public square in March 1832 - Chicago's first public building, put up to hold stray livestock and, for want of anywhere else, prisoners. That second use ended when the log jail went up at the north-west corner of the same block in the fall of 1833; the pen itself is not recorded as having gone anywhere, and stands on 1835-07-01. THE PHASE IS STILL CALLED `pen_1833` AND THE YEAR IN THAT ID IS WRONG. It is kept because a phase id is half of a baked asset's filename, so renaming it stales the GLB and needs a Blender run this correction does not otherwise require - a cosmetic rename is not worth a bake. The date the project reads is `documented_range`, which is right; the id is a key.",
+  "change_note": "The estray pen erected on the south-west corner of the public square in March 1832 - Chicago's first public building, put up to hold stray livestock and, for want of anywhere else, prisoners. That second use ended when the log jail went up at the north-west corner of the same block in the fall of 1833; the pen itself is not recorded as having gone anywhere, and stands on 1835-07-01. THE ROOF IS GONE AS OF 2026-08-18 (T-0051): this phase draws no mesh at all now, and the pen stands in the scene as a roofless enclosure on the layer built for it - see `drawn_by` above, and data/enclosures/estray_pen.json. THE PHASE IS STILL CALLED `pen_1833` AND THE YEAR IN THAT ID IS WRONG. It is kept because a phase id is half of a baked asset's filename, so renaming it stales the GLB and needs a Blender run this correction does not otherwise require - a cosmetic rename is not worth a bake. The date the project reads is `documented_range`, which is right; the id is a key.",
   "placement": {
     "local_e": 468.5,
     "local_n": -377.31,
@@ -58,34 +58,9 @@
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "INVENTED. NO SOURCE REACHED GIVES THIS ENCLOSURE A DIMENSION. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule. The reasoning behind the scale is a use rather than a measurement: a town pound had to hold several head of stray cattle or horses at once and, for the first months of its life, prisoners as well, which puts it well above a shed and well below a stock yard. Everything about the shape - the rectangle, the proportion, the size - is this record's."
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS ENCLOSURE A DIMENSION. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule. The reasoning behind the scale is a use rather than a measurement: a town pound had to hold several head of stray cattle or horses at once and, for the first months of its life, prisoners as well, which puts it well above a shed and well below a stock yard. Everything about the shape - the rectangle, the proportion, the size - is this record's. RE-EXPRESSED AS A PERIMETER 2026-08-18: data/enclosures/estray_pen.json walks this same rectangle as a closed fence line, from this record's own origin and these same 9.144 x 6.096 m. It re-invents nothing - it re-uses this polygon - so this note, and docs/LIBERTIES.md L60 with it, is still the place the rectangle is admitted to."
   },
   "attributes": {
-    "construction": {
-      "value": "log",
-      "confidence": "reconstructed",
-      "note": "INVENTED. Nothing says what the pen was made of. Log is chosen because it is the material every other 1833 structure in this dataset is built of, because a notched log pen is stock-proof and prisoner-proof in a way a nailed fence is not, and because it is the value this archetype offers that is closest to a heavy enclosure. THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely different - open, horizontal, see-through - from what this record builds. That reading is recorded here rather than lost."
-    },
-    "roof_type": {
-      "value": "shed",
-      "confidence": "reconstructed",
-      "note": "THE LARGEST SINGLE INVENTION ON THIS RECORD, AND IT IS THE MODEL'S RATHER THAN THE RECORD'S. A pound is an enclosure and there is no reason to think this one was roofed at all; nothing in any source mentions a roof. The outbuilding archetype - the only one in the project that will build a low walled enclosure - cannot build a roofless structure, so a roof is unavoidable if the pen is to appear in the scene at all. shed at the shallowest pitch the archetype accepts is the nearest thing to no roof that can be built here. THIS IS A CONSTRAINT OF THE TOOL, NOT A CLAIM ABOUT THE BUILDING, and it is claimed in docs/LIBERTIES.md. What the town actually had at this corner is, on the balance of type, a stout open pen."
-    },
-    "roof_pitch_deg": {
-      "value": 6.0,
-      "confidence": "reconstructed",
-      "note": "INVENTED, and deliberately at the floor of what the archetype accepts. 6 degrees over the pen's 6.096 m run rises 0.64 m, which is as close to flat as this generator will go. See roof_type: the number exists to minimise a feature that probably was not there, not to describe one that was."
-    },
-    "wall_height_m": {
-      "value": 2.4,
-      "confidence": "reconstructed",
-      "note": "INVENTED. 2.4 m is about 8 ft - high enough that a horse will not clear it and a man will not climb out easily, which is what the pen's two attested uses require between them. Nothing attests a height. It is also the minimum this archetype will accept with a gate a beast can be led through, so the two numbers are coupled: a lower pen forces a smaller opening."
-    },
-    "door": {
-      "value": "stable",
-      "confidence": "reconstructed",
-      "note": "INVENTED. door in this archetype names what has to get through the opening. A pound gate has to pass a horse or a cow led in hand, which is the stable class; a wagon-width gate would need a 3 m wall to carry it and is not what a pound needs. Nothing attests a gate, its width, its position or its fastening. What this builds is a doorway in a wall, where the real thing was probably a hung rail gate."
-    },
     "function": {
       "value": "livestock pound",
       "confidence": "attested",
@@ -114,7 +89,8 @@
       "tier_label": "later scholarship"
     }
   ],
-  "research_note": "CHICAGO'S FIRST PUBLIC BUILDING, AND IT IS A FENCE. That is the whole difficulty of this record and it is worth stating plainly: what the sources attest is a municipal FUNCTION and a corner, and this project has no generator that builds an enclosure. Everything this record contributes to the scene - four walls, a roof, a gate, a height, a size - is invention, and only the corner, the month and the use are not. The roof is the specific thing to be sorry about: see the roof_type note, and docs/LIBERTIES.md, which claims it. THE HONEST FIX IS A GENERATOR, NOT A BETTER GUESS. An enclosure archetype - post-and-rail or notched log, roofless, gated, taking a perimeter rather than a footprint - would let this record say what it means, and would also serve the fenced or unfenced state of the public square itself, the garrison gardens and any yard in the town. The palisade archetype named in data/structures.schema.json is the obvious place for it and has no module behind it. Until then this record builds a low walled box with a nearly flat roof, which is the least wrong thing the existing tools can make. WHAT WOULD UPGRADE IT: any town or county order establishing the pound, since a pound-keeper's fee schedule, an order to build, a size or a materials specification are all the kind of thing such an order carries; the Cook County Sheriff's published jail history, cited in this project's dossier and not yet held as a source record; and Andreas vol. 1 at page-image level around scan pp. 33, 365 and 1315, where the chronology entry and the narrative sentence sit. Note also the unresolved year: some accounts date the pen 1832 rather than 1833, which changes nothing for this scene.",
+  "research_note": "CHICAGO'S FIRST PUBLIC BUILDING, AND IT IS A FENCE. That is the whole difficulty of this record, and from 2026-08-11 to 2026-08-18 it was also the whole difficulty of the model: what the sources attest is a municipal FUNCTION, a corner, a month and the word ROOFLESS - 'the \"pen\" was a small wooden enclosure and quite roofless' - and this project had no generator that would build an enclosure, so the pen was drawn as a log box with a shed roof at the shallowest pitch the outbuilding archetype would accept. THE ROOF IS NOW RETIRED. It was not re-graded and it was not softened: the five invented form values that made the box are removed from this record, this phase builds no mesh, and the pen is drawn as a roofless perimeter by renderers/web/js/enclosures.js from data/enclosures/estray_pen.json. That is the fix this note called for in its own words - 'an enclosure archetype - post-and-rail or notched log, roofless, gated, taking a perimeter rather than a footprint' - delivered on the renderer side, where it needs no bake; the GENERATOR half is still open, and the `palisade` archetype named in data/structures.schema.json remains the obvious home for it. WHAT IS STILL INVENTED IS EVERYTHING DIMENSIONAL: the rectangle, its 30 x 20 ft, and now the fence's material, height, courses, post rhythm and gateway, all of them recorded on the enclosure record and claimed in docs/LIBERTIES.md (L60 for the footprint and the retired box, L128 for the fence). Only the corner, the month, the use and the rooflessness are not. WHAT WOULD UPGRADE IT: any town or county order establishing the pound, since a pound-keeper's fee schedule, an order to build, a size or a materials specification are all the kind of thing such an order carries; the Cook County Sheriff's published jail history, cited in this project's dossier and not yet held as a source record; and Andreas vol. 1 at page-image level around scan pp. 33, 365 and 1315, where the chronology entry and the narrative sentence sit.",
   "research_doc": "",
-  "review_required": false
+  "review_required": false,
+  "drawn_by": "enclosures"
 }

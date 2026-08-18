@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 176, title: 'The town pound is a fence again, and its roof is gone', kind: 'feature', ts: '2026-08-18T03:28:56.883Z', date: 'Aug 17, 2026, 10:28 PM CT',
+    items: [
+      'Chicago\u2019s first public building was the estray pen \u2014 the pound on the south-west corner of the public square, where stray cattle, and for a few months prisoners, were held. Andreas describes it in one clause: \u201ca small wooden enclosure and quite roofless\u201d. Until today this model drew it as a log box with a roof on it.',
+      'It is a fence now. Six feet, five rails, a gateway in the north side, standing on exactly the rectangle the record has always given it. Walk onto the square from Washington Street and you can see through it, which is the point \u2014 a pound is a thing you look into.',
+      'The roof was never a claim about the building. It was there because the only shape this project could build was a walled box with a lid, and that was written down at the time as a liberty. The five invented numbers behind the box \u2014 the walls, the roof, its pitch, the material and the door \u2014 are retired rather than quietly re-labelled, and the old model file is deleted.',
+      'The fence that replaces them is invented in its own right and says so. Nothing describes a fence here either, so its height, its rails and its posts are graded as our reconstruction: switch \u201creconstructed\u201d off in the confidence view and the pen disappears, leaving the bare corner the sources leave.',
+      'You can still click it. The pen keeps its card \u2014 the corner, the date, the sources and the argument \u2014 and aiming at the fence opens it, which used to come free with a roof to click on.',
+      'What is still not drawn: the ground inside the pound, which was not meadow grass; a hung gate, which nothing describes; and the pen is not baked with the rest of the town, so a future scene that wants it as solid timber still needs the tool that would build it.',
+    ] },
   { v: 175, title: 'The Western Hotel\u2019s wagon yard is a yard again', kind: 'feature', ts: '2026-08-18T01:58:35.780Z', date: 'Aug 17, 2026, 8:58 PM CT',
     items: [
       '\u201cIn the rear was the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.\u201d That one sentence is the west-side teamsters\u2019 house as anybody who used it would have described it \u2014 and until today the model showed a hotel standing in open prairie.',

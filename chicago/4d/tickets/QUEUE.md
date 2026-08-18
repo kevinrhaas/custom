@@ -44,3 +44,4 @@ T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
 T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
 T-0053 — A patched lit material silently inherits another layer's shader program
+T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved

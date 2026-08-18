@@ -171,6 +171,7 @@ function stretches(path, s, gaps) {
 
 function buildRecord(buf, record, terrain, problems) {
   const form = record.form ?? {};
+  const firstTri = buf.pos.length / 9;
   const height = form.height_m?.value ?? 1.37;
   const courses = Math.max(1, Math.round(form.rail_courses?.value ?? 3));
   const spacing = Math.max(1, form.post_spacing_m?.value ?? 2.9);
@@ -243,7 +244,7 @@ function buildRecord(buf, record, terrain, problems) {
     problems.push(`enclosures: ${record.id} drew nothing — every post stood in water `
       + 'or the record carries no run with two points');
   }
-  return { posts, dropped };
+  return { posts, dropped, firstTri, lastTri: buf.pos.length / 9 };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -267,6 +268,9 @@ export async function createEnclosures({
   const group = new THREE.Group();
   group.name = 'enclosures';
   const out = { group, records: [], census: { enclosures: 0, posts: 0, dropped: 0 },
+    // Replaced once there is a mesh to raycast; a layer that drew nothing still
+    // answers a pick, with nothing.
+    pickAt: () => null,
     dispose: () => {} };
 
   if (!dataBase || !terrain) {
@@ -291,9 +295,29 @@ export async function createEnclosures({
   }));
 
   const buf = { pos: [], nrm: [], conf: [] };
+  /**
+   * WHICH RECORD A TRIANGLE BELONGS TO, and why this layer bothers.
+   *
+   * The whole layer is one draw call, so a hit on the mesh knows nothing about
+   * which fence it landed on. That was fine while the only enclosure was a yard
+   * nobody could ask a question about. It stopped being fine with the estray pen
+   * (T-0051): the pen is a STRUCTURE RECORD whose geometry moved here, its card
+   * is still compiled from `data/structures/estray_pen.json`, and a visitor who
+   * could click Chicago's first public building while it was a roofed box must
+   * not lose the card because the model got more honest about its roof.
+   *
+   * So each record banks the half-open range of triangles it emitted, and a pick
+   * resolves `faceIndex` back to `structure_id`. An enclosure with no
+   * `structure_id` — the wagon yard — resolves to nothing and is not pickable,
+   * which is correct: there is no card behind it.
+   */
+  const spans = [];
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`enclosures: ${id} — ${why}`); continue; }
-    const { posts, dropped } = buildRecord(buf, record, terrain, problems);
+    const { posts, dropped, firstTri, lastTri } = buildRecord(buf, record, terrain, problems);
+    if (record.structure_id && lastTri > firstTri) {
+      spans.push({ id: record.structure_id, from: firstTri, to: lastTri });
+    }
     out.records.push(record);
     out.census.enclosures++;
     out.census.posts += posts;
@@ -344,6 +368,24 @@ export async function createEnclosures({
   mesh.receiveShadow = true;
   group.add(mesh);
   group.userData.census = out.census;
+
+  const raycaster = new THREE.Raycaster();
+  /**
+   * The structure this fence stands for, or null. Same ray budget as
+   * `buildings.pickAt` — as far as you can see, which depends on how high you
+   * are — so a fence and a roof answer a click on the same terms.
+   */
+  out.pickAt = (ndc, camera) => {
+    if (!camera) return null;
+    raycaster.setFromCamera(ndc ?? new THREE.Vector2(0, 0), camera);
+    raycaster.far = Math.max(400, camera.position.y * 4);
+    const hits = raycaster.intersectObject(mesh, false);
+    if (!hits.length) return null;
+    const hit = hits[0];
+    const span = spans.find((sp) => hit.faceIndex >= sp.from && hit.faceIndex < sp.to);
+    if (!span) return null;
+    return { id: span.id, point: hit.point.clone(), distance: hit.distance };
+  };
 
   out.dispose = () => { geo.dispose(); mat.dispose(); };
   return out;

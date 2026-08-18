@@ -535,7 +535,21 @@ async function boot() {
   // ---- picking ---------------------------------------------------------- //
 
   function inspect(ndc = null) {
-    const hit = buildings.pickAt(ndc, camera);
+    let hit = buildings.pickAt(ndc, camera);
+    /**
+     * A fence can be the thing you are aiming at. The estray pen's geometry
+     * lives on the enclosure layer now (T-0051), and it is still a structure
+     * record with a card behind it — so a pick that misses every roof, or lands
+     * on one standing further away than the fence in front of it, resolves
+     * against the enclosures too. An enclosure with no structure behind it (the
+     * wagon yard) answers null and the aim falls through to the roof, which is
+     * the same behaviour as before this layer existed.
+     */
+    const fence = enclosures.pickAt(ndc, camera);
+    if (fence && (!hit || fence.distance < hit.distance)) {
+      const record = loaded.registry.get(fence.id);
+      if (record) hit = { ...fence, record };
+    }
     if (!hit) {
       popup.close();
       hud.say('Nothing there — aim at a building');
@@ -569,7 +583,24 @@ async function boot() {
   function focusPoint(id) {
     const fp = footprints.find((f) => f.id === id);
     const record = loaded.registry.get(id);
+    // A structure drawn by the enclosure layer has neither an obstruction
+    // polygon nor a wall height any more, and both of the defaults below are
+    // wrong for it: the placement is the pen's south-west CORNER, and 5 m of
+    // assumed wall aims the crosshair nearly two metres over a fence that is
+    // 1.83 m tall. So take the perimeter's own centre and its own height — the
+    // Go-to menu still lists the pen, and it has to stand you in front of it.
+    const fence = record?.sidecar?.drawn_by
+      ? (enclosures.records ?? []).find((r) => r.structure_id === id)
+      : null;
     let e; let n;
+    if (fence) {
+      const pts = (fence.runs ?? []).flatMap((r) => r.path_local_enu_m ?? []);
+      if (!pts.length) return null;
+      e = pts.reduce((a, p) => a + p[0], 0) / pts.length;
+      n = pts.reduce((a, p) => a + p[1], 0) / pts.length;
+      const h = fence.form?.height_m?.value ?? 1.5;
+      return enuToWorld(e, n, terrain.surfaceHeight(e, n) + h * 0.55);
+    }
     if (fp) {
       e = fp.pts.reduce((a, p) => a + p[0], 0) / fp.pts.length;
       n = fp.pts.reduce((a, p) => a + p[1], 0) / fp.pts.length;

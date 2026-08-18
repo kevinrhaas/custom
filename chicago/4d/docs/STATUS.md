@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-18 — the estray pen is a fence, and its roof is retired
+
+**T-0051 (piece 2 of 3 of T-0038, legacy K5).** Chicago's first public building is a pound, and
+Andreas says what it was in one clause: *"the 'pen' was a small wooden enclosure and quite
+roofless."* From 2026-08-11 to today the model drew it as a log box with a shed roof, because
+`outbuilding` — the only archetype that would build a low walled rectangle — cannot build a roofless
+one. **L60** admitted exactly that and named the fix. T-0050 built the layer; this run moved the pen
+onto it.
+
+**What shipped.** `data/enclosures/estray_pen.json` — the structure record's own 9.144 × 6.096 m
+rectangle re-expressed as a closed perimeter, drawn as a post-and-rail fence 1.83 m high, five
+courses, 0.18 m posts at 2.44 m, with a 1.35 m gateway centred in the north side and no leaf hung in
+it. Not one coordinate is new: the outline is the committed footprint, and the gateway keeps the
+retired mesh's own clear width and its north-side convention so that this run changes the ROOF and
+not a set of numbers restated in passing.
+
+**What "retired rather than re-graded" meant in practice.** The five form values that made the box —
+`construction`, `roof_type`, `roof_pitch_deg`, `wall_height_m`, `door` — are gone from
+`data/structures/estray_pen.json`, and `assets/gltf/estray_pen__pen_1833.glb` and its two manifest
+entries are deleted with them. The record stays: it is still the evidence record, still the card a
+visitor opens, still the permit on the reserved ground of the public square.
+
+**The mechanism, because a record with no mesh needed one.** A phase may now declare
+`drawn_by: { layer, record, note }`. `tools/validate.py` gains `check_drawn_by()`, which asserts the
+named record exists, names the structure back, is listed in the layer's own manifest, has **no GLB
+and no manifest entry left behind it**, and that the phase's `form` is empty — a retired invention
+left sitting in a record would keep showing on the card with a confidence chip and nothing behind
+it. `tools/compile_scene.py` writes `asset: null` and carries `drawn_by` into the sidecar;
+`scene-loader.js` loads the record without fetching a GLB; `walker.js` takes no obstruction from its
+footprint, so the retired box leaves no invisible wall on the square.
+
+**And the card is still reachable.** Picking used to come free with a roof to click on. `main.js`
+now resolves a pick against the enclosure layer too, and `enclosures.js` banks each record's triangle
+range so a hit resolves back to `structure_id`; `frame('estray_pen')` uses the perimeter's own centre
+and height instead of a corner and an assumed 5 m wall. An enclosure with no structure behind it —
+the wagon yard — answers nothing and the aim falls through, as before.
+
+**What is NOT done, stated plainly.**
+
+1. **The ground inside the pound is still prairie sward.** A pound's yard was not sward; nothing
+   states what it was, so it is left rather than guessed. Same residual as the wagon yard.
+2. **No gate leaf is hung**, because nothing describes one. The gateway is a gap.
+3. **The generator half of L60 is still open.** `palisade` still builds no enclosure form, so the pen
+   is drawn at load and is not baked with the rest of the town.
+4. **The fence is invented end to end** — material, height, courses, posts, gateway — and is claimed
+   at **L128**. L60 moves to **Resolved** and keeps covering the footprint, which is as invented as
+   it ever was.
+
+**Gates.** `./tools/check.sh` CHECK PASS. `node tools/smoke_renderer.mjs --published` gained four
+assertions for this — the pen draws on the enclosure layer and bakes no mesh, the retired box leaves
+no invisible wall, the pen reaches the screen from inside the pen, and aiming at the fence still
+opens the pen's card — and all four pass at **390 × 780** and at **1280 × 800**. Each viewport pass
+was cut short by this runner's 10-minute per-command ceiling (mobile reached 196 assertions, desktop
+114); the only failures in either span are the two pre-existing road-legibility rows, both marked
+*(reported only)* and not gated.
+
+**Found on the way, filed rather than fixed:** every liberty appended to `docs/LIBERTIES.md` since
+**L111** has landed physically below the `## Resolved` heading, so seventeen standing liberties —
+including L127, written yesterday — compile as `resolved` and are exempt from the coverage gate.
+L128 was placed in the per-subject section deliberately. Filed as its own ticket.
+
 ## Shipped 2026-08-18 — the Western Hotel's wagon yard, and the first enclosure this project can draw
 
 **T-0038 (piece 1 of 4 of T-0003, legacy K5).** `docs/LIBERTIES.md` **L10** and **L60** have been

@@ -104,6 +104,13 @@ export function footprintsFrom(registry) {
     // same polygon is a SURFACE instead — see decksFrom() below, which reads it
     // as the thing you stand on rather than the thing you are kept out of.
     if (p.vertical_anchor === 'water') continue;
+    // And a record drawn by another layer is not an obstruction either. The
+    // estray pen's footprint is now a fence line rather than a wall (T-0051),
+    // and enclosures.js is explicit that a visitor walks THROUGH a fence — so
+    // keeping the polygon here would leave an invisible box on the public
+    // square with nothing at head height to explain it, which is the same bug
+    // the water clause above exists to prevent.
+    if (record.sidecar?.drawn_by) continue;
     const th = (p.rotation_deg ?? 0) * DEG;
     const cos = Math.cos(th);
     const sin = Math.sin(th);
