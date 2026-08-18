@@ -33,6 +33,11 @@
  *  * It answers a pick. A barrel belongs to the business whose door it stands
  *    at, so clicking it opens that business's card — the same contract the
  *    signboards keep.
+ *  * It draws NO PEOPLE, and the bench at the Green Tree is where that bites.
+ *    The Trowbridge view of that inn shows a bench of SITTERS against its front
+ *    wall; AGENTS.md's standing constraint is not relaxed by a plate, so what is
+ *    taken from the picture is the bench and the sitters stay reference. A bench
+ *    with nobody on it is the honest half of that image.
  */
 
 import * as THREE from 'three';
@@ -297,6 +302,22 @@ function buildItem(buf, item, form, terrain, level, problems, who) {
     }
     return true;
   }
+  if (item.kind === 'bench') {
+    // A backless plank bench standing against a wall: a seat plank on two plank
+    // ends. `at` is its centre and the record puts that half the seat's depth off
+    // the wall plane, so the back edge touches the boards.
+    const [L, D, H] = form.bench;
+    const t = form.benchPlank;
+    pushBox(buf, x, base + H - t / 2, z, wx, wz, L / 2, D / 2, t / 2, level);
+    // the two ends, inset so the seat overhangs them the way a bench's does
+    const endInset = Math.min(0.14, L / 8);
+    for (const s2 of [-1, 1]) {
+      pushBox(buf, x + wx * s2 * (L / 2 - endInset), base + (H - t) / 2,
+        z + wz * s2 * (L / 2 - endInset), wx, wz, t / 2, (D * 0.82) / 2, (H - t) / 2,
+        level);
+    }
+    return true;
+  }
   if (item.kind === 'crate') {
     const [l, w, hh] = form.crate;
     const tier = item.tier || 0;
@@ -395,6 +416,8 @@ function readForm(record) {
     wagonRearWheel: 1.37,
     wagonFrontWheel: 1.07,
     wagonTongue: 2.75,
+    bench: v('bench_size_m', [1.83, 0.36, 0.46]),
+    benchPlank: v('bench_plank_m', 0.045),
   };
 }
 
@@ -413,8 +436,9 @@ export async function createYardGoods({
     records: [],
     frontages: [],
     wagons: [],
+    benches: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
-      refused: 0 },
+      benches: 0, refused: 0 },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -483,6 +507,19 @@ export async function createYardGoods({
       }
       out.wagons.push(wagon);
       out.census.wagons += 1;
+      out.census.objects += 1;
+    }
+    for (const bench of record.benches ?? []) {
+      const from = buf.pos.length / 9;
+      if (!buildItem(buf, bench, form, terrain, LEVEL[bench.confidence] ?? level,
+        problems, bench.belongs_to ?? bench.id)) continue;
+      // Same pick contract as the wagons: a bench against an inn's front wall
+      // belongs to that inn, so aiming at it opens the inn's card.
+      if (bench.belongs_to) {
+        spans.push({ id: bench.belongs_to, from, to: buf.pos.length / 9 });
+      }
+      out.benches.push(bench);
+      out.census.benches += 1;
       out.census.objects += 1;
     }
   }

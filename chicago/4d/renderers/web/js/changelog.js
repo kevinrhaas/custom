@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 183, title: 'Wagons in the Green Tree\u2019s yard, and a bench at its door', kind: 'feature', ts: '2026-08-18T15:00:02.100Z', date: 'Aug 18, 2026, 10:00 AM CT',
+    items: [
+      'A drawing of the Green Tree Inn \u2014 the town\u2019s first house built to be a hotel, out at Lake and Canal \u2014 shows farm wagons standing in its yard and a bench against its front wall. Until today the inn stood on swept ground with a few barrels by the door.',
+      'Two wagons stand drawn up behind it now, square to the back wall with their tongues out into the yard, and there is a plank bench against the front wall at the end the barrels do not reach. Aim at any of them and the inn\u2019s card opens.',
+      'Where they stand is derived, not drawn by eye: the wagons sit a metre off the rear wall, spaced at the ground a parked wagon needs, laid in from the far end of that wall. How deep the yard is behind the house is our invention \u2014 nothing measures it, so it is taken to run back as far as the front is wide.',
+      'Nobody is sitting on the bench. The drawing shows a bench of sitters; this reconstruction draws no people anywhere, and that rule does not bend for a picture. The bench is the part of the image that can be built.',
+      'This is the second address in town with a wagon at it. The first was the one yard a written source names for wagons, and the record said in writing that only another text could add a second \u2014 that bar was too high, and the entry that set it now says so.',
+      'All four objects are our reconstruction and say so: turn \u201creconstructed\u201d off in the confidence view and the yard empties.',
+    ] },
   { v: 182, title: 'Plants no longer grow up out of the ground', kind: 'fix', ts: '2026-08-18T13:54:59.316Z', date: 'Aug 18, 2026, 8:54 AM CT',
     items: [
       'Walk at a meadow and the grass and flowers ahead of you used to rise out of the soil as you came \u2014 not appear, GROW, each plant swelling from nothing to full height over the last couple of metres. It is the second time this has been reported and the first fix was the wrong half of it: the arrival was made smooth, and a smooth growth is still a growth.',

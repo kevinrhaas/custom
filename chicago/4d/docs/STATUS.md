@@ -1,5 +1,53 @@
 # STATUS
 
+## Shipped 2026-08-18 — wagons in the Green Tree's yard, and a bench at its door
+
+**T-0080, the first of four pieces T-0042 was split into.** The parent ticket asked for an
+image-accuracy pass on the Green Tree Tavern against three views, and its acceptance clause —
+"the building corrected to the views AND its surroundings (sign, walks, shed, yard, verges)
+present" — is more than one demonstration, so it was split rather than shipped as a
+self-invented "(1/4)". The children hold its exact place in QUEUE: **T-0080** the yard (this),
+**T-0081** the wagon shed, **T-0082** the frontage (sign, walks, verges), **T-0083** the
+building's own fabric. T-0083 is marked `needs_bake` because every item in it moves
+`green_tree_tavern__frame_1833.glb`'s inputs and the improve runner has no Blender.
+
+**What a visitor sees.** Two farm wagons standing in the yard behind the inn and a plank bench
+against its front wall, all four pickable and all four opening the inn's card. The warrant is
+the Trowbridge drawing of this building (`data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7), which shows exactly that.
+
+**What is derived and what is invented, stated separately.** WHERE is derived from the committed
+footprint: the wagons stand square to the rear wall, 1.00 m off it, spaced at the 3.20 m of
+ground `WAGON_CLEAR_M` gives a parked wagon, laid in from the far end of that wall; the bench
+stands against the front wall 0.50 m in from the +u end, which is the end the barrels do not pile
+at and the end the signboard's own rule leaves at ground level. WHAT is invented is the yard's
+depth (taken as the building's own front width, 7.62 m — nothing measures it), the count (two,
+because that width holds two), and the bench's size. All of it is `reconstructed` and claimed at
+**L133**, which also records that it contradicts L131's own sentence about what could put a
+second wagon in this town — that bar counted texts and not pictures, and it was too high.
+
+**The people are missing on purpose.** The plate's bench is a bench of *sitters*. AGENTS.md's
+standing constraint is not relaxed by a picture and v1 ships no human figures at all, so the
+bench is drawn and nobody is on it.
+
+**The rule re-derives.** `tools/generate_yard_goods.py` grew a `build_green_tree_yard()` and
+`tools/check.sh` re-derives `data/yard/town_trade_goods.json` byte for byte, so "which yard gets
+a wagon" stays auditable. A stand that came out inside another committed wall would be refused in
+writing rather than nudged; none did here (nearest wall 27.8 m).
+
+**Not done, and it belongs to the siblings**: the open-sided wagon shed with its covered wagon
+(T-0081), the named signboard on its post, the plank walks, the verges and the fence-line brush
+(T-0082), and the building's own bays, chimneys and low left wing (T-0083, needs the bake).
+
+**A finding about the queue, recorded rather than acted on.** T-0005 (the three Main Branch
+sloughs) carries `needs_bake: false` and cannot in fact go green on a Blender-free runner: any
+new centreline in `data/terrain/epochs/<e>/hydrology.geojson` changes
+`generators/terrain_inputs.py`'s prose-stripped input document, which is
+`assets/manifest.json`'s `inputs_sha256` for `terrain__e1834_harbor_cut.glb`, so the staleness
+gate refuses the commit until the ground is rebuilt. Its front matter is corrected in this PR.
+T-0046, T-0049 and T-0004 above it in QUEUE were already marked `needs_bake`. QUEUE's order is
+untouched.
+
 ## Shipped 2026-08-18 — plants fade in instead of growing out of the ground
 
 **T-0035, an owner report of 2026-08-17:** *"the flowers still seem like they grow out of the ground

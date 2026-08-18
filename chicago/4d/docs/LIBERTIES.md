@@ -4152,6 +4152,46 @@ never been able to cite.
 **Recorded:** 2026-08-18.
 
 
+### L133 — Wagons and a bench at the Green Tree, from a drawing made decades later
+**Decision:** two farm wagons stand in the yard behind the Green Tree Tavern and a plank bench
+stands against its front wall. The wagons' stands, their spacing and their bearing, the depth of
+the yard they stand in, and the bench's size and its place on the wall are all invented and
+graded `reconstructed` in `data/yard/town_trade_goods.json`.
+**Why:** the Trowbridge drawing of this inn — `data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7 — shows farm wagons in its yard and a bench of sitters against its front wall. That is a
+TIER 5 pictorial source: a retrospective view drawn decades after 1835, which the brief's own
+ruling lets drive **furniture and setting** as this project's third tier and never a coordinate.
+So the plate is taken for WHAT stood there and never for WHERE, and where is derived from the
+building's own committed footprint. Until today the only wagon in this town stood at the one
+address a text names for wagons (L131); the owner's ruling of 2026-08-18 — *"of course there
+would be more wagons all over the place in a frontier town"* — is what makes a second address
+legitimate, and a picture of THIS inn is a better warrant than the generalisation is.
+**Consequence:** three things here are inventions a visitor should be able to name. **The yard's
+depth**: nothing measures the ground behind this building, so it is taken to run back as far as
+the front is wide — 7.62 m, the building's own 25 ft, which is a bound rather than a measurement
+and would be wrong the moment a lot line is traced. **The count**: two, because two is what that
+width holds at the 3.2 m a parked wagon is given, not because anything says two. **The bench's
+size**: 6 ft by 14 in and 18 in to the seat, read off the wall it stands against. The wagons
+themselves are the same invented farm wagon L131 already claims, drawn from the same numbers.
+And the people are missing on purpose: the plate's bench is a bench of SITTERS, AGENTS.md's
+standing constraint is not relaxed by a picture, and v1 ships no human figures at all — so the
+bench is drawn and nobody is on it. Turn `reconstructed` off in the confidence view and all four
+objects go, leaving the inn on the bare ground the texts leave it on.
+**How to resolve:** the plate identified and held as a proper source record (T-0075), which would
+say who drew it and when and how much of it is observation; the lot geometry on Wright 1834 or
+Hathaway 1834, which would replace the invented yard depth with a traced line and would settle
+this building's larger Canal-against-West-Water question at the same time; or any text describing
+the Green Tree's yard, which nothing this project holds does.
+**And it contradicts L131 in writing, which is why this is a new entry rather than an edit.**
+L131 says the first source *naming* a wagon standing anywhere in the town "would be the first thing
+this project has held that could put a second one in the scene". That was written the same day and
+it is too strong: it counts texts and not pictures, and a retrospective drawing of one named inn
+showing wagons in that inn's yard is evidence about that yard in a way a general text about the
+town would not be. L131's own claim stands and its wagon has not moved; what has changed is the
+bar, and the bar moved because the owner moved it.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

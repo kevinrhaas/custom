@@ -1239,6 +1239,7 @@ for (const [label, viewport, touch] of [
       const g = mesh?.geometry ?? null;
       const frontages = y?.frontages ?? [];
       const wagons = y?.wagons ?? [];
+      const benches = y?.benches ?? [];
       const items = [];
       for (const f of frontages) {
         for (const it of f.items ?? []) {
@@ -1251,6 +1252,12 @@ for (const [label, viewport, touch] of [
       let worstStray = 0;      // furthest a vertex sits from its own object's anchor
       let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
       let wagonVerts = 0;
+      // T-0080. A bench is 1.83 m of plank, so like the wagon it is measured by
+      // its OWN bound instead of being lumped in with the casks — a 0.75 m bar
+      // written for a barrel would fail on a bench that is exactly right.
+      let benchVerts = 0;
+      let benchStray = 0;
+      let benchInside = 0;
       let lowest = Infinity;
       let highest = -Infinity;
       const conf = g?.getAttribute('_confidence');
@@ -1274,6 +1281,20 @@ for (const [label, viewport, touch] of [
           const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
             n - wg.at_local_enu_m[1]) <= 4.6);
           if (w) { wagonVerts++; continue; }
+          // A bench's furthest corner is hypot(L/2, D/2) = 0.93 m from its
+          // anchor, so 1.1 m catches it and nothing else on the layer.
+          const bh = benches.find((bn) => Math.hypot(e - bn.at_local_enu_m[0],
+            n - bn.at_local_enu_m[1]) <= 1.1);
+          if (bh) {
+            benchVerts++;
+            benchStray = Math.max(benchStray, Math.hypot(e - bh.at_local_enu_m[0],
+              n - bh.at_local_enu_m[1]));
+            const bb = ((bh.bearing_deg ?? 0) * Math.PI) / 180;
+            benchInside = Math.min(benchInside,
+              (e - bh.at_local_enu_m[0]) * Math.sin(bb)
+              + (n - bh.at_local_enu_m[1]) * Math.cos(bb));
+            continue;
+          }
           let best = null;
           let bestD = Infinity;
           for (const it of items) {
@@ -1297,17 +1318,23 @@ for (const [label, viewport, touch] of [
         worstStray,
         worstInside,
         wagonVerts,
+        benchVerts,
+        benchStray,
+        benchInside,
+        benches,
         span: Number.isFinite(lowest) ? highest - lowest : null,
         frontages: frontages.length,
         items: items.length,
-        wagon: wagons[0] ?? null,
+        wagon: wagons.find((w) => w.in_enclosure === 'western_hotel_wagon_yard') ?? null,
+        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'),
       };
     });
     check(`${label}: the yard layer stands the record's goods`,
       goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
-        && goods.census?.wagons === 1,
+        && goods.census?.wagons === 3 && goods.census?.benches === 1,
       `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
-      + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon, `
+      + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon(s), `
+      + `${goods.census?.benches} bench(es), `
       + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
     check(`${label}: the whole yard layer is one draw call`,
       goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
@@ -1334,11 +1361,32 @@ for (const [label, viewport, touch] of [
       `deepest vertex ${goods.worstInside?.toFixed(3)} m behind its object's anchor`);
     // The wagon is drawn, in the yard whose own name is the attestation, with
     // the clearance the record derived for it.
-    check(`${label}: the one wagon stands in the yard it is named for`,
+    check(`${label}: the attested wagon stands in the yard it is named for`,
       goods.wagonVerts > 0 && goods.wagon?.in_enclosure === 'western_hotel_wagon_yard'
         && goods.wagon?.clearance_m >= 1.6,
       `${goods.wagonVerts} wagon vertices, ${goods.wagon?.clearance_m} m clear in `
       + `${goods.wagon?.in_enclosure}`);
+    // T-0080. The Green Tree's two, from the Trowbridge view: they stand square
+    // to the inn's rear wall — the bearing is the facade's own plus 180 — and
+    // every one of them cleared the committed walls by the margin a parked wagon
+    // is given, or the generator would have refused it in writing instead.
+    check(`${label}: the Green Tree's yard wagons stand clear, square to its rear wall`,
+      goods.greenTreeWagons?.length === 2
+        && goods.greenTreeWagons.every((w) => w.clearance_m >= 1.6
+          && w.bearing_deg === 90 && w.confidence === 'reconstructed'),
+      `${goods.greenTreeWagons?.length} wagon(s), clearances `
+      + `${goods.greenTreeWagons?.map((w) => w.clearance_m).join(', ')}, bearings `
+      + `${goods.greenTreeWagons?.map((w) => w.bearing_deg).join(', ')}`);
+    // And the bench is drawn, against the wall rather than through it. Its
+    // furthest corner is hypot(1.83/2, 0.36/2) = 0.93 m from its anchor, and the
+    // record stands that anchor half the seat's depth off the facade plane, so
+    // nothing may sit more than 0.18 m behind it — a sign flip on the standoff
+    // would put the whole bench inside the bar-room.
+    check(`${label}: the bench stands against the Green Tree's front wall`,
+      goods.benchVerts > 0 && goods.benchStray > 0 && goods.benchStray <= 1.0
+        && goods.benchInside >= -0.20,
+      `${goods.benchVerts} bench vertices, furthest ${goods.benchStray?.toFixed(2)} m `
+      + `from its anchor, deepest ${goods.benchInside?.toFixed(3)} m behind it`);
 
     // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
     // out. The Tremont House's south front on Lake Street carries the longest
