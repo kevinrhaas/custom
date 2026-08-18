@@ -1,7 +1,7 @@
 ---
 id: T-0036
 title: The gate screen counts the town: buildings standing, people housed
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 240
 claimed_by: run 8/18/2026, 7:25:54 AM CT
 blocked_on: null
 needs_bake: false
