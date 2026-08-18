@@ -1,5 +1,63 @@
 # STATUS
 
+## Shipped 2026-08-18 — the far sward: the meadow recedes instead of ending at a radius
+
+**T-0086, an owner report.** On the T-0035 fix he wrote: *"the plant rendering is much better! but
+in certain scenes it does not look right and you can see them fade in when in long distance view
+like this, would be nice if you could see them in the distance blurred faintly further out."* Two
+stands, three screenshots: **South Water approaching Wells, heading 084°** and **Wells approaching
+Lake, heading 185°**. Two symptoms, one cause — the flora field is a set of rings about the walker
+and nothing at all was drawn past the outermost one (HIGH 27 m, LOW **13 m**).
+
+**What a visitor sees.** A new layer, `flora-far`, draws aggregate clump cards from the detailed
+rings out to **175 m** (balanced 150, light 120). At the Wells stand the grass now runs to the
+houses and to the horizon where it used to stop at a line 25 m out with bare green ground beyond
+it; before/after pairs from both stands are on the PR.
+
+**Two bands, because one lattice cannot do this.** A spacing that is right at 25 m is a thousand
+cards at 150 m, and one that is right at 150 m leaves a hole where the detailed rings hand over.
+So a fine lattice of small clumps (16–62 m, cell 3.4 m) and a coarse lattice of wide ones
+(44–175 m, cell 9.5 m), overlapping across 44–62 m where each is thinning into the other.
+
+**IT IS NOT THE SHEET THAT WAS REVERTED.** A solid far-field vegetation mesh shipped here once and
+was taken out because it hid foundations and plant roots while the visitor walked on the real
+heightfield below it. Every far card is a rooted instance standing on `terrain.surfaceHeight` at a
+station `station()` allows — the same building footprints, the same travelled track, the same
+waterline — so there is no second land surface to walk under, and no card stands on a road, in a
+building or in the river. At the South Water stand, which looks straight down a street, the band
+places **131** cards and the roadway keeps none of them.
+
+**AND IT FADES BY DENSITY, NOT BY THE DITHER — that is the second half of the report.** The
+existing rings resolve their coverage ramp with a 4×4 Bayer screen door, which is invisible at
+arm's length and a band of dots at fifty metres down a shallow view, because distance compresses
+the whole ramp into a few screen rows (at 60 m the mid ring's 7 m band is nine pixels tall). A far
+card is drawn whole or not at all; what changes with distance is HOW MANY, against a world-anchored
+per-slot rank (`farRank`) and a ramp that is zero at both ends (`farKeepAt`). A stochastic density
+ramp has no edge in it to dither. The inner ramp is the handover: the band thins back to nothing as
+the walker closes on it, so a 3 m aggregate card is never met at arm's length.
+
+**What it costs, measured in the browser at the South Water stand, 1280×800, detail full.** Draw
+calls **44 → 45** of 80 (the band shares the mid ring's material, so no new shader program).
+Triangles **634 448 → 636 410**, +1 962. Caps: 420 cards at full, 300 balanced, **190 at light**,
+where the card is a 7-column archetype (14 triangles) rather than the desktop's 9 (18) — so the
+light level's worst case is **+2 660 triangles**, which makes **T-0089**'s known breach of the
+600 000 light ceiling worse by 0.4 % and does not open it. That number belongs on T-0089 and is
+recorded there.
+
+**What is invented, and it is recorded.** **L137**: a far card stands for GROUND, not for a plant,
+and its height is drawn from the upper half of the species' recorded range and lifted 1.14×/1.20×,
+because what an aggregate shows against the sky is the tallest plants in the patch and not the mean
+of them. The species, the colour and the height range are the community's own compiled records,
+dealt by the same call the mid ring uses. The band is deliberately **excluded from the drawn
+census** — a card is not a stem, and counting one as a stem would inflate every community's matrix
+count by the area of an annulus four times the size of the ring the census is about.
+
+**What this run did NOT do.** It did not touch the near ring's own outer dither at 5–7.6 m, which
+is still a screen-door ramp and is still what a close look at the verge shows; the far band stands
+over the mid and forb rings' outer edges at 16–62 m, which is where the owner's screenshots show
+the band, and the near ring's is a separate and smaller question. If it is still visible to him it
+is a ticket, not a weakening of this one.
+
 ## Shipped 2026-08-18 — the Sauganash's frontage: plank walks on both fronts, a crossing, and two hitching posts
 
 **T-0090, the first of the three pieces T-0043 was split into.** (Filed as T-0086/87/88 and **renumbered on the merge**: #245 landed on `dev` first and had taken 0086 and 0087 for two findings of its own, which is the collision `tickets/README.md` § IDs describes. The three kept their exact QUEUE positions — renumbering is not reordering — so the branch's own commit messages name the old numbers.) T-0043 asked for the building

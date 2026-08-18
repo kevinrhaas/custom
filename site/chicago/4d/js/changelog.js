@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 187, title: 'The meadow no longer stops at a circle', kind: 'feature', ts: '2026-08-18T21:14:37.523Z', date: 'Aug 18, 2026, 4:14 PM CT',
+    items: [
+      'Stand anywhere in the open and the grass used to end a few paces out, at a soft circle around you, with bare green ground running from there to the houses and the horizon. On a phone that circle was thirteen metres across.',
+      'The sward now carries on past it. Faint clumps of grass stand out to a hundred and seventy-five metres, coarser and wider the further off they are, thinning away into the distance rather than stopping at a line.',
+      'The far clumps stand on the real ground, at the same places a plant is allowed to grow: not on the roads, not inside a building, not out in the river. Walk toward them and they thin out again and hand the ground back to the plants drawn one at a time.',
+      'The edge itself is gone too. Where the near grass used to thin out through a fine screen of dots — visible as a speckled band when you looked a long way down a street — the far clumps now stand over that ground, and the far band never uses that screen at all: a clump is drawn whole, and what changes with distance is how many of them there are.',
+      'What is out there is a stand-in, not a survey: each far clump stands for several metres of grass rather than for one plant, drawn at the height of the taller plants in that patch. It is recorded as a liberty, and the census that counts this town’s plants deliberately does not count it.',
+    ] },
   { v: 186, title: 'The Sauganash gets its plank walks and hitching posts', kind: 'feature', ts: '2026-08-18T19:26:38.542Z', date: 'Aug 18, 2026, 2:26 PM CT',
     items: [
       'Three old views of the Sauganash Hotel \u2014 the town\u2019s first hotel, at Lake and Market \u2014 show the same ground in front of it: plank sidewalks on both street sides, a board crossing over the road, and posts at the road edge with a saddled horse tied to one. Until today it stood on bare grass.',

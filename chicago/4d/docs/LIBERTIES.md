@@ -4337,6 +4337,35 @@ source records (T-0075), which would turn the committed path this entry cites in
 None of those would ever give the posts their dimensions.
 **Recorded:** 2026-08-18.
 
+### L137 — The far sward is an aggregate, and its height is the tallest plants in the patch
+**Decision:** past the detailed rings the sward is drawn as **`flora-far`, a band of clump cards
+standing for ground rather than for plants** (`renderers/web/js/flora.js`, `rebuildFar`). Each card
+is dealt a species off the community's own recorded weights, and then drawn at a height taken from
+the **upper half** of that species' recorded range and multiplied by **1.14** in the near band and
+**1.20** in the deep one, at a width of **1.4–4.6 m** depending on the band and the detail level.
+Nothing in the records states any of those five numbers, and no record could: a species record
+gives the height of a PLANT and this is the silhouette of a patch of them.
+**Why:** what an aggregate shows against the sky is not the mean of a stand, it is the tallest
+plants in it — the short ones stand behind the tall ones and are hidden by them. Drawing the mean
+put the far field visibly LOWER than the detailed sward it hands over to, which is a seam where
+there should be none. The two lift factors and the widths are what closed that seam at the
+crossover; they were chosen by eye at the two stands the owner reported (South Water at 084° and
+Wells at 185°) and by nothing else.
+**What is NOT invented here.** The species, the colour and the recorded height RANGE the draw is
+taken from are the community's own compiled records, dealt by the same `dealt` call the mid ring
+uses, so a far card is never a plant the community does not carry and never a colour the palette
+does not give it. And the card is ROOTED: it stands on `terrain.surfaceHeight` at a station
+`station()` allows, so it obeys the same footprints, the same travelled track and the same
+waterline every other plant in this renderer obeys.
+**Consequence:** a photograph of the far field is not a measurement of the far field. The band's
+population is deliberately **excluded from the drawn census** (`stats.draws`) for that reason — a
+card is not a stem and counting it as one would inflate every community's matrix count by the area
+of an annulus four times the size of the ring the census is about.
+**How to resolve:** nothing about 1835 would resolve it, because it is a drawing decision and not a
+claim. What would retire it is a far-field representation that carries the recorded stand instead
+of standing in for it — the same shape of answer L32's tuft bundle is waiting on.
+**Recorded:** 2026-08-18.
+
 
 ## Resolved
 
