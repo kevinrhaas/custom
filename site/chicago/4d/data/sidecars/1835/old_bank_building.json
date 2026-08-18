@@ -29,7 +29,8 @@
     "symbolic_location": "At the corner of Lake Street and LaSalle Street (today West Lake Street at North LaSalle); the south-east corner, which is this record's guess — the source names no side.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

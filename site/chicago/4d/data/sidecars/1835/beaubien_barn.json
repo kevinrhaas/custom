@@ -30,7 +30,8 @@
     "symbolic_location": "On the Fort Dearborn reservation, in the Beaubien homestead group at what Andreas calls the corner of South Water Street and Michigan Avenue — modelled about 11 m behind (south of) the factory building, which is where this dataset puts the principal house.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

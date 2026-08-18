@@ -34,7 +34,8 @@
     "symbolic_location": "North side of Lake Street immediately east of Dearborn Street (today the north side of West Lake Street at North Dearborn), later Nos. 84 and 86 Lake Street; fronting south onto Lake, diagonally across the crossing from the first Tremont House.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

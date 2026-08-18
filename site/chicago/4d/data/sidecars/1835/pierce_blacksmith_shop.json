@@ -33,7 +33,8 @@
     "symbolic_location": "Lake Street at the corner of Canal Street (historically Lake and West Water), west side, one block west of the river — modelled on the SOUTH-EAST corner. Which of the four corners is not attested.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

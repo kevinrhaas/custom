@@ -22,6 +22,12 @@
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
+ *   the bridge carries a walker . a deck is a surface you stand on, end to end,
+ *                                 and not the wading barrier under it
+ *   the river wharves ........... the first derived layer that stands over water:
+ *                                 its deck ties into the bank it was derived
+ *                                 from, its crib reaches the bed, and neither is
+ *                                 answerable from the dataset alone
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   the roads reach the screen .. and are distinguishable from the ground they
@@ -151,6 +157,13 @@ const TYPES = {
  * **0.3 L\* with 14 % of probes perceptible**; the aerial anchor at 100-250 m
  * scored **1.1 L\* with 0 %**. Both are FAILURES under the thresholds below,
  * which is the point — the check names the fault when the fault is put back.
+ *
+ * PROVENANCE OF THE NUMBERS (T-0033 / R-M1b, owner ruling 2026-08-17): these
+ * bars are a PROVISIONAL BASELINE, not derived from a source — the photograph
+ * R-M1 named as the derivation source contains no dirt track, and the owner
+ * ruled "keep this baseline until I complain about it more later". Do not
+ * describe them as derived, and do not spend a run re-deriving them unless the
+ * owner reopens the question.
  */
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
@@ -292,6 +305,35 @@ const STRUCTURE_BATCHES = 1;
  */
 const ROUGHNESS_VALUES_MIN = 12;
 const ROUGHNESS_MIN_WORST = 4;
+/**
+ * T-0002, the facade tones — how many distinct ones the town must draw, how
+ * near two structures have to be to count as neighbours, and how far the frame
+ * must move when the tone is wound off.
+ *
+ * MEASURED BEFORE THEY WERE SET, with `tools/measure_facade_variety.mjs` on the
+ * published mirror: **331 distinct tones across 331 structures**, and winding
+ * the tone to 0 moves the worst 48² cell by **10** (mean 0.27) at 1280x800. At
+ * the smaller viewport the same reading was **7** at the ±10 % jitter this
+ * parcel shipped with before the frames said it was too little. The floors are
+ * set at 300 tones (a town that lost the jitter and kept only the age silvering
+ * would draw about 45), worst 3 and mean 0.03 — under half and a third of the
+ * smaller of those readings, the same margins `ROUGHNESS_MIN_WORST` and the
+ * road aid took.
+ *
+ * `FACADE_PAIR_M` is 60 m because that is what "neighbouring" means in a town
+ * whose platted blocks are 126 m long: the nearest structure within a block
+ * face. The assertion on those pairs is an INVARIANT, not a number — no two
+ * neighbours drawn the same colour — because the archetype town had **10 of
+ * 321** such pairs identical to the bit and the whole ask is that it has none.
+ */
+const FACADE_TONES_MIN = 300;
+const FACADE_PAIR_M = 60;
+const FACADE_MIN_WORST = 3;
+const FACADE_MIN_MEAN = 0.03;
+/** How many structures must change colour when the tone is wound off: 329 are
+ *  eligible today and two are excluded by attestation, so anything near the
+ *  town's own size proves the channel is not dead on most of it. */
+const FACADE_MOVED_MIN = 300;
 /**
  * How much the 48² frame signature must move when the reach is wound back to
  * the pre-R-W3b(a) ±60 m.
@@ -767,6 +809,48 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    // --- the gate counts the town (T-0036) --------------------------------
+    // The owner asked for the number of buildings and the number of people
+    // living in them on the FRONT screen. The assertion that matters is not
+    // "a row appeared" — it is that the row's NUMERALS are the committed
+    // data's, read back out of the rendered DOM and compared against the JSON
+    // the page fetched. A gate screen quoting a stale count is the failure this
+    // is here to catch, and it is invisible to every other check in this file.
+    //
+    // The gate is still open at this point in the run (the walk tests click
+    // through it much later), which is the only moment the row is on screen.
+    const gateCensus = await page.evaluate(() => {
+      const host = document.getElementById('gate-census');
+      const visible = !!host && !host.hasAttribute('hidden');
+      const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      return {
+        visible,
+        figures,
+        text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        box: host ? host.getBoundingClientRect().width : 0,
+        data: window.__chicago4d.census,
+      };
+    });
+    const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
+    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
+    check(`${label}: the gate shows the town census`,
+      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
+      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
+    check(`${label}: the gate's figures are the committed data's`,
+      Number.isFinite(want[0]) && Number.isFinite(want[1])
+      && shown[0] === want[0] && shown[1] === want[1],
+      `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Neither figure is a total, and the row has to say so or it misleads: the
+    // buildings are counted against the programme's target and the people
+    // against the town's own recorded size, both quoted out of the same file.
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    check(`${label}: the gate names both denominators`,
+      Number.isFinite(gateCensus.data?.buildings?.target)
+      && Number.isFinite(gateCensus.data?.people?.town_total)
+      && gateCensus.text.includes(grouped(gateCensus.data.buildings.target))
+      && gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
+      gateCensus.text);
+
     // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
     // A bridge's local y = 0 is the design water surface, not the ground, so
     // the renderer must NOT sample the heightfield for it. Mid-channel the
@@ -816,6 +900,634 @@ for (const [label, viewport, touch] of [
       && anchored.bed < -0.5 && Math.abs(anchored.terrainAnchor - anchored.y) > 1,
       `placed y ${anchored.y?.toFixed(2)}, bed ${anchored.bed?.toFixed(2)} m, `
       + `terrain anchor would give ${anchored.terrainAnchor?.toFixed(2)} m`);
+
+    // --- the enclosure layer (T-0038) ---------------------------------------
+    //
+    // A fence is the first thing this project has drawn from a PERIMETER rather
+    // than a footprint, and it is drawn by the renderer rather than baked, so
+    // every one of these questions is answerable here and nowhere else. The last
+    // one is the acceptance clause of its ticket: not "the data loaded" but "you
+    // can see it from where a visitor stands".
+    const encl = await page.evaluate(() => {
+      const e = window.__chicago4d.enclosures;
+      const mesh = e?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const box = { minE: Infinity, maxE: -Infinity, minN: Infinity, maxN: -Infinity };
+      for (const r of e?.records ?? []) {
+        for (const run of r.runs ?? []) {
+          for (const [pe, pn] of run.path_local_enu_m ?? []) {
+            box.minE = Math.min(box.minE, pe); box.maxE = Math.max(box.maxE, pe);
+            box.minN = Math.min(box.minN, pn); box.maxN = Math.max(box.maxN, pn);
+          }
+        }
+      }
+      let worst = 0;
+      if (g) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e0 = pos.getX(i);
+          const n0 = -pos.getZ(i);
+          worst = Math.max(worst,
+            box.minE - e0, e0 - box.maxE, box.minN - n0, n0 - box.maxN);
+        }
+      }
+      const conf = g?.getAttribute('_confidence');
+      let ungraded = 0;
+      if (conf) for (let i = 0; i < conf.count; i++) {
+        if (!(conf.getX(i) >= 0 && conf.getX(i) <= 1)) ungraded++;
+      }
+      return {
+        census: e?.census ?? null,
+        meshes: e?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf, ungraded,
+        outsideRuns: Number.isFinite(worst) ? worst : null,
+        ids: (e?.records ?? []).map((r) => r.id),
+      };
+    });
+    check(`${label}: the enclosure layer draws its records`,
+      encl.census?.enclosures >= 1 && encl.census?.posts > 0 && encl.verts > 0,
+      `${encl.census?.enclosures} enclosure(s), ${encl.census?.posts} posts, `
+      + `${encl.verts} vertices, ${encl.census?.dropped} member(s) refused, `
+      + `ids [${encl.ids.join(', ')}]`);
+    check(`${label}: the whole enclosure layer is one draw call`,
+      encl.meshes === 1, `${encl.meshes} mesh(es) in the group`);
+    // Unmarked geometry rendering as though it were evidence is the one failure
+    // the confidence view exists to prevent, and a layer built in JS can put a
+    // vertex on screen without ever passing through the GLB contract that would
+    // have caught it.
+    check(`${label}: every fence vertex carries a confidence grade`,
+      encl.hasConfidence && encl.ungraded === 0,
+      `attribute ${encl.hasConfidence ? 'present' : 'MISSING'}, ${encl.ungraded} out of range`);
+    // The fence stands where the record puts it. The tolerance is the post's own
+    // half-section plus a rail's, which is the most a member can legitimately
+    // overhang the line its own centre is authored on.
+    check(`${label}: no fence member stands outside its own authored run`,
+      encl.outsideRuns !== null && encl.outsideRuns <= 0.15,
+      `worst overhang ${encl.outsideRuns?.toFixed(3)} m beyond the authored extent`);
+
+    // AND IT READS. Stand in the Western Hotel's yard, hold the clock so the
+    // grass cannot supply the difference, and compare the frame with the layer
+    // hidden. A fence nobody can see from the ground is the visible-progress
+    // rule's own failure case, so it is asserted rather than described.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: -127.7, local_n: -292 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const yardWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const yardWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dYard = signatureDistance(yardWith, yardWithout);
+    check(`${label}: the yard fence reaches the screen from inside the yard`,
+      dYard.worst >= 6 && dYard.mean >= 0.3,
+      `cell delta mean ${dYard.mean?.toFixed(2)}, worst ${dYard.worst} (need worst>=6)`);
+
+    // --- the town pound is a fence, not a box (T-0051) -----------------------
+    //
+    // Chicago's first public building is an enclosure — Andreas: "a small wooden
+    // enclosure and quite roofless" — and it stood in this town as a roofed log
+    // box because the only archetype that would build a low walled rectangle
+    // cannot build a roofless one. Its geometry now lives on the layer above,
+    // and a record whose mesh moves layers can go wrong in four ways that no
+    // dataset gate can see: the GLB can still load, the card can become
+    // unreachable, the retired footprint can stay behind as an invisible wall,
+    // and the fence can fail to draw at all. One assertion each.
+    const pen = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const rec = api.loaded?.registry?.get?.('estray_pen')
+        ?? api.registry?.get?.('estray_pen') ?? null;
+      return {
+        inLayer: (api.enclosures?.records ?? []).some((r) => r.id === 'estray_pen'),
+        asset: rec ? rec.sidecar?.asset ?? null : 'NO RECORD',
+        drawnBy: rec?.sidecar?.drawn_by ?? null,
+        hasGltf: !!rec?.gltf,
+        obstructs: (api.footprints ?? []).some((f) => f.id === 'estray_pen'),
+      };
+    });
+    check(`${label}: the estray pen is drawn as an enclosure and bakes no mesh`,
+      pen.inLayer && pen.asset === null && pen.drawnBy === 'enclosures' && !pen.hasGltf,
+      `on the layer ${pen.inLayer}, sidecar asset ${JSON.stringify(pen.asset)}, `
+      + `drawn_by ${pen.drawnBy}, gltf loaded ${pen.hasGltf}`);
+    check(`${label}: the retired box leaves no invisible wall on the public square`,
+      !pen.obstructs, `walker footprint present: ${pen.obstructs}`);
+
+    // Stand in the pound and look around it. Two questions in one stand: can you
+    // SEE it (the visible-progress rule's own test), and can you still open the
+    // card behind it — which used to come free with a roof to click on and now
+    // has to be earned by picking the fence itself.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: 473.07, local_n: -374.26 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const penWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const penWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dPen = signatureDistance(penWith, penWithout);
+    check(`${label}: the pen reaches the screen from inside the pen`,
+      dPen.worst >= 6 && dPen.mean >= 0.3,
+      `cell delta mean ${dPen.mean?.toFixed(2)}, worst ${dPen.worst} (need worst>=6)`);
+
+    const penPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.6, -0.3, 0, 0.3, 0.6]) {
+        for (const y of [-0.4, -0.2, 0, 0.2]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the pen's fence still opens the pen's card`,
+      penPick.includes('estray_pen'),
+      `20 aims returned [${[...new Set(penPick)].join(', ') || 'nothing'}]`);
+
+    // --- the dooryard garden pickets (T-0052) --------------------------------
+    //
+    // The first record on this layer whose evidence is a TREATMENT rather than a
+    // place: the Kinzie-view plate shows picket-fenced garden plots and nothing
+    // says which lot in the town had one, so the record is GENERATED from a rule
+    // over the platted lots. Two things can go wrong that no dataset gate sees.
+    // The rule can produce a record the renderer then draws as the wrong KIND of
+    // fence — the layer knew only posts and horizontal rails until today, and a
+    // picket drawn as three rails would pass every count in this file. And a
+    // fence at the back of a lot can be invisible from anywhere a visitor stands.
+    const pickets = await page.evaluate(() => {
+      const e = window.__chicago4d.enclosures;
+      const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
+      return {
+        found: !!rec,
+        runs: rec?.runs?.length ?? 0,
+        type: rec?.form?.fence_type?.value ?? null,
+        pales: e?.census?.pales ?? 0,
+      };
+    });
+    check(`${label}: the town's house lots carry generated picket gardens`,
+      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
+      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
+    // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
+    // fence; the floor is deliberately far under the count so it asserts the
+    // BRANCH ran, not a number that will drift with the rule's output.
+    check(`${label}: the picket branch draws pales, not just posts and rails`,
+      pickets.pales >= 500, `${pickets.pales} pale(s) on the layer`);
+
+    // And stand in one of the gardens — Dr Harmon's lot on Randolph — holding the
+    // clock so the grass cannot supply the difference.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: 249.65, local_n: -282.7 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const gardenWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const gardenWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dGarden = signatureDistance(gardenWith, gardenWithout);
+    check(`${label}: the garden fence reaches the screen from the dooryard`,
+      dGarden.worst >= 6 && dGarden.mean >= 0.3,
+      `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
+
+    // --- the business signboards (T-0039) ------------------------------------
+    //
+    // A second layer drawn from the dataset rather than baked, and the first one
+    // that hangs geometry OFF a building instead of standing it on the ground.
+    // That is where its failure modes live: a board is positioned by arithmetic
+    // on the footprint, the placement and the facade bearing, so one sign error
+    // anywhere in that chain puts two dozen planks inside the walls, or floating
+    // in the road behind them, and every dataset gate in this repo would pass.
+    // So the geometry is measured against the record here, and nowhere else.
+    const boards = await page.evaluate(() => {
+      const s = window.__chicago4d.signage;
+      const mesh = s?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const signs = s?.signs ?? [];
+      let ungraded = 0;
+      let notReconstructed = 0;
+      let worstStray = 0;      // furthest a vertex sits from its own anchor
+      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g && signs.length) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          let best = null;
+          let bestD = Infinity;
+          for (const sg of signs) {
+            const d = Math.hypot(e - sg.anchor_local_enu_m[0], n - sg.anchor_local_enu_m[1]);
+            if (d < bestD) { bestD = d; best = sg; }
+          }
+          worstStray = Math.max(worstStray, bestD);
+          const b = ((best.facade_bearing_deg ?? 0) * Math.PI) / 180;
+          // Positive is out of the wall, along the facade's own normal.
+          const outward = (e - best.anchor_local_enu_m[0]) * Math.sin(b)
+            + (n - best.anchor_local_enu_m[1]) * Math.cos(b);
+          worstInside = Math.min(worstInside, outward);
+        }
+      }
+      return {
+        census: s?.census ?? null,
+        meshes: s?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        worstInside,
+        signs: signs.length,
+        ids: signs.map((sg) => sg.structure_id),
+      };
+    });
+    check(`${label}: the signage layer hangs the record's boards`,
+      boards.census?.boards >= 20 && boards.signs === boards.census?.boards
+        && boards.verts > 0,
+      `${boards.census?.boards} board(s) from ${boards.census?.records} record(s), `
+      + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
+    check(`${label}: the whole signage layer is one draw call`,
+      boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. The fact of
+    // a board on these frontages is invented (L130) and a single vertex claiming
+    // to be inferred or attested would be this layer overstating the one thing
+    // it must not.
+    check(`${label}: every signboard vertex is graded reconstructed`,
+      boards.hasConfidence && boards.ungraded === 0 && boards.notReconstructed === 0,
+      `attribute ${boards.hasConfidence ? 'present' : 'MISSING'}, ${boards.ungraded} out `
+      + `of range, ${boards.notReconstructed} claiming better than reconstructed`);
+    // The board hangs on the wall it belongs to. The bracket is 1.15 m and the
+    // board 0.88 m across, so nothing legitimately reaches 2.2 m from its anchor
+    // — a transposed axis or a dropped rotation would be metres out, not
+    // centimetres.
+    check(`${label}: no signboard strays from the frontage it hangs on`,
+      boards.worstStray > 0 && boards.worstStray <= 2.2,
+      `furthest vertex ${boards.worstStray?.toFixed(2)} m from its own anchor`);
+    // And it hangs OUT of the wall, not into the parlour behind it. The strut's
+    // own half-section is the only thing entitled to sit on the wall plane.
+    check(`${label}: every signboard hangs outside its own facade`,
+      boards.worstInside >= -0.05,
+      `deepest vertex ${boards.worstInside?.toFixed(3)} m behind the facade plane`);
+
+    // AND IT READS FROM THE STREET, which is the whole point of a sign. Stand on
+    // the footway in front of the Tremont House — a south-facing hotel frontage —
+    // hold the clock so the grass cannot supply the difference, and compare the
+    // frame with the layer hidden.
+    //
+    // THE STAND IS 3.5 m AND THAT NUMBER IS LOAD-BEARING, so it is explained
+    // rather than left as a coordinate. A board is 0.88 x 0.50 m. Measured on
+    // this runner from 8 m back it is plainly on screen — the crosshair picks it
+    // — and the 12-cell signature reads worst 4, because one cell of a 12x12
+    // grid is wider than the whole board at that range and averages it away. The
+    // answer is to stand where a person reading a sign stands, not to widen the
+    // grid or drop the threshold: at 3.5 m the same measurement reads worst 11 /
+    // mean 0.55 on desktop and 17 / 0.72 on mobile, against the SAME bar the two
+    // fence gates above use.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 678.5, local_n: -104.06, yaw_deg: 0, pitch_deg: 8 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const signWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.signage.group.visible = false; });
+    const signWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.signage.group.visible = true; });
+    const dSign = signatureDistance(signWith, signWithout);
+    check(`${label}: the hotel's board reaches the screen from the street`,
+      dSign.worst >= 6 && dSign.mean >= 0.3,
+      `cell delta mean ${dSign.mean?.toFixed(2)}, worst ${dSign.worst} (need worst>=6)`);
+
+    // A sign is a thing you read and then walk into, so aiming at the board has
+    // to open the business behind it and not the wall past it.
+    const boardPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.2, -0.1, 0, 0.1, 0.2]) {
+        for (const y of [-0.1, 0, 0.1, 0.2, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a signboard opens the business behind it`,
+      boardPick.includes('tremont_house_1'),
+      `25 aims returned [${[...new Set(boardPick)].join(', ') || 'nothing'}]`);
+
+    // --- the goods at the trading frontages (T-0040) -------------------------
+    //
+    // The third layer drawn from the dataset rather than baked, and the first
+    // one whose objects stand on the GROUND rather than on a building. That is
+    // where its failure modes live and they are not the signboards': a barrel
+    // hung off the wall base like a board would float or sink wherever the
+    // footway is not level, and a barrel is a body of revolution built from a
+    // frame this file has never had to check before, so a transposed axis puts
+    // a hundred and fifty casks inside the shops they belong to. Every dataset
+    // gate in this repo would pass through all of that. So the geometry is
+    // measured against the record here, and nowhere else.
+    const goods = await page.evaluate(() => {
+      const y = window.__chicago4d.yard;
+      const mesh = y?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const frontages = y?.frontages ?? [];
+      const wagons = y?.wagons ?? [];
+      const items = [];
+      for (const f of frontages) {
+        for (const it of f.items ?? []) {
+          items.push({ e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
+            b: ((it.bearing_deg ?? 0) * Math.PI) / 180 });
+        }
+      }
+      let ungraded = 0;
+      let notReconstructed = 0;
+      let worstStray = 0;      // furthest a vertex sits from its own object's anchor
+      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
+      let wagonVerts = 0;
+      let lowest = Infinity;
+      let highest = -Infinity;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g && items.length) {
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          lowest = Math.min(lowest, pos.getY(i));
+          highest = Math.max(highest, pos.getY(i));
+          // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
+          // own bound rather than lumped in with the casks.
+          const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
+            n - wg.at_local_enu_m[1]) <= 4.6);
+          if (w) { wagonVerts++; continue; }
+          let best = null;
+          let bestD = Infinity;
+          for (const it of items) {
+            const d = Math.hypot(e - it.e, n - it.n);
+            if (d < bestD) { bestD = d; best = it; }
+          }
+          worstStray = Math.max(worstStray, bestD);
+          // Positive is out of the wall, along the facade's own normal.
+          const outward = (e - best.e) * Math.sin(best.b) + (n - best.n) * Math.cos(best.b);
+          worstInside = Math.min(worstInside, outward);
+        }
+      }
+      return {
+        census: y?.census ?? null,
+        meshes: y?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        tris: (g?.getAttribute('position')?.count ?? 0) / 3,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        worstInside,
+        wagonVerts,
+        span: Number.isFinite(lowest) ? highest - lowest : null,
+        frontages: frontages.length,
+        items: items.length,
+        wagon: wagons[0] ?? null,
+      };
+    });
+    check(`${label}: the yard layer stands the record's goods`,
+      goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
+        && goods.census?.wagons === 1,
+      `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
+      + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon, `
+      + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
+    check(`${label}: the whole yard layer is one draw call`,
+      goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. That goods
+    // stood at these doors on this day is invented (L131) and a single vertex
+    // claiming to be inferred or attested would be this layer overstating the
+    // one thing it must not.
+    check(`${label}: every yard-goods vertex is graded reconstructed`,
+      goods.hasConfidence && goods.ungraded === 0 && goods.notReconstructed === 0,
+      `attribute ${goods.hasConfidence ? 'present' : 'MISSING'}, ${goods.ungraded} out `
+      + `of range, ${goods.notReconstructed} claiming better than reconstructed`);
+    // A cask is 0.53 m at the bilge and a case 1.05 m long, so nothing on a
+    // frontage legitimately reaches 0.75 m from its own anchor — a transposed
+    // axis or a dropped rotation would be metres out, not centimetres.
+    check(`${label}: no barrel or case strays from the frontage it stands at`,
+      goods.worstStray > 0 && goods.worstStray <= 0.75,
+      `furthest vertex ${goods.worstStray?.toFixed(2)} m from its own object's anchor`);
+    // And the goods stand ON the footway, not inside the shop. The record stands
+    // them 0.55 m out from the facade plane and the widest thing here is a case
+    // 0.72 m across, so 0.45 m back from an anchor is still 0.10 m clear of the
+    // wall; a sign flip anywhere in the frame would put them a metre inside it.
+    check(`${label}: every object stands outside its own facade`,
+      goods.worstInside >= -0.45,
+      `deepest vertex ${goods.worstInside?.toFixed(3)} m behind its object's anchor`);
+    // The wagon is drawn, in the yard whose own name is the attestation, with
+    // the clearance the record derived for it.
+    check(`${label}: the one wagon stands in the yard it is named for`,
+      goods.wagonVerts > 0 && goods.wagon?.in_enclosure === 'western_hotel_wagon_yard'
+        && goods.wagon?.clearance_m >= 1.6,
+      `${goods.wagonVerts} wagon vertices, ${goods.wagon?.clearance_m} m clear in `
+      + `${goods.wagon?.in_enclosure}`);
+
+    // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
+    // out. The Tremont House's south front on Lake Street carries the longest
+    // group on the layer — four casks, an empty on its side and two cases — so
+    // stand where a person walking past them stands, 3.2 m off the wall, and
+    // hold the clock so the grass cannot supply the difference. Same bar as the
+    // two fence gates and the signboard: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 684.9, local_n: -104.3, yaw_deg: 0, pitch_deg: -10 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const goodsWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.yard.group.visible = false; });
+    const goodsWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.yard.group.visible = true; });
+    const dGoods = signatureDistance(goodsWith, goodsWithout);
+    check(`${label}: the goods reach the screen from the footway`,
+      dGoods.worst >= 6 && dGoods.mean >= 0.3,
+      `cell delta mean ${dGoods.mean?.toFixed(2)}, worst ${dGoods.worst} (need worst>=6)`);
+
+    // A barrel at a shop door is the nearest thing to the crosshair when a
+    // visitor walks up to that door, so aiming at one has to open the business
+    // it belongs to rather than the wall behind it.
+    const goodsPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a barrel opens the business it stands at`,
+      goodsPick.includes('tremont_house_1'),
+      `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
+
+    // --- the river wharves (T-0041) --------------------------------------
+    //
+    // The fourth layer drawn from the dataset rather than baked, and the first
+    // one that stands OVER WATER. That is where its failure modes live and they
+    // are not the goods': a deck whose height came from a number beside the mesh
+    // instead of from the mesh floats over the bank it ties into (T-0001's whole
+    // finding), and a crib that does not reach the bed hangs in the river with
+    // daylight under it. Neither is visible to any dataset gate in this repo,
+    // because both are decided at load out of a terrain sample. So the geometry
+    // is measured against the record and against the terrain here, and nowhere
+    // else.
+    const docks = await page.evaluate(() => {
+      const w = window.__chicago4d.wharves;
+      const terrain = window.__chicago4d.terrain;
+      const mesh = w?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const list = w?.wharves ?? [];
+      let ungraded = 0;
+      let notReconstructed = 0;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      // Every vertex against its own deck outline: the quad's centre plus its
+      // half-diagonal is the furthest any part of a wharf may legitimately be
+      // from that centre, and a transposed axis or a dropped rotation would put
+      // it tens of metres out rather than centimetres.
+      let worstStray = 0;
+      let lowest = Infinity;
+      if (g && list.length) {
+        const pos = g.getAttribute('position');
+        const quads = list.map((d) => {
+          const q = d.deck_quad_local_enu_m;
+          const e = q.reduce((s, p) => s + p[0], 0) / 4;
+          const n = q.reduce((s, p) => s + p[1], 0) / 4;
+          const r = Math.max(...q.map((p) => Math.hypot(p[0] - e, p[1] - n)));
+          return { e, n, r };
+        });
+        for (let i = 0; i < pos.count; i++) {
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);        // world is (E, up, -N)
+          lowest = Math.min(lowest, pos.getY(i));
+          let best = Infinity;
+          for (const q of quads) best = Math.min(best, Math.hypot(e - q.e, n - q.n) - q.r);
+          worstStray = Math.max(worstStray, best);
+        }
+      }
+      // Where each deck's own corners stand, asked of the terrain the browser
+      // loaded rather than of the heightfield the generator read.
+      const stands = list.map((d) => {
+        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
+        return {
+          id: d.structure_id,
+          deckTop: d._drawn?.deck_top_m ?? null,
+          bents: d._drawn?.bents ?? 0,
+          heelDry: [heelL, heelR].every((p) => !terrain.isWater(p[0], p[1])),
+          faceWet: [faceL, faceR].every((p) => terrain.isWater(p[0], p[1])),
+          bankY: Math.max(...[heelL, heelR].map((p) => terrain.surfaceHeight(p[0], p[1]))),
+          depth: Math.min(...[faceL, faceR].map((p) => -terrain.surfaceHeight(p[0], p[1]))),
+        };
+      });
+      return {
+        census: w?.census ?? null,
+        keepOut: (w?.keepOut ?? []).length,
+        meshes: w?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        lowest: Number.isFinite(lowest) ? lowest : null,
+        stands,
+      };
+    });
+    check(`${label}: both river warehouses have their dock`,
+      docks.census?.wharves === 2 && docks.verts > 0 && docks.keepOut === 2
+        && docks.stands.every((s) => s.bents > 0),
+      `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
+      + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
+      + `${docks.keepOut} planting keep-out(s)`);
+    check(`${label}: the whole wharf layer is one draw call`,
+      docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
+    // stood at these two frontages is stated; every metre of its size is
+    // invented (L132), and a single vertex claiming to be inferred or attested
+    // would be this layer overstating the one thing it must not.
+    check(`${label}: every wharf vertex is graded reconstructed`,
+      docks.hasConfidence && docks.ungraded === 0 && docks.notReconstructed === 0,
+      `attribute ${docks.hasConfidence ? 'present' : 'MISSING'}, ${docks.ungraded} out `
+      + `of range, ${docks.notReconstructed} claiming better than reconstructed`);
+    check(`${label}: no wharf vertex strays off its own deck outline`,
+      docks.worstStray <= 1.0,
+      `furthest vertex ${docks.worstStray?.toFixed(2)} m outside its own deck's outline`);
+    // A dock stands with its heel on the bank and its face over the water, and
+    // that is the one thing about it that is derived rather than invented: if a
+    // bank were re-traced or a warehouse moved and the generator not re-run, the
+    // deck would be on the wrong ground and every dataset gate would still pass.
+    check(`${label}: every deck ties into the bank and reaches over the water`,
+      docks.stands.length === 2 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
+        + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
+    // The deck is neither floating over the bank nor drowned in the river, and
+    // its crib reaches the bed under it — T-0001's finding, asked of a layer
+    // that has no walk surface to catch it a second time.
+    check(`${label}: no deck floats and every crib reaches the bed`,
+      docks.stands.every((s) => s.deckTop >= 0.9 - 1e-6 && s.deckTop >= s.bankY - 1e-6
+        && s.deckTop <= s.bankY + 1.0 && s.depth > 0.5)
+        && docks.lowest !== null && docks.lowest < -0.5,
+      docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
+        + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
+      + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
+    // at the wharf anchor — on the ground outside Newberry & Dole's river wall,
+    // looking down the dock's own waterward normal — and hold the clock so the
+    // grass cannot supply the difference. Same bar as the fences, the boards and
+    // the goods: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 204.5, local_n: 9.8, yaw_deg: 339.4, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const dockWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
+    const dockWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
+    const dDock = signatureDistance(dockWith, dockWithout);
+    check(`${label}: the wharf reaches the screen from the bank`,
+      dDock.worst >= 6 && dDock.mean >= 0.3,
+      `cell delta mean ${dDock.mean?.toFixed(2)}, worst ${dDock.worst} (need worst>=6)`);
+
+    // A dock is the largest thing on any of these derived layers and it stands
+    // between a visitor on the bank and the warehouse behind them, so aiming at
+    // it has to open the building it belongs to rather than answering nothing.
+    const dockPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a wharf opens the warehouse it serves`,
+      dockPick.includes('newberry_dole_warehouse'),
+      `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
 
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
@@ -2001,6 +2713,106 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: the walker is pushed out of a building footprint`,
       pushed.skipped || pushed.inside === false,
       `dropped at (${pushed.cx}, ${pushed.cn}), ended at (${pushed.e?.toFixed(2)}, ${pushed.n?.toFixed(2)})`);
+
+    // --- and you CAN stand on a bridge deck (T-0001) -----------------------
+    //
+    // The owner's question was "how would a wagon cross that?", and the first
+    // half of the answer is that a person cannot: the walker followed the
+    // heightfield, which over the river reports a wading barrier at 4.0 m, so a
+    // visitor set down on the North Branch bridge hovered 1.8 m above its planks
+    // and walked across thin air. This drives the crossing and asserts the DECK
+    // is under the boot for the whole span.
+    //
+    // Written as an exact equality rather than a tolerance, and that is the point
+    // of it: `placement.walk_surface_m` is the same `deck_height_m` the mesh was
+    // built from, so the number the walker stands on and the number the deck was
+    // drawn at are one value. A tolerance here would pass a renderer that had
+    // quietly grown a second definition, which is the fault docs/GLB-CONTRACT.md
+    // exists to prevent.
+    const crossing = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const deck = a.decks?.find((d) => d.id === 'north_branch_bridge');
+      if (!deck) return { missing: true };
+      const es = deck.pts.map((p) => p[0]);
+      const ns = deck.pts.map((p) => p[1]);
+      const west = Math.min(...es);
+      const east = Math.max(...es);
+      const mid = (Math.min(...ns) + Math.max(...ns)) / 2;
+      const on = (e, n) => {
+        let hit = false;
+        const pts = deck.pts;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+
+      // Start half a metre inside the west end, facing east down the deck.
+      a.walker.teleport({ local_e: west + 0.5, local_n: mid, yaw_deg: 90 });
+      const startedOn = a.walker.state.groundY;
+      let offDeck = 0;              // samples on the deck at the wrong height
+      let clearance = 0;            // worst eye-height error, on the deck
+      let firstE = null;
+      let lastE = null;
+      let leftE = null;             // where the walker ended up after the far end
+      a.intent.forward = 1;
+      a.intent.sprint = true;
+      for (let i = 0; i < 800; i += 1) {
+        a.walker.update(0.05, a.intent);
+        const s = a.walker.state;
+        if (on(s.e, s.n)) {
+          if (firstE === null) firstE = s.e;
+          lastE = s.e;
+          if (s.groundY !== deck.y) offDeck += 1;
+          clearance = Math.max(clearance, Math.abs(s.eyeY - s.groundY - a.walkBudget.eyeHeight));
+        } else if (lastE !== null && leftE === null) {
+          leftE = s.e;
+        }
+      }
+      a.intent.forward = 0;
+      a.intent.sprint = false;
+      const endState = { ...a.walker.state };
+      return {
+        deckY: deck.y,
+        span: east - west,
+        startedOn,
+        walked: firstE === null ? 0 : lastE - firstE,
+        offDeck,
+        clearance,
+        leftE,
+        // What the terrain alone would have said mid-span — the barrier this
+        // replaces. If this ever stops being well above the deck the assertion
+        // below has stopped proving anything.
+        barrier: a.terrain.walkHeight((west + east) / 2, mid),
+        endGroundY: endState.groundY,
+        endE: endState.e,
+      };
+    });
+    check(`${label}: the North Branch bridge has a walkable deck`,
+      !crossing.missing && crossing.deckY > 0,
+      crossing.missing ? 'no deck compiled for north_branch_bridge'
+        : `deck at ${crossing.deckY} m over the datum`);
+    check(`${label}: the walker crosses the bridge end to end on its deck`,
+      !crossing.missing
+      && crossing.walked >= crossing.span - 2
+      && crossing.offDeck === 0
+      && crossing.clearance < 1e-9,
+      `walked ${crossing.walked?.toFixed(1)} m of a ${crossing.span?.toFixed(1)} m deck, `
+      + `${crossing.offDeck} sample(s) not at deck height, worst standing clearance error `
+      + `${crossing.clearance?.toExponential(1)} m`);
+    check(`${label}: the deck, not the wading barrier, is what holds the walker up`,
+      !crossing.missing && crossing.barrier > crossing.deckY + 1
+      && crossing.startedOn === crossing.deckY,
+      `barrier ${crossing.barrier?.toFixed(2)} m vs deck ${crossing.deckY} m, `
+      + `stood at ${crossing.startedOn?.toFixed(2)} m`);
+    check(`${label}: and walks off the far end onto the bank`,
+      !crossing.missing && crossing.leftE !== null
+      && crossing.endGroundY < crossing.deckY,
+      `left the deck at E ${crossing.leftE?.toFixed(1)}, `
+      + `ended standing on ${crossing.endGroundY?.toFixed(2)} m at E ${crossing.endE?.toFixed(1)}`);
+
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     // --- the touch backend, on the mobile pass only ------------------------
@@ -2381,7 +3193,8 @@ const terrainLoad = await page.evaluate(() => {
       let worstPlantRoot = 0;
       let waterPlants = 0;
       let deepWaterPlants = 0;
-      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette']) {
+      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette',
+        'flora-shrub']) {
         const mesh = a.flora.group.getObjectByName(name);
         const matrix = mesh?.instanceMatrix?.array;
         if (!matrix) continue;
@@ -2734,6 +3547,116 @@ const terrainLoad = await page.evaluate(() => {
       + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
       + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
       + `${dRoughBack.worst}`);
+
+    // --- T-0002, the facade tones ------------------------------------------
+    //
+    // The owner's report was that the buildings "read as freshly painted and
+    // identical", and the second half was exact: a wall took its colour from
+    // its ARCHETYPE, so two neighbours of the same archetype were the same
+    // brown to the bit — 10 of 321 adjacent pairs, measured.
+    //
+    // Four assertions, and they are shaped by R-A1's finding and K24's. The
+    // census and the invariant say the town wears many faces; the INERTNESS
+    // assertion says the two records a source speaks for were not touched, to
+    // the bit; and the liveness pair says the difference reaches a pixel and
+    // comes back. The first two would pass identically on a tone that never
+    // left its array, which is exactly the failure R-A1's dead readback was.
+    const facades = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const tones = api.buildings.facadeTones();
+      return Object.entries(tones).map(([id, t]) => {
+        const p = api.buildings.positionOf(id);
+        return {
+          id, drawn: t.drawn, eligible: t.eligible, confidence: t.confidence,
+          x: p ? p.x : null, z: p ? p.z : null,
+        };
+      });
+    });
+    const facadeLum = (c) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    const facadeDrawn = facades.filter((r) => r.drawn);
+    const facadeTones = new Set(
+      facadeDrawn.map((r) => r.drawn.map((v) => v.toFixed(6)).join(','))).size;
+    const facadePlaced = facadeDrawn.filter((r) => Number.isFinite(r.x));
+    let facadeTwins = 0;
+    let facadePairs = 0;
+    for (const a of facadePlaced) {
+      let best = null;
+      let bd = Infinity;
+      for (const b of facadePlaced) {
+        if (b === a) continue;
+        const d = Math.hypot(a.x - b.x, a.z - b.z);
+        if (d < bd) { bd = d; best = b; }
+      }
+      if (best && bd <= FACADE_PAIR_M) {
+        facadePairs += 1;
+        if (Math.abs(facadeLum(a.drawn) - facadeLum(best.drawn)) < 1e-6) facadeTwins += 1;
+      }
+    }
+    const attested = facades.filter((r) => r.confidence === 'attested');
+
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
+    const flatFacades = await page.evaluate(() => {
+      const t = window.__chicago4d.buildings.facadeTones();
+      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
+    });
+    const toneOffShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const toneBack = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(1));
+    const backFacades = await page.evaluate(() => {
+      const t = window.__chicago4d.buildings.facadeTones();
+      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
+    });
+    const toneBackShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dTone = signatureDistance(toneOn, toneOffShot);
+    const dToneBack = signatureDistance(toneOn, toneBackShot);
+
+    const facadeMoved = facadeDrawn.filter((r) => {
+      const flat = flatFacades[r.id];
+      return flat && r.drawn.some((v, i) => Math.abs(v - flat[i]) > 1e-6);
+    }).length;
+    const attestedMoved = attested.filter((r) => {
+      const flat = flatFacades[r.id];
+      return r.drawn && flat && flat.some((v, i) => v !== r.drawn[i]);
+    });
+    const restoreError = Math.max(0, ...facadeDrawn.map((r) => {
+      const back = backFacades[r.id];
+      return back ? Math.max(...r.drawn.map((v, i) => Math.abs(v - back[i]))) : 0;
+    }));
+
+    check(`${label}: the town wears more than one face`,
+      facadeTones >= FACADE_TONES_MIN,
+      `${facadeTones} distinct drawn facade tones across ${facadeDrawn.length} `
+      + `structures (want >=${FACADE_TONES_MIN})`);
+    check(`${label}: no two neighbouring buildings are drawn the same colour`,
+      facadePairs > 0 && facadeTwins === 0,
+      `${facadeTwins} of ${facadePairs} nearest-neighbour pairs within `
+      + `${FACADE_PAIR_M} m are drawn identically (want 0)`);
+    // The honesty half of this parcel, and the one assertion here that must
+    // never be relaxed: `facades.js` hands an attested paint the identity tone,
+    // so a record a source speaks for is drawn at the colour its archetype
+    // baked whether the tone is on or off. Bit-exact, not close.
+    check(`${label}: a documented paint is never modulated`,
+      attested.length >= 1 && attestedMoved.length === 0,
+      `${attested.length} record(s) with attested paint, ${attestedMoved.length} `
+      + `changed when the tone was wound off (want 0): `
+      + `${attested.map((r) => r.id).join(', ') || 'none found'}`);
+    check(`${label}: the facade tones reach the render`,
+      toneOff === 0 && facadeMoved >= FACADE_MOVED_MIN
+        && dTone.worst >= FACADE_MIN_WORST && dTone.mean >= FACADE_MIN_MEAN,
+      `winding the tone off changed ${facadeMoved} structure(s) (want >=${FACADE_MOVED_MIN}) `
+      + `and moved the worst cell by ${dTone.worst}, mean ${dTone.mean?.toFixed(2)} `
+      + `(need worst>=${FACADE_MIN_WORST}, mean>=${FACADE_MIN_MEAN})`);
+    check(`${label}: restoring the facade tones restores the frame`,
+      toneBack === 1 && restoreError <= 1e-6
+        && dToneBack.mean <= 0.1 && dToneBack.worst <= 3,
+      `weathering ${toneBack}, worst per-structure restore error `
+      + `${restoreError.toExponential(2)}, residual mean ${dToneBack.mean?.toFixed(2)}, `
+      + `worst-cell delta ${dToneBack.worst}`);
+    console.log(`        facades: ${facadeTones} tones · ${facadeTwins}/${facadePairs} `
+      + `neighbour pairs identical · winding off moves worst cell ${dTone.worst}, `
+      + `mean ${dTone.mean?.toFixed(2)}; restored worst ${dToneBack.worst}`);
 
     // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
     //
@@ -3555,7 +4478,7 @@ const terrainLoad = await page.evaluate(() => {
     // rings, and then an actual walk, which is the one that would have caught it.
     const popIn = await page.evaluate(() => {
       const a = window.__chicago4d;
-      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette'];
+      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette', 'flora-shrub'];
       const rings = a.flora.rings;
       const inset = Object.entries(rings.layers).map(([id, r]) => ({
         id,
@@ -3661,7 +4584,7 @@ const terrainLoad = await page.evaluate(() => {
       /** Sets a head is ever hung from. A mid clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
        *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette']);
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
       /** Under a twentieth of full size a head is drawn at under two pixels at
        *  the distances its own ring covers, and the fade has already taken it
        *  most of the way into the ground. */
@@ -4476,6 +5399,89 @@ const terrainLoad = await page.evaluate(() => {
       /No people, anywhere/.test(lib.text) && /L1\b/.test(lib.text),
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
+
+    // --- the town's people, in the same panel (ROADMAP K52) ----------------
+    // The residents layer is the one that had a reader already: a household
+    // travels in its building's sidecar and the building card names it. That is
+    // why nothing caught it — `compile_residents()` reaches a building through
+    // `lives_at` or `works_at`, so a household with neither attested at the
+    // scene date attaches to no building and appeared on NO card anywhere. The
+    // first two assertions are that count, because a regression here would be
+    // silent in exactly the way the original fault was.
+    const residents = await page.evaluate(async () => {
+      const mount = document.getElementById('residents');
+      const rows = mount ? [...mount.querySelectorAll('details.res-hh')] : [];
+      // The lazy read: a row's body arrives on first open, from the household
+      // record rather than the manifest. An unopened row proves only that the
+      // manifest loaded, so one is opened here and read back.
+      const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
+      const collapsed = rows.length ? rows.every((r) => !r.open) : false;
+      if (target) {
+        target.open = true;
+        for (let i = 0; i < 100 && target.querySelector('.res-hh-body .legend-note'); i++) {
+          await new Promise((r) => setTimeout(r, 50));
+        }
+      }
+      return {
+        households: window.__chicago4d.residents?.households ?? 0,
+        persons: window.__chicago4d.residents?.persons ?? 0,
+        offCard: window.__chicago4d.residents?.offCard ?? -1,
+        notResident: window.__chicago4d.residents?.notResident ?? 0,
+        error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
+        rendered: rows.length,
+        orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        collapsed,
+        openedId: target?.dataset.id ?? '',
+        openedText: target ? target.textContent.replace(/\s+/g, ' ') : '',
+        openedPeople: target ? target.querySelectorAll('details.res-person').length : 0,
+        openedCites: target ? target.querySelectorAll('.cites .cite-text').length : 0,
+        text: mount ? mount.textContent.replace(/\s+/g, ' ') : '',
+        prose: [document.getElementById('residents-note')?.textContent ?? '',
+          ...[...document.querySelectorAll('[data-panel="evidence"] .legend-note')]
+            .map((n) => n.textContent)].join(' ').replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: every household in the layer is on the card`,
+      residents.households === 173 && residents.rendered === 173 && !residents.busy,
+      `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
+    check(`${label}: the 209 person entries are counted`, residents.persons === 209,
+      `${residents.persons}`);
+    // The finding itself, asserted as a number so it cannot quietly grow back:
+    // 17 households reach no building sidecar, and each is marked on its own row.
+    check(`${label}: the households no building card can reach are marked`,
+      residents.offCard === 17 && residents.orphanChips === 17,
+      `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
+    check(`${label}: the researched non-residents are published too`,
+      residents.notResident === 10, `${residents.notResident}`);
+    // The lazy read, proved by opening the household that IS the finding: Mark
+    // Beaubien has neither residence nor workplace attested on 1 July 1835, so
+    // this record reached no visitor at all before this section.
+    check(`${label}: opening a household fetches its record`,
+      residents.openedId === 'hh_beaubien_mark' && residents.openedPeople === 2
+      && /the original proprietor|Sauganash/.test(residents.openedText),
+      `${residents.openedId}: ${residents.openedPeople} person row(s)`);
+    // The reasoning is the finding on this layer, and the arrival year is the
+    // sharpest case of it: a figure carried explicitly so a reader can see it is
+    // NOT evidence. A card printing the value without the note would invert it.
+    check(`${label}: a graded claim carries its reasoning, not just its value`,
+      /general circulation/.test(residents.openedText)
+      && /not evidence/.test(residents.openedText),
+      residents.openedText.slice(0, 200));
+    check(`${label}: the household records quote their sources, not their source ids`,
+      residents.openedCites >= 1 && !/andreas_1884_v1/.test(residents.text),
+      `${residents.openedCites} citation(s) rendered`);
+    check(`${label}: the households start collapsed, like every other disclosure here`,
+      residents.collapsed);
+    check(`${label}: the people section does not overflow the panel`, residents.overflow);
+    // The one thing this section must never imply, and the constraint that
+    // outranks every other consideration in this project: v1 draws no human
+    // figures, and the removal of August 1835 is not staged anywhere.
+    check(`${label}: the section says plainly that nobody is drawn`,
+      /Nobody is drawn/.test(residents.prose)
+      && /this is the research, not a population/i.test(residents.prose),
+      residents.prose.slice(0, 200));
 
     // --- the wildlife, in the same panel (ROADMAP K51) ---------------------
     // `data/fauna/` was researched to the scene date, graded and cited, and read

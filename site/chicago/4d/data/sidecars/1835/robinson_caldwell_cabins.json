@@ -30,7 +30,8 @@
     "symbolic_location": "West bank at Wolf Point, near Wentworth's tavern (the Wolf Point Tavern), in the river-front row between the tavern and the log meeting house to the north.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

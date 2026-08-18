@@ -36,7 +36,8 @@
     "symbolic_location": "South side of South Water Street near Franklin Street (today the south side of West Wacker Drive near North Franklin Street), in the Franklin-to-Wells block; fronting north onto South Water.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

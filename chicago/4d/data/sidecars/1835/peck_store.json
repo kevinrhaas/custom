@@ -33,7 +33,8 @@
     "symbolic_location": "South-west corner of South Water Street and LaSalle Street (today the south side of West Wacker Drive at North LaSalle Street), on the commercial core block between LaSalle and Clark.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

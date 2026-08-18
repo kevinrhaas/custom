@@ -32,7 +32,8 @@
     "symbolic_location": "West bank of the river at Wolf Point, south of Wentworth's tavern (the Wolf Point Tavern) and north of the Lake Street crossing.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

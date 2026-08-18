@@ -32,7 +32,8 @@
     "symbolic_location": "Near the junction of Lake Street and Dearborn Street, at what Andreas calls the site of the Tremont House; placed on the south-east corner, which is a reading and not a statement.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

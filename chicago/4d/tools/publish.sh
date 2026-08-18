@@ -76,6 +76,12 @@ if [ -f renderers/web/js/changelog.js ]; then
   cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"
 fi
 
+# The ticket board, for Manager and any fleet reader: tickets.json is generated
+# by tools/ticket.mjs (check.sh refuses a stale one), mirrored verbatim here.
+if [ -f tickets/tickets.json ]; then
+  cp -f tickets/tickets.json "$SITE/tickets.json"
+fi
+
 # Web-derivative assets only — never the masters. assets/web/ is produced by
 # tools/web_derivatives.sh (which tools/bake.sh calls and nothing else does);
 # the staleness of that directory against assets/gltf/ is settled at the top of
@@ -101,6 +107,12 @@ cp -f data/datum.json "$SITE/data/"
 # The liberties list the Evidence panel reads. Derived from docs/LIBERTIES.md,
 # which itself stays out of the payload.
 cp -f data/liberties.json "$SITE/data/"
+# The town census the gate screen shows — buildings standing and people housed
+# (T-0036). Derived by tools/town_census.py and re-derived by tools/check.sh; the
+# gate fetches it, so leaving it out of the mirror is a 404 on the deployed site
+# while the dev tree counts the town perfectly — the scenes/, fauna/ and
+# residents/ failure, a fourth time.
+cp -f data/town_census.json "$SITE/data/"
 
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
@@ -133,6 +145,48 @@ fi
 if [ -d data/residents ]; then
   rm -rf "$SITE/data/residents"
   cp -a data/residents "$SITE/data/residents"
+fi
+
+# The enclosure layer — fence lines, yards and pens, drawn by
+# renderers/web/js/enclosures.js straight from these numbers. It carries no GLB
+# by design (an enclosure is a perimeter, not a footprint), so this copy is the
+# whole of the layer's payload: leave it out and the fences are a 404 on the
+# deployed site while the dev tree draws them perfectly — the same failure the
+# scenes/ subdirectory and the fauna directory each caused once already.
+if [ -d data/enclosures ]; then
+  rm -rf "$SITE/data/enclosures"
+  cp -a data/enclosures "$SITE/data/enclosures"
+fi
+
+# The signage layer — the boards on the town's business frontages, drawn by
+# renderers/web/js/signage.js straight from these numbers. Same argument as the
+# enclosures above and the same failure if it is left out: no GLB carries any of
+# it, so an unmirrored directory is a 404 on the deployed site while the dev tree
+# hangs every board perfectly.
+if [ -d data/signage ]; then
+  rm -rf "$SITE/data/signage"
+  cp -a data/signage "$SITE/data/signage"
+fi
+
+# The yard layer — the barrels, cases and the one wagon standing on the town's
+# own ground, drawn by renderers/web/js/yard.js straight from these numbers.
+# Same argument as the enclosures and the signage above and the same failure if
+# it is left out: no GLB carries any of it, so an unmirrored directory is a 404
+# on the deployed site while the dev tree stands every barrel perfectly.
+if [ -d data/yard ]; then
+  rm -rf "$SITE/data/yard"
+  cp -a data/yard "$SITE/data/yard"
+fi
+
+# The wharf layer — the river docks at the two forwarding warehouses whose own
+# records state one, drawn by renderers/web/js/wharves.js straight from these
+# numbers. Same argument as the enclosures, the signage and the yard above and
+# the same failure if it is left out: no GLB carries any of it, so an unmirrored
+# directory is a 404 on the deployed site while the dev tree draws both docks
+# perfectly.
+if [ -d data/wharves ]; then
+  rm -rf "$SITE/data/wharves"
+  cp -a data/wharves "$SITE/data/wharves"
 fi
 
 if [ -d data/flora ]; then

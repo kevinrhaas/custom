@@ -68,12 +68,57 @@ step "inferred placeholder GLBs match their records" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# The dooryard garden pickets are the first record on the enclosure layer whose evidence
+# is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
+# and no source puts a garden on any lot in this town. So the answer to "why this lot" is
+# a RULE, and a rule that is not re-derived is a list somebody typed: this re-runs it
+# against the committed lots, footprints, functions and households (ROADMAP K5 (a), T-0052).
+step "the dooryard garden pickets re-derive from the rule that chose their lots" \
+  python3 tools/generate_dooryard_pickets.py --check
+
+# The business signboards are the same shape of claim one layer over: exactly one record
+# in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
+# reconstruction chosen by a rule about trades rather than a list of shops somebody liked.
+# Re-derived here against the committed sidecars, so the rule stays the answer to "why
+# this frontage" (ROADMAP K5 (b), T-0039).
+step "the business signboards re-derive from the rule that chose their frontages" \
+  python3 tools/generate_business_signboards.py --check
+
+# The yard goods are the third record of this shape and the first whose evidence is an
+# ORDINANCE: the village corporation legislated in November 1833 about timber, stone,
+# brick, boxes and barrels stacked in the streets, which attests the treatment and not one
+# location. So "which frontage gets goods" is a rule again, re-derived here against the
+# committed sidecars and the wagon-yard perimeter (ROADMAP K5 (c), T-0040).
+step "the yard goods re-derive from the rule that chose their frontages" \
+  python3 tools/generate_yard_goods.py --check
+
+# The river wharves are the fourth record of this shape and the first whose rule
+# reads a record's OWN attribute rather than a trade table: a sidecar standing on
+# the scene date whose `dock` is true and graded attested or inferred. Two
+# records in this town qualify and both state their dock in the same sentence of
+# the same dossier; every other river frontage is refused by the same clause. The
+# outline is derived from the traced bank, the committed footprint and the
+# committed heightfield, so a re-traced bank or a moved warehouse must move the
+# wharf with it or fail here (ROADMAP K5 (e), T-0041).
+step "the river wharves re-derive from the records that state a dock" \
+  python3 tools/generate_river_wharves.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules
 # against a figure that is wrong by a third of the programme.
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
+
+# The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
+# Both are reads of the roof programme and the residents layer, and the most visible
+# possible place to carry a stale number is the panel a visitor sees before anything
+# else. Re-derived here so a run that builds ten roofs and forgets to regenerate the
+# census fails at the commit rather than shipping a town that says it is smaller than
+# it is. Also refuses a household whose `lives_at` names a structure the scene does not
+# carry, which would silently drop people out of the count.
+step "the gate's town census re-derives from the roofs and the residents" \
+  python3 tools/town_census.py --check
 
 # Ground the town held in common is not building ground, and every gate this project
 # had asked whether a building CLEARED the roadway, stood inside its own lot lines and
@@ -287,6 +332,15 @@ step "renderer modules parse" check_js
 step "the ground mesh still meets the heightfield the walker samples" \
   node tools/measure_terrain_fit.mjs --gate
 
+# The shrub archetype's own bounds, which are the only two numbers in it the
+# RESEARCH owns: the clump keeps the half-width its record states, and a leaf
+# spray stays a mass of leaves rather than shrinking towards a single leaf it
+# cannot draw at two triangles. K57 measured that "hold the total plate area and
+# refine the grain" trades the first for coverage, so the bound is a gate rather
+# than a paragraph. The third assertion is a ratchet on the coverage itself.
+step "the shrub keeps its recorded width and its shell is not see-through" \
+  node tools/measure_spray_grain.mjs --gate --quiet
+
 # The changelog contract, on every run rather than only when somebody remembers
 # it. AGENTS.md has always told an agent to run this by hand before merging, and
 # on 2026-08-13 the file was corrupted BY A MERGE — `.gitattributes` merges it
@@ -294,6 +348,12 @@ step "the ground mesh still meets the heightfield the walker samples" \
 # A hand-run check cannot cover a file that a merge rewrites; this one can.
 step "changelog contract" \
   node tools/check-changelog.mjs
+
+# The ticket queue: the operational "what next" the owner ordered on 2026-08-17
+# after his own requests went untraceable in the ROADMAP. Duplicate ids, queue
+# drift, a stale BOARD, a block with no stated question — all merge-refusing.
+step "ticket queue" \
+  node tools/ticket.mjs check
 
 # The link between the two: the shipped derivative against the master it was
 # compressed from. `--stale` gates data -> master and check_published.mjs gates

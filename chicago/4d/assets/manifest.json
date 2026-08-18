@@ -162,15 +162,6 @@
       "phase_id": "works_1833",
       "structure_id": "elston_soap_candle_manufactory"
     },
-    "estray_pen__pen_1833.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 59204,
-      "inputs_sha256": "24524edc3710435b57f841cb42d9b46e0ce4007c3cfcceace0f5221ea6706e35",
-      "kind": "generated",
-      "phase_id": "pen_1833",
-      "structure_id": "estray_pen"
-    },
     "exchange_coffee_house__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,

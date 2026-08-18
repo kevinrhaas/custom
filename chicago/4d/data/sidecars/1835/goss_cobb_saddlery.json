@@ -32,7 +32,8 @@
     "symbolic_location": "The corner of Lake Street and Canal Street (historically Lake and West Water), west bank; placed on the SOUTH-EAST quadrant of the crossing - south side of Lake, east side of Canal - fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

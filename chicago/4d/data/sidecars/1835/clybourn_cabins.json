@@ -30,7 +30,8 @@
     "symbolic_location": "DISPLACED. The attested ground is the Clybourne place several miles up the North Branch, around the site of the later North Chicago Rolling Mills — far outside the modelled terrain. This coordinate stands at the northern edge of modelled ground on the east bank of the North Branch instead, beside the same family's slaughter-house.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

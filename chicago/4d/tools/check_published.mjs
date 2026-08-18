@@ -43,12 +43,18 @@ const SITE = path.resolve(REPO, '../../site/chicago/4d');
 const COPIES = [
   ['walk/', 'renderers/web/'],
   ['js/changelog.js', 'renderers/web/js/changelog.js'],
+  ['tickets.json', 'tickets/tickets.json'],
   ['data/scenes/', 'data/scenes/'],
   ['data/datum.json', 'data/datum.json'],
   ['data/liberties.json', 'data/liberties.json'],
+  ['data/town_census.json', 'data/town_census.json'],
   ['data/terrain/', 'data/terrain/'],
   ['data/sidecars/', 'data/sidecars/'],
   ['data/residents/', 'data/residents/'],
+  ['data/enclosures/', 'data/enclosures/'],
+  ['data/signage/', 'data/signage/'],
+  ['data/yard/', 'data/yard/'],
+  ['data/wharves/', 'data/wharves/'],
   ['data/flora/', 'data/flora/'],
   ['data/fauna/', 'data/fauna/'],
 ];

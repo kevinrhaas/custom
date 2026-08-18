@@ -29,7 +29,8 @@
     "symbolic_location": "South side of South Water Street between Clark Street and Dearborn Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

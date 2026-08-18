@@ -25,6 +25,12 @@
  * tree and the site do not load the same geometry, and the ground a plant is
  * stationed on comes off it. `--source` measures the working tree instead.
  *
+ * ROADMAP K54 — it also prints, per (community, list), the ground the drawn
+ * plants cover against the ground their own records claim, and the deviation per
+ * hundred slots so two draws of different sizes can be compared. The shrub
+ * stratum is its own list here because it is its own lattice pass in the
+ * renderer; before K54 its rows were inside `forb`.
+ *
  * ROADMAP K49(f) — `--gate` exits non-zero when any list owes a species a WHOLE
  * slot and deals it none. The same assertion now runs inside
  * `tools/smoke_renderer.mjs`, which is where it belongs; this flag is here so
@@ -115,6 +121,12 @@ const measured = await page.evaluate(() => {
     }
   }
   const rows = [];
+  const sets = {};
+  // ROADMAP K54. The forb and the shrub layers are dealt over the SAME ring, so
+  // one radius answers for both and a cover figure is comparable between them.
+  // The matrix layer is drawn on two rings (near tufts and mid cards) and its
+  // cover column would be a figure over an ambiguous area, so it is not printed.
+  const ringR = a.flora.rings.layers.forb.fade[0];
   for (const [zone, [e, n]] of Object.entries(spots)) {
     // The rig re-deals when the camera has moved, so hand it a camera. It reads
     // exactly two things off one, and a duck answers both.
@@ -124,14 +136,44 @@ const measured = await page.evaluate(() => {
     };
     a.flora.update(0.016, camera);
     a.flora.update(0.016, camera);
+    sets[zone] = { ...a.flora.stats.sets };
+    // ROADMAP K54, and R-M1c's lesson about denominators: a ring standing at the
+    // edge of one community reaches over four of them, so the ground a community
+    // holds inside this ring has to be MEASURED and not assumed to be the disc.
+    // Dividing a community's drawn plants by the whole ring reported 17.9 % where
+    // the community holds a fifth of the ring — which is a statement about the
+    // mosaic, not about the draw. Plantable ground only, because a plant may not
+    // stand on the water, the road or a building footprint and the drawn cover
+    // is measured against ground it was actually offered.
+    const ringArea = {};
+    for (let se = e - ringR; se <= e + ringR; se += 1) {
+      for (let sn = n - ringR; sn <= n + ringR; sn += 1) {
+        if ((se - e) ** 2 + (sn - n) ** 2 > ringR * ringR) continue;
+        const z = a.flora.zoneAt(se, sn);
+        if (!z || !a.flora.plantableAt(se, sn)) continue;
+        ringArea[z] = (ringArea[z] ?? 0) + 1;                 // 1 m² per sample
+      }
+    }
     for (const d of a.flora.stats.draws) {
       if (d.drawn <= 0) continue;
+      const area = ringArea[d.community] ?? 0;
       rows.push({
         at: zone,
         community: d.community,
         list: d.list,
         drawn: d.drawn,
         species: d.species.length,
+        // ROADMAP K54 — WHICH QUANTITY THE SAMPLE REPRODUCES. `recordedCover` is
+        // the ground this list's records say it holds; `drawnCover` is the
+        // ground the plants actually placed on this ring hold. A layer faithful
+        // in head count can be an order of magnitude short in cover, and that
+        // difference is the whole of K53's finding 2.
+        recordedCover: d.species.reduce((t, s) => t + (s.cover ?? 0), 0),
+        drawnCover: d.list === 'matrix' || !area ? null
+          : d.species.reduce((t, s) => t + (s.width
+            ? s.drawn * Math.PI * (s.width * 0.5) ** 2 : 0), 0) / area,
+        /** The community's own plantable ground inside this ring, in m². */
+        area,
         worstShortfall: Math.max(0, ...d.species.map((s) => s.expected - s.drawn)),
         // ROADMAP K49(d). The worst shortfall is a max of a max, so it moves on
         // one species in one list and is the noisiest thing this tool prints —
@@ -148,7 +190,7 @@ const measured = await page.evaluate(() => {
       });
     }
   }
-  return { spots: Object.keys(spots), rows, abundance: a.flora.stats.abundance };
+  return { spots: Object.keys(spots), rows, sets, abundance: a.flora.stats.abundance };
 });
 
 const slots = measured.rows.reduce((t, r) => t + r.drawn, 0);
@@ -176,18 +218,43 @@ const nowhere = [...tally.entries()]
 const worst = Math.max(0, ...measured.rows.map((r) => r.worstShortfall));
 const devOf = (list) => measured.rows.filter((r) => r.list === list)
   .reduce((t, r) => t + r.deviation, 0);
+/** ROADMAP K54. The deviation is an absolute sum over slots, so a list dealt
+ *  more slots scores worse at identical fidelity — and K54 SPLIT one list into
+ *  two, which no comparison of the raw sums can survive. Per hundred slots is
+ *  the figure that compares two draws of different sizes. */
+const slotsOf = (list) => measured.rows.filter((r) => r.list === list)
+  .reduce((t, r) => t + r.drawn, 0);
+const devPer100 = (list) => (slotsOf(list) ? devOf(list) / slotsOf(list) * 100 : 0);
 
 for (const r of measured.rows) {
   console.log(`  at ${r.at.padEnd(22)} ${r.community.padEnd(22)} ${r.list.padEnd(6)} `
     + `drawn ${String(r.drawn).padStart(5)}  of ${String(r.species).padStart(2)} species  `
-    + `worst shortfall ${r.worstShortfall.toFixed(2)}  dev ${r.deviation.toFixed(2)}`
+    + `worst shortfall ${r.worstShortfall.toFixed(2)}  dev ${r.deviation.toFixed(2)}  `
+    // ROADMAP K54's own question, one column: the ground the drawn plants hold
+    // against the ground their records claim.
+    + `cover ${r.drawnCover === null ? '   —  ' : `${(r.drawnCover * 100).toFixed(1)}%`.padStart(6)}`
+    + ` of ${`${(r.recordedCover * 100).toFixed(1)}%`.padStart(6)}`
     + `${r.absent.length ? `  ABSENT ${r.absent.map((s) => s.id).join(', ')}` : ''}`);
 }
 const ab = measured.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
 console.log(`\n${measured.spots.length} communities stood in · ${lists.size} populated list(s) · `
   + `${slots} slots dealt · worst shortfall ${worst.toFixed(2)} slot(s)`);
-console.log(`deviation from the recorded cover, summed over every species and both signs: `
-  + `matrix ${devOf('matrix').toFixed(2)} · forb ${devOf('forb').toFixed(2)} slot(s)`);
+// ROADMAP K54 — THIS FIGURE IS NOT "DEVIATION FROM THE RECORDED COVER" AND HAS
+// NOT BEEN SINCE K49(c2), which is what its label said until today. `expected`
+// is `share × slots` and `share` is the species' share of the LOTTERY, so this
+// measures the lattice's disagreement with its own target distribution — a
+// sampling-discrepancy figure, and the right one for comparing two draws. The
+// question of whether that target reproduces the recorded ground is the `cover`
+// column above, and K54's box quoted this line for it.
+console.log(`deviation from each list's own dealt share, summed over every species and both `
+  + `signs: matrix ${devOf('matrix').toFixed(2)} · forb ${devOf('forb').toFixed(2)}`
+  + ` · shrub ${devOf('shrub').toFixed(2)} slot(s)`);
+console.log(`  the same, per 100 slots dealt: matrix ${devPer100('matrix').toFixed(2)} over `
+  + `${slotsOf('matrix')} · forb ${devPer100('forb').toFixed(2)} over ${slotsOf('forb')} · `
+  + `shrub ${devPer100('shrub').toFixed(2)} over ${slotsOf('shrub')}`);
+const shrubInstances = Object.entries(measured.sets)
+  .map(([at, s]) => `${at} ${s['flora-shrub'] ?? 0}`).join(' · ');
+console.log(`shrub instances standing, per station: ${shrubInstances}`);
 console.log(`${absent.length} station-row(s) owe a species a whole slot and deal it none:`);
 for (const s of absent) console.log(`  - ${s}`);
 console.log(`${nowhere.length} of ${tally.size} (list, species) pair(s) drawn NOWHERE in the `
@@ -197,7 +264,16 @@ console.log(`\nabundance units: ${ab.mixed.length} of ${ab.lists} lists mix an a
   + `${ab.unconvertible.length} record(s) give cover with no width_m`);
 for (const m of ab.mixed) {
   console.log(`  - ${m.zone}.${m.list}: ${(m.countedShare * 100).toFixed(1)}% of slots dealt off `
-    + `counts, against ${m.area} species recorded as an area`);
+    + `counts, against ${m.area} species recorded as an area`
+    // ROADMAP K54 opened this column and K55 closed the question it asked. A
+    // mixed list whose SLOT COUNT is dealt off the recorded sum is still adding
+    // cover fractions to plants per m²; one dealt off `stems` is not; and a
+    // MATRIX list is dealt off neither, because `cover.matrix_fraction` answers
+    // that question directly. `basis` is `flora.js`'s own `SLOT_BASIS` now, so
+    // a row can no longer report a rule the renderer does not run.
+    + (m.basis === null
+      ? " — slot count off cover.matrix_fraction, not this sum (lottery only)"
+      : ` — slot count off '${m.basis}'`));
 }
 if (errors.length) console.log(`\npage errors: ${errors.length}\n  ${errors.join('\n  ')}`);
 

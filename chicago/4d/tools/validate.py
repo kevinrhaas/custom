@@ -1555,6 +1555,11 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
             if not (frm and to and any(frm <= t <= to for t in targets)):
                 continue
+            # No mesh, no ground contact to measure: this phase's geometry is
+            # drawn by another layer, which drapes on the heightfield at every
+            # post rather than standing a footprint on it.
+            if ph.get("drawn_by"):
+                continue
             pos = ph.get("position") or {}
             poly = (ph.get("footprint") or {}).get("polygon")
             if not isinstance(poly, list) or len(poly) < 3:
@@ -1921,6 +1926,97 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
 
     rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
              f"from data/traces/street_control.json")
+
+
+def check_drawn_by(structures: dict, rep: Report) -> None:
+    """A phase whose geometry moved to another layer has to have moved it.
+
+    `drawn_by` is the record saying: nothing bakes this phase, and what a visitor
+    sees is built at load by another layer out of another file. It exists because
+    Chicago's first public building is a fence — Andreas calls the estray pen "a
+    small wooden enclosure and quite roofless" — and the only archetype that would
+    build a low walled rectangle cannot build a roofless one, so for a week the
+    town's pound stood with an invented shed roof on it (docs/LIBERTIES.md L60).
+
+    The declaration is cheap to write and would be easy to leave half-done, so
+    every half is asserted here rather than trusted:
+
+      * the named record EXISTS and names this structure back, so the phase cannot
+        point at a file nobody wrote;
+      * the layer's own manifest LISTS it — a record the index does not name is
+        fetched by nothing, and the pen would silently vanish from the town;
+      * NO GLB and NO manifest entry survive the move, which is the assertion that
+        actually retires the roof: a phase that still has a baked mesh is still
+        drawing one, whatever the record says about it;
+      * `form` is EMPTY, because every value in it was a build instruction for the
+        mesh that just went away. A retired invention left sitting in the record
+        would keep showing on the card with a confidence chip and no geometry
+        behind it, which is the exact failure check_geometry_declarations exists
+        to stop one level up.
+    """
+    checked = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for ph in st.get("phases", []):
+            decl = ph.get("drawn_by")
+            if not decl:
+                continue
+            pid = ph.get("id", "?")
+            where = f"structure {sid}/{pid}"
+            checked += 1
+
+            if ph.get("form"):
+                rep.error(where, f"declares drawn_by {decl.get('layer')!r} but still carries "
+                                 f"form attributes ({', '.join(sorted(ph['form']))}) — nothing "
+                                 f"builds them now, so they are values on a card with no "
+                                 f"geometry behind them. Retire them, or drop drawn_by")
+
+            rel = decl.get("record", "")
+            path = ROOT / rel
+            if not rel or not path.exists():
+                rep.error(where, f"declares drawn_by record {rel!r}, which is not a file in "
+                                 f"this repository — the geometry moved to nowhere")
+                continue
+            try:
+                rec = json.loads(path.read_text())
+            except Exception as e:  # noqa: BLE001 — an unreadable layer record is a failure
+                rep.error(where, f"drawn_by record {rel} does not parse: {e}")
+                continue
+            if rec.get("structure_id") != sid:
+                rep.error(where, f"drawn_by record {rel} names structure_id "
+                                 f"{rec.get('structure_id')!r} — the two records disagree about "
+                                 f"which building this geometry belongs to")
+
+            index_path = path.parent / "index.json"
+            try:
+                listed = {e.get("id") for e in
+                          json.loads(index_path.read_text()).get("enclosures", [])}
+            except Exception as e:  # noqa: BLE001
+                rep.error(where, f"cannot read {index_path.relative_to(ROOT)}: {e}")
+                listed = set()
+            if rec.get("id") not in listed:
+                rep.error(where, f"drawn_by record {rel} is not listed in "
+                                 f"{index_path.relative_to(ROOT)} — a static host cannot be "
+                                 f"globbed, so nothing fetches it and the phase draws nothing "
+                                 f"at all")
+
+            glb = f"{sid}__{pid}.glb"
+            if (ROOT / "assets" / "gltf" / glb).exists():
+                rep.error(where, f"declares drawn_by but assets/gltf/{glb} is still committed — "
+                                 f"the mesh this record says it no longer has is still in the "
+                                 f"repository and still shipped")
+            manifest_path = ROOT / "assets" / "manifest.json"
+            if manifest_path.exists():
+                try:
+                    entries = json.loads(manifest_path.read_text()).get("assets", {})
+                except Exception:  # noqa: BLE001 — reported by the stale check
+                    entries = {}
+                if glb in entries:
+                    rep.error(where, f"declares drawn_by but assets/manifest.json still lists "
+                                     f"{glb} — the bake would rebuild it on the next run")
+    if checked:
+        rep.note(f"drawn_by check: {checked} phase(s) drawn by another layer, each with a "
+                 f"record that exists, is fetched, and has no mesh left behind it")
 
 
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
@@ -4762,6 +4858,9 @@ def main() -> int:
     consumed = archetype_consumed(rep)
     check_geometry_declarations(structures, consumed, rep)
 
+    # …and what a record says it no longer builds, it must no longer build.
+    check_drawn_by(structures, rep)
+
     # Does each structure reach the ground it stands over? Needs the committed
     # heightfield and the datum origin; without either the question cannot be
     # asked, and a gate that silently answers "yes" when it cannot see is worse
@@ -4880,6 +4979,14 @@ def run_param_check(structures: dict, scenes: dict, rep: Report) -> None:
                 r = ph.get("documented_range", {})
                 frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
                 if not (frm and to and frm <= target <= to):
+                    continue
+                # A phase whose geometry moved to another layer resolves into no
+                # archetype parameters, because no archetype builds it. Asking
+                # `outbuilding` for the estray pen's roof pitch after the roof was
+                # retired is asking a generator about a mesh nobody bakes; what
+                # holds that phase together instead is check_drawn_by(), which
+                # asserts the layer record exists and that no GLB survives it.
+                if ph.get("drawn_by"):
                     continue
                 if arch not in resolvers:
                     no_gen.add(arch)

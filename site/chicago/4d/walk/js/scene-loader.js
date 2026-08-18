@@ -128,6 +128,34 @@ export async function loadScene(year, bases = resolveBases()) {
       problems.push(`${id}: review_required is set — this scene cannot be released`);
     }
 
+    /**
+     * A sidecar with NO asset is not a bake that failed to arrive — it is a
+     * record whose geometry is drawn by another layer, and `drawn_by` names
+     * which. The estray pen is the first: a pound is a fence, and it is drawn
+     * by `enclosures.js` out of `data/enclosures/estray_pen.json` (T-0051,
+     * docs/LIBERTIES.md L60). The record still loads, because the card a
+     * visitor opens is still compiled from it; what it does not do is fetch a
+     * GLB that does not exist and report the 404 as a problem.
+     */
+    if (!sidecar.asset) {
+      registry.set(id, {
+        id,
+        sidecar,
+        gltf: null,
+        drawnBy: sidecar.drawn_by ?? null,
+        assetIsPlaceholder: false,
+        assetUrl: null,
+        sidecarUrl: String(sidecarUrl),
+        instanceId: null,
+        node: null,
+      });
+      if (!sidecar.drawn_by) {
+        problems.push(`${id}: the sidecar names no asset and no layer that draws `
+          + 'it — nothing of this structure is in the scene');
+      }
+      return;
+    }
+
     const assetUrl = new URL(sidecar.asset, assetBase);
     let gltf = null;
     /**
@@ -167,6 +195,7 @@ export async function loadScene(year, bases = resolveBases()) {
       id,
       sidecar,
       gltf,
+      drawnBy: null,
       assetIsPlaceholder,
       assetUrl: String(assetUrl),
       sidecarUrl: String(sidecarUrl),

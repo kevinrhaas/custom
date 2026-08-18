@@ -37,7 +37,8 @@
     "symbolic_location": "South-west corner of Wolcott Street and North Water Street (today N State St and the north bank of the main stem), at the foot of State Street, north bank of the main stem east of the forks.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

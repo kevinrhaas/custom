@@ -37,7 +37,8 @@
     "symbolic_location": "Inside the north wall of Fort Dearborn, west of the north gate, fronting south onto the parade.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
