@@ -1668,7 +1668,9 @@ for (const [label, viewport, touch] of [
       const hits = [];
       for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
         for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = a.frontage.pickAt(new a.three.Vector2(x, y), a.camera);
+          // A plain {x, y} is all `Raycaster.setFromCamera` reads, and it saves
+          // this file reaching for the app's three namespace to build a Vector2.
+          const hit = a.frontage.pickAt({ x, y }, a.camera);
           if (hit?.id) hits.push(hit.id);
         }
       }
