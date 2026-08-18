@@ -1,7 +1,7 @@
 ---
 id: T-0035
 title: Flowers grow up out of the ground as you approach instead of fading in
-state: claimed
+state: done
 epic: FLORA
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 242
 claimed_by: run 8/18/2026, 8:34:20 AM CT
 blocked_on: null
 needs_bake: false
