@@ -2,6 +2,9 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
+T-0086 — The sward ends at a radius instead of receding into the distance
+T-0084 — A wagon tongue is drawn as a plank on edge, not a pole
+T-0087 — The wagon box floats: no bolsters, no reach, no hounds
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
@@ -62,5 +65,4 @@ T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
-T-0084 — A wagon tongue is drawn as a plank on edge, not a pole
 T-0085 — The sward grows up through the Green Tree's plank walk
