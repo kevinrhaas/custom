@@ -1,7 +1,7 @@
 ---
 id: T-0039
 title: Signboards on the businesses that attest one
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K5
 parent: T-0003
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 237
 claimed_by: run 8/18/2026, 2:44:14 AM CT
 blocked_on: null
 needs_bake: false
