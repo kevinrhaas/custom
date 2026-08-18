@@ -1,7 +1,7 @@
 ---
 id: T-0086
 title: The Sauganash's frontage: plank walks on both fronts, a board crossing and its hitching posts
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K2
 parent: T-0043
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 248
 claimed_by: run 8/18/2026, 2:19:25 PM CT
 blocked_on: null
 needs_bake: false
