@@ -1,5 +1,63 @@
 # STATUS
 
+## Shipped 2026-08-18 — barrels and cases at twenty-six doors, and the town's one wagon
+
+**T-0040 (piece 3 of 4 of T-0003, legacy K5 (c)).** `docs/ROADMAP.md` K5 (c) asks for *"yard
+objects: wagons/drays (documented mired on Lake St), woodpiles and lumber stacks (Ordinance 9
+documents timber, stone, brick, boxes, barrels IN the streets), crates and barrels at the
+stores"*. **Unlike the signboards one layer over, this clause does not start from silence** —
+which is the whole reason it was worth taking:
+
+* **The evidence is an ORDINANCE.** `data/sources/chicago_democrat_1833_11_26.json` (tier 1,
+  verified from the scan) carries the village ordinances of 7 November 1833 complete, and
+  **Ordinance 9 is about timber, stone, brick, boxes and barrels stacked in the streets**. A
+  corporation does not legislate against a thing nobody does. That is a contemporary statement,
+  by the people who had to walk round them, that this town's streets had goods standing in them.
+* **What it does not give is a single address**, and it is twenty months before the scene date.
+  So the FACT is well founded and WHICH DOOR is a rule — the shape T-0052 and T-0039 already use.
+* **The roadmap's own wagon citation does not resolve.** K5 (c) offers *"wagons/drays (documented
+  mired on Lake St)"* and **this project holds no source record for it**. It is struck from the
+  argument rather than repeated, and refused in writing on the record.
+
+**What shipped.** `data/yard/` (manifest + one generated record), `renderers/web/js/yard.js`
+(one draw call, own program cache key, every vertex graded `reconstructed`, pickable to the
+business behind it), `tools/generate_yard_goods.py`, a `tools/check.sh` step that re-derives the
+record byte for byte, a `tools/publish.sh` copy rule and its `check_published.mjs` COPIES row.
+**149 objects on 26 frontages** — 102 upright casks, 46 packing cases, and one empty laid on its
+side outside each public house with the wall for it — plus **one wagon**. **3 frontages are
+refused in writing**: the fort's provision store and the sutler's store (federal ground inside a
+palisade, no corporation street in front of the door) and the reconstructed west-side grocery (an
+anonymous slot).
+
+**THE ONE WAGON.** No source here puts a wagon at any place in Chicago on any day; one place is
+NAMED for them, `chicagology_prefire278`'s *"the yard into which the trains were driven"* — the
+attestation behind `data/enclosures/western_hotel_wagon_yard.json` (L127). The wagon stands in
+that yard and nowhere else, at a point **searched rather than chosen**: a 0.25 m lattice over the
+yard's own bounding box, keeping the stand whose least clearance to every committed wall and
+every fence line is greatest, **8.39 m** here.
+
+**What is invented** — `docs/LIBERTIES.md` **L131**: the fact of goods at those particular doors
+on that particular day, the count at each, and the objects' own sizes. **No barrel carries a
+brand, a merchant's name, a stencil or a mark, and no case is labelled** (L25 generalised again).
+
+**Measured.** Layer **7,160 triangles**, of which the wagon is 896 — **1.1 %** of the 627,811 the
+scene draws and 0.72 % of the 1,000,000 ceiling — in **one** draw call (40 of a budget of 80 on
+mobile, 41 on desktop). Worst vertex **0.64 m** from its own object's anchor; deepest **0.36 m**
+back from an anchor, so **0.19 m clear of the facade plane** everywhere. Zero page errors at both
+release viewports.
+
+**Not claimed.** That any of these particular buildings had anything outside its door — the
+confidence view takes all 149 down. **Ordinance 9's timber, stone and brick are not drawn at
+all**: they are building material on a lot under construction rather than a merchant's stock on
+his own frontage, and this record cannot say which lot. **Nothing stands in a roadway**, though
+the roadway is what the ordinance is about — the restrained reading was chosen deliberately,
+because a cask in the travelled way is a claim about the width of the road as well as about the
+goods. Nothing here is baked. And **the full smoke does not fit this runner's ten-minute
+per-command ceiling** (ROADMAP § THE RUN BUDGET): both halves were run on the published mirror
+and every one of the nine new assertions passed at **both** 390x780 and 1280x800, but each half
+was killed by the ceiling after 214 (mobile) and 132 (desktop) passes, so the tails of both
+halves did not run in this unit.
+
 ## Shipped 2026-08-18 — two dozen shop signs, in a town that documents one
 
 **T-0039 (piece 2 of 4 of T-0003, legacy K5 (b)).** `docs/ROADMAP.md` K5 (b) asked for

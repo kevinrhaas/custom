@@ -1,7 +1,7 @@
 ---
 id: T-0040
 title: Wagons, barrels and yard clutter at the taverns and stores
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: K5
 parent: T-0003
 opened: 2026-08-17
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-18
+pr: 238
+claimed_by: run 8/18/2026, 4:47:00 AM CT
 blocked_on: null
 needs_bake: false
 ---

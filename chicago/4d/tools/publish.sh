@@ -162,6 +162,16 @@ if [ -d data/signage ]; then
   cp -a data/signage "$SITE/data/signage"
 fi
 
+# The yard layer — the barrels, cases and the one wagon standing on the town's
+# own ground, drawn by renderers/web/js/yard.js straight from these numbers.
+# Same argument as the enclosures and the signage above and the same failure if
+# it is left out: no GLB carries any of it, so an unmirrored directory is a 404
+# on the deployed site while the dev tree stands every barrel perfectly.
+if [ -d data/yard ]; then
+  rm -rf "$SITE/data/yard"
+  cp -a data/yard "$SITE/data/yard"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"
