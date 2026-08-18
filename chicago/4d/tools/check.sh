@@ -110,6 +110,16 @@ step "the river wharves re-derive from the records that state a dock" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
+# Both are reads of the roof programme and the residents layer, and the most visible
+# possible place to carry a stale number is the panel a visitor sees before anything
+# else. Re-derived here so a run that builds ten roofs and forgets to regenerate the
+# census fails at the commit rather than shipping a town that says it is smaller than
+# it is. Also refuses a household whose `lives_at` names a structure the scene does not
+# carry, which would silently drop people out of the count.
+step "the gate's town census re-derives from the roofs and the residents" \
+  python3 tools/town_census.py --check
+
 # Ground the town held in common is not building ground, and every gate this project
 # had asked whether a building CLEARED the roadway, stood inside its own lot lines and
 # missed its neighbours — never whether the ground it stood on was for sale. Two

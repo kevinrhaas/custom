@@ -36,6 +36,7 @@ import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
+import { mountGateCensus } from './census.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
@@ -153,6 +154,10 @@ const api = {
             altitude: 0, flying: false },
   problems,
   budget: BUDGET,
+  // The town's own two numbers, as the gate showed them (T-0036). Null until the
+  // census resolves, and null forever if it could not be read — the smoke asserts
+  // the DISPLAYED figures against this, so a silent failure reads as one.
+  census: null,
 };
 window.__chicago4d = api;
 
@@ -180,6 +185,15 @@ async function boot() {
   const camera = new THREE.PerspectiveCamera(62, 1, NEAR.min, 3000);
 
   progress(8, 'Reading the scene…');
+  // The gate's two numbers (T-0036). Started here and NOT awaited: it is one
+  // small JSON beside a scene load that fetches hundreds of files, and the row
+  // it fills sits above the progress bar — a visitor should be reading how big
+  // the town is while the town loads, not after. It fails soft to a hidden row,
+  // so nothing downstream depends on it and no rejection reaches the boot chain.
+  const census = mountGateCensus({ dataBase: bases.dataBase }).then((c) => {
+    api.census = c;
+    return c;
+  }).catch(() => null);
   const loaded = await loadScene(YEAR, bases);
   progress(30, 'Placing the buildings…');
   problems.push(...loaded.problems);
@@ -983,6 +997,13 @@ async function boot() {
     exposure: { get: () => renderer.toneMappingExposure, enumerable: true },
     facadeWeathering: { get: () => buildings.weathering, enumerable: true },
   });
+
+  // Settle the gate census before declaring ready. It was started before the
+  // scene load and has had every one of those seconds; awaiting it here means
+  // `api.census` is either the document or null by the time anything — a gate,
+  // a visitor, the smoke — asks, rather than being a race the harness would
+  // have to poll around.
+  await census;
 
   progress(100, 'Ready');
   api.ready = true;

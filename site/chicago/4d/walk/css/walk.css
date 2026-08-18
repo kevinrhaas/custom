@@ -100,6 +100,42 @@ html, body {
 }
 .gate-sub { margin: 0 0 18px; color: var(--ink-dim); font-size: 14px; }
 
+/* The town's own two numbers, counted from the committed data (T-0036). Two
+   figures side by side rather than a sentence: the visitor is being told how
+   much town there is, and a numeral read at a glance is the whole of that. The
+   denominator sits under each one because 322 alone reads as a total, and this
+   is a progress report on a town still being built. Tabular numerals so the
+   pair does not jitter as the count grows. */
+.gate-census {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 12px 6px;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+}
+.gate-census[hidden] { display: none; }
+.gate-census .gc-fig { margin: 0; display: grid; gap: 1px; }
+.gate-census .gc-n {
+  font-size: 26px;
+  font-weight: 640;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.gate-census .gc-l {
+  font-size: 12px;
+  color: var(--ink);
+  letter-spacing: .01em;
+}
+.gate-census .gc-of {
+  font-size: 11px;
+  color: var(--ink-dim);
+  opacity: .85;
+}
+
 /* Loading progress. A bar rather than a spinner because the question a visitor
    actually has is "is this stuck?", and only a bar that MOVES answers it. It is
    driven from the real boot stages in main.js, never from a timer. */

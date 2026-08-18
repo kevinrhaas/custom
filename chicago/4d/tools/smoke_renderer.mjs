@@ -809,6 +809,48 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    // --- the gate counts the town (T-0036) --------------------------------
+    // The owner asked for the number of buildings and the number of people
+    // living in them on the FRONT screen. The assertion that matters is not
+    // "a row appeared" — it is that the row's NUMERALS are the committed
+    // data's, read back out of the rendered DOM and compared against the JSON
+    // the page fetched. A gate screen quoting a stale count is the failure this
+    // is here to catch, and it is invisible to every other check in this file.
+    //
+    // The gate is still open at this point in the run (the walk tests click
+    // through it much later), which is the only moment the row is on screen.
+    const gateCensus = await page.evaluate(() => {
+      const host = document.getElementById('gate-census');
+      const visible = !!host && !host.hasAttribute('hidden');
+      const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      return {
+        visible,
+        figures,
+        text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        box: host ? host.getBoundingClientRect().width : 0,
+        data: window.__chicago4d.census,
+      };
+    });
+    const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
+    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
+    check(`${label}: the gate shows the town census`,
+      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
+      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
+    check(`${label}: the gate's figures are the committed data's`,
+      Number.isFinite(want[0]) && Number.isFinite(want[1])
+      && shown[0] === want[0] && shown[1] === want[1],
+      `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Neither figure is a total, and the row has to say so or it misleads: the
+    // buildings are counted against the programme's target and the people
+    // against the town's own recorded size, both quoted out of the same file.
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    check(`${label}: the gate names both denominators`,
+      Number.isFinite(gateCensus.data?.buildings?.target)
+      && Number.isFinite(gateCensus.data?.people?.town_total)
+      && gateCensus.text.includes(grouped(gateCensus.data.buildings.target))
+      && gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
+      gateCensus.text);
+
     // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
     // A bridge's local y = 0 is the design water surface, not the ground, so
     // the renderer must NOT sample the heightfield for it. Mid-channel the

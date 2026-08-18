@@ -107,6 +107,12 @@ cp -f data/datum.json "$SITE/data/"
 # The liberties list the Evidence panel reads. Derived from docs/LIBERTIES.md,
 # which itself stays out of the payload.
 cp -f data/liberties.json "$SITE/data/"
+# The town census the gate screen shows — buildings standing and people housed
+# (T-0036). Derived by tools/town_census.py and re-derived by tools/check.sh; the
+# gate fetches it, so leaving it out of the mirror is a 404 on the deployed site
+# while the dev tree counts the town perfectly — the scenes/, fauna/ and
+# residents/ failure, a fourth time.
+cp -f data/town_census.json "$SITE/data/"
 
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
