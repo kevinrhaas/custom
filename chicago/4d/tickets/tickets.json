@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 7:00 PM",
+  "generated_ct": "Aug 17, 2026, 7:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -23,19 +23,20 @@
     {
       "id": "T-0002",
       "title": "Weathered facades: unpainted boards, no two buildings alike",
-      "state": "open",
+      "state": "split",
       "epic": "RENDERING",
       "requested_by": "owner",
       "seen": true,
       "effort": "M",
       "legacy_id": "K4",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": null
     },
     {
       "id": "T-0003",
@@ -795,6 +796,60 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0047",
+      "title": "Some neighbouring buildings still differ only slightly, because the facade tone is a random deal",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 41
+    },
+    {
+      "id": "T-0048",
+      "title": "The facade tone: no two buildings drawn the same colour",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K4",
+      "parent": "T-0002",
+      "opened": "2026-08-17",
+      "closed": "2026-08-17",
+      "pr": "233",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0049",
+      "title": "Unpainted boards as a surface: board-width irregularity and lap rhythm",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K4",
+      "parent": "T-0002",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 1
     }
   ]
 }

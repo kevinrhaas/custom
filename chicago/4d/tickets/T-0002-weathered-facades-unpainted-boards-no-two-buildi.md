@@ -1,14 +1,15 @@
 ---
 id: T-0002
 title: Weathered facades: unpainted boards, no two buildings alike
-state: open
+state: split
 epic: RENDERING
 requested_by: owner
 seen: true
 effort: M
 legacy_id: K4
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-17
 pr: null
 claimed_by: null
 blocked_on: null

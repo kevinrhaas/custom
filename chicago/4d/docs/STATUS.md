@@ -1,5 +1,63 @@
 # STATUS
 
+## Shipped 2026-08-17 — no two buildings in the town are drawn the same colour
+
+**T-0048 (the tone half of T-0002, legacy K4).** The owner's report was that the buildings "read as
+freshly painted and identical", and the second half of that was exact rather than
+impressionistic: a wall took its colour from its ARCHETYPE, so two neighbours built to the
+same pattern were the same brown to the last decimal. Measured on the shipped mirror before
+the change: of 321 nearest-neighbour pairs within 60 m, **10 were drawn identically to the
+bit**. None are now, and the town draws **331 distinct facade tones across 331 structures**.
+
+**What it is, in this project's own vocabulary: reconstructed.** No source this repository
+holds states the colour of any wall in 1835 Chicago, and the dataset agrees — `paint` is
+`reconstructed` on 236 of 335 records, `inferred` on 15, **`attested` on exactly two**. So
+`renderers/web/js/facades.js` invents within a stated bound and `docs/LIBERTIES.md` **L126**
+records the bound: silvering that grows with the record's own age (at most 0.35 toward the
+surface's own luminance and 0.10 of darkening, reached at 12 years, half-rate on whitewash,
+none on masonry) and a per-building jitter of ±16 % of value and ±7 % of warmth, dealt from a
+hash of the record's id. The jitter's ceiling is the only bound taken from something already
+committed: the archetypes themselves put ~30 % of value between an unpainted wall and an
+outbuilding's board, so no building is tinted to a shade the generators could not have baked.
+
+**The two records a source speaks for are untouched, and that is asserted rather than
+intended.** The Sauganash's documented white and St Mary's attested unpainted are handed the
+identity tone; the smoke winds the tone off and asserts their drawn colour does not move by a
+bit. 45 structures are old enough to silver; the fort's, at 19 years, is the greyest thing in
+the scene.
+
+**Three things this run had to be honest about.**
+
+1. **The age input is not an age for most of the town.** `documented_range.from` is a
+   construction date for the well-attested buildings and a SCENE-PROGRAMME date for the 262
+   anonymous infill records, so those compute an age near zero and are drawn unsilvered. That
+   is the absence of a claim, not a claim that they are new, and inventing ages for them would
+   be a second reconstruction stacked on the first.
+2. **The first shipped magnitude was too small to see, and the frames said so.** At ±10 % of
+   value the before/after photographs at `lake_market` and `from_above` were hard to tell
+   apart while every instrument read green — 331 tones, no two neighbours alike. The
+   acceptance clause is written about what a visitor sees, so the bound was raised to ±16 %
+   and re-measured rather than declared.
+3. **The acceptance clause's own station stands in front of a building the rule exempts.**
+   `lake_market` looks at the Sauganash, which is one of the two attested-paint records, so
+   that frame moves least of all — the variation is behind it. Stated here rather than
+   averaged away.
+
+**Verification.** `tools/check.sh` green; `tools/measure_facade_variety.mjs` on the published
+mirror (the numbers above); the mobile half of `tools/smoke_renderer.mjs --published` green,
+with four new assertions — the census, the no-identical-neighbours invariant, the inertness of
+the attested pair, and the liveness pair (winding the tone off moves the worst 48² cell by 10
+and restores to a residual of 0). The desktop half does not fit this runner's ten-minute
+per-command ceiling and was not run; see ROADMAP § THE RUN BUDGET.
+
+**Not shipped:** board-width irregularity and lap rhythm, which are geometry and need the
+nightly bake. Under the sizing rule that landed on `dev` the same day, T-0002 is **split**: this
+run's half is **T-0048** (done) and the board half is **T-0049** (`needs_bake`). The measured
+tail — a tenth of neighbour pairs still differ by only ~2.4 % of value, because the deal is blind
+to position — is **T-0047**.
+
+
+
 ## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
 
 **On the owner's direct request.** His words: tracking "what i have asked for and what you

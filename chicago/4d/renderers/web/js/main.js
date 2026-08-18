@@ -748,6 +748,11 @@ async function boot() {
     // exposure — is defined below, because a getter written in this literal is
     // read once by Object.assign and frozen. See the note there.
     setBrightness(v) { return world.setBrightness(v); },
+    // T-0002. Not a visitor setting — the town's facade tones are what the town
+    // looks like. It is here because a gate has to be able to turn the tone off
+    // to prove it is on (R-BUG6(a)), and the reading below is defined with the
+    // other live ones for the reason K24 gives.
+    setFacadeWeathering(v) { return buildings.setWeathering(v); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
@@ -843,6 +848,7 @@ async function boot() {
     roadAid: { get: () => streets.legibilityAid, enumerable: true },
     brightness: { get: () => world.brightness, enumerable: true },
     exposure: { get: () => renderer.toneMappingExposure, enumerable: true },
+    facadeWeathering: { get: () => buildings.weathering, enumerable: true },
   });
 
   progress(100, 'Ready');

@@ -4614,3 +4614,65 @@ module the scene draws.
 Related: **L122** (the archetype), **L124** (the count this refines and the question it left open),
 **L123** (why the layer is drawn at two fifths of its recorded cover), and ROADMAP **K57**.
 **Recorded:** 2026-08-17.
+
+### L126 — Every building in the town is tinted by a rule, and only two are exempt
+
+**Decision:** every structure's baked surfaces are multiplied by a per-building **facade tone**
+computed in `renderers/web/js/facades.js` — a silvering that grows with the record's own age, and a
+value/warmth jitter dealt from a hash of the record's id. It is **reconstructed**: no source this
+repository holds states the colour of any wall in 1835 Chicago, and the dataset agrees with itself
+about that — `paint` is `reconstructed` on 236 of 335 records, `inferred` on 15 and **`attested` on
+exactly two**. Those two — the Sauganash's documented white and St Mary's attested unpainted — are
+handed the identity tone and are drawn at the colour their archetype baked, to the bit, with the
+tone on or off. T-0002; the owner's ask was that the buildings "read as freshly painted and
+identical".
+
+**The bounds, which are the whole of the invention.** Silvering mixes a surface at most **0.35** of
+the way toward its own luminance and darkens it at most **0.10**, reached at **12 years** of
+exposure; a whitewashed wall silvers at half that rate because lime was renewed, and a masonry one
+(`brick`, `stone`, `earth`) does not silver at all. The jitter is **±16 %** of value and **±7 %**
+of warmth, halved on masonry — inside the ~30 % of value the archetypes already put between an
+unpainted wall (`0.52, 0.44, 0.34`) and an outbuilding's board (`0.335, 0.310, 0.268`), so no
+building is tinted to a shade the generators could not have baked outright. Nothing here is derived from a source, because no source states one;
+the ceilings are set so the oldest building in the town — the fort's, at 19 years — reads as grey
+and dirty beside a new one without leaving the range of colours the archetypes themselves bake.
+`docs/research/04-structures-south.md` reads the fort in 1835 as "serviceable, weathered,
+whitewashed/unpainted log-and-brick" `[INF]`, which is the nearest thing to a statement about
+surface condition this repository holds, and it is a direction rather than a number.
+
+**What the age input is, and what it is NOT.** The silvering reads `documented_range.from`, which
+for the well-attested buildings is a construction date — 1816 for the fort's, 1833 for the Green
+Tree. **For the 262 anonymous infill records it is a scene-programme date, not a construction
+date**, so those buildings compute an age near zero and are drawn essentially unsilvered. That is
+the absence of a claim, not a claim that they are new, and it is why the jitter and not the age is
+what makes most of the town differ from itself. Inventing ages for them would be a second
+reconstruction stacked on this one, and it is not needed.
+
+**What is measured rather than asserted.** `tools/measure_facade_variety.mjs` reads the colours back
+off the batch the renderer draws: **331 distinct facade tones across 331 structures**; of 321
+nearest-neighbour pairs within 60 m, **10 were drawn identically to the bit before this and none
+are now**; neighbours differ by a median **10.4 %** in applied value, on every surface they own.
+Winding the tone off moves the worst 48² frame cell by **10** and restores to a residual of **0**. Four assertions in `tools/smoke_renderer.mjs` hold all of it, including the
+inertness one on the attested pair.
+
+**What is NOT claimed.** No board is a different WIDTH from any other, no lap rhythm changed and no
+building gained a texture: this is a tint on the surfaces the bake already produced, and the
+irregularity half of T-0002 is geometry that needs the nightly bake. The tone is per STRUCTURE, so
+a building's roof, walls, trim and stack all move together — a wall is not weathered independently
+of the roof above it, which no source would support either.
+
+**What the frames say, and it is not all good news.** Photographed at `lake_market` and
+`from_above` with the tone on and off, the first pair is hard to tell apart — because the
+`lake_market` station stands in front of the **Sauganash**, which is one of the two records this
+rule is forbidden to touch, and the town it varies is behind it. The variation is plain from the
+air and along a street of small houses, and it is slight where one exempt building fills the
+frame. That is why the jitter was raised from ±10 % before this shipped, and it is why the
+acceptance clause is quoted with its station rather than declared discharged in general.
+
+**Cost:** none in draw calls. The tone folds into the per-vertex colour the batch already carries
+(**R-W5a**), so the untextured town is still one batch and one shadow-pass call.
+
+Related: **L22** (wall surfaces are the archetype's, not the record's — this is that finding tinted
+rather than resolved), **L120** (a pale trunk chosen so two trees can be told apart, the same
+invention in the flora), and tickets **T-0048** (this half) and **T-0049** (the board half, which needs the bake).
+**Recorded:** 2026-08-17.
