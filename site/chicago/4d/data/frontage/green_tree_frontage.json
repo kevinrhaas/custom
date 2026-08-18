@@ -23,7 +23,7 @@
     "note": "Walk 1.83 m wide, 0.2 m off the wall, its deck 0.11 m over the ground, 0.055 m boards at a 0.26 m pitch laid ACROSS the way a foot travels. Crossing 1.22 m wide and 4 boards laid ALONG it, reaching past the far edge of the travelled track by 0.6 m. Post 3.6 m tall and 0.18 m square, a 1.55 m cross-arm at its head, and a 1.3 x 0.55 m board hanging 0.18 m under the arm. Not one of those numbers is a record's; they are how the layer is DRAWN, the division the enclosure layer makes between a fence's line and a rail's thickness."
   },
   "rule": {
-    "note": "A wall gets a walk iff a street centreline lies OUTWARD of it within 22 m and the walk's outer edge still clears that street's own travelled track; a crossing springs from the walk on the wall the building fronts on and runs until it is past the far edge of the track; the post stands at the corner the front and left walls make, outside both walks and clear of the track. Every wall that is refused says which test refused it. Read the clauses and their reasons in tools/generate_frontage_works.py.",
+    "note": "A wall gets a walk iff a street centreline lies OUTWARD of it within 22 m, lies IN FRONT of it rather than beside it (50% of the distance to it standing outward), and the walk's outer edge still clears that street's own travelled track; a crossing springs from the walk on the wall the building fronts on and runs until it is past the far edge of the track; the post stands at the corner the front and left walls make, outside both walks and clear of the track. Every wall that is refused says which test refused it. Read the clauses and their reasons in tools/generate_frontage_works.py.",
     "street_reach_m": 22.0
   },
   "walks": [

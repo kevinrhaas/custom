@@ -1,5 +1,68 @@
 # STATUS
 
+## Shipped 2026-08-18 — the Sauganash's frontage: plank walks on both fronts, a crossing, and two hitching posts
+
+**T-0086, the first of the three pieces T-0043 was split into.** T-0043 asked for the building
+corrected AND its ground present in ONE demonstration, and the building half moves the
+`frame_1831` phase fields `generators/mesh_inputs.py` hashes into the committed GLB — it needs the
+nightly bake, which this runner has no Blender for. So the ticket became three: this one (the
+street side), **T-0087** (the board fence and the rear-yard trees) and **T-0088** (the fabric,
+`needs_bake`). Both of the others hold T-0043's place in QUEUE.
+
+**What a visitor sees.** A 1.83 m plank walk along the hotel's Lake Street front AND its Market
+Street side — *"plank walks on both frontages"*, which is image 9's phrase; a 1.22 m crossing of
+four boards running 15.87 m from that walk across Lake Street and 0.6 m past the far edge of the
+travelled track; and **two hitching posts**, 1.30 m tall and 0.16 m square under a 0.22 m capped
+head, standing 2.93 m out from the front wall at 0.28 and 0.72 of its length. All of it is
+pickable and all of it opens the hotel's card. The warrant is three of the owner's reference
+views, written up at `data/sources/assets/owner_brief_2026_08_18/README.md`: image 8 (Petford
+1831) gives *"plank sidewalk with a board crossing over the road; two posts (hitching/corner
+posts) at the road edge"*, image 9 (Braunhold) gives *"plank walks on both frontages, hitching
+posts"*, image 10 (Trowbridge) ties a saddled horse to one of them.
+
+**The horse is not drawn, and the reason is narrower than L1.** L1 is about people. Nothing in
+this project models an animal at all, and a horse invented at the one post with a plate behind it
+would be the most conspicuous reconstruction in the town. Stated in **L136** so it is not read as
+the same rule.
+
+**NOTHING HERE IS LETTERED, and that is a reading.** L135 letters the Green Tree's board because
+image 7 states the wording. None of this hotel's three views shows a name board at all — its
+posts are hitching posts — so the Sauganash keeps the blank wall board
+`tools/generate_business_signboards.py` hangs on it by rule (L130), the frontage layer draws no
+board here, and clause 6 of that generator is deliberately NOT extended to this building. The
+record carries the argument on its own face as a `board_on_a_post` block.
+
+**THE SECOND BUILDING FOUND A HOLE IN THE RULE, which is the best reason to run one through it.**
+The walk rule asked only that a street lie OUTWARD of a wall. The Sauganash's east wall is a flank
+in the middle of its block, and Lake Street's centreline — which crosses the far END of it — stood
+**0.13 m outward out of 16.00 m**, enough to pass: the rule laid a plank walk down a blank flank
+and called it a frontage. The rule now also asks that the street lie IN FRONT of the wall rather
+than beside it — at least half the distance to it standing outward, a 60-degree cone. Every real
+frontage at both buildings clears that at **0.998 or better**; the flank measured **0.008**. Two
+of the Sauganash's four walls are now refused in writing, each saying which test refused it.
+**The Green Tree's walks, crossing, post and refusals are unchanged to the byte** — only its
+record's own description of the rule changed, because the rule did.
+
+**One generator, a table of buildings.** T-0082 wrote "the second and the twentieth cost nothing
+but a line here"; this run spent that line. What is per-building in
+`tools/generate_frontage_works.py` is now the prose — which plate says what — plus two switches
+the plates decide: `sign` (a named board on a post: the Green Tree yes, the Sauganash no) and
+`hitching` (posts at the road edge: the Sauganash yes, the Green Tree no). Every dimension,
+clearance and refusal is one shared rule. `data/frontage/index.json` is generated with the records
+now instead of kept by hand — a record written and never listed is a record nobody draws, and
+`--check` would have called that green.
+
+**What the gate holds.** `tools/check.sh` re-derives both records AND the manifest byte for byte.
+Three new assertions in `tools/smoke_renderer.mjs`, none relaxed, and the layer's census assertion
+widened to both records: the two hitching posts measured against their own terrain samples (top
+within 0.05 m of the recorded 1.30 m, foot within 0.02 m of grade, no text on either) with the
+layer's lettered count still exactly one; the frontage reaching the screen from Lake Street on the
+same worst≥6 / mean≥0.3 bar the Green Tree's is held to; and a pick on the layer opening
+`sauganash_hotel`.
+
+**Known and not fixed here, and it is the same one T-0085 filed at the Green Tree:** the flora
+layer does not know a walk exists, so the sward stands up through these planks too.
+
 ## Shipped 2026-08-18 — the Green Tree's frontage: plank walks, a board crossing, a named board on a post
 
 **T-0082, the third of the four pieces T-0042 was split into.** T-0080 shipped the yard and

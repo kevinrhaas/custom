@@ -4286,6 +4286,58 @@ path this entry cites into a `source_id` and the lettering's warrant into a cita
 **Recorded:** 2026-08-18.
 
 
+### L136 — The Sauganash's frontage: two more plank walks, a crossing, and two posts nobody measured
+**Decision:** the Sauganash Hotel's two street walls carry a **plank walk** 1.83 m wide laid
+0.20 m off the wall, its deck 0.11 m over the ground on 55 mm boards at a 0.26 m pitch; a **board
+crossing** 1.22 m wide and four boards laid the way a foot travels runs from the Lake Street walk
+15.87 m across the road and 0.6 m past the far edge of the travelled track; and **two hitching
+posts** 1.30 m tall and 0.16 m square, under a 0.22 m capped head, stand in the verge 0.90 m
+beyond the outer edge of the front walk, at 0.28 and 0.72 of the frontage's own length. All of it
+is drawn by `renderers/web/js/frontage.js` from `data/frontage/sauganash_frontage.json`, which
+`tools/generate_frontage_works.py` derives and `tools/check.sh` re-derives byte for byte. Every
+dimension above is the same one L135 claims at the Green Tree; what is new here is the two posts,
+which are this project's first piece of horse furniture.
+**Why:** three of the owner's reference views of this hotel describe the ground in front of it,
+and `data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 8, the
+Petford watercolour of 1831: *"plank sidewalk with a board crossing over the road; two posts
+(hitching/corner posts) at the road edge"*; image 9, the Braunhold engraving: *"plank walks on
+both frontages, hitching posts"*; image 10, the Trowbridge drawing, which ties a saddled horse to
+one of them. All three are tier-5 pictorial and retrospective, so they may drive setting and may
+never drive a coordinate. WHERE everything stands is therefore derived from the same three
+committed things L135 names — the footprint, the placement, and the street's own travelled-track
+half-width out of `data/streets/1835.json` — and two of the four walls are refused in writing.
+**What bounds the invention.** THE FACT of walks, a crossing and posts at this hotel is the
+plates'. Every DIMENSION is invented, including the two posts' height and section and the capped
+head, which no plate resolves and no town order ever will. That there were TWO of them and no
+more is image 8's; WHERE along the frontage they stand is the rule's — the thirds, because a post
+at the very corner would stand on the ground L135's sign post occupies at the other inn and a post
+at the middle would stand in front of the door. And that any of it stood on this ground at noon on
+1 July 1835 is invented, the same claim L135 makes a block away.
+**THE HORSE IS NOT DRAWN.** Image 10's saddled horse is reference for use and scale only. The
+standing L1 constraint is about people; the reason this one is left out is narrower and is stated
+here so it is not mistaken for the same rule: nothing in this project models an animal, and a
+horse invented at the one post that has a plate behind it would be the most conspicuous
+reconstruction in the town.
+**NOTHING HERE IS LETTERED, and that is a reading rather than an omission.** L135 letters the
+Green Tree's board because image 7 states the wording. None of this hotel's three views shows a
+name board at all — the posts they show are hitching posts — so the Sauganash keeps the blank wall
+board `tools/generate_business_signboards.py` hangs on it by rule (L130), the frontage layer draws
+no board here, and clause 6 of that generator is NOT extended to this building. The record's
+`board_on_a_post` block carries that argument on its own face.
+**Consequence for the rule itself, and it is the reason a second building was worth doing.** The
+walk rule asked only that a street lie *outward* of a wall. The Sauganash's east wall is a flank
+in the middle of its block, and Lake Street's centreline — which crosses the far END of it —
+stood 0.13 m outward out of 16.00 m, enough to pass. The rule now also asks that the street lie
+IN FRONT of the wall rather than beside it: at least half the distance to it standing outward, a
+60-degree cone. Every real frontage at both buildings clears that by 0.998 or better; the flank
+measured 0.008. The Green Tree's own walks, crossing, post and refusals are unchanged to the byte.
+**How to resolve:** as L135 — a Chicago town order on sidewalks, a tax or sale description naming
+a walk in front of this lot, or holding the Petford, Braunhold and Trowbridge plates as proper
+source records (T-0075), which would turn the committed path this entry cites into a `source_id`.
+None of those would ever give the posts their dimensions.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

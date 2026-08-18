@@ -1,6 +1,9 @@
 /**
- * frontage.js — the plank walks, the board crossing and the named board on its
- * post at the Green Tree Tavern (ticket T-0082).
+ * frontage.js — the plank walks, the board crossings, the hitching posts and the
+ * named boards on posts that stand between a building and the street it fronts
+ * on. Written for the Green Tree Tavern (T-0082) and made a town layer by the
+ * Sauganash Hotel (T-0086), which brought the second record and the first post
+ * with nothing hanging on it.
  *
  * WHY THIS IS A LAYER AND NOT MORE YARD GOODS. A barrel or a wagon stands on a
  * building's own ground and is derived from its walls alone, which is what
@@ -28,8 +31,14 @@
  *    disappears when a visitor hides `reconstructed` and the frontage goes back
  *    to bare ground. That is the truthful behaviour: no source record in this
  *    repository states that a walk stood here on 1 July 1835.
- *  * It answers a pick. A walk, a crossing and a post all belong to the inn, so
- *    aiming at any of them opens the inn's card — which is what a sign is FOR.
+ *  * It answers a pick. A walk, a crossing and a post all belong to the building
+ *    they were derived from, so aiming at any of them opens that building's card
+ *    — which is what a sign is FOR.
+ *  * A post carries a board only where the building's own reference views show
+ *    one. The Sauganash's posts are hitching posts: chest-high timber under a
+ *    capped head, no arm, no board and nothing lettered, because none of its
+ *    three views shows a name board at this hotel (its record's
+ *    `board_on_a_post` block states that reading rather than leaving it silent).
  */
 
 import * as THREE from 'three';
@@ -245,6 +254,19 @@ function buildPost(buf, post, terrain, level, problems) {
   const pz = -at[1];
   const h = post.post_height_m ?? 3.6;
   const sq = (post.post_square_m ?? 0.18) / 2;
+
+  // A HITCHING POST IS A POST AND NOTHING ELSE (T-0086). The Sauganash's three
+  // views put posts at its road edge and a horse tied to one; none of them puts
+  // a board on any of them, so this branch draws chest-high timber under a
+  // capped head and returns a frame carrying no text — the lettering pass never
+  // sees it, and the record says in as many words why there is nothing to letter.
+  if (post.kind === 'hitching_post') {
+    const cap = (post.cap_square_m ?? 0.22) / 2;
+    const capT = post.cap_thickness_m ?? 0.07;
+    pushBox(buf, px, g + (h - capT) / 2, pz, wx, wz, sq, sq, (h - capT) / 2, level);
+    pushBox(buf, px, g + h - capT / 2, pz, wx, wz, cap, cap, capT / 2, level);
+    return { cx: px, cy: g + h, cz: pz, ox, oz, wx, wz, bw: 0, bh: 0, bt: 0, text: '' };
+  }
   const arm = post.arm_m ?? 1.55;
   const armT = 0.09;
   const drop = post.hanger_drop_m ?? 0.18;
@@ -387,7 +409,8 @@ export async function createFrontage({
     walks: [],
     posts: [],
     census: {
-      records: 0, walks: 0, crossings: 0, posts: 0, lettered: 0, refused: 0, meshes: 0,
+      records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
+      refused: 0, meshes: 0,
     },
     pickAt: () => null,
     dispose: () => {},
@@ -442,6 +465,7 @@ export async function createFrontage({
       spans.push({ id: post.belongs_to, from, to: buf.pos.length / 9 });
       out.posts.push(post);
       out.census.posts += 1;
+      if (post.kind === 'hitching_post') out.census.hitching += 1;
       if (board.text) out.census.lettered += 1;
       boards.push({ ...board, level });
     }
