@@ -28,6 +28,7 @@ import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
+import { createEnclosures } from './enclosures.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -224,6 +225,20 @@ async function boot() {
     confidence,
   });
   scene3d.add(streets.group);
+
+  // The town's fence lines — yards, pens, garden pickets. An enclosure takes a
+  // PERIMETER rather than a footprint and is roofless, which is why it is not a
+  // structure record and carries no GLB: docs/LIBERTIES.md L10 and L60 have both
+  // been waiting on exactly that shape, and this is the half of it that needs no
+  // bake. Mounted after the streets so a frontage fence is drawn against the
+  // travelled way it stands on, and before the vegetation for no reason but
+  // reading order — a fence blocks no growth, because nothing says the ground
+  // inside one was cleared.
+  const enclosures = await createEnclosures({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(enclosures.group);
+  api.enclosures = enclosures;
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //

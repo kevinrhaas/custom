@@ -1,7 +1,7 @@
 ---
 id: T-0038
 title: Fences and enclosures: the estray pen, wagon yards, garden pickets
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: K5
 parent: T-0003
 opened: 2026-08-17
-closed: null
+closed: 2026-08-17
 pr: null
-claimed_by: null
+claimed_by: run 8/17/2026, 7:46:38 PM CT
 blocked_on: null
 needs_bake: false
 ---

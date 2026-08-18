@@ -141,6 +141,17 @@ if [ -d data/residents ]; then
   cp -a data/residents "$SITE/data/residents"
 fi
 
+# The enclosure layer — fence lines, yards and pens, drawn by
+# renderers/web/js/enclosures.js straight from these numbers. It carries no GLB
+# by design (an enclosure is a perimeter, not a footprint), so this copy is the
+# whole of the layer's payload: leave it out and the fences are a 404 on the
+# deployed site while the dev tree draws them perfectly — the same failure the
+# scenes/ subdirectory and the fauna directory each caused once already.
+if [ -d data/enclosures ]; then
+  rm -rf "$SITE/data/enclosures"
+  cp -a data/enclosures "$SITE/data/enclosures"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"

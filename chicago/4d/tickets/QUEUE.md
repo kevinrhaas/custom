@@ -2,7 +2,9 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0038 — Fences and enclosures: the estray pen, wagon yards, garden pickets
+T-0050 — The Western Hotel's wagon yard, and the enclosure layer it takes
+T-0051 — The estray pen is a fence, and the model still gives it a roof
+T-0052 — Garden pickets and dooryard enclosures on the town's house lots
 T-0039 — Signboards on the businesses that attest one
 T-0040 — Wagons, barrels and yard clutter at the taverns and stores
 T-0041 — Wharves, docks and the river landings
@@ -42,3 +44,4 @@ T-0032 — The six-roof civic target counts three that were never built
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
 T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
+T-0053 — A patched lit material silently inherits another layer's shader program
