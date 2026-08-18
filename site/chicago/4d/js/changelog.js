@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 181, title: 'The front screen counts the town', kind: 'feature', ts: '2026-08-18T12:29:28.863Z', date: 'Aug 18, 2026, 7:29 AM CT',
+    items: [
+      'The panel you meet before you walk now says how much town there is: buildings standing, and people housed in them. Both are counted out of the project\u2019s own records at the moment the page loads \u2014 neither is a number anybody typed here.',
+      '322 buildings stand today, of the 665 this reconstruction reckons Chicago held in July 1835. The count is roofs and not records: a bridge, a pier, the fort palisade and the parade ground are in the dataset and are not buildings.',
+      '142 people are housed \u2014 the residents whose household record names a building that has actually been built. It is a floor and not a census: three of those entries stand for a family a source counts without naming, and the town\u2019s own count four months later was roughly 3,265.',
+      'Both numbers move on their own. Build ten more roofs and the first goes up; put a researched household into a house that now stands and the second follows. A commit that changes the town and leaves the count behind is refused before it can ship.',
+    ] },
   { v: 180, title: 'The river warehouses have their docks', kind: 'feature', ts: '2026-08-18T11:16:05.677Z', date: 'Aug 18, 2026, 6:16 AM CT',
     items: [
       'One sentence in the sources gives this town its river trade: \u201cKinzie & Hunter and Dole & Newberry each had a warehouse with its dock along the river front.\u201d Both warehouses have stood here from the start with nothing in front of them but an empty bank.',

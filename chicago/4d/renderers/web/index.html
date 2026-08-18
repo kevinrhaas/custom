@@ -47,6 +47,11 @@
     <p class="gate-eyebrow">4D Chicago</p>
     <h1 id="gate-title">Chicago, summer 1835</h1>
     <p class="gate-sub" id="gate-sub">Loading the scene…</p>
+    <!-- What the town holds, counted at load from data/town_census.json (T-0036).
+         Empty in the markup on purpose: every figure AND every denominator comes
+         out of the committed census, so there is no number here to go stale.
+         Stays hidden if the census cannot be read — see js/census.js. -->
+    <div class="gate-census" id="gate-census" hidden></div>
     <div class="gate-bar" id="gate-bar" role="progressbar" aria-labelledby="gate-sub"
          aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
     <button id="gate-btn" class="gate-btn" disabled>Tap to walk</button>

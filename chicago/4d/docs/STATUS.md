@@ -1,5 +1,72 @@
 # STATUS
 
+## Shipped 2026-08-18 — the front screen counts the town
+
+**T-0036, an owner ask of 2026-08-17:** *"on the front (gate) screen, show the number of buildings
+in the city and the population — people living in their buildings"*, and the population *"should
+get to the correct Chicago 1835 population number as the buildings all complete."*
+
+**Both numbers already existed; nothing here is an invention.** The gate now shows **322 buildings
+standing of the 665 the town held** and **142 people housed of roughly 3,265**, counted at page
+load out of `data/town_census.json` — a new derived record written by `tools/town_census.py` and
+re-derived by `tools/check.sh`.
+
+* **Buildings** is the 665-roof programme's own standing count
+  (`data/reconstruction/1835_665_roof_programme.json` → `standing.physical_roofs.min`), so it is
+  ROOFS and not records: a bridge, a pier, the fort palisade and the parade ground are structure
+  records that are not buildings, and where one record reads as two or three cabins the ledger's
+  low reading is taken here too. The two figures cannot disagree because there is only one of them.
+* **People** is `data/residents/` joined through `lives_at`: a person counts when the building they
+  live in resolves into the scene (`data/sidecars/1835/index.json`, which is what the renderer
+  actually loads). 121 of the layer's 173 households live in a building that stands; the other 52
+  have no dwelling record yet and are the headroom the ask is about. So the number grows as the
+  town builds out, **by construction** — which is exactly what *"should get to the correct number
+  as the buildings all complete"* asks for, and it is not a progress bar somebody animates.
+
+**Both denominators are on the card, because neither figure is a total.** 322 alone reads as a
+town; it is a progress report on one still being built.
+
+**What the second number is NOT, and the card says the softer half of this out loud.** `housed`
+counts PERSON ENTRIES, and three of the entries it counts stand for a group a source counts
+without naming — *"the rest of the Beaubien household, unnamed"*, *"Heacock's wife and children"*,
+*"the rest of the Robinson household"*. Each is at least one person and probably several, so the
+figure is a **floor** on the people this dataset houses and never a population estimate;
+`group_entries: 3` in the census carries the seam. The town's own total is quoted as the town's:
+3,265 people in 398 dwellings is the census of **November** 1835 (Andreas vol. 1, printed p. 180),
+four months after the scene date, which is why the card says *"roughly"* — the honesty note in the
+ticket, honoured rather than rounded off.
+
+**Why a derived file rather than a constant in the page.** The `build.json` lesson, on the most
+visible surface there is: a number written once by hand goes stale silently. `tools/check.sh` now
+re-derives the census, so a run that builds ten roofs and does not regenerate it fails at the
+commit instead of shipping a town that says it is smaller than it is. The same step refuses a
+household whose `lives_at` names a structure the scene does not carry, which would otherwise drop
+people out of the count without a word.
+
+**Files.** `tools/town_census.py` (new, derived + `--check`) · `data/town_census.json` (new,
+derived) · `renderers/web/js/census.js` (new — every figure AND every denominator read from the
+census, fail-soft to a hidden row) · `renderers/web/index.html` (an empty container, so there is
+no numeral in the markup to go stale) · `renderers/web/css/walk.css` · `renderers/web/js/main.js`
+(fetched beside the scene load, awaited before `ready`, exposed as `api.census`) ·
+`tools/check.sh` · `tools/publish.sh` + `tools/check_published.mjs` COPIES row ·
+`tools/smoke_renderer.mjs` (three assertions).
+
+**The gate, measured.** `tools/check.sh` — the dev gate — **passes**, including the new
+re-derivation step (it caught the missing mirror row on its first run, which is what that gate is
+for). `node tools/smoke_renderer.mjs --published` was run on the **published mirror at both
+release viewports**, and **all three new assertions pass at 390×780 AND 1280×800** — they read the
+numerals back out of the rendered DOM and compare them to the JSON the page fetched, so a stale
+gate screen fails rather than merely looking plausible. Neither half ran to completion: this
+runner's **ten-minute per-command ceiling** (ROADMAP § THE RUN BUDGET) killed the mobile half at
+**208 passed / 2 failed** and the desktop half at **143 passed / 0 failed**. The two mobile
+failures are `the roads reach the screen from the walker's eye` and `…from the air`, **both
+already recorded in this file as `dev`'s own** and neither touched by this branch. Because the
+smoke's zero-page-errors assertion is the last line of each viewport and neither tail ran, that
+question was answered separately and in the foreground: a scratch harness booted the published
+gate at both viewports, asserted the rendered numerals against `data/town_census.json`, and
+collected every page error, console error and HTTP ≥ 400 — **both viewports PASS, zero page
+errors**. The scratch file is not committed; the durable assertions are the three in the smoke.
+
 ## Shipped 2026-08-18 — the two river warehouses have their docks
 
 **T-0041 (piece 4 of 4 of T-0003, legacy K5 (e)).** `docs/ROADMAP.md` K5 (e) asks for

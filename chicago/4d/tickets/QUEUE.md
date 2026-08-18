@@ -45,3 +45,4 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
+T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling

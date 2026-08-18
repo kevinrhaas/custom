@@ -47,6 +47,7 @@ const COPIES = [
   ['data/scenes/', 'data/scenes/'],
   ['data/datum.json', 'data/datum.json'],
   ['data/liberties.json', 'data/liberties.json'],
+  ['data/town_census.json', 'data/town_census.json'],
   ['data/terrain/', 'data/terrain/'],
   ['data/sidecars/', 'data/sidecars/'],
   ['data/residents/', 'data/residents/'],
