@@ -1,7 +1,7 @@
 ---
 id: T-0082
 title: The Green Tree's frontage: its named signboard on a post, plank walks, verges and fence-line brush
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K2
 parent: T-0042
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 247
 claimed_by: run 8/18/2026, 1:16:10 PM CT
 blocked_on: null
 needs_bake: false
