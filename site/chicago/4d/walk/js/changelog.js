@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 186, title: 'The Sauganash gets its plank walks and hitching posts', kind: 'feature', ts: '2026-08-18T19:26:38.542Z', date: 'Aug 18, 2026, 2:26 PM CT',
+    items: [
+      'Three old views of the Sauganash Hotel \u2014 the town\u2019s first hotel, at Lake and Market \u2014 show the same ground in front of it: plank sidewalks on both street sides, a board crossing over the road, and posts at the road edge with a saddled horse tied to one. Until today it stood on bare grass.',
+      'All of that is there now except the horse. A six-foot plank walk runs along both street walls, a crossing of four boards runs from it across Lake Street onto the dry ground beyond, and two chest-high posts under capped heads stand out in the verge for a rider to tie to. Aim at any of them and the hotel\u2019s card opens.',
+      'The posts are the first horse furniture in this town. No animal is modelled anywhere here, so the horse in the drawing stays out: it is reference for scale, not something to invent.',
+      'Nothing here is lettered. The Green Tree\u2019s board carries its name because a drawing says what was written on it; none of the Sauganash\u2019s three views shows a name board at all, so the hotel keeps the blank board on its wall and gets no board on a post.',
+      'Adding the second building to this rule found a fault in it. A wall was getting a walk whenever a street lay anywhere outside it, which laid one down the hotel\u2019s blank east flank because Lake Street crosses the far end of it. A street now has to lie in FRONT of a wall, not beside it. The Green Tree\u2019s frontage is unchanged.',
+      'Walks, crossing and posts are all our reconstruction \u2014 no source measures a Chicago sidewalk of 1835, and nothing gives a hitching post its size. Turn \u201creconstructed\u201d off in the confidence view and the frontage goes back to grass.',
+    ] },
   { v: 185, title: 'The Green Tree gets its name on a board, and plank walks', kind: 'feature', ts: '2026-08-18T18:34:50.398Z', date: 'Aug 18, 2026, 1:34 PM CT',
     items: [
       'The Green Tree Inn stands at Lake and Canal with bare grass running up to its walls. Two old views of it show the same street furniture: plank sidewalks with board crossings, and a hanging signboard on a post at the corner carrying the house\u2019s name.',

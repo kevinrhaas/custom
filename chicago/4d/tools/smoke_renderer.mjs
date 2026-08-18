@@ -1513,7 +1513,7 @@ for (const [label, viewport, touch] of [
       goodsPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
 
-    // --- the Green Tree's frontage (T-0082) -------------------------------
+    // --- the frontage layer: the Green Tree (T-0082) and the Sauganash (T-0090) ---
     //
     // The fifth layer drawn from the dataset rather than baked, and the first
     // derived from a building AND a street at once. Its failure modes are its
@@ -1522,6 +1522,13 @@ for (const [label, viewport, touch] of [
     // this renderer has ever drawn — a texture that fails to compose leaves a
     // board that looks perfectly finished and says nothing. Neither is visible
     // to any dataset gate in this repo, because both are decided at load.
+    //
+    // T-0090 added the second record, and with it the first post this layer
+    // draws with nothing on it. A hitching post that silently took the sign
+    // post's branch would stand 3.6 m tall under a blank board — geometry the
+    // dataset gate cannot see either, because the record says 1.30 m and it is
+    // the RENDERER that would be wrong. So each post is measured against its own
+    // stand's terrain sample, and the lettering count is asserted to stay at one.
     const frontage = await page.evaluate(() => {
       const a = window.__chicago4d;
       const f = a?.frontage;
@@ -1567,7 +1574,31 @@ for (const [label, viewport, touch] of [
           }
         }
       }
+      // Each hitching post against its OWN stand: the tallest and the lowest
+      // vertex within 0.4 m of it, which is its own timber and nothing else —
+      // the front walk's near edge is 0.9 m off and the crossing is metres away.
+      const hitching = (f?.posts ?? []).filter((q) => q.kind === 'hitching_post').map((q) => {
+        const [e0, n0] = q.at_local_enu_m;
+        const stand = terrain.surfaceHeight(e0, n0);
+        let top = -Infinity;
+        let low = Infinity;
+        if (g && Number.isFinite(stand)) {
+          const pos = g.getAttribute('position');
+          for (let i = 0; i < pos.count; i++) {
+            if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
+            if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
+            top = Math.max(top, pos.getY(i) - stand);
+            low = Math.min(low, pos.getY(i) - stand);
+          }
+        }
+        return { id: q.id, top, low, recorded: q.post_height_m ?? null,
+                 clear: q.clear_of_track_m ?? null, text: q.text ?? null };
+      });
       return {
+        hitching,
+        recordIds: (f?.records ?? []).map((r) => r.id),
+        noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
+          ?.board_on_a_post?.value ?? null,
         census: f?.census ?? null,
         meshes: f?.group?.children?.length ?? 0,
         names: (f?.group?.children ?? []).map((c) => c.name),
@@ -1585,11 +1616,14 @@ for (const [label, viewport, touch] of [
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
       };
     });
-    check(`${label}: the frontage layer lays the record's walks and stands its post`,
-      frontage.census?.walks === 2 && frontage.census?.crossings === 1
-        && frontage.census?.posts === 1 && frontage.census?.refused === 2
+    check(`${label}: the frontage layer lays both records' walks and stands their posts`,
+      frontage.census?.records === 2 && frontage.census?.walks === 4
+        && frontage.census?.crossings === 2
+        && frontage.census?.posts === 3 && frontage.census?.refused === 4
+        && frontage.recordIds.join(',') === 'green_tree_frontage,sauganash_frontage'
         && frontage.verts > 0 && frontage.problems.length === 0,
-      `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
+      `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
+      + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
       + `${frontage.census?.posts} post(s), ${frontage.verts} vertices, `
       + `${frontage.census?.refused} wall(s) refused, `
       + `problems [${frontage.problems.join(' | ') || 'none'}]`);
@@ -1679,6 +1713,66 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at the frontage opens the inn it belongs to`,
       frontagePick.includes('green_tree_tavern'),
       `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
+
+    // --- and the same layer at the Sauganash (T-0090) ---------------------
+    //
+    // THE POSTS ARE POSTS AND NOTHING ELSE. A hitching post that fell through to
+    // the sign post's branch would stand 3.6 m tall with a cross-arm and a blank
+    // board on it, and every dataset gate in this repo would still be green: the
+    // record says 1.30 m and it is the renderer that would be wrong. Measured
+    // against each post's own terrain sample, because a pole whose height came
+    // from a number beside the mesh floats.
+    check(`${label}: the Sauganash's two hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 2
+        && frontage.census?.hitching === 2
+        && frontage.hitching.every((h) => Math.abs(h.top - h.recorded) <= 0.05
+          && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text)
+        && frontage.census?.lettered === 1
+        && frontage.noBoardHere === false,
+      frontage.hitching.map((h) => `${h.id} ${h.top?.toFixed(2)}/${h.recorded} m, `
+        + `foot ${h.low?.toFixed(3)} m, ${h.clear} m clear`).join(' | ')
+      + ` — ${frontage.census?.lettered} board(s) lettered in the layer, `
+      + `record says a board on a post here: ${frontage.noBoardHere}`);
+
+    // AND IT READS FROM THE STREET, the same bar the Green Tree's frontage is
+    // held to: stand on Lake Street where a traveller coming up to the hotel
+    // stands, hold the clock so the grass cannot supply the difference, and ask
+    // for worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 107.0, local_n: -113.0, yaw_deg: 180, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const saugWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = false; });
+    const saugWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = true; });
+    const dSaug = signatureDistance(saugWith, saugWithout);
+    check(`${label}: the Sauganash's walks and posts reach the screen from Lake Street`,
+      dSaug.worst >= 6 && dSaug.mean >= 0.3,
+      `cell delta mean ${dSaug.mean?.toFixed(2)}, worst ${dSaug.worst} (need worst>=6)`);
+
+    // A walk is the thing a visitor is standing ON when they reach this corner,
+    // so aiming at it has to open the hotel. Asked of the LAYER for the same
+    // reason as at the Green Tree: the app would answer the same building off
+    // the wall behind it and pass while the layer picked nothing at all.
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 102.62, local_n: -114.5, yaw_deg: 180, pitch_deg: -30 }));
+    await page.waitForTimeout(600);
+    const saugPick = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = a.frontage.pickAt({ x, y }, a.camera);
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the Sauganash's frontage opens the hotel it belongs to`,
+      saugPick.includes('sauganash_hotel'),
+      `25 aims returned [${[...new Set(saugPick)].join(', ') || 'nothing'}]`);
 
     // --- the river wharves (T-0041) --------------------------------------
     //

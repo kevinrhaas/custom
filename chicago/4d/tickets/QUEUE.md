@@ -8,7 +8,8 @@ T-0087 — The wagon box floats: no bolsters, no reach, no hounds
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
-T-0043 — Image-accuracy pass: the Sauganash
+T-0091 — The Sauganash's enclosed ground: the board fence at the right and the trees behind it
+T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0044 — Image-accuracy pass: the next two landmark plates
 T-0077 — The Lake Street row at Dearborn, from the Tremont plate
 T-0078 — The South Water river row, from the 1834 view
@@ -66,3 +67,4 @@ T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_cri
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
+T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
