@@ -74,6 +74,31 @@ const AXLE_T_M = 0.05;
 const TONGUE_T_M = 0.055;
 
 /**
+ * THE RUNNING GEAR'S SECTIONS (T-0087). Only the sections are here; every
+ * POSITION the gear takes is derived in `buildWagon` from numbers the record
+ * already owns — the two wheel diameters, the body's length and width, and the
+ * bed height — because that is what the members physically are. A bolster is
+ * exactly as deep as the space between its axle and the floor it carries; the
+ * reach runs from the top of the front axle to the underside of the rear one.
+ * Change `wagon_body_m` or a wheel and the gear follows, which is the point:
+ * the gap this closes was a gap precisely because nothing was derived from
+ * those numbers at all.
+ *
+ * Recorded nowhere, so RECONSTRUCTED at the tier (docs/LIBERTIES.md L138),
+ * bounded by the recorded wheel diameters and body — no dimension here is free
+ * to be anything, because the box has to land on the bolsters and the bolsters
+ * have to land on the axles.
+ */
+const BOLSTER_T_M = 0.11;    // a bolster's fore-and-aft thickness
+const BOLSTER_OUT_M = 0.06;  // how far its end shows past the box's side
+const REACH_W_M = 0.09;      // the coupling pole, across
+const HOUND_W_M = 0.07;      // a hound, across
+const HOUND_BACK_M = 0.45;   // how far the hounds reach back past the front axle
+const KINGBOLT_T_M = 0.038;  // the pivot pin, square-sectioned like every other
+                             // small timber on this layer
+const KINGBOLT_DROP_M = 0.05; // and how far its nut shows below the front axle
+
+/**
  * The layer's own timber tone, and it is deliberately NOT the fence's. The
  * enclosures are weathered post-and-rail at 0x8d8272 and the boards are the
  * archetype's silvered plank; a cask and a packing case are newer wood, out of a
@@ -497,6 +522,82 @@ function buildWagon(buf, wagon, form, terrain, level, problems) {
         [sx * s, 0, sz * s], r, level);
     }
   }
+  // THE RUNNING GEAR — what carries the box, and what ties the two axles
+  // together (T-0087).
+  //
+  // Until this was written the wagon was a floor, two axle sticks and four
+  // wheels, and NOTHING between them: the floor sat at 0.95 m, the rear axle at
+  // 0.685 m and the front at 0.535 m, so the box hovered 0.27 m above one axle
+  // and 0.42 m above the other, on air. The owner read it from the Green Tree's
+  // yard as "that bar is supposed to be below the carriage of the wagon holding
+  // the wheels together" — the bar he found was the tongue (T-0084), because
+  // the member he was looking for was not drawn.
+  //
+  // A farm wagon of the period has, between box and axles: a BOLSTER over each
+  // axle, which is what the box actually rests on; a REACH (coupling pole) tying
+  // the rear axle forward to the front gear and setting the wagon's length; and
+  // HOUNDS at the front, bracketing the reach and carrying the KINGBOLT the
+  // whole front gear swivels on — a farm wagon steers by turning its front gear,
+  // so without the hounds the front axle is attached to nothing.
+  //
+  // THE ONE NUMBER THAT MAKES THE REST FALL OUT: both bolsters are the same
+  // depth, because a bolster's job is to bring two different axle heights up to
+  // one level floor. The rear wheels are the bigger pair, so the REAR axle sets
+  // that level — `gearTop` — and the front bolster reaches down to the same
+  // line. What is left under the front bolster is exactly the space the hounds
+  // and the reach occupy. Nothing here is chosen; it is read off the wheels.
+  const floorY = bed - 0.035;                     // the underside of the floor
+  const rearAlong = pairs[0][0];
+  const frontAlong = pairs[1][0];
+  const rearAxleTop = base + form.wagonRearWheel / 2 + AXLE_T_M / 2;
+  const frontAxleTop = base + form.wagonFrontWheel / 2 + AXLE_T_M / 2;
+  const gearTop = rearAxleTop;                    // both bolsters' underside
+  const bolsterHalf = Math.max(floorY - gearTop, 0) / 2;
+  // The two bolsters. They run ACROSS the wagon and their ends show a little
+  // past the box's sides — which is where a wagon's stakes would stand, and is
+  // what makes them read as bolsters from where the owner was standing rather
+  // than as a thicker floor.
+  for (const along of [rearAlong, frontAlong]) {
+    pushBox(buf, x + fx * along, gearTop + bolsterHalf, z + fz * along, sx, sz,
+      W / 2 + BOLSTER_OUT_M, BOLSTER_T_M / 2, bolsterHalf, level);
+  }
+  // The reach, on the centreline: it sits ON the front axle and runs back UNDER
+  // the rear one, which is both how the pole is actually hung and, here, simply
+  // where the two axle tops put it. Its rear end carries past the rear axle so
+  // it is visibly bolted to it, and its front end stops short of the front axle
+  // so the hounds bracket it rather than butt it.
+  const reachLow = frontAxleTop;
+  const reachHigh = base + form.wagonRearWheel / 2 - AXLE_T_M / 2;
+  const reachBack = rearAlong - 0.10;
+  const reachFore = frontAlong - 0.08;
+  pushBox(buf, x + fx * (reachBack + reachFore) / 2, (reachLow + reachHigh) / 2,
+    z + fz * (reachBack + reachFore) / 2, fx, fz,
+    (reachFore - reachBack) / 2, REACH_W_M / 2,
+    Math.max(reachHigh - reachLow, 0) / 2, level);
+  // The hounds, one each side of the reach and touching it, filling the rest of
+  // the space under the front bolster. They run forward past the front axle to
+  // the tongue's root at the body's nose, so the tongue is carried BY the front
+  // gear instead of ending in the air beside it — the other half of what the
+  // owner was looking at.
+  const houndOff = REACH_W_M / 2 + HOUND_W_M / 2;
+  const houndBack = frontAlong - HOUND_BACK_M;
+  const houndFore = L / 2 + 0.06;
+  for (const s of [-1, 1]) {
+    pushBox(buf,
+      x + fx * (houndBack + houndFore) / 2 + sx * s * houndOff,
+      (frontAxleTop + gearTop) / 2,
+      z + fz * (houndBack + houndFore) / 2 + sz * s * houndOff,
+      fx, fz, (houndFore - houndBack) / 2, HOUND_W_M / 2,
+      Math.max(gearTop - frontAxleTop, 0) / 2, level);
+  }
+  // And the kingbolt, through bolster, hounds and axle. Most of its length is
+  // inside the timber it pins — which is what a bolt is — so what is drawn for
+  // is the nut below the front axle, the one part of it a visitor can see and
+  // the only evidence from outside that the front gear turns.
+  const boltLow = base + form.wagonFrontWheel / 2 - AXLE_T_M / 2 - KINGBOLT_DROP_M;
+  pushBox(buf, x + fx * frontAlong, (boltLow + floorY) / 2, z + fz * frontAlong,
+    fx, fz, KINGBOLT_T_M / 2, KINGBOLT_T_M / 2,
+    Math.max(floorY - boltLow, 0) / 2, level);
   // THE TONGUE — a pole at its own section, along its own inclination, running
   // down to the ground at its far end because nothing is hitched to it.
   //
