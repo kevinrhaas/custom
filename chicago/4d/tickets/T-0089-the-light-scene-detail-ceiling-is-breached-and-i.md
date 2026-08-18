@@ -45,5 +45,10 @@ what any layer claims to be** — T-0056's rule holds: a picket drawn as a rail 
 misrepresentation, not a saving. The likely first move is T-0056 itself (the enclosure layer is
 detail-blind), and this ticket is where the number lives until it is.
 
+**Update 2026-08-18 (T-0086, the far sward).** The far band adds a worst case of **2 660
+triangles** at `light` — 190 cards of a 7-column archetype — measured in the browser at
+**+1 962** at the South Water stand at detail `full`. It makes this breach 0.4 % worse and does
+not open it; the saving this ticket asks for is unchanged and still sits in T-0056.
+
 **Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row goes unseen)
 · `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).

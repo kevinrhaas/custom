@@ -1,7 +1,7 @@
 ---
 id: T-0086
 title: The sward ends at a radius instead of receding into the distance
-state: open
+state: claimed
 epic: FLORA
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/18/2026, 3:34:46 PM CT
 blocked_on: null
 needs_bake: false
 ---
