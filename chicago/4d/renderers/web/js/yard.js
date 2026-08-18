@@ -497,18 +497,48 @@ function buildWagon(buf, wagon, form, terrain, level, problems) {
         [sx * s, 0, sz * s], r, level);
     }
   }
-  // the tongue, down to the ground at its far end because nothing is hitched to it
-  const tipAlong = L / 2 + form.wagonTongue;
-  const tipY = base + 0.06;
+  // THE TONGUE — a pole at its own section, along its own inclination, running
+  // down to the ground at its far end because nothing is hitched to it.
+  //
+  // It was one horizontal box deep enough to span the drop from the front axle
+  // to the ground: a 2.75 m stick 0.055 m thick drawn 0.48 m deep, which is a
+  // plank lying in the grass and not a tongue (T-0084, found in this code and
+  // reported from the Green Tree's yard on the same day). The old comment was
+  // right about the ANGLE — a stick's exact inclination is not a claim this
+  // record makes — and the box only had to be that deep because it was
+  // axis-aligned. `pushBoxV` takes a frame, so the same modest claim about the
+  // angle is now made by a box of the tongue's OWN section, inclined.
+  //
+  // The recorded 2.75 m is now the pole's LENGTH rather than its horizontal
+  // run, which is what the number means: the tip lands 2.71 m ahead of the body
+  // instead of 2.75 m, well inside the 4.6 m the wagon is measured by.
+  const halfT = TONGUE_T_M / 2;
+  const rootAlong = L / 2;
   const rootY = base + form.wagonFrontWheel / 2;
-  const midAlong = (L / 2 + tipAlong) / 2;
-  const midY = (tipY + rootY) / 2;
-  // Drawn as a box along the horizontal projection, deep enough to span the drop
-  // from the front axle to the ground: a tongue is a stick, and a stick's exact
-  // inclination is not a claim this record makes.
-  pushBox(buf, x + fx * midAlong, midY, z + fz * midAlong, fx, fz,
-    form.wagonTongue / 2, TONGUE_T_M / 2,
-    Math.max(TONGUE_T_M / 2, (rootY - tipY) / 2), level);
+  // The tip rests ON the ground rather than in it, so its centre sits half the
+  // pole's VERTICAL section above the grass — which is `halfT / cos θ`, and θ
+  // is itself set by the drop. One pass of the fixed point settles it to a
+  // hundredth of a millimetre at this inclination, so it does not need a loop.
+  const drop0 = Math.max(rootY - base - halfT, 0);
+  const cos0 = Math.sqrt(Math.max(form.wagonTongue ** 2 - drop0 ** 2, 0))
+    / form.wagonTongue;
+  const tipY = base + halfT / Math.max(cos0, 1e-6);
+  const drop = Math.max(rootY - tipY, 0);
+  const run = Math.sqrt(Math.max(form.wagonTongue ** 2 - drop ** 2, 0));
+  const tipAlong = rootAlong + run;
+  const midAlong = (rootAlong + tipAlong) / 2;
+  const midY = (rootY + tipY) / 2;
+  // The pole's own frame: down its inclination, across the wagon, and the third
+  // axis from the cross of those two so the section stays square to the stick.
+  const poleLen = Math.hypot(run, drop) || 1;
+  const pa = [(fx * run) / poleLen, -drop / poleLen, (fz * run) / poleLen];
+  const pb = [sx, 0, sz];
+  const pc = [pa[1] * pb[2] - pa[2] * pb[1], pa[2] * pb[0] - pa[0] * pb[2],
+    pa[0] * pb[1] - pa[1] * pb[0]];
+  pushBoxV(buf, [x + fx * midAlong, midY, z + fz * midAlong],
+    [pa[0] * (poleLen / 2), pa[1] * (poleLen / 2), pa[2] * (poleLen / 2)],
+    [pb[0] * halfT, pb[1] * halfT, pb[2] * halfT],
+    [pc[0] * halfT, pc[1] * halfT, pc[2] * halfT], level);
   // AND THE TILT, on the wagons the record marks covered. The canvas springs
   // from the body's top rail, is pulled a little past the end bows, and is the
   // only thing on this layer drawn in something other than the timber tone.

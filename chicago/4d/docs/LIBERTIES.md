@@ -4093,6 +4093,20 @@ order about obstructions; an insurance, tax or sale description of a South Water
 traveller's account of walking the street. The first that names a wagon standing anywhere in the
 town would be the first thing this project has held that could put a second one in the scene.
 **Recorded:** 2026-08-18.
+**Revised:** 2026-08-18 (T-0084) — **the tongue is now drawn at an inclination, and the
+inclination is invented.** It was drawn as a horizontal box deep enough to span the drop from the
+front axle to the ground, on the stated reasoning that a stick's exact angle is not a claim this
+record makes; the effect was a 2.75 m pole 0.055 m thick rendered 0.48 m deep, which reads in the
+scene as a plank lying in the grass, and the owner read it that way from the Green Tree's yard on
+the day it shipped. It is now a box of the tongue's own section along its own line, which puts the
+angle on the record instead of hiding it inside a slab: the pole runs from the front axle's centre
+down to the ground with its far end resting on the grass, **10.6 degrees**, because nothing is
+hitched to it. What bounds that number is the two ends — the recorded front-wheel radius sets the
+root and the ground sets the tip — so it is the only angle an unhitched pole of this length can
+lie at, and it moves if either of those recorded values moves. The recorded 2.75 m is now read as
+the pole's LENGTH rather than its horizontal run, which is what the number means; the tip lands
+2.70 m ahead of the body instead of 2.75 m. Nothing about the wagon's sizes changed, and no new
+value was invented.
 
 ### L132 — Two river docks, stated in one clause and invented in every dimension
 **Decision:** the two warehouses whose records state a dock — `newberry_dole_warehouse` and

@@ -1,5 +1,40 @@
 # STATUS
 
+## Shipped 2026-08-18 — T-0084: the wagon tongue is a pole at its own section
+
+**An owner report, confirmed twice.** The ticket was opened from the code while T-0081 shipped —
+`renderers/web/js/yard.js` drew the tongue as ONE horizontal box spanning the drop from the front
+axle to the ground, `halfH = (rootY - tipY) / 2` ≈ 0.24 m, so a 2.75 m stick 0.055 m thick was
+rendered **0.48 m deep** — and the owner reported the same object from the Green Tree's yard the
+same day: *"a note about the wagons to fix, it looks like that bar is supposed to be below the
+carriage of the wagon holding the wheels together but not sure. all the wagons seem off."*
+
+**What changed.** The tongue is drawn with `pushBoxV` at its recorded section along its own
+inclination, on all four wagons: a 0.055 × 0.055 m pole running from the front axle's centre down
+to the grass at **10.6°**, its far end resting ON the ground rather than sunk into it (the tip's
+centre sits at half the pole's vertical section, `halfT / cos θ`, one pass of the fixed point).
+The recorded 2.75 m is now read as the pole's LENGTH rather than its horizontal run, which is what
+the number means: the tip lands **2.70 m** ahead of the body instead of 2.75 m, inside the 4.6 m
+radius the smoke measures a wagon by. The old comment's reasoning — a stick's exact inclination is
+not a claim this record makes — was right about the ANGLE and was answered by the wrong geometry;
+the box only had to be that deep because it was axis-aligned.
+
+**Cost: none.** `pushBox` and `pushBoxV` are both 12 triangles, so the layer is unchanged at
+636 410 triangles / 45 draw calls, and the wagon's own numbers (body, wheels, bed, tongue length)
+are untouched.
+
+**Evidence.** `docs/evidence/t-0084-{before,after}.png` — the Green Tree's yard from E −132.78 /
+N −99.5, bearing 000°, 1280×800, detail full. Before: a slab in the grass that reads as a second
+box come adrift. After: a pole.
+
+**Recorded as a liberty.** L131's **Revised: 2026-08-18 (T-0084)** — the inclination is now a
+claim rather than something hidden inside a slab, and what bounds it is the two ends (the recorded
+front-wheel radius at the root, the ground at the tip). No new invented value.
+
+**What this run did NOT do.** The wagon box still floats over its axles with no bolsters, reach or
+hounds — the second, independent defect behind the owner's sentence, which is **T-0087** and its
+own demonstration. Fixing it here would have bundled two tickets into one PR.
+
 ## Shipped 2026-08-18 — the far sward: the meadow recedes instead of ending at a radius
 
 **T-0086, an owner report.** On the T-0035 fix he wrote: *"the plant rendering is much better! but
