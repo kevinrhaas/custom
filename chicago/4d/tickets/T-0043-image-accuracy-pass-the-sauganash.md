@@ -1,7 +1,7 @@
 ---
 id: T-0043
 title: Image-accuracy pass: the Sauganash
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,7 +9,7 @@ effort: S
 legacy_id: K2
 parent: T-0006
 opened: 2026-08-17
-closed: null
+closed: 2026-08-18
 pr: null
 claimed_by: null
 blocked_on: null

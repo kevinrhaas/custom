@@ -5,7 +5,9 @@ T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhyth
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
-T-0043 — Image-accuracy pass: the Sauganash
+T-0086 — The Sauganash's frontage: plank walks on both fronts, a board crossing and its hitching posts
+T-0087 — The Sauganash's enclosed ground: the board fence at the right and the trees behind it
+T-0088 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0044 — Image-accuracy pass: the next two landmark plates
 T-0077 — The Lake Street row at Dearborn, from the Tremont plate
 T-0078 — The South Water river row, from the 1834 view
