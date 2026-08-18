@@ -1,7 +1,7 @@
 ---
 id: T-0084
 title: A wagon tongue is drawn as a plank on edge, not a pole
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/18/2026, 4:54:32 PM CT
 blocked_on: null
 needs_bake: false
 ---
