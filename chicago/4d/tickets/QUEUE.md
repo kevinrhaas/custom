@@ -4,7 +4,6 @@ T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
-T-0081 — The Green Tree's wagon shed: the open-sided shed at the left gable, a covered wagon under it
 T-0082 — The Green Tree's frontage: its named signboard on a post, plank walks, verges and fence-line brush
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0043 — Image-accuracy pass: the Sauganash
