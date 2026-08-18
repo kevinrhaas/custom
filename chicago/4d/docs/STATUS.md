@@ -70,6 +70,21 @@ if either building is on the wrong side of the river, its wharf is on the wrong 
 Nothing here is baked, and the generator half — a river-wharf mode of `pier_crib`, so a baked town
 carries its own docks — is still owed.
 
+**The gate, measured.** `tools/check.sh` — the dev gate — passes, including the new step that
+re-derives the record byte for byte. `node tools/smoke_renderer.mjs --published` was run on the
+**published mirror at both release viewports**, and **all eight new assertions pass at 390×780 AND
+1280×800**. The mobile half ran to completion: **304 passed, 3 failed, zero page errors**. **All
+three failures are `dev`'s own and none is this parcel's**: `the roads reach the screen from the
+walker's eye, down an open street` and `…from the air, at the aerial anchor`, both recorded as
+dev's own failures in this file already; and `the panel states that once too — and counts nothing
+by hand`, which is **T-0037** — an open ticket whose own body records that T-0001's run measured
+the same failure on `origin/dev` before merging, because the guard scans the whole Evidence panel
+and a liberty containing the words *"Three of these"* trips it. That liberty predates this branch
+(`git diff docs/LIBERTIES.md` contains no such phrase). The desktop half runs past this runner's
+ten-minute per-command ceiling (ROADMAP § THE RUN BUDGET), so its tail did not run in this unit:
+it reached **140 passed, 2 failed** — the same two road gates — and everything this parcel adds is
+inside what it did run.
+
 ## Shipped 2026-08-18 — barrels and cases at twenty-six doors, and the town's one wagon
 
 **T-0040 (piece 3 of 4 of T-0003, legacy K5 (c)).** `docs/ROADMAP.md` K5 (c) asks for *"yard

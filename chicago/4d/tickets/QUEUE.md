@@ -2,7 +2,6 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0041 — Wharves, docks and the river landings
 T-0036 — The gate screen counts the town: buildings standing, people housed
 T-0035 — Flowers grow up out of the ground as you approach instead of fading in
 T-0004 — Raise and graduate the river banks at the fort reach
