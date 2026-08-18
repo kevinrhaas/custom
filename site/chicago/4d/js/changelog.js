@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 182, title: 'Plants no longer grow up out of the ground', kind: 'fix', ts: '2026-08-18T13:54:59.316Z', date: 'Aug 18, 2026, 8:54 AM CT',
+    items: [
+      'Walk at a meadow and the grass and flowers ahead of you used to rise out of the soil as you came \u2014 not appear, GROW, each plant swelling from nothing to full height over the last couple of metres. It is the second time this has been reported and the first fix was the wrong half of it: the arrival was made smooth, and a smooth growth is still a growth.',
+      'Every plant now stands at its own full height from the first frame it is drawn at all. What changes with distance is how solid it is: a plant at the edge of the field is drawn in a fine stipple and fills in as you close, the way the confidence view already draws a wall nobody wrote down. Nothing rises, nothing stretches, and nothing is shorter than the record says it is.',
+      'Flower heads keep their stems through it. They used to slide down their own stalks as the plant under them shrank, which is what stopped them floating in the sky; with nothing shrinking they simply stay where they grew, and the check that reads every drawn head back off the screen is unchanged and still green.',
+      'What you may notice instead: at the far edge of the meadow the plants are dotted rather than solid for a metre or two, which is the stipple doing the fading. The field costs the same to draw as it did \u2014 same number of plants, same number of draw calls.',
+    ] },
   { v: 181, title: 'The front screen counts the town', kind: 'feature', ts: '2026-08-18T12:29:28.863Z', date: 'Aug 18, 2026, 7:29 AM CT',
     items: [
       'The panel you meet before you walk now says how much town there is: buildings standing, and people housed in them. Both are counted out of the project\u2019s own records at the moment the page loads \u2014 neither is a number anybody typed here.',

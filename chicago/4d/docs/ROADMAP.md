@@ -8842,6 +8842,63 @@ bearing, different viewport, different day, same symptom. Two things follow:
    emergent path over the river) before anyone spends a run on it — this frame looks *down a dry
    street* with the river off to the left. Suspect 1, the ring fade, survives that; check it first.
 
+### T-0035 — the flowers grow up out of the ground as you approach · **DONE 2026-08-18 · OWNER-REPORTED 2026-08-17**
+
+**THE OWNER'S REPORT:** *"the flowers still seem like they grow out of the ground as you approach
+them, they do not fade in as you walk towards, they grow up."* **"Still" is the whole finding** —
+this is his SECOND report on the same ring, and the first one was answered without answering it.
+
+**WHAT THE FIRST ANSWER DID.** His 2026-08-14 report — *"grass and flowers appear out of the ground
+as you walk towards them"* — was diagnosed as a RATE problem and it really was one: the ramp was
+baked into the height on the CPU and could only change when the lattice was rebuilt, so a plant
+arrived at 55 % of its height between one frame and the next. The repair moved the ramp into the
+vertex program (continuous, per frame) and inset the fade ring inside its own lattice by the rebuild
+step, so nothing is ever drawn before it is placed. The `popIn` gate in the smoke holds both halves
+and is still green — measured on this branch, **53 arrivals over a 3 m walk, worst arrival 0.0 % of
+the ramp**, which is the inset doing exactly what it was built for.
+
+**AND IT LEFT THE RAMP DRIVING SCALE.** `transformed *= chiFade` — the whole plant, uniformly, about
+its own base, with a matching world-space descent (`chiDrop = aChiRise * (1 - chiFade)`) that slid a
+flower head down its own stalk so it stayed on the shrinking stem. **A plant that goes from nothing
+to full size about its base is growing, however finely you subdivide the growth.** The first repair
+made the growth SMOOTH, which is not what he asked for either time.
+
+**THE FIX: THE RAMP IS COVERAGE, NOT HEIGHT.** `flora.js` § `plantMaterial` hands `chiFade` to the
+fragment shader as a varying and resolves it with the ordered 4×4 Bayer screen-door dither this
+project already uses to draw an unevidenced wall (`confidence.js`) — chosen over real translucency
+because a sward is eight thousand double-sided instances that would have to be depth-sorted every
+frame, and over a per-instance stochastic cut because that is a pop, which is the defect the ring
+was built to remove. Three consequences:
+
+* **Height is 0 or 1 and nothing between** (`heightOf`). A drawn plant is drawn at the height its
+  record gives it, at every distance it is drawn at at all.
+* **The head descent is gone with the scale it chased.** R-BUG7's invariant survives intact and gets
+  simpler: `maybeHead`'s clamp gives `foot <= plantH`, and nothing scales either side of it now.
+* **Contouring is broken by a per-instance phase.** Sixteen dither levels against a ramp in DISTANCE
+  would be sixteen concentric rings about the walker — § S6a item 3's "constant world radius is a
+  constant screen row" all over again — so each plant offsets its threshold by a hash of its own
+  world position. `fract(bayer + phase)` is still uniform on [0,1), so coverage is unchanged.
+
+**THE GATE, and it is a new one rather than a re-run.** The smoke's popIn walk now also reads the
+drawn HEIGHT of every plant over the same twenty paces: *a plant is drawn at its own height, faint,
+never short* — no plant that is drawn at all is drawn short, and nothing already on screen gains
+height between two frames a pace apart. **Measured: shortest drawn plant 100.0 % of its own height,
+worst gain 0.0 % per 0.15 m pace. The same reading of the OLD height term over the same walk is
+0.02 %** — a plant drawn at a five-thousandth of its height, which is what growing out of the ground
+looks like written down.
+
+It is deliberately not asked of ARRIVALS alone. The inset means a plant arrives at coverage zero, so
+an arrival-only reading asks the question of a plant that is not yet drawn and passes on anything;
+the gate reads every drawn plant in every frame of the walk. `tools/measure_head_support.mjs` and
+the smoke's R-BUG7 gate lose their `* fade` terms in the same commit, because both reproduce the
+vertex program and a mirror that drifts stops reading the drawing.
+
+**COST.** Draw calls 41 and 611,823 triangles, unchanged: the instances were always in the buffer,
+the ramp only ever changed their size. What the band pays instead is fill — plants inside it are
+rasterised whole rather than shrunken — and what it saves is the annulus outside the fade ring,
+which now collapses to a point instead of rasterising a full-size plant to discard every fragment.
+
+
 ### R-BUG6(a) — the shadow grid slid under every step, and the control that cleared it was inert · **DONE 2026-08-17 · SEEN in motion · opened 2026-08-16 by R-BUG1**
 
 **Phase:** lane 1, renderer only · **Runner:** improve-runner · **Files:**
