@@ -2,7 +2,6 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0051 — The estray pen is a fence, and the model still gives it a roof
 T-0052 — Garden pickets and dooryard enclosures on the town's house lots
 T-0039 — Signboards on the businesses that attest one
 T-0040 — Wagons, barrels and yard clutter at the taverns and stores
