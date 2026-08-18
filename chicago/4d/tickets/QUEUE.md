@@ -2,6 +2,7 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
+T-0084 — The sward ends at a radius instead of receding into the distance
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0081 — The Green Tree's wagon shed: the open-sided shed at the left gable, a covered wagon under it
