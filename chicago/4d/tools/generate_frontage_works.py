@@ -5,7 +5,7 @@ street it fronts on.
 
 WHAT THIS IS. Ticket **T-0082** wrote it for the Green Tree Tavern, the third of the four
 pieces T-0042 (*image-accuracy pass: the Green Tree Tavern*) was split into, and ticket
-**T-0086** made it a town rule by adding the second building. The owner's reference views
+**T-0090** made it a town rule by adding the second building. The owner's reference views
 of both houses describe the ground in front of them, and none of it is furniture standing
 in a yard — it is the STREET side of the building:
 
@@ -36,7 +36,7 @@ T-0066 (a board carrying its location's name) and T-0069 (fences and plank sidew
 along the streets) are the town-wide standards they set two buildings at a time.
 
 **ONE RULE, A TABLE OF BUILDINGS.** T-0082 wrote "the second and the twentieth cost
-nothing but a line here", and T-0086 spent that line: `BUILDINGS` below is the whole
+nothing but a line here", and T-0090 spent that line: `BUILDINGS` below is the whole
 difference between the two records this writes. What is per-building is the PROSE — which
 plate says what, and what the plate shows — and two switches the plates decide:
 
@@ -120,7 +120,7 @@ BOARD_H_M = 0.55
 BOARD_T_M = 0.055
 POST_VERGE_M = 0.90      # the post stands this far beyond the outer edge of the walk
 
-# THE HITCHING POSTS (T-0086). Images 8 and 9 put posts at the road edge in front of
+# THE HITCHING POSTS (T-0090). Images 8 and 9 put posts at the road edge in front of
 # the Sauganash and image 10 ties a saddled horse to one. A hitching post is chest-high
 # to a horse and stout enough to hold one, with a capped head so the rein does not lift
 # off — and not one of those numbers is a record's either. They stand in the same verge
@@ -138,7 +138,7 @@ HITCH_ALONG = (0.28, 0.72)   # fractions of the front wall's length
 # a wall further off than this is a yard wall and gets nothing.
 STREET_REACH_M = 22.0
 
-# AND THE STREET HAS TO LIE IN FRONT OF THE WALL, NOT BESIDE IT. Added by T-0086, the
+# AND THE STREET HAS TO LIE IN FRONT OF THE WALL, NOT BESIDE IT. Added by T-0090, the
 # first run to put a second building through this rule, because the second building
 # found the hole: the Sauganash's east wall is a side wall in the middle of its block,
 # and the nearest point of Lake Street's centreline — which runs across the far END of
@@ -423,7 +423,7 @@ def _street_facing(mid, normal, streets: dict) -> tuple[str | None, dict, float,
     as a front wall is to another one, and a walk laid on the wrong side of a
     building would be a walk through its own yard.
 
-    In front is the second, and it is the one T-0086 had to add (FRONTAGE_DOMINANCE
+    In front is the second, and it is the one T-0090 had to add (FRONTAGE_DOMINANCE
     above). A street that lies beside a wall rather than in front of it is reported
     back as `aside` so the refusal can say which test refused it and why, rather
     than the wall silently reading as having no street at all.
@@ -660,7 +660,7 @@ def build(cfg: dict) -> tuple[list, list, list]:
                 ),
             })
 
-    # ---- the hitching posts (T-0086) --------------------------------------- #
+    # ---- the hitching posts (T-0090) --------------------------------------- #
     # In the verge outside the FRONT walk, at the thirds of the frontage. The plates
     # say posts stand at this hotel's road edge; how many and how far apart is the
     # rule's, and a post that would stand in the travelled track is refused rather

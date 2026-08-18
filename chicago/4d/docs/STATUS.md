@@ -2,11 +2,11 @@
 
 ## Shipped 2026-08-18 — the Sauganash's frontage: plank walks on both fronts, a crossing, and two hitching posts
 
-**T-0086, the first of the three pieces T-0043 was split into.** T-0043 asked for the building
+**T-0090, the first of the three pieces T-0043 was split into.** T-0043 asked for the building
 corrected AND its ground present in ONE demonstration, and the building half moves the
 `frame_1831` phase fields `generators/mesh_inputs.py` hashes into the committed GLB — it needs the
 nightly bake, which this runner has no Blender for. So the ticket became three: this one (the
-street side), **T-0087** (the board fence and the rear-yard trees) and **T-0088** (the fabric,
+street side), **T-0091** (the board fence and the rear-yard trees) and **T-0092** (the fabric,
 `needs_bake`). Both of the others hold T-0043's place in QUEUE.
 
 **What a visitor sees.** A 1.83 m plank walk along the hotel's Lake Street front AND its Market

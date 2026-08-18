@@ -20,12 +20,12 @@ The `light` scene-detail level draws more triangles than its own ceiling allows,
 did so before this run added a metre of plank walk.
 
 **Measured 2026-08-18**, `tools/smoke_renderer.mjs --published`, desktop 1280 x 800, on the
-T-0086 branch: `scene detail 'light' stays inside its own ceiling` FAILS at **604 950 tris of
+T-0090 branch: `scene detail 'light' stays inside its own ceiling` FAILS at **604 950 tris of
 600 000**, 48 draw calls. `full` and `balanced` both pass, and `turning scene detail down
 actually draws less` passes — the levels still mean something, the tightest one is just over.
 The mobile half does not fail it: at 390 x 780 the frustum is narrower and the count stays under.
 
-**It is not this branch's.** T-0086's whole addition to the scene is the Sauganash's frontage,
+**It is not this branch's.** T-0090's whole addition to the scene is the Sauganash's frontage,
 and it was measured in the browser at **3 684 triangles** (the frontage layer draws 7 308 in
 total: 3 624 the Green Tree's, 3 684 the Sauganash's, separated by a bounding box — the two inns
 are 250 m apart). Take the most generous assumption for this branch, that every one of those
@@ -46,4 +46,4 @@ misrepresentation, not a saving. The likely first move is T-0056 itself (the enc
 detail-blind), and this ticket is where the number lives until it is.
 
 **Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row goes unseen)
-· `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0086 (where it was measured).
+· `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).

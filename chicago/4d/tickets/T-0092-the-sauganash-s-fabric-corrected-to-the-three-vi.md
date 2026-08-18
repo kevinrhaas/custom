@@ -1,5 +1,5 @@
 ---
-id: T-0088
+id: T-0092
 title: The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 state: open
 epic: TOWN

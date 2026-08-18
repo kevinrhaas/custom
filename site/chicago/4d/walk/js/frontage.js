@@ -2,7 +2,7 @@
  * frontage.js — the plank walks, the board crossings, the hitching posts and the
  * named boards on posts that stand between a building and the street it fronts
  * on. Written for the Green Tree Tavern (T-0082) and made a town layer by the
- * Sauganash Hotel (T-0086), which brought the second record and the first post
+ * Sauganash Hotel (T-0090), which brought the second record and the first post
  * with nothing hanging on it.
  *
  * WHY THIS IS A LAYER AND NOT MORE YARD GOODS. A barrel or a wagon stands on a
@@ -255,7 +255,7 @@ function buildPost(buf, post, terrain, level, problems) {
   const h = post.post_height_m ?? 3.6;
   const sq = (post.post_square_m ?? 0.18) / 2;
 
-  // A HITCHING POST IS A POST AND NOTHING ELSE (T-0086). The Sauganash's three
+  // A HITCHING POST IS A POST AND NOTHING ELSE (T-0090). The Sauganash's three
   // views put posts at its road edge and a horse tied to one; none of them puts
   // a board on any of them, so this branch draws chest-high timber under a
   // capped head and returns a frame carrying no text — the lettering pass never

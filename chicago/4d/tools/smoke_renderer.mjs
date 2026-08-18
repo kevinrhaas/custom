@@ -1513,7 +1513,7 @@ for (const [label, viewport, touch] of [
       goodsPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
 
-    // --- the frontage layer: the Green Tree (T-0082) and the Sauganash (T-0086) ---
+    // --- the frontage layer: the Green Tree (T-0082) and the Sauganash (T-0090) ---
     //
     // The fifth layer drawn from the dataset rather than baked, and the first
     // derived from a building AND a street at once. Its failure modes are its
@@ -1523,7 +1523,7 @@ for (const [label, viewport, touch] of [
     // board that looks perfectly finished and says nothing. Neither is visible
     // to any dataset gate in this repo, because both are decided at load.
     //
-    // T-0086 added the second record, and with it the first post this layer
+    // T-0090 added the second record, and with it the first post this layer
     // draws with nothing on it. A hitching post that silently took the sign
     // post's branch would stand 3.6 m tall under a blank board — geometry the
     // dataset gate cannot see either, because the record says 1.30 m and it is
@@ -1714,7 +1714,7 @@ for (const [label, viewport, touch] of [
       frontagePick.includes('green_tree_tavern'),
       `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
 
-    // --- and the same layer at the Sauganash (T-0086) ---------------------
+    // --- and the same layer at the Sauganash (T-0090) ---------------------
     //
     // THE POSTS ARE POSTS AND NOTHING ELSE. A hitching post that fell through to
     // the sign post's branch would stand 3.6 m tall with a cross-arm and a blank
