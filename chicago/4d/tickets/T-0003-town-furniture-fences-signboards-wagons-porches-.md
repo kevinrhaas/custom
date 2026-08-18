@@ -1,14 +1,15 @@
 ---
 id: T-0003
 title: Town furniture: fences, signboards, wagons, porches, docks
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
 effort: M
 legacy_id: K5
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-17
 pr: null
 claimed_by: null
 blocked_on: null

@@ -1,14 +1,15 @@
 ---
 id: T-0001
 title: A visitor can walk across every bridge, end to end
-state: claimed
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
-effort: M
+effort: L
 legacy_id: K10
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-17
 pr: null
 claimed_by: null
 blocked_on: null
@@ -54,3 +55,10 @@ Nothing here was faked to look finished: no invented ramp, no widened step rule.
 end to end without falling into the river", and a visitor who arrives at the new anchor
 can now do exactly that — but one who walks down Kinzie Street to the bridge cannot,
 and that is the reading the ticket is for.
+
+---
+**SPLIT 2026-08-17.** The loop's first run under this queue took this ticket, shipped only
+the walker-deck half as **PR #231**, titled it `T-0001(1/2)` and left the ticket `claimed` —
+it had to invent that notation because the queue had no way to say "this is two runs". That
+is the evidence that produced the effort-in-RUNS rule. Split into **T-0045** (the deck, done
+by #231) and **T-0046** (the approach earthworks, which needs the bake).

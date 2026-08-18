@@ -41,7 +41,31 @@ const QUEUE = path.join(DIR, 'QUEUE.md');
 const BOARD = path.join(DIR, 'BOARD.md');
 const JSON_OUT = path.join(DIR, 'tickets.json');
 
-const STATES = ['open', 'claimed', 'review', 'done', 'blocked-owner', 'blocked-tech', 'withdrawn'];
+const STATES = ['open', 'claimed', 'review', 'done', 'blocked-owner', 'blocked-tech',
+  'withdrawn', 'split'];
+/**
+ * EFFORT IS MEASURED IN RUNS, NOT IN POINTS.
+ *
+ * The owner asked on 2026-08-17 whether tickets should carry work points and be
+ * split past a threshold. Points are a proxy; the thing they proxy for here is
+ * concrete and already binding — **can ONE run take this from claim to a merged,
+ * gated, visibly-changed dev?** A run has hard edges in this project: a ~150-min
+ * budget, a 10-minute per-command ceiling that the desktop smoke does not fit
+ * inside, and the bake boundary (no Blender on the improve runner). So the unit
+ * is the run, and the test is the acceptance clause: **if a ticket needs more
+ * than one demonstration to be done, it is more than one ticket.**
+ *
+ * The evidence it was needed: on its first run under this queue the loop took
+ * T-0001 (walkable bridges), shipped only the walker-deck half, titled the PR
+ * "T-0001(1/2)" and left the ticket `claimed` — it had to invent a notation
+ * because the system could not say "this is two runs".
+ */
+const EFFORT = {
+  XS: 'part of a run',
+  S: 'one run',
+  M: 'one run, tight — or one run plus a bake',
+  L: 'MORE THAN ONE RUN — must be split before it can be claimed',
+};
 const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META'];
 const BY = ['owner', 'loop', 'steward'];
 // Workable = an agent may take it off the queue. `claimed`/`review` stay in the
@@ -75,7 +99,7 @@ function loadAll() {
 
 function writeTicket(t) {
   const keys = ['id', 'title', 'state', 'epic', 'requested_by', 'seen', 'effort',
-    'legacy_id', 'opened', 'closed', 'pr', 'claimed_by', 'blocked_on', 'needs_bake'];
+    'legacy_id', 'parent', 'opened', 'closed', 'pr', 'claimed_by', 'blocked_on', 'needs_bake'];
   const fm = keys.map((k) => `${k}: ${t[k] ?? 'null'}`).join('\n');
   writeFileSync(t.file, `---\n${fm}\n---\n${t.body ?? ''}`);
 }
@@ -104,6 +128,17 @@ function queueIds() {
 function queueAppend(t) {
   const cur = existsSync(QUEUE) ? readFileSync(QUEUE, 'utf8').replace(/\n+$/, '\n') : queueHeader();
   writeFileSync(QUEUE, cur + `${t.id} — ${t.title}\n`);
+}
+
+function queueReplace(id, rows) {
+  // Children take the PARENT'S EXACT PLACE in the order. Appending them to the
+  // bottom would silently demote work the owner had deliberately ranked — the
+  // one thing this file's ordering rule exists to prevent. A split is a
+  // clarification of what the work is, never a re-prioritisation of it.
+  const lines = existsSync(QUEUE) ? readFileSync(QUEUE, 'utf8').split('\n') : [];
+  const i = lines.findIndex((l) => l.trim().startsWith(id));
+  if (i < 0) lines.push(...rows); else lines.splice(i, 1, ...rows);
+  writeFileSync(QUEUE, lines.join('\n').replace(/\n+$/, '\n'));
 }
 
 function queueRemove(id) {
@@ -135,6 +170,7 @@ function generateBoard(tickets) {
   const open = tickets.filter((t) => WORKABLE.includes(t.state)).sort((a, b) => rank(a) - rank(b));
   const owner = tickets.filter((t) => t.state === 'blocked-owner');
   const tech = tickets.filter((t) => t.state === 'blocked-tech');
+  const split = tickets.filter((t) => t.state === 'split');
   const done = tickets.filter((t) => t.state === 'done')
     .sort((a, b) => String(b.closed).localeCompare(String(a.closed))).slice(0, 20);
 
@@ -142,6 +178,8 @@ function generateBoard(tickets) {
     + sec('In the queue, in the owner’s order', open, row)
     + sec('⏸ Waiting on an owner decision', owner, (t) => `${row(t)}\n  - **the question:** ${t.blocked_on}`)
     + sec('Blocked on tooling or another ticket', tech, (t) => `${row(t)} — ${t.blocked_on}`)
+    + sec('Split into pieces (the pieces are in the queue)', split, (t) => `${row(t)}`
+      + ` — ${tickets.filter((c) => c.parent === t.id).map((c) => c.id).join(', ')}`)
     + sec('Recently done', done, (t) => `${row(t)} · ${t.closed}${t.pr ? ` · PR #${t.pr}` : ''}`);
   // Idempotent on purpose: only touch the files when the CONTENT changed, so a
   // regenerated-but-identical board stays byte-stable and the published mirror
@@ -186,6 +224,24 @@ function check(tickets) {
       problems.push(`${at}: ${t.state} without blocked_on — a block with no stated question is an abandonment`);
     }
     if (!t.body?.trim()) problems.push(`${at}: empty body — a ticket with no ask or acceptance is a title`);
+    if (!Object.keys(EFFORT).includes(t.effort)) {
+      problems.push(`${at}: effort "${t.effort}" is not one of ${Object.keys(EFFORT).join('/')} `
+        + `(measured in RUNS: ${Object.entries(EFFORT).map(([k, v]) => `${k} = ${v}`).join('; ')})`);
+    }
+    // An L in the queue is a ticket that CANNOT be finished by whoever takes it,
+    // so it would produce a half-done ticket and a self-invented "(1/2)" title.
+    // Sizing is the author's job, not the claimant's.
+    if (t.effort === 'L' && WORKABLE.includes(t.state)) {
+      problems.push(`${at}: effort L is in the queue — ${EFFORT.L}. `
+        + `Run \`node tools/ticket.mjs split ${t.id} "first piece" "second piece"\`; `
+        + 'the children keep its place in the order.');
+    }
+    if (t.state === 'split' && WORKABLE.includes(t.state)) {
+      problems.push(`${at}: a split parent must not sit in the queue — its children carry the work`);
+    }
+    if (t.parent && !tickets.some((x) => x.id === t.parent)) {
+      problems.push(`${at}: parent ${t.parent} does not exist`);
+    }
   }
   // The queue must be EXACTLY the workable set: an open ticket missing from the
   // queue is invisible work, and a queued closed ticket sends an agent to a
@@ -245,6 +301,14 @@ switch (cmd) {
   case 'claim': {
     const t = find(tickets, args[0]);
     if (!WORKABLE.includes(t.state)) { console.error(`${t.id} is ${t.state}, not claimable`); process.exit(1); }
+    // An L ticket cannot be finished in the run that claims it, so claiming one
+    // guarantees a half-done ticket and a PR that invents its own "(1/2)".
+    if (t.effort === 'L') {
+      console.error(`${t.id} is effort L — ${EFFORT.L}.\n`
+        + `Split it first, and the pieces keep this ticket's place in the queue:\n`
+        + `  node tools/ticket.mjs split ${t.id} "first piece" "second piece"`);
+      process.exit(1);
+    }
     t.state = 'claimed';
     t.claimed_by = `${flag('by') ?? 'run'} ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })} CT`;
     writeTicket(t); generateBoard(loadAll());
@@ -294,6 +358,42 @@ switch (cmd) {
     if (WORKABLE.includes(t.state)) queueAppend(t);
     generateBoard(loadAll());
     console.log(`${old} → ${t.id}`);
+    break;
+  }
+  case 'split': {
+    // The remedy for an L ticket, and for any ticket a run discovers is bigger
+    // than one demonstration. The parent becomes the grouping record (state
+    // `split`, out of the queue) and the children take its place in the order.
+    const t = find(tickets, args[0]);
+    const titles = args.slice(1).filter((a) => !a.startsWith('--'));
+    if (titles.length < 2) {
+      console.error(`usage: ticket.mjs split ${t.id} "first piece" "second piece" [...]`);
+      process.exit(1);
+    }
+    let max = Math.max(0, ...tickets.map((x) => Number(/^T-(\d{4})$/.exec(x.id ?? '')?.[1] ?? 0)));
+    const rows = [];
+    titles.forEach((title, n) => {
+      max += 1;
+      const id = `T-${String(max).padStart(4, '0')}`;
+      const child = {
+        file: path.join(DIR, `${id}-${slugOf(title)}.md`),
+        id, title, state: 'open', epic: t.epic, requested_by: t.requested_by,
+        seen: t.seen, effort: 'S', legacy_id: t.legacy_id, parent: t.id,
+        opened: today(), closed: null, pr: null, claimed_by: null, blocked_on: null,
+        needs_bake: false,
+        body: `\n${title}.\n\nPiece ${n + 1} of ${titles.length} of **${t.id} — ${t.title}**, `
+          + `split because the parent needed more than one run's demonstration to be done. `
+          + `The parent keeps the full ask and its links; this ticket owns one slice of it.\n\n`
+          + `**Acceptance:** (state it before working — one demonstration, never weakened to pass)\n`,
+      };
+      writeTicket(child);
+      rows.push(`${id} — ${title}`);
+      console.log(`  ${id}  ${title}`);
+    });
+    queueReplace(t.id, rows);
+    t.state = 'split'; t.closed = today();
+    writeTicket(t); generateBoard(loadAll());
+    console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
     break;
   }
   case 'list': {

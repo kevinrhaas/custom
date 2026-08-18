@@ -171,8 +171,15 @@ is the contract. The short form:
 - **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
   starts. This is not optional bookkeeping; an owner request going untracked for days is
   the exact failure this system exists to close.
+- **Size in RUNS before you claim.** `XS` part of a run · `S` one run · `M` one run,
+  tight (or one run plus a bake) · `L` **more than one run, and `claim` refuses it**.
+  The test is the acceptance clause: *if it needs more than one demonstration, it is
+  more than one ticket.* Split with `ticket.mjs split T-NNNN "piece" "piece"` — the
+  children inherit the parent's exact place in QUEUE, so a split never re-prioritises.
+  If a run discovers mid-flight that its ticket is bigger than one demonstration, it
+  splits rather than shipping a self-invented "(1/2)".
 - `tools/check.sh` runs `ticket.mjs check`: duplicate ids, queue drift, stale BOARD, a
-  block with no stated question — all merge-refusing.
+  block with no stated question, an `L` in the queue — all merge-refusing.
 
 **`docs/ROADMAP.md` is no longer the backlog.** It remains the *reasoning archive* — the
 parcel boxes hold measurements, refutations and acceptance clauses that tickets link into,

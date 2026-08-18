@@ -1,23 +1,24 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 17, 2026, 6:10 PM",
+  "generated_ct": "Aug 17, 2026, 7:00 PM",
   "tickets": [
     {
       "id": "T-0001",
       "title": "A visitor can walk across every bridge, end to end",
-      "state": "claimed",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
-      "effort": "M",
+      "effort": "L",
       "legacy_id": "K10",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0002",
@@ -39,19 +40,20 @@
     {
       "id": "T-0003",
       "title": "Town furniture: fences, signboards, wagons, porches, docks",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
       "effort": "M",
       "legacy_id": "K5",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0004",
@@ -68,7 +70,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 5
+      "queue_rank": 8
     },
     {
       "id": "T-0005",
@@ -85,24 +87,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 9
     },
     {
       "id": "T-0006",
       "title": "Image-accuracy passes on the landmark buildings",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
       "effort": "M",
       "legacy_id": "K2",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-17",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": null
     },
     {
       "id": "T-0007",
@@ -119,7 +122,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": 13
     },
     {
       "id": "T-0008",
@@ -136,7 +139,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 14
     },
     {
       "id": "T-0009",
@@ -153,7 +156,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 10
+      "queue_rank": 15
     },
     {
       "id": "T-0010",
@@ -170,7 +173,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 11
+      "queue_rank": 16
     },
     {
       "id": "T-0011",
@@ -187,7 +190,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 12
+      "queue_rank": 17
     },
     {
       "id": "T-0012",
@@ -204,7 +207,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 13
+      "queue_rank": 18
     },
     {
       "id": "T-0013",
@@ -221,7 +224,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 14
+      "queue_rank": 19
     },
     {
       "id": "T-0014",
@@ -238,7 +241,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 15
+      "queue_rank": 20
     },
     {
       "id": "T-0015",
@@ -255,7 +258,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 21
     },
     {
       "id": "T-0016",
@@ -272,7 +275,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 22
     },
     {
       "id": "T-0017",
@@ -289,7 +292,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 23
     },
     {
       "id": "T-0018",
@@ -306,7 +309,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 24
     },
     {
       "id": "T-0019",
@@ -323,7 +326,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 25
     },
     {
       "id": "T-0020",
@@ -340,7 +343,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 26
     },
     {
       "id": "T-0021",
@@ -357,7 +360,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 27
     },
     {
       "id": "T-0022",
@@ -374,7 +377,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 28
     },
     {
       "id": "T-0023",
@@ -391,7 +394,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 29
     },
     {
       "id": "T-0024",
@@ -408,7 +411,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 30
     },
     {
       "id": "T-0025",
@@ -425,7 +428,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 31
     },
     {
       "id": "T-0026",
@@ -442,7 +445,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 27
+      "queue_rank": 32
     },
     {
       "id": "T-0027",
@@ -459,11 +462,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 28
+      "queue_rank": 33
     },
     {
       "id": "T-0028",
-      "title": "Build out the remaining anonymous blocks",
+      "title": "Build out the NEXT anonymous block (one per run)",
       "state": "open",
       "epic": "TOWN",
       "requested_by": "loop",
@@ -476,7 +479,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 29
+      "queue_rank": 34
     },
     {
       "id": "T-0029",
@@ -493,7 +496,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 35
     },
     {
       "id": "T-0030",
@@ -510,7 +513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 36
     },
     {
       "id": "T-0031",
@@ -527,7 +530,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 37
     },
     {
       "id": "T-0032",
@@ -544,7 +547,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 38
     },
     {
       "id": "T-0033",
@@ -578,7 +581,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 39
     },
     {
       "id": "T-0035",
@@ -595,7 +598,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 7
     },
     {
       "id": "T-0036",
@@ -612,7 +615,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 6
     },
     {
       "id": "T-0037",
@@ -629,7 +632,169 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 40
+    },
+    {
+      "id": "T-0038",
+      "title": "Fences and enclosures: the estray pen, wagon yards, garden pickets",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0003",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0039",
+      "title": "Signboards on the businesses that attest one",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0003",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0040",
+      "title": "Wagons, barrels and yard clutter at the taverns and stores",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0003",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0041",
+      "title": "Wharves, docks and the river landings",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K5",
+      "parent": "T-0003",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 5
+    },
+    {
+      "id": "T-0042",
+      "title": "Image-accuracy pass: the Green Tree Tavern",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K2",
+      "parent": "T-0006",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 10
+    },
+    {
+      "id": "T-0043",
+      "title": "Image-accuracy pass: the Sauganash",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K2",
+      "parent": "T-0006",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 11
+    },
+    {
+      "id": "T-0044",
+      "title": "Image-accuracy pass: the next two landmark plates",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K2",
+      "parent": "T-0006",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 12
+    },
+    {
+      "id": "T-0045",
+      "title": "Walker stands on the bridge decks",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "K10",
+      "parent": "T-0001",
+      "opened": "2026-08-17",
+      "closed": "2026-08-17",
+      "pr": "231",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0046",
+      "title": "Bridge approach earthworks meet the deck at grade",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": "K10",
+      "parent": "T-0001",
+      "opened": "2026-08-17",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 0
     }
   ]
 }
