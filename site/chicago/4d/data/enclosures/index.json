@@ -1,11 +1,21 @@
 {
-  "_doc": "Manifest for the enclosure layer — the fence lines, yards and pens the town was full of and this project had no way to build. A static host cannot be globbed, which is why this file exists: the renderer fetches this manifest and then exactly the files it names, never a probe. An enclosure is NOT a structure record: it takes a perimeter rather than a footprint, it is roofless, and it carries no GLB, so it is drawn by renderers/web/js/enclosures.js from these numbers alone and needs no bake. docs/LIBERTIES.md L10 and L60 both name the missing enclosure archetype as what they are waiting for; this layer is the renderer-side half of it.",
+  "_doc": "Manifest for the enclosure layer — the fence lines, yards and pens the town was full of and this project had no way to build. A static host cannot be globbed, which is why this file exists: the renderer fetches this manifest and then exactly the files it names, never a probe. An enclosure is NOT a structure record: it takes a perimeter rather than a footprint, it is roofless, and it carries no GLB, so it is drawn by renderers/web/js/enclosures.js from these numbers alone and needs no bake. docs/LIBERTIES.md L10 and L60 both name the missing enclosure archetype as what they are waiting for; this layer is the renderer-side half of it. Records are hand-authored where the evidence is a place (the wagon yard, the pound) and GENERATED where the evidence is only a treatment: town_dooryard_pickets.json is written by tools/generate_dooryard_pickets.py from the platted lots and the committed footprints, and tools/check.sh re-derives it byte for byte, because \"which lots get a garden fence\" is a rule and a rule has to be auditable.",
   "version": 1,
   "scene": "1835",
   "scene_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin — the same frame data/streets/1835.json writes its street centrelines in, and the frame the sidecars' placement.local_e / local_n use.",
   "enclosures": [
-    { "id": "western_hotel_wagon_yard", "file": "western_hotel_wagon_yard.json" },
-    { "id": "estray_pen", "file": "estray_pen.json" }
+    {
+      "id": "western_hotel_wagon_yard",
+      "file": "western_hotel_wagon_yard.json"
+    },
+    {
+      "id": "estray_pen",
+      "file": "estray_pen.json"
+    },
+    {
+      "id": "town_dooryard_pickets",
+      "file": "town_dooryard_pickets.json"
+    }
   ]
 }

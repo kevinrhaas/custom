@@ -2,7 +2,6 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0052 — Garden pickets and dooryard enclosures on the town's house lots
 T-0039 — Signboards on the businesses that attest one
 T-0040 — Wagons, barrels and yard clutter at the taverns and stores
 T-0041 — Wharves, docks and the river landings
@@ -44,3 +43,5 @@ T-0037 — The liberties gate reads the whole Evidence panel, so a liberty sayin
 T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
+T-0055 — Hold the Kinzie-view plate as a source record
+T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level

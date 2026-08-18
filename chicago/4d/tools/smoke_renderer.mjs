@@ -1000,6 +1000,51 @@ for (const [label, viewport, touch] of [
       penPick.includes('estray_pen'),
       `20 aims returned [${[...new Set(penPick)].join(', ') || 'nothing'}]`);
 
+    // --- the dooryard garden pickets (T-0052) --------------------------------
+    //
+    // The first record on this layer whose evidence is a TREATMENT rather than a
+    // place: the Kinzie-view plate shows picket-fenced garden plots and nothing
+    // says which lot in the town had one, so the record is GENERATED from a rule
+    // over the platted lots. Two things can go wrong that no dataset gate sees.
+    // The rule can produce a record the renderer then draws as the wrong KIND of
+    // fence — the layer knew only posts and horizontal rails until today, and a
+    // picket drawn as three rails would pass every count in this file. And a
+    // fence at the back of a lot can be invisible from anywhere a visitor stands.
+    const pickets = await page.evaluate(() => {
+      const e = window.__chicago4d.enclosures;
+      const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
+      return {
+        found: !!rec,
+        runs: rec?.runs?.length ?? 0,
+        type: rec?.form?.fence_type?.value ?? null,
+        pales: e?.census?.pales ?? 0,
+      };
+    });
+    check(`${label}: the town's house lots carry generated picket gardens`,
+      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
+      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
+    // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
+    // fence; the floor is deliberately far under the count so it asserts the
+    // BRANCH ran, not a number that will drift with the rule's output.
+    check(`${label}: the picket branch draws pales, not just posts and rails`,
+      pickets.pales >= 500, `${pickets.pales} pale(s) on the layer`);
+
+    // And stand in one of the gardens — Dr Harmon's lot on Randolph — holding the
+    // clock so the grass cannot supply the difference.
+    await page.evaluate(() => window.__chicago4d.goToTarget(
+      { kind: 'intersection', local_e: 249.65, local_n: -282.7 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const gardenWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const gardenWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dGarden = signatureDistance(gardenWith, gardenWithout);
+    check(`${label}: the garden fence reaches the screen from the dooryard`,
+      dGarden.worst >= 6 && dGarden.mean >= 0.3,
+      `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
+
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);
