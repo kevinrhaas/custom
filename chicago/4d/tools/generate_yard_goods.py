@@ -589,9 +589,12 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
 
     # ---- the bench --------------------------------------------------------- #
     # AGAINST THE FRONT WALL, at the end of the frontage the goods do not occupy.
-    # The barrels pile from the -u end and the signboard hangs 1.7 m toward +u of
-    # the centre at 2.55 m up, so the +u end at ground level is the clear one — the
-    # same division of one wall three layers already make.
+    # The barrels pile from the -u end, so the +u end at ground level is the clear
+    # one — the same division of one wall three layers already make. Until T-0082
+    # this inn also carried a wall board hung 1.7 m toward +u at 2.55 m up, which
+    # was the third of the three; that board now stands on a post at the street
+    # corner and the frontage layer owns it, and the bench is unmoved because it
+    # was never the board it had to miss — it is 2 m under where the board hung.
     benches: list = []
     u_c = u1 - END_CLEAR_M - BENCH_L_M / 2
     if u_c - BENCH_L_M / 2 < u0:
@@ -1051,7 +1054,11 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                 "occupy. tools/generate_business_signboards.py hangs its board 1.7 m "
                 "toward +u of the facade's centre, so this piles from the -u end and the "
                 "door between them stays clear — two layers derived from the same wall "
-                "that would otherwise be derived into each other."
+                "that would otherwise be derived into each other. The Green Tree is the "
+                "one frontage here with no wall board to keep clear of (T-0082 moved its "
+                "board to a post at the street corner), and the goods pile from the same "
+                "end anyway: the barrels were derived before the board moved and moving "
+                "them now would be a change nothing asked for."
             ),
         },
         "frontages": frontages,

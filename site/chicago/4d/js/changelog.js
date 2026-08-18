@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 185, title: 'The Green Tree gets its name on a board, and plank walks', kind: 'feature', ts: '2026-08-18T18:34:50.398Z', date: 'Aug 18, 2026, 1:34 PM CT',
+    items: [
+      'The Green Tree Inn stands at Lake and Canal with bare grass running up to its walls. Two old views of it show the same street furniture: plank sidewalks with board crossings, and a hanging signboard on a post at the corner carrying the house\u2019s name.',
+      'All of it is there now. A six-foot plank walk runs along both street walls, raised out of the mud on its boards; a narrower crossing of four boards runs from it across Canal Street and out onto the dry ground beyond; and a post at the corner carries a board lettered GREEN TREE, hung from a cross-arm well over a walker\u2019s head.',
+      'That board is the first lettering this reconstruction has ever drawn. Every other sign in the town is a blank plank, and stays one \u2014 nothing states what any of them said. This one is different because the drawing states the name, and leaving it blank would have been throwing away what we hold.',
+      'The blank board that used to hang on this inn\u2019s wall is gone. The pictures show one board here and it is on the post, so the wall board is refused in writing rather than quietly dropped.',
+      'Where the walk may lie is the street\u2019s decision, not ours: it is laid off the wall only where a street runs outside it and the deck still clears the travelled track. Two of the inn\u2019s four walls are refused for want of a street.',
+      'The walk, the crossing and the post are all our reconstruction \u2014 no source measures a Chicago sidewalk of 1835. Turn \u201creconstructed\u201d off in the confidence view and the frontage goes back to grass.',
+    ] },
   { v: 184, title: 'The Green Tree\u2019s wagon shed, and the covered wagon under it', kind: 'feature', ts: '2026-08-18T17:28:03.148Z', date: 'Aug 18, 2026, 12:28 PM CT',
     items: [
       'The same drawing of the Green Tree Inn that put wagons in its yard shows one more thing standing against the house: an open-sided wagon shed, with a covered wagon in under its roof. Neither a shed nor a tilted wagon existed anywhere in this town before today.',

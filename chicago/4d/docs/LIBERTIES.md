@@ -4236,6 +4236,56 @@ shed to one of them.
 **Recorded:** 2026-08-18.
 
 
+### L135 — The Green Tree's frontage: plank walks nobody recorded, and the first lettering this project has drawn
+**Decision:** the Green Tree Tavern's two street walls carry a **plank walk** 1.83 m wide laid
+0.20 m off the wall, its deck 0.11 m over the ground on 55 mm boards at a 0.26 m pitch; a **board
+crossing** 1.22 m wide and four boards laid the way a foot travels runs from that walk across
+Canal Street and 0.6 m past the far edge of the travelled track; and a **3.60 m post** with a
+1.55 m cross-arm stands at the Lake-and-Canal corner, 2.93 m out from each of the two walls, with
+a 1.30 x 0.55 m board hanging under the arm **lettered GREEN TREE**. All of it is drawn by
+`renderers/web/js/frontage.js` from `data/frontage/green_tree_frontage.json`, which
+`tools/generate_frontage_works.py` derives and `tools/check.sh` re-derives byte for byte.
+**Why:** two of the owner's reference views of this inn describe the ground in front of it, and
+`data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 6, the
+Braunhold engraving of 1838: *"post-mounted hanging signboard at the corner; plank sidewalks with
+board crossings"*; image 7, the Trowbridge drawing: *"the hanging 'GREEN TREE' sign on its post"*.
+Both are tier-5 pictorial and retrospective, so they may drive setting and may never drive a
+coordinate. WHERE everything stands is therefore derived from three committed things — the
+footprint, the placement, and the street's own travelled-track half-width out of
+`data/streets/1835.json` — and a wall with no street outward of it, or a walk that would lie in the
+travelled way, is refused in writing rather than nudged. Two of the four walls are refused here for
+exactly that reason.
+**What bounds the invention, and it is split in two.** THE FACT of a walk, a crossing and a board
+on a post at this inn is the plates'. Every DIMENSION is invented: nothing in this project measures
+a Chicago sidewalk of 1835, so 6 ft is two people passing and the rest is ordinary sawn stock. And
+that a walk stood on this ground at noon on 1 July 1835 is invented, the same claim L133 and L134
+make for the wagons and the shed beside it.
+**THE LETTERING, which is the part that needed arguing rather than deriving.** L25 leaves the
+town's one documented board blank, and L130 leaves twenty-four more blank on the same reasoning.
+**That reasoning does not reach this board.** L25's subject is an IMAGE nobody has described — no
+source says how the wolf was painted, and a wolf drawn from imagination would be the most
+conspicuous invention in the scene. This board's subject is a NAME; image 7 states it in as many
+words; and the name is already committed on `data/structures/green_tree_tavern.json`. Leaving it
+blank would not be caution, it would be discarding evidence the project holds, which is the
+reading AGENTS.md § RECONSTRUCTED IS A TIER exists to refuse. So the WORDING is graded `inferred`
+against the plate and drawn, and what stays invented and is claimed here is the **letterform**: a
+serif face, its size fitted to a board whose width is itself derived, its spacing, its dark-brown
+paint and the absence of any wear on it. No other board in the town is lettered, because nothing
+states what any of them said.
+**Consequence:** `tools/generate_business_signboards.py` now REFUSES this frontage in writing
+(clause 6) rather than also hanging a blank board on its wall. The plates show one board at this
+inn and it is on a post, so the town no longer draws the same claim twice — and the refusal is
+visible in `data/signage/town_business_signboards.json` rather than being a silent omission. The
+count of blank business boards falls from twenty-four to twenty-three, which is what L130's own
+title should now be read against.
+**How to resolve:** a Chicago town order on sidewalks — the corporation legislated wooden walks
+within a few years of 1835, and an order of the right date would give a width and a material at a
+stroke; any tax, insurance or sale description naming a walk in front of a lot; or holding the
+Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
+path this entry cites into a `source_id` and the lettering's warrant into a citation.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

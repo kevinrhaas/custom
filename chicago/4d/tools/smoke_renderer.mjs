@@ -1513,6 +1513,171 @@ for (const [label, viewport, touch] of [
       goodsPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
 
+    // --- the Green Tree's frontage (T-0082) -------------------------------
+    //
+    // The fifth layer drawn from the dataset rather than baked, and the first
+    // derived from a building AND a street at once. Its failure modes are its
+    // own: a deck laid on one height floats at one end of a frontage and is
+    // buried at the other, and a name painted on a board is the first lettering
+    // this renderer has ever drawn — a texture that fails to compose leaves a
+    // board that looks perfectly finished and says nothing. Neither is visible
+    // to any dataset gate in this repo, because both are decided at load.
+    const frontage = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const f = a?.frontage;
+      const terrain = a?.terrain;
+      const mesh = (f?.group?.children ?? []).find((c) => c.name === 'frontage');
+      const letters = (f?.group?.children ?? []).find((c) => c.name === 'frontage-lettering');
+      const g = mesh?.geometry;
+      const post = f?.posts?.[0] ?? null;
+      let sink = Infinity;
+      let deckTop = -Infinity;
+      let highest = -Infinity;
+      let boardLow = Infinity;
+      let ungraded = 0;
+      let notReconstructed = 0;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      if (g) {
+        const pos = g.getAttribute('position');
+        const postGround = post
+          ? terrain.surfaceHeight(post.at_local_enu_m[0], post.at_local_enu_m[1]) : null;
+        for (let i = 0; i < pos.count; i++) {
+          // world is (E, up, -N)
+          const e = pos.getX(i);
+          const y = pos.getY(i);
+          const n = -pos.getZ(i);
+          const ground = terrain.surfaceHeight(e, n);
+          if (Number.isFinite(ground)) {
+            const d = y - ground;
+            highest = Math.max(highest, d);
+            // The deck: everything under a metre. The post and its board are
+            // measured against the post's own ground below, because a pole is
+            // not laid on the land the way a walk is.
+            if (d < 1.0) { sink = Math.min(sink, d); deckTop = Math.max(deckTop, d); }
+          }
+          if (Number.isFinite(postGround) && y - postGround > 2.0) {
+            boardLow = Math.min(boardLow, y - postGround);
+          }
+        }
+      }
+      return {
+        census: f?.census ?? null,
+        meshes: f?.group?.children?.length ?? 0,
+        names: (f?.group?.children ?? []).map((c) => c.name),
+        verts: g?.getAttribute('position')?.count ?? 0,
+        letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
+        letterMap: !!letters?.material?.map,
+        timberMap: !!mesh?.material?.map,
+        lettering: f?.lettering ?? null,
+        recordText: post?.text ?? null,
+        textGrade: post?.text_confidence ?? null,
+        postHeight: post?.post_height_m ?? null,
+        clearOfTrack: post?.clear_of_track_m ?? null,
+        walks: f?.walks ?? [],
+        sink, deckTop, highest, boardLow, ungraded, notReconstructed,
+        problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
+      };
+    });
+    check(`${label}: the frontage layer lays the record's walks and stands its post`,
+      frontage.census?.walks === 2 && frontage.census?.crossings === 1
+        && frontage.census?.posts === 1 && frontage.census?.refused === 2
+        && frontage.verts > 0 && frontage.problems.length === 0,
+      `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
+      + `${frontage.census?.posts} post(s), ${frontage.verts} vertices, `
+      + `${frontage.census?.refused} wall(s) refused, `
+      + `problems [${frontage.problems.join(' | ') || 'none'}]`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex. No source record in
+    // this repository states that a walk stood on this ground on 1 July 1835
+    // (L135), and a single vertex claiming inferred or attested would be this
+    // layer overstating the one thing it must not.
+    check(`${label}: every frontage vertex is graded reconstructed`,
+      frontage.ungraded === 0 && frontage.notReconstructed === 0 && frontage.verts > 0,
+      `${frontage.ungraded} out of range, ${frontage.notReconstructed} claiming better `
+      + 'than reconstructed');
+    // THE DECK TIES INTO THE GROUND IT CROSSES. Every board samples the terrain
+    // under its own centre, so no part of a walk may hang over the land or be
+    // swallowed by it. The record lays the deck 0.11 m up on 55 mm boards with a
+    // stringer reaching to grade, so the whole layer under a metre lives in a
+    // band about 0.13 m deep; the bounds here are that band with room for the
+    // difference between a sample at a board's centre and one at its corner.
+    check(`${label}: the plank decks tie into the ground they cross`,
+      frontage.sink >= -0.06 && frontage.deckTop > 0.05 && frontage.deckTop <= 0.18,
+      `deepest ${frontage.sink?.toFixed(3)} m below grade, highest deck vertex `
+      + `${frontage.deckTop?.toFixed(3)} m above it`);
+    // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
+    // height came from a number beside the mesh rather than from a terrain sample
+    // floats; a board hung too low is one a visitor walks through.
+    check(`${label}: the named board hangs on a post that stands on the ground`,
+      Math.abs(frontage.highest - frontage.postHeight) <= 0.05
+        && frontage.boardLow >= 2.4 && frontage.clearOfTrack > 0,
+      `post ${frontage.highest?.toFixed(2)} m over its grade against a recorded `
+      + `${frontage.postHeight} m, board's underside ${frontage.boardLow?.toFixed(2)} m up, `
+      + `${frontage.clearOfTrack} m clear of the travelled track`);
+    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
+    // renderer (L135), and it is the record's wording rather than the renderer's:
+    // a board whose painted name drifted from the record would be this project
+    // inventing a sign, which is exactly what L25 and L130 refuse. Two meshes and
+    // no more — timber in one draw call, and the painted name in the second,
+    // which is the only thing here that may carry a texture.
+    check(`${label}: the board carries the record's own name, painted`,
+      frontage.census?.lettered === 1 && frontage.letterVerts >= 6
+        && frontage.letterMap === true && frontage.timberMap === false
+        && frontage.lettering === frontage.recordText
+        && frontage.recordText === 'GREEN TREE'
+        && frontage.textGrade === 'inferred'
+        && frontage.meshes === 2,
+      `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
+      + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
+      + `"${frontage.recordText}" graded ${frontage.textGrade}`);
+
+    // AND IT READS FROM THE STREET, which is what a walk and a signboard are FOR.
+    // Stand out on Canal Street where a traveller coming up to the inn stands and
+    // hold the clock, so the grass cannot supply the difference. Same bar as the
+    // goods, the fence gates and the signboard: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -163, local_n: -99, yaw_deg: 80, pitch_deg: 0 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const frontWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = false; });
+    const frontWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = true; });
+    const dFront = signatureDistance(frontWith, frontWithout);
+    check(`${label}: the walk and its board reach the screen from the street`,
+      dFront.worst >= 6 && dFront.mean >= 0.3,
+      `cell delta mean ${dFront.mean?.toFixed(2)}, worst ${dFront.worst} (need worst>=6)`);
+
+    // A board on a post at a corner is the nearest thing to the crosshair when a
+    // visitor walks up to that corner, so aiming at it has to open the inn. This
+    // asks the LAYER rather than the app's pick, because the app would answer the
+    // same building from the wall behind it and the assertion would pass while
+    // the layer picked nothing at all.
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -155.0, local_n: -101.0, yaw_deg: 68, pitch_deg: 12 }));
+    await page.waitForTimeout(600);
+    const frontagePick = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = a.frontage.pickAt(new a.three.Vector2(x, y), a.camera);
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the frontage opens the inn it belongs to`,
+      frontagePick.includes('green_tree_tavern'),
+      `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
+
     // --- the river wharves (T-0041) --------------------------------------
     //
     // The fourth layer drawn from the dataset rather than baked, and the first

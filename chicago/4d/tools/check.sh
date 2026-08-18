@@ -103,6 +103,14 @@ step "the yard goods re-derive from the rule that chose their frontages" \
 step "the river wharves re-derive from the records that state a dock" \
   python3 tools/generate_river_wharves.py --check
 
+# The frontage works are the fifth record of this shape and the first derived from
+# a building AND a street at once: where a plank walk may lie is decided by the
+# travelled track's own half-width out of data/streets/1835.json, not by the wall
+# alone. Re-derived here for the same reason as the four above — "which wall gets a
+# walk" is a rule, and a rule that is not re-run is a rule nobody is keeping (T-0082).
+step "the frontage works re-derive from the rule that chose their walls" \
+  python3 tools/generate_frontage_works.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules

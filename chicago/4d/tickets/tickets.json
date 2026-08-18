@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 12:30 PM",
+  "generated_ct": "Aug 18, 2026, 1:35 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1432,7 +1432,7 @@
     {
       "id": "T-0082",
       "title": "The Green Tree's frontage: its named signboard on a post, plank walks, verges and fence-line brush",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1442,7 +1442,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/18/2026, 1:16:10 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4
@@ -1482,6 +1482,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 63
+    },
+    {
+      "id": "T-0085",
+      "title": "The sward grows up through the Green Tree's plank walk",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
     }
   ]
 }
