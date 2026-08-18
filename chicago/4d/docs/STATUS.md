@@ -2,7 +2,7 @@
 
 ## Shipped 2026-08-18 — the Sauganash's frontage: plank walks on both fronts, a crossing, and two hitching posts
 
-**T-0090, the first of the three pieces T-0043 was split into.** T-0043 asked for the building
+**T-0090, the first of the three pieces T-0043 was split into.** (Filed as T-0086/87/88 and **renumbered on the merge**: #245 landed on `dev` first and had taken 0086 and 0087 for two findings of its own, which is the collision `tickets/README.md` § IDs describes. The three kept their exact QUEUE positions — renumbering is not reordering — so the branch's own commit messages name the old numbers.) T-0043 asked for the building
 corrected AND its ground present in ONE demonstration, and the building half moves the
 `frame_1831` phase fields `generators/mesh_inputs.py` hashes into the committed GLB — it needs the
 nightly bake, which this runner has no Blender for. So the ticket became three: this one (the
