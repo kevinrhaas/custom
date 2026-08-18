@@ -29,6 +29,7 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
+import { createSignage } from './signage.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -239,6 +240,17 @@ async function boot() {
   });
   scene3d.add(enclosures.group);
   api.enclosures = enclosures;
+
+  // The boards the businesses hung out over the footway. Like a fence, a
+  // signboard is derived geometry rather than baked geometry — a plank on a
+  // bracket hanging off a wall the GLBs already draw — so it needs no bake
+  // either (T-0039). Mounted after the buildings it hangs on, and its height is
+  // measured from the same wall base `buildings.js` anchors them at.
+  const signage = await createSignage({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(signage.group);
+  api.signage = signage;
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -549,6 +561,17 @@ async function boot() {
     if (fence && (!hit || fence.distance < hit.distance)) {
       const record = loaded.registry.get(fence.id);
       if (record) hit = { ...fence, record };
+    }
+    /**
+     * And so can a signboard, which is the whole function of one: it hangs a
+     * metre out from the wall, so at a shop door it is the nearest thing to the
+     * crosshair, and the board a visitor aims at should open the business
+     * behind it rather than whatever the ray finds past it (T-0039).
+     */
+    const board = signage.pickAt(ndc, camera);
+    if (board && (!hit || board.distance < hit.distance)) {
+      const record = loaded.registry.get(board.id);
+      if (record) hit = { ...board, record };
     }
     if (!hit) {
       popup.close();

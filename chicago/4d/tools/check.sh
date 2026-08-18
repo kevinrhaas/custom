@@ -76,6 +76,14 @@ step "the platted block and lot grid re-derives from the module" \
 step "the dooryard garden pickets re-derive from the rule that chose their lots" \
   python3 tools/generate_dooryard_pickets.py --check
 
+# The business signboards are the same shape of claim one layer over: exactly one record
+# in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
+# reconstruction chosen by a rule about trades rather than a list of shops somebody liked.
+# Re-derived here against the committed sidecars, so the rule stays the answer to "why
+# this frontage" (ROADMAP K5 (b), T-0039).
+step "the business signboards re-derive from the rule that chose their frontages" \
+  python3 tools/generate_business_signboards.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules
