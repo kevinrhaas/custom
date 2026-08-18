@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 2:19 PM",
+  "generated_ct": "Aug 18, 2026, 2:52 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1554,6 +1554,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 7
+    },
+    {
+      "id": "T-0089",
+      "title": "The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-18",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
     }
   ]
 }

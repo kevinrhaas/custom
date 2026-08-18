@@ -66,3 +66,4 @@ T-0060 — The smoke's mobile half no longer fits the runner's ten-minute comman
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0084 — A wagon tongue is drawn as a plank on edge, not a pole
 T-0085 — The sward grows up through the Green Tree's plank walk
+T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry

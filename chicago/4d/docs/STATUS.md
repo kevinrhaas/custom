@@ -60,6 +60,28 @@ layer's lettered count still exactly one; the frontage reaching the screen from 
 same worst≥6 / mean≥0.3 bar the Green Tree's is held to; and a pick on the layer opening
 `sauganash_hotel`.
 
+**The gate as measured, in full.** `tools/check.sh` PASSES. `node tools/smoke_renderer.mjs
+--published` on the published mirror: the **mobile half ran to completion — 325 passed, 3 failed,
+and `zero page errors` PASSED**; the desktop half was killed by the runner's ten-minute ceiling
+(**T-0060**) at 157 passed / 3 failed, having already taken all four of this parcel's assertions.
+**None of the failures is this parcel's, and each was measured rather than assumed:**
+
+- `the roads reach the screen from the walker's eye` and `…from the air` — both already recorded
+  in this file as `dev`'s own, at both viewports.
+- `the panel states that once too — and counts nothing by hand` — **T-0037**, whose own body
+  records the same failure on `origin/dev` at `3114e061`. Its `occurrences: 1` half is correct;
+  what fires is the guard scanning the whole Evidence panel and finding K53's liberty saying
+  *"Three of these records…"*.
+- `scene detail 'light' stays inside its own ceiling` — **604 950 tris of 600 000**, desktop only,
+  and **new to this file**: it sits at assertion 151 of a desktop half that has not finished in
+  weeks. It is NOT this branch's. This parcel's entire addition to the scene was measured in the
+  browser at **3 684 triangles** (the frontage layer draws 7 308: 3 624 the Green Tree's, 3 684
+  the Sauganash's, separated by a bounding box — the two inns are 250 m apart), so on the most
+  generous assumption for this branch — every one of them inside the frustum at that station —
+  `dev` already stood at **601 266 of 600 000**. Filed as **T-0089** with the arithmetic, linked
+  to **T-0056** (the detail-blind enclosure layer that eats most of the budget) and **T-0060**.
+  The branch made a standing breach 0.6 % worse; it did not open it.
+
 **Known and not fixed here, and it is the same one T-0085 filed at the Green Tree:** the flora
 layer does not know a walk exists, so the sward stands up through these planks too.
 
