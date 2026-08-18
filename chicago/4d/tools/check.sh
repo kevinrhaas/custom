@@ -92,6 +92,17 @@ step "the business signboards re-derive from the rule that chose their frontages
 step "the yard goods re-derive from the rule that chose their frontages" \
   python3 tools/generate_yard_goods.py --check
 
+# The river wharves are the fourth record of this shape and the first whose rule
+# reads a record's OWN attribute rather than a trade table: a sidecar standing on
+# the scene date whose `dock` is true and graded attested or inferred. Two
+# records in this town qualify and both state their dock in the same sentence of
+# the same dossier; every other river frontage is refused by the same clause. The
+# outline is derived from the traced bank, the committed footprint and the
+# committed heightfield, so a re-traced bank or a moved warehouse must move the
+# wharf with it or fail here (ROADMAP K5 (e), T-0041).
+step "the river wharves re-derive from the records that state a dock" \
+  python3 tools/generate_river_wharves.py --check
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules

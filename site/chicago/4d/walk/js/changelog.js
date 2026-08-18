@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 180, title: 'The river warehouses have their docks', kind: 'feature', ts: '2026-08-18T11:16:05.677Z', date: 'Aug 18, 2026, 6:16 AM CT',
+    items: [
+      'One sentence in the sources gives this town its river trade: \u201cKinzie & Hunter and Dole & Newberry each had a warehouse with its dock along the river front.\u201d Both warehouses have stood here from the start with nothing in front of them but an empty bank.',
+      'Both have a wharf now \u2014 a plank deck out over the water on a timber crib, running the length of the warehouse and a little past it each way, with posts along the face to make a boat fast to. Walk down to either bank and it is the nearest thing to you.',
+      'Which two is a rule, not a choice: only a building whose own record says it had a dock gets one, and only where that is stated rather than guessed. Two buildings in the whole town qualify. Every other frontage on the river \u2014 the stores on South Water, the lumber landing, the ferry \u2014 gets nothing.',
+      'How high the deck sits is the ground\u2019s answer, not ours: it is measured off the bank it ties into, and each crib bent reaches down to the river bed under it. What the reach implies is measured too \u2014 about four feet of water at the face, enough for a lighter and not for a loaded schooner.',
+      'The size is our invention and says so. Nothing anywhere gives the length, width, height or build of either dock, so turn \u201creconstructed\u201d off in the confidence view and both wharves go, leaving the bare banks the sources leave. Aim at one and it opens the warehouse it belongs to.',
+      'Not drawn: any vessel, cargo or crane \u2014 no ship in Chicago that summer is described anywhere we have reached \u2014 and you cannot yet walk out along a deck, which the bridges can do and these cannot.',
+    ] },
   { v: 179, title: 'Barrels at the stores, and a wagon in the hotel yard', kind: 'feature', ts: '2026-08-18T10:45:58.575Z', date: 'Aug 18, 2026, 5:45 AM CT',
     items: [
       'The town\u2019s own first ordinances, printed in November 1833, legislate against timber, stone, brick, boxes and barrels stacked in the streets. A corporation does not forbid what nobody does \u2014 and until today Chicago stood on swept ground.',

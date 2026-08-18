@@ -172,6 +172,17 @@ if [ -d data/yard ]; then
   cp -a data/yard "$SITE/data/yard"
 fi
 
+# The wharf layer — the river docks at the two forwarding warehouses whose own
+# records state one, drawn by renderers/web/js/wharves.js straight from these
+# numbers. Same argument as the enclosures, the signage and the yard above and
+# the same failure if it is left out: no GLB carries any of it, so an unmirrored
+# directory is a 404 on the deployed site while the dev tree draws both docks
+# perfectly.
+if [ -d data/wharves ]; then
+  rm -rf "$SITE/data/wharves"
+  cp -a data/wharves "$SITE/data/wharves"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"

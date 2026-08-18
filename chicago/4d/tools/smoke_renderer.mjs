@@ -24,6 +24,10 @@
  *   walk moves the camera ....... input intent reaches the walker
  *   the bridge carries a walker . a deck is a surface you stand on, end to end,
  *                                 and not the wading barrier under it
+ *   the river wharves ........... the first derived layer that stands over water:
+ *                                 its deck ties into the bank it was derived
+ *                                 from, its crib reaches the bed, and neither is
+ *                                 answerable from the dataset alone
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   the roads reach the screen .. and are distinguishable from the ground they
@@ -1330,6 +1334,158 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a barrel opens the business it stands at`,
       goodsPick.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
+
+    // --- the river wharves (T-0041) --------------------------------------
+    //
+    // The fourth layer drawn from the dataset rather than baked, and the first
+    // one that stands OVER WATER. That is where its failure modes live and they
+    // are not the goods': a deck whose height came from a number beside the mesh
+    // instead of from the mesh floats over the bank it ties into (T-0001's whole
+    // finding), and a crib that does not reach the bed hangs in the river with
+    // daylight under it. Neither is visible to any dataset gate in this repo,
+    // because both are decided at load out of a terrain sample. So the geometry
+    // is measured against the record and against the terrain here, and nowhere
+    // else.
+    const docks = await page.evaluate(() => {
+      const w = window.__chicago4d.wharves;
+      const terrain = window.__chicago4d.terrain;
+      const mesh = w?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      const list = w?.wharves ?? [];
+      let ungraded = 0;
+      let notReconstructed = 0;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      // Every vertex against its own deck outline: the quad's centre plus its
+      // half-diagonal is the furthest any part of a wharf may legitimately be
+      // from that centre, and a transposed axis or a dropped rotation would put
+      // it tens of metres out rather than centimetres.
+      let worstStray = 0;
+      let lowest = Infinity;
+      if (g && list.length) {
+        const pos = g.getAttribute('position');
+        const quads = list.map((d) => {
+          const q = d.deck_quad_local_enu_m;
+          const e = q.reduce((s, p) => s + p[0], 0) / 4;
+          const n = q.reduce((s, p) => s + p[1], 0) / 4;
+          const r = Math.max(...q.map((p) => Math.hypot(p[0] - e, p[1] - n)));
+          return { e, n, r };
+        });
+        for (let i = 0; i < pos.count; i++) {
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);        // world is (E, up, -N)
+          lowest = Math.min(lowest, pos.getY(i));
+          let best = Infinity;
+          for (const q of quads) best = Math.min(best, Math.hypot(e - q.e, n - q.n) - q.r);
+          worstStray = Math.max(worstStray, best);
+        }
+      }
+      // Where each deck's own corners stand, asked of the terrain the browser
+      // loaded rather than of the heightfield the generator read.
+      const stands = list.map((d) => {
+        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
+        return {
+          id: d.structure_id,
+          deckTop: d._drawn?.deck_top_m ?? null,
+          bents: d._drawn?.bents ?? 0,
+          heelDry: [heelL, heelR].every((p) => !terrain.isWater(p[0], p[1])),
+          faceWet: [faceL, faceR].every((p) => terrain.isWater(p[0], p[1])),
+          bankY: Math.max(...[heelL, heelR].map((p) => terrain.surfaceHeight(p[0], p[1]))),
+          depth: Math.min(...[faceL, faceR].map((p) => -terrain.surfaceHeight(p[0], p[1]))),
+        };
+      });
+      return {
+        census: w?.census ?? null,
+        keepOut: (w?.keepOut ?? []).length,
+        meshes: w?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        worstStray,
+        lowest: Number.isFinite(lowest) ? lowest : null,
+        stands,
+      };
+    });
+    check(`${label}: both river warehouses have their dock`,
+      docks.census?.wharves === 2 && docks.verts > 0 && docks.keepOut === 2
+        && docks.stands.every((s) => s.bents > 0),
+      `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
+      + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
+      + `${docks.keepOut} planting keep-out(s)`);
+    check(`${label}: the whole wharf layer is one draw call`,
+      docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
+    // stood at these two frontages is stated; every metre of its size is
+    // invented (L132), and a single vertex claiming to be inferred or attested
+    // would be this layer overstating the one thing it must not.
+    check(`${label}: every wharf vertex is graded reconstructed`,
+      docks.hasConfidence && docks.ungraded === 0 && docks.notReconstructed === 0,
+      `attribute ${docks.hasConfidence ? 'present' : 'MISSING'}, ${docks.ungraded} out `
+      + `of range, ${docks.notReconstructed} claiming better than reconstructed`);
+    check(`${label}: no wharf vertex strays off its own deck outline`,
+      docks.worstStray <= 1.0,
+      `furthest vertex ${docks.worstStray?.toFixed(2)} m outside its own deck's outline`);
+    // A dock stands with its heel on the bank and its face over the water, and
+    // that is the one thing about it that is derived rather than invented: if a
+    // bank were re-traced or a warehouse moved and the generator not re-run, the
+    // deck would be on the wrong ground and every dataset gate would still pass.
+    check(`${label}: every deck ties into the bank and reaches over the water`,
+      docks.stands.length === 2 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
+        + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
+    // The deck is neither floating over the bank nor drowned in the river, and
+    // its crib reaches the bed under it — T-0001's finding, asked of a layer
+    // that has no walk surface to catch it a second time.
+    check(`${label}: no deck floats and every crib reaches the bed`,
+      docks.stands.every((s) => s.deckTop >= 0.9 - 1e-6 && s.deckTop >= s.bankY - 1e-6
+        && s.deckTop <= s.bankY + 1.0 && s.depth > 0.5)
+        && docks.lowest !== null && docks.lowest < -0.5,
+      docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
+        + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
+      + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
+    // at the wharf anchor — on the ground outside Newberry & Dole's river wall,
+    // looking down the dock's own waterward normal — and hold the clock so the
+    // grass cannot supply the difference. Same bar as the fences, the boards and
+    // the goods: worst >= 6 and mean >= 0.3.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 204.5, local_n: 9.8, yaw_deg: 339.4, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const dockWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
+    const dockWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
+    const dDock = signatureDistance(dockWith, dockWithout);
+    check(`${label}: the wharf reaches the screen from the bank`,
+      dDock.worst >= 6 && dDock.mean >= 0.3,
+      `cell delta mean ${dDock.mean?.toFixed(2)}, worst ${dDock.worst} (need worst>=6)`);
+
+    // A dock is the largest thing on any of these derived layers and it stands
+    // between a visitor on the bank and the warehouse behind them, so aiming at
+    // it has to open the building it belongs to rather than answering nothing.
+    const dockPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a wharf opens the warehouse it serves`,
+      dockPick.includes('newberry_dole_warehouse'),
+      `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
 
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));

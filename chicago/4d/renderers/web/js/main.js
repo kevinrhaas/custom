@@ -31,6 +31,7 @@ import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
+import { createWharves } from './wharves.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -266,6 +267,31 @@ async function boot() {
   });
   scene3d.add(yard.group);
   api.yard = yard;
+
+  // The river docks at the two forwarding warehouses whose own records state
+  // one (T-0041). Derived geometry like the fences, the boards and the goods, so
+  // it needs no bake — but it is the first of these layers that stands OVER THE
+  // WATER, and that is where its one hard rule comes from: the deck top is the
+  // terrain's own height at the landward edge and each crib bent is stepped down
+  // to the bed under it, so nothing here floats and nothing is drawn on a number
+  // authored beside the mesh instead of taken from it. Mounted after the yard
+  // for reading order; the two never touch, because the goods stand on the
+  // town's trading frontages and the docks are out on the bank.
+  const wharves = await createWharves({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(wharves.group);
+  api.wharves = wharves;
+
+  /**
+   * What the PLANTERS treat as built ground: the buildings' footprints plus the
+   * wharf decks. A deck is a floor, and a forb growing up through the planks
+   * reads as a hole in the model. Kept as its own array rather than pushed into
+   * `footprints`, which the walker holds by reference and the picker resolves by
+   * structure id — a second polygon under a building's id would answer for the
+   * building itself.
+   */
+  const planting = footprints.concat(wharves.keepOut);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -295,13 +321,13 @@ async function boot() {
   BUDGET.triangles = DETAIL[detailLevel].triangles;
 
   let flora = await createFlora({
-    dataBase: bases.dataBase, terrain, footprints,
+    dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
     confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
   let trees = await createTrees({
-    dataBase: bases.dataBase, terrain, footprints,
+    dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
     confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
     // Which sward a point stands in, so the woody layer plants the lakeshore
@@ -330,7 +356,7 @@ async function boot() {
       scene3d.remove(flora.group);
       flora.dispose?.();
       flora = await createFlora({
-        dataBase: bases.dataBase, terrain, footprints,
+        dataBase: bases.dataBase, terrain, footprints: planting,
         growthBlocked: streets.blocksGrowth,
         confidence, problems, ...detailOpts(),
       });
@@ -339,7 +365,7 @@ async function boot() {
       scene3d.remove(trees.group);
       trees.dispose?.();
       trees = await createTrees({
-        dataBase: bases.dataBase, terrain, footprints,
+        dataBase: bases.dataBase, terrain, footprints: planting,
         growthBlocked: streets.blocksGrowth,
         confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
         zoneAt: (e, n) => flora.zoneAt(e, n),
@@ -599,6 +625,17 @@ async function boot() {
     if (goods && (!hit || goods.distance < hit.distance)) {
       const record = loaded.registry.get(goods.id);
       if (record) hit = { ...goods, record };
+    }
+    /**
+     * And so can a wharf, which is the largest thing on any of these derived
+     * layers: it reaches out over the water in front of the warehouse, so from
+     * the bank it is nearer to the crosshair than the shed it belongs to. A dock
+     * opens the warehouse it serves (T-0041).
+     */
+    const dock = wharves.pickAt(ndc, camera);
+    if (dock && (!hit || dock.distance < hit.distance)) {
+      const record = loaded.registry.get(dock.id);
+      if (record) hit = { ...dock, record };
     }
     if (!hit) {
       popup.close();

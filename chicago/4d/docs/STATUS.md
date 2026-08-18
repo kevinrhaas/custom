@@ -1,5 +1,75 @@
 # STATUS
 
+## Shipped 2026-08-18 — the two river warehouses have their docks
+
+**T-0041 (piece 4 of 4 of T-0003, legacy K5 (e)).** `docs/ROADMAP.md` K5 (e) asks for
+*"docks/wharves at the forwarding houses (attested 'with its dock along the river front')"*. It is
+the last clause of that box and the one that had been owed longest:
+
+* **Two records state a dock and both state it in the same sentence.**
+  docs/research/03-structures-north.md §3.10 — *"Kinzie & Hunter and Dole & Newberry each had a
+  warehouse WITH ITS DOCK ALONG THE RIVER FRONT"* — which is the clause that attests the Kinzie &
+  Hunter building at all; and Andreas independently names *"Newberry & Dole's wharf"* as the place
+  the schooner *Illinois*, the first vessel through the new cut, was cheered on 12 July 1834
+  (scan p. 503).
+* **Both carried `geometry: "absent"` over it**, so the strongest confidence chip in the dataset
+  stood in front of a bare bank. `docs/LIBERTIES.md` **L66** recorded that as owed in 2026-08-11 and
+  named the reason it had not been paid: *"this project has a `pier_crib` archetype for the harbour
+  piers and nothing for a river wharf"*. That reason is a BAKE reason, and AGENTS.md
+  § RECONSTRUCTED IS A TIER is the answer to it — the renderer-side half needs no Blender, which is
+  the same argument that already carries the fences, the boards and the goods.
+
+**What shipped.** `data/wharves/` (manifest + one generated record),
+`renderers/web/js/wharves.js` (one draw call, its own program cache key, every vertex graded
+`reconstructed`, pickable to the warehouse behind it), `tools/generate_river_wharves.py`, a
+`tools/check.sh` step that re-derives the record byte for byte, a `tools/publish.sh` copy rule and
+its `check_published.mjs` COPIES row, and a `newberry_dole_wharf` viewpoint in the Go-to tab.
+**Two wharves, 26 crib bents, 1,224 vertices.** Both `dock` attributes move from
+`geometry: "absent"` to `geometry: "simplified"`, which is the exact claim: a reconstructed wharf
+of standard form stands in the place of the attribute, and the attribute's own value — *true* — is
+all of it that comes from evidence.
+
+**THE RULE, which is the answer to "why these two".** A sidecar standing on the scene date whose
+own `dock` attribute is true and graded `attested` or `inferred` — the last clause refusing a wharf
+drawn on a *reconstructed* dock, which would be an invention resting on an invention. Run over the
+whole town it selects exactly two records and refuses every other river frontage in the dataset:
+the South Water stores, the lumber landing, the ferry. Nothing else here says it had a dock.
+
+**WHAT IS DERIVED AND WHAT IS INVENTED**, because the split is the point of the layer:
+
+* **Derived, with no free numbers at all.** The wall each wharf serves is the committed footprint's
+  own max-`v` edge through `docs/GLB-CONTRACT.md`'s frame (the same three lines
+  `generate_business_signboards.py` composes). Where it stands is the traced 1834 bank line, nearest
+  point to the middle of that wall, and the deck runs along the BANK's own tangent — which differs
+  from square-to-the-building by about 20° at both sites. The clearance to the wall it serves
+  (5.93 m and 6.33 m) and the depth at its face are measured, not assumed.
+* **Invented, every one of them in `form` with its bound stated and claimed at L132.** The face
+  6.0 m beyond the traced line, the heel 2.0 m back into the bank, the 3.0 m apron past the
+  building each way, the 0.14 m plank, the 0.90 m freeboard floor, the 1.20 m crib and the three
+  snubbing posts.
+* **The deck's HEIGHT is neither.** It is the ground's own height along the landward edge, sampled
+  from the terrain at load — T-0001's finding about the bridge deck, where a height authored beside
+  the mesh instead of taken from it put a walker 1.8 m over the planks. At both of these sites the
+  bank is lower than the freeboard floor, so both decks hold **0.90 m** over the water plane.
+
+**Measured.** Depth at the face, off the committed heightfield: **1.28–1.32 m** at Newberry &
+Dole's, **1.14–1.29 m** at Kinzie & Hunter's. That is water for a lighter or a scow and not for a
+loaded lake schooner, and the record carries it as `depth_at_face_m` so what the invented reach
+implies is on the record rather than in somebody's head. Layer **1,224 vertices in one draw call**.
+Every deck's heel corners stand on dry ground and every face corner over water, asserted in the
+smoke against the terrain the browser loaded rather than the heightfield the generator read.
+
+**Not claimed.** That either dock was this size, this shape or this construction — the confidence
+view takes both wharves down and leaves the bare banks the sources leave. **Neither deck is a walk
+surface**: `walkHeight()` keeps its wading barrier over the water, so a visitor sees a wharf from
+the bank and cannot walk out along one, which is filed as its own ticket rather than half-built
+here. **No vessel, cargo, crane, gangway or name is drawn** — nothing this project holds describes
+any vessel in Chicago at the scene date, and a hull would be a larger invention than the deck it
+would lie at. **The bank each warehouse stands on is still disputed or unattested** (L66, open):
+if either building is on the wrong side of the river, its wharf is on the wrong side with it.
+Nothing here is baked, and the generator half — a river-wharf mode of `pier_crib`, so a baked town
+carries its own docks — is still owed.
+
 ## Shipped 2026-08-18 — barrels and cases at twenty-six doors, and the town's one wagon
 
 **T-0040 (piece 3 of 4 of T-0003, legacy K5 (c)).** `docs/ROADMAP.md` K5 (c) asks for *"yard

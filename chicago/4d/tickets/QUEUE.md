@@ -44,3 +44,5 @@ T-0054 — Every liberty appended since L111 lands under the Resolved heading an
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
+T-0058 — A visitor can walk out along a wharf deck
+T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
