@@ -4381,6 +4381,45 @@ of standing in for it — the same shape of answer L32's tuft bundle is waiting 
 **Recorded:** 2026-08-18.
 
 
+### L138 — The wagons' running gear: every timber between box and axles is invented
+**Decision:** each farm wagon on the yard layer is now drawn with a **bolster over each axle**, a
+**reach** (coupling pole) tying the rear axle forward to the front gear, **two hounds** bracketing
+that reach and running on past the front axle to the tongue's root, and a **kingbolt** through
+bolster, hounds and axle (`renderers/web/js/yard.js`, `buildWagon`). Six timbers, none of them in
+any source this project holds, all graded `reconstructed`.
+**Why:** until now there was nothing at all between the box and the axles. The floor sits at
+0.95 m, the rear axle at 0.685 m and the front at 0.535 m, so the box hovered **0.27 m above one
+axle and 0.42 m above the other**, carried by air, and the two axles were not joined to each other
+by anything. The owner read it from the Green Tree's yard on 2026-08-18 — *"it looks like that bar
+is supposed to be below the carriage of the wagon holding the wheels together but not sure. all the
+wagons seem off"* — and the bar he had found was the tongue (T-0084), because the member he was
+looking for did not exist. A wagon with no running gear is not a simplification of a wagon; it is a
+different object.
+**What bounds the invention, and it bounds it tightly.** Only the six SECTIONS are free numbers —
+a bolster 0.11 m thick fore-and-aft showing 0.06 m past the box's side, a reach 0.09 m across,
+a hound 0.07 m, a kingbolt 0.038 m square with 0.05 m of its nut showing below the axle. Every
+POSITION is derived from figures the record already carries. Both bolsters are the same depth
+because a bolster's whole job is to bring two different axle heights up to one level floor, so the
+**larger rear wheel sets that level** and the front bolster reaches down to the same line; what is
+left underneath is exactly the space the hounds and the reach occupy. The reach sits on the top of
+the front axle and passes under the rear one because that is where the two recorded wheel diameters
+put it. Change `wagon_body_m` or either wheel and the whole gear follows.
+**What is NOT invented here.** No recorded dimension moved to accommodate the gear. The wheel
+diameters (1.37 m and 1.07 m), the body (3.05 x 1.07 x 0.55 m) and the bed height (0.95 m) are the
+values L131 already claims and they are untouched — the gap was closed by drawing the members that
+belong in it, not by dropping the box or shrinking the wheels.
+**Consequence:** the wagon is 72 more triangles, and there are four of them in the town. It is also
+now a wagon whose front gear visibly turns, which is a claim about the TYPE of vehicle — a farm
+wagon, steering on a kingbolt — and not merely about its timber. Nothing in the record states the
+type either; it follows from L131's invented dimensions, which are a farm wagon's.
+**How to resolve:** any period drawing or description of a wagon in this town at this date detailed
+enough to show what is under the box. The 2026-08-18 owner brief's images 7 and 11 (farm wagons in
+the Green Tree's yard, and the ox-drawn covered train) both show gear under the box and are what
+this entry was drawn from in spirit; they are tier-5 pictorial sources and settle the SHAPE, never
+a dimension.
+**Recorded:** 2026-08-18.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

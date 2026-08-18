@@ -1,5 +1,49 @@
 # STATUS
 
+## Shipped 2026-08-18 — T-0087: the wagon box rests on its running gear
+
+**The owner's report, and the half of it T-0084 did not answer.** From the Green Tree's yard:
+*"it looks like that bar is supposed to be below the carriage of the wagon holding the wheels
+together but not sure. all the wagons seem off."* The bar was the tongue and T-0084 made it a pole
+— but the instinct behind the sentence was a second, independent defect. `buildWagon` drew a box, two
+0.05 m axle sticks and four wheels and **nothing in between**: the floor at 0.95 m, the rear axle at
+0.685 m, the front at 0.535 m, so the box hovered **0.27 m over one axle and 0.42 m over the other**
+and the two axles were joined to each other by nothing at all. The eye reads a missing member, goes
+looking for it, and finds the tongue lying in the grass.
+
+**What changed.** Six timbers per wagon, on all four: a **bolster** over each axle (the box rests on
+these), a **reach** on the centreline tying the rear axle forward to the front gear, **two hounds**
+bracketing that reach and running on past the front axle to the tongue's root, and a **kingbolt**
+through bolster, hounds and axle with its nut showing below.
+
+**Only the sections are chosen; every position is derived.** Both bolsters are the same depth,
+because a bolster's job is to bring two different axle heights up to one level floor — so the larger
+**rear** wheel sets that level and the front bolster reaches down to the same line, and what is left
+underneath is exactly the space the hounds and the reach occupy. The reach sits on the top of the
+front axle and passes under the rear one because the two recorded wheel diameters put it there.
+Change `wagon_body_m` or either wheel and the gear follows. **No recorded value moved**: the wheels
+(1.37 m / 1.07 m), the body (3.05 × 1.07 × 0.55 m) and the bed height (0.95 m) are L131's own
+numbers, untouched — the gap was closed by drawing the members that belong in it, not by dropping
+the box or shrinking the wheels.
+
+**Cost, measured in the browser at the owner's stand.** 636 410 → **636 986 triangles**, 45 draw
+calls unchanged, one draw call for the whole layer as before. Six boxes per wagon is 72 triangles of
+geometry each; the frame counter reads it twice because the layer is drawn in the shadow pass too.
+
+**Evidence.** `docs/evidence/t-0087-{before,after}.png` — the owner's stand, E −132.78 / N −99.5,
+bearing 000°, 1280×800, detail full. `docs/evidence/t-0087-close-{before,after}.png` — broadside at
+3.2 m from the same wagon, which is where the daylight was: before, the grass and the next wagon are
+visible straight through the gap under the box; after, there is gear there.
+
+**Recorded as a liberty.** **L138** — every one of the six timbers is invented, and the entry states
+what bounds each: the six sections are free numbers, every position is arithmetic on the recorded
+wheels and body. Tier `reconstructed`, so turning `reconstructed` off in the confidence view takes
+the gear with the rest of the wagon.
+
+**What this run did NOT do.** `scene detail 'light' stays inside its own ceiling` is **T-0089**, open
+and pre-existing on `dev`; this branch adds 576 triangles to a breach that stood at ~605 000 of
+600 000 before it, and did not open it. The mobile road-contrast rows are `dev`'s own, below.
+
 ## Shipped 2026-08-18 — T-0084: the wagon tongue is a pole at its own section
 
 **An owner report, confirmed twice.** The ticket was opened from the code while T-0081 shipped —

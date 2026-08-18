@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 189, title: 'The wagon box rests on its gear, not on air', kind: 'fix', ts: '2026-08-18T22:53:00.042Z', date: 'Aug 18, 2026, 5:53 PM CT',
+    items: [
+      'Every wagon in this town was a box, two axles and four wheels with nothing in between. The box floated a foot above one axle and sixteen inches above the other, and the two axles were not joined to each other by anything at all.',
+      'The gear is under there now. A bolster — a cross-timber — sits over each axle, and the box rests on those; a long pole down the middle ties the rear axle forward to the front wheels; and two side timbers grip that pole and run on to meet the tongue, so the tongue is carried by the wagon instead of ending in the air beside it.',
+      'The front gear reads as something that turns: the side timbers carry a pin through the bolster and the axle, and the nut on the bottom of it shows under the front wheels. That is how a farm wagon steers.',
+      'Look under a wagon before and after and the daylight is gone — you could see the grass and the next wagon straight through the gap.',
+      'None of these timbers is recorded anywhere, so all of it is our reconstruction. Only the thicknesses were free to choose: where each member sits is worked out from the wheel sizes and the bed height already on file, and nothing recorded was moved to close the gap.',
+    ] },
   { v: 188, title: 'A wagon\u2019s tongue is a pole, not a plank', kind: 'fix', ts: '2026-08-18T22:09:22.911Z', date: 'Aug 18, 2026, 5:09 PM CT',
     items: [
       'Every wagon in this town had a heavy dark board lying in the grass ahead of it, sloping down from the front axle. That board is the tongue \u2014 the pole a team is hitched to \u2014 and it was being drawn half a metre deep.',
