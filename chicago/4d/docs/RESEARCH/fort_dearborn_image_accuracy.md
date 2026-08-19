@@ -66,6 +66,10 @@ numbering. Filed as a ticket rather than built or forgotten.
 same stand, at local `1000, 30`, yaw 70°:
 `fort_road_before_2026-08-19.png` → `fort_road_after_2026-08-19.png`.
 
+`fort_road_published_2026-08-19.png` is the same stand on the PUBLISHED mirror, which is the
+run that matters here — the source tree loads uncompressed masters and the site loads the
+derivatives, and this project has shipped bugs in that gap twice. Zero page errors either way.
+
 It leaves the east end of South Water Street, crosses the reservation east of the garrison
 garden and past the Beaubien buildings, and arrives at the fort's south gate. The reasoning,
 and the line between what is documented and what is invented, is in the record's own note and
