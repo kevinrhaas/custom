@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 195, title: 'Three roofs on the Lake and Clark corner', kind: 'feature', ts: '2026-08-19T11:53:49.365Z', date: 'Aug 19, 2026, 6:53 AM CT',
+    items: [
+      'Walk west along Lake Street from the butcher\u2019s and the town used to run out at the baker\u2019s: past it, the whole corner at Clark Street was open grass, with the next buildings a block away.',
+      'Three buildings stand on that corner now \u2014 a log dwelling built right up to the Clark line, a one-room cottage and a deep-plan cottage, wall to wall on the street, with a privy in the yard behind them.',
+      'They are three on ONE lot, which is the change behind the change. Until tonight a lot could carry one building, so the last free frontage on this block could only ever have held one cottage set back on grass.',
+      'A lot of this town has room for three: its street frontage is 23.6 m at the narrowest, the buildings already standing in rows here average 6.1 m wide, and the survey keeps 1.5 m clear at each end. Three fit and a fourth does not.',
+      'Nothing was added to the town. The four roofs come out of the part of the 665 that is waiting on ground the project has no street survey for \u2014 they moved inward, to a corner you can walk to.',
+      'All four are invented, like every anonymous building here. Turn \u201creconstructed\u201d off in the confidence view and the corner goes back to grass.',
+    ] },
   { v: 194, title: 'Two storeys close the South Water row', kind: 'feature', ts: '2026-08-19T10:20:07.259Z', date: 'Aug 19, 2026, 5:20 AM CT',
     items: [
       'The row that went up along South Water Street last night runs east to State Street and stopped there in a one-room cottage \u2014 a terrace of low cottages the whole length of the town\u2019s business front.',

@@ -82,6 +82,12 @@ from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
 from block_faces import extent as face_extent, face_frame  # noqa: E402
 from block_faces import project as face_project  # noqa: E402
 
+# How many party-line units a lot of the committed grid holds (T-0079). Authored in
+# tools/reconcile_665.py because that is where the schedule counts with it; imported
+# here rather than retyped, so the ceiling the schedule deals against and the ceiling
+# the generator enforces cannot become two numbers.
+from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
+
 # The family band, and the one rule that turns it into an instance's dimensions. It
 # used to live in this file; the North Division parcel needed the same arithmetic and
 # had a retyped constant instead, so the rule moved to one module both import
@@ -506,10 +512,13 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
 
     anchor = slot.get("anchor") or {}
     described = (
-        f"the east end of the run's own frontage, {float(anchor.get('clear_m', LOT_MARGIN_M)):.1f} m "
-        f"clear of the side lot line at that end" if "corner" in anchor
+        f"the {anchor.get('corner')} end of the run's own frontage, "
+        f"{float(anchor.get('clear_m', LOT_MARGIN_M)):.1f} m clear of the side lot line at "
+        f"that end" if "corner" in anchor
         else f"the west wall of {anchor['abut_west_of']}, which it shares a party line with"
         if anchor.get("abut_west_of")
+        else f"the east wall of {anchor['abut_east_of']}, which it shares a party line with"
+        if anchor.get("abut_east_of")
         else f"{float(anchor.get('clear_m', 0)):.1f} m west of {anchor.get('clear_west_of')}, "
         f"which stands proud of the platted line and so cannot share a wall with the row")
     position_note = FRONTAGE_NOTE.format(
@@ -545,7 +554,8 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
         del reconstruction["lot_index"]
         reconstruction["frontage"] = {
             "block": block["block_id"], "face": block["frontage"]["face"],
-            "setback_m": setback, "abuts": anchor.get("abut_west_of"),
+            "setback_m": setback,
+            "abuts": anchor.get("abut_west_of") or anchor.get("abut_east_of"),
             "why": block["frontage"]["why"],
         }
     mapping = (" H-family house massing currently resolves through the frame dwelling "
@@ -714,36 +724,49 @@ def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
         progressed = False
         for sid, record in list(pending.items()):
             anchor = record["_frontage"]
-            if "corner" in anchor:
-                if anchor["corner"] != "east":
-                    raise SystemExit(f"{sid}: only the east end of a face anchors a run today")
-                east = strip["along_max"] - float(anchor.get("clear_m", LOT_MARGIN_M))
-            else:
-                # `abut_west_of` shares a party line with the named building; `clear_west_of`
-                # stands a stated distance west of it instead, which is how a run breaks
-                # around a documented store that stands PROUD of the platted line. Several
-                # of the South Water stores do: they were placed from typed coordinates
-                # before the plat module existed and their walls sit in the corridor, so a
-                # row on the platted line cannot share a wall with them and the three-metre
-                # separation rule — not this recipe — is what fixes the size of the break.
-                target = anchor.get("abut_west_of") or anchor.get("clear_west_of")
-                if target is None:
-                    raise SystemExit(f"{sid}: a frontage slot anchors on the end of the "
-                                     f"run, abuts a named building or stands clear west "
-                                     f"of one")
-                polygon = resolved.get(target) or committed.get(target)
-                if polygon is None:
-                    if target in mine:
-                        continue  # its own anchor has not been placed yet
-                    raise SystemExit(f"{sid}: nothing in the dataset is called {target}")
-                east = face_extent(face, polygon)[0]
-                if "clear_west_of" in anchor:
-                    east -= float(anchor["clear_m"])
-
             phase = record["phases"][0]
             polygon = phase["footprint"]["polygon"]
             width = max(p[0] for p in polygon) - min(p[0] for p in polygon)
             depth = max(p[1] for p in polygon) - min(p[1] for p in polygon)
+            if "corner" in anchor:
+                # T-0079 opened the WEST end. A run anchored east packs back toward the
+                # block corner and stops wherever the roofs it was dealt run out, so the
+                # corner lot's corner is the one piece of frontage a row can never reach —
+                # and a corner built to the corner is exactly what the street plates show.
+                # A west-anchored run starts against the corner margin instead and chains
+                # east with `abut_east_of`, which is the same party line read the other way.
+                if anchor["corner"] not in ("east", "west"):
+                    raise SystemExit(f"{sid}: a run anchors on the east or the west end "
+                                     f"of its face, not {anchor['corner']!r}")
+                if anchor["corner"] == "east":
+                    east = strip["along_max"] - float(anchor.get("clear_m", LOT_MARGIN_M))
+                else:
+                    east = strip["along_min"] + float(anchor.get("clear_m", LOT_MARGIN_M)) + width
+            else:
+                # `abut_west_of` shares a party line with the named building and stands west
+                # of it; `abut_east_of` is the same wall from the other side, for a run that
+                # chains away from the west corner. `clear_west_of` stands a stated distance
+                # west instead, which is how a run breaks around a documented store that
+                # stands PROUD of the platted line. Several of the South Water stores do:
+                # they were placed from typed coordinates before the plat module existed and
+                # their walls sit in the corridor, so a row on the platted line cannot share
+                # a wall with them and the three-metre separation rule — not this recipe —
+                # is what fixes the size of the break.
+                target = (anchor.get("abut_west_of") or anchor.get("abut_east_of")
+                          or anchor.get("clear_west_of"))
+                if target is None:
+                    raise SystemExit(f"{sid}: a frontage slot anchors on an end of the "
+                                     f"run, abuts a named building or stands clear west "
+                                     f"of one")
+                neighbour = resolved.get(target) or committed.get(target)
+                if neighbour is None:
+                    if target in mine:
+                        continue  # its own anchor has not been placed yet
+                    raise SystemExit(f"{sid}: nothing in the dataset is called {target}")
+                span = face_extent(face, neighbour)
+                east = span[1] + width if anchor.get("abut_east_of") else span[0]
+                if "clear_west_of" in anchor:
+                    east -= float(anchor["clear_m"])
             # The footprint's (0, 0) corner, which is what the GLB contract anchors on:
             # walk back from the east wall along the face, then in from the face line by
             # the setback and the building's own depth.
@@ -806,8 +829,13 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
         target = record["reconstruction"]["frontage"].get("abuts")
         if not target or target not in spans:
             continue
-        gap = spans[target][0] - spans[record["id"]][1]
-        if abs(gap) > 0.005:
+        # A shared wall is one wall from either side: the record is west of its neighbour
+        # or east of it, and the party line is the smaller of the two readings. Taking the
+        # minimum rather than branching on the recipe's key means the assertion is a
+        # measurement of the geometry and cannot be satisfied by relabelling the anchor.
+        gap = min(abs(spans[target][0] - spans[record["id"]][1]),
+                  abs(spans[record["id"]][0] - spans[target][1]))
+        if gap > 0.005:
             raise SystemExit(f"{record['id']} stands {gap:.3f} m from the party line it "
                              f"shares with {target}")
     # the run inside its own frontage, clear of the lines it did not earn
@@ -898,10 +926,21 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
             if r["reconstruction"]["inventory_class"] == "principal_functional"
             and "lot_index" in r["reconstruction"]]
     if frontage:
-        if len(row) != len(frontage["lots"]):
-            raise SystemExit(f"{block['block_id']}: the run carries {len(row)} roofs "
-                             f"against the {len(frontage['lots'])} lots it was dealt. A "
-                             f"row is denser than the lot grid, not larger than it")
+        # T-0079, the core density standard. This gate used to read `!=`: a run carried
+        # exactly one roof per lot it was dealt, which made a row exactly as dense as the
+        # lot grid and left "a row is denser than the lot grid" a sentence with no
+        # arithmetic behind it. The ceiling is now the one the schedule counts in —
+        # `ROW_UNITS_PER_LOT` units per lot of frontage, measured at the smallest lot on
+        # the committed grid — and the run's OWN strip, which `check_frontage` already
+        # holds it inside with the plat's margin at each end, is what makes it physical.
+        # Two ceilings, and the tighter one binds; neither of them is the conjectural
+        # side lot line, which is the whole point.
+        if len(row) > ROW_UNITS_PER_LOT * len(frontage["lots"]):
+            raise SystemExit(f"{block['block_id']}: the run carries {len(row)} roofs on "
+                             f"{len(frontage['lots'])} lot(s) of frontage, past the "
+                             f"{ROW_UNITS_PER_LOT} units a lot of this grid holds at the "
+                             f"row's own measured spacing. A row is denser than the lot "
+                             f"grid, not unbounded by it")
         if any(r["reconstruction"]["inventory_class"] != "principal_functional"
                for r in row):
             raise SystemExit(f"{block['block_id']}: a yard building cannot stand in the "

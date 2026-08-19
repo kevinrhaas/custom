@@ -837,6 +837,46 @@
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
     },
+    "recon_1835_blk_lake_clark_a3_04__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4252,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "6ed526ff6b37053fc219fdbc5929bfddc4d1213a8b6efdca24902ad1e6e2f86d",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_a3_04.json"
+    },
+    "recon_1835_blk_lake_clark_d1_01__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "bytes": 6520,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "becb40d4eee93be7960ce25596af27b07f4f6304a7be5f0ffa3f1d555d084484",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d1_01.json"
+    },
+    "recon_1835_blk_lake_clark_d3_02__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6496,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "134c297805babcf5f367fb388229e9623097e16ee24152ab1a2319cafcbcb52e",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d3_02.json"
+    },
+    "recon_1835_blk_lake_clark_d5_03__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6504,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "32d66176e0134a1891512ae4423a64faa30621af1eb33f2664a777e703490e53",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d5_03.json"
+    },
     "recon_1835_blk_lake_market_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
       "bytes": 4968,

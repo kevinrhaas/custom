@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 19, 2026, 6:14 AM",
+  "generated_ct": "Aug 19, 2026, 6:54 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1378,7 +1378,7 @@
     {
       "id": "T-0079",
       "title": "Reconstructed infill across the remaining core blocks",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1388,7 +1388,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/19/2026, 6:36:27 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 6
@@ -1806,6 +1806,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0104",
+      "title": "Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-19",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
+    },
+    {
+      "id": "T-0105",
+      "title": "Apply the core density standard to the next core block below the bar",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0073",
+      "opened": "2026-08-19",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
     }
   ]
 }
