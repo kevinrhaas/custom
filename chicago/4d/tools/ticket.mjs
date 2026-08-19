@@ -114,35 +114,90 @@ function slugOf(title) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
 }
 
+const git = (args) => execFileSync('git', args, {
+  cwd: ROOT, encoding: 'utf8', timeout: 20_000, stdio: ['ignore', 'pipe', 'ignore'],
+});
+
+/** The branch this checkout is on, or '' when detached or there is no git. */
+function currentBranch() {
+  try { return git(['rev-parse', '--abbrev-ref', 'HEAD']).trim(); } catch { return ''; }
+}
+
 /**
- * Remote branches that look like somebody is already working this ticket.
+ * Every branch head on the remote, read ONCE per process — `inflight` asks about
+ * a hundred tickets and one `ls-remote` answers all of them. `main` and `dev` are
+ * never work-in-progress, so they never appear.
+ *
+ * Failure returns [] on purpose: these callers stand between a run and its work,
+ * and a network blip must never be able to stop one.
+ */
+let branchCache = null;
+function remoteBranches() {
+  if (branchCache) return branchCache;
+  try {
+    branchCache = git(['ls-remote', '--heads', 'origin'])
+      .split('\n')
+      .map((l) => {
+        const [sha, ref] = l.split('\t');
+        return { name: ref?.split('refs/heads/')[1]?.trim(), sha: sha?.trim() };
+      })
+      .filter((b) => b.name && b.name !== 'main' && b.name !== 'dev');
+  } catch {
+    branchCache = [];
+  }
+  return branchCache;
+}
+
+/**
+ * How many hours since this branch was last pushed to, or null if unknowable.
+ *
+ * NOT ancestry. Everything here squash-merges, so a merged branch's head is never
+ * an ancestor of `dev` and `merge-base --is-ancestor` answers "unmerged" for every
+ * branch that ever landed — a confidently wrong signal, which is worse than none.
+ * Age is the honest one: a steward run lasts under two hours, so a branch whose tip
+ * is a day old is not a run at work, whatever its ticket says.
+ *
+ * Reads the commit only if it is already in this clone (it is, for anything fetched);
+ * no network, and null when the object is absent.
+ */
+function branchAgeHours(sha) {
+  if (!sha) return null;
+  try {
+    const ts = Number(git(['log', '-1', '--format=%ct', sha]).trim());
+    return Number.isFinite(ts) ? (Date.now() / 1000 - ts) / 3600 : null;
+  } catch {
+    return null;
+  }
+}
+
+/** A run lasts ~1 hour; nothing older than this is one, whatever else is true. */
+const RUN_HOURS = 3;
+
+/**
+ * Does this branch name carry this ticket's number?
  *
  * Branch names are not standardised — the same ticket has been worked on
  * `steward/t62-more-docks` and `steward/t-0062-more-docks` — so match the NUMBER
  * with its padding and its separator optional, and refuse to match a longer one
- * (T-0062 must not fire on `t-0620`). `main` and `dev` are never a rival, and
- * neither is the branch you are standing on.
- *
- * Every failure path returns [] on purpose: this is a courtesy check standing
- * between a run and its work, and a network blip must never be able to stop one.
+ * (T-0062 must not fire on `t-0620`).
  */
-function remoteBranchesFor(id) {
+function branchCarries(branch, id) {
   const n = /^T-(\d+)$/.exec(id)?.[1];
-  if (!n) return [];
-  const pat = new RegExp(`(?:^|[^0-9a-z])t-?0*${Number(n)}(?![0-9])`, 'i');
-  const git = (args) => execFileSync('git', args, {
-    cwd: ROOT, encoding: 'utf8', timeout: 20_000, stdio: ['ignore', 'pipe', 'ignore'],
-  });
-  let here = '';
-  try { here = git(['rev-parse', '--abbrev-ref', 'HEAD']).trim(); } catch { /* detached, or no git */ }
-  try {
-    return git(['ls-remote', '--heads', 'origin'])
-      .split('\n')
-      .map((l) => l.split('refs/heads/')[1]?.trim())
-      .filter((b) => b && b !== here && b !== 'main' && b !== 'dev' && pat.test(b));
-  } catch {
-    return [];
-  }
+  if (!n) return false;
+  return new RegExp(`(?:^|[^0-9a-z])t-?0*${Number(n)}(?![0-9])`, 'i').test(branch);
+}
+
+/** Branches that look like somebody ELSE is already working this ticket. */
+function remoteBranchesFor(id) {
+  const here = currentBranch();
+  return remoteBranches()
+    .filter((b) => b.name !== here && branchCarries(b.name, id))
+    .map((b) => {
+      const age = branchAgeHours(b.sha);
+      return age !== null && age > RUN_HOURS
+        ? `${b.name}  (last pushed ${Math.round(age)}h ago — older than a run, likely litter)`
+        : b.name;
+    });
 }
 
 function find(tickets, id) {
@@ -458,6 +513,74 @@ switch (cmd) {
     break;
   }
   case 'board': generateBoard(tickets); console.log(`BOARD.md + tickets.json regenerated (${tickets.length} tickets)`); break;
+  /**
+   * WHAT IS BEING WORKED ON RIGHT NOW — the one question the files cannot answer.
+   *
+   * A ticket's state lives in its file, and the file only reaches `dev` when its PR
+   * merges, so BOARD.md can show the queue and what has landed but never what is in
+   * flight. The remote branch list can: a run pushes its branch in its first commit,
+   * hours before anything merges. So read the branches and map them back to tickets.
+   *
+   * Three things fall out of that mapping, and each is worth seeing:
+   *   - a branch on an OPEN ticket — that is the loop, working, right now;
+   *   - a branch on a DONE ticket — a leftover, safe to delete;
+   *   - a ticket the files call `claimed` with no branch — an abandoned claim.
+   */
+  case 'inflight': {
+    const here = currentBranch();
+    const branches = remoteBranches();
+    const rows = [];
+    for (const b of branches) {
+      const t = tickets.find((x) => branchCarries(b.name, x.id));
+      if (t) rows.push({ b: b.name, t, age: branchAgeHours(b.sha) });
+    }
+    // Live work first: a young branch on a ticket that is not finished.
+    const isLive = (r) => !['done', 'withdrawn'].includes(r.t.state) && (r.age === null || r.age <= RUN_HOURS);
+    rows.sort((a, b) => Number(isLive(b)) - Number(isLive(a)) || a.t.id.localeCompare(b.t.id));
+
+    if (!branches.length) {
+      console.log('no remote branches readable (no network, or no git) — nothing to report');
+      break;
+    }
+    const live = rows.filter(isLive);
+    const cold = rows.filter((r) => !isLive(r));
+    const age = (r) => (r.age === null ? '' : r.age < 1 ? `${Math.round(r.age * 60)}m ago` : `${Math.round(r.age)}h ago`);
+
+    if (!live.length) {
+      console.log('IN FLIGHT — nothing. No fresh branch carries a ticket number.');
+    } else {
+      console.log(`IN FLIGHT — ${live.length} branch(es) pushed within ${RUN_HOURS}h on unfinished tickets:\n`);
+      for (const r of live) {
+        console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
+        console.log(`          ↳ ${r.b}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+      }
+    }
+    console.log('Git cannot tell you whether a branch LANDED — everything here squash-merges,');
+    console.log('so a merged branch never becomes an ancestor of dev. The PR list is the truth:');
+    console.log('  https://github.com/kevinrhaas/custom/pulls\n');
+
+    if (cold.length) {
+      console.log(`Cold — finished tickets, or branches older than a run (${cold.length}):`);
+      for (const r of cold) {
+        console.log(`  ${r.b}  (${r.t.id}, ${r.t.state}${age(r) ? ', ' + age(r) : ''})`);
+      }
+      console.log('  Most are leftovers whose PR merged; delete with `git push origin --delete <branch>`.\n');
+    }
+
+    // A claim with no branch behind it is the shape of an abandoned run.
+    const orphans = tickets.filter((t) => ['claimed', 'review'].includes(t.state)
+      && !rows.some((r) => r.t.id === t.id));
+    if (orphans.length) {
+      console.log(`Claimed in the merged files, with no branch on the remote (${orphans.length}) —`);
+      console.log('a run that claimed and never pushed, or a branch already deleted:');
+      for (const t of orphans) console.log(`  ${t.id}  ${t.title}${t.claimed_by ? `  [${t.claimed_by}]` : ''}`);
+      console.log('');
+    }
+
+    const unmatched = branches.length - rows.length;
+    if (unmatched > 0) console.log(`${unmatched} other branch(es) carry no ticket number (bakes, chores) — not listed.`);
+    break;
+  }
   case 'check': {
     const problems = check(tickets);
     if (problems.length) {
@@ -471,6 +594,6 @@ switch (cmd) {
     break;
   }
   default:
-    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|list|board|check');
+    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|board|check');
     process.exit(cmd ? 1 : 0);
 }
