@@ -182,6 +182,13 @@ is the contract. The short form:
 - **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
   starts. This is not optional bookkeeping; an owner request going untracked for days is
   the exact failure this system exists to close.
+- **Finish your PR inside the run that opened it** — merge on a green gate, or `block`, or
+  label it `hold` with the reason. **A claim is only real once its PR merges**: the state
+  lives in the ticket file, so an abandoned open PR leaves the ticket reading `open` at the
+  top of the queue and the next run rebuilds the same work. It cost about seventy minutes
+  on 2026-08-19 (run 943's PR #258 left open, run 944 redoing T-0062 as #259). `claim` now
+  checks `git ls-remote` for a rival branch carrying the ticket's number and refuses with a
+  `--force` escape — but that only protects the NEXT run; finishing the PR is your half.
 - **Size in RUNS before you claim.** `XS` part of a run · `S` one run · `M` one run,
   tight (or one run plus a bake) · `L` **more than one run, and `claim` refuses it**.
   The test is the acceptance clause: *if it needs more than one demonstration, it is
