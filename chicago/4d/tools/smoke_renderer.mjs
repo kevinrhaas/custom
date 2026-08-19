@@ -1959,12 +1959,20 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    check(`${label}: both river warehouses have their dock`,
-      docks.census?.wharves === 2 && docks.verts > 0 && docks.keepOut === 2
+    // Four docks since T-0062: the two warehouses whose dock the dossier
+    // states, plus the two South Water landings (J. H. Kinzie's, Jones's) the
+    // owner's 2026-08-18 ruling reconstructed. The refused count is asserted
+    // too: three more landings are STATED and not drawn because the traced
+    // 1834 bank ends at local E 390 (T-0106) — a fourth-wharf appearing or a
+    // refusal disappearing without this line moving is a rule change nobody
+    // reviewed.
+    check(`${label}: every stated dock that has traced bank under it is drawn`,
+      docks.census?.wharves === 4 && docks.verts > 0 && docks.keepOut === 4
+        && docks.census?.refused === 3
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
-      + `${docks.keepOut} planting keep-out(s)`);
+      + `${docks.keepOut} planting keep-out(s), ${docks.census?.refused} refused`);
     check(`${label}: the whole wharf layer is one draw call`,
       docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
@@ -1983,7 +1991,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 2 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 4 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and

@@ -1,5 +1,40 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0062: more docks — the working waterfront, as far as the trace reaches
+
+**The ask.** The owner, 2026-08-18, verbatim: *"you can add more docks!"*, under the standing
+ruling to be liberal with reconstructed items and label them as such. T-0041 had drawn the only
+two docks any source states and refused the rest of the river by rule; the override is the rule
+now.
+
+**What shipped.** Five South Water merchant records — J. H. Kinzie's forwarding store, Jones's
+grocery and provision store, Harmon & Loomis's, Peck's, and Carpenter's South Water store — now
+STATE a dock at `confidence: reconstructed`, each with its bound in its own note (the trade that
+takes goods off the water; the mast-crowded reach of the 2026-08-18 brief, image 3; the south
+bank's wharfing-out practice). The wharf generator accepts the reconstructed grade (the grade
+clause T-0041 shipped is overridden, and the rule's selection still lives in the data — a record
+with no dock statement still gets nothing; the Temple Building on the same frontage stays bare).
+**Two of the five landings are drawn** — Kinzie's and Jones's, timber decks on cribs off the
+traced bank, pickable to the store each serves — so four docks now stand where two did. The
+invention is claimed at LIBERTIES **L145**.
+
+**What is NOT drawn, and why that is the honest reading.** The traced 1834 bank polylines end at
+local **E 390**, and Carpenter's, Peck's and Harmon & Loomis's frontages lie east of that. Before
+this run the generator snapped all three to the trace's terminal vertex — three decks stacked on
+one point, silently. It now refuses a deck any metre of which would stand off untraced bank
+(clause 4b), with the reason on the record; **T-0106** owns extending the trace to the drawbridge
+reach, and the three refused landings draw themselves when it lands. The staleness gate also
+stopped sweeping `dock` into the frame_storefront mesh hash — a statement the builder never reads
+was marking five stores stale when not one of their vertices could move.
+
+**Verification.** `tools/check.sh` green (validator, wharf re-derivation, liberties compile,
+changelog contract). `tools/smoke_renderer.mjs --published` run as its two halves, both cut by
+the runner's ten-minute ceiling (**T-0060**, unchanged): mobile **223 passed / 2 failed**,
+desktop **147 passed / 0 failed**, zero page errors on either — the two mobile failures are
+`the roads reach the screen from the walker's eye` and `…from the air`, already recorded in
+this file as dev's own and untouched by this branch. All eight wharf assertions green at BOTH
+viewports, including the updated census pinning 4 drawn + 3 refused.
+
 ## Shipped 2026-08-19 — T-0079: the core density standard, and three roofs on one lot
 
 **The ask.** Piece 3 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18: *"there
