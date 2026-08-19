@@ -7,6 +7,7 @@ T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
+T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0074 — Trees and bushes kept around the houses
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0063 — Boats correct for the era, on the water
@@ -55,7 +56,6 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
