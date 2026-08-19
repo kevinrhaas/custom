@@ -442,14 +442,48 @@ def record_density_rule(src: str) -> None:
 def direct_call_sites(src: str) -> tuple[int, set[str]]:
     """How many `addTree` call sites the module has, and the ids named at them.
 
-    Two paths select a spec today: `specs.salix_interior` at the point-bar
-    thicket, and `specs[id]` where `id` came from `pick()`. The COUNT is banked
-    because a third path is exactly how this gate would go quietly wrong — an
-    unselectable species drawn by a call site nobody told this file about.
+    THREE paths select a spec today. Two are in the source and this function can
+    read them: `specs.salix_interior` at the point-bar thicket, and `specs[id]`
+    where `id` came from `pick()`. The third is T-0091's planting pass, which
+    selects `table[stem.species]` out of a RECORD — so the ids it can draw are
+    not in this file's reach at all and are read from the dataset by
+    `placed_species()` below. The COUNT is banked because a fourth path is
+    exactly how this gate would go quietly wrong: an unselectable species drawn
+    by a call site nobody told this file about.
     """
     sites = len(re.findall(r"\baddTree\(", src)) - len(re.findall(r"function addTree\(", src))
     named = set(re.findall(r"\bspecs\.(\w+)\b", src))
     return sites, named
+
+
+def placed_species() -> dict[str, list[str]]:
+    """Species id -> the zones the planting records draw it from (T-0091).
+
+    A planting record states a stem: a species, a position and a height, for a
+    tree somebody KEPT rather than one a density dealt. Those species are
+    selected by no community mix and by no `specs.<id>` literal, so without this
+    they would be reported unselectable — committed, cited and drawn nowhere —
+    while standing in a hotel yard where anyone can walk up to them.
+
+    Read through the manifest exactly as the renderer reads it, never by
+    globbing the directory: a planting file the manifest does not name is not
+    fetched by the walkthrough and must not be counted as drawn here either.
+    """
+    index = json.loads((DATA / "index.json").read_text(encoding="utf-8"))
+    out: dict[str, list[str]] = {}
+    for entry in index.get("plantings", []):
+        rec = json.loads((DATA / entry["file"]).read_text(encoding="utf-8"))
+        zone = rec.get("zone")
+        for stem in rec.get("stems", []):
+            sp = stem.get("species")
+            if not sp:
+                raise LookupError(f"planting record {entry['file']} carries a stem with no "
+                                  f"species — the renderer would decline to draw it and "
+                                  f"this gate cannot say which species it reaches")
+            out.setdefault(sp, [])
+            if zone and zone not in out[sp]:
+                out[sp].append(zone)
+    return {k: sorted(v) for k, v in sorted(out.items())}
 
 
 def planter_bounds(src: str, hf: dict) -> dict:
@@ -586,6 +620,7 @@ def declarations() -> dict:
     trees = renderer_source(TREES_JS)
     flora = renderer_source(FLORA_JS)
     sites, named = direct_call_sites(trees)
+    placed = placed_species()
     if not herbaceous_is_camera_centred(flora):
         raise LookupError(f"{FLORA_JS} no longer builds its lattice around the camera — "
                           f"this gate's claim that the sward follows the visitor and the "
@@ -608,7 +643,10 @@ def declarations() -> dict:
         "zone_order": timber_zone_order(trees),
         "call_sites": sites,
         "named_at_call_sites": named,
-        "selectable": selectable | named,
+        "placed": placed,
+        # A placed stem is a selection like any other — by a record rather than
+        # by a mix, and just as drawn.
+        "selectable": selectable | named | set(placed),
         "planter": planter_bounds(trees, heightfield()),
         "east_limits": east_limits(trees),
     }
@@ -810,6 +848,14 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
             falls_back |= {sp for sp in lst
                            if sp not in dec["archetypes"] and sp not in own}
     falls_back |= {sp for sp in dec["named_at_call_sites"] if sp not in dec["archetypes"]}
+    # And the placed stems, asked against the zone their own record names, which
+    # is the table the planting pass reads them out of.
+    for sp, zones in dec["placed"].items():
+        own: set[str] = set()
+        for z in zones:
+            own |= dec["zone_archetypes"].get(z, set())
+        if sp not in dec["archetypes"] and sp not in own:
+            falls_back.add(sp)
     drawn_as = {
         sp: dec["archetype_fallback"]
         for sp in sorted(falls_back)
@@ -832,6 +878,9 @@ def measure(dec: dict | None = None, timber_zones: set[str] | None = None) -> tu
         "contributed": {k: sorted(set(v)) for k, v in sorted(contributed.items())},
         "unimplemented_form": {k: sorted(set(v)) for k, v in sorted(unimplemented.items())},
         "unselectable": unselectable,
+        # What the records place themselves, banked so a stem added to a yard is
+        # a diff somebody reads rather than a silent arrival in the town.
+        "placed": dec["placed"],
         "drawn_as_another_species": drawn_as,
         "weights": weights,
     }
@@ -979,6 +1028,23 @@ def evaluate(state: dict, bank: dict) -> list[str]:
     for sp in sorted(set(sd) & set(bd)):
         if sd[sp] != bd[sp]:
             out.append(f"{sp} is now drawn as {sd[sp]} where it was drawn as {bd[sp]}")
+
+    # 3c — the stems the records place themselves (T-0091). Exact both ways, for
+    # the same reason as 3b: a placed stem is a tree a visitor can walk up to,
+    # and one arriving, leaving or changing species without a line in a diff is
+    # the town changing by accident.
+    sp_, bp_ = state.get("placed", {}), bank.get("placed", {})
+    for sp in sorted(set(sp_) - set(bp_)):
+        out.append(f"{sp} is newly placed by a planting record, drawn from "
+                   f"{', '.join(sp_[sp]) or 'no zone'} — bank it with --update in the "
+                   f"commit that placed it, and claim the stems in docs/LIBERTIES.md")
+    for sp in sorted(set(bp_) - set(sp_)):
+        out.append(f"{sp} is banked as placed by a planting record and no longer is — "
+                   f"un-bank it with --update in the commit that removed the stems")
+    for sp in sorted(set(sp_) & set(bp_)):
+        if sp_[sp] != bp_[sp]:
+            out.append(f"{sp}'s placed stems now draw their ecology from "
+                       f"{sp_[sp]} where they drew it from {bp_[sp]}")
 
     # 5 — the weight that plants the stem, against the bands its own community
     # cites, exact both ways. Since ROADMAP K46 the written number IS the number,
@@ -1467,7 +1533,10 @@ def main() -> int:
                     "about a source, not a repair. "
                     "`unselectable` is the population, exact in both directions, and "
                     "`drawn_as_another_species` is the placed species that have no archetype of "
-                    "their own. "
+                    "their own. `placed` is the species a PLANTING RECORD states a stem of "
+                    "(T-0091) and the zone each draws its ecology from — a selection made "
+                    "by the dataset rather than by a mix, banked exactly so a tree "
+                    "arriving in or leaving a yard is a line in a diff. "
                     "`zone_boxes` records that a TIMBER_ZONE's extent is never consulted "
                     "by the reader it is routed to. `weights` is every mix entry's "
                     "literal beside the weight that replaces it at load — the literal is "
@@ -1480,6 +1549,7 @@ def main() -> int:
             "ground": state["ground"],
             "zone_boxes": {k: state["zone_boxes"][k] for k in sorted(state["zone_boxes"])},
             "unselectable": state["unselectable"],
+            "placed": state["placed"],
             "drawn_as_another_species": state["drawn_as_another_species"],
             "weights": state["weights"],
         }, indent=2) + "\n", encoding="utf-8")

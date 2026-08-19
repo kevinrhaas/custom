@@ -1,5 +1,5 @@
 {
-  "_doc": "Whether a routed woody record can be PLACED. K44 measured which reader receives a record; trees.js receives one and then selects a species out of a hand-written COMMUNITIES mix, so a record it receives whose species is in no mix is drawn nowhere. `planter` and `ground` are the domain the timber loop sweeps \u2014 since ROADMAP K45(b2) the modelled field inset by one planting step, not a fixed square inside it \u2014 and how much of the field it reaches; it may grow and may not shrink. `east_limits` is where the woody layer stops in the east and the street each limit is read from: Andreas ends the South Division belt at Wells Street and excepts the sandy hills near the lake from the North Division's timber. They are banked EXACTLY, in both directions \u2014 a wood that reaches further east is an argument about a source, not a repair. `unselectable` is the population, exact in both directions, and `drawn_as_another_species` is the placed species that have no archetype of their own. `zone_boxes` records that a TIMBER_ZONE's extent is never consulted by the reader it is routed to. `weights` is every mix entry's literal beside the weight that replaces it at load \u2014 the literal is a fallback, and `records.density` (the midpoint of the band in the first TIMBER_ZONE naming the species) is what places a stem. Held by tools/measure_planting_reach.py. Read ROADMAP K45(a) and K45(b1) before adding a line, and K45(b2) before moving an east limit.",
+  "_doc": "Whether a routed woody record can be PLACED. K44 measured which reader receives a record; trees.js receives one and then selects a species out of a hand-written COMMUNITIES mix, so a record it receives whose species is in no mix is drawn nowhere. `planter` and `ground` are the domain the timber loop sweeps \u2014 since ROADMAP K45(b2) the modelled field inset by one planting step, not a fixed square inside it \u2014 and how much of the field it reaches; it may grow and may not shrink. `east_limits` is where the woody layer stops in the east and the street each limit is read from: Andreas ends the South Division belt at Wells Street and excepts the sandy hills near the lake from the North Division's timber. They are banked EXACTLY, in both directions \u2014 a wood that reaches further east is an argument about a source, not a repair. `unselectable` is the population, exact in both directions, and `drawn_as_another_species` is the placed species that have no archetype of their own. `placed` is the species a PLANTING RECORD states a stem of (T-0091) and the zone each draws its ecology from \u2014 a selection made by the dataset rather than by a mix, banked exactly so a tree arriving in or leaving a yard is a line in a diff. `zone_boxes` records that a TIMBER_ZONE's extent is never consulted by the reader it is routed to. `weights` is every mix entry's literal beside the weight that replaces it at load \u2014 the literal is a fallback, and `records.density` (the midpoint of the band in the first TIMBER_ZONE naming the species) is what places a stem. Held by tools/measure_planting_reach.py. Read ROADMAP K45(a) and K45(b1) before adding a line, and K45(b2) before moving an east limit.",
   "planter": {
     "kind": "the modelled field inset by one planting step",
     "sweep_e_m": [
@@ -16,7 +16,7 @@
       4.7,
       5.6
     ],
-    "call_sites": 2
+    "call_sites": 3
   },
   "east_limits": {
     "north": {
@@ -90,6 +90,14 @@
     }
   },
   "unselectable": {},
+  "placed": {
+    "populus_deltoides": [
+      "z10_settled_town"
+    ],
+    "ulmus_americana": [
+      "z10_settled_town"
+    ]
+  },
   "drawn_as_another_species": {},
   "weights": {
     "dune.mix.populus_deltoides": {

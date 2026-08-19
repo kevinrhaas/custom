@@ -1069,7 +1069,20 @@ async function loadTimberZones(dataBase, problems = []) {
       if (!specs[sp.id]) specs[sp.id] = spec;
     }
   }
-  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads };
+  // THE STEMS A RECORD PLACES ITSELF. Everything above is ecology — what may
+  // grow in a community and how densely — and it answers for the wood. It
+  // cannot answer for a tree somebody KEPT: image 8 of the owner's brief shows
+  // trees standing behind the Sauganash's yard fence, and no density over the
+  // settled town will ever put one there rather than three doors down. So a
+  // planting record states the stem, and it is read through the same manifest
+  // and by the same rule as everything else here — exactly the files named,
+  // never a probe.
+  const plantings = [];
+  for (const entry of manifest.plantings ?? []) {
+    plantings.push(await fetchOk(new URL(entry.file, manifestUrl)));
+  }
+  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads,
+    plantings };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1722,6 +1735,11 @@ export async function createTrees({
     omitted: OMITTED_TIMBER.map((o) => ({
       ...o, elevation_deg: apparentTopDeg(o.canopy_m, o.distance_m, 1.68) + horizonDipDeg(1.68),
     })),
+    // T-0091. Stems a planting record placed itself, kept apart from `trees`
+    // and from `species` on purpose: those two are the DEALT population the
+    // census gates read against each community's recorded weights, and a tree
+    // somebody kept in a yard answers to no density at all.
+    planted: 0, plantedStems: [],
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
     rejectedBelowWaterline: 0, lowestStationY: null,
     // ROADMAP K45(c). `headSpecies` is which records carry a July
@@ -2410,6 +2428,85 @@ export async function createTrees({
       }
       bump(stats.communities, key);
       bump(stats.species, id);
+    }
+  }
+
+  /* ---- 3b. the stems a record places itself ------------------------------ */
+
+  /**
+   * T-0091. The planter above deals a wood from the land, and a KEPT tree is
+   * not dealt: it stands where somebody left it, in a yard, and no density over
+   * a cleared town block will ever put one behind a particular fence. So a
+   * planting record states the stem and this places exactly that stem.
+   *
+   * It runs AFTER the sweep on purpose. Everything above draws from the shared
+   * `rnd` in a fixed order, so a placed stem inserted earlier would redeal the
+   * whole wood; here it changes nothing that was already planted.
+   *
+   * Every refusal below is the sweep's own refusal, asked of a point the record
+   * chose rather than of one the loop offered, and each one is REPORTED rather
+   * than skipped quietly — a stem a record asks for and the renderer declines
+   * to draw is a fault in the record, and a silent decline is how a record goes
+   * on saying a tree is there for months after it stopped being drawn.
+   */
+  for (const rec of records.plantings ?? []) {
+    for (const stem of rec.stems ?? []) {
+      const where = `${rec.id}/${stem.id}`;
+      const at = stem.at_local_enu_m;
+      if (!Array.isArray(at) || at.length !== 2) {
+        problems.push(`trees: planting ${where} carries no at_local_enu_m pair — not drawn`);
+        continue;
+      }
+      const [pe, pn] = at;
+      // THE ZONE THE RECORD NAMES, not the shared first-zone-wins table. The
+      // same binomial is a different tree in two communities — the gallery elm
+      // is recorded at 18-26 m and the settled town's relict survivor at 16-24 —
+      // and a planting is always a claim about ONE of them. `byZone` is the same
+      // per-community table the dune cottonwood already reads.
+      const table = records.byZone?.[rec.zone];
+      if (!table) {
+        problems.push(`trees: planting ${rec.id} names zone ${rec.zone}, which this module `
+          + 'reads no woody species from — nothing in the record is drawn');
+        break;
+      }
+      const spec = table[stem.species];
+      if (!spec) {
+        problems.push(`trees: planting ${where} names species ${stem.species}, which `
+          + `${rec.zone} does not describe — not drawn, because the ecology of a stem `
+          + 'belongs to the zone records and not to a planting file');
+        continue;
+      }
+      // The stated height has to lie inside the species' OWN recorded band. A
+      // planting record may choose where in that band a stem sits — a kept tree
+      // is a cut-back tree — and it may not invent a tree the records do not
+      // describe, which is what a height outside the band would be.
+      const band = spec.h;
+      const h = stem.height_m;
+      if (!(typeof h === 'number' && h >= band[0] && h <= band[1])) {
+        problems.push(`trees: planting ${where} states ${h} m against ${stem.species}'s `
+          + `recorded ${band[0]}-${band[1]} m — not drawn`);
+        continue;
+      }
+      if (terrain.isWater(pe, pn)) {
+        problems.push(`trees: planting ${where} stands in the river mask — not drawn`);
+        continue;
+      }
+      const gy = terrain.surfaceHeight(pe, pn);
+      if (gy < dryFloorY) {
+        problems.push(`trees: planting ${where} stands ${(dryFloorY - gy).toFixed(2)} m `
+          + 'below the planter\'s own dry floor — not drawn');
+        continue;
+      }
+      if (blocked(pe, pn)) {
+        problems.push(`trees: planting ${where} stands inside a committed footprint or on `
+          + 'the travelled track — not drawn');
+        continue;
+      }
+      addTree(buffers[chunkOf(pe, pn)], { ...spec, h: [h, h] }, pe, gy, worldZ(pn), rnd);
+      noteStation(pe, pn, gy);
+      stats.planted++;
+      stats.plantedStems.push({ id: stem.id, record: rec.id, e: pe, n: pn,
+        species: stem.species, height_m: h });
     }
   }
 
