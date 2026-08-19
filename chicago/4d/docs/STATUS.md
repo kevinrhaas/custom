@@ -52,6 +52,25 @@ reads the planting files through the manifest (never by globbing) and banks what
 `placed` in `tools/planting_reach_baseline.json` — with an assertion exact in both directions: a
 stem arriving in or leaving a yard is a line in a diff.
 
+**Evidence.** `docs/evidence/t-0091-{before,after}.png` — Market Street at the Lake corner,
+E 88 / N −114, bearing 158°, 1280×800, detail `full`: open grass behind the hotel before, a board
+fence with its gateway and three crowns over it after. `docs/evidence/t-0091-close-{before,after}.png`
+— the same yard from six metres, detail `light`, which is where the cost was measured.
+
+**Cost, measured in the browser** by publishing the mirror with and without the two records:
+**636 987 → 644 639 triangles**, **+7 652**, 45 draw calls unchanged (the enclosure layer is still
+one call and the trees merge into the timber chunks). That is the whole layer with the entire yard
+in frame.
+
+**What this run did NOT do.** `scene detail 'light' stays inside its own ceiling` is **T-0089**,
+open and pre-existing on `dev`, and it fails at **613 500 tris of 600 000** on this branch. Taking
+the most generous assumption — that every one of this unit's 7 652 triangles was inside the frustum
+at the station that row is measured from — `dev` still stood at **605 848**, so the branch makes a
+standing breach worse and did not open it. The two mobile road-contrast rows are `dev`'s own.
+**T-0060 stands:** neither half of the smoke finishes inside this runner's ten-minute per-command
+ceiling, so the tail of each viewport — including `zero page errors` — went unrun here; the page was
+driven separately for errors instead and reported none.
+
 **Recorded as a liberty.** **L139** — the fence's every dimension, the gateway nobody drew, the
 depth rule, and that there are three trees, where each stands and how tall it is. Tier
 `reconstructed` throughout, so turning `reconstructed` off in the confidence view empties the yard.
