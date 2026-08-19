@@ -4419,6 +4419,58 @@ this entry was drawn from in spirit; they are tier-5 pictorial sources and settl
 a dimension.
 **Recorded:** 2026-08-18.
 
+### L139 — The Sauganash's yard: a fence three plates draw and nobody measured, and three trees behind it
+**Decision:** the ground behind the Sauganash Hotel is enclosed by a **vertical-board fence**
+1.83 m tall, on posts 0.14 m square at 2.44 m centres, with three stringers behind boards
+0.254 m wide butted at a 6 mm gap, and one 3.66 m gateway centred in its Market Street run; and
+**three trees stand inside it** — two American elms at 17.0 and 16.5 m and an eastern cottonwood
+at 18.5 m. The fence is `data/enclosures/sauganash_yard.json`, drawn by
+`renderers/web/js/enclosures.js`'s new `board` branch; the trees are
+`data/flora/plantings/sauganash_yard.json`, drawn by `renderers/web/js/trees.js` with the same
+archetype the near-field wood uses. Neither carries a GLB and neither needs a bake.
+**Why:** three of the owner's reference views of this hotel describe its yard, and
+`data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 8, the
+Petford watercolour: *"a vertical-board fence running off to the right; trees behind the fence"*;
+image 9, the Braunhold engraving: *"board fence at the right"*; image 10, the Trowbridge drawing:
+*"the tall board fence enclosing the rear yard"*. L136 took the FRONT of this building from the
+same three plates and left the yard side of them unbuilt. All three are tier-5 pictorial and
+retrospective, so they drive the setting and never a coordinate.
+**What bounds the invention.** THE KIND of fence, that it was tall, that it enclosed the rear yard
+and that trees stood behind it are the plates'. WHERE it stands is derived from three committed
+things and nothing else: the hotel's own footprint and placement (12 x 8 m at 101.40 / -130.60),
+Philo Carpenter's log shop on the same lot (6.096 x 4.877 m at 113.40 / -127.50), and the platted
+lot under both of them (`data/traces/vectors/thompson_lots.json`, block `blk_lake_market`, lot 0).
+The line leaves the hotel's south-west corner, runs south on its west wall line, turns east along
+a rear line and returns north on the shop's east wall line to that shop's south-east corner — the
+two buildings closing the fourth side themselves. **THE ONE INVENTED COORDINATE IS THE REAR LINE**,
+and it is a rule so it can be audited: the segment joining the midpoints of the committed lot's two
+side lines, which puts the yard on the front half of the lot and leaves the back half unclaimed.
+Half is a convention. It is chosen rather than the rear lot line because Carpenter's shop stands on
+this same lot, so the whole of it demonstrably was not the hotel's.
+**Every dimension is invented**, and the gateway most of all: no view shows one, and a fence with no
+opening encloses a yard nobody can enter. 6 ft, 8 ft centres, 10 in boards, a 6 mm shrinkage gap and
+a 12 ft gate are period-plausible sawn work and none of them is a measurement. The board gap is the
+number that makes this a fence you cannot see through, which is the whole difference between this
+record and the picket gardens of L129.
+**The trees are invented individually and not ecologically.** Their species, height bands, July
+foliage colour and crown widths are `data/flora/zones/z10_settled_town.json`'s three relict
+survivors — the record whose own note reads *"Survivor elm in a part-cleared block"* — and the
+renderer refuses any stem whose stated height falls outside its species' recorded band rather than
+drawing it. What is invented is that there are THREE, where each one stands, and that each sits at
+the bottom of its band on the argument that a tree kept in a yard is a tree cut back from a building
+for years. Image 8 shows crowns and resolves neither a count nor a species.
+**What is NOT claimed.** The ground inside the fence is untreated — still the prairie sward the
+flora layer plants over the whole town, where image 12 of the same brief shows fenced ground reading
+as garden and dooryard green. That is the honest residual of this record and it is T-0067's, not
+this entry's. And the fence is not a collision surface: a visitor walks through it, the same stated
+shortcoming every enclosure in this layer has.
+**How to resolve:** holding the Petford, Braunhold and Trowbridge plates as proper source records
+(T-0075), which would turn the committed brief path both records cite into a `source_id`; or any
+Chicago fence ordinance of the 1830s, which would settle height and construction at a stroke; or a
+tax or insurance description of the Lake and Market corner lot, which would settle the yard's depth
+and end the one invented coordinate here. None of them would ever give the trees their positions.
+**Recorded:** 2026-08-18.
+
 
 ## Resolved
 

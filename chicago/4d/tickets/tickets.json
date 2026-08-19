@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 18, 2026, 6:25 PM",
+  "generated_ct": "Aug 18, 2026, 6:46 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1576,7 +1576,7 @@
     {
       "id": "T-0091",
       "title": "The Sauganash's enclosed ground: the board fence at the right and the trees behind it",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1586,7 +1586,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/18/2026, 6:46:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 5

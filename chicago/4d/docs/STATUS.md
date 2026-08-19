@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0091: the Sauganash's yard fence, and the trees behind it
+
+**The ask.** Piece 2 of 3 of T-0043, the image-accuracy pass on the Sauganash. The YARD side of
+the owner's three views, which all three agree on and none of which had been built: a
+**vertical-board fence** running off to the right of the hotel and enclosing the rear yard (images
+8, 9, 10 of `data/sources/assets/owner_brief_2026_08_18/README.md`), described as **tall** in image
+10, with **trees standing behind it** in image 8. L136 took the FRONT of this building from the same
+three plates the night before and left this half standing in the brief.
+
+**What changed, and it is two layers.** `data/enclosures/sauganash_yard.json` is a new enclosure
+record and `renderers/web/js/enclosures.js` gains a third fence type, `board`: the picket branch's
+construction — posts, stringers behind, vertical stock across — at the record's own board width
+(0.254 m) and a butted 6 mm gap, 1.83 m tall, on 0.14 m posts at 2.44 m centres, with one 3.66 m
+gateway centred in its Market Street run. It is the first fence in this town you cannot see through,
+and that is the claim: pales say garden, three rails say wagon yard, butted boards say private.
+
+**Every coordinate is derived and one is invented.** The line leaves the hotel's own south-west
+corner (101.40 / −130.60), runs south on its west wall line, turns east along a rear line and comes
+back north on the east wall line of Philo Carpenter's log shop to that shop's south-east corner —
+the two buildings, which stand shoulder to shoulder along the whole Lake Street frontage, closing
+the fourth side themselves. **The rear line is the one invented coordinate and it is a rule**: the
+segment joining the midpoints of the committed platted lot's two side lines
+(`data/traces/vectors/thompson_lots.json`, `blk_lake_market` lot 0), so the yard is the front half
+of the lot and the back half is left unclaimed — because Carpenter's shop stands on the same lot and
+the whole of it demonstrably was not the hotel's.
+
+**And the first placed trees in this scene.** Every other stem in the town is dealt by
+`trees.js`'s planter from the land — bank distance, division, relief, the community's recorded
+density — which is the right answer for a wood and cannot put a tree behind a particular fence. So
+`data/flora/plantings/sauganash_yard.json` is a new record kind: a stem states its species, its
+position and its height, and the renderer draws it with the same archetype the wood uses. Three
+stems here — two American elms at 17.0 and 16.5 m and a cottonwood at 18.5 m — and the ECOLOGY is
+not invented: species, height bands, July foliage colour and crown widths are
+`data/flora/zones/z10_settled_town.json`'s three relict survivors, and the renderer **refuses any
+stem whose stated height falls outside its own species' recorded band** rather than drawing it. The
+pass runs after the sweep so it redeals none of the wood, and every refusal the sweep makes — river
+mask, dry floor, a committed footprint — it makes here too and REPORTS rather than skips.
+
+**What this unblocks and what it does not.** T-0074 (trees and bushes kept around the houses) is the
+same question asked town-wide and should read this record's shape rather than inventing a second
+one. The ground inside the fence is untreated — still the prairie sward, where image 12 shows fenced
+ground reading as garden and dooryard green — and that is T-0067's, stated in the record rather than
+quietly done. The fence is not a collision surface: you walk through it, as through every enclosure
+in this layer.
+
+**The gate learned the third path.** `tools/measure_planting_reach.py` banks how many `addTree` call
+sites `trees.js` has, precisely so a new selection path cannot draw a species the gate would
+otherwise call unselectable. There are three now, and the third selects out of a RECORD, so the gate
+reads the planting files through the manifest (never by globbing) and banks what they place —
+`placed` in `tools/planting_reach_baseline.json` — with an assertion exact in both directions: a
+stem arriving in or leaving a yard is a line in a diff.
+
+**Recorded as a liberty.** **L139** — the fence's every dimension, the gateway nobody drew, the
+depth rule, and that there are three trees, where each stands and how tall it is. Tier
+`reconstructed` throughout, so turning `reconstructed` off in the confidence view empties the yard.
+
+**Skipped above it, and this is the statement `tickets/README.md` asks for.** T-0046, T-0049,
+T-0004, T-0005 and T-0083 all stand above T-0091 in `QUEUE.md` and all five carry
+`needs_bake: true`; this runner has no Blender and may not install one. T-0091 is the topmost
+workable ticket.
+
 ## Shipped 2026-08-18 — T-0087: the wagon box rests on its running gear
 
 **The owner's report, and the half of it T-0084 did not answer.** From the Green Tree's yard:

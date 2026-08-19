@@ -25,12 +25,16 @@
  *    and nothing here is a collision surface — the walker stands on the same
  *    heightfield it always did and walks THROUGH a fence, which is a stated
  *    shortcoming rather than an oversight (see the note in the changelog).
- *  * It knows two fences. `post_and_rail` is the open horizontal thing the wagon
+ *  * It knows three fences. `post_and_rail` is the open horizontal thing the wagon
  *    yard and the pound are built from: posts, and courses spanning between them.
  *    `picket` is the Kinzie-view plate's garden fence — the same posts and two
  *    stringers, closed with a run of vertical pales at the record's own pale width
- *    and gap. The difference is not decoration: a rail fence turns a team and you see
- *    the yard through it, and a picket fence keeps poultry out of the vegetables.
+ *    and gap. `board` is the Sauganash's yard fence: the same construction again,
+ *    at the record's own board width and a butted gap, and tall. The difference is
+ *    not decoration and it is the whole of what each one says: a rail fence turns a
+ *    team and you see the yard through it, a picket fence keeps poultry out of the
+ *    vegetables, and a board fence is a wall — it says the ground behind it was
+ *    private, which is exactly what the three views of that hotel show.
  *  * It refuses water. A post whose foot is in the river mask is dropped, the
  *    way `trees.js` refuses a stem below the waterline. A fence marching into
  *    the water would be a claim about a shoreline this layer knows nothing of.
@@ -69,8 +73,10 @@ const WOOD = 0x8d8272;
 /**
  * Pale stock, in metres. Same argument as the rail above: a pale's THICKNESS is how a
  * stick is drawn, where its WIDTH and the gap beside it are the fence's rhythm and
- * belong to the record — `picket_width_m` and `picket_gap_m` — because they are what
- * decides whether a visitor is looking at a fence or at a wall.
+ * belong to the record — `picket_width_m` / `picket_gap_m` and `board_width_m` /
+ * `board_gap_m` — because they are what decides whether a visitor is looking at a
+ * fence or at a wall. The THICKNESS is shared: a pale and a fence board are the same
+ * sawn stuff, and nothing in any record here distinguishes them.
  */
 const PALE_T_M = 0.022;
 
@@ -197,9 +203,24 @@ function buildRecord(buf, record, terrain, problems) {
   const courses = Math.max(1, Math.round(form.rail_courses?.value ?? 3));
   const spacing = Math.max(1, form.post_spacing_m?.value ?? 2.9);
   const postHalf = (form.post_size_m?.value ?? 0.14) / 2;
-  const picket = (form.fence_type?.value ?? 'post_and_rail') === 'picket';
-  const paleW = Math.max(0.02, form.picket_width_m?.value ?? 0.089);
-  const palePitch = paleW + Math.max(0.01, form.picket_gap_m?.value ?? 0.089);
+  const kind = form.fence_type?.value ?? 'post_and_rail';
+  // TWO CLOSED FENCES AND ONE OPEN ONE. A picket and a board fence are the same
+  // construction — posts, stringers behind them, vertical stock nailed across —
+  // and they differ in the STOCK, which is the whole of what a visitor reads:
+  // a pale is a hand's width with a hand's width of daylight beside it, and a
+  // board is butted to its neighbour so there is none. That is why the two are
+  // one branch here and two values in the record: the difference between a
+  // garden fence you see the garden through and a fence that makes a yard a
+  // room is `board_gap_m`, and it belongs to the record for the same reason
+  // `picket_gap_m` does.
+  const closed = kind === 'picket' || kind === 'board';
+  const board = kind === 'board';
+  const paleW = Math.max(0.02,
+    (board ? form.board_width_m?.value : form.picket_width_m?.value) ?? 0.089);
+  // A board fence's gap is allowed to be the shrinkage gap between two butted
+  // boards, which is millimetres; a pale's floor stays where it was.
+  const palePitch = paleW + Math.max(board ? 0 : 0.01,
+    (board ? form.board_gap_m?.value : form.picket_gap_m?.value) ?? 0.089);
   // The weakest grade on anything that decides where a stick of this fence is.
   // In practice that is the fence type, and no fence type in this dataset is
   // anything but invented; the max is here so the day a source describes one,
@@ -260,7 +281,7 @@ function buildRecord(buf, record, terrain, problems) {
           // On a rail fence the courses ARE the fence, so the top one is the top of
           // it. On a picket fence they are stringers behind the pales and want to sit
           // inside the height, or the top rail reads as a cap rail nobody described.
-          const f = picket
+          const f = closed
             ? (courses > 1 ? 0.22 + 0.58 * ((c - 1) / (courses - 1)) : 0.55)
             : c / courses;
           const h = height * f - RAIL_H_M / 2;
@@ -268,7 +289,7 @@ function buildRecord(buf, record, terrain, problems) {
             (a.e + b.e) / 2, (a.y + b.y) / 2 + h, -(a.n + b.n) / 2,
             ux, uz, len / 2, RAIL_W_M / 2, RAIL_H_M / 2, level);
         }
-        if (picket) {
+        if (closed) {
           // The pales, centred on the run line exactly as the posts and rails are.
           // Nailing them to one face would be more like a real fence and would push
           // timber off the line the record authored, which is the one thing the

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 190, title: 'The Sauganash gets its board fence and the trees behind it', kind: 'feature', ts: '2026-08-19T00:05:11.550Z', date: 'Aug 18, 2026, 7:05 PM CT',
+    items: [
+      'The three old views of the Sauganash Hotel that gave it its plank walks last night show the other half of its ground too: a tall fence of upright boards running off to the right of the house, closing the yard behind it, with trees standing over it. The yard was open grass with nothing in it.',
+      'It is enclosed now. A six-foot board fence leaves the hotel\u2019s back corner, runs down the Market Street side, along the back of the yard and up the far side to the log shop next door \u2014 the two buildings closing the fourth side themselves \u2014 with a cart gateway in the street side. Two elms and a cottonwood stand inside it, tall enough to show over the boards from the street.',
+      'This is the first fence in the town you cannot see through. The garden fences are pales with daylight between them and the wagon yard is three rails; boards butted edge to edge say something different \u2014 the ground behind them was private.',
+      'How far back the yard goes is the one thing here nobody wrote down and it is our rule, not a finding: the fence claims the front half of the platted lot and leaves the back half alone, because a second building stands on the same lot and the whole of it was demonstrably not the hotel\u2019s.',
+      'The trees are the first in this town placed one at a time. Every other tree stands where the land put it; these three are where somebody kept them, and their kind, size and colour are still the town\u2019s own recorded survivor trees rather than anything new.',
+      'Fence and trees are both our reconstruction. Turn \u201creconstructed\u201d off in the confidence view and the yard goes back to grass.',
+    ] },
   { v: 189, title: 'The wagon box rests on its gear, not on air', kind: 'fix', ts: '2026-08-18T22:53:00.042Z', date: 'Aug 18, 2026, 5:53 PM CT',
     items: [
       'Every wagon in this town was a box, two axles and four wheels with nothing in between. The box floated a foot above one axle and sixteen inches above the other, and the two axles were not joined to each other by anything at all.',

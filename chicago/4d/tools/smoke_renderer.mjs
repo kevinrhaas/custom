@@ -1091,6 +1091,113 @@ for (const [label, viewport, touch] of [
       dGarden.worst >= 6 && dGarden.mean >= 0.3,
       `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
 
+    // --- the Sauganash's yard fence and its trees (T-0091) -------------------
+    //
+    // The first CLOSED fence this project builds that is not a garden pale, and
+    // the first tree in this scene whose position a record states rather than a
+    // density deals. Both failure modes are drawing faults that no dataset gate
+    // can see: a `board` fence type the renderer does not know falls back to the
+    // open rail branch and draws a yard you can see straight through, which is
+    // the opposite of what three views of this hotel show; and a placed stem is
+    // one bad axis away from standing in the neighbouring block, which is
+    // exactly the fault R-BUG5b caught in the planter it borrows its archetype
+    // from. So the geometry is measured against the record here.
+    const sauganash = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const rec = (a.enclosures?.records ?? []).find((r) => r.id === 'sauganash_yard');
+      const run = rec?.runs?.[0]?.path_local_enu_m ?? [];
+      const segDist = (pe, pn, p0, p1) => {
+        const dx = p1[0] - p0[0];
+        const dy = p1[1] - p0[1];
+        const len2 = dx * dx + dy * dy || 1;
+        let t = ((pe - p0[0]) * dx + (pn - p0[1]) * dy) / len2;
+        t = Math.min(Math.max(t, 0), 1);
+        return Math.hypot(p0[0] + dx * t - pe, p0[1] + dy * t - pn);
+      };
+      const onRun = (pe, pn) => {
+        let d = Infinity;
+        for (let k = 1; k < run.length; k++) d = Math.min(d, segDist(pe, pn, run[k - 1], run[k]));
+        return d;
+      };
+      // The DRAWN fence, off the layer's one merged buffer: how much timber
+      // stands on this record's own line, and how tall the tallest of it stands
+      // over the ground under it. A rail fence and a board fence of the same
+      // height differ by an order of magnitude in the first number, which is
+      // what makes this a test of the branch rather than of the record.
+      const g = a.enclosures?.group?.children?.[0]?.geometry ?? null;
+      const pos = g?.getAttribute('position') ?? null;
+      let onLine = 0;
+      let top = 0;
+      for (let i = 0; pos && i < pos.count; i++) {
+        const pe = pos.getX(i);
+        const pn = -pos.getZ(i);
+        if (onRun(pe, pn) > 0.25) continue;
+        onLine++;
+        top = Math.max(top, pos.getY(i) - a.terrain.surfaceHeight(pe, pn));
+      }
+      // And the stems the planting record placed, each asked whether it stands
+      // inside the fence it is supposed to stand behind.
+      const stems = (a.trees?.stats?.plantedStems ?? []).map((st) => ({
+        ...st,
+        inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+        clear: onRun(st.e, st.n),
+      }));
+      return {
+        found: !!rec,
+        type: rec?.form?.fence_type?.value ?? null,
+        stated: rec?.form?.height_m?.value ?? null,
+        onLine,
+        top,
+        planted: a.trees?.stats?.planted ?? 0,
+        stems,
+      };
+    });
+    check(`${label}: the Sauganash's rear yard is fenced with boards, not rails`,
+      sauganash.found && sauganash.type === 'board' && sauganash.onLine >= 2000,
+      `record ${sauganash.found}, type ${sauganash.type}, `
+      + `${sauganash.onLine} vertices on its own line`);
+    // Tall is the whole of what image 10 says about this fence, so the number
+    // the record turned that word into has to be the number on the screen.
+    check(`${label}: the yard fence is drawn at the height its record states`,
+      sauganash.stated !== null && Math.abs(sauganash.top - sauganash.stated) <= 0.12,
+      `drawn ${sauganash.top?.toFixed(2)} m against a stated ${sauganash.stated} m`);
+    check(`${label}: every stem the planting record places stands inside that yard`,
+      sauganash.planted === 3 && sauganash.stems.length === 3
+      && sauganash.stems.every((st) => st.inYard && st.clear >= 2),
+      `${sauganash.planted} stem(s): `
+      + sauganash.stems.map((st) => `${st.id} ${st.inYard ? 'in' : 'OUT'} `
+        + `${st.clear.toFixed(1)} m off the fence`).join(', '));
+
+    // AND IT READS, from the street the fence stands on. Market Street beside
+    // the yard, looking east: the fence is six metres away and the trees the
+    // same plate shows behind it stand over it. Both are compared with the
+    // layer hidden, holding the clock so the grass cannot supply the difference.
+    await page.evaluate(() => {
+      window.__chicago4d.walker.teleport({ local_e: 95, local_n: -140, yaw_deg: 90 });
+    });
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const yardAll = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const yardNoFence = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
+    const yardNoTrees = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dFence = signatureDistance(yardAll, yardNoFence);
+    const dTrees = signatureDistance(yardAll, yardNoTrees);
+    check(`${label}: the yard fence reaches the screen from Market Street`,
+      dFence.worst >= 6 && dFence.mean >= 0.3,
+      `cell delta mean ${dFence.mean?.toFixed(2)}, worst ${dFence.worst} (need worst>=6)`);
+    // The woody layer is hidden whole here, so this says "trees are visible from
+    // this stand" rather than "these three are". It is the yard's own crowns
+    // that carry it: the town is cleared ground and the nearest timber that is
+    // not in this yard is the river gallery two blocks north, behind the walker.
+    check(`${label}: the trees behind the fence reach the screen with it`,
+      dTrees.worst >= 6 && dTrees.mean >= 0.3,
+      `cell delta mean ${dTrees.mean?.toFixed(2)}, worst ${dTrees.worst} (need worst>=6)`);
+
     // --- the business signboards (T-0039) ------------------------------------
     //
     // A second layer drawn from the dataset rather than baked, and the first one

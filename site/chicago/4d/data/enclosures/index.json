@@ -16,6 +16,10 @@
     {
       "id": "town_dooryard_pickets",
       "file": "town_dooryard_pickets.json"
+    },
+    {
+      "id": "sauganash_yard",
+      "file": "sauganash_yard.json"
     }
   ]
 }
