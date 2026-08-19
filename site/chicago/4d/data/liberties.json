@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 141,
+  "count": 142,
   "liberties": [
     {
       "id": "L1",
@@ -9775,6 +9775,137 @@
         {
           "label": "Covers",
           "text": "`recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.position`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-19."
+        }
+      ]
+    },
+    {
+      "id": "L142",
+      "title": "The South Water river row: fourteen roofs moved onto the frontage line, and turned to face the water",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_blk_south_water_clark_d4_02",
+        "recon_1835_blk_south_water_clark_d5_01",
+        "recon_1835_blk_south_water_dearborn_d3_03",
+        "recon_1835_blk_south_water_dearborn_d4_02",
+        "recon_1835_blk_south_water_dearborn_d5_01",
+        "recon_1835_blk_south_water_franklin_d3_03",
+        "recon_1835_blk_south_water_franklin_d4_02",
+        "recon_1835_blk_south_water_franklin_d5_01",
+        "recon_1835_blk_south_water_lasalle_d3_03",
+        "recon_1835_blk_south_water_lasalle_d4_02",
+        "recon_1835_blk_south_water_lasalle_d5_01",
+        "recon_1835_blk_south_water_wells_d4_03",
+        "recon_1835_blk_south_water_wells_d5_02",
+        "recon_1835_blk_south_water_wells_d6_01"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_d4_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_d5_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_d4_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_d5_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_d4_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_d5_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_d4_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_d5_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_wells_d4_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_wells_d5_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_wells_d6_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the fourteen anonymous reconstructed roofs the schedule dealt to the South Water frontages of the five platted blocks between Franklin and State no longer stand centred on their own lots, seven metres back from the street and facing the block's interior. They stand **on the South Water frontage itself, shoulder to shoulder on shared party lines**, at a uniform 1.5 m setback from the platted lot line, with their fronts on the block face's own bearing — which means facing the river street, as every documented store on this reach does. Six runs in all: one of three at Franklin, two at Wells (the second broken around a documented store), one of three at LaSalle, one of two at Clark and one of three at Dearborn. 85.6 m of the row is now continuous built frontage on one line; before, the same fourteen buildings were 6 m islands with 14-20 m of grass between them, each nudged off any line by its own lateral offset."
+        },
+        {
+          "label": "Why",
+          "text": "T-0078, under the owner's standing ruling of 2026-08-18 — *\"there should be more and denser buildings. this is important.\"* — and its reference for this exact reach: *\"South Water Street in 1834 — now Wacker Drive\"* (`data/sources/assets/owner_brief_2026_08_18/README.md`, image 11), which shows the south bank as a CONTINUOUS WORKING ROW of one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank. The render had the town's business front as detached cottages on grass, with their backs to the water. As at Lake and Dearborn (L141), the gap was a missing TREATMENT rather than a missing building: the platted-block generator could only ever say \"a roof of this family, centred on this lot, at a period setback\", which is the right shape for a residential back street. **What is NOT invented here.** No roof is added, none leaves its block, none is renamed, re-familied or re-dimensioned; every id, family band and baked placeholder mesh is the one it was, and the 665-roof programme's totals do not move. The frontage line, its bearing and the end each run packs back from are **read from the committed block boundary** in `data/traces/vectors/thompson_lots.json`; the recipe authors no coordinate for any of the fourteen. The 1.5 m setback is not a measurement of this frontage either — it is the closest line the plat module's own lot margin allows, adopted so that the street wall is one wall. **WHAT IS INVENTED.** That these fourteen particular units stood shoulder to shoulder, and that a party-line row stood on these faces at all. The view supports the treatment for this street at about this date; it cannot say which buildings, and these buildings are inventions to begin with. Which end of each face the run packs back from is a choice — the town-centre end, on the same gradient the blocks' original arrangement notes already argued from the Dearborn bridge — and not a finding. The 2.4 m break in the Wells run is the smallest the three-metre separation rule allows against Carpenter's store; nobody chose the figure, and nothing states that a gap was there. **And it crosses the conjectural side lot lines, and frees platted lots by doing it.** A run of three roofs packed against one another occupies about 19 m where three lots span 75, so lots that carried a roof now carry none: the 665-roof programme's re-derivation reports three roofs schedulable on committed ground where it reported one. That is an honest consequence of density, not new headroom anybody voted for — the lots are free because the row is tighter than the grid, and a later parcel that builds on them is making its own claim. **The row also turned round, and that is a correction rather than a liberty.** The platted-block placement takes its bearing from the way INTO the lot, so every roof it has ever placed faces away from the street it fronts; `docs/GLB-CONTRACT.md` pins `rotation_deg` as the facade bearing, 0 = facing north, and every documented South Water store carries 0. The row now carries the face's own bearing. The same 180° flip still stands on this generator's other placements — Lake-facing and alley-facing roofs across twelve blocks — and is filed as its own ticket rather than swept into this one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period document that puts a named business on a numbered lot on this frontage — a South Water Street advertisement in the Chicago American or Democrat giving an address, or an itemised loss list — would replace an invented unit with a named one on the same line, which is what the 665-roof programme's substitution clause exists for."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`."
         },
         {
           "label": "Recorded",

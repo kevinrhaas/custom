@@ -1,5 +1,75 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0078: the South Water river row
+
+**The ask.** Piece 2 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18. His
+reference for this reach is image 11 of `data/sources/assets/owner_brief_2026_08_18/README.md`
+— *"South Water Street in 1834 — now Wacker Drive"* — which shows the south bank of the Main
+Branch as a **continuous working row**: roughly ten one-storey log and frame buildings shoulder
+to shoulder facing the river, the street between them and the grassy bank.
+
+**What was actually wrong.** The five platted blocks between Franklin and State carry fourteen
+anonymous roofs on their South Water faces, and the platted-block generator had one way to place
+a roof: centred on its own lot, at a period setback, with a lateral nudge. So the town's business
+front read as **6 m of building, then 14 to 20 m of grass**, every unit 6-8 m behind the
+frontage the documented stores stand on — and, because the placement rule takes its bearing from
+the way INTO the lot, every one of them **facing the middle of its block with its back to the
+river**.
+
+**What shipped.** A **frontage run** in `tools/generate_block_infill.py`: a slot may declare
+`stands_on: "frontage"` instead of a lot, and it then takes the line, its bearing and the end it
+packs back from out of the committed block boundary in
+`data/traces/vectors/thompson_lots.json`. The recipe authors no coordinate. Anchors chain — the
+unit at the east end off the end of the run's own frontage, each unit west of it off the wall of
+the one before — and a third anchor, `clear_west_of`, lets a run break around a documented
+building that stands proud of the platted line. The face arithmetic itself moved to
+`tools/block_faces.py`, imported by this generator and by the one T-0077 wrote it in, because a
+second copy of it would be a second opinion about the same ground.
+
+Applied to the fourteen: **six runs — three at Franklin (77.6-95.0 m along the face), two plus
+one at Wells, three at LaSalle, two at Clark, three at Dearborn — 85.6 m of continuous built
+frontage on one line, at a uniform 1.5 m setback, every front on the face's own bearing.** The
+2.4 m break in the Wells run is the smallest the three-metre separation rule allows against
+Carpenter's store, which stands in the corridor on coordinates typed before the plat module
+existed.
+
+**Nothing was added and nothing was renamed.** The five parcels deal the same roofs; the
+665-roof programme's totals do not move; every id, family band, dimension and baked placeholder
+mesh is the one it was. Only fourteen `position` blocks changed.
+
+**Three gates had to learn what a row is.** A run holds no lot per unit, so the one-roof-per-lot
+ledger now counts the run against the lots the recipe names for it and refuses a run that
+carries more roofs than lots. Containment moved from the single lot to the run's own strip: the
+**outer** side lines, the street line and the rear line keep the full 1.5 m margin, and only the
+**conjectural interior side lines** are crossed. And the three-metre separation rule takes the
+same narrow exemption L141 gave it — a record that NAMES its neighbour in
+`reconstruction.frontage.abuts`, gated at both ends to be a shared wall rather than a near miss.
+
+**Two honest consequences, both recorded in L142.** A run of three packed roofs occupies about
+19 m where three lots span 75, so the 665-roof re-derivation now reports **three** roofs
+schedulable on committed ground where it reported one — density frees platted lots, and a later
+parcel that builds on them is making its own claim. And the row's 180° turn is a *correction*:
+`docs/GLB-CONTRACT.md` pins `rotation_deg` as the facade bearing and every documented South
+Water store carries 0, while this generator's other placements — Lake-facing and alley-facing
+roofs across twelve blocks — still face away from their streets. That is filed as its own ticket
+rather than swept into this one.
+
+**What this ticket did NOT do**, and why T-0078 was split rather than stretched: the view's
+**two-storey stores at the east end** cannot be built from what these blocks were dealt. Their
+schedule mix is all D-family dwellings — no C3, C4 or D7 — so a two-storey store anchor needs
+either a schedule change or a documented liberty growing the total, which is one more
+demonstration and therefore one more ticket (T-0095).
+
+**Verification.** `./tools/check.sh` — the dev gate — green. `tools/smoke_renderer.mjs` run as
+its two halves, both killed by the runner's ten-minute ceiling (**T-0060**, unchanged): mobile
+**222 passed / 2 failed**, desktop **147 passed / 0 failed**, and the two mobile failures are
+`the roads reach the screen from the walker's eye` and `…from the air`, already recorded in this
+file as `dev`'s own and neither touched by this branch. Because `zero page errors` is the last
+line of each viewport and neither tail ran, that question was answered separately and in the
+foreground: a scratch harness booted the **published mirror** at 390x780 and 1280x800 and found
+**zero page errors at both**. Before/after frames from the same pose on South Water at
+`docs/RESEARCH/south_water_row_{before,after}_2026-08-19.png`.
+
 ## Shipped 2026-08-19 — T-0077: the Lake Street row at Dearborn
 
 **The ask.** Piece 1 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18: *"there

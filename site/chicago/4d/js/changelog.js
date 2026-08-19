@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 193, title: 'South Water Street gets its working row', kind: 'feature', ts: '2026-08-19T04:14:02.193Z', date: 'Aug 18, 2026, 11:14 PM CT',
+    items: [
+      'South Water Street was the town\u2019s business front \u2014 the wharves and the stores were on it, and everything the town bought or sold came off a boat there. Walking it, you would not have guessed: a store, then twenty metres of grass, then a cottage sitting seven metres back from the road, then more grass.',
+      'The fourteen reconstructed buildings along that reach now stand on the street, wall to wall, in six short rows \u2014 three at Franklin, two runs at Wells, three at LaSalle, two at Clark, three at Dearborn. Eighty-six metres of the frontage is continuous building where none of it was.',
+      'They also turned round. Every one of them had been facing the middle of its block, with its back to the road and the river; they now face the water, which is what the documented stores beside them have always done and what the street was for.',
+      'Nothing was built to do it. No roof was added, none left its block and none changed size or kind \u2014 the same fourteen buildings stopped standing where a list of setbacks put them and started standing on a line.',
+      'The line is not ours to choose. It comes off the surveyed block itself, and the row keeps the same clearance from the street every other building here keeps \u2014 one gap in it is real, where Carpenter\u2019s store stands out in the roadway and the row breaks around it.',
+      'The reference is a painting of South Water Street in 1834: one-storey log and frame buildings shoulder to shoulder facing the river, the road between them and the bank. It tells us how the street was built, never where any one building stood \u2014 all fourteen are invented, and turning \u201creconstructed\u201d off in the confidence view still takes the whole row away.',
+    ] },
   { v: 192, title: 'A street row at Lake and Dearborn', kind: 'feature', ts: '2026-08-19T02:29:30.761Z', date: 'Aug 18, 2026, 9:29 PM CT',
     items: [
       'Stand at Lake and Dearborn and look south-west and there was nothing much to look at: the Tremont House on its corner, a baker and a butcher a long way apart on the frontage, and four cottages sitting twenty metres back on open grass.',

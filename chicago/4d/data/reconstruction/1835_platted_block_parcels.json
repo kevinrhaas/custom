@@ -540,29 +540,30 @@
         {
           "family": "D5",
           "inventory_class": "principal_functional",
-          "lot": 6,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": -1.5
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
         },
         {
           "family": "D4",
           "inventory_class": "principal_functional",
-          "lot": 4,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": 1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_franklin_d5_01"
+          }
         },
         {
           "family": "D3",
           "inventory_class": "principal_functional",
-          "lot": 2,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 8.0,
-          "lateral_m": -3.0
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_franklin_d4_02"
+          }
         },
         {
           "family": "D1",
@@ -600,7 +601,19 @@
           "setback_m": 5.0,
           "lateral_m": -5.0
         }
-      ]
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          2,
+          4,
+          6
+        ],
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "runs": "One run of three, packed west from the east end of the block's own frontage at Wells Street, 1.5 m clear of the side line there. The Temple Building holds lot 0 at the Franklin corner and J. H. Kinzie's forwarding store laps the frontage in the middle of the face, so the run takes the eastern stretch and the documented pair keep the western — the gap between them is frontage this parcel was not dealt, not a break anybody chose."
+      }
     },
     {
       "block_id": "blk_south_water_wells",
@@ -645,29 +658,31 @@
         {
           "family": "D6",
           "inventory_class": "principal_functional",
-          "lot": 4,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": -1.5
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
         },
         {
           "family": "D5",
           "inventory_class": "principal_functional",
-          "lot": 2,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": 1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_wells_d6_01"
+          }
         },
         {
           "family": "D4",
           "inventory_class": "principal_functional",
-          "lot": 0,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.5,
-          "lateral_m": -3.0
+          "anchor": {
+            "clear_west_of": "carpenter_south_water_store",
+            "clear_m": 2.4
+          }
         },
         {
           "family": "D3",
@@ -714,7 +729,19 @@
           "setback_m": 5.0,
           "lateral_m": 5.0
         }
-      ]
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          0,
+          2,
+          4
+        ],
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "runs": "TWO runs, and the break between them is a documented store rather than a choice. Two roofs pack west from the east end of lots 0-2-4, which is where this block's dealt frontage stops: Rufus Brown's boarding house holds lot 6 at the LaSalle corner and Peck's store stands on its frontage. The third cannot join them — Carpenter's South Water store stands PROUD of the platted line in front of lot 2, its walls in the corridor, placed from typed coordinates before the plat module existed — so it stands 2.4 m west of that store instead, the smallest break the three-metre separation rule allows against a building the row cannot share a wall with. The figure is the gate's, not anybody's judgement of a frontage."
+      }
     },
     {
       "block_id": "blk_south_water_lasalle",
@@ -758,29 +785,30 @@
         {
           "family": "D5",
           "inventory_class": "principal_functional",
-          "lot": 4,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": -1.5
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
         },
         {
           "family": "D4",
           "inventory_class": "principal_functional",
-          "lot": 2,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": 1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_lasalle_d5_01"
+          }
         },
         {
           "family": "D3",
           "inventory_class": "principal_functional",
-          "lot": 0,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.5,
-          "lateral_m": -3.0
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_lasalle_d4_02"
+          }
         },
         {
           "family": "D1",
@@ -818,7 +846,19 @@
           "setback_m": 5.0,
           "lateral_m": 5.0
         }
-      ]
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          0,
+          2,
+          4
+        ],
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "runs": "One run of three on lots 0-2-4, packed west from their east end. The Chicago Democrat's office holds lot 6 at the Clark corner, so the run stops one lot short of it and the frontage between them is the office's own."
+      }
     },
     {
       "block_id": "blk_south_water_clark",
@@ -860,20 +900,21 @@
         {
           "family": "D5",
           "inventory_class": "principal_functional",
-          "lot": 4,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": -1.5
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
         },
         {
           "family": "D4",
           "inventory_class": "principal_functional",
-          "lot": 2,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.5,
-          "lateral_m": 1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_clark_d5_01"
+          }
         },
         {
           "family": "D3",
@@ -902,7 +943,18 @@
           "setback_m": 5.0,
           "lateral_m": 5.0
         }
-      ]
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          2,
+          4
+        ],
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "runs": "One run of two — this block was dealt only two frontage roofs, because Harmon and Loomis's store holds lot 0 and Madore Beaubien's house lot 6 — packed west from the east end of lots 2-4. Pruyne and Kimball's drugstore stands proud of the line in front of lot 2 and the run keeps its distance from it."
+      }
     },
     {
       "block_id": "blk_south_water_dearborn",
@@ -945,29 +997,30 @@
         {
           "family": "D5",
           "inventory_class": "principal_functional",
-          "lot": 0,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.5,
-          "lateral_m": -1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_dearborn_d4_02"
+          }
         },
         {
           "family": "D4",
           "inventory_class": "principal_functional",
-          "lot": 2,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 7.0,
-          "lateral_m": 1.5
+          "anchor": {
+            "abut_west_of": "recon_1835_blk_south_water_dearborn_d3_03"
+          }
         },
         {
           "family": "D3",
           "inventory_class": "principal_functional",
-          "lot": 4,
-          "stands_on": "street",
+          "stands_on": "frontage",
           "fronts": "south_water",
-          "setback_m": 6.0,
-          "lateral_m": -1.5
+          "anchor": {
+            "corner": "east",
+            "clear_m": 1.5
+          }
         },
         {
           "family": "D2",
@@ -996,7 +1049,19 @@
           "setback_m": 5.0,
           "lateral_m": 5.0
         }
-      ]
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          0,
+          2,
+          4
+        ],
+        "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+        "runs": "One run of three on lots 0-2-4, packed west from their east end. The slots are dealt west to east on this block and the run is chained the other way round, which the anchors say and the sequence does not have to: the roof at the east end anchors on the end of the frontage and the other two abut west of it in turn."
+      }
     },
     {
       "block_id": "blk_lake_market",
