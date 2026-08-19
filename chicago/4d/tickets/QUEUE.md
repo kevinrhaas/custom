@@ -2,12 +2,12 @@
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
+T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
-T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0074 — Trees and bushes kept around the houses
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property

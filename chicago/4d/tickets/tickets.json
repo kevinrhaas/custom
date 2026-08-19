@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 19, 2026, 2:53 PM",
+  "generated_ct": "Aug 19, 2026, 2:57 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -71,7 +71,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 2
+      "queue_rank": 3
     },
     {
       "id": "T-0005",
@@ -88,7 +88,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": 4
     },
     {
       "id": "T-0006",
@@ -123,7 +123,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 7
     },
     {
       "id": "T-0008",
@@ -1049,7 +1049,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 2
     },
     {
       "id": "T-0061",
@@ -1463,7 +1463,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 4
+      "queue_rank": 5
     },
     {
       "id": "T-0084",
@@ -1607,7 +1607,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 5
+      "queue_rank": 6
     },
     {
       "id": "T-0093",
