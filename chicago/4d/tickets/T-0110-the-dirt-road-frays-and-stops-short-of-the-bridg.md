@@ -1,7 +1,7 @@
 ---
 id: T-0110
 title: The dirt road frays and stops short of the bridge deck
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/19/2026, 6:29:52 PM CT
 blocked_on: null
 needs_bake: false
 ---
