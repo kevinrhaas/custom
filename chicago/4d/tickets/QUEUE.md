@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0004 — Raise and graduate the river banks at the fort reach
