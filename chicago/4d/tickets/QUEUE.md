@@ -65,3 +65,10 @@ T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
+T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
+T-0095 — The fort's corner works and its two documented gates, as the plate draws them
+T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
+T-0097 — The ground around the fort is full prairie, where both plates show it bare and trodden
+T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
+T-0099 — The bank track from the fort's north gate down to the water
+T-0100 — A street's geometry confidence never reaches the picture

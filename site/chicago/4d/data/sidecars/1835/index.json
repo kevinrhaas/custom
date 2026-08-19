@@ -1695,6 +1695,170 @@
           ]
         }
       ]
+    },
+    {
+      "id": "fort_road",
+      "name_1835": "The fort road",
+      "name_2026": "N Michigan Avenue",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          805,
+          4
+        ],
+        [
+          860,
+          10
+        ],
+        [
+          920,
+          18
+        ],
+        [
+          980,
+          27
+        ],
+        [
+          1030,
+          33
+        ],
+        [
+          1075,
+          38
+        ],
+        [
+          1115,
+          55
+        ],
+        [
+          1140,
+          78
+        ],
+        [
+          1146,
+          120
+        ],
+        [
+          1147,
+          160
+        ],
+        [
+          1148,
+          188
+        ]
+      ],
+      "corridor_width_m": 12.0,
+      "track_width_m": 5.5,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "reconstructed",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "note": "THE ROAD THE FORT PLAINLY HAD, DRAWN AT THE RECONSTRUCTED TIER, and which part is which is stated rather than implied. WHAT IS DOCUMENTED: the fort had large gates north and south - Juliette Kinzie inside it in 1831, Andreas independently, and a break in each of those two walls and in neither of the others on the 1830 Harrison plan - and the garrison garden's own record reads off that same plan that the plot lies 'west of the road'. So the plan draws a road on the reservation, and a road that is east of that garden and arrives at that gate has to run about here. WHAT IS NOT DOCUMENTED: nobody traced this line, nobody measured it, and no source names it. The 1835 name is DESCRIPTIVE, not a proper name; the 2026 name is the street that runs over this ground today, not a descent of name. THE WESTERN REACH IS THE INVENTION AND IT IS THE REASON THIS RECORD IS RECONSTRUCTED: South Water Street stops at the United States Reservation, matching the 1833 order, so the connection from the town to the fort gate was never a platted street - it is drawn because a garrisoned post that mustered, traded and drew its stores through the town had a way in, and a visitor who walks east out of South Water Street should find one instead of trackless prairie. The line is routed clear of the garden's east corner and of the Beaubien buildings, and it is clipped by the water mask like every other track, so it makes honest gaps rather than fords where the ground is wet. Recorded in docs/LIBERTIES.md; T-0044.",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)"
+        },
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "harrison_1830_river_mouth",
+          "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+          "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+          "archived_url": "",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "what_it_supplies": [
+            "the fort's plan arrangement: a quadrangular picket enclosure, corner works, four ranges, two gates",
+            "which building stood on which side of the parade",
+            "the relative proportions of the enclosure and the buildings in it",
+            "the fort's rotation relative to true north",
+            "the named ground around the fort: garrison garden, cultivated field, barn, wash house, well, shop, cemetery, ferry"
+          ],
+          "what_it_does_not_supply": [
+            "any dimension in feet - there is no scale bar",
+            "elevations, heights, roof forms or materials",
+            "the state of the fort in 1835 - it is five years earlier",
+            "a separation between the 1830 survey and the settler-memory additions the plate admits to"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "kinzie_waubun_1856",
+          "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+          "url": "https://www.authorama.com/wau-bun-19.html",
+          "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+          "tier": 2,
+          "tier_label": "near-primary recollection"
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
     }
   ],
   "structures": [
