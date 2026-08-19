@@ -1,7 +1,7 @@
 ---
 id: T-0102
 title: The two-storey stores that anchor the South Water row's east end
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0078
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/19/2026, 5:08:38 AM CT
 blocked_on: null
 needs_bake: false
 ---
