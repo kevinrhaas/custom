@@ -1,5 +1,47 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0044: the fort road, and the two Fort Dearborn plates read against the render
+
+**The ask.** T-0006's third and last piece: *render each landmark from its reference plate's
+viewpoint, compare, improve* — on the next two UNticketed plates. Every plate of the owner's
+2026-08-18 brief already has a ticket, so the next two are the **two Fort Dearborn views** in
+`data/sources/assets/prefire_views_kevin_2026_08/` (`p4_0.png`, `p4_1.png`), which have never had
+a pass. The written comparison, plate by plate and gap by gap, is
+`docs/RESEARCH/fort_dearborn_image_accuracy.md`, with the before shot from `p4_0`'s own stand.
+
+**What shipped: the road.** `fort_road` in `data/streets/1835.json` — eleven vertices from the
+east end of South Water Street, across the United States Reservation east of the garrison garden
+and past the Beaubien buildings, to the fort's south gate. A 5.5 m worn-earth track inside a 12 m
+corridor, drawn by the existing street layer, no bake. Before and after from the same stand:
+`docs/RESEARCH/fort_road_before_2026-08-19.png` → `fort_road_after_2026-08-19.png`.
+
+**Where the line comes from, and where it stops coming from.** The gates are attested three times
+(Kinzie inside the fort in 1831, Andreas, and a break in each of exactly those two walls on the
+1830 Harrison plan). The 1830 plan also draws a road: the garrison garden's own position note has
+read that plate since it was written and places the plot *"west of the road"*. So a road east of
+that garden arriving at that gate is bounded. **The western reach is not**: South Water Street
+stops at the reservation by the 1833 order and nothing reached draws what carried on, so the
+connection to the town is this project's reconstruction — `geometry_confidence: reconstructed`,
+`wear_confidence: reconstructed`, so the whole road dithers out with the rest of the invented town
+when a visitor turns `reconstructed` off. Recorded as **L140**. The 1835 name is descriptive;
+nobody names this road.
+
+**What the pass found and did NOT build.** The fort's own fabric is where the plates and the model
+part company — flat-topped dark pickets against pale pointed ones, corner works that do not rise
+above the curtain with roofs and lanterns, no gate drawn in either documented wall. All three are
+archetype geometry and **need the nightly bake, which this runner cannot run**; they are tickets
+now, not claims. So are the bare trodden ground round the walls, the trees `p4_0` puts east of it,
+and the bank track down to the water (which waits on T-0004 grading the bank).
+
+**The flagstaff is refused, on purpose.** `p4_0` draws one, and `data/exclusions.json` already
+excludes a flagstaff as belonging to Whistler's 1808 FIRST fort — *"none of it may be borrowed for
+the second fort's records"*. Retrospective plates conflate the two forts; that is why the
+courthouse plate in the same set is filed as a negative reference. A tier-5 view cannot settle it.
+Filed as its own ticket, with the documentary evidence that would.
+
+**Not claimed.** `p4_1` depicts Native people, tipis and canoes. The standing constraint holds in
+full: nothing of it is drawn, and the plate is reference for the setting only.
+
 ## Shipped 2026-08-19 — T-0091: the Sauganash's yard fence, and the trees behind it
 
 **The ask.** Piece 2 of 3 of T-0043, the image-accuracy pass on the Sauganash. The YARD side of

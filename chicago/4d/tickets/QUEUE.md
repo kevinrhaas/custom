@@ -6,7 +6,6 @@ T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
-T-0044 — Image-accuracy pass: the next two landmark plates
 T-0077 — The Lake Street row at Dearborn, from the Tremont plate
 T-0078 — The South Water river row, from the 1834 view
 T-0079 — Reconstructed infill across the remaining core blocks
@@ -65,3 +64,10 @@ T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
+T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
+T-0095 — The fort's corner works and its two documented gates, as the plate draws them
+T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
+T-0097 — The ground around the fort is full prairie, where both plates show it bare and trodden
+T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
+T-0099 — The bank track from the fort's north gate down to the water
+T-0100 — A street's geometry confidence never reaches the picture

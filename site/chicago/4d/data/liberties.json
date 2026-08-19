@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 139,
+  "count": 140,
   "liberties": [
     {
       "id": "L1",
@@ -9686,6 +9686,33 @@
         {
           "label": "Recorded",
           "text": "2026-08-18."
+        }
+      ]
+    },
+    {
+      "id": "L140",
+      "title": "The fort road: a line the 1830 plan implies and nobody ever drew",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "a travelled way, `fort_road` in `data/streets/1835.json`, runs from the east end of South Water Street across the United States Reservation to the **south gate of Fort Dearborn** — eleven vertices, a 5.5 m worn-earth track inside a 12 m corridor, drawn by `renderers/web/js/streets.js` with the town's own streets and needing no bake. Its `geometry_confidence` is **reconstructed** and its `wear_confidence` is reconstructed, so the whole road dithers out with everything else invented when a visitor turns `reconstructed` off."
+        },
+        {
+          "label": "Why",
+          "text": "T-0044's image-accuracy pass on the two Fort Dearborn plates (`docs/RESEARCH/fort_dearborn_image_accuracy.md`). Both views show a travelled way at the fort and the render had trackless prairie between the town and the gate — a garrisoned post that mustered, traded and drew its stores through the town for nineteen years, standing at the end of nothing. **What bounds the invention.** THAT there was a road on this reservation is not invented: the 1830 Harrison plan draws one, and this dataset has been reading it since the garrison garden's position note was written — that record places the plot *\"west of the road\"*. WHERE it arrives is not invented either: *\"large gates opened to the north and south\"* (Kinzie, inside the fort in 1831), *\"one on the north and the other on the south side\"* (Andreas), and a break in each of those two walls and in neither of the others on the same 1830 plan. So a road that is east of that garden and arrives at that gate has to run about where this one runs. The line is routed to clear the garden's east corner and the two Beaubien buildings by more than the platted half-corridor, and it is clipped by the water mask like every other track, so it breaks rather than fords where the ground is wet. **THE WESTERN REACH IS THE INVENTION, and it is most of the length.** South Water Street stops at the United States Reservation, matching the 1833 order, and nothing reached draws what carried on to the fort. Its eleven vertices are a plausible line across dry committed ground and not a trace of anything: no source measures this road, states its width, says whether it was one road or several beaten tracks, or names it. **The 1835 name is descriptive.** \"The fort road\" is what this record calls it so the readout can call it something; the 2026 name is the street that runs over this ground today, not a descent of name. **What is NOT claimed.** The road stops at the gate. The track `p4_0` draws descending the bank from the NORTH gate to the water is not drawn, because the bank it descends is the flat plateau T-0004 exists to grade and a ramp down an ungraded bank would be two inventions stacked. Nothing here touches the fort's own records."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the 1830 Harrison sheet re-read for its road line specifically — this project has taken the fort, the garden, the barn and the ferry off that plate and never the roads; or any survey of the reservation before its 1839 subdivision, which would fix the line and probably its name at the same time."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-19."
         }
       ]
     },

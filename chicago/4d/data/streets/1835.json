@@ -255,6 +255,22 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
+    },
+    {
+      "id": "fort_road",
+      "name_1835": "The fort road",
+      "name_2026": "N Michigan Avenue",
+      "name_changed": true,
+      "path_local_enu_m": [[805, 4], [860, 10], [920, 18], [980, 27], [1030, 33], [1075, 38], [1115, 55], [1140, 78], [1146, 120], [1147, 160], [1148, 188]],
+      "corridor_width_m": 12.0,
+      "track_width_m": 5.5,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "reconstructed",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
+      "sources": ["harrison_1830_river_mouth", "andreas_1884_v1", "kinzie_waubun_1856"],
+      "note": "THE ROAD THE FORT PLAINLY HAD, DRAWN AT THE RECONSTRUCTED TIER, and which part is which is stated rather than implied. WHAT IS DOCUMENTED: the fort had large gates north and south - Juliette Kinzie inside it in 1831, Andreas independently, and a break in each of those two walls and in neither of the others on the 1830 Harrison plan - and the garrison garden's own record reads off that same plan that the plot lies 'west of the road'. So the plan draws a road on the reservation, and a road that is east of that garden and arrives at that gate has to run about here. WHAT IS NOT DOCUMENTED: nobody traced this line, nobody measured it, and no source names it. The 1835 name is DESCRIPTIVE, not a proper name; the 2026 name is the street that runs over this ground today, not a descent of name. THE WESTERN REACH IS THE INVENTION AND IT IS THE REASON THIS RECORD IS RECONSTRUCTED: South Water Street stops at the United States Reservation, matching the 1833 order, so the connection from the town to the fort gate was never a platted street - it is drawn because a garrisoned post that mustered, traded and drew its stores through the town had a way in, and a visitor who walks east out of South Water Street should find one instead of trackless prairie. The line is routed clear of the garden's east corner and of the Beaubien buildings, and it is clipped by the water mask like every other track, so it makes honest gaps rather than fords where the ground is wet. Recorded in docs/LIBERTIES.md; T-0044."
     }
   ]
 }

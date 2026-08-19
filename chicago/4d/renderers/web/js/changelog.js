@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 191, title: 'The fort has a road out of town again', kind: 'feature', ts: '2026-08-19T01:16:05.302Z', date: 'Aug 18, 2026, 8:16 PM CT',
+    items: [
+      'Walk east out of South Water Street and the town used to stop dead. Open prairie, and Fort Dearborn standing a quarter of a mile off across it with nothing at all leading to it.',
+      'There is a road now. It leaves the end of South Water Street, crosses the United States Reservation past the garrison\u2019s garden and the Beaubien houses, and comes up to the fort\u2019s south gate \u2014 two wheel ruts in worn earth, drawn the same way as the town\u2019s own streets. Stand on it and the readout names it.',
+      'The garden is why it runs where it runs. The 1830 plan of the river mouth draws the garrison\u2019s garden and puts it west of a road, and the fort\u2019s large gates north and south are attested three separate times \u2014 so a road east of that garden arriving at that gate has to run about here.',
+      'The western half of it is ours. South Water Street stopped at the reservation by order in 1833 and nothing anybody has found draws what carried on. A post that mustered, traded and drew its stores through the town had a way in, so we have drawn one and written down that we drew it.',
+      'It is our reconstruction from end to end: turn reconstructed off in the confidence view and the road goes with it. Where the ground is wet the track breaks rather than painting a ford across it.',
+      'This came out of putting the two old views of the fort beside the render. Most of what they show that we lack is the fort\u2019s own fabric \u2014 pointed pickets, roofed corner works, a gate \u2014 and that waits on the overnight build. The flagstaff in the plate is a trap, and it stays out: the one this town has evidence for belonged to the older fort that burned in 1812.',
+    ] },
   { v: 190, title: 'The Sauganash gets its board fence and the trees behind it', kind: 'feature', ts: '2026-08-19T00:05:11.550Z', date: 'Aug 18, 2026, 7:05 PM CT',
     items: [
       'The three old views of the Sauganash Hotel that gave it its plank walks last night show the other half of its ground too: a tall fence of upright boards running off to the right of the house, closing the yard behind it, with trees standing over it. The yard was open grass with nothing in it.',
