@@ -1,7 +1,7 @@
 ---
 id: T-0101
 title: The South Water row stands on its line, shoulder to shoulder, facing the river
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0078
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-18
+pr: 255
 claimed_by: null
 blocked_on: null
 needs_bake: false
