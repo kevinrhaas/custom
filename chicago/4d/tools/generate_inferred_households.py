@@ -576,10 +576,24 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             for r in records]
     new_ids = {r["id"] for r in records}
     existing = []
+    # A DECLARED PARTY WALL IS NOT A COLLISION (T-0077). The three-metre rule below
+    # exists to stop two records occupying one yard, and until this scene had a street
+    # front that was the only way two footprints ever came to touch. It is not the only
+    # way now: the plate of Lake and Dearborn shows buildings shoulder to shoulder on
+    # shared party lines, and a run built that way abuts whatever already stands on the
+    # face. So the exemption is exactly as wide as the claim that earns it — a record
+    # that NAMES this building in its own `reconstruction.frontage.abuts`, which is
+    # written into the record, re-derived by the generator that placed it, and gated by
+    # `check_frontage` there to be a shared wall rather than a near miss. Anything else,
+    # including a building that merely happens to be close, still fails.
+    abutted = set()
     for path in sorted(STRUCTURES.glob("*.json")):
         doc = load(path)
         if doc.get("id") in new_ids:
             continue
+        target = ((doc.get("reconstruction") or {}).get("frontage") or {}).get("abuts")
+        if target:
+            abutted.add((doc["id"], target))
         for phase in doc.get("phases", []):
             pos = phase.get("position") or {}
             poly = (phase.get("footprint") or {}).get("polygon")
@@ -588,6 +602,8 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             existing.append((doc["id"], world_polygon(pos, poly, origin)))
     for name, poly in existing + reserved_slots():
         for sid, other in mine:
+            if (name, sid) in abutted:
+                continue
             if overlaps(poly, other, -3.0):
                 raise SystemExit(f"{sid} is within 3 m of {name}")
     for i, (sid, poly) in enumerate(mine):

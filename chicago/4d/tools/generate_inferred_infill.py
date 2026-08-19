@@ -39,6 +39,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 # and the occupancy block arrives from the household programme's ledger.
 from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
+# Every committed footprint in this scene's local frame, so a frontage run can butt
+# onto a building this parcel did not write — read from the module the occupancy and
+# separation gates read, so a run and a gate cannot be looking at two towns.
+from plat_occupancy import footprints  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -221,7 +225,7 @@ def block_name(e: float) -> str:
 
 
 def make_record(seq: int, family: str, e: float, n: float, row: dict,
-                inventory: dict, datum: dict) -> dict:
+                inventory: dict, datum: dict, frontage: dict | None = None) -> dict:
     sid = f"{PREFIX}{family.lower()}_{seq:03d}"
     width, depth = dimensions(family, seq, inventory["family_bands_ft"])
     jitter_e = (stable_fraction(sid, 3) - .5) * 1.2
@@ -241,6 +245,17 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
     }
     if yard_group:
         reconstruction["yard_group"] = yard_group
+    if frontage is not None:
+        # Recorded on the record rather than only in the recipe, because the frontage
+        # is the answer to "why does this building stand here" and a reader of the
+        # record cannot open the recipe. `place_on_frontage` reads the private key
+        # below and drops it; what survives into the file is this block.
+        reconstruction["frontage"] = {
+            "block": frontage["row"]["block"], "face": frontage["row"]["face"],
+            "setback_m": frontage["row"]["setback_m"],
+            "abuts": frontage["placement"].get("abut_west_of"),
+            "why": frontage["row"]["why"],
+        }
 
     blocks = block_name(local_e)
     location = f"Anonymous reconstructed roof in the South Division block between {blocks}, south of Lake Street"
@@ -317,6 +332,239 @@ def check_corridors(records: list[dict], datum: dict) -> None:
                              f"{lanes[street]['name']} corridor")
 
 
+# --------------------------------------------------------------------------
+# the party-line frontage (T-0077)
+# --------------------------------------------------------------------------
+#
+# The rows above are the parcel as it was first written: a shared northing and a
+# list of eastings, each nudged by its own jitter. That is a DISTRIBUTION of roofs
+# across a block, and it is the right shape for the interior of one. It is the
+# wrong shape for a street front. The owner's screenshot of the Lake and Dearborn
+# corner is the whole of the argument — the Tremont House standing alone on grass
+# with four cottages seventeen to twenty-four metres behind the frontage — against
+# a plate of that same corner showing buildings shoulder to shoulder on shared
+# party lines, signboards across the fronts and plank walks below.
+#
+# So a placement may say instead that it stands ON a block face, and then it takes
+# three things from the committed plat rather than from this file: the line it
+# fronts, the bearing of that line, and where along it the building's east wall
+# lands. Nothing here authors a coordinate — the face comes out of
+# `data/traces/vectors/thompson_lots.json`, the same block boundary the lot grid
+# and the corridor gate are derived from, and a run is anchored either on the
+# block's own corner or on the wall of a building already standing on that face.
+# A hand-typed northing beside the plat module is a second opinion about the same
+# ground; that is the lesson `tools/generate_block_infill.py` was written on.
+#
+# The jitter goes with it, and deliberately. A party wall does not wander: two
+# buildings that share one are the same wall, so a metre of scatter and a degree
+# of yaw are exactly what makes a row read as detached cottages standing near each
+# other. On a frontage placement the bearing IS the face's bearing and the offsets
+# are zero.
+
+LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
+
+FRONTAGE_NOTE = (
+    "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0077). This building "
+    "does not stand where a northing in the recipe put it: it stands on the {face} "
+    "face of {block}, whose line and bearing are read from the block boundary in "
+    "data/traces/vectors/thompson_lots.json — the same committed geometry the lot "
+    "grid and the corridor gate are derived from. Its front wall is set {setback} m "
+    "back from that lot line, the alignment the two frontage buildings already "
+    "standing on this face use, and its east wall is fixed by {anchor}. The bearing "
+    "is the face's own, and this placement carries none of the jitter the parcel's "
+    "interior rows carry, because a shared party wall is one wall and cannot wander. "
+    "WHAT IS INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here "
+    "at all, which building it was, and that these particular units stood shoulder "
+    "to shoulder. What the plate supports is the TREATMENT — a continuous storefront "
+    "row on the town's principal street rather than detached cottages set back on "
+    "grass — and the treatment is what this placement takes from it. Standing on a "
+    "derived block face is not standing on a recovered lot."
+)
+
+
+def face_frame(block_id: str, face: str) -> dict:
+    """The line a frontage run stands on, out of the committed block boundary.
+
+    Returns the face's west end, its unit vector running east along the face, the
+    outward normal (which is the way the fronts look), the facade bearing under the
+    renderer's convention, and the face length. The boundary is a closed ring wound
+    from the north-west corner, so the north face is its first edge; the other three
+    are picked the same way rather than by index, so a re-derived plat that winds
+    the other way is a failure here instead of a silent ninety-degree error.
+    """
+    grid = load(LOTS_PATH)
+    block = next((b for b in grid["blocks"] if b["id"] == block_id), None)
+    if block is None:
+        raise SystemExit(f"{block_id} is not a block of the committed plat grid")
+    ring = [tuple(p) for p in block["boundary_local_enu_m"]]
+    edges = [(ring[i], ring[(i + 1) % len(ring)]) for i in range(len(ring))]
+    pick = {
+        "north": lambda e: (e[0][1] + e[1][1]) / 2,
+        "south": lambda e: -(e[0][1] + e[1][1]) / 2,
+        "east": lambda e: (e[0][0] + e[1][0]) / 2,
+        "west": lambda e: -(e[0][0] + e[1][0]) / 2,
+    }
+    if face not in pick:
+        raise SystemExit(f"a block face is one of north, south, east, west — not {face!r}")
+    a, b = max(edges, key=pick[face])
+    length = math.dist(a, b)
+    if length <= 0:
+        raise SystemExit(f"{block_id}: degenerate {face} face")
+    along = ((b[0] - a[0]) / length, (b[1] - a[1]) / length)
+    outward = (-along[1], along[0])
+    # The face is picked as an edge of the ring, so it may run either way round it.
+    # A run is anchored on the block's EAST (or north) corner and packs back along
+    # the face, so the axis is normalised to point that way and the outward normal
+    # with it — otherwise a re-wound ring would silently pack a row off the block.
+    if (along[0] if face in ("north", "south") else along[1]) < 0:
+        a, b = b, a
+        along = (-along[0], -along[1])
+        outward = (-outward[0], -outward[1])
+    if (outward[1] if face in ("north", "south") else outward[0]) * (
+            1 if face in ("north", "east") else -1) < 0:
+        outward = (-outward[0], -outward[1])
+    return {
+        "origin": a, "far": b, "along": along, "outward": outward,
+        "length": length,
+        "bearing": round(math.degrees(math.atan2(outward[0], outward[1])) % 360.0, 3),
+    }
+
+
+def _project(frame: dict, point: tuple[float, float]) -> tuple[float, float]:
+    """(distance along the face from its origin, distance outward from its line)."""
+    dx, dy = point[0] - frame["origin"][0], point[1] - frame["origin"][1]
+    return (dx * frame["along"][0] + dy * frame["along"][1],
+            dx * frame["outward"][0] + dy * frame["outward"][1])
+
+
+def _extent(frame: dict, polygon: list[tuple[float, float]]) -> tuple[float, float]:
+    spans = [_project(frame, p)[0] for p in polygon]
+    return (min(spans), max(spans))
+
+
+def place_on_frontage(records: list[dict], parcel: dict, datum: dict) -> None:
+    """Move every placement that declared a block face onto that face.
+
+    Anchors resolve in passes because a run is a chain: the corner unit is fixed by
+    the block's own corner, and each unit west of it by the wall of the one before.
+    An anchor may also name a building this parcel did not write, which is how a run
+    butts onto a frontage that is already standing.
+    """
+    pending = {r["id"]: r for r in records if r.get("_frontage")}
+    if not pending:
+        return
+    mine = {r["id"] for r in records}
+    committed = dict(footprints(datum, exclude=mine))
+    frames: dict[tuple[str, str], dict] = {}
+    resolved: dict[str, list[tuple[float, float]]] = {}
+
+    while pending:
+        progressed = False
+        for sid, record in list(pending.items()):
+            spec = record["_frontage"]
+            row = spec["row"]
+            key = (row["block"], row["face"])
+            frame = frames.setdefault(key, face_frame(*key))
+            anchor = spec["placement"]
+            if "corner" in anchor:
+                if anchor["corner"] != "east":
+                    raise SystemExit(f"{sid}: only the east corner anchors a run today")
+                east = frame["length"] - float(anchor.get("clear_m", 0.0))
+                described = (f"the block's own east corner, {anchor.get('clear_m', 0.0):.1f} m "
+                             f"clear of the platted corridor")
+            else:
+                target = anchor.get("abut_west_of")
+                if target is None:
+                    raise SystemExit(f"{sid}: a frontage placement anchors on a corner "
+                                     f"or abuts a named building")
+                polygon = resolved.get(target) or committed.get(target)
+                if polygon is None:
+                    if target in mine:
+                        continue  # its own anchor has not been placed yet
+                    raise SystemExit(f"{sid}: nothing in the dataset is called {target}")
+                east = _extent(frame, polygon)[0]
+                described = f"the west wall of {target}, which it shares a party line with"
+
+            phase = record["phases"][0]
+            polygon = phase["footprint"]["polygon"]
+            width = max(p[0] for p in polygon) - min(p[0] for p in polygon)
+            depth = max(p[1] for p in polygon) - min(p[1] for p in polygon)
+            setback = float(row["setback_m"])
+            # The footprint's (0, 0) corner, which is what the GLB contract anchors
+            # on: walk back from the east wall along the face, then in from the face
+            # line by the setback and the building's own depth.
+            base = (frame["origin"][0] + frame["along"][0] * (east - width)
+                    + frame["outward"][0] * (-setback - depth),
+                    frame["origin"][1] + frame["along"][1] * (east - width)
+                    + frame["outward"][1] * (-setback - depth))
+            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            position = phase["position"]
+            position["utm_e"] = round(datum["origin_utm_e"] + local_e, 3)
+            position["utm_n"] = round(datum["origin_utm_n"] + local_n, 3)
+            position["rotation_deg"] = frame["bearing"]
+            position["symbolic_location"] = (
+                f"Anonymous reconstructed roof standing on the {row['face']} frontage of "
+                f"the South Division block between {block_name(local_e)}, in the "
+                f"party-line row at Lake and Dearborn")
+            position["note"] = FRONTAGE_NOTE.format(
+                face=row["face"], block=row["block"], setback=f"{setback:.2f}",
+                anchor=described)
+            theta = math.radians(frame["bearing"])
+            cos, sin = math.cos(theta), math.sin(theta)
+            resolved[sid] = [(local_e + u * cos + v * sin, local_n - u * sin + v * cos)
+                             for u, v in polygon]
+            del pending[sid]
+            progressed = True
+        if not progressed:
+            raise SystemExit("a frontage run anchors on itself: "
+                             + ", ".join(sorted(pending)))
+
+    for record in records:
+        record.pop("_frontage", None)
+
+
+def check_frontage(records: list[dict], parcel: dict, datum: dict) -> None:
+    """A row is a row: on the line, in order, and touching.
+
+    Three assertions, because each of the three is a way the row stops being one and
+    none of them is visible in a diff of coordinates. The front walls sit on one line
+    to the millimetre or the street wall steps; a run's units are in the order the
+    recipe deals them or "west of" means nothing; and a party line is a shared wall,
+    so a gap inside a run is a defect while a gap BETWEEN runs is the gangway the
+    recipe asked for and says why.
+    """
+    placed = [r for r in records if r["reconstruction"].get("frontage")]
+    if not placed:
+        return
+    by_face: dict[tuple[str, str], list[dict]] = {}
+    for record in placed:
+        f = record["reconstruction"]["frontage"]
+        by_face.setdefault((f["block"], f["face"]), []).append(record)
+    for key, group in by_face.items():
+        frame = face_frame(*key)
+        setback = {r["reconstruction"]["frontage"]["setback_m"] for r in group}
+        if len(setback) != 1:
+            raise SystemExit(f"{key[0]}: the {key[1]} frontage is set back by "
+                             f"{sorted(setback)} m — a street wall is one line")
+        for record in group:
+            offs = [_project(frame, p)[1]
+                    for p in world_polygon(record, datum)]
+            if abs(max(offs) + float(next(iter(setback)))) > 0.005:
+                raise SystemExit(f"{record['id']} fronts {max(offs):.3f} m off the "
+                                 f"{key[1]} face of {key[0]}, not its stated setback")
+        chained = {r["id"]: r["reconstruction"]["frontage"].get("abuts")
+                   for r in group}
+        spans = {r["id"]: _extent(frame, world_polygon(record=r, datum=datum))
+                 for r in group}
+        for sid, target in chained.items():
+            if not target or target not in spans:
+                continue
+            gap = spans[target][0] - spans[sid][1]
+            if abs(gap) > 0.005:
+                raise SystemExit(f"{sid} stands {gap:.3f} m from the party line it "
+                                 f"shares with {target}")
+
+
 def validate_programme(inventory: dict, parcel: dict, records: list[dict]) -> None:
     if sum(inventory["family_targets"].values()) != inventory["targets"]["roof_total"]:
         raise SystemExit("family targets do not sum to the 665-roof target")
@@ -346,9 +594,27 @@ def records_from_inputs() -> list[dict]:
     inventory, parcel, datum = load(INVENTORY_PATH), load(PARCEL_PATH), load(DATA / "datum.json")
     records = []
     for row in parcel["rows"]:
-        for e, family in row["placements"]:
-            records.append(make_record(len(records) + 1, family, float(e), float(row["local_n"]), row, inventory, datum))
+        frontage_row = row.get("frontage")
+        for placement in row["placements"]:
+            e, family = placement[0], placement[1]
+            # A third element says this placement stands on a block face instead of on
+            # the row's northing. It is deliberately a per-placement opt-in: the row's
+            # own eastings still fix the SEQUENCE, so moving four buildings onto a
+            # frontage renames nothing and re-deals no dimensions — every id, band and
+            # baked mesh in the parcel is the one it was.
+            spec = placement[2] if len(placement) > 2 else None
+            if spec is not None and frontage_row is None:
+                raise SystemExit(f"{row['id']}: a placement stands on a block face but "
+                                 f"the row declares no `frontage`")
+            frontage = {"row": frontage_row, "placement": spec} if spec else None
+            record = make_record(len(records) + 1, family, float(e),
+                                 float(row["local_n"]), row, inventory, datum, frontage)
+            if frontage is not None:
+                record["_frontage"] = frontage
+            records.append(record)
+    place_on_frontage(records, parcel, datum)
     validate_programme(inventory, parcel, records)
+    check_frontage(records, parcel, datum)
     check_corridors(records, datum)
     return records
 

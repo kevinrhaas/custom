@@ -1,5 +1,58 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0077: the Lake Street row at Dearborn
+
+**The ask.** Piece 1 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18: *"there
+should be more and denser buildings. this is important."* He sent the Tremont House street scene
+(`data/sources/assets/owner_brief_2026_08_18/README.md`, image 5) — a continuous two-storey
+storefront row on shared party lines, which he reads as looking south-west from Lake and Dearborn
+— beside a screenshot of that same corner in the render, where the Tremont stands alone on grass.
+
+**What was actually wrong, and it was not a missing building.** The Clark–Dearborn block already
+carried twelve anonymous roofs. Four of them sat on the phase-one parcel's `lake_front` row, which
+is a shared northing and a list of eastings with a metre of jitter on each — **17 to 24 m behind
+the Lake Street frontage**, and no two of them on one line. That is the right shape for the
+interior of a block and the wrong shape for a street. The frontage itself held two buildings, the
+inferred bakery and butcher's market, 34 m apart.
+
+**What shipped.** A **party-line frontage** mode in `tools/generate_inferred_infill.py`: a
+placement may declare that it stands on a block FACE instead of at the row's northing, and it then
+takes the line, its bearing and the corner it packs back from out of the committed block boundary
+in `data/traces/vectors/thompson_lots.json`. The recipe authors no coordinate. Anchors chain — the
+corner unit off the block's own Dearborn corner, each unit west of it off the wall of the one
+before, and a run may butt onto a building this parcel did not write. The jitter is suppressed,
+because a shared party wall is one wall and cannot wander.
+
+Applied to the four: **`_c3_015` (the two-storey store) on the Dearborn corner, then `_d5_016` and
+`_d4_014` west of it — 19.4 m of continuous front — a 3.6 m gangway, then `_d3_013` butted onto
+the west wall of `inf_butcher_market`.** 34.0 m of the block's 98.6 m Lake face is now built
+frontage where 11.0 m was, and the corner run stands 1.0 m clear of the platted Dearborn corridor.
+
+**Nothing was added and nothing was renamed.** The parcel still deals 40 principal and 8 ancillary
+roofs; the 665-roof programme's totals do not move; every id, family band, dimension and baked mesh
+is the one it was. Only four `position` blocks changed. That was a design constraint, not an
+accident — the recipe's eastings still fix the sequence, and the sequence is what names a unit and
+deals it a footprint.
+
+**Two gates had to learn what a party line is.** The three-metre separation rule in
+`tools/generate_inferred_households.py` refused `_d3_013` for touching the butcher's market, which
+is correct for every other case it has ever seen and wrong for this one. The exemption is exactly
+as wide as the claim that earns it: a record that NAMES its neighbour in
+`reconstruction.frontage.abuts`. `check_frontage` in the infill generator gates the other end —
+one line to the millimetre, and a declared party line that is really a gap is a failure. A building
+that merely happens to be close still fails.
+
+**What it costs, stated.** The row crosses the conjectural side line between lots 4 and 6 and puts
+three roofs on one 24.6 m lot, which is defensible only because those side lines are the plat
+module's own inventions and because 80 ft business frontage is exactly the ground that got
+subdivided. One dooryard garden derived away when its lot stopped holding a single dwelling.
+Recorded as **L141**.
+
+**Not claimed.** This is one corner, not the downtown. T-0078 (the South Water river row) and
+T-0079 (the remaining core blocks) are the rest of T-0073 and are untouched. The plate's
+signboards, awnings and plank walks below the fronts are T-0066 and T-0069 and none of them is
+built here.
+
 ## Shipped 2026-08-19 — T-0044: the fort road, and the two Fort Dearborn plates read against the render
 
 **The ask.** T-0006's third and last piece: *render each landmark from its reference plate's

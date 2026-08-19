@@ -4511,6 +4511,59 @@ roads; or any survey of the reservation before its 1839 subdivision, which would
 and probably its name at the same time.
 **Recorded:** 2026-08-19.
 
+### L141 — The Lake Street row at Dearborn: four roofs moved onto one line, and the party walls between them
+**Decision:** four anonymous reconstructed roofs of the phase-one South Division parcel —
+`recon_1835_south_d3_013`, `_d4_014`, `_c3_015` and `_d5_016` — no longer stand at the recipe's
+northing seventeen to twenty-four metres inside the Clark–Dearborn block. They stand **on the
+Lake Street frontage of that block, shoulder to shoulder on shared party lines**: a
+nineteen-metre run packing west from the block's own Dearborn corner with the two-storey store
+at the corner, and the fourth butted onto the west wall of `inf_butcher_market`, with a 3.6 m
+gangway between the two runs. Their bearing is the block face's own and they carry none of the
+jitter the parcel's interior rows carry.
+**Why:** T-0077, and it is an owner ask made in as many words on 2026-08-18 — *"there should be
+more and denser buildings. this is important."* — with a plate of this exact corner (the
+Tremont House street scene, `data/sources/assets/owner_brief_2026_08_18/README.md` image 5)
+beside a screenshot of this exact corner in the render. The plate is a continuous two-storey
+storefront row on shared party lines; the render was the Tremont standing alone on grass with
+cottages scattered behind the frontage. The gap was not a missing building, it was a missing
+TREATMENT: the parcel had only ever been able to say "a roof of this family somewhere in this
+block", which is the right shape for a block's interior and the wrong shape for a street.
+**What is NOT invented here, and it is worth being exact.** No roof is added, none leaves its
+block, none is renamed, re-dimensioned or re-familied; the parcel still deals 40 principal and 8
+ancillary roofs, the 665-roof programme's totals are unchanged, and every baked mesh is the one
+it was. The frontage line, its bearing and the corner the run packs back from are **read from
+the committed block boundary** in `data/traces/vectors/thompson_lots.json`, and the recipe
+authors no coordinate for any of the four. The 0.80 m setback is not a measurement either: it is
+the line the two frontage buildings already standing on this face use.
+**WHAT IS INVENTED.** That these four particular units stood shoulder to shoulder, and that a
+party-line row stood on this face at all. The plate supports the treatment for this street at
+this date; it cannot say which buildings, and these buildings are inventions to begin with. The
+corner unit stands 1.0 m clear of the platted Dearborn corridor, which is a choice and not a
+kerb line. The gangway is 3.6 m because that is what the two runs leave between them once the
+corner and the butcher's market are fixed — nobody picked the number, and nothing states that a
+gap was there.
+**And it crosses the conjectural side lot lines.** The row runs over the boundary between lots 4
+and 6 of the generated grid, and three of its roofs now stand on one 24.6 m lot. That is a real
+consequence and it is defensible only because those side lines are themselves conjectural — the
+plat module states in its own prose that no lot here is numbered and that the side lines and the
+alley are invented — and because a business frontage of 80 ft lots is exactly the ground that got
+subdivided into narrow store fronts. One dooryard garden was lost to the move, derived away by
+its own rule when its lot stopped holding a single dwelling; that is the rule working, not a
+deletion.
+**Consequence:** the three-metre separation rule that has applied to every generated roof in this
+dataset now has one narrow exemption — a record that NAMES its neighbour in
+`reconstruction.frontage.abuts`. It is one-directional, written into the record, and gated at
+both ends: `check_frontage` in `tools/generate_inferred_infill.py` refuses a "party line" that is
+actually a gap, and the household generator exempts only the named pair. A building that merely
+happens to be close still fails.
+**How to resolve:** any period document that puts a named business on a numbered lot on this
+block face — a Chicago American or Democrat advertisement giving an address, or the 1839 fire
+losses Andreas quotes, which itemised the Lake Street buildings that burned. That would replace
+an invented unit with a named one on the same frontage, which is what the 665-roof programme's
+substitution clause exists for.
+**Covers:** `recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.position`.
+**Recorded:** 2026-08-19.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

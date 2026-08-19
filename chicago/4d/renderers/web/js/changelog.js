@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 192, title: 'A street row at Lake and Dearborn', kind: 'feature', ts: '2026-08-19T02:29:30.761Z', date: 'Aug 18, 2026, 9:29 PM CT',
+    items: [
+      'Stand at Lake and Dearborn and look south-west and there was nothing much to look at: the Tremont House on its corner, a baker and a butcher a long way apart on the frontage, and four cottages sitting twenty metres back on open grass.',
+      'Those four now stand on the street. Three of them run west from the Dearborn corner wall to wall, the two-storey store on the corner itself, and the fourth is butted onto the side of the butcher\u2019s market \u2014 a continuous front of building either side of one narrow gangway, which is what the old street views of this corner show.',
+      'Nothing was built to do it. No roof was added, none left its block and none changed size or kind; the same four buildings simply stopped standing where a list of numbers put them and started standing on a line.',
+      'The line is not ours to choose. It comes from the platted block itself \u2014 the frontage, its bearing, and the corner the row packs back from are all read off the surveyed block, and the set-back is the one the baker and the butcher were already using.',
+      'What we made up is that these four stood side by side at all. Every one of them is an invented building to begin with; turn \u201creconstructed\u201d off in the confidence view and the whole row goes.',
+    ] },
   { v: 191, title: 'The fort has a road out of town again', kind: 'feature', ts: '2026-08-19T01:16:05.302Z', date: 'Aug 18, 2026, 8:16 PM CT',
     items: [
       'Walk east out of South Water Street and the town used to stop dead. Open prairie, and Fort Dearborn standing a quarter of a mile off across it with nothing at all leading to it.',
