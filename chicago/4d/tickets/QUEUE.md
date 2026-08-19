@@ -6,19 +6,20 @@ T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
-T-0064 — More wagons, all over a frontier town
-T-0065 — Period names, brands and labels on the goods
-T-0066 — Signboards carry the location's name, and no two are alike
+T-0007 — Wire the material sheet into the records: repaint the town
+T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
+T-0074 — Trees and bushes kept around the houses
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
+T-0066 — Signboards carry the location's name, and no two are alike
+T-0064 — More wagons, all over a frontier town
 T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings
 T-0072 — The Wolf Tavern's pole sign, from its documentation
-T-0074 — Trees and bushes kept around the houses
+T-0065 — Period names, brands and labels on the goods
 T-0075 — Hold the 2026-08-18 owner brief as source records
 T-0076 — Buildings are named for their people, not their spec codes
-T-0007 — Wire the material sheet into the records: repaint the town
 T-0008 — 199 chimneys are painted roof-colour
 T-0009 — Redraw 29 building bodies out of the roadway
 T-0010 — Finish the heightfield east
@@ -54,7 +55,6 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
@@ -70,3 +70,4 @@ T-0103 — Every platted-block roof faces away from the street it fronts
 T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
 T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
+T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store

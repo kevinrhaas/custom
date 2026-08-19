@@ -32,6 +32,7 @@
  * tickets/README.md documents is exactly what parses; nothing else does.
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync, renameSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
@@ -111,6 +112,37 @@ function today() {
 
 function slugOf(title) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
+}
+
+/**
+ * Remote branches that look like somebody is already working this ticket.
+ *
+ * Branch names are not standardised — the same ticket has been worked on
+ * `steward/t62-more-docks` and `steward/t-0062-more-docks` — so match the NUMBER
+ * with its padding and its separator optional, and refuse to match a longer one
+ * (T-0062 must not fire on `t-0620`). `main` and `dev` are never a rival, and
+ * neither is the branch you are standing on.
+ *
+ * Every failure path returns [] on purpose: this is a courtesy check standing
+ * between a run and its work, and a network blip must never be able to stop one.
+ */
+function remoteBranchesFor(id) {
+  const n = /^T-(\d+)$/.exec(id)?.[1];
+  if (!n) return [];
+  const pat = new RegExp(`(?:^|[^0-9a-z])t-?0*${Number(n)}(?![0-9])`, 'i');
+  const git = (args) => execFileSync('git', args, {
+    cwd: ROOT, encoding: 'utf8', timeout: 20_000, stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  let here = '';
+  try { here = git(['rev-parse', '--abbrev-ref', 'HEAD']).trim(); } catch { /* detached, or no git */ }
+  try {
+    return git(['ls-remote', '--heads', 'origin'])
+      .split('\n')
+      .map((l) => l.split('refs/heads/')[1]?.trim())
+      .filter((b) => b && b !== here && b !== 'main' && b !== 'dev' && pat.test(b));
+  } catch {
+    return [];
+  }
 }
 
 function find(tickets, id) {
@@ -307,6 +339,25 @@ switch (cmd) {
       console.error(`${t.id} is effort L — ${EFFORT.L}.\n`
         + `Split it first, and the pieces keep this ticket's place in the queue:\n`
         + `  node tools/ticket.mjs split ${t.id} "first piece" "second piece"`);
+      process.exit(1);
+    }
+    // A claim only reaches `dev` when its PR merges, so a run that opens a PR and
+    // does not merge it leaves the ticket reading `open` to the NEXT run, which
+    // then does the same work twice. That happened to T-0062 on 2026-08-19: run
+    // 943 opened PR #258 green and deferred the merge on a smoke it could not
+    // finish; run 944 read the queue, saw T-0062 open at the top, and rebuilt it
+    // from scratch on its own branch. Two runs, one ticket, one of them binned.
+    //
+    // The remote branch list is the one piece of shared state a run CAN see
+    // before it starts, so look there. Best-effort by construction: no network,
+    // no git, or a detached checkout just means no warning — never a false stop.
+    const rival = remoteBranchesFor(t.id);
+    if (rival.length && !has('force')) {
+      console.error(`${t.id} looks like it is already being worked:\n`
+        + rival.map((b) => `  ${b}`).join('\n')
+        + `\nCheck whether that branch has an open PR before starting. If it is stale,\n`
+        + `or that branch is yours, claim it anyway:\n`
+        + `  node tools/ticket.mjs claim ${t.id} --force`);
       process.exit(1);
     }
     t.state = 'claimed';
