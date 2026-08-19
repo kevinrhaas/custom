@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0046 — Bridge approach earthworks meet the deck at grade
 T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0004 — Raise and graduate the river banks at the fort reach
@@ -71,3 +70,4 @@ T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off an
 T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
+T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck

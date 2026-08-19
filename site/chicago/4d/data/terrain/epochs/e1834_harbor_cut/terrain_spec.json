@@ -629,6 +629,217 @@
       }
     }
   ],
+  "approaches_note": "T-0046. Every bridge deck in the dataset stands on the traced 1834 waterline, where the ground is Z = 0 by construction, so no bridge could be entered from its bank: the decks are 2.22 m (branch bridges, drawbridge) and 0.83 m (slough crossing) over the ground at their ends. The 1883 old-settlers statement (Andreas pp. 631-632) makes both branch bridges WAGON bridges - 'these were both wagon bridges' - and teams cannot climb a 2.2 m step, so approach earthworks existed; nothing reached describes their form, length or grade, which is why every entry below is graded reconstructed and admitted in docs/LIBERTIES.md. Geometry rule, restated from generators/terrain_gen.py: each entry's line runs from the deck-end centre inland; a 'fill' raises the ground to deck_ft at the deck end (less the generator's APPROACH_SEAT_FT, 0.06 ft - the fill packs under the plank line, so the last stride onto the boards is a small step, and the deck rather than the ground is what holds the walker up over its own outline), falling inland at 'grade' (1 in 12, a comfortable team haulage grade well inside period wagon-road practice), with a level crest half_width_m either side of the line and side slopes of side_slope (1 vertical in 2 horizontal, inside the angle of repose of loose fill), carried end_overhang_m past the deck end into the shallows as the fill the log abutment cribs retain; a 'cut' is the mirror - the ground is graded DOWN to deck_ft at the deck end, rising inland at the same grade, and carried the same end_overhang_m under the deck so the ends read down to the crossing rather than standing proud beside it. half_width_m is 4.0 rather than the deck's 1.524 m half-width because the ground grid is 2.5 m cells: the crest must hold every cell the bilinear sampler mixes into the deck-corner reading, or the sampled ground misses the deck it exists to meet. That allowance is part of the recorded liberty.",
+  "approaches": [
+    {
+      "id": "north_branch_west",
+      "bridge": "north_branch_bridge",
+      "mode": "fill",
+      "line": [
+        [
+          -117.5,
+          262.02
+        ],
+        [
+          -144.5,
+          262.02
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The west (Canal Street) approach to the North Branch bridge, on the Kinzie Street alignment. That an approach existed is a necessity - the 1883 settlers' statement makes this a wagon bridge and its deck stands 2.22 m over a bank at the waterline - but its form is invented: an earth ramp at 1 in 12, meeting the deck at grade at the traced waterline. Deck height restated from the structure record's clearance stack; if that record moves, the ground-contact gate reopens the gap and fails, which is what holds the two files together.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "north_branch_east",
+      "bridge": "north_branch_bridge",
+      "mode": "fill",
+      "line": [
+        [
+          -45.67,
+          262.02
+        ],
+        [
+          -18.67,
+          262.02
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The east approach to the North Branch bridge, carrying Kinzie Street onto the deck. Same footing as north_branch_west: existence necessary for a wagon bridge, form invented at 1 in 12.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "south_branch_west",
+      "bridge": "south_branch_raft_bridge",
+      "mode": "fill",
+      "line": [
+        [
+          6.87,
+          -176.55
+        ],
+        [
+          -20.13,
+          -176.41
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The west approach to the South Branch bridge, between Lake and Randolph. The 1883 settlers' statement covers both branch bridges - 'these were both wagon bridges' - so the necessity argument is the same as the North Branch's; the form is invented at 1 in 12. Every entry's line runs deck-end first, inland toe second.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "south_branch_east",
+      "bridge": "south_branch_raft_bridge",
+      "mode": "fill",
+      "line": [
+        [
+          62.83,
+          -176.83
+        ],
+        [
+          89.83,
+          -176.97
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The east approach to the South Branch bridge, toward the town side. Same footing as south_branch_west.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "dearborn_south",
+      "bridge": "dearborn_street_drawbridge",
+      "mode": "fill",
+      "line": [
+        [
+          697.65,
+          20.7
+        ],
+        [
+          697.95,
+          -6.3
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The south approach to the Dearborn Street drawbridge, from the foot of Dearborn on South Water. Andreas describes about 300 ft of timber causeway with a 60 ft draw; the causeway itself is the committed deck, and this is the earthwork that gets a team from the street onto it. Form invented at 1 in 12.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "dearborn_north",
+      "bridge": "dearborn_street_drawbridge",
+      "mode": "fill",
+      "line": [
+        [
+          696.87,
+          97.03
+        ],
+        [
+          696.57,
+          124.03
+        ]
+      ],
+      "deck_ft": 7.283,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The north approach to the Dearborn Street drawbridge, onto the Kinzie's Addition side. Same footing as dearborn_south.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "slough_west",
+      "bridge": "slough_log_bridge",
+      "mode": "cut",
+      "line": [
+        [
+          805.3,
+          14.2
+        ],
+        [
+          793.3,
+          14.2
+        ]
+      ],
+      "deck_ft": 2.723,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The west approach to the slough crossing - the opposite problem from the river bridges: this low deck sits 0.35-0.49 m BELOW the banks at its ends, so the road is graded DOWN to it, a shallow cut rising inland at 1 in 12 until it meets the natural ground. A road descending to a low log crossing is the minimal reading of how anyone used it; the cut's form is invented.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    },
+    {
+      "id": "slough_east",
+      "bridge": "slough_log_bridge",
+      "mode": "cut",
+      "line": [
+        [
+          813.3,
+          14.2
+        ],
+        [
+          825.3,
+          14.2
+        ]
+      ],
+      "deck_ft": 2.723,
+      "grade": 0.0833,
+      "half_width_m": 4.0,
+      "side_slope": 0.5,
+      "end_overhang_m": 3.0,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The east approach to the slough crossing. Same footing as slough_west.",
+      "mesh": {
+        "bridge": "record_only"
+      }
+    }
+  ],
   "micro_relief": {
     "amplitude_ft": 0.1,
     "wavelengths_m": [

@@ -390,6 +390,7 @@ GROUND_GROUPS = [
     ("marsh_strips", "the marshy shore"),
     ("swales", "the prairie swales"),
     ("watercourses", "the watercourses"),
+    ("approaches", "the bridge approaches"),
     ("micro_relief", "the surface texture"),
     ("surface_materials", "what the ground is made of"),
 ]

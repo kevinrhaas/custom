@@ -1,5 +1,43 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0046: bridge approach earthworks meet the deck at grade
+
+**The ask.** The second half of T-0001's "how would a wagon cross that?" — the walker-deck half
+(#231) made every deck a floor, and nothing let you reach one: each deck ends on the traced 1834
+waterline, where the bank ramp puts the ground at exactly zero, 2.2 m below the planks.
+
+**What shipped.** An `approaches` block in `terrain_spec.json` — eight graded road corridors,
+every entry `reconstructed`, applied by `terrain_gen.py` after the bank ramp as max()/min()
+against the assembled surface so each dies out where natural ground takes over. Six FILLS at
+1 in 12 carry Kinzie Street onto both ends of the North Branch bridge, the South Branch bridge
+onto its banks, and Dearborn Street onto the drawbridge, each crest run 3 m past the deck end
+into the shallows as the fill the attested log abutment cribs retain; two CUTS grade the banks
+DOWN to the slough crossing's low deck, which sat 0.35–0.49 m below its own ends. Crests pack
+`APPROACH_SEAT_FT` (0.06 ft) under the plank line — physically the fill packs under the boards,
+numerically it keeps a 5 mm-quantised crest from floating a float's width above the deck and
+stealing the walker's floor. All four bridges now land: `ground_contact` declarations dropped,
+L30/L38/L69 moved to Resolved, the invention recorded as **L147** with per-approach terrain
+Covers tokens. Ground rebaked at the committed 0.03° decimation (250,030 tris, +2.5k on the
+committed ground; fit 3 mm max). The 16-bit web derivative regenerated because the master moved
+— the shipped lattice goes 306 mm → 77 mm, which is T-0012's subject but NOT its ≤ 13 mm
+acceptance; that ticket stays open. Planting-reach baseline re-banked (+38 nodes the fills
+raised out of the water margin). **T-0109 filed**: the slough crossing still spans solid ground
+mid-deck — the watercourse under it is not cut into this epoch (L69's old point, now a ticket).
+
+**Verification.** `tools/check.sh` **CHECK PASS** (validator, staleness, liberties compile,
+changelog contract v199, publish sync). Smoke halves on the published mirror, cut at 565 s each
+per the T-0060 posture (unchanged, same condition T-0062/T-0063/T-0108 merged under): mobile
+**232 passed / 3 failed** — all three are the `(reported only)` road-contrast rows; two are the
+long-tracked pair, and the third (`lake_market`, "standing on the crossing itself") is **newly
+reporting** — that stand is 67 m from the south-branch fill and the raised ground plausibly
+moved its band statistics; the row is ungated by design and is left to the road-contrast
+programme's re-baseline rather than adjusted here. Desktop **156 passed / 0 failed** at the cut.
+All five bridge assertions green at BOTH viewports inside the cuts, including the new permanent
+one: **a walker on the bank climbs the approach onto the deck** (no teleport, terrain only). A
+targeted standalone run (both viewports, published mirror) walked bank → approach → 72 m span →
+off the far bank with **zero page errors** end to end — the tail assertion the ceiling keeps
+cutting from the full smoke.
+
 ## Shipped 2026-08-19 — T-0063: boats correct for the era, on the water
 
 **The ask.** The owner, 2026-08-18, verbatim: *"you can add boats correct for the era! they
