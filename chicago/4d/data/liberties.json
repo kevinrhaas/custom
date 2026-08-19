@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 145,
+  "count": 146,
   "liberties": [
     {
       "id": "L1",
@@ -10007,6 +10007,33 @@
         {
           "label": "Covers",
           "text": "`jh_kinzie_forwarding_store.form.dock`, `h_jones_store.form.dock`, `harmon_loomis_store.form.dock`, `peck_store.form.dock`, `carpenter_south_water_store.form.dock`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-19."
+        }
+      ]
+    },
+    {
+      "id": "L146",
+      "title": "Nine boats on the river, every hull of them invented",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the river carries watercraft now — `data/boats/era_boats.json`, drawn by `renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main stem below the Dearborn Street drawbridge, two rowboats on the water off the South Water bank and two drawn up at its edge, and two bark canoes hauled out on the bank below Fort Dearborn. Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position, heading and dimension is authored in the record with its own note. The layer refuses rather than adjusts — a boat without its own draft of water under the whole keel, a beached hull authored onto open water or up on the prairie, or any hull within 30 m of the drawbridge's crossing line is not drawn, with the reason on the record."
+        },
+        {
+          "label": "Why",
+          "text": "the owner, 2026-08-18, verbatim — *\"you can add boats correct for the era! they would exist\"* — and, of the drawbridge engravings, *\"also note the boats there\"* (T-0063), under the standing ruling to be liberal with reconstructed items and label them as such (AGENTS.md § RECONSTRUCTED IS A TIER). No source names, places or measures any particular vessel in this river on 1835-07-01, so every hull is an invention; the schooner Illinois, cheered at Newberry & Dole's wharf in July 1834, is deliberately NOT drawn or named, because a named vessel at a berth on a date is a claim no source makes."
+        },
+        {
+          "label": "What bounds the invention",
+          "text": "the TYPES — the 2026-08-18 brief's two drawbridge engravings (images 2 and 3) show schooner-rigged vessels moored close by the bridge and masts crowding the reach below it; image 11, the South Water 1834 view, draws rowboats on the water and at the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach; and 1830s lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd, against the committed heightfield, which is what the refusal rules hold each hull to. The CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on depicting Native presence stands in full — no figures, no encampment, no staging — and any depiction of the Potawatomi themselves remains out of scope pending consultation. What would replace the invention: harbour-master or newspaper records of vessels lying in the river in the summer of 1835 — the Chicago Democrat's marine columns are the instrument."
         },
         {
           "label": "Recorded",

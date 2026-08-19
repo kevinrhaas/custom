@@ -33,6 +33,7 @@ import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
 import { createFrontage } from './frontage.js';
 import { createWharves } from './wharves.js';
+import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -312,6 +313,21 @@ async function boot() {
   scene3d.add(wharves.group);
   api.wharves = wharves;
 
+  // The boats on the river (T-0063) — the owner's ask, verbatim: "you can add
+  // boats correct for the era! they would exist." Derived at load like the
+  // docks, but AUTHORED rather than ruled: no rule can derive where a moored
+  // schooner lay, so data/boats/ states each hull and docs/LIBERTIES.md L146
+  // claims the invention. An afloat hull rides the water plane at its own
+  // draft and a beached one sits on the terrain; the layer refuses a boat its
+  // own water cannot carry. Mounted after the wharves for reading order — the
+  // two share the river and deliberately never touch: the wharf record draws
+  // no vessel at its decks, and the boats ride the open reaches.
+  const boats = await createBoats({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(boats.group);
+  api.boats = boats;
+
   /**
    * What the PLANTERS treat as built ground: the buildings' footprints plus the
    * wharf decks. A deck is a floor, and a forb growing up through the planks
@@ -320,7 +336,7 @@ async function boot() {
    * structure id — a second polygon under a building's id would answer for the
    * building itself.
    */
-  const planting = footprints.concat(wharves.keepOut);
+  const planting = footprints.concat(wharves.keepOut, boats.keepOut);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -676,6 +692,16 @@ async function boot() {
     if (dock && (!hit || dock.distance < hit.distance)) {
       const record = loaded.registry.get(dock.id);
       if (record) hit = { ...dock, record };
+    }
+    /**
+     * And so can a boat, which is the one pickable thing here that belongs to
+     * no structure at all: a hull answers with its OWN card record, built by
+     * the boat layer from data/boats/ — type, size, state and what bounded the
+     * invention — rather than through the registry (T-0063).
+     */
+    const boat = boats.pickAt(ndc, camera);
+    if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
+      hit = { ...boat };
     }
     if (!hit) {
       popup.close();

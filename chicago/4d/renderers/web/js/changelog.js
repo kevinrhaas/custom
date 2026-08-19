@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 197, title: 'Boats on the river', kind: 'feature', ts: '2026-08-19T15:26:37.568Z', date: 'Aug 19, 2026, 10:26 AM CT',
+    items: [
+      'The river had docks, a drawbridge and a working waterfront — and not one boat. Nine are on the water now: three two-masted lake schooners moored in the reach below the Dearborn Street drawbridge, rowboats on the water and drawn up at the South Water bank, and two bark canoes hauled out below Fort Dearborn.',
+      'They are where the old views put them. The two drawbridge engravings crowd that reach with schooner masts, the 1834 South Water painting draws rowboats at the bank, and the fort plates put canoes at the fort reach.',
+      'Every hull is invented, and says so. No source names, places or measures any particular vessel here on 1 July 1835 — aim at a boat and its card opens with what bounded each guess. Turn “reconstructed” off in the confidence view and the river empties again.',
+      'Every schooner floats in real water: a hull is drawn only where the modelled riverbed gives its full draft along the whole keel, and the drawbridge’s navigation span is kept clear.',
+      'Nobody is aboard. No crew, no cargo, no set sails, no names — the boats ride empty, like every layer here until human depiction is in scope.',
+    ] },
   { v: 196, title: 'More docks on the river', kind: 'feature', ts: '2026-08-19T14:20:05.637Z', date: 'Aug 19, 2026, 9:20 AM CT',
     items: [
       'The whole river trade of this town ran over exactly two docks — the ones at the forwarding warehouses, the only two any source states. The rest of the working bank was grass down to the water.',

@@ -28,6 +28,11 @@
  *                                 its deck ties into the bank it was derived
  *                                 from, its crib reaches the bed, and neither is
  *                                 answerable from the dataset alone
+ *   the boats on the river ...... the first layer that RIDES the water: every
+ *                                 afloat hull floats in its own depth, beached
+ *                                 hulls sit at the bank, the drawbridge's
+ *                                 navigation span stays clear, and a boat
+ *                                 answers a pick with its own card
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   the roads reach the screen .. and are distinguishable from the ground they
@@ -2040,6 +2045,135 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a wharf opens the warehouse it serves`,
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
+
+    // --- the boats on the river (T-0063) ---------------------------------
+    //
+    // The first layer that RIDES the water rather than standing in it, and its
+    // failure modes are new: an afloat hull whose keel is not under the water
+    // plane is flying, one whose bed is nearer than its own draft is aground,
+    // and a hull inside the drawbridge's clearance is a rule change nobody
+    // reviewed. All of it is decided at load out of the record and a terrain
+    // sample, so it is measured here against the terrain the browser actually
+    // loaded, and nowhere else.
+    const flotilla = await page.evaluate(() => {
+      const b = window.__chicago4d.boats;
+      const terrain = window.__chicago4d.terrain;
+      const mesh = b?.group?.children?.[0] ?? null;
+      const g = mesh?.geometry ?? null;
+      let ungraded = 0;
+      let notReconstructed = 0;
+      const conf = g?.getAttribute('_confidence');
+      if (conf) {
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded++;
+          else if (v < 1) notReconstructed++;
+        }
+      }
+      const rec = (b?.records ?? [])[0] ?? {};
+      const clearance = rec.clearances?.drawbridge_span_m?.value ?? 30;
+      const form = rec.form ?? {};
+      const stands = (b?.boats ?? []).map((boat) => {
+        const [e, n] = boat.position_local_enu_m;
+        const draft = form[boat.type]?.draft_m?.value ?? 0;
+        const bed = terrain.surfaceHeight(e, n);
+        return {
+          id: boat.id,
+          type: boat.type,
+          afloat: boat._drawn?.afloat ?? null,
+          keelY: boat._drawn?.keel_y_m ?? null,
+          wet: terrain.isWater(e, n),
+          bed,
+          draft,
+          clearOfSpan: n >= 120 || Math.abs(e - 699.17) >= clearance,
+        };
+      });
+      return {
+        census: b?.census ?? null,
+        keepOut: (b?.keepOut ?? []).length,
+        meshes: b?.group?.children?.length ?? 0,
+        verts: g?.getAttribute('position')?.count ?? 0,
+        hasConfidence: !!conf,
+        ungraded,
+        notReconstructed,
+        stands,
+      };
+    });
+    // Nine boats since T-0063 — three schooners in the reach below the
+    // drawbridge, four rowboats at the South Water bank, two canoes at the
+    // fort landing — and ZERO refused: every authored position was chosen
+    // against the committed heightfield, so a refusal appearing here means the
+    // terrain moved under the record and the record was not re-read.
+    check(`${label}: every authored boat is on the water`,
+      flotilla.census?.boats === 9 && flotilla.census?.refused === 0
+        && flotilla.census?.schooners === 3 && flotilla.census?.rowboats === 4
+        && flotilla.census?.canoes === 2 && flotilla.verts > 0
+        && flotilla.keepOut === 4,
+      `${flotilla.census?.boats} boat(s) (${flotilla.census?.schooners} schooner(s), `
+      + `${flotilla.census?.rowboats} rowboat(s), ${flotilla.census?.canoes} canoe(s)), `
+      + `${flotilla.census?.refused} refused, ${flotilla.verts} vertices, `
+      + `${flotilla.keepOut} planting keep-out(s)`);
+    check(`${label}: the whole boat layer is one draw call`,
+      flotilla.meshes === 1, `${flotilla.meshes} mesh(es) in the group`);
+    check(`${label}: every boat vertex is graded reconstructed`,
+      flotilla.hasConfidence && flotilla.ungraded === 0 && flotilla.notReconstructed === 0,
+      `attribute ${flotilla.hasConfidence ? 'present' : 'MISSING'}, ${flotilla.ungraded} out `
+      + `of range, ${flotilla.notReconstructed} claiming better than reconstructed`);
+    // An afloat hull floats: keel below the water plane by its own draft, bed
+    // below the keel by the record's under-keel margin, real water at the
+    // position. A beached hull sits on ground at the water's edge — not out on
+    // open water, not up on the prairie.
+    check(`${label}: every afloat hull floats in its own water`,
+      flotilla.stands.filter((s) => s.afloat).every((s) => s.wet
+        && s.keelY !== null && Math.abs(s.keelY + s.draft) < 1e-6
+        && s.bed <= s.keelY - 0.25),
+      flotilla.stands.filter((s) => s.afloat).map((s) => `${s.id} keel `
+        + `${s.keelY?.toFixed(2)} m, bed ${s.bed?.toFixed(2)} m`).join('; '));
+    check(`${label}: every beached hull sits on the bank, at the water`,
+      flotilla.stands.filter((s) => !s.afloat).every((s) => s.keelY !== null
+        && s.keelY >= -0.6 && s.keelY <= 1.5),
+      flotilla.stands.filter((s) => !s.afloat).map((s) => `${s.id} keel `
+        + `${s.keelY?.toFixed(2)} m`).join('; '));
+    check(`${label}: the drawbridge's navigation span stays clear`,
+      flotilla.stands.every((s) => s.clearOfSpan),
+      flotilla.stands.filter((s) => !s.clearOfSpan).map((s) => s.id).join(', ') || 'all clear');
+
+    // AND THE REACH READS AS A HARBOUR, which is what the owner asked for.
+    // Stand on the south bank looking down the reach at the moored schooners
+    // and hold the clock, so the water and the grass cannot supply the
+    // difference. Same bar as the fences, the boards, the goods and the docks.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 765, local_n: 15, yaw_deg: 353, pitch_deg: -2 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const boatWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.boats.group.visible = false; });
+    const boatWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.boats.group.visible = true; });
+    const dBoat = signatureDistance(boatWith, boatWithout);
+    check(`${label}: the schooners reach the screen from the bank`,
+      dBoat.worst >= 6 && dBoat.mean >= 0.3,
+      `cell delta mean ${dBoat.mean?.toFixed(2)}, worst ${dBoat.worst} (need worst>=6)`);
+
+    // A boat belongs to no structure, so aiming at one has to open its OWN
+    // card — the type, the size and what bounded the invention — rather than
+    // answering nothing or answering for a building behind it.
+    const boatPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      const title = document.querySelector('#popup h2')?.textContent ?? '';
+      return { hits, title };
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    check(`${label}: aiming at a schooner opens the boat's own card`,
+      boatPick.hits.some((id) => id.startsWith('boat_schooner')),
+      `25 aims returned [${[...new Set(boatPick.hits)].join(', ') || 'nothing'}] `
+      + `(last card: "${boatPick.title}")`);
 
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
