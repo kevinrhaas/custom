@@ -1,7 +1,7 @@
 ---
 id: T-0046
 title: Bridge approach earthworks meet the deck at grade
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0001
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/19/2026, 3:32:10 PM CT
 blocked_on: null
 needs_bake: true
 ---
