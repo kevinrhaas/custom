@@ -1,5 +1,44 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0062: the traders' landings, and the rule that claims a dock by trade
+
+**The ask.** The owner, 2026-08-18, verbatim: *"you can add more docks!"*, under his standing
+ruling to be liberal with reconstructed items when he asks for them. T-0041's rule was the
+conservative reading he overrode: a wharf only where a record's dock is graded `attested` or
+`inferred`, which selected exactly two frontages on the whole river.
+
+**What shipped.** The wharf rule grew a second arm, a rule about trades in the signboards' and
+yard-goods' shape: a sidecar whose DOCUMENTED function is a river trade (forwarding-and-commission,
+grocery-and-provision, general merchandise) and whose river wall stands within 45 m of the traced
+1834 bank is claimed a landing at the `reconstructed` tier. Three stand: J. H. Kinzie's forwarding
+store and Jones's grocery on the South Water bank, Robert Kinzie's store on the west bank at Wolf
+Point — five decks on the river, both forks carrying trade, where there were two. The standard
+wharf form is unchanged from L132 in every figure; L145 records the invention, its bounds, and the
+one new number (the 45 m frontage cap, with the populations it separates stated beside it).
+
+**Why a trade rule and not a `dock` attribute.** The first cut of this parcel authored
+`dock: reconstructed` attributes onto the four South Water records — and stood down four staleness
+failures: a form attribute enters the resolved-parameter hash even when no generator reads it, so
+the edit staled four committed GLBs that no bake on this runner can refresh. The trade rule reads
+the compiled sidecars and touches no structure record, which is both the no-bake path and the more
+auditable one — "which frontage gets a wharf" stays a rule, not four hand-edits. The hash's
+sensitivity to unread attributes is real friction and is left visible rather than papered over
+(see the generator's docstring; a recipe change would stale the whole town and is its own
+decision).
+
+**What was found in the way, and is now two clauses and a ticket.** The committed south-bank trace
+ends at Wells (local e ≈ 390): Peck's, Harmon & Loomis's and Thomas Church's decks all snapped to
+the trace's terminal vertex, standing on one another. The generator now refuses a frontage the
+traced bank does not reach (bank-reach clause) — T-0106 owns extending the trace, which is what
+puts docks on the reach below the drawbridge that the owner's brief image 3 actually depicts. And
+at Hogan's store the Wolf Point bank bends so sharply the standard outline's face runs aground
+(depth −0.34 m at one end), so a face-afloat clause refuses a deck that ends on dry ground rather
+than inventing a bespoke bent one.
+
+**Honesty.** No source states a dock at any claimed frontage. Every refusal is in
+`data/wharves/river_landings.json` § refused with its reason; every claimed deck carries
+`reconstructed` on every vertex and cards through the store it serves.
+
 ## Shipped 2026-08-19 — T-0079: the core density standard, and three roofs on one lot
 
 **The ask.** Piece 3 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18: *"there

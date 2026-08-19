@@ -1959,18 +1959,23 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    check(`${label}: both river warehouses have their dock`,
-      docks.census?.wharves === 2 && docks.verts > 0 && docks.keepOut === 2
+    // Five since T-0062: the two stated docks at the forwarding warehouses and
+    // the three traders' landings the traced bank reaches. The record's own
+    // counts are re-derived by check.sh; what is asserted here is that the
+    // BROWSER drew all of them.
+    check(`${label}: every dock the record draws is standing`,
+      docks.census?.wharves === 5 && docks.verts > 0 && docks.keepOut === 5
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
       + `${docks.keepOut} planting keep-out(s)`);
     check(`${label}: the whole wharf layer is one draw call`,
       docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
-    // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
-    // stood at these two frontages is stated; every metre of its size is
-    // invented (L132), and a single vertex claiming to be inferred or attested
-    // would be this layer overstating the one thing it must not.
+    // NOT MERELY GRADED — graded reconstructed, every vertex of it. A dock is
+    // stated at two of these frontages and claimed at the others; every metre
+    // of every deck's size is invented (L132, L145), and a single vertex
+    // claiming to be inferred or attested would be this layer overstating the
+    // one thing it must not.
     check(`${label}: every wharf vertex is graded reconstructed`,
       docks.hasConfidence && docks.ungraded === 0 && docks.notReconstructed === 0,
       `attribute ${docks.hasConfidence ? 'present' : 'MISSING'}, ${docks.ungraded} out `
@@ -1983,7 +1988,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 2 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 5 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
@@ -2032,6 +2037,27 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a wharf opens the warehouse it serves`,
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
+
+    // And the same question at a CLAIMED landing (T-0062): the South Water
+    // docks exist on a record's own reconstructed claim rather than a stated
+    // sentence, and the acceptance for that tier is that the deck cards — a
+    // visitor aiming at it gets the store whose dock note defends the claim.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 256.6, local_n: 26.5, yaw_deg: 345.1, pitch_deg: -8 }));
+    await page.waitForTimeout(350);
+    const landingPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at a claimed landing opens the store that claims it`,
+      landingPick.includes('jh_kinzie_forwarding_store'),
+      `25 aims returned [${[...new Set(landingPick)].join(', ') || 'nothing'}]`);
 
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));

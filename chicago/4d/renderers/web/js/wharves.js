@@ -1,5 +1,6 @@
 /**
- * wharves.js — the river docks at the forwarding warehouses.
+ * wharves.js — the river docks: the forwarding warehouses and the South Water
+ * landings.
  *
  * WHY THIS FILE EXISTS. `docs/ROADMAP.md` K5 (e) asks for *"docks/wharves at the
  * forwarding houses"*, and ticket T-0041 is that clause. Two records in this
@@ -7,10 +8,15 @@
  * Hunter and Dole & Newberry each had a warehouse with its dock along the river
  * front"* — and until this layer existed both carried `geometry: "absent"` over
  * it: the strongest confidence chip the project hands out, in front of a bare
- * bank. `tools/generate_river_wharves.py` answers "which frontage" with a rule
- * and derives the outline from the traced bank, the committed footprint and the
- * committed heightfield; `tools/check.sh` re-derives its record byte for byte;
- * and this file only draws what that record says.
+ * bank. T-0062 widened the rule on the owner's 2026-08-18 ruling ("you can add
+ * more docks!"): a frontage whose DOCUMENTED river trade worked over the bank
+ * is now claimed a landing by a rule about trades — the signboards' shape of
+ * reconstruction — which is how the traders' landings got here
+ * (docs/LIBERTIES.md L145). `tools/generate_river_wharves.py` answers
+ * "which frontage" with a rule and derives the outline from the traced bank,
+ * the committed footprint and the committed heightfield; `tools/check.sh`
+ * re-derives its record byte for byte; and this file only draws what that
+ * record says.
  *
  * WHAT IT WILL AND WILL NOT DO.
  *

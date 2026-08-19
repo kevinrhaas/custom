@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Derive the town's river wharves from the records that state one.
+"""Derive the town's river wharves from the records that state or claim one.
 
     python3 tools/generate_river_wharves.py            write the record
     python3 tools/generate_river_wharves.py --check    re-derive and diff, write nothing
@@ -19,16 +19,42 @@ layer, and every dimension of it is invented. That is `reconstructed` in this
 project's third tier, which AGENTS.md § RECONSTRUCTED IS A TIER says is a licence
 to build rather than an admission of defeat.
 
-THE RULE, and it is the whole answer to "why these two and no others":
+THE RULE, and it is the whole answer to "why these frontages and no others".
+It has two arms:
 
-    a sidecar standing on the scene date, whose own `dock` attribute is true and
-    graded `attested` or `inferred` — not `reconstructed`, because a dock resting
-    on a reconstructed dock would be an invention on an invention.
+    STATED — a sidecar standing on the scene date whose own `dock` attribute
+    is true and graded `attested` or `inferred`. The two forwarding
+    warehouses, unchanged from T-0041.
 
-Run over the whole town that rule selects exactly two records and refuses every
-other frontage on the river, including the ones a person would have guessed at
-(the South Water stores, the lumber landing, the ferry). Nothing else in this
-dataset says it had a dock.
+    CLAIMED — a sidecar standing on the scene date whose documented FUNCTION
+    is one of the river trades (`RIVER_TRADES` below), and whose river wall
+    stands within `FRONTS_RIVER_M` of the traced 1834 bank. No source states
+    a dock at any of these; the trade is what defends the claim, and every
+    such deck is graded `reconstructed` with the owner's brief as the source
+    that bounds it.
+
+The claimed arm is T-0062, on the owner's 2026-08-18 ruling ("you can add more
+docks!" — the general form of it is recorded in AGENTS.md § RECONSTRUCTED IS A
+TIER). T-0041 shipped the narrower reading — stated docks only, on the argument
+that a wharf on an invented dock is an invention on an invention — and the
+owner overrode it: his brief's images 3 and 11
+(`data/sources/assets/owner_brief_2026_08_18/README.md`) draw masts crowding
+the reach below the drawbridge and the South Water bank as a continuous
+working frontage, which two docks cannot carry. A TRADE RULE is how the claim
+is made auditable — the same shape as the signboards' trade table and the yard
+goods' ordinance rule, and it deliberately does NOT author a `dock` attribute
+onto the claimed records: an attribute edit re-hashes the record's resolved
+parameters and stales its committed baked mesh, which no dock can justify.
+Run over the whole town the rule admits seven candidates: the two stated
+docks, and five documented river-trade frontages. Four are then refused as
+DRAWINGS, each with its reason in the record — Peck's, Harmon & Loomis's and
+Thomas Church's because the traced south bank ends at Wells and cannot place a
+deck east of it (T-0106 owns extending it; Church's would also fail the
+frontage cap), and Hogan's because the bank bends at Wolf Point and the
+standard outline's face runs aground there — so five wharves stand: the two
+stated, J. H. Kinzie's forwarding store, Jones's grocery and provision store,
+and Robert Kinzie's store on the west bank. Everything else on the river is
+still refused.
 
 WHAT IS DERIVED AND WHAT IS INVENTED — the division this file exists to keep
 auditable:
@@ -75,10 +101,37 @@ OUT = ROOT / "data" / "wharves" / "river_landings.json"
 sys.path.insert(0, str(ROOT / "tools"))
 from heightfield import Heightfield          # noqa: E402  (path set above)
 
-# The grades a dock statement has to carry before a wharf is drawn on it. A
-# `reconstructed` dock would be this layer inventing a structure to serve an
-# invention, which is the clause that refuses the anonymous river frontage.
+# The grades under which a statement is EVIDENCE rather than an invention.
+# They gate both arms of the rule: a dock attribute must carry one to be a
+# stated dock, and a trade must carry one before it can claim a dock — a
+# reconstructed shop with a reconstructed trade growing a dock would be an
+# invention on an invention on an invention.
 DOCK_GRADES = ("attested", "documented", "inferred")
+
+# The trades that claim a landing (T-0062, the owner's 2026-08-18 override).
+# A forwarding or commission house works other men's cargo over the bank; a
+# grocery and provision store or a general merchant received nearly everything
+# it sold off a vessel. What is NOT here is as deliberate as what is: the drug
+# stores, the printing offices, the taverns and every dwelling on the same
+# frontage claim nothing, because their business does not defend the claim.
+RIVER_TRADES = frozenset({
+    "forwarding_and_commission_store",
+    "grocery_and_provision_store",
+    "store",
+    "store_and_dwelling",
+})
+
+# INVENTED, with its bound stated in the record's form block: how far a claimed
+# frontage's river wall may stand from the traced bank and still be read as
+# working over it — the platted street between the row and the water plus the
+# bank strip. The four candidates the rule admits today stand 11-40 m out; the
+# nearest it refuses stands 61 m and a block inland.
+FRONTS_RIVER_M = 45.0
+
+# The source that bounds every claimed dock: the owner's 2026-08-18 brief
+# (images 3 and 11 — masts crowding the reach below the drawbridge, the South
+# Water bank a continuous working frontage) and its standing ruling.
+OWNER_SPEC = "owner_chicago_1835_reconstruction_spec_2026"
 
 # --- the invented figures, all of them, in one place ------------------------ #
 # They are copied into the record's `form` block with their reasons; they are
@@ -165,6 +218,138 @@ def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple]:
     return best
 
 
+def _stand_wharf(sid: str, sc: dict, banks: list, field, refused: list,
+                 cap_m: float | None = None) -> dict | None:
+    """Derive one deck outline, or record exactly why none can stand here.
+
+    The geometry is one derivation for both arms of the rule — a stated dock
+    and a claimed one differ in what ADMITS them, never in how the deck is
+    stood — so it lives in one function and cannot come to disagree with
+    itself. Returns the wharf's geometric fields, or None with the refusal
+    appended.
+    """
+    place = sc.get("placement") or {}
+    poly = (sc.get("footprint") or {}).get("polygon") or []
+    if len(poly) < 3:
+        refused.append({"structure_id": sid,
+                        "why": "no footprint polygon — no wall to serve."})
+        return None                                          # no wall
+    u0, u1, vmax = _front_edge(poly)
+    wall_a = _to_enu(u0, vmax, place)
+    wall_b = _to_enu(u1, vmax, place)
+    mid = ((wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0)
+    frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
+
+    near = [(nearest_on(b["points"], mid), b) for b in banks]
+    (dist, foot, tangent), bank = min(near, key=lambda r: r[0][0])
+
+    # The traced bank has to actually REACH the frontage it would serve. Past
+    # the trace's own terminus the nearest point is that terminus for every
+    # building beyond it, so two docks east of the end would be drawn standing
+    # on one another at the trace's last vertex — which is how T-0062 found
+    # this clause: the south-bank trace ends at Wells (local e ≈ 390) and both
+    # Peck's and Harmon & Loomis's decks landed on the same foot. A dock past
+    # the trace is not refused as a claim, only as a drawing: extending the
+    # traced 1834 bank is what draws it (T-0106), not a different rule.
+    ends = (bank["points"][0], bank["points"][-1])
+    if min(math.hypot(foot[0] - p[0], foot[1] - p[1]) for p in ends) < 0.5:
+        refused.append({"structure_id": sid, "why": (
+            "the traced 1834 bank does not reach this frontage — its nearest "
+            "point is the trace's own end, so the deck's place on the river "
+            "cannot be derived. Extending the committed bank trace is what "
+            "draws this dock (T-0106), not a different rule.")})
+        return None                                          # bank reach
+
+    # A claimed dock has to FRONT the water it would work: a store a street's
+    # width from the bank trades over that bank, a store a block inland trades
+    # over a road. The stated docks carry no cap — their sentence puts them at
+    # the river wherever the record stands.
+    if cap_m is not None and dist > cap_m:
+        refused.append({"structure_id": sid, "why": (
+            f"its river wall stands {dist:.1f} m from the traced bank, past "
+            f"the {cap_m:.0f} m a working frontage spans (the street and the "
+            "bank strip). A store this far inland trades over a road, and a "
+            "dock is not claimed for it.")})
+        return None                                          # fronts the river
+    # Outward is across the bank, away from the building it serves. Deriving
+    # it from the building rather than from the polygon's winding is what
+    # keeps a wharf on the water when a bank line is re-traced the other way.
+    nx, ny = -tangent[1], tangent[0]
+    if (foot[0] - mid[0]) * nx + (foot[1] - mid[1]) * ny < 0:
+        nx, ny = -nx, -ny
+
+    half = frontage / 2.0 + APRON_M
+    heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
+    face = (foot[0] + nx * FACE_OUT_M, foot[1] + ny * FACE_OUT_M)
+    corners = [                       # heel-left, heel-right, face-right, face-left
+        (heel[0] - tangent[0] * half, heel[1] - tangent[1] * half),
+        (heel[0] + tangent[0] * half, heel[1] + tangent[1] * half),
+        (face[0] + tangent[0] * half, face[1] + tangent[1] * half),
+        (face[0] - tangent[0] * half, face[1] - tangent[1] * half),
+    ]
+
+    # The deck may not reach the building it serves: a wharf that laps a wall
+    # is a modelling error wearing a wharf's clothes, and the two stated
+    # placements were authored with exactly this strip left clear ("about 8 m
+    # back from the traced bank to leave the dock its ground"; "about 14 m
+    # back ... so the strip between it and the water can carry the dock").
+    clearance = min(nearest_on([wall_a, wall_b], c)[0] for c in corners[:2])
+    if clearance < 1.0:
+        refused.append({"structure_id": sid, "why": (
+            f"its heel would come within {clearance:.2f} m of the building's "
+            "own river wall. A wharf that laps the wall it serves is a "
+            "modelling error, and this record refuses to draw one.")})
+        return None                                          # wall clearance
+
+    # What the invented outline implies, measured on the committed bed rather
+    # than assumed: how much water a vessel lying at this face would have.
+    depths = []
+    for t in (-half, 0.0, half):
+        e = face[0] + tangent[0] * t
+        n = face[1] + tangent[1] * t
+        depths.append(-field.height(e, n) if field and field.covers(e, n) else None)
+    if any(d is None for d in depths):
+        refused.append({"structure_id": sid, "why": (
+            "its face falls outside the modelled ground, so the depth at it "
+            "cannot be measured and the wharf is not drawn.")})
+        return None                                          # measurable depth
+
+    # And the face has to be wholly over water. Where the bank bends — Wolf
+    # Point found this — the standard outline's apron can land one end of the
+    # face on dry ground, and a dock run aground is not a dock. The record
+    # refuses the standard form rather than inventing a bespoke one: a deck
+    # shaped to this bend would be a further invention, and it can be its own
+    # parcel if the frontage earns it.
+    if min(depths) <= 0.0:
+        refused.append({"structure_id": sid, "why": (
+            f"its face would run aground — the modelled bed at the face's run "
+            f"gives {', '.join(f'{d:.2f}' for d in depths)} m of water, and a "
+            "deck whose face ends on dry ground is not a dock. The bank bends "
+            "here; the standard outline does not, and no bespoke one is "
+            "invented for it.")})
+        return None                                          # face afloat
+
+    return {
+        "structure_id": sid,
+        "name": sc.get("name"),
+        "confidence": "reconstructed",
+        "bank": bank["name"],
+        "bank_confidence": bank["confidence"],
+        "bank_sources": bank["sources"],
+        "bank_foot_local_enu_m": [_round(foot[0]), _round(foot[1])],
+        "bank_tangent": [_round(tangent[0], 4), _round(tangent[1], 4)],
+        "waterward_normal": [_round(nx, 4), _round(ny, 4)],
+        "deck_quad_local_enu_m": [[_round(c[0]), _round(c[1])] for c in corners],
+        "deck_length_m": _round(2 * half),
+        "deck_width_m": _round(FACE_OUT_M + HEEL_IN_M),
+        "frontage_served_m": _round(frontage),
+        "wall_to_bank_m": _round(dist),
+        "clearance_to_wall_m": _round(clearance),
+        "depth_at_face_m": [_round(d) for d in depths],
+        "facade_bearing_deg": _round(place.get("rotation_deg") or 0.0, 1),
+    }
+
+
 def build_record() -> tuple[list, list]:
     index = _load(SIDECARS / "index.json")
     banks = bank_lines()
@@ -178,94 +363,54 @@ def build_record() -> tuple[list, list]:
         if not sid or not path.exists():
             continue
         sc = _load(path)
-        dock = (sc.get("attributes") or {}).get("dock")
-        if not isinstance(dock, dict) or not dock.get("value"):
-            continue                                             # clause 1
-        grade = dock.get("confidence")
-        if grade not in DOCK_GRADES:
-            refused.append({"structure_id": sid, "why": (
-                f"its dock is graded {grade}. A wharf drawn on a reconstructed "
-                "dock would be an invention resting on an invention.")})
-            continue                                             # clause 2
+        attrs = sc.get("attributes") or {}
 
-        place = sc.get("placement") or {}
-        poly = (sc.get("footprint") or {}).get("polygon") or []
-        if len(poly) < 3:
-            refused.append({"structure_id": sid,
-                            "why": "no footprint polygon — no wall to serve."})
-            continue                                             # clause 3
-        u0, u1, vmax = _front_edge(poly)
-        wall_a = _to_enu(u0, vmax, place)
-        wall_b = _to_enu(u1, vmax, place)
-        mid = ((wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0)
-        frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
+        # ---- the stated arm: the record's own dock attribute --------------- #
+        dock = attrs.get("dock")
+        if isinstance(dock, dict) and dock.get("value"):
+            grade = dock.get("confidence")
+            if grade not in DOCK_GRADES:
+                refused.append({"structure_id": sid, "why": (
+                    f"its dock attribute is graded {grade}, and only a STATED "
+                    "dock (attested, documented, inferred) enters by attribute. "
+                    "A claimed dock enters by the trade rule below (T-0062) — "
+                    "not by authoring the attribute, which is also what keeps a "
+                    "record's baked mesh out of the claim's blast radius.")})
+                continue
+            w = _stand_wharf(sid, sc, banks, field, refused)
+            if w is None:
+                continue
+            w.update({
+                "dock_confidence": grade,
+                "dock_sources": dock.get("sources") or [],
+            })
+            wharves.append(w)
+            continue
 
-        near = [(nearest_on(b["points"], mid), b) for b in banks]
-        (dist, foot, tangent), bank = min(near, key=lambda r: r[0][0])
-        # Outward is across the bank, away from the building it serves. Deriving
-        # it from the building rather than from the polygon's winding is what
-        # keeps a wharf on the water when a bank line is re-traced the other way.
-        nx, ny = -tangent[1], tangent[0]
-        if (foot[0] - mid[0]) * nx + (foot[1] - mid[1]) * ny < 0:
-            nx, ny = -nx, -ny
-
-        half = frontage / 2.0 + APRON_M
-        heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
-        face = (foot[0] + nx * FACE_OUT_M, foot[1] + ny * FACE_OUT_M)
-        corners = [                       # heel-left, heel-right, face-right, face-left
-            (heel[0] - tangent[0] * half, heel[1] - tangent[1] * half),
-            (heel[0] + tangent[0] * half, heel[1] + tangent[1] * half),
-            (face[0] + tangent[0] * half, face[1] + tangent[1] * half),
-            (face[0] - tangent[0] * half, face[1] - tangent[1] * half),
-        ]
-
-        # The deck may not reach the building it serves: a wharf that laps a wall
-        # is a modelling error wearing a wharf's clothes, and the two placements
-        # were authored with exactly this strip left clear ("about 8 m back from
-        # the traced bank to leave the dock its ground"; "about 14 m back ... so
-        # the strip between it and the water can carry the dock").
-        clearance = min(nearest_on([wall_a, wall_b], c)[0] for c in corners[:2])
-        if clearance < 1.0:
-            refused.append({"structure_id": sid, "why": (
-                f"its heel would come within {clearance:.2f} m of the building's "
-                "own river wall. A wharf that laps the wall it serves is a "
-                "modelling error, and this record refuses to draw one.")})
-            continue                                             # clause 4
-
-        # What the invented outline implies, measured on the committed bed rather
-        # than assumed: how much water a vessel lying at this face would have.
-        depths = []
-        for t in (-half, 0.0, half):
-            e = face[0] + tangent[0] * t
-            n = face[1] + tangent[1] * t
-            depths.append(-field.height(e, n) if field and field.covers(e, n) else None)
-        if any(d is None for d in depths):
-            refused.append({"structure_id": sid, "why": (
-                "its face falls outside the modelled ground, so the depth at it "
-                "cannot be measured and the wharf is not drawn.")})
-            continue                                             # clause 5
-
-        wharves.append({
-            "structure_id": sid,
-            "name": sc.get("name"),
-            "dock_confidence": grade,
-            "dock_sources": dock.get("sources") or [],
-            "confidence": "reconstructed",
-            "bank": bank["name"],
-            "bank_confidence": bank["confidence"],
-            "bank_sources": bank["sources"],
-            "bank_foot_local_enu_m": [_round(foot[0]), _round(foot[1])],
-            "bank_tangent": [_round(tangent[0], 4), _round(tangent[1], 4)],
-            "waterward_normal": [_round(nx, 4), _round(ny, 4)],
-            "deck_quad_local_enu_m": [[_round(c[0]), _round(c[1])] for c in corners],
-            "deck_length_m": _round(2 * half),
-            "deck_width_m": _round(FACE_OUT_M + HEEL_IN_M),
-            "frontage_served_m": _round(frontage),
-            "wall_to_bank_m": _round(dist),
-            "clearance_to_wall_m": _round(clearance),
-            "depth_at_face_m": [_round(d) for d in depths],
-            "facade_bearing_deg": _round(place.get("rotation_deg") or 0.0, 1),
+        # ---- the claimed arm: the river-trade rule (T-0062) ---------------- #
+        # A dock nobody stated, claimed for a frontage because its DOCUMENTED
+        # trade worked over this bank — the same shape of reconstruction as the
+        # signboards' trade table and the yard goods' ordinance rule. Two
+        # clauses admit a candidate: the sidecar's own function is one of the
+        # river trades, and that function is itself evidence rather than an
+        # invention — a reconstructed shop with a reconstructed trade growing a
+        # dock would be an invention on an invention on an invention.
+        fn = attrs.get("function") or {}
+        if fn.get("value") not in RIVER_TRADES:
+            continue
+        if fn.get("confidence") not in DOCK_GRADES:
+            continue        # an invented trade claims nothing
+        w = _stand_wharf(sid, sc, banks, field, refused, cap_m=FRONTS_RIVER_M)
+        if w is None:
+            continue
+        w.update({
+            "dock_confidence": "reconstructed",
+            "dock_sources": [OWNER_SPEC],
+            "claimed_by": "river_trade_rule",
+            "trade": fn.get("value"),
+            "trade_confidence": fn.get("confidence"),
         })
+        wharves.append(w)
 
     wharves.sort(key=lambda w: w["structure_id"])
     refused.sort(key=lambda r: r["structure_id"])
@@ -275,9 +420,12 @@ def build_record() -> tuple[list, list]:
 def record(wharves: list, refused: list) -> dict:
     return {
         "_doc": (
-            "The town's river wharves — a plank deck on timber cribs at each of "
-            "the two warehouses whose own record states a dock. NOT structure "
-            "records and NOT geometry that comes out of Blender: a deck on cribs "
+            "The town's river wharves — a plank deck on timber cribs at each "
+            "frontage whose own record states a dock (the two forwarding "
+            "warehouses) or whose documented river trade claims one under the "
+            "T-0062 rule (the working stores at the forks and along South "
+            "Water). NOT structure records and NOT geometry that comes out of "
+            "Blender: a deck on cribs "
             "is a box on boxes standing on ground and water this project already "
             "draws, so it is derived from the committed footprint, the traced "
             "bank and the committed heightfield and drawn at load by "
@@ -289,7 +437,7 @@ def record(wharves: list, refused: list) -> dict:
             "a rule has to be auditable."
         ),
         "id": "river_landings",
-        "name": "The river wharves at the forwarding warehouses",
+        "name": "The river wharves: the forwarding warehouses and the traders' landings",
         "kind": "wharves",
         "scene": "1835",
         "target_date": "1835-07-01",
@@ -303,38 +451,55 @@ def record(wharves: list, refused: list) -> dict:
         "existence": {
             "value": True,
             "confidence": "reconstructed",
-            "sources": ["andreas_1884_v1"],
+            "sources": ["andreas_1884_v1",
+                        "owner_chicago_1835_reconstruction_spec_2026"],
             "note": (
-                "THE FACT OF A WHARF AT THESE TWO FRONTAGES IS THE BEST-ATTESTED "
-                "THING ON THIS LAYER AND EVERY DIMENSION OF IT IS INVENTED. What "
-                "is held: docs/research/03-structures-north.md §3.10 — 'Kinzie & "
-                "Hunter and Dole & Newberry each had a warehouse WITH ITS DOCK "
-                "ALONG THE RIVER FRONT' — which is the clause that attests the "
-                "Kinzie & Hunter building at all; and Andreas independently names "
-                "'Newberry & Dole's wharf' as the place the schooner Illinois, "
-                "the first vessel through the new cut, was cheered on 12 July "
-                "1834 (scan p. 503). What is NOT held, anywhere in this project: "
-                "the length, the width, the height, the construction or the "
-                "condition of either dock. Both records carried "
-                "geometry: 'absent' over that statement until this layer existed "
-                "— the strongest confidence chip in the dataset, over a bare bank "
-                "— which docs/LIBERTIES.md L66 recorded as owed and L132 now "
-                "claims. NOTHING HERE IS PROMOTED ABOVE reconstructed on the "
-                "strength of the sentence: a dock is stated, and this is what a "
-                "dock is drawn as."
+                "TWO OF THESE DOCKS ARE STATED AND THE REST ARE CLAIMED, AND "
+                "EVERY DIMENSION OF ALL OF THEM IS INVENTED. What is held for "
+                "the stated pair: docs/research/03-structures-north.md §3.10 — "
+                "'Kinzie & Hunter and Dole & Newberry each had a warehouse WITH "
+                "ITS DOCK ALONG THE RIVER FRONT' — which is the clause that "
+                "attests the Kinzie & Hunter building at all; and Andreas "
+                "independently names 'Newberry & Dole's wharf' as the place the "
+                "schooner Illinois, the first vessel through the new cut, was "
+                "cheered on 12 July 1834 (scan p. 503). The traders' landings "
+                "(T-0062) rest on no such sentence: each is claimed by a rule "
+                "about trades, on the owner's 2026-08-18 ruling and his brief's "
+                "two river views (images 3 and 11 — masts crowding the reach "
+                "below the drawbridge, the bank a continuous working frontage). "
+                "A frontage whose documented business is forwarding, commission, "
+                "provisions or general merchandise worked over this bank, so the "
+                "rule claims it a landing; docs/LIBERTIES.md L145 records the "
+                "invention and its bounds. What is NOT held, anywhere in this "
+                "project: the length, the width, the height, the construction or "
+                "the condition of any dock on this river. NOTHING HERE IS "
+                "PROMOTED ABOVE reconstructed: a dock is stated or defensibly "
+                "claimed, and this is what a dock is drawn as."
             ),
         },
         "rule": {
             "note": (
-                "A sidecar standing on the scene date whose own `dock` attribute "
-                "is true and graded attested or inferred. Run over the whole town "
-                "that selects exactly two records and refuses every other river "
-                "frontage in the dataset — the South Water stores, the lumber "
-                "landing, the ferry — because nothing else in this project says "
-                "it had a dock. Read the clauses and their reasons in "
-                "tools/generate_river_wharves.py."
+                "Two arms. STATED: a sidecar standing on the scene date whose "
+                "own `dock` attribute is true and graded attested or inferred — "
+                "the two forwarding warehouses, unchanged from T-0041. CLAIMED "
+                "(T-0062): a sidecar whose documented function is one of the "
+                "river trades below and whose river wall stands within "
+                "fronts_river_m of the traced 1834 bank — no source states a "
+                "dock at any of these, and the trade is what defends the claim. "
+                "Run over the whole town the two arms admit seven candidates; "
+                "four are refused as drawings with their reasons in this "
+                "record's refused list (three because the traced south bank "
+                "ends at Wells and cannot place a deck east of it — T-0106 — "
+                "and one because the bank bends at Wolf Point and the standard "
+                "outline's face runs aground), so five wharves stand. "
+                "Everything else on the river is still refused: the lumber "
+                "landing, the ferry, the anonymous row, every invented shop — a "
+                "reconstructed trade claims nothing. Read the clauses and their "
+                "reasons in tools/generate_river_wharves.py."
             ),
             "dock_grades": list(DOCK_GRADES),
+            "claimed_trades": sorted(RIVER_TRADES),
+            "fronts_river_m": FRONTS_RIVER_M,
         },
         "form": {
             "face_out_m": {
@@ -438,6 +603,21 @@ def record(wharves: list, refused: list) -> dict:
                     "for a line rather than a measurement of anything."
                 ),
             },
+            "fronts_river_m": {
+                "value": FRONTS_RIVER_M,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED, AND IT GATES THE CLAIMED ARM ONLY. How far a "
+                    "claimed frontage's river wall may stand from the traced "
+                    "bank and still be read as working over it: the platted "
+                    "street between the row and the water plus the bank strip. "
+                    "The candidates the rule admits today stand 11-40 m out and "
+                    "the nearest it refuses stands 61 m and a block inland, so "
+                    "the figure separates the two populations with margin on "
+                    "both sides. A stated dock carries no cap — its sentence "
+                    "puts it at the river wherever the record stands."
+                ),
+            },
         },
         "geometry_note": (
             "The record owns the OUTLINE — where the deck stands, how long and "
@@ -450,7 +630,7 @@ def record(wharves: list, refused: list) -> dict:
         ),
         "not_drawn": (
             "NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY AND NO NAME. The schooner "
-            "Illinois was cheered at one of these two wharves in July 1834 and is "
+            "Illinois was cheered at one of the two stated wharves in July 1834 and is "
             "not drawn at either: this project holds no description of any vessel "
             "in Chicago at the scene date, and a hull is a larger invention than "
             "the deck it would lie at. Goods are drawn only where the yard layer's "

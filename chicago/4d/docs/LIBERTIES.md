@@ -5577,3 +5577,50 @@ itemised loss list — would replace an invented roof with a named one on the sa
 what the 665-roof programme's substitution clause exists for.
 **Covers:** `recon_1835_blk_lake_clark_d1_01.inferred_1835.position`, `recon_1835_blk_lake_clark_d1_01.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.position`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.position`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.footprint`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.position`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.footprint`.
 **Recorded:** 2026-08-19.
+
+### L145 — The traders' landings: docks claimed by a rule about trades, at frontages where none is stated
+**Decision:** the wharf rule grows a second arm. Alongside the two STATED docks (L132), a frontage
+whose **documented trade worked over the bank** is now CLAIMED a landing: a sidecar whose function
+is forwarding-and-commission, grocery-and-provision, or general merchandise (`RIVER_TRADES` in
+`tools/generate_river_wharves.py`), graded `attested`/`inferred` — an invented shop's invented
+trade claims nothing — with its river wall within 45 m of the traced 1834 bank. Each claimed deck
+is L132's standard wharf, unchanged in every figure, graded `reconstructed` on every vertex, drawn
+by `renderers/web/js/wharves.js`. Today the rule stands three new landings — `jh_kinzie_forwarding_store` and
+`h_jones_store` on the South Water bank, `robert_kinzie_store` on the west bank at Wolf Point —
+and refuses four candidates as drawings, every refusal recorded with its reason in
+`data/wharves/river_landings.json`: `peck_store`, `harmon_loomis_store` and
+`thomas_church_store` because the traced south bank ends at Wells and no deck can be derived
+east of it (T-0106 owns extending the trace), `hogan_store` because the bank bends at Wolf Point
+and the standard outline's face runs aground. **No vessel, cargo, crane, gangway or name is drawn. No source states a dock
+at any claimed frontage, and no `dock` attribute is authored onto any record** — a record edit
+would stale the building's baked mesh, and the claim is the rule's, not the record's.
+**Why:** the owner, 2026-08-18, verbatim: *"you can add more docks!"*, under his standing ruling
+that the loop is *"totally fine to be liberal with adding reconstructed items when i ask for
+things, you can just label and mark them as such"* (AGENTS.md § RECONSTRUCTED IS A TIER;
+`data/sources/assets/owner_brief_2026_08_18/README.md`). His brief's two river views (images 3
+and 11) draw masts crowding the reach below the Dearborn drawbridge and the South Water bank as a
+continuous working frontage — a volume of trade two docks a kilometre apart cannot carry. T-0062
+records that the override IS the rule, superseding the reading L132 shipped under.
+**What bounds the invention.** WHICH frontages is a rule about trades, the same shape as the
+signboards' trade table (L-series, T-0039) and the yard goods' ordinance rule (T-0040): a
+forwarding or commission house works other men's cargo over the water or it does not work;
+provisions and dry goods reached Chicago by schooner and came ashore here. What is refused is as
+deliberate: the drug stores (`carpenter_south_water_store`, `pruyne_kimball_drugstore`), the
+printers, the taverns and every dwelling on the same row claim nothing, and a `reconstructed`
+function claims nothing. WHERE each deck stands is derived, not placed — the record's own
+footprint, the traced bank and the committed heightfield, with the depth at every invented face
+measured and reported (`depth_at_face_m`). The one new figure is the 45 m frontage cap, recorded
+in the layer's own form block with the two populations it separates (candidates at 11–40 m,
+refusals from 61 m) stated beside it.
+**Consequence:** the drawn river frontage more than doubles, two wharves to five, and both forks
+of the river now carry one; the reach between Wells and the drawbridge — the one the brief's
+image 3 actually depicts — still shows no dock, because the committed bank trace ends at Wells
+and this project does not freehand a bank. A drawn landing at a store whose dock nobody stated is
+this project's broadest liberty of the liberal-reconstruction era so far, and it is labelled:
+every deck carries `reconstructed` on every vertex, so hiding the tier removes every dock on the
+river together, the stated pair included.
+**How to resolve:** the *Chicago Democrat*'s advertising columns, where a forwarding or commission
+house states its street and sometimes its wharf; the harbour engineers' reports of 1833–1836; or
+the c. 1835 view docs/research/03-structures-north.md describes. Any of them would move a claimed
+dock to stated — or refute one, which narrows `RIVER_TRADES` and takes the deck down with it.
+**Recorded:** 2026-08-19.

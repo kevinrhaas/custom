@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 196, title: 'Three more landings on the working river', kind: 'feature', ts: '2026-08-19T12:56:36.282Z', date: 'Aug 19, 2026, 7:56 AM CT',
+    items: [
+      'The river had exactly two docks — one at each of the warehouses whose own records say a dock stood there — and the rest of the bank the town traded over was bare grass to the water.',
+      'Three more timber landings stand on it now: at J. H. Kinzie’s forwarding store and Jones’s grocery on the South Water bank, and at Robert Kinzie’s store across the water at Wolf Point. Five decks on their cribs, on both forks of the river, not two.',
+      'No document states any new dock. What defends them is the trade: a forwarding house, a grocer or a general merchant received its goods over this bank, so we have drawn the landing each worked from and written down that we drew it. The drug stores, the printers and the dwellings on the same frontage get none, because their business defends no claim.',
+      'Four more stores qualified and were refused, each with the reason on the record: three stand past the end of the surveyed 1834 shoreline our decks are placed from — we extend that survey rather than freehand a bank — and at Hogan’s the bank bends so sharply the standard deck would run aground.',
+      'Aim at a deck and it opens the store it serves. Turn “reconstructed” off in the confidence view and all five docks go — every plank on this river is invented, including the two the records vouch for.',
+    ] },
   { v: 195, title: 'Three roofs on the Lake and Clark corner', kind: 'feature', ts: '2026-08-19T11:53:49.365Z', date: 'Aug 19, 2026, 6:53 AM CT',
     items: [
       'Walk west along Lake Street from the butcher\u2019s and the town used to run out at the baker\u2019s: past it, the whole corner at Clark Street was open grass, with the next buildings a block away.',
