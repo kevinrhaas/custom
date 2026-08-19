@@ -46,8 +46,19 @@ inferred-household layer housed in it; L142's Covers field is corrected in place
 correction stated in the entry rather than made silently — because two of the ids it claimed no
 longer name a building.
 
-**Gates.** `tools/check.sh` green and `node tools/smoke_renderer.mjs` green at 390×780 and
-1280×800, both in the foreground, on the published tree.
+**Gates.** `./tools/check.sh` — the dev gate — **green**. `node tools/smoke_renderer.mjs
+--published` **ran to completion in BOTH viewports for the first time in weeks** (55 minutes on
+this runner, blocked on in the foreground): **654 passed, 7 failed**, and `zero page errors`
+PASSED at 390×780 and at 1280×800 — the assertion T-0060 warns is the one that goes unrun.
+
+**All seven failures are `dev`'s own and every one is already recorded in this file above:**
+`the roads reach the screen from the walker's eye` and `…from the air` at both viewports (four),
+`the panel states that once too — and counts nothing by hand` at both viewports (**T-0037**, two),
+and `scene detail 'light' stays inside its own ceiling` at desktop (**T-0056**, one — 604 950 of
+600 000 tris when last measured). **The last one was checked against this branch rather than
+assumed**: the two placeholder meshes this parcel removed carry 36 triangles each and the two it
+adds carry 42, so the whole change is **+12 triangles** against a ceiling already over by 4 950,
+and the draw-call count cannot move because the object count does not.
 
 ## Shipped 2026-08-19 — T-0078: the South Water river row
 
