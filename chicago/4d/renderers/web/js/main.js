@@ -630,6 +630,17 @@ async function boot() {
     if (backends.active === pointerlock && !pointerlock.isLocked && !gateOpen) pointerlock.lock();
   });
 
+  // Escape closes an open inspection card (T-0108). Escape is ALSO the
+  // browser's own pointer-lock release, which no page may intercept — so this
+  // cooperates rather than fights: while the pointer is locked the browser
+  // eats the keystroke and unlocks, and the press that reaches us is the one
+  // with nothing else to do. Acting only when a card is open leaves Escape's
+  // meaning everywhere else untouched.
+  window.addEventListener('keydown', (e) => {
+    if (e.code !== 'Escape' || isTyping(e.target)) return;
+    if (popup.openId) popup.close();
+  });
+
   // ---- picking ---------------------------------------------------------- //
 
   function inspect(ndc = null) {
@@ -876,7 +887,11 @@ async function boot() {
     backends.active?.update?.(dt);
     terrain.update(dt);
     const asked = intent.takeInteract();
-    if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
+    // The inspect KEY toggles: the reach that opened the card also closes it
+    // (T-0108). A click or tap always re-inspects — aiming at a second
+    // building with a card open should open that building, not shut the first.
+    if (asked && asked.source === 'key' && popup.openId) popup.close();
+    else if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);

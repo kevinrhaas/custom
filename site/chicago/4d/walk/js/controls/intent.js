@@ -28,6 +28,9 @@
  *
  * `interactPoint` rides along with `interact`: a crosshair inspection has no
  * point (null) and a tap has the one you tapped, in normalised device coords.
+ * `interactSource` says which gesture asked — 'key' or 'point' — because the
+ * inspect KEY toggles an open card shut while a click always re-inspects
+ * (T-0108), and by consumption time the event is long gone.
  * It lives on the intent rather than in a backend callback so that "what did the
  * visitor ask for" is still answered by exactly one object.
  */
@@ -43,6 +46,7 @@ export function createIntent() {
     flying: false,
     interact: false,
     interactPoint: null,
+    interactSource: null,
 
     /** Movement written this frame, for the HUD and the smoke harness. */
     get moving() {
@@ -52,14 +56,16 @@ export function createIntent() {
 
     /**
      * Read-and-clear, so one tap is one interaction.
-     * @returns {false | {point: {x:number,y:number}|null}}
+     * @returns {false | {point: {x:number,y:number}|null, source: 'key'|'point'|null}}
      */
     takeInteract() {
       if (!this.interact) return false;
       const point = this.interactPoint;
+      const source = this.interactSource;
       this.interact = false;
       this.interactPoint = null;
-      return { point };
+      this.interactSource = null;
+      return { point, source };
     },
 
     /** Look deltas are per-frame; the walker clears them once consumed. */
@@ -75,6 +81,7 @@ export function createIntent() {
       this.sprint = false;
       this.interact = false;
       this.interactPoint = null;
+      this.interactSource = null;
       this.clearLook();
     },
   };
