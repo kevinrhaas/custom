@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 194, title: 'Two storeys close the South Water row', kind: 'feature', ts: '2026-08-19T10:20:07.259Z', date: 'Aug 19, 2026, 5:20 AM CT',
+    items: [
+      'The row that went up along South Water Street last night runs east to State Street and stopped there in a one-room cottage \u2014 a terrace of low cottages the whole length of the town\u2019s business front.',
+      'Two two-storey frame stores stand on that corner now. They are twice the height of everything beside them and twice as deep, on the same line and the same shared walls as the rest of the row, and they are what you see first coming up the street from the bridge.',
+      'Nothing was added to the town to do it. Two of the cottages this block had been dealt became the two stores instead: the same number of roofs, the same block, the same line. The programme already had nine of this kind of store unbuilt and waiting for a frontage.',
+      'The reference is the same 1834 view of South Water Street the row itself came from \u2014 one-storey log and frame buildings shoulder to shoulder, with two-storey frame stores anchoring the east end of them.',
+      'The stores are invented, exactly as the cottages they replaced were. Turn \u201creconstructed\u201d off in the confidence view and both of them go.',
+    ] },
   { v: 193, title: 'South Water Street gets its working row', kind: 'feature', ts: '2026-08-19T04:14:02.193Z', date: 'Aug 18, 2026, 11:14 PM CT',
     items: [
       'South Water Street was the town\u2019s business front \u2014 the wharves and the stores were on it, and everything the town bought or sold came off a boat there. Walking it, you would not have guessed: a store, then twenty metres of grass, then a cottage sitting seven metres back from the road, then more grass.',

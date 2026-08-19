@@ -980,11 +980,30 @@
       },
       "families": {
         "A3": 1,
+        "C3": 2,
         "D1": 1,
         "D2": 1,
-        "D3": 1,
-        "D4": 1,
-        "D5": 1
+        "D3": 1
+      },
+      "redealt": {
+        "on": "2026-08-19",
+        "ticket": "T-0102",
+        "was": {
+          "A3": 1,
+          "D1": 1,
+          "D2": 1,
+          "D3": 1,
+          "D4": 1,
+          "D5": 1
+        },
+        "now": {
+          "A3": 1,
+          "C3": 2,
+          "D1": 1,
+          "D2": 1,
+          "D3": 1
+        },
+        "why": "THE ROOF COUNT DOES NOT MOVE AND THE FAMILIES DO: the D4 and the D5 this block was dealt come out and two C3 narrow two-storey stores go in, so the parcel still builds six roofs, five principal and one ancillary, against the same headroom of six. T-0101 stood this block's three frontage roofs on the South Water line and could not build the thing the owner's reference for the reach puts at the row's east end: two two-storey frame stores anchoring it. The five South Water blocks were dealt D-family dwellings throughout, and check_block holds a parcel to the mix it claims, so the row was a terrace of one-storey cottages on the town's business front. THE CHOICE T-0102 HAD TO MAKE WAS BETWEEN RE-DEALING THE SCHEDULE AND GROWING THE TOTAL, and the schedule answers it without a liberty about the total: the 665-roof programme carries seventeen C3 roofs, eight of them standing, so NINE narrow two-storey stores are unbuilt and apportioned to the districts rather than to any block. The programme file says so in its own words - 'a per-unit family mix is an apportionment of that district's remainder, not a claim about any block' - which is exactly what makes this a re-deal and not an overspend. Two of those nine stand here; the D4 and the D5 they displace go back into the south district's remainder, which held thirty-four of each before this run and holds thirty-five after it. Growing the 665 total to buy roofs the programme already owned would have been inventing headroom the town does not need, so it was refused. WHY THIS BLOCK AND THIS END. State Street is the platted town's eastern limit and the fort's reservation lies beyond it, so blk_south_water_dearborn is the last block of the row and its east corner is the row's east end. A store is a claim about a FRONTAGE rather than about a lot, and the frontage this parcel holds is the town's principal business street: the C-family is the schedule's answer to a commercial front, and a back street one block south is where a narrow two-storey store would be the odd reading. The run is re-chained so the two stores take the corner and the surviving D3 one-room cottage stands west of them - the same three lots, the same one line, the same 1.5 m setback, one more storey at the end that closes the row. WHAT IS STILL INVENTED IS EVERYTHING THAT MATTERS: that any building stood on this ground, which building it was, and that these two were stores. Recorded in docs/LIBERTIES.md."
       },
       "open_lots": [
         {
@@ -995,21 +1014,22 @@
       "arrangement_note": "The fifth and LAST block of the South Water row, bounded by South Water, State, Lake and Dearborn: State Street is the platted town's eastern limit and the fort's reservation lies beyond it, so the row closes here. Lots 1 and 6 arrive taken - the Mansion House and the Chappel infant school, both seated by tools/plat_occupancy.py rather than authored here - so the schedule's six free lots are 0, 2 and 4 on South Water and 3, 5 and 7 on Lake, and this parcel builds on five of them. The face rule is T-A8's, carried one block east for the last time: South Water is the business front, so the three best dwellings the schedule deals take its three free lots - the deep-plan cottage on lot 0, the two-room cottage on lot 2 and the one-room cottage on lot 4 - and the two meanest take Lake, the plank shanty on lot 3 and the log cabin on lot 5. THE END RULE IS WHERE THIS BLOCK DIFFERS FROM EVERY OTHER BLOCK OF THE ROW, AND IT IS THE REASON THE ARRANGEMENT POINTS WEST. Four parcels have put their better roofs nearer the town-centre end; T-A11 stopped asserting that as a compass direction and measured it, as the distance to the Dearborn Street drawbridge, the only crossing of the main stem in July 1835. On the four blocks before this one the bridge lay east and the two readings agreed, so nothing separated them. On this block the bridge is at the WEST end, at the foot of Dearborn, and they disagree: lot 0's frontage is 36.4 m from it, lot 2's 57.7 m, lot 4's 81.7 m and lot 6's 106.6 m, with the back street running 126.4 m at lot 1 to 161.1 m at lot 7. This parcel follows the committed criterion rather than the compass, which is what a re-derivable criterion is for. A THIRD CRITERION WAS TRIED AND IS RECORDED AS UNDECIDABLE: the footprint-weighted centroid of all 83 documented roofs (19,145 m2) lands at local E 939, N 123 - east of this block - and makes lot 6 the nearest at 189.9 m against lot 0's 250.8 m; excluding the fort's 13 roofs and 10,460 m2 it moves to E 737, N 88 and reverses the answer to lot 0 at 95.0 m against lot 6's 115.9 m. Whether a military reservation counts as part of the town is a judgment, not a measurement, and the whole spread without it is 20.9 m against the bridge's 70.2 m, so the bridge is the criterion this block uses. THE MEASUREMENT THIS BLOCK OWES ITS READER IS ON ITS NORTH FRONTAGE, AND IT IS ABOUT THE DOCUMENTED BUILDINGS RATHER THAN THE INVENTED ONES: both of the block's documented South Water roofs stand in the platted roadway. The Chicago American office (92.9 m2) intrudes 6.91 m into the South Water corridor and Frederick Thomas's shop (55.7 m2) 6.25 m, which is 148.6 m2 of documented building standing on ground the plat calls street; with T-A9's three cases that is five, all on South Water, all between 4.5 and 8.2 m in. ROADMAP K30 owns it and nothing here moves a documented position. The American office also laps lot 0 by 10.74 m2 with 0.00 m2 of it inside the buildable inset - the fifth instance of T-A7's lap case and the largest that costs a lot nothing - and the D5 that stands on that lot clears it by 6.79 m against a 3 m gate. THE OFFSET T-A11 REFUSED WAS RE-MEASURED HERE AND REFUSED AGAIN: from the committed placement, 1.5 m further west buys 0.01 m of clearance for 0.76 m of lot-line margin and 3.0 m buys 0.22 m for 2.26 m, where half a metre of extra setback buys 0.50 m and costs neither. The office stands square across the frontage out in the road, so only standing further back moves the distance. The closest approach in the parcel is the D4 on lot 2, 7.01 m from Frederick Thomas's shop; the remaining lateral offsets are jitter and are not clearance. The privy stands in the yard of lot 0 off the block alley, behind the deep-plan cottage, which is the only lot on the block whose roof this parcel also raised.",
       "slots": [
         {
-          "family": "D5",
+          "family": "C3",
           "inventory_class": "principal_functional",
           "stands_on": "frontage",
           "fronts": "south_water",
           "anchor": {
-            "abut_west_of": "recon_1835_blk_south_water_dearborn_d4_02"
+            "corner": "east",
+            "clear_m": 1.5
           }
         },
         {
-          "family": "D4",
+          "family": "C3",
           "inventory_class": "principal_functional",
           "stands_on": "frontage",
           "fronts": "south_water",
           "anchor": {
-            "abut_west_of": "recon_1835_blk_south_water_dearborn_d3_03"
+            "abut_west_of": "recon_1835_blk_south_water_dearborn_c3_01"
           }
         },
         {
@@ -1018,8 +1038,7 @@
           "stands_on": "frontage",
           "fronts": "south_water",
           "anchor": {
-            "corner": "east",
-            "clear_m": 1.5
+            "abut_west_of": "recon_1835_blk_south_water_dearborn_c3_02"
           }
         },
         {

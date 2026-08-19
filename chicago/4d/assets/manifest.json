@@ -1467,6 +1467,26 @@
       "placeholder": true,
       "source_record": "data/structures/recon_1835_blk_south_water_dearborn_a3_06.json"
     },
+    "recon_1835_blk_south_water_dearborn_c3_01__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "bytes": 7108,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "b841f7e4d974b6f7fed5fba40d98a01dfda1c97082a9825c60224b2ccf78cbf0",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_c3_01.json"
+    },
+    "recon_1835_blk_south_water_dearborn_c3_02__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "bytes": 7084,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "c8aaad7fc6ad942f54898b7a80aaa4428a9acc14c0cdf0550c0d4d05a5522458",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_c3_02.json"
+    },
     "recon_1835_blk_south_water_dearborn_d1_05__inferred_1835.glb": {
       "archetype": "log_dwelling",
       "bytes": 6528,
@@ -1491,31 +1511,11 @@
       "archetype": "frame_dwelling",
       "bytes": 6532,
       "generator": "generators/inferred_placeholder.py",
-      "inputs_sha256": "c7c251695a89926ec03eaa09ca61a4019353c0bdd447c5d34994023257260288",
+      "inputs_sha256": "f148d7c6d5d43bd0e4aefbd51af23e4099912471a52c5ea8d3c2c5f54c54b201",
       "kind": "placeholder",
       "phase_id": "inferred_1835",
       "placeholder": true,
       "source_record": "data/structures/recon_1835_blk_south_water_dearborn_d3_03.json"
-    },
-    "recon_1835_blk_south_water_dearborn_d4_02__inferred_1835.glb": {
-      "archetype": "frame_dwelling",
-      "bytes": 6568,
-      "generator": "generators/inferred_placeholder.py",
-      "inputs_sha256": "6c31da804ed419fbbbee09d3f6fb9e53acc16f404a647e28237b8d9feb1f25f4",
-      "kind": "placeholder",
-      "phase_id": "inferred_1835",
-      "placeholder": true,
-      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_d4_02.json"
-    },
-    "recon_1835_blk_south_water_dearborn_d5_01__inferred_1835.glb": {
-      "archetype": "frame_dwelling",
-      "bytes": 6548,
-      "generator": "generators/inferred_placeholder.py",
-      "inputs_sha256": "55721ee5dcf85e0b00a472439d6169a12c0e4f823ac39bebfae6828c5652b486",
-      "kind": "placeholder",
-      "phase_id": "inferred_1835",
-      "placeholder": true,
-      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_d5_01.json"
     },
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",

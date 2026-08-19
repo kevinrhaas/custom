@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 142,
+  "count": 143,
   "liberties": [
     {
       "id": "L1",
@@ -9790,8 +9790,6 @@
         "recon_1835_blk_south_water_clark_d4_02",
         "recon_1835_blk_south_water_clark_d5_01",
         "recon_1835_blk_south_water_dearborn_d3_03",
-        "recon_1835_blk_south_water_dearborn_d4_02",
-        "recon_1835_blk_south_water_dearborn_d5_01",
         "recon_1835_blk_south_water_franklin_d3_03",
         "recon_1835_blk_south_water_franklin_d4_02",
         "recon_1835_blk_south_water_franklin_d5_01",
@@ -9818,18 +9816,6 @@
         {
           "domain": "structure",
           "structure": "recon_1835_blk_south_water_dearborn_d3_03",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_south_water_dearborn_d4_02",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_blk_south_water_dearborn_d5_01",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -9901,11 +9887,58 @@
         },
         {
           "label": "How to resolve",
-          "text": "any period document that puts a named business on a numbered lot on this frontage — a South Water Street advertisement in the Chicago American or Democrat giving an address, or an itemised loss list — would replace an invented unit with a named one on the same line, which is what the 665-roof programme's substitution clause exists for."
+          "text": "any period document that puts a named business on a numbered lot on this frontage — a South Water Street advertisement in the Chicago American or Democrat giving an address, or an itemised loss list — would replace an invented unit with a named one on the same line, which is what the 665-roof programme's substitution clause exists for. **Two of the fourteen were re-dealt on 2026-08-19 (T-0102) and are no longer named above.** `..._dearborn_d5_01` and `..._dearborn_d4_02` were the deep-plan and two-room cottages at the west end of the Dearborn run. The schedule re-deal that put two two-storey stores on the row's east end took those two slots (L143), so the ids no longer name a building and this entry's Covers field can no longer claim them. Nothing above is withdrawn: the twelve that remain still stand exactly as described, and the two that went are described where they went."
         },
         {
           "label": "Covers",
-          "text": "`recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`."
+          "text": "`recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-19."
+        }
+      ]
+    },
+    {
+      "id": "L143",
+      "title": "Two two-storey stores anchor the South Water row, and two cottages were re-dealt to buy them",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_blk_south_water_dearborn_c3_01",
+        "recon_1835_blk_south_water_dearborn_c3_02"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_c3_01",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_c3_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the east end of the South Water row — the corner of the last block of it, between Dearborn and State, where State Street is the platted town's eastern limit — now carries **two narrow two-storey frame stores** instead of two one-storey cottages. `blk_south_water_dearborn` was dealt an all-D-family mix; two of those slots, the D5 deep-plan cottage and the D4 two-room cottage, are now **C3 narrow two-storey stores**, and the run is re-chained so the two stores take the block's east corner and the surviving D3 one-room cottage stands west of them. Both stores are about 6 m wide, 13 m deep and 5.9 m to the eaves, against the 2.5 m eaves of the cottages beside them; they stand on the same line, at the same 1.5 m setback, on the same shared party walls."
+        },
+        {
+          "label": "Why",
+          "text": "T-0102, and the owner's reference for this reach — *\"South Water Street in 1834\"* (`data/sources/assets/owner_brief_2026_08_18/README.md`, image 11) — which shows the row's east end anchored by two-storey frame stores over a terrace of one-storey log and frame buildings. T-0101 (L142) put the row on its line and could not build that: `check_block` holds a parcel to the family mix it claims, and the five South Water blocks were dealt dwellings throughout, so the town's business front read as a terrace of cottages. **The choice, and why it went this way.** The ticket named two routes — re-deal the schedule, or grow the 665-roof total under a liberty. **The total does not move and did not need to.** The programme carries seventeen C3 roofs and eight of them stand, so nine narrow two-storey stores were already unbuilt and apportioned to the districts rather than to any block; the programme file says in its own words that a per-unit family mix is *\"an apportionment of that district's remainder, not a claim about any block\"*. Two of those nine stand here. The D4 and D5 they displace go back into the south district's remainder, which held thirty-four of each before this run and holds thirty-five after it. Growing 665 to buy roofs the programme already owned would have been inventing headroom the town does not need, so it was refused. The block still builds six roofs, five principal and one ancillary, against the same headroom of six. **WHAT IS INVENTED.** That a store stood on this corner at all, that there were two of them, and that they were two storeys. The reference supports the TREATMENT — a business front whose east end is anchored by taller frame stores — for this street at about this date; it cannot say which buildings, and these buildings were inventions before they were stores. Both dimensions are sampled inside the C3 band the reconstruction spec authors, exactly as every other anonymous roof's are, and every value on both records grades `reconstructed` with its own note saying so. No coordinate is authored: the line, its bearing and the corner the run packs back from are read from the committed block boundary in `data/traces/vectors/thompson_lots.json`. **What is NOT invented here.** No roof is added and none is removed; no roof leaves its block; the surviving D3 keeps its id, its band and the household the inferred-household layer housed in it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period document placing a named South Water business on a numbered lot at the State Street end — an advertisement in the Chicago American or Democrat giving an address, or an itemised loss list — would replace an invented store with a named one on the same line, which is what the 665-roof programme's substitution clause exists for."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_dearborn_c3_01.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_c3_02.inferred_1835.position`."
         },
         {
           "label": "Recorded",
