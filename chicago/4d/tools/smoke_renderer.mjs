@@ -3748,6 +3748,42 @@ const terrainLoad = await page.evaluate(() => {
       controlHelpDismissed.hidden && controlHelpDismissed.stored === '1',
       JSON.stringify(controlHelpDismissed));
 
+    // --- the confidence menu takes its own clicks (T-0108) -------------------
+    //
+    // The HUD is pointer-events: none so the world stays live underneath, and
+    // every interactive piece re-enables it for itself. The level menu did not,
+    // so a click on a checkbox fell THROUGH to the canvas — re-locking the
+    // pointer and tripping the click-away close at once: the menu vanished and
+    // nothing toggled. Owner-reported. A REAL Playwright click is the only
+    // honest instrument for a pointer-events regression: it hit-tests like a
+    // visitor's mouse, where an evaluate()'d .click() would quietly pass. It
+    // runs here because the HUD only exists past the gate, and the guide that
+    // covers this corner of it was dismissed by the check above.
+    await page.click('#btn-confidence-more');
+    await page.click('#cm-reconstructed');
+    await page.waitForTimeout(120);
+    const cmClick = await page.evaluate(() => ({
+      menuOpen: !document.getElementById('confidence-menu').hasAttribute('hidden'),
+      unchecked: !document.getElementById('cm-reconstructed').checked,
+      marked: document.getElementById('confidence-group').classList.contains('has-hidden'),
+    }));
+    check(`${label}: a level checkbox takes the click and the menu stays open`,
+      cmClick.menuOpen && cmClick.unchecked && cmClick.marked,
+      JSON.stringify(cmClick));
+    // Put the town back the way it was, through the same real controls.
+    await page.click('#cm-reset');
+    await page.click('#btn-confidence-more');
+    await page.waitForTimeout(120);
+    const cmRestored = await page.evaluate(() => ({
+      menuShut: document.getElementById('confidence-menu').hasAttribute('hidden'),
+      allOn: ['cm-attested', 'cm-inferred', 'cm-reconstructed']
+        .every((id) => document.getElementById(id).checked),
+      marked: document.getElementById('confidence-group').classList.contains('has-hidden'),
+    }));
+    check(`${label}: reset restores every level and the caret shuts the menu`,
+      cmRestored.menuShut && cmRestored.allOn && !cmRestored.marked,
+      JSON.stringify(cmRestored));
+
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
     // is sampled from its own 2D canvas before and after a teleport so this
@@ -6934,6 +6970,68 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: Space inspects on foot instead of lifting off`,
       spaceOnFoot.flying === false && Math.abs(spaceOnFoot.alt) < 0.2 && spaceOnFoot.inspected,
       `flying ${spaceOnFoot.flying}, ${spaceOnFoot.alt?.toFixed(2)} m up, inspected ${spaceOnFoot.inspected}`);
+
+    // --- the keys that close the card (T-0108) -------------------------------
+    //
+    // Owner-reported: nothing closed an inspection card from the keyboard —
+    // the only way out was scrolling up to its close button. Escape closes,
+    // and the inspect key toggles: the reach that opened the card also closes
+    // it. Escape is the browser's own pointer-lock release, which the handler
+    // cooperates with by acting only when a card is open; there is no lock in
+    // this harness, so the keystroke reaches the page directly. The card is
+    // open right now, left by the Space assertion above.
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(150);
+    const escClosed = await page.evaluate(() =>
+      document.getElementById('popup').hasAttribute('hidden'));
+    check(`${label}: Escape closes the inspection card`, escClosed,
+      `card hidden after Escape: ${escClosed}`);
+
+    await page.keyboard.press('Space');            // same crosshair, reopens
+    await page.waitForTimeout(300);
+    const reopened = await page.evaluate(() =>
+      !document.getElementById('popup').hasAttribute('hidden'));
+    await page.keyboard.press('KeyE');
+    await page.waitForTimeout(300);
+    const keyToggled = await page.evaluate(() =>
+      document.getElementById('popup').hasAttribute('hidden'));
+    check(`${label}: the inspect key closes the card it opened`,
+      reopened && keyToggled,
+      `reopened ${reopened}, closed by the same key ${keyToggled}`);
+
+    // And neither fires from inside the Go-to box: typing is not a command.
+    // (Escape in the box still shuts the Go-to PANEL — that is the panel's own
+    // long-standing binding — but the card must not be collateral.)
+    await page.keyboard.press('Space');            // card open again
+    await page.waitForTimeout(300);
+    await page.evaluate(() => {
+      window.__chicago4d.hud.setPanel(true);
+      document.querySelector('[data-tab="goto"]')?.click();
+      document.getElementById('jump-search')?.focus();
+    });
+    await page.keyboard.press('KeyE');
+    await page.waitForTimeout(150);
+    // Read the box BEFORE Escape: Chromium natively clears a type=search
+    // input on Escape, so reading after would show empty even though the
+    // keystroke typed rather than fired.
+    const typedE = await page.evaluate(() => ({
+      cardOpen: !document.getElementById('popup').hasAttribute('hidden'),
+      typed: document.getElementById('jump-search')?.value ?? '',
+    }));
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(150);
+    const afterEsc = await page.evaluate(() =>
+      !document.getElementById('popup').hasAttribute('hidden'));
+    check(`${label}: neither key fires while typing in Go-to`,
+      typedE.cardOpen && typedE.typed.includes('e') && afterEsc,
+      `E typed "${typedE.typed}" with card open ${typedE.cardOpen}, `
+      + `card open after Escape ${afterEsc}`);
+    await page.evaluate(() => {
+      const box = document.getElementById('jump-search');
+      if (box) box.value = '';
+      window.__chicago4d.hud.setPanel(false);
+      window.__chicago4d.popup.close();
+    });
 
     // --- inspecting from the air --------------------------------------------
     //

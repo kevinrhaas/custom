@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 198, title: 'The evidence menu takes its clicks, and keys close the card', kind: 'fix', ts: '2026-08-19T19:02:37.995Z', date: 'Aug 19, 2026, 2:02 PM CT',
+    items: [
+      'The checkboxes in the evidence-level menu work now. A click used to fall through to the world — the menu vanished and nothing toggled. Hiding a level is one click again.',
+      'Escape closes an open building card. While walking, the first press releases the mouse — the browser owns that — and the next one closes the card.',
+      'The key that opened a card also closes it: press E or Space again and it goes. A click still inspects whatever is under the crosshair.',
+      'Typing in the Go-to box never triggers any of this.',
+    ] },
   { v: 197, title: 'Boats on the river', kind: 'feature', ts: '2026-08-19T15:26:37.568Z', date: 'Aug 19, 2026, 10:26 AM CT',
     items: [
       'The river had docks, a drawbridge and a working waterfront — and not one boat. Nine are on the water now: three two-masted lake schooners moored in the reach below the Dearborn Street drawbridge, rowboats on the water and drawn up at the South Water bank, and two bark canoes hauled out below Fort Dearborn.',

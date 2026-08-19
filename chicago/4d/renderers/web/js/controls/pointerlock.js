@@ -78,6 +78,7 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
   function onMouseDown(e) {
     if (!controls.isLocked || e.button !== 0) return;
     intent.interactPoint = null;
+    intent.interactSource = 'point';
     intent.interact = true;
   }
 
@@ -95,7 +96,11 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
     if (e.code === 'KeyE' || e.code === 'Space') {
       // Space also inspects: on a trackpad, E and a click are the same reach.
       // No point: a keyboard inspection is always down the crosshair.
-      if (!e.repeat) { intent.interactPoint = null; intent.interact = true; }
+      if (!e.repeat) {
+        intent.interactPoint = null;
+        intent.interactSource = 'key';
+        intent.interact = true;
+      }
       e.preventDefault();
       return;
     }
