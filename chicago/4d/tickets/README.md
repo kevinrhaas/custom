@@ -35,6 +35,31 @@ tickets link into them. A ticket is the index card; the box is the file.
 6. Found new work along the way? `node tools/ticket.mjs new "title" --by loop` —
    it lands at the **bottom** of QUEUE. Agents never reorder QUEUE; only the owner
    does. That one rule is what makes the owner's priorities durable.
+7. **Finish the PR inside the run that opened it.** Merge it when the gate is green,
+   or `block` it, or label it `hold` and say why — but never end a run with your own
+   PR sitting open. The next section is what that costs.
+
+## A claim is only real once its PR merges
+
+The state lives in the ticket file, and the ticket file only reaches `dev` when the PR
+does. So a run that opens a PR and walks away leaves the ticket reading `open` at the
+top of the queue, and **the next run does the same work again.**
+
+Not hypothetical. On 2026-08-19 run 943 opened PR #258 for T-0062 with a green gate and
+deferred the merge on a desktop smoke it could not finish inside the run; run 944 read
+the queue an hour later, saw T-0062 open at the top, and rebuilt it from scratch on its
+own branch (#259, which merged). Two runs, one ticket, one of them binned — about
+seventy minutes of loop time.
+
+Two things close it, and neither substitutes for the other:
+
+- **`ticket.mjs claim` looks for a rival branch first.** It reads `git ls-remote` and
+  refuses if a remote branch name carries this ticket's number in any of the shapes the
+  loop has actually used (`t62-…`, `t-0062-…`). Check whether that branch has an open
+  PR before starting; if it is stale, or it is yours, `--force` past it. Best-effort by
+  construction — no network or no git means no warning, never a false stop.
+- **Rule 7 above.** The guard only helps the *next* run. Finishing the PR is what keeps
+  the queue honest for everyone.
 
 ## Sizing: effort is measured in RUNS, and L must be split
 
