@@ -6,7 +6,6 @@ T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
-T-0044 — Image-accuracy pass: the next two landmark plates
 T-0077 — The Lake Street row at Dearborn, from the Tremont plate
 T-0078 — The South Water river row, from the 1834 view
 T-0079 — Reconstructed infill across the remaining core blocks
