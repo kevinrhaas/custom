@@ -1,7 +1,7 @@
 ---
 id: T-0078
 title: The South Water river row, from the 1834 view
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0073
 opened: 2026-08-18
-closed: null
+closed: 2026-08-18
 pr: null
-claimed_by: null
+claimed_by: run 8/18/2026, 10:34:56 PM CT
 blocked_on: null
 needs_bake: false
 ---

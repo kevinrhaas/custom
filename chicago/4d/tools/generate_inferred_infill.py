@@ -43,6 +43,9 @@ from inferred_occupancy import occupancy  # noqa: E402
 # onto a building this parcel did not write — read from the module the occupancy and
 # separation gates read, so a run and a gate cannot be looking at two towns.
 from plat_occupancy import footprints  # noqa: E402
+# The face of a committed block — the line a party-line row stands on — is one
+# rule in one module, imported by both generators that build a row (T-0078).
+from block_faces import extent, face_frame as block_face, project  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -383,63 +386,26 @@ FRONTAGE_NOTE = (
 
 
 def face_frame(block_id: str, face: str) -> dict:
-    """The line a frontage run stands on, out of the committed block boundary.
+    """This block's face, out of the committed plat grid.
 
-    Returns the face's west end, its unit vector running east along the face, the
-    outward normal (which is the way the fronts look), the facade bearing under the
-    renderer's convention, and the face length. The boundary is a closed ring wound
-    from the north-west corner, so the north face is its first edge; the other three
-    are picked the same way rather than by index, so a re-derived plat that winds
-    the other way is a failure here instead of a silent ninety-degree error.
+    The arithmetic moved to `tools/block_faces.py` for T-0078, which needed the same
+    answer inside the platted-block generator; a second copy of it beside this one
+    would be a second opinion about the same ground. Nothing about the frames this
+    returns changes — the module is the same rule, imported instead of retyped.
     """
     grid = load(LOTS_PATH)
     block = next((b for b in grid["blocks"] if b["id"] == block_id), None)
     if block is None:
         raise SystemExit(f"{block_id} is not a block of the committed plat grid")
-    ring = [tuple(p) for p in block["boundary_local_enu_m"]]
-    edges = [(ring[i], ring[(i + 1) % len(ring)]) for i in range(len(ring))]
-    pick = {
-        "north": lambda e: (e[0][1] + e[1][1]) / 2,
-        "south": lambda e: -(e[0][1] + e[1][1]) / 2,
-        "east": lambda e: (e[0][0] + e[1][0]) / 2,
-        "west": lambda e: -(e[0][0] + e[1][0]) / 2,
-    }
-    if face not in pick:
-        raise SystemExit(f"a block face is one of north, south, east, west — not {face!r}")
-    a, b = max(edges, key=pick[face])
-    length = math.dist(a, b)
-    if length <= 0:
-        raise SystemExit(f"{block_id}: degenerate {face} face")
-    along = ((b[0] - a[0]) / length, (b[1] - a[1]) / length)
-    outward = (-along[1], along[0])
-    # The face is picked as an edge of the ring, so it may run either way round it.
-    # A run is anchored on the block's EAST (or north) corner and packs back along
-    # the face, so the axis is normalised to point that way and the outward normal
-    # with it — otherwise a re-wound ring would silently pack a row off the block.
-    if (along[0] if face in ("north", "south") else along[1]) < 0:
-        a, b = b, a
-        along = (-along[0], -along[1])
-        outward = (-outward[0], -outward[1])
-    if (outward[1] if face in ("north", "south") else outward[0]) * (
-            1 if face in ("north", "east") else -1) < 0:
-        outward = (-outward[0], -outward[1])
-    return {
-        "origin": a, "far": b, "along": along, "outward": outward,
-        "length": length,
-        "bearing": round(math.degrees(math.atan2(outward[0], outward[1])) % 360.0, 3),
-    }
+    return block_face(block, face)
 
 
 def _project(frame: dict, point: tuple[float, float]) -> tuple[float, float]:
-    """(distance along the face from its origin, distance outward from its line)."""
-    dx, dy = point[0] - frame["origin"][0], point[1] - frame["origin"][1]
-    return (dx * frame["along"][0] + dy * frame["along"][1],
-            dx * frame["outward"][0] + dy * frame["outward"][1])
+    return project(frame, point)
 
 
 def _extent(frame: dict, polygon: list[tuple[float, float]]) -> tuple[float, float]:
-    spans = [_project(frame, p)[0] for p in polygon]
-    return (min(spans), max(spans))
+    return extent(frame, polygon)
 
 
 def place_on_frontage(records: list[dict], parcel: dict, datum: dict) -> None:

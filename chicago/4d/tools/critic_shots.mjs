@@ -158,7 +158,10 @@ const ALL_STATIONS = [
   })),
   ...SWEEP_STATIONS.map((s) => ({ ...s, expectPitch: 0 })),
 ].filter((s) => !PICK.length || PICK.includes(s.id));
-if (PICK.length && !STATIONS.length) {
+// ALL_STATIONS, not STATIONS: the filtered list is what this guard is about, and
+// STATIONS is declared eighty lines below — so `--stations`, the documented flag for
+// iterating on one frame, died in the temporal dead zone before it shot anything.
+if (PICK.length && !ALL_STATIONS.length) {
   console.error(`no station matches --stations ${PICK.join(',')}`);
   process.exit(2);
 }
