@@ -61,6 +61,28 @@ Two things close it, and neither substitutes for the other:
 - **Rule 7 above.** The guard only helps the *next* run. Finishing the PR is what keeps
   the queue honest for everyone.
 
+## Seeing what is being worked on right now
+
+Same reason, same blind spot: `BOARD.md` shows the queue and what has landed, and it
+cannot show a claim in flight. The branch list can, because a run pushes its branch in
+its first commit, hours before anything merges.
+
+```
+node tools/ticket.mjs inflight
+```
+
+It maps every remote branch back to the ticket whose number it carries, and separates
+**live** (pushed within three hours, on an unfinished ticket — a run lasts about one) from
+**cold** (a finished ticket, or a branch older than any run could be). It also lists
+claims sitting in the merged files with no branch behind them, which is the shape of a
+run that claimed and died.
+
+**What it deliberately does not claim:** whether a branch's work LANDED. Everything here
+squash-merges, so a merged branch's head never becomes an ancestor of `dev` and
+`merge-base --is-ancestor` answers "unmerged" for every branch that ever shipped —
+confidently wrong, which is worse than silent. Age and ticket state are the honest
+signals; the PR list is the authority.
+
 ## Sizing: effort is measured in RUNS, and L must be split
 
 The owner asked whether tickets should carry work points, split past a threshold.

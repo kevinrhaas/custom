@@ -172,7 +172,9 @@ is the contract. The short form:
 - **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
   `needs_bake` on the improve runner, with the skip stated in the PR). `node
   tools/ticket.mjs list --workable` prints the same order.
-- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`.
+- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
+  inflight` shows what other branches are already carrying a ticket number, which is the
+  only live view of work the merged files cannot show yet.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
   actually see it, not only in a PR body.
