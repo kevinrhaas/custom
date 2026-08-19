@@ -28,8 +28,12 @@ stopped sweeping `dock` into the frame_storefront mesh hash — a statement the 
 was marking five stores stale when not one of their vertices could move.
 
 **Verification.** `tools/check.sh` green (validator, wharf re-derivation, liberties compile,
-changelog contract); `tools/smoke_renderer.mjs` green at 390×780 and 1280×800 against the
-published mirror, with the wharf assertions updated to pin 4 drawn + 3 refused.
+changelog contract). `tools/smoke_renderer.mjs --published` run as its two halves, both cut by
+the runner's ten-minute ceiling (**T-0060**, unchanged): mobile **223 passed / 2 failed**,
+desktop **147 passed / 0 failed**, zero page errors on either — the two mobile failures are
+`the roads reach the screen from the walker's eye` and `…from the air`, already recorded in
+this file as dev's own and untouched by this branch. All eight wharf assertions green at BOTH
+viewports, including the updated census pinning 4 drawn + 3 refused.
 
 ## Shipped 2026-08-19 — T-0079: the core density standard, and three roofs on one lot
 
