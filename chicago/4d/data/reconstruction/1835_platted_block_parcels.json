@@ -9,7 +9,8 @@
     "principal": "One principal roof per lot, standing back from its own street frontage, its facade to the street and its walls parallel to the block face. The setback is a period typology and not a measurement of this lot.",
     "ancillary": "A yard building off the block alley, behind a principal roof on the same lot, facing the alley.",
     "open_lots": "Alternating open lots are intentional and are what the phase-one parcel already assumes. A block at capacity is a claim about 1835 that the evidence does not support; the schedule's capacity is a ceiling.",
-    "what_is_invented": "All of it. Which family stands where, which lot is left open, the setbacks and the lateral offsets are inventions bounded by the programme, not readings of a source. No lot is numbered: this project has never read Thompson's numbering off a sheet, and the side lot lines and the alley are conjectural even where the block face is not."
+    "what_is_invented": "All of it. Which family stands where, which lot is left open, the setbacks and the lateral offsets are inventions bounded by the programme, not readings of a source. No lot is numbered: this project has never read Thompson's numbering off a sheet, and the side lot lines and the alley are conjectural even where the block face is not.",
+    "density_standard": "THE CORE DENSITY STANDARD (T-0079), which raises the two rules above and is what T-0028's successors inherit. Until this parcel a block's ceiling was one principal roof per platted lot, and a party-line run carried exactly one roof per lot it was dealt — so a row was exactly as dense as the lot grid, and \"a row is denser than the lot grid\" was a sentence with no arithmetic behind it. Two things retire that. FIRST, the dataset already exceeds the ceiling: five of the twelve core blocks the plat module reaches stand at 11, 12, 13, 14 and 14 roofs against a ceiling of 10, put there by the reviewed phase-one parcel and by the documented record, so the rule was only ever refusing the NEXT roof. SECOND, it counted in the conjectural unit: the side lot lines are conjectural — every record here says so in its own position note — while the block FACE is committed geometry derived from the street centrelines. So the ceiling is now a frontage count of THREE units per lot, measured at the worst case in tools/reconcile_665.py: the smallest lot on the committed grid carries 23.56 m of frontage, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen committed party-line units average 6.072 m wide, so (23.56 - 3.00) / 6.072 = 3.39 units fit on the meanest lot in the town and the fourth does not. THE THREE CLAUSES A PARCEL WORKING TO THIS STANDARD APPLIES: a commercial frontage tightens toward party-line spacing rather than standing a cottage in the middle of each lot; an improved lot carries its outbuildings; and a corner lot BUILDS TO THE CORNER, which is what the `corner: west` anchor added by T-0079 is for — an east-anchored run packs back toward the corner and stops wherever its roofs run out, so the corner was the one piece of frontage a row could never reach. WHAT DOES NOT CHANGE: capacity is still a ceiling and not a target, a principal roof still needs a free lot to stand on, a block still keeps a lot open, and the 665-roof total does not move — the roofs a raised ceiling admits come out of the district balance `south_plat_beyond_committed_control`, which fell from 175 to 120 when the standard was raised."
   },
   "blocks": [
     {
@@ -1413,6 +1414,92 @@
         }
       ],
       "arrangement_note": "THE BLOCK BETWEEN THE COURTHOUSE AND THE BRIDGE. Bounded by Randolph, Dearborn, Washington and Clark, on the same row two streets back from the business front that T-A14 opened, but at the other end of it: its west face stands across Clark Street from the public square block (blk_randolph_lasalle, which carries the Cook County courthouse, both Wright buildings to let and the estray pen), and its east face IS Dearborn Street, the street of the only crossing of the main stem in July 1835. One roof arrives standing - the gunsmith's shop on lot 0, an inferred-household building on the Randolph face, seated by tools/plat_occupancy.py rather than authored here - so the schedule's seven free lots are 2, 4 and 6 on Randolph and 1, 3, 5 and 7 on Washington, and this parcel builds on six of them. THE SCHEDULE DEALT THIS BLOCK THE TOWN'S BETTER HOUSES, AND THAT IS A COINCIDENCE RATHER THAN A FINDING. The eight roofs are H2 (merchant or professional house), H1 (larger one-and-a-half-storey house), C2 (store-residence), D6, D2, D1 and the two yard buildings A4 and A3 - the first time a platted block parcel has been dealt both H families together, and the first C2 any block parcel has stood, though four C2 roofs already stand elsewhere in the town and blk_randolph_wells built an H1 and an H2 at T-A2. It is tempting to read the deal as the schedule recognising the block opposite the courthouse. It is not: the apportionment is a district remainder spread across schedule units by tools/reconcile_665.py and is BLIND to what stands across the street. The agreement between the deal and the situation is recorded here so that no later parcel mistakes it for evidence. THE FACE RULE IS MEASURED, NOT REMEMBERED, per T-A14. tools/measure_street_frontage.py randolph washington, counting every structure record whose footprint centroid stands within 25 m of the street's committed centreline and reporting the three evidence layers separately: RANDOLPH carries 7 research-layer records (Newberry & Dole's south-branch slaughterhouse, the log jail, the Cook County courthouse, both Wright buildings to let, Harmon's log cabin and the Western Hotel) and 7 inferred-household buildings; WASHINGTON carries 1 research-layer record - the estray pen, the town's pound for stray animals - and no inferred-household building at all. That is 14 against 1, the same margin T-A14 measured on the same pair of streets, and it reproduces exactly. The third layer is the anonymous count-units the block parcels themselves place; it read 18 on Randolph and 12 on Washington when this arrangement was chosen and is excluded rather than merged, because a block parcel that let it vote would be reading its own output back as evidence. Randolph is this block's better face. It is still the invention it has always been: no source says a better dwelling stood on the better street. SO RANDOLPH'S THREE FREE LOTS TAKE THE STORE AND THE TWO BEST HOUSES - and the third of those three is a rule this parcel EXTENDED rather than applied. The face rule as committed at T-A13 and T-A14 ranks DWELLINGS: the best dwellings take the better street and the meanest take the back one. It says nothing about a store, and this is the first block that has had to place one. The extension made here is that a store-residence's claim on the better frontage is functional rather than social - it is the only one of the six roofs whose purpose requires that a stranger can find it, and the whole documented frontage of the alternative is a pen for stray animals. So C2 takes Randolph and the one-and-a-half-storey cottage D6, which would have taken the third front lot under the rule as written, goes to the back street at the head of its face. The extension is flagged as ROADMAP K32: the next block dealt a commercial family should follow it or refute it, not re-decide it privately. THE END RULE IS EXHAUSTED ON THIS BLOCK, AND THIS PARCEL MEASURED WHY. Distance to the Dearborn Street drawbridge runs 318.3 m at lot 6, 321.1 m at lot 4 and 325.8 m at lot 2 on the Randolph frontage, and 376.4 m at lot 7, 378.8 m at lot 5, 382.7 m at lot 3 and 388.2 m at lot 1 behind. The far end of the front face stands 1.02 times as far from the bridge as the near end, against T-A14's 1.11, T-A13's 1.13 and T-A12's 2.93, and the front face's absolute spread is 7.5 m - less than a third of one lot's 24.6 m frontage. The reason is geometric and not particular to this block: the bridge bears 10.4 degrees east of north from the block centre while the block face runs east-west, so the criterion can only see sin(10.4 deg) = 18 per cent of any displacement along the street. The 49.3 m between the lot 2 and lot 6 centroids projects to 8.9 m of range, and 7.5 m is what survives. A criterion that separates three lots by 7.5 m is not ordering them; it is breaking a tie with rounding. It is followed anyway, for T-A13's reason - swapping criteria on the block where the first stops flattering the answer is how an invention starts to look like a finding - and the successor question is opened as ROADMAP K31 rather than answered here. Note that on THIS block the committed rule and a stronger one agree: lot 6 is the block's corner on Dearborn Street, the street that carries the bridge, so the same lot wins under distance-as-measured and under frontage-on-the-bridge-street. That agreement is why following the exhausted rule costs nothing here, and it is exactly what K31 must not assume holds on the next block. THE BACK STREET TAKES THE THREE MEANEST, in the same order: the one-and-a-half-storey cottage on lot 7, the plank shanty D2 on lot 5 and the older log cabin D1 on lot 3, with lot 1 - the farthest free lot from the bridge - left open. THE YARD BUILDINGS STAND BEHIND THE BEST ROOF AND THE MEANEST, as T-A13 and T-A14 both did: the woodshed A4 in the alley yard of lot 6 behind the store-residence, because a store keeps stock and fuel and is the roof on this block most likely to need a dry shed, and the privy A3 in the alley yard of lot 3 behind the log cabin. Every setback and lateral offset below is a period typology bounded by the lot, not a measurement of it, and no lot is numbered: this project has never read Thompson's numbering off a sheet."
+    },
+    {
+      "block_id": "blk_lake_clark",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_lake_clark",
+      "claimed": "2026-08-19",
+      "bounded_by": {
+        "north": "lake",
+        "south": "randolph",
+        "west": "clark",
+        "east": "dearborn"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 12,
+        "free_lots": 2,
+        "headroom": 4,
+        "dealt_roofs": 4,
+        "dealt_principal": 3,
+        "dealt_ancillary": 1,
+        "principal": 3,
+        "ancillary": 1
+      },
+      "families": {
+        "A3": 1,
+        "D1": 1,
+        "D3": 1,
+        "D5": 1
+      },
+      "open_lots": [
+        {
+          "lot": 5,
+          "why": "The Randolph frontage lot east of the Clark corner, and the farther of this block's two free lots from the Dearborn Street drawbridge at 215.8 m against lot 0's 177.9 m — the test every block of this row has used to choose its open lot since T-A11 replaced a compass direction with a measured one. It is also on the block's BACK face by the same block's own criterion: counting every committed structure that is not an anonymous count-unit and whose position stands within 25 m of a street's committed centreline, Lake Street carries 21 and Randolph Street 13 — 15 against 6 if only the documented records are counted. Alternating vacancy is the programme's own assumption and the schedule's capacity is a ceiling rather than a target; which lot within the tier is still a choice, and this is the criterion that made it."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "lake",
+        "setback_m": 1.5,
+        "lots": [
+          0
+        ],
+        "why": "T-0079, the third and last piece of the owner's flagged-important ask of 2026-08-18: \"there should be more and denser buildings. this is important.\" THIS RUN IS THE DEMONSTRATION OF THE CORE DENSITY STANDARD and it is the first row in this project to stand three roofs on one lot. The old gate made a run carry exactly one roof per lot it was dealt, so this block's single free Lake lot could take a single cottage set back in the middle of it — which is the shape the owner's Tremont Street reference (data/sources/assets/owner_brief_2026_08_18/README.md, image 5) is a picture of the town NOT having. The standard's ceiling is three units per lot, measured at the smallest lot on the committed grid, and this run spends all three. IT BUILDS TO THE CORNER, which is the clause of the standard no run could satisfy before it: anchored on the WEST end of its own frontage, the log dwelling's west wall stands 1.5 m from the Clark side line — the closest line the plat module's own margin allows — and the other two chain east off its wall in turn. WITHIN THE RUN THE END RULE ORDERS THEM, unchanged from every block of this row: better roofs nearer the town-centre end, which here is east toward Dearborn and the only crossing of the main stem in July 1835. So the log dwelling takes the Clark corner, the one-room cottage stands next to it and the deep-plan cottage closes the run at the east end, 10.58 m short of the bakery that already stands on the next lot. THIS RUN EXTENDS T-0077'S ROW ON THE SAME FACE: recon_1835_south_d3_013, inf_butcher_market, recon_1835_south_d4_014, recon_1835_south_d5_016 and recon_1835_south_c3_015 already stand shoulder to shoulder from 63.56 m to 97.57 m along this face, and inf_bakery_lake at 28.93 m to 34.49 m; the new run occupies 1.50 m to 18.36 m, so the Lake face of this block now carries built frontage at its west corner, its middle and its east end. NO COORDINATE IS AUTHORED HERE: the line, its bearing and the end the run packs away from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage.",
+        "runs": "One run of three on lot 0, packed EAST from the Clark corner. The corner unit anchors on the west end of the run's own frontage and the other two abut east of it in turn — the same party line the South Water rows read from the other side.",
+        "setback_step_known": "T-0077's row on this same face stands 0.80 m off the face line and this generator's floor is the plat module's 1.5 m lot margin, so the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps between them, but one face carrying two street lines is a defect rather than a design and it is filed as its own ticket rather than normalised away here."
+      },
+      "arrangement_note": "The Lake-and-Clark block — bounded by Lake, Dearborn, Randolph and Clark — and the first block built under the core density standard T-0079 raises. IT IS ALSO ONE OF THE FIVE BLOCKS THAT REFUTED THE OLD ONE: twelve roofs already stand here against a ceiling of ten, put there by the reviewed phase-one parcel and by the inferred trades, so the rule this parcel replaces was not bounding this block — it was only refusing the next roof on it. Six of the eight lots arrive taken and all six are seated by tools/plat_occupancy.py rather than authored here: lot 1 by recon_1835_south_d4_030, lot 2 by inf_bakery_lake, lot 3 by recon_1835_south_d6_031, lot 4 by inf_butcher_market, lot 6 by recon_1835_south_a5_044 and lot 7 by inf_harness_shop. The two free lots are 0, the Lake-and-Clark corner, and 5, on Randolph. THE FACE RULE IS T-A13'S, RE-MEASURED ON THIS BLOCK RATHER THAN ASSERTED: counting every committed structure that is not an anonymous count-unit and stands within 25 m of a street's committed centreline, Lake carries 21 against Randolph's 13, and 15 against 6 if only the documented records are counted. Lake is this block's business face by the town's own record, so the free Lake lot takes the row and the free Randolph lot is the one left open. THE END RULE IS T-A11'S, UNCHANGED: lot 0's frontage midpoint stands 177.9 m from the foot of the Dearborn Street drawbridge and lot 5's 215.8 m, so the open lot is again the farther of the two from the only crossing of the main stem in July 1835, and inside the run the better roof stands at the east end nearer it. WHAT IS NEW IS THE DENSITY AND NOTHING ELSE. Three principal roofs stand on one lot where the old gate allowed one; they occupy 16.86 m of the lot's 21.75 m of buildable frontage, on one line, at one setback, on two shared party walls, and the 4.89 m that remains is at the east end where the run stops rather than at the corner, because the run is west-anchored and builds to the corner. THE FOURTH ROOF IS THE STANDARD'S SECOND CLAUSE — an improved lot carries its outbuildings — so the privy stands in lot 0's own yard at the alley end, behind the row this parcel built, which is the only lot on this block whose yard belongs to a roof this parcel owns. NO ROOF IS ADDED TO THE TOWN: the four come out of south_plat_beyond_committed_control, the district balance waiting on street control past State and Washington, which fell from 175 roofs to 120 when the ceiling rose. None of it is evidence about this block, no lot is numbered, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
+      "slots": [
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "lake",
+          "anchor": {
+            "corner": "west",
+            "clear_m": 1.5
+          }
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "lake",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_lake_clark_d1_01"
+          }
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "lake",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_lake_clark_d3_02"
+          }
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "lake",
+          "setback_m": 5.0,
+          "lateral_m": 4.0
+        }
+      ]
     }
   ]
 }

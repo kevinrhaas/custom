@@ -5524,3 +5524,56 @@ rectangle, its size and its corner-of-a-block placement are as invented as they 
 that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix
 this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
 wants the pen baked with the rest of the town still needs one.
+
+
+### L144 — Three roofs on one lot at Lake and Clark, and the corner they are built to
+**Decision:** the Lake-and-Clark corner lot of `blk_lake_clark` — lot 0 of the committed plat
+grid, the last free lot on this block's business face — carries **three anonymous roofs standing
+shoulder to shoulder on the Lake Street frontage**, not one cottage set back in the middle of it:
+a log dwelling on the corner itself, a one-room frame cottage next to it and a deep-plan frame
+cottage closing the run at the east end, on one line, at one 1.5 m setback, on two shared party
+walls. A privy stands in the same lot's yard at the alley end. The run occupies 16.86 m of the
+lot's 21.75 m of buildable frontage and its west wall stands 1.50 m from the Clark side line,
+which is the closest line the plat module's own lot margin allows.
+**Why:** T-0079, the third and last piece of the owner's flagged-important ask of 2026-08-18 —
+*"there should be more and denser buildings. this is important."* His reference for this corner
+is the Tremont House street scene (`data/sources/assets/owner_brief_2026_08_18/README.md`, image
+5), a continuous storefront row on shared party lines, beside a screenshot of the same corner in
+the render standing on grass. Until this parcel the schedule could not answer it here: a block's
+ceiling was one principal roof per platted lot, and a party-line run carried exactly one roof per
+lot it was dealt, so this block's single free Lake lot could take exactly one detached cottage.
+**THE CEILING THAT MOVED, AND WHAT BOUGHT IT.** The rule is now three units per lot, and the
+number is measured rather than chosen: the smallest lot on the committed grid has 23.56 m of
+frontage, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen
+party-line units already committed average 6.072 m wide — so (23.56 − 3.00) / 6.072 = 3.39 units
+fit on the meanest lot in the town and the fourth does not. The old rule was also being counted in
+the wrong unit: the side lot lines are conjectural, and every record this generator writes says so
+in its own position note, while the block FACE is committed geometry derived from the street
+centrelines. **The 665-roof total does not move.** The four roofs come out of
+`south_plat_beyond_committed_control`, the district balance waiting on street control past State
+and Washington, which fell from 175 roofs to 120 when the ceiling rose.
+**WHAT IS INVENTED.** That any building stood on this ground at all; that there were three of
+them; that they stood shoulder to shoulder rather than apart; that the corner one was of logs.
+The reference supports the TREATMENT — a built-up corner and a party-line frontage on this street
+at about this date — and cannot say which buildings. Every dimension is sampled inside the family
+band the reconstruction spec authors, exactly as every other anonymous roof's is, and every value
+on all four records grades `reconstructed` with its own note saying so. **No coordinate is
+authored:** the line, its bearing and the end the run packs away from are read from the committed
+block boundary in `data/traces/vectors/thompson_lots.json`.
+**A second street line on one face, and it is not hidden.** T-0077's row on this same Lake face
+stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so
+the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps
+between them, but one face carrying two street lines is a defect rather than a design, and it is
+filed as its own ticket rather than normalised away inside this parcel.
+**A log dwelling on a business frontage is an open question, and it was answered by the reference
+rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial
+frontage and is unresolved. What decided it here is that the owner's other reference for a
+party-line row — *"South Water Street in 1834"* — draws the row as *log and frame buildings
+shoulder to shoulder*, so a log unit in a row is the thing the picture shows rather than an
+awkward deal. The question stays open for the schedule; this parcel is one instance, recorded.
+**How to resolve:** any period document placing a named occupant on a numbered lot at the corner
+of Lake and Clark — an advertisement giving an address, a tax or insurance description, an
+itemised loss list — would replace an invented roof with a named one on the same line, which is
+what the 665-roof programme's substitution clause exists for.
+**Covers:** `recon_1835_blk_lake_clark_d1_01.inferred_1835.position`, `recon_1835_blk_lake_clark_d1_01.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.position`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.position`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.footprint`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.position`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.footprint`.
+**Recorded:** 2026-08-19.

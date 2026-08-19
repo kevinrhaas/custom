@@ -75,13 +75,61 @@ ANCILLARY_GROUPS = {"barns_stables", "small_outbuildings"}
 
 DISTRICTS = ["south", "west", "north", "fort"]
 
-# One principal roof per platted lot, and ancillary at the programme's own ratio. Both
-# halves come from the dataset rather than from tuning: the reviewed phase-1 parcel put 40
-# principal roofs into five blocks of eight lots — exactly one per lot — and the
-# inventory's targets are 511 principal to 154 ancillary. A denser core would be a
-# decision about lot subdivision, and four lots to a face is a reading of ONE block that
-# the grid itself grades `conjectural`, so that decision is not taken here.
+# Ancillary roofs at the programme's own ratio: the inventory's targets are 511 principal
+# to 154 ancillary, which is a reading of the dataset rather than a tuning knob.
 ANCILLARY_PER_PRINCIPAL = 154 / 511
+
+# THE CORE DENSITY STANDARD (T-0079), and it replaces one principal roof per platted lot.
+#
+# The old rule was the reviewed phase-1 parcel's own density — 40 principal roofs into
+# five blocks of eight lots, exactly one per lot — and it refused to go further in these
+# words: "a denser core would be a decision about lot subdivision, and four lots to a face
+# is a reading of ONE block that the grid itself grades `conjectural`, so that decision is
+# not taken here." Two things retire that refusal.
+#
+# **The dataset already exceeds the ceiling.** Five of the twelve core blocks the plat
+# module reaches stand at 11, 12, 13, 14 and 14 roofs against a ceiling of 10, put there by
+# the reviewed phase-1 parcel and by the documented record. A ceiling the town passed by
+# two fifths before this rule was written is not bounding anything; it is only refusing
+# the NEXT roof, which is the one an owner asked for.
+#
+# **And it is counted in the conjectural unit.** The side lot lines are conjectural — every
+# record this project writes says so in its own position note — while the block FACE is
+# committed geometry derived from the street centrelines. Counting a block's capacity in
+# lots counts it in the unit the grid grades lowest. T-0078's party-line run already stands
+# on the face instead, and the count that binds a run is metres of frontage.
+#
+# So the ceiling is now a frontage count, and it is NOT lot subdivision: a run does not
+# divide the lot, it stands across the face, and the side lines it crosses were never
+# claimed. The ratio is measured, at the WORST case rather than the median so it holds for
+# every lot on the committed grid:
+#
+#   * the eighteen units of the committed party-line rows — fourteen on South Water,
+#     four on Lake at Dearborn — are 5.04 m to 6.75 m wide, mean 6.072 m;
+#   * the SMALLEST lot on the committed grid has 23.56 m of frontage, and the plat
+#     module keeps 1.5 m clear of a side line at each end of a run;
+#   * (23.56 − 3.00) / 6.072 = 3.39, so three units fit on the meanest lot in the town
+#     and the fourth does not.
+#
+# Three, therefore, and the third is the last one that fits. A run across adjoining lots
+# pays the two end margins once rather than per lot, so 3 × lots is conservative there too.
+#
+# The owner's ruling of 2026-08-18 is the warrant for taking the decision now: "there
+# should be more and denser buildings. this is important." What it does NOT do is grow the
+# 665-roof total — the roofs come out of `south_plat_beyond_committed_control`, the district
+# balance waiting on street control that may never arrive, and the marginals still close.
+ROW_UNITS_PER_LOT = 3
+
+
+def block_capacity(lots: int) -> int:
+    """The roofs a platted block's ground can hold: its frontage, plus its yard buildings.
+
+    A CEILING and not a target — the file this feeds says so itself, and `block_rooms`
+    below is where the restraint lives: a block still keeps a lot open, and a principal
+    roof still needs a free lot to stand on.
+    """
+    principal = lots * ROW_UNITS_PER_LOT
+    return principal + round(principal * ANCILLARY_PER_PRINCIPAL)
 
 # The two blocks the plat module refuses for want of street control, as against the three
 # it refuses because what lies between the streets is the river. Named here so that a
@@ -187,7 +235,10 @@ def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
 
     1. the town's own roof ratio — one principal per lot plus ancillary at 154:511 —
        less what already stands in the block. That is `headroom_roofs`, unchanged.
-    2. **a principal roof needs a FREE LOT.** A lot with somebody's house on it is not
+    2. **a principal roof needs a FREE LOT**, and a free lot carries up to
+       `ROW_UNITS_PER_LOT` of them (T-0079): a party-line run is bounded by the metres of
+       frontage it stands on, not by the conjectural side lines it crosses. A lot with
+       somebody's house on it is not
        headroom, and `standing_roofs` cannot tell the difference: two roofs on one lot
        and two roofs on two lots subtract the same. Half the open blocks were being dealt
        principal roofs with nowhere to stand — `blk_south_water_clark` and
@@ -205,7 +256,7 @@ def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
     so its backfill (T-A3h) was unbuildable for that reason rather than this one — the
     same blindness, seen from the other end.
     """
-    principal = max(0, min(free_lots - 1, headroom_roofs))
+    principal = max(0, min(ROW_UNITS_PER_LOT * (free_lots - 1), headroom_roofs))
     ancillary = min(round(principal * ANCILLARY_PER_PRINCIPAL), headroom_roofs - principal)
     return principal, max(0, ancillary)
 
@@ -391,7 +442,7 @@ def programme_document():
     units: list[dict] = []
     for block in grid["blocks"]:
         lots = len(block["lots"])
-        capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
+        capacity = block_capacity(lots)
         stands = built_block.get(block["id"], 0)
         free = lots - len(taken.get(block["id"], ()))
         rooms = block_rooms(free, max(0, capacity - stands))
@@ -424,7 +475,7 @@ def programme_document():
         if block["id"] not in STREET_CONTROL_OMISSIONS:
             continue
         lots = 8
-        capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
+        capacity = block_capacity(lots)
         rooms = block_rooms(lots, capacity)
         units.append({
             "id": block["id"], "kind": "platted_block_awaiting_street_control",
@@ -568,10 +619,16 @@ def programme_document():
                                "palisades, parade grounds, yards and a building the "
                                "chronology puts outside July 1835 contribute nothing; the "
                                "physical-roof reconciliation decides, record by record.",
-            "capacity": "One principal roof per platted lot plus ancillary at the "
-                        f"programme's own {154}:{511} ratio. The lot rule is the reviewed "
-                        "phase-1 parcel's own density — 40 principal roofs in five blocks "
-                        "of eight lots.",
+            "capacity": f"{ROW_UNITS_PER_LOT} principal roofs per platted lot plus "
+                        f"ancillary at the programme's own {154}:{511} ratio (T-0079, the "
+                        "core density standard). The frontage rule is measured at the worst "
+                        "case: the smallest lot on the committed grid carries 23.56 m, the "
+                        "plat module keeps 1.5 m clear of a side line at each end of a run, "
+                        "and the eighteen committed party-line units average 6.072 m wide — "
+                        "so three fit on the meanest lot in the town and the fourth does "
+                        "not. It replaces one roof per lot, which five of the twelve core "
+                        "blocks already stood above. Capacity is a ceiling; `block_rooms` "
+                        "carries the restraint.",
             "overrun": "Where evidence has put more roofs into a family than the target "
                        "allows, the excess is reported and the remainder is reduced in the "
                        "families with the most slack. A documented roof is never removed "

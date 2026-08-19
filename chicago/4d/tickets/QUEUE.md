@@ -6,7 +6,6 @@ T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
-T-0079 — Reconstructed infill across the remaining core blocks
 T-0062 — More docks: the river gets its working waterfront
 T-0063 — Boats correct for the era, on the water
 T-0064 — More wagons, all over a frontier town
@@ -70,3 +69,5 @@ T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
 T-0100 — A street's geometry confidence never reaches the picture
 T-0103 — Every platted-block roof faces away from the street it fronts
+T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
+T-0105 — Apply the core density standard to the next core block below the bar

@@ -1,7 +1,7 @@
 ---
 id: T-0079
 title: Reconstructed infill across the remaining core blocks
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0073
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-19
+pr: 257
+claimed_by: run 8/19/2026, 6:36:27 AM CT
 blocked_on: null
 needs_bake: false
 ---

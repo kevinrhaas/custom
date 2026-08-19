@@ -1,5 +1,6 @@
 {
   "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp \u2014 mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP \u2014 a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
+  "written_by": "tools/web_derivatives.sh",
   "masters": {
     "bates_auction_room__frame_1834.glb": "3304e13a6719f5d862bf9cf33d8f213c4a74bb09bb9518fa5f6534d882c3d616",
     "beaubien_barn__converted_1817.glb": "f8a88a680389ac0d200bec08986d2b2891c0032bff1141c5506b908e408fe6f4",
@@ -94,6 +95,10 @@
     "physicians_office__inferred_1835.glb": "593695372822f3a35d1552c6561c4cf388c10f3b417aea5fe54d36f69c499015",
     "pierce_blacksmith_shop__shop_1833.glb": "26617ba48f5920c0918d8f3940a61f933420e826daaaf4aa8a85f55c02ecd3a6",
     "pruyne_kimball_drugstore__frame_1830s.glb": "89bff8c273d16d2d6ed2226dcbc664138f6fe78d4408211ddd535921796236f5",
+    "recon_1835_blk_lake_clark_a3_04__inferred_1835.glb": "d2d397ae9b556c0b75b606fd8eab3232ee24bc865fa2233026bd7162b2f01a8a",
+    "recon_1835_blk_lake_clark_d1_01__inferred_1835.glb": "061e4dd66184d16896e8ed164137fc2c369bcbde826b9a2eee17021861119ff5",
+    "recon_1835_blk_lake_clark_d3_02__inferred_1835.glb": "36ee471b2f83b2cfe41bf686de74c59e7cb467afc15b0829f1e7af3ac72239e0",
+    "recon_1835_blk_lake_clark_d5_03__inferred_1835.glb": "09d8ef2f607e64f7dbca3ef0e96513473d74e94c0c4ff5b9c4334c132b692c45",
     "recon_1835_blk_lake_market_a1_06__inferred_1835.glb": "4058a3b7f1e017175a44aa68f8dc299cf7cc55102417e3a31a01bba22cb94e0c",
     "recon_1835_blk_lake_market_a3_07__inferred_1835.glb": "3d7bee65445eb66e98997682aa3d0a366f1e9fe662f394f4a84247645a875bed",
     "recon_1835_blk_lake_market_d1_05__inferred_1835.glb": "20bd04c74ae589436fee1c53e8ca036bc8383c1fd407e54409a205c266ebefd4",
@@ -334,6 +339,5 @@
     "wolf_point_tavern_stable__stable_1831.glb": "ba961fd309586d64f411169b87e5f96c0c3a2a1ac7dd1a6c03a0164a6860c628",
     "wright_building_to_let_a__documented_1835.glb": "7dde61e6fd576ba6b29eb01ac5f29ce5f617fc0ae2f1e52fcf9f10b452845e01",
     "wright_building_to_let_b__documented_1835.glb": "551721057c069d19a34805f06aab6cecbe69de939fc4004893773962c08a439f"
-  },
-  "written_by": "tools/web_derivatives.sh"
+  }
 }

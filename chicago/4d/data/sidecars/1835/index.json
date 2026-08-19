@@ -2421,6 +2421,30 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_blk_lake_clark_a3_04",
+      "name": "Reconstructed A3 privy #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_clark_a3_04.json",
+      "asset": "gltf/recon_1835_blk_lake_clark_a3_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_clark_d1_01",
+      "name": "Reconstructed D1 older log dwelling #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_clark_d1_01.json",
+      "asset": "gltf/recon_1835_blk_lake_clark_d1_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_clark_d3_02",
+      "name": "Reconstructed D3 one-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_clark_d3_02.json",
+      "asset": "gltf/recon_1835_blk_lake_clark_d3_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_clark_d5_03",
+      "name": "Reconstructed D5 deep-plan frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_clark_d5_03.json",
+      "asset": "gltf/recon_1835_blk_lake_clark_d5_03__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_lake_market_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_lake_market_a1_06.json",

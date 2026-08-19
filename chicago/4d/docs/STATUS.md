@@ -1,5 +1,94 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0079: the core density standard, and three roofs on one lot
+
+**The ask.** Piece 3 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18: *"there
+should be more and denser buildings. this is important."* T-0077 put four roofs on the Lake Street
+line at Dearborn and T-0078/T-0102 built the South Water row; both moved roofs that already
+existed onto a frontage. This piece is the one that had to raise the BAR, because the rest of the
+core cannot be tightened by rearranging what stands there.
+
+**What was actually in the way, and it was arithmetic.** A platted block's ceiling was
+`lots + round(lots × 154/511)` — one principal roof per lot, ten roofs on an eight-lot block — and
+a party-line run carried exactly one roof per lot it was dealt. So "a row is denser than the lot
+grid" was a sentence with no arithmetic behind it, and **every remaining core block read
+`at_capacity` with 11 to 14 roofs standing against a ceiling of 10**. Five of the twelve core
+blocks the plat module reaches were already ABOVE the rule, put there by the reviewed phase-one
+parcel and the documented record. A ceiling the town passed by two fifths before it was written is
+not bounding anything; it was only refusing the next roof, which is the one the owner asked for.
+
+**And it was counted in the conjectural unit.** The side lot lines are conjectural — every record
+this project writes says so in its own position note — while the block FACE is committed geometry
+derived from the street centrelines. The old rule counted a block's capacity in the unit the grid
+grades lowest. `tools/reconcile_665.py` said so itself and declined: *"a denser core would be a
+decision about lot subdivision, and four lots to a face is a reading of ONE block that the grid
+itself grades `conjectural`, so that decision is not taken here."* **It is not lot subdivision.** A
+run does not divide the lot; it stands across the face, and the side lines it crosses were never
+claimed.
+
+**The standard, and its number is measured rather than chosen.** Three party-line units per platted
+lot, taken at the WORST case so it holds for every lot on the grid: the smallest committed lot
+carries **23.56 m** of frontage, the plat module keeps **1.5 m** clear of a side line at each end of
+a run, and the **eighteen** party-line units already committed average **6.072 m** wide — so
+(23.56 − 3.00) / 6.072 = **3.39**, three fit on the meanest lot in the town and the fourth does not.
+A run across adjoining lots pays the two end margins once rather than per lot, so 3 × lots is
+conservative there too. The standard is recorded in
+`data/reconstruction/1835_platted_block_parcels.json` § `placement_rule.density_standard`, which is
+where T-0028's block-building successors will read it, and its three clauses are: a commercial
+frontage tightens toward party-line spacing; an improved lot carries its outbuildings; **a corner
+lot builds to the corner**.
+
+**The third clause needed a generator change.** An east-anchored run packs back toward the block
+corner and stops wherever its roofs run out, so the corner was the one piece of frontage a row
+could never reach. `place_frontage` now takes `corner: "west"` and `abut_east_of` — the same party
+line read from the other side — and `check_frontage`'s party-wall assertion takes the smaller of
+the two readings rather than branching on the recipe's key, so it stays a measurement of the
+geometry and cannot be satisfied by relabelling an anchor.
+
+**What shipped, and where you can stand to see it.** `blk_lake_clark` — bounded by Lake, Dearborn,
+Randolph and Clark, and one of the five blocks that refuted the old ceiling with twelve roofs
+against ten. Six of its eight lots arrive taken, all six seated by `tools/plat_occupancy.py`; the
+free two are lot 0, the Lake-and-Clark corner, and lot 5 on Randolph. The face rule is T-A13's,
+re-measured here: counting every committed structure that is not an anonymous count-unit and
+stands within 25 m of a street's committed centreline, **Lake carries 21 and Randolph 13** — 15
+against 6 counting documented records only — so Lake is this block's business face. The end rule
+is T-A11's, unchanged: lot 0's frontage midpoint stands **177.9 m** from the foot of the Dearborn
+Street drawbridge and lot 5's **215.8 m**, so lot 5 is the open one, as the farther lot has been on
+every block of this row.
+
+**Three principal roofs stand on lot 0 where the old gate allowed one** — a log dwelling on the
+corner, a one-room cottage, a deep-plan cottage — occupying **16.86 m** of the lot's **21.75 m** of
+buildable frontage, on one line, at one 1.5 m setback, on two shared party walls. The run is
+west-anchored, so the log dwelling's west wall stands **1.50 m** from the Clark side line and the
+4.89 m that remains is at the east end where the run stops, **10.58 m** short of the bakery on the
+next lot. The fourth roof is the standard's second clause: the privy stands in lot 0's own yard at
+the alley end. No coordinate is authored — the line, its bearing and the end the run packs away
+from are read from the committed block boundary.
+
+**No roof was added to the town.** The four come out of `south_plat_beyond_committed_control`, the
+south district's balance waiting on street control past State and Washington, which fell from
+**175 roofs to 120** when the ceiling rose. Every marginal still closes: the units sum to their
+districts and the districts to 665. That redistribution is the ticket's own count-honesty clause —
+budget moves inward before any liberty grows a total — and no liberty about the total was needed.
+
+**What is unverified, and it is everything that matters.** That any building stood on this ground,
+that there were three, that they stood shoulder to shoulder, and that the corner one was of logs
+are all inventions, recorded in **L144**. Whether the schedule may deal a log dwelling to a
+commercial frontage is **T-0022** and is still open; what decided it here is that the owner's own
+reference for a party-line row draws it as *log and frame buildings shoulder to shoulder*, so the
+question stays open for the schedule and this parcel is one recorded instance.
+
+**One defect found and filed rather than normalised away.** T-0077's row on this same Lake face
+stands 0.80 m off the face line and this generator's floor is the plat module's 1.5 m lot margin,
+so **one block face now carries two street lines 0.70 m apart**. They are 10.58 m apart along the
+face and no wall steps between them, but that is luck rather than design: **T-0104**.
+
+**Gates.** `./tools/check.sh` — the dev gate — **green**, run in the foreground after
+`./tools/publish.sh`. `node tools/smoke_renderer.mjs` — see the PR for exactly which halves ran
+inside the runner's ten-minute command ceiling (**T-0060**, unchanged) and how `zero page errors`
+was answered at both viewports. Before/after frames from the same stand in Lake Street at
+`docs/RESEARCH/lake_clark_corner_{before,after}_2026-08-19.png`.
+
 ## Shipped 2026-08-19 — T-0102: the two-storey stores that anchor the South Water row
 
 **The ask.** Piece 2 of 2 of T-0078. T-0101 stood the fourteen South Water roofs on the frontage
