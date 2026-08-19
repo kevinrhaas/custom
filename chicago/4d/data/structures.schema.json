@@ -68,6 +68,20 @@
         "sequence": { "type": "integer", "minimum": 1 },
         "yard_group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
 
+        "frontage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["block", "face", "setback_m", "why"],
+          "description": "This roof stands on a block FACE rather than at a northing the parcel recipe typed: it is one unit of a party-line street row. The line, its bearing and the corner the run packs back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, so the record discloses which face it fronts rather than restating the coordinate the placement already carries. `abuts` names the building whose wall this one shares a party line with — null for the unit that anchors on the block corner — and a named neighbour is what exempts the pair from the three-metre separation rule that otherwise applies across this dataset (T-0077).",
+          "properties": {
+            "block": { "type": "string", "pattern": "^blk_[a-z0-9_]+$" },
+            "face": { "enum": ["north", "south", "east", "west"] },
+            "setback_m": { "type": "number", "minimum": 0 },
+            "abuts": { "type": ["string", "null"] },
+            "why": { "type": "string", "minLength": 40 }
+          }
+        },
+
         "block_id": { "type": "string", "pattern": "^blk_[a-z0-9_]+$",
                       "description": "The platted block of the K7 grid this roof stands in. A GENERATED block, not a numbered one: the block face is derived from committed street control, and the side lot lines and the alley inside it are conjectural." },
         "lot_index": { "type": "integer", "minimum": 0,
