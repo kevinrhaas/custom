@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 196, title: 'More docks on the river', kind: 'feature', ts: '2026-08-19T14:20:05.637Z', date: 'Aug 19, 2026, 9:20 AM CT',
+    items: [
+      'The whole river trade of this town ran over exactly two docks — the ones at the forwarding warehouses, the only two any source states. The rest of the working bank was grass down to the water.',
+      'Two more landings stand off the South Water bank now: a timber deck on cribs at J. H. Kinzie’s forwarding store, and another at Jones’s grocery and provision store. Aim at a deck and the card of the store it serves opens.',
+      'No source states either of them. They are reconstructed — the owner asked for more docks, and each store’s record says what bounds the invention: a forwarding house takes goods off schooners by definition, and Jones’s was in that trade by 1834.',
+      'Three more are stated and not drawn — at Carpenter’s, Peck’s and Harmon & Loomis’s — because the traced 1834 river bank ends mid-town and a deck needs real bank under it. Each record says so; they draw themselves when the trace is extended.',
+      'Turn “reconstructed” off in the confidence view and every dock on the river goes — the two stated ones too, because every metre of their size is invented.',
+    ] },
   { v: 195, title: 'Three roofs on the Lake and Clark corner', kind: 'feature', ts: '2026-08-19T11:53:49.365Z', date: 'Aug 19, 2026, 6:53 AM CT',
     items: [
       'Walk west along Lake Street from the butcher\u2019s and the town used to run out at the baker\u2019s: past it, the whole corner at Clark Street was open grass, with the next buildings a block away.',

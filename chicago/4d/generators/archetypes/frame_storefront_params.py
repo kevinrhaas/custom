@@ -556,7 +556,14 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
             f"{max(abs(min(xs)), abs(min(ys))):.2f} m from where its footprint puts it. "
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
-    confidences = {a: conf(a) for a in form}
+    # `dock` is excluded from the sweep because this builder never reads it: a
+    # dock statement selects a deck on the RENDERER's wharf layer
+    # (tools/generate_river_wharves.py), not a metre of this mesh, and
+    # generators/mesh_inputs.py hashes exactly what the builder can see — "only
+    # a value the generator reads counts". Sweeping it in marked five South
+    # Water stores stale on the day their landings were stated (T-0062) when
+    # not one of their vertices could move.
+    confidences = {a: conf(a) for a in form if a != "dock"}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
     stories = int(val("stories", 2))

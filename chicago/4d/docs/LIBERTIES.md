@@ -4664,6 +4664,38 @@ is what the 665-roof programme's substitution clause exists for.
 **Recorded:** 2026-08-19.
 
 
+### L145 — Five South Water landings, stated by no source and asked for by name
+
+**Decision:** five merchant records on the South Water river frontage now STATE a dock —
+`value: true, confidence: reconstructed` — where no source states one: J. H. Kinzie's
+forwarding store, Jones's grocery and provision store, Harmon & Loomis's store, P. F. W.
+Peck's store and Philo Carpenter's South Water store. Where the traced 1834 bank reaches the
+frontage the wharf layer draws the landing in its standard form (Kinzie's and Jones's today);
+where the trace runs out — it ends at local E 390, and Carpenter's, Peck's and Harmon &
+Loomis's frontages lie east of it — `tools/generate_river_wharves.py` refuses the landing
+with the reason on the record (clause 4b) until the trace is extended (T-0106). The Temple
+Building on the same frontage gets no landing from the same rule: worship and a school take
+nothing off a schooner.
+**Why:** the owner, 2026-08-18, verbatim — *"you can add more docks!"* — with the standing
+ruling not to ration reconstructed items to the attested instances (AGENTS.md § RECONSTRUCTED
+IS A TIER; T-0062). T-0041 drew the only two docks any source states and its own record named
+the South Water stores as frontages the evidence refused; the ruling overrides that rationing,
+and this entry is the honest cost of the override: THE EXISTENCE of each of these five
+landings is invented, one tier below the two warehouses whose dock is stated.
+**What bounds the invention:** the TRADE, per record in its own dock note — a forwarding and
+commission house takes goods off schooners by definition; Jones's did forwarding work by 1834;
+the others stocked heavy waterborne freight. The REACH — all five stand on the working bank
+between the forks and the Dearborn drawbridge that the 2026-08-18 brief (image 3) shows
+crowded with masts. The PRACTICE — wharfing-out along the south bank, the habit T-0041's
+research note records. Every DIMENSION of each drawn landing is the wharf layer's standard
+form, already claimed at L132; this entry claims only the statements themselves. What would
+replace them: the Chicago Democrat's advertising columns or the 1833-1836 harbour reports
+naming any of these merchants' wharves — the same instruments L132 waits on.
+**Covers:** `jh_kinzie_forwarding_store.form.dock`, `h_jones_store.form.dock`,
+`harmon_loomis_store.form.dock`, `peck_store.form.dock`,
+`carpenter_south_water_store.form.dock`
+**Recorded:** 2026-08-19.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

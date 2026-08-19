@@ -1,5 +1,11 @@
 /**
- * wharves.js — the river docks at the forwarding warehouses.
+ * wharves.js — the river docks and the South Water landings.
+ *
+ * Since T-0062 the record carries more than the two warehouse docks T-0041
+ * derived: the owner's 2026-08-18 ruling ("you can add more docks!") added
+ * reconstructed South Water merchant landings, stated per record and drawn by
+ * this same layer wherever the traced 1834 bank reaches them. Nothing below
+ * changed for it — the record grew, the drawing didn't.
  *
  * WHY THIS FILE EXISTS. `docs/ROADMAP.md` K5 (e) asks for *"docks/wharves at the
  * forwarding houses"*, and ticket T-0041 is that clause. Two records in this
