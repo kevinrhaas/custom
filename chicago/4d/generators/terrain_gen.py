@@ -396,6 +396,58 @@ def build_field(spec, feats, origin):
     ramp = 1.0 - (1.0 - t_bank) ** 2
     h_ft = np.where(water, depth_ft, (level_ft + micro) * ramp)
 
+    # ---- bridge approach earthworks (T-0046) ------------------------------
+    # Every bridge deck ends on the traced waterline, where the bank ramp above
+    # puts the ground at exactly zero — so without these, no deck can be entered
+    # from its bank. Each approach is a graded road corridor along its spec line
+    # (deck-end first): a `fill` RAISES the ground to `deck_ft` at the deck end,
+    # falling inland at `grade`, level for `half_width_m` either side of the
+    # line with `side_slope` shoulders beyond, and carries the crest
+    # `end_overhang_m` past the deck end into the shallows — the fill the log
+    # abutment cribs retain, and the only place this generator deliberately
+    # raises traced water above the plane. A `cut` is the mirror: the ground is
+    # graded DOWN to the deck at the end, rising inland at the same grade, and
+    # carried the same overhang under the deck (on land only) so the ends read
+    # down to the crossing rather than standing proud beside it. Both are
+    # applied as max()/min() against the assembled surface, so each dies
+    # out exactly where the natural ground takes over — no toe step, no berm.
+    # The crest is packed one seat BELOW the deck surface, not flush with it.
+    # Physically that is what an earth approach against a plank deck is — the
+    # fill packs under the plank line and the last step onto the boards is a
+    # step. Numerically it is load-bearing: the walker resolves its floor as
+    # max(deck, ground) over the deck polygon, and a crest quantised to the
+    # heightfield's 5 mm lattice can land a float's width ABOVE the deck it was
+    # authored to meet, which would put the walker on ground instead of planks
+    # for the first stride of every crossing. 0.06 ft (18 mm) clears both the
+    # quantisation and the bilinear mixing while staying far inside the 0.35 m
+    # step-up rule.
+    APPROACH_SEAT_FT = 0.06
+    for ap in spec.get("approaches", []):
+        (a_e, a_n), (b_e, b_n) = [(float(p[0]), float(p[1])) for p in ap["line"]]
+        length = math.hypot(b_e - a_e, b_n - a_n)
+        ux, uy = (b_e - a_e) / length, (b_n - a_n) / length
+        t_ap = (E - a_e) * ux + (N - a_n) * uy
+        d_ap = np.abs(-(E - a_e) * uy + (N - a_n) * ux)
+        shoulder_ft = np.maximum(d_ap - float(ap["half_width_m"]), 0.0) \
+            * float(ap["side_slope"]) / FT
+        fall_ft = float(ap["grade"]) * np.maximum(t_ap, 0.0) / FT
+        over = float(ap["end_overhang_m"])
+        before = h_ft
+        if ap["mode"] == "fill":
+            target = float(ap["deck_ft"]) - APPROACH_SEAT_FT - fall_ft - shoulder_ft
+            zone = (t_ap >= -over) & (t_ap <= length) \
+                & np.where(water, (t_ap <= over) & (d_ap <= float(ap["half_width_m"])),
+                           True)
+            h_ft = np.where(zone, np.maximum(h_ft, target), h_ft)
+        else:
+            target = float(ap["deck_ft"]) - APPROACH_SEAT_FT + fall_ft + shoulder_ft
+            zone = (t_ap >= -over) & (t_ap <= length) & ~water
+            h_ft = np.where(zone, np.minimum(h_ft, target), h_ft)
+        touched = np.abs(h_ft - before) > 1e-6
+        conj_land |= touched & ~water
+        band.setdefault(f"approach_{ap['id']}", np.zeros(E.shape, bool))
+        band[f"approach_{ap['id']}"] |= touched
+
     conf = np.where(water, CONF_CONJECTURAL, CONF_INFERRED)
     conf = np.where(conj_land & ~water, CONF_CONJECTURAL, conf)
 

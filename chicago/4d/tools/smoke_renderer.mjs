@@ -3459,6 +3459,71 @@ const terrainLoad = await page.evaluate(() => {
       `left the deck at E ${crossing.leftE?.toFixed(1)}, `
       + `ended standing on ${crossing.endGroundY?.toFixed(2)} m at E ${crossing.endE?.toFixed(1)}`);
 
+    // --- and walks ONTO the deck from the bank (T-0046) ---------------------
+    //
+    // The other half of the owner's "how would a wagon cross that?": for a year
+    // the decks were walkable and unreachable — they stood 2.22 m over banks the
+    // terrain put at zero, and the 0.35 m step-up rule refused the deck end the
+    // way it refuses a wall. The approach earthworks grade the ground itself up
+    // to each deck, so this starts a walker on the plain EAST of the North
+    // Branch bridge, well below deck height, walks them west up Kinzie Street,
+    // and requires that they end standing ON the planks — no teleport onto the
+    // deck, no ramp object, just terrain rising at a wagon grade. If the ground
+    // under the climb ever exceeds the step-up rule per stride, the walker
+    // simply stops and this fails.
+    const ascent = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const deck = a.decks?.find((d) => d.id === 'north_branch_bridge');
+      if (!deck) return { missing: true };
+      const es = deck.pts.map((p) => p[0]);
+      const ns = deck.pts.map((p) => p[1]);
+      const east = Math.max(...es);
+      const mid = (Math.min(...ns) + Math.max(...ns)) / 2;
+      const on = (e, n) => {
+        let hit = false;
+        const pts = deck.pts;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+      // 18 m out: past the toe of the 1-in-12 ramp's upper half, on ground well
+      // below the deck, so the climb is real and not a courtesy hop.
+      a.walker.teleport({ local_e: east + 18, local_n: mid, yaw_deg: 270 });
+      a.step();
+      const startGround = a.walker.state.groundY;
+      let onDeck = false;
+      let worstStride = 0;
+      let prevY = startGround;
+      a.intent.forward = 1;
+      for (let i = 0; i < 600 && !onDeck; i += 1) {
+        a.walker.update(0.05, a.intent);
+        const s = a.walker.state;
+        worstStride = Math.max(worstStride, s.groundY - prevY);
+        prevY = s.groundY;
+        if (on(s.e, s.n) && s.groundY === deck.y) onDeck = true;
+      }
+      a.intent.forward = 0;
+      return {
+        deckY: deck.y,
+        startGround,
+        climbed: deck.y - startGround,
+        onDeck,
+        worstStride,
+        endE: a.walker.state.e,
+      };
+    });
+    check(`${label}: a walker on the bank climbs the approach onto the deck`,
+      !ascent.missing && ascent.onDeck
+      && ascent.startGround < ascent.deckY - 0.8,
+      ascent.missing ? 'no deck compiled for north_branch_bridge'
+        : `started on ${ascent.startGround?.toFixed(2)} m, climbed `
+          + `${ascent.climbed?.toFixed(2)} m to the planks at ${ascent.deckY} m, `
+          + `worst single stride +${ascent.worstStride?.toFixed(3)} m`
+          + (ascent.onDeck ? '' : ` — never reached the deck (stopped at E ${ascent.endE?.toFixed(1)})`));
+
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     // --- the touch backend, on the mobile pass only ------------------------

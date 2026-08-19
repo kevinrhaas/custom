@@ -528,43 +528,6 @@ level — the same unopened source that would settle the footprint this inherits
 **Covers:** `miller_house.log_frame_1827.form.frame_addition_width_m`, `miller_house.log_frame_1827.form.frame_addition_depth_m`.
 **Recorded:** 2026-08-10.
 
-### L30 — The bridge lands on nothing, and no approach is modelled
-**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
-2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
-ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
-**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
-stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
-construction, because the terrain surface crosses the datum exactly along the drawn waterline.
-The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
-at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
-width and log abutments "in the shallow water near the banks"; no source reached describes how a
-person or a team got from the bank up onto the deck. Building one would stack a second invention
-on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
-that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
-over rather than look at.
-**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
-it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
-scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
-that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
-gap is unrecorded, so it is stated rather than drawn.
-**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
-Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
-the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
-less approach and the six feet is the weakest number in the record.
-**Covers:** `north_branch_bridge.log_1832.ground_contact`.
-**Recorded:** 2026-08-10.
-**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
-unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
-Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
-crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
-their street lines at the waterline, because a platted street is a dedication and not a
-structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
-Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
-water, so that teams passed under them on the ice freely" — so a lower deck is not available as
-the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
-bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
-as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
-**Revised:** 2026-08-10.
 
 ### L31 — The two bents are where a builder would put them, not where anybody saw them
 **Decision:** the North Branch bridge's two bents stand at the third points of its 71.83 m span,
@@ -885,20 +848,6 @@ gaps between them that never existed. That gap is a false statement too, and a l
 **How to resolve:** an advertisement giving a block, or a lot number in a deed.
 **Recorded:** 2026-08-10.
 
-### L38 — The South Branch bridge lands on ground that is not there
-**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
-**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
-and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
-which is real evidence about where the water was; the ground it should land on is the terrain
-heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
-is wrong on its own, and the model still shows a bridge arriving nowhere.
-**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
-bridges now do this, it reads as a characteristic of the model rather than a defect in one
-record, which is if anything worse — it makes the crossing look deliberate.
-**How to resolve:** approach embankments, which are terrain work rather than structure work,
-and which nothing in the sources describes for either bridge.
-**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
-**Recorded:** 2026-08-10.
 
 ### L39 — Chicago's first movable bridge, with the moving part left out
 **Decision:** `dearborn_street_drawbridge` is built as a fixed timber crossing. Its **draw span**
@@ -936,8 +885,12 @@ dithers hardest.
 **How to resolve:** any description of the draw's framing or its hoist — a repair contract, a
 council order, an engraving. The bridge was repaired in 1835, so a repair record is the most
 likely thing to exist.
-**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`, `dearborn_street_drawbridge.draw_1834.ground_contact`.
+**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`.
 **Recorded:** 2026-08-10.
+**Evidence since, 2026-08-19:** the ground_contact token is withdrawn. T-0046's approach
+earthworks (L147) raise Dearborn Street to the deck at both ends and the record no longer
+declares `approach_not_modelled`. Everything this entry says about the draw, the mechanism and
+the omitted opening is untouched.
 
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
 **Decision:** `thomas_church_store` stands on Lake Street with its **position** and its
@@ -1626,33 +1579,6 @@ foot of State Street.
 **Covers:** `slough_log_bridge.log_1833.footprint`, `slough_log_bridge.log_1833.form.clearance_m`.
 **Recorded:** 2026-08-11.
 
-### L69 — Two structures stand at their documented sites beyond the modelled ground
-**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
-give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
-Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
-`ground_contact: {state: "outside_modelled_ground"}`.
-**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
-pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
-are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
-p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
-them would throw away the best evidence either record holds. What is missing here is terrain, not
-evidence.
-**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
-without the declaration the gate would have reported both as landing perfectly on terrain that does
-not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
-this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
-the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
-archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below
-the slough's own.
-**How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
-Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
-entry moves to Resolved.
-**Covers:** `slough_log_bridge.log_1833.ground_contact`.
-**Evidence since, 2026-08-11:** the brickyard's token is withdrawn — S2e extended the
-heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
-stands clear of it, but for the different reason recorded on that record: the South Division
-slough it crosses is still not cut into this terrain epoch, so it spans nothing.
-**Recorded:** 2026-08-11.
 
 ### L70 — The mosquitoes are rendered as nothing, and they were the defining July fact
 **Decision:** mosquitoes, deer flies and horse flies are recorded as `abundant` and
@@ -4729,12 +4655,144 @@ replace the invention: harbour-master or newspaper records of vessels lying in t
 the summer of 1835 — the Chicago Democrat's marine columns are the instrument.
 **Recorded:** 2026-08-19.
 
+### L147 — Terrain: the bridge approaches are invented earthworks
+**Decision:** eight graded road corridors (`approaches` in `terrain_spec.json`, all
+`reconstructed`) meet each bridge deck at grade: earth fills rising at 1 in 12 onto the two
+branch bridges and the Dearborn Street drawbridge, and shallow cuts grading the banks down to
+the slough crossing's low deck. Each fill's crest is carried 3 m past the deck end into the
+shallows — the fill the attested log abutment cribs retain, and the only places the generator
+deliberately raises traced water above the plane.
+**Why:** the 1883 old-settlers statement makes the branch bridges WAGON bridges — "these were
+both wagon bridges", "about six feet above the water, so that teams passed under them on the ice
+freely" — and the drawbridge carried Dearborn Street over the main stem, so approaches existed
+as surely as the bridges did; no source reached describes their form, length or grade (L30's
+long search stands). What bounds the invention: the crest heights are the records' own deck
+heights, restated — if a deck moves, the ground-contact gate reopens the gap and fails; 1 in 12
+is a comfortable team haulage grade, inside period wagon-road practice; the 1-in-2 side slopes
+are inside the angle of repose of loose fill; and the 4.0 m crest half-width is a modelling
+allowance on the 2.5 m ground grid — the crest must hold every cell the bilinear sampler mixes
+into a deck-corner reading, or the sampled ground misses the deck it exists to meet. The crest
+is packed 0.06 ft under the plank line (`APPROACH_SEAT_FT` in the generator), so the last stride
+onto the boards is a small step — which is what an earth approach against a plank deck is.
+**Consequence:** the ground's Z = 0 contour no longer coincides with the traced 1834 waterline
+in exactly eight declared places. Every modified cell is conjectural in the confidence channel:
+turn off `reconstructed` in the confidence menu's colouring and the earthworks dither like every
+other invention. The streets that reach the crossings ride up over the fills, which is the
+point.
+**How to resolve:** a period depiction of any crossing, or a levelled section — the same
+instruments L30 named; a sourced approach length or grade would replace the invented figures one
+for one.
+**Covers:** `terrain.e1834_harbor_cut.approaches.north_branch_west`, `terrain.e1834_harbor_cut.approaches.north_branch_east`, `terrain.e1834_harbor_cut.approaches.south_branch_west`, `terrain.e1834_harbor_cut.approaches.south_branch_east`, `terrain.e1834_harbor_cut.approaches.dearborn_south`, `terrain.e1834_harbor_cut.approaches.dearborn_north`, `terrain.e1834_harbor_cut.approaches.slough_west`, `terrain.e1834_harbor_cut.approaches.slough_east`.
+**Recorded:** 2026-08-19.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
 line saying what settled them. The gate exempts this section from the check that a claimed
 value is still an invention, which is what lets an append-only document survive its own data
 being corrected.
+
+
+### L30 — The bridge lands on nothing, and no approach is modelled
+**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
+2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
+ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
+**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
+stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
+construction, because the terrain surface crosses the datum exactly along the drawn waterline.
+The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
+at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
+width and log abutments "in the shallow water near the banks"; no source reached describes how a
+person or a team got from the bank up onto the deck. Building one would stack a second invention
+on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
+that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
+over rather than look at.
+**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
+it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
+scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
+that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
+gap is unrecorded, so it is stated rather than drawn.
+**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
+Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
+the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
+less approach and the six feet is the weakest number in the record.
+**Covers:** `north_branch_bridge.log_1832.ground_contact`.
+**Recorded:** 2026-08-10.
+**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
+unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
+Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
+crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
+their street lines at the waterline, because a platted street is a dedication and not a
+structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
+Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
+water, so that teams passed under them on the ice freely" — so a lower deck is not available as
+the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
+bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
+as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
+**Revised:** 2026-08-10.
+**Resolved:** 2026-08-19. T-0046 built the approaches. Terrain earthworks (`approaches` in
+`terrain_spec.json`, every entry graded `reconstructed`) now raise Kinzie Street to the deck at
+1 in 12 at both ends; the ground-contact gate measures both end edges within its 0.35 m
+tolerance of the deck, and the declaration is off the record. The invention this entry refused
+to make is made and declared instead — L147 is its record. What changed the reasoning is the
+owner's standing instruction (AGENTS.md § RECONSTRUCTED IS A TIER): the 1883 statement this
+entry already quotes makes these WAGON bridges, so an approach is a necessity of the evidence,
+and a declared reconstruction is honest where a bridge to nowhere is wrong about the town.
+
+
+### L38 — The South Branch bridge lands on ground that is not there
+**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
+**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
+and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
+which is real evidence about where the water was; the ground it should land on is the terrain
+heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
+is wrong on its own, and the model still shows a bridge arriving nowhere.
+**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
+bridges now do this, it reads as a characteristic of the model rather than a defect in one
+record, which is if anything worse — it makes the crossing look deliberate.
+**How to resolve:** approach embankments, which are terrain work rather than structure work,
+and which nothing in the sources describes for either bridge.
+**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-19. The same resolution as L30, in the same pass: T-0046's approach
+earthworks (L147) raise the ground to this deck at both ends and the declaration is off the
+record.
+
+
+### L69 — Two structures stand at their documented sites beyond the modelled ground
+**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
+give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
+Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
+`ground_contact: {state: "outside_modelled_ground"}`.
+**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
+pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
+are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
+p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
+them would throw away the best evidence either record holds. What is missing here is terrain, not
+evidence.
+**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
+without the declaration the gate would have reported both as landing perfectly on terrain that does
+not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
+this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
+the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
+archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below
+the slough's own.
+**How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
+Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
+entry moves to Resolved.
+**Covers:** `slough_log_bridge.log_1833.ground_contact`.
+**Evidence since, 2026-08-11:** the brickyard's token is withdrawn — S2e extended the
+heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
+stands clear of it, but for the different reason recorded on that record: the South Division
+slough it crosses is still not cut into this terrain epoch, so it spans nothing.
+**Recorded:** 2026-08-11.
+**Resolved:** 2026-08-19. In two halves, two runs apart. The brickyard's half was already
+withdrawn above (S2e, 2026-08-11). The slough crossing's half closed when T-0046 graded its
+banks down to the deck at both ends (a cut — L147), so the `outside_modelled_ground` /
+`approach_not_modelled` declarations are off the record and the crossing can be walked. What
+this entry's last sentence asked for — the South Division slough cut into the terrain epoch, so
+the bridge spans water rather than solid ground — is still not done, and is re-filed as ticket
+T-0109 rather than left implied here.
 
 
 ### L40 — Two thirds of the town stands on ground that has not been built

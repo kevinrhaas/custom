@@ -888,6 +888,350 @@
       ]
     },
     {
+      "id": "approaches.north_branch_west",
+      "group": "the bridge approaches",
+      "label": "north_branch_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "north_branch_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west (Canal Street) approach to the North Branch bridge, on the Kinzie Street alignment. That an approach existed is a necessity - the 1883 settlers' statement makes this a wagon bridge and its deck stands 2.22 m over a bank at the waterline - but its form is invented: an earth ramp at 1 in 12, meeting the deck at grade at the traced waterline. Deck height restated from the structure record's clearance stack; if that record moves, the ground-contact gate reopens the gap and fails, which is what holds the two files together."
+      ]
+    },
+    {
+      "id": "approaches.north_branch_east",
+      "group": "the bridge approaches",
+      "label": "north_branch_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "north_branch_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the North Branch bridge, carrying Kinzie Street onto the deck. Same footing as north_branch_west: existence necessary for a wagon bridge, form invented at 1 in 12."
+      ]
+    },
+    {
+      "id": "approaches.south_branch_west",
+      "group": "the bridge approaches",
+      "label": "south_branch_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "south_branch_raft_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west approach to the South Branch bridge, between Lake and Randolph. The 1883 settlers' statement covers both branch bridges - 'these were both wagon bridges' - so the necessity argument is the same as the North Branch's; the form is invented at 1 in 12. Every entry's line runs deck-end first, inland toe second."
+      ]
+    },
+    {
+      "id": "approaches.south_branch_east",
+      "group": "the bridge approaches",
+      "label": "south_branch_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "south_branch_raft_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the South Branch bridge, toward the town side. Same footing as south_branch_west."
+      ]
+    },
+    {
+      "id": "approaches.dearborn_south",
+      "group": "the bridge approaches",
+      "label": "dearborn_south",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "dearborn_street_drawbridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The south approach to the Dearborn Street drawbridge, from the foot of Dearborn on South Water. Andreas describes about 300 ft of timber causeway with a 60 ft draw; the causeway itself is the committed deck, and this is the earthwork that gets a team from the street onto it. Form invented at 1 in 12."
+      ]
+    },
+    {
+      "id": "approaches.dearborn_north",
+      "group": "the bridge approaches",
+      "label": "dearborn_north",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "dearborn_street_drawbridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The north approach to the Dearborn Street drawbridge, onto the Kinzie's Addition side. Same footing as dearborn_south."
+      ]
+    },
+    {
+      "id": "approaches.slough_west",
+      "group": "the bridge approaches",
+      "label": "slough_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "slough_log_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "cut"
+        },
+        {
+          "key": "deck_ft",
+          "value": 2.723
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west approach to the slough crossing - the opposite problem from the river bridges: this low deck sits 0.35-0.49 m BELOW the banks at its ends, so the road is graded DOWN to it, a shallow cut rising inland at 1 in 12 until it meets the natural ground. A road descending to a low log crossing is the minimal reading of how anyone used it; the cut's form is invented."
+      ]
+    },
+    {
+      "id": "approaches.slough_east",
+      "group": "the bridge approaches",
+      "label": "slough_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "slough_log_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "cut"
+        },
+        {
+          "key": "deck_ft",
+          "value": 2.723
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the slough crossing. Same footing as slough_west."
+      ]
+    },
+    {
       "id": "micro_relief",
       "group": "the surface texture",
       "label": "micro_relief",

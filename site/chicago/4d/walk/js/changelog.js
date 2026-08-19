@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 199, title: 'You can walk onto every bridge now', kind: 'feature', ts: '2026-08-19T21:07:57.244Z', date: 'Aug 19, 2026, 4:07 PM CT',
+    items: [
+      'Every bridge used to end 2.2 m in the air: its deck stood on the 1834 waterline, where the bank is at water level, so from the shore no crossing could be entered at all. Earth approaches now carry the ground up to each deck — walk down Kinzie Street and you walk straight onto the North Branch bridge, across, and off the far end. Same at the South Branch bridge and the Dearborn Street drawbridge.',
+      'The ramps climb at 1 in 12, a grade a loaded wagon team could take, and the fill runs a few metres into the shallows behind the log abutment cribs the settlers described.',
+      'The little slough crossing had the opposite problem — its low deck sat below its own banks. The road is graded down to it now from both sides.',
+      'That approaches existed is as good as certain: the men who used these bridges called them wagon bridges. What they looked like, nobody wrote down — every earthwork is invented within those bounds, marked reconstructed, and recorded in the liberties ledger. Turn "reconstructed" off in the confidence view and the bridges go back to standing in the river touching nothing.',
+    ] },
   { v: 198, title: 'The evidence menu takes its clicks, and keys close the card', kind: 'fix', ts: '2026-08-19T19:02:37.995Z', date: 'Aug 19, 2026, 2:02 PM CT',
     items: [
       'The checkboxes in the evidence-level menu work now. A click used to fall through to the world — the menu vanished and nothing toggled. Hiding a level is one click again.',

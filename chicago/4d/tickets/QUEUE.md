@@ -71,3 +71,4 @@ T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off an
 T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
+T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
