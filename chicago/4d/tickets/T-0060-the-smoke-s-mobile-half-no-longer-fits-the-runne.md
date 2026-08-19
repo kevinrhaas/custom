@@ -37,3 +37,62 @@ does), the page-error assertion is taken in EVERY filtered run rather than only 
 one run demonstrates the full mobile gate completing as two commands that each finish inside ten
 minutes with the same total assertion count as an unfiltered pass. Update ROADMAP § THE RUN BUDGET
 with the new measurements in the same PR.
+
+---
+
+## Analysis done 2026-08-19 — the mechanics, so a run implements rather than rediscovers
+
+The owner asked for this next, after the Blender lane. Everything below was measured
+against `tools/smoke_renderer.mjs` at 7,046 lines; the numbers are reproducible from the
+scripts described.
+
+**1. The sections already exist as comments.** Sixty banners of the form
+`    // --- <name> ---------` run from line 817 to 6938, each opening a coherent group
+(`the gate counts the town (T-0036)`, `the enclosure layer (T-0038)`, `the confidence
+view`, `walking`, `budgets`, …). They are the natural stage names — do not invent a new
+taxonomy, lift these.
+
+**2. The body is ONE block, which is why this is a refactor and not a flag.** Everything
+from the boot check to `zero page errors` sits inside a single `if (ready) { … }` at line
+795, closing near 7010, inside the two-viewport `for`. There are 29 statements at the
+loop's top level and effectively all the work is in that one block, so there is nothing to
+filter without introducing structure.
+
+**3. Beware the analysis trap that nearly cost a wrong design.** A regex sweep for
+"binding declared in section A, name appears after section A" reports **46 cross-section
+uses**, which would make block-wrapping impossible. Inspected one by one at the best split
+point, **all eight apparent crossings were false**: `shown` at 2927 is an object KEY
+(`shown:`), `want` at 4158 is a word inside a template string, `anchored` (4371), `off`
+(2363), `on` (2287) and `back` (2290) are words inside COMMENTS, `sauganash` at 2805 is an
+object key, and `d` at 2397 is a re-declaration at deeper indent that the indent-4 scan
+missed. **Word-boundary matching over source text counts comments, strings and keys.**
+Use a real parser, or verify each candidate by eye — do not trust the raw count either way.
+
+**4. A candidate split point, already located.** Crossing counts per boundary bottom out
+in the middle third at **section 15, `// --- the ground faces the sky ---`, line 2285**
+(8 apparent crossings, all of them false per (3) above). Sections 16 and 17 tie. That is
+where to cut if two commands is the shape.
+
+**5. What the filter has to do, beyond selecting checks.** The cost is not the assertions,
+it is the page work behind them — navigation, captures, probes, at 0.5–1.1 s per frame on
+a software renderer. A filter that skips only `check()` calls saves nothing. The stages
+have to be skippable *work*.
+
+**6. The page-error assertion.** It is the LAST line of each viewport (line 7011), which
+is exactly why a killed run never takes it. Whatever shape the filter has, that check must
+run in every invocation — including one that stops early — which likely means hoisting it
+into a `finally` or an explicit end-of-run block rather than leaving it as the tail.
+
+## Why this ticket is still open after the analysis
+
+**The verification cannot be done anywhere but a real runner.** The acceptance requires
+the two filtered halves to reach the same total assertion count as an unfiltered pass —
+that is a claim about the suite's behaviour, provable only by running it three times.
+Attempted 2026-08-19 in the assistant's container: the desktop half dies in
+`roadContrast` (smoke_renderer.mjs:503, called from 4052) taking a page screenshot, before
+reaching any split point. A gate refactor shipped without that comparison is precisely the
+change nobody can trust — so the implementation belongs to a run on the improve runner,
+where the suite completes (654 checks, both viewports, ~55 min, measured on run 941).
+
+**Acceptance is unchanged.** The analysis above narrows the work; it does not lower the
+bar. Do not weaken an assertion, and do not declare victory on a filtered run alone.
