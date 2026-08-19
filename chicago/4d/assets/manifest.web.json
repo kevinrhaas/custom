@@ -1,6 +1,5 @@
 {
   "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp \u2014 mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP \u2014 a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
-  "written_by": "tools/web_derivatives.sh",
   "masters": {
     "bates_auction_room__frame_1834.glb": "3304e13a6719f5d862bf9cf33d8f213c4a74bb09bb9518fa5f6534d882c3d616",
     "beaubien_barn__converted_1817.glb": "f8a88a680389ac0d200bec08986d2b2891c0032bff1141c5506b908e408fe6f4",
@@ -158,11 +157,11 @@
     "recon_1835_blk_south_water_clark_d4_02__inferred_1835.glb": "fd984fc4fb877cc699eb5fa2dd5e703f2fcfcf3d2f5cddf9d31ee8c9f85521f3",
     "recon_1835_blk_south_water_clark_d5_01__inferred_1835.glb": "c77755338ab40e68358522191e502524eb5fc8a814ecd907ce7b26bcfa7d383a",
     "recon_1835_blk_south_water_dearborn_a3_06__inferred_1835.glb": "07fe813220182935c1da6ce47d851dee8fb3a5e49947c2321b9187807ca76a79",
+    "recon_1835_blk_south_water_dearborn_c3_01__inferred_1835.glb": "36effc40c91d30d2ba1d7ebeb9d5f0ed39aedf5d7a74039dbc151feb56d39a42",
+    "recon_1835_blk_south_water_dearborn_c3_02__inferred_1835.glb": "172f88ea3055201f0aa76bd45f7cbc4d1deeb360623fbe00c084ed96db04f98b",
     "recon_1835_blk_south_water_dearborn_d1_05__inferred_1835.glb": "0fdd0f432829867f9e3cf7c488282b04195dd880f0358cc890535915acc436c2",
     "recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb": "3a5cd9fb012539eee96d8e94fae629ed793233ce6d57b5e8bd71c17f32db6439",
     "recon_1835_blk_south_water_dearborn_d3_03__inferred_1835.glb": "af5eccb30d20c5d66b05b812eb0feb84ac7898d3ace368d5660e027f2b848f5a",
-    "recon_1835_blk_south_water_dearborn_d4_02__inferred_1835.glb": "040d2060ae7ca9264ec7a178083036d1dce79b1c366479095f318028c63990ca",
-    "recon_1835_blk_south_water_dearborn_d5_01__inferred_1835.glb": "034c06edbdefc8ec4d9e31bf1fe976727b0056b160dead6d340bd3b1cacc345b",
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": "8c258fff61fb443ab6025eb363a2679d56e972ff117df0148a418db21aba3d21",
     "recon_1835_blk_south_water_franklin_a3_07__inferred_1835.glb": "d2b1791aed3643e244de80340128bf32ec06cadb4b5b9660ec9fb45822c144cf",
     "recon_1835_blk_south_water_franklin_d1_04__inferred_1835.glb": "fb6b8be98ebd7ddb3b91f177325008a88f9beab9f7aab5be3a9bcdbfc810cdcd",
@@ -335,5 +334,6 @@
     "wolf_point_tavern_stable__stable_1831.glb": "ba961fd309586d64f411169b87e5f96c0c3a2a1ac7dd1a6c03a0164a6860c628",
     "wright_building_to_let_a__documented_1835.glb": "7dde61e6fd576ba6b29eb01ac5f29ce5f617fc0ae2f1e52fcf9f10b452845e01",
     "wright_building_to_let_b__documented_1835.glb": "551721057c069d19a34805f06aab6cecbe69de939fc4004893773962c08a439f"
-  }
+  },
+  "written_by": "tools/web_derivatives.sh"
 }

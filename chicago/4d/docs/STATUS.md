@@ -1,5 +1,54 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0102: the two-storey stores that anchor the South Water row
+
+**The ask.** Piece 2 of 2 of T-0078. T-0101 stood the fourteen South Water roofs on the frontage
+line and could not build the one thing the owner's reference for the reach also shows: **two
+two-storey frame stores anchoring the east end of the row** (image 11 of
+`data/sources/assets/owner_brief_2026_08_18/README.md`, *"South Water Street in 1834"*).
+
+**Why it could not be built then.** `check_block` holds a parcel to the family mix it claims, and
+all five South Water blocks were dealt D-family dwellings — no C3, no C4, no D7. So the town's
+business front was a terrace of one-storey cottages by construction, and the ticket named the two
+routes out: re-deal the schedule, or grow the 665-roof total under a liberty.
+
+**The choice, which was the work.** The total does not move, and it did not need to. The
+programme carries **seventeen C3 narrow two-storey stores and eight of them stand**, so nine were
+already unbuilt and apportioned to the districts rather than to any block — the programme file
+says so in its own words: *"a per-unit family mix is an apportionment of that district's
+remainder, not a claim about any block."* Two of those nine stand here. The D5 deep-plan cottage
+and the D4 two-room cottage they displace go back into the south district's remainder, which held
+34 of each before this run and holds 35 after it. **Growing 665 to buy roofs the programme
+already owned would have been inventing headroom the town does not need**, so it was refused and
+the refusal is recorded in L143 rather than left as a road not taken.
+
+**What shipped.** `blk_south_water_dearborn` — the last block of the row, where State Street is
+the platted town's eastern limit, so its east corner IS the row's east end — is re-dealt from
+`{A3, D1, D2, D3, D4, D5}` to `{A3, C3×2, D1, D2, D3}`. Six roofs, five principal and one
+ancillary, against the same headroom of six. The run is re-chained so the two stores take the
+block's east corner and the surviving D3 stands west of them: **6.24 m and 5.74 m wide, 13.3 m
+and 13.0 m deep, 5.94 m to the eaves against the 2.47 m of the cottage beside them**, on the same
+line, the same 1.5 m setback and the same shared party walls. No coordinate is authored — the
+line, its bearing and the corner the run packs back from are read from the committed block
+boundary, exactly as T-0101 left them.
+
+**No mesh was hand-authored and no bake was needed.** Both stores resolve through the
+`frame_storefront` placeholder, which `generators/inferred_placeholder.py` builds in pure Python
+from the committed record; the two records that went were placeholders too, so no night's Blender
+work was overwritten. Their web derivatives compress LARGER than their masters, so both are
+banked as decided passthroughs in `tools/web_derivative_baseline.json` (K38) rather than left to
+look like an accident.
+
+**What is unverified.** Nothing about the stores is evidence: that a store stood on this corner,
+that there were two, and that they were two storeys are all inventions bounded by the C3 band and
+the 1834 view's treatment, recorded in L143. The surviving D3 keeps its id and the household the
+inferred-household layer housed in it; L142's Covers field is corrected in place — with the
+correction stated in the entry rather than made silently — because two of the ids it claimed no
+longer name a building.
+
+**Gates.** `tools/check.sh` green and `node tools/smoke_renderer.mjs` green at 390×780 and
+1280×800, both in the foreground, on the published tree.
+
 ## Shipped 2026-08-19 — T-0078: the South Water river row
 
 **The ask.** Piece 2 of 3 of T-0073, the owner's flagged-important ask of 2026-08-18. His
