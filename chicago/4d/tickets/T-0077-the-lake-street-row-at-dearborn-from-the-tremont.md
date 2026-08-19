@@ -1,7 +1,7 @@
 ---
 id: T-0077
 title: The Lake Street row at Dearborn, from the Tremont plate
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0073
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/18/2026, 9:23:17 PM CT
 blocked_on: null
 needs_bake: false
 ---
