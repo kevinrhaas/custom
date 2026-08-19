@@ -1,5 +1,48 @@
 # STATUS
 
+## Shipped 2026-08-19 — T-0063: boats correct for the era, on the water
+
+**The ask.** The owner, 2026-08-18, verbatim: *"you can add boats correct for the era! they
+would exist"* — and, of the drawbridge engravings, *"also note the boats there."* Under the
+standing ruling to be liberal with reconstructed items and label them as such.
+
+**What shipped.** A new derived layer — `data/boats/` + `renderers/web/js/boats.js` — puts
+nine watercraft on the river: three two-masted lake schooners moored in the reach of the main
+stem below the Dearborn Street drawbridge (the stretch images 2-3 of the 2026-08-18 brief
+crowd with masts), two rowboats on the water off the South Water bank and two drawn up at its
+edge (image 11), and two bark canoes hauled out on the bank below Fort Dearborn (the committed
+2026-08-11 fort plates). Every hull is unmanned, unnamed, and graded `reconstructed` at every
+vertex — the whole flotilla disappears when a visitor hides `reconstructed`. Aiming at a boat
+opens its own card (type, size, state, and what bounded each invention) — the first pickable
+thing in the scene that belongs to no structure record. The invention is claimed at LIBERTIES
+**L146**. The schooner Illinois is deliberately NOT drawn or named: a named vessel at a berth
+on a date is a claim no source makes.
+
+**The layer refuses rather than adjusts.** An afloat hull is drawn only with its full draft
+plus 0.3 m of water under the whole keel (checked against the committed heightfield at load);
+a beached hull only on bank ground at the water's edge; and nothing within 30 m of the
+drawbridge's crossing line, so the navigation span stays clear for T-0071. Zero refusals in
+the shipped record — every position was chosen against the heightfield first.
+
+**L1 and the standing constraint.** The canoes are trade watercraft drawn unmanned from the
+plates that show them at this reach; no figures, no encampment, no staging. The record's own
+`standing_constraint_note` says so, and any depiction of the Potawatomi themselves remains
+out of scope pending consultation.
+
+**Verification.** `tools/check.sh` green (validator, liberties compile, published-mirror
+trace — `data/boats/` added to `check_published.mjs` COPIES — changelog contract).
+`tools/smoke_renderer.mjs --published` run as its two halves in the foreground: mobile
+**338 passed / 3 failed** — a COMPLETE mobile pass for the first time in days, including
+`zero page errors` green; the three failures are dev's own, all pre-existing and tracked
+(the two `roads reach the screen` rows already recorded in this file, and the Evidence-panel
+`counts nothing by hand` row, which is open ticket **T-0037** and was simply never reached by
+the runs the ten-minute ceiling cut earlier). Desktop **185 passed / 2 failed** (the same two
+road rows, reported-only) before the ten-minute ceiling cut it at the shadow-reach captures
+(**T-0060**, unchanged). All eight new boat assertions green at BOTH viewports, including the
+schooners-reach-the-screen capture from the south bank and the boat's own card answering a
+pick. Scene-detail note: `light` measured **597,894 of 600,000** at 1280×800 on this branch —
+inside its ceiling with the boats mounted (T-0089 updated with the figure).
+
 ## Shipped 2026-08-19 — T-0062: more docks — the working waterfront, as far as the trace reaches
 
 **The ask.** The owner, 2026-08-18, verbatim: *"you can add more docks!"*, under the standing

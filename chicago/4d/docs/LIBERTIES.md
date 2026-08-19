@@ -4696,6 +4696,39 @@ naming any of these merchants' wharves — the same instruments L132 waits on.
 `carpenter_south_water_store.form.dock`
 **Recorded:** 2026-08-19.
 
+### L146 — Nine boats on the river, every hull of them invented
+
+**Decision:** the river carries watercraft now — `data/boats/era_boats.json`, drawn by
+`renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main
+stem below the Dearborn Street drawbridge, two rowboats on the water off the South Water bank
+and two drawn up at its edge, and two bark canoes hauled out on the bank below Fort Dearborn.
+Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position,
+heading and dimension is authored in the record with its own note. The layer refuses rather
+than adjusts — a boat without its own draft of water under the whole keel, a beached hull
+authored onto open water or up on the prairie, or any hull within 30 m of the drawbridge's
+crossing line is not drawn, with the reason on the record.
+**Why:** the owner, 2026-08-18, verbatim — *"you can add boats correct for the era! they
+would exist"* — and, of the drawbridge engravings, *"also note the boats there"* (T-0063),
+under the standing ruling to be liberal with reconstructed items and label them as such
+(AGENTS.md § RECONSTRUCTED IS A TIER). No source names, places or measures any particular
+vessel in this river on 1835-07-01, so every hull is an invention; the schooner Illinois,
+cheered at Newberry & Dole's wharf in July 1834, is deliberately NOT drawn or named, because
+a named vessel at a berth on a date is a claim no source makes.
+**What bounds the invention:** the TYPES — the 2026-08-18 brief's two drawbridge engravings
+(images 2 and 3) show schooner-rigged vessels moored close by the bridge and masts crowding
+the reach below it; image 11, the South Water 1834 view, draws rowboats on the water and at
+the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach; and 1830s
+lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m
+schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at
+the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd,
+against the committed heightfield, which is what the refusal rules hold each hull to. The
+CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on
+depicting Native presence stands in full — no figures, no encampment, no staging — and any
+depiction of the Potawatomi themselves remains out of scope pending consultation. What would
+replace the invention: harbour-master or newspaper records of vessels lying in the river in
+the summer of 1835 — the Chicago Democrat's marine columns are the instrument.
+**Recorded:** 2026-08-19.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
