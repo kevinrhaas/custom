@@ -7,17 +7,17 @@ T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
-T-0063 — Boats correct for the era, on the water
-T-0064 — More wagons, all over a frontier town
-T-0066 — Signboards carry the location's name, and no two are alike
-T-0065 — Period names, brands and labels on the goods
+T-0074 — Trees and bushes kept around the houses
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
+T-0063 — Boats correct for the era, on the water
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
+T-0066 — Signboards carry the location's name, and no two are alike
+T-0064 — More wagons, all over a frontier town
 T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings
 T-0072 — The Wolf Tavern's pole sign, from its documentation
-T-0074 — Trees and bushes kept around the houses
+T-0065 — Period names, brands and labels on the goods
 T-0075 — Hold the 2026-08-18 owner brief as source records
 T-0076 — Buildings are named for their people, not their spec codes
 T-0008 — 199 chimneys are painted roof-colour
