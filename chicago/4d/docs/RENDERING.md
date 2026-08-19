@@ -93,7 +93,7 @@ tallgrass photographs, all three lost). Owning phases refer to §4.
 | 9 | Zero textures anywhere | Flat PBR colours on all 244 assets; the only textures in the scene are runtime canvases (prairie tile, street wear, water normal) | W2 |
 | 10 | AO baked but switched off | `baked_ao: false` on all 244 assets. The bake works end to end; clapboard courses and window reveals a centimetre off the wall occlude each other (measured mean 0.265, 69 % of texels below half). It needs a low-poly AO cage, not tuning | W3 |
 | 11 | No environment lighting | The sky PMREM is built at boot and deliberately not installed — at any useful intensity it swamped albedo (brown log wall at R/B 1.08 vs the 1.75 its colour specifies). `renderers/web/js/world.js` says the fix in place: "Revisit with a properly exposed HDRI rather than a PMREM of an analytic sky" | W1 |
-| 12 | One 1024² shadow map, no cascades | ±60 m follow ortho; soft but low-resolution shadows, nothing beyond 60 m | W3 |
+| 12 | One shadow map, no cascades | ~~±60 m follow ortho~~ — **±120 m at 2048²/1024² (R-W3b(a), 2026-08-17), then ±240 m at 4096²/2048² (R-W5a2, same day), at an unchanged 11.7 / 23.4 cm per texel.** Still one map: past ±240 m the reach has to be bought by spending texels, which is R-W3b(b), true cascades | W3 |
 | 13 | No reflections | Water is a flat plane with a drifting normal map | W5 |
 | 14 | No town furniture | No fences, signboards, wagons, woodpiles, barrels, stovepipes, docks (ROADMAP K5, open, called "the biggest structural gap") | W6 |
 | 15 | No audio | `assets/audio/` does not exist (ROADMAP S7) | W6 |
@@ -110,7 +110,9 @@ prints its pitch). A third stands as a warning: hue/saturation cannot separate J
 here and must not be quoted.
 
 Also on the books: current full-scene budgets are 49 / 53 draw calls and 378,647 / 499,343
-triangles at 390×780 / 1280×800, against gates of ≤ 80 draw calls and per-tier triangle
+triangles at 390×780 / 1280×800 *(the draw-call halves are 16-batch figures and are superseded —
+R-W5a2 merged the town to one batch on 2026-08-17 and the worst desktop anchor reads 50 of 80)*,
+against gates of ≤ 80 draw calls and per-tier triangle
 ceilings (1,000,000 full / 800,000 balanced / 600,000 light). There is headroom, and the
 program spends it deliberately.
 

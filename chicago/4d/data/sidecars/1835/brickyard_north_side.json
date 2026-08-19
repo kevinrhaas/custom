@@ -33,7 +33,8 @@
     "symbolic_location": "North Side, not far from the north bank of the main stem, between Dearborn Street and Clark Street — about 620 m east and 110 m north of the datum origin at the forks, and outside the modelled terrain box.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -153,6 +154,6 @@
     }
   ],
   "research_note": "WHY A YARD IS WORTH MODELLING AT ALL: it makes the town's brick local. The most ambitious building under way in Chicago on 1835-07-01 is the Lake House on the north bank at Rush and Kinzie — three storeys and a basement in BRICK, in a town otherwise built of logs and sawn boards — and the obvious question a visitor asks is where the brick came from. Andreas answers it: from this yard, on the same bank, half a mile west. WHAT THIS SLICE ADDED: the dossier recorded the site as unattested [GAP] (docs/research/03-structures-north.md section 3.12); Andreas's own sentence gives it to within a block, 'on the North Side, not far from the river bank, between Dearborn and Clark streets' (scan p. 1161), so the position moves from conjectural to inferred and the [GAP] tag can be retired. TWO THINGS THIS RECORD IS HONEST ABOUT AND A READER SHOULD NOT MISS. First, it stands outside the modelled terrain box and declares it. Second, and larger, IT IS A BUILDING STANDING IN FOR AN INDUSTRY: one drying shed is drawn and the clamp, the pit, the hacks and the spoil are recorded and unbuilt, because this project has no archetype for a works. Until it does, the brickyard in the scene will read as a shed in a field.",
-  "research_doc": "docs/RESEARCH/brickyard_north_side.md",
+  "research_doc": "",
   "review_required": false
 }

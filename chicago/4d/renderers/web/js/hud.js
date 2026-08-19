@@ -24,6 +24,15 @@ const DEFAULT_SETTINGS = {
   // It lives here so a visitor can raise it for comfort without the project
   // quietly restating the average height of an 1830s adult as something else.
   speed: 1.45, eyeHeight: 1.68, fov: 72, quality: 1.5,
+  // R-A1. The road-legibility aid is OFF by default and off is the frame that
+  // shipped before it existed. It is a viewing accommodation, not an
+  // alternative reconstruction — see streets.js § R-A1 and ROADMAP R-A1.
+  roadAid: 0,
+  // K24, owner-requested. Brightness is OFF at 0 stops and 0 is the calibrated
+  // grade the scene has always rendered at. Same standing as roadAid: a viewing
+  // accommodation, never an alternative reconstruction — see world.js
+  // § BASE_EXPOSURE and ROADMAP K24.
+  brightness: 0,
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
   // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
   detail: '',
@@ -355,6 +364,20 @@ export function createHud({
   const paintEye = wireRange('s-eye', 'v-eye', 'eyeHeight',
     (v) => `${formatStature(v, settings.units)}${Math.abs(v - 1.68) < 0.01 ? ' — period eye level' : ''}`);
   wireRange('s-fov', 'v-fov', 'fov', (v) => `${Math.round(v)}°`);
+  // R-A1, and it copies the eye-height precedent for the same reason: the
+  // default position is the one the evidence and R-BUG3's measurement put
+  // there, so the readout names it rather than showing a bare zero. Moving off
+  // it is then a visible choice about your screen, not a silent drift into a
+  // different claim about the town.
+  wireRange('s-road-aid', 'v-road-aid', 'roadAid',
+    (v) => (v <= 0 ? 'Off — the roads as recorded' : `+${Math.round(v * 100)}%`));
+  // K24. Stops, not percent, and the calibrated position is named on its face
+  // for the eye-height reason: this control brightens your screen, and the
+  // readout has to make it impossible to read the brighter end as a claim that
+  // the town was brighter. A stop is also the honest unit — it is what the
+  // ceiling is bounded in (world.js § BASE_EXPOSURE).
+  wireRange('s-brightness', 'v-brightness', 'brightness',
+    (v) => (v <= 0 ? 'Calibrated — the light as measured' : `+${v.toFixed(2)} stop`));
 
   const units = $('s-units');
   if (units) {

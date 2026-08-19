@@ -27,7 +27,8 @@
     "symbolic_location": "South Division, local ENU E 249 N -272",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -160,6 +161,6 @@
     }
   ],
   "research_note": "THE HEWN-VERSUS-ROUND DISTINCTION ROADMAP K4 ASKS FOR, ATTESTED. Andreas says HEWN logs, which is the more finished construction and the commoner one at the forks; the log_dwelling archetype builds hewn logs, so the record and the mesh agree without any further parameter. When K4 adds a round-log variant, this record is the reference for the other side of the distinction.",
-  "research_doc": "docs/RESEARCH/harmon_log_cabin.md",
+  "research_doc": "",
   "review_required": false
 }

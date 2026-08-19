@@ -30,7 +30,8 @@
     "symbolic_location": "DISPLACED. The attested site is the east (south) bank of the North Branch, south of the Bloomingdale Road and opposite the later North Chicago Rolling Mills — roughly 3 km north-north-west of the forks and far outside the modelled terrain. This coordinate stands at the northern edge of modelled ground on the east bank of the North Branch instead.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -130,6 +131,6 @@
     }
   ],
   "research_note": "PLACED OUTSIDE ITS OWN SITE, ON PURPOSE, AND THE POSITION NOTE IS THE MOST IMPORTANT FIELD IN THIS RECORD. The attested site — the east or south bank of the North Branch, south of the Bloomingdale Road, opposite the later North Chicago Rolling Mills — is roughly 3 km north-north-west of the forks and about 2.8 km beyond the northern edge of the 640 m terrain box this scene models, so the building stands at the edge of modelled ground with an error of kilometres and says so. RESEARCH GAINED IN THIS SLICE, and it is more than the dossier had: docs/research/03-structures-north.md section 3.6 records the slaughterhouse as 1827, log, on the north branch, with locations 'not pinned down in reachable sources [GAP]'. A full-text search of Andreas vol. 1 closes that gap — scan p. 1149 gives the reach and the bank, scan p. 1151 gives the bank again and the 1833 throughput, and scan p. 215 puts the family several miles up the branch at the rolling-mill ground. The dossier's [GAP] tag can be retired. WHAT THIS RECORD STILL CANNOT SAY: how big the building was, how it was arranged, where the pens and the stock yard stood, or what the plant looked like in a July between packing seasons. The associated stock yard, later called Bull's Head, is not modelled at all — this archetype builds a building and the yard is an enclosure, which is the same limitation docs/LIBERTIES.md L10 records against the Western Hotel's wagon yard.",
-  "research_doc": "docs/RESEARCH/clybourn_slaughterhouse.md",
+  "research_doc": "",
   "review_required": true
 }

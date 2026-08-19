@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_10",
- "name": "The Dickinson household — a reconstructed labourer (north division)",
+ "name": "The Chapin household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_10",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_10",
-   "name": "Henry Dickinson",
+   "name": "Alvah Chapin",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

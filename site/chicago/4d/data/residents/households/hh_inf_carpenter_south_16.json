@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_16",
- "name": "The Pothier household — a reconstructed carpenter (south division)",
+ "name": "The Lecuyer household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_16",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_16",
-   "name": "Jean Pothier",
+   "name": "Jean Lecuyer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

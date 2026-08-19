@@ -33,7 +33,8 @@
     "symbolic_location": "Inside the south-west of Fort Dearborn, between the west end of the guard house and the block-house at the south-west angle.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

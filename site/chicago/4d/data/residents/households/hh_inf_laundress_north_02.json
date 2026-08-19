@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_laundress_north_02",
- "name": "The Chapin household — a reconstructed laundress (north division)",
+ "name": "The Parmelee household — a reconstructed laundress (north division)",
  "division": "north",
  "head": "inf_laundress_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_laundress_north_02",
-   "name": "Hannah Chapin",
+   "name": "Almira Parmelee",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

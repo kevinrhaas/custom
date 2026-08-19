@@ -11,6 +11,14 @@
  * little over a foot, which is what a plank walk stands above the mud and what a
  * person steps onto without thinking. Below it you step up; above it you are
  * looking at a wall and you stop. Downhill is free — you can always step down.
+ *
+ * The one thing that is not the heightfield: **bridge decks** (T-0001). A deck is
+ * a surface the visitor stands on that the terrain knows nothing about, so the
+ * floor is `surfaceAt()` rather than `terrain.walkHeight()` and every path in this
+ * module asks it. What that does NOT yet do is get you ONTO a deck from the bank:
+ * a deck stands 2.22 m over a waterline the ground meets at zero, the step-up rule
+ * refuses 2.22 m the way it refuses a wall, and the approach earthworks that close
+ * that gap are geometry and need the bake. See docs/STATUS.md.
  */
 
 import * as THREE from 'three';
@@ -92,11 +100,17 @@ export function footprintsFrom(registry) {
     const p = record.sidecar.placement ?? {};
     // A water-anchored structure's footprint is a DECK, not a wall, so it is not
     // an obstruction: treating a bridge as one would put an invisible barrier
-    // across the river with nothing visible at head height to explain it. What
-    // this does NOT yet do is let you walk the deck — the walker still follows
-    // the terrain, so the bridge is scenery you pass under rather than a route.
-    // Recorded as a limit in docs/STATUS.md rather than faked with a ramp.
+    // across the river with nothing visible at head height to explain it. The
+    // same polygon is a SURFACE instead — see decksFrom() below, which reads it
+    // as the thing you stand on rather than the thing you are kept out of.
     if (p.vertical_anchor === 'water') continue;
+    // And a record drawn by another layer is not an obstruction either. The
+    // estray pen's footprint is now a fence line rather than a wall (T-0051),
+    // and enclosures.js is explicit that a visitor walks THROUGH a fence — so
+    // keeping the polygon here would leave an invisible box on the public
+    // square with nothing at head height to explain it, which is the same bug
+    // the water clause above exists to prevent.
+    if (record.sidecar?.drawn_by) continue;
     const th = (p.rotation_deg ?? 0) * DEG;
     const cos = Math.cos(th);
     const sin = Math.sin(th);
@@ -113,13 +127,64 @@ export function footprintsFrom(registry) {
 }
 
 /**
+ * The surfaces a visitor may stand ON TOP OF, as opposed to the ground.
+ *
+ * Today that means bridge decks and nothing else, and the dataset says so: the
+ * sidecar carries `placement.walk_surface_m` — the height of the deck above the
+ * structure's own anchor — and it is `null` on all 327 structures that are not a
+ * crossing. The number is the generator's `deck_height_m`, carried through by
+ * `tools/compile_scene.py`, so the plank a visitor's boot is on and the plank the
+ * mesh draws are one number rather than two that agree until they do not.
+ *
+ * The plan outline is the FOOTPRINT, which for a bridge record is documented as
+ * the deck outline rather than a placeholder — so the surface ends exactly where
+ * the drawn deck ends, and stepping off the side of one is stepping off the side
+ * of what you can see.
+ *
+ * ONLY water-anchored structures are read. A deck's world height is its anchor
+ * plus `walk_surface_m`, and a `water` anchor is a literal zero by the definition
+ * of the vertical datum (docs/GLB-CONTRACT.md); resolving a terrain anchor would
+ * mean re-deriving the lowest ground under the footprint, which is buildings.js's
+ * job and not a calculation to keep a second copy of. Nothing in the dataset needs
+ * it, and skipping is visible — the deck simply is not walkable — where guessing
+ * would put a floating surface in the air.
+ *
+ * @param {Map} registry the loaded structure registry
+ * @returns {Array<{id:string, y:number, pts:number[][]}>}
+ */
+export function decksFrom(registry) {
+  const out = [];
+  for (const record of registry.values()) {
+    const p = record.sidecar?.placement ?? {};
+    const h = p.walk_surface_m;
+    if (typeof h !== 'number' || p.vertical_anchor !== 'water') continue;
+    const raw = record.sidecar?.footprint;
+    const poly = Array.isArray(raw) ? raw : raw?.polygon;
+    if (!Array.isArray(poly) || poly.length < 3) continue;
+
+    const th = (p.rotation_deg ?? 0) * DEG;
+    const cos = Math.cos(th);
+    const sin = Math.sin(th);
+    const e0 = p.local_e ?? 0;
+    const n0 = p.local_n ?? 0;
+    out.push({
+      id: record.id,
+      y: h,
+      pts: poly.map(([u, v]) => [e0 + u * cos + v * sin, n0 - u * sin + v * cos]),
+    });
+  }
+  return out;
+}
+
+/**
  * @param {object} o
  * @param {THREE.PerspectiveCamera} o.camera
  * @param {{height:(e:number,n:number)=>number}} o.terrain
  * @param {Array<{id:string, pts:number[][]}>} o.footprints
+ * @param {Array<{id:string, y:number, pts:number[][]}>} o.decks
  * @param {{local_e:number, local_n:number, yaw_deg:number}} o.spawn
  */
-export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
+export function createWalker({ camera, terrain, footprints = [], decks = [], spawn = {} }) {
   const state = {
     e: spawn.local_e ?? 0,
     n: spawn.local_n ?? 0,
@@ -135,11 +200,42 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
     /** Metres above local ground, 0 on foot. What the HUD reports. */
     altitude: 0,
   };
-  state.groundY = terrain.walkHeight(state.e, state.n);
-  state.eyeY = state.groundY + WALK.eyeHeight;
-
   const euler = new THREE.Euler(0, 0, 0, 'YXZ');
   const world = new THREE.Vector3();
+
+  /**
+   * The floor, and the ONLY thing in this module that answers "how high is the
+   * surface here". Every path — walking, stepping, teleporting, landing out of
+   * free-fly — goes through it, because a walker that agreed with itself only on
+   * some of them is how you end up standing on a bridge and falling through it
+   * when you stop moving.
+   *
+   * `terrain.walkHeight()` is the answer wherever no deck covers the point, wading
+   * barrier and all. Where a deck does:
+   *
+   * - **Over water the deck wins outright.** The barrier is a navigation rule
+   *   about a river you have no boat for (terrain.js's header), and a bridge is
+   *   precisely the thing that answers it. It also sits at 4.0 m, ABOVE every deck
+   *   in the dataset, so a plain max() would leave the visitor hovering 1.8 m over
+   *   the planks — which is the float docs/LIBERTIES.md L9 records.
+   * - **Over land the higher surface wins.** A deck may run BELOW the ground it
+   *   crosses: the slough this bridge spans is not modelled in this terrain epoch,
+   *   so its deck lies about 0.4 m inside the prairie. Letting the deck win there
+   *   would sink a visitor into a hill to walk a bridge over a stream that is not
+   *   drawn. The ground is what they can see, so the ground is what they walk.
+   */
+  function surfaceAt(e, n) {
+    let deckY = null;
+    for (const d of decks) {
+      if ((deckY !== null && d.y <= deckY) || !inside(e, n, d.pts)) continue;
+      deckY = d.y;
+    }
+    if (deckY === null) return terrain.walkHeight(e, n);
+    return terrain.isWater(e, n) ? deckY : Math.max(deckY, terrain.surfaceHeight(e, n));
+  }
+
+  state.groundY = surfaceAt(state.e, state.n);
+  state.eyeY = state.groundY + WALK.eyeHeight;
 
   /** Slide the capsule out of any footprint it has ended up inside. */
   function pushOut(e, n) {
@@ -165,17 +261,17 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
   /** One axis at a time, so you slide along a slope instead of sticking to it. */
   function tryStep(e, n, de, dn) {
     let ok = true;
-    const here = terrain.walkHeight(e, n);
+    const here = surfaceAt(e, n);
     let next = { e, n };
 
     if (de !== 0) {
       const cand = { e: e + de, n };
-      if (terrain.walkHeight(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
+      if (surfaceAt(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
       else ok = false;
     }
     if (dn !== 0) {
       const cand = { e: next.e, n: n + dn };
-      if (terrain.walkHeight(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
+      if (surfaceAt(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
       else ok = false;
     }
     return { ...next, ok };
@@ -208,7 +304,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
         // every crosshair inspection at the ground instead of the building.
         state.pitch = 0;
       }
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       if (altitude_m !== null) {
         this.setFlying(true);
         state.eyeY = state.groundY + Math.max(FLY.minClearance, altitude_m);
@@ -232,7 +328,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
      */
     resettle() {
       if (state.flying) return false;
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       state.eyeY = state.groundY + WALK.eyeHeight;
       this.apply();
       return true;
@@ -245,7 +341,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       const rad = bearing * DEG;
       state.e = te + Math.sin(rad) * distance;
       state.n = tn + Math.cos(rad) * distance;
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       state.eyeY = state.groundY + WALK.eyeHeight;
 
       const de = te - state.e;
@@ -279,7 +375,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
         const clear = pushOut(state.e, state.n);
         state.e = clear.e;
         state.n = clear.n;
-        state.groundY = terrain.walkHeight(state.e, state.n);
+        state.groundY = surfaceAt(state.e, state.n);
         state.eyeY = state.groundY + WALK.eyeHeight;
         state.altitude = 0;
         this.apply();
@@ -299,7 +395,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       const mag = Math.hypot(f, s);
       if (mag > 1) { f /= mag; s /= mag; }
 
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       const gain = FLY.altitudeGain(state.eyeY - state.groundY);
       const base = intent.sprint ? FLY.sprintSpeed : FLY.speed;
       const speed = base * gain;
@@ -322,9 +418,9 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       state.n += -dz;                      // world -z is north
       state.eyeY += dy;
 
-      const floor = terrain.walkHeight(state.e, state.n) + FLY.minClearance;
+      const floor = surfaceAt(state.e, state.n) + FLY.minClearance;
       state.eyeY = Math.max(floor, Math.min(FLY.maxAltitude, state.eyeY));
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       state.altitude = state.eyeY - state.groundY;
       state.speed = Math.hypot(dx, dz, dy) / Math.max(dt, 1e-6);
 
@@ -389,7 +485,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       // visitor visibly entered a bank while climbing and floated while coming
       // down.  Bilinear sampling already makes ordinary terrain continuous;
       // the 0.35 m step rule above is the only place an actual step may occur.
-      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.groundY = surfaceAt(state.e, state.n);
       state.eyeY = state.groundY + WALK.eyeHeight;
       state.altitude = 0;
 

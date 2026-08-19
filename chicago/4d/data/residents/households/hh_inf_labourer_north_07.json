@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_07",
- "name": "The Nolan household — a reconstructed labourer (north division)",
+ "name": "The Cavanagh household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_07",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_07",
-   "name": "Bryan Nolan",
+   "name": "Martin Cavanagh",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

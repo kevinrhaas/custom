@@ -20,16 +20,18 @@
  *     id we recorded when we built the batch.
  *
  *  3. **One material per batch, and the batch does not care what colour the
- *     building is.** `BatchedMesh` renders one material, so the buildings become
- *     one batch per distinct material. Materials identical in every rendered
- *     respect are collapsed, and BASE COLOUR IS CARRIED PER VERTEX rather than
- *     per material (see `materialKey`), so two walls that differ only in paint
- *     share a draw call. The five materials of one tavern become a handful of
- *     draw calls and the five materials of a hundred taverns still do.
+ *     building is or how rough it is.** `BatchedMesh` renders one material, so
+ *     the buildings become one batch per distinct material. Materials identical
+ *     in every rendered respect are collapsed, and BASE COLOUR (R-W5a) and
+ *     ROUGHNESS (R-W5a2) ARE CARRIED PER VERTEX rather than per material (see
+ *     `materialKey`), so two walls that differ only in paint or finish share a
+ *     draw call. The whole untextured town is one draw call in the colour pass
+ *     and one in the shadow pass, and it stays one as blocks land.
  */
 
 import * as THREE from 'three';
 import { enuToWorld, bearingToYaw, toFloatAttribute } from './terrain.js';
+import { toneFor, toneFactors, NEUTRAL_TONE } from './facades.js';
 
 /** Walk up until something claims a structure_id. Returns null if nothing does. */
 export function structureIdOf(object) {
@@ -135,13 +137,17 @@ function applyExistence(geo, rule) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
-function normalizeGeometry(src, matrix, material, confidence, label) {
+function normalizeGeometry(src, matrix, material, confidence, label, tone) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
 
+  const c = material?.color;
+  const base = [c ? c.r : 1, c ? c.g : 1, c ? c.b : 1];
+  const factors = toneFactors(base[0], base[1], base[2], tone ?? NEUTRAL_TONE);
   geo.setAttribute('position', toFloatAttribute(position, 3));
-  geo.setAttribute('color', albedoAttribute(material, position.count));
+  geo.setAttribute('color', albedoAttribute(base, factors, position.count));
+  geo.setAttribute('_roughness', roughnessAttribute(material, position.count));
   geo.setAttribute('normal', src.getAttribute('normal')
     ? toFloatAttribute(src.getAttribute('normal'), 3)
     : new THREE.BufferAttribute(new Float32Array(position.count * 3), 3));
@@ -161,11 +167,12 @@ function normalizeGeometry(src, matrix, material, confidence, label) {
   if (!src.getAttribute('normal')) geo.computeVertexNormals();
 
   const warning = confidence.ensureAttribute(geo, label);
-  return { geo, warning };
+  return { geo, warning, base, factors };
 }
 
 /**
- * The material's base colour, written once per vertex.
+ * The material's base colour, written once per vertex — times its building's
+ * own facade tone.
  *
  * `material.color` is already in the renderer's linear working space (three
  * converts on assignment, and glTF's `baseColorFactor` is linear to begin
@@ -173,12 +180,18 @@ function normalizeGeometry(src, matrix, material, confidence, label) {
  * the `color` attribute with no colour-space conversion of its own. So copying
  * `.r/.g/.b` straight in and leaving the shared material white is EXACTLY the
  * arithmetic that was happening before — the same product, in a different
- * order. That exactness is the whole licence for this: a documented white wall
- * still renders at the value its record claims, to the bit.
+ * order.
+ *
+ * **T-0002 puts one more factor in that product and nothing else changes.**
+ * `facades.js` returns a per-channel factor for this structure — silvering by
+ * age, plus a per-building jitter — and the exactness above is what makes the
+ * factor safe to apply here: a documented white wall still renders at the value
+ * its record claims, to the bit, because `toneFor` hands an attested paint the
+ * identity tone and 1 x 1 is 1. See `facades.js` for what is invented and
+ * `docs/LIBERTIES.md` L126 for its bounds.
  */
-function albedoAttribute(material, count) {
-  const c = material?.color;
-  const r = c ? c.r : 1, g = c ? c.g : 1, b = c ? c.b : 1;
+function albedoAttribute(base, factors, count) {
+  const r = base[0] * factors[0], g = base[1] * factors[1], b = base[2] * factors[2];
   const out = new Float32Array(count * 3);
   for (let i = 0; i < count; i += 1) {
     out[i * 3] = r; out[i * 3 + 1] = g; out[i * 3 + 2] = b;
@@ -187,8 +200,67 @@ function albedoAttribute(material, count) {
 }
 
 /**
+ * The material's roughness, written once per vertex — R-W5a2.
+ *
+ * The same trick as `albedoAttribute`, one step further, and it is exact for
+ * the same reason: a triangle never spans two source meshes, so all three of
+ * its vertices carry the identical float and the rasteriser's interpolation of
+ * three equal values is that value. What it replaces is `roughnessFactor =
+ * roughness` reading a per-material uniform — see `PER_VERTEX_ROUGHNESS`, which
+ * substitutes the attribute for the uniform and nothing else.
+ *
+ * Why this needed a shader patch when colour did not: `vertexColors` is a stock
+ * three feature with a `<color_fragment>` chunk behind it; roughness has no such
+ * chunk, so the attribute has to be declared, carried to the fragment stage and
+ * substituted into `<roughnessmap_fragment>` by hand.
+ *
+ * A material with a `roughnessMap` would break the substitution — the chunk it
+ * replaces multiplies the map's green channel in. Nothing in this dataset ships
+ * one (R-W2a: 1,353 material slots, zero textures of any kind), the batch key
+ * still separates on `roughnessMap`, and `PER_VERTEX_ROUGHNESS` refuses to
+ * install itself on a material that has one rather than silently dropping it.
+ */
+function roughnessAttribute(material, count) {
+  const r = typeof material?.roughness === 'number' ? material.roughness : 1;
+  const out = new Float32Array(count);
+  out.fill(r);
+  return new THREE.BufferAttribute(out, 1);
+}
+
+/**
+ * Carry `_roughness` from the attribute buffer to `roughnessFactor`.
+ *
+ * Chained the way `confidence.patch` chains — prior first, then ours — so the
+ * two patches compose on the same material in either order. The fragment
+ * substitution is the whole of it: three's `<roughnessmap_fragment>` is
+ * `float roughnessFactor = roughness;` plus a `USE_ROUGHNESSMAP` branch, so
+ * with no map this is the same statement with the uniform swapped for the
+ * varying.
+ */
+function perVertexRoughness(material) {
+  if (material.roughnessMap) return material;
+  const prior = material.onBeforeCompile;
+  material.onBeforeCompile = (shader, renderer) => {
+    if (typeof prior === 'function') prior(shader, renderer);
+    shader.vertexShader = 'attribute float _roughness;\nvarying float vChiRough;\n'
+      + shader.vertexShader.replace(
+        '#include <begin_vertex>',
+        '#include <begin_vertex>\n  vChiRough = _roughness;',
+      );
+    shader.fragmentShader = 'varying float vChiRough;\n'
+      + shader.fragmentShader.replace(
+        '#include <roughnessmap_fragment>',
+        'float roughnessFactor = vChiRough;',
+      );
+  };
+  material.needsUpdate = true;
+  return material;
+}
+
+/**
  * Two materials that render identically should not cost two draw calls — and
- * COLOUR IS NOT PART OF THE ANSWER, because colour is carried per vertex.
+ * NEITHER COLOUR NOR ROUGHNESS IS PART OF THE ANSWER, because both are carried
+ * per vertex.
  *
  * This is R-W5a, and the measurement is what makes the case. Every one of the
  * 47 building batches in the 2026-08-15 scene was the same
@@ -203,31 +275,40 @@ function albedoAttribute(material, count) {
  *
  * Taking `color` out of the key collapses those 47 to 16 and, far more
  * importantly, makes a new roof's paint FREE: a block can land any colour it
- * likes without adding a batch. Roughness is left in the key deliberately — it
- * would need a shader patch to carry per-vertex, and 16 batches is already
- * inside the budget with room. The remaining 16 → 1 is written up under R-W5a
- * in docs/ROADMAP.md with its own numbers.
+ * likes without adding a batch.
+ *
+ * **R-W5a2, 2026-08-17: roughness is out of the key too, and 16 became 1.** It
+ * is the shader patch R-W5a declined to write (`perVertexRoughness`), and the
+ * reason it was worth writing is not the colour pass: every batch that enters
+ * the sun's shadow box is a second draw call in the SHADOW pass, so the town's
+ * batch count was setting how far the sun could reach. R-W3b(a) measured the
+ * reach as draw-call-bound at ±120 m; this is what unbound it.
  *
  * `emissive` stays in the key: nothing in this dataset uses it, and if
  * something ever does, a glowing material is not something to merge silently
  * into a batch of dark ones.
  *
- * Roughness and metalness are compared at THREE DECIMALS, which costs two more
- * batches than it sounds and is not a tolerance dialled by eye. The town is
- * baked by two pipelines: the bespoke masters carry roughness as a float32
+ * Metalness is compared at THREE DECIMALS rather than exactly, and the reason
+ * is the town's two bake pipelines: the bespoke masters carry a float32
  * (`0.8999999761581421`) and the generated infill writes the decimal it
  * authored (`0.9`). Those are the same number to any renderer, and comparing
- * them exactly split the 0.90 and 0.88 buckets in two for no reason a visitor
- * could ever see. Nothing in the dataset uses two roughness values closer than
- * 0.01 on purpose.
+ * them exactly split buckets in two for no reason a visitor could ever see.
+ * (Roughness was in this key on the same footing until R-W5a2 took it out
+ * altogether; nothing in the dataset uses two roughness values closer than 0.01
+ * on purpose, which is why the quantisation was safe while it lasted.)
+ *
+ * `roughnessMap` stays in the key even though no asset in this dataset carries
+ * one, because `perVertexRoughness` cannot substitute for a chunk that samples
+ * a texture — so a mapped material must not be merged with an unmapped one.
  */
 function materialKey(m) {
   const near = (v) => (typeof v === 'number' ? v.toFixed(3) : '-');
   return [
     m.type,
     m.emissive?.getHexString() ?? '-',
-    near(m.roughness), near(m.metalness),
+    near(m.metalness),
     m.map?.uuid ?? '-', m.normalMap?.uuid ?? '-', m.aoMap?.uuid ?? '-',
+    m.roughnessMap?.uuid ?? '-',
     m.side, m.transparent ? 't' : 'o', m.alphaTest ?? 0, m.flatShading ? 'f' : 's',
   ].join('|');
 }
@@ -243,8 +324,12 @@ export function createBuildings({ registry, confidence, terrain }) {
   group.name = 'structures';
   const problems = [];
 
-  // material key -> { material, entries: [{ record, geo }] }
+  // material key -> { material, entries: [{ record, geo, factors }] }
   const groups = new Map();
+  /** structure id -> the facade tone applied to every one of its surfaces. */
+  const tones = new Map();
+  /** The colour ranges `setWeathering` rewrites: one row per source mesh. */
+  const toneRanges = [];
   /** structure id -> its footprint extent in its own local frame, so a building
    *  can be stood on the lowest ground UNDER it rather than under its origin.
    *  Filled in the load loop because placement needs it. */
@@ -271,12 +356,20 @@ export function createBuildings({ registry, confidence, terrain }) {
       continue;
     }
 
+    // T-0002. One tone per STRUCTURE, resolved once and multiplied into every
+    // surface the structure owns — walls, roof, trim, stack alike. Per
+    // structure rather than per material because on 38 of the shipped assets
+    // the material names are gone (ROADMAP K36(a)), and a rule that reads names
+    // would skip exactly those buildings.
+    const tone = toneFor(record.sidecar);
+    tones.set(record.id, tone);
+
     for (const { mesh, matrix } of meshes) {
       const label = `${record.id}/${mesh.name || 'mesh'}`;
       const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       let prepared;
       try {
-        prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label);
+        prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label, tone);
         // After the channel exists and is float — see existenceFloor for why the
         // building's own existence grade governs what its parts may claim.
         applyExistence(prepared.geo, existenceFloor(record));
@@ -295,12 +388,17 @@ export function createBuildings({ registry, confidence, terrain }) {
         // multiply come out unchanged — see albedoAttribute.
         material.vertexColors = true;
         material.color = new THREE.Color(1, 1, 1);
-        material.name = `merged-r${(material.roughness ?? 1).toFixed(2)}`;
+        material.name = 'merged';
+        // Roughness now arrives per vertex too (R-W5a2). The material's own
+        // value is left where it is rather than whitened the way colour is:
+        // it is a straight substitution, not a multiply, so the uniform is
+        // simply never read once the patch is installed.
+        perVertexRoughness(material);
         confidence.patch(material);
         bucket = { material, entries: [] };
         groups.set(key, bucket);
       }
-      bucket.entries.push({ record, geo: prepared.geo });
+      bucket.entries.push({ record, geo: prepared.geo, factors: prepared.factors });
       totalTris += prepared.geo.getIndex().count / 3;
 
       // Grow this structure's local footprint as its parts arrive — see
@@ -409,9 +507,19 @@ export function createBuildings({ registry, confidence, terrain }) {
     batch.customDepthMaterial = depthMaterial;
     batch.userData.batchIndex = [];
 
-    for (const { record, geo } of bucket.entries) {
+    for (const { record, geo, factors } of bucket.entries) {
       const geometryId = batch.addGeometry(geo);
       const instanceId = batch.addInstance(geometryId);
+      // T-0002. Where this mesh's colours ended up inside the batch, so the
+      // tone can be wound back and forth at runtime — see setWeathering.
+      const range = batch.getGeometryRangeAt(geometryId);
+      toneRanges.push({
+        batch,
+        id: record.id,
+        start: range.vertexStart,
+        count: range.vertexCount,
+        factors,
+      });
       batch.setMatrixAt(instanceId, placements.get(record.id));
       batch.userData.batchIndex[instanceId] = record.id;
       record.instanceId = instanceId;
@@ -446,6 +554,50 @@ export function createBuildings({ registry, confidence, terrain }) {
     batches.push(batch);
   }
 
+  /**
+   * How much of the facade tone is applied, 0..1 — T-0002's runtime handle.
+   *
+   * It exists because of R-BUG6(a)'s finding: a compile-time flag is not a
+   * runtime handle, and a gate that cannot turn a thing OFF cannot prove it is
+   * on. With this, the suite photographs the same held frame at 1 and at 0 and
+   * measures the difference, which is the only evidence that the tone reaches
+   * the render rather than merely reaching an array.
+   *
+   * The rewrite is exact enough to restore: each range is scaled by the ratio
+   * between the factor it should carry now and the one it carries, so a round
+   * trip to 0 and back leaves float dust rather than a changed frame — and the
+   * gate asserts the restored frame, not just the changed one.
+   *
+   * A visitor never calls it. It is not a setting; the tone is what the town
+   * looks like.
+   */
+  let weathering = 1;
+  function setWeathering(value) {
+    const t = Math.max(0, Math.min(1, Number(value)));
+    if (!Number.isFinite(t) || t === weathering) return weathering;
+    const touched = new Set();
+    for (const row of toneRanges) {
+      const attr = row.batch.geometry.getAttribute('color');
+      if (!attr) continue;
+      const a = attr.array;
+      const scale = [0, 1, 2].map((i) => {
+        const target = 1 + (row.factors[i] - 1) * t;
+        const applied = 1 + (row.factors[i] - 1) * weathering;
+        return applied === 0 ? 1 : target / applied;
+      });
+      const end = row.start + row.count;
+      for (let v = row.start; v < end; v += 1) {
+        a[v * 3] *= scale[0];
+        a[v * 3 + 1] *= scale[1];
+        a[v * 3 + 2] *= scale[2];
+      }
+      touched.add(attr);
+    }
+    for (const attr of touched) attr.needsUpdate = true;
+    weathering = t;
+    return weathering;
+  }
+
   const raycaster = new THREE.Raycaster();
   raycaster.far = 400;
 
@@ -456,6 +608,54 @@ export function createBuildings({ registry, confidence, terrain }) {
     triangles: totalTris,
     /** Draw calls these buildings cost in the colour pass. */
     get drawCalls() { return batches.length; },
+
+    /** T-0002's runtime handle: 1 is the town as it ships, 0 is every building
+     *  back on its archetype's flat colour. */
+    setWeathering,
+    get weathering() { return weathering; },
+
+    /**
+     * What tone each structure was given and what its vertices were actually
+     * written with, keyed by structure id.
+     *
+     * Both halves are here on purpose. The tone is the INTENT — what
+     * `facades.js` decided from the record — and `drawn` is the READBACK, summed
+     * off the colour attribute that goes into the batch. A gate that only ever
+     * reads the intent cannot tell a live rule from a dead one, which is the
+     * mistake K24 found in R-A1's own gate; a gate that reads both can.
+     */
+    facadeTones() {
+      const sums = new Map();
+      for (const row of toneRanges) {
+        const attr = row.batch.geometry.getAttribute('color');
+        if (!attr) continue;
+        const a = attr.array;
+        let seen = sums.get(row.id);
+        if (!seen) { seen = { sum: [0, 0, 0], n: 0, surfaces: new Set() }; sums.set(row.id, seen); }
+        const end = row.start + row.count;
+        for (let v = row.start; v < end; v += 1) {
+          seen.sum[0] += a[v * 3];
+          seen.sum[1] += a[v * 3 + 1];
+          seen.sum[2] += a[v * 3 + 2];
+        }
+        seen.n += row.count;
+        if (row.count) {
+          seen.surfaces.add([a[row.start * 3], a[row.start * 3 + 1], a[row.start * 3 + 2]]
+            .map((v) => v.toFixed(6)).join(','));
+        }
+      }
+      const out = {};
+      for (const [id, tone] of tones) {
+        const d = sums.get(id);
+        out[id] = {
+          ...tone,
+          vertices: d ? d.n : 0,
+          surfaces: d ? d.surfaces.size : 0,
+          drawn: d && d.n ? [d.sum[0] / d.n, d.sum[1] / d.n, d.sum[2] / d.n] : null,
+        };
+      }
+      return out;
+    },
 
     /**
      * Every structure's rendered size, in metres, keyed by structure id.

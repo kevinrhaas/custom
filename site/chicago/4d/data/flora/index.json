@@ -1,5 +1,5 @@
 {
-  "_doc": "Manifest for the flora zone records, written by hand and kept in step with the zone files. A static host cannot be globbed, which is why this exists. extent, priority, plantable_in_scene and the ground_* / bare_soil_fraction values are DENORMALISED COPIES so the ground shader can work from one fetch; the zone record is authoritative and tools/validate.py fails the build if they disagree. Zones 7, 8 and 9 are recorded but have no modelled ground in this scene: plantable_in_scene is false and the renderer will match nothing.",
+  "_doc": "Manifest for the flora zone records, written by hand and kept in step with the zone files. A static host cannot be globbed, which is why this exists. extent, priority, plantable_in_scene and the ground_* / bare_soil_fraction values are DENORMALISED COPIES; the zone record is authoritative and tools/validate.py fails the build if they disagree. OF THOSE COPIES THE RENDERER READS extent AND priority AND NOTHING ELSE — this line used to say the ground_* and bare_soil_fraction copies were here 'so the ground shader can work from one fetch', and ROADMAP K42 measured that no renderer file fetches this manifest for the ground at all: terrain.js never opens data/flora, and the sward's own bare_soil_fraction is read off the zone record. plantable_in_scene is read by nothing either; it is a claim tools/validate.py gates. Zones 7, 8 and 9 are recorded but have no modelled ground in this scene, and the renderer matches nothing there because their extents do not meet the modelled ground — not because of the flag.",
   "version": 1,
   "scene_date": "1835-07-01",
   "zones": [
@@ -464,7 +464,7 @@
         "sources": [
           "chicagology_prefire273"
         ],
-        "note": "Andreas: 'On the South Side, a body of timber grew along the river, extending east as far as Wells Street, and following the bend of the river, crossed Clark Street, and extending south two or three miles', and the North Side carried a thrifty heavy growth of timber. Wells Street is about 440 m east of this box's east edge, so the whole South Division frontage inside the box is inside that belt. The West Division is excluded by polygon because Andreas documents it as entirely free from timber; the one exception he names, the grove up the South Branch, is about 5 km away. The North Division is excluded too, not because it carries no timber but because the dossier treats the timber north-east of the forks as its own community (ZONE 6) with its own composition, and two records must not both claim the same ground. The 8-90 m band implements the dossier's '30-120 m wide irregular gallery' and is an inference; it is measured from the waterline, so it also keeps the gallery off the 7 m north-side slough, which is not a river."
+        "note": "Andreas: 'On the South Side, a body of timber grew along the river, extending east as far as Wells Street, and following the bend of the river, crossed Clark Street, and extending south two or three miles', and the North Side carried a thrifty heavy growth of timber. CORRECTED 2026-08-16 (ROADMAP K45(b2)): this sentence used to read 'Wells Street is about 440 m east of this box's east edge, so the whole South Division frontage inside the box is inside that belt', and Wells Street is not there. Its committed centreline in data/streets/1835.json runs E +328.1 to +330.5, a mean of E +329.3 — nine metres EAST of this box's east edge, not 440. The conclusion happened to survive the error, because the box ends at E +320, but not for the reason written: the South Division frontage inside the 640 m box is inside the belt by nine metres of margin rather than by four hundred. The distinction stopped being academic when the heightfield was carried east to E +1700, because a belt read as running 440 m past the box would have licensed a gallery over the beach ridges. The woody renderer now reads the east end of this belt from the Wells Street record itself. The West Division is excluded by polygon because Andreas documents it as entirely free from timber; the one exception he names, the grove up the South Branch, is about 5 km away. The North Division is excluded too, not because it carries no timber but because the dossier treats the timber north-east of the forks as its own community (ZONE 6) with its own composition, and two records must not both claim the same ground. The 8-90 m band implements the dossier's '30-120 m wide irregular gallery' and is an inference; it is measured from the waterline, so it also keeps the gallery off the 7 m north-side slough, which is not a river."
       },
       "ground_rgb": [
         62,
@@ -768,6 +768,13 @@
         44
       ],
       "bare_soil_fraction": 0.45
+    }
+  ],
+  "plantings": [
+    {
+      "id": "sauganash_yard_trees",
+      "file": "plantings/sauganash_yard.json",
+      "note": "Stems whose position is STATED rather than dealt — the trees kept behind the Sauganash's yard fence. renderers/web/js/trees.js reads exactly the files named here and never probes; the species each stem names must be one the zone records above already describe."
     }
   ],
   "palettes": [

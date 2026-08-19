@@ -26,6 +26,7 @@ differently and placed the same building 6 m apart before these were written dow
 | mesh local origin, in plan | the **footprint polygon's own coordinate origin** — the point the record's `position` refers to, i.e. polygon coordinate `(0, 0)`. NOT the centroid and NOT the bbox corner (they coincide only by accident). |
 | mesh local origin, vertically | `y = 0` at the base of the walls |
 | …for a structure over water | `y = 0` at the **design water surface**, not the ground — a bridge's one documented dimension is its clearance above the water, and its piers run to a bed we do not model. The renderer must place such a structure against the water plane rather than sampling the terrain. Declared per archetype; `bridge_timber` is the first. **Wired 2026-08-10** with the first bridge record: the archetype declares `VERTICAL_ANCHOR` in its parameter module, `tools/compile_scene.py` copies it into `placement.vertical_anchor`, and the renderer places `water` at a literal `y = 0` — that plane is zero by the definition of the vertical datum, so no lookup is involved. Anything that declares nothing gets `terrain`, unchanged. |
+| …and what a visitor may STAND on | `placement.walk_surface_m`, metres above that same `y = 0`, or `null` where there is no such surface — which is every structure but the four bridges. **Additive, wired 2026-08-17** (T-0001), by the same route and for the same reason as `vertical_anchor` in the row above: the archetype's parameter module already resolves `deck_height_m`, `tools/compile_scene.py` reads it off the resolved params without Blender, and the renderer's walker uses it as the floor. The deck a boot is on and the deck the mesh draws are therefore ONE number. Nothing about the GLB itself changes, and no generator is asked for anything new. The alternative — the renderer finding the deck primitive by its material name — was rejected: material names are not pinned anywhere in this document, so a renderer keyed on one would be reading a convention nobody promised to keep, and the drawbridge's gallows frames sit five metres above its deck, so the bounding box is not the answer either. |
 | footprint axes → 3D | polygon `u` → **+X**, polygon `v` → **−Z** (so +v is north, matching ENU) |
 | `rotation_deg` | facade bearing, **degrees clockwise from grid north**, 0 = facing north. In three.js: `rotation.y = -deg * PI/180`. |
 | ENU → three.js | `local_e` → **+X**, `local_n` → **−Z**, up → **+Y** |
@@ -143,10 +144,22 @@ whose height is a guess is a guessed wall, even if we know it was white.
 
 - One shared material per batch. A building with five materials is **five batches**, not one —
   glTF primitives cannot span materials, so "all buildings in a single `BatchedMesh`" is not
-  achievable while material sets differ. Draw calls stay flat as buildings are added only if
-  they **share** material sets, which is what the `gltf-transform palette` step is for. That
-  step has not run yet, so the current count is per-material.
-- Run `gltf-transform palette` so flat per-building colours become a shared atlas.
+  achievable while material sets differ. **Corrected 2026-08-16 by R-W5a and K36(b):** the
+  renderer no longer batches per material *set*. `materialKey()` batches on the fields a
+  renderer actually distinguishes and leaves `color` out of them, so a building's parts join
+  the town's existing batches by roughness and a new paint colour costs nothing. The town is
+  **16 batches**, on the site as well as in the tree.
+- ~~Run `gltf-transform palette` so flat per-building colours become a shared atlas.~~
+  **REFUSED 2026-08-16 with numbers — K36(b).** The palette pass fires on any file with five
+  or more materials, and it had been firing on 38 shipped assets since the step was written.
+  It merges materials *inside one file* and, because `materialKey()` includes the texture and
+  a GLTFLoader mints a fresh uuid per loaded map, it makes those files **unbatchable against
+  everything else**: 38 assets shipped as 40 single-building batches, the published town drew
+  **56** batches against the tree's 16, and **four of the eight scene anchors were over the
+  80-call budget** (worst 102). With the pass off: 56 → 16 batches, worst anchor 70, no
+  anchor over budget. It is off in `tools/web_derivatives.sh`, and `BAKE_PALETTE=1` restores
+  it for anyone re-measuring. A shared atlas is still the right idea — it is **R-W2b's** job,
+  authored across the town rather than generated per file.
 - **Bake ambient occlusion into the texture**, not into vertex colours.
 - No emissive, no transparency in the base asset. The confidence view's translucency is a
   *renderer* effect (screen-door dither in the opaque pass), never baked geometry.
@@ -156,11 +169,27 @@ whose height is a guess is a guessed wall, even if we know it was white.
 | artifact | form | where |
 |---|---|---|
 | archival master | uncompressed `.glb` | `assets/gltf/` (committed, not published) |
-| web derivative | `EXT_meshopt_compression` + KTX2 textures | `assets/web/` → published |
+| web derivative | `EXT_meshopt_compression`, **or the master passed through where compressing it is bigger** | `assets/web/` → published |
 
 The master is the source of truth; derivatives regenerate from it. Meshopt over Draco: it
 decodes far faster with no per-file WASM cold start, which matters more than bytes for ~150
 small meshes.
+
+KTX2 is **not** in that row and never has been. `--texture-compress ktx2` is off in
+`tools/web_derivatives.sh` because the vendored `GLTFLoader` has no `setKTX2Loader()` and no
+Basis transcoder, so a KTX2 asset throws in the loader and leaves the scene; see the script.
+
+**The passthrough is a measured rule, not an exception — K37, 2026-08-16.** `meshopt` writes a
+compression header, a buffer-view table and an index buffer, and below a few hundred triangles
+those cost more than they save. Running the step over the 90 flagged placeholders takes them
+**520,700 → 628,028 bytes, +20.6 %**, 88 of the 90 growing. Nothing about an asset's *kind*
+predicts the sign — three assets that had always been compressed here were shipping larger than
+their masters, and two of the ninety placeholders compress 9.3 % smaller — so the step measures
+each file and keeps the smaller one, and `tools/measure_web_derivatives.py` asserts that no
+derivative is bigger than its master. A passthrough carries **exact float positions** rather
+than a quantised lattice, so it satisfies every other assertion in that gate by construction;
+93 of 334 assets ship this way, 11.3 % of the payload. The two epoch meshes are excluded by
+name while R-W6(b) holds them.
 
 ### Quantised geometry: float before you transform
 
@@ -223,7 +252,7 @@ GLB. The renderer reads placement, provenance and footprint from here.
       "transcribes": [ { "work": "...", "date": "1883-07-22" } ],
       "what_it_supplies": ["..."], "what_it_does_not_supply": ["..."] }
   ],
-  "research_doc": "docs/RESEARCH/sauganash_hotel.md"
+  "research_doc": "docs/RESEARCH/sauganash_hotel.md"   // "" where none is written
 }
 ```
 
@@ -245,6 +274,16 @@ is better than about ±20 m.
 
 `footprint` is `{ "polygon": [[u,v],…], "confidence": "…" }` — the polygon alone would lose the
 footprint's confidence, which is exactly what the confidence view exists to show.
+
+`research_doc` is **the dossier that covers this record, or `""` where none has been written**
+— resolved by the compiler against the repository rather than asserted by convention. The path
+used to be `docs/RESEARCH/<id>.md` for anything with no reconstruction block, which is right
+about 302 of 332 records and wrong about 30, and the card rendered the guess as a link either
+way. Emitting the empty string rather than dropping the key keeps the sidecar one shape
+everywhere, the rule `residents` already follows. **The renderer composes an absolute URL from
+it** (`popup.js` `DOSSIER_BASE`), because `docs/` is deliberately not published: a path relative
+to the walkthrough resolves in the source tree and 404s everywhere a visitor stands. Both halves
+are gated by `tools/check_dossier_links.py` (ROADMAP K26).
 
 `documented_range`, `change_note` and the `position_*` fields are the phase's claim about
 itself, carried in the same shape as an attribute (value/confidence/sources/note) so the card

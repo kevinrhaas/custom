@@ -162,15 +162,6 @@
       "phase_id": "works_1833",
       "structure_id": "elston_soap_candle_manufactory"
     },
-    "estray_pen__pen_1833.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 59204,
-      "inputs_sha256": "24524edc3710435b57f841cb42d9b46e0ce4007c3cfcceace0f5221ea6706e35",
-      "kind": "generated",
-      "phase_id": "pen_1833",
-      "structure_id": "estray_pen"
-    },
     "exchange_coffee_house__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
@@ -846,6 +837,46 @@
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
     },
+    "recon_1835_blk_lake_clark_a3_04__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4252,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "6ed526ff6b37053fc219fdbc5929bfddc4d1213a8b6efdca24902ad1e6e2f86d",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_a3_04.json"
+    },
+    "recon_1835_blk_lake_clark_d1_01__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "bytes": 6520,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "becb40d4eee93be7960ce25596af27b07f4f6304a7be5f0ffa3f1d555d084484",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d1_01.json"
+    },
+    "recon_1835_blk_lake_clark_d3_02__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6496,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "134c297805babcf5f367fb388229e9623097e16ee24152ab1a2319cafcbcb52e",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d3_02.json"
+    },
+    "recon_1835_blk_lake_clark_d5_03__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6504,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "32d66176e0134a1891512ae4423a64faa30621af1eb33f2664a777e703490e53",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_lake_clark_d5_03.json"
+    },
     "recon_1835_blk_lake_market_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1413,6 +1444,26 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_dearborn_a3_06"
     },
+    "recon_1835_blk_south_water_dearborn_c3_01__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "bytes": 7108,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "b841f7e4d974b6f7fed5fba40d98a01dfda1c97082a9825c60224b2ccf78cbf0",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_c3_01.json"
+    },
+    "recon_1835_blk_south_water_dearborn_c3_02__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "bytes": 7084,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "c8aaad7fc6ad942f54898b7a80aaa4428a9acc14c0cdf0550c0d4d05a5522458",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_south_water_dearborn_c3_02.json"
+    },
     "recon_1835_blk_south_water_dearborn_d1_05__inferred_1835.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -1439,24 +1490,6 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_dearborn_d3_03"
-    },
-    "recon_1835_blk_south_water_dearborn_d4_02__inferred_1835.glb": {
-      "archetype": "frame_dwelling",
-      "baked_ao": false,
-      "bytes": 26604,
-      "inputs_sha256": "c25093b87b1a37b50c8eb218e0ea3b63392316b7cce5e8ba0de5d24c87999b78",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_blk_south_water_dearborn_d4_02"
-    },
-    "recon_1835_blk_south_water_dearborn_d5_01__inferred_1835.glb": {
-      "archetype": "frame_dwelling",
-      "baked_ao": false,
-      "bytes": 27556,
-      "inputs_sha256": "208f435426b50c814363b4662a6e197acd1d4f10d131444dada7a270ae07ddc4",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_blk_south_water_dearborn_d5_01"
     },
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",

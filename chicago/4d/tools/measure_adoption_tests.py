@@ -27,8 +27,11 @@ roof cap — carpenters, labourers, laundresses, teamsters — and rule 6 could 
 written to point at that list. It was not: it was written to point at the trade's own
 argument, which is a stronger requirement, because an argument that has never claimed to
 be a floor has never invited anybody to raise it. The two readings disagree for exactly
-two trades, and that disagreement is ROADMAP K28's, not this tool's, to settle. So this
-prints BOTH: the literal reading it implements, and whether rule 3 names the trade.
+two trades. **K28 settled it on 2026-08-16 in favour of the literal reading this tool
+already implements** (rule 6 clause iii), so the `*` below marks a refusal with a named
+remedy rather than an open question: if the laundresses' or the teamsters' count really
+is a floor, the place to say so is that trade's own argument. This still prints BOTH
+readings, because the reader is owed the disagreement the decision was made about.
 
 Detection is deliberately conservative and always shows its working: a match is a
 sentence in which "floor" is used as a predicate of the count, and every matched sentence
@@ -45,14 +48,22 @@ D4 candidacy rests on one household in the NORTH Division and the labourers' D2 
 the NORTH and WEST, while every carpenter and labourer this layer houses in the SOUTH
 Division is in a D3 or a D1. So the `pair housed` column, and `--pairs`.
 
-**It reports and does not gate, because the stricter reading is not obviously right.**
-Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted in
-the West Division, argued in exactly the projected form — and rule 6 names that adoption
-as one of the four decisions its third test recovers. Choosing between the readings is
-ROADMAP K28's, with both facts in front of it.
+**K28 REFUSED THE PAIR READING ON 2026-08-16 (rule 6 clause i), and the reason is the one
+this tool had already put in front of it.** Requiring the pair refuses the fourteenth
+labouring household — T-A4's D1 adopted in the West Division, argued in exactly the
+projected form — and rule 6 names that adoption as one of the four decisions its third
+test recovers. Rule 6 says in the same breath that a test which has to be told the answers
+is a preference and one that recovers them is a rule; the pair reading has to be told one
+of the four. So the projections stand, and what bounds them is the CAP K28 added in the
+same clause list: **one adoption per trade per block parcel** (clause ii). The projections
+widen which roofs are eligible; the cap bounds how fast any of them may move a count.
 
-Standalone. Not wired into tools/check.sh: it measures a judgement, and a gate that
-asserted the judgement would freeze K28's question shut.
+Standalone, and still not wired into tools/check.sh. What IS gated now lives in
+`tools/generate_inferred_households.py`, which refuses an adoption by a trade whose own
+argument states no floor (clause iii) and a block that adopts one trade twice (clause ii).
+This tool reports the table those gates are decided against; a second copy of the rule in
+the gate path is how the two would drift, which is why the gate imports `floor_evidence`
+from here instead of restating the predicate.
 
 Usage:
     tools/measure_adoption_tests.py D1 south          # one roof family in one division
@@ -180,8 +191,9 @@ def report(programme: dict, family: str, division: str, verbose: bool) -> int:
         print("  no trade passes all three tests — this roof stays an anonymous "
               "count-unit")
     print("\n  * method rule 3 names this trade unbounded, but its own argument never "
-          "claims a\n    floor, so it fails test 1 as rule 6 is written. That "
-          "disagreement is ROADMAP K28.")
+          "claims a\n    floor, so it fails test 1 as rule 6 is written. K28 settled "
+          "that reading on\n    2026-08-16 (rule 6 clause iii): the remedy is to argue "
+          "the floor in the trade's\n    own argument, not to widen the test.")
     for trade in projected:
         pairs = housed.get(trade, set())
         fam_where = sorted({d for f, d in pairs if f == family})
@@ -193,10 +205,12 @@ def report(programme: dict, family: str, division: str, verbose: bool) -> int:
               f"{', '.join(div_what)}. The verdict is the product of two projections\n"
               f"  of one table, which is what rule 6 means by "
               f"\"the three tests are independent\".")
-    print("\n  Passing all three is permission, not an instruction. Whether a trade that "
-          "has\n  not asked for a roof may be given one is ROADMAP K28 and is open, and so "
-          "is\n  whether rule 6's table is a set of PAIRS or two projections of one "
-          "(T-A3h).")
+    print("\n  Passing all three is permission, not an instruction — and since K28 "
+          "(2026-08-16)\n  that sentence is a clause rather than a manner of speaking: "
+          "rule 6 caps a block\n  parcel at ONE adoption per trade, so a block dealt two "
+          "of a trade's families may\n  hand it one roof. The table is read as two "
+          "PROJECTIONS and not as pairs; the\n  `pair housed` column above is therefore "
+          "reporting, not a fourth test.")
     return 0
 
 
@@ -228,8 +242,11 @@ def pairs_report(programme: dict) -> int:
             print("    ADMITTED BY THE PROJECTIONS AND HOUSED BY NOTHING: "
                   + ", ".join(f"{f}/{d}" for f, d in cross))
     print("\n  A pair on the last line passes tests 2 and 3 on evidence that is never "
-          "about\n  the same roof twice. Whether that is a defect or the rule working is "
-          "ROADMAP\n  K28; this prints the fact and decides nothing.")
+          "about\n  the same roof twice. K28 decided on 2026-08-16 that this is the rule "
+          "working and\n  not a defect (rule 6 clause i): requiring the PAIR would refuse "
+          "T-A4's fourteenth\n  labouring household, which rule 6 names as one of the four "
+          "decisions its third\n  test recovers. What bounds the projections is the cap — "
+          "one adoption per trade\n  per block parcel — and not a narrower table.")
     return 0
 
 
@@ -246,7 +263,11 @@ def floors(programme: dict) -> int:
         for line in evidence[:1]:
             print(f"      {line}")
     print("\n  A trade rule 3 calls unbounded whose argument never claims a floor fails "
-          "test 1\n  on the literal reading rule 6 is written in. See ROADMAP K28.")
+          "test 1\n  on the literal reading rule 6 is written in, and K28 settled that "
+          "reading on\n  2026-08-16 (rule 6 clause iii). "
+          "tools/generate_inferred_households.py refuses such an\n  adoption outright, "
+          "importing the predicate above so the gate and this report\n  cannot disagree "
+          "about what a floor is.")
     return 0
 
 

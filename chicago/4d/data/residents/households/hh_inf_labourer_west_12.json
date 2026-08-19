@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_west_12",
- "name": "The Keegan household — a reconstructed labourer (west division)",
+ "name": "The Connor household — a reconstructed labourer (west division)",
  "division": "west",
  "head": "inf_labourer_west_12",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_west_12",
-   "name": "Patrick Keegan",
+   "name": "Hugh Connor",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

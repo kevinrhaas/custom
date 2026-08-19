@@ -55,6 +55,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import label  # noqa: E402
+from measure_adoption_tests import floor_evidence  # noqa: E402
 
 
 def load(path: Path):
@@ -575,10 +576,24 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             for r in records]
     new_ids = {r["id"] for r in records}
     existing = []
+    # A DECLARED PARTY WALL IS NOT A COLLISION (T-0077). The three-metre rule below
+    # exists to stop two records occupying one yard, and until this scene had a street
+    # front that was the only way two footprints ever came to touch. It is not the only
+    # way now: the plate of Lake and Dearborn shows buildings shoulder to shoulder on
+    # shared party lines, and a run built that way abuts whatever already stands on the
+    # face. So the exemption is exactly as wide as the claim that earns it — a record
+    # that NAMES this building in its own `reconstruction.frontage.abuts`, which is
+    # written into the record, re-derived by the generator that placed it, and gated by
+    # `check_frontage` there to be a shared wall rather than a near miss. Anything else,
+    # including a building that merely happens to be close, still fails.
+    abutted = set()
     for path in sorted(STRUCTURES.glob("*.json")):
         doc = load(path)
         if doc.get("id") in new_ids:
             continue
+        target = ((doc.get("reconstruction") or {}).get("frontage") or {}).get("abuts")
+        if target:
+            abutted.add((doc["id"], target))
         for phase in doc.get("phases", []):
             pos = phase.get("position") or {}
             poly = (phase.get("footprint") or {}).get("polygon")
@@ -587,6 +602,8 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             existing.append((doc["id"], world_polygon(pos, poly, origin)))
     for name, poly in existing + reserved_slots():
         for sid, other in mine:
+            if (name, sid) in abutted:
+                continue
             if overlaps(poly, other, -3.0):
                 raise SystemExit(f"{sid} is within 3 m of {name}")
     for i, (sid, poly) in enumerate(mine):
@@ -699,6 +716,57 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
             if family not in crosswalk:
                 raise SystemExit(f"{sid} names family {family}, which is not in "
                                  f"1835_family_archetype_crosswalk.json")
+
+    # K28 — the two clauses rule 6 gained on 2026-08-16, gated so they are rules
+    # rather than the habit nine block parcels supplied them with.
+    #
+    # An ADOPTION is a household living under a roof this programme did not raise:
+    # the roof was already on the plat, put there by a block parcel, and rule 6 is
+    # the only thing standing between a drawing and a claim about the town's trade
+    # mix. `reconstruction.block_id` is what makes the block readable off the roof.
+    raised = {b["id"] for b in programme["buildings"]}
+    census = {e["occupation"]: e for e in programme["occupation_census"]}
+    adoptions: dict[tuple[str, str], list[str]] = {}
+    for h in households:
+        sid = h.get("lives_at")
+        if not sid or sid in raised:
+            continue
+        doc = by_id.get(sid) or (load(STRUCTURES / f"{sid}.json")
+                                 if (STRUCTURES / f"{sid}.json").exists() else None)
+        block = ((doc or {}).get("reconstruction") or {}).get("block_id")
+        if not block:
+            continue
+        adoptions.setdefault((block, h["occupation"]), []).append(h["id"])
+
+        # rule 6 test 1, clause (iii): the trade's OWN committed argument has to
+        # call its count a floor. Method rule 3's list of unbounded trades is a
+        # statement about where a number came from, not that the number is too
+        # low, and reading test 1 off that list would let a block being dealt a D2
+        # hand the laundresses a floor they never claimed. The predicate is
+        # imported from tools/measure_adoption_tests.py rather than restated, so
+        # the gate and the report can never disagree about what a floor is.
+        entry = census.get(h["occupation"])
+        if entry is None:
+            raise SystemExit(f"{h['id']} is a {h['occupation']}, which the occupation "
+                             f"census does not carry, so rule 6 test 1 cannot be read")
+        if not floor_evidence(entry["argument"]):
+            raise SystemExit(
+                f"{h['id']} adopts the block roof {sid}, but the {h['occupation']} "
+                f"argument never states in its own committed text that its count is a "
+                f"floor, so rule 6 test 1 fails (K28 clause iii). If that count really "
+                f"is a floor, argue it in the trade's own argument from the town — not "
+                f"as a side effect of a block being dealt this roof")
+
+    # rule 6 clause (ii): one adoption per trade per block parcel. Passing all
+    # three tests is permission, not an instruction; without the cap the
+    # granularity of the plat sets the rate at which this census grows, which is
+    # the fitting-the-model-to-the-drawing rule 6 opens by forbidding.
+    for (block, trade), ids in sorted(adoptions.items()):
+        if len(ids) > 1:
+            raise SystemExit(
+                f"{block} adopts {len(ids)} {trade} households ({', '.join(sorted(ids))}): "
+                f"rule 6 caps a block parcel at ONE adoption per trade (K28 clause ii). "
+                f"Passing all three tests is permission and not an instruction")
 
     # the 665-roof programme is a ceiling, not a budget to overspend
     inventory = load(INVENTORY)

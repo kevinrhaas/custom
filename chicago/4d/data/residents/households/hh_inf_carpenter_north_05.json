@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_north_05",
- "name": "The Dickinson household — a reconstructed carpenter (north division)",
+ "name": "The Lyman household — a reconstructed carpenter (north division)",
  "division": "north",
  "head": "inf_carpenter_north_05",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_carpenter_north_05",
-   "name": "Joseph Dickinson",
+   "name": "Erastus Lyman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_carpenter_north_05_j1",
-   "name": "Seth Sawyer",
+   "name": "Charles Kellogg",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

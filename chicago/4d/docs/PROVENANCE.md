@@ -140,8 +140,26 @@ Each source carries `rights_status`:
 
 - `public_domain` / `no_known_restrictions` — usable, cite the holding institution.
 - `check_required` — **may be cited in text, but no asset may be derived from it** until the
-  check is done and recorded. The validator enforces this.
+  check is done and recorded.
 - `cleared` — a `check_required` source that has been resolved; record what was checked and when.
+
+**This sentence said "the validator enforces this" until 2026-08-16 and it was not true in the
+way it reads** (ROADMAP K41). Two things enforce it now, and they answer different questions:
+
+- `tools/validate.py` refuses a `check_required` or `restricted` source whose own `asset_use`
+  says `geometry`. That is a comparison between two fields of the same source record, so it
+  fires when an author has already written the violation down. **No source in this dataset has
+  ever carried that combination** — the 38 unresolved sources all declare `cross_check` or
+  `text_only`, and the three that declare `geometry` are a survey and two maps, all clear.
+- `tools/measure_rights_derivation.py` asks what the town is built from, using the read-sets
+  the generators already declare (`CONSUMED` in each `*_params.py` and in `terrain_inputs.py`).
+  **49 geometry-bearing attributes on 21 records cite an unresolved source, 35 of them with no
+  other support and 16 of those graded `attested`.** The population is banked in
+  `tools/rights_derivation_baseline.json`; it may shrink and may not grow.
+
+Whether those 49 are a rights problem at all depends on a reading this document and
+`docs/PLAN.md` do not share — facts read out of a work, or expression derived from it — and
+that is the owner's to settle, not a gate's. See ROADMAP K41 for the three routes.
 
 Web sources require an `archived_url`. Several of the best online references for this project
 return 503s and 403s intermittently; a citation that cannot be re-read is not a citation.

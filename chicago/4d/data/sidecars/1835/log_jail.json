@@ -33,7 +33,8 @@
     "symbolic_location": "North-west corner of the court-house square (the public square bounded by Randolph, Clark, Washington and LaSalle), at the Randolph and LaSalle end; fronting north onto Randolph.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -116,6 +117,6 @@
     }
   ],
   "research_note": "A DOCUMENTED BUILDING WITH ONE DOCUMENTED ATTRIBUTE. What is attested is that it was a jail, that it was of logs, that it went up in the fall of 1833, and that it stood at the north-west corner of the court-house square. Everything else in this record - every dimension, the roof, the wall height, the door, the bearing - is inference or invention, and the confidence view will show it as such. THE RECORD IS WORTH HAVING ANYWAY, and this is the clearest case in the parcel for the working policy behind it: on 1835-07-01 the public square carried three things, a pound, a jail and (probably) a court-house, and a square rendered empty is a stronger and more misleading claim than a square carrying three honestly-graded conjectural boxes. ARCHETYPE CHOICE: outbuilding rather than log_dwelling, and the difference is not cosmetic. log_dwelling reads a storey count, a loft, a chimney count and a sign, and builds a dwelling's openings; outbuilding builds a plain box with one door sized by what has to get through it, and refuses a storey count outright. A jail is the second of those. The archetype's own family list - stable, shed, barn, smokehouse, privy, crib, woodshed - does not name a jail, and that is a gap in the vocabulary rather than a reason to build the wrong thing. WHAT WOULD UPGRADE THIS RECORD, in order of value: any county order or contract for the jail's construction, which is the kind of document that carries a dimension, a cost or a specification for the logs; Andreas vol. 1 at page-image level around scan pp. 367 and 1243, which is where the prose transcribed into this project's dossier sits; and the Cook County Sheriff's own published jail history, cited in the dossier and not yet held as a source record here.",
-  "research_doc": "docs/RESEARCH/log_jail.md",
+  "research_doc": "",
   "review_required": false
 }

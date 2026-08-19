@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_north_03",
- "name": "The Chapin household — a reconstructed shoemaker (north division)",
+ "name": "The Stebbins household — a reconstructed shoemaker (north division)",
  "division": "north",
  "head": "inf_shoemaker_north_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_north_03",
-   "name": "James Chapin",
+   "name": "Harvey Stebbins",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

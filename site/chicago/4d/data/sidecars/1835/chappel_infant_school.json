@@ -30,7 +30,8 @@
     "symbolic_location": "West side of State Street between South Water Street and Lake Street, just outside the western edge of the military reservation; fronting east onto State.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -127,6 +128,6 @@
     }
   ],
   "research_note": "A BUILDING THAT IS ATTESTED THROUGH AN INSTITUTION THAT HAD LEFT IT. Everything documented here - the log house, the division into school-room and lodging quarters, the siting just outside the military reservation - comes from one sentence of Andreas about the school (docs/research/04-structures-south.md section 9, from Andreas I scan p. 431), and the school moved out in 1834. So the record makes two separable claims, and a later source can knock down either without touching the other: that a log house of this description stood west of State Street, and that it was still standing on 1835-07-01. The second is an inference about how long a log house lasts. THREE GUARDS. (1) DO NOT CONFLATE THIS WITH THE NORTH SIDE SCHOOLS. John Watkins taught near the old Indian agency-house on the north bank in the spring of 1833, and a public school stood on the north bank just east of Clark Street in the building erected by Cols. Hamilton and Owen; both are north-side buildings and neither is this one. The Watkins house on Michigan Street is a separate record here. (2) DO NOT PROMOTE THE POSITION. The dossier itself tags the exact lot conjectural and the placement here is a point inside a two-block strip. (3) THE LATER SCHOOL BUILDINGS ARE EXCLUDED BY DATE: the first public school building erected by private means is 1837 and the Miltimore and Dearborn schools are 1837 and 1844-45. WHAT WOULD UPGRADE IT: Andreas vol. 1 at page-image level around scan p. 431, read for a street or a lot rather than for the school; the 1834 or 1835 Chicago Democrat, which advertised schools and would date the move out of this house from the other side; and any of the Chappel biographical literature, which is extensive because she later founded the Chicago Orphan Asylum. A NOTE ON SCOPE, for the same reason walker_meeting_house carries one: an infant school in Chicago in 1833 taught the children of a town that was still a Potawatomi trading settlement in the year of the final removal, and interpretive text about this building sits close to the project's standing constraint on Indigenous history even though the structure itself is a settler building. review_required is set false, consistent with walker_meeting_house, but the call is worth a second opinion.",
-  "research_doc": "docs/RESEARCH/chappel_infant_school.md",
+  "research_doc": "",
   "review_required": false
 }

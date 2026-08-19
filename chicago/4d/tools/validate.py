@@ -239,7 +239,8 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
 # semantic: scenes resolve against phases
 # --------------------------------------------------------------------------
 
-def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict, rep: Report) -> None:
+def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict, rep: Report,
+                   households: dict | None = None) -> None:
     sid = scene.get("id", "?")
     where = f"scene {sid}"
     target = parse_date(scene.get("target_date", ""))
@@ -277,8 +278,27 @@ def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict
         else:
             excluded.append(st.get("id"))
 
+    # The people carry the same flag as the buildings, and until 2026-08-16 this list
+    # was built out of data/structures/ alone — so a household flagged for AGENTS.md's
+    # standing constraint blocked nothing, while the error this validator prints on the
+    # household side promised that "any record touching it blocks a scene from being
+    # marked released" (ROADMAP K34). The seven flagged households were covered anyway,
+    # by the coincidence that every one of them lives or works in a building that is
+    # also flagged; nothing required that, and tools/measure_review_constraint.py now
+    # does. A household is not date-gated the way a phase is: the residents layer runs
+    # its own scene-date gate, and a record flagged for consultation is not made safe
+    # to release by being absent from one year of it.
+    for hid, h in sorted((households or {}).items()):
+        if h.get("review_required"):
+            blocked.append(hid)
+        for p in h.get("persons", []):
+            if p.get("review_required"):
+                blocked.append(hid)
+                break
+
     if scene.get("released") and blocked:
-        rep.error(where, f"released is true but these records carry review_required: {blocked}")
+        rep.error(where, f"released is true but these records carry review_required: "
+                         f"{sorted(set(blocked))}")
 
     rep.note(f"scene {sid} ({target}): {len(included)} structure(s) included, "
              f"{len(excluded)} excluded by date"
@@ -1535,6 +1555,11 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
             if not (frm and to and any(frm <= t <= to for t in targets)):
                 continue
+            # No mesh, no ground contact to measure: this phase's geometry is
+            # drawn by another layer, which drapes on the heightfield at every
+            # post rather than standing a footprint on it.
+            if ph.get("drawn_by"):
+                continue
             pos = ph.get("position") or {}
             poly = (ph.get("footprint") or {}).get("polygon")
             if not isinstance(poly, list) or len(poly) < 3:
@@ -1901,6 +1926,97 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
 
     rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
              f"from data/traces/street_control.json")
+
+
+def check_drawn_by(structures: dict, rep: Report) -> None:
+    """A phase whose geometry moved to another layer has to have moved it.
+
+    `drawn_by` is the record saying: nothing bakes this phase, and what a visitor
+    sees is built at load by another layer out of another file. It exists because
+    Chicago's first public building is a fence — Andreas calls the estray pen "a
+    small wooden enclosure and quite roofless" — and the only archetype that would
+    build a low walled rectangle cannot build a roofless one, so for a week the
+    town's pound stood with an invented shed roof on it (docs/LIBERTIES.md L60).
+
+    The declaration is cheap to write and would be easy to leave half-done, so
+    every half is asserted here rather than trusted:
+
+      * the named record EXISTS and names this structure back, so the phase cannot
+        point at a file nobody wrote;
+      * the layer's own manifest LISTS it — a record the index does not name is
+        fetched by nothing, and the pen would silently vanish from the town;
+      * NO GLB and NO manifest entry survive the move, which is the assertion that
+        actually retires the roof: a phase that still has a baked mesh is still
+        drawing one, whatever the record says about it;
+      * `form` is EMPTY, because every value in it was a build instruction for the
+        mesh that just went away. A retired invention left sitting in the record
+        would keep showing on the card with a confidence chip and no geometry
+        behind it, which is the exact failure check_geometry_declarations exists
+        to stop one level up.
+    """
+    checked = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for ph in st.get("phases", []):
+            decl = ph.get("drawn_by")
+            if not decl:
+                continue
+            pid = ph.get("id", "?")
+            where = f"structure {sid}/{pid}"
+            checked += 1
+
+            if ph.get("form"):
+                rep.error(where, f"declares drawn_by {decl.get('layer')!r} but still carries "
+                                 f"form attributes ({', '.join(sorted(ph['form']))}) — nothing "
+                                 f"builds them now, so they are values on a card with no "
+                                 f"geometry behind them. Retire them, or drop drawn_by")
+
+            rel = decl.get("record", "")
+            path = ROOT / rel
+            if not rel or not path.exists():
+                rep.error(where, f"declares drawn_by record {rel!r}, which is not a file in "
+                                 f"this repository — the geometry moved to nowhere")
+                continue
+            try:
+                rec = json.loads(path.read_text())
+            except Exception as e:  # noqa: BLE001 — an unreadable layer record is a failure
+                rep.error(where, f"drawn_by record {rel} does not parse: {e}")
+                continue
+            if rec.get("structure_id") != sid:
+                rep.error(where, f"drawn_by record {rel} names structure_id "
+                                 f"{rec.get('structure_id')!r} — the two records disagree about "
+                                 f"which building this geometry belongs to")
+
+            index_path = path.parent / "index.json"
+            try:
+                listed = {e.get("id") for e in
+                          json.loads(index_path.read_text()).get("enclosures", [])}
+            except Exception as e:  # noqa: BLE001
+                rep.error(where, f"cannot read {index_path.relative_to(ROOT)}: {e}")
+                listed = set()
+            if rec.get("id") not in listed:
+                rep.error(where, f"drawn_by record {rel} is not listed in "
+                                 f"{index_path.relative_to(ROOT)} — a static host cannot be "
+                                 f"globbed, so nothing fetches it and the phase draws nothing "
+                                 f"at all")
+
+            glb = f"{sid}__{pid}.glb"
+            if (ROOT / "assets" / "gltf" / glb).exists():
+                rep.error(where, f"declares drawn_by but assets/gltf/{glb} is still committed — "
+                                 f"the mesh this record says it no longer has is still in the "
+                                 f"repository and still shipped")
+            manifest_path = ROOT / "assets" / "manifest.json"
+            if manifest_path.exists():
+                try:
+                    entries = json.loads(manifest_path.read_text()).get("assets", {})
+                except Exception:  # noqa: BLE001 — reported by the stale check
+                    entries = {}
+                if glb in entries:
+                    rep.error(where, f"declares drawn_by but assets/manifest.json still lists "
+                                     f"{glb} — the bake would rebuild it on the next run")
+    if checked:
+        rep.note(f"drawn_by check: {checked} phase(s) drawn by another layer, each with a "
+                 f"record that exists, is fetched, and has no mesh left behind it")
 
 
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
@@ -3034,6 +3150,14 @@ def check_source_surface(sources: dict, rep: Report, *,
 FLORA = DATA / "flora"
 
 FLORA_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground", "tree", "thicket")
+# The roles `renderers/web/js/flora.js` deals as SLOTS — one slot is one drawn
+# plant, so its lottery is a count and a `cover_fraction` is an area (K49(a)).
+# `width_m` is the only thing in a record that converts the one into the other,
+# and until K49(c) twenty-five sward records carried a cover and no width, so
+# six of twenty lists dealt an area against a count. The two roles left out are
+# `tree` and `thicket`, which trees.js deals off `density_per_ha` mixes and
+# never converts.
+FLORA_SWARD_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground")
 FLORA_PHENOLOGY = ("flowering", "vegetative", "budding", "past_bloom", "fruiting",
                    "leafless", "senescent")
 EXTENT_KINDS = ("elevation_band", "polygon", "buffer", "everywhere")
@@ -3301,6 +3425,48 @@ def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
     if "width_m" in sp and not _num_range(sp["width_m"], 0.01, 45.0):
         rep.error(where, f"width_m must be [min,max] ascending, got {sp['width_m']}")
 
+    # ROADMAP K49(c) — A COVER IS NOT A COUNT, AND width_m IS THE ONLY BRIDGE.
+    # The sward's placer deals slots, one slot per drawn plant, off a single
+    # normalised share per list. A record measuring an AREA and a record
+    # counting PLANTS were both read into that share, so "covers a quarter of
+    # the ground" was compared against "a quarter of a plant per square metre".
+    # A width closes it, and the gap has to stay closed: a new cover record
+    # without one silently re-opens a list that is measurable today.
+    if "cover_fraction" in ab and sp["role"] in FLORA_SWARD_ROLES and "width_m" not in sp:
+        rep.error(where, "abundance.cover_fraction is an AREA and the sward is dealt as a "
+                         "COUNT of plants, so this record needs width_m — what one plant "
+                         "covers on the ground — before it can be dealt against a species "
+                         "recorded as a density. See ROADMAP K49(c)")
+
+    # An added width is almost never something a source states, and the record's
+    # own `confidence` grades what its sources say about the PLANT. Writing a
+    # width under that grade promotes an argument into an attestation, so a
+    # width that the record's sources do not state carries its own grade here —
+    # and that grade may never outrank the record it sits in.
+    wp = sp.get("width_provenance")
+    if wp is not None:
+        if "width_m" not in sp:
+            rep.error(where, "width_provenance grades a width_m this record does not carry")
+        wconf = check_attested(where, "width_provenance", wp, source_ids, rep)
+        rconf = sp.get("confidence")
+        if wconf and rconf in CONFIDENCE and CONFIDENCE.index(wconf) < CONFIDENCE.index(rconf):
+            rep.error(where, f"width_provenance is '{wconf}' on a record graded '{rconf}' — a "
+                             f"figure may not outrank the record it belongs to")
+
+    # ROADMAP K49(c2) — THE SAME RULE FOR AN ABUNDANCE THE SOURCE DID NOT STATE
+    # IN THE UNIT THE RECORD KEEPS IT IN. A dossier that gives a spacing states a
+    # count, and a dossier that gives a cover states an area; converting one into
+    # the other is arithmetic on top of the source, not the source. Where a
+    # record's abundance is that conversion it says so here, under its own grade,
+    # and that grade may no more outrank the record than a width's may.
+    apr = sp.get("abundance_provenance")
+    if apr is not None:
+        aconf = check_attested(where, "abundance_provenance", apr, source_ids, rep)
+        rconf = sp.get("confidence")
+        if aconf and rconf in CONFIDENCE and CONFIDENCE.index(aconf) < CONFIDENCE.index(rconf):
+            rep.error(where, f"abundance_provenance is '{aconf}' on a record graded '{rconf}' — "
+                             f"a figure may not outrank the record it belongs to")
+
     j = sp.get("july")
     if not isinstance(j, dict):
         rep.error(where, "july must be the phenology block for the scene date")
@@ -3408,8 +3574,12 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
     vocab = index.get("vocabulary") or {}
     for key in ("roles", "forms_flora", "forms_trees", "substrates", "phenology"):
         if not vocab.get(key):
-            rep.error("flora index", f"vocabulary.{key} is missing — the renderer reads this "
-                                     f"block to know the closed sets it must implement")
+            rep.error("flora index", f"vocabulary.{key} is missing — this validator reads "
+                                     f"the block to hold every record to a closed set. It "
+                                     f"once said 'the renderer reads this', and ROADMAP "
+                                     f"K42 measured that it does not: of the seven "
+                                     f"published vocabularies the renderer reads one, "
+                                     f"inflorescence_shapes, which is not one of these five")
 
     palettes = {}
     for entry in index.get("palettes", []):
@@ -3950,8 +4120,11 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
     for key in ("classes", "activity", "active_periods", "july_status", "presence_modes",
                 "abundance", "vocalization", "habitats"):
         if not vocab.get(key):
-            rep.error("fauna index", f"vocabulary.{key} is missing — a renderer reads this "
-                                     f"block to know the closed sets it must implement")
+            rep.error("fauna index", f"vocabulary.{key} is missing — this validator reads "
+                                     f"the block to hold every record to a closed set. No "
+                                     f"renderer reads any of it: ROADMAP K42 measured that "
+                                     f"nothing under renderers/ opens data/fauna at all, "
+                                     f"and publish.sh does not put it on the site")
 
     # The fauna zones borrow their geometry from the flora zones rather than
     # restating it, so the two datasets cannot drift into describing different
@@ -4663,14 +4836,30 @@ def main() -> int:
     # reasoning lived in a `note` no check could read.
     check_transcription_declarations(sources, rep)
 
+    # the people, and the scene-date gate they have to obey. The population is
+    # what justifies the buildings (docs/ROADMAP.md K1): a household that needs
+    # a dwelling becomes a structure record, so a household whose subject was
+    # still in Vermont on the scene date would put a house on the plat.
+    #
+    # RUN BEFORE THE SCENES, which is not where it used to be. The scene's
+    # release block has to see this layer — a household carrying AGENTS.md's
+    # standing constraint blocks release exactly as a building does — and it
+    # could not while the layer was loaded after the block had already run
+    # (ROADMAP K34).
+    households = check_residents(source_ids, {st.get("id") for st in structures.values()
+                                              if isinstance(st, dict)}, rep, tally)
+
     # scenes
     for name, sc in scenes.items():
-        validate_scene(sc, structures, epochs, exclusions, rep)
+        validate_scene(sc, structures, epochs, exclusions, rep, households=households)
 
     # what we invented has to be written down, not merely tagged — and so does
     # what we recorded and never built, which is the same standard read backwards
     consumed = archetype_consumed(rep)
     check_geometry_declarations(structures, consumed, rep)
+
+    # …and what a record says it no longer builds, it must no longer build.
+    check_drawn_by(structures, rep)
 
     # Does each structure reach the ground it stands over? Needs the committed
     # heightfield and the datum origin; without either the question cannot be
@@ -4726,13 +4915,6 @@ def main() -> int:
     # the animal records, and the July gate they have to obey — the same
     # argument as the flora phenology, one trophic level up
     check_fauna(source_ids, rep, tally)
-
-    # the people, and the scene-date gate they have to obey. The population is
-    # what justifies the buildings (docs/ROADMAP.md K1): a household that needs
-    # a dwelling becomes a structure record, so a household whose subject was
-    # still in Vermont on the scene date would put a house on the plat.
-    check_residents(source_ids, {st.get("id") for st in structures.values()
-                                 if isinstance(st, dict)}, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):
@@ -4797,6 +4979,14 @@ def run_param_check(structures: dict, scenes: dict, rep: Report) -> None:
                 r = ph.get("documented_range", {})
                 frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
                 if not (frm and to and frm <= target <= to):
+                    continue
+                # A phase whose geometry moved to another layer resolves into no
+                # archetype parameters, because no archetype builds it. Asking
+                # `outbuilding` for the estray pen's roof pitch after the roof was
+                # retired is asking a generator about a mesh nobody bakes; what
+                # holds that phase together instead is check_drawn_by(), which
+                # asserts the layer record exists and that no GLB survives it.
+                if ph.get("drawn_by"):
                     continue
                 if arch not in resolvers:
                     no_gen.add(arch)

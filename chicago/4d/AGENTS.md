@@ -48,6 +48,162 @@ project's first target year. It is the most historically significant event of th
 Note also that the great Potawatomi gathering and the last war dance are **August 1835**,
 weeks after the 1835 scene date. Staging them in the 1835 scene would be wrong twice over.
 
+## THE VISIBLE-PROGRESS RULE — read this before choosing a parcel
+
+**Measured 2026-08-15, on the owner's report that the loop "just does organization and research
+and not actually applying to the application": 15 of the last 30 changelog entries say nothing
+you can see changed, and v124 to v137 is FOURTEEN CONSECUTIVE invisible runs.** That is not a
+drift, it is a streak, and it is the loop optimising for what this project praises. The culture
+here rewards measurement, refutation and honest gates — rightly — and the result is an agent that
+would rather find a defect in an instrument than put a building in the town.
+
+**So: a run must change something a visitor can SEE, and "see" means in the 3-D scene or on a
+card a visitor opens.** A new gate is not visible. A corrected metric is not visible. A source
+record is not visible. A refactor is not visible. All of those are real work and this project
+needs them; they are not what a run is FOR.
+
+**The three exemptions, and they are the only three.**
+
+1. **An owner-reported bug.** Fixing what the owner reported always outranks this rule.
+2. **The second half of a split whose first half was a measurement** — the R-BUG3c-a → R-BUG3c-b
+   shape, where landing the measurement red before the fix is what stops the fix redefining
+   success. The measurement half is exempt ONCE; the run after it must land the fix or say why.
+3. **A gate that is BLOCKING a visible parcel** — not one that would be nice to have. Name the
+   parcel it unblocks in the PR, or it is not this exemption.
+
+**The cap: at most ONE invisible run in any four.** If the last three merged changelog entries
+open with "Nothing you can see" — the phrase is the tell, so search for it — the next run MUST be
+visible, and the exemptions above do not extend it. If everything at the top of the queue is
+invisible, that is a fact about the queue and the run's job is to fix the queue: pull a visible
+parcel up and say in the PR why it was buried.
+
+**How to tell before you start.** Ask: when this merges, what will be different in a screenshot
+taken from the same spot? If the honest answer is "nothing", you are on an invisible parcel and
+you need one of the three exemptions, in writing, in the PR body.
+
+**And do not make a run visible by writing the changelog as though it were.** The entry describes
+what changed; if nothing in the scene changed, it says so. Gaming the phrase instead of the work
+is worse than the streak.
+
+## What's-New is for the visitor, not the reviewer — a length budget
+
+**Measured 2026-08-15 on the owner's report that What's-New "has gotten excessively verbose". The
+drift is monotonic across the whole history and nobody asked for it:**
+
+| entries | items | words | title words |
+|---|---|---|---|
+| v60–79 | 5.0 | 443 | 11.9 |
+| v80–99 | 7.5 | 642 | 16.2 |
+| v100–119 | 7.3 | 724 | 21.4 |
+| **v120–138** | **8.9** | **790** | **25.7** |
+
+Words per entry up **78 %**, titles up **116 %**, the longest recent entry **984 words**. A
+25-word title is not a title.
+
+**It is the same pressure that produced the invisible-run streak.** This project rewards
+thoroughness, so an entry that explains more of itself reads as better work. It is not. **What's-New
+is read by a visitor who wants to know what changed in the town** — the reasoning, the refutations,
+the measurements and the caveats belong in the PR body and `docs/STATUS.md`, which have no length
+limit precisely so this one can.
+
+**The budget, enforced by `tools/check-changelog.mjs` on entries from v139:** title **≤ 12 words**,
+**≤ 6 items**, **≤ 450 words** total. Over budget warns; over 1.5× fails. The 138 entries already
+written are history and are not retro-failed — the rule binds what is added next.
+
+**Cut the entry rather than raising the number.** If a release genuinely needs more, it is usually
+two entries or an entry plus a STATUS section, not one longer entry.
+## RECONSTRUCTED IS A TIER, NOT A FAILURE — build, then declare
+
+**The owner, 2026-08-15: the loop is "being hesitant and refusing to build because you are being
+too cautious about being perfect. It's ok to create things that have some justification and they
+can be inferred or even reconstructed based on your analysis."** He is right, and the example he
+gave is the shape of it: the trees were not coloured as described because no source stated the
+colour, so nothing was done at all.
+
+**That is a misreading of this project's own vocabulary.** There are three tiers, and the third one
+exists precisely for this:
+
+- **attested** — a source states it. Cite the source.
+- **inferred** — reasoned from evidence about *this particular thing*. Record the reasoning.
+- **reconstructed** — **invented within bounds, because the scene needs it and nothing states it.**
+  Record what bounded the invention and add a `docs/LIBERTIES.md` entry.
+
+**`reconstructed` is a licence to build, not an admission of defeat.** Six hundred and sixty-five
+roofs stand in this town on exactly that footing. A tree with no stated colour is not a reason to
+leave the tree grey — it is a reconstructed colour, bounded by the species, the month and the
+reference photographs already committed, recorded as a liberty, and BUILT.
+
+**The rule.** When a parcel stalls for want of evidence, the first question is not "may I proceed?"
+It is **"what is the lowest tier that honestly carries this, and what bounds it?"** Then build at
+that tier and say so. Refusing to build leaves the scene wrong AND undocumented, which is strictly
+worse than a declared reconstruction: an invented colour recorded as invented is honest, and a grey
+tree nobody chose is not.
+
+**"Blocked on the owner" is for four things only** — rights and licensing, the L1 constraint on
+depicting people, spending real money, and a decision that changes what the project IS. **A missing
+number is not one of them.** Derive a defensible figure, label it reconstructed, name what bounds
+it, and write down what would replace it. There were **seven** parcels sitting on "blocked on the
+owner" when this was written; most were missing numbers.
+
+**What does NOT change, and this is the whole reason the tiers exist.** Never claim a source that
+does not exist. Never promote a reconstruction to inferred or attested. Never leave an invention out
+of `docs/LIBERTIES.md`. The bar was never "only build what is proven" — it is **"never misrepresent
+what you built."** Those are different, and the second one is compatible with building a great deal
+more than this loop has been building.
+
+**The owner doubled down, 2026-08-18, verbatim: "in general i think you are being too cautious on
+adding items to the scene. you are totally fine to be liberal with adding reconstructed items when i
+ask for things, you can just label and mark them as such."** He said it while overriding, one by
+one, the conservative readings the loop had settled into: only the two attested docks ("you can add
+more docks!"), no boats ("you can add boats correct for the era! they would exist"), wagons only at
+attested doors ("of course there would be more wagons all over the place in a frontier town"), signs
+only where attested ("you need to add more signage … it is fine if they are reconstructions"). The
+pattern to learn: **when the owner asks for something, the scene needing it IS the justification** —
+build it at the reconstructed tier, label it, record the liberty, and do not ration it to the
+attested instances. The rationing instinct is the bug this section exists to fix.
+
+## THE QUEUE — how work is chosen (since 2026-08-17)
+
+**`tickets/` is the single operational answer to "what next".** The owner asked for it
+directly: his requests were getting lost inside an 11,000-line ROADMAP, and he could not
+reorder priorities without editing prose. Read `tickets/README.md` — it is one page and it
+is the contract. The short form:
+
+- **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
+  `needs_bake` on the improve runner, with the skip stated in the PR). `node
+  tools/ticket.mjs list --workable` prints the same order.
+- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`.
+- **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
+  `block --owner "the question"` — the question goes in the ticket, where the owner will
+  actually see it, not only in a PR body.
+- **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
+  "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
+  rule is what makes his priorities durable across runs.
+- **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
+  starts. This is not optional bookkeeping; an owner request going untracked for days is
+  the exact failure this system exists to close.
+- **Finish your PR inside the run that opened it** — merge on a green gate, or `block`, or
+  label it `hold` with the reason. **A claim is only real once its PR merges**: the state
+  lives in the ticket file, so an abandoned open PR leaves the ticket reading `open` at the
+  top of the queue and the next run rebuilds the same work. It cost about seventy minutes
+  on 2026-08-19 (run 943's PR #258 left open, run 944 redoing T-0062 as #259). `claim` now
+  checks `git ls-remote` for a rival branch carrying the ticket's number and refuses with a
+  `--force` escape — but that only protects the NEXT run; finishing the PR is your half.
+- **Size in RUNS before you claim.** `XS` part of a run · `S` one run · `M` one run,
+  tight (or one run plus a bake) · `L` **more than one run, and `claim` refuses it**.
+  The test is the acceptance clause: *if it needs more than one demonstration, it is
+  more than one ticket.* Split with `ticket.mjs split T-NNNN "piece" "piece"` — the
+  children inherit the parent's exact place in QUEUE, so a split never re-prioritises.
+  If a run discovers mid-flight that its ticket is bigger than one demonstration, it
+  splits rather than shipping a self-invented "(1/2)".
+- `tools/check.sh` runs `ticket.mjs check`: duplicate ids, queue drift, stale BOARD, a
+  block with no stated question, an `L` in the queue — all merge-refusing.
+
+**`docs/ROADMAP.md` is no longer the backlog.** It remains the *reasoning archive* — the
+parcel boxes hold measurements, refutations and acceptance clauses that tickets link into,
+and nothing there is deleted. Its NEXT UP table is tombstoned with a pointer here. STATUS.md
+remains the honest narrative of what shipped; the *state* of work lives in tickets alone.
+
 ## The work-parcel contract
 
 Work is parceled so parallel agents never collide. If you are a subagent:

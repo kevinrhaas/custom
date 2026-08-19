@@ -1,0 +1,30 @@
+{
+  "_": "ROADMAP K45(b3) — what the timber's detail control does, banked. Read by tools/measure_timber_detail.mjs --gate, measured on the PUBLISHED mirror at 1280x800. The woody layer is planted over the whole field once rather than into a ring that follows the visitor, so unlike the sward its population does not depend on the viewport.",
+  "measured_on": "2026-08-17",
+  "measured_against": "the published mirror, walked through window.__chicago4d.setDetail",
+  "levels": {
+    "full":     { "keep": 1.00, "trees": 472, "thickets": 258, "stems": 730, "timber_triangles": 186442, "scene_triangles": 511919 },
+    "balanced": { "keep": 0.80, "trees": 373, "thickets": 232, "stems": 605, "timber_triangles": 156358, "scene_triangles": 453026 },
+    "light":    { "keep": 0.60, "trees": 257, "thickets": 182, "stems": 439, "timber_triangles": 115234, "scene_triangles": 370738 }
+  },
+  "before": {
+    "_": "the same three levels before K45(b3), on the same mirror. The tree counts are the measurement that says the control was inert: 472/470/437 is one wood planted three times, and what moved was the point-bar screen, which is the one population that must not move.",
+    "full":     { "trees": 472, "thickets": 258, "stems": 730, "timber_triangles": 186442, "scene_triangles": 511919 },
+    "balanced": { "trees": 470, "thickets": 190, "stems": 660, "timber_triangles": 161674, "scene_triangles": 466814 },
+    "light":    { "trees": 437, "thickets": 133, "stems": 570, "timber_triangles": 136382, "scene_triangles": 416222 }
+  },
+  "tolerance": {
+    "_": "A Bernoulli acceptance over ~190,000 cells: the tree count is near-Poisson, so 0.06 of full's 472 trees is about 1.8 sigma. It carries a second error as well, and this is why the figure is not tighter — the sampling step moves the count on its own. Before any keep fraction existed the three levels planted 472/470/437, so light's grid alone reads 7 % below full's, and light's measured share here is 0.544 against a nominal 0.60. band_share is the northernmost tenth of the swept field's share of the stems — full's is 19.2 %, and a truncated wood empties it outright.",
+    "tree_share": 0.09,
+    "band_share": 0.04
+  },
+  "reach": {
+    "_": "The swept field runs to N +397.7 m at full. A stem budget bound partway through a south-to-north loop pulls this down and is the failure mode K45(b2) found at light's old cap of 300.",
+    "min_max_station_n_m": 385
+  },
+  "screen": {
+    "_": "The sandbar-willow point bar. It does not take the keep fraction — a screen needs its clumps to touch — and since K45(b3) it does not thin with the sampling step either. The floor is under 1 because a 6-9 m bar sampled on a 5.6 m grid has fewer points than the screen wants stools, and the roll saturates at 1 rather than exceeding it.",
+    "min_share_of_full": 0.65,
+    "before_share": { "full": 1.0, "balanced": 0.736, "light": 0.516 }
+  }
+}

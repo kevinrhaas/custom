@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_south_23",
- "name": "The Cobb household — a reconstructed labourer (south division)",
+ "name": "The Woodruff household — a reconstructed labourer (south division)",
  "division": "south",
  "head": "inf_labourer_south_23",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_south_23",
-   "name": "Henry Cobb",
+   "name": "Jared Woodruff",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

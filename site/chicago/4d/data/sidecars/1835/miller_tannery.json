@@ -34,7 +34,8 @@
     "symbolic_location": "North bank at the forks, just north of Samuel Miller's house and tavern, on the point of land between the North Branch and the main stem.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

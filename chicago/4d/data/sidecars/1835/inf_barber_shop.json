@@ -25,7 +25,8 @@
     "symbolic_location": "South Division, local ENU E 409 N -129",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -177,7 +178,7 @@
   "residents": [
     {
       "household": "hh_inf_barber_surgeon_south_01",
-      "name": "The Rice household — a reconstructed barber surgeon (south division)",
+      "name": "The Pratt household — a reconstructed barber surgeon (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "inf_barber_shop is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -187,7 +188,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Silas Rice",
+          "name": "Harvey Pratt",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "barber_surgeon",

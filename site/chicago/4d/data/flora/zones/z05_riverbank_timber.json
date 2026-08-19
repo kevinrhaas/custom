@@ -59,7 +59,7 @@
   "priority": 30,
   "confidence": "inferred",
   "sources": ["chicagology_prefire273"],
-  "note": "Andreas: 'On the South Side, a body of timber grew along the river, extending east as far as Wells Street, and following the bend of the river, crossed Clark Street, and extending south two or three miles', and the North Side carried a thrifty heavy growth of timber. Wells Street is about 440 m east of this box's east edge, so the whole South Division frontage inside the box is inside that belt. The West Division is excluded by polygon because Andreas documents it as entirely free from timber; the one exception he names, the grove up the South Branch, is about 5 km away. The North Division is excluded too, not because it carries no timber but because the dossier treats the timber north-east of the forks as its own community (ZONE 6) with its own composition, and two records must not both claim the same ground. The 8-90 m band implements the dossier's '30-120 m wide irregular gallery' and is an inference; it is measured from the waterline, so it also keeps the gallery off the 7 m north-side slough, which is not a river."
+  "note": "Andreas: 'On the South Side, a body of timber grew along the river, extending east as far as Wells Street, and following the bend of the river, crossed Clark Street, and extending south two or three miles', and the North Side carried a thrifty heavy growth of timber. CORRECTED 2026-08-16 (ROADMAP K45(b2)): this sentence used to read 'Wells Street is about 440 m east of this box's east edge, so the whole South Division frontage inside the box is inside that belt', and Wells Street is not there. Its committed centreline in data/streets/1835.json runs E +328.1 to +330.5, a mean of E +329.3 \u2014 nine metres EAST of this box's east edge, not 440. The conclusion happened to survive the error, because the box ends at E +320, but not for the reason written: the South Division frontage inside the 640 m box is inside the belt by nine metres of margin rather than by four hundred. The distinction stopped being academic when the heightfield was carried east to E +1700, because a belt read as running 440 m past the box would have licensed a gallery over the beach ridges. The woody renderer now reads the east end of this belt from the Wells Street record itself. The West Division is excluded by polygon because Andreas documents it as entirely free from timber; the one exception he names, the grove up the South Branch, is about 5 km away. The North Division is excluded too, not because it carries no timber but because the dossier treats the timber north-east of the forks as its own community (ZONE 6) with its own composition, and two records must not both claim the same ground. The 8-90 m band implements the dossier's '30-120 m wide irregular gallery' and is an inference; it is measured from the waterline, so it also keeps the gallery off the 7 m north-side slough, which is not a river."
  },
  "species": [
   {
@@ -389,6 +389,12 @@
    "form": "sedge_tussock",
    "abundance": {"cover_fraction":[0.15,0.35]},
    "height_m": [0.3,0.7],
+   "width_m": [0.2,0.4],
+   "width_provenance": {
+    "confidence": "inferred",
+    "sources": ["chicagology_prefire273"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. The only graminoid footprint measured anywhere in this project's flora dossier is Carex stricta's, at docs/research/02-flora.md § ZONE 3: \"tussocks 0.3-0.5 m tall x 0.3 m wide, 0.5-1.0 m apart\", which this dataset commits as [0.28, 0.34]. The shore sedge here is an unresolved aggregate rather than a determination, so it is given the measured tussock's band widened downward to cover the finer shore species the aggregate may contain."
+   },
    "july": {
     "phenology": "past_bloom",
     "foliage_rgb": [82,110,58],
@@ -407,6 +413,12 @@
    "form": "forb_basal_scape",
    "abundance": {"cover_fraction":[0.01,0.04]},
    "height_m": [0.3,0.5],
+   "width_m": [0.08,0.15],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": ["chicagology_prefire273"],
+    "note": "WHAT ONE DRAWN PLANT COVERS ON THE GROUND, added for ROADMAP K49(c) so this record's cover_fraction can be read as a count of plants. RECONSTRUCTED. § ZONE 5 gives wild garlic as \"patches on the sedge-grass shore\", 0.3-0.5 m tall, with an umbel of bulbils — Andreas's \"wild onions... among sedge grass\" — and no width. A single onion's basal leaf tuft is a decimetre-scale object whatever the scape's height, so 0.08-0.15 m. This is the smallest footprint in the sward and therefore the densest conversion; it is invented. docs/LIBERTIES.md L119."
+   },
    "july": {
     "phenology": "flowering",
     "foliage_rgb": [104,134,76],

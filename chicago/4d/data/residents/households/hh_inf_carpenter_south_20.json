@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_20",
- "name": "The Crandall household — a reconstructed carpenter (south division)",
+ "name": "The Ingalls household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_20",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_20",
-   "name": "Charles Crandall",
+   "name": "Silas Ingalls",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

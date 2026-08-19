@@ -155,6 +155,53 @@ if (Array.isArray(CHANGELOG) && CHANGELOG.length !== shape.entries.length) {
     + 'entry instead of standing in the array');
 }
 
+// LENGTH. Measured 2026-08-15 on the owner's report that What's-New "has gotten
+// excessively verbose", and the drift is monotonic across the whole history:
+//
+//   v60-79    5.0 items   443 words   11.9-word titles
+//   v80-99    7.5 items   642 words   16.2
+//   v100-119  7.3 items   724 words   21.4
+//   v120-138  8.9 items   790 words   25.7      <- 78 % / 116 % growth
+//
+// Nothing asked for that. It is the same pressure that produced the invisible-run
+// streak: this project rewards thoroughness, and an entry that explains more of
+// itself reads as better work. It is not. What's-New is read by a visitor who
+// wants to know what changed in the town, not by a reviewer auditing the parcel
+// — the PR body and STATUS.md are where the reasoning belongs, and they have no
+// length limit precisely so this one can.
+//
+// ENFORCED ON THE NEWEST ENTRY ONLY. The 138 entries already written are history
+// and are not retro-failed; the budget binds what is being added now. Warn at the
+// budget, fail at the ceiling, so a genuinely large release can run long by a
+// margin and a 984-word entry cannot.
+const LIMITS = { titleWords: 12, items: 6, words: 450 };
+const CEILING = 1.5;
+// The budget binds what is written FROM HERE, not the 138 entries already
+// shipped. Retro-failing history would force a rewrite of entries visitors have
+// already read, which is worse than the verbosity. Raise this only when the
+// entries below it are genuinely all compliant — never to let one through.
+const ENFORCE_FROM = 139;
+if (CHANGELOG?.[0] && Number(CHANGELOG[0].v) >= ENFORCE_FROM) {
+  const e = CHANGELOG[0];
+  const tw = String(e.title || '').trim().split(/\s+/).filter(Boolean).length;
+  const iw = (e.items || []).reduce((n, i) => n + String(i).trim().split(/\s+/).filter(Boolean).length, 0);
+  const at = `v${e.v}`;
+  const check = (name, got, budget) => {
+    if (got > Math.ceil(budget * CEILING)) {
+      problems.push(`${at}: ${name} is ${got}, over the hard ceiling of `
+        + `${Math.ceil(budget * CEILING)} (budget ${budget}). What's-New is for a visitor asking `
+        + 'what changed in the town; the reasoning belongs in the PR body and STATUS.md, which '
+        + 'have no limit. Cut the entry, do not raise this number.');
+    } else if (got > budget) {
+      console.warn(`  note  ${at}: ${name} is ${got}, over the budget of ${budget} — allowed, but `
+        + 'the last 20 entries already drifted 78 % longer than the first 20. Trim if you can.');
+    }
+  };
+  check('title length in words', tw, LIMITS.titleWords);
+  check('item count', (e.items || []).length, LIMITS.items);
+  check('total words', iw, LIMITS.words);
+}
+
 let prev = Infinity;
 for (const e of CHANGELOG) {
   const at = `v${e.v}`;

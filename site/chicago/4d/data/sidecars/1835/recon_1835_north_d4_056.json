@@ -25,7 +25,8 @@
     "symbolic_location": "Anonymous reconstructed roof in North Division cluster kinzie_michigan_interior; between the north bank and Michigan Street",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -144,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_domestic_north_04",
-      "name": "The Bardwell household — a reconstructed domestic (north division)",
+      "name": "The Rice household — a reconstructed domestic (north division)",
       "division": "north",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d4_056 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -154,7 +155,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Sarah Bardwell",
+          "name": "Eliza Rice",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "domestic",

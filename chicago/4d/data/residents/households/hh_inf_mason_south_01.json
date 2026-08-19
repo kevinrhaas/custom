@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_south_01",
- "name": "The Hale household — a reconstructed mason (south division)",
+ "name": "The Nichols household — a reconstructed mason (south division)",
  "division": "south",
  "head": "inf_mason_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_south_01",
-   "name": "Nathaniel Hale",
+   "name": "Amos Nichols",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

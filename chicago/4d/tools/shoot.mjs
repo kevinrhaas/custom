@@ -6,7 +6,8 @@
  * because the smoke test passed a scene the user could see was broken, and the
  * only way past that is to stop reading assertions and start reading pixels.
  *
- *   node tools/shoot.mjs <root-dir> <out-dir> [--detail full|balanced|light]
+ *   node tools/shoot.mjs <root-dir> <entry> <out-dir> [--detail full|balanced|light]
+ *                                                     [--at e,n,yaw[,name]]
  */
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
@@ -28,11 +29,30 @@ async function loadPlaywright() {
 }
 const { chromium } = await loadPlaywright();
 
-const ROOT = path.resolve(process.argv[2] ?? '.');
-const ENTRY = process.argv[3] ?? '/renderers/web/';
-const OUT = path.resolve(process.argv[4] ?? '/tmp/shots');
-const detailArg = process.argv.indexOf('--detail');
-const DETAIL = detailArg > -1 ? process.argv[detailArg + 1] : 'full';
+// Flags may sit anywhere, so the positional arguments are read off the list
+// with the flags and their values removed. Before this, `--at` after the output
+// directory was fine and `--at` before it became the output directory.
+const FLAGS = new Set(['--detail', '--at']);
+const argv = process.argv.slice(2);
+const positional = [];
+const flags = {};
+for (let i = 0; i < argv.length; i++) {
+  if (FLAGS.has(argv[i])) { flags[argv[i]] = argv[++i]; continue; }
+  positional.push(argv[i]);
+}
+const ROOT = path.resolve(positional[0] ?? '.');
+const ENTRY = positional[1] ?? '/renderers/web/';
+const OUT = path.resolve(positional[2] ?? '/tmp/shots');
+const DETAIL = flags['--detail'] ?? 'full';
+// `--at e,n,yaw[,name]` replaces the anchor set with ONE station, which is what
+// an archetype before/after pair needs: the anchors stand where a visitor
+// stands, and a plant community is somewhere else. K56.
+const AT = flags['--at']
+  ? (() => {
+    const [e, n, yaw, name] = flags['--at'].split(',');
+    return [[name || 'at', { e: Number(e), n: Number(n), yaw: Number(yaw ?? 0) }]];
+  })()
+  : null;
 mkdirSync(OUT, { recursive: true });
 
 const TYPES = {
@@ -127,7 +147,7 @@ await page.evaluate(() => {
   }
 });
 
-for (const [name, { e, n, yaw, ...rest }] of shots) {
+for (const [name, { e, n, yaw, ...rest }] of AT ?? shots) {
   await page.evaluate((t) => {
     const api = window.__chicago4d;
     // Altitude only survives in fly mode: the walker reconciles itself against

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_06",
- "name": "The Burke household — a reconstructed labourer (north division)",
+ "name": "The Corrigan household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_06",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_06",
-   "name": "Michael Burke",
+   "name": "Edward Corrigan",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

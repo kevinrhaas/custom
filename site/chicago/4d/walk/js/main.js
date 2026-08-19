@@ -21,15 +21,24 @@ import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
 import { createPointerLockBackend, isTyping } from './controls/pointerlock.js';
 import { createTouchBackend, prefersTouch } from './controls/touch.js';
-import { createWalker, footprintsFrom, WALK } from './walker.js';
+import { createWalker, footprintsFrom, decksFrom, WALK } from './walker.js';
 import { createFlora } from './flora.js';
 import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
+import { createEnclosures } from './enclosures.js';
+import { createSignage } from './signage.js';
+import { createYardGoods } from './yard.js';
+import { createFrontage } from './frontage.js';
+import { createWharves } from './wharves.js';
+import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
+import { mountFauna } from './fauna.js';
+import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
+import { mountGateCensus } from './census.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
@@ -58,6 +67,38 @@ const DETAIL = {
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+
+/**
+ * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
+ *
+ * The owner reported the river's edge flickering when flying, and it is the
+ * depth buffer running out of numbers. A perspective depth buffer spends its
+ * precision near the camera: the smallest depth difference it can tell apart at
+ * a distance z is about z² / (near · 2^bits). At the fixed 0.1 m near this
+ * camera used to carry, two surfaces 350 m away had to be **10 cm** apart in
+ * depth before the buffer could say which was in front — and the river's edge
+ * is the one place in this scene where two surfaces are exactly co-planar by
+ * design (`terrain.js`: the bank line IS where the ground crosses y = 0, so the
+ * waterline can never drift out of step with the traced river). Inside that
+ * band the winner is decided by rounding, and a camera that moves two
+ * millimetres re-rolls it. That is the shimmer.
+ *
+ * Moving the near plane out with altitude fixes the CAUSE rather than picking a
+ * winner. The alternative — a `polygonOffset` on the water — would settle the
+ * tie by biasing the water toward the camera, and at 350 m one depth step is
+ * ~10 cm of ground: the drawn waterline would climb the bank by up to that
+ * much, which breaks the invariant the design exists to guarantee. Precision
+ * costs nothing and moves no edge.
+ *
+ * `min` is the walking value and is unchanged: `altitude` is the eye's height
+ * above the ground under it and is 0 on foot, so a walker gets exactly the
+ * camera they had before. `divisor` keeps the near plane at a twenty-fifth of
+ * the way to the ground — two orders inside anything the visitor could fly
+ * close to — and `max` caps it so that a low pass beside a building cannot clip
+ * its wall. `step` quantises the value so the projection matrix is rebuilt on a
+ * change worth having rather than every frame.
+ */
+const NEAR = { min: 0.1, max: 8, divisor: 25, step: 0.05 };
 
 /** The visitor's stored choice, read straight from the HUD's own settings blob so
  *  the two cannot disagree about which level is selected. Returns '' when they
@@ -115,6 +156,10 @@ const api = {
             altitude: 0, flying: false },
   problems,
   budget: BUDGET,
+  // The town's own two numbers, as the gate showed them (T-0036). Null until the
+  // census resolves, and null forever if it could not be read — the smoke asserts
+  // the DISPLAYED figures against this, so a silent failure reads as one.
+  census: null,
 };
 window.__chicago4d = api;
 
@@ -139,9 +184,18 @@ async function boot() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
 
   const scene3d = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 3000);
+  const camera = new THREE.PerspectiveCamera(62, 1, NEAR.min, 3000);
 
   progress(8, 'Reading the scene…');
+  // The gate's two numbers (T-0036). Started here and NOT awaited: it is one
+  // small JSON beside a scene load that fetches hundreds of files, and the row
+  // it fills sits above the progress bar — a visitor should be reading how big
+  // the town is while the town loads, not after. It fails soft to a hidden row,
+  // so nothing downstream depends on it and no rejection reaches the boot chain.
+  const census = mountGateCensus({ dataBase: bases.dataBase }).then((c) => {
+    api.census = c;
+    return c;
+  }).catch(() => null);
   const loaded = await loadScene(YEAR, bases);
   progress(30, 'Placing the buildings…');
   problems.push(...loaded.problems);
@@ -173,8 +227,12 @@ async function boot() {
   scene3d.add(buildings.group);
 
   const footprints = footprintsFrom(loaded.registry);
+  // The bridge decks, which are the one walkable surface the heightfield does not
+  // carry — the wall you are kept out of and the deck you stand on are the same
+  // polygon read two ways, so both come off the same footprints. T-0001.
+  const decks = decksFrom(loaded.registry);
   const spawn = anchorFor(loaded.scene, params.get('anchor')) ?? loaded.scene.spawn ?? {};
-  const walker = createWalker({ camera, terrain, footprints, spawn });
+  const walker = createWalker({ camera, terrain, footprints, decks, spawn });
   walker.apply();
 
   // The dated street layer is a skin on the heightfield, never a replacement
@@ -186,6 +244,99 @@ async function boot() {
     confidence,
   });
   scene3d.add(streets.group);
+
+  // The town's fence lines — yards, pens, garden pickets. An enclosure takes a
+  // PERIMETER rather than a footprint and is roofless, which is why it is not a
+  // structure record and carries no GLB: docs/LIBERTIES.md L10 and L60 have both
+  // been waiting on exactly that shape, and this is the half of it that needs no
+  // bake. Mounted after the streets so a frontage fence is drawn against the
+  // travelled way it stands on, and before the vegetation for no reason but
+  // reading order — a fence blocks no growth, because nothing says the ground
+  // inside one was cleared.
+  const enclosures = await createEnclosures({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(enclosures.group);
+  api.enclosures = enclosures;
+
+  // The boards the businesses hung out over the footway. Like a fence, a
+  // signboard is derived geometry rather than baked geometry — a plank on a
+  // bracket hanging off a wall the GLBs already draw — so it needs no bake
+  // either (T-0039). Mounted after the buildings it hangs on, and its height is
+  // measured from the same wall base `buildings.js` anchors them at.
+  const signage = await createSignage({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(signage.group);
+  api.signage = signage;
+
+  // The goods a working town left standing on its own ground — barrels and
+  // cases on the footway at the taverns and the stores, and one wagon in the
+  // yard a source calls a wagon yard (T-0040). Derived geometry like the fences
+  // and the boards, so it needs no bake either. Mounted AFTER the signage
+  // because the two are derived from the same wall and deliberately share it:
+  // the board hangs 1.7 m one side of the facade's centre and the goods pile
+  // from the other end. Unlike a board, a barrel stands on the TERRAIN rather
+  // than on the building's wall base — it is resting on the ground it is on.
+  const yard = await createYardGoods({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(yard.group);
+  api.yard = yard;
+
+  // The frontage works — the plank walks along a building's street walls, the
+  // board crossing over the road and the named board on its post at the corner
+  // (T-0082). Derived geometry like the fences, the boards and the goods, so it
+  // needs no bake — but it is the first layer derived from a building AND a
+  // street at once: where a walk may lie is decided by the travelled track's own
+  // half-width out of data/streets/1835.json. Mounted after the yard because the
+  // two divide one building's ground between them — the yard layer owns what
+  // stands on its own lot and this owns what lies in the street outside it.
+  const frontage = await createFrontage({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(frontage.group);
+  api.frontage = frontage;
+
+  // The river docks at the two forwarding warehouses whose own records state
+  // one (T-0041). Derived geometry like the fences, the boards and the goods, so
+  // it needs no bake — but it is the first of these layers that stands OVER THE
+  // WATER, and that is where its one hard rule comes from: the deck top is the
+  // terrain's own height at the landward edge and each crib bent is stepped down
+  // to the bed under it, so nothing here floats and nothing is drawn on a number
+  // authored beside the mesh instead of taken from it. Mounted after the yard
+  // for reading order; the two never touch, because the goods stand on the
+  // town's trading frontages and the docks are out on the bank.
+  const wharves = await createWharves({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(wharves.group);
+  api.wharves = wharves;
+
+  // The boats on the river (T-0063) — the owner's ask, verbatim: "you can add
+  // boats correct for the era! they would exist." Derived at load like the
+  // docks, but AUTHORED rather than ruled: no rule can derive where a moored
+  // schooner lay, so data/boats/ states each hull and docs/LIBERTIES.md L146
+  // claims the invention. An afloat hull rides the water plane at its own
+  // draft and a beached one sits on the terrain; the layer refuses a boat its
+  // own water cannot carry. Mounted after the wharves for reading order — the
+  // two share the river and deliberately never touch: the wharf record draws
+  // no vessel at its decks, and the boats ride the open reaches.
+  const boats = await createBoats({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(boats.group);
+  api.boats = boats;
+
+  /**
+   * What the PLANTERS treat as built ground: the buildings' footprints plus the
+   * wharf decks. A deck is a floor, and a forb growing up through the planks
+   * reads as a hole in the model. Kept as its own array rather than pushed into
+   * `footprints`, which the walker holds by reference and the picker resolves by
+   * structure id — a second polygon under a building's id would answer for the
+   * building itself.
+   */
+  const planting = footprints.concat(wharves.keepOut, boats.keepOut);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -215,15 +366,22 @@ async function boot() {
   BUDGET.triangles = DETAIL[detailLevel].triangles;
 
   let flora = await createFlora({
-    dataBase: bases.dataBase, terrain, footprints,
+    dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
     confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
   let trees = await createTrees({
-    dataBase: bases.dataBase, terrain, footprints,
+    dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
-    confidence, problems, pixelsPerRadian, ...detailOpts(),
+    confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+    // Which sward a point stands in, so the woody layer plants the lakeshore
+    // poplars on the ground the beach is actually drawn on rather than carrying
+    // a second copy of the zone extents (ROADMAP K45(b) change one). Both call
+    // sites build the sward first, and a dead `flora` would answer null, which
+    // plants no dune rather than planting one somewhere invented.
+    zoneAt: (e, n) => flora.zoneAt(e, n),
+    ...detailOpts(),
   });
   scene3d.add(trees.group);
 
@@ -243,7 +401,7 @@ async function boot() {
       scene3d.remove(flora.group);
       flora.dispose?.();
       flora = await createFlora({
-        dataBase: bases.dataBase, terrain, footprints,
+        dataBase: bases.dataBase, terrain, footprints: planting,
         growthBlocked: streets.blocksGrowth,
         confidence, problems, ...detailOpts(),
       });
@@ -252,9 +410,11 @@ async function boot() {
       scene3d.remove(trees.group);
       trees.dispose?.();
       trees = await createTrees({
-        dataBase: bases.dataBase, terrain, footprints,
+        dataBase: bases.dataBase, terrain, footprints: planting,
         growthBlocked: streets.blocksGrowth,
-        confidence, problems, pixelsPerRadian, ...detailOpts(),
+        confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
+        zoneAt: (e, n) => flora.zoneAt(e, n),
+        ...detailOpts(),
       });
       scene3d.add(trees.group);
       api.flora = flora;
@@ -265,7 +425,11 @@ async function boot() {
     return run;
   }
 
-  const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
+  // No `docBase` override: a dossier is read at one absolute address from every
+  // tier, because the relative one resolved only in the source tree — the tree
+  // nobody visits — and 404'd on the deployed site and its preview alike
+  // (ROADMAP K26, popup.js DOSSIER_BASE).
+  const popup = createPopup(popupRoot);
   const navigation = createNavigation({
     root: hudRoot, terrain, registry: loaded.registry, streets,
   });
@@ -296,6 +460,14 @@ async function boot() {
       } else if (key === 'fov') {
         camera.fov = value;
         camera.updateProjectionMatrix();
+      } else if (key === 'roadAid') {
+        // R-A1. A uniform on the shared street materials — no recompile, and
+        // the next frame carries it.
+        streets.setLegibilityAid(value);
+      } else if (key === 'brightness') {
+        // K24. One scalar on the tone mapper — no recompile, no relight, and
+        // the next frame carries it.
+        world.setBrightness(value);
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
       } else if (key === 'detail') {
@@ -339,6 +511,32 @@ async function boot() {
     problems,
   });
 
+  // And WHO was living here. This layer had a reader already — a household
+  // travels in its building's sidecar and the building card names it — which
+  // is exactly why nobody noticed that a household with no attested residence
+  // and no attested workplace attaches to no building and so reached no card
+  // anywhere: ROADMAP K52. Nothing of it is drawn; this is the record, on a card.
+  api.residents = await mountResidents({
+    mount: document.getElementById('residents'),
+    noteMount: document.getElementById('residents-note'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
+  // And what was LIVING here, which no building carries at all. The animal
+  // records were researched to the scene date, graded, cited — and read by
+  // nothing: ROADMAP K42 measured that no renderer source opened the directory
+  // and the publish step did not copy it, so the layer stopped at the
+  // repository. Nothing of it is drawn; this is the record, on a card.
+  api.fauna = await mountFauna({
+    mount: document.getElementById('fauna'),
+    noteMount: document.getElementById('fauna-note'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
   // And what was researched and left out, which no building can carry because
   // the buildings that would carry it are the ones not standing here.
   // …and the third category, which neither of those can hold: researched, and
@@ -374,6 +572,8 @@ async function boot() {
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
+  streets.setLegibilityAid(hud.settings.roadAid);
+  world.setBrightness(hud.settings.brightness);
   navigation.setCompassVisible(hud.settings.compass);
   navigation.setMapVisible(hud.settings.overviewMap);
   navigation.setStreetVisible(hud.settings.streetNames);
@@ -433,7 +633,76 @@ async function boot() {
   // ---- picking ---------------------------------------------------------- //
 
   function inspect(ndc = null) {
-    const hit = buildings.pickAt(ndc, camera);
+    let hit = buildings.pickAt(ndc, camera);
+    /**
+     * A fence can be the thing you are aiming at. The estray pen's geometry
+     * lives on the enclosure layer now (T-0051), and it is still a structure
+     * record with a card behind it — so a pick that misses every roof, or lands
+     * on one standing further away than the fence in front of it, resolves
+     * against the enclosures too. An enclosure with no structure behind it (the
+     * wagon yard) answers null and the aim falls through to the roof, which is
+     * the same behaviour as before this layer existed.
+     */
+    const fence = enclosures.pickAt(ndc, camera);
+    if (fence && (!hit || fence.distance < hit.distance)) {
+      const record = loaded.registry.get(fence.id);
+      if (record) hit = { ...fence, record };
+    }
+    /**
+     * And so can a signboard, which is the whole function of one: it hangs a
+     * metre out from the wall, so at a shop door it is the nearest thing to the
+     * crosshair, and the board a visitor aims at should open the business
+     * behind it rather than whatever the ray finds past it (T-0039).
+     */
+    const board = signage.pickAt(ndc, camera);
+    if (board && (!hit || board.distance < hit.distance)) {
+      const record = loaded.registry.get(board.id);
+      if (record) hit = { ...board, record };
+    }
+    /**
+     * And so can a barrel at a shop door, which is where a visitor's crosshair
+     * actually lands when they walk up to a frontage: the goods stand half a
+     * metre out from the wall, so they are nearer than it. A barrel opens the
+     * business whose door it stands at, and the wagon opens the hotel whose
+     * yard it stands in (T-0040).
+     */
+    const goods = yard.pickAt(ndc, camera);
+    if (goods && (!hit || goods.distance < hit.distance)) {
+      const record = loaded.registry.get(goods.id);
+      if (record) hit = { ...goods, record };
+    }
+    /**
+     * And so can the walk under a visitor's feet, or the board on its post at
+     * the corner — which is the whole function of a sign: it stands out at the
+     * street edge, so from the road it is nearer to the crosshair than the inn
+     * behind it. Both open the building whose frontage they are (T-0082).
+     */
+    const frontageHit = frontage.pickAt(ndc, camera);
+    if (frontageHit && (!hit || frontageHit.distance < hit.distance)) {
+      const record = loaded.registry.get(frontageHit.id);
+      if (record) hit = { ...frontageHit, record };
+    }
+    /**
+     * And so can a wharf, which is the largest thing on any of these derived
+     * layers: it reaches out over the water in front of the warehouse, so from
+     * the bank it is nearer to the crosshair than the shed it belongs to. A dock
+     * opens the warehouse it serves (T-0041).
+     */
+    const dock = wharves.pickAt(ndc, camera);
+    if (dock && (!hit || dock.distance < hit.distance)) {
+      const record = loaded.registry.get(dock.id);
+      if (record) hit = { ...dock, record };
+    }
+    /**
+     * And so can a boat, which is the one pickable thing here that belongs to
+     * no structure at all: a hull answers with its OWN card record, built by
+     * the boat layer from data/boats/ — type, size, state and what bounded the
+     * invention — rather than through the registry (T-0063).
+     */
+    const boat = boats.pickAt(ndc, camera);
+    if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
+      hit = { ...boat };
+    }
     if (!hit) {
       popup.close();
       hud.say('Nothing there — aim at a building');
@@ -467,7 +736,24 @@ async function boot() {
   function focusPoint(id) {
     const fp = footprints.find((f) => f.id === id);
     const record = loaded.registry.get(id);
+    // A structure drawn by the enclosure layer has neither an obstruction
+    // polygon nor a wall height any more, and both of the defaults below are
+    // wrong for it: the placement is the pen's south-west CORNER, and 5 m of
+    // assumed wall aims the crosshair nearly two metres over a fence that is
+    // 1.83 m tall. So take the perimeter's own centre and its own height — the
+    // Go-to menu still lists the pen, and it has to stand you in front of it.
+    const fence = record?.sidecar?.drawn_by
+      ? (enclosures.records ?? []).find((r) => r.structure_id === id)
+      : null;
     let e; let n;
+    if (fence) {
+      const pts = (fence.runs ?? []).flatMap((r) => r.path_local_enu_m ?? []);
+      if (!pts.length) return null;
+      e = pts.reduce((a, p) => a + p[0], 0) / pts.length;
+      n = pts.reduce((a, p) => a + p[1], 0) / pts.length;
+      const h = fence.form?.height_m?.value ?? 1.5;
+      return enuToWorld(e, n, terrain.surfaceHeight(e, n) + h * 0.55);
+    }
     if (fp) {
       e = fp.pts.reduce((a, p) => a + p[0], 0) / fp.pts.length;
       n = fp.pts.reduce((a, p) => a + p[1], 0) / fp.pts.length;
@@ -559,6 +845,23 @@ async function boot() {
    */
   let animationHold = false;
 
+  /**
+   * Hold the near plane at a twenty-fifth of the eye's height above the ground,
+   * quantised, between `NEAR.min` and `NEAR.max`. See the NEAR block at the top
+   * of this file for why the depth buffer needs it and why the water material
+   * must not be biased instead. Returns the value in force, for the harness.
+   */
+  function setNearFor(altitude) {
+    const wanted = THREE.MathUtils.clamp(
+      Math.round(((altitude || 0) / NEAR.divisor) / NEAR.step) * NEAR.step,
+      NEAR.min, NEAR.max);
+    if (Math.abs(camera.near - wanted) > 1e-6) {
+      camera.near = wanted;
+      camera.updateProjectionMatrix();
+    }
+    return camera.near;
+  }
+
   function tick() {
     // Keep visual simulation stable, but do not make a visitor crawl in direct
     // proportion to a slow renderer. At 2 fps the former 0.05 s clamp advanced
@@ -577,6 +880,9 @@ async function boot() {
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
+    // Before the render, after the walker: the near plane is a function of where
+    // the eye ended up this frame (R-BUG1, and the NEAR block above).
+    setNearFor(walker.state.altitude);
     world.follow(camera.position);
     flora.update(dt, camera);
     trees.update(dt, camera);
@@ -633,6 +939,19 @@ async function boot() {
     get detail() { return detailLevel; },
     setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
+    // R-A1. The gates measure the DEFAULT, so they need to be able to read this
+    // back as well as set it: "the aid is off unless a visitor moved it" is an
+    // assertion, not a comment.
+    setRoadAid(v) { return streets.setLegibilityAid(v); },
+    // K24. The setter side only. Every LIVE reading — roadAid, brightness,
+    // exposure — is defined below, because a getter written in this literal is
+    // read once by Object.assign and frozen. See the note there.
+    setBrightness(v) { return world.setBrightness(v); },
+    // T-0002. Not a visitor setting — the town's facade tones are what the town
+    // looks like. It is here because a gate has to be able to turn the tone off
+    // to prove it is on (R-BUG6(a)), and the reading below is defined with the
+    // other live ones for the reason K24 gives.
+    setFacadeWeathering(v) { return buildings.setWeathering(v); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
@@ -669,6 +988,9 @@ async function boot() {
         structures: loaded.registry.size,
         bytes: loaded.bytes,
         fps: Math.round(fps),
+        // R-BUG1: the near plane is no longer a constant, so a harness asking
+        // why an edge is or is not stable can read the number that decides it.
+        cameraNear: camera.near,
         budget: BUDGET,
         withinBudget: info.render.calls <= BUDGET.drawCalls
           && info.render.triangles <= BUDGET.triangles,
@@ -702,11 +1024,38 @@ async function boot() {
   // Live getters, defined rather than assigned: Object.assign COPIES the value
   // a getter returns at assignment time, which would have frozen these at their
   // boot-time answer and made every later reading wrong.
+  //
+  // K24 FOUND THAT THE NOTE ABOVE WAS TRUE AND THAT THE LITERAL HAD BEEN
+  // ACQUIRING GETTERS ANYWAY. `get roadAid()` shipped inside the Object.assign
+  // literal with R-A1 and was frozen at 0 from the moment it was written. Its
+  // two gates both assert `=== 0` — off at boot, and back to 0 when dropped —
+  // so a constant 0 passed both, and the third gate (raising it changes the
+  // frame) reads a frame signature and never touched the getter. The control
+  // itself was always live; the READBACK was the dead thing, which is R-A1's
+  // own finding one level in: an assertion that can only ever see one value is
+  // not an assertion. The brightness aid caught it because `exposure` is the
+  // first of these readings whose expected value MOVES.
+  //
+  // So the rule, and it is why this block is the only place a live reading may
+  // be written: anything on the harness whose answer changes after boot is
+  // defined HERE. A getter in the literal above is a frozen snapshot.
   Object.defineProperties(api, {
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },
+    decks: { get: () => decks, enumerable: false },
+    roadAid: { get: () => streets.legibilityAid, enumerable: true },
+    brightness: { get: () => world.brightness, enumerable: true },
+    exposure: { get: () => renderer.toneMappingExposure, enumerable: true },
+    facadeWeathering: { get: () => buildings.weathering, enumerable: true },
   });
+
+  // Settle the gate census before declaring ready. It was started before the
+  // scene load and has had every one of those seconds; awaiting it here means
+  // `api.census` is either the document or null by the time anything — a gate,
+  // a visitor, the smoke — asks, rather than being a race the harness would
+  // have to poll around.
+  await census;
 
   progress(100, 'Ready');
   api.ready = true;

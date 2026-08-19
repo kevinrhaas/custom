@@ -47,6 +47,27 @@ RESEARCH_DOSSIER = {
 }
 
 
+def research_doc(structure: dict) -> str:
+    """The dossier that covers this record, or `""` where none has been written.
+
+    The path used to be asserted by convention — `docs/RESEARCH/<id>.md` for
+    anything with no reconstruction block — and the convention is right about 302
+    of 332 records and wrong about 30, which are documented buildings whose
+    write-up nobody has done yet. The card rendered the guess as a link either
+    way, so a third of the town's most interesting buildings offered a link that
+    breaks (ROADMAP K26). Resolving it here rather than in the renderer is what
+    lets a static card be honest about it: the compiler can see the repository
+    and a browser on the deployed site cannot see even the file it is asking for.
+
+    Emitting `""` rather than dropping the key keeps the sidecar one shape
+    everywhere, which is the same rule `residents` follows.
+    """
+    path = RESEARCH_DOSSIER.get(
+        (structure.get("reconstruction") or {}).get("status"),
+        f"docs/RESEARCH/{structure['id']}.md")
+    return path if (ROOT / path).exists() else ""
+
+
 def load(p: Path):
     return json.loads(p.read_text())
 
@@ -86,6 +107,43 @@ def vertical_anchor(archetype: str) -> str:
     except Exception:  # noqa: BLE001
         return "terrain"
     return getattr(mod, "VERTICAL_ANCHOR", "terrain")
+
+
+def walk_surface_m(structure: dict, phase: dict):
+    """The height, above this structure's own `y = 0`, of a surface a visitor may
+    STAND on — or `None` for the 330 structures that have no such surface.
+
+    Only bridges have one, and for a bridge it is the deck. The number is the
+    generator's own `deck_height_m`, read off the resolved parameter object rather
+    than recomputed here or measured off the GLB, for the same reason
+    `vertical_anchor` above reads its declaration off the parameter module: the
+    deck a visitor stands on and the deck the mesh draws have to be ONE number, and
+    two definitions agree until the day one of them matters. `mesh_inputs` already
+    imports these modules without Blender, so this costs the compile nothing.
+
+    Why the renderer cannot just measure it. The deck IS a distinct primitive in the
+    GLB, named by its material, so its top face is findable — but the material names
+    are not part of docs/GLB-CONTRACT.md, and a renderer keyed on one would be
+    reading a generator convention nobody promised to keep. The drawbridge also
+    carries gallows frames five metres above its deck, so the structure's bounding
+    box is not the answer either.
+
+    Silent on failure for the same reason `vertical_anchor` is: a parameter module
+    that will not import is the staleness gate's error to raise, with a better
+    message than a sidecar compile could give.
+    """
+    arch = structure.get("archetype")
+    if not arch:
+        return None
+    gen = str(ROOT / "generators")
+    if gen not in sys.path:
+        sys.path.insert(0, gen)
+    try:
+        mod = __import__(f"archetypes.{arch}_params", fromlist=["from_phase"])
+        value = getattr(mod.from_phase(phase), "deck_height_m", None)
+    except Exception:  # noqa: BLE001
+        return None
+    return round(float(value), 4) if value is not None else None
 
 
 def resolve_phase(structure: dict, target: dt.date):
@@ -427,6 +485,108 @@ def ground_claims(spec: dict, sources: dict) -> list[dict]:
                 if claim:
                     claims.append(claim)
     return claims
+
+
+def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int:
+    """The citations the residents layer stands on, joined once for the panel.
+
+    ROADMAP K52, and the argument is `compile_fauna_sources`'s exactly. What a
+    household record carries is a list of `source_id`s and a bare id on a card is
+    not a citation, so the join is done here, where every other join in this
+    project is done, and `renderers/web/js/citations.js` renders it.
+
+    THE DIFFERENCE FROM FAUNA IS THE SHAPE OF THE READ. The browser fetches the
+    manifest and then one household record per row a visitor opens, so this file
+    must cover every household — not only the ones a building sidecar reaches.
+    It carries no resident figure of its own: the people are read from
+    `data/residents/`, and a census of which figures reach a visitor must not
+    have two answers to the same question.
+    """
+    cited: set[str] = set()
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    cited.update(str(v) for v in value)
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    index_path = DATA / "residents" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    walk(index)
+    for entry in index.get("households", []):
+        household_path = DATA / "residents" / entry.get("file", "")
+        if household_path.exists():
+            walk(load(household_path))
+
+    citations = cite(sorted(cited), sources)
+    emit(outdir / "residents_sources.json", {
+        "scene": scene_id,
+        "standard": "Every source the household records cite, joined once so the people "
+                    "section of the Evidence panel quotes a source exactly the way the "
+                    "building card and the exclusions list do.",
+        "citations": {c["source_id"]: c for c in citations},
+    })
+    return len(citations)
+
+
+def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
+    """The citations the fauna layer stands on, joined once for the walkthrough.
+
+    ROADMAP K51. `data/fauna/` is authored research and the renderer now reads it
+    straight — the zone records and the manifest are fetched by the browser as
+    they are committed, which is what makes the read map in
+    `tools/measure_layer_reads.py` scannable at all. What a zone record carries
+    is a list of `source_id`s, and a bare id on a card is not a citation: this
+    project's own argument is that a visitor should be able to judge the
+    evidence, and `renderers/web/js/citations.js`'s single citation renderer
+    wants the joined record — the rung, the words for the rung, what the page
+    reprints and the source's own stated limits.
+
+    So the join is done here, where every other join in this project is done, and
+    nowhere else. The fauna layer cites seven sources today; the file is keyed by
+    id because a species reaches it by id, and it carries no fauna figure of its
+    own — the animals are read from `data/fauna/`, not from here, and the census
+    that counts which figures reach a visitor must not have two answers.
+    """
+    cited: set[str] = set()
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    cited.update(str(v) for v in value)
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    index_path = DATA / "fauna" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    walk(index)
+    for entry in index.get("zones", []):
+        zone_path = DATA / "fauna" / entry.get("file", "")
+        if zone_path.exists():
+            walk(load(zone_path))
+
+    citations = cite(sorted(cited), sources)
+    emit(outdir / "fauna_sources.json", {
+        "scene": scene_id,
+        "standard": "Every source the animal records cite, joined once so the wildlife "
+                    "section of the Evidence panel quotes a source exactly the way the "
+                    "building card and the exclusions list do.",
+        "citations": {c["source_id"]: c for c in citations},
+    })
+    return len(citations)
 
 
 def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> int:
@@ -782,7 +942,16 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "name": st["name"],
             "aka": st.get("aka", []),
             "archetype": st["archetype"],
-            "asset": f"gltf/{st['id']}__{phase['id']}.glb",
+            # A phase whose geometry moved to another layer has no GLB, and the
+            # sidecar says so in the field the loader reads rather than by
+            # naming a file that is not there. `drawn_by` travels with it so the
+            # renderer can say WHAT draws it instead — a null asset alone would
+            # be indistinguishable from a bake that failed to land. The estray
+            # pen is the first: a pound is a fence, and the roof it wore until
+            # 2026-08-18 existed only because `outbuilding` cannot build a
+            # roofless structure (docs/LIBERTIES.md L60, T-0051).
+            "asset": None if phase.get("drawn_by")
+                     else f"gltf/{st['id']}__{phase['id']}.glb",
             "scene": scene_id,
             "target_date": scene["target_date"],
             # Was it here at all? The scene date falls inside this span by
@@ -816,6 +985,11 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 # not sample the heightfield for the second kind: mid-channel the
                 # ground surface is the river bed, and a bridge placed on it sinks.
                 "vertical_anchor": vertical_anchor(st["archetype"]),
+                # T-0001. How high above that anchor a visitor may STAND — a
+                # bridge deck, and nothing else in this dataset has one. `null`
+                # for a building, whose walkable surface is the ground the walker
+                # is already standing on.
+                "walk_surface_m": walk_surface_m(st, phase),
             },
             # Carry the footprint's own confidence, not just its geometry — a bare
             # polygon loses precisely the thing the confidence view exists to show.
@@ -852,12 +1026,19 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             # count-units when the building they clicked exists for a particular
             # argued household. Keyed on the status rather than on the block's mere
             # presence, so a third status cannot inherit the wrong dossier by
-            # default; anything with no block keeps its per-record path.
-            "research_doc": RESEARCH_DOSSIER.get(
-                (st.get("reconstruction") or {}).get("status"),
-                f"docs/RESEARCH/{st['id']}.md"),
+            # default; anything with no block keeps its per-record path — and
+            # the path is resolved against the repository, so a card never
+            # offers a dossier nobody wrote (see research_doc() above).
+            "research_doc": research_doc(st),
             "review_required": st.get("review_required", False),
         }
+        # Written ONLY on the phases that have it, unlike `residents`, which is
+        # written empty everywhere so the card reads one shape. The difference is
+        # that this one is a rare exception rather than a per-record field: 330
+        # sidecars carrying `drawn_by: null` would be 330 files of diff saying
+        # nothing, in a mirror that is published byte-for-byte.
+        if phase.get("drawn_by"):
+            sidecar["drawn_by"] = phase["drawn_by"]["layer"]
         if st.get("reconstruction"):
             sidecar["reconstruction"] = st["reconstruction"]
         emit(outdir / f"{st['id']}.json", sidecar)
@@ -881,9 +1062,12 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir,
                                   in_scene=resolved)
     ground = compile_ground(scene_id, scene, sources, outdir)
+    fauna_cites = compile_fauna_sources(scene_id, sources, outdir)
+    resident_cites = compile_residents_sources(scene_id, sources, outdir)
 
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
-          f"{ground} ground claim(s)"
+          f"{ground} ground claim(s), {fauna_cites} fauna source(s), "
+          f"{resident_cites} resident source(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 

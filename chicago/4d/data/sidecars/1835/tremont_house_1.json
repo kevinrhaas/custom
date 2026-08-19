@@ -35,7 +35,8 @@
     "symbolic_location": "North-west corner of Lake Street and Dearborn Street (today West Lake Street at North Dearborn Street), fronting south onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [

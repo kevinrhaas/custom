@@ -94,7 +94,15 @@ one direction only — sound carries where sight does not, and the loudest thing
 are insects, frogs and livestock rather than birds. The validator enforces each of these as schema
 (`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not
 a hope about it.
-**Recorded:** 2026-08-09. **Revised:** 2026-08-11.
+**What the renderer actually does (2026-08-17, ROADMAP K51):** *nothing*, and the word "rendered"
+in the decision above has been an overstatement for the life of this entry. No animal is drawn,
+heard or traced in the walkthrough; there is no fauna geometry and no audio. K42 measured the
+reason — no renderer source opened `data/fauna/` and `tools/publish.sh` did not copy it, so the
+layer never left the repository. As of today it reaches a visitor as **text**: the Evidence
+panel's *What was living here* section publishes all 139 records with their July status, presence
+mode, abundance, behaviour, voice and sources. That is a card and not a population, and the
+decision above stays the standing intent for whenever animals are drawn.
+**Recorded:** 2026-08-09. **Revised:** 2026-08-17.
 
 ### L3 — Vertical exaggeration available but off by default
 **Decision:** the renderer may offer a vertical-exaggeration toggle; it defaults to off.
@@ -226,6 +234,20 @@ November 1833 implies have nowhere to go.
 is the strongest chip this project has, and it sits over a building with no stable within a
 hundred metres of it; the record now declares `geometry: "absent"` and the gate holds that
 declaration to this entry.
+**Revised:** 2026-08-18 — **THE YARD IS DRAWN.** `data/enclosures/western_hotel_wagon_yard.json`
+and `renderers/web/js/enclosures.js` are the enclosure archetype's renderer half, and this entry
+is what asked for them: a perimeter, a fence type and the two attested gateways, with no roof and
+no footprint. The sentence above — "a yard is an enclosure … and `outbuilding` builds a building"
+— is no longer a reason for the yard to be absent from the scene, and standing in the rear of the
+Western Hotel you are now standing inside a fenced yard with a gate onto Canal and a gate onto
+Randolph. **What is NOT resolved, and why this entry stays open.** `western_hotel_stable
+.stable_1834.form.wagon_yard` still declares `geometry: "absent"` and still belongs here, because
+that declaration is about the OUTBUILDING ARCHETYPE'S MESH, which contains no yard and never
+will; the yard is a second record drawn by a second layer. `western_hotel.frame_1834.form.stables`
+is untouched for the same reason. And the fence itself is an invention from end to end — see
+**L127**, which claims it. Clybourn's stockyard and the pig pens the November 1833 town code
+implies are still unbuilt, and the estray pen (**L60**) is still a roofed box: this layer makes
+both of those buildable, and neither is built here.
 
 ### L11 — Western Hotel: one completed phase on a disputed date, rather than a construction phase
 **Decision:** modelled as complete and in operation on 1835-07-01, on the 1834 build date, with
@@ -1400,35 +1422,6 @@ the distribution the evidence describes. It is still a point where the record ha
 1834–35 newspaper advertisement naming either address; Andreas at page-image level around scan
 pp. 305 and 431, read for a street number or a neighbour rather than for the school.
 **Covers:** `chappel_infant_school.log_1833.position`, `watkins_school_house.house_1833.position`.
-**Recorded:** 2026-08-11.
-
-### L60 — The estray pen is a fence, and the model gives it a roof
-**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
-public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
-8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
-Every one of those values is tagged `conjectural`.
-**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
-enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
-project has no generator that builds an enclosure — `palisade` is named in the schema and has no
-module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
-cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
-working policy for this parcel is that an absent building is invisible while a conjectural one is
-legible and correctable.
-**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
-about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
-close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
-probably was not there rather than a finding about a roof that was. The material is invented too,
-and the live alternative would look completely different: most frontier pounds were split-rail or
-post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
-wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
-survives of the evidence in the mesh is a rectangle of about the right size in about the right
-place.
-**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
-taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
-state of the public square itself, the garrison gardens and every yard in the town, and it is
-the honest fix. A town or county order establishing the pound would settle the size and the
-material at the same time.
-**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
 **Recorded:** 2026-08-11.
 
 ### L61 — The first court-house is built finished, on a date that may predate it
@@ -3570,6 +3563,1171 @@ in July 1835. A named occupant replaces an inferred one; it never adds a househo
 `recon_1835_blk_randolph_dearborn_d3_01.occupants`
 **Recorded:** 2026-08-15.
 
+### L110 — A building taken out of the town, and the three public roofs that are all of them there were
+
+**Decision:** the first Cook County court-house **no longer stands in the 1835 scene**. Its record
+is kept and re-dated rather than deleted — `documented_range` opens 1835-10-01 instead of
+1835-01-01, so it resolves into 1836 and not into this scene — and 331 structures are included
+where 332 were. Nothing else moved: no coordinate, no footprint, no dimension and no confidence
+grade, and the town's roof ledger is unchanged because the physical-roof reconciliation had
+already given this record a roof count of zero on the same suspicion this entry settles.
+
+**This is the first record this project has taken OUT of a scene on evidence, and the removal is
+the honest direction.** The record modelled the court-house as complete on 1 July 1835 under a
+note saying in as many words that no source fixed a month and that a building finished somewhere
+in a twelve-month window is about half likely to be finished by 1 July. It reasoned well from what
+it had. What it had was a **caption**: its Andreas citation pointed at "a section headed 'THE
+FIRST COURT-HOUSE.' at scan p. 373", and scan p. 373 is a plate, the words printed under
+"Copyright secured by A. T. Andreas, 1884." The narrative is four scan pages earlier and fixes the
+season, and the chronology fixes the month at November, and a third passage has the county
+Recorder moving his office into "the new building recently erected by the county on the public
+square" toward the end of October. Three statements, none earlier than the fall.
+
+**The dataset had already contradicted itself about this for four days and no gate reads the two files together.** The physical-roof reconciliation gave the record `roof_count: 0` on 2026-08-12 — *"Production chronology places construction in fall 1835; no courthouse roof should stand on 1 July"* — one day after the structure record was committed standing it on the square, and the walkthrough's own release notes told visitors about *"a courthouse that was not built until the autumn"* while the walkthrough drew it. The reconciliation was right and cites nothing; the record was wrong and cites a caption.
+
+**What is admitted here is a year of a visitor seeing a building that was not there**, on the most
+looked-at block in the town — the public square carries the pen, the jail and, until today, a
+court-house — and the reason nothing caught it is worth more than the correction. Every gate this
+project had asked whether a building was inside its lot, clear of the roadway, on permitted ground
+and clear of its neighbours. The one that asks whether it existed yet is the date gate, and the
+date gate can only be as good as the range on the record. A range authored from a caption passes
+it perfectly.
+
+**Two further claims are now attested and are deliberately NOT applied.** Andreas gives the
+court-house the **north-east corner** of the square, in the same sentence that dates it, which
+refutes this record's own stated undercut that the north-east description belonged to the 1837
+building; and he gives it as **brick**, against the record's invented plank and the reasoning that
+brick is excluded before 1837 — a claim that is about the first brick *house* and not about a
+county building. Both are recorded on the record as amendments and neither changes a graded value,
+because a changed form value stales the placeholder mesh and geometry belongs to the nightly bake.
+An upgrade made in the same commit as the correction that took the building off screen would also
+be a promotion nobody could see. They belong to the parcel that re-bakes it.
+
+**The scope claim, stated so it can be disagreed with.** The enumeration behind this entry —
+`docs/RESEARCH/civic_public_buildings_1835.md` — is that Chicago's public buildings with a roof on
+1 July 1835 are **three**: the log jail, the council house and the lighthouse. The estray pen is
+public and roofless. Everything else a visitor might expect is either later (the court-house, the
+engine house, the market house, the custom house) or was a public FUNCTION carried on inside a
+private building (the post office, the United States Land Office, the county's own offices until
+late October 1835). That is a claim about completeness drawn from one book, and one book is how
+this project knows most of what it knows about 1835. A new source can add a building. What it may
+not do is add an anonymous one: `tools/measure_institutional_claims.py` now refuses, absolutely,
+any invented roof typed into the worship or civic families, and holds the schools at the one
+anonymous roof L93 already records.
+
+**Consequence:** a visitor standing on the public square in this scene sees the jail and the pen
+and open ground where the court-house was, which is what the sources describe, and the walkthrough's
+researched-exclusions panel gains three guards — the land office, the custom house and the town
+hall — saying why the town's most conspicuous public functions have no building. The programme
+still schedules six I3 roofs and every generator still refuses them; three of those six are now
+known to be a count of nothing, and correcting the number is an owner decision recorded as ROADMAP
+T-I3(b), because the two ways of correcting it are two different claims about how many roofs the
+town had.
+
+**How to resolve:** for the court-house, a month rather than a season — a contract, a commissioners'
+minute or a newspaper notice — and the bake that applies its attested corner and fabric. For the
+enumeration, any source naming a public building this list does not have; it arrives as a named
+record, never as a slot.
+
+**Recorded:** 2026-08-16.
+
+
+### L113 — Six researched plants are handed to no renderer at all, and the woody layer draws no flower
+
+**Decision:** six of the 154 species records in `data/flora/` reach **no reader**, and three
+recorded July inflorescences on records that *are* read draw **no flower**. Nothing is deleted
+and no grade moves — every one of them stays committed, cited and shipped to the browser. The
+omission is recorded here, and `tools/measure_flora_reach.py` holds all three populations exact
+so none of them can grow quietly (ROADMAP **K44**).
+
+**What a visitor does not see.** Four are the lakeshore's woody scrub — **eastern cottonwood,
+quaking aspen, balsam poplar and sandbar willow**, three of them graded `attested` off the
+Michigan Natural Features Inventory's open-dune survey and Cowles 1901 — and the zone's own
+`reads_as` sentence promises them in as many words: *"a scrub of sand cherry and leaning
+cottonwood"*. The sand cherry is drawn and the cottonwood is not. Two are the riverbank's vines,
+**riverbank grape and Virginia creeper**, whose `vine_drape` form the manifest publishes in
+`forms_unimplemented` — that one is a stated gap rather than a silent one, and it is recorded
+here because a published list of unimplemented forms is a note to a programmer, not to a
+visitor. The three flowerless records are the **American basswood in bloom** (its record:
+*"pale flower clusters on their strap bracts, heavily bee-worked"*, colour and size both
+written down), the **ironwood in fruit**, and the grape.
+
+**Why, and it is a routing rule rather than a decision anybody made.** `renderers/web/js/flora.js`
+draws five of the manifest's seven roles and fifteen of its forms, over every zone.
+`renderers/web/js/trees.js` draws the other two roles, five forms, and **four of the ten zones** —
+a `TIMBER_ZONES` list written when the woody records lived only in the timber communities, which
+`z08_lakeshore` was never added to. Neither file is wrong on its own terms; the gap is between
+them, and it is invisible from either. It is also invisible from the read-set that was supposed to
+catch exactly this: K42 measured which FIGURES a renderer reads, and every figure these records
+carry is read — on somebody else's record.
+
+**Consequence, stated so a reader can weigh it.** Wherever the lakeshore community is planted it
+is planted without its trees — bare sand, marram and sand cherry — which is a claim about the dune
+this project's own dossier does not make. (Whether that community reaches modelled ground at all
+today is a separate open question, ROADMAP K42 finding 4b; this entry is about what happens when
+it does.) In the timber, July's most conspicuous bloom is missing: a basswood in flower is what
+the record describes and the drawn tree is plain foliage. And the same routing has one more
+visible edge — a plant's `common` name and its July `appearance` sentence are read by `trees.js`
+alone, so of 154 plant records the **30** woody ones can be named to a visitor and the **124**
+herbaceous ones cannot.
+
+**What this entry does NOT admit, because the measurement refuted it.** K42 reported that *"31
+flowering plants record the fruit they carry in July, which nothing draws"*, and ROADMAP K43 was
+opened to record that omission here. It is not owed. **29 of the 31 are drawn**, in the fruit's
+own recorded colour, shape, size and height on the plant — the cattail's brown spadix, the
+dogwood's white berry cluster, the iris's green capsule — because a fruiting head is drawn from
+`july.inflorescence` exactly as a flowering one is. What no renderer reads is the **boolean**
+`inflorescence.fruit`, which `tools/validate.py` requires whenever `phenology` is `fruiting` and
+which is therefore the one part of that record already implied by another field. The two
+exceptions are the grape and the ironwood, and both are in the paragraph above for a different
+reason than the one K42 gave.
+
+**How to resolve:** three separate repairs, none of them a bake. Add `z08_lakeshore` to
+`TIMBER_ZONES` and the four dune records are drawn by the archetypes that already exist. Give
+`trees.js` a head path and the basswood and the ironwood get the flower and the fruit their
+records describe. The vines need a `vine_drape` archetype, which is a renderer parcel of real
+size. Each of the three is a line this entry can be moved to **Resolved** for, and the gate will
+demand the bank be updated in the same commit.
+
+**CORRECTION, 2026-08-16 (ROADMAP K45(a)) — the first of those three repairs is wrong, and the
+paragraph above is kept verbatim because it was believed when it was written.** Adding
+`z08_lakeshore` to `TIMBER_ZONES` draws **zero** stems. That list is a **species table**:
+`trees.js` reads those zone files for height, crown width, July foliage, density and confidence,
+and then places from a hand-written `COMMUNITIES` mix — a zone's `extent` is read by `flora.js`
+and never by `trees.js`. Two of the four dune records (`populus_deltoides`, `salix_interior`)
+already take their spec from `z05_riverbank_timber` and the loader is first-zone-wins; the other
+two (`populus_tremuloides`, `populus_balsamifera`) are in no mix, so `pick()` can never return
+them. The real repair is a **dune community with a placement rule** plus the woody planter's
+square carried east over the ground it stands on — ROADMAP **K45(b)**, and see **L114** for the
+two omissions that measurement exposed. Nothing in the entry above about what a visitor does not
+see has changed; only the sentence about how to fix it.
+
+**Recorded:** 2026-08-16.
+
+**PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(c)) — the second of the three repairs is done, and it
+was one step short of what this entry said it was.** `trees.js` has a head path now, and the
+**American basswood in bloom** and the **ironwood in fruit** are drawn from their own records:
+`tools/measure_flora_reach.py` banks **one** headless flower where it banked three, and the
+remaining one is the grape, whose `vine_drape` form is still unimplemented and which was never
+this repair's. What the sentence above got wrong is the size of it — handing `trees.js`
+`flora.js`'s own `HEAD_OF_SHAPE` verbatim draws `cluster_terminal`'s **1 to 4** heads, a count
+calibrated for a forb whose whole plant is one flowering scape, and four 3-pixel specks on a
+580-pixel crown is not a tree in flower. The multiplicity that makes it one is **L115**. The
+first repair remains refuted (K45(a)) and the third — the vines — is untouched.
+
+
+### L114 — A researched tree that no mix can choose, and three quarters of the modelled ground the timber layer has never visited
+
+**Decision:** two omissions in the woody layer stay exactly as they are, and are recorded here
+rather than repaired, because both repairs are renderer parcels with their own smoke and their own
+questions (ROADMAP **K45(a)**, which measured them, and **K45(b)**, which is the fix).
+
+**What a visitor does not see, one.** `data/flora/zones/z05_riverbank_timber.json` carries the
+**American sycamore** — *Platanus occidentalis*, graded `inferred` off McBride & Bowles, with
+`density_per_ha` **[1, 3]**, a July height of 18–25 m, a crown of 12–18 m, and its appearance
+written down: *"Rare, at its northern edge; white mottled bark flashing on the upper limbs."* Its
+form is `tree_gallery`, which has an archetype. `trees.js` receives the record, builds a render
+spec from it — and **no community mix holds the species**, so `pick()` can never return it and not
+one sycamore stands in the scene. It is the only one of the **20** routed, archetyped woody
+species in that position. The white bark the record describes is the most conspicuous thing about
+the tree and it is nowhere in the frame.
+
+**What a visitor does not see, two.** The woody planting loop sweeps a **fixed square**, E/N
+−316..+316 m, while the heightfield S2e carried east runs **E −320..+1700, N −400..+400**. Of the
+192,844 heightfield nodes standing above the planter's own dry floor, **52,163 — 27.05 % — are
+inside that square and 140,681 are outside it: 87.9 ha of modelled dry land on which the timber
+layer has never placed a stem.** `flora.js` builds its lattice around the camera and follows the
+visitor over all of it, so a visitor who walks east leaves the trees behind at a line nothing
+draws and keeps the grass. That is a claim about the ground east of the town — that it carried no
+woody plant at all — which this project's own dossier does not make; `z08_lakeshore`'s box begins
+1,084 m east of the planter's edge and describes *"a scrub of sand cherry and leaning
+cottonwood"*.
+
+**Why, and it is one cause with two faces.** `trees.js` was written when the modelled ground was a
+640 m square and the woody records lived in the communities around the town, so a fixed sweep and
+a hand-written mix were both the whole of the world. The ground has since grown to four times the
+area and the dataset to 154 species records, and neither literal moved with them. Nothing caught
+it because every gate this project had asks a question one step short: `tools/validate.py` asks
+whether a record is well formed, K42 asks whether a figure is read by any renderer file, and K44
+asks whether the record reaches a reader. All three say yes about the sycamore.
+
+**Consequence, stated so a reader can weigh it.** The town's timber is right where it is drawn —
+this is not a claim that the gallery is wrong. What is unstated is the negative: the scene asserts
+by omission that 87.9 ha carries no tree, and that the floodplain wood holds nine species when its
+own record holds ten. Both are omissions rather than inventions, which is why they are here and
+not a confidence downgrade: no attribute is overstated, and nothing in `data/` moved.
+
+**How to resolve:** the sycamore is a one-line mix entry weighted at the density its own record
+carries, and it changes the frame, so it belongs to a parcel that runs the smoke — not to the
+measurement that found it. The 87.9 ha needs the planting loop's square carried out to the
+heightfield's own extent AND a community that can stand on dune sand, because the classifier the
+loop already has would read the beach as gallery bank and plant silver maple on it. ROADMAP
+**K45(b)** holds both. `tools/measure_planting_reach.py` banks both populations exactly, so
+neither can grow quietly and a repair has to un-bank itself in the commit that makes it.
+
+**Recorded:** 2026-08-16.
+
+**PARTLY RESOLVED, 2026-08-16 (ROADMAP K45(b1)) — the sycamore is in the gallery, and the
+sentence above about how to weight it was the only part of this entry that needed correcting.**
+`['platanus_occidentalis', 2]` is in `COMMUNITIES.gallery.mix`, so the routed-archetyped-and-
+selected-by-nothing population is **0 of 20** where it was 1, and the floodplain wood holds the
+ten species its own record holds. *"Weighted at the density its own record carries"* is right and
+K45(b)'s own worked line — `['platanus_occidentalis', 1]` — is not: 1 is the bottom of the
+recorded `[1, 3]` band and **2** is its midpoint, which is the figure `trees.js` would have used
+whatever was written, because **the literal beside a species id is a fallback**. `mixes` is
+rebuilt at load as `records.density[id] ?? fallback` and `records.density` is the band's midpoint
+from the first `TIMBER_ZONES` entry naming the species. **Seventeen of the twenty-six mix entries
+are written to one number and place stems at another**; all twenty-six are banked in pairs now,
+and which of the two ought to win is ROADMAP **K46** — a question about the ecology, not about
+this entry. Half two of this entry — the **87.9 ha** — is untouched and stands.
+
+**HALF TWO IS RESOLVED, 2026-08-16 (ROADMAP K45(b2)) — the planter sweeps the field, and what it
+now refuses is a smaller and a stated omission.** The planting loop's `const half = 320 - step` is
+gone; it sweeps the heightfield's own extent inset by one planting step, so **189,700 of the
+192,844 dry nodes — 98.37 %, against 27.05 % — are ground the loop visits**, and the 87.9 ha it
+had never offered a stem to is **2.0 ha**, the one-step margin at the field's own rim. A hundred
+and forty-seven stems now stand east of the old square's edge where one did.
+
+**What replaces the omission, because the loop reaching ground is not the same as a wood standing
+on it.** Andreas is quoted in `z05_riverbank_timber`'s own note and he ends both divisions'
+timber: the South Side belt runs *"east as far as Wells Street"*, and the North Side's *"body of
+thrifty heavy growth of timber"* excepts *"the sandy hills near the lake and the marshy places."*
+So `communityAt` now carries an east limit per division, read at load from
+`data/streets/1835.json`: **Wells Street, E +329.3, for the South Division; State Street,
+E +825.8, for the North.** Ground east of its division's limit carries no woody community, which
+leaves **64,385 nodes — 40.2 ha — swept and refused.**
+
+**The two inventions in that, stated plainly.** *One:* Andreas names no street for the North
+Division; he names the sandy hills. State Street is this project's reading of where they start,
+taken from `z09_sand_prairie`, whose relict beach-ridge belt begins at the State Street
+break-of-slope that `generators/terrain_gen.py` builds between E +780 and +880 off two committed
+ground-control points. A different reading of *"near the lake"* would move that line, and moving
+it moves stems. *Two:* the mean easting of a centreline is used rather than either of its ends —
+Wells runs E +328.1 at N −400 to +330.5 at N +7 — which is a 1.2 m convention, not a source.
+
+**And the 40.2 ha is still an omission; it is only an honest one now.** `z08_lakeshore` records
+*"a scrub of sand cherry and leaning cottonwood"* and carries the eastern cottonwood, quaking
+aspen and balsam poplar at sourced dune densities. None of them is in any mix, so the sand carries
+no woody stem in this build. That is **ROADMAP K45(b) change one** — a dune community with its own
+placement rule — and it is the whole of what is left of this entry.
+`tools/measure_planting_reach.py` banks the swept domain (may grow, may not shrink), both east
+limits (exact, in both directions) and the refused hectares, so neither the reach nor the limit
+can move without a commit that says so.
+
+**AND THAT IS THE END OF IT — RESOLVED 2026-08-17 (ROADMAP K45(b) change one). The sand has
+trees on it.** `COMMUNITIES.dune` stands the three recorded poplars on the lakeshore: the eastern
+cottonwood in its dune form, the quaking aspen and the balsam poplar, weighted at each record's
+own midpoint — 9, 5 and 5 per hectare — over a stand density of **[7, 31]/ha** that is the sum of
+those three bands rather than a canopy figure, because ZONE 8 records no canopy and on open sand
+the three densities add. **88 stems stand on 4.30 ha of dry lakeshore** where none did.
+
+**Where they stand is the sward's answer, not this file's.** Every other community here is chosen
+from the heightfield, and a dune cannot be: what makes it a dune is the substrate. So `trees.js`
+asks `flora.js`'s zone classifier — the one that already decides which sward a visitor is standing
+in, by the committed extents and their priorities — and plants the dune where the beach is DRAWN.
+The 40.2 ha refused east of the timber limits is now **4.30 ha of dry lakeshore planted** and the
+rest is `z09_sand_prairie`, whose own record carries no tree at all: its only woody entry is the
+bur-oak grub, a `shrub_low` no woody reader takes. That is a stated omission of a different kind
+and it is not this entry's.
+
+**One omission does survive, named so it is not lost.** ZONE 8c also records willow scrub —
+`salix_cordata` at 15–50 clumps/ha, `salix_interior`, red-osier and juniper — and none of it is
+planted: the shrub roles are no woody reader's cohort. The river's point-bar branch is explicitly
+refused on the dune, because a point bar is a river feature and ZONE 8a says the active beach is
+85–98 % bare sand, *"do not vegetate this"*.
+
+Related: **L113**, which recorded the four dune trees this leaves unplaced, **L116**, the
+sycamore's borrowed bark, and **L120**, the dune archetypes this repair had to invent.
+
+### L118 — The sycamore's pale limbs are two invented colours, and the mottling is still not drawn
+
+**Decision:** the American sycamore is drawn in **two bark tones that no source states** — a pale
+grey-brown bole and a cream-white upper bole and limb set — because the one thing its record
+singles the species out for is a colour, and until now the tree was drawn in the American elm's
+dark brown (**L116**, resolved by the same parcel, ROADMAP **K47**). Both hexes are inventions of
+this project. So is every other bark, foliage and ground colour in `renderers/web/js/trees.js`;
+what makes this one worth its own entry is that it is **conspicuous** — the palest wood in the
+scene, and the first thing a visitor will notice on that stretch of river.
+
+**What bounds the invention, and it is three things rather than taste.**
+
+1. **The record fixes the direction and the place.** `data/flora/zones/z05_riverbank_timber.json`
+   reads *"Rare, at its northern edge; white mottled bark flashing on the upper limbs."* Pale, and
+   **upper** — a sycamore's lower bole is the brown scaly half, which is why one tone would have
+   been the wrong repair even in the right colour.
+2. **This file's own barks fix the range.** The eighteen bark constants standing before this run
+   span `0x332e26` (black oak) to `0x6a6355` (white oak). The sycamore's bole is `0x7a7263` — just
+   past the palest of them, because the species is pale wood all over — and its limbs `0xd9d3c2`,
+   far outside that range on purpose, since *being the palest thing in the timber* is the whole of
+   what the record's sentence describes.
+3. **Warm off-white, not white.** A pure `0xffffff` limb reads as painted rather than as bark, and
+   the scene's other woods are all warm greys, so the cream is desaturated toward them.
+
+**What is still NOT drawn, stated plainly because the record's word is "mottled".** The tone break
+is between the bole and the limbs — one colour each — and the **mottling itself, the patchwork of
+cream against olive and grey within a single limb, is not drawn at all.** That needs a second
+material or a vertex-colour break inside one stem, which is R-W2b/R-W2c territory. A visitor can
+now identify the sycamore across the floodplain, which is what the sentence is about; a visitor
+standing under one sees a plain pale limb rather than a piebald one.
+
+**Consequence, stated so a reader can weigh it.** Nothing in `data/` moved and no attribute was
+regraded: the tree's presence, height, crown and July foliage remain the record's, and the colours
+were never a data attribute — no record in `data/flora/` carries a bark colour at all. The
+sycamore stands at 1–3 per hectare on the gallery bank, so this is a handful of stems, not a
+repainted wood.
+
+**How to resolve:** a source stating either colour, or the mottling drawn as a break within the
+limb. Until then the two hexes stay this project's, and `renderers/web/js/trees.js` says so at the
+entry that carries them.
+
+**Recorded:** 2026-08-16.
+
+
+### L128 — The town pound's fence: six feet, five rails, and not one of them recorded
+**Decision:** the estray pen on the south-west corner of the public square is drawn as a **post-and-rail
+fence 1.83 m high, five rail courses, posts 0.18 m square at 2.44 m**, closing the same 9.144 × 6.096 m
+rectangle its structure record has always carried, with a **1.35 m gateway centred in the north side** and no
+gate leaf hung in it. It is drawn by `renderers/web/js/enclosures.js` from `data/enclosures/estray_pen.json`;
+`data/structures/estray_pen.json` builds no mesh at all now and remains the evidence record.
+**Why:** because the alternative was the roof. **L60** stood for a week over a log box with a shed roof on
+it, admitting in as many words that a pound is an enclosure, that nothing mentions a roof, and that the only
+archetype which would build a low walled rectangle could not build a roofless one. The enclosure layer built
+for the Western Hotel's yard (**L127**) can, so the pen is a fence. That much is a repair. What it costs is
+this entry: the pen is now a *specific* fence, and no source describes any fence here at all.
+**What bounds the invention, since that is what `reconstructed` means.** The OUTLINE is not new — it is the
+committed footprint re-expressed as a perimeter, and its own invention is still claimed at L60. The MATERIAL
+is the reading the retired record wrote down against itself: *"THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR
+POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely
+different — open, horizontal, see-through — from what this record builds."* It is a swing from one invention
+to the other invention already on the record, not from an invention to a finding. The HEIGHT is bounded by
+the use and by the fence beside it: 6 ft, where the wagon yard's is 4 ft 6 in for the reason L127 gives —
+*"a yard fence turns a team and does not have to hold a horse that means to leave — that is the pound's
+job"* — and the pound's job additionally included holding prisoners for the first months of its life. The
+retired 2.4 m was not evidence either: that record says plainly it was "the minimum this archetype will
+accept with a gate a beast can be led through". FIVE courses puts a rail every 0.37 m against the yard's
+0.46 m, because a fence a calf steps through is not a pound; 2.44 m bays and 0.18 m posts because a pound
+fence is leaned on. The GATEWAY keeps the retired mesh's own 1.35 m clear width and its north-side
+convention, deliberately, so that this run changes the roof and not a set of numbers restated in passing.
+**Consequence:** a visitor crossing the public square sees the town's first public building as a fence, which
+is what the sources say it was, and every stick of that fence is invented. The confidence view is the
+counterweight and it is wired: every vertex of this layer is graded `reconstructed`, so hiding that level
+removes the pen entirely and leaves the corner as the sources leave it — an empty piece of prairie with a
+municipal function attached to it. **The ground inside the pen is not drawn**, exactly as at the wagon yard:
+a pound's yard was not sward and it is still sward here, because nothing states what it was.
+**How to resolve:** a town or county order establishing the pound. Such an order carries a pound-keeper's fee
+schedule and often a size and a materials specification, and it would settle the material, the height and the
+rectangle together — which is the same document L60 has been waiting for since it was written.
+**Recorded:** 2026-08-18.
+
+
+### L129 — Eighteen garden fences on lots where no source puts a garden
+**Decision:** eighteen house lots in the platted town are drawn with a **picket-fenced garden plot
+at the back of the lot** — a pale fence 1.22 m high, pales 0.089 m wide with a 0.089 m gap on two
+stringers, posts 0.10 m square at 2.44 m, and a 1.07 m gap in the side that faces the house. The
+plots are up to 8.53 x 6.10 m (28 x 20 ft), set 3.05 m or more behind the house's own back face
+and 0.91 m inside the lot lines. They are drawn by `renderers/web/js/enclosures.js` from
+`data/enclosures/town_dooryard_pickets.json`, which is generated by
+`tools/generate_dooryard_pickets.py` and re-derived byte for byte by `tools/check.sh`.
+**Why:** because the evidence here is a TREATMENT and not a location, and this project had been
+using that as a reason to draw nothing. `docs/ROADMAP.md` K5 (a) cites the Kinzie-view plate for
+*"picket-fenced garden plots and Lombardy poplars"* and in the same sentence excludes the house
+itself from the 1835 scene. So there is a picture of what a garden fence in this place looked like,
+and not one word about which lot in the town had one. Under this project's own tiers that is a
+`reconstructed` treatment, not a blocker: the plate bounds the invention, the rule bounds who gets
+it, and the alternative was a town of houses standing in undivided prairie.
+**What bounds the invention.** WHICH LOTS is the part that matters, and it is a rule rather than a
+list, stated in the generator's docstring and enforced on every commit: a platted lot in
+`data/traces/vectors/thompson_lots.json`, holding exactly ONE committed building, that building a
+dwelling by both archetype and function, with a household recorded as living in it, and room at the
+back for a plot that hits no other footprint. Every clause refuses something real — the Mansion
+House, Eliza Chappel's infant school and the Temple Building each sit alone on a platted lot and
+are not house lots; John Wright's two buildings to let are excluded because their own records say
+*"the honest reading of 'to let' is a building whose tenant this project cannot name"*; and five
+lots are refused in the record itself because the committed house stands at the rear of the lot,
+one of them 7.40 m past its own rear line. THE PERIMETERS ARE DERIVED, not placed: every metre
+comes from the committed lot polygon and the committed footprint. THE TREATMENT is the plate's —
+close-set vertical pales rather than the open horizontal rails at the wagon yard and the pound,
+because a rail fence turns a team and a picket fence keeps poultry out of the vegetables. THE
+HEIGHT is bounded by that use read against the two fences already in the dataset: 4 ft, under the
+yard's 4 ft 6 in (L127) and well under the pound's 6 ft (L128). The PLOT SIZE, its position at the
+back of the dooryard, the pale rhythm, the post size and the gateway are invented outright. THE
+PLOT'S CEILING IS INVENTED TWICE OVER, and the second reason is worth stating because it is not
+about 1835: a paled fence is thousands of very small boxes drawn in one pass, and 28 x 20 ft is
+also what the scene's `light` triangle ceiling will carry. That is the same kind of admission as
+**L121** — a number in this dataset settled partly by the renderer's own budget — and it is
+recorded rather than dressed up as a finding about kitchen gardens.
+**Consequence:** a visitor walking the South Division sees fenced gardens behind eighteen houses,
+and no source says any of those households kept one. The confidence view is the counterweight and
+it is wired the same way as the rest of this layer: every vertex is graded `reconstructed`, so
+hiding that level removes all eighteen and leaves the lots as the sources leave them — houses on
+open ground. **The ground inside the fences is not drawn**, exactly as at the yard and the pound: a
+kitchen garden is beds and bare earth and a crop that changes with the month, and it is prairie
+sward here, because nothing states what was grown on any lot in this town. **And the plate itself
+is not held as a source record** — it reaches this repository only as an owner-supplied reference
+image with a README, so `existence.sources` on the record is deliberately empty and the citation is
+a committed path.
+**How to resolve:** a Chicago or Cook County fence ordinance of the 1830s would settle the height
+and probably the pale rhythm at a stroke — a lawful-fence specification is exactly what such an
+order carries. Any tax, insurance or sale description of a town lot naming a garden or a fence
+would turn one of these eighteen from a rule's output into a finding. And holding the Kinzie-view
+plate as a proper `chicagology_*` source record would give the treatment a citation instead of a
+path.
+**Recorded:** 2026-08-18.
+
+### L130 — Twenty-four shop signs in a town that documents one
+**Decision:** twenty-four of the town's business frontages carry a **blank weathered signboard**
+— a plank 0.88 x 0.50 m hung by two straps 0.20 m under a 1.15 m bracket arm, 1.7 m to one side of
+the facade's centre and clear of the eave. They are drawn by `renderers/web/js/signage.js` from
+`data/signage/town_business_signboards.json`, which is generated by
+`tools/generate_business_signboards.py` and re-derived byte for byte by `tools/check.sh`. **No
+board carries lettering, an image or a trade device** — L25's decision for the one documented sign,
+applied to all of them.
+**Why:** because the alternative was a town of stores and taverns that announces itself to nobody.
+`docs/ROADMAP.md` K5 (b) asked for *"signboards on businesses — attested"*, and worked strictly
+that clause is already finished: exactly ONE structure record in this dataset attests a sign, the
+Wolf Point Tavern's painted wolf, and it has hung in that building's GLB since the archetype grew a
+`sign` parameter. Every other shopfront in Chicago stayed mute for want of a sentence naming its
+board. Under this project's own tiers that is a `reconstructed` treatment and not a blocker, and
+AGENTS.md § RECONSTRUCTED IS A TIER says so in as many words.
+**What bounds the invention.** THE FACT of a board, and nothing else. What is held: one Chicago
+business of these years is attested to have hung a sign; the town's own sources speak of a public
+house's NAME as its sign — the Wolf Point house traded *"under the sign of the Travelers' Home"*
+and the Exchange Coffee House's later *"Illinois Exchange"* is recorded on its own record as *"a
+change of use and of sign"*; and the first issue of the Chicago Democrat, 26 November 1833, is full
+of businesses trading under names at named addresses. WHICH FRONTAGES is a rule rather than a list,
+stated in the generator's docstring and enforced on every commit: a NAMED record (the archetype
+tables' own rule — *never invent business, sign text or goods for an anonymous slot* — refuses
+`inf_`/`recon_` slots), a PUBLIC TRADE whose customer arrived on foot off the street, that trade
+`attested` or `inferred` rather than `reconstructed`, standing on the scene date, and no sign on
+the record already. Every clause refuses something real: Frederick Thomas's shop is refused because
+its own record says no source reached says what he sold, so a sign for it would be an invention
+resting on an invention; the reconstructed grocery and the reconstructed physician's office are
+refused as anonymous slots; and the Wolf Point Tavern is refused because it already has the only
+real board in the town. Warehouses, packing and slaughter houses, smithies, cooperages, tanneries,
+brickyards, manufactories, stables, the churches, the schools, the court-house, the jail, the
+agency house and the fort are all outside the trade list, because their custom came by name and by
+cart. WHERE the board hangs is derived, not placed: `docs/GLB-CONTRACT.md` fixes the frame, so the
+front wall is the committed footprint's own max-`v` edge and the way it faces is the committed
+facade bearing. THE BOARD'S GEOMETRY is not new invention — arm, board and hangers are copied from
+`generators/archetypes/log_dwelling.py::_sign`, the wolf sign's own numbers, so the town has one
+convention for hanging a board rather than two.
+**AND A CITATION IS STRUCK.** K5 (b) offers *"the Green Tree plate's hanging sign"* as its second
+piece of evidence. It is not evidence this project holds:
+`data/sources/chm_green_tree_1859.json` records in its own `access_notes` that the image has never
+been retrieved, that the identification comes from aggregator metadata rather than the holding
+institution, and `verified` is false. Nothing here rests on it, and the roadmap box now says so.
+**Consequence:** a visitor walking South Water Street sees two dozen blank boards swinging over the
+footway, and no source says any of those particular buildings hung one. The confidence view is the
+counterweight and it is wired the same way as the fences: every vertex is graded `reconstructed`,
+so hiding that level takes all twenty-four down and leaves the town as the sources leave it —
+mute, with one wolf sign at the forks. **The blankness is the second half of the honesty**, and it
+is the part a visitor is most likely to read as an unfinished model: no wording, device or colour
+of any sign in this town survives, the wolf's included, and two dozen invented shop names painted
+across the scene would be the most conspicuous fiction in it.
+**How to resolve:** a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale
+description naming a shop sign; a traveller's account of walking South Water Street; or any
+pre-fire photograph of a surviving 1830s frontage actually opened at its holding institution — the
+Green Tree plate, ICHi-040230, is the nearest and is unseen. The first of those that gives a
+WORDING would be the first thing this project has ever held that could put lettering on a plank.
+**Recorded:** 2026-08-18.
+
+### L131 — Goods at twenty-six doors, from an ordinance that gives no address
+**Decision:** twenty-six of the town's trading frontages carry **goods on the footway** — 102
+upright casks, an empty laid on its side outside the public houses, and 46 packing cases, all
+standing 0.55 m out from the wall they belong to — and **one wagon** stands in the Western
+Hotel's yard. They are drawn by `renderers/web/js/yard.js` from
+`data/yard/town_trade_goods.json`, which is generated by `tools/generate_yard_goods.py` and
+re-derived byte for byte by `tools/check.sh`. **No barrel carries a brand, a merchant's name, a
+stencil or a mark, and no case is labelled** — L25's decision for the one documented sign,
+generalised again.
+**Why:** because this one does not start from silence, and that is what makes it worth doing.
+`data/sources/chicago_democrat_1833_11_26.json` carries the village ordinances of 7 November
+1833 complete, and **Ordinance 9 is about timber, stone, brick, boxes and barrels stacked in the
+streets**. A corporation does not legislate against a thing nobody does: that is a tier-1
+contemporary statement, by the people who had to walk round them, that this town's streets had
+boxes and barrels standing in them. What the ordinance does not give is a single address. So the
+FACT is well founded, WHICH DOOR is not, and the answer is a rule — the shape L129 and L130
+already use one layer over.
+**What bounds the invention.** THE FACT of goods at these particular doors on this particular
+day, the COUNT at each, and the objects themselves. The rule is stated in the generator's
+docstring and enforced on every commit: a NAMED record (the archetype tables' own rule — *never
+invent business, sign text or goods for an anonymous slot* — names goods in as many words), a
+GOODS-KEEPING trade whose stock arrived in boxes and barrels, that trade `attested` or `inferred`
+rather than `reconstructed`, standing on the scene date, on the TOWN's ground, and a strip in
+front of the facade clear of every other committed footprint. Every clause refuses something
+real: the fort's provision store and the sutler's store are refused because they stand on federal
+ground inside a palisade, outside the corporation whose ordinance is the whole evidence, with no
+public street in front of either door; the reconstructed west-side grocery is refused as an
+anonymous slot. HOW MANY is arithmetic and not a lottery — one cask per 2.2 m of usable wall to a
+cap of four, a case past them at 4 m, a second case stacked at 7 m, a public house's empty at
+5 m — and WHERE is derived: the front wall is the committed footprint's own max-`v` edge, and the
+goods pile from the end the signboard does not occupy, because `generate_business_signboards.py`
+hangs its board 1.7 m the other side of the facade's centre. THE OBJECTS' SIZES are invented and
+recorded on the record itself, each with its own note: a 33-inch provision barrel 21 in at the
+bilge, a case 1.05 x 0.72 x 0.62 m, a wagon 10 ft by 3 ft 6 in on 4 ft 6 in and 3 ft 6 in wheels.
+No hoop is drawn as separate geometry — at any distance a visitor stands, 20 mm of iron is a line
+and not a solid.
+**THE WAGON, AND WHY THERE IS ONE RATHER THAN TWENTY.** No source this project holds puts a wagon
+at any place in Chicago on any day. One place is NAMED for them: `chicagology_prefire278`'s *"In
+the rear was the large stable and the yard into which the trains were driven"*, which is the
+attestation behind `data/enclosures/western_hotel_wagon_yard.json` and L127. So the wagon stands
+in that yard and nowhere else, at a point SEARCHED rather than chosen — a 0.25 m lattice over the
+yard's own bounding box, keeping the stand whose least clearance to every committed wall and
+every fence line is greatest, which is 8.39 m here. `docs/ROADMAP.md` K5 (c) offers *"wagons/drays
+(documented mired on Lake St)"* and **this project holds no source record for that**; a dray
+dropped into Lake Street on the strength of a roadmap parenthesis would be traffic invented to
+look busy, and it is refused in writing on the record.
+**Consequence:** a visitor walking South Water Street passes casks and cases at two dozen doors,
+and no source says any of those particular buildings had anything outside it. The confidence view
+is the counterweight and it is wired the same way as the fences and the boards: every vertex is
+graded `reconstructed`, so hiding that level takes all 149 objects down and leaves the town
+standing on bare ground. **The restraint is the second half of the honesty.** The ordinance is
+about goods IN THE STREETS, which is the stronger reading; nothing here is drawn in a roadway,
+because a cask in the travelled way is a claim about the width of the road as well as about the
+goods. And Ordinance 9's **timber, stone and brick are not drawn at all** — they are building
+material on a lot under construction rather than a merchant's stock on his own frontage, they
+belong to whichever building was going up that week, and this record has no way to say which.
+**How to resolve:** the missing fourth page of the Democrat's first issue, which would carry more
+of the ordinances and may carry Ordinance 9's own text and penalty; any later Chicago corporation
+order about obstructions; an insurance, tax or sale description of a South Water Street lot; or a
+traveller's account of walking the street. The first that names a wagon standing anywhere in the
+town would be the first thing this project has held that could put a second one in the scene.
+**Recorded:** 2026-08-18.
+**Revised:** 2026-08-18 (T-0084) — **the tongue is now drawn at an inclination, and the
+inclination is invented.** It was drawn as a horizontal box deep enough to span the drop from the
+front axle to the ground, on the stated reasoning that a stick's exact angle is not a claim this
+record makes; the effect was a 2.75 m pole 0.055 m thick rendered 0.48 m deep, which reads in the
+scene as a plank lying in the grass, and the owner read it that way from the Green Tree's yard on
+the day it shipped. It is now a box of the tongue's own section along its own line, which puts the
+angle on the record instead of hiding it inside a slab: the pole runs from the front axle's centre
+down to the ground with its far end resting on the grass, **10.6 degrees**, because nothing is
+hitched to it. What bounds that number is the two ends — the recorded front-wheel radius sets the
+root and the ground sets the tip — so it is the only angle an unhitched pole of this length can
+lie at, and it moves if either of those recorded values moves. The recorded 2.75 m is now read as
+the pole's LENGTH rather than its horizontal run, which is what the number means; the tip lands
+2.70 m ahead of the body instead of 2.75 m. Nothing about the wagon's sizes changed, and no new
+value was invented.
+
+### L132 — Two river docks, stated in one clause and invented in every dimension
+**Decision:** the two warehouses whose records state a dock — `newberry_dole_warehouse` and
+`kinzie_hunter_warehouse` — stand at a **drawn timber wharf**: a plank deck 8.0 m across, running
+the building's own river frontage plus 3.0 m at each end, its face 6.0 m beyond the traced 1834
+bank line and its heel tied 2.0 m back into the bank, carried on a 1.20 m timber crib under the
+face and both ends and stepped down to the bed the heightfield gives at each bent, with three
+snubbing posts along the face. They are drawn by `renderers/web/js/wharves.js` from
+`data/wharves/river_landings.json`, which is generated by `tools/generate_river_wharves.py` and
+re-derived byte for byte by `tools/check.sh`. **No vessel, cargo, crane, gangway or name is drawn.**
+The two `dock` attributes move from `geometry: "absent"` to `geometry: "simplified"`, which is the
+exact claim: a reconstructed wharf of standard form stands in the place of the attribute, and the
+attribute's own value — *true* — is all of it that comes from evidence.
+**Why:** because the alternative was the river trade that the town existed for being represented by
+two sheds standing back from an empty bank. What is held is one sentence and one phrase, and they
+are strong: *"Kinzie & Hunter and Dole & Newberry each had a warehouse with its dock along the river
+front"* (docs/research/03-structures-north.md §3.10) is the clause that attests the Kinzie & Hunter
+building at all, and Andreas independently names *"Newberry & Dole's wharf"* as the place the
+schooner *Illinois*, the first vessel through the new cut, was cheered on 12 July 1834 (scan p. 503).
+**L66 recorded the consequence of not building it** — `documented` chips over nothing, on the two
+records where the dock was the half that made the building worth building — and left it owed. Under
+this project's own tiers a dock whose existence is stated and whose size is unrecorded is a
+`reconstructed` treatment and not a blocker, and AGENTS.md § RECONSTRUCTED IS A TIER says so in as
+many words.
+**What bounds the invention.** THE FACT of a dock at these two frontages, and nothing else. WHICH
+frontages is a rule rather than a list, stated in the generator's docstring and enforced on every
+commit: a sidecar standing on the scene date whose own `dock` attribute is true and graded
+`attested` or `inferred` — the last clause refusing a wharf drawn on a reconstructed dock, which
+would be an invention resting on an invention. Run over the whole town it selects exactly two
+records and refuses every other river frontage in the dataset, including the ones a person would
+have guessed at: the South Water stores, the lumber landing, the ferry. **WHERE the deck stands is
+derived, not placed** — the wall it serves is the committed footprint's own max-`v` edge through
+`docs/GLB-CONTRACT.md`'s frame, and the deck runs along the traced bank's own tangent at the nearest
+point to it, which at both sites differs from square-to-the-building by about 20°. **The deck's
+HEIGHT is neither invented nor stated**: it is sampled from the terrain along the landward edge at
+load, which is T-0001's lesson about the bridge deck, with a 0.90 m floor above the water plane
+because a working deck stands clear of its own river and this project's water surface is a
+summer-1835 mean with no stage record behind it. **What the invented reach implies is measured and
+reported rather than assumed**: at 6.0 m out the modelled bed gives 1.28–1.32 m of water at Newberry
+& Dole's face and 1.14–1.29 m at Kinzie & Hunter's, which the record carries as `depth_at_face_m`.
+A loaded lake schooner needs more than that, so what this scene draws is a face a lighter or a scow
+lies at — the restrained reading, chosen because a longer deck would be a claim about the tonnage of
+the river trade as well as about the dock.
+**Consequence:** the largest reconstructed object added to this town since the buildings themselves,
+at two sites whose BANK is itself disputed or unattested (L66, still open) — so if either warehouse
+is on the wrong side of the river, its wharf is on the wrong side with it. Neither deck is a walk
+surface: `walkHeight()` keeps its wading barrier over the water, so a visitor sees the wharf from
+the bank and cannot walk out along it, which reads as a missing rail rather than as the deliberate
+absence of a claim it is. And a wharf with nothing lying at it is a quiet overstatement in the other
+direction: these were working docks, and this one is empty.
+**How to resolve:** the *Chicago Democrat*'s advertising columns, where a forwarding house states its
+street and sometimes its wharf; the harbour engineers' reports of 1833–1836, which measure the
+river's depth and may carry a private wharf line; a marine list giving the *Illinois*'s draught,
+which would say whether she could have lain at a face in 1.2 m of water or was warped in to a deeper
+one; or the c. 1835 view that docs/research/03-structures-north.md describes and this project has
+never been able to cite.
+**Recorded:** 2026-08-18.
+
+
+### L133 — Wagons and a bench at the Green Tree, from a drawing made decades later
+**Decision:** two farm wagons stand in the yard behind the Green Tree Tavern and a plank bench
+stands against its front wall. The wagons' stands, their spacing and their bearing, the depth of
+the yard they stand in, and the bench's size and its place on the wall are all invented and
+graded `reconstructed` in `data/yard/town_trade_goods.json`.
+**Why:** the Trowbridge drawing of this inn — `data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7 — shows farm wagons in its yard and a bench of sitters against its front wall. That is a
+TIER 5 pictorial source: a retrospective view drawn decades after 1835, which the brief's own
+ruling lets drive **furniture and setting** as this project's third tier and never a coordinate.
+So the plate is taken for WHAT stood there and never for WHERE, and where is derived from the
+building's own committed footprint. Until today the only wagon in this town stood at the one
+address a text names for wagons (L131); the owner's ruling of 2026-08-18 — *"of course there
+would be more wagons all over the place in a frontier town"* — is what makes a second address
+legitimate, and a picture of THIS inn is a better warrant than the generalisation is.
+**Consequence:** three things here are inventions a visitor should be able to name. **The yard's
+depth**: nothing measures the ground behind this building, so it is taken to run back as far as
+the front is wide — 7.62 m, the building's own 25 ft, which is a bound rather than a measurement
+and would be wrong the moment a lot line is traced. **The count**: two, because two is what that
+width holds at the 3.2 m a parked wagon is given, not because anything says two. **The bench's
+size**: 6 ft by 14 in and 18 in to the seat, read off the wall it stands against. The wagons
+themselves are the same invented farm wagon L131 already claims, drawn from the same numbers.
+And the people are missing on purpose: the plate's bench is a bench of SITTERS, AGENTS.md's
+standing constraint is not relaxed by a picture, and v1 ships no human figures at all — so the
+bench is drawn and nobody is on it. Turn `reconstructed` off in the confidence view and all four
+objects go, leaving the inn on the bare ground the texts leave it on.
+**How to resolve:** the plate identified and held as a proper source record (T-0075), which would
+say who drew it and when and how much of it is observation; the lot geometry on Wright 1834 or
+Hathaway 1834, which would replace the invented yard depth with a traced line and would settle
+this building's larger Canal-against-West-Water question at the same time; or any text describing
+the Green Tree's yard, which nothing this project holds does.
+**And it contradicts L131 in writing, which is why this is a new entry rather than an edit.**
+L131 says the first source *naming* a wagon standing anywhere in the town "would be the first thing
+this project has held that could put a second one in the scene". That was written the same day and
+it is too strong: it counts texts and not pictures, and a retrospective drawing of one named inn
+showing wagons in that inn's yard is evidence about that yard in a way a general text about the
+town would not be. L131's own claim stands and its wagon has not moved; what has changed is the
+bar, and the bar moved because the owner moved it.
+**Recorded:** 2026-08-18.
+
+
+### L134 — A wagon shed at the Green Tree, and the covered wagon standing in it
+**Decision:** an open-sided wagon shed stands against the north side wall of the Green Tree
+Tavern with a covered wagon under it. The wall it is attached to, the bay it covers, its two
+plate heights, the fall between them, the section of its posts and plates, and the tilt's rise
+and overhang are all invented and graded `reconstructed` in `data/yard/town_trade_goods.json`.
+**Why:** the Trowbridge drawing of this inn — `data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 7 — shows an **open-sided wagon shed attached at the left of the house with a covered
+wagon standing under it**. That is a TIER 5 pictorial source on the ruling L133 already applied
+to the same plate: it may drive furniture and setting and it may never drive a coordinate. So
+the shed is taken from the picture and its stand is derived from the building's own committed
+footprint. Neither a shed nor a tilt existed anywhere in this renderer before; the owner's
+ruling of 2026-08-18 — *"you are totally fine to be liberal with adding reconstructed items
+when i ask for things, you can just label and mark them as such"* — is the warrant for building
+one rather than filing the ask.
+**Consequence:** four things here are inventions a visitor should be able to name. **Which
+wall.** The plate's word is "left", which describes a viewpoint rather than a building, so it is
+read as the end away from the streets: the placement record puts the front on Canal and the long
+side on Lake, T-0080's two wagons already stand off the rear wall, and the north side wall is
+the only one of the four that is neither a street frontage nor occupied. Three committed facts
+agree, and not one of them is the plate. **It is not a gable, and the entry says so rather than
+letting the word pass.** `frame_tavern` lays this building's ridge along its longer axis, which
+puts its gables on the front and the rear and makes the north wall an eaves wall — so the shed
+stands at the left END of the elevation and not at a gable. Correcting the fabric to the three
+views is bake-gated and is T-0083's; this entry does not pre-empt it. **How big.** The bay is
+the wagon's own 3.05 m body with half a metre of air at each end by the 3.20 m of ground a
+parked wagon is already given, the open eave stands a hand's breadth over the tilt it has to
+cover, and the roof falls 12 degrees — every one of those a bound rather than a measurement.
+**The tilt.** Canvas on bows, 1.10 m of rise, open at both ends; the bows are not drawn for the
+reason the barrels' hoops are not, and the canvas tone is chosen weathered rather than white
+because white duck at noon would be the brightest thing in the town. Turn `reconstructed` off in
+the confidence view and the whole shed and its wagon go with the rest of the layer.
+**What this is NOT:** the low one-storey additions John Gray describes at each end of this house
+(`green_tree_tavern.attributes.side_additions`, `inferred`, `geometry: absent`). Those are
+attributes of the BUILDING, described three to six years after the scene date and deliberately
+excluded from its footprint for that reason. This is a yard structure on the yard's own ground,
+it does not date them, and it must not be read as having built them.
+**How to resolve:** the plate identified and held as a proper source record (T-0075), which
+would say who drew it and when and how much of it is observation; the lot geometry on Wright
+1834 or Hathaway 1834, which would replace the invented yard with a traced line; or the fabric
+pass at T-0083, which would settle where this building's gables actually are and may move the
+shed to one of them.
+**Recorded:** 2026-08-18.
+
+
+### L135 — The Green Tree's frontage: plank walks nobody recorded, and the first lettering this project has drawn
+**Decision:** the Green Tree Tavern's two street walls carry a **plank walk** 1.83 m wide laid
+0.20 m off the wall, its deck 0.11 m over the ground on 55 mm boards at a 0.26 m pitch; a **board
+crossing** 1.22 m wide and four boards laid the way a foot travels runs from that walk across
+Canal Street and 0.6 m past the far edge of the travelled track; and a **3.60 m post** with a
+1.55 m cross-arm stands at the Lake-and-Canal corner, 2.93 m out from each of the two walls, with
+a 1.30 x 0.55 m board hanging under the arm **lettered GREEN TREE**. All of it is drawn by
+`renderers/web/js/frontage.js` from `data/frontage/green_tree_frontage.json`, which
+`tools/generate_frontage_works.py` derives and `tools/check.sh` re-derives byte for byte.
+**Why:** two of the owner's reference views of this inn describe the ground in front of it, and
+`data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 6, the
+Braunhold engraving of 1838: *"post-mounted hanging signboard at the corner; plank sidewalks with
+board crossings"*; image 7, the Trowbridge drawing: *"the hanging 'GREEN TREE' sign on its post"*.
+Both are tier-5 pictorial and retrospective, so they may drive setting and may never drive a
+coordinate. WHERE everything stands is therefore derived from three committed things — the
+footprint, the placement, and the street's own travelled-track half-width out of
+`data/streets/1835.json` — and a wall with no street outward of it, or a walk that would lie in the
+travelled way, is refused in writing rather than nudged. Two of the four walls are refused here for
+exactly that reason.
+**What bounds the invention, and it is split in two.** THE FACT of a walk, a crossing and a board
+on a post at this inn is the plates'. Every DIMENSION is invented: nothing in this project measures
+a Chicago sidewalk of 1835, so 6 ft is two people passing and the rest is ordinary sawn stock. And
+that a walk stood on this ground at noon on 1 July 1835 is invented, the same claim L133 and L134
+make for the wagons and the shed beside it.
+**THE LETTERING, which is the part that needed arguing rather than deriving.** L25 leaves the
+town's one documented board blank, and L130 leaves twenty-four more blank on the same reasoning.
+**That reasoning does not reach this board.** L25's subject is an IMAGE nobody has described — no
+source says how the wolf was painted, and a wolf drawn from imagination would be the most
+conspicuous invention in the scene. This board's subject is a NAME; image 7 states it in as many
+words; and the name is already committed on `data/structures/green_tree_tavern.json`. Leaving it
+blank would not be caution, it would be discarding evidence the project holds, which is the
+reading AGENTS.md § RECONSTRUCTED IS A TIER exists to refuse. So the WORDING is graded `inferred`
+against the plate and drawn, and what stays invented and is claimed here is the **letterform**: a
+serif face, its size fitted to a board whose width is itself derived, its spacing, its dark-brown
+paint and the absence of any wear on it. No other board in the town is lettered, because nothing
+states what any of them said.
+**Consequence:** `tools/generate_business_signboards.py` now REFUSES this frontage in writing
+(clause 6) rather than also hanging a blank board on its wall. The plates show one board at this
+inn and it is on a post, so the town no longer draws the same claim twice — and the refusal is
+visible in `data/signage/town_business_signboards.json` rather than being a silent omission. The
+count of blank business boards falls from twenty-four to twenty-three, which is what L130's own
+title should now be read against.
+**How to resolve:** a Chicago town order on sidewalks — the corporation legislated wooden walks
+within a few years of 1835, and an order of the right date would give a width and a material at a
+stroke; any tax, insurance or sale description naming a walk in front of a lot; or holding the
+Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
+path this entry cites into a `source_id` and the lettering's warrant into a citation.
+**Recorded:** 2026-08-18.
+
+
+### L136 — The Sauganash's frontage: two more plank walks, a crossing, and two posts nobody measured
+**Decision:** the Sauganash Hotel's two street walls carry a **plank walk** 1.83 m wide laid
+0.20 m off the wall, its deck 0.11 m over the ground on 55 mm boards at a 0.26 m pitch; a **board
+crossing** 1.22 m wide and four boards laid the way a foot travels runs from the Lake Street walk
+15.87 m across the road and 0.6 m past the far edge of the travelled track; and **two hitching
+posts** 1.30 m tall and 0.16 m square, under a 0.22 m capped head, stand in the verge 0.90 m
+beyond the outer edge of the front walk, at 0.28 and 0.72 of the frontage's own length. All of it
+is drawn by `renderers/web/js/frontage.js` from `data/frontage/sauganash_frontage.json`, which
+`tools/generate_frontage_works.py` derives and `tools/check.sh` re-derives byte for byte. Every
+dimension above is the same one L135 claims at the Green Tree; what is new here is the two posts,
+which are this project's first piece of horse furniture.
+**Why:** three of the owner's reference views of this hotel describe the ground in front of it,
+and `data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 8, the
+Petford watercolour of 1831: *"plank sidewalk with a board crossing over the road; two posts
+(hitching/corner posts) at the road edge"*; image 9, the Braunhold engraving: *"plank walks on
+both frontages, hitching posts"*; image 10, the Trowbridge drawing, which ties a saddled horse to
+one of them. All three are tier-5 pictorial and retrospective, so they may drive setting and may
+never drive a coordinate. WHERE everything stands is therefore derived from the same three
+committed things L135 names — the footprint, the placement, and the street's own travelled-track
+half-width out of `data/streets/1835.json` — and two of the four walls are refused in writing.
+**What bounds the invention.** THE FACT of walks, a crossing and posts at this hotel is the
+plates'. Every DIMENSION is invented, including the two posts' height and section and the capped
+head, which no plate resolves and no town order ever will. That there were TWO of them and no
+more is image 8's; WHERE along the frontage they stand is the rule's — the thirds, because a post
+at the very corner would stand on the ground L135's sign post occupies at the other inn and a post
+at the middle would stand in front of the door. And that any of it stood on this ground at noon on
+1 July 1835 is invented, the same claim L135 makes a block away.
+**THE HORSE IS NOT DRAWN.** Image 10's saddled horse is reference for use and scale only. The
+standing L1 constraint is about people; the reason this one is left out is narrower and is stated
+here so it is not mistaken for the same rule: nothing in this project models an animal, and a
+horse invented at the one post that has a plate behind it would be the most conspicuous
+reconstruction in the town.
+**NOTHING HERE IS LETTERED, and that is a reading rather than an omission.** L135 letters the
+Green Tree's board because image 7 states the wording. None of this hotel's three views shows a
+name board at all — the posts they show are hitching posts — so the Sauganash keeps the blank wall
+board `tools/generate_business_signboards.py` hangs on it by rule (L130), the frontage layer draws
+no board here, and clause 6 of that generator is NOT extended to this building. The record's
+`board_on_a_post` block carries that argument on its own face.
+**Consequence for the rule itself, and it is the reason a second building was worth doing.** The
+walk rule asked only that a street lie *outward* of a wall. The Sauganash's east wall is a flank
+in the middle of its block, and Lake Street's centreline — which crosses the far END of it —
+stood 0.13 m outward out of 16.00 m, enough to pass. The rule now also asks that the street lie
+IN FRONT of the wall rather than beside it: at least half the distance to it standing outward, a
+60-degree cone. Every real frontage at both buildings clears that by 0.998 or better; the flank
+measured 0.008. The Green Tree's own walks, crossing, post and refusals are unchanged to the byte.
+**How to resolve:** as L135 — a Chicago town order on sidewalks, a tax or sale description naming
+a walk in front of this lot, or holding the Petford, Braunhold and Trowbridge plates as proper
+source records (T-0075), which would turn the committed path this entry cites into a `source_id`.
+None of those would ever give the posts their dimensions.
+**Recorded:** 2026-08-18.
+
+### L137 — The far sward is an aggregate, and its height is the tallest plants in the patch
+**Decision:** past the detailed rings the sward is drawn as **`flora-far`, a band of clump cards
+standing for ground rather than for plants** (`renderers/web/js/flora.js`, `rebuildFar`). Each card
+is dealt a species off the community's own recorded weights, and then drawn at a height taken from
+the **upper half** of that species' recorded range and multiplied by **1.14** in the near band and
+**1.20** in the deep one, at a width of **1.4–4.6 m** depending on the band and the detail level.
+Nothing in the records states any of those five numbers, and no record could: a species record
+gives the height of a PLANT and this is the silhouette of a patch of them.
+**Why:** what an aggregate shows against the sky is not the mean of a stand, it is the tallest
+plants in it — the short ones stand behind the tall ones and are hidden by them. Drawing the mean
+put the far field visibly LOWER than the detailed sward it hands over to, which is a seam where
+there should be none. The two lift factors and the widths are what closed that seam at the
+crossover; they were chosen by eye at the two stands the owner reported (South Water at 084° and
+Wells at 185°) and by nothing else.
+**What is NOT invented here.** The species, the colour and the recorded height RANGE the draw is
+taken from are the community's own compiled records, dealt by the same `dealt` call the mid ring
+uses, so a far card is never a plant the community does not carry and never a colour the palette
+does not give it. And the card is ROOTED: it stands on `terrain.surfaceHeight` at a station
+`station()` allows, so it obeys the same footprints, the same travelled track and the same
+waterline every other plant in this renderer obeys.
+**Consequence:** a photograph of the far field is not a measurement of the far field. The band's
+population is deliberately **excluded from the drawn census** (`stats.draws`) for that reason — a
+card is not a stem and counting it as one would inflate every community's matrix count by the area
+of an annulus four times the size of the ring the census is about.
+**How to resolve:** nothing about 1835 would resolve it, because it is a drawing decision and not a
+claim. What would retire it is a far-field representation that carries the recorded stand instead
+of standing in for it — the same shape of answer L32's tuft bundle is waiting on.
+**Recorded:** 2026-08-18.
+
+
+### L138 — The wagons' running gear: every timber between box and axles is invented
+**Decision:** each farm wagon on the yard layer is now drawn with a **bolster over each axle**, a
+**reach** (coupling pole) tying the rear axle forward to the front gear, **two hounds** bracketing
+that reach and running on past the front axle to the tongue's root, and a **kingbolt** through
+bolster, hounds and axle (`renderers/web/js/yard.js`, `buildWagon`). Six timbers, none of them in
+any source this project holds, all graded `reconstructed`.
+**Why:** until now there was nothing at all between the box and the axles. The floor sits at
+0.95 m, the rear axle at 0.685 m and the front at 0.535 m, so the box hovered **0.27 m above one
+axle and 0.42 m above the other**, carried by air, and the two axles were not joined to each other
+by anything. The owner read it from the Green Tree's yard on 2026-08-18 — *"it looks like that bar
+is supposed to be below the carriage of the wagon holding the wheels together but not sure. all the
+wagons seem off"* — and the bar he had found was the tongue (T-0084), because the member he was
+looking for did not exist. A wagon with no running gear is not a simplification of a wagon; it is a
+different object.
+**What bounds the invention, and it bounds it tightly.** Only the six SECTIONS are free numbers —
+a bolster 0.11 m thick fore-and-aft showing 0.06 m past the box's side, a reach 0.09 m across,
+a hound 0.07 m, a kingbolt 0.038 m square with 0.05 m of its nut showing below the axle. Every
+POSITION is derived from figures the record already carries. Both bolsters are the same depth
+because a bolster's whole job is to bring two different axle heights up to one level floor, so the
+**larger rear wheel sets that level** and the front bolster reaches down to the same line; what is
+left underneath is exactly the space the hounds and the reach occupy. The reach sits on the top of
+the front axle and passes under the rear one because that is where the two recorded wheel diameters
+put it. Change `wagon_body_m` or either wheel and the whole gear follows.
+**What is NOT invented here.** No recorded dimension moved to accommodate the gear. The wheel
+diameters (1.37 m and 1.07 m), the body (3.05 x 1.07 x 0.55 m) and the bed height (0.95 m) are the
+values L131 already claims and they are untouched — the gap was closed by drawing the members that
+belong in it, not by dropping the box or shrinking the wheels.
+**Consequence:** the wagon is 72 more triangles, and there are four of them in the town. It is also
+now a wagon whose front gear visibly turns, which is a claim about the TYPE of vehicle — a farm
+wagon, steering on a kingbolt — and not merely about its timber. Nothing in the record states the
+type either; it follows from L131's invented dimensions, which are a farm wagon's.
+**How to resolve:** any period drawing or description of a wagon in this town at this date detailed
+enough to show what is under the box. The 2026-08-18 owner brief's images 7 and 11 (farm wagons in
+the Green Tree's yard, and the ox-drawn covered train) both show gear under the box and are what
+this entry was drawn from in spirit; they are tier-5 pictorial sources and settle the SHAPE, never
+a dimension.
+**Recorded:** 2026-08-18.
+
+### L139 — The Sauganash's yard: a fence three plates draw and nobody measured, and three trees behind it
+**Decision:** the ground behind the Sauganash Hotel is enclosed by a **vertical-board fence**
+1.83 m tall, on posts 0.14 m square at 2.44 m centres, with three stringers behind boards
+0.254 m wide butted at a 6 mm gap, and one 3.66 m gateway centred in its Market Street run; and
+**three trees stand inside it** — two American elms at 17.0 and 16.5 m and an eastern cottonwood
+at 18.5 m. The fence is `data/enclosures/sauganash_yard.json`, drawn by
+`renderers/web/js/enclosures.js`'s new `board` branch; the trees are
+`data/flora/plantings/sauganash_yard.json`, drawn by `renderers/web/js/trees.js` with the same
+archetype the near-field wood uses. Neither carries a GLB and neither needs a bake.
+**Why:** three of the owner's reference views of this hotel describe its yard, and
+`data/sources/assets/owner_brief_2026_08_18/README.md` records them verbatim — image 8, the
+Petford watercolour: *"a vertical-board fence running off to the right; trees behind the fence"*;
+image 9, the Braunhold engraving: *"board fence at the right"*; image 10, the Trowbridge drawing:
+*"the tall board fence enclosing the rear yard"*. L136 took the FRONT of this building from the
+same three plates and left the yard side of them unbuilt. All three are tier-5 pictorial and
+retrospective, so they drive the setting and never a coordinate.
+**What bounds the invention.** THE KIND of fence, that it was tall, that it enclosed the rear yard
+and that trees stood behind it are the plates'. WHERE it stands is derived from three committed
+things and nothing else: the hotel's own footprint and placement (12 x 8 m at 101.40 / -130.60),
+Philo Carpenter's log shop on the same lot (6.096 x 4.877 m at 113.40 / -127.50), and the platted
+lot under both of them (`data/traces/vectors/thompson_lots.json`, block `blk_lake_market`, lot 0).
+The line leaves the hotel's south-west corner, runs south on its west wall line, turns east along
+a rear line and returns north on the shop's east wall line to that shop's south-east corner — the
+two buildings closing the fourth side themselves. **THE ONE INVENTED COORDINATE IS THE REAR LINE**,
+and it is a rule so it can be audited: the segment joining the midpoints of the committed lot's two
+side lines, which puts the yard on the front half of the lot and leaves the back half unclaimed.
+Half is a convention. It is chosen rather than the rear lot line because Carpenter's shop stands on
+this same lot, so the whole of it demonstrably was not the hotel's.
+**Every dimension is invented**, and the gateway most of all: no view shows one, and a fence with no
+opening encloses a yard nobody can enter. 6 ft, 8 ft centres, 10 in boards, a 6 mm shrinkage gap and
+a 12 ft gate are period-plausible sawn work and none of them is a measurement. The board gap is the
+number that makes this a fence you cannot see through, which is the whole difference between this
+record and the picket gardens of L129.
+**The trees are invented individually and not ecologically.** Their species, height bands, July
+foliage colour and crown widths are `data/flora/zones/z10_settled_town.json`'s three relict
+survivors — the record whose own note reads *"Survivor elm in a part-cleared block"* — and the
+renderer refuses any stem whose stated height falls outside its species' recorded band rather than
+drawing it. What is invented is that there are THREE, where each one stands, and that each sits at
+the bottom of its band on the argument that a tree kept in a yard is a tree cut back from a building
+for years. Image 8 shows crowns and resolves neither a count nor a species.
+**What is NOT claimed.** The ground inside the fence is untreated — still the prairie sward the
+flora layer plants over the whole town, where image 12 of the same brief shows fenced ground reading
+as garden and dooryard green. That is the honest residual of this record and it is T-0067's, not
+this entry's. And the fence is not a collision surface: a visitor walks through it, the same stated
+shortcoming every enclosure in this layer has.
+**How to resolve:** holding the Petford, Braunhold and Trowbridge plates as proper source records
+(T-0075), which would turn the committed brief path both records cite into a `source_id`; or any
+Chicago fence ordinance of the 1830s, which would settle height and construction at a stroke; or a
+tax or insurance description of the Lake and Market corner lot, which would settle the yard's depth
+and end the one invented coordinate here. None of them would ever give the trees their positions.
+**Recorded:** 2026-08-18.
+
+
+### L140 — The fort road: a line the 1830 plan implies and nobody ever drew
+**Decision:** a travelled way, `fort_road` in `data/streets/1835.json`, runs from the east end
+of South Water Street across the United States Reservation to the **south gate of Fort
+Dearborn** — eleven vertices, a 5.5 m worn-earth track inside a 12 m corridor, drawn by
+`renderers/web/js/streets.js` with the town's own streets and needing no bake. Its
+`geometry_confidence` is **reconstructed** and its `wear_confidence` is reconstructed, so the
+whole road dithers out with everything else invented when a visitor turns `reconstructed` off.
+**Why:** T-0044's image-accuracy pass on the two Fort Dearborn plates
+(`docs/RESEARCH/fort_dearborn_image_accuracy.md`). Both views show a travelled way at the
+fort and the render had trackless prairie between the town and the gate — a garrisoned post
+that mustered, traded and drew its stores through the town for nineteen years, standing at
+the end of nothing.
+**What bounds the invention.** THAT there was a road on this reservation is not invented: the
+1830 Harrison plan draws one, and this dataset has been reading it since the garrison garden's
+position note was written — that record places the plot *"west of the road"*. WHERE it arrives
+is not invented either: *"large gates opened to the north and south"* (Kinzie, inside the fort
+in 1831), *"one on the north and the other on the south side"* (Andreas), and a break in each
+of those two walls and in neither of the others on the same 1830 plan. So a road that is east
+of that garden and arrives at that gate has to run about where this one runs. The line is
+routed to clear the garden's east corner and the two Beaubien buildings by more than the
+platted half-corridor, and it is clipped by the water mask like every other track, so it
+breaks rather than fords where the ground is wet.
+**THE WESTERN REACH IS THE INVENTION, and it is most of the length.** South Water Street stops
+at the United States Reservation, matching the 1833 order, and nothing reached draws what
+carried on to the fort. Its eleven vertices are a plausible line across dry committed ground
+and not a trace of anything: no source measures this road, states its width, says whether it
+was one road or several beaten tracks, or names it. **The 1835 name is descriptive.** "The
+fort road" is what this record calls it so the readout can call it something; the 2026 name is
+the street that runs over this ground today, not a descent of name.
+**What is NOT claimed.** The road stops at the gate. The track `p4_0` draws descending the
+bank from the NORTH gate to the water is not drawn, because the bank it descends is the flat
+plateau T-0004 exists to grade and a ramp down an ungraded bank would be two inventions
+stacked. Nothing here touches the fort's own records.
+**How to resolve:** the 1830 Harrison sheet re-read for its road line specifically — this
+project has taken the fort, the garden, the barn and the ferry off that plate and never the
+roads; or any survey of the reservation before its 1839 subdivision, which would fix the line
+and probably its name at the same time.
+**Recorded:** 2026-08-19.
+
+### L141 — The Lake Street row at Dearborn: four roofs moved onto one line, and the party walls between them
+**Decision:** four anonymous reconstructed roofs of the phase-one South Division parcel —
+`recon_1835_south_d3_013`, `_d4_014`, `_c3_015` and `_d5_016` — no longer stand at the recipe's
+northing seventeen to twenty-four metres inside the Clark–Dearborn block. They stand **on the
+Lake Street frontage of that block, shoulder to shoulder on shared party lines**: a
+nineteen-metre run packing west from the block's own Dearborn corner with the two-storey store
+at the corner, and the fourth butted onto the west wall of `inf_butcher_market`, with a 3.6 m
+gangway between the two runs. Their bearing is the block face's own and they carry none of the
+jitter the parcel's interior rows carry.
+**Why:** T-0077, and it is an owner ask made in as many words on 2026-08-18 — *"there should be
+more and denser buildings. this is important."* — with a plate of this exact corner (the
+Tremont House street scene, `data/sources/assets/owner_brief_2026_08_18/README.md` image 5)
+beside a screenshot of this exact corner in the render. The plate is a continuous two-storey
+storefront row on shared party lines; the render was the Tremont standing alone on grass with
+cottages scattered behind the frontage. The gap was not a missing building, it was a missing
+TREATMENT: the parcel had only ever been able to say "a roof of this family somewhere in this
+block", which is the right shape for a block's interior and the wrong shape for a street.
+**What is NOT invented here, and it is worth being exact.** No roof is added, none leaves its
+block, none is renamed, re-dimensioned or re-familied; the parcel still deals 40 principal and 8
+ancillary roofs, the 665-roof programme's totals are unchanged, and every baked mesh is the one
+it was. The frontage line, its bearing and the corner the run packs back from are **read from
+the committed block boundary** in `data/traces/vectors/thompson_lots.json`, and the recipe
+authors no coordinate for any of the four. The 0.80 m setback is not a measurement either: it is
+the line the two frontage buildings already standing on this face use.
+**WHAT IS INVENTED.** That these four particular units stood shoulder to shoulder, and that a
+party-line row stood on this face at all. The plate supports the treatment for this street at
+this date; it cannot say which buildings, and these buildings are inventions to begin with. The
+corner unit stands 1.0 m clear of the platted Dearborn corridor, which is a choice and not a
+kerb line. The gangway is 3.6 m because that is what the two runs leave between them once the
+corner and the butcher's market are fixed — nobody picked the number, and nothing states that a
+gap was there.
+**And it crosses the conjectural side lot lines.** The row runs over the boundary between lots 4
+and 6 of the generated grid, and three of its roofs now stand on one 24.6 m lot. That is a real
+consequence and it is defensible only because those side lines are themselves conjectural — the
+plat module states in its own prose that no lot here is numbered and that the side lines and the
+alley are invented — and because a business frontage of 80 ft lots is exactly the ground that got
+subdivided into narrow store fronts. One dooryard garden was lost to the move, derived away by
+its own rule when its lot stopped holding a single dwelling; that is the rule working, not a
+deletion.
+**Consequence:** the three-metre separation rule that has applied to every generated roof in this
+dataset now has one narrow exemption — a record that NAMES its neighbour in
+`reconstruction.frontage.abuts`. It is one-directional, written into the record, and gated at
+both ends: `check_frontage` in `tools/generate_inferred_infill.py` refuses a "party line" that is
+actually a gap, and the household generator exempts only the named pair. A building that merely
+happens to be close still fails.
+**How to resolve:** any period document that puts a named business on a numbered lot on this
+block face — a Chicago American or Democrat advertisement giving an address, or the 1839 fire
+losses Andreas quotes, which itemised the Lake Street buildings that burned. That would replace
+an invented unit with a named one on the same frontage, which is what the 665-roof programme's
+substitution clause exists for.
+**Covers:** `recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.position`.
+**Recorded:** 2026-08-19.
+
+### L142 — The South Water river row: fourteen roofs moved onto the frontage line, and turned to face the water
+**Decision:** the fourteen anonymous reconstructed roofs the schedule dealt to the South Water
+frontages of the five platted blocks between Franklin and State no longer stand centred on their
+own lots, seven metres back from the street and facing the block's interior. They stand **on the
+South Water frontage itself, shoulder to shoulder on shared party lines**, at a uniform 1.5 m
+setback from the platted lot line, with their fronts on the block face's own bearing — which
+means facing the river street, as every documented store on this reach does. Six runs in all:
+one of three at Franklin, two at Wells (the second broken around a documented store), one of
+three at LaSalle, one of two at Clark and one of three at Dearborn. 85.6 m of the row is now
+continuous built frontage on one line; before, the same fourteen buildings were 6 m islands with
+14-20 m of grass between them, each nudged off any line by its own lateral offset.
+**Why:** T-0078, under the owner's standing ruling of 2026-08-18 — *"there should be more and
+denser buildings. this is important."* — and its reference for this exact reach: *"South Water
+Street in 1834 — now Wacker Drive"* (`data/sources/assets/owner_brief_2026_08_18/README.md`,
+image 11), which shows the south bank as a CONTINUOUS WORKING ROW of one-storey log and frame
+buildings shoulder to shoulder facing the river, the street between them and the grassy bank.
+The render had the town's business front as detached cottages on grass, with their backs to the
+water. As at Lake and Dearborn (L141), the gap was a missing TREATMENT rather than a missing
+building: the platted-block generator could only ever say "a roof of this family, centred on
+this lot, at a period setback", which is the right shape for a residential back street.
+**What is NOT invented here.** No roof is added, none leaves its block, none is renamed,
+re-familied or re-dimensioned; every id, family band and baked placeholder mesh is the one it
+was, and the 665-roof programme's totals do not move. The frontage line, its bearing and the end
+each run packs back from are **read from the committed block boundary** in
+`data/traces/vectors/thompson_lots.json`; the recipe authors no coordinate for any of the
+fourteen. The 1.5 m setback is not a measurement of this frontage either — it is the closest
+line the plat module's own lot margin allows, adopted so that the street wall is one wall.
+**WHAT IS INVENTED.** That these fourteen particular units stood shoulder to shoulder, and that
+a party-line row stood on these faces at all. The view supports the treatment for this street at
+about this date; it cannot say which buildings, and these buildings are inventions to begin
+with. Which end of each face the run packs back from is a choice — the town-centre end, on the
+same gradient the blocks' original arrangement notes already argued from the Dearborn bridge —
+and not a finding. The 2.4 m break in the Wells run is the smallest the three-metre separation
+rule allows against Carpenter's store; nobody chose the figure, and nothing states that a gap
+was there.
+**And it crosses the conjectural side lot lines, and frees platted lots by doing it.** A run of
+three roofs packed against one another occupies about 19 m where three lots span 75, so lots
+that carried a roof now carry none: the 665-roof programme's re-derivation reports three roofs
+schedulable on committed ground where it reported one. That is an honest consequence of density,
+not new headroom anybody voted for — the lots are free because the row is tighter than the grid,
+and a later parcel that builds on them is making its own claim.
+**The row also turned round, and that is a correction rather than a liberty.** The platted-block
+placement takes its bearing from the way INTO the lot, so every roof it has ever placed faces
+away from the street it fronts; `docs/GLB-CONTRACT.md` pins `rotation_deg` as the facade bearing,
+0 = facing north, and every documented South Water store carries 0. The row now carries the
+face's own bearing. The same 180° flip still stands on this generator's other placements —
+Lake-facing and alley-facing roofs across twelve blocks — and is filed as its own ticket rather
+than swept into this one.
+**How to resolve:** any period document that puts a named business on a numbered lot on this
+frontage — a South Water Street advertisement in the Chicago American or Democrat giving an
+address, or an itemised loss list — would replace an invented unit with a named one on the same
+line, which is what the 665-roof programme's substitution clause exists for.
+**Two of the fourteen were re-dealt on 2026-08-19 (T-0102) and are no longer named above.** `..._dearborn_d5_01` and `..._dearborn_d4_02` were the deep-plan and two-room cottages at the west end of the Dearborn run. The schedule re-deal that put two two-storey stores on the row's east end took those two slots (L143), so the ids no longer name a building and this entry's Covers field can no longer claim them. Nothing above is withdrawn: the twelve that remain still stand exactly as described, and the two that went are described where they went.
+**Covers:** `recon_1835_blk_south_water_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d6_01.inferred_1835.position`, `recon_1835_blk_south_water_wells_d5_02.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d5_01.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`.
+**Recorded:** 2026-08-19.
+
+
+### L143 — Two two-storey stores anchor the South Water row, and two cottages were re-dealt to buy them
+**Decision:** the east end of the South Water row — the corner of the last block of it, between
+Dearborn and State, where State Street is the platted town's eastern limit — now carries **two
+narrow two-storey frame stores** instead of two one-storey cottages. `blk_south_water_dearborn`
+was dealt an all-D-family mix; two of those slots, the D5 deep-plan cottage and the D4 two-room
+cottage, are now **C3 narrow two-storey stores**, and the run is re-chained so the two stores take
+the block's east corner and the surviving D3 one-room cottage stands west of them. Both stores are
+about 6 m wide, 13 m deep and 5.9 m to the eaves, against the 2.5 m eaves of the cottages beside
+them; they stand on the same line, at the same 1.5 m setback, on the same shared party walls.
+**Why:** T-0102, and the owner's reference for this reach — *"South Water Street in 1834"*
+(`data/sources/assets/owner_brief_2026_08_18/README.md`, image 11) — which shows the row's east end
+anchored by two-storey frame stores over a terrace of one-storey log and frame buildings. T-0101
+(L142) put the row on its line and could not build that: `check_block` holds a parcel to the family
+mix it claims, and the five South Water blocks were dealt dwellings throughout, so the town's
+business front read as a terrace of cottages.
+**The choice, and why it went this way.** The ticket named two routes — re-deal the schedule, or
+grow the 665-roof total under a liberty. **The total does not move and did not need to.** The
+programme carries seventeen C3 roofs and eight of them stand, so nine narrow two-storey stores were
+already unbuilt and apportioned to the districts rather than to any block; the programme file says
+in its own words that a per-unit family mix is *"an apportionment of that district's remainder, not
+a claim about any block"*. Two of those nine stand here. The D4 and D5 they displace go back into
+the south district's remainder, which held thirty-four of each before this run and holds
+thirty-five after it. Growing 665 to buy roofs the programme already owned would have been
+inventing headroom the town does not need, so it was refused. The block still builds six roofs,
+five principal and one ancillary, against the same headroom of six.
+**WHAT IS INVENTED.** That a store stood on this corner at all, that there were two of them, and
+that they were two storeys. The reference supports the TREATMENT — a business front whose east end
+is anchored by taller frame stores — for this street at about this date; it cannot say which
+buildings, and these buildings were inventions before they were stores. Both dimensions are
+sampled inside the C3 band the reconstruction spec authors, exactly as every other anonymous roof's
+are, and every value on both records grades `reconstructed` with its own note saying so. No
+coordinate is authored: the line, its bearing and the corner the run packs back from are read from
+the committed block boundary in `data/traces/vectors/thompson_lots.json`.
+**What is NOT invented here.** No roof is added and none is removed; no roof leaves its block; the
+surviving D3 keeps its id, its band and the household the inferred-household layer housed in it.
+**How to resolve:** any period document placing a named South Water business on a numbered lot at
+the State Street end — an advertisement in the Chicago American or Democrat giving an address, or
+an itemised loss list — would replace an invented store with a named one on the same line, which
+is what the 665-roof programme's substitution clause exists for.
+**Covers:** `recon_1835_blk_south_water_dearborn_c3_01.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_c3_02.inferred_1835.position`.
+**Recorded:** 2026-08-19.
+
+
+### L145 — Five South Water landings, stated by no source and asked for by name
+
+**Decision:** five merchant records on the South Water river frontage now STATE a dock —
+`value: true, confidence: reconstructed` — where no source states one: J. H. Kinzie's
+forwarding store, Jones's grocery and provision store, Harmon & Loomis's store, P. F. W.
+Peck's store and Philo Carpenter's South Water store. Where the traced 1834 bank reaches the
+frontage the wharf layer draws the landing in its standard form (Kinzie's and Jones's today);
+where the trace runs out — it ends at local E 390, and Carpenter's, Peck's and Harmon &
+Loomis's frontages lie east of it — `tools/generate_river_wharves.py` refuses the landing
+with the reason on the record (clause 4b) until the trace is extended (T-0106). The Temple
+Building on the same frontage gets no landing from the same rule: worship and a school take
+nothing off a schooner.
+**Why:** the owner, 2026-08-18, verbatim — *"you can add more docks!"* — with the standing
+ruling not to ration reconstructed items to the attested instances (AGENTS.md § RECONSTRUCTED
+IS A TIER; T-0062). T-0041 drew the only two docks any source states and its own record named
+the South Water stores as frontages the evidence refused; the ruling overrides that rationing,
+and this entry is the honest cost of the override: THE EXISTENCE of each of these five
+landings is invented, one tier below the two warehouses whose dock is stated.
+**What bounds the invention:** the TRADE, per record in its own dock note — a forwarding and
+commission house takes goods off schooners by definition; Jones's did forwarding work by 1834;
+the others stocked heavy waterborne freight. The REACH — all five stand on the working bank
+between the forks and the Dearborn drawbridge that the 2026-08-18 brief (image 3) shows
+crowded with masts. The PRACTICE — wharfing-out along the south bank, the habit T-0041's
+research note records. Every DIMENSION of each drawn landing is the wharf layer's standard
+form, already claimed at L132; this entry claims only the statements themselves. What would
+replace them: the Chicago Democrat's advertising columns or the 1833-1836 harbour reports
+naming any of these merchants' wharves — the same instruments L132 waits on.
+**Covers:** `jh_kinzie_forwarding_store.form.dock`, `h_jones_store.form.dock`,
+`harmon_loomis_store.form.dock`, `peck_store.form.dock`,
+`carpenter_south_water_store.form.dock`
+**Recorded:** 2026-08-19.
+
+### L146 — Nine boats on the river, every hull of them invented
+
+**Decision:** the river carries watercraft now — `data/boats/era_boats.json`, drawn by
+`renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main
+stem below the Dearborn Street drawbridge, two rowboats on the water off the South Water bank
+and two drawn up at its edge, and two bark canoes hauled out on the bank below Fort Dearborn.
+Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position,
+heading and dimension is authored in the record with its own note. The layer refuses rather
+than adjusts — a boat without its own draft of water under the whole keel, a beached hull
+authored onto open water or up on the prairie, or any hull within 30 m of the drawbridge's
+crossing line is not drawn, with the reason on the record.
+**Why:** the owner, 2026-08-18, verbatim — *"you can add boats correct for the era! they
+would exist"* — and, of the drawbridge engravings, *"also note the boats there"* (T-0063),
+under the standing ruling to be liberal with reconstructed items and label them as such
+(AGENTS.md § RECONSTRUCTED IS A TIER). No source names, places or measures any particular
+vessel in this river on 1835-07-01, so every hull is an invention; the schooner Illinois,
+cheered at Newberry & Dole's wharf in July 1834, is deliberately NOT drawn or named, because
+a named vessel at a berth on a date is a claim no source makes.
+**What bounds the invention:** the TYPES — the 2026-08-18 brief's two drawbridge engravings
+(images 2 and 3) show schooner-rigged vessels moored close by the bridge and masts crowding
+the reach below it; image 11, the South Water 1834 view, draws rowboats on the water and at
+the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach; and 1830s
+lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m
+schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at
+the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd,
+against the committed heightfield, which is what the refusal rules hold each hull to. The
+CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on
+depicting Native presence stands in full — no figures, no encampment, no staging — and any
+depiction of the Potawatomi themselves remains out of scope pending consultation. What would
+replace the invention: harbour-master or newspaper records of vessels lying in the river in
+the summer of 1835 — the Chicago Democrat's marine columns are the instrument.
+**Recorded:** 2026-08-19.
 
 ## Resolved
 
@@ -3758,3 +4916,729 @@ not is now L31**: the letter gives two bents and never says where along the span
 the positions are still the archetype's, and the tint still cannot say so. The sentence in
 **Consequence** about the true bay count being "smaller than fifteen by an unknown margin" turned
 out to be true in the wrong direction and by a factor of five.
+
+### L111 — Every invented resident is called something else today, and nothing about any of them changed
+
+**Decision:** all **113** reconstructed residents in `data/residents/` were re-drawn from the same
+name pools under a new allocation rule, so **113 of 113 invented names changed** across **101
+household files** — and with them the household display names, which follow their head's surname.
+No person, household, roof, coordinate, grade, source citation or `name_basis` note moved. This
+entry exists because a reader who knew this town yesterday will not recognise a single invented
+name in it today, and that deserves a stated reason rather than a diff.
+
+**Why:** `tools/generate_inferred_names.py` dealt each community-and-sex pool round **by index**,
+so a name was a function of how many people sorted ahead of you and one new household rewrote up
+to **73 of 113** names as a side effect — measured across 240 synthetic insertions by the
+instrument this parcel commits, against the 17-to-72 range eleven parcels had reported in passing
+(ROADMAP **K20**). The rewrite buried each parcel's real additions inside its own noise. The
+allocator is now insertion-local — worst case **10**, and **1** in the buckets whose pools have
+room — and moving to it is a one-time rename of the whole layer, which K20 said from the start it
+would be.
+
+**What is and is not invented here.** The names were already invented and are still invented, to
+exactly the same degree and out of exactly the same pools: seeded from the 76 **attested**
+residents this project holds, cited on every record, graded `reconstructed`, and carrying the note
+that says THE NAME IS INVENTED and that the person is a hypothesis about a count and not anybody.
+A different invented name is the same claim about the same nobody, which is why this entry admits a
+**change of labels and no new liberty** — nothing here is a fact about Chicago that was not equally
+absent before.
+
+**One thing did get better rather than merely different.** The old rule welded each person's given
+name to their surname through a shared index; unwelding them let two people draw the same pair, and
+the first run of the new rule produced **two Alvah Hastings** — two invented residents who were the
+same person. That is now refused outright, and all 113 full names are distinct, which was true by
+accident before and is true by assertion now.
+
+**The residual, stated so nobody reads it as a fix that failed.** The surname pools are **2.03×**
+oversubscribed in this layer's four large buckets — 36 surnames dealt to 73 men — so a surname is
+used two or three times and a newcomer must displace somebody. Widening the pools is evidence work
+(more named 1835 Chicagoans out of Andreas and the census rolls), not a tuning knob, and until it
+happens the churn floor is the pool's and not the allocator's.
+
+**How to resolve:** nothing here is resolvable by evidence, because nothing here claims anything.
+The layer stops being invented one household at a time, as named occupants replace inferred ones —
+which is the resolution L83 and L84 already state.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a change of labels, and the
+inventions those labels sit on are already covered by **L83** and **L84**.
+**Recorded:** 2026-08-16.
+
+### L112 — The rate at which a drawing may grow this census is a convention, and it is one roof per trade per block
+
+**Decision:** method rule 6 of `data/reconstruction/1835_inferred_household_programme.json` gained
+a fourth clause on 2026-08-16 (ROADMAP **K28**): a block parcel may adopt **at most one anonymous
+roof per trade**, however many of that trade's families the schedule happens to deal it. No
+household, roof, coordinate, grade or source citation moved — all **21** block adoptions standing
+that day already obeyed it — so this entry admits a **rule** rather than a change to the town.
+
+**Why it is a liberty at all.** Nothing in any source says a Chicago trade acquired one household
+per city block, and nothing could: the block is an artefact of **this project's own drawing
+order** — the sequence in which ROADMAP's T-A parcels happen to fill the plat — not a unit anybody
+in 1835 would recognise. The cap therefore ties the growth rate of an invented layer to an
+arbitrary grid. The same two roofs dealt to two blocks would both have been adopted, and under
+this clause the same two roofs on one block yield one household. **That asymmetry is invented.**
+
+**Why it was adopted anyway, stated so a reader can disagree with it.** The alternative is no cap,
+and then the granularity of the plat sets the rate at which this census grows — a block of eight
+dwellings could raise the labourers by three in an afternoon because a schedule that knows nothing
+about the census happened to deal three of their families. Rule 6 opens by forbidding exactly
+that: the trade mix is a claim about the TOWN and not about what has been drawn. Given a choice
+between an arbitrary rate and an arbitrary rate **set by the drawing**, the clause takes the first
+and writes it down. It is also the counterweight to the permissive half of the same decision — K28
+kept rule 6's tests as two projections of the housing table rather than narrowing them to pairs,
+which widens *which* roofs are eligible, and the cap is what bounds *how fast* any of them may
+move a count.
+
+**What it costs, named rather than left for a reader to find.** A trade that could honestly have
+taken two roofs on one block takes one, and the second household waits for the next block instead
+of being refused outright — so the cap **delays** rather than **denies**, and the layer is
+slightly smaller at any given moment than an uncapped reading would make it. Nine block parcels
+between T-A9 and T-A3h had already applied it by hand and recorded the refusal each time, so this
+clause changes the future and not the past.
+
+**How to resolve:** by evidence about the trades rather than about the blocks. The cap exists
+because the census's counts are argued from the town's building rate and documented volumes, which
+is a loose enough instrument that a drawing could out-run it. A trade whose count is pinned to a
+documented figure needs no cap at all, because its ceiling is real; the clause becomes dead letter
+for every trade that gets one.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a method convention governing
+how many invented households exist, which is the kind of decision the header of this file says
+does not live in any single attribute. The inventions the convention paces are already covered by
+**L83**, **L84**, **L99**, **L100** and **L101**.
+**Recorded:** 2026-08-16.
+
+
+### L115 — How many flowers a tree carries, which no record states
+
+**Decision:** the number of inflorescences drawn on a woody stem is **invented**, keyed to that
+tree's own recorded crown width at 1.6 heads per metre and clamped to 6–26. The record's
+`july.inflorescence.size_m` — the size of ONE inflorescence — is used exactly as written, and so
+are its colour and its `height_frac`. Only the multiplicity is this project's (ROADMAP
+**K45(c)**, `renderers/web/js/trees.js` → `WOODY_HEAD_OF_SHAPE`).
+
+**Why nothing else was possible.** `data/flora/` gives the density of PLANTS per hectare and the
+size of one inflorescence, and says nothing anywhere about how many a plant carries. That is the
+same gap `flora.js` records in **L35** for the herbaceous layer, and it is a gap in the sources
+rather than in the transcription: the dossiers behind these records are a presettlement land
+survey and a regional vegetation reconstruction, neither of which counts flowers.
+
+**Why it is not simply L35's number.** `flora.js` keys its count to the plant's architecture and
+lands `cluster_terminal` on **1 to 4**, which is right for a forb — the whole plant is one
+flowering scape. On a basswood it is wrong by orders of magnitude in the direction that matters,
+and the arithmetic is the reason rather than the judgement: the record's own 0.06–0.12 m cluster
+at the 23 m slant range of a neighbouring crown (11 m up, 20 m out) subtends 0.0039 rad, which is
+**3.3 px** at the renderer's 833 px per radian. The crown carrying it is 10–16 m across, which is
+**580 px** at the same range. Four 3-px specks on a 580-px crown is four pixels of noise, and it
+would have satisfied every gate this project has while drawing, to a visitor, nothing at all.
+
+**What it costs, named.** A basswood's 13 m crown lands on 21 heads and an ironwood's 5.5 m crown
+on 9. A real basswood in full bloom carries very many more than 21 cymes, so this is an
+**under**-statement of the bloom and not an over-statement — chosen in that direction because the
+alternative is a pale cap over the whole crown, at which point the tree stops reading as a tree in
+flower and starts reading as a tree of a different colour. Both ends of the clamp are legibility
+decisions, not botany, and they are written as constants (`HEADS_MIN`, `HEADS_MAX`) so a reader
+can find them. On the build this was recorded against the whole invention amounts to **187 heads
+on 14 stems**, 1,496 of the timber layer's 113,890 triangles, and **no new draw call**.
+
+**What it does NOT invent.** The size, the colour, the height on the plant and whether a head is
+drawn at all all come from the record. The July gate is CONTRACT.md §5.4 rule 1 and refuses a head
+on a `vegetative` or `budding` record however many the count would allow — the woody layer had no
+July gate before this (K44), because `july.phenology` was read by `flora.js` alone.
+
+**And the honest limit, which is not about the count.** The two flowering species are both in the
+`mesic_pocket` community, which is **20 of 159 stems**, and every one of the 14 flowering stems
+stands north of N +174 m. **The nearest committed scene anchor is 269 m away** — `south_water` —
+at which range one inflorescence is **0.28 px**. A visitor who walks north-east will stand under a
+flowering basswood; a visitor who stays at any anchor the project itself poses will never see one.
+That is a fact about where the mesic pocket falls on the modelled ground, not about this liberty,
+and it is written down here so nobody re-derives it from a screenshot.
+`tools/measure_head_reach.mjs` re-runs the whole table.
+
+**How to resolve:** by evidence about the flower rather than about the renderer. A count in a
+source — a phenological note, a bee-forage estimate, anything that states how many cymes a
+mature basswood carries — replaces the constant outright, and the clamp with it.
+
+This entry discharges no `Covers:` claim, deliberately. It admits a **drawing convention** that
+governs how many inflorescences appear on a `role: tree` record drawn by
+`renderers/web/js/trees.js`, which is the kind of decision the header of this file says does not
+live in any single attribute — no record's confidence changes and no attribute is graded by it.
+Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the
+omission this resolves half of.
+**Recorded:** 2026-08-16.
+
+
+### L116 — The American sycamore is drawn as an American elm from the bark outwards
+
+**Decision:** the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with
+**`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band,
+its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and
+its confidence come from its own record, as they do for every species. It is the only placed
+species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks
+that fact by name, exactly, in both directions.
+
+**What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber`
+singles the species out for is its bark: *"Rare, at its northern edge; **white mottled bark
+flashing on the upper limbs**."* That sentence is the reason a sycamore is identifiable at 200 m
+in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor
+looking for a sycamore cannot find one by looking.
+
+**Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per
+species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind
+these records are a presettlement land survey and a regional vegetation reconstruction, and
+neither states a colour. Choosing a hex for "white mottled" is a straightforward invention, and it
+is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor
+noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry
+would put a highly visible guess into the frame on the authority of nobody. The substitution is
+recorded here instead, where it can be read.
+
+**Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record
+places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only
+its trunk is another species'. That is an omission plus a substitution, not an overstatement: no
+attribute is graded higher than its evidence and nothing in `data/` moved.
+
+**How to resolve:** a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either
+sourced or recorded here as invented in its own right; the mottling itself would need a second
+material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are
+in the same queue for the same reason. When it lands, the entry has to leave
+`drawn_as_another_species` with `--update` in the same commit.
+
+Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
+drawing convention in the same layer.
+**Recorded:** 2026-08-16.
+**Resolved:** 2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the
+species is drawn with its own bole, taper, diameter band, puff count and bark, and
+`drawn_as_another_species` is empty where it held this one substitution. The **How to resolve**
+line above offered a choice — sourced, or recorded as invented — and there was never a source to
+find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated
+bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the
+*mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed
+here.
+
+### L117 — Three canopy weights the records do not carry, kept because no record can carry them
+
+**Decision:** three of the twenty-six per-community canopy weights in `renderers/web/js/trees.js`
+sit **outside** the density band the zone record their own community cites, and they are kept as
+written rather than raised into the band. Since ROADMAP **K46** the written weight is the number
+that plants the stem, so each of these three is an ecological claim of this project's own. They
+are declared in their community's `departures` field, with the reason, and the renderer refuses to
+load an undeclared one.
+
+| entry | written | the band its community's zone records | what the number asserts |
+|---|---|---|---|
+| `gallery.mix.salix_amygdaloides` | 8 | z05 `[10, 25]` | the peachleaf willow is a bank tree: the gallery's two lists split ZONE 5's single band between them, 17 at the water's edge and 8 behind it |
+| `gallery.edgeMix.acer_saccharinum` | 8 | z05 `[15, 35]` | at the water's edge the mix goes to willow — the edge mix's own note, expressed as a weight, over ground ZONE 5 does not band separately |
+| `mesic_pocket.mix.ulmus_americana` | 12 | z06 `[40, 80]` | the elm is incidental in the fire-protected pocket, where the closing canopy is basswood, sugar maple and ironwood |
+
+**Why this is the honest form, and it is a fact about the DATASET rather than a preference.** The
+obvious repair is to key density by (zone, species) and let each community read the band from the
+zone its own `dossier` cites — which is what the file's comment has always claimed it did. It
+cannot be done: `wet_woods` cites **ZONE 6a** and `mesic_pocket` cites **ZONE 6b** and both resolve
+to the single record **`z06_dense_forest`**, whose elm band is the swamp thicket's reading. A
+zone-keyed density gives the elm 60 in both communities, and the 12 that makes it incidental in the
+pocket has nowhere in `data/` to live. The sub-community distinction is real, is recorded nowhere
+else in this project, and is the whole reason K46 kept the hand weights instead of deleting them.
+
+**Consequence, stated so a reader can weigh it.** All three departures are **downward** — measured
+across the twenty-six entries, 23 sit inside their own cited band, 3 fall below one and **none is
+above**. So the hand weights have never inflated a species beyond what a record supports; where
+they depart, they thin a species the record would have planted more of. Nothing in `data/` moved
+and no confidence grade changed: these are render weights, and every species' presence in its
+community remains the record's claim rather than this file's.
+
+**How to resolve:** a sub-community band in the dataset — ZONE 6a, 6b and 6c banded apart in
+`data/flora/zones/`, and ZONE 5's gallery banded apart from its edge — at which point each of
+these three becomes a reading of a record and leaves this entry with `--update` in the same commit.
+That is a research parcel, not a renderer one, and the three numbers above are what it has to
+account for.
+
+Related: **L114** and **L116**, the other two liberties in this layer, and ROADMAP **K45(b1)**,
+which measured the divergence this entry resolves.
+**Recorded:** 2026-08-16.
+
+### L119 — Fourteen invented plant footprints, because a cover cannot be counted without one
+
+**Decision:** fourteen of the twenty-five sward records that ROADMAP **K49(c1)** gave a `width_m`
+carry a footprint **nothing states and nothing in this dataset implies** — what one drawn plant
+covers on the ground — and they are graded `reconstructed` in their own `width_provenance` rather
+than left absent. They are: *Persicaria coccinea*, *Lycopus americanus*, *Boehmeria cylindrica*
+(sedge meadow); *Allium canadense* (riverbank); *Laportea canadensis*, *Ageratina altissima*,
+*Osmorhiza claytonii* (dense forest); and *Poa pratensis*, *Chenopodium album*, *Amaranthus
+retroflexus*, *Ambrosia artemisiifolia*, *Xanthium strumarium*, *Rumex crispus*, *Verbena
+urticifolia* (the settled town's trampled halo). The other eleven are `inferred`: each is reasoned
+from a footprint this dataset already commits for a plant standing beside it in the same list.
+
+**What bounded the invention.** Every one of the fourteen is bounded by its own record's
+`height_m` and by the growth habit its dossier row states — a basal rosette is banded under a
+branched annual, a shade forb at 0.2–0.6 m tall is given a leaf spread near its own height, a
+sod-forming turf grass is given the halo's own height band because it has no clump at all. Not one
+is bounded by how the sward looks: no width here was chosen, tried or adjusted against a render.
+
+**Why the gap could not be left open, which is the whole reason this entry exists.** A record's
+abundance is one of three fields and they are not three spellings of one number: `stems_per_m2` and
+`density_per_ha` count plants, `cover_fraction` measures ground. The sward's placer deals SLOTS and
+a slot is one drawn plant, so a cover has to become a count before it can be dealt against a
+density, and `width_m` is the only thing in a record that converts it. Twenty-five records carried
+a cover and no width, so six of the twenty lists were dealing an area against a count — the dense
+forest's understory dealt 96.5 % of its slots that way. Leaving the widths absent was not the
+neutral option: it left the arithmetic wrong AND undocumented.
+
+**The honest consequence, stated because it is large.** The footprint is now the number that
+decides what a list is made of. In the six mixed lists the shares move by up to a factor of three
+on the conversion — June grass 8.1 % → 24.0 % of the sand prairie's matrix, wood nettle 1.1 % →
+6.3 % of the forest floor — and for the fourteen above that movement rests on an invented figure.
+This is why they carry their own grade instead of the record's: the record's `confidence` grades
+what its sources say about the plant, and none of them says this.
+
+**How to resolve:** a measured clump or canopy width for any of the fourteen, from a source this
+project can cite, replaces the number and re-grades that record's `width_provenance` with
+`--update`-style bookkeeping in the same commit. A dossier sentence that states a SPACING rather
+than a width would do it too, and is the better evidence — § ZONE 3's *"tussocks … 0.5–1.0 m
+apart"* is one this project already holds for a record it did not need it for.
+
+Related: **L114**, **L116** and **L118** in this layer, and ROADMAP **K49(c1)**, which
+measured the conversion these widths make possible.
+**Recorded:** 2026-08-16.
+
+### L120 — The dune poplars' bole, taper and bark, and a pale trunk chosen so two trees can be told apart
+
+**Decision:** the three trees now standing on the lakeshore — the eastern cottonwood in its dune
+form, the quaking aspen and the balsam poplar (ROADMAP **K45(b)** change one) — are drawn with
+**bole diameters, fork heights, foliage-mass counts, a lean and three bark colours that no source
+states.** The records carry what a record can carry — species, July height, crown width, July
+foliage colour, density and confidence, all `attested` off the MNFI open-dune survey and Cowles
+1901 — and none of them describes a trunk.
+
+**What bounded each invention.** The dune cottonwood forks at **0.30** of its bole, the lowest in
+this file after the open-grown oaks, and leans at **0.30**, the top of the range the file already
+uses (its two bank willows sit at 0.24 and 0.30): the record's one visual claim about this tree is
+*"isolated, half-buried and leaning, with a sand mound at the base"*, so it takes the most this
+project has ever leant anything and no more. Its bark is the gallery cottonwood's own hex, because
+it is the same species. The aspen and the balsam poplar take narrow crowns from their own recorded
+`width_m` of 3–6 m and bole diameters of 0.10–0.25 m and 0.12–0.28 m — the two thinnest boles in
+the file, on the two shortest canopy trees in it.
+
+**The one invention that is a CHOICE rather than a bound, stated as such.** The aspen's bark is
+**0xb9bdae**, the palest bole in the scene. Nothing in this dataset states it. It is chosen for two
+reasons and both are admitted: a quaking aspen's white-green trunk is the most widely known thing
+about the species, and — the reason it is a liberty — **the aspen and the balsam poplar are the
+same height, the same crown and the same form**, so without a difference in the wood a visitor
+cannot tell that two species are standing there. The balsam poplar keeps an ordinary grey-brown.
+The pale tone stays darker than the sycamore's upper limbs (**L118**), which remain the palest
+wood in the timber.
+
+**Why this could not be left open.** `SPECIES` says *"one entry per woody species drawn"* and the
+loader keys it by species id, so a species recorded by two zones takes the FIRST zone's archetype.
+`populus_deltoides` is recorded twice — `z05_riverbank_timber`'s 22–30 m gallery emergent and
+`z08_lakeshore`'s 5–15 m half-buried leaner — and with nothing written here the beach would have
+been planted with twenty-five-metre floodplain cottonwoods: the record read, routed, banded, and
+drawn as another zone's tree. That is **L116**'s fault one level in. Leaving the archetype absent
+was not the neutral option.
+
+**Consequence.** Three trees are drawn from parameters this file invented, on ground whose species,
+count and density come from the records. Nothing in `data/` moved, no confidence grade changed, and
+the substitution `tools/measure_planting_reach.py` banks — a placed species drawn with another
+species' bole and bark — is **0** rather than 2, because the archetypes are their own.
+
+**How to resolve:** a measured trunk diameter, bark colour or lean for any of the three, from a
+source this project can cite, replaces the invented figure in the same commit that re-banks it. A
+photograph of a Lake Michigan open-dune cottonwood in the repository's own reference set would
+settle the lean without settling the colour, and would be worth taking on its own.
+
+Related: **L114**, the omission this repair closes, **L116** and **L118**, the other two entries
+about wood this project invented, and ROADMAP **K45(b)**.
+**Recorded:** 2026-08-17.
+
+### L121 — The wood is thinner on a phone by a fraction nothing states, and the ratio is borrowed from the renderer's own triangle ceilings
+
+**Decision:** the scene-detail control now plants a **uniform fraction** of the timber — 100 % at
+`full`, **80 %** at `balanced`, **60 %** at `light` (ROADMAP **K45(b3)**). So a visitor on a phone
+walks a town with two thirds of the trees a desktop draws, at the same species, in the same
+communities, under the same rules about where a stem may stand.
+
+**Nothing states those fractions and nothing could.** They are not a claim about 1835: the wood a
+record asks for is `full`'s, which is unchanged to the stem, and the two lower settings are a
+rendering decision about a device. The invention is the RATIO, and it is bounded by the only live
+per-level statement this renderer makes about how much geometry a level is for — the triangle
+ceilings in `main.js`, **1,000,000 / 800,000 / 600,000**, which the release smoke already holds
+each level to. 1 / 0.8 / 0.6 is those ceilings read as a ratio and nothing else.
+
+**The alternative that was rejected, and why it is the weaker one.** The pre-K45(b2) stem caps were
+820 / 520 / 300, a ratio of 1 / 0.634 / 0.366, and they are the only other per-level numbers this
+file has ever carried. They are not used because **they never bound**: measured, the three levels
+planted 472, 470 and 437 trees, so those caps are an intent nothing ever executed, and K45(b2) then
+multiplied all three by 3.70 for a wider sweep. A number that has never had an effect is not
+evidence of what a level should draw.
+
+**What is NOT thinned, and it is the point of the entry.** The sandbar-willow point-bar screen
+keeps its stools at every level. A screen needs its clumps to touch, so thinning it does not make a
+lighter screen, it makes separate cushions on open sand — which is what the sampling grid had been
+doing silently (258 stools at `full`, 190 at `balanced`, **133** at `light`).
+
+**Consequence.** A screenshot taken at `light` is not a screenshot of this reconstruction's wood,
+and no figure in this repository is quoted at `light`: every banked measurement, every gate and
+every published number is `full`. `tools/measure_timber_detail.mjs --gate` holds that — `full`
+keeps 100 % of its stems and every level keeps the north end of the wood.
+
+**How to resolve:** a frame-time measurement on a real phone replaces the borrowed ratio with a
+measured one. The instrument for it does not exist here yet; the ceilings are the honest stand-in
+until it does, and they are at least a number this renderer already acts on.
+
+Related: **L120** and **L114**, the other entries about this wood, and ROADMAP **K45(b3)**.
+**Recorded:** 2026-08-17.
+
+### L122 — The shrub archetype: four stems, sixteen leaf sprays, and a branching habit no source describes
+
+**Decision:** the twenty-one records that carry `form: 'shrub_low'` — hazel, elder, buttonbush,
+red-osier and grey dogwood, ninebark, winterberry, hawthorn, sumac, wild plum, brambles,
+meadowsweet, currant, sand cherry, sand-dune willow, common juniper and the black-oak grubs — are
+drawn with **a woody archetype of four stems rising from one root and sixteen leaf sprays over
+them** (ROADMAP **K53**). Until today they were drawn with the forb archetype: one herbaceous
+stalk, four broad leaves, and a clump width clamped to 0.40 m however wide the record said the
+plant was.
+
+**What the records carry and what they do not.** Every dimension the archetype is scaled by is
+committed and cited: July height, clump width, the two foliage greens, the July inflorescence and
+its colour. **Nothing in this repository states the branching habit of any of them** — how many
+stems a Chicago hazel throws, how far they lean, where the leaf mass sits on them. That is the
+invention, and it is bounded on both sides by the record: the stems rise to 0.55–0.88 of the
+recorded height and lean out to 0.30–0.55 of the recorded half-width, so the plant's **silhouette
+is the record's own two numbers** and only the arrangement inside it is invented.
+
+**Why invent it rather than leave the wand.** Three of these records describe multi-stemmed
+plants in their own committed text — the black-oak grubs are *"multi-stemmed low clonal oak
+sprouting from an old root system"*, the wild plum is *"thicket-forming"*, the sand cherry a *"low
+sprawling mat 1–3 m across"* — and a single stalk cannot read as any of the three at any size. So
+the choice was not between an invention and the evidence; it was between an invention that is
+recorded here and one that was already in the file, unrecorded, and wrong.
+
+**What is NOT claimed.** No species is drawn with a distinguishing habit of its own: a hazel and a
+dogwood of the same recorded height and width are the same geometry in two greens, exactly as the
+nine flower archetypes share a shape across species. Nothing about which shrub stands where moved
+— the drawn census is identical, plant for plant, before and after.
+
+**How to resolve:** a per-species habit — stem count, forking height, leaf size — for the few
+species a dossier describes closely enough to carry one. `corylus_americana` is the candidate,
+because it is the one the wet-woods dossier singles out.
+
+Related: **L115** and **L119**, the other entries about how the sward's plants are drawn, and
+ROADMAP **K53**.
+**Recorded:** 2026-08-17.
+
+### L123 — The wet woods' shrub layer is drawn at two fifths of the cover its records claim, because a lattice slot carries one plant
+
+**Decision:** the shrub stratum is dealt from **its own lattice pass**, at its own recorded clump
+density, independently of the herb layer it stands over (ROADMAP **K54**). That pass inherits the
+forb lattice's one plant per slot — 2.89 m² of ground — so a community whose records ask for more
+clumps than that ceiling allows is drawn at the ceiling. **Measured, `z06_dense_forest` is the one
+community of ten where it binds:** nine `shrub_low` records there sum to **94.9 %** ground cover
+and the drawn layer reaches **40.1 %** of it. Every other community is drawn at its recorded
+density — the riverbank timber's dogwood belt reads **20.1 % drawn against 19.5 % recorded**.
+
+**What is NOT invented.** No share, no cap and no tuning number was authored for this. The slot
+density is the forb layer's own (L32), the clump density is the record's own `cover_fraction`
+divided by what one clump covers, and the ceiling is the lattice's existing `min(1, …)` — the same
+clamp the herb layer has always had, which the wet woods' herb records also reach. The invention
+is only that the shortfall is ACCEPTED rather than paid for with a denser lattice.
+
+**Why accept it.** The wet woods' own records describe a nearly closed shrub canopy, and the
+honest alternatives both cost more than they buy: a finer lattice for one community spends the
+geometry budget on the community a visitor can see least far into, and a second clump per slot
+would draw plants inside each other. A layer at two fifths of a closed canopy still reads as a
+thicket; at 1 % — which is what it was, 2 plants of 158 — it read as a wood with no shrubs in it.
+
+**Consequence, stated plainly:** a shrub count taken in `z06_dense_forest` is a floor, not the
+record's figure, and `tools/measure_sward_draw.mjs` prints drawn cover against recorded cover in
+every community so the gap is visible wherever it is quoted.
+
+**How to resolve:** a per-community lattice cell, sized off that community's own summed clump
+density rather than the forb layer's. It needs a frame-time measurement in the wet woods first,
+because the wet woods is also where the matrix layer is densest.
+
+Related: **L122** (the archetype these plants are drawn with), **L32** (the lattice density this
+ceiling comes from), and ROADMAP **K54**.
+**Recorded:** 2026-08-17.
+
+### L124 — A shrub's leaf spray is a mass of leaves, not a leaf, and thirty-two of them is what closes the shell
+
+**Decision:** each of the shrub archetype's leaf sprays (**L122**) stands for **a season's leaves
+on one shoot** — a mass, not a single leaf — and there are now **thirty-two** of them where there
+were sixteen (ROADMAP **K56**). Their size is unchanged: 0.26–0.42 of the recorded clump radius,
+which on a hazel recorded 2.25 m across is a spray 0.26–0.44 m long.
+
+**Why the size is the wrong number to have moved.** K56 was opened on the observation that a
+0.4 m spray is nowhere near the ~10 cm of an actual hazel leaf, and asked what the spray STANDS
+FOR before any number changed. It stands for a leaf mass, on the same footing as the tree canopy's
+plates and the near tuft's bundle of shoots in this renderer — none of those is one leaf either,
+and two triangles cannot carry one at any size. **So shrinking the spray would not have bought a
+leaf; it would have bought a smaller plate with more sky around it.**
+
+**What the looking found instead, and it is the count.** Summed over the archetype's own loop, the
+sixteen sprays' plates cover **17.7 %** of the shell they are spread over. That is a clump a
+visitor sees straight through — `docs/evidence/k56-before.png`, 158 of them in one ring — and an
+isolated plate with sky on both sides reads as one enormous leaf precisely BECAUSE nothing overlaps
+it. Thirty-two cover **30.9 %** and overlap: `docs/evidence/k56-after.png`, the same station.
+
+**The second invention here, stated separately because it is a habit and not a count.** The lowest
+of the three spray bands **arches downward** over the stems. Nothing in the first cut hung below its
+own attachment, so the shell stayed open exactly where the four stems are most exposed, and those
+stems are drawn dark on purpose (this module's only occlusion term) — so an open lower shell reads
+as black sticks. A drooping outer shoot is bounded on the other side instead: it may fall at most
+half way back to the ground from its attachment, so no tip is pushed below the plant's own base.
+
+**What is NOT claimed.** No source in this repository states the leaf-mass count, the band heights
+or the droop for any of the twenty-one `shrub_low` records — this is the same invention L122
+recorded, at a finer grain, and it remains bounded by the record's own two numbers: the drawn
+silhouette still reaches 0.98 of the recorded half-width and no tip leaves the recorded height. No
+species gets a habit of its own, nothing about which shrub stands where moved, and no count of
+plants changed — `tools/measure_sward_draw.mjs` reads back the same census, plant for plant.
+
+**Cost, since it is a triangle count and not free:** 40 triangles per shrub becomes 72, which in
+the wet woods' ring is +5,056 of a 1,000,000 ceiling.
+
+**How to resolve:** a finer grain — more, smaller sprays at the same total plate area — is a real
+question this parcel did not answer, because it trades triangles against grain and needs a budget
+rather than a preference. ROADMAP **K57** carries it.
+
+Related: **L122** (the archetype this refines), **L123** (why the layer is drawn at two fifths of
+its recorded cover), and ROADMAP **K56**.
+**Recorded:** 2026-08-17.
+
+### L125 — Forty-eight leaf sprays, because refining the grain would have spent the recorded clump width on coverage
+
+**Decision:** the shrub archetype (**L122**, **L124**) now carries **forty-eight** leaf sprays where
+it carried thirty-two, and **the size of a spray is unchanged again** — 0.26–0.42 of the recorded
+clump radius, a 0.26–0.44 m mass on a hazel recorded 2.25 m across. ROADMAP **K57**.
+
+**The question K57 was written to answer, and why it could not be answered as asked.** L124 left it
+open: *at the same total plate area, is the shell better read as 32 masses of 0.4 m or 64 of 0.2 m?*
+Holding the total plate area is exactly what cannot be done here. The plates are what carries the
+clump's **recorded half-width** — the one horizontal number the research owns — so paying for a
+finer grain out of the plate size pulls the whole bush in. Measured over 24 bearings by
+`tools/measure_spray_grain.mjs`: 64 sprays at the shipped total area take the drawn reach from
+**0.990 of the recorded half-width to 0.890**, and the spray from 37 cm to 26 cm. It buys coverage
+— 36.9 % of the outline to 45.4 % — with a number that is not the renderer's to spend.
+
+**So the grain trades against triangles, and the invention is the count, again.** At the shipped
+plate size the count alone gives 32 → 48 → 64 sprays a foliage coverage of **36.9 % → 46.9 % →
+51.3 %**, for 72 → 104 → 136 triangles, with the reach unmoved at 0.990–0.998. Ten of the fourteen
+available points arrive with the first thirty-two triangles and four with the second, so **48 is
+where the return halves and 48 is what ships.** The remaining 4.4 points are measured and left
+unspent rather than taken quietly.
+
+**What is NOT claimed.** No source in this repository states a leaf-mass count for any of the
+twenty-one `shrub_low` records, and none is invented here that L122 and L124 did not already
+record — this is the same invention at a coarser dial. What is not invented: the silhouette, which
+still reaches **0.998** of the recorded half-width and never leaves the recorded height, and the
+census, which is identical plant for plant. Nothing about which shrub stands where moved.
+
+**And the bound is now a gate rather than a paragraph.** `tools/measure_spray_grain.mjs --gate` runs
+in `tools/check.sh` and asserts the two numbers the research owns — reach ≥ 0.95 of the recorded
+half-width, and a spray at least twice a 10 cm leaf so the mass abstraction cannot quietly become a
+claim to draw a leaf — plus a ratchet holding the coverage above 40 % at every bearing. L124's own
+figures were taken by a script that was never committed and cannot be reproduced; this one is the
+module the scene draws.
+
+**Cost:** 72 triangles per shrub becomes 104, which in the wet woods' ring of 167 is 17,368 of a
+1,000,000 ceiling — 1.7 %.
+
+Related: **L122** (the archetype), **L124** (the count this refines and the question it left open),
+**L123** (why the layer is drawn at two fifths of its recorded cover), and ROADMAP **K57**.
+**Recorded:** 2026-08-17.
+
+### L126 — Every building in the town is tinted by a rule, and only two are exempt
+
+**Decision:** every structure's baked surfaces are multiplied by a per-building **facade tone**
+computed in `renderers/web/js/facades.js` — a silvering that grows with the record's own age, and a
+value/warmth jitter dealt from a hash of the record's id. It is **reconstructed**: no source this
+repository holds states the colour of any wall in 1835 Chicago, and the dataset agrees with itself
+about that — `paint` is `reconstructed` on 236 of 335 records, `inferred` on 15 and **`attested` on
+exactly two**. Those two — the Sauganash's documented white and St Mary's attested unpainted — are
+handed the identity tone and are drawn at the colour their archetype baked, to the bit, with the
+tone on or off. T-0002; the owner's ask was that the buildings "read as freshly painted and
+identical".
+
+**The bounds, which are the whole of the invention.** Silvering mixes a surface at most **0.35** of
+the way toward its own luminance and darkens it at most **0.10**, reached at **12 years** of
+exposure; a whitewashed wall silvers at half that rate because lime was renewed, and a masonry one
+(`brick`, `stone`, `earth`) does not silver at all. The jitter is **±16 %** of value and **±7 %**
+of warmth, halved on masonry — inside the ~30 % of value the archetypes already put between an
+unpainted wall (`0.52, 0.44, 0.34`) and an outbuilding's board (`0.335, 0.310, 0.268`), so no
+building is tinted to a shade the generators could not have baked outright. Nothing here is derived from a source, because no source states one;
+the ceilings are set so the oldest building in the town — the fort's, at 19 years — reads as grey
+and dirty beside a new one without leaving the range of colours the archetypes themselves bake.
+`docs/research/04-structures-south.md` reads the fort in 1835 as "serviceable, weathered,
+whitewashed/unpainted log-and-brick" `[INF]`, which is the nearest thing to a statement about
+surface condition this repository holds, and it is a direction rather than a number.
+
+**What the age input is, and what it is NOT.** The silvering reads `documented_range.from`, which
+for the well-attested buildings is a construction date — 1816 for the fort's, 1833 for the Green
+Tree. **For the 262 anonymous infill records it is a scene-programme date, not a construction
+date**, so those buildings compute an age near zero and are drawn essentially unsilvered. That is
+the absence of a claim, not a claim that they are new, and it is why the jitter and not the age is
+what makes most of the town differ from itself. Inventing ages for them would be a second
+reconstruction stacked on this one, and it is not needed.
+
+**What is measured rather than asserted.** `tools/measure_facade_variety.mjs` reads the colours back
+off the batch the renderer draws: **331 distinct facade tones across 331 structures**; of 321
+nearest-neighbour pairs within 60 m, **10 were drawn identically to the bit before this and none
+are now**; neighbours differ by a median **10.4 %** in applied value, on every surface they own.
+Winding the tone off moves the worst 48² frame cell by **10** and restores to a residual of **0**. Four assertions in `tools/smoke_renderer.mjs` hold all of it, including the
+inertness one on the attested pair.
+
+**What is NOT claimed.** No board is a different WIDTH from any other, no lap rhythm changed and no
+building gained a texture: this is a tint on the surfaces the bake already produced, and the
+irregularity half of T-0002 is geometry that needs the nightly bake. The tone is per STRUCTURE, so
+a building's roof, walls, trim and stack all move together — a wall is not weathered independently
+of the roof above it, which no source would support either.
+
+**What the frames say, and it is not all good news.** Photographed at `lake_market` and
+`from_above` with the tone on and off, the first pair is hard to tell apart — because the
+`lake_market` station stands in front of the **Sauganash**, which is one of the two records this
+rule is forbidden to touch, and the town it varies is behind it. The variation is plain from the
+air and along a street of small houses, and it is slight where one exempt building fills the
+frame. That is why the jitter was raised from ±10 % before this shipped, and it is why the
+acceptance clause is quoted with its station rather than declared discharged in general.
+
+**Cost:** none in draw calls. The tone folds into the per-vertex colour the batch already carries
+(**R-W5a**), so the untextured town is still one batch and one shadow-pass call.
+
+Related: **L22** (wall surfaces are the archetype's, not the record's — this is that finding tinted
+rather than resolved), **L120** (a pale trunk chosen so two trees can be told apart, the same
+invention in the flora), and tickets **T-0048** (this half) and **T-0049** (the board half, which needs the bake).
+**Recorded:** 2026-08-17.
+
+### L127 — The Western Hotel's wagon yard: an attested yard, and a fence nobody described
+**Decision:** the yard behind the Western Hotel is drawn as a **post-and-rail fence, 1.37 m high,
+three rail courses, posts at 2.9 m**, enclosing the ground between the hotel and its stable and
+reaching both street frontages, with a **4.27 m gateway on Canal and another on Randolph**. It is
+drawn by `renderers/web/js/enclosures.js` from `data/enclosures/western_hotel_wagon_yard.json` —
+the first record in this project that carries a perimeter instead of a footprint.
+**Why:** what a source states is one clause. *"In the rear was the large stable and the yard into
+which the trains were driven. There were entrances to the yard from both streets."* That is a
+yard, in a stated place, with two stated gateways, and it is the whole of the evidence. Everything
+else in the paragraph above is invented — and the alternative was the ten days this entry has
+already spent as **L10**, where the yard that *was* the west-side teamsters' house as a visitor
+experienced it was left out of the model entirely because the only archetype that would take it
+built a building.
+**What bounds the invention, since that is what `reconstructed` means here.** The OUTLINE is
+mostly derived rather than chosen: the west line is the hotel's own west wall continued south, the
+south line is the stable's north face, the north line is the hotel's south wall, and each of those
+is a committed coordinate in `data/sidecars/1835/`. The one free coordinate is the east line, and
+it is set by the Randolph gateway rather than picked — the hotel stands on the corner, so a yard
+"in the rear" can only reach Randolph by a neck past the hotel's east gable, and a 14-ft gateway
+with a post either side does not fit in less. The FENCE is invented outright: post-and-rail over
+a worm fence (which needs three metres of ground either side and would not fit between a hotel and
+its stable) and over close boarding (which would make the yard a room, where the source's picture
+is of teams driven in off the street); 4 ft 6 in because a yard fence turns a team and does not
+have to hold a horse that means to leave — that is the pound's job, and the pound is on the public
+square; three courses because that is what fills 4 ft 6 in; 2.9 m because that is the span a sawn
+rail carries. Not one of those numbers is attested and the record says so on every one of them.
+**Consequence:** a visitor standing behind the Western Hotel sees a specific fence, and no source
+describes any fence there. The confidence view is the honest counterweight and it is wired: every
+vertex of this layer is graded `reconstructed`, so hiding that level removes the whole fence and
+leaves the yard as the sources leave it — an open piece of ground between two buildings. **The
+ground inside the fence is not drawn.** A yard that wagon trains entered daily was not prairie
+sward, and it is still prairie sward here, because nothing states whether it was worn earth,
+gravel, plank or mud and a wear pattern is not something this record can bound. That is the
+larger of the two admissions and it is deliberately left standing rather than guessed.
+**How to resolve:** a Chicago or Cook County fence ordinance of the 1830s would settle the height
+and the courses in one line — a lawful-fence specification is exactly the kind of thing such an
+order carries; an insurance or tax description of the lot would settle the rest.
+**Recorded:** 2026-08-18.
+
+
+### L60 — The estray pen is a fence, and the model gives it a roof
+**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
+public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
+8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
+Every one of those values is tagged `conjectural`.
+**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
+enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
+project has no generator that builds an enclosure — `palisade` is named in the schema and has no
+module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
+cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
+working policy for this parcel is that an absent building is invisible while a conjectural one is
+legible and correctable.
+**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
+about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
+close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
+probably was not there rather than a finding about a roof that was. The material is invented too,
+and the live alternative would look completely different: most frontier pounds were split-rail or
+post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
+wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
+survives of the evidence in the mesh is a rectangle of about the right size in about the right
+place.
+**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
+taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
+state of the public square itself, the garrison gardens and every yard in the town, and it is
+the honest fix. A town or county order establishing the pound would settle the size and the
+material at the same time.
+**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
+**Recorded:** 2026-08-11.
+
+**Resolved:** 2026-08-18 (T-0051). The enclosure layer arrived and the pen was the second record on it.
+`data/enclosures/estray_pen.json` walks the same 30 × 20 ft rectangle, on the same corner, as a **roofless
+post-and-rail perimeter with a gateway**, drawn by `renderers/web/js/enclosures.js` at load and needing no
+bake. The five invented values this entry claimed — `construction`, `roof_type`, `roof_pitch_deg`,
+`wall_height_m` and `door` — are **retired from the record rather than re-graded**, the GLB and its manifest
+entry are deleted, and the phase carries a `drawn_by` block that `tools/validate.py` holds to all of that.
+Andreas is now quoted for the thing he actually says: *"the 'pen' was a small wooden enclosure and quite
+roofless"*. What this entry still covers, and what keeps it worth reading, is the **footprint** — the
+rectangle, its size and its corner-of-a-block placement are as invented as they ever were, and the fence
+that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix
+this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
+wants the pen baked with the rest of the town still needs one.
+
+
+### L144 — Three roofs on one lot at Lake and Clark, and the corner they are built to
+**Decision:** the Lake-and-Clark corner lot of `blk_lake_clark` — lot 0 of the committed plat
+grid, the last free lot on this block's business face — carries **three anonymous roofs standing
+shoulder to shoulder on the Lake Street frontage**, not one cottage set back in the middle of it:
+a log dwelling on the corner itself, a one-room frame cottage next to it and a deep-plan frame
+cottage closing the run at the east end, on one line, at one 1.5 m setback, on two shared party
+walls. A privy stands in the same lot's yard at the alley end. The run occupies 16.86 m of the
+lot's 21.75 m of buildable frontage and its west wall stands 1.50 m from the Clark side line,
+which is the closest line the plat module's own lot margin allows.
+**Why:** T-0079, the third and last piece of the owner's flagged-important ask of 2026-08-18 —
+*"there should be more and denser buildings. this is important."* His reference for this corner
+is the Tremont House street scene (`data/sources/assets/owner_brief_2026_08_18/README.md`, image
+5), a continuous storefront row on shared party lines, beside a screenshot of the same corner in
+the render standing on grass. Until this parcel the schedule could not answer it here: a block's
+ceiling was one principal roof per platted lot, and a party-line run carried exactly one roof per
+lot it was dealt, so this block's single free Lake lot could take exactly one detached cottage.
+**THE CEILING THAT MOVED, AND WHAT BOUGHT IT.** The rule is now three units per lot, and the
+number is measured rather than chosen: the smallest lot on the committed grid has 23.56 m of
+frontage, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen
+party-line units already committed average 6.072 m wide — so (23.56 − 3.00) / 6.072 = 3.39 units
+fit on the meanest lot in the town and the fourth does not. The old rule was also being counted in
+the wrong unit: the side lot lines are conjectural, and every record this generator writes says so
+in its own position note, while the block FACE is committed geometry derived from the street
+centrelines. **The 665-roof total does not move.** The four roofs come out of
+`south_plat_beyond_committed_control`, the district balance waiting on street control past State
+and Washington, which fell from 175 roofs to 120 when the ceiling rose.
+**WHAT IS INVENTED.** That any building stood on this ground at all; that there were three of
+them; that they stood shoulder to shoulder rather than apart; that the corner one was of logs.
+The reference supports the TREATMENT — a built-up corner and a party-line frontage on this street
+at about this date — and cannot say which buildings. Every dimension is sampled inside the family
+band the reconstruction spec authors, exactly as every other anonymous roof's is, and every value
+on all four records grades `reconstructed` with its own note saying so. **No coordinate is
+authored:** the line, its bearing and the end the run packs away from are read from the committed
+block boundary in `data/traces/vectors/thompson_lots.json`.
+**A second street line on one face, and it is not hidden.** T-0077's row on this same Lake face
+stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so
+the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps
+between them, but one face carrying two street lines is a defect rather than a design, and it is
+filed as its own ticket rather than normalised away inside this parcel.
+**A log dwelling on a business frontage is an open question, and it was answered by the reference
+rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial
+frontage and is unresolved. What decided it here is that the owner's other reference for a
+party-line row — *"South Water Street in 1834"* — draws the row as *log and frame buildings
+shoulder to shoulder*, so a log unit in a row is the thing the picture shows rather than an
+awkward deal. The question stays open for the schedule; this parcel is one instance, recorded.
+**How to resolve:** any period document placing a named occupant on a numbered lot at the corner
+of Lake and Clark — an advertisement giving an address, a tax or insurance description, an
+itemised loss list — would replace an invented roof with a named one on the same line, which is
+what the 665-roof programme's substitution clause exists for.
+**Covers:** `recon_1835_blk_lake_clark_d1_01.inferred_1835.position`, `recon_1835_blk_lake_clark_d1_01.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.position`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.position`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.footprint`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.position`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.footprint`.
+**Recorded:** 2026-08-19.

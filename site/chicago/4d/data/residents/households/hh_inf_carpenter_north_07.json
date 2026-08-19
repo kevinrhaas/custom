@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_north_07",
- "name": "The Fisk household — a reconstructed carpenter (north division)",
+ "name": "The Hastings household — a reconstructed carpenter (north division)",
  "division": "north",
  "head": "inf_carpenter_north_07",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_north_07",
-   "name": "George Fisk",
+   "name": "Alvah Hastings",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -70,7 +70,7 @@
   },
   {
    "id": "inf_carpenter_north_07_j1",
-   "name": "Otis Woodruff",
+   "name": "George Newell",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

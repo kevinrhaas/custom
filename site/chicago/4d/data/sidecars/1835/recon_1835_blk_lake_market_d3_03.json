@@ -25,7 +25,8 @@
     "symbolic_location": "Anonymous reconstructed roof in the South Division block bounded by Lake, Franklin, Randolph and Market; standing back from the Lake Street frontage",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -152,7 +153,7 @@
   "residents": [
     {
       "household": "hh_inf_carpenter_south_18",
-      "name": "The Metcalf household — a reconstructed carpenter (south division)",
+      "name": "The Tuttle household — a reconstructed carpenter (south division)",
       "division": "south",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_blk_lake_market_d3_03 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -162,7 +163,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Erastus Metcalf",
+          "name": "Ezra Tuttle",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "carpenter",

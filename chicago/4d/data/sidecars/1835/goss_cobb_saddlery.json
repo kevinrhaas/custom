@@ -32,7 +32,8 @@
     "symbolic_location": "The corner of Lake Street and Canal Street (historically Lake and West Water), west bank; placed on the SOUTH-EAST quadrant of the crossing - south side of Lake, east side of Canal - fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
-    "vertical_anchor": "terrain"
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
   },
   "footprint": {
     "polygon": [
@@ -198,6 +199,6 @@
     }
   ],
   "research_note": "A LAKE STREET BUILDING THAT EXISTS BECAUSE ITS OWNERS PAID TO SAY WHERE IT WAS. Of everything this parcel looked at, this is the only address that comes from the town describing itself in its own week rather than from a compilation written fifty years later - and it is a better positional statement than most records in this dataset hold, because an advertiser's customers had to be able to find him. What it cannot do is carry the building nineteen months forward to the scene date, or say anything at all about its size, its material or its shape. So the range is conjectural, the footprint is conjectural, the storey count is conjectural, and what survives of the evidence in the mesh is a small frame shop of about the right kind at about the right crossing. TWO GUARDS. (1) THE QUADRANT: the advertisement says 'the conner of Lake and Canal-streets' and names no side, exactly as the Democrat's own imprint says 'on the corner of South Water and Clark-streets' and names none. The Green Tree Tavern holds the north-east corner of this crossing, so three remain and this record picks the south-east. (2) THE STREET ITSELF: 'Canal' at this crossing carries the doubt already recorded on the Green Tree - modern Canal Street lies a full block back from the west bank, where the 1830s riverbank street was West Water, and if the advertisement means the bank street this shop belongs about 145 m east. That doubt is worth more here than the quadrant, and the check that would settle both is the lot geometry on Wright 1834 or Hathaway 1834. THE SADDLE ENGRAVING OVER THE ADVERTISEMENT IS A STOCK CUT and nothing may be read out of it.",
-  "research_doc": "docs/RESEARCH/goss_cobb_saddlery.md",
+  "research_doc": "",
   "review_required": false
 }
