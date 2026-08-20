@@ -72,3 +72,4 @@ T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
+T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck

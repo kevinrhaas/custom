@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 19, 2026, 5:51 PM",
+  "generated_ct": "Aug 19, 2026, 6:50 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1918,7 +1918,7 @@
     {
       "id": "T-0110",
       "title": "The dirt road frays and stops short of the bridge deck",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1928,10 +1928,28 @@
       "opened": "2026-08-19",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/19/2026, 6:29:52 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
+    },
+    {
+      "id": "T-0111",
+      "title": "Dearborn's worn track stops 2.7 m short of its causeway deck",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-19",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }

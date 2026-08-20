@@ -4085,12 +4085,102 @@ const terrainLoad = await page.evaluate(() => {
           if (aw < MIN_W || bw < MIN_W) slivers++;
         }
       }
-      let emittedQuads = 0;
+      // T-0110. A panel is 6 indices only until it refines, so the module
+      // counts its own panels now — index arithmetic would misread refinement
+      // as extra roadway.
+      const emittedQuads = a.streets.stats?.panels ?? NaN;
+      const refinedPanels = a.streets.stats?.refinedPanels ?? NaN;
+
+      // T-0110, the regression the vertex-drape gate above cannot see: the
+      // ground rising THROUGH a panel between its vertices. T-0046's approach
+      // fills rose through the planar ribbon by up to 1.49 m — every vertex
+      // perfectly draped, the road erased by the depth test — and the owner
+      // read it as "grass triangles" and a road "ending" short of the deck.
+      // Probed at the half-points of every street triangle: refinement holds
+      // the interior miss under DRAPE_TOL_M except two nose-tip panels at the
+      // waterline (0.21 m, under the deck ends), so the bar is 0.35 — a third
+      // of the failure this gate exists to catch, with headroom over the
+      // measured worst. Off-grid probes are skipped: no sample, no verdict.
+      let worstSink = 0;
       a.streets.group.traverse((o) => {
-        if (o.geometry?.index) emittedQuads += o.geometry.index.count / 6;
+        const pos = o.geometry?.getAttribute?.('position');
+        const idx = o.geometry?.index;
+        if (!pos || !idx) return;
+        for (let i = 0; i < idx.count; i += 3) {
+          const tri = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
+          const pt = tri.map((v) => [pos.getX(v), pos.getY(v), -pos.getZ(v)]);
+          // A triangle with a vertex off the grid stands on the fallback
+          // height, not a measurement — the map-border cliff is a border
+          // condition, not a drape defect, and the refiner refuses those
+          // panels for the same reason.
+          if (pt.some(([e, , n]) => !a.terrain.inBounds(e, n))) continue;
+          for (const [wa, wb, wc] of [[0.5, 0.5, 0], [0, 0.5, 0.5], [0.5, 0, 0.5],
+            [1 / 3, 1 / 3, 1 / 3]]) {
+            const e = pt[0][0] * wa + pt[1][0] * wb + pt[2][0] * wc;
+            const n = pt[0][2] * wa + pt[1][2] * wb + pt[2][2] * wc;
+            if (!a.terrain.inBounds(e, n)) continue;
+            const y = pt[0][1] * wa + pt[1][1] * wb + pt[2][1] * wc;
+            worstSink = Math.max(worstSink,
+              a.terrain.surfaceHeight(e, n) + 0.022 - y);
+          }
+        }
       });
 
+      // T-0110, the join itself: the worn track must run onto each bridge
+      // approach and meet the deck. Stations march the street's own centreline
+      // up both North Branch approaches (deck ends e −117.5 / −45.67, T-0046's
+      // terrain approaches) and up the Dearborn drawbridge fill to the street
+      // record's own end (n 18 — the record stops 2.7 m short of the deck,
+      // which is T-0111's subject, not a drawing defect this gate can see).
+      // Each station must land inside a drawn road triangle in plan.
+      const covered = (e, n) => {
+        let hit = false;
+        a.streets.group.traverse((o) => {
+          if (hit) return;
+          const pos = o.geometry?.getAttribute?.('position');
+          const idx = o.geometry?.index;
+          if (!pos || !idx) return;
+          for (let i = 0; i < idx.count && !hit; i += 3) {
+            const p = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)]
+              .map((v) => [pos.getX(v), -pos.getZ(v)]);
+            const s = (A, B) => (B[0] - A[0]) * (n - A[1]) - (B[1] - A[1]) * (e - A[0]);
+            const d0 = s(p[0], p[1]);
+            const d1 = s(p[1], p[2]);
+            const d2 = s(p[2], p[0]);
+            hit = !((d0 < 0 || d1 < 0 || d2 < 0) && (d0 > 0 || d1 > 0 || d2 > 0));
+          }
+        });
+        return hit;
+      };
+      const centreAt = (id, axis, value) => {
+        const rec = a.streets.records.find((r) => r.id === id);
+        const k = axis === 'e' ? 0 : 1;
+        for (let i = 1; i < rec.path.length; i++) {
+          const [A, B] = [rec.path[i - 1], rec.path[i]];
+          const lo = Math.min(A[k], B[k]);
+          const hi = Math.max(A[k], B[k]);
+          if (value < lo || value > hi) continue;
+          const t = (value - A[k]) / (B[k] - A[k] || 1e-9);
+          return [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
+        }
+        return null;
+      };
+      const approachGaps = [];
+      for (let e = -135; e <= -118; e += 1) {
+        const p = centreAt('kinzie', 'e', e);
+        if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie w ${e}`);
+      }
+      for (let e = -45; e <= -32; e += 1) {
+        const p = centreAt('kinzie', 'e', e);
+        if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
+      }
+      for (let n = 8; n <= 17.5; n += 1) {
+        const p = centreAt('dearborn', 'n', n);
+        if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
+      }
+
       return {
+        worstSink, refinedPanels, approachGaps,
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
         dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
         canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -4137,6 +4227,19 @@ const terrainLoad = await page.evaluate(() => {
       `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
       + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
       + `${streetLayer.slivers} dropped as narrower than a metre`);
+    // T-0110. Vertex drape above says every vertex touches the ground; this
+    // says the ground stays UNDER the ribbon between them. The 0.35 bar is
+    // documented at the probe: measured worst after refinement is 0.21 m
+    // (two waterline nose tips), the failure class it guards is 0.9–1.5 m.
+    check(`${label}: the ground never rises through a road panel between its vertices`,
+      streetLayer.worstSink < 0.35 && streetLayer.refinedPanels > 0,
+      `worst interior sink ${streetLayer.worstSink.toFixed(3)} m, `
+      + `${streetLayer.refinedPanels} refined panels`);
+    check(`${label}: the worn track runs onto each bridge approach and meets the deck`,
+      streetLayer.approachGaps.length === 0,
+      streetLayer.approachGaps.length
+        ? `uncovered stations: ${streetLayer.approachGaps.join(', ')}`
+        : 'every approach station lands on drawn roadway');
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);

@@ -1,5 +1,51 @@
 # STATUS
 
+## Shipped 2026-08-20 — T-0110: the road ribbon follows the ground it claims to lie on
+
+**The ask.** The owner, an hour after T-0046's earthworks landed, walking Kinzie onto the North
+Branch bridge: the track "gets pixely and you can see grass triangles and it ends with a black
+line and more grass, prob make it dirt road all the way."
+
+**The mechanism was not the one the ticket suspected.** Replayed against the committed
+heightfield, the water trims hold FULL width up both ramps — no sawtooth, no early stop from
+`MIN_PANEL_W_M`. The fault: a street panel was one planar quad, 2.25 m long and two vertices
+wide, and an embankment is not planar. Between the corners the fill's crest rose through the
+ribbon by up to **1.49 m** (Kinzie west approach; 1.41 m east, 1.09 m where North Water crosses
+the Dearborn approach fill), the opaque terrain won the depth test, and the road was simply not
+drawn there — the owner's wedges and his road "ending" short of the deck. The smoke's
+`worstDrape < 1e-5` gate stayed green throughout because it samples vertices, and every vertex
+was perfectly draped.
+
+**What shipped.** `streets.js` refines a panel — halving both axes, to at most 8×8 — while its
+draped grid misses the field between its own vertices by more than `DRAPE_TOL_M` (0.03 m).
+Every new vertex samples `terrain.surfaceHeight()` at its own stored float32 position; interior
+rows re-run the same `dryReach` trims; a level is refused if any new row centre or vertex lands
+on water (the R-BUG4 clip rule binds interiors too), and panels touching off-grid ground stay at
+level 0 rather than refine against the fallback constant. A level-0 panel emits byte-identical
+geometry to the old code, so the flat town — 4,784 of 5,055 panels — is arithmetically
+untouched. Cost: 271 refined panels, ~+9k triangles town-wide (~1.5 % of the 'light' ceiling;
+mobile frame measured 538,986 of 600,000). `terrain.js` gains `inBounds()` /
+`Heightfield.contains()`. Two new permanent smoke gates: the ground never rises through a panel
+between its vertices (bar 0.35 m, measured worst 0.22 m at two waterline nose tips under the
+deck ends, failure class 0.9–1.5 m), and centreline stations up both North Branch approaches and
+the Dearborn fill must land on drawn roadway. Evidence pair at the owner's stand:
+`docs/evidence/t-0110-{before,after}.png`.
+
+**Scoped out, measured, ticketed.** Dearborn's record ends at n 18, 2.7 m short of its causeway
+deck end. The one-line fix — bending `path_local_enu_m` onto the fill — was built and REVERTED:
+`generate_plat_lots.py --check` re-derives every block face by offsetting the whole street
+polyline, so a 3 m track bend moves platted lot lines, and the extended corridor makes the
+drawbridge's draw a new corridor intrusion (0.61 m). The plat line and the worn wheel line are
+different claims sharing one field; **T-0111** filed with the diagnosis and the acceptance.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. Smoke halves on the published mirror, cut at
+565 s per the T-0060 posture: mobile **223 passed / 3 failed** — the same three ungated
+road-contrast rows the last several merges shipped under, all on level-0 (unchanged) streets;
+desktop **156 passed / 0 failed** at the cut, which lands before the street section. A targeted
+standalone desktop run on the published mirror therefore probed EVERY street vertex and
+triangle: drape 1.2e-7, wet 0, worst interior sink 0.220 m, zero approach-station gaps, zero
+page errors.
+
 ## Shipped 2026-08-19 — T-0046: bridge approach earthworks meet the deck at grade
 
 **The ask.** The second half of T-0001's "how would a wagon cross that?" — the walker-deck half
