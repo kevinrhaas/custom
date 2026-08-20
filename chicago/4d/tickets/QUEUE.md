@@ -3,7 +3,6 @@
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
-T-0074 — Trees and bushes kept around the houses
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
