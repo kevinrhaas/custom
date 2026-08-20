@@ -1,7 +1,7 @@
 ---
 id: T-0083
 title: The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: K2
 parent: T-0042
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 274
 claimed_by: run 8/20/2026, 6:52:38 AM CT
 blocked_on: null
 needs_bake: true

@@ -30,3 +30,7 @@ their triangles and nothing re-measured the "light" tier against its budget on d
 ceiling on desktop, with counts), and either the light tier draws under 600k again by
 trimming what it draws at that level, or the ceiling is consciously re-budgeted in the
 same place the 600k figure is set — with the reasoning written down, never silently.
+
+**Measured worse by T-0083, 2026-08-20:** the Green Tree's corrected fabric adds ~310
+triangles, so the banked overage now reads 605,724 of 600,000 (was 605,414). Still less
+than one percent; the attribution ask above stands unchanged.
