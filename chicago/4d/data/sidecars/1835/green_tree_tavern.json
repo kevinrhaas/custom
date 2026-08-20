@@ -134,8 +134,37 @@
       "sources": [
         "chicagology_prefire127"
       ],
-      "note": "The PANE CHARACTER is attested — a guest chamber 'about 12x12, with two windows 6x8', small-paned sash, plus 'a small attic window in the gable end'. Two windows per 12 ft chamber on a 40 x 25 ft two-storey block implies a regularly fenestrated elevation. The ARRANGEMENT — bay count, spacing, whether the Canal front is centred on its door — is not described by any source, so the value states the character and the disposition is inference.",
+      "note": "The PANE CHARACTER is attested — a guest chamber 'about 12x12, with two windows 6x8', small-paned sash, plus 'a small attic window in the gable end'. Two windows per 12 ft chamber on a 40 x 25 ft two-storey block implies a regularly fenestrated elevation. Since T-0083 the ARRANGEMENT is carried by elevation_scheme, read off plate '11'; this value still states the pane character, which the plate agrees with — 6-over-6 sash in even bays.",
       "geometry": "simplified"
+    },
+    "elevation_scheme": {
+      "value": "gable_front",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire127"
+      ],
+      "note": "THE BUILDING FRONTS ON A GABLE END, AND ITS EVEN BAYS RUN ALONG THE EAVES ELEVATIONS. Two halves, separately grounded. That the front is a gable end is a join of attested facts already in this record: the front on Canal (F. H. Taylor), the long side on Lake, and the gable ends facing east and west (John Gray's attic window note, and the roof_type note's own reading). The bay ARRANGEMENT — even 6-over-6 sash in regular bays along the long elevation, doors and attic lights on the gable faces — is read off plate '11' of the owner's 2026-08-11 reference set, committed at data/sources/assets/prefire_views_kevin_2026_08/p6_0.png: a tier-5 retrospective view, which may drive fenestration rhythm as inferred and may never drive a coordinate. The plate is not yet held as a source record (T-0075 owns that), so the citation is a committed path. The BAY COUNT is the archetype's arithmetic on the footprint, not the plate's — the plate draws a longer building than the footprint's attested room-module can carry (its note admits ±20%), and the count follows the footprint: docs/LIBERTIES.md L152."
+    },
+    "side_entrance": {
+      "value": "south",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire127"
+      ],
+      "note": "THE DOOR IS ATTESTED; THE COMPASS READING IS DERIVED. John Gray describes a second entrance 'on the Lake street front about the middle of the long side', with the hall and stairway behind it. Lake Street lies along this record's south face by the same placement derivation the position note argues, so the attested door resolves to the south eaves elevation — the tag follows the weaker (derived) half, the same rule the position itself uses."
+    },
+    "chimney_placement": {
+      "value": "gable_ends",
+      "confidence": "inferred",
+      "note": "END CHIMNEYS AT BOTH GABLES. Plate '11' of the owner's 2026-08-11 reference set (committed at data/sources/assets/prefire_views_kevin_2026_08/p6_0.png, and its sibling Braunhold view written up as image 6 of data/sources/assets/owner_brief_2026_08_18/README.md) draws one stack at each end of the ridge — a tier-5 retrospective view driving massing as inferred. The plates are not yet held as source records (T-0075), so the citation is a committed path. This replaces the archetype's frontage-fraction arrangement, which on this deeper-than-wide footprint had left both stacks standing OFF the ridge on the roof slopes — the before frame of T-0083 shows it. The COUNT stays the chimneys attribute's own inference; docs/LIBERTIES.md L21 (the town chimney arrangement) and L152 say what is invented here."
+    },
+    "rear_ell": {
+      "value": true,
+      "confidence": "reconstructed",
+      "sources": [
+        "chicagology_prefire127"
+      ],
+      "note": "THE LOW ADDITION, BUILT AT THE REAR AND DECLARED. John Gray, landlord 1838-41, attests 'a low one-story addition to the right, the same as on the left'; the 1838 Braunhold engraving (owner_brief_2026_08_18 README, image 6) draws 'a lower gabled wing at the left with a wide (carriage) door', and plate '11' (prefire_views_kevin_2026_08/p6_0.png) draws the low gabled wing with the ship masts behind it. WHETHER A WING STOOD ON 1835-07-01 IS NOT ATTESTED — Gray describes the house three to six years after the scene date — so this is a reconstruction under the owner's 2026-08-18 standing ruling, sized by the views and claimed at docs/LIBERTIES.md L152. WHY THE REAR END AND ONLY THE REAR: Gray names additions at BOTH ends, but this record's committed placement puts the west face ON Canal Street's east frontage with zero offset, so the street end has no ground to build on — only the east (rear, yard) end does. That asymmetry is itself evidence worth recording: a west wing fits the ground only under the 'Lake and West Water' placement reading the position note carries as this record's largest residual uncertainty. If that reading ever wins, the second wing goes up with the move. The wing the views draw beside masts is consistent with either."
     },
     "gallery": {
       "value": false,
@@ -148,13 +177,13 @@
       "sources": [
         "chicagology_prefire127"
       ],
-      "note": "John Gray, landlord 1838-41, correcting a drawing of the house: 'There should also be a low one-story addition to the right, the same as on the left.' So by the end of the 1830s the two-storey core had a low single-storey addition at each end. WHETHER THEY EXISTED ON 1835-07-01 IS NOT ATTESTED — Gray's testimony describes the building three to six years after the scene date — which is why this is inferred and why the additions are excluded from the footprint polygon. Recorded here so a later agent can add them with a date rather than rediscovering them.",
-      "geometry": "absent"
+      "note": "John Gray, landlord 1838-41, correcting a drawing of the house: 'There should also be a low one-story addition to the right, the same as on the left.' So by the end of the 1830s the two-storey core had a low single-storey addition at each end. WHETHER THEY EXISTED ON 1835-07-01 IS NOT ATTESTED — Gray's testimony describes the building three to six years after the scene date — which is why this is inferred and why the additions stay out of the footprint polygon. SINCE T-0083 the rear (east) one is BUILT, at the reconstructed tier, as form.rear_ell — see that attribute for why only the rear end has ground to build on. This value stays the testimony record for BOTH ends; the street-end addition remains unbuilt.",
+      "geometry": "simplified"
     },
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference."
+      "note": "Not attested in text. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference — and since T-0083 it agrees with plate '11', which draws exactly two. WHERE they stand is carried by chimney_placement."
     },
     "siding_exposure_m": {
       "value": 0.127,

@@ -1,6 +1,8 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
+T-0118 — The sloughs as built: the bay, the sill, the trench and the too-straight course
+T-0119 — A plank walk over the slough mouth, and along the river into town
+T-0120 — The treeline swims as you move, and stops where it should carry on
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
@@ -73,3 +75,4 @@ T-0114 — The road-legibility gate is red from mid-distance, and no run had rea
 T-0115 — Desktop light detail draws 605k triangles against its own 600k ceiling
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
+T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings

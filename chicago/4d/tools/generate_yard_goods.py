@@ -74,7 +74,11 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "generators"))
+from archetypes.frame_tavern_params import from_phase as _tavern_params  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -522,13 +526,32 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
 
     refused: list = []
 
+    # ---- the rear ell, which moved the wall the wagons draw up to ---------- #
+    # Since T-0083 the record BUILDS John Gray's low rear addition — a gabled
+    # tail off the rear gable end, form.rear_ell, sized by the archetype's own
+    # parameters. It stands on the ground the wagons stood on, so the wagons
+    # draw up square to ITS far wall instead: same rule, measured from the built
+    # rear face. The depth is read from the same parameter resolution the
+    # generator uses, so the two cannot drift apart.
+    ell_d = 0.0
+    rec = _load(STRUCTURES / f"{GREEN_TREE_ID}.json")
+    ph = next((p for p in rec.get("phases", []) if p.get("id") == sc.get("phase")),
+              (rec.get("phases") or [None])[0])
+    if ph is not None and rec.get("archetype") == "frame_tavern":
+        tp = _tavern_params(ph)
+        if tp.rear_ell:
+            ell_d = tp.rear_ell_depth_m
+
     # ---- the wagons -------------------------------------------------------- #
-    # THE YARD'S DEPTH IS THE HOUSE'S OWN FRONT WIDTH. Nothing measures this yard,
-    # and a yard has to be some depth before a wagon can be put in it; the only
-    # length this record holds for the building is its footprint, so the ground
-    # behind the rear wall is taken to run back as far as the front is wide. It is
-    # an invention and is claimed as one — but it is bounded by the building rather
-    # than picked, and it never reaches the next street.
+    # THE YARD'S DEPTH IS THE HOUSE'S OWN FRONT WIDTH, measured from the built
+    # rear face (the ell's far wall where the record builds one). Nothing
+    # measures this yard, and a yard has to be some depth before a wagon can be
+    # put in it; the only length this record holds for the building is its
+    # footprint, so the ground behind the built rear face is taken to run back
+    # as far as the front is wide. It is an invention and is claimed as one —
+    # but it is bounded by the building rather than picked, and it never
+    # reaches the next street.
+    rear_v = v0 - ell_d
     yard_depth = front_w
     reach = GT_WALL_CLEAR_M + WAGON_BODY_L_M + WAGON_TONGUE_M
     wagons: list = []
@@ -538,10 +561,10 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
             f"the yard is taken as {yard_depth:.2f} m deep — no wagon is drawn rather "
             "than one standing in the next lot.")})
     else:
-        # Drawn up square to the rear wall, tongues out into the yard: the wagons
-        # stand across the yard, not along it, because the rear wall is the only
-        # line in the record to be square to.
-        v_centre = v0 - (GT_WALL_CLEAR_M + WAGON_BODY_L_M / 2)
+        # Drawn up square to the built rear face, tongues out into the yard: the
+        # wagons stand across the yard, not along it, because that face is the
+        # only line in the record to be square to.
+        v_centre = rear_v - (GT_WALL_CLEAR_M + WAGON_BODY_L_M / 2)
         lo = u0 + WAGON_CLEAR_M
         hi = u1 - WAGON_CLEAR_M
         pitch = 2 * WAGON_CLEAR_M
@@ -576,7 +599,8 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
                     "shows farm wagons standing in its yard — a tier-5 retrospective "
                     "view, which may drive furniture and setting and may never drive a "
                     "coordinate. So WHERE is derived: the wagons stand drawn up square "
-                    "to the rear wall, tongues out, "
+                    "to the building's built rear face — since T-0083 that is the rear "
+                    "ell's far wall — tongues out, "
                     f"{GT_WALL_CLEAR_M:.2f} m clear of it, spaced at the "
                     f"{2 * WAGON_CLEAR_M:.2f} m of ground a parked wagon needs, laid in "
                     "from the far end of that wall. The yard is taken to run back as far "
