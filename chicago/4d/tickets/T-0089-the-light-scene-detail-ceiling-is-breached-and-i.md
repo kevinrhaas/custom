@@ -58,5 +58,15 @@ and this run bought the breach back under its ceiling; this ticket's acceptance 
 met, but the headroom is ~2 100 triangles and the next geometry run will spend it — the durable
 saving still sits in T-0056.
 
+**Update 2026-08-20 (T-0049, the siding deal).** Measured on the T-0049 branch, desktop
+1280 x 800 on the published mirror: `scene detail 'light' stays inside its own ceiling`
+**FAILS at 605 134 of 600 000**, 52 calls. The breach is not the branch's: the siding deal's
+whole geometry delta is **+492 triangles** summed over all 24 redealt GLBs (per-building
+−48 to +80, counted from the committed web derivatives old-vs-new — a coarser exposure
+means fewer courses, so eleven buildings got LIGHTER), an upper bound on its frustum
+contribution. The spender is T-0110's ~9 000 street-refinement triangles (#268, whose
+desktop half was cut before this row), landing on the ~2 100 of headroom T-0063 measured.
+The durable saving still sits in T-0056.
+
 **Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row goes unseen)
 · `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).
