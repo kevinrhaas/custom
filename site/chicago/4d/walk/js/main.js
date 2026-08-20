@@ -336,7 +336,17 @@ async function boot() {
    * structure id — a second polygon under a building's id would answer for the
    * building itself.
    */
-  const planting = footprints.concat(wharves.keepOut, boats.keepOut);
+  const planting = footprints.concat(
+    wharves.keepOut, boats.keepOut,
+    // The plank walks and crossings (T-0085/T-0124): a sidewalk is as much a
+    // floor as a wharf deck, and the sward was rooting straight through it.
+    frontage.keepOut,
+    // And the walkable decks the registry itself carries (the bridges, the
+    // slough crossing): their polygons already exist for the walker; the
+    // planting layer now refuses them too, so nothing grows up between the
+    // planks of a bridge deck either.
+    decks,
+  );
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
