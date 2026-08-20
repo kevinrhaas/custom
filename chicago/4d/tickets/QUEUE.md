@@ -71,3 +71,5 @@ T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
+T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
+T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned

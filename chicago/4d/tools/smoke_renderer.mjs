@@ -4261,6 +4261,26 @@ for (const [label, viewport, touch] of [
     if (stageOn(3)) {
     inStageWork = true;
 
+    // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
+    // and the chrome" section is what enters the town, releases the pointer
+    // and dismisses the first-entry navigation guide, and this point of an
+    // unfiltered pass runs long after it did. The road-legibility bands
+    // measure page.screenshot frames, which include DOM overlays (the
+    // GL-capture checks do not) — so a staged run must stand where the full
+    // run stands: gate entered, pointer free, guide down. In a full run every
+    // branch below is a no-op.
+    await page.evaluate(async () => {
+      if (!document.getElementById('gate').hasAttribute('hidden')) {
+        document.getElementById('gate-btn')?.click();
+        await new Promise((r) => setTimeout(r, 150));
+        document.exitPointerLock?.();
+      }
+      const help = document.getElementById('control-help');
+      if (help && !help.hasAttribute('hidden')) {
+        document.getElementById('control-help-gotit')?.click();
+      }
+    });
+
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
     // is sampled from its own 2D canvas before and after a teleport so this
@@ -4817,6 +4837,22 @@ for (const [label, viewport, touch] of [
     // teleport below re-establishes the camera pose it expects on its own.
     if (stageOn(4)) {
     inStageWork = true;
+
+    // Same fresh-boot accommodation as stage 3: this stage drives the panel
+    // chrome (`#btn-help` first), and while the gate screen stands the chrome
+    // has no layout at all — the click waits ninety seconds for a zero-size
+    // button and dies. In a full run every branch below is a no-op.
+    await page.evaluate(async () => {
+      if (!document.getElementById('gate').hasAttribute('hidden')) {
+        document.getElementById('gate-btn')?.click();
+        await new Promise((r) => setTimeout(r, 150));
+        document.exitPointerLock?.();
+      }
+      const help = document.getElementById('control-help');
+      if (help && !help.hasAttribute('hidden')) {
+        document.getElementById('control-help-gotit')?.click();
+      }
+    });
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
@@ -6836,6 +6872,22 @@ for (const [label, viewport, touch] of [
         noteShown: document.getElementById('uncertain-note')?.textContent ?? '',
         noteRecorded: window.__chicago4d.exclusions?.uncertainStandard ?? '',
         noteBusy: document.getElementById('uncertain-note')?.hasAttribute('aria-busy') ?? true,
+        // The open-questions BLOCK alone — heading, notes, list — for the
+        // hand-count guard below. The whole-panel text will not do: the
+        // liberties list legitimately contains "Three of these records
+        // describe multi-stemmed plants" (the K53 shrub liberty), and whether
+        // that list is rendered in full depends on the pick state earlier
+        // sections left behind — the staged runs (T-0060) surfaced exactly
+        // that order-dependence.
+        uncertainBlockText: (() => {
+          const note = document.getElementById('uncertain-note');
+          const list = document.getElementById('uncertain');
+          const parts = [note?.previousElementSibling?.textContent,
+            note?.textContent, list?.textContent];
+          let p = note?.nextElementSibling;
+          while (p && p !== list) { parts.push(p.textContent); p = p.nextElementSibling; }
+          return parts.filter(Boolean).join(' ').replace(/\s+/g, ' ');
+        })(),
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
@@ -6880,10 +6932,10 @@ for (const [label, viewport, touch] of [
       (open.noteRecorded
         ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1 === 1
         : false)
-      && !/Three of these/i.test(open.heading),
+      && !/Three of these/i.test(open.uncertainBlockText),
       `${open.noteRecorded
         ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1
-        : 'no'} occurrence(s)`);
+        : 'no'} occurrence(s); block "${open.uncertainBlockText.slice(0, 60)}"`);
     check(`${label}: the Evidence panel still does not overflow with it`, open.overflow);
 
     // …and the same entry on the building it is about. The section above tells a

@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 203, title: 'The release gate can finish its rounds again', kind: 'chore', ts: '2026-08-20T08:56:20.675Z', date: 'Aug 20, 2026, 3:56 AM CT',
+    items: [
+      'Nothing in the town changed. This is about the checks that guard it: the automated walk-through that inspects every release had grown past what its runner could finish in one sitting, so its final assertions — including the one that asks whether the page threw an error at all — were routinely never reached.',
+      'The inspection now runs in four parts, each comfortably inside the runner\u2019s limit, and the error check runs in every part instead of only at the end. The parts are audited to add up to exactly the full inspection, and a reference run of the whole thing in one piece lives on the project\u2019s own build service.',
+      'Finishing the rounds immediately paid off: two road-visibility checks deep in the suite have been failing quietly — the worn tracks read faint from mid-distance — and nobody could see it because the inspection died before reaching them. That finding is now filed as its own work item with the measurements attached.',
+    ] },
   { v: 202, title: 'Fort Dearborn stands higher on its mound', kind: 'fix', ts: '2026-08-20T06:18:31.102Z', date: 'Aug 20, 2026, 1:18 AM CT',
     items: [
       'The fort read too low against the old views: its ground rose only a foot or so over the sand ridge beside it. The flattened mound the settlers described now climbs to twelve feet over the river — the top of what the research supports — and the north bank below the stockade carries that full rise down to the water at a slope a track could climb.',

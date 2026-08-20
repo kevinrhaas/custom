@@ -96,3 +96,31 @@ where the suite completes (654 checks, both viewports, ~55 min, measured on run 
 
 **Acceptance is unchanged.** The analysis above narrows the work; it does not lower the
 bar. Do not weaken an assertion, and do not declare victory on a filtered run alone.
+
+---
+
+## Implemented 2026-08-20 — what the analysis got right, and the two places it was wrong
+
+An earlier run left a full mechanics analysis on `steward/t0060-analysis` (never PR'd);
+its section census, its "the body is ONE block" reading and its warning about
+word-boundary scans over source text all held up. Two corrections from the build:
+
+**1. Two stages were not enough.** The analysis's split point (section 15, "the ground
+faces the sky") is a fine boundary — but the second half alone still overran the
+ten-minute ceiling (measured 565 s once and killed at 600 s once, same code, same
+machine). The suite ships with FOUR stages: the original boundary plus cuts at
+`// --- navigation ---` and at the flora census, each verified the same way.
+
+**2. The verified-boundary scan had the exact blind spot it warned about.** Both the
+analysis's scan and this run's first scan anchored on indent, and both missed
+`terrainLoad` — declared at column 0, used across the boundary. It surfaced as a
+ReferenceError the first time a stage ran alone. The shipped scan anchors on brace
+depth; it found one more crossing (`streetLayer`), and both are now read once, above
+the splits. Fresh-boot state was the other lesson: a staged run starts at the GATE
+SCREEN, which stage 2's chrome checks are the ones to dismiss, so stages 3 and 4 open
+with a preamble that enters the town exactly once (a no-op in an unfiltered pass).
+
+Numbers, counts and the audit arithmetic are in ROADMAP § THE RUN BUDGET. The
+unfiltered single-process reference runs in `.github/workflows/chicago-4d-smoke.yml`.
+Reaching the tail of the suite for the first time in days also surfaced the
+road-legibility red now filed as T-0114.

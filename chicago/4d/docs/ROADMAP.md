@@ -95,6 +95,21 @@ dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) —
 `SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
 desktop half belongs to a runner without the per-command ceiling.
 
+**RESOLVED 2026-08-20 by T-0060: the smoke takes `SMOKE_STAGE=1..4`, and each stage fits the
+ten-minute command.** The body of each viewport is cut at three section boundaries verified for
+crossing bindings (two crossed — `terrainLoad`, `streetLayer` — and both are now read before the
+split; the scans that missed them are written up in the ticket). Measured on the improve runner,
+mobile against the published mirror: **stage 1 — 1 m 54 s, 74 staged checks · stage 2 — 3 m 00 s,
+91 · stage 3 — 3 m 17 s, 33 · stage 4 — 7 m 30 s, 143**, plus 9 always-on checks (boot, loader
+problems, run-to-completion, page errors, vendor) taken in EVERY invocation — the run prints that
+split so the halves can be audited to add up to an unfiltered pass: 341 staged + 9 = 350. The
+page-error assertion is no longer the tail of an unrunnable body: a mid-suite throw is caught,
+recorded as its own FAIL, and the tail still runs. The unfiltered single-process reference lives
+in `.github/workflows/chicago-4d-smoke.yml` (push-to-its-own-path or dispatch on main) — that is
+the "runner without the per-command ceiling" this section asked for. Desktop stage timings are
+not yet measured; stage 4 is the one to watch (its mobile 7 m 30 s includes the shared
+street-layer reading), and if it overruns on desktop the fifth cut goes in then, the same way.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
