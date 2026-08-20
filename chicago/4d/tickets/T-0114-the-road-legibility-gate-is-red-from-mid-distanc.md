@@ -32,6 +32,10 @@ The failing pair, with R-BUG2's own numbers:
 - **from the air, at the aerial anchor** — the 250-600 m band reads ΔL* 2.1 of 4.6,
   49-51 % perceptible of 182 bare, weber 0.093 over ground L* 49.5.
 
+Desktop confirms both (unfiltered reference run 32346862982, 2026-08-20): the walker's-eye
+check reads ΔL* 3.4 of 4.5 opaque, 70 % perceptible in its near band, and the aerial
+check fails its gated bands the same way. This is the town, on both widths.
+
 The recent ground work is the suspect pool (the bands that fail are exactly the
 mid-distance reaches the bank regrades and road-panel splitting touched: T-0110's
 curved-bank panel subdivision, T-0046/T-0004's approach earthworks and fort-mound
