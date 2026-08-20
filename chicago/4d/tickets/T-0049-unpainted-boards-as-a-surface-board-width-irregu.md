@@ -1,7 +1,7 @@
 ---
 id: T-0049
 title: Unpainted boards as a surface: board-width irregularity and lap rhythm
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0002
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/19/2026, 8:01:02 PM CT
 blocked_on: null
 needs_bake: true
 ---
