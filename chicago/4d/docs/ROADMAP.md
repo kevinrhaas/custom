@@ -9765,7 +9765,7 @@ DEPTH; the depths here are residuals of the block, and finding a stated one is w
 the lot lines off conjecture. (e) Nothing draws the grid — when the lot lines reach the screen
 they need a liberty and a confidence treatment with them.
 
-### K8 — River bank heights *(research first, then terrain)*
+### K8 — River bank heights *(research first, then terrain)* · **DONE 2026-08-20 (T-0004)**
 The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The
 dossier gives +2–4 ft banks at the forks (documented) but the FORT stood on distinctly rising
 ground — "the flattened mound", the 1830 Harrison plan's bank, Swearingen's 18-ft pool at the
@@ -9773,6 +9773,19 @@ fort bend. Parcel: re-read `01-terrain-hydrology.md` and the primary accounts; r
 GRADUATE the fort-reach south bank as the evidence supports; record the disagreement between
 the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
 documented height. Gradient audit re-run; exemption itemised like the others.
+
+**Shipped**: the mound raised from the zone's mid-range to its stated apex —
+`fort_dearborn_mound.rise_ft` 2.8 → 3.8, flat top +11.0 → +12.0 ft, the north face carrying
+the full rise to the waterline at 1:6.8 (inside the bank block's 1:6–1:10 band). The
+disagreement is three-cornered, not two, and is recorded rather than averaged in
+`docs/RESEARCH/fort_reach_bank_heights.md`: the witnesses (Swearingen 1803 tier-1 ~8 ft;
+Hubbard 1881 "not over eight feet", a correction pushing DOWN) keep the BANK, zone 6's
++10–12/apex +12 takes the mound, and the plates' 10–20 ft is refused as a build input.
+Hubbard-vs-zone-6 stands unresolved on the record — if the owner rules the witnesses outrank
+the dossier's reconciliation, the mound drops to ~+8; that is a ruling, not a research gap.
+Measured: 2,169 changed cells, max +0.305 m, zero outside the mound's 75 m radius — the forks
+byte-identical. Gradient audit PASS (plain max 0.468), mound band itemised as before. The
+bank now standing is what unblocks T-0099's track from the north gate down to the water.
 
 ### K9 — Navigation and settings UI · **DONE 2026-08-13**
 (a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now

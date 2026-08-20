@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 202, title: 'Fort Dearborn stands higher on its mound', kind: 'fix', ts: '2026-08-20T06:18:31.102Z', date: 'Aug 20, 2026, 1:18 AM CT',
+    items: [
+      'The fort read too low against the old views: its ground rose only a foot or so over the sand ridge beside it. The flattened mound the settlers described now climbs to twelve feet over the river — the top of what the research supports — and the north bank below the stockade carries that full rise down to the water at a slope a track could climb.',
+      'Stand on the north bank opposite and the compound sits visibly up on its ground now, the way both fort views draw it.',
+      'The pictures actually show more — ten to twenty feet, to the eye. They are retrospective engravings that also invent a flagstaff, so their bank is recorded as a disagreement in the research notes rather than built. The two period witnesses who measured about eight feet keep the river bank itself; the mound rises behind it.',
+      'Nothing else moved: every changed ground sample lies inside the mound’s own footprint, and the low banks at the forks are untouched to the byte.',
+    ] },
   { v: 201, title: 'No two neighbours hang their clapboard the same', kind: 'feature', ts: '2026-08-20T01:24:44.423Z', date: 'Aug 19, 2026, 8:24 PM CT',
     items: [
       'Every frame building in town wore identical siding — lap courses of one width, 5½ inches to the weather, from the Sauganash to the smallest store. Twenty-four named frame buildings now each carry their own mill stock — 4½, 5, 5½ or 6 inches showing per board — and no two frame buildings standing within sixty metres of each other share one.',
