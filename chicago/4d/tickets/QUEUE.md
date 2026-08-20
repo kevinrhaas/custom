@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
-T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
