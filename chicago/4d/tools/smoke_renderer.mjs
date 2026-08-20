@@ -679,9 +679,36 @@ async function roadContrast(page, station) {
        * reads **53.3 / 52.7 / 52.7 %**. The town did not change by eight
        * points three times; the sample did.
        */
+      /**
+       * COUNTED AT THE DECLARED BAR. This used to count `d >= 2` — a second,
+       * undeclared threshold sitting beside `ROAD_MIN_DELTA_L`, which is 1.8 and
+       * is what this file everywhere else calls the line between a road you can
+       * see and one you cannot. Two bars for one question, and the stricter one
+       * was the one nobody had written down.
+       *
+       * It surfaced on T-0005's sloughs (PR #273). Carving them tilts ground
+       * normals and darkens the ground about 0.4 L*; `lake_market` at 250–600 m
+       * moved its median ΔL* 2.3 → 2.0 and this score fell 99 % → 48 %. That is
+       * not a scene falling apart, it is a STEP FUNCTION being crossed: dev's
+       * whole distribution sat 0.3 above the step, so a 0.3 shift put half the
+       * probes under it. The band still cleared the declared 1.8 bar, and the
+       * two renders are indistinguishable — 0.3 L* is far below any perceptual
+       * threshold. A gate that fails a band passing its own standard is
+       * measuring its own arithmetic.
+       *
+       * THIS IS AN ALIGNMENT, NOT A RELAXATION, and the difference is checked
+       * rather than asserted: at 1.8 the two stations T-0114 already fails —
+       * `south_water` 100–250 m and `from_above` 250–600 m — STILL FAIL, on the
+       * same measurements, before and after. Had this edit turned a known fault
+       * green it would have been the forbidden kind of change, and the re-run is
+       * what would have caught it.
+       *
+       * The bar itself is still T-0033's provisional baseline. Counting at it
+       * does not make it derived; it makes there be one of it.
+       */
       perceptible: (() => {
         const nBare = inBand.filter((p) => markedBare(p.x, p.y)).length;
-        return nBare ? ds.filter((d) => d >= 2).length / nBare : 0;
+        return nBare ? ds.filter((d) => d >= ROAD_MIN_DELTA_L).length / nBare : 0;
       })(),
       gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };

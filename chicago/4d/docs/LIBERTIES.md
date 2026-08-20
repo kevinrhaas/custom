@@ -4710,7 +4710,7 @@ for one; a document on the town's lumber stock would replace the whole set's bou
 **Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
 **Recorded:** 2026-08-20.
 
-### L149 — The Green Tree's fabric from the plates: bays, end stacks, and the rear ell
+### L152 — The Green Tree's fabric from the plates: bays, end stacks, and the rear ell
 
 **Decision:** the Green Tree Tavern is dressed to the retrospective views (T-0083): even
 6-over-6 sash bays along both eaves elevations with the attested mid-side door on the Lake
@@ -5760,3 +5760,62 @@ itemised loss list — would replace an invented roof with a named one on the sa
 what the 665-roof programme's substitution clause exists for.
 **Covers:** `recon_1835_blk_lake_clark_d1_01.inferred_1835.position`, `recon_1835_blk_lake_clark_d1_01.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.position`, `recon_1835_blk_lake_clark_d3_02.inferred_1835.footprint`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.position`, `recon_1835_blk_lake_clark_d5_03.inferred_1835.footprint`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.position`, `recon_1835_blk_lake_clark_a3_04.inferred_1835.footprint`.
 **Recorded:** 2026-08-19.
+
+### L149 — Terrain: the State Street slough is built on a documented route with an invented line, width and depth profile
+**Decision:** dossier zone 14 — the South Division's natural drain, from the public square's
+east side to the river at the foot of State Street — is carved into the ground as two swale
+entries (`state_slough_course`, `state_slough_mouth` in `terrain_spec.json`), both
+`reconstructed`. The course is cut 2.2 ft on a 5 m half-width; the mouth reach is cut 6.2 ft
+on a 4.5 m half-width so one connected pool runs from the traced mouth notch, under the
+committed Slough Log Bridge deck, to about N −60.
+**Why:** the ROUTE is documented (chicagology_prefire273: it "passed over the site of the
+Tremont House and entered the river at the end of State Street") and the waypoints between its
+documented ends are read from Conley/Stelzer 1933 under that source's `orientation` ceiling —
+head just east of Clark between Washington and Randolph, a mid-block Dearborn crossing about
+N −190. The DEPTH figure restates the dossier row's own thalweg (1.5–3.0 ft below the adjacent
+plain, about +0.5…+1.5 ft absolute — the reason this is a swale and not a below-datum channel),
+and the WIDTH sits at the top of the row's 15–40 ft band. What is invented outright: the exact
+line between the documented waypoints, chosen to thread the committed reconstructed roofs; the
+mouth reach's 6.2 ft cut, sized against the State ridge toe the spec already builds so the
+pool the bridge crosses does not surface mid-reach; and the over-deepened joint where the two
+entries meet (−5.0 ft, under standing water, invisible from the surface — the same convenience
+L31b records for the river bed).
+**Consequence:** a visitor sees the drain the town bridged — a winding damp hollow through the
+business district holding standing water below the ridge toe — and the Slough Log Bridge
+finally crosses water instead of open prairie. Every carved cell is conjectural in the
+confidence channel and dithers when `reconstructed` is hidden. The streets the drain crosses
+(Dearborn, Lake) dip through it at grade; no crossing is documented at either, and none is
+built.
+**How to resolve:** any grading petition, drainage ordinance, lot survey or levelled section
+locating or sounding the slough — a sourced line or depth would replace the invented one for
+one; see docs/RESEARCH/main_branch_sloughs_1833.md.
+**Covers:** `terrain.e1834_harbor_cut.swales.state_slough_course`, `terrain.e1834_harbor_cut.swales.state_slough_mouth`.
+**Recorded:** 2026-08-20.
+
+### L150 — Terrain: the La Salle slough's inland course and terminus rest on a 1933 reconstruction
+**Decision:** the watercourse Wright 1834 draws dropping south off the main stem just east of
+La Salle Street is carried inland as two swale entries (`lasalle_slough_lower`,
+`lasalle_slough_upper` in `terrain_spec.json`), both `reconstructed`: a wet lower reach (3.2 ft
+cut, standing backwater to about Lake Street) and a dry upper swale (1.8 ft cut) terminating
+just north of Randolph Street.
+**Why:** the mouth and the stream's existence are Wright's, drawn on the sheet this terrain is
+fitted to, and carrying the channel further south than Wright washes it was refused when the
+mouth was traced ("inventing a bank where the draughtsman stopped"). This entry is the
+research thread that refusal left open, done in the form it prescribed: a centreline argued
+from Conley/Stelzer — which draws the course up the west half of the La Salle–Clark block,
+water-washed to about Lake Street and a dark drain beyond, ending just north of Randolph —
+never a traced boundary. The terminus is a position from a 1933 pictorial reconstruction at
+`orientation` ceiling, read at 20–30 m tolerance; the width (8 m overall, inside the
+north-side slough's measured 7.1 m band) and both depths are invented outright, and the
+channel starts one cell south of the South Water corridor because Wright draws the stream
+stopping at the street line — the street's crossing (fill or culvert) is attested by that
+drawing and described by nothing.
+**Consequence:** the second of the three Main Branch sloughs is in the scene and reaches a
+terminus; its whole inland geometry says `conjectural` in the confidence channel while its
+mouth remains the traced, documented re-entrant. If Conley erred — he demonstrably errs
+elsewhere — the inland course is his error carried at the grade that admits it.
+**How to resolve:** any period document locating the stream — a lot survey, a grading record,
+a bridge or culvert order for South Water Street west of Clark; see
+docs/RESEARCH/main_branch_sloughs_1833.md.
+**Covers:** `terrain.e1834_harbor_cut.swales.lasalle_slough_lower`, `terrain.e1834_harbor_cut.swales.lasalle_slough_upper`.
+**Recorded:** 2026-08-20.
