@@ -143,10 +143,25 @@ owner's call, made by ordering QUEUE.md.
 
 `T-0001` upward, assigned by `ticket.mjs new`, flat across all epics (the epic is
 a field, not a number range — renumbering by category is how the old scheme got
-K45(b2) and R-M1c). Two branches that each create a ticket can collide on the next
-number; `ticket.mjs check` (run by `tools/check.sh`) refuses duplicate IDs at the
-merge, and `ticket.mjs restamp T-NNNN` renumbers the younger one. Migrated tickets
-keep their old parcel id in `legacy_id` so old PRs and ROADMAP boxes still resolve.
+K45(b2) and R-M1c). Migrated tickets keep their old parcel id in `legacy_id`, so old
+PRs and ROADMAP boxes still resolve.
+
+**Numbers are allocated against work IN FLIGHT, not just work that merged.** The
+number used to be `max + 1` over this directory, which holds only what has landed —
+so two branches opened the same afternoon both picked it and `check` refused the
+second one at the merge. That happened three times in two days (T-0084, T-0111,
+T-0116). `new` and `split` now also read the tickets directory of every `steward/*`
+branch on the remote, by filename: one `ls-tree` per branch, no checkout, no file
+contents. Best-effort by construction — no git, no network, or a stale clone falls
+back to the local answer rather than refusing to create a ticket.
+
+That narrows the window; it cannot close it (two runs can still allocate in the same
+minute). So the backstop stands: **`check` refuses duplicate ids at the merge**, and
+`ticket.mjs restamp <file-or-id>` renumbers one. Give it the PATH `check` printed —
+with two files sharing an id, the id alone cannot say which one moves. **A restamp
+keeps the ticket's place in QUEUE.md**: it changes a number and nothing else. (It
+used to remove the line and append at the bottom, which silently re-prioritised the
+one file agents may not reorder.)
 
 ## Front matter
 
