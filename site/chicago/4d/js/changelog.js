@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 200, title: 'The dirt road runs all the way onto the bridges', kind: 'fix', ts: '2026-08-19T23:38:35.961Z', date: 'Aug 19, 2026, 6:38 PM CT',
+    items: [
+      'Walking Kinzie Street onto the North Branch bridge, the worn track frayed on the ramp — ragged green wedges ate its edges, and it stopped on grass short of the deck. Now it runs continuously up the approach and meets the boards, at both ends of the bridge.',
+      'The cause was in the drawing, not the ground: the road was drawn in flat panels a wagon-length long, and the new earth ramps curve. Where the fill’s crest rose between a panel’s corners — up to a metre and a half — the ground simply covered the road. Panels now split until they follow the surface, on the ramps and on every curved bank in town.',
+      'At the Dearborn Street drawbridge the track climbs its ramp whole now too — though it still gives out a wagon-length before the boards, because the street record itself ends there. That last gap is filed as its own work.',
+      'Nothing about the ground itself moved, and the walker stands on the same measured surface as before.',
+    ] },
   { v: 199, title: 'You can walk onto every bridge now', kind: 'feature', ts: '2026-08-19T21:07:57.244Z', date: 'Aug 19, 2026, 4:07 PM CT',
     items: [
       'Every bridge used to end 2.2 m in the air: its deck stood on the 1834 waterline, where the bank is at water level, so from the shore no crossing could be entered at all. Earth approaches now carry the ground up to each deck — walk down Kinzie Street and you walk straight onto the North Branch bridge, across, and off the far end. Same at the South Branch bridge and the Dearborn Street drawbridge.',
