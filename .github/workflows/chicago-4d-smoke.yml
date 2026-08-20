@@ -11,12 +11,18 @@ name: Chicago 4D — full smoke
 #
 #   gh workflow run chicago-4d-smoke.yml --ref <branch> -f viewport=mobile
 #
-# It is dispatch-only on purpose. The dev gate (chicago-4d-check.yml) stays
-# ~90 s and advisory speed matters there; a ~25-minute-per-viewport Playwright
-# crawl on every push would be a queue, not a gate. The nightly bake already
-# smokes the mirror it publishes.
+# It is dispatch-plus-one-path on purpose. The dev gate (chicago-4d-check.yml)
+# stays ~90 s and advisory speed matters there; a ~25-minute-per-viewport
+# Playwright crawl on every push would be a queue, not a gate. The nightly bake
+# already smokes the mirror it publishes. The single push path makes the
+# workflow self-testing — an edit to it runs the full unfiltered gate from the
+# pushed ref — and is also the only way to run it on a branch at all, because
+# workflow_dispatch resolves filenames on the default branch only.
 
 on:
+  push:
+    paths:
+      - '.github/workflows/chicago-4d-smoke.yml'
   workflow_dispatch:
     inputs:
       viewport:
