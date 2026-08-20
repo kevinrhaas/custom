@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 150,
+  "count": 151,
   "liberties": [
     {
       "id": "L1",
@@ -10168,6 +10168,56 @@
         {
           "label": "Covers",
           "text": "`bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-20."
+        }
+      ]
+    },
+    {
+      "id": "L152",
+      "title": "The Green Tree's fabric from the plates: bays, end stacks, and the rear ell",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.rear_ell"
+        },
+        {
+          "domain": "structure",
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.side_additions"
+        }
+      ],
+      "recorded": "2026-08-20",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Green Tree Tavern is dressed to the retrospective views (T-0083): even 6-over-6 sash bays along both eaves elevations with the attested mid-side door on the Lake Street elevation, doors and small attic lights on the gable faces, one chimney stack on the ridge at each gable end, and a low gabled rear ell — 5.5 × 4.5 m, 2.6 m walls, its own gable carrying a 2.4 m carriage door to the yard — off the rear gable end. The wagons of L133 draw up square to the ell's far wall now, the same derivation measured from the built rear face."
+        },
+        {
+          "label": "Why",
+          "text": "plate \"11\" of the owner's 2026-08-11 reference set (`data/sources/assets/prefire_views_kevin_2026_08/p6_0.png`) and the Braunhold/Trowbridge views written up in the 2026-08-18 owner brief draw all of it — even bays, end chimneys, the lower gabled wing with its wide carriage door — and John Gray attests low one-storey additions at both ends by 1838-41. Tier-5 pictorial sources may drive massing and fenestration rhythm as `inferred` and never a coordinate, so the SCHEME is inferred and every SIZE here is invented: the bay count is arithmetic on the footprint (the plate draws a longer building than the attested room module carries), the stack inset, the attic light, the door leaves and every ell dimension are the archetype's numbers, and whether the ell stood on 1835-07-01 at all is a reconstruction under the owner's 2026-08-18 standing ruling. Only the REAR ell is built although Gray names both ends: the committed placement puts the west face on Canal Street's frontage with no ground for a wing — an asymmetry that itself leans on the record's open \"Lake and West Water\" placement question, and is recorded on the attribute."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor at Lake and Canal sees a clapboarded, regularly fenestrated long elevation with a door in it, end stacks, and a low tail with a carriage door — none of which any 1835 witness describes — and cannot tell from the mesh which parts are the plate's and which are this entry's. The Evidence panel's grades and the notes on `elevation_scheme`, `chimney_placement`, `side_entrance` and `rear_ell` say so value by value."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the c. 1859 photograph (`chm_green_tree_1859`) settles the bay count, the end stacks and the ell in one look; T-0075's plate identifications would raise the citations from committed paths to source records; dating Gray's additions replaces the ell's reconstruction with a phase. The scheme, the side door and the stack placement are graded `inferred` on the record — their reasoning lives in their own notes, which is where the gate requires it; this entry's Covers admits the parts that are invented outright."
+        },
+        {
+          "label": "Covers",
+          "text": "`green_tree_tavern.form.rear_ell`, `green_tree_tavern.form.side_additions`."
         },
         {
           "label": "Recorded",

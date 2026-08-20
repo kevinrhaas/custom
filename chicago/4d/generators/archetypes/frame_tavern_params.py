@@ -39,7 +39,14 @@ CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
     "paint", "siding_exposure_m", "shutters", "gallery", "log_wing", "chimneys",
+    "elevation_scheme", "chimney_placement", "side_entrance", "rear_ell",
 })
+
+# The compass names a record may use for a wall-mounted feature, as bearings.
+# Local face bearings follow from the placement's rotation_deg (the facade
+# bearing): the +y face IS the facade, so +y carries rotation_deg itself and the
+# other three walls follow at right angles.
+_COMPASS_DEG = {"north": 0.0, "east": 90.0, "south": 180.0, "west": 270.0}
 
 # Where this archetype touches the ground, read by tools/validate.py's ground
 # contact check. `perimeter`: the whole footprint outline meets the terrain at
@@ -86,6 +93,42 @@ class FrameTavernParams:
     # docs/LIBERTIES.md owns the arrangement. Two is the default because two is what
     # both surviving depictions of the Sauganash show.
     chimneys: int = 2
+
+    # How the elevations are dressed. "frontage" is the archetype's original
+    # scheme — bays across the two y faces, entrance centred on the facade —
+    # read off the Sauganash depictions and still the default. "gable_front" is
+    # the Green Tree's scheme, read off plate "11" of the 2026-08-11 reference
+    # set (T-0083): the building fronts on a GABLE END, so the even bays run
+    # along the two eaves elevations, the gable faces carry the doors and the
+    # attic lights, and a second entrance may stand mid-eaves where a record
+    # attests one. Requires depth_m > width_m so the ridge actually runs along
+    # the deep axis and the facade is a gable end.
+    elevation_scheme: str = "frontage"
+
+    # Where the stacks stand. "frontage" is the original arrangement — spaced
+    # across the frontage at the depth midline, the fractions read off the two
+    # Sauganash depictions — kept as the default so no committed building moves.
+    # "gable_ends" stands one stack ON the ridge line at each gable end, the
+    # disposition plate "11" draws for the Green Tree. With this placement the
+    # record's chimney count must be exactly 2.
+    chimney_placement: str = "frontage"
+
+    # The resolved LOCAL wall carrying an attested second entrance mid-eaves:
+    # None, "x_min" or "x_max". Records state a compass direction
+    # (side_entrance: "south"); from_phase resolves it against rotation_deg so
+    # the record never has to know which local axis faces the street. Only read
+    # by the gable_front scheme.
+    side_entrance_face: str | None = None
+
+    # A lower gabled tail off the REAR gable end — the Green Tree's low
+    # addition, John Gray's testimony sized by the two retrospective views
+    # (T-0083). Ridge continues the main axis at a lower eave; a wide carriage
+    # door opens in its own (far) gable. All reconstructed; docs/LIBERTIES.md
+    # owns the sizes.
+    rear_ell: bool = False
+    rear_ell_width_m: float = 5.5
+    rear_ell_depth_m: float = 4.5
+    rear_ell_wall_m: float = 2.6
 
     # the attached log wing — the Sauganash's 1829 cabin surviving as a wing.
     # See docs/RESEARCH/sauganash_hotel.md.
@@ -142,6 +185,38 @@ class FrameTavernParams:
         for k, v in self.confidence.items():
             if v not in CONFIDENCE_VALUE:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
+        if self.elevation_scheme not in ("frontage", "gable_front"):
+            raise ParamError(f"elevation_scheme '{self.elevation_scheme}' not in "
+                             f"('frontage', 'gable_front')")
+        if self.chimney_placement not in ("frontage", "gable_ends"):
+            raise ParamError(f"chimney_placement '{self.chimney_placement}' not in "
+                             f"('frontage', 'gable_ends')")
+        if self.elevation_scheme == "gable_front":
+            if self.depth_m <= self.width_m:
+                raise ParamError(
+                    f"elevation_scheme 'gable_front' on a footprint {self.width_m} x "
+                    f"{self.depth_m} m: the scheme means the building fronts on a gable "
+                    f"end, which needs the ridge along the deep axis (depth > width)")
+            if self.shutters:
+                raise ParamError("elevation_scheme 'gable_front' draws no shutters — "
+                                 "no record needs both yet, and drawing them wrong "
+                                 "would be worse than refusing")
+        if self.chimney_placement == "gable_ends" and self.chimneys != 2:
+            raise ParamError(f"chimney_placement 'gable_ends' stands one stack at each "
+                             f"gable end, so the count must be 2, not {self.chimneys}")
+        if self.side_entrance_face not in (None, "x_min", "x_max"):
+            raise ParamError(f"side_entrance_face '{self.side_entrance_face}' not in "
+                             f"(None, 'x_min', 'x_max')")
+        if self.side_entrance_face and self.elevation_scheme != "gable_front":
+            raise ParamError("side_entrance is only read by the gable_front scheme — "
+                             "on the frontage scheme it would silently build nothing")
+        if self.rear_ell:
+            if self.rear_ell_width_m > self.width_m:
+                raise ParamError("rear ell is wider than the block it attaches to")
+            if not 1.8 <= self.rear_ell_wall_m < self.wall_height_m:
+                raise ParamError(f"rear_ell_wall_m {self.rear_ell_wall_m} must sit in "
+                                 f"1.8 m..the main wall height — the ell is the LOW "
+                                 f"addition or it is not this ell")
         if self.log_wing:
             if self.log_wing_width_m > self.width_m:
                 raise ParamError("log wing is wider than the block it attaches to")
@@ -189,6 +264,24 @@ def from_phase(phase: dict) -> FrameTavernParams:
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
+    # A side entrance is stated as a compass direction; the local wall it lands
+    # on follows from the facade bearing. Only the four cardinal walls exist,
+    # and a direction that names the facade or the rear names no side wall.
+    side_face = None
+    side = val("side_entrance")
+    if side is not None:
+        rot = float((phase.get("position") or {}).get("rotation_deg") or 0.0)
+        want = _COMPASS_DEG.get(str(side))
+        if want is None:
+            raise ParamError(f"side_entrance '{side}' is not a compass direction "
+                             f"(north/east/south/west)")
+        faces = {"x_max": (rot + 90.0) % 360.0, "x_min": (rot + 270.0) % 360.0}
+        matches = [f for f, b in faces.items() if abs((b - want + 180) % 360 - 180) < 45.0]
+        if not matches:
+            raise ParamError(f"side_entrance '{side}' does not name an eaves-side wall "
+                             f"of a building whose facade bears {rot} deg")
+        side_face = matches[0]
+
     p = FrameTavernParams(
         width_m=round(width, 3),
         depth_m=round(depth, 3),
@@ -203,6 +296,10 @@ def from_phase(phase: dict) -> FrameTavernParams:
         gallery=bool(val("gallery", False)),
         log_wing=bool(val("log_wing", False)),
         chimneys=int(val("chimneys", 2)),
+        elevation_scheme=str(val("elevation_scheme", "frontage")),
+        chimney_placement=str(val("chimney_placement", "frontage")),
+        side_entrance_face=side_face,
+        rear_ell=bool(val("rear_ell", False)),
         confidence=confidences,
     )
     p.validate()

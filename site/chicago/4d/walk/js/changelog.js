@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 205, title: 'The Green Tree is dressed to its pictures', kind: 'feature', ts: '2026-08-20T18:47:38.075Z', date: 'Aug 20, 2026, 1:47 PM CT',
+    items: [
+      'The town’s best-documented inn finally looks like its three surviving views. Its long Lake Street wall — bare boards and not a single opening before — now carries clapboard and two storeys of evenly spaced sash windows, with the side door the old landlord described "about the middle of the long side". The Canal Street front gets its door, flanking windows, and the small attic light in the gable that a lodger remembered.',
+      'Both chimneys now stand on the ridge, one at each gable end, the way the plates draw them. They used to float part-way down the roof slopes.',
+      'A low gabled wing now extends off the rear, a wide carriage door in its end opening to the yard — the "low one-story addition" the 1838 landlord attested and both engravings picture. The yard’s two farm wagons draw up square to its wall.',
+      'The pictures are retrospective — drawn decades later, showing the 1838 house. The window rhythm and end chimneys are graded inferred from them; the wing is declared an outright reconstruction, since nothing dates it to 1835, and the liberties ledger records every invented dimension. Aim at the inn and its card says which is which.',
+      'Only the rear wing is built although the landlord named additions at both ends: on this placement the other end stands on Canal Street itself. That tension is recorded on the record, where it belongs.',
+    ] },
   { v: 204, title: 'The sloughs are in: two streams join the river', kind: 'feature', ts: '2026-08-20T10:00:25.791Z', date: 'Aug 20, 2026, 5:00 AM CT',
     items: [
       'The 1830 plat area showed three small streams — sloughs — entering the main river, and until now only one was in the town. The other two are built: the drain the whole South Division emptied through, winding from beside the public square past the Tremont House to the river at the foot of State Street, and the little watercourse dropping south off the river just east of La Salle Street, now running to its terminus near Randolph.',

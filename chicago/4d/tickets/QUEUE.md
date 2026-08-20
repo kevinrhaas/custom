@@ -3,7 +3,6 @@
 T-0118 — The sloughs as built: the bay, the sill, the trench and the too-straight course
 T-0119 — A plank walk over the slough mouth, and along the river into town
 T-0120 — The treeline swims as you move, and stops where it should carry on
-T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
 T-0007 — Wire the material sheet into the records: repaint the town
 T-0074 — Trees and bushes kept around the houses
@@ -75,3 +74,4 @@ T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
 T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
 T-0115 — Desktop light detail draws 605k triangles against its own 600k ceiling
+T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings

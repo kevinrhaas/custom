@@ -3212,10 +3212,16 @@ for (const [label, viewport, touch] of [
     check(`${label}: an attribute the generator builds carries no marker`,
       geom.western.stories === null && geom.western['roof type'] === null,
       `stories ${geom.western.stories}, roof type ${geom.western['roof type']}`);
+    // Until T-0083 `side additions` asserted 'not built' here; the rear one IS
+    // built now (form.rear_ell), so the testimony row is marked 'not modelled
+    // from this' — the ell attribute drives the mesh, Gray's sentence does not —
+    // and the ell's own row, being consumed, must carry no marker at all.
     check(`${label}: a reading recorded but never a build instruction is not marked`,
       geom.greenTree['log core'] === null && geom.greenTree.side_additions === undefined
-      && geom.greenTree['side additions'] === 'not built',
-      `log core ${geom.greenTree['log core']}, side additions ${geom.greenTree['side additions']}`);
+      && geom.greenTree['side additions'] === 'not modelled from this'
+      && geom.greenTree['rear ell'] === null,
+      `log core ${geom.greenTree['log core']}, side additions `
+      + `${geom.greenTree['side additions']}, rear ell ${geom.greenTree['rear ell']}`);
 
     // --- the liberties for THIS building, on the card ----------------------
     // The confidence chips answer "how sure are you of this value". They cannot
