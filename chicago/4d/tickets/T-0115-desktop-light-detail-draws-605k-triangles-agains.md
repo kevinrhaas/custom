@@ -63,3 +63,11 @@ T-0114's two. No failure outside the two open tickets.
 **Measured worse by T-0083, 2026-08-20:** the Green Tree's corrected fabric adds ~310
 triangles on top of the above. Still under one percent of the tier by itself; the
 attribution method stands unchanged.
+
+**Measured worse by T-0074, 2026-08-20:** the dooryard plantings add ~43k scene
+triangles at the light tier — 66 trees at ~433 each and 59 currant clumps at ~164 each
+(the clump archetype was cut from 685 to ~164 during the same work, saving ~31k) — so
+desktop light now reads 648,404 of 600,000 (was 605,414). Mobile light stays under its
+own ceiling at 582,479, measured by the release smoke. Attribution for the trim: the
+dooryard layer draws at every level today and is the natural first candidate for the
+keep discipline the dealt wood already follows.

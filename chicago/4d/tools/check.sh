@@ -76,6 +76,14 @@ step "the platted block and lot grid re-derives from the module" \
 step "the dooryard garden pickets re-derive from the rule that chose their lots" \
   python3 tools/generate_dooryard_pickets.py --check
 
+# The dooryard plantings are the same shape one layer greener: the owner's brief and its
+# image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
+# source counts or places any particular house's stems. So which house keeps what is a
+# RULE over the committed dwellings, streets, fences and ground, re-derived here so the
+# 125 stems stay auditable rather than 125 numbers somebody typed (T-0074).
+step "the dooryard plantings re-derive from the rule that dealt their stems" \
+  python3 tools/generate_dooryard_plantings.py --check
+
 # The business signboards are the same shape of claim one layer over: exactly one record
 # in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
 # reconstruction chosen by a rule about trades rather than a list of shops somebody liked.

@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 206, title: 'Trees and bushes stand close around the houses', kind: 'feature', ts: '2026-08-20T19:03:58.767Z', date: 'Aug 20, 2026, 2:03 PM CT',
+    items: [
+      'Houses used to stand on bare open grass. Now 61 of the town’s 134 dwellings keep trees and bushes about them — 66 dooryard elms and cottonwoods and 59 currant clumps — the way the early views draw the town: greenery kept and planted close around the houses, distinct from the wild prairie beyond the fences.',
+      'No source counts or places any particular house’s stems, so every one is dealt by a written rule — which houses, how many, where in the yard — and declared invented in the liberties ledger. The species are the settled town’s own: its relict elm and cottonwood, and the currant bushes its record already infers from the fort garden and Harmon’s nursery.',
+      'Whether a given tree was kept from the clearing or planted by the household is unknowable, and the record deliberately does not say. Heights sit at the low end of each species’ recorded range either way: a kept tree is cut back, a planted one is young.',
+      'The dense party-wall blocks get nothing, on purpose — a rowhouse lot has no dooryard for a tree to stand in — and the currants are drawn without their July fruit, which the record states rather than hides.',
+    ] },
   { v: 205, title: 'The Green Tree is dressed to its pictures', kind: 'feature', ts: '2026-08-20T18:47:38.075Z', date: 'Aug 20, 2026, 1:47 PM CT',
     items: [
       'The town’s best-documented inn finally looks like its three surviving views. Its long Lake Street wall — bare boards and not a single opening before — now carries clapboard and two storeys of evenly spaced sash windows, with the side door the old landlord described "about the middle of the long side". The Canal Street front gets its door, flanking windows, and the small attic light in the gable that a lodger remembered.',

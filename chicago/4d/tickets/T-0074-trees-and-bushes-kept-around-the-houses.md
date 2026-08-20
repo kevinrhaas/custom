@@ -1,7 +1,7 @@
 ---
 id: T-0074
 title: Trees and bushes kept around the houses
-state: open
+state: done
 epic: FLORA
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-20
+pr: 280
+claimed_by: run 8/20/2026, 11:02:59 AM CT
 blocked_on: null
 needs_bake: false
 ---

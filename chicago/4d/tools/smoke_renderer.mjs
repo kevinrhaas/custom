@@ -1585,13 +1585,18 @@ for (const [label, viewport, touch] of [
         onLine++;
         top = Math.max(top, pos.getY(i) - a.terrain.surfaceHeight(pe, pn));
       }
-      // And the stems the planting record placed, each asked whether it stands
-      // inside the fence it is supposed to stand behind.
-      const stems = (a.trees?.stats?.plantedStems ?? []).map((st) => ({
-        ...st,
-        inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
-        clear: onRun(st.e, st.n),
-      }));
+      // And the stems the YARD's planting record placed, each asked whether it
+      // stands inside the fence it is supposed to stand behind. Filtered to the
+      // yard record since T-0074: the dooryard pass states stems all over the
+      // town through the same loop, and a dooryard elm two blocks away is not
+      // an escapee from this fence.
+      const stems = (a.trees?.stats?.plantedStems ?? [])
+        .filter((st) => st.record === 'sauganash_yard_trees')
+        .map((st) => ({
+          ...st,
+          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
+          clear: onRun(st.e, st.n),
+        }));
       return {
         found: !!rec,
         type: rec?.form?.fence_type?.value ?? null,
@@ -1611,10 +1616,10 @@ for (const [label, viewport, touch] of [
     check(`${label}: the yard fence is drawn at the height its record states`,
       sauganash.stated !== null && Math.abs(sauganash.top - sauganash.stated) <= 0.12,
       `drawn ${sauganash.top?.toFixed(2)} m against a stated ${sauganash.stated} m`);
-    check(`${label}: every stem the planting record places stands inside that yard`,
-      sauganash.planted === 3 && sauganash.stems.length === 3
+    check(`${label}: every stem the yard's planting record places stands inside that yard`,
+      sauganash.stems.length === 3
       && sauganash.stems.every((st) => st.inYard && st.clear >= 2),
-      `${sauganash.planted} stem(s): `
+      `${sauganash.stems.length} yard stem(s) of ${sauganash.planted} planted: `
       + sauganash.stems.map((st) => `${st.id} ${st.inYard ? 'in' : 'OUT'} `
         + `${st.clear.toFixed(1)} m off the fence`).join(', '));
 
@@ -1647,6 +1652,65 @@ for (const [label, viewport, touch] of [
     check(`${label}: the trees behind the fence reach the screen with it`,
       dTrees.worst >= 6 && dTrees.mean >= 0.3,
       `cell delta mean ${dTrees.mean?.toFixed(2)}, worst ${dTrees.worst} (need worst>=6)`);
+
+    // --- the dooryard plantings (T-0074) -------------------------------------
+    //
+    // The town-wide pass the yard record above was the precedent for: trees and
+    // currant bushes dealt around the dwellings by the rule in
+    // tools/generate_dooryard_plantings.py. A refused stem is a `problems` line
+    // and fails this suite on its own, so what is asserted here is the other
+    // half of T-0074's acceptance: at an ORDINARY house — the old agency house,
+    // a log dwelling on an unfenced lot — the dealt stems actually reach the
+    // screen from the walker. Cobweb Castle's deal is two cottonwoods
+    // north-west of the house and a currant clump by its south-east corner;
+    // the ids are the record's own, so a re-deal that moves this house's stems
+    // updates this list in the same commit or fails here, loudly.
+    const dooryard = await page.evaluate(() => {
+      const stems = (window.__chicago4d.trees?.stats?.plantedStems ?? [])
+        .filter((st) => st.record === 'town_dooryard_plantings');
+      return {
+        count: stems.length,
+        cobweb: stems.filter((st) => st.id.startsWith('cobweb_castle_')).map((st) => st.id),
+      };
+    });
+    check(`${label}: the dooryard pass planted stems across the town`,
+      dooryard.count >= 100,
+      `${dooryard.count} dooryard stem(s) drawn (the record states 125; a refusal `
+      + 'also fails the no-problems check)');
+    check(`${label}: Cobweb Castle's dealt stems are among them`,
+      dooryard.cobweb.length === 3,
+      `drawn: ${dooryard.cobweb.join(', ') || 'none'}`);
+    // The trees, from the road south-west of the house looking at its yard
+    // quarter: two 19-20 m crowns about 15 m off. Same layer-toggle probe and
+    // same declared bar as every screen check in this file.
+    await page.evaluate(() => {
+      window.__chicago4d.walker.teleport({ local_e: 788, local_n: 124, yaw_deg: 45 });
+    });
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const doorWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
+    const doorWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
+    const dDoor = signatureDistance(doorWith, doorWithout);
+    check(`${label}: Cobweb Castle's dooryard trees reach the screen`,
+      dDoor.worst >= 6 && dDoor.mean >= 0.3,
+      `cell delta mean ${dDoor.mean?.toFixed(2)}, worst ${dDoor.worst} (need worst>=6)`);
+    // The bush, stood over from five metres with the trees out of frame behind
+    // the walker — so this delta is the currant clump's own, not a crown's.
+    await page.evaluate(() => {
+      window.__chicago4d.walker.teleport({ local_e: 806, local_n: 131, yaw_deg: 135 });
+    });
+    await page.waitForTimeout(350);
+    const bushWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
+    const bushWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dBush = signatureDistance(bushWith, bushWithout);
+    check(`${label}: the currant clump by its door reaches the screen`,
+      dBush.worst >= 6 && dBush.mean >= 0.3,
+      `cell delta mean ${dBush.mean?.toFixed(2)}, worst ${dBush.worst} (need worst>=6)`);
 
     // --- the business signboards (T-0039) ------------------------------------
     //
