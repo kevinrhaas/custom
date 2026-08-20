@@ -128,6 +128,11 @@
           ],
           "geometry": "record_only",
           "note": "'cost about nine hundred dollars'. Not a build instruction, but the ONLY quantitative fact this record has about the building's size, and the footprint above is derived from it against the two churches' attested cost-per-square-foot. If the footprint is ever corrected from a real dimension, this figure is what will have been wrong about the derivation, not the other way round."
+        },
+        "siding_exposure_m": {
+          "value": 0.152,
+          "confidence": "reconstructed",
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 6 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
         }
       },
       "change_note": "The two-storey frame building Dr John T. Temple's subscription put up near Franklin and South Water in the summer of 1833 - worship below, school above, about $900 - standing and ready for use by 16 August 1833. Used in turn by Methodists, Presbyterians and Baptists until the Presbyterian church was dedicated in January 1834, and by Grenville T. Sproat's English and Classical School for Boys in the upper storey from December 1833. No change of fabric is attested inside the phase."

@@ -38,7 +38,7 @@ CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
 # failure rather than a silently unbuilt attribute.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
-    "paint", "shutters", "gallery", "log_wing", "chimneys",
+    "paint", "siding_exposure_m", "shutters", "gallery", "log_wing", "chimneys",
 })
 
 # Where this archetype touches the ground, read by tools/validate.py's ground
@@ -74,6 +74,11 @@ class FrameTavernParams:
     paint: str = "white"
     shutters: str | None = None
     gallery: bool = False
+    # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
+    # the one rhythm every frame building wore until T-0049 — and stays the default
+    # for a record that carries no value. The deal that writes record values is
+    # tools/deal_siding_stock.py and docs/LIBERTIES.md owns the invention.
+    siding_exposure_m: float = 0.14
 
     # How many stacks stand on the block. The COUNT comes from the record; where
     # they stand and what they are made of do not — no source describes a stack on
@@ -115,6 +120,9 @@ class FrameTavernParams:
                              f"(no building in 1835 Chicago exceeded three)")
         if not 1.8 <= self.wall_height_m <= 14.0:
             raise ParamError(f"wall_height_m {self.wall_height_m} outside 1.8-14 m")
+        if not 0.10 <= self.siding_exposure_m <= 0.16:
+            raise ParamError(f"siding_exposure_m {self.siding_exposure_m} outside "
+                             f"0.10-0.16 m (~4-6.3 in): not a period clapboard exposure")
         if self.roof_type not in ROOF_TYPES:
             raise ParamError(f"roof_type '{self.roof_type}' not in {ROOF_TYPES}")
         if not 10.0 <= self.roof_pitch_deg <= 60.0:
@@ -190,6 +198,7 @@ def from_phase(phase: dict) -> FrameTavernParams:
         roof_pitch_deg=float(val("roof_pitch_deg", 38.0)),
         construction=str(val("construction", "braced_frame")),
         paint=str(val("paint", "unpainted")),
+        siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         shutters=val("shutters"),
         gallery=bool(val("gallery", False)),
         log_wing=bool(val("log_wing", False)),

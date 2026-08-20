@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
 T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0004 — Raise and graduate the river banks at the fort reach
 T-0005 — The three Main Branch sloughs, from the 1833 map
@@ -72,3 +71,4 @@ T-0106 — The traced river bank stops at local E 390, short of the drawbridge r
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
+T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
