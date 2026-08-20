@@ -73,3 +73,4 @@ T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
 T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
 T-0115 — Desktop light detail draws 605k triangles against its own 600k ceiling
+T-0116 — The road-legibility gate's third station turns red when the sloughs land: the swale ground pulls the 250-600 m band under its bar

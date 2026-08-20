@@ -27,7 +27,7 @@
  "water_surface_m": 0.0,
  "water_fraction": 0.2533,
  "relief_ft": {
-  "land_min": 0.0,
+  "land_min": -5.037,
   "land_max": 12.285,
   "channel_min": -17.405
  },
@@ -38,11 +38,11 @@
    62.5
   ],
   "marsh_exclusion_m": 48.0,
-  "plain_cells_audited": 119448,
+  "plain_cells_audited": 118764,
   "plain_block_max": 0.468,
-  "plain_block_mean": 0.1281,
+  "plain_block_mean": 0.1286,
   "passes": true,
-  "plain_cell_roughness_max": 2.794,
+  "plain_cell_roughness_max": 55.239,
   "shore_and_swale_cell_max": 185.129,
   "relief_zones_ft_per_300ft": {
    "approach_dearborn_north": {
@@ -62,12 +62,12 @@
     "cell_max": 158.047
    },
    "approach_slough_east": {
-    "cells": 15,
-    "cell_max": 32.426
+    "cells": 14,
+    "cell_max": 101.101
    },
    "approach_slough_west": {
-    "cells": 10,
-    "cell_max": 31.669
+    "cells": 6,
+    "cell_max": 65.932
    },
    "approach_south_branch_east": {
     "cells": 37,
@@ -103,11 +103,11 @@
    },
    "state_street_break": {
     "cells": 8401,
-    "cell_max": 65.027
+    "cell_max": 181.492
    },
    "swales": {
-    "cells": 20536,
-    "cell_max": 158.047
+    "cells": 21499,
+    "cell_max": 181.492
    }
   },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
@@ -116,5 +116,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "ecb6705dedc0c630f6f0cf4449e1bfd484ecab2ff2174fea1d4778b83ba96f2f"
+ "inputs_sha256": "c4214142ac47b50d31a27e4be5cabeace75306fa6c686e9487f3552f9e3ca6a2"
 }
