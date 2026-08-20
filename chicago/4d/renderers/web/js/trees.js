@@ -1001,6 +1001,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
   const byZone = {};
+  const shrubByZone = {};
   const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
@@ -1012,6 +1013,37 @@ async function loadTimberZones(dataBase, problems = []) {
     zonesRead.push(id);
     bands[id] = {};
     for (const sp of rec.species ?? []) {
+      // A DOORYARD SHRUB (T-0074). `shrub_low` is flora.js's stratum — dealt on
+      // its own lattice at the zone's recorded density — and it stays that way:
+      // nothing here enters `specs`, `byZone` or `bands`, so no community deal
+      // moves. What a lattice cannot do is put a currant AT a particular door,
+      // which is exactly what a planting record states — so the species is held
+      // in a separate table the planting loop alone reads, drawn with the
+      // clonal archetype at its own recorded band. The clonal path draws no
+      // head, so the July berry cluster the record carries is NOT drawn — the
+      // planting record says so rather than leaving the drop silent.
+      if (sp.role === 'shrub_low' && sp.form === 'shrub_low') {
+        const dark = rgbHex(sp.july?.foliage_rgb);
+        shrubByZone[id] = shrubByZone[id] ?? {};
+        shrubByZone[id][sp.id] = {
+          common: sp.common ?? sp.id,
+          form: 'thicket',
+          h: Array.isArray(sp.height_m) && sp.height_m.length === 2
+            ? sp.height_m : [0.8, 1.5],
+          crownW: Array.isArray(sp.width_m) && sp.width_m.length === 2
+            ? sp.width_m : null,
+          dark: dark ?? 0x53663c,
+          light: dark != null ? lighten(dark) : 0x7d9159,
+          // Invented, as every bark in SPECIES is: dull grey-brown shrub wood,
+          // darker than the aspen's pale bole, lighter than the dark openings.
+          bark: 0x6a5c4b,
+          conf: Math.max(0.5, CONFIDENCE_VALUE[sp.confidence] ?? 0.5),
+          july: sp.july?.appearance ?? null,
+          head: null,
+          fromRecord: true,
+        };
+        continue;
+      }
       if (sp.role !== 'tree' && sp.role !== 'thicket') continue;
       const form = FORM_OF[sp.form];
       if (!form) { unimplemented.add(sp.form); continue; }
@@ -1081,8 +1113,8 @@ async function loadTimberZones(dataBase, problems = []) {
   for (const entry of manifest.plantings ?? []) {
     plantings.push(await fetchOk(new URL(entry.file, manifestUrl)));
   }
-  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads,
-    plantings };
+  return { specs, byZone, shrubByZone, bands, unimplemented: [...unimplemented],
+    zonesRead, heads, plantings };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2469,7 +2501,11 @@ export async function createTrees({
           + 'reads no woody species from — nothing in the record is drawn');
         break;
       }
-      const spec = table[stem.species];
+      // The zone's woody table first, then its dooryard shrubs (T-0074) — a
+      // stated stem may be either, and both tables are built from the zone's
+      // own species records, so the rule holds: the ecology of a stem belongs
+      // to the zone records and not to a planting file.
+      const spec = table[stem.species] ?? records.shrubByZone?.[rec.zone]?.[stem.species];
       if (!spec) {
         problems.push(`trees: planting ${where} names species ${stem.species}, which `
           + `${rec.zone} does not describe — not drawn, because the ecology of a stem `

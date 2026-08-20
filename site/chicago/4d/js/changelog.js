@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 205, title: 'Trees and bushes stand close around the houses', kind: 'feature', ts: '2026-08-20T16:12:16.569Z', date: 'Aug 20, 2026, 11:12 AM CT',
+    items: [
+      'Houses used to stand on bare open grass. Now 61 of the town’s 134 dwellings keep trees and bushes about them — 66 dooryard elms and cottonwoods and 59 currant clumps — the way the early views draw the town: greenery kept and planted close around the houses, distinct from the wild prairie beyond the fences.',
+      'No source counts or places any particular house’s stems, so every one is dealt by a written rule — which houses, how many, where in the yard — and declared invented in the liberties ledger. The species are the settled town’s own: its relict elm and cottonwood, and the currant bushes its record already infers from the fort garden and Harmon’s nursery.',
+      'Whether a given tree was kept from the clearing or planted by the household is unknowable, and the record deliberately does not say. Heights sit at the low end of each species’ recorded range either way: a kept tree is cut back, a planted one is young.',
+      'The dense party-wall blocks get nothing, on purpose — a rowhouse lot has no dooryard for a tree to stand in — and the currants are drawn without their July fruit, which the record states rather than hides.',
+    ] },
   { v: 204, title: 'The sloughs are in: two streams join the river', kind: 'feature', ts: '2026-08-20T10:00:25.791Z', date: 'Aug 20, 2026, 5:00 AM CT',
     items: [
       'The 1830 plat area showed three small streams — sloughs — entering the main river, and until now only one was in the town. The other two are built: the drain the whole South Division emptied through, winding from beside the public square past the Tremont House to the river at the foot of State Street, and the little watercourse dropping south off the river just east of La Salle Street, now running to its terminus near Randolph.',

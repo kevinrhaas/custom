@@ -5784,3 +5784,32 @@ a bridge or culvert order for South Water Street west of Clark; see
 docs/RESEARCH/main_branch_sloughs_1833.md.
 **Covers:** `terrain.e1834_harbor_cut.swales.lasalle_slough_lower`, `terrain.e1834_harbor_cut.swales.lasalle_slough_upper`.
 **Recorded:** 2026-08-20.
+
+### L151 — Dooryard trees and bushes at 61 houses, every stem of them dealt
+**Decision:** `data/flora/plantings/town_dooryard_plantings.json` states 66 dooryard trees
+(American elm, eastern cottonwood) and 59 currant clumps around 61 of the town's 134
+dwellings, every coordinate, count and height `reconstructed`, dealt by the seeded rule in
+`tools/generate_dooryard_plantings.py` and re-derived byte for byte on every commit. A
+dooryard shrub is drawn with the clonal thicket archetype in `renderers/web/js/trees.js`,
+whose spec (bark colour, stem count, puff sizes) is invented within that file's own range
+like every number in its SPECIES table, and whose draw path carries no head — so the
+currants' recorded July berry cluster is not drawn, and the record says so.
+**Why:** the owner asked for it in as many words (ticket T-0074), and image 12 of the
+2026-08-18 brief states the treatment generally: trees and bushes stand close around the
+houses, kept deliberately. No source counts, places or names any particular house's stems,
+so the honest shape is the garden-picket precedent (L129): a rule that can say of every
+stem on what basis that house got it, rather than 125 numbers someone typed. The species
+are the settled town's own (`z10_settled_town`: relict elm and cottonwood, dooryard
+currants), so nothing new is claimed to have grown here; whether a given tree was kept
+from the clearing or planted by the household is unknowable and deliberately unclaimed,
+since the timber belt's documented east end means most house lots had nothing to keep.
+**Consequence:** houses across the town read as lived-around rather than parked on open
+prairie — which is the plate's whole lesson — at the cost that every stem is an invention.
+The confidence channel says so: every stem carries `reconstructed`, and the dense
+party-wall blocks got nothing because no allowed ground exists inside them (the record's
+`refused` list names each one).
+**How to resolve:** T-0075's source records for the plates; any sale notice, diary, view
+or photograph-era survivor count that places a particular house's trees; a source
+describing the Lombardy poplars' spread into the town would additionally unlock the
+species this deal deliberately omits.
+**Recorded:** 2026-08-20.

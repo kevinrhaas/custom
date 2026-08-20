@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 20, 2026, 9:41 AM",
+  "generated_ct": "Aug 20, 2026, 11:12 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1290,7 +1290,7 @@
     {
       "id": "T-0074",
       "title": "Trees and bushes kept around the houses",
-      "state": "open",
+      "state": "claimed",
       "epic": "FLORA",
       "requested_by": "owner",
       "seen": true,
@@ -1300,7 +1300,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/20/2026, 11:02:59 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
@@ -2042,6 +2042,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0117",
+      "title": "Hold the Lombardy poplar as a species, and deal the planted rows the plates attest",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-20",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }

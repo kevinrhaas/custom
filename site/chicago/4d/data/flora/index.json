@@ -775,6 +775,11 @@
       "id": "sauganash_yard_trees",
       "file": "plantings/sauganash_yard.json",
       "note": "Stems whose position is STATED rather than dealt — the trees kept behind the Sauganash's yard fence. renderers/web/js/trees.js reads exactly the files named here and never probes; the species each stem names must be one the zone records above already describe."
+    },
+    {
+      "id": "town_dooryard_plantings",
+      "file": "plantings/town_dooryard_plantings.json",
+      "note": "The dooryard pass (T-0074): trees and currant bushes kept or planted around the town's dwellings, dealt by the rule in tools/generate_dooryard_plantings.py and re-derived on every commit. Same contract as the record above: stems STATED, species bound to the zone records, read by renderers/web/js/trees.js through this manifest and never probed."
     }
   ],
   "palettes": [
