@@ -1,16 +1,17 @@
 ---
 id: T-0004
 title: Raise and graduate the river banks at the fort reach
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
 effort: M
 legacy_id: K8
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/20/2026, 1:03:41 AM CT
 blocked_on: null
 needs_bake: true
 ---
