@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 208, title: 'The fort wall and the garden fence are proved apart', kind: 'chore', ts: '2026-08-20T21:39:57.306Z', date: 'Aug 20, 2026, 4:39 PM CT',
+    items: [
+      'A visitor reported the wall around Fort Dearborn "way too short — below my height". Two things on that reservation answer to a wall you can walk up to: the fort’s stockade, recorded at its full twelve feet of picket, and the garrison garden’s chest-high worm fence — the same construction family in its two honest modes. The release inspection now proves the pair apart from the walker’s own eye: the stockade’s pickets must carry the record’s twelve feet and top the eye where wall and ground meet, the garden fence must hold below it, and neither number can drift without failing loudly.',
+      'Walk up to either and tap it: the fence answers with the garden’s own card — "the garrison garden", the company gardens the 1830 plan draws — and the wall answers with "the stockade". That distinction is now inspected on every release, so mistaking one for the other is a thing the card can always settle.',
+      'The new inspection immediately earned its keep: it found that raising the fort’s mound (v202) sank the stockade — the wall is anchored at the lowest ground beneath it, down the river bank, so from the parade side only about four feet of picket now show above the raised ground. The bake and the record are right; what gives — the bake, the mound or the placement — is a judgement about the reconstruction, so it is filed with measurements and waits on an answer. No height was changed.',
+    ] },
   { v: 207, title: 'Nothing grows through a plank floor any more', kind: 'fix', ts: '2026-08-20T19:54:09.405Z', date: 'Aug 20, 2026, 2:54 PM CT',
     items: [
       'Grass and reeds used to come up between the boards of the plank sidewalks, and rushes stood straight through the dock decks on the river. Both are closed: the planting layer now refuses every deck the town lays - the walks, the board crossings, the wharves, the bridge decks - before it asks any other question.',
