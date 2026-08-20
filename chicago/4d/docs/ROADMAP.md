@@ -95,6 +95,21 @@ dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) —
 `SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
 desktop half belongs to a runner without the per-command ceiling.
 
+**RESOLVED 2026-08-20 by T-0060: the smoke takes `SMOKE_STAGE=1..4`, and each stage fits the
+ten-minute command.** The body of each viewport is cut at three section boundaries verified for
+crossing bindings (two crossed — `terrainLoad`, `streetLayer` — and both are now read before the
+split; the scans that missed them are written up in the ticket). Measured on the improve runner,
+mobile against the published mirror: **stage 1 — 1 m 54 s, 74 staged checks · stage 2 — 3 m 00 s,
+91 · stage 3 — 3 m 17 s, 33 · stage 4 — 7 m 30 s, 143**, plus 9 always-on checks (boot, loader
+problems, run-to-completion, page errors, vendor) taken in EVERY invocation — the run prints that
+split so the halves can be audited to add up to an unfiltered pass: 341 staged + 9 = 350. The
+page-error assertion is no longer the tail of an unrunnable body: a mid-suite throw is caught,
+recorded as its own FAIL, and the tail still runs. The unfiltered single-process reference lives
+in `.github/workflows/chicago-4d-smoke.yml` (push-to-its-own-path or dispatch on main) — that is
+the "runner without the per-command ceiling" this section asked for. Desktop stage timings are
+not yet measured; stage 4 is the one to watch (its mobile 7 m 30 s includes the shared
+street-layer reading), and if it overruns on desktop the fifth cut goes in then, the same way.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
@@ -9765,7 +9780,7 @@ DEPTH; the depths here are residuals of the block, and finding a stated one is w
 the lot lines off conjecture. (e) Nothing draws the grid — when the lot lines reach the screen
 they need a liberty and a confidence treatment with them.
 
-### K8 — River bank heights *(research first, then terrain)*
+### K8 — River bank heights *(research first, then terrain)* · **DONE 2026-08-20 (T-0004)**
 The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The
 dossier gives +2–4 ft banks at the forks (documented) but the FORT stood on distinctly rising
 ground — "the flattened mound", the 1830 Harrison plan's bank, Swearingen's 18-ft pool at the
@@ -9773,6 +9788,19 @@ fort bend. Parcel: re-read `01-terrain-hydrology.md` and the primary accounts; r
 GRADUATE the fort-reach south bank as the evidence supports; record the disagreement between
 the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
 documented height. Gradient audit re-run; exemption itemised like the others.
+
+**Shipped**: the mound raised from the zone's mid-range to its stated apex —
+`fort_dearborn_mound.rise_ft` 2.8 → 3.8, flat top +11.0 → +12.0 ft, the north face carrying
+the full rise to the waterline at 1:6.8 (inside the bank block's 1:6–1:10 band). The
+disagreement is three-cornered, not two, and is recorded rather than averaged in
+`docs/RESEARCH/fort_reach_bank_heights.md`: the witnesses (Swearingen 1803 tier-1 ~8 ft;
+Hubbard 1881 "not over eight feet", a correction pushing DOWN) keep the BANK, zone 6's
++10–12/apex +12 takes the mound, and the plates' 10–20 ft is refused as a build input.
+Hubbard-vs-zone-6 stands unresolved on the record — if the owner rules the witnesses outrank
+the dossier's reconciliation, the mound drops to ~+8; that is a ruling, not a research gap.
+Measured: 2,169 changed cells, max +0.305 m, zero outside the mound's 75 m radius — the forks
+byte-identical. Gradient audit PASS (plain max 0.468), mound band itemised as before. The
+bank now standing is what unblocks T-0099's track from the north gate down to the water.
 
 ### K9 — Navigation and settings UI · **DONE 2026-08-13**
 (a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now

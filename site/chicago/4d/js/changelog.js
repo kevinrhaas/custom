@@ -1,4 +1,31 @@
 export const CHANGELOG = [ // newest first
+  { v: 203, title: 'The release gate can finish its rounds again', kind: 'chore', ts: '2026-08-20T08:56:20.675Z', date: 'Aug 20, 2026, 3:56 AM CT',
+    items: [
+      'Nothing in the town changed. This is about the checks that guard it: the automated walk-through that inspects every release had grown past what its runner could finish in one sitting, so its final assertions — including the one that asks whether the page threw an error at all — were routinely never reached.',
+      'The inspection now runs in four parts, each comfortably inside the runner\u2019s limit, and the error check runs in every part instead of only at the end. The parts are audited to add up to exactly the full inspection, and a reference run of the whole thing in one piece lives on the project\u2019s own build service.',
+      'Finishing the rounds immediately paid off: two road-visibility checks deep in the suite have been failing quietly — the worn tracks read faint from mid-distance — and nobody could see it because the inspection died before reaching them. That finding is now filed as its own work item with the measurements attached.',
+    ] },
+  { v: 202, title: 'Fort Dearborn stands higher on its mound', kind: 'fix', ts: '2026-08-20T06:18:31.102Z', date: 'Aug 20, 2026, 1:18 AM CT',
+    items: [
+      'The fort read too low against the old views: its ground rose only a foot or so over the sand ridge beside it. The flattened mound the settlers described now climbs to twelve feet over the river — the top of what the research supports — and the north bank below the stockade carries that full rise down to the water at a slope a track could climb.',
+      'Stand on the north bank opposite and the compound sits visibly up on its ground now, the way both fort views draw it.',
+      'The pictures actually show more — ten to twenty feet, to the eye. They are retrospective engravings that also invent a flagstaff, so their bank is recorded as a disagreement in the research notes rather than built. The two period witnesses who measured about eight feet keep the river bank itself; the mound rises behind it.',
+      'Nothing else moved: every changed ground sample lies inside the mound’s own footprint, and the low banks at the forks are untouched to the byte.',
+    ] },
+  { v: 201, title: 'No two neighbours hang their clapboard the same', kind: 'feature', ts: '2026-08-20T01:24:44.423Z', date: 'Aug 19, 2026, 8:24 PM CT',
+    items: [
+      'Every frame building in town wore identical siding — lap courses of one width, 5½ inches to the weather, from the Sauganash to the smallest store. Twenty-four named frame buildings now each carry their own mill stock — 4½, 5, 5½ or 6 inches showing per board — and no two frame buildings standing within sixty metres of each other share one.',
+      'Walk South Water Street and the difference is on the walls: Jones’s store hangs a visibly finer course than Carpenter’s store two lots east — a third more boards climbing the same storey.',
+      'No source states the width of any Chicago building’s siding, so every value is declared invented: bounded by the four sidings a period mill shipped, dealt by a written rule, and graded reconstructed. Aim at a building and its card says which stock it wears and that the choice was dealt, not found.',
+      'The anonymous reconstructed roofs keep the old 5½-inch stock for now; dealing them their own is filed as follow-up work.',
+    ] },
+  { v: 200, title: 'The dirt road runs all the way onto the bridges', kind: 'fix', ts: '2026-08-19T23:38:35.961Z', date: 'Aug 19, 2026, 6:38 PM CT',
+    items: [
+      'Walking Kinzie Street onto the North Branch bridge, the worn track frayed on the ramp — ragged green wedges ate its edges, and it stopped on grass short of the deck. Now it runs continuously up the approach and meets the boards, at both ends of the bridge.',
+      'The cause was in the drawing, not the ground: the road was drawn in flat panels a wagon-length long, and the new earth ramps curve. Where the fill’s crest rose between a panel’s corners — up to a metre and a half — the ground simply covered the road. Panels now split until they follow the surface, on the ramps and on every curved bank in town.',
+      'At the Dearborn Street drawbridge the track climbs its ramp whole now too — though it still gives out a wagon-length before the boards, because the street record itself ends there. That last gap is filed as its own work.',
+      'Nothing about the ground itself moved, and the walker stands on the same measured surface as before.',
+    ] },
   { v: 199, title: 'You can walk onto every bridge now', kind: 'feature', ts: '2026-08-19T21:07:57.244Z', date: 'Aug 19, 2026, 4:07 PM CT',
     items: [
       'Every bridge used to end 2.2 m in the air: its deck stood on the 1834 waterline, where the bank is at water level, so from the shore no crossing could be entered at all. Earth approaches now carry the ground up to each deck — walk down Kinzie Street and you walk straight onto the North Branch bridge, across, and off the far end. Same at the South Branch bridge and the Dearborn Street drawbridge.',

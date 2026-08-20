@@ -160,7 +160,7 @@ HALL_FRACTION = 0.62
 CONSUMED = frozenset({
     "stories", "wall_height_m", "knee_wall_m", "roof_type", "roof_pitch_deg",
     "construction", "plan", "bays", "porch", "ell", "ell_wall_height_m",
-    "chimneys", "paint", "shutters",
+    "chimneys", "paint", "shutters", "siding_exposure_m",
 })
 # NOT in the set, and each absence is a decision rather than an oversight:
 #   `cladding`      — this archetype always builds clapboard over sheathing, so a
@@ -234,6 +234,13 @@ class FrameDwellingParams:
     paint: str = "unpainted"
     shutters: str | None = None
     porch: str | None = None
+
+    # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
+    # the one rhythm every frame building wore until T-0049 — and stays the default
+    # for a record that carries no value. A record that does carry `siding_exposure_m`
+    # is stating which mill stock its walls were hung with; the deal that wrote those
+    # values is tools/deal_siding_stock.py and docs/LIBERTIES.md owns the invention.
+    siding_exposure_m: float = 0.14
 
     # How many stacks the house carries. The COUNT is the record's; where they stand is
     # the archetype's — first at one gable, second at the other or on the ell — and
@@ -357,6 +364,12 @@ class FrameDwellingParams:
                 f"and is a real state, not a rounding; three storeys is not a dwelling "
                 f"question in 1835, when the town's first three-storey building (the "
                 f"Saloon Building, 1836) had not been begun")
+        # The bound is the period stock set: a 4 in exposure is the narrowest siding
+        # the deal's sources describe and 6 in the widest. Outside it the value is not
+        # a clapboard course at all and the record is wrong, not unusual.
+        if not 0.10 <= self.siding_exposure_m <= 0.16:
+            raise ParamError(f"siding_exposure_m {self.siding_exposure_m} outside "
+                             f"0.10-0.16 m (~4-6.3 in): not a period clapboard exposure")
         if self.construction not in CONSTRUCTIONS:
             raise ParamError(
                 f"construction '{self.construction}' not in {CONSTRUCTIONS}. A log house "
@@ -703,6 +716,7 @@ def from_phase(phase: dict) -> FrameDwellingParams:
         plan=str(val("plan", "hall_parlour")),
         bays=int(val("bays", 0)),
         paint=str(val("paint", "unpainted")),
+        siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         shutters=(None if shutters in (None, False, "") else str(shutters)),
         porch=(None if porch in (None, False, "") else str(porch)),
         chimneys=int(val("chimneys", 1)),

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 147,
+  "count": 148,
   "liberties": [
     {
       "id": "L1",
@@ -9967,6 +9967,211 @@
         {
           "label": "Recorded",
           "text": "2026-08-19."
+        }
+      ]
+    },
+    {
+      "id": "L148",
+      "title": "Every named frame building's siding stock is dealt, not found",
+      "section": "per_subject",
+      "subjects": [
+        "bates_auction_room",
+        "carpenter_south_water_store",
+        "chicago_american_office",
+        "chicago_democrat_office",
+        "dole_warehouse_south",
+        "exchange_coffee_house",
+        "first_presbyterian_church",
+        "frederick_thomas_shop",
+        "goss_cobb_saddlery",
+        "green_tree_tavern",
+        "h_jones_store",
+        "harmon_loomis_store",
+        "jh_kinzie_forwarding_store",
+        "old_bank_building",
+        "peck_store",
+        "pruyne_kimball_drugstore",
+        "sauganash_hotel",
+        "st_marys_church",
+        "steamboat_hotel",
+        "temple_building",
+        "thomas_church_store",
+        "tremont_house_1",
+        "watkins_school_house",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "bates_auction_room",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "carpenter_south_water_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "chicago_american_office",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "chicago_democrat_office",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "dole_warehouse_south",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "first_presbyterian_church",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "frederick_thomas_shop",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "goss_cobb_saddlery",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "h_jones_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_loomis_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "old_bank_building",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "peck_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "pruyne_kimball_drugstore",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "sauganash_hotel",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "st_marys_church",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "steamboat_hotel",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_building",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "thomas_church_store",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "watkins_school_house",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "western_hotel",
+          "phase": null,
+          "aspect": "form.siding_exposure_m"
+        }
+      ],
+      "recorded": "2026-08-20",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the exposed face of the clapboard on the 24 named frame buildings is a per-record value, `siding_exposure_m`, one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather — dealt by `tools/deal_siding_stock.py`: keyed to the phase's construction season, then advanced so no frame building standing within 60 m shares its neighbour's stock. Derived records — the anonymous parcels and the five frame buildings the inferred-household programme regenerates byte-exact — stay on the archetypes' 0.14 m default, counted by the deal as fixed neighbours."
+        },
+        {
+          "label": "Why",
+          "text": "no source states the exposed face of any Chicago building's siding, and until T-0049 every frame building wore one rhythm — the archetypes' shared 0.14 m constant, which is L22's finding wearing a number. A town sided from separate seasons' shipments of St Joseph sawn lumber (docs/research/02-flora.md) did not hang every wall from one pile, so a uniform course is as much an invention as a varied one; this one is declared. The season key is a tendency the supply argument can carry, and the 60 m separation is not a claim about 1835 at all — it is the surface variety the owner asked for (K4: \"no two share a face\"), reconstructed as such."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor reading two neighbouring facades sees genuinely different board courses — h_jones_store hangs ~25 courses where carpenter_south_water_store hangs ~19 on the same wall height — and cannot tell from the mesh that the difference is dealt rather than documented. The Evidence panel's `reconstructed` grade and the note on every value say so."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any survivor's account, bill of lading, mill advertisement or measured photograph stating a board width for a named building replaces that building's dealt value one for one; a document on the town's lumber stock would replace the whole set's bounds."
+        },
+        {
+          "label": "Covers",
+          "text": "`bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-20."
         }
       ]
     },

@@ -4685,6 +4685,31 @@ for one.
 **Covers:** `terrain.e1834_harbor_cut.approaches.north_branch_west`, `terrain.e1834_harbor_cut.approaches.north_branch_east`, `terrain.e1834_harbor_cut.approaches.south_branch_west`, `terrain.e1834_harbor_cut.approaches.south_branch_east`, `terrain.e1834_harbor_cut.approaches.dearborn_south`, `terrain.e1834_harbor_cut.approaches.dearborn_north`, `terrain.e1834_harbor_cut.approaches.slough_west`, `terrain.e1834_harbor_cut.approaches.slough_east`.
 **Recorded:** 2026-08-19.
 
+### L148 — Every named frame building's siding stock is dealt, not found
+
+**Decision:** the exposed face of the clapboard on the 24 named frame buildings is a per-record
+value, `siding_exposure_m`, one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather
+— dealt by `tools/deal_siding_stock.py`: keyed to the phase's construction season, then advanced
+so no frame building standing within 60 m shares its neighbour's stock. Derived records — the
+anonymous parcels and the five frame buildings the inferred-household programme regenerates
+byte-exact — stay on the archetypes' 0.14 m default, counted by the deal as fixed neighbours.
+**Why:** no source states the exposed face of any Chicago building's siding, and until T-0049
+every frame building wore one rhythm — the archetypes' shared 0.14 m constant, which is L22's
+finding wearing a number. A town sided from separate seasons' shipments of St Joseph sawn lumber
+(docs/research/02-flora.md) did not hang every wall from one pile, so a uniform course is as much
+an invention as a varied one; this one is declared. The season key is a tendency the supply
+argument can carry, and the 60 m separation is not a claim about 1835 at all — it is the surface
+variety the owner asked for (K4: "no two share a face"), reconstructed as such.
+**Consequence:** a visitor reading two neighbouring facades sees genuinely different board
+courses — h_jones_store hangs ~25 courses where carpenter_south_water_store hangs ~19 on the
+same wall height — and cannot tell from the mesh that the difference is dealt rather than
+documented. The Evidence panel's `reconstructed` grade and the note on every value say so.
+**How to resolve:** any survivor's account, bill of lading, mill advertisement or measured
+photograph stating a board width for a named building replaces that building's dealt value one
+for one; a document on the town's lumber stock would replace the whole set's bounds.
+**Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
+**Recorded:** 2026-08-20.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

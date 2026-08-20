@@ -28,7 +28,8 @@ from archetypes.frame_tavern_params import FrameTavernParams  # noqa: E402
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_LOG, M_SHUTTER, M_GLASS = 0, 1, 2, 3, 4
 
-CLAPBOARD_COURSE_M = 0.14   # exposed face of a period clapboard, ~5.5 in
+# The exposed face per course is `params.siding_exposure_m` — a record's own mill
+# stock since T-0049, defaulting to 0.14 m (~5.5 in), which was a constant here.
 CORNER_LOG_D = 0.22         # hewn log face
 
 
@@ -71,7 +72,7 @@ def build(params: FrameTavernParams, name: str):
     # clapboard courses as shallow relief on the two long elevations. Cheap
     # geometry, but it is what makes a frame building read as frame rather than
     # as a painted box at walking distance.
-    _clapboard(b, w, d, wall_z, c_clad)
+    _clapboard(b, w, d, wall_z, c_clad, params.siding_exposure_m)
 
     ridge_z = b.add_gable_roof(0, 0, w, d, wall_z, params.roof_pitch_deg, c_roof,
                                M_ROOF, ridge_along_x=(w >= d))
@@ -124,12 +125,14 @@ def _stack_fractions(n: int) -> tuple[float, ...]:
     return tuple(0.22 + i * step for i in range(n))
 
 
-def _clapboard(b: MeshBuilder, w: float, d: float, wall_z: float, conf: float) -> None:
-    """Horizontal lap courses, modelled as a thin proud lip per course."""
+def _clapboard(b: MeshBuilder, w: float, d: float, wall_z: float, conf: float,
+               course: float) -> None:
+    """Horizontal lap courses, modelled as a thin proud lip per course. `course`
+    is the record's own mill stock (params.siding_exposure_m)."""
     lip = 0.018
-    n = int(wall_z / CLAPBOARD_COURSE_M)
+    n = int(wall_z / course)
     for i in range(1, n):
-        z = i * CLAPBOARD_COURSE_M
+        z = i * course
         for y, ny in ((0.0, -lip), (d, d + lip)):
             b.add_poly([(0, y, z), (w, y, z), (w, ny, z - 0.02), (0, ny, z - 0.02)],
                        conf, M_WALL)

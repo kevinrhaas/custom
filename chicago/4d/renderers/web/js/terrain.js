@@ -169,6 +169,17 @@ export class Heightfield {
     return this.adopt(meta, buffer);
   }
 
+  /** True when (e, n) lies on the loaded grid. Outside it, `sample()` answers
+   * with `fallbackY` rather than a measurement — callers that refine geometry
+   * against the field (streets.js, T-0110) must not treat that constant as
+   * ground truth, so this is the test that separates the two. */
+  contains(e, n) {
+    if (!this.loaded) return false;
+    const gx = (e - this.originE) / this.cellM;
+    const gy = (n - this.originN) / this.cellM;
+    return gx >= 0 && gy >= 0 && gx <= this.cols - 1 && gy <= this.rows - 1;
+  }
+
   /** Elevation in metres at local ENU (e, n). Bilinear; clamped at the edges. */
   sample(e, n) {
     if (!this.loaded) return this.fallbackY;
@@ -385,6 +396,10 @@ export async function createTerrain({
 
     /** True where the terrain is below the water surface. */
     isWater(e, n) { return heightfield.sample(e, n) < SHORE_Y; },
+
+    /** True where (e, n) is on the measured grid — where `surfaceHeight()` is
+     * a sample rather than the out-of-bounds fallback (T-0110). */
+    inBounds(e, n) { return heightfield.contains(e, n); },
 
     /** Drift the ripples. One line in the render loop; nothing else animates. */
     update(dt) {

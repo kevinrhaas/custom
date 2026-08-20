@@ -508,14 +508,14 @@
       "centre_n": 220.9,
       "flat_radius_m": 45.0,
       "outer_radius_m": 75.0,
-      "rise_ft": 2.8,
+      "rise_ft": 3.8,
       "dossier_zone": 6,
       "confidence": "inferred",
       "sources": [
         "chicagology_prefire274",
         "wright_1834"
       ],
-      "note": "The fort 'stood upon a flattened mound, formed by the curve of the river at its base on its three sides', and was 'as high as any other point'. Dossier zone 6 puts it at +10 to +12 ft, apex +12, about 300 x 300 ft and flat-topped. Built here as a 90 m flat top with a 60 m skirt, rising 2.8 ft over the reservation's 8.2 ft — an apex near +11.0, the middle of the zone's range and consistent with 'as high as any other point' when the sand ridge beside it stands at +9.4. The CENTRE is the Wright 1834 FORT DEARBORN banner, read at local E +1152.4 / N +220.9 and cross-checked against the modern Michigan Avenue bridge at E +1127 / N +195 — 35 m apart from methods sharing no input. Wright LABELS the reservation and draws no plan, so this locates a landform and says nothing whatever about the fort's footprint, which must come from elsewhere. The mound's skirt reaches the river bank on its north side, which is what the source describes; the bank ramp still carries it to Z=0 at the waterline."
+      "note": "The fort 'stood upon a flattened mound, formed by the curve of the river at its base on its three sides', and was 'as high as any other point'. Dossier zone 6 puts it at +10 to +12 ft, apex +12, about 300 x 300 ft and flat-topped. Built here as a 90 m flat top with a 60 m skirt, rising 3.8 ft over the reservation's 8.2 ft — an apex at +12.0, which is the apex the zone itself states. The first pass took the mid-range +11.0; T-0004 (the owner's K8: the banks read too low against the fort views) re-read the evidence and moved to the zone's own apex, because 'as high as any other point' is a superlative and +11.0 left the mound under two feet over the sand ridge's +9.4-9.5 while zone 5 puts the dune hummocks at +10 to +14. The tier-5 fort views read higher still, 10-20 ft to the eye; they are RECORDED, NOT AVERAGED IN — docs/RESEARCH/fort_reach_bank_heights.md holds that disagreement, and Swearingen's and Hubbard's eight feet stay where they were measured, on the BANK (zone 12, the divisions crest, unchanged, as are the forks banks). The CENTRE is the Wright 1834 FORT DEARBORN banner, read at local E +1152.4 / N +220.9 and cross-checked against the modern Michigan Avenue bridge at E +1127 / N +195 — 35 m apart from methods sharing no input. Wright LABELS the reservation and draws no plan, so this locates a landform and says nothing whatever about the fort's footprint, which must come from elsewhere. The mound's skirt reaches the river bank on its north side, which is what the source describes; the bank ramp still carries it to Z=0 at the waterline, so the north face carries the full +12 ft over about a 25 m run — 1:6.8, inside the 1:6 to 1:10 band the bank block holds every shore to."
     }
   ],
   "marsh_strips": [
