@@ -10,6 +10,25 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
+ * `SMOKE_STAGE=1` (or `2`) runs one half of each viewport's body — the split is
+ * at the "the ground faces the sky" section, the one measured point where no
+ * binding crosses (T-0060). It exists because a steward run's single foreground
+ * command is capped at ten minutes and by 2026-08-18 neither viewport's full
+ * pass fit inside it, so the run was killed mid-suite and the page-error
+ * assertion — the LAST line of each viewport — was never taken. A staged run is
+ * not the gate either, and says so; the gate is both viewports, both stages:
+ *
+ *   SMOKE_VIEWPORT=mobile  SMOKE_STAGE=1 node tools/smoke_renderer.mjs --published
+ *   SMOKE_VIEWPORT=mobile  SMOKE_STAGE=2 node tools/smoke_renderer.mjs --published
+ *   SMOKE_VIEWPORT=desktop SMOKE_STAGE=1 node tools/smoke_renderer.mjs --published
+ *   SMOKE_VIEWPORT=desktop SMOKE_STAGE=2 node tools/smoke_renderer.mjs --published
+ *
+ * Boot, the page-error check and the vendor checks run in EVERY invocation,
+ * whichever stage is asked for: the summary separates "staged-section checks"
+ * from those always-on checks so the halves can be audited to add up to an
+ * unfiltered pass — staged1 + staged2 section checks equal an unfiltered run's
+ * section checks, and the always-on count is identical in all three.
+ *
  * What it asserts, and why each one is here:
  *
  *   scene reaches ready ......... the boot chain actually completed
@@ -669,7 +688,15 @@ async function roadContrast(page, station) {
 
 const failures = [];
 const passes = [];
+// T-0060: checks taken inside a stage block, as opposed to the always-on
+// scaffolding (page serves, ready, loader problems, completion, page errors,
+// vendor) that every invocation takes regardless of SMOKE_STAGE. The summary
+// prints both so two staged halves can be audited to add up to an unfiltered
+// pass: staged section counts sum, scaffolding counts match.
+let inStageWork = false;
+let stageWorkChecks = 0;
 function check(name, cond, detail = '') {
+  if (inStageWork) stageWorkChecks += 1;
   if (cond) { passes.push(name); console.log(`  pass  ${name}`); }
   else { failures.push(name); console.log(`  FAIL  ${name}${detail ? ` — ${detail}` : ''}`); }
 }
@@ -723,6 +750,21 @@ function signatureDistance(a, b) {
 // gate in a log somebody reads later.
 const ONLY = process.env.SMOKE_VIEWPORT || '';
 if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`);
+
+// T-0060 — the ten-minute ceiling (ROADMAP § THE RUN BUDGET). A steward run's
+// single foreground command is capped at ten minutes, and by 2026-08-18 neither
+// viewport's full pass fit: mobile was killed at 570 s at 208 passed, desktop
+// at 143, and the check that went unrun was always `zero page errors`, because
+// it was the tail. SMOKE_STAGE splits each viewport's body in two at the one
+// verified point where no binding crosses, so each half fits a command — while
+// boot, the page-error check and the vendor checks stay in every invocation.
+const STAGE = process.env.SMOKE_STAGE || '';
+if (STAGE && STAGE !== '1' && STAGE !== '2') {
+  console.error(`SMOKE_STAGE must be "1" or "2", got "${STAGE}"`);
+  process.exit(2);
+}
+if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of 2\n`);
+const stageOn = (n) => !STAGE || STAGE === String(n);
 
 for (const [label, viewport, touch] of [
   ['mobile 390x780', { width: 390, height: 780 }, true],
@@ -779,6 +821,7 @@ for (const [label, viewport, touch] of [
 
   // --- boot ---------------------------------------------------------------
   let ready = false;
+  let thrown = null;
   try {
     await page.waitForFunction(() => window.__chicago4d?.ready === true, { timeout: 30000 });
     ready = true;
@@ -813,6 +856,20 @@ for (const [label, viewport, touch] of [
 
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
+
+    // ======================================================================
+    // T-0060 — everything below, to the end of this viewport's body, runs in
+    // two stages so each fits a ten-minute command. The sections are NOT
+    // re-indented inside the stage braces on purpose: wrapping ~6,400 lines
+    // would destroy blame and make the diff that introduced this unreviewable.
+    // The try/catch is part of the same repair — a throw mid-suite used to
+    // kill the process before the page-error check, the summary and the exit
+    // code; now it is a recorded FAIL and the tail still runs.
+    // ======================================================================
+    try {
+    // STAGE 1 — "the gate counts the town" through "the traced river loaded".
+    if (stageOn(1)) {
+    inStageWork = true;
 
     // --- the gate counts the town (T-0036) --------------------------------
     // The owner asked for the number of buildings and the number of people
@@ -2282,6 +2339,16 @@ const terrainLoad = await page.evaluate(() => {
         ? `water ${terrainLoad.box.w} x ${terrainLoad.box.d} m across `
           + `(the fallback is 2400 x 2400), ${terrainLoad.groundTiles} ground tile(s)`
         : 'no water mesh in the scene at all');
+
+    inStageWork = false;
+    } // end STAGE 1 (T-0060)
+    // STAGE 2 — "the ground faces the sky" onward. The boundary is here and
+    // not at the time midpoint because it is the measured minimum of binding
+    // crossings — zero true ones, re-verified scope-aware at this revision —
+    // so a stage-2-only run boots into exactly the state this line expects.
+    if (stageOn(2)) {
+    inStageWork = true;
+
     // --- the ground faces the sky ------------------------------------------
     //
     // `gltf-transform optimize` SIMPLIFIES BY DEFAULT, and on this dataset that
@@ -7269,11 +7336,25 @@ const terrainLoad = await page.evaluate(() => {
     await page.evaluate(() => window.__chicago4d.popup.close());
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
+    inStageWork = false;
+    } // end STAGE 2 (T-0060)
+    } catch (e) {
+      inStageWork = false;
+      thrown = e;
+    }
+
     if (KEEP) {
       await page.screenshot({ path: path.join(KEEP, `walk-${viewport.width}x${viewport.height}.png`) });
     }
   }
 
+  // T-0060: taken in EVERY invocation, staged or not. Both used to be
+  // unreachable in practice — `zero page errors` was the tail of a body that
+  // outgrew its command ceiling, so a killed run merged without ever having
+  // been told whether the page threw, and an exception mid-suite died as a
+  // bare stack with no summary and no page-error verdict at all.
+  check(`${label}: the suite body ran to completion`, thrown === null,
+    String(thrown ?? ''));
   check(`${label}: zero page errors`, errors.length === 0,
     errors.slice(0, 4).join(' | '));
   await ctx.close();
@@ -7305,6 +7386,13 @@ const terrainLoad = await page.evaluate(() => {
 server.close();
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
+// T-0060: the audit line. In an unfiltered run the staged-section count is the
+// sum of what SMOKE_STAGE=1 and SMOKE_STAGE=2 each report, and the always-on
+// count is identical in all three — that arithmetic is how two halves are
+// demonstrated to add up to the whole.
+console.log(`${stageWorkChecks} staged-section check(s)`
+  + `${STAGE ? ` (stage ${STAGE} of 2)` : ' (all stages)'}, `
+  + `${passes.length + failures.length - stageWorkChecks} always-on check(s)`);
 if (failures.length) {
   console.log(`FAILURES:\n - ${failures.join('\n - ')}`);
   process.exit(1);
