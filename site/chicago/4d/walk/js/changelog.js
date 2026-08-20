@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 204, title: 'The Green Tree is dressed to its pictures', kind: 'feature', ts: '2026-08-20T12:35:38.791Z', date: 'Aug 20, 2026, 7:35 AM CT',
+    items: [
+      'The town’s best-documented inn finally looks like its three surviving views. Its long Lake Street wall — bare boards and not a single opening before — now carries clapboard and two storeys of evenly spaced sash windows, with the side door the old landlord described "about the middle of the long side". The Canal Street front gets its door, flanking windows, and the small attic light in the gable that a lodger remembered.',
+      'Both chimneys now stand on the ridge, one at each gable end, the way the plates draw them. They used to float part-way down the roof slopes.',
+      'A low gabled wing now extends off the rear, a wide carriage door in its end opening to the yard — the "low one-story addition" the 1838 landlord attested and both engravings picture. The yard’s two farm wagons draw up square to its wall.',
+      'The pictures are retrospective — drawn decades later, showing the 1838 house. The window rhythm and end chimneys are graded inferred from them; the wing is declared an outright reconstruction, since nothing dates it to 1835, and the liberties ledger records every invented dimension. Aim at the inn and its card says which is which.',
+      'Only the rear wing is built although the landlord named additions at both ends: on this placement the other end stands on Canal Street itself. That tension is recorded on the record, where it belongs.',
+    ] },
   { v: 203, title: 'The release gate can finish its rounds again', kind: 'chore', ts: '2026-08-20T08:56:20.675Z', date: 'Aug 20, 2026, 3:56 AM CT',
     items: [
       'Nothing in the town changed. This is about the checks that guard it: the automated walk-through that inspects every release had grown past what its runner could finish in one sitting, so its final assertions — including the one that asks whether the page threw an error at all — were routinely never reached.',

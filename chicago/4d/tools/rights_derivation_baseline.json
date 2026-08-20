@@ -59,6 +59,14 @@
       "sole_support": true,
       "confidence": "inferred"
     },
+    "green_tree_tavern/frame_1833/form.elevation_scheme": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
+    },
     "green_tree_tavern/frame_1833/form.paint": {
       "kind": "structure",
       "blocked_sources": [
@@ -67,6 +75,14 @@
       "sole_support": true,
       "confidence": "inferred"
     },
+    "green_tree_tavern/frame_1833/form.rear_ell": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "reconstructed"
+    },
     "green_tree_tavern/frame_1833/form.roof_type": {
       "kind": "structure",
       "blocked_sources": [
@@ -74,6 +90,14 @@
       ],
       "sole_support": true,
       "confidence": "attested"
+    },
+    "green_tree_tavern/frame_1833/form.side_entrance": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
     },
     "green_tree_tavern/frame_1833/form.stories": {
       "kind": "structure",
