@@ -611,6 +611,194 @@
       "mesh": {
         "dossier_zone": "record_only"
       }
+    },
+    {
+      "id": "lasalle_slough_lower",
+      "line": [
+        [
+          467.0,
+          -7.0
+        ],
+        [
+          469.0,
+          -30.0
+        ],
+        [
+          473.0,
+          -60.0
+        ],
+        [
+          477.0,
+          -95.0
+        ],
+        [
+          479.0,
+          -108.0
+        ]
+      ],
+      "half_width_m": 4.0,
+      "depth_ft": 3.2,
+      "confidence": "reconstructed",
+      "sources": [
+        "wright_1834",
+        "conley_stelzer_1933"
+      ],
+      "note": "T-0005. The second of the three Main Branch sloughs: the watercourse Wright 1834 draws dropping south off the main stem just east of La Salle Street, whose traced mouth is the south-shore re-entrant at E +462..+469 (docs/RESEARCH/clark_reach_bulge_1834.md section 4). EXISTENCE AND MOUTH are Wright's, drawn on the sheet this terrain is fitted to. THE COURSE INLAND is inferred from Conley/Stelzer 1933 (asset_use 'orientation'), which carries it up the west half of the La Salle-Clark block; its lower reach is washed as open water to about Lake Street, which is what the 3.2 ft cut expresses: on the 2.4-2.9 ft plain the bed sits about -0.6 ft and holds a narrow strip of standing backwater, the 'marshy, wet, little current' form the dossier gives these sloughs. WIDTH AND DEPTH ARE INVENTED - no source gives either; 8 m overall is inside the north-side slough's measured 7.1 m band and the 15-40 ft the dossier gives zone 14. The channel starts at N -7, one grid cell SOUTH of the platted South Water Street corridor, because Wright draws the stream stopping at the street line ('the trace stops there with it') - the street crossed on fill or a culvert nothing describes, so the corridor itself is left unbroken. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+    },
+    {
+      "id": "lasalle_slough_upper",
+      "line": [
+        [
+          479.0,
+          -108.0
+        ],
+        [
+          488.0,
+          -126.0
+        ],
+        [
+          486.0,
+          -146.0
+        ],
+        [
+          487.0,
+          -186.0
+        ],
+        [
+          493.0,
+          -212.0
+        ],
+        [
+          497.0,
+          -228.0
+        ]
+      ],
+      "half_width_m": 3.5,
+      "depth_ft": 1.8,
+      "confidence": "reconstructed",
+      "sources": [
+        "conley_stelzer_1933"
+      ],
+      "note": "T-0005. The La Salle slough above its wet lower reach: Conley/Stelzer draws the watercourse continuing as a dark drain past Lake Street and TERMINATING JUST NORTH OF RANDOLPH STREET, which is the terminus this entry carries (position to inferred under the source's 'orientation' ceiling, read at about 20-30 m tolerance). The 1.8 ft cut leaves the bed at roughly +0.8..+1.1 ft - a dry midsummer swale falling toward its own wet mouth, not open water, matching the map's change of rendering. Alignment between the mouth reach and the terminus is invented; it threads the committed reconstructed roofs, which is exactly as unattested as any other line here. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+    },
+    {
+      "id": "state_slough_course",
+      "line": [
+        [
+          596.0,
+          -340.0
+        ],
+        [
+          618.0,
+          -262.0
+        ],
+        [
+          641.0,
+          -235.0
+        ],
+        [
+          666.0,
+          -218.0
+        ],
+        [
+          702.0,
+          -190.0
+        ],
+        [
+          728.0,
+          -172.0
+        ],
+        [
+          752.0,
+          -152.0
+        ],
+        [
+          776.0,
+          -118.0
+        ],
+        [
+          788.0,
+          -84.0
+        ],
+        [
+          795.0,
+          -60.0
+        ]
+      ],
+      "half_width_m": 5.0,
+      "depth_ft": 2.2,
+      "dossier_zone": 14,
+      "confidence": "reconstructed",
+      "sources": [
+        "chicagology_prefire273",
+        "conley_stelzer_1933"
+      ],
+      "note": "T-0005. The third Main Branch slough, dossier zone 14 - the South Division's natural drain, deferred by this spec since the box first covered it and now built. THE ROUTE IS DOCUMENTED: it drained the public-square pond and the Wells Street marsh, 'passed over the site of the Tremont House and entered the river at the end of State Street' (chicagology_prefire273, transcribed at docs/research/01-terrain-hydrology.md section 2.2). Conley/Stelzer 1933 draws the full winding course and supplies the waypoints this line carries to inferred: head just east of Clark between Washington and Randolph (the square's drain), a mid-block Dearborn crossing about N -190, then north-east under the ridge toe toward State. THE DEPTH IS THE DOSSIER'S: row 14 gives the thalweg as 1.5-3.0 ft below the adjacent plain at about +0.5..+1.5 ft absolute, and 2.2 ft off the 2.9 ft plain lands the bed at +0.7 - a damp swale in July, NOT open water, which is why this is a swale and not a watercourse cut below datum. WIDTH is the dossier's 15-40 ft band read near its top (10 m). The exact line between the documented waypoints is invented and threads the committed roofs. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md.",
+      "mesh": {
+        "dossier_zone": "record_only"
+      }
+    },
+    {
+      "id": "state_slough_mouth",
+      "line": [
+        [
+          795.0,
+          -60.0
+        ],
+        [
+          806.0,
+          -35.0
+        ],
+        [
+          810.0,
+          -12.0
+        ],
+        [
+          809.5,
+          6.0
+        ],
+        [
+          809.3,
+          14.5
+        ],
+        [
+          809.8,
+          19.0
+        ],
+        [
+          816.0,
+          21.0
+        ],
+        [
+          824.0,
+          20.5
+        ],
+        [
+          836.0,
+          20.5
+        ],
+        [
+          842.0,
+          18.0
+        ],
+        [
+          848.0,
+          13.0
+        ]
+      ],
+      "half_width_m": 3.0,
+      "depth_ft": 6.2,
+      "dossier_zone": 14,
+      "confidence": "reconstructed",
+      "sources": [
+        "chicagology_prefire273",
+        "wright_1834",
+        "conley_stelzer_1933"
+      ],
+      "note": "T-0005. Zone 14's last reach, from about N -60 to the traced mouth. Three fixed points, none of them this parcel's: the Slough Log Bridge's committed deck at E +805..+813, N +14 (its record places the crossing where Water Street met the slough, and the approach cuts already grade the street down to 0.83 m there); Wright's traced south-shore re-entrant at E +850..+856 - the mouth 'at the end of State Street' - which the line ends inside; and the State Street break-of-slope the spec already builds at E +780..+880, whose toe the drain hugs on its documented west side ('State Street is the drainage divide'). The 6.2 ft cut is chosen against that rising toe — the deepest ground cut in the spec, because the toe's own crest stands 5-6 ft where the drain crosses it — so the bed stays just below datum the whole reach - the river's own level backs up a drain's last metres, so this is one connected pool from the notch to under the bridge, standing water where the town needed its log crossing. Under the pool the bed is invisible and its exact figure is a modelling convenience; where this entry's cut would surface upstream it hands over to state_slough_course. Depth and width invented, bounded as the course entry's are. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md.",
+      "mesh": {
+        "dossier_zone": "record_only"
+      }
     }
   ],
   "watercourses": [
@@ -1020,10 +1208,6 @@
     {
       "dossier_zone": 5,
       "why": "the 'white sand hills both to the north and south' of the fort are the only explicit dune reference and no source places a single one of them. Inventing hummocks in the quadrant where Fort Dearborn and the Beaubien houses stand would put relief under buildings on no evidence at all."
-    },
-    {
-      "dossier_zone": 14,
-      "why": "the slough from the public-square pond to the river at the foot of State Street is now INSIDE the box (its mouth is at about E +830). Deferred to ROADMAP S2e parcel (c), hydrology: its route is documented and its width and depth are conjectural, and cutting a conjectural channel through the block where the business district stands is a decision that belongs with the other watercourses, not smuggled in with the ground. DATED AT THE SCENE, AND THE SCENE ALREADY DRAWS THE BRIDGE OVER IT: the Slough Log Bridge stands on Water Street on 1835-07-01 and the source runs that crossing past 1840, so a visitor walks onto a timber crossing laid over open prairie. The date is inferred from the crossing, not from the watercourse — data/terrain/1835_intown_water_dating.json zone 14."
     },
     {
       "dossier_zone": 15,

@@ -68,5 +68,14 @@ contribution. The spender is T-0110's ~9 000 street-refinement triangles (#268, 
 desktop half was cut before this row), landing on the ~2 100 of headroom T-0063 measured.
 The durable saving still sits in T-0056.
 
+**Update 2026-08-20 (T-0005, the sloughs).** Measured on the T-0005 branch merged with dev
+(#273), desktop 1280 x 800 on the published mirror: `scene detail 'light' stays inside its
+own ceiling` **FAILS at 614 828 of 600 000**, 52 calls, against clean dev's 605 414 the
+same day, same runner. The +9 414 is the carved ground's: the slough swales subdivide the
+terrain remesh, and the delta is level-independent (`full` 778 446 → 787 860, `balanced`
+701 410 → 710 824 — the same +9 414 everywhere), which is the signature of a base-mesh
+cost, not a detail-tier one. The breach it deepens was open before the branch (T-0115
+banked 605 414 on T-0060's no-geometry branch). The durable saving still sits in T-0056.
+
 **Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row goes unseen)
 · `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).

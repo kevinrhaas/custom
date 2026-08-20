@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 204, title: 'The sloughs are in: two streams join the river', kind: 'feature', ts: '2026-08-20T10:00:25.791Z', date: 'Aug 20, 2026, 5:00 AM CT',
+    items: [
+      'The 1830 plat area showed three small streams — sloughs — entering the main river, and until now only one was in the town. The other two are built: the drain the whole South Division emptied through, winding from beside the public square past the Tremont House to the river at the foot of State Street, and the little watercourse dropping south off the river just east of La Salle Street, now running to its terminus near Randolph.',
+      'The log bridge on Water Street finally crosses water. It always stood at the slough’s attested crossing; the slough itself was never in the ground, so visitors walked onto a timber crossing laid over open prairie. Standing water now runs from the river, under its deck, and up the drain.',
+      'Both streams hold water near their mouths and rise into damp grassy hollows inland — in July these were drains, not creeks, and the records say how deep on whose word.',
+      'The routes follow the sources: the mouths are the 1834 survey’s own drawn notches, the documented waypoints come from the settlers’ accounts, and the courses between them follow the 1933 pictorial reconstruction of 1833 Chicago, read as a guide and graded as one. The exact lines, widths and depths are invented within those bounds and recorded in the liberties ledger.',
+    ] },
   { v: 203, title: 'The release gate can finish its rounds again', kind: 'chore', ts: '2026-08-20T08:56:20.675Z', date: 'Aug 20, 2026, 3:56 AM CT',
     items: [
       'Nothing in the town changed. This is about the checks that guard it: the automated walk-through that inspects every release had grown past what its runner could finish in one sitting, so its final assertions — including the one that asks whether the page threw an error at all — were routinely never reached.',
