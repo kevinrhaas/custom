@@ -138,7 +138,8 @@ GOODS_DOOR_SIDES = ("end", "rear")
 # silently unbuilt attribute — which is the whole point of the set.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "gable_front",
-    "construction", "cladding", "paint", "loft", "chimneys", "framing_exposed",
+    "construction", "cladding", "paint", "siding_exposure_m", "loft", "chimneys",
+    "framing_exposed",
     "shopfront", "shopfront_bays", "shopfront_door_side",
     "goods_door", "goods_door_side",
     "ell", "ell_side", "ell_width_m", "ell_depth_m", "ell_stories", "ell_height_m",
@@ -193,6 +194,12 @@ class FrameStorefrontParams:
     construction: str = "balloon_frame"
     cladding: str = "clapboard"
     paint: str = "unpainted"
+    # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
+    # the one rhythm every frame building wore until T-0049 — and stays the default
+    # for a record that carries no value. Only read when `cladding` is clapboard;
+    # the deal that writes record values is tools/deal_siding_stock.py and
+    # docs/LIBERTIES.md owns the invention.
+    siding_exposure_m: float = 0.14
 
     # The loading gable left open: studs at their true centres over horizontal
     # board sheathing. Only ever reached when a record describes the building as
@@ -305,6 +312,9 @@ class FrameStorefrontParams:
                 f"unlikely, so it is refused rather than built")
         if not 2.2 <= self.wall_height_m <= 9.0:
             raise ParamError(f"wall_height_m {self.wall_height_m} outside 2.2-9 m")
+        if not 0.10 <= self.siding_exposure_m <= 0.16:
+            raise ParamError(f"siding_exposure_m {self.siding_exposure_m} outside "
+                             f"0.10-0.16 m (~4-6.3 in): not a period clapboard exposure")
         if self.stories == 1 and self.wall_height_m > 4.2:
             raise ParamError(f"wall_height_m {self.wall_height_m} is two storeys' worth "
                              f"of wall on a one-storey record; set stories or the height")
@@ -587,6 +597,7 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
         construction=str(val("construction", "balloon_frame")),
         cladding=str(val("cladding", "clapboard")),
         paint=str(val("paint", "unpainted")),
+        siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         framing_exposed=bool(val("framing_exposed", False)),
         loft=bool(val("loft", False)),
         chimneys=int(val("chimneys", 1)),

@@ -80,7 +80,8 @@ from archetypes.frame_dwelling_params import (  # noqa: E402
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_TRIM, M_DARK, M_SHUTTER = 0, 1, 2, 3, 4
 
-CLAPBOARD_COURSE_M = 0.14   # exposed face of a period clapboard, ~5.5 in
+# The exposed face of a course is `params.siding_exposure_m` — a record's own mill
+# stock since T-0049, defaulting to 0.14 m (~5.5 in), which was this constant.
 CLAPBOARD_LIP_M = 0.018     # how far a course stands proud of the one above it
 EAVE_M = 0.25               # eave overhang, matching the other archetypes
 TRIM_RELIEF_M = 0.032       # boarded trim standing off the siding
@@ -290,7 +291,8 @@ def _clapboard(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
     make `assets/manifest.json`'s input hashes meaningless.
     """
     stud = p.stud_spacing_m
-    n = int((z_hi - z_lo) / CLAPBOARD_COURSE_M)
+    course = p.siding_exposure_m
+    n = int((z_hi - z_lo) / course)
     lip = CLAPBOARD_LIP_M
     faces_y = [(y, ny, sgn, nm) for y, ny, sgn, nm in
                ((y0, y0 - lip, -1.0, "front"), (y1, y1 + lip, 1.0, "back"))
@@ -299,7 +301,7 @@ def _clapboard(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
                ((x0, x0 - lip, -1.0, "left"), (x1, x1 + lip, 1.0, "right"))
                if nm not in skip]
     for i in range(1, n):
-        z = z_lo + i * CLAPBOARD_COURSE_M
+        z = z_lo + i * course
         if z > z_hi - 0.02:
             break
         for y, ny, _sgn, _nm in faces_y:
@@ -313,12 +315,12 @@ def _clapboard(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
             for jx in _joint_positions(x0, x1, stud, i):
                 for y, _ny, sgn, _nm in faces_y:
                     _panel(b, "y", y + sgn * (lip + 0.006), jx - 0.015, jx + 0.015,
-                           z - CLAPBOARD_COURSE_M, z, int(sgn), conf, M_WALL)
+                           z - course, z, int(sgn), conf, M_WALL)
         else:
             for jy in _joint_positions(y0, y1, stud, i):
                 for x, _nx, sgn, _nm in faces_x:
                     _panel(b, "x", x + sgn * (lip + 0.006), jy - 0.015, jy + 0.015,
-                           z - CLAPBOARD_COURSE_M, z, int(sgn), conf, M_WALL)
+                           z - course, z, int(sgn), conf, M_WALL)
 
 
 def _joint_positions(u0: float, u1: float, stud: float, course: int) -> list:

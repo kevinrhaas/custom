@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 201, title: 'No two neighbours hang their clapboard the same', kind: 'feature', ts: '2026-08-20T01:24:44.423Z', date: 'Aug 19, 2026, 8:24 PM CT',
+    items: [
+      'Every frame building in town wore identical siding — lap courses of one width, 5½ inches to the weather, from the Sauganash to the smallest store. Twenty-four named frame buildings now each carry their own mill stock — 4½, 5, 5½ or 6 inches showing per board — and no two frame buildings standing within sixty metres of each other share one.',
+      'Walk South Water Street and the difference is on the walls: Jones’s store hangs a visibly finer course than Carpenter’s store two lots east — a third more boards climbing the same storey.',
+      'No source states the width of any Chicago building’s siding, so every value is declared invented: bounded by the four sidings a period mill shipped, dealt by a written rule, and graded reconstructed. Aim at a building and its card says which stock it wears and that the choice was dealt, not found.',
+      'The anonymous reconstructed roofs keep the old 5½-inch stock for now; dealing them their own is filed as follow-up work.',
+    ] },
   { v: 200, title: 'The dirt road runs all the way onto the bridges', kind: 'fix', ts: '2026-08-19T23:38:35.961Z', date: 'Aug 19, 2026, 6:38 PM CT',
     items: [
       'Walking Kinzie Street onto the North Branch bridge, the worn track frayed on the ramp — ragged green wedges ate its edges, and it stopped on grass short of the deck. Now it runs continuously up the approach and meets the boards, at both ends of the bridge.',

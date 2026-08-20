@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 19, 2026, 8:01 PM",
+  "generated_ct": "Aug 19, 2026, 8:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1950,6 +1950,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 71
+    },
+    {
+      "id": "T-0112",
+      "title": "Deal the anonymous roofs their own siding stocks, in their recipes",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-19",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 72
     }
   ]
 }
