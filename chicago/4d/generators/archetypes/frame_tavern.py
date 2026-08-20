@@ -31,6 +31,9 @@ M_WALL, M_ROOF, M_LOG, M_SHUTTER, M_GLASS = 0, 1, 2, 3, 4
 # The exposed face per course is `params.siding_exposure_m` — a record's own mill
 # stock since T-0049, defaulting to 0.14 m (~5.5 in), which was a constant here.
 CORNER_LOG_D = 0.22         # hewn log face
+ROOF_OVERHANG = 0.25        # add_gable_roof's default; the gable triangles sit
+                            # this far proud of the wall plane, so anything drawn
+                            # ON a gable (the attic lights) must sit past it.
 
 
 def build(params: FrameTavernParams, name: str):
@@ -69,29 +72,56 @@ def build(params: FrameTavernParams, name: str):
     # building across the whole town
     b.add_box(0, 0, 0, w, d, wall_z, c_mass, M_WALL, skip=("bottom",))
 
-    # clapboard courses as shallow relief on the two long elevations. Cheap
-    # geometry, but it is what makes a frame building read as frame rather than
-    # as a painted box at walking distance.
+    # clapboard courses as shallow relief. Cheap geometry, but it is what makes
+    # a frame building read as frame rather than as a painted box at walking
+    # distance. The original scheme laps only the two y faces — for a
+    # frontage-scheme building those are the show elevations; the gable_front
+    # scheme laps the eaves elevations too, because there the x faces ARE the
+    # long street elevations and a bare one reads as a painted box (T-0083's
+    # before frame shows exactly that).
     _clapboard(b, w, d, wall_z, c_clad, params.siding_exposure_m)
+    if params.elevation_scheme == "gable_front":
+        _clapboard_eaves(b, w, d, wall_z, c_clad, params.siding_exposure_m)
 
     ridge_z = b.add_gable_roof(0, 0, w, d, wall_z, params.roof_pitch_deg, c_roof,
                                M_ROOF, ridge_along_x=(w >= d))
 
-    # windows: five bays upper, four plus a centred door below — the arrangement
-    # both surviving depictions show. Fenestration is not separately attested, so
-    # it inherits the massing's confidence at best.
+    # windows. "frontage": five bays upper, four plus a centred door below — the
+    # arrangement both Sauganash depictions show. "gable_front": even bays along
+    # the eaves elevations and doors on the gable faces — the arrangement plate
+    # "11" draws for the Green Tree (T-0083). Fenestration is not separately
+    # attested, so it inherits the record's scheme confidence at best.
     c_fen = params.conf("fenestration", "reconstructed")
-    _fenestration(b, params, w, d, wall_z, c_fen)
+    if params.elevation_scheme == "gable_front":
+        _fenestration_gable_front(
+            b, params, w, d, wall_z, ridge_z,
+            max(c_fen, params.conf("elevation_scheme")))
+    else:
+        _fenestration(b, params, w, d, wall_z, c_fen)
 
     if params.log_wing:
         _log_wing(b, params, d)
+    if params.rear_ell:
+        _rear_ell(b, params, w)
 
-    # chimneys — as many stacks as the record counts, on the ridge line.
-    c_ch = params.conf("chimneys")
-    for fx in _stack_fractions(params.chimneys):
-        cx = w * fx
-        b.add_box(cx - 0.45, d / 2 - 0.45, wall_z, cx + 0.45, d / 2 + 0.45,
-                  ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
+    # chimneys — as many stacks as the record counts. "frontage" spaces them
+    # across the frontage at the depth midline (the original arrangement, kept
+    # exactly so no committed building moves); "gable_ends" stands one ON the
+    # ridge line at each gable end, which is what plate "11" draws.
+    if params.chimney_placement == "gable_ends":
+        c_ch = params.worst_conf("chimneys", "chimney_placement")
+        inset = 0.6
+        spots = ([(inset, d / 2), (w - inset, d / 2)] if w >= d
+                 else [(w / 2, inset), (w / 2, d - inset)])
+        for cx, cy in spots:
+            b.add_box(cx - 0.45, cy - 0.45, wall_z, cx + 0.45, cy + 0.45,
+                      ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
+    else:
+        c_ch = params.conf("chimneys")
+        for fx in _stack_fractions(params.chimneys):
+            cx = w * fx
+            b.add_box(cx - 0.45, d / 2 - 0.45, wall_z, cx + 0.45, d / 2 + 0.45,
+                      ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
 
     mats = [
         simple_material("wall", PAINT_RGBA.get(params.paint, PAINT_RGBA["unpainted"])),
@@ -136,6 +166,141 @@ def _clapboard(b: MeshBuilder, w: float, d: float, wall_z: float, conf: float,
         for y, ny in ((0.0, -lip), (d, d + lip)):
             b.add_poly([(0, y, z), (w, y, z), (w, ny, z - 0.02), (0, ny, z - 0.02)],
                        conf, M_WALL)
+
+
+def _clapboard_eaves(b: MeshBuilder, w: float, d: float, wall_z: float,
+                     conf: float, course: float) -> None:
+    """Lap courses on the two x faces — the eaves elevations of a gable-front
+    building, which are its long street walls and must read as clapboard."""
+    lip = 0.018
+    n = int(wall_z / course)
+    for i in range(1, n):
+        z = i * course
+        for x, nx in ((0.0, -lip), (w, w + lip)):
+            b.add_poly([(x, 0, z), (x, d, z), (nx, d, z - 0.02), (nx, 0, z - 0.02)],
+                       conf, M_WALL)
+
+
+def _fenestration_gable_front(b: MeshBuilder, params: FrameTavernParams, w: float,
+                              d: float, wall_z: float, ridge_z: float,
+                              conf: float) -> None:
+    """The gable-front dress, read off plate "11" of the 2026-08-11 reference set
+    (data/sources/assets/prefire_views_kevin_2026_08/p6_0.png, T-0083): even
+    sash bays along both eaves elevations, the front gable carrying a centred
+    door with flanking windows, and a small attic light in each gable peak —
+    the one John Gray attests. The BAY COUNT is the archetype's arithmetic on
+    the footprint, not a record's; docs/LIBERTIES.md L149 owns the arrangement.
+
+    Windows are recesses rather than holes, same as _fenestration; the scheme
+    draws no shutters (validate refuses the combination rather than guessing).
+    """
+    story_h = wall_z / max(params.stories, 1)
+    win_w, win_h, depth = 0.85, 1.35, 0.06
+
+    # ---- even bays along the two eaves elevations (the x faces) ----------- #
+    bays = max(3, min(7, round(d / 2.2)))
+    for face, x_wall, sgn in (("x_min", 0.0, -1.0), ("x_max", w, 1.0)):
+        xx = x_wall + sgn * depth
+        for story in range(params.stories):
+            z0 = story * story_h + story_h * 0.30
+            for i in range(bays):
+                cy = d * (i + 0.5) / bays
+                # the attested second entrance, about the middle of the eaves
+                # elevation the record names — a door instead of that bay
+                if story == 0 and face == params.side_entrance_face and i == bays // 2:
+                    y0q, y1q = ((cy + 0.6, cy - 0.6) if sgn < 0
+                                else (cy - 0.6, cy + 0.6))
+                    b.add_poly([(xx, y0q, 0), (xx, y1q, 0),
+                                (xx, y1q, 2.1), (xx, y0q, 2.1)], conf, M_GLASS)
+                    continue
+                y0q, y1q = ((cy + win_w / 2, cy - win_w / 2) if sgn < 0
+                            else (cy - win_w / 2, cy + win_w / 2))
+                b.add_poly([(xx, y0q, z0), (xx, y1q, z0),
+                            (xx, y1q, z0 + win_h), (xx, y0q, z0 + win_h)],
+                           conf, M_GLASS)
+
+    # ---- the front gable: centred door, flanking bays ---------------------- #
+    yy = d + depth
+    b.add_poly([(w / 2 + 0.6, yy, 0), (w / 2 - 0.6, yy, 0),
+                (w / 2 - 0.6, yy, 2.1), (w / 2 + 0.6, yy, 2.1)], conf, M_GLASS)
+    for story in range(params.stories):
+        z0 = story * story_h + story_h * 0.30
+        for cx in (w * 0.22, w * 0.78):
+            b.add_poly([(cx + win_w / 2, yy, z0), (cx - win_w / 2, yy, z0),
+                        (cx - win_w / 2, yy, z0 + win_h),
+                        (cx + win_w / 2, yy, z0 + win_h)], conf, M_GLASS)
+
+    # ---- the rear gable ---------------------------------------------------- #
+    # With a rear ell the storey windows would open into the ell's roof space;
+    # the plate never shows this face, so the ell keeps the wall and only the
+    # attic light above it is drawn.
+    if not params.rear_ell:
+        for story in range(params.stories):
+            z0 = story * story_h + story_h * 0.30
+            for cx in (w * 0.22, w * 0.78):
+                b.add_poly([(cx - win_w / 2, -depth, z0), (cx + win_w / 2, -depth, z0),
+                            (cx + win_w / 2, -depth, z0 + win_h),
+                            (cx - win_w / 2, -depth, z0 + win_h)], conf, M_GLASS)
+
+    # ---- an attic light in each gable peak --------------------------------- #
+    # John Gray: "There should also be a small attic window in the gable end,
+    # for we used the attic, too." The gable triangles sit ROOF_OVERHANG proud
+    # of the wall plane, so the lights sit just past them.
+    aw, ah = 0.55, 0.65
+    z0 = wall_z + 0.45
+    for yy2, order in ((d + ROOF_OVERHANG + 0.02, 1.0), (-ROOF_OVERHANG - 0.02, -1.0)):
+        b.add_poly([(w / 2 + order * aw / 2, yy2, z0),
+                    (w / 2 - order * aw / 2, yy2, z0),
+                    (w / 2 - order * aw / 2, yy2, z0 + ah),
+                    (w / 2 + order * aw / 2, yy2, z0 + ah)], conf, M_GLASS)
+
+
+def _rear_ell(b: MeshBuilder, params: FrameTavernParams, w: float) -> None:
+    """The low gabled tail off the rear gable end — John Gray's one-storey
+    addition, drawn to the two retrospective views: clapboard like the house,
+    its own lower gable continuing the main axis, and a wide carriage door in
+    the far gable opening to the yard where the wagons stand. Everything here
+    is `reconstructed` and docs/LIBERTIES.md L149 owns the sizes.
+    """
+    c = params.conf("rear_ell", "reconstructed")
+    ew, ed, eh = params.rear_ell_width_m, params.rear_ell_depth_m, params.rear_ell_wall_m
+    x0e, x1e = (w - ew) / 2, (w + ew) / 2
+    cxe = w / 2
+
+    # walls — the y=0 plane is the main block's own rear wall, so skip "back"
+    b.add_box(x0e, -ed, 0, x1e, 0, eh, c, M_WALL, skip=("bottom", "back"))
+
+    # clapboard courses on the three exposed walls
+    course = params.siding_exposure_m
+    lip = 0.018
+    for i in range(1, int(eh / course)):
+        z = i * course
+        b.add_poly([(x1e, -ed, z), (x0e, -ed, z),
+                    (x0e, -ed - lip, z - 0.02), (x1e, -ed - lip, z - 0.02)],
+                   c, M_WALL)
+        b.add_poly([(x0e, 0, z), (x0e, -ed, z),
+                    (x0e - lip, -ed, z - 0.02), (x0e - lip, 0, z - 0.02)],
+                   c, M_WALL)
+        b.add_poly([(x1e, -ed, z), (x1e, 0, z),
+                    (x1e + lip, 0, z - 0.02), (x1e + lip, -ed, z - 0.02)],
+                   c, M_WALL)
+
+    # its own gable roof, ridge continuing the main axis at the lower eave.
+    # The attachment-side triangle lands inside the main block and is unseen.
+    b.add_gable_roof(x0e, -ed, x1e, 0, eh, 34.0, c, M_ROOF, ridge_along_x=False)
+
+    # the wide carriage door, centred in the far gable
+    yy = -ed - 0.06
+    b.add_poly([(cxe - 1.2, yy, 0), (cxe + 1.2, yy, 0),
+                (cxe + 1.2, yy, 2.2), (cxe - 1.2, yy, 2.2)], c, M_GLASS)
+
+    # one small light on each eaves wall
+    cy = -ed / 2
+    for x_wall, sgn in ((x0e, -1.0), (x1e, 1.0)):
+        xx = x_wall + sgn * 0.06
+        y0q, y1q = (cy + 0.35, cy - 0.35) if sgn < 0 else (cy - 0.35, cy + 0.35)
+        b.add_poly([(xx, y0q, 0.9), (xx, y1q, 0.9),
+                    (xx, y1q, 1.9), (xx, y0q, 1.9)], c, M_GLASS)
 
 
 def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,

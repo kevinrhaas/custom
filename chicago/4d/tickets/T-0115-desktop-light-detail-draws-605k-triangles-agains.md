@@ -59,3 +59,7 @@ light tier, difference it.
 Full stage sweep on the merged tree, for the record: mobile 1/2/4 PASS, mobile 3 = T-0114's
 two known road failures; desktop 1/4 PASS, desktop 2 = this ticket, desktop 3 = one of
 T-0114's two. No failure outside the two open tickets.
+
+**Measured worse by T-0083, 2026-08-20:** the Green Tree's corrected fabric adds ~310
+triangles on top of the above. Still under one percent of the tier by itself; the
+attribution method stands unchanged.

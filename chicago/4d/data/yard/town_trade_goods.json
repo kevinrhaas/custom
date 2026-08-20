@@ -2318,24 +2318,24 @@
       "belongs_to": "green_tree_tavern",
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        -132.78,
+        -128.28,
         -90.18
       ],
       "bearing_deg": 90.0,
-      "clearance_m": 30.9,
-      "note": "A FARM WAGON IN THE GREEN TREE'S YARD, and the picture is the whole reason it is here. The Trowbridge drawing of this inn (data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows farm wagons standing in its yard — a tier-5 retrospective view, which may drive furniture and setting and may never drive a coordinate. So WHERE is derived: the wagons stand drawn up square to the rear wall, tongues out, 1.00 m clear of it, spaced at the 3.20 m of ground a parked wagon needs, laid in from the far end of that wall. The yard is taken to run back as far as the front is wide, which is the only length this record has. What is invented is the depth of that yard, that a wagon stood in it at noon on 1 July 1835, and the wagon itself: docs/LIBERTIES.md L131 and L133."
+      "clearance_m": 32.02,
+      "note": "A FARM WAGON IN THE GREEN TREE'S YARD, and the picture is the whole reason it is here. The Trowbridge drawing of this inn (data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows farm wagons standing in its yard — a tier-5 retrospective view, which may drive furniture and setting and may never drive a coordinate. So WHERE is derived: the wagons stand drawn up square to the building's built rear face — since T-0083 that is the rear ell's far wall — tongues out, 1.00 m clear of it, spaced at the 3.20 m of ground a parked wagon needs, laid in from the far end of that wall. The yard is taken to run back as far as the front is wide, which is the only length this record has. What is invented is the depth of that yard, that a wagon stood in it at noon on 1 July 1835, and the wagon itself: docs/LIBERTIES.md L131 and L133."
     },
     {
       "id": "green_tree_tavern_yard_wagon_2",
       "belongs_to": "green_tree_tavern",
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        -132.78,
+        -128.28,
         -93.38
       ],
       "bearing_deg": 90.0,
-      "clearance_m": 27.76,
-      "note": "A FARM WAGON IN THE GREEN TREE'S YARD, and the picture is the whole reason it is here. The Trowbridge drawing of this inn (data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows farm wagons standing in its yard — a tier-5 retrospective view, which may drive furniture and setting and may never drive a coordinate. So WHERE is derived: the wagons stand drawn up square to the rear wall, tongues out, 1.00 m clear of it, spaced at the 3.20 m of ground a parked wagon needs, laid in from the far end of that wall. The yard is taken to run back as far as the front is wide, which is the only length this record has. What is invented is the depth of that yard, that a wagon stood in it at noon on 1 July 1835, and the wagon itself: docs/LIBERTIES.md L131 and L133."
+      "clearance_m": 29.0,
+      "note": "A FARM WAGON IN THE GREEN TREE'S YARD, and the picture is the whole reason it is here. The Trowbridge drawing of this inn (data/sources/assets/owner_brief_2026_08_18/README.md, image 7) shows farm wagons standing in its yard — a tier-5 retrospective view, which may drive furniture and setting and may never drive a coordinate. So WHERE is derived: the wagons stand drawn up square to the building's built rear face — since T-0083 that is the rear ell's far wall — tongues out, 1.00 m clear of it, spaced at the 3.20 m of ground a parked wagon needs, laid in from the far end of that wall. The yard is taken to run back as far as the front is wide, which is the only length this record has. What is invented is the depth of that yard, that a wagon stood in it at noon on 1 July 1835, and the wagon itself: docs/LIBERTIES.md L131 and L133."
     },
     {
       "id": "green_tree_tavern_shed_wagon",
