@@ -764,6 +764,18 @@ export async function createFlora({
    *  lattice slot to choose which half of the community it may pick from. */
   function station(e, n, zone, species, wet = water.isWater(e, n)) {
     if (growthBlocked(e, n)) return null;
+    // THE FLOOR TEST COMES BEFORE THE WATER TEST, and the order is the bug it
+    // fixes. This block-list rejection used to sit below the `wet` early return,
+    // so it only ever governed DRY ground - and every deck standing over water
+    // (a wharf, a bridge) was invisible to it. An emergent bulrush is exactly as
+    // entitled to the riverbed under a dock as a bluestem is to the soil under a
+    // walk, and neither may come up through the planks. Owner-reported twice:
+    // reeds through the dock decks, sward through the sidewalks (T-0085/T-0124).
+    for (const b of blocks) {
+      const dx = e - b.e;
+      const dz = n - b.n;
+      if (dx * dx + dz * dz < b.r2 && pointInPolygon(b.pts, e, n)) return null;
+    }
     if (wet) {
       // A water BUFFER is not permission for every member of that community to
       // stand in the channel. Only records whose recorded `substrate` puts them
@@ -778,11 +790,6 @@ export async function createFlora({
     // `nymphaea_odorata` are 0.01-0.10 m tall, so the failure was quiet — pads at
     // ankle height standing on the soil of the marsh edge rather than on water.
     if (species?.substrate === 'open_water') return null;
-    for (const b of blocks) {
-      const dx = e - b.e;
-      const dz = n - b.n;
-      if (dx * dx + dz * dz < b.r2 && pointInPolygon(b.pts, e, n)) return null;
-    }
     return terrain.surfaceHeight(e, n);
   }
 

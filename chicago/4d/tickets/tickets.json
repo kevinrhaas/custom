@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 20, 2026, 2:31 PM",
+  "generated_ct": "Aug 20, 2026, 2:53 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1488,7 +1488,7 @@
     {
       "id": "T-0085",
       "title": "The sward grows up through the Green Tree's plank walk",
-      "state": "open",
+      "state": "done",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": false,
@@ -1496,12 +1496,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-20",
+      "pr": "281",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": null
     },
     {
       "id": "T-0086",
@@ -1555,7 +1555,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0090",
@@ -1627,7 +1627,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0094",
@@ -1645,7 +1645,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0095",
@@ -1663,7 +1663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0096",
@@ -1681,7 +1681,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0097",
@@ -1699,7 +1699,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0098",
@@ -1717,7 +1717,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0099",
@@ -1735,7 +1735,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0100",
@@ -1753,7 +1753,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0101",
@@ -1807,7 +1807,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 62
     },
     {
       "id": "T-0104",
@@ -1825,7 +1825,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 63
     },
     {
       "id": "T-0105",
@@ -1843,7 +1843,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 64
     },
     {
       "id": "T-0106",
@@ -1861,7 +1861,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 65
     },
     {
       "id": "T-0107",
@@ -1879,7 +1879,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 66
     },
     {
       "id": "T-0108",
@@ -1915,7 +1915,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 67
     },
     {
       "id": "T-0110",
@@ -1951,7 +1951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 68
     },
     {
       "id": "T-0112",
@@ -1969,7 +1969,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 70
+      "queue_rank": 69
     },
     {
       "id": "T-0113",
@@ -1987,7 +1987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 70
     },
     {
       "id": "T-0114",
@@ -2005,7 +2005,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 71
     },
     {
       "id": "T-0115",
@@ -2023,7 +2023,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 72
     },
     {
       "id": "T-0116",
@@ -2059,7 +2059,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 73
     },
     {
       "id": "T-0118",
@@ -2131,7 +2131,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 74
     },
     {
       "id": "T-0122",
@@ -2149,7 +2149,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 75
     },
     {
       "id": "T-0123",
@@ -2168,6 +2168,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0124",
+      "title": "Nothing grows through a plank floor",
+      "state": "done",
+      "epic": "FLORA",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-20",
+      "closed": "2026-08-20",
+      "pr": "281",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

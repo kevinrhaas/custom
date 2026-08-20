@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 207, title: 'Nothing grows through a plank floor any more', kind: 'fix', ts: '2026-08-20T19:54:09.405Z', date: 'Aug 20, 2026, 2:54 PM CT',
+    items: [
+      'Grass and reeds used to come up between the boards of the plank sidewalks, and rushes stood straight through the dock decks on the river. Both are closed: the planting layer now refuses every deck the town lays - the walks, the board crossings, the wharves, the bridge decks - before it asks any other question.',
+      'The dock half had a subtle cause worth recording: the rule that keeps plants out of built floors ran only on dry land, so a bulrush rooted in the riverbed under a wharf was never asked about the deck above it. The rule now runs first, wherever the plant would stand.',
+      'The release checks ask the planting rules directly at the centre of every deck the town publishes - no species, wet or dry, is granted a station through a floor - so this cannot quietly come back.',
+      'And the dirt road no longer paints over the board crossings laid across it. The road is drawn as a thin decal hugging the ground, and at a shallow angle it used to win against boards standing a hand\u2019s width above it; the boards are simply drawn after the road now, the way they are laid after it in fact.',
+    ] },
   { v: 206, title: 'Trees and bushes stand close around the houses', kind: 'feature', ts: '2026-08-20T19:03:58.767Z', date: 'Aug 20, 2026, 2:03 PM CT',
     items: [
       'Houses used to stand on bare open grass. Now 61 of the town’s 134 dwellings keep trees and bushes about them — 66 dooryard elms and cottonwoods and 59 currant clumps — the way the early views draw the town: greenery kept and planted close around the houses, distinct from the wild prairie beyond the fences.',

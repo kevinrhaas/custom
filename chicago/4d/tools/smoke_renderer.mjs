@@ -2555,6 +2555,46 @@ for (const [label, viewport, touch] of [
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
 
+    // Nothing grows through a plank floor (T-0124; T-0085 was the first
+    // sighting). The placer is asked directly, at the centre of every deck
+    // rectangle the frontage and wharf layers publish: no rooted stand for the
+    // generic community, and no station for ANY species - wet or dry - that
+    // the ground's own zone could deal there. The wet half is the half that
+    // regressed silently before: the block-list ran after the water early
+    // return, so an emergent bulrush rooted through a dock deck without any
+    // gate ever asking about it.
+    const floors = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const subs = a.flora.substrates();
+      const probe = (list) => {
+        const out = { decks: 0, rootable: 0, speciesHits: 0, speciesAsked: 0 };
+        for (const { pts } of list ?? []) {
+          if (!Array.isArray(pts) || pts.length < 3) continue;
+          out.decks += 1;
+          let e = 0; let n = 0;
+          for (const q of pts) { e += q[0]; n += q[1]; }
+          e /= pts.length; n /= pts.length;
+          if (a.flora.plantableAt(e, n)) out.rootable += 1;
+          const zone = a.flora.zoneAt(e, n);
+          const z = subs.find((x) => x.id === zone);
+          for (const sp of (z ? z.dry.concat(z.wet) : [])) {
+            out.speciesAsked += 1;
+            if (a.flora.stationOf(e, n, sp) !== null) out.speciesHits += 1;
+          }
+        }
+        return out;
+      };
+      return { walks: probe(a.frontage?.keepOut), wharves: probe(a.wharves?.keepOut) };
+    });
+    check(`${label}: no plank walk admits a rooted plant through its deck`,
+      floors.walks.decks > 0 && floors.walks.rootable === 0 && floors.walks.speciesHits === 0,
+      `${floors.walks.decks} deck(s), ${floors.walks.rootable} rootable, `
+        + `${floors.walks.speciesHits} of ${floors.walks.speciesAsked} species stations granted`);
+    check(`${label}: no wharf deck admits a rooted plant - wet species included`,
+      floors.wharves.decks > 0 && floors.wharves.rootable === 0 && floors.wharves.speciesHits === 0,
+      `${floors.wharves.decks} deck(s), ${floors.wharves.rootable} rootable, `
+        + `${floors.wharves.speciesHits} of ${floors.wharves.speciesAsked} species stations granted`);
+
     // --- the boats on the river (T-0063) ---------------------------------
     //
     // The first layer that RIDES the water rather than standing in it, and its
