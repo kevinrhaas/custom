@@ -1,7 +1,7 @@
 ---
 id: T-0116
 title: The road-legibility gate's third station turns red when the sloughs land: the swale ground pulls the 250-600 m band under its bar
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 275
 claimed_by: null
 blocked_on: null
 needs_bake: false
