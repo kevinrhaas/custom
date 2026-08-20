@@ -86,6 +86,10 @@ Deliberately unchanged:
 | +260 (face) | +2.00 | +2.18 |
 | +270 (water) | −3.58 | −3.58 |
 
+After-shot from the plate's own stand (local 1145, 300, yaw 180°):
+`fort_from_the_north_bank_2026-08-20.png`, against the before,
+`fort_from_the_north_bank_2026-08-19.png`.
+
 The north face now carries the full +12 ft to the waterline over about a 25 m run —
 1:6.8, inside the 1:6 to 1:10 band the spec's `bank` block holds every shore to, and
 "graduated" in exactly the sense the plates draw: a bank a track can climb (that track
