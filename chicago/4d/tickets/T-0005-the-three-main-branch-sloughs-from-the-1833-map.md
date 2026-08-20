@@ -1,16 +1,17 @@
 ---
 id: T-0005
 title: The three Main Branch sloughs, from the 1833 map
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
 effort: M
 legacy_id: K13
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/20/2026, 4:36:15 AM CT
 blocked_on: null
 needs_bake: true
 ---
