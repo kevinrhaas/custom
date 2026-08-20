@@ -5790,10 +5790,11 @@ docs/RESEARCH/main_branch_sloughs_1833.md.
 (American elm, eastern cottonwood) and 59 currant clumps around 61 of the town's 134
 dwellings, every coordinate, count and height `reconstructed`, dealt by the seeded rule in
 `tools/generate_dooryard_plantings.py` and re-derived byte for byte on every commit. A
-dooryard shrub is drawn with the clonal thicket archetype in `renderers/web/js/trees.js`,
-whose spec (bark colour, stem count, puff sizes) is invented within that file's own range
-like every number in its SPECIES table, and whose draw path carries no head — so the
-currants' recorded July berry cluster is not drawn, and the record says so.
+dooryard shrub is drawn with its own three-puff clump archetype in
+`renderers/web/js/trees.js`, whose spec (bark colour, stick and puff counts and sizes) is
+invented within that file's own range like every number in its SPECIES table, and whose
+draw path carries no head — so the currants' recorded July berry cluster is not drawn,
+and the record says so.
 **Why:** the owner asked for it in as many words (ticket T-0074), and image 12 of the
 2026-08-18 brief states the treatment generally: trees and bushes stand close around the
 houses, kept deliberately. No source counts, places or names any particular house's stems,

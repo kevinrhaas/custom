@@ -46,3 +46,9 @@ prime suspect once already. Read its box in docs/ROADMAP.md before deciding anyt
 build turned them, and why), the repair restores every gated band over its bar without
 touching the bars themselves, and both road checks pass in the affected stages
 (`SMOKE_STAGE=3`, both viewports) and in the unfiltered workflow run.
+
+**Re-measured by T-0074, 2026-08-20:** both checks fail with the same numbers on the
+dooryard-plantings branch — walker 100-250 m band ΔL* 1.8 of 3.2, 33 % of 42 bare,
+weber 0.0795; aerial 250-600 m ΔL* 2.1 of 4.6, 53 % of 182, weber 0.0922. The dooryard
+stems change neither count nor contrast (probes under flora are excluded by the gate
+itself), so this stands exactly as found.

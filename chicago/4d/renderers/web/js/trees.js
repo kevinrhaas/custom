@@ -1018,16 +1018,17 @@ async function loadTimberZones(dataBase, problems = []) {
       // nothing here enters `specs`, `byZone` or `bands`, so no community deal
       // moves. What a lattice cannot do is put a currant AT a particular door,
       // which is exactly what a planting record states — so the species is held
-      // in a separate table the planting loop alone reads, drawn with the
-      // clonal archetype at its own recorded band. The clonal path draws no
-      // head, so the July berry cluster the record carries is NOT drawn — the
-      // planting record says so rather than leaving the drop silent.
+      // in a separate table the planting loop alone reads, drawn with its own
+      // three-puff clump archetype (`addShrubClump`) at its own recorded band.
+      // That path draws no head, so the July berry cluster the record carries
+      // is NOT drawn — the planting record says so rather than leaving the
+      // drop silent.
       if (sp.role === 'shrub_low' && sp.form === 'shrub_low') {
         const dark = rgbHex(sp.july?.foliage_rgb);
         shrubByZone[id] = shrubByZone[id] ?? {};
         shrubByZone[id][sp.id] = {
           common: sp.common ?? sp.id,
-          form: 'thicket',
+          form: 'shrub',
           h: Array.isArray(sp.height_m) && sp.height_m.length === 2
             ? sp.height_m : [0.8, 1.5],
           crownW: Array.isArray(sp.width_m) && sp.width_m.length === 2
@@ -1563,6 +1564,53 @@ function addThicket(buf, spec, x, groundY, z, rnd, scale = 1) {
 }
 
 /**
+ * One dooryard shrub: a knee-high leaf clump on a few woody sticks (T-0074).
+ *
+ * NOT `addThicket` at small scale, and the difference is the budget: a thicket
+ * is 7-12 full stems each carrying one or two foliage masses — right for a
+ * 3 m bank willow screen read from across the river, and 685 scene triangles
+ * for a currant bush a metre tall (measured on the published mirror,
+ * 2026-08-20). A currant reads as ONE rounded mass with wood at its base, so
+ * that is what is drawn: three short stems, three overlapping puffs, ~84
+ * near-buffer triangles. The crown width is the record's own `width_m` band
+ * when it carries one, the same rule the trees follow.
+ */
+function addShrubClump(buf, spec, x, groundY, z, rnd, scale = 1) {
+  const conf = spec.conf ?? 0.5;
+  const h = lerp(spec.h[0], spec.h[1], rnd()) * scale;
+  const w = (Array.isArray(spec.crownW)
+    ? lerp(spec.crownW[0], spec.crownW[1], rnd()) : h * 0.95) * scale;
+  const dark = linear(spec.dark);
+  const light = linear(spec.light);
+  const bark = linear(spec.bark).map((v) => v * BARK_ALBEDO);
+  const tint = 0.90 + rnd() * 0.20;
+  const d2 = dark.map((v) => v * tint);
+  const l2 = light.map((v) => v * tint);
+  for (let i = 0; i < 3; i++) {
+    const a = (i / 3) * Math.PI * 2 + rnd() * 1.2;
+    const out = w * (0.10 + rnd() * 0.14);
+    const sh = h * (0.45 + rnd() * 0.30);
+    // Rooted below grade like the thicket's stems, so a clump on a slope sits.
+    addStem(buf, x, groundY - 0.08, z,
+      x + Math.cos(a) * out, groundY + sh, z + Math.sin(a) * out,
+      0.014 + rnd() * 0.010, 0.008, bark, 4, 0.06, 0.42, conf);
+  }
+  // A knee-high clump is nearly all lit shell — there is no deep interior for
+  // the thicket's low shade values to describe — so the lit fraction sits high,
+  // or the bush renders as a shadow blob against the sward (it did).
+  const pr = w * 0.42;
+  addPuff(buf, x, groundY + h - pr * 0.55, z, pr, 0.80, d2, l2,
+    0.62 + rnd() * 0.28, 0.30, rnd, conf);
+  for (let i = 0; i < 2; i++) {
+    const a = rnd() * Math.PI * 2;
+    addPuff(buf, x + Math.cos(a) * w * 0.22, groundY + h * 0.55,
+      z + Math.sin(a) * w * 0.22, pr * 0.82, 0.78, d2, l2,
+      0.46 + rnd() * 0.30, 0.26, rnd, conf);
+  }
+  return h;
+}
+
+/**
  * One tree, written into `buf` at (x, groundY, z). The forms differ where the
  * sources say they differ: a bur oak is not a gallery elm with a wider crown,
  * it is a short bole under heavy horizontal limbs holding a wide flat crown —
@@ -1571,6 +1619,7 @@ function addThicket(buf, spec, x, groundY, z, rnd, scale = 1) {
  */
 function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
   if (spec.form === 'thicket') return addThicket(buf, spec, x, groundY, z, rnd, scale);
+  if (spec.form === 'shrub') return addShrubClump(buf, spec, x, groundY, z, rnd, scale);
   const conf = spec.conf ?? 0.5;
   const h = lerp(spec.h[0], spec.h[1], rnd()) * scale;
   const dbh = lerp(spec.dbh[0], spec.dbh[1], rnd()) * scale;

@@ -30,3 +30,11 @@ their triangles and nothing re-measured the "light" tier against its budget on d
 ceiling on desktop, with counts), and either the light tier draws under 600k again by
 trimming what it draws at that level, or the ceiling is consciously re-budgeted in the
 same place the 600k figure is set — with the reasoning written down, never silently.
+
+**Measured worse by T-0074, 2026-08-20:** the dooryard plantings add ~43k scene
+triangles at the light tier — 66 trees at ~433 each and 59 currant clumps at ~164 each
+(the clump archetype was cut from 685 to ~164 during the same work, saving ~31k) — so
+desktop light now reads 648,404 of 600,000 (was 605,414). Mobile light stays under its
+own ceiling at 582,479, measured by the release smoke. Attribution for the trim: the
+dooryard layer draws at every level today and is the natural first candidate for the
+keep discipline the dealt wood already follows.

@@ -11448,7 +11448,7 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "`data/flora/plantings/town_dooryard_plantings.json` states 66 dooryard trees (American elm, eastern cottonwood) and 59 currant clumps around 61 of the town's 134 dwellings, every coordinate, count and height `reconstructed`, dealt by the seeded rule in `tools/generate_dooryard_plantings.py` and re-derived byte for byte on every commit. A dooryard shrub is drawn with the clonal thicket archetype in `renderers/web/js/trees.js`, whose spec (bark colour, stem count, puff sizes) is invented within that file's own range like every number in its SPECIES table, and whose draw path carries no head — so the currants' recorded July berry cluster is not drawn, and the record says so."
+          "text": "`data/flora/plantings/town_dooryard_plantings.json` states 66 dooryard trees (American elm, eastern cottonwood) and 59 currant clumps around 61 of the town's 134 dwellings, every coordinate, count and height `reconstructed`, dealt by the seeded rule in `tools/generate_dooryard_plantings.py` and re-derived byte for byte on every commit. A dooryard shrub is drawn with its own three-puff clump archetype in `renderers/web/js/trees.js`, whose spec (bark colour, stick and puff counts and sizes) is invented within that file's own range like every number in its SPECIES table, and whose draw path carries no head — so the currants' recorded July berry cluster is not drawn, and the record says so."
         },
         {
           "label": "Why",
