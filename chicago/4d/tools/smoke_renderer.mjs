@@ -10,6 +10,28 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
+ * `SMOKE_STAGE=1` … `4` runs one quarter of each viewport's body (T-0060). The
+ * cuts sit at section boundaries measured for zero crossing bindings and
+ * placed near the time quartiles — two halves were tried first and the second
+ * half alone still overran the ceiling. It exists because a steward run's
+ * single foreground command is capped at ten minutes and by 2026-08-18 neither
+ * viewport's full pass fit inside it, so the run was killed mid-suite and the
+ * page-error assertion — the LAST line of each viewport — was never taken. A
+ * staged run is not the gate either, and says so; the gate is both viewports,
+ * all four stages, e.g.:
+ *
+ *   for s in 1 2 3 4; do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *
+ * (each SMOKE_STAGE invocation fits a ten-minute command on its own; the
+ * unfiltered single-process pass lives in .github/workflows/chicago-4d-smoke.yml)
+ *
+ * Boot, the page-error check and the vendor checks run in EVERY invocation,
+ * whichever stage is asked for: the summary separates "staged-section checks"
+ * from those always-on checks so the halves can be audited to add up to an
+ * unfiltered pass — staged1 + staged2 section checks equal an unfiltered run's
+ * section checks, and the always-on count is identical in all three.
+ *
  * What it asserts, and why each one is here:
  *
  *   scene reaches ready ......... the boot chain actually completed
@@ -669,7 +691,15 @@ async function roadContrast(page, station) {
 
 const failures = [];
 const passes = [];
+// T-0060: checks taken inside a stage block, as opposed to the always-on
+// scaffolding (page serves, ready, loader problems, completion, page errors,
+// vendor) that every invocation takes regardless of SMOKE_STAGE. The summary
+// prints both so two staged halves can be audited to add up to an unfiltered
+// pass: staged section counts sum, scaffolding counts match.
+let inStageWork = false;
+let stageWorkChecks = 0;
 function check(name, cond, detail = '') {
+  if (inStageWork) stageWorkChecks += 1;
   if (cond) { passes.push(name); console.log(`  pass  ${name}`); }
   else { failures.push(name); console.log(`  FAIL  ${name}${detail ? ` — ${detail}` : ''}`); }
 }
@@ -723,6 +753,22 @@ function signatureDistance(a, b) {
 // gate in a log somebody reads later.
 const ONLY = process.env.SMOKE_VIEWPORT || '';
 if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`);
+
+// T-0060 — the ten-minute ceiling (ROADMAP § THE RUN BUDGET). A steward run's
+// single foreground command is capped at ten minutes, and by 2026-08-18 neither
+// viewport's full pass fit: mobile was killed at 570 s at 208 passed, desktop
+// at 143, and the check that went unrun was always `zero page errors`, because
+// it was the tail. SMOKE_STAGE splits each viewport's body in four at section
+// boundaries verified for crossing bindings, so each part fits a command —
+// while boot, the page-error check and the vendor checks stay in every
+// invocation.
+const STAGE = process.env.SMOKE_STAGE || '';
+if (STAGE && !['1', '2', '3', '4'].includes(STAGE)) {
+  console.error(`SMOKE_STAGE must be 1, 2, 3 or 4, got "${STAGE}"`);
+  process.exit(2);
+}
+if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of 4\n`);
+const stageOn = (n) => !STAGE || STAGE === String(n);
 
 for (const [label, viewport, touch] of [
   ['mobile 390x780', { width: 390, height: 780 }, true],
@@ -779,6 +825,7 @@ for (const [label, viewport, touch] of [
 
   // --- boot ---------------------------------------------------------------
   let ready = false;
+  let thrown = null;
   try {
     await page.waitForFunction(() => window.__chicago4d?.ready === true, { timeout: 30000 });
     ready = true;
@@ -813,6 +860,377 @@ for (const [label, viewport, touch] of [
 
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
+
+    // ======================================================================
+    // T-0060 — everything below, to the end of this viewport's body, runs in
+    // four stages so each fits a ten-minute command. The sections are NOT
+    // re-indented inside the stage braces on purpose: wrapping ~6,400 lines
+    // would destroy blame and make the diff that introduced this unreviewable.
+    // The try/catch is part of the same repair — a throw mid-suite used to
+    // kill the process before the page-error check, the summary and the exit
+    // code; now it is a recorded FAIL and the tail still runs.
+    // ======================================================================
+
+    // Read once, used in TWO stages: stage 1's "traced river loaded" check
+    // and stage 2's terrain-problem check (R-BUG3c) share this one reading.
+    // It crosses a stage boundary — found because a filtered run threw
+    // ReferenceError on it; the indent-anchored scans (the ticket's and this
+    // run's first) both missed it, sitting as it was at column 0 — so it is
+    // taken here, before the splits: a scene fact settled at ready, cheap to
+    // read, identical whenever it is taken.
+    const terrainLoad = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      let water = null;
+      let groundTiles = 0;
+      api.scene3d.traverse((o) => {
+        if (!o.isMesh) return;
+        if (/^water__/.test(o.name || '')) water = o;
+        if (/^terrain__/.test(o.name || '')) groundTiles += 1;
+      });
+      let box = null;
+      if (water) {
+        water.geometry.computeBoundingBox();
+        const b = water.geometry.boundingBox;
+        box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
+      }
+      return { box, groundTiles,
+               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
+               // `terrain <epoch>: …` and `water: …`, always at the start of the
+               // string, so a problem ABOUT the ground or the river is recognisable
+               // by its subject. The unanchored `/terrain|water/i` this replaced
+               // matched the word anywhere, and the first block of the town whose
+               // id contains one of them — `blk_south_water_franklin`, ROADMAP T-A8
+               // — turned two ordinary placeholder-asset notes into a reported
+               // terrain load failure. Five of the ten open blocks are
+               // `blk_south_water_*`, so it would have fired on each of them in
+               // turn. This narrows what the filter MATCHES, not what the check
+               // ALLOWS: a real terrain or water problem still has to be zero.
+               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
+    });
+
+    // Read once, shared by stages 3 and 4 (T-0060): the street layer, the
+    // flora rooted around it, the building anchors and the two readouts. Its
+    // checks span both of those stages, so the reading is taken before the
+    // split — and skipped when neither stage runs, because it is the most
+    // expensive single evaluate in the file. It teleports to its own
+    // viewpoints, so it does not care what ran before it.
+    let streetLayer = null;
+    if (stageOn(3) || stageOn(4)) {
+      streetLayer = await page.evaluate(() => {
+        const a = window.__chicago4d;
+        // Sample the dynamic flora from a known dry South Division viewpoint.
+        // The preceding overview check deliberately teleports over the river;
+        // after the deep-channel vegetation fix an empty sward there is correct.
+        a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+        a.step();
+        let vertices = 0;
+        let worstDrape = 0;
+        let wetVertices = 0;
+        a.streets.group.traverse((o) => {
+          const pos = o.geometry?.getAttribute?.('position');
+          if (!pos) return;
+          vertices += pos.count;
+          const step = Math.max(1, Math.floor(pos.count / 900));
+          for (let i = 0; i < pos.count; i += step) {
+            const e = pos.getX(i);
+            const n = -pos.getZ(i);
+            worstDrape = Math.max(worstDrape,
+              Math.abs(pos.getY(i) - a.terrain.surfaceHeight(e, n) - 0.022));
+            if (a.terrain.isWater(e, n)) wetVertices++;
+          }
+        });
+
+        // The former far-field canopy was a solid horizontal mesh at plant-top
+        // height. It looked like a second terrain layer, hid the bases of the
+        // buildings and let the visitor walk underneath it. The actual flora is
+        // instanced geometry whose matrices must begin on the same terrain
+        // sampler the buildings and streets use (or at the water surface for
+        // emergent plants). There must be no replacement canopy slab.
+        const canopyPresent = !!a.flora.group.getObjectByName('flora-canopy');
+        const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
+        let rootedPlants = 0;
+        let worstPlantRoot = 0;
+        let waterPlants = 0;
+        let deepWaterPlants = 0;
+        for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette',
+          'flora-shrub']) {
+          const mesh = a.flora.group.getObjectByName(name);
+          const matrix = mesh?.instanceMatrix?.array;
+          if (!matrix) continue;
+          for (let i = 0; i < mesh.count; i++) {
+            const o = i * 16;
+            const e = matrix[o + 12];
+            const y = matrix[o + 13];
+            const n = -matrix[o + 14];
+            const expected = a.terrain.isWater(e, n)
+              ? waterY : a.terrain.surfaceHeight(e, n);
+            worstPlantRoot = Math.max(worstPlantRoot, Math.abs(y - expected));
+            if (a.terrain.isWater(e, n)) {
+              waterPlants++;
+              if (a.flora.shoreDistance(e, n) > 8.01) deepWaterPlants++;
+            }
+            rootedPlants++;
+          }
+        }
+        const treeStations = a.trees.group.userData.stations ?? [];
+        const wetTreeStations = treeStations.filter(({ e, n }) => a.terrain.isWater(e, n));
+        // ...and the stronger question the river mask does not answer. `isWater`
+        // asks whether the heightfield is below SHORE_Y, 100 mm UNDER the water
+        // plane, so a stem rooted in that band passes the mask and still renders
+        // standing in the river. Every station carries the ground height the
+        // renderer built it at; the water surface comes from the epoch record.
+        const drownedTreeStations = treeStations.filter(({ e, n, y }) => (
+          (typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)) < waterY
+        ));
+        const lowestTreeStation = treeStations.reduce(
+          (lo, { e, n, y }) => Math.min(lo, typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)),
+          Infinity,
+        );
+
+        let anchoredBuildings = 0;
+        let worstBuildingAnchor = 0;
+        let deepestBedding = 0;
+        let exchangeAnchor = null;
+        for (const [id, record] of a.registry.entries()) {
+          const p = record.sidecar?.placement;
+          const at = a.buildings.positionOf(id);
+          if (!p || !at) continue;
+          // The anchor is the LOWEST ground under the footprint, not the ground at
+          // the origin — see buildings.groundUnder(). So the origin sample is a
+          // CEILING here, not an equality: a building on a slope beds down to its
+          // downhill corner and sits below its own origin by up to the relief
+          // beneath it. What this still pins is that the anchor comes from the
+          // terrain sampler at all, and never floats above it; the companion check
+          // "no building hovers above the ground beneath it" measures the corners
+          // through the real instance matrix.
+          const expected = p.vertical_anchor === 'water'
+            ? waterY : a.terrain.surfaceHeight(p.local_e ?? 0, p.local_n ?? 0);
+          // Signed: above the origin's ground is a fault, below it is bedding.
+          worstBuildingAnchor = Math.max(worstBuildingAnchor, at.y - expected);
+          deepestBedding = Math.max(deepestBedding, expected - at.y);
+          const error = Math.abs(at.y - expected);
+          anchoredBuildings++;
+          if (id === 'exchange_coffee_house') {
+            // Flat ground here, so the origin sample and the footprint minimum
+            // agree and the equality is still the right assertion for this one.
+            exchangeAnchor = { y: at.y, expected, error };
+          }
+        }
+
+        // Dry land has one value no matter which compatibility entry point an
+        // older caller uses. The walk-specific sampler differs only over water,
+        // where it deliberately supplies the navigation barrier.
+        let worstDrySurfaceAlias = 0;
+        for (const [e, n] of [[319.12, -90.66], [140, -35], [89.2, -110.4]]) {
+          if (!a.terrain.isWater(e, n)) {
+            worstDrySurfaceAlias = Math.max(worstDrySurfaceAlias,
+              Math.abs(a.terrain.surfaceHeight(e, n) - a.terrain.walkHeight(e, n)));
+          }
+        }
+        a.walker.teleport({ local_e: 452.5, local_n: -110.4, yaw_deg: 0 });
+        a.step();
+        const crossing = {
+          state: a.navigation.streetState,
+          historic: document.getElementById('street-historic')?.textContent,
+          modern: document.getElementById('street-modern')?.textContent,
+          shown: !document.getElementById('street-readout')?.hasAttribute('hidden'),
+        };
+        a.walker.teleport({ local_e: 89.2, local_n: -180, yaw_deg: 0 });
+        a.step();
+        const approaching = {
+          state: a.navigation.streetState,
+          historic: document.getElementById('street-historic')?.textContent,
+          modern: document.getElementById('street-modern')?.textContent,
+          ahead: document.getElementById('street-approach')?.textContent,
+        };
+        // R-BUG4. A panel used to be DELETED outright when any one of its four
+        // corners fell on water, which took the dry part of the panel with it —
+        // the owner saw it as a clean-edged green hole punched through South
+        // Water Street. It is clipped at the waterline now. This re-derives the
+        // rule's own arithmetic and asserts the ribbon carries every panel whose
+        // CENTRELINE is dry, so a future "simplification" back to dropping the
+        // panel fails here instead of in a screenshot.
+        const STEP = 2.25;
+        const MIN_W = 1.0;
+        let dryCentrelinePanels = 0;
+        let clippedPanels = 0;
+        let slivers = 0;
+        for (const rec of a.streets.records) {
+          const half = (rec.track_width_m ?? 10.5) * 0.5;
+          const pts = [];
+          for (let i = 1; i < rec.path.length; i++) {
+            const A = rec.path[i - 1];
+            const B = rec.path[i];
+            const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
+            const c = Math.max(1, Math.ceil(d / STEP));
+            for (let j = 0; j < c; j++) {
+              if (!pts.length) pts.push([A[0], A[1]]);
+              const t = (j + 1) / c;
+              pts.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
+            }
+          }
+          for (let i = 1; i < pts.length; i++) {
+            const A = pts[i - 1];
+            const B = pts[i];
+            const de = B[0] - A[0];
+            const dn = B[1] - A[1];
+            const L = Math.hypot(de, dn);
+            if (L < 1e-5) continue;
+            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(B[0], B[1])) continue;
+            dryCentrelinePanels++;
+            const ue = -dn / L;
+            const un = de / L;
+            const reach = (e0, n0, se, sn) => {
+              if (!a.terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
+              let lo = 0;
+              let hi = half;
+              for (let k = 0; k < 6; k++) {
+                const mid = (lo + hi) * 0.5;
+                if (a.terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
+                else lo = mid;
+              }
+              return lo;
+            };
+            const aw = reach(A[0], A[1], ue, un) + reach(A[0], A[1], -ue, -un);
+            const bw = reach(B[0], B[1], ue, un) + reach(B[0], B[1], -ue, -un);
+            if (aw < half * 2 - 1e-6 || bw < half * 2 - 1e-6) clippedPanels++;
+            if (aw < MIN_W || bw < MIN_W) slivers++;
+          }
+        }
+        // T-0110. A panel is 6 indices only until it refines, so the module
+        // counts its own panels now — index arithmetic would misread refinement
+        // as extra roadway.
+        const emittedQuads = a.streets.stats?.panels ?? NaN;
+        const refinedPanels = a.streets.stats?.refinedPanels ?? NaN;
+
+        // T-0110, the regression the vertex-drape gate above cannot see: the
+        // ground rising THROUGH a panel between its vertices. T-0046's approach
+        // fills rose through the planar ribbon by up to 1.49 m — every vertex
+        // perfectly draped, the road erased by the depth test — and the owner
+        // read it as "grass triangles" and a road "ending" short of the deck.
+        // Probed at the half-points of every street triangle: refinement holds
+        // the interior miss under DRAPE_TOL_M except two nose-tip panels at the
+        // waterline (0.21 m, under the deck ends), so the bar is 0.35 — a third
+        // of the failure this gate exists to catch, with headroom over the
+        // measured worst. Off-grid probes are skipped: no sample, no verdict.
+        let worstSink = 0;
+        a.streets.group.traverse((o) => {
+          const pos = o.geometry?.getAttribute?.('position');
+          const idx = o.geometry?.index;
+          if (!pos || !idx) return;
+          for (let i = 0; i < idx.count; i += 3) {
+            const tri = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
+            const pt = tri.map((v) => [pos.getX(v), pos.getY(v), -pos.getZ(v)]);
+            // A triangle with a vertex off the grid stands on the fallback
+            // height, not a measurement — the map-border cliff is a border
+            // condition, not a drape defect, and the refiner refuses those
+            // panels for the same reason.
+            if (pt.some(([e, , n]) => !a.terrain.inBounds(e, n))) continue;
+            for (const [wa, wb, wc] of [[0.5, 0.5, 0], [0, 0.5, 0.5], [0.5, 0, 0.5],
+              [1 / 3, 1 / 3, 1 / 3]]) {
+              const e = pt[0][0] * wa + pt[1][0] * wb + pt[2][0] * wc;
+              const n = pt[0][2] * wa + pt[1][2] * wb + pt[2][2] * wc;
+              if (!a.terrain.inBounds(e, n)) continue;
+              const y = pt[0][1] * wa + pt[1][1] * wb + pt[2][1] * wc;
+              worstSink = Math.max(worstSink,
+                a.terrain.surfaceHeight(e, n) + 0.022 - y);
+            }
+          }
+        });
+
+        // T-0110, the join itself: the worn track must run onto each bridge
+        // approach and meet the deck. Stations march the street's own centreline
+        // up both North Branch approaches (deck ends e −117.5 / −45.67, T-0046's
+        // terrain approaches) and up the Dearborn drawbridge fill to the street
+        // record's own end (n 18 — the record stops 2.7 m short of the deck,
+        // which is T-0111's subject, not a drawing defect this gate can see).
+        // Each station must land inside a drawn road triangle in plan.
+        const covered = (e, n) => {
+          let hit = false;
+          a.streets.group.traverse((o) => {
+            if (hit) return;
+            const pos = o.geometry?.getAttribute?.('position');
+            const idx = o.geometry?.index;
+            if (!pos || !idx) return;
+            for (let i = 0; i < idx.count && !hit; i += 3) {
+              const p = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)]
+                .map((v) => [pos.getX(v), -pos.getZ(v)]);
+              const s = (A, B) => (B[0] - A[0]) * (n - A[1]) - (B[1] - A[1]) * (e - A[0]);
+              const d0 = s(p[0], p[1]);
+              const d1 = s(p[1], p[2]);
+              const d2 = s(p[2], p[0]);
+              hit = !((d0 < 0 || d1 < 0 || d2 < 0) && (d0 > 0 || d1 > 0 || d2 > 0));
+            }
+          });
+          return hit;
+        };
+        const centreAt = (id, axis, value) => {
+          const rec = a.streets.records.find((r) => r.id === id);
+          const k = axis === 'e' ? 0 : 1;
+          for (let i = 1; i < rec.path.length; i++) {
+            const [A, B] = [rec.path[i - 1], rec.path[i]];
+            const lo = Math.min(A[k], B[k]);
+            const hi = Math.max(A[k], B[k]);
+            if (value < lo || value > hi) continue;
+            const t = (value - A[k]) / (B[k] - A[k] || 1e-9);
+            return [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
+          }
+          return null;
+        };
+        const approachGaps = [];
+        for (let e = -135; e <= -118; e += 1) {
+          const p = centreAt('kinzie', 'e', e);
+          if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie w ${e}`);
+        }
+        for (let e = -45; e <= -32; e += 1) {
+          const p = centreAt('kinzie', 'e', e);
+          if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
+        }
+        for (let n = 8; n <= 17.5; n += 1) {
+          const p = centreAt('dearborn', 'n', n);
+          if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
+        }
+
+        return {
+          worstSink, refinedPanels, approachGaps,
+          records: a.streets.records.length, vertices, worstDrape, wetVertices,
+          dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
+          canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
+          treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
+          drownedTreeStations: drownedTreeStations.length,
+          lowestTreeStation, waterY,
+          treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
+          // ROADMAP R-BUG5. The population both woody checks above are blind to:
+          // `stations` is written only inside the near-field planter's 632 m
+          // square, so the five FAR_TIMBER bodies drawn as a horizon silhouette
+          // have never been asked where they stand. Measured against the mask the
+          // BROWSER loaded, not the one in data/ — tools/measure_far_timber.py
+          // asks the committed bytes and this project has twice shipped a bug
+          // living exactly in that gap.
+          farTimberWater: a.trees.farTimberWater?.() ?? null,
+          // ...and the clip that keeps them off the screen, exercised. The band is
+          // solved around the camera, so this stands far enough back that
+          // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
+          // it: from the spawn point it is 329 m away and one metre inside the
+          // near cut-off, which is a green gate that has run nothing.
+          horizonWetSkipped: (() => {
+            a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
+            a.step();
+            return a.trees.stats?.horizonWetSkipped ?? null;
+          })(),
+          anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
+          worstDrySurfaceAlias,
+          clearsLake: a.streets.blocksGrowth(452.5, -110.4),
+          keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
+          crossing, approaching,
+        };
+      });
+    }
+
+    try {
+    // STAGE 1 — "the gate counts the town" through "the traced river loaded".
+    if (stageOn(1)) {
+    inStageWork = true;
 
     // --- the gate counts the town (T-0036) --------------------------------
     // The owner asked for the number of buildings and the number of people
@@ -2233,35 +2651,10 @@ for (const [label, viewport, touch] of [
     // river is there, it is much darker than the prairie, and from above it
     // occupies a large part of the frame. If the water stops drawing, the
     // contrast between the darkest and the median cell collapses.
-const terrainLoad = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      let water = null;
-      let groundTiles = 0;
-      api.scene3d.traverse((o) => {
-        if (!o.isMesh) return;
-        if (/^water__/.test(o.name || '')) water = o;
-        if (/^terrain__/.test(o.name || '')) groundTiles += 1;
-      });
-      let box = null;
-      if (water) {
-        water.geometry.computeBoundingBox();
-        const b = water.geometry.boundingBox;
-        box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
-      }
-      return { box, groundTiles,
-               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
-               // `terrain <epoch>: …` and `water: …`, always at the start of the
-               // string, so a problem ABOUT the ground or the river is recognisable
-               // by its subject. The unanchored `/terrain|water/i` this replaced
-               // matched the word anywhere, and the first block of the town whose
-               // id contains one of them — `blk_south_water_franklin`, ROADMAP T-A8
-               // — turned two ordinary placeholder-asset notes into a reported
-               // terrain load failure. Five of the ten open blocks are
-               // `blk_south_water_*`, so it would have fired on each of them in
-               // turn. This narrows what the filter MATCHES, not what the check
-               // ALLOWS: a real terrain or water problem still has to be zero.
-               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
-    });
+    //
+    // (`terrainLoad` itself is read before the stage split now — see the T-0060
+    // banner above — because stage 2's terrain-problem check shares it.)
+    //
     // The authored water surface spans the whole modelled box — about 5.4 km by
     // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere
     // near each other, which makes this a reliable test of "did the real river
@@ -2282,6 +2675,18 @@ const terrainLoad = await page.evaluate(() => {
         ? `water ${terrainLoad.box.w} x ${terrainLoad.box.d} m across `
           + `(the fallback is 2400 x 2400), ${terrainLoad.groundTiles} ground tile(s)`
         : 'no water mesh in the scene at all');
+
+    inStageWork = false;
+    } // end STAGE 1 (T-0060)
+    // STAGE 2 — "the ground faces the sky" through the confidence machinery.
+    // Every boundary sits where the crossing bindings were measured at zero
+    // (scope-aware, brace-depth-anchored — the indent-anchored scans missed
+    // `terrainLoad` at column 0); the two that did cross, `terrainLoad` and
+    // `streetLayer`, are read above the split, so any single stage boots into
+    // exactly the state its first line expects.
+    if (stageOn(2)) {
+    inStageWork = true;
+
     // --- the ground faces the sky ------------------------------------------
     //
     // `gltf-transform optimize` SIMPLIFIES BY DEFAULT, and on this dataset that
@@ -3849,6 +4254,33 @@ const terrainLoad = await page.evaluate(() => {
       cmRestored.menuShut && cmRestored.allOn && !cmRestored.marked,
       JSON.stringify(cmRestored));
 
+    inStageWork = false;
+    } // end STAGE 2 (T-0060)
+    // STAGE 3 — navigation through the K24 brightness aid: the road-contrast
+    // captures live here, the most camera-heavy stretch of the suite.
+    if (stageOn(3)) {
+    inStageWork = true;
+
+    // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
+    // and the chrome" section is what enters the town, releases the pointer
+    // and dismisses the first-entry navigation guide, and this point of an
+    // unfiltered pass runs long after it did. The road-legibility bands
+    // measure page.screenshot frames, which include DOM overlays (the
+    // GL-capture checks do not) — so a staged run must stand where the full
+    // run stands: gate entered, pointer free, guide down. In a full run every
+    // branch below is a no-op.
+    await page.evaluate(async () => {
+      if (!document.getElementById('gate').hasAttribute('hidden')) {
+        document.getElementById('gate-btn')?.click();
+        await new Promise((r) => setTimeout(r, 150));
+        document.exitPointerLock?.();
+      }
+      const help = document.getElementById('control-help');
+      if (help && !help.hasAttribute('hidden')) {
+        document.getElementById('control-help-gotit')?.click();
+      }
+    });
+
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
     // is sampled from its own 2D canvas before and after a teleport so this
@@ -3904,315 +4336,8 @@ const terrainLoad = await page.evaluate(() => {
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
       `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
 
-    const streetLayer = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      // Sample the dynamic flora from a known dry South Division viewpoint.
-      // The preceding overview check deliberately teleports over the river;
-      // after the deep-channel vegetation fix an empty sward there is correct.
-      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-      a.step();
-      let vertices = 0;
-      let worstDrape = 0;
-      let wetVertices = 0;
-      a.streets.group.traverse((o) => {
-        const pos = o.geometry?.getAttribute?.('position');
-        if (!pos) return;
-        vertices += pos.count;
-        const step = Math.max(1, Math.floor(pos.count / 900));
-        for (let i = 0; i < pos.count; i += step) {
-          const e = pos.getX(i);
-          const n = -pos.getZ(i);
-          worstDrape = Math.max(worstDrape,
-            Math.abs(pos.getY(i) - a.terrain.surfaceHeight(e, n) - 0.022));
-          if (a.terrain.isWater(e, n)) wetVertices++;
-        }
-      });
-
-      // The former far-field canopy was a solid horizontal mesh at plant-top
-      // height. It looked like a second terrain layer, hid the bases of the
-      // buildings and let the visitor walk underneath it. The actual flora is
-      // instanced geometry whose matrices must begin on the same terrain
-      // sampler the buildings and streets use (or at the water surface for
-      // emergent plants). There must be no replacement canopy slab.
-      const canopyPresent = !!a.flora.group.getObjectByName('flora-canopy');
-      const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
-      let rootedPlants = 0;
-      let worstPlantRoot = 0;
-      let waterPlants = 0;
-      let deepWaterPlants = 0;
-      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette',
-        'flora-shrub']) {
-        const mesh = a.flora.group.getObjectByName(name);
-        const matrix = mesh?.instanceMatrix?.array;
-        if (!matrix) continue;
-        for (let i = 0; i < mesh.count; i++) {
-          const o = i * 16;
-          const e = matrix[o + 12];
-          const y = matrix[o + 13];
-          const n = -matrix[o + 14];
-          const expected = a.terrain.isWater(e, n)
-            ? waterY : a.terrain.surfaceHeight(e, n);
-          worstPlantRoot = Math.max(worstPlantRoot, Math.abs(y - expected));
-          if (a.terrain.isWater(e, n)) {
-            waterPlants++;
-            if (a.flora.shoreDistance(e, n) > 8.01) deepWaterPlants++;
-          }
-          rootedPlants++;
-        }
-      }
-      const treeStations = a.trees.group.userData.stations ?? [];
-      const wetTreeStations = treeStations.filter(({ e, n }) => a.terrain.isWater(e, n));
-      // ...and the stronger question the river mask does not answer. `isWater`
-      // asks whether the heightfield is below SHORE_Y, 100 mm UNDER the water
-      // plane, so a stem rooted in that band passes the mask and still renders
-      // standing in the river. Every station carries the ground height the
-      // renderer built it at; the water surface comes from the epoch record.
-      const drownedTreeStations = treeStations.filter(({ e, n, y }) => (
-        (typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)) < waterY
-      ));
-      const lowestTreeStation = treeStations.reduce(
-        (lo, { e, n, y }) => Math.min(lo, typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)),
-        Infinity,
-      );
-
-      let anchoredBuildings = 0;
-      let worstBuildingAnchor = 0;
-      let deepestBedding = 0;
-      let exchangeAnchor = null;
-      for (const [id, record] of a.registry.entries()) {
-        const p = record.sidecar?.placement;
-        const at = a.buildings.positionOf(id);
-        if (!p || !at) continue;
-        // The anchor is the LOWEST ground under the footprint, not the ground at
-        // the origin — see buildings.groundUnder(). So the origin sample is a
-        // CEILING here, not an equality: a building on a slope beds down to its
-        // downhill corner and sits below its own origin by up to the relief
-        // beneath it. What this still pins is that the anchor comes from the
-        // terrain sampler at all, and never floats above it; the companion check
-        // "no building hovers above the ground beneath it" measures the corners
-        // through the real instance matrix.
-        const expected = p.vertical_anchor === 'water'
-          ? waterY : a.terrain.surfaceHeight(p.local_e ?? 0, p.local_n ?? 0);
-        // Signed: above the origin's ground is a fault, below it is bedding.
-        worstBuildingAnchor = Math.max(worstBuildingAnchor, at.y - expected);
-        deepestBedding = Math.max(deepestBedding, expected - at.y);
-        const error = Math.abs(at.y - expected);
-        anchoredBuildings++;
-        if (id === 'exchange_coffee_house') {
-          // Flat ground here, so the origin sample and the footprint minimum
-          // agree and the equality is still the right assertion for this one.
-          exchangeAnchor = { y: at.y, expected, error };
-        }
-      }
-
-      // Dry land has one value no matter which compatibility entry point an
-      // older caller uses. The walk-specific sampler differs only over water,
-      // where it deliberately supplies the navigation barrier.
-      let worstDrySurfaceAlias = 0;
-      for (const [e, n] of [[319.12, -90.66], [140, -35], [89.2, -110.4]]) {
-        if (!a.terrain.isWater(e, n)) {
-          worstDrySurfaceAlias = Math.max(worstDrySurfaceAlias,
-            Math.abs(a.terrain.surfaceHeight(e, n) - a.terrain.walkHeight(e, n)));
-        }
-      }
-      a.walker.teleport({ local_e: 452.5, local_n: -110.4, yaw_deg: 0 });
-      a.step();
-      const crossing = {
-        state: a.navigation.streetState,
-        historic: document.getElementById('street-historic')?.textContent,
-        modern: document.getElementById('street-modern')?.textContent,
-        shown: !document.getElementById('street-readout')?.hasAttribute('hidden'),
-      };
-      a.walker.teleport({ local_e: 89.2, local_n: -180, yaw_deg: 0 });
-      a.step();
-      const approaching = {
-        state: a.navigation.streetState,
-        historic: document.getElementById('street-historic')?.textContent,
-        modern: document.getElementById('street-modern')?.textContent,
-        ahead: document.getElementById('street-approach')?.textContent,
-      };
-      // R-BUG4. A panel used to be DELETED outright when any one of its four
-      // corners fell on water, which took the dry part of the panel with it —
-      // the owner saw it as a clean-edged green hole punched through South
-      // Water Street. It is clipped at the waterline now. This re-derives the
-      // rule's own arithmetic and asserts the ribbon carries every panel whose
-      // CENTRELINE is dry, so a future "simplification" back to dropping the
-      // panel fails here instead of in a screenshot.
-      const STEP = 2.25;
-      const MIN_W = 1.0;
-      let dryCentrelinePanels = 0;
-      let clippedPanels = 0;
-      let slivers = 0;
-      for (const rec of a.streets.records) {
-        const half = (rec.track_width_m ?? 10.5) * 0.5;
-        const pts = [];
-        for (let i = 1; i < rec.path.length; i++) {
-          const A = rec.path[i - 1];
-          const B = rec.path[i];
-          const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
-          const c = Math.max(1, Math.ceil(d / STEP));
-          for (let j = 0; j < c; j++) {
-            if (!pts.length) pts.push([A[0], A[1]]);
-            const t = (j + 1) / c;
-            pts.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
-          }
-        }
-        for (let i = 1; i < pts.length; i++) {
-          const A = pts[i - 1];
-          const B = pts[i];
-          const de = B[0] - A[0];
-          const dn = B[1] - A[1];
-          const L = Math.hypot(de, dn);
-          if (L < 1e-5) continue;
-          if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(B[0], B[1])) continue;
-          dryCentrelinePanels++;
-          const ue = -dn / L;
-          const un = de / L;
-          const reach = (e0, n0, se, sn) => {
-            if (!a.terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
-            let lo = 0;
-            let hi = half;
-            for (let k = 0; k < 6; k++) {
-              const mid = (lo + hi) * 0.5;
-              if (a.terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
-              else lo = mid;
-            }
-            return lo;
-          };
-          const aw = reach(A[0], A[1], ue, un) + reach(A[0], A[1], -ue, -un);
-          const bw = reach(B[0], B[1], ue, un) + reach(B[0], B[1], -ue, -un);
-          if (aw < half * 2 - 1e-6 || bw < half * 2 - 1e-6) clippedPanels++;
-          if (aw < MIN_W || bw < MIN_W) slivers++;
-        }
-      }
-      // T-0110. A panel is 6 indices only until it refines, so the module
-      // counts its own panels now — index arithmetic would misread refinement
-      // as extra roadway.
-      const emittedQuads = a.streets.stats?.panels ?? NaN;
-      const refinedPanels = a.streets.stats?.refinedPanels ?? NaN;
-
-      // T-0110, the regression the vertex-drape gate above cannot see: the
-      // ground rising THROUGH a panel between its vertices. T-0046's approach
-      // fills rose through the planar ribbon by up to 1.49 m — every vertex
-      // perfectly draped, the road erased by the depth test — and the owner
-      // read it as "grass triangles" and a road "ending" short of the deck.
-      // Probed at the half-points of every street triangle: refinement holds
-      // the interior miss under DRAPE_TOL_M except two nose-tip panels at the
-      // waterline (0.21 m, under the deck ends), so the bar is 0.35 — a third
-      // of the failure this gate exists to catch, with headroom over the
-      // measured worst. Off-grid probes are skipped: no sample, no verdict.
-      let worstSink = 0;
-      a.streets.group.traverse((o) => {
-        const pos = o.geometry?.getAttribute?.('position');
-        const idx = o.geometry?.index;
-        if (!pos || !idx) return;
-        for (let i = 0; i < idx.count; i += 3) {
-          const tri = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
-          const pt = tri.map((v) => [pos.getX(v), pos.getY(v), -pos.getZ(v)]);
-          // A triangle with a vertex off the grid stands on the fallback
-          // height, not a measurement — the map-border cliff is a border
-          // condition, not a drape defect, and the refiner refuses those
-          // panels for the same reason.
-          if (pt.some(([e, , n]) => !a.terrain.inBounds(e, n))) continue;
-          for (const [wa, wb, wc] of [[0.5, 0.5, 0], [0, 0.5, 0.5], [0.5, 0, 0.5],
-            [1 / 3, 1 / 3, 1 / 3]]) {
-            const e = pt[0][0] * wa + pt[1][0] * wb + pt[2][0] * wc;
-            const n = pt[0][2] * wa + pt[1][2] * wb + pt[2][2] * wc;
-            if (!a.terrain.inBounds(e, n)) continue;
-            const y = pt[0][1] * wa + pt[1][1] * wb + pt[2][1] * wc;
-            worstSink = Math.max(worstSink,
-              a.terrain.surfaceHeight(e, n) + 0.022 - y);
-          }
-        }
-      });
-
-      // T-0110, the join itself: the worn track must run onto each bridge
-      // approach and meet the deck. Stations march the street's own centreline
-      // up both North Branch approaches (deck ends e −117.5 / −45.67, T-0046's
-      // terrain approaches) and up the Dearborn drawbridge fill to the street
-      // record's own end (n 18 — the record stops 2.7 m short of the deck,
-      // which is T-0111's subject, not a drawing defect this gate can see).
-      // Each station must land inside a drawn road triangle in plan.
-      const covered = (e, n) => {
-        let hit = false;
-        a.streets.group.traverse((o) => {
-          if (hit) return;
-          const pos = o.geometry?.getAttribute?.('position');
-          const idx = o.geometry?.index;
-          if (!pos || !idx) return;
-          for (let i = 0; i < idx.count && !hit; i += 3) {
-            const p = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)]
-              .map((v) => [pos.getX(v), -pos.getZ(v)]);
-            const s = (A, B) => (B[0] - A[0]) * (n - A[1]) - (B[1] - A[1]) * (e - A[0]);
-            const d0 = s(p[0], p[1]);
-            const d1 = s(p[1], p[2]);
-            const d2 = s(p[2], p[0]);
-            hit = !((d0 < 0 || d1 < 0 || d2 < 0) && (d0 > 0 || d1 > 0 || d2 > 0));
-          }
-        });
-        return hit;
-      };
-      const centreAt = (id, axis, value) => {
-        const rec = a.streets.records.find((r) => r.id === id);
-        const k = axis === 'e' ? 0 : 1;
-        for (let i = 1; i < rec.path.length; i++) {
-          const [A, B] = [rec.path[i - 1], rec.path[i]];
-          const lo = Math.min(A[k], B[k]);
-          const hi = Math.max(A[k], B[k]);
-          if (value < lo || value > hi) continue;
-          const t = (value - A[k]) / (B[k] - A[k] || 1e-9);
-          return [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
-        }
-        return null;
-      };
-      const approachGaps = [];
-      for (let e = -135; e <= -118; e += 1) {
-        const p = centreAt('kinzie', 'e', e);
-        if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie w ${e}`);
-      }
-      for (let e = -45; e <= -32; e += 1) {
-        const p = centreAt('kinzie', 'e', e);
-        if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
-      }
-      for (let n = 8; n <= 17.5; n += 1) {
-        const p = centreAt('dearborn', 'n', n);
-        if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
-      }
-
-      return {
-        worstSink, refinedPanels, approachGaps,
-        records: a.streets.records.length, vertices, worstDrape, wetVertices,
-        dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
-        canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
-        treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
-        drownedTreeStations: drownedTreeStations.length,
-        lowestTreeStation, waterY,
-        treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
-        // ROADMAP R-BUG5. The population both woody checks above are blind to:
-        // `stations` is written only inside the near-field planter's 632 m
-        // square, so the five FAR_TIMBER bodies drawn as a horizon silhouette
-        // have never been asked where they stand. Measured against the mask the
-        // BROWSER loaded, not the one in data/ — tools/measure_far_timber.py
-        // asks the committed bytes and this project has twice shipped a bug
-        // living exactly in that gap.
-        farTimberWater: a.trees.farTimberWater?.() ?? null,
-        // ...and the clip that keeps them off the screen, exercised. The band is
-        // solved around the camera, so this stands far enough back that
-        // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
-        // it: from the spawn point it is 329 m away and one metre inside the
-        // near cut-off, which is a green gate that has run nothing.
-        horizonWetSkipped: (() => {
-          a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
-          a.step();
-          return a.trees.stats?.horizonWetSkipped ?? null;
-        })(),
-        anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
-        worstDrySurfaceAlias,
-        clearsLake: a.streets.blocksGrowth(452.5, -110.4),
-        keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
-        crossing, approaching,
-      };
-    });
+    // (The street-layer reading that lived here moved above the stage split —
+    // T-0060 — because its checks span stages 3 and 4.)
     check(`${label}: earth streets are populated and draped on the rendered ground`,
       streetLayer.records >= 17 && streetLayer.vertices > 1000
       && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
@@ -4704,6 +4829,30 @@ const terrainLoad = await page.evaluate(() => {
     console.log(`        brightness aid: +1 stop delta mean ${dBright.mean?.toFixed(2)} / worst `
       + `${dBright.worst} at ${BRIGHT_AID_GRID}²; restored residual mean `
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
+
+    inStageWork = false;
+    } // end STAGE 3 (T-0060)
+    // STAGE 4 — the flora census through free-fly. Every binding it shares
+    // with earlier stages (`streetLayer`) is read above the split; the
+    // teleport below re-establishes the camera pose it expects on its own.
+    if (stageOn(4)) {
+    inStageWork = true;
+
+    // Same fresh-boot accommodation as stage 3: this stage drives the panel
+    // chrome (`#btn-help` first), and while the gate screen stands the chrome
+    // has no layout at all — the click waits ninety seconds for a zero-size
+    // button and dies. In a full run every branch below is a no-op.
+    await page.evaluate(async () => {
+      if (!document.getElementById('gate').hasAttribute('hidden')) {
+        document.getElementById('gate-btn')?.click();
+        await new Promise((r) => setTimeout(r, 150));
+        document.exitPointerLock?.();
+      }
+      const help = document.getElementById('control-help');
+      if (help && !help.hasAttribute('hidden')) {
+        document.getElementById('control-help-gotit')?.click();
+      }
+    });
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
@@ -6723,6 +6872,22 @@ const terrainLoad = await page.evaluate(() => {
         noteShown: document.getElementById('uncertain-note')?.textContent ?? '',
         noteRecorded: window.__chicago4d.exclusions?.uncertainStandard ?? '',
         noteBusy: document.getElementById('uncertain-note')?.hasAttribute('aria-busy') ?? true,
+        // The open-questions BLOCK alone — heading, notes, list — for the
+        // hand-count guard below. The whole-panel text will not do: the
+        // liberties list legitimately contains "Three of these records
+        // describe multi-stemmed plants" (the K53 shrub liberty), and whether
+        // that list is rendered in full depends on the pick state earlier
+        // sections left behind — the staged runs (T-0060) surfaced exactly
+        // that order-dependence.
+        uncertainBlockText: (() => {
+          const note = document.getElementById('uncertain-note');
+          const list = document.getElementById('uncertain');
+          const parts = [note?.previousElementSibling?.textContent,
+            note?.textContent, list?.textContent];
+          let p = note?.nextElementSibling;
+          while (p && p !== list) { parts.push(p.textContent); p = p.nextElementSibling; }
+          return parts.filter(Boolean).join(' ').replace(/\s+/g, ' ');
+        })(),
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
@@ -6767,10 +6932,10 @@ const terrainLoad = await page.evaluate(() => {
       (open.noteRecorded
         ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1 === 1
         : false)
-      && !/Three of these/i.test(open.heading),
+      && !/Three of these/i.test(open.uncertainBlockText),
       `${open.noteRecorded
         ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1
-        : 'no'} occurrence(s)`);
+        : 'no'} occurrence(s); block "${open.uncertainBlockText.slice(0, 60)}"`);
     check(`${label}: the Evidence panel still does not overflow with it`, open.overflow);
 
     // …and the same entry on the building it is about. The section above tells a
@@ -7269,11 +7434,25 @@ const terrainLoad = await page.evaluate(() => {
     await page.evaluate(() => window.__chicago4d.popup.close());
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
+    inStageWork = false;
+    } // end STAGE 4 (T-0060)
+    } catch (e) {
+      inStageWork = false;
+      thrown = e;
+    }
+
     if (KEEP) {
       await page.screenshot({ path: path.join(KEEP, `walk-${viewport.width}x${viewport.height}.png`) });
     }
   }
 
+  // T-0060: taken in EVERY invocation, staged or not. Both used to be
+  // unreachable in practice — `zero page errors` was the tail of a body that
+  // outgrew its command ceiling, so a killed run merged without ever having
+  // been told whether the page threw, and an exception mid-suite died as a
+  // bare stack with no summary and no page-error verdict at all.
+  check(`${label}: the suite body ran to completion`, thrown === null,
+    String(thrown ?? ''));
   check(`${label}: zero page errors`, errors.length === 0,
     errors.slice(0, 4).join(' | '));
   await ctx.close();
@@ -7305,6 +7484,13 @@ const terrainLoad = await page.evaluate(() => {
 server.close();
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
+// T-0060: the audit line. In an unfiltered run the staged-section count is the
+// sum of what SMOKE_STAGE=1 and SMOKE_STAGE=2 each report, and the always-on
+// count is identical in all three — that arithmetic is how two halves are
+// demonstrated to add up to the whole.
+console.log(`${stageWorkChecks} staged-section check(s)`
+  + `${STAGE ? ` (stage ${STAGE} of 4)` : ' (all stages)'}, `
+  + `${passes.length + failures.length - stageWorkChecks} always-on check(s)`);
 if (failures.length) {
   console.log(`FAILURES:\n - ${failures.join('\n - ')}`);
   process.exit(1);

@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
 T-0005 — The three Main Branch sloughs, from the 1833 map
 T-0083 — The Green Tree's fabric corrected to the three views: bays, chimneys and the low left wing
 T-0092 — The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
@@ -71,3 +70,6 @@ T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
+T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
+T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
+T-0115 — Desktop light detail draws 605k triangles against its own 600k ceiling
