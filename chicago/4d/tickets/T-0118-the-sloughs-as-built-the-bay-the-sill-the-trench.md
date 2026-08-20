@@ -1,7 +1,7 @@
 ---
 id: T-0118
 title: The sloughs as built: the bay, the sill, the trench and the too-straight course
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/20/2026, 1:35:51 PM CT
 blocked_on: null
 needs_bake: true
 ---
