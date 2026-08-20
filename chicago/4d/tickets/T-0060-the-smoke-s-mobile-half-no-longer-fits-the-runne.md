@@ -1,7 +1,7 @@
 ---
 id: T-0060
 title: The smoke's mobile half no longer fits the runner's ten-minute command ceiling
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 272
 claimed_by: run 8/20/2026, 2:09:07 AM CT
 blocked_on: null
 needs_bake: false
