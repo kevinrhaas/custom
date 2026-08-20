@@ -408,6 +408,11 @@ export async function createFrontage({
     records: [],
     walks: [],
     posts: [],
+    /** Deck rectangles in local ENU, for the planting block-list: a walk is a
+     *  floor, and nothing may grow up through it (T-0085/T-0124). Same shape
+     *  as the wharves' keepOut — `{ id, pts }`, consumed by flora's
+     *  footprintCircles. */
+    keepOut: [],
     census: {
       records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
       refused: 0, meshes: 0,
@@ -456,6 +461,26 @@ export async function createFrontage({
       spans.push({ id: walk.belongs_to, from, to: buf.pos.length / 9 });
       out.walks.push(walk);
       out.census[crossing ? 'crossings' : 'walks'] += 1;
+      // The walk's deck rectangle, in ENU, for the planting block-list. The
+      // builders work in world x/z; this stays in the (e, n) frame the flora
+      // layer tests in. Exact width on purpose - a tuft leaning over the edge
+      // is a verge, a tuft rooted mid-deck is a hole in the model.
+      const [wa, wb] = walk.centreline_local_enu_m ?? [];
+      if (wa && wb) {
+        const de = wb[0] - wa[0];
+        const dn = wb[1] - wa[1];
+        const wl = Math.hypot(de, dn);
+        if (wl >= 0.5) {
+          const hw = (walk.width_m ?? 1.83) / 2;
+          const pe = (-dn / wl) * hw;
+          const pn = (de / wl) * hw;
+          out.keepOut.push({
+            id: `${walk.belongs_to}__walk`,
+            pts: [[wa[0] + pe, wa[1] + pn], [wb[0] + pe, wb[1] + pn],
+              [wb[0] - pe, wb[1] - pn], [wa[0] - pe, wa[1] - pn]],
+          });
+        }
+      }
     }
     for (const post of record.posts ?? []) {
       const level = LEVEL[post.confidence] ?? 1;
@@ -499,6 +524,17 @@ export async function createFrontage({
   mat.customProgramCacheKey = () => 'chicago4d-frontage-timber';
 
   const mesh = new THREE.Mesh(geo, mat);
+  /**
+   * DRAWN AFTER THE STREET RIBBON, and the owner's report is why. The road is a
+   * decal: depthWrite off, polygonOffset -8/-32 so it hugs the terrain without
+   * z-fighting it. At a grazing angle that offset outweighs the 11 cm a board
+   * stands above the ground, so a ribbon drawn after the planks painted STRAIGHT
+   * OVER a board crossing. Order is the whole fix: drawn after the ribbon, the
+   * planks pass their depth test (the decal writes no depth) and the crossing
+   * sits on the road the way a board laid on dirt does. Real occlusion is
+   * untouched - terrain writes depth, so a walk behind a rise stays hidden.
+   */
+  mesh.renderOrder = 1;
   mesh.name = 'frontage';
   mesh.castShadow = true;
   mesh.receiveShadow = true;

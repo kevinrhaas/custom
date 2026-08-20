@@ -1,10 +1,17 @@
 export const CHANGELOG = [ // newest first
-  { v: 207, title: 'The far treeline holds its place on the horizon', kind: 'fix', ts: '2026-08-20T21:32:45.121Z', date: 'Aug 20, 2026, 4:32 PM CT',
+  { v: 208, title: 'The far treeline holds its place on the horizon', kind: 'fix', ts: '2026-08-20T21:32:45.121Z', date: 'Aug 20, 2026, 4:32 PM CT',
     items: [
       'The line of timber on the horizon used to move with you — walk a rise or take to the air and it rode up and down with your eye, then snapped back to where it belonged. Each silhouette’s height is now finished against the eye fresh every frame, so the treeline stands where the world holds it and shifts only by true perspective. The costly part of the horizon solve still runs once per stride, as before, so the stillness costs nothing per frame.',
       'The far grove up the South Branch was drawn as a dead-flat ribbon at the left horizon: on a small screen every one of its crowns was pinned to the exact one-pixel floor that keeps distant timber visible at all, and a flat-topped block reads as a far building, not a wood. The floor now compresses the crown line instead of shearing it flat, so the silhouette keeps its rises and dips down to the last pixel the frame can resolve.',
       'The owner asked why the treeline south-west of South Water Street stops where it does. Measured from that stand, bearing by bearing: no rendering rule removes anything there. The South Branch belt draws to its recorded edge, the Hardscrabble grove stands beyond it, and the quiet to their right is the West Division itself — "an open prairie, entirely free from timber, except for a grove up the South Branch", exactly as Andreas describes. An empty horizon there is the record speaking, and a treeline invented to fill it would be the bigger error.',
       'The horizon band now carries its own measuring instrument: from any stand it can report, bearing by bearing, what was drawn and which rule — the near limit, the water mask, the eye-level cull, the pixel floor — removed what was not, so the next "it stops short" report can be answered with numbers rather than a guess.',
+    ] },
+  { v: 207, title: 'Nothing grows through a plank floor any more', kind: 'fix', ts: '2026-08-20T19:54:09.405Z', date: 'Aug 20, 2026, 2:54 PM CT',
+    items: [
+      'Grass and reeds used to come up between the boards of the plank sidewalks, and rushes stood straight through the dock decks on the river. Both are closed: the planting layer now refuses every deck the town lays - the walks, the board crossings, the wharves, the bridge decks - before it asks any other question.',
+      'The dock half had a subtle cause worth recording: the rule that keeps plants out of built floors ran only on dry land, so a bulrush rooted in the riverbed under a wharf was never asked about the deck above it. The rule now runs first, wherever the plant would stand.',
+      'The release checks ask the planting rules directly at the centre of every deck the town publishes - no species, wet or dry, is granted a station through a floor - so this cannot quietly come back.',
+      'And the dirt road no longer paints over the board crossings laid across it. The road is drawn as a thin decal hugging the ground, and at a shallow angle it used to win against boards standing a hand\u2019s width above it; the boards are simply drawn after the road now, the way they are laid after it in fact.',
     ] },
   { v: 206, title: 'Trees and bushes stand close around the houses', kind: 'feature', ts: '2026-08-20T19:03:58.767Z', date: 'Aug 20, 2026, 2:03 PM CT',
     items: [

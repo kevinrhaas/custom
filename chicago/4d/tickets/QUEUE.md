@@ -52,7 +52,6 @@ T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
-T-0085 — The sward grows up through the Green Tree's plank walk
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
 T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale

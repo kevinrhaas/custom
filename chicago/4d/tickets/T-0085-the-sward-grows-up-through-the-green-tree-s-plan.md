@@ -1,7 +1,7 @@
 ---
 id: T-0085
 title: The sward grows up through the Green Tree's plank walk
-state: open
+state: done
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 281
 claimed_by: null
 blocked_on: null
 needs_bake: false
