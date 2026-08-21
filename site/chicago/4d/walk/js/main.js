@@ -130,6 +130,15 @@ const VERSION = '0.1.0';
  * tickets affordable, because every pale T-0067, T-0068 and T-0069 add now costs
  * 4 triangles at `light` rather than 10.
  *
+ * T-0068 extended the same plank to `balanced`, and for the tier's own sake: the
+ * middle tier had never taken anything off this layer, so a pale cost the same
+ * ten triangles there as at `full` and the town's fences scaled identically at
+ * both. With 3.5 km of lot line on the layer that put `balanced` at 794,000 of
+ * its 800,000 while `full` sat 150,000 clear of its own — a ceiling doing no
+ * work. `balanced` now gives up the 22 mm, worth about 56,000 triangles, and
+ * `full` still draws the prism. `enclosures.js` `PLANK_LEVELS` is where that
+ * lives, and no triangle ceiling moved to pay for any of it.
+ *
  * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
  * cull it, is not a tier at all — it costs a visitor nothing at any level and is
  * simply how `enclosures.js` builds now.)
@@ -178,6 +187,16 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
  * six shadow-pass calls at this stand would go for nothing a visitor can see.
  * That needs a per-mesh opt-out in `applyShadowTier` and a smoke check that
  * counts the exempt meshes rather than assuming every furniture mesh casts.
+ *
+ * RECONCILED 2026-08-21, and the number stands at 120. Two parcels raised this
+ * ceiling the same afternoon, each measuring only itself against dev: the street
+ * edge (T-0069) read 78 calls and chose 120; the lot-line fences (T-0068) read 79
+ * and chose 96. Neither had seen the other. Merged they stack — dev's 65 plus
+ * roughly thirteen for the walks and fourteen for the fences — so 96 would have
+ * been spent almost the moment both landed, which is how a ceiling comes to be
+ * re-raised twice in a week. 120 is kept because it is the number with room in
+ * it, and because the argument below is about what a ceiling is FOR, not about
+ * the one parcel that happened to reach it first.
  */
 const BUDGET = { drawCalls: 120, triangles: DETAIL.full.triangles };
 

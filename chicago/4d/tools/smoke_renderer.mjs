@@ -69,7 +69,8 @@
  *                                 structure, in one Go to tab, each structure
  *                                 graded with its own record's position grade
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
- *   draw calls under budget ..... the batch strategy is doing its job
+ *   draw calls under budget ..... the batch strategy is doing its job, against a
+ *                                 ceiling this file pins rather than merely reads
  *   zero page errors ............ everywhere, both widths
  *
  * On failure it prints the failing URL or text, never a bare status: a smoke
@@ -1431,6 +1432,7 @@ for (const [label, viewport, touch] of [
       return {
         census: e?.census ?? null,
         meshes: meshes.length,
+        runs: (e?.records ?? []).reduce((t, r) => t + (r.runs?.length ?? 0), 0),
         graded,
         verts,
         widestSphere,
@@ -1444,10 +1446,18 @@ for (const [label, viewport, touch] of [
       `${encl.census?.enclosures} enclosure(s), ${encl.census?.posts} posts, `
       + `${encl.verts} vertices, ${encl.census?.dropped} member(s) refused, `
       + `ids [${encl.ids.join(', ')}]`);
+    // T-0068 added the second half of this. A layer of 3.5 km of lot-line fence
+    // can fail the culling contract in the OPPOSITE direction too: one mesh per
+    // run holds every sphere small and costs a draw call per fence, and at 189
+    // runs that is 51 calls of the frame's whole budget (measured). So it packs
+    // neighbouring runs into a shared chunk, and the bar is asserted from both
+    // ends — the widest sphere stays under 40 m AND the mesh count stays well
+    // under the run count, which is what says the packing is running at all.
     check(`${label}: the enclosure layer is chunked so the frustum can cull it`,
-      encl.meshes > 1 && encl.widestSphere <= 40,
-      `${encl.meshes} mesh(es) in the group, widest bounding sphere `
-      + `${encl.widestSphere?.toFixed(1)} m (one town-wide mesh reads ~700 m)`);
+      encl.meshes > 1 && encl.widestSphere <= 40
+      && encl.runs > 50 && encl.meshes <= encl.runs / 2,
+      `${encl.meshes} mesh(es) for ${encl.runs} run(s) in the group, widest bounding `
+      + `sphere ${encl.widestSphere?.toFixed(1)} m (one town-wide mesh reads ~700 m)`);
     // Unmarked geometry rendering as though it were evidence is the one failure
     // the confidence view exists to prevent, and a layer built in JS can put a
     // vertex on screen without ever passing through the GLB contract that would
@@ -1586,6 +1596,134 @@ for (const [label, viewport, touch] of [
     check(`${label}: the garden fence reaches the screen from the dooryard`,
       dGarden.worst >= 6 && dGarden.mean >= 0.3,
       `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
+
+    // --- the town's lot-line yard fences (T-0068) ----------------------------
+    //
+    // The owner: *"i think there should be more fences."* Four enclosures in the
+    // whole of Chicago, and every other lot open prairie from the house to the
+    // alley. The three generated `town_lot_line_*` records enclose the YARD of
+    // every improved platted lot the rule can find room behind, and the ticket's
+    // acceptance clause is a TOWN-WIDE one — *"improved lots across the town read
+    // as fenced"* — so the assertion has to be about COVERAGE and not about
+    // existence. Four failures this catches that no dataset gate can:
+    //
+    //   * the rule silently narrowing (a footprint moves, a clause bites harder)
+    //     until a handful of lots carry fences and the town reads as it did;
+    //   * the coverage stacking in one corner — the records could name a hundred
+    //     lots and the geometry stand in three blocks;
+    //   * one of the three fence TYPES failing to reach the screen, which the
+    //     board branch already did once (a type the renderer does not know falls
+    //     back to open rails and draws a yard you can see straight through);
+    //   * and a yard quietly acquiring a ground TREATMENT, which would take the
+    //     prairie off a hundred lots. These records state none ON PURPOSE — a
+    //     garden can say what it is, a yard cannot — and that decision is
+    //     invisible in every other check in this file.
+    const lotLines = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const recs = (a.enclosures?.records ?? []).filter((r) => /^town_lot_line_/.test(r.id));
+      const lots = new Set();
+      const blocks = new Set();
+      const types = {};
+      const graded = { existence: 0, form: 0, formValues: 0 };
+      let runs = 0;
+      let metres = 0;
+      let declaresGround = 0;
+      for (const r of recs) {
+        for (const id of r.coverage?.lots ?? []) {
+          lots.add(id);
+          blocks.add(id.replace(/_lot\d+$/, ''));
+        }
+        types[r.form?.fence_type?.value ?? '?'] = (r.coverage?.lots ?? []).length;
+        runs += (r.runs ?? []).length;
+        if (r.ground?.treatment) declaresGround += 1;
+        if (r.existence?.confidence === 'reconstructed') graded.existence += 1;
+        for (const v of Object.values(r.form ?? {})) {
+          graded.formValues += 1;
+          if (v?.confidence === 'reconstructed') graded.form += 1;
+        }
+        for (const run of r.runs ?? []) {
+          const p = run.path_local_enu_m ?? [];
+          for (let i = 1; i < p.length; i++) {
+            metres += Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]);
+          }
+        }
+      }
+      // AND WHAT IS DRAWN. Read off the MESHES rather than the records, so a
+      // record that loaded and built nothing cannot pass this: which 40 m cells
+      // of the town hold fence timber, and how tall the tallest stick in each
+      // fence type stands. A cell count is the cheapest honest answer to "is the
+      // enclosure spread across the town" that does not need the plat in here.
+      const meshes = (a.enclosures?.group?.children ?? []).filter((c) => c.isMesh);
+      const cells = new Set();
+      let ungraded = 0;
+      let lotMeshes = 0;
+      for (const m of meshes) {
+        // Scoped to the chunks these records reach: another record on this layer
+        // is free to be graded better than reconstructed the day a source
+        // describes its fence, and that must not fail this check.
+        if (!(m.userData.recordIds ?? []).some((id) => /^town_lot_line_/.test(id))) continue;
+        lotMeshes += 1;
+        const pos = m.geometry.getAttribute('position');
+        const conf = m.geometry.getAttribute('_confidence');
+        for (let i = 0; i < pos.count; i += 3) {
+          cells.add(`${Math.round(pos.getX(i) / 40)}:${Math.round(-pos.getZ(i) / 40)}`);
+          if (conf && conf.getX(i) !== 1) ungraded += 1;
+        }
+      }
+      return { records: recs.length, lots: lots.size, blocks: blocks.size, types, runs,
+        metres: Math.round(metres), declaresGround, cells: cells.size,
+        meshes: meshes.length, lotMeshes, graded, ungraded,
+        pales: a.enclosures?.census?.pales ?? 0, posts: a.enclosures?.census?.posts ?? 0 };
+    });
+    check(`${label}: the town's improved lots read as fenced, block after block`,
+      lotLines.records === 3 && lotLines.lots >= 100 && lotLines.blocks >= 17
+      && lotLines.runs >= 240 && lotLines.metres >= 4000,
+      `${lotLines.records} record(s) fencing ${lotLines.lots} platted lot(s) across `
+      + `${lotLines.blocks} block(s), ${lotLines.runs} run(s), ${lotLines.metres} m`);
+    check(`${label}: the lot fences are built in the period's three types`,
+      Object.keys(lotLines.types).length === 3
+      && ['board', 'picket', 'post_and_rail'].every((t) => lotLines.types[t] > 0),
+      `types ${JSON.stringify(lotLines.types)}`);
+    // 40 m cells, so this cannot be satisfied by one long fence: the town's
+    // platted blocks span roughly 1,100 m by 330 m and a coverage that had
+    // collapsed into one district would read well under half of this.
+    check(`${label}: the enclosure is spread over the town, not stacked in one district`,
+      lotLines.cells >= 95,
+      `fence timber stands in ${lotLines.cells} cell(s) of 40 m`);
+    check(`${label}: a lot's yard states no ground treatment, so its sward stands`,
+      lotLines.declaresGround === 0,
+      `${lotLines.declaresGround} of ${lotLines.records} lot-line record(s) declare one`);
+    // Carded reconstructed, in both halves: what the RECORDS claim about
+    // themselves, and what the drawn vertices carry. Nothing on this scheme is
+    // evidence and the confidence view has to be able to take all of it away.
+    check(`${label}: every lot fence is graded reconstructed, record and vertex`,
+      lotLines.graded.existence === 3 && lotLines.graded.formValues > 0
+      && lotLines.graded.form === lotLines.graded.formValues
+      && lotLines.lotMeshes > 0 && lotLines.ungraded === 0,
+      `${lotLines.graded.existence}/3 existence, ${lotLines.graded.form}/`
+      + `${lotLines.graded.formValues} form values, ${lotLines.ungraded} vertex/vertices in `
+      + `${lotLines.lotMeshes} chunk(s) graded better than reconstructed`);
+    // AND IT READS, from the ground these fences actually face. The alley behind
+    // the Randolph and Wells block, looking east down it: the plat drives a
+    // service alley through the middle of every block, the back of every lot on
+    // both sides opens onto it, and the yard fences stand within three metres of
+    // a visitor walking it. Compared with the layer hidden, holding the clock so
+    // the grass cannot supply the difference — the same instrument the wagon
+    // yard, the pen and the gardens use.
+    await page.evaluate(() => {
+      window.__chicago4d.walker.teleport({ local_e: 370, local_n: -323.3, yaw_deg: 90 });
+    });
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const lotWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
+    const lotWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dLot = signatureDistance(lotWith, lotWithout);
+    check(`${label}: the lot fences reach the screen from the alley they face`,
+      dLot.worst >= 6 && dLot.mean >= 0.3,
+      `cell delta mean ${dLot.mean?.toFixed(2)}, worst ${dLot.worst} (need worst>=6)`);
 
     // --- the Sauganash's yard fence and its trees (T-0091) -------------------
     //
@@ -5053,6 +5191,24 @@ for (const [label, viewport, touch] of [
     // cannot drift from it; what is asserted is unchanged, and the per-tier check
     // below holds every level to the same number.
     const stats = await page.evaluate(() => window.__chicago4d.stats());
+    // THE CALL CEILING IS PINNED HERE AS WELL AS READ (T-0068). This check used
+    // to compare the frame against whatever number `main.js` happened to be
+    // carrying, so a scene that had outgrown its budget could be made green by
+    // editing the budget — the exact move T-0115's ledger exists to make
+    // impossible to do quietly. 96 is the number this gate was written against:
+    // raised from 80 on the owner's ruling of 2026-08-21, because a chunked
+    // layer spends draw calls to buy culling and 80 was a guard on the batching
+    // strategy rather than a measurement. Moving it has to move this line too,
+    // in the same commit, with the measurement that justified it.
+    //
+    // Only the CALL ceiling is pinned here, and deliberately: the triangle
+    // budget follows the detail tier the visitor is on (`BUDGET.triangles` is
+    // reset from `DETAIL[level]`), so it reads 600,000 on a phone booting into
+    // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
+    // check further down, which is where a re-budget of those would show.
+    check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
+      stats.budget.drawCalls === 120,
+      `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
     check(`${label}: draw calls under budget`, stats.drawCalls <= stats.budget.drawCalls,
       `${stats.drawCalls} calls (budget ${stats.budget.drawCalls})`);
     check(`${label}: triangles under budget`, stats.triangles <= stats.budget.triangles,
