@@ -12,6 +12,10 @@
     {
       "id": "sauganash_frontage",
       "file": "sauganash_frontage.json"
+    },
+    {
+      "id": "river_walk_frontage",
+      "file": "river_walk_frontage.json"
     }
   ]
 }

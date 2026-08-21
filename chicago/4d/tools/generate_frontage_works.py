@@ -85,6 +85,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SIDECARS = DATA / "sidecars" / "1835"
 STREETS = DATA / "streets" / "1835.json"
+WHARVES = DATA / "wharves" / "river_landings.json"
+EPOCH = DATA / "terrain" / "epochs" / "e1834_harbor_cut"
 OUTDIR = DATA / "frontage"
 INDEX = OUTDIR / "index.json"
 
@@ -153,6 +155,33 @@ STREET_REACH_M = 22.0
 # a frontage from a flank by two orders of magnitude, which is why it can be a constant
 # rather than a judgement.
 FRONTAGE_DOMINANCE = 0.5
+
+# THE RIVER PLANK WALK (T-0119). The owner, standing at the State Street slough's
+# mouth: "the pedestrian plank sidewalk bridge crossing it close to the river
+# should exist and run along the river towards the town." The third record this
+# generator writes, and the first NOT derived from a building: its fixed points
+# are the Slough Log Bridge's committed deck (the crossing rides it), the traced
+# south bank (the walk threads the verge between the South Water track and the
+# water), and Jones's landing (data/wharves/river_landings.json), which is where
+# the town's wharf walks begin and the run therefore ends. The knots BETWEEN
+# those pins are authored here, exactly as the terrain spec's swale lines are,
+# and every one of them is audited on every run: each board station must stand
+# on dry committed ground and clear the travelled track, or this generator
+# refuses to write the record.
+RIVER_WALK_ID = "river_plank_walk"
+RIVER_APPROACH_M = 1.7     # the crossing footway reaches this far past each deck end
+RIVER_DECK_MARGIN_M = 0.05  # the walkable footway strip is this much wider than its boards
+RIVER_DRY_M = 0.03         # least ground elevation under a board centre, m over datum
+RIVER_CROSS_CLEAR_M = 1.3  # a crossing runs past the track edge by this much each side
+
+# The authored knots, local ENU metres, east to west. Reach ends that meet the
+# crossing footway or the Dearborn board crossing are DERIVED below, not listed.
+RIVER_EAST_REACH = [[760.0, 14.6], [731.0, 13.8]]     # deck west end .. Dearborn
+RIVER_WEST_REACH = [[667.0, 13.9], [638.0, 14.4], [600.0, 15.0], [576.0, 15.4],
+                    [537.0, 15.4], [497.0, 15.3], [489.0, 14.6]]  # Dearborn .. La Salle mouth
+RIVER_WHARF_REACH = [[459.5, 14.3], [455.0, 24.0], [448.0, 32.0], [428.0, 37.5],
+                     [396.0, 40.2], [357.5, 40.3]]    # La Salle mouth .. Jones's landing
+RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level at this N
 
 
 # ---------------------------------------------------------------------------- #
@@ -776,6 +805,480 @@ def record(cfg: dict, walks: list, posts: list, refused: list) -> dict:
     return rec
 
 
+# ---------------------------------------------------------------------------- #
+# THE RIVER PLANK WALK (T-0119) — the crossing footway at the slough mouth and
+# the riverside walk along the south bank towards town.
+# ---------------------------------------------------------------------------- #
+
+def _heightfield():
+    """The committed heightfield, imported lazily so the two building records
+    can still regenerate on a checkout with no terrain epoch."""
+    from heightfield import Heightfield  # tools/ is this script's own directory
+    hf = Heightfield.load(EPOCH)
+    if hf is None:
+        raise SystemExit("generate_frontage_works: no committed heightfield at "
+                         f"{EPOCH} — the river walk cannot be audited, so it is "
+                         "not written")
+    return hf
+
+
+def _polyline_stations(line, pitch=PLANK_PITCH_M):
+    """Every board centre along a polyline, the same march frontage.js makes."""
+    out = []
+    for i in range(len(line) - 1):
+        (ax, ay), (bx, by) = line[i], line[i + 1]
+        seg = math.hypot(bx - ax, by - ay)
+        n = max(1, round(seg / pitch))
+        step = seg / n
+        for j in range(n):
+            t = (j + 0.5) * step / seg
+            out.append((ax + (bx - ax) * t, ay + (by - ay) * t))
+    return out
+
+
+def _n_on_path(path, e):
+    """The path's own N at easting `e`, linearly interpolated (South Water runs
+    monotonically in E through the whole reach this walk threads)."""
+    for i in range(len(path) - 1):
+        (e0, n0), (e1, n1) = path[i], path[i + 1]
+        if min(e0, e1) <= e <= max(e0, e1) and e0 != e1:
+            return n0 + (n1 - n0) * (e - e0) / (e1 - e0)
+    return None
+
+
+def _e_on_path(path, n):
+    """The path's own E at northing `n` — Dearborn runs south-north."""
+    for i in range(len(path) - 1):
+        (e0, n0), (e1, n1) = path[i], path[i + 1]
+        if min(n0, n1) <= n <= max(n0, n1) and n0 != n1:
+            return e0 + (e1 - e0) * (n - n0) / (n1 - n0)
+    return None
+
+
+def _audit_river_reach(name, line, hf, streets, problems):
+    """Every board station on dry committed ground, clear of the travelled way.
+
+    This is the walk's own placement gate, run on every regeneration: the knots
+    above are authored, and an authored coordinate nobody re-audits is a number
+    somebody typed. A station under water or in the track refuses the RECORD,
+    not just the board — the whole run is one claim.
+    """
+    sw = streets.get("south_water")
+    hw = WALK_W_M / 2.0
+    for (e, n) in _polyline_stations(line):
+        g = hf.height(e, n)
+        if g < RIVER_DRY_M:
+            problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) stands on ground at "
+                            f"{g:+.2f} m — under or at the water, no walk is written")
+        if sw:
+            centre = _n_on_path(sw["path"], e)
+            if centre is not None:
+                edge = centre + sw["track_w"] / 2.0
+                if n - hw < edge - 1e-9:
+                    problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) laps the "
+                                    f"South Water track (edge N {edge:.2f}) — no walk "
+                                    "is written")
+
+
+def build_river_walk() -> tuple[list, list]:
+    """The river plank walk's four runs, every fixed point read from the record
+    that committed it, every authored knot audited against the committed ground."""
+    problems: list[str] = []
+
+    # THE CROSSING'S FIXED POINT: the Slough Log Bridge's committed deck. The
+    # sidecar's placement is the same one the walker's deck registry reads, so
+    # the footway and the surface a visitor stands on are one set of numbers.
+    bridge = _load(SIDECARS / "slough_log_bridge.json")
+    place = bridge.get("placement") or {}
+    poly = (bridge.get("footprint") or {}).get("polygon") or []
+    if place.get("vertical_anchor") != "water" or not isinstance(
+            place.get("walk_surface_m"), (int, float)):
+        raise SystemExit("generate_frontage_works: the Slough Log Bridge sidecar no "
+                         "longer carries a water-anchored walk_surface_m — the "
+                         "crossing footway has nothing to ride")
+    if float(place.get("rotation_deg") or 0.0) != 0.0:
+        raise SystemExit("generate_frontage_works: the Slough Log Bridge deck has "
+                         "rotated — the footway derivation below assumes the "
+                         "committed east-west deck and must be re-derived")
+    deck_y = float(place["walk_surface_m"])          # a water anchor is datum zero
+    e0 = float(place["local_e"])
+    n0 = float(place["local_n"])
+    deck_e0, deck_e1 = e0 + min(p[0] for p in poly), e0 + max(p[0] for p in poly)
+    deck_n_mid = n0 + (min(p[1] for p in poly) + max(p[1] for p in poly)) / 2.0
+
+    # THE RUN'S FAR END: Jones's landing, the easternmost wharf on the South
+    # Water bank — where the town's wharf walks begin, so where this walk stops.
+    wharves = _load(WHARVES)
+    jones = next((w for w in wharves.get("wharves", [])
+                  if w.get("structure_id") == "h_jones_store"), None)
+    if jones is None:
+        raise SystemExit("generate_frontage_works: h_jones_store no longer states a "
+                         "wharf — the river walk's west terminus is gone and the "
+                         "authored run must be re-bounded")
+    foot = jones["bank_foot_local_enu_m"]
+    end = RIVER_WHARF_REACH[-1]
+    if math.hypot(end[0] - foot[0], end[1] - foot[1]) > 6.5:
+        raise SystemExit("generate_frontage_works: the river walk's last knot is "
+                         f"{math.hypot(end[0] - foot[0], end[1] - foot[1]):.1f} m from "
+                         "Jones's landing — the wharf moved, re-author the run's end")
+
+    streets = _streets()
+    hf = _heightfield()
+
+    # THE DEARBORN CROSSING'S FIXED LINE: the street's own committed centreline,
+    # crossed square where the walk meets it, reaching past the travelled track
+    # by the same margin every crossing this generator writes keeps.
+    dearborn = streets["dearborn"]
+    dcross_e = _e_on_path(dearborn["path"], RIVER_DEARBORN_CROSS_N)
+    reach = dearborn["track_w"] / 2.0 + RIVER_CROSS_CLEAR_M
+    cross_e_east = _round(dcross_e + reach)
+    cross_e_west = _round(dcross_e - reach)
+
+    footway_line = [[_round(deck_e0 - RIVER_APPROACH_M), _round(deck_n_mid)],
+                    [_round(deck_e1 + RIVER_APPROACH_M), _round(deck_n_mid)]]
+    span_hw = _round(WALK_W_M / 2.0 + RIVER_DECK_MARGIN_M)
+    deck_span = [[_round(deck_e0), _round(deck_n_mid - span_hw)],
+                 [_round(deck_e1), _round(deck_n_mid - span_hw)],
+                 [_round(deck_e1), _round(deck_n_mid + span_hw)],
+                 [_round(deck_e0), _round(deck_n_mid + span_hw)]]
+
+    east_line = ([[_round(deck_e0 - RIVER_APPROACH_M), _round(deck_n_mid)]]
+                 + [[_round(e), _round(n)] for e, n in RIVER_EAST_REACH]
+                 + [[cross_e_east, RIVER_DEARBORN_CROSS_N]])
+    west_line = ([[cross_e_west, RIVER_DEARBORN_CROSS_N]]
+                 + [[_round(e), _round(n)] for e, n in RIVER_WEST_REACH])
+    wharf_line = [[_round(e), _round(n)] for e, n in RIVER_WHARF_REACH]
+
+    # The audits. The footway's own boards ride the committed deck, so only its
+    # two approach ends are asked of the ground; every other board is.
+    for e, n in footway_line:
+        if hf.height(e, n) < RIVER_DRY_M:
+            problems.append(f"{RIVER_WALK_ID}: the crossing footway's approach at "
+                            f"({e:.1f}, {n:.1f}) stands on wet ground")
+    _audit_river_reach(f"{RIVER_WALK_ID} east reach", east_line, hf, streets, problems)
+    _audit_river_reach(f"{RIVER_WALK_ID} west reach", west_line, hf, streets, problems)
+    _audit_river_reach(f"{RIVER_WALK_ID} wharf reach", wharf_line, hf, streets, problems)
+    # And the stated reason for the one break in the run must still be true: the
+    # gap between the two reaches crosses the La Salle slough's traced mouth. If
+    # this ground ever comes up dry, the refusal below is wrong and the walk
+    # should be re-authored continuous.
+    gap_mid_e = (west_line[-1][0] + wharf_line[0][0]) / 2.0
+    gap_mid_n = (west_line[-1][1] + wharf_line[0][1]) / 2.0
+    if hf.height(gap_mid_e, gap_mid_n) >= 0.0:
+        problems.append(f"{RIVER_WALK_ID}: the La Salle mouth gap at ({gap_mid_e:.1f}, "
+                        f"{gap_mid_n:.1f}) is dry ground — the stated refusal no "
+                        "longer holds, re-author the run continuous")
+    if problems:
+        raise SystemExit("generate_frontage_works: the river walk failed its own "
+                         "placement audit:\n  - " + "\n  - ".join(problems))
+
+    liberty = "L153"
+    walks = [
+        {
+            "id": f"{RIVER_WALK_ID}_crossing_footway",
+            "belongs_to": RIVER_WALK_ID,
+            "kind": "plank_walk",
+            "confidence": "reconstructed",
+            "rides": "slough_log_bridge",
+            "centreline_local_enu_m": footway_line,
+            "width_m": WALK_W_M,
+            "rise_m": WALK_RISE_M,
+            "plank_run": "across",
+            "plank_pitch_m": PLANK_PITCH_M,
+            "plank_thickness_m": PLANK_T_M,
+            "deck_m": _round(deck_y),
+            "deck_span_local_enu_m": deck_span,
+            "note": (
+                "THE PLANK FOOTWAY OVER THE SLOUGH MOUTH — what a person walking "
+                "Water Street actually crosses the drain on. The Slough Log Bridge "
+                "is the committed structure (its record carries the crossing's "
+                "evidence); this footway is the pedestrian surface the owner asked "
+                "for on 2026-08-20, laid along the deck's own centre. WHERE is "
+                "derived, not authored: the run is the committed deck's extent "
+                f"(E {deck_e0:.1f}..{deck_e1:.1f}) plus {RIVER_APPROACH_M} m onto "
+                "each graded approach, and `deck_m` is the deck surface the sidecar "
+                "already states (`walk_surface_m` over a water anchor), so the "
+                "boards ride the same number the walker's deck registry reads. Over "
+                "the carved channel the boards lie on the deck; on the approaches "
+                "they take the ground, exactly as every other walk this layer "
+                f"lays. docs/LIBERTIES.md {liberty}."
+            ),
+        },
+        {
+            "id": f"{RIVER_WALK_ID}_east_reach",
+            "belongs_to": RIVER_WALK_ID,
+            "kind": "plank_walk",
+            "confidence": "reconstructed",
+            "centreline_local_enu_m": east_line,
+            "width_m": WALK_W_M,
+            "rise_m": WALK_RISE_M,
+            "plank_run": "across",
+            "plank_pitch_m": PLANK_PITCH_M,
+            "plank_thickness_m": PLANK_T_M,
+            "note": (
+                "THE RIVERSIDE WALK'S FIRST REACH, from the crossing footway's west "
+                "end along the south bank to the Dearborn Street crossing. The line "
+                "threads the verge between the South Water track's own edge and the "
+                "traced waterline, and every board station is audited against both "
+                "on every regeneration — dry committed ground under the deck, the "
+                "travelled way clear beside it. The knots between the two fixed "
+                f"ends are invented: docs/LIBERTIES.md {liberty}."
+            ),
+        },
+        {
+            "id": f"{RIVER_WALK_ID}_dearborn_crossing",
+            "belongs_to": RIVER_WALK_ID,
+            "kind": "board_crossing",
+            "confidence": "reconstructed",
+            "street": "dearborn",
+            "street_name": dearborn["name"],
+            "centreline_local_enu_m": [[cross_e_east, RIVER_DEARBORN_CROSS_N],
+                                       [cross_e_west, RIVER_DEARBORN_CROSS_N]],
+            "width_m": CROSSING_W_M,
+            "rise_m": _round(WALK_RISE_M / 2.0),
+            "plank_run": "along",
+            "plank_count": CROSSING_PLANKS,
+            "plank_thickness_m": PLANK_T_M,
+            "run_m": _round(2 * reach),
+            "note": (
+                "A BOARD CROSSING OVER DEARBORN STREET, where the riverside walk "
+                "crosses the drawbridge's graded approach. WHERE is derived: the "
+                "crossing sits square on Dearborn's committed centreline at "
+                f"E {dcross_e:.2f} and runs {2 * reach:.1f} m — the {dearborn['track_w']} m "
+                f"track plus {RIVER_CROSS_CLEAR_M} m of dry ground each side — and "
+                "its boards run the way the foot travels, up and over the approach "
+                "fill, because a crossing spans the ruts instead of lying in them. "
+                f"Every dimension is the layer's own. docs/LIBERTIES.md {liberty}."
+            ),
+        },
+        {
+            "id": f"{RIVER_WALK_ID}_west_reach",
+            "belongs_to": RIVER_WALK_ID,
+            "kind": "plank_walk",
+            "confidence": "reconstructed",
+            "centreline_local_enu_m": west_line,
+            "width_m": WALK_W_M,
+            "rise_m": WALK_RISE_M,
+            "plank_run": "across",
+            "plank_pitch_m": PLANK_PITCH_M,
+            "plank_thickness_m": PLANK_T_M,
+            "note": (
+                "THE RIVERSIDE WALK'S SECOND REACH, from the Dearborn crossing west "
+                "along the bank to the La Salle slough's traced mouth, where the "
+                "bank itself is interrupted (see `refused`). The verge pinches "
+                "where the bank crowds the street — near E +667 the walk holds a "
+                "hand's width off the track edge with the water at its outer "
+                "boards — and every station is audited for both on every "
+                f"regeneration. The knots are invented: docs/LIBERTIES.md {liberty}."
+            ),
+        },
+        {
+            "id": f"{RIVER_WALK_ID}_wharf_reach",
+            "belongs_to": RIVER_WALK_ID,
+            "kind": "plank_walk",
+            "confidence": "reconstructed",
+            "centreline_local_enu_m": wharf_line,
+            "width_m": WALK_W_M,
+            "rise_m": WALK_RISE_M,
+            "plank_run": "across",
+            "plank_pitch_m": PLANK_PITCH_M,
+            "plank_thickness_m": PLANK_T_M,
+            "note": (
+                "THE RIVERSIDE WALK'S LAST REACH, from the west lip of the La Salle "
+                "mouth out along the swinging bank to Jones's landing — the "
+                "easternmost wharf on the South Water bank, whose committed "
+                "`bank_foot` this reach is audited to end within a landing's width "
+                "of. That wharf is where the town's own riverfront walking surface "
+                "begins, which is what bounds this run on the west. The knots are "
+                f"invented: docs/LIBERTIES.md {liberty}."
+            ),
+        },
+    ]
+    walks.sort(key=lambda w: w["id"])
+    refused = [
+        {
+            "structure_id": RIVER_WALK_ID,
+            "wall": "the La Salle slough mouth (E +489 to +459)",
+            "why": (
+                "the La Salle slough's traced mouth re-entrant interrupts the bank "
+                "between the walk's two western reaches, and no crossing is "
+                "committed there — the street record itself says South Water "
+                "'crossed on fill or a culvert nothing describes'. A plank span "
+                "over that water would invent a structure, so no board is laid: "
+                "the street's own unbroken fill carries the foot passenger between "
+                "the reaches, and the gap is asserted to still be wet on every "
+                "regeneration."
+            ),
+        },
+    ]
+    return walks, refused
+
+
+def river_record(walks: list, refused: list) -> dict:
+    total = 0.0
+    for w in walks:
+        line = w["centreline_local_enu_m"]
+        for i in range(len(line) - 1):
+            total += math.hypot(line[i + 1][0] - line[i][0], line[i + 1][1] - line[i][1])
+    bounds_note = (
+        "WHAT BOUNDED THE RUN, in one place: the crossing footway's extent is the "
+        "Slough Log Bridge's committed deck plus its graded approaches; the walk's "
+        "line is the verge between the South Water track's committed edge and the "
+        "traced 1834 bank; the run breaks at the La Salle slough's traced mouth, "
+        "where no crossing is committed and the street's own fill carries the foot "
+        "passenger; and it ends at Jones's landing, the easternmost committed "
+        "wharf, where the town's riverfront walking surface begins. Everything "
+        "between those pins is invented and audited: docs/LIBERTIES.md L153."
+    )
+    return {
+        "_doc": (
+            "The river plank walk (T-0119) — the plank footway over the State "
+            "Street slough's mouth on the Slough Log Bridge's committed deck, and "
+            "the riverside walk that carries on from it along the south bank of "
+            "the main stem towards town, ending at Jones's landing where the "
+            "committed wharves begin. NOT a structure record and NOT baked "
+            "geometry: boards laid on ground and on a deck this project has "
+            "already built, drawn at load by renderers/web/js/frontage.js. "
+            "Generated by tools/generate_frontage_works.py and re-derived byte "
+            "for byte by tools/check.sh; the generator audits every board "
+            "station against the committed heightfield and the committed street "
+            "before it will write this file."
+        ),
+        "id": "river_walk_frontage",
+        "name": ("The river plank walk: the footway over the slough mouth, and "
+                 "the riverside walk to Jones's landing"),
+        "kind": "frontage",
+        "scene": "1835",
+        "target_date": "1835-07-01",
+        "coordinates": (
+            "Local East-North-Up metres from data/datum.json's origin, the same "
+            "frame data/signage/, data/yard/ and the sidecars' placement.local_e "
+            "/ placement.local_n use."
+        ),
+        "existence": {
+            "value": True,
+            "confidence": "reconstructed",
+            "sources": [],
+            "note": (
+                "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT A PLANK FOOTWAY "
+                "CROSSED THE SLOUGH MOUTH OR THAT A WALK RAN ALONG THE BANK ON "
+                "1 JULY 1835. What is held: the crossing itself is documented — "
+                "the Slough Log Bridge's record carries 'where Water Street "
+                "crossed it a log bridge was needed until after 1840' — and the "
+                "owner asked for the pedestrian surface and the riverside run in "
+                "as many words on 2026-08-20, under the standing 2026-08-18 "
+                "ruling that reconstructed items may be added liberally so long "
+                "as they are labelled. This walk is that: a reconstruction in "
+                "the project's third tier, graded and claimed as one at "
+                "docs/LIBERTIES.md L153, with every invented coordinate audited "
+                "against the committed ground it is laid on."
+            ),
+        },
+        "treatment": {
+            "confidence": "reconstructed",
+            "note": (
+                f"Walk {WALK_W_M} m wide, its deck {WALK_RISE_M} m over the "
+                f"ground, {PLANK_T_M} m boards at a {PLANK_PITCH_M} m pitch laid "
+                "ACROSS the way a foot travels — the same drawn treatment as "
+                "every walk this layer lays. Over the bridge deck the boards "
+                "ride the committed `walk_surface_m` and the stringers are "
+                "omitted (boards on a deck lie on the deck); everywhere else "
+                "each board samples the terrain under its own centre. The "
+                f"Dearborn crossing is {CROSSING_W_M} m wide, {CROSSING_PLANKS} "
+                "boards laid ALONG the run. Not one of these numbers is a "
+                "record's; they are how the layer is DRAWN."
+            ),
+        },
+        "rule": {
+            "note": (
+                "The river walk's fixed points are committed records — the "
+                "bridge deck, the Dearborn centreline, Jones's landing — and its "
+                "authored knots are audited on every regeneration: every board "
+                "station must stand on committed ground above the water "
+                f"({RIVER_DRY_M} m over datum) and clear the South Water track's "
+                "own edge, the crossing must span Dearborn's track with "
+                f"{RIVER_CROSS_CLEAR_M} m to spare each side, the run must end "
+                "within a landing's width of Jones's committed bank foot, and "
+                "the one gap in the run must still be wet. Any of those failing "
+                "refuses the whole record. Read the clauses in "
+                "tools/generate_frontage_works.py."
+            ),
+        },
+        "card": {
+            "id": RIVER_WALK_ID,
+            "name": "The river plank walk",
+            "symbolic_location": (
+                "Along the south bank of the main stem: over the State Street "
+                "slough's mouth on the Slough Log Bridge, then west along the "
+                "Water Street verge to Jones's landing."
+            ),
+            "position_note": bounds_note,
+            "attributes": {
+                "existence": {
+                    "value": True,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "Asked for by the owner at the slough mouth, 2026-08-20: "
+                        "'the pedestrian plank sidewalk bridge crossing it close "
+                        "to the river should exist and run along the river "
+                        "towards the town.' No 1835 source describes a walk on "
+                        "this bank; the crossing it rides is the documented "
+                        "Slough Log Bridge."
+                    ),
+                },
+                "run_m": {
+                    "value": _round(total, 1),
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "The whole run, crossing footway and Dearborn boards "
+                        "included, bounded by the bridge's committed deck ends "
+                        "and Jones's committed landing — nothing measured, "
+                        "everything derived or invented and audited."
+                    ),
+                },
+                "width_m": {
+                    "value": WALK_W_M,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": "Six feet — two people passing; the layer's own drawn width.",
+                },
+                "crossing_deck_m": {
+                    "value": 0.83,
+                    "confidence": "inferred",
+                    "sources": [],
+                    "note": (
+                        "The Slough Log Bridge's own committed walk_surface_m, "
+                        "carried, not claimed: the boards over the water ride "
+                        "the deck the bridge record already states."
+                    ),
+                },
+            },
+            "research_note": (
+                "A walk from data/frontage/ — not a structure record. " + bounds_note
+                + " What would move it off reconstruction: a Chicago town order "
+                "on sidewalks of the right date; any tax, insurance or sale "
+                "description naming a walk on the Water Street bank; or a view "
+                "of the slough mouth showing what the crossing's walking "
+                "surface actually was."
+            ),
+        },
+        "walks": walks,
+        "posts": [],
+        "refused": refused,
+        "research_note": (
+            "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town "
+            "order on sidewalks — the corporation legislated wooden walks "
+            "within a few years of 1835; a grading or wharfing order for Water "
+            "Street east of Dearborn; any view of the slough mouth or the South "
+            "Water bank showing the crossing's surface or a bank walk; or a "
+            "committed crossing at the La Salle mouth, which would close the "
+            "one gap in the run."
+        ),
+    }
+
+
 def index_record() -> dict:
     """The manifest the renderer fetches before it fetches anything else.
 
@@ -806,7 +1309,8 @@ def index_record() -> dict:
             "Local East-North-Up metres from data/datum.json's origin — the same frame "
             "data/signage/, data/yard/ and the sidecars' placement.local_e / local_n use."
         ),
-        "frontage": [{"id": c["record_id"], "file": c["out"]} for c in BUILDINGS],
+        "frontage": [{"id": c["record_id"], "file": c["out"]} for c in BUILDINGS]
+        + [{"id": "river_walk_frontage", "file": "river_walk_frontage.json"}],
     }
 
 
@@ -824,6 +1328,12 @@ def main() -> int:
         text = json.dumps(record(cfg, walks, posts, refused), indent=2,
                           ensure_ascii=False) + "\n"
         wanted.append((OUTDIR / cfg["out"], text, cfg["structure_id"]))
+    river_walks, river_refused = build_river_walk()
+    totals = [totals[0] + len(river_walks), totals[1], totals[2] + len(river_refused)]
+    wanted.append((OUTDIR / "river_walk_frontage.json",
+                   json.dumps(river_record(river_walks, river_refused), indent=2,
+                              ensure_ascii=False) + "\n",
+                   "the river plank walk"))
     wanted.append((INDEX, json.dumps(index_record(), indent=2, ensure_ascii=False) + "\n",
                    "the manifest"))
 
@@ -840,15 +1350,16 @@ def main() -> int:
             for d in drift:
                 print(f"  - {d}")
             return 1
-        print(f"verified {len(BUILDINGS)} frontage record(s): {totals[0]} walk/crossing "
-              f"run(s) and {totals[1]} post(s) ({totals[2]} refusal(s) stated)")
+        print(f"verified {len(BUILDINGS) + 1} frontage record(s): {totals[0]} "
+              f"walk/crossing run(s) and {totals[1]} post(s) "
+              f"({totals[2]} refusal(s) stated)")
         return 0
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
     for path, text, _ in wanted:
         path.write_text(text, encoding="utf-8")
-    print(f"wrote {len(BUILDINGS)} frontage record(s) and their manifest — {totals[0]} "
-          f"walk/crossing run(s), {totals[1]} post(s) ({totals[2]} refused)")
+    print(f"wrote {len(BUILDINGS) + 1} frontage record(s) and their manifest — "
+          f"{totals[0]} walk/crossing run(s), {totals[1]} post(s) ({totals[2]} refused)")
     return 0
 
 

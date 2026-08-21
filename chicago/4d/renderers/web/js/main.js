@@ -297,6 +297,15 @@ async function boot() {
   });
   scene3d.add(frontage.group);
   api.frontage = frontage;
+  /**
+   * A walk that RIDES a committed deck registers its planks as a surface the
+   * walker stands on (T-0119): the river walk's crossing footway lies over the
+   * State slough's water at the mouth, where the terrain answers with the
+   * wading barrier and only a deck may carry a visitor. The walker holds
+   * `decks` by reference, so appending here is enough — and the planting
+   * composition below picks the same rectangles up with the rest of `decks`.
+   */
+  for (const d of frontage.walkableDecks ?? []) decks.push(d);
 
   // The river docks at the two forwarding warehouses whose own records state
   // one (T-0041). Derived geometry like the fences, the boards and the goods, so
@@ -700,7 +709,10 @@ async function boot() {
      */
     const frontageHit = frontage.pickAt(ndc, camera);
     if (frontageHit && (!hit || frontageHit.distance < hit.distance)) {
-      const record = loaded.registry.get(frontageHit.id);
+      // The registry answers for a building's frontage; a record that is its
+      // own subject — the river plank walk (T-0119) — carries its card on the
+      // layer, the same arrangement the boats keep.
+      const record = loaded.registry.get(frontageHit.id) ?? frontageHit.record;
       if (record) hit = { ...frontageHit, record };
     }
     /**
