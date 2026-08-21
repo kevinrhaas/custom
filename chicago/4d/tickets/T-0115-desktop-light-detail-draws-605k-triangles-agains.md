@@ -82,6 +82,15 @@ straightened mouth and closed bay returned to plantable prairie (the woody plant
 reach grew 189,492 → 189,518 nodes, re-banked per the gate). Mobile light stays under
 its own ceiling at 582,828. The 0.13 % delta does not change the trim candidates above.
 
+**Measured worse by T-0092, 2026-08-21:** the Sauganash's corrected fabric adds +1,280
+scene triangles at the light tier — desktop light reads 650,437 of 600,000 (was 649,157).
+The mesh itself grew 484 → 1,124 triangles (+640: 576 of them the louvred shutter slats,
+the rest the wing door, its porch hood and posts, and the entrance frontispiece); the
+scene figure is exactly twice that because the stats count the sun's shadow pass, which
+draws every building again. Mobile light stays under its own ceiling at 584,108 (was
+582,828). The 0.20 % delta does not change the trim candidates above; if the slats ever
+need trimming back, they are the one part of this fabric that is bulk rather than form —
+36 leaves at 16 triangles of slats each.
 **Measured worse by T-0119, 2026-08-21:** the river plank walk adds ~17,856 scene
 triangles to the measured frame at the light tier — desktop light reads 667,013 of
 600,000 (was 649,157). The walk's full timber is ~64k triangles over its 439 m run,

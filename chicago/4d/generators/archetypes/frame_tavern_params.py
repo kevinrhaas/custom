@@ -40,6 +40,8 @@ CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
     "paint", "siding_exposure_m", "shutters", "gallery", "log_wing", "chimneys",
     "elevation_scheme", "chimney_placement", "side_entrance", "rear_ell",
+    "shutter_type", "entrance_frontispiece", "chimney_material", "roof_colour",
+    "log_wing_door", "log_wing_porch_hood",
 })
 
 # The compass names a record may use for a wall-mounted feature, as bearings.
@@ -80,7 +82,17 @@ class FrameTavernParams:
     # appearance
     paint: str = "white"
     shutters: str | None = None
+    # The leaf construction, when a view resolves it. None draws the solid leaf
+    # the archetype has always drawn; "louvred" adds slat relief to each leaf —
+    # the Sauganash's, read off the Trowbridge drawing alone (T-0092), so the
+    # slats carry that attribute's own (weaker) confidence, not the colour's.
+    shutter_type: str | None = None
     gallery: bool = False
+    # A small flat-hooded surround on the facade's centred entrance — the
+    # Sauganash's, drawn by both street views (T-0092). Frontage scheme only:
+    # the gable_front scheme dresses its own doors. Sizes are the archetype's;
+    # docs/LIBERTIES.md L154 owns them.
+    entrance_frontispiece: bool = False
     # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
     # the one rhythm every frame building wore until T-0049 — and stays the default
     # for a record that carries no value. The deal that writes record values is
@@ -104,6 +116,17 @@ class FrameTavernParams:
     # attests one. Requires depth_m > width_m so the ridge actually runs along
     # the deep axis and the facade is a gable end.
     elevation_scheme: str = "frontage"
+
+    # What the stacks are made of, where a view says. None keeps the archetype's
+    # roof-toned masses (the original treatment, kept exactly so no committed
+    # building's stacks recolour); "brick" draws them in unpainted brick — the
+    # Sauganash's, coloured by the Petford watercolour (T-0092).
+    chimney_material: str | None = None
+
+    # The roof's colour, where a view says. None keeps ROOF_RGBA (the archetype's
+    # weathered-shingle grey, and every committed building's until T-0092);
+    # "moss_green" is the Petford view's dark green/moss shingle tone.
+    roof_colour: str | None = None
 
     # Where the stacks stand. "frontage" is the original arrangement — spaced
     # across the frontage at the depth midline, the fractions read off the two
@@ -139,6 +162,14 @@ class FrameTavernParams:
     log_wing_width_m: float = 5.0
     log_wing_depth_m: float = 4.0
     log_wing_height_m: float = 2.35
+    # The wing's own door, direct to grade in its street face, and the
+    # shed-roofed porch hood over it — the two halves of the Sauganash's wing
+    # entry read off the 2026-08-18 brief's views (T-0092). Separate flags
+    # because the evidence separates: two views draw the door, only the
+    # engraving draws the hood. Leaf and hood sizes are the archetype's;
+    # docs/LIBERTIES.md L154 owns them.
+    log_wing_door: bool = False
+    log_wing_porch_hood: bool = False
 
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
@@ -222,6 +253,30 @@ class FrameTavernParams:
                 raise ParamError("log wing is wider than the block it attaches to")
             if not 1.8 <= self.log_wing_height_m <= 4.0:
                 raise ParamError(f"log_wing_height_m {self.log_wing_height_m} outside 1.8-4 m")
+        if self.shutter_type not in (None, "louvred"):
+            raise ParamError(f"shutter_type '{self.shutter_type}' not in (None, 'louvred')")
+        if self.shutter_type and not self.shutters:
+            raise ParamError("shutter_type without shutters — a slat needs a leaf to "
+                             "sit in, and a record that means louvres should state "
+                             "the shutters they are cut into")
+        if self.entrance_frontispiece and self.elevation_scheme != "frontage":
+            raise ParamError("entrance_frontispiece dresses the frontage scheme's "
+                             "centred facade door — the gable_front scheme carries "
+                             "its own door treatment, and drawing both would be a "
+                             "building no view shows")
+        if self.chimney_material not in (None, "brick"):
+            raise ParamError(f"chimney_material '{self.chimney_material}' not in "
+                             f"(None, 'brick')")
+        if self.roof_colour not in (None, "moss_green"):
+            raise ParamError(f"roof_colour '{self.roof_colour}' not in "
+                             f"(None, 'moss_green')")
+        if self.log_wing_door and not self.log_wing:
+            raise ParamError("log_wing_door without log_wing — a door needs a wing "
+                             "to open into")
+        if self.log_wing_porch_hood and not self.log_wing_door:
+            raise ParamError("log_wing_porch_hood without log_wing_door — the hood "
+                             "the engraving draws stands over the wing's door, and "
+                             "a hood over blank logs is a claim no view makes")
 
 
 def from_phase(phase: dict) -> FrameTavernParams:
@@ -293,9 +348,15 @@ def from_phase(phase: dict) -> FrameTavernParams:
         paint=str(val("paint", "unpainted")),
         siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         shutters=val("shutters"),
+        shutter_type=val("shutter_type"),
         gallery=bool(val("gallery", False)),
+        entrance_frontispiece=bool(val("entrance_frontispiece", False)),
         log_wing=bool(val("log_wing", False)),
+        log_wing_door=bool(val("log_wing_door", False)),
+        log_wing_porch_hood=bool(val("log_wing_porch_hood", False)),
         chimneys=int(val("chimneys", 2)),
+        chimney_material=val("chimney_material"),
+        roof_colour=val("roof_colour"),
         elevation_scheme=str(val("elevation_scheme", "frontage")),
         chimney_placement=str(val("chimney_placement", "frontage")),
         side_entrance_face=side_face,
