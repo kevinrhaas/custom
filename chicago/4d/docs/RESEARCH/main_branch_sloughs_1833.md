@@ -2,7 +2,8 @@
 
 **Investigated:** 2026-08-20 · **Ticket:** T-0005 (legacy K13) · **Epoch:** `e1834_harbor_cut` ·
 **Owner's ask (twice):** "refer the 1833 map for the locations and terminus of the several
-streams coming in."
+streams coming in." · **Amended by T-0118** (§ 7 — the built form § 4 describes was revised
+the same day, after the owner walked it against an 1830s engraving).
 
 ## 1. What "three sloughs" is actually a citation to
 
@@ -101,3 +102,38 @@ not draw what it crosses" — is what this ticket closes.
 - The La Salle slough's head is a terminus reading from a 1933 reconstruction and nothing
   more; any period document locating the stream (a lot-survey note, a grading petition, a
   nuisance complaint) would replace it.
+
+## 7. As built, revised — T-0118 (2026-08-20)
+
+The owner walked § 4's build on the dev preview against an 1830s engraving of a prairie
+watercourse and reported four faults; all four were resolved by amending the four swale
+entries and rebaking. § 4 stands as the record of what T-0005 built; where it disagrees with
+the ground, this section is current.
+
+1. **The State mouth no longer doglegs along the shore.** § 4's "one connected pool from the
+   traced notch, under the committed Slough Log Bridge deck" was a 6.2 ft cut running ~35 m
+   PARALLEL to the bank — it filled as a bay. The last reach now runs straight north under
+   the deck and crosses the waterline **square, at about E +809.5, N +25**, one reach. Of
+   the two pins § 3 reconciled, the one that moved is **Wright's traced re-entrant**: the
+   carved mouth no longer ends inside it. The notch stays exactly as traced in the waterline
+   (evidence, kept — a small drawn cove 40 m east); the documentary mouth at the foot of
+   State (E ≈ +827) sits between the pins, the built mouth ~18 m west of it against the
+   notch's ~25 m east — the same tolerance band, the other direction. The bridge did not
+   move because it is a committed structure with committed approach cuts, and dragging it
+   east into the rising ridge toe would have demanded street cuts twice as deep. The pool
+   now runs from about N −25 to the river (was "to about N −60"); bed under the deck about
+   −0.37 m, still standing water under the crossing.
+2. **The −5.0 ft joint convenience is gone.** Swale cuts now combine by MAXIMUM rather than
+   by sum (`terrain_gen.py`, T-0118), and each deep entry's `depth_profile` opens at the
+   figure its course entry ends on, so the two-entry watercourses carve one continuous bed.
+3. **The La Salle sill is graded out, not deepened out.** § 4's constant 3.2 / 1.8 ft pair
+   stepped at (479, −108) and the step read as a dry sill across the channel. The bed now
+   shallows continuously — wet to about N −95, join at about +0.15 m, middle reaches at the
+   old +0.8…+0.9 ft — honouring this section's own § 4 argument that the inland thalweg sits
+   ABOVE datum. The water's edge pulls ~10 m north of where it was; the Lake Street corridor
+   is dry with margin.
+4. **Both heads feather to grade, and the La Salle course meanders.** `depth_profile` knots
+   taper each course's cut to zero at its head (State over ~58 m, La Salle over ~40 m), so
+   neither ends as an open trench; the La Salle alignment carries 7–10 m plan swings between
+   its fixed readings (mouth, west-half-of-the-block corridor, terminus), threading the same
+   committed roofs § 4 lists. All still `reconstructed`; L149/L150 amended.

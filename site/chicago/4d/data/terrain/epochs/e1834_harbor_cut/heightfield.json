@@ -27,7 +27,7 @@
  "water_surface_m": 0.0,
  "water_fraction": 0.2533,
  "relief_ft": {
-  "land_min": -5.037,
+  "land_min": -1.966,
   "land_max": 12.285,
   "channel_min": -17.405
  },
@@ -38,11 +38,11 @@
    62.5
   ],
   "marsh_exclusion_m": 48.0,
-  "plain_cells_audited": 118764,
+  "plain_cells_audited": 118806,
   "plain_block_max": 0.468,
-  "plain_block_mean": 0.1286,
+  "plain_block_mean": 0.1287,
   "passes": true,
-  "plain_cell_roughness_max": 55.239,
+  "plain_cell_roughness_max": 55.913,
   "shore_and_swale_cell_max": 185.129,
   "relief_zones_ft_per_300ft": {
    "approach_dearborn_north": {
@@ -62,8 +62,8 @@
     "cell_max": 158.047
    },
    "approach_slough_east": {
-    "cells": 14,
-    "cell_max": 101.101
+    "cells": 15,
+    "cell_max": 100.711
    },
    "approach_slough_west": {
     "cells": 6,
@@ -103,11 +103,11 @@
    },
    "state_street_break": {
     "cells": 8401,
-    "cell_max": 181.492
+    "cell_max": 116.863
    },
    "swales": {
-    "cells": 21499,
-    "cell_max": 181.492
+    "cells": 21418,
+    "cell_max": 158.047
    }
   },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
@@ -116,5 +116,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "c4214142ac47b50d31a27e4be5cabeace75306fa6c686e9487f3552f9e3ca6a2"
+ "inputs_sha256": "833678947c612eb94bc078235a106659a01a7551e7483f3998306a50e3acb6d1"
 }

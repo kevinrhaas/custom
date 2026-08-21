@@ -11417,19 +11417,19 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "dossier zone 14 — the South Division's natural drain, from the public square's east side to the river at the foot of State Street — is carved into the ground as two swale entries (`state_slough_course`, `state_slough_mouth` in `terrain_spec.json`), both `reconstructed`. The course is cut 2.2 ft on a 5 m half-width; the mouth reach is cut 6.2 ft on a 4.5 m half-width so one connected pool runs from the traced mouth notch, under the committed Slough Log Bridge deck, to about N −60."
+          "text": "dossier zone 14 — the South Division's natural drain, from the public square's east side to the river at the foot of State Street — is carved into the ground as two swale entries (`state_slough_course`, `state_slough_mouth` in `terrain_spec.json`), both `reconstructed`. The course is cut 2.2 ft on a 5 m half-width, FEATHERING from zero at its head over the first ~58 m so the ground closes over the drain's rise instead of ending in an open trench; the mouth reach grades from the course's 2.2 ft to a full 6.2 ft against the State ridge toe on a 3 m half-width, runs straight north under the committed Slough Log Bridge deck, and enters the river SQUARE at about E +809.5, N +25 — one reach, one pool from about N −25 to the water (amended by T-0118; as first built the mouth turned east and ran ~35 m along the shore to the traced re-entrant at 6.2 ft, and the owner read the resulting shore-parallel pocket as a bay)."
         },
         {
           "label": "Why",
-          "text": "the ROUTE is documented (chicagology_prefire273: it \"passed over the site of the Tremont House and entered the river at the end of State Street\") and the waypoints between its documented ends are read from Conley/Stelzer 1933 under that source's `orientation` ceiling — head just east of Clark between Washington and Randolph, a mid-block Dearborn crossing about N −190. The DEPTH figure restates the dossier row's own thalweg (1.5–3.0 ft below the adjacent plain, about +0.5…+1.5 ft absolute — the reason this is a swale and not a below-datum channel), and the WIDTH sits at the top of the row's 15–40 ft band. What is invented outright: the exact line between the documented waypoints, chosen to thread the committed reconstructed roofs; the mouth reach's 6.2 ft cut, sized against the State ridge toe the spec already builds so the pool the bridge crosses does not surface mid-reach; and the over-deepened joint where the two entries meet (−5.0 ft, under standing water, invisible from the surface — the same convenience L31b records for the river bed)."
+          "text": "the ROUTE is documented (chicagology_prefire273: it \"passed over the site of the Tremont House and entered the river at the end of State Street\") and the waypoints between its documented ends are read from Conley/Stelzer 1933 under that source's `orientation` ceiling — head just east of Clark between Washington and Randolph, a mid-block Dearborn crossing about N −190. The DEPTH figure restates the dossier row's own thalweg (1.5–3.0 ft below the adjacent plain, about +0.5…+1.5 ft absolute — the reason this is a swale and not a below-datum channel), and the WIDTH sits at the top of the row's 15–40 ft band. What is invented outright: the exact line between the documented waypoints, chosen to thread the committed reconstructed roofs; the head feather's length (the head vertex itself does not move, and the visible hollow dies out inside the head reading's own 20–30 m tolerance); the mouth reach's 6.2 ft cut, sized against the State ridge toe the spec already builds; and THE CHOICE OF WHICH PIN THE STRAIGHT ENTRY KEEPS. A single straight reach cannot honour both the committed bridge deck (E +805…+813) and Wright's traced re-entrant (E +850…+856), and it is the TRACED RE-ENTRANT the carved mouth no longer ends inside: the bridge is a committed structure with committed approach earthworks, moving it east into the rising ridge toe would demand street cuts twice as deep, and the documentary mouth — the foot of State, about E +827 at the bank — sits BETWEEN the pins, with the built mouth ~18 m west of it (inside the sheet's ±20 m band) where the traced notch was ~25 m east. The re-entrant itself stays exactly as traced in the waterline — a small drawn notch 40 m east of the built mouth, evidence kept, no longer claimed as this drain's outfall. The old over-deepened joint (−5.0 ft where the two entries' cuts summed) is GONE: swale cuts now combine by maximum and the mouth's depth profile opens at the course's own 2.2 ft, so the two entries carve one continuous graded bed."
         },
         {
           "label": "Consequence",
-          "text": "a visitor sees the drain the town bridged — a winding damp hollow through the business district holding standing water below the ridge toe — and the Slough Log Bridge finally crosses water instead of open prairie. Every carved cell is conjectural in the confidence channel and dithers when `reconstructed` is hidden. The streets the drain crosses (Dearborn, Lake) dip through it at grade; no crossing is documented at either, and none is built."
+          "text": "a visitor sees the drain the town bridged — a winding damp hollow through the business district falling into standing water below the ridge toe — and the State slough empties straight into the river in one reach, with no shore-parallel pocket. Every carved cell is conjectural in the confidence channel and dithers when `reconstructed` is hidden. The streets the drain crosses (Dearborn, Lake) dip through it at grade; no crossing is documented at either, and none is built."
         },
         {
           "label": "How to resolve",
-          "text": "any grading petition, drainage ordinance, lot survey or levelled section locating or sounding the slough — a sourced line or depth would replace the invented one for one; see docs/RESEARCH/main_branch_sloughs_1833.md."
+          "text": "any grading petition, drainage ordinance, lot survey or levelled section locating or sounding the slough — a sourced line or depth would replace the invented one for one; a sourced mouth position would settle which pin the straight entry should have kept; see docs/RESEARCH/main_branch_sloughs_1833.md."
         },
         {
           "label": "Covers",
@@ -11438,6 +11438,10 @@
         {
           "label": "Recorded",
           "text": "2026-08-20."
+        },
+        {
+          "label": "Amended",
+          "text": "2026-08-20 (T-0118)."
         }
       ]
     },
@@ -11445,7 +11449,9 @@
       "id": "L150",
       "title": "Terrain: the La Salle slough's inland course and terminus rest on a 1933 reconstruction",
       "section": "resolved",
-      "subjects": [],
+      "subjects": [
+        "old_bank_building"
+      ],
       "covers": [
         {
           "domain": "terrain",
@@ -11463,15 +11469,15 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "the watercourse Wright 1834 draws dropping south off the main stem just east of La Salle Street is carried inland as two swale entries (`lasalle_slough_lower`, `lasalle_slough_upper` in `terrain_spec.json`), both `reconstructed`: a wet lower reach (3.2 ft cut, standing backwater to about Lake Street) and a dry upper swale (1.8 ft cut) terminating just north of Randolph Street."
+          "text": "the watercourse Wright 1834 draws dropping south off the main stem just east of La Salle Street is carried inland as two swale entries (`lasalle_slough_lower`, `lasalle_slough_upper` in `terrain_spec.json`), both `reconstructed`: a wet lower reach (3.2 ft cut, standing backwater to about N −95, short of the Lake Street corridor, which stays dry) grading WITHOUT A STEP into a dry upper swale (1.8 ft through its middle reaches) that terminates just north of Randolph Street, the cut feathering to zero over its last ~40 m so the ground closes over the head. The invented alignment MEANDERS — swings of 7–10 m about its drift, crossing the ground at an angle — instead of ruling the straight N–S line first built (amended by T-0118: the owner, against an 1830s engraving, read the ruled line as wrong for a prairie drain, and read the 3.2→1.8 ft step at the entries' join — where water is drawn only below datum — as a dry sill of land sitting across a continuous watercourse)."
         },
         {
           "label": "Why",
-          "text": "the mouth and the stream's existence are Wright's, drawn on the sheet this terrain is fitted to, and carrying the channel further south than Wright washes it was refused when the mouth was traced (\"inventing a bank where the draughtsman stopped\"). This entry is the research thread that refusal left open, done in the form it prescribed: a centreline argued from Conley/Stelzer — which draws the course up the west half of the La Salle–Clark block, water-washed to about Lake Street and a dark drain beyond, ending just north of Randolph — never a traced boundary. The terminus is a position from a 1933 pictorial reconstruction at `orientation` ceiling, read at 20–30 m tolerance; the width (8 m overall, inside the north-side slough's measured 7.1 m band) and both depths are invented outright, and the channel starts one cell south of the South Water corridor because Wright draws the stream stopping at the street line — the street's crossing (fill or culvert) is attested by that drawing and described by nothing."
+          "text": "the mouth and the stream's existence are Wright's, drawn on the sheet this terrain is fitted to, and carrying the channel further south than Wright washes it was refused when the mouth was traced (\"inventing a bank where the draughtsman stopped\"). This entry is the research thread that refusal left open, done in the form it prescribed: a centreline argued from Conley/Stelzer — which draws the course up the west half of the La Salle–Clark block, water-washed to about Lake Street and a dark drain beyond, ending just north of Randolph — never a traced boundary. The terminus is a position from a 1933 pictorial reconstruction at `orientation` ceiling, read at 20–30 m tolerance; the width (8 m overall, inside the north-side slough's measured 7.1 m band), both depths, the meander's exact swings (bent between the fixed readings, threading the committed roofs — old_bank_building cleared by 2.4 m at the nearest pass) and the depth grading are invented outright, and the channel starts one cell south of the South Water corridor because Wright draws the stream stopping at the street line — the street's crossing (fill or culvert) is attested by that drawing and described by nothing. THE SILL WAS RESOLVED BY GRADING, NOT BY DEEPENING: the dossier's own thalweg for these inland courses sits ABOVE datum (\"wet mouths, damp inland courses\" was chosen deliberately), so the join was not cut below water; the depth profile instead shallows the bed continuously from the wet reach (−0.5 m at the mouth) up through the join (+0.15 m) and on, so the water simply ENDS at a tapering edge like a pond's, with no wall of land across the channel. The water's edge pulls back from about N −105 to about N −95 in the bargain — still \"open water to about Lake Street\" within the source's own read tolerance, and the platted corridor now stays dry with margin rather than by luck."
         },
         {
           "label": "Consequence",
-          "text": "the second of the three Main Branch sloughs is in the scene and reaches a terminus; its whole inland geometry says `conjectural` in the confidence channel while its mouth remains the traced, documented re-entrant. If Conley erred — he demonstrably errs elsewhere — the inland course is his error carried at the grade that admits it."
+          "text": "the second of the three Main Branch sloughs reads as ONE continuous watercourse from the traced mouth to a feathered head; its whole inland geometry says `conjectural` in the confidence channel while its mouth remains the traced, documented re-entrant. If Conley erred — he demonstrably errs elsewhere — the inland course is his error carried at the grade that admits it."
         },
         {
           "label": "How to resolve",
@@ -11484,6 +11490,10 @@
         {
           "label": "Recorded",
           "text": "2026-08-20."
+        },
+        {
+          "label": "Amended",
+          "text": "2026-08-20 (T-0118)."
         }
       ]
     },
