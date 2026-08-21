@@ -1,7 +1,7 @@
 ---
 id: T-0068
 title: More fences: the town encloses its property
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-21
+pr: 295
+claimed_by: run 8/21/2026, 7:17:29 AM CT
 blocked_on: null
 needs_bake: false
 ---

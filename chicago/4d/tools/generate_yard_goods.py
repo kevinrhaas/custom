@@ -590,7 +590,7 @@ def build_wagons(cars: dict) -> tuple[list, list]:
             "is invented is that a wagon was standing in it at noon on 1 July 1835, and "
             "the wagon itself: docs/LIBERTIES.md L131. The town's OTHER wagons — the ones "
             "standing at the street verges and filling this yard round it — are T-0064's "
-            "and rest on nothing but the owner's instruction and a rule: L160."
+            "and rest on nothing but the owner's instruction and a rule: L162."
         ),
     }], [{"enclosure_id": "*", "why": (
         "EVERY OTHER PLACE IN THE TOWN, refused in writing UNTIL 2026-08-21, AND THE "
@@ -604,7 +604,7 @@ def build_wagons(cars: dict) -> tuple[list, list]:
         "that instruction and the town's wagons below are it, every one of them "
         "reconstructed and every one of them placed by a rule over the committed street "
         "lines rather than by a hand — see `town_wagon_rule` on this record and "
-        "docs/LIBERTIES.md L160. What is still refused, and refused for the same reason "
+        "docs/LIBERTIES.md L162. What is still refused, and refused for the same reason "
         "as before, is a wagon standing IN a travelled track: a dray mired in Lake "
         "Street is a scene this project has no source for and would be a claim about the "
         "road as well as about the wagon.")}]
@@ -1272,7 +1272,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                         f"{' and its ox-yoke laid by on the grass' if yoked else ''}. "
                         "Everything about it is invented — that it stood here at noon on "
                         "1 July 1835, whose it was, and what it was carrying, which is "
-                        "why it carries no mark of any kind: docs/LIBERTIES.md L160."
+                        "why it carries no mark of any kind: docs/LIBERTIES.md L162."
                     ),
                 })
                 taken.append(_ground_quad(e, n, bearing, back, fore, TOWN_GAP_M))
@@ -1370,7 +1370,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                     "bearing is the yard's own long axis, turned end for end at every "
                     "second wagon the way a yard full of them stands. THE TEAM IS NOT "
                     "DRAWN: the wagon is unhitched, tongue down and yoke laid by on the "
-                    "ground. Invented entirely — docs/LIBERTIES.md L160."
+                    "ground. Invented entirely — docs/LIBERTIES.md L162."
                 ),
             })
             taken.append(_ground_quad(e, n, face, back, fore, TOWN_GAP_M))

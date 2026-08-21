@@ -76,6 +76,15 @@ step "the platted block and lot grid re-derives from the module" \
 step "the dooryard garden pickets re-derive from the rule that chose their lots" \
   python3 tools/generate_dooryard_pickets.py --check
 
+# The lot-line yard fences are the same shape of claim at town scale: the owner asked for
+# more fences, image 12 of his brief shows an 1830s town where every property is enclosed,
+# and no source names a fence on any lot in Chicago. So WHICH lots and WHICH fence is a
+# rule again — the committed plat for the lines, the committed footprints for where the
+# yard begins, and the street records' own traffic classes for the type — re-derived here
+# so kilometres of fence stay auditable rather than several hundred typed numbers (T-0068).
+step "the lot-line yard fences re-derive from the rule that chose their lots and types" \
+  python3 tools/generate_lot_line_fences.py --check
+
 # The dooryard plantings are the same shape one layer greener: the owner's brief and its
 # image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
 # source counts or places any particular house's stems. So which house keeps what is a

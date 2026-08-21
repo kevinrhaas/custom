@@ -237,6 +237,133 @@ thirty-three names are one material and one draw call.
 The trim candidates in the list above are unchanged, and item 2 — the town-wide furniture meshes
 that are never culled — still names `signage` at 1,380; read it now as 1,106.
 
+**Measured worse by T-0069, 2026-08-21 — a kilometre of sidewalk, and the day the
+draw-call ceiling was consciously re-budgeted.** The town street edge
+(`data/frontage/town_street_edge.json` — 1,147.7 m of plank walk, 212.5 m of board crossing
+and 504.9 m of street-lining fence along South Water Street and both frontages of Lake
+Street) reads, at the gate's own stand (`frame('sauganash_hotel', 26)`), desktop, on the
+published mirror:
+
+| tier | before | after | ceiling |
+|---|---|---|---|
+| full | 794,916 at **65 calls** | **855,832** at **78 calls** | 1,000,000 / **120** calls |
+| balanced | 718,994 | **752,164** | 800,000 |
+| light | 557,311 at 51 calls | **576,335** at 55 calls | 600,000 |
+
+Headroom after: full 144,168 (14.4 %); balanced 47,836 (6.0 %); light **23,665 (3.9 %)** —
+`light` has MORE headroom than it had before this parcel's chunking experiments, which is
+the point of the paragraph below. Both rows are the same probe before and after, so they
+are comparable to the triangle.
+
+**THE CEILING THAT MOVED WAS DRAW CALLS, AND IT MOVED ON THE OWNER'S RULING.** Verbatim,
+2026-08-21: *"ok to raise the draw call budget, if you need to make that a user friendly
+option in settings because it wont work on some machines but will on others/most then that
+is ok"* — and immediately after, *"or just raise the budget?"*. `BUDGET.drawCalls` is
+**120** now, up from 80, argued in full at its definition site in `main.js`; the triangle
+ceilings are untouched and no new setting was built, because the scene-detail control
+already IS the user-facing option. The short of the argument: 80 was set when every derived
+layer was ONE town-spanning mesh, and item 2 of the list above — chunking them so the
+frustum can cull them — was taken by T-0067, T-0119 and now T-0069. Chunking DELIBERATELY
+converts triangles into draw calls, and the sun's own pass draws every chunk inside its
+±240 m box a second time, so a chunk costs two. Holding 80 would mean giving the culling
+back.
+
+**Chunk size is the trade, and it was measured three ways rather than guessed** — all with
+the same geometry, on both streets, at the same stand:
+
+| chunk | draw calls | `light` (the floor) |
+|---|---|---|
+| per run (~55 m) — **shipped** | 78 | **576,335** |
+| per 120 m reach | 75 | 586,331 |
+| per 200 m reach | 72 | 595,079 |
+
+Coarser chunks buy calls and spend them on the tier that can least afford it: at 200 m the
+MAIN pass drew nearly half the town's street edge from a stand that could see sixty metres
+of it. With calls the cheaper currency, the finest chunking wins, and `light` gains
+20,000 triangles of headroom against the coarsest option.
+
+**Three drawn decisions paid for the triangles and none of them moves a board.** A walk
+board carries no underside (2 of its 12 triangles, facing the earth it lies on); the
+stringers are laid in 2.08 m BAYS rather than under every board, wherever the generator has
+audited the ground flat enough for a bay-length stringer to reach it; and each run of walk
+shares ONE mesh with the crossings and the fence on it. Together they take the walk from
+**61.6 to 42.8 triangles a metre** — without them this parcel would not have fitted at any
+chunk size.
+
+**The next lever, costed, for T-0127.** A plank walk lies 11 cm proud of the ground and its
+own cast shadow is about 4 cm wide at noon on 1 July — nothing, and `yards.js` already makes
+exactly this argument for a ground treatment. If the WALK chunks stopped casting into the
+shadow map while the FENCES (1.37 m tall, and a real shadow) kept casting, this layer's six
+shadow-pass calls at this stand and roughly half its triangles at `full`/`balanced` would go
+at no visible cost — which is what the cross streets need. It is not free to implement:
+`applyShadowTier` in `main.js` overwrites `castShadow` on every furniture mesh at every
+tier, so it needs a per-mesh opt-out, and the smoke's *"the light tier draws no furniture
+into the shadow map"* check needs to count the ground-hugging meshes explicitly instead of
+assuming every furniture mesh casts. Item 1 of the list above — that the ceiling is a
+ONE-STAND measurement — is untouched and still true.
+
+**Measured by T-0068, 2026-08-21 — the town's lot-line yard fences, and the first parcel whose
+binding number was DRAW CALLS rather than triangles.** 109 of the town's 120 improved platted
+lots are enclosed on three sides, 4.55 km of fence in board, picket and split rail. At the
+release gate's own desktop stand, on the published mirror:
+
+| tier | dev before | after T-0068 | delta | ceiling | headroom |
+|---|---|---|---|---|---|
+| `full` | 794,916 @ 65 calls | **876,826 @ 79 calls** | +81,910, +14 calls | 1,000,000 | 123,174 |
+| `balanced` | 718,994 | **759,078 @ 79 calls** | +40,084 | 800,000 | 40,922 |
+| `light` | 557,311 @ 51 calls | **565,489 @ 53 calls** | +8,178, +2 calls | 600,000 | 34,511 |
+
+`light` takes a fifth of what `full` takes from the same fence, which is the pale-as-plank tier
+doing exactly the work it was built for.
+
+**THE DRAW-CALL CEILING MOVED, 80 → 96, and this is the ticket's second acceptance route taken
+deliberately.** The owner ruled, verbatim: *"ok to raise the draw call budget"*. The reasoning is
+at the definition site in `renderers/web/js/main.js` and the release gate now PINS the number
+rather than merely reading it, so the next change to it has to move the gate in the same commit.
+Why it needed to move: 80 was a guard on the BATCHING strategy, set when the scene was buildings
+and vegetation, and the scene now has layers that CULL. Chunking buys its saving by spending
+calls — a mesh small enough for the frustum to drop costs a call when it is kept, and a second in
+the shadow map — and that trade is worth taking, but it means the count scales with how much town
+is in front of you rather than with how many batches the loader made.
+
+Measured, at the same stand, on the SAME geometry, with only the chunker's own constants moved:
+
+| the town's 4.55 km of lot line | enclosure meshes | desktop `full` calls |
+|---|---|---|
+| `CHUNK_M` 30, one chunk per run (T-0067's rule) | 139 | 116 |
+| `CHUNK_M` 50, chunks packed by locality | 87 | 95 |
+| `CHUNK_M` 65, packed and walked in 140 m bands | 48 | **79** |
+
+All three rows draw the same fence in the same place; only the packing moved. The bounding-sphere
+discipline is untouched — the widest sphere reads 32.4 m against the gate's 40 m bar — and the
+gate now asserts the mesh count stays under half the run count as well, so a re-merge fails in
+both directions.
+
+**Given back on the way:**
+
+1. **`balanced` joined `light` in drawing a pale as a plank** (`enclosures.js` `PLANK_LEVELS`).
+   The middle tier had never given anything up on this layer — a pale cost the same ten triangles
+   there as at `full` — and with 4.55 km of fence on it that tier would have read 794,000 of its
+   800,000 while `full` sat 123,000 clear of its own. It gives up the same 22 mm `light` gives up,
+   worth about 56,000 triangles, and no triangle ceiling moved to pay for it.
+2. **A post no longer draws the face buried under it** (12 → 10 triangles) **and a rail no longer
+   draws the two end caps that sit INSIDE the posts at either end** (12 → 8). On a split-rail bay
+   that is a quarter of the timber, invisible from any stand, at all three tiers.
+
+**The next levers on this layer, costed, for T-0069 and whoever takes T-0056:**
+
+1. **The shadow map is the larger half of the call count.** Measured with the layer at 87 meshes:
+   45 calls, of which **28** are the shadow pass and 17 the frame; 84,000 triangles of which
+   55,000 are the shadow pass. A near-field rule — furniture casts only within a few tens of
+   metres — would take most of both. It cannot be done without moving this file's own gate that
+   asserts EVERY furniture mesh casts at `full` and `balanced`, so it is a policy change to make
+   in the open.
+2. **Packing.** The chunker is greedy over a band-ordered stream and lands 48 meshes where an
+   ideal two-per-block packing would be nearer 36. That is about 5 calls, and it costs a visitor
+   nothing.
+3. **The gate's stand is still ONE stand.** Item 1 of the 2026-08-20 list above is unchanged and
+   unaddressed: the axial view down Lake Street from Canal is the worst frame in the town and
+   nothing measures it.
 **Measured by T-0064, 2026-08-21 — item 2 taken on the last of the three layers it named, and the
 draw-call budget consciously re-budgeted.** T-0064 puts **64 more wagons** across the town (4 →
 68), so the yard layer's geometry goes from **10,336 to 59,064 triangles**, ×5.7. Read the frame

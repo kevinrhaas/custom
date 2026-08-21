@@ -1,7 +1,7 @@
 ---
 id: T-0061
 title: Shed roofs have no gable ends, so 55 buildings are open to the sky
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-21
+pr: 294
+claimed_by: run 8/21/2026, 9:46:32 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -58,3 +58,19 @@ before/after pair from the owner's pose (Lake Street, SE 126°, the D2 shanty) �
 that would have caught it: for every placeholder, the wall+roof surface encloses its volume,
 or more simply, the shed branch emits the same face count per side as the gable branch. The
 55 regenerated GLBs pass check.sh's existing placeholder assertion.
+
+---
+
+## Re-reported by the owner, 2026-08-21 — and it is the same building again
+
+*"this needs to be fixed still if there is not already a ticket, the roof is incomplete on
+these class of dwellings, add a ticket to do a sweep and fix these."* His frame is the dev
+preview, standing on Lake Street, with the card open on **Reconstructed D2 rough plank
+dwelling or shanty #04** — the identical building as the 2026-08-18 report above.
+
+There was already a ticket: this one. It was diagnosed on the day it was first reported and
+has sat open since while the queue ran elsewhere. A duplicate opened on the re-report
+(T-0128) was withdrawn in favour of this entry. Taken now.
+
+Nothing about the diagnosis changed; the sweep the owner asks for is the same fix applied to
+every placeholder that carries a shed roof, not only the one he happens to be standing at.

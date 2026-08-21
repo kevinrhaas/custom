@@ -91,6 +91,17 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
         rise = min(wall_h * .72, math.tan(pitch) * d)
         quad(groups["roof"], (-.12,wall_h, .12), (w+.12,wall_h,.12),
              (w+.12,wall_h+rise,-d-.12), (-.12,wall_h+rise,-d-.12))
+        # AND THE TWO ENDS THE SLOPE LEAVES OPEN (T-0061). A shed roof rises from
+        # the front wall to the back, so each side wall finishes as a right
+        # triangle between the two — and without them a visitor sees straight
+        # through the building to the sky under the slope. The gable branch below
+        # has always filled its ends; this branch drew the slope and stopped, so
+        # every placeholder carrying `roof_type: shed` stood open. Wound the same
+        # way round as the gable's own end fills, and put in the `wall` group
+        # because that is what they are: the top of the wall, not roof covering,
+        # which also keeps them off the roof material the record grades.
+        tri(groups["wall"], (0,wall_h,0), (0,wall_h+rise,-d), (0,wall_h,-d))
+        tri(groups["wall"], (w,wall_h,-d), (w,wall_h+rise,-d), (w,wall_h,0))
     else:
         rise = min(wall_h * .85, math.tan(pitch) * d / 2)
         ridge = wall_h + rise
