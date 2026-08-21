@@ -1,7 +1,7 @@
 ---
 id: T-0133
 title: The bank structures at the Dearborn bridge, from the engravings
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0071
 opened: 2026-08-21
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/21/2026, 4:28:06 PM CT
 blocked_on: null
 needs_bake: false
 ---
