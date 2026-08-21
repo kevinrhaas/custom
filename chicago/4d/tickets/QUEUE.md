@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0118 — The sloughs as built: the bay, the sill, the trench and the too-straight course
 T-0119 — A plank walk over the slough mouth, and along the river into town
 T-0120 — The treeline swims as you move, and stops where it should carry on
 T-0123 — Prove the fort stockade stands its full twelve feet, and name what a visitor walks up to
