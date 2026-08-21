@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
 T-0066 — Signboards carry the location's name, and no two are alike

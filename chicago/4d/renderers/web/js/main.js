@@ -29,6 +29,7 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
+import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
 import { createFrontage } from './frontage.js';
@@ -113,6 +114,25 @@ const VERSION = '0.1.0';
  * Measured together at the same stand: desktop 668,293 → 584,761 of 600,000,
  * 55 → 49 draw calls. Recorded in docs/LIBERTIES.md L156, which is L121's
  * entry for the wood one layer over.
+ *
+ * ---------------------------------------------------------------------------
+ * T-0067 — AND THE THIRD THING THAT GIVES WAY, WHICH IS TIMBER RATHER THAN SUN.
+ *
+ * T-0115's ledger left two costed findings for whoever took the fence tickets,
+ * and this is the second of them: a picket pale is a 10-triangle prism whose two
+ * 22 mm edge faces and 22 mm top cap are SIX of those ten — three quarters of
+ * the geometry for a fortieth of the silhouette. At `light` a pale is drawn as a
+ * zero-thickness double-sided plank instead (`enclosures.js` `pushBox`), which
+ * is 4 triangles: same width, same height, same place, same rhythm, and a
+ * thickness you could only see by standing on the fence line and looking along
+ * it. It passes the same test the sward and the shadow reach pass — a rendering
+ * decision rather than a claim — and it is the lever that keeps the fence
+ * tickets affordable, because every pale T-0067, T-0068 and T-0069 add now costs
+ * 4 triangles at `light` rather than 10.
+ *
+ * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
+ * cull it, is not a tier at all — it costs a visitor nothing at any level and is
+ * simply how `enclosures.js` builds now.)
  */
 const DETAIL = {
   full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
@@ -325,19 +345,49 @@ async function boot() {
   });
   scene3d.add(streets.group);
 
+  // WHICH DETAIL LEVEL, resolved here rather than beside the vegetation because
+  // the fence layer is the first thing that needs it: a pale is 10 triangles at
+  // `full` and 4 at `light` (T-0067), so the level has to be known before the
+  // first fence is built. A phone starts at `light` and a desktop at `full`; the
+  // visitor's own choice, once made, outranks the guess and is what
+  // `hud.settings.detail` carries.
+  let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
+    : (coarse ? 'light' : 'full');
+  const detailOpts = () => ({ detail: detailLevel });
+
   // The town's fence lines — yards, pens, garden pickets. An enclosure takes a
   // PERIMETER rather than a footprint and is roofless, which is why it is not a
   // structure record and carries no GLB: docs/LIBERTIES.md L10 and L60 have both
   // been waiting on exactly that shape, and this is the half of it that needs no
   // bake. Mounted after the streets so a frontage fence is drawn against the
-  // travelled way it stands on, and before the vegetation for no reason but
-  // reading order — a fence blocks no growth, because nothing says the ground
-  // inside one was cleared.
+  // travelled way it stands on, and before the vegetation because the ground
+  // inside one now decides what may grow there — see the fenced ground below.
   const enclosures = await createEnclosures({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, ...detailOpts(),
   });
   scene3d.add(enclosures.group);
   api.enclosures = enclosures;
+
+  /**
+   * THE GROUND INSIDE THOSE FENCES (T-0067). The owner: *"everplace that is
+   * fenced in would have a different ground, the wagon yard would probably be
+   * dirty dusty ground and fences around properties inside the fence would not
+   * be wild prairie but curated lawn and garden or animal pens."* Three of the
+   * four enclosure records said the same thing about themselves, in their own
+   * `ground` blocks, with `geometry: "absent"`.
+   *
+   * It is its own layer and its own scene child rather than a second mesh inside
+   * `enclosures` for two reasons that are both about policy rather than tidiness:
+   * a ground treatment casts no shadow and must not be swept into
+   * FURNITURE_LAYERS' traverse, and hiding the FENCE (which several gates do) must
+   * not take the ground with it. It takes the enclosure records straight off the
+   * layer above rather than re-fetching them.
+   */
+  const yards = createFencedGround({
+    records: enclosures.records, terrain, confidence, problems,
+  });
+  scene3d.add(yards.group);
+  api.yards = yards;
 
   // The boards the businesses hung out over the footway. Like a fence, a
   // signboard is derived geometry rather than baked geometry — a plank on a
@@ -444,11 +494,8 @@ async function boot() {
   // gate onto a bare plane and grew a prairie a second later would be showing
   // the visitor a loading state and calling it 1835. Missing records degrade to
   // NOTHING planted plus a recorded problem — never to an invented community.
-  // A phone starts at `light` and a desktop at `full`; the visitor's own choice,
-  // once made, outranks the guess and is what `hud.settings.detail` carries.
-  let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
-    : (coarse ? 'light' : 'full');
-  const detailOpts = () => ({ detail: detailLevel });
+  // (`detailLevel` is resolved much earlier — up beside the fences, which need
+  // it to know what a pale costs.)
   /**
    * Vertical pixels per radian of field, for the horizon band — the one layer
    * whose correctness is measured in pixels, because it draws an angular
@@ -489,9 +536,25 @@ async function boot() {
   }
   applyShadowTier(detailLevel);
 
+  /**
+   * WHERE THE SWARD MAY NOT GROW (T-0067), composed rather than replacing the
+   * street's own answer. Two things block a prairie plant now: the travelled
+   * track it would grow through, and a FENCE it would grow inside — the wagon
+   * yard's dust, the pound's trodden earth, a dooryard's kept green are all
+   * ground somebody worked, and none of them is 1.5 m of bluestem.
+   *
+   * THE TREES ARE DELIBERATELY NOT BLOCKED and the difference is the whole
+   * reason this is composed here rather than pushed into `planting`. The
+   * dooryard plantings (T-0074) and the Sauganash's own three stems stand INSIDE
+   * these fences BY RECORD; a block-list entry that reached the woody layer
+   * would delete every one of them and file a problem for each, which is this
+   * ticket undoing another one. The sward is the only layer that gives way.
+   */
+  const swardBlocked = (e, n) => streets.blocksGrowth(e, n) || yards.suppressesSward(e, n);
+
   let flora = await createFlora({
     dataBase: bases.dataBase, terrain, footprints: planting,
-    growthBlocked: streets.blocksGrowth,
+    growthBlocked: swardBlocked,
     confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
@@ -519,6 +582,13 @@ async function boot() {
     if (!DETAIL[level] || level === detailLevel) return;
     detailLevel = level;
     BUDGET.triangles = DETAIL[level].triangles;
+    // The fence's half of the level, first: `light` draws a pale as a plank and
+    // the other two as a prism (T-0067), and the layer rebuilds its own meshes
+    // in place from records it has already loaded. It is done BEFORE the shadow
+    // tier because every mesh is new after a rebuild and starts out casting —
+    // `applyShadowTier` below is what settles that, and settling it first would
+    // settle it on meshes that are about to be thrown away.
+    enclosures.setDetail?.(level);
     // The sun's half of the level takes effect on THIS frame rather than after
     // the replanting: it costs nothing to apply, and a visitor who turns the
     // setting down on a machine that is struggling should get the cheap half of
@@ -531,7 +601,7 @@ async function boot() {
       flora.dispose?.();
       flora = await createFlora({
         dataBase: bases.dataBase, terrain, footprints: planting,
-        growthBlocked: streets.blocksGrowth,
+        growthBlocked: swardBlocked,
         confidence, problems, ...detailOpts(),
       });
       scene3d.add(flora.group);
