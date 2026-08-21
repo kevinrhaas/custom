@@ -402,7 +402,7 @@ class BridgeTimberParams:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
 
 
-def from_phase(phase: dict) -> BridgeTimberParams:
+def from_phase(phase: dict, record: dict | None = None) -> BridgeTimberParams:
     """Resolve one structure phase into generator parameters.
 
     The footprint polygon is the DECK outline: its u extent is the span and its v

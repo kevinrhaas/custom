@@ -81,6 +81,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.logwork import (  # noqa: E402
     COURSE_M, HEWN_RGBA, hewn_log_wall, log_prism,
 )
+from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.bridge_timber_params import BridgeTimberParams  # noqa: E402
 
@@ -145,7 +146,12 @@ def build(params: BridgeTimberParams, name: str):
                                    "draw_span_m"))
 
     mats = [
-        simple_material("log", HEWN_RGBA, roughness=0.93),
+        # The sheet's hewn-log roughness (0.92), which this module used to miss by
+        # 0.01 for no argued reason. Crib logs were not hewn — see logwork.py — but
+        # they go through the same wall helper and read as the same joint, and the
+        # sheet has one log row until a source gives it two.
+        simple_material("log", HEWN_RGBA,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("deck", DECK_RGBA, roughness=0.95),
         simple_material("fill", FILL_RGBA, roughness=0.98),
     ]

@@ -1,0 +1,444 @@
+"""The material sheet, as code — `docs/RESEARCH/materials.md` wired into the town.
+
+R-W2a measured 1,353 material slots out of the shipped GLBs and wrote them up as a
+document. The document reached nothing: every colour and every roughness in this
+project was still a literal sitting in whichever module happened to paint that
+surface, and two generators — the nine Blender archetypes and the pure-Python
+`inferred_placeholder` — carried two palettes that shared not one value. T-0007 is
+the parcel that makes the sheet the source. This module IS the sheet: every row
+below is a row of materials.md §1.1 or §2, and every archetype and the placeholder
+generator now read their colours and their roughness from here rather than from a
+constant of their own.
+
+## What a row is
+
+A surface is TWO things, and keeping them apart is what lets the sheet describe a
+whitewashed clapboard wall without a combinatorial table:
+
+* a **substrate** — what the wall is made OF. It owns the roughness, the tiling rate
+  and the dimensional module that rate is a whole multiple of (materials.md §3.2:
+  every tile is 32 clapboard courses, or 12 log courses, or 20 sheathing boards, so
+  the seam lands on the surface's own rhythm rather than on a number chosen to look
+  right). No substrate owns a colour.
+* a **finish** — what it WEARS. It owns the colour, and the three coating finishes
+  own a roughness too, because materials.md §2.1 argues them explicitly: a limewashed
+  wall is the flattest surface in the town, and lead paint the only smooth one. §2.1
+  calls those three "overlay, not a tile" for exactly this reason — they modify the
+  substrate's value and gloss and leave its rhythm showing through.
+
+So `resolve(substrate, finish)` gives the pair the exporter needs, and the tile rate
+sits beside it for the bake half to draw its atlas against the same numbers.
+
+## COLOUR SPACE — materials.md §3.4's one process rule
+
+**Every value here is LINEAR**, which is what glTF `baseColorFactor` means and what a
+Blender node colour is. The six wall finishes and the four roof conditions are
+written as hex because that is the form `inferred_placeholder.py` committed them in,
+and materials.md §3.4 proved from the whitewash pair that they were authored as
+linear values rather than sRGB ones — read as sRGB the two generators' whitewash
+would sit 40 % apart in blue instead of 12.6 %. `hex_rgba` therefore divides by 255
+and does nothing else, and this paragraph is the "state the space in the file that
+holds it" §3.4 asks for. A PNG atlas is sRGB by convention; the bake half has to
+convert, and this is the sentence that tells it so.
+
+## WHAT IS NOT CLAIMED HERE — R-W2a finding 2, and it stands
+
+**No source in this repository states what any Chicago roof of 1835 was covered
+with.** 315 records state a roof type and a pitch; zero state a covering. So there is
+no `shingle` row in this file and no `roof_board` row, and the roof rows below are
+graded by **condition** — fresh, weathered, darkened, patched — which is a statement
+about weathering that 218 records actually carry, and not a statement about material.
+A future parcel that finds a source for the covering adds the rows then; inventing
+one here to make the sheet look finished is the exact move `docs/LIBERTIES.md`
+exists to catch. materials.md §2.2 and §5 own the open question.
+
+Likewise absent: the shingle exposure, and a brick or stone course dimension. §3.2
+says plainly that no source this project holds gives one, so `brick` and `stone`
+carry `tile_m = None` rather than a modern brick quietly chosen to make the
+arithmetic land.
+
+## The blast radius, stated
+
+`generators/mesh_inputs.py` hashes every byte of `generators/common/` into every
+archetype's mesh inputs, so an edit here stales the whole town. `frame_tavern.py`
+keeps its own two colours for precisely that reason and is right to: a value only one
+archetype reads does not belong in a shared file. What is here is the opposite case —
+the wall finishes, the roof conditions and the log fabric are read by every building
+generator in the project and by the placeholder path as well, and holding one copy of
+them is the whole point of a sheet.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+# The sheet this module is. Quoted in every row so a reader can find the argument.
+SHEET = "docs/RESEARCH/materials.md"
+
+# Every colour in this file is linear. See the module docstring.
+COLOUR_SPACE = "linear"
+
+
+def hex_rgba(value: str) -> tuple[float, float, float, float]:
+    """A hex triple as a LINEAR rgba. Divides by 255 and does nothing else.
+
+    Byte-compatible with `generators/inferred_placeholder.py`'s own helper, which is
+    load-bearing: that generator's 94 committed GLBs are gated on their exact bytes,
+    so the two paths have to produce the same floats from the same string.
+    """
+    value = value.lstrip("#")
+    return tuple(int(value[i:i + 2], 16) / 255 for i in (0, 2, 4)) + (1.0,)
+
+
+@dataclass(frozen=True)
+class Substrate:
+    """What a surface is made of: its roughness, its tile, and the module the tile is
+    a whole multiple of. Never a colour — that is the finish's."""
+
+    key: str
+    roughness: float
+    tier: str
+    note: str
+    #: metres of surface one square of the atlas covers; None where materials.md
+    #: §3.2 says the rate cannot be set without a source it does not hold
+    tile_m: float | None = None
+    #: the surface's own committed dimensional constant, which `tile_m` is a whole
+    #: number of — the condition §3.2 puts on every rate
+    module_m: float | None = None
+    #: texel density at 1024², which §4 W2 bounds at 128–256 px/m
+    texel_px_per_m: float | None = None
+
+
+@dataclass(frozen=True)
+class Finish:
+    """What a surface wears. Owns the colour; owns a roughness only where
+    materials.md §2.1 argues one, which is the three coatings."""
+
+    key: str
+    rgba: tuple[float, float, float, float]
+    tier: str
+    note: str
+    #: a coating states its own gloss and overrides the substrate's (§2.1)
+    roughness: float | None = None
+    #: True for the three coatings, which are overlays rather than fabrics. The trim
+    #: rule below reads it, because boards took the paint and bare stock did not.
+    coating: bool = False
+
+
+# --------------------------------------------------------------- the substrates
+#
+# materials.md §2.1 and §2.2, one row per surface that actually ships. Tiles are the
+# sheet's own arithmetic — 32 clapboard courses of 0.14 m, 12 log courses of 0.34 m,
+# 20 sheathing boards of 0.229 m — and land inside the 128–256 px/m band by
+# construction rather than by choice.
+
+SUBSTRATES: dict[str, Substrate] = {
+    "clapboard": Substrate(
+        key="clapboard", roughness=0.86, tier="inferred",
+        tile_m=4.48, module_m=0.14, texel_px_per_m=228.6,
+        note="Riven or sawn horizontal siding weathering silver. The form is attested "
+             "on the Sauganash, the agency house and the Green Tree; the 0.14 m "
+             "exposure is a period stock, committed as the archetypes' own default "
+             "since T-0049. 32 courses to the tile."),
+    "board_and_batten": Substrate(
+        key="board_and_batten", roughness=0.88, tier="reconstructed",
+        tile_m=4.272, module_m=0.356, texel_px_per_m=239.7,
+        note="Vertical boards with a batten over each joint at the usual 14 in "
+             "set-out. NO source in this repository puts board-and-batten on any "
+             "named Chicago building in 1835 — the set-out is typological. 12 battens "
+             "to the tile."),
+    "vertical_board": Substrate(
+        key="vertical_board", roughness=0.90, tier="reconstructed",
+        tile_m=4.58, module_m=0.229, texel_px_per_m=223.6,
+        note="Plain vertical sawn boards, no batten. One record carries it and its "
+             "own note says INVENTED, NOT DERIVED. 20 boards to the tile."),
+    "hewn_log": Substrate(
+        key="hewn_log", roughness=0.92, tier="attested",
+        tile_m=4.08, module_m=0.34, texel_px_per_m=251.0,
+        note="Squared log courses. The log town is the best-attested fabric here; the "
+             "0.34 m course is logwork.py's, argued from a squared wall log. 12 "
+             "courses to the tile."),
+    "chinking": Substrate(
+        key="chinking", roughness=0.95, tier="inferred",
+        tile_m=2.04, module_m=None, texel_px_per_m=251.0,
+        note="Clay and lime between the courses, standing proud. Near-uniform: dried "
+             "lime does not scatter the way timber does. The tile is HALF the log's "
+             "at half the map, which holds the same 251 px/m — a wall whose two "
+             "materials render at two densities reads as two walls."),
+    "sawn_board": Substrate(
+        key="sawn_board", roughness=0.94, tier="inferred",
+        tile_m=4.00, module_m=None, texel_px_per_m=256.0,
+        note="Plain sawn stock, random widths, gappy. The widths are geometry — the "
+             "outbuilding deals them board by board — so the sheet carries grain "
+             "only."),
+    "heavy_timber": Substrate(
+        key="heavy_timber", roughness=0.90, tier="inferred",
+        tile_m=4.00, module_m=None, texel_px_per_m=256.0,
+        note="Posts, plates, jambs, headers and battens. Heavy stock holds moisture "
+             "and weathers darker than siding. materials.md §4 finding 3 records that "
+             "TWO different materials share this name in the source and only this one "
+             "ships; splitting them is a follow-up, not this parcel."),
+    "brick": Substrate(
+        key="brick", roughness=0.90, tier="inferred",
+        tile_m=None, module_m=None, texel_px_per_m=None,
+        note="Fired brick in courses. Two records are attested brick. NO source in "
+             "this repository gives a brick or a course dimension, so the rate is "
+             "UNRESOLVABLE (§3.2) and is left None rather than filled with a modern "
+             "brick."),
+    "stone": Substrate(
+        key="stone", roughness=0.93, tier="reconstructed",
+        tile_m=None, module_m=None, texel_px_per_m=None,
+        note="Rubble or dressed masonry. The one record carrying it says bare masonry "
+             "is unattested and a limewash the commoner Great Lakes finish. Rate "
+             "unresolvable, as brick."),
+    "earth": Substrate(
+        key="earth", roughness=0.95, tier="inferred",
+        tile_m=4.00, module_m=None, texel_px_per_m=None,
+        note="Trodden ground and turf. Both records carrying it say plainly that no "
+             "source describes it. A noise tile: no rhythm to be integral with."),
+    # The roof substrate is deliberately ONE row and deliberately unnamed as a
+    # covering. See the module docstring: nothing states what these roofs were made
+    # of, so the sheet describes the plane and not its material. The roughness is
+    # the archetypes' own committed value and is NOT re-argued here — materials.md
+    # §3.1 says in terms that the deliverable is a roughness map, not better
+    # constants, and that R-W2b should not spend a round re-tuning the 18 numbers.
+    "roof_plane": Substrate(
+        key="roof_plane", roughness=0.90, tier="reconstructed",
+        tile_m=None, module_m=None, texel_px_per_m=None,
+        note="The roof plane, COVERING UNSTATED. R-W2a finding 2: 315 records state a "
+             "roof type, zero state what it is made of. No exposure, therefore no "
+             "tile — materials.md §2.2 says pick the exposure from a source or record "
+             "a liberty, and this parcel does neither because it invents nothing."),
+}
+
+
+# ------------------------------------------------------------------ the finishes
+#
+# materials.md §1.1's six wall finishes and §2.1's three coatings. The six are the
+# vocabulary the DATA speaks — `reconstruction.finish_key`, dealt by the 665-roof
+# programme and committed on 222 records — and until this parcel they were read by
+# `inferred_placeholder.py` alone, so a weathered wall and a fresh one were the same
+# pixel on all 244 archetype buildings (finding 4). The hexes are verbatim from that
+# generator, which is what keeps its 94 committed GLBs byte-identical.
+
+FINISHES: dict[str, Finish] = {
+    "fresh_timber": Finish(
+        key="fresh_timber", rgba=hex_rgba("#C3A478"), tier="reconstructed",
+        note="New sawn stock, still pale and warm. §1.1; 37 placeholder walls and, "
+             "from T-0007, every archetype building the programme dealt it to."),
+    "weathered_timber": Finish(
+        key="weathered_timber", rgba=hex_rgba("#817D72"), tier="reconstructed",
+        note="Bare stock silvered off by a season or two of weather. §1.1."),
+    "mixed_patch": Finish(
+        key="mixed_patch", rgba=hex_rgba("#BFAE8E"), tier="reconstructed",
+        note="A wall patched from more than one stock, averaged. §1.1."),
+    "ochre": Finish(
+        key="ochre", rgba=hex_rgba("#A98B52"), tier="reconstructed",
+        note="An earth-pigment wash. §1.1. No named Chicago building in this "
+             "repository is attested ochre; it is a period finish dealt by the "
+             "programme, not a reading of any source about any building."),
+    "whitewash": Finish(
+        key="whitewash", rgba=hex_rgba("#D8D1BC"), roughness=0.90, coating=True,
+        tier="reconstructed",
+        note="Lime wash over whatever the wall is made of — it coats the substrate "
+             "and does not replace it, so the courses stay showing through. Chalky "
+             "and flat: the LEAST glossy surface in the town (§2.1). ATTESTED where a "
+             "record attests it and never a default. This value converges the two "
+             "palettes materials.md §3.4 measured 12.6 % apart in blue: the "
+             "archetypes' 0.88/0.87/0.83 is retired in favour of the vocabulary the "
+             "records already speak (finding 5)."),
+    "red_oxide": Finish(
+        key="red_oxide", rgba=hex_rgba("#7A4437"), roughness=0.85, coating=True,
+        tier="reconstructed",
+        note="Iron-oxide paint. §2.1 grades it conjectural at the building level and "
+             "inferred as a period finish: no named Chicago building here is attested "
+             "red. One row for both paths, replacing the archetypes' 0.55/0.16/0.13."),
+    "white_paint": Finish(
+        key="white_paint", rgba=(0.90, 0.89, 0.85, 1.0), roughness=0.60, coating=True,
+        tier="attested",
+        note="Lead paint, a remarkable expense here and ATTESTED for exactly one "
+             "building — the Sauganash, 'a pretentious white two-story building'. "
+             "0.60 is the sheet's number and the point of it: the only smooth wall in "
+             "Chicago, which is why its neighbours' plainness reads."),
+    "unpainted": Finish(
+        key="unpainted", rgba=(0.52, 0.44, 0.34, 1.0), tier="reconstructed",
+        note="The archetypes' own committed unpainted tone, measured in §1 across 94 "
+             "shipped wall slots. Kept as the default for a record that deals no "
+             "finish, so that no NAMED building changes colour without a record "
+             "saying it should."),
+    "weathered_board": Finish(
+        key="weathered_board", rgba=(0.335, 0.310, 0.268, 1.0), tier="reconstructed",
+        note="The outbuilding's own board tone, and deliberately NOT the taverns' "
+             "unpainted brown: bare sawn softwood silvers within a season, and a shed "
+             "carrying a tavern's colour would read as the same building at a "
+             "distance. §1, 69 shipped `board` slots."),
+}
+
+
+# --------------------------------------------------------------- roof conditions
+#
+# §1.1's four. `roof_condition` is stated on 218 records and, until this parcel, was
+# read by `inferred_placeholder.py` alone. It says how weathered the roof is. It does
+# NOT say what the roof is made of, and nothing in this project does — see the module
+# docstring.
+
+ROOF_CONDITIONS: dict[str, Finish] = {
+    "fresh": Finish(key="fresh", rgba=hex_rgba("#5E4938"), tier="reconstructed",
+                    note="Newly laid, still brown. §1.1."),
+    "weathered": Finish(key="weathered", rgba=hex_rgba("#6C6258"), tier="reconstructed",
+                        note="Silvered off, the palest of the four. §1.1."),
+    "darkened": Finish(key="darkened", rgba=hex_rgba("#4B4037"), tier="reconstructed",
+                       note="Weather-blackened. §1.1."),
+    "patched": Finish(key="patched", rgba=hex_rgba("#3C3732"), tier="reconstructed",
+                      note="Mended more than once, the darkest of the four. §1.1."),
+}
+
+#: What a roof wears where no record deals a condition — the one colour §1 measured
+#: across all 234 shipped `roof` slots. A named building whose record says nothing
+#: about its roof keeps exactly the roof it had.
+ROOF_DEFAULT = Finish(
+    key="roof_default", rgba=(0.34, 0.30, 0.27, 1.0), tier="reconstructed",
+    note="The archetypes' committed roof tone, §1. Unchanged by T-0007 wherever a "
+         "record deals no condition, which is every named building in the town.")
+
+
+# ------------------------------------------------------------------- other rows
+#
+# §1 and §2.3. These ship today at these values and are held here so one file
+# answers "what is this surface" for every generator. Values are unchanged.
+
+HEWN_LOG = Finish(
+    key="hewn_log", rgba=(0.340, 0.266, 0.188, 1.0), tier="inferred",
+    note="Weathered hewn oak. logwork.py argues it about a fifth darker than the "
+         "paler LOG_RGBA it replaced, having measured that a first pass at 0.295 put "
+         "the log dwellings visibly in a different town from the Sauganash's wing. "
+         "materials.md finding 2: the Sauganash's own wing never followed that "
+         "reconciliation and is the ONE log wall in Chicago built from the other "
+         "value. T-0007 brings it across, so the town has one log.")
+CHINKING = Finish(
+    key="chinking", rgba=(0.700, 0.670, 0.590, 1.0), tier="inferred",
+    note="Clay and lime, pale where the logs are dark, standing proud so it catches "
+         "light. §1, 50 shipped slots.")
+INTERIOR_DARK = Finish(
+    key="interior_dark", rgba=(0.072, 0.068, 0.060, 1.0), tier="inferred",
+    note="What is seen through a gap between boards or into an open bay. Near-black "
+         "rather than black: an interior in daylight is dark, not a hole in the "
+         "world. §2.3 records that FOUR values across four generators express this "
+         "one idea; converging them is a follow-up, not this parcel.")
+HEAVY_TIMBER = Finish(
+    key="heavy_timber", rgba=(0.208, 0.172, 0.128, 1.0), tier="inferred",
+    note="The outbuilding's heavy squared stock. §4 finding 3: one name over two "
+         "materials 3.2x apart in linear red, of which only this one ships.")
+
+
+# ------------------------------------------------------------------- selection
+#
+# The half materials.md §2 calls "selected by". Until T-0007 the answer for most
+# rows was "nothing".
+
+#: Which substrate a wall is, given what the record says it is built of and clad in.
+#: `cladding` is stated on 27 records and read on 22 (finding 3); everything else
+#: falls back on the construction, which every record states.
+_CLADDING_SUBSTRATE = {
+    "clapboard": "clapboard",
+    "board_and_batten": "board_and_batten",
+    "vertical_board": "vertical_board",
+}
+_CONSTRUCTION_SUBSTRATE = {
+    "log": "hewn_log",
+    "hewn_log": "hewn_log",
+    "plank": "sawn_board",
+    "board": "sawn_board",
+    "brick": "brick",
+    "stone": "stone",
+    "earth": "earth",
+    # A framed wall says nothing about its skin, and every framed building in this
+    # dataset that does not state a cladding is clapboarded — which is the commonest
+    # wall in the town and the one the archetypes build by default.
+    "balloon_frame": "clapboard",
+    "braced_frame": "clapboard",
+    "frame": "clapboard",
+}
+
+#: `paint` values that name a coating rather than a bare wall, mapped onto the
+#: finish rows. `unpainted` is not here: it means the wall wears its own stock, and
+#: which stock is then the record's `finish_key` to say.
+_PAINT_FINISH = {
+    "white": "white_paint",
+    "whitewash": "whitewash",
+    "red": "red_oxide",
+    "red_oxide": "red_oxide",
+    "ochre": "ochre",
+}
+
+
+def wall_substrate(construction: str | None = None, cladding: str | None = None,
+                   default: str = "clapboard") -> Substrate:
+    """The substrate row for a wall — the roughness and the tile, never the colour."""
+    if cladding and cladding in _CLADDING_SUBSTRATE:
+        return SUBSTRATES[_CLADDING_SUBSTRATE[cladding]]
+    if construction and construction in _CONSTRUCTION_SUBSTRATE:
+        return SUBSTRATES[_CONSTRUCTION_SUBSTRATE[construction]]
+    return SUBSTRATES[default]
+
+
+def wall_finish(paint: str | None = None, finish_key: str | None = None,
+                default: str = "unpainted") -> Finish:
+    """Which finish a wall wears, and the ORDER is the argument.
+
+    1. **A stated coating wins.** Where a record says white, whitewash or red, that
+       is a claim about this building's surface and it outranks anything a schedule
+       dealt. It is also how the one attested paint in the dataset — the Sauganash's
+       white — survives this parcel untouched in kind and improved in gloss.
+    2. **Otherwise the record's own `finish_key` decides.** On a reconstructed
+       anonymous roof the two attributes never disagree — every one of the 44 records
+       carrying both states `whitewash` against `whitewash` and `red` against
+       `red_oxide` — so this is not a tie-break between rival claims. It is a choice
+       between a value the 665-roof programme dealt against a committed schedule and
+       a `paint: unpainted` the archetype's own defaults wrote into the record with a
+       note saying, in terms, that the family band does not speak to paint or finish
+       and the value is the generator's type default. The dealt finish is the better
+       evidence of the two, and it is the one 156 records were carrying into nothing.
+    3. **Otherwise the archetypes' committed unpainted tone**, so nothing that has no
+       record to read changes colour.
+    """
+    if paint and paint in _PAINT_FINISH:
+        return FINISHES[_PAINT_FINISH[paint]]
+    if finish_key and finish_key in FINISHES:
+        return FINISHES[finish_key]
+    return FINISHES[default]
+
+
+def roof_finish(roof_condition: str | None = None) -> Finish:
+    """What a roof wears. A WEATHERING CONDITION and never a covering — see the
+    module docstring, and R-W2a finding 2, which this parcel does not discharge."""
+    if roof_condition and roof_condition in ROOF_CONDITIONS:
+        return ROOF_CONDITIONS[roof_condition]
+    return ROOF_DEFAULT
+
+
+def resolve(substrate: Substrate, finish: Finish) -> tuple[tuple, float]:
+    """The (rgba, roughness) pair an exporter needs: the substrate's gloss unless the
+    finish is a coating that states its own (§2.1 — whitewash 0.90, lead paint 0.60,
+    iron oxide 0.85)."""
+    roughness = finish.roughness if finish.roughness is not None else substrate.roughness
+    return finish.rgba, roughness
+
+
+def trim_rgba(finish: Finish) -> tuple[float, float, float, float]:
+    """Sawn trim against a sided wall.
+
+    §2.3: "trim is derived from the wall paint and needs no sheet of its own", and
+    the two rules below are the ones `frame_dwelling` has always argued. Over a
+    COATING the boards took the same paint, so the trim is the wall lifted just
+    enough to read as a separate board at walking distance. Over BARE TIMBER the trim
+    is fresher stock than the weathered siding, so it is paler and slightly greyer —
+    and the lift is the per-channel ratio the archetype already shipped
+    (0.52/0.44/0.34 wall against 0.60/0.53/0.43 trim), which reproduces that pair
+    exactly and generalises it to whichever finish the record deals.
+    """
+    r, g, b, a = finish.rgba
+    if finish.coating:
+        return (min(1.0, r * 1.06), min(1.0, g * 1.06), min(1.0, b * 1.06), a)
+    return (min(1.0, r * (0.60 / 0.52)), min(1.0, g * (0.53 / 0.44)),
+            min(1.0, b * (0.43 / 0.34)), a)

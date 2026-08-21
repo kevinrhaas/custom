@@ -1,5 +1,71 @@
 # STATUS
 
+## Shipped 2026-08-21 — T-0007: the material sheet reaches the town
+
+**The ask.** R-W2a measured the town's surfaces and wrote `docs/RESEARCH/materials.md` — 1,353
+material slots, 32 names, 41 colours, 18 roughness values, zero textures — and the document
+reached nothing. Every colour in this project was a literal in whichever module happened to
+paint that surface. Texture scored **1.4** on R-G1's table, the worst axis on the board.
+
+**What now decides a surface.** `generators/common/materials.py` is the sheet as code, and it
+splits a surface the way §2.1 already did: a **substrate** owns the roughness, the tile and the
+module the tile is a whole number of; a **finish** owns the colour, and the three coatings own a
+roughness that overrides the substrate's. `resolve(substrate, finish)` is what the exporter
+gets. The tile rates ride along unused, so the bake half draws its atlas from the same numbers
+rather than a second set.
+
+**The wiring, which is the parcel.** `from_phase(phase, record)` now takes the record as well as
+the phase, because the finish the 665-roof programme dealt a building is not a form attribute —
+it sits in `reconstruction`, one level up, which is exactly why no archetype could read it.
+`mesh_inputs.resolve_params` passes the same pair, so the staleness hash still sees precisely
+what the builder sees. **222 records carry `finish_key` and 218 carry `roof_condition`**, and
+until this parcel both were read by `generators/inferred_placeholder.py` alone.
+
+**What moved in the shipped bytes.** 207 of 243 committed GLBs. Wall colour on every archetype
+building now comes from the record's dealt finish unless a record states a coating, which still
+wins — the Sauganash's attested white among them, at the sheet's 0.60, the only smooth wall in
+Chicago. Roof colour comes from the weathering condition, so 234 roof slots that were one colour
+now carry four. Wall roughness moves onto the sheet's per-substrate values (clapboard 0.86, hewn
+log 0.92, sawn board 0.94, brick 0.90, rubble stone 0.93, trodden earth 0.95). Finding 2 is
+discharged: `LOG_RGBA` is deleted and the Sauganash's log wing is built from the town's log
+rather than from the paler value nothing else used. Finding 5 is discharged: three whitewashes
+became one and two reds became one, and both generators read the same table — the placeholder
+GLBs are byte-identical, because the convergence went onto the vocabulary the RECORDS speak.
+
+**Triangle-neutral, and material-count-neutral, by measurement.** Diffed against `HEAD` over all
+207 changed GLBs: triangle delta **0**, and **not one asset changed its material count**. The
+second is not incidental — K36(a) put the palette-fold threshold at five materials and 275
+assets sit at four, so a sixth surface would tip all of them at once. This parcel varies values,
+never slot counts. Recorded against **T-0115**, whose ceiling is breached.
+
+**What stayed honest.** **R-W2a finding 2 stands.** No source in this repository states what any
+Chicago roof of 1835 was covered with, so the sheet has no `shingle` row and no `roof_board`
+row: it has one `roof_plane` substrate whose note says the covering is unstated, and four
+weathering conditions the records actually carry. Every archetype's roof ROUGHNESS is left as
+its own committed literal, because §2.2 separates a board roof from a shingle field by 0.03 of
+roughness and moving that number either way would be choosing a covering nobody wrote down.
+`docs/LIBERTIES.md` **L155** owns the three interpretive choices: that a dealt finish outranks a
+`paint` the archetypes themselves defaulted into the record (the 44 records carrying both AGREE,
+so it is not a tie-break), that roof colour follows weathering, and that the roughnesses are
+reasoned rather than sourced.
+
+**The frames.** Critic stations re-shot on the published mirror at the identical stands
+(`tools/critic_shots.mjs --published --viewport desktop`). At `south_water` and `from_above` the
+change is small and honestly so — those stands look at NAMED buildings, which carry no
+`reconstruction` block and therefore keep exactly the colours they had. At `lake_market` the
+Sauganash's log wing visibly changes timber (finding 2). The repaint itself is photographed
+where it lives, in the reconstructed south blocks, against a mirror rebuilt from `HEAD`'s own
+web derivatives at the same stand: **8.20 % of the frame moves, mean |Δ| 62 of 255 over the
+differing pixels.** Pairs: `docs/evidence/t-0007-{before,after}.png` (south_water),
+`t-0007-sauganash-{before,after}.png`, `t-0007-south-blocks-{before,after}.png`.
+
+**Split out, not half-done.** §2.3's four values for one dark opening and finding 3's one
+`timber` name over two materials are the openings-and-glazing family, not the wall-and-roof
+family this parcel wired; they are **T-0126**. The atlas, the roughness MAP §3.1 asks
+for, and the shingle exposure remain the bake half's and are unresolvable from what this project
+holds. Finding 1, the chimney, is T-0008's and opens with a research question rather than a
+palette.
+
 ## Shipped 2026-08-20 — T-0110: the road ribbon follows the ground it claims to lie on
 
 **The ask.** The owner, an hour after T-0046's earthworks landed, walking Kinzie onto the North

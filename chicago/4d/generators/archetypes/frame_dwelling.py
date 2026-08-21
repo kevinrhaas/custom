@@ -70,8 +70,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from common import materials  # noqa: E402
 from common.mesh import (  # noqa: E402
-    PAINT_RGBA, ROOF_RGBA, SHUTTER_RGBA, MeshBuilder, simple_material,
+    SHUTTER_RGBA, MeshBuilder, simple_material,
 )
 from archetypes.frame_dwelling_params import (  # noqa: E402
     HALL_FRACTION, FrameDwellingParams,
@@ -162,32 +163,38 @@ def build(params: FrameDwellingParams, name: str):
     if params.porch:
         _porch(b, params, openings, d, wall_z, params.conf("porch", "reconstructed"))
 
-    wall_rgba = PAINT_RGBA.get(params.paint, PAINT_RGBA["unpainted"])
+    # ---- the surfaces, off the sheet (T-0007) --------------------------------
+    # `common/materials.py` IS docs/RESEARCH/materials.md. The wall is a clapboard
+    # substrate — this archetype builds no other, and `_clapboard` above is what
+    # makes that true — so its ROUGHNESS is the sheet's 0.86 for bare stock, and a
+    # coating overrides it with its own (limewash 0.90, lead paint 0.60). Its COLOUR
+    # is the finish: a paint the record states, else the finish the 665-roof
+    # programme dealt it, else the archetypes' committed unpainted tone. Before this
+    # parcel every house in the town wore that last one whatever its record said.
+    finish = materials.wall_finish(params.paint, params.finish_key)
+    wall_rgba, wall_rough = materials.resolve(
+        materials.wall_substrate(cladding="clapboard"), finish)
+    # A weathering CONDITION and not a covering: nothing in this repository states
+    # what any of these roofs was made of, and this parcel does not pretend one.
+    roof_rgba = materials.roof_finish(params.roof_condition).rgba
     mats = [
-        simple_material("wall", wall_rgba),
-        simple_material("roof", ROOF_RGBA, roughness=0.9),
-        simple_material("trim", _trim_rgba(params.paint), roughness=0.85),
+        simple_material("wall", wall_rgba, roughness=wall_rough),
+        # 0.9 is the archetype's own committed roof value and stays a literal: the
+        # sheet's §2.2 has one roughness for a shingle field and another for a board
+        # roof, and choosing between them would be claiming the covering finding 2
+        # says nobody stated.
+        simple_material("roof", roof_rgba, roughness=0.9),
+        simple_material("trim", materials.trim_rgba(finish), roughness=0.85),
+        # `dark` is left as it stands. materials.md §2.3 records that FOUR values
+        # across four generators express this one idea and calls converging them a
+        # job for W2; it belongs with the openings and the glazing, not with the
+        # wall-and-roof family this parcel wires, and it is split out rather than
+        # half-done.
         simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.35),
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
     ]
     return b.to_object(mats)
-
-
-def _trim_rgba(paint: str) -> tuple:
-    """Sawn trim against sided wall.
-
-    On a painted house the boards took the same paint, so the trim is the wall colour
-    lifted just enough to read as a separate board at walking distance. On an unpainted
-    one the trim is fresher sawn stock than the weathered siding, so it is paler and
-    slightly greyer. Neither is attested for any building; both are cladding practice,
-    like the clapboard itself, and a record's `cladding` attribute declares
-    `geometry: simplified` over exactly this.
-    """
-    if paint == "unpainted":
-        return (0.60, 0.53, 0.43, 1.0)
-    r, g, bl, a = PAINT_RGBA.get(paint, PAINT_RGBA["unpainted"])
-    return (min(1.0, r * 1.06), min(1.0, g * 1.06), min(1.0, bl * 1.06), a)
 
 
 # ------------------------------------------------------------------ primitives

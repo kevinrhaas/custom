@@ -46,9 +46,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from common.mesh import (  # noqa: E402
-    PAINT_RGBA, ROOF_RGBA, MeshBuilder, simple_material,
-)
+from common import materials  # noqa: E402
+from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.frame_storefront_params import (  # noqa: E402
     CORNER_BOARD_M, POST_FACE_M, POST_SPACING_M, SHEATHING_M, SHOP_BAY_W_M,
     SHOP_DOOR_W_M, SHOP_FASCIA_M, SHOP_MULLION_M, SHOP_PILASTER_M, SHOP_SILL_Z_M,
@@ -161,10 +160,24 @@ def build(params: FrameStorefrontParams, name: str):
 
     _chimneys(b, p, mx0, my0, mx1, my1, ridge_z, wall_z, p.conf("chimneys"))
 
-    wall_rgba = PAINT_RGBA.get(p.paint, PAINT_RGBA["unpainted"])
+    # ---- the surfaces, off the sheet (T-0007) --------------------------------
+    # This is the ONE archetype in the project that already read `cladding`, and it
+    # is the one whose walls therefore have three different substrates: clapboard at
+    # 0.86, board-and-batten at 0.88, plain vertical board at 0.90. Those are the
+    # sheet's roughnesses, each argued from the surface's own rhythm; the store's
+    # single 0.85 for all three is what they replace. The colour is the finish — a
+    # stated coating first, then the finish the programme dealt, then the committed
+    # unpainted tone. See `common/materials.py`.
+    finish = materials.wall_finish(p.paint, p.finish_key)
+    wall_rgba, wall_rough = materials.resolve(
+        materials.wall_substrate(construction=p.construction, cladding=p.cladding),
+        finish)
+    roof_rgba = materials.roof_finish(p.roof_condition).rgba
     mats = [
-        simple_material("wall", wall_rgba, roughness=0.85),
-        simple_material("roof", ROOF_RGBA, roughness=0.9),
+        simple_material("wall", wall_rgba, roughness=wall_rough),
+        # A weathering condition, never a covering — materials.md finding 2. The
+        # roughness stays the archetype's own literal for the same reason.
+        simple_material("roof", roof_rgba, roughness=0.9),
         simple_material("trim", _trim_rgba(wall_rgba), roughness=0.8),
         simple_material("glass", GLASS_RGBA, roughness=0.25),
         simple_material("sign", SIGN_RGBA, roughness=0.85),

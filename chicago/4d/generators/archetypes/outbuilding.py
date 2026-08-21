@@ -56,9 +56,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.logwork import (  # noqa: E402
     CHINK_RGBA, HEWN_RGBA, RELIEF_M, hewn_log_wall,
 )
-from common.mesh import (  # noqa: E402
-    PAINT_RGBA, ROOF_RGBA, MeshBuilder, simple_material,
-)
+from common import materials  # noqa: E402
+from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.outbuilding_params import (  # noqa: E402
     DOOR_JAMB_M, OutbuildingParams,
 )
@@ -66,15 +65,17 @@ from archetypes.outbuilding_params import (  # noqa: E402
 # Materials are indices into the list passed to to_object(), in this order.
 M_LOG, M_CHINK, M_BOARD, M_ROOF, M_DARK, M_TIMBER = 0, 1, 2, 3, 4, 5
 
-# Sawn boards left to weather. NOT the taverns' `unpainted` brown from
-# common/mesh.PAINT_RGBA: bare sawn softwood on a north-facing wall silvers off within a
-# season or two, and if a shed carried the same colour as an unpainted clapboard tavern
-# the two would read as the same building at a distance — which is exactly the failure
-# this archetype exists to avoid. Linear, like every other colour in this project.
-WEATHERED_BOARD_RGBA = (0.335, 0.310, 0.268, 1.0)
+# Sawn boards left to weather. NOT the taverns' unpainted brown: bare sawn softwood on
+# a north-facing wall silvers off within a season or two, and if a shed carried the
+# same colour as an unpainted clapboard tavern the two would read as the same building
+# at a distance — which is exactly the failure this archetype exists to avoid. That
+# argument now lives on the sheet as the `weathered_board` finish (T-0007) and this
+# name is kept pointing at it, because the argument is about outbuildings and a reader
+# of this module should meet it here. Linear, like every other colour in this project.
+WEATHERED_BOARD_RGBA = materials.FINISHES["weathered_board"].rgba
 # What you see through a gap between boards, through the vent, and inside an open bay.
 # Near-black rather than black: an interior in daylight is dark, not a hole in the world.
-INTERIOR_RGBA = (0.072, 0.068, 0.060, 1.0)
+INTERIOR_RGBA = materials.INTERIOR_DARK.rgba
 # Heavy squared stock: posts, plates, jambs, headers, battens. A SIXTH material, added
 # after looking at a render in which the door frame was `HEWN_RGBA` and came out warmer
 # and no darker than the siding around it — so the one crude board building in the row
@@ -83,7 +84,12 @@ INTERIOR_RGBA = (0.072, 0.068, 0.060, 1.0)
 # a post darkens from the foot up; the value is chosen to separate the two by hue as
 # well as by value. log_dwelling already carries six materials, so this is not new
 # ground for the draw-call budget.
-TIMBER_RGBA = (0.208, 0.172, 0.128, 1.0)
+# On the sheet as `heavy_timber` (T-0007), whose row records materials.md finding 3:
+# `timber` is ONE NAME over TWO materials 3.2x apart in linear red — this one and
+# `frame_storefront`'s paler fresh-sawn value — of which only this one has ever
+# shipped, because no record in the dataset turns `framing_exposed` on. Splitting the
+# name is a follow-up; the sheet at least now says out loud that it needs splitting.
+TIMBER_RGBA = materials.HEAVY_TIMBER.rgba
 
 # --- board work -------------------------------------------------------------------
 # Riven and mill-sawn stock at the forks came in whatever widths the log gave. The RANGE
@@ -160,15 +166,36 @@ def build(params: OutbuildingParams, name: str):
     if vent:
         _vent(b, p, vent, c_fen)
 
-    board_rgba = (WEATHERED_BOARD_RGBA if p.paint == "unpainted"
-                  else PAINT_RGBA.get(p.paint, PAINT_RGBA["unpainted"]))
+    # ---- the surfaces, off the sheet (T-0007) --------------------------------
+    # 114 of the town's records are outbuildings and 76 of them ship a boarded wall,
+    # so this is the largest single family the sheet repaints. The substrate is sawn
+    # board at 0.94 — the archetype's own value, and the sheet's — and the COLOUR is
+    # the finish the 665-roof programme dealt this shed, which until now it dealt
+    # into nothing: every unpainted board wall in Chicago was one tone.
+    # `WEATHERED_BOARD_RGBA` survives as the sheet's `weathered_board` row and is
+    # still what a shed with no dealt finish wears, which is the whole reason it was
+    # argued in the first place — a shed carrying a tavern's brown would read as the
+    # same building at a distance.
+    finish = materials.wall_finish(p.paint, p.finish_key,
+                                   default="weathered_board")
+    board_rgba, board_rough = materials.resolve(
+        materials.SUBSTRATES["sawn_board"], finish)
     mats = [
-        simple_material("log", HEWN_RGBA, roughness=0.92),
-        simple_material("chinking", CHINK_RGBA, roughness=0.95),
-        simple_material("board", board_rgba, roughness=0.94),
-        simple_material("roof", ROOF_RGBA, roughness=0.93),
+        simple_material("log", HEWN_RGBA,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
+        simple_material("chinking", CHINK_RGBA,
+                        roughness=materials.SUBSTRATES["chinking"].roughness),
+        simple_material("board", board_rgba, roughness=board_rough),
+        # 0.93 stays a literal, and materials.md §2.2 is why: the board roof this
+        # archetype argues for is separated from a shingle field by 0.03 of
+        # roughness and nothing else, and choosing between them would be claiming
+        # the covering finding 2 says no record states. The COLOUR takes the
+        # weathering condition, which the records do state.
+        simple_material("roof", materials.roof_finish(p.roof_condition).rgba,
+                        roughness=0.93),
         simple_material("interior", INTERIOR_RGBA, roughness=0.6),
-        simple_material("timber", TIMBER_RGBA, roughness=0.9),
+        simple_material("timber", TIMBER_RGBA,
+                        roughness=materials.SUBSTRATES["heavy_timber"].roughness),
     ]
     return b.to_object(mats)
 

@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import math
 
+from common import materials
 from common.mesh import MeshBuilder
 
 # A hewn wall log at the forks: roughly 13 in on the face. Coarse enough that a
@@ -185,12 +186,15 @@ def log_prism(b: MeshBuilder, p0, p1, radius: float, conf: float, mat: int,
     b.add_poly([pt(p1, k) for k in range(sides)], conf, mat)
 
 
-# Weathered hewn oak, and clay-and-lime chinking. Both are LINEAR values — Blender
-# node colours are linear, so mesh.py's LOG_RGBA of 0.42 is a light tan on screen, not
-# the dark timber the number suggests. The log here is darker than that, deliberately:
-# the chink stripe has to have something to contrast against or the material split is
-# wasted. Only about a fifth darker, though: rendered side by side under the same
-# light (generators/preview.py --archetype frame_tavern), a first pass at 0.295 put
-# the log dwellings visibly in a different town from the Sauganash's wing.
-HEWN_RGBA = (0.340, 0.266, 0.188, 1.0)
-CHINK_RGBA = (0.700, 0.670, 0.590, 1.0)
+# Weathered hewn oak, and clay-and-lime chinking. Both are LINEAR values, and both
+# now come OFF THE SHEET (`common/materials.py`, T-0007) rather than being declared
+# here. The argument behind the log's value is unchanged and belongs in front of a
+# reader of this module: it is deliberately about a fifth darker than the paler
+# hewn-log value this project also carried, because the chink stripe needs something
+# to contrast against or the material split is wasted — and rendered side by side
+# under the same light (generators/preview.py --archetype frame_tavern) a first pass
+# at 0.295 put the log dwellings visibly in a different town from the Sauganash's
+# wing. What T-0007 changes is that the Sauganash's wing finally uses it too
+# (materials.md finding 2).
+HEWN_RGBA = materials.HEWN_LOG.rgba
+CHINK_RGBA = materials.CHINKING.rgba

@@ -230,7 +230,7 @@ class FortStructureParams:
                              f"no building behind it")
 
 
-def from_phase(phase: dict) -> FortStructureParams:
+def from_phase(phase: dict, record: dict | None = None) -> FortStructureParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence.

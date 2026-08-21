@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0007 — Wire the material sheet into the records: repaint the town
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
@@ -70,3 +69,4 @@ T-0114 — The road-legibility gate is red from mid-distance, and no run had rea
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
+T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber

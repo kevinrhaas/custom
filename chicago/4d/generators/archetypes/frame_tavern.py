@@ -20,8 +20,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from common import materials  # noqa: E402
 from common.mesh import (  # noqa: E402
-    LOG_RGBA, PAINT_RGBA, ROOF_RGBA, SHUTTER_RGBA, MeshBuilder, simple_material,
+    SHUTTER_RGBA, MeshBuilder, simple_material,
 )
 from archetypes.frame_tavern_params import FrameTavernParams  # noqa: E402
 
@@ -142,13 +143,30 @@ def build(params: FrameTavernParams, name: str):
 
     # The roof keeps the archetype's weathered grey unless the record states a
     # colour — only the Petford watercolour is a coloured witness to any of
-    # these roofs, and only the building it paints wears its tone (T-0092).
-    roof_rgba = ROOF_MOSS_RGBA if params.roof_colour == "moss_green" else ROOF_RGBA
+    # these roofs, and only the building it paints wears its tone (T-0092). Failing
+    # that it takes the sheet's weathering CONDITION where the record deals one, and
+    # the town's default tone where it does not; neither claims a covering.
+    roof_rgba = (ROOF_MOSS_RGBA if params.roof_colour == "moss_green"
+                 else materials.roof_finish(params.roof_condition).rgba)
+
+    # The wall, off the sheet (T-0007). The Sauganash's `paint: white` is the one
+    # ATTESTED paint in the whole dataset and it still wins here — what changes is
+    # its gloss: the sheet gives lead paint 0.60, "the only smooth wall in Chicago,
+    # and that is the point", against the 0.75 every tavern wall used to share with
+    # every unpainted one.
+    wall_finish = materials.wall_finish(params.paint, params.finish_key)
+    wall_rgba, wall_rough = materials.resolve(
+        materials.wall_substrate(cladding="clapboard"), wall_finish)
 
     mats = [
-        simple_material("wall", PAINT_RGBA.get(params.paint, PAINT_RGBA["unpainted"])),
+        simple_material("wall", wall_rgba, roughness=wall_rough),
         simple_material("roof", roof_rgba, roughness=0.9),
-        simple_material("log", LOG_RGBA, roughness=0.9),
+        # materials.md finding 2: this archetype was the last importer of the paler
+        # of the project's two hewn-log values, which made the Sauganash's wing the
+        # ONE log wall in Chicago built from a different timber than the other 52 —
+        # in front of the station named after it. It now uses the town's log.
+        simple_material("log", materials.HEWN_LOG.rgba,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
         simple_material("glass", (0.09, 0.11, 0.13, 1.0), roughness=0.25),
