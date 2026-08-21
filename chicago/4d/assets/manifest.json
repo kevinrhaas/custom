@@ -3021,19 +3021,19 @@
     },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
-      "bytes": 6548752,
+      "bytes": 6556936,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "c4214142ac47b50d31a27e4be5cabeace75306fa6c686e9487f3552f9e3ca6a2",
+      "inputs_sha256": "833678947c612eb94bc078235a106659a01a7551e7483f3998306a50e3acb6d1",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
-        "max_m": 0.0029,
+        "max_m": 0.0025,
         "misses": 0,
         "rms_m": 0.00024,
         "samples": 28890
       },
       "terrain_epoch": "e1834_harbor_cut",
-      "triangles": 251417
+      "triangles": 251721
     },
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
@@ -3066,7 +3066,7 @@
       "baked_ao": false,
       "bytes": 1352,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "c4214142ac47b50d31a27e4be5cabeace75306fa6c686e9487f3552f9e3ca6a2",
+      "inputs_sha256": "833678947c612eb94bc078235a106659a01a7551e7483f3998306a50e3acb6d1",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",

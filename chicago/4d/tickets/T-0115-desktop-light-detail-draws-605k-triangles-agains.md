@@ -71,3 +71,13 @@ desktop light now reads 648,404 of 600,000 (was 605,414). Mobile light stays und
 own ceiling at 582,479, measured by the release smoke. Attribution for the trim: the
 dooryard layer draws at every level today and is the natural first candidate for the
 keep discipline the dealt wood already follows.
+
+**Measured worse by T-0118, 2026-08-20:** the slough repairs add ~753 scene triangles
+at the light tier — desktop light reads 649,157 of 600,000 (was 648,404). Of that, +304
+is the terrain mesh itself (the graded slough beds need `--decimate-deg 0.03` to hold the
+30 mm heightfield-fit gate — the old 0.04 default departs by 34 mm against them — and
+0.03 is now the recorded default; the committed T-0005 mesh was itself baked at 0.031,
+so the density is essentially unchanged); the remainder is flora on the ground the
+straightened mouth and closed bay returned to plantable prairie (the woody planter's
+reach grew 189,492 → 189,518 nodes, re-banked per the gate). Mobile light stays under
+its own ceiling at 582,828. The 0.13 % delta does not change the trim candidates above.
