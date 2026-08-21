@@ -1,7 +1,7 @@
 ---
 id: T-0125
 title: The stockade sank into the raised mound: four feet of picket show from the parade
-state: blocked-owner
+state: done
 epic: TOWN
 requested_by: steward
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
-claimed_by: null
-blocked_on: Which gives — the bake (stepped pickets), the mound, or the placement? Three options in the ticket; each changes a different researched claim. No dimension moves without your say-so.
+closed: 2026-08-20
+pr: 287
+claimed_by: run 8/20/2026, 10:08:23 PM CT
+blocked_on: null
 needs_bake: false
 ---
 
@@ -75,3 +75,53 @@ word. No change to `picket_height_m` without the owner's written say-so.
 · `renderers/web/js/buildings.js` (`groundUnder`, the lowest-ground anchor) ·
 changelog v202 (the mound raise) · T-0123 (the gate that found this, and the PR
 carrying the frames).
+
+---
+
+## The owner's ruling, 2026-08-21
+
+> Regrade the mound under the wall line (touches v202's researched mound)
+
+Option 2 of the three. Taken as written: the ground gives, not the bake and not
+the placement, and `picket_height_m` stays 3.7 m.
+
+## What the regrade has to move, measured on dev at b67b949
+
+Sampled every 5.3 m along the authored 53 m wall square (placement E 1122.07 /
+N 198.45, rotated 8°) against the committed heightfield:
+
+| wall | ground, min → max |
+|---|---|
+| south | 3.64 → 3.67 m |
+| east | 1.81 → 3.67 m |
+| north | **1.26 → 1.81 m** |
+| west | 1.26 → 3.64 m |
+
+The lowest ground under the footprint is **1.26 m** at the north-west corner, so
+the rigid mesh anchors there: wall top 5.06 m, and from the parade at 3.65 m only
+**1.41 m** of picket shows against a 1.68 m eye. The fall is entirely on the
+NORTH wall, the one facing the river.
+
+**The mound's flat top is not the mechanism.** The radial flat top (45 m) does
+leave the north-west corner 48.2 m out on the skirt, but that costs only a few
+centimetres. What sinks the wall is the BANK RAMP: `terrain_gen.py` multiplies
+every land level by `1 − (1 − d/face)²`, zero at the waterline and full only at
+`face` metres inland. The south division's `face_profile` states **20 m** across
+the fort's frontage — and the traced 1834 waterline sits **4.5 m** north of the
+north-west corner and **7 m** north of the north-east corner. A 20 m face cannot
+fit between the fort and the river, so the ramp eats some 15 m INTO the fort and
+scales the north wall's ground to about a third of its height.
+
+This also contradicts the mound's own note, which claims the north face "carries
+the full +12 ft over about a 25 m run — 1:6.8". There is no 25 m run at the
+fort's corners. The note describes ground the spec does not build.
+
+**The regrade, therefore:** narrow the bank face across the fort's river
+frontage so the ground reaches the mound's level at the wall line and the fall
+happens OUTSIDE the stockade — which is what the source describes in the first
+place ("formed by the curve of the river at its base on its three sides": the
+river at the mound's BASE, not partway up the fort's wall). The 1834 harbour cut
+is a dredged channel, and the south edge of a made cut stands steeper than the
+alluvial banks upstream; the resulting face is held at the natural angle of
+repose for sand rather than pushed past it. Every changed number keeps its
+liberty entry, and the mound's note is corrected to the ground actually built.
