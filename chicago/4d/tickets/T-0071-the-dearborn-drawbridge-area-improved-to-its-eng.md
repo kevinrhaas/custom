@@ -1,7 +1,7 @@
 ---
 id: T-0071
 title: The Dearborn drawbridge area, improved to its engravings
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
+closed: 2026-08-21
 pr: null
 claimed_by: null
 blocked_on: null
