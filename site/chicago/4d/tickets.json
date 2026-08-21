@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 10:53 AM",
+  "generated_ct": "Aug 21, 2026, 11:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1057,7 +1057,7 @@
     {
       "id": "T-0061",
       "title": "Shed roofs have no gable ends, so 55 buildings are open to the sky",
-      "state": "open",
+      "state": "done",
       "epic": "RENDERING",
       "requested_by": "owner",
       "seen": true,
@@ -1065,12 +1065,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-21",
+      "pr": "294",
+      "claimed_by": "run 8/21/2026, 9:46:32 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": null
     },
     {
       "id": "T-0062",
@@ -1556,7 +1556,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 43
     },
     {
       "id": "T-0090",
@@ -1628,7 +1628,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 44
     },
     {
       "id": "T-0094",
@@ -1646,7 +1646,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 46
+      "queue_rank": 45
     },
     {
       "id": "T-0095",
@@ -1664,7 +1664,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 47
+      "queue_rank": 46
     },
     {
       "id": "T-0096",
@@ -1682,7 +1682,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0097",
@@ -1700,7 +1700,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0098",
@@ -1718,7 +1718,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0099",
@@ -1736,7 +1736,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0100",
@@ -1754,7 +1754,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0101",
@@ -1808,7 +1808,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0104",
@@ -1826,7 +1826,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0105",
@@ -1844,7 +1844,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0106",
@@ -1862,7 +1862,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0107",
@@ -1880,7 +1880,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0108",
@@ -1916,7 +1916,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0110",
@@ -1952,7 +1952,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0112",
@@ -1970,7 +1970,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0113",
@@ -1988,7 +1988,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0114",
@@ -2006,7 +2006,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0115",
@@ -2060,7 +2060,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 62
     },
     {
       "id": "T-0118",
@@ -2132,7 +2132,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 63
     },
     {
       "id": "T-0122",
@@ -2150,7 +2150,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 64
     },
     {
       "id": "T-0123",
@@ -2222,11 +2222,65 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 66
+      "queue_rank": 65
     },
     {
       "id": "T-0127",
       "title": "The rest of the town gets the street edge",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
+    },
+    {
+      "id": "T-0128",
+      "title": "The placeholder dwellings' roofs are unfinished: a flat slab where a roof should be",
+      "state": "withdrawn",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": "2026-08-21",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0129",
+      "title": "The La Salle slough is dammed by a tongue of land where the street crosses it",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 68
+    },
+    {
+      "id": "T-0130",
+      "title": "The signs should read as the trade wrote them, not as we label the building",
       "state": "open",
       "epic": "TOWN",
       "requested_by": "owner",
