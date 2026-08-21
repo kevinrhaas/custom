@@ -1,7 +1,7 @@
 ---
 id: T-0061
 title: Shed roofs have no gable ends, so 55 buildings are open to the sky
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-21
+pr: 294
 claimed_by: run 8/21/2026, 9:46:32 AM CT
 blocked_on: null
 needs_bake: false
