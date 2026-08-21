@@ -130,6 +130,15 @@ const VERSION = '0.1.0';
  * tickets affordable, because every pale T-0067, T-0068 and T-0069 add now costs
  * 4 triangles at `light` rather than 10.
  *
+ * T-0068 extended the same plank to `balanced`, and for the tier's own sake: the
+ * middle tier had never taken anything off this layer, so a pale cost the same
+ * ten triangles there as at `full` and the town's fences scaled identically at
+ * both. With 3.5 km of lot line on the layer that put `balanced` at 794,000 of
+ * its 800,000 while `full` sat 150,000 clear of its own — a ceiling doing no
+ * work. `balanced` now gives up the 22 mm, worth about 56,000 triangles, and
+ * `full` still draws the prism. `enclosures.js` `PLANK_LEVELS` is where that
+ * lives, and no triangle ceiling moved to pay for any of it.
+ *
  * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
  * cull it, is not a tier at all — it costs a visitor nothing at any level and is
  * simply how `enclosures.js` builds now.)
@@ -140,7 +149,45 @@ const DETAIL = {
   light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
-const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+
+/**
+ * THE DRAW-CALL CEILING, AND WHY IT IS 96 RATHER THAN 80 — T-0068.
+ *
+ * 80 was set when the scene was buildings, terrain and vegetation, and the only
+ * thing it had to bound was the BATCHING strategy: the town's GLBs merge into a
+ * handful of instanced batches, and 80 said "three hundred buildings must not
+ * become three hundred calls". It was never a measurement of what a machine can
+ * do; it was a guard on a design decision, and it did that job.
+ *
+ * What changed is that the scene now has LAYERS THAT CULL. T-0067 stopped
+ * drawing the whole town's fences in every frame by building them in
+ * culling-sized chunks, and chunking buys its saving by SPENDING CALLS: a mesh
+ * small enough for the frustum to leave out is a mesh that costs a call when it
+ * is left in, and a second one when it is drawn into the shadow map. That trade
+ * is worth taking — a visible chunk is a few hundred triangles where the merged
+ * layer was 33,166 everywhere, forever — but it means the call count now scales
+ * with how much of the town is IN FRONT OF YOU rather than with how many
+ * batches the loader made. Holding 80 while putting a town's worth of fence on
+ * that layer would have meant not building the fence, which is the tail wagging
+ * the dog.
+ *
+ * So the owner ruled, 2026-08-21, and the number moved rather than the town:
+ * *"ok to raise the draw call budget"*. **96**, read off the measurement rather
+ * than picked: the release gate's own desktop stand reads 65 calls on dev
+ * before this parcel and 73–79 with the plat's lot lines on it, depending on
+ * how the chunker packs them (T-0115's ledger carries the whole ladder). 96 is
+ * that worst reading plus about a fifth — room for the fence tickets still open
+ * without being so loose that a re-merged town-wide mesh would slip past. It is
+ * a CONSCIOUS RE-BUDGET and not a relaxed assertion: the gate still fails the
+ * moment the scene passes the number, and the number now says what it was
+ * measured against.
+ *
+ * WHAT IT DOES NOT LICENSE. `light` is the floor and stays the floor — it is
+ * the tier a weak machine falls back to, it keeps its own triangle ceiling
+ * untouched, and it draws no furniture into the shadow map at all, which is
+ * most of what a chunked layer costs in calls. No triangle ceiling moves here.
+ */
+const BUDGET = { drawCalls: 96, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the

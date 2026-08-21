@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 159,
+  "count": 160,
   "liberties": [
     {
       "id": "L1",
@@ -10303,6 +10303,33 @@
         {
           "label": "How to resolve",
           "text": "unchanged from L130 and now with more to answer for — a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale description naming a shop sign; a traveller's account of walking South Water Street; or any pre-fire photograph of a surviving 1830s frontage opened at its holding institution (the Green Tree plate, ICHi-040230, is the nearest and is unseen). One that gave a WORDING, a COLOUR or a MOUNTING for a named house would be the first thing this project has ever held that could take one of those three off the reconstructed tier."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L160",
+      "title": "The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-21",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the YARD of every improved platted lot in this town is enclosed (T-0068, `tools/generate_lot_line_fences.py`, three generated records under `data/enclosures/`). A fence runs up one side lot line, along the rear lot line at the alley, and down the other side lot line; the fourth side is the lot's own buildings and the dooryard in front of them, which is the same argument `data/enclosures/sauganash_yard.json` already makes about its own missing side — *\"the two buildings that stand on this lot close the fourth side themselves\"*. **109 of the town's 120 improved platted lots**, on every one of the plat's 18 built blocks, carry one: **24 in board**, **28 in picket** and **57 in split rail**, over 4.55 km of committed lot line, with a 10 ft cart gateway on the alley. The other eleven are refused for want of room behind their buildings and each of them says on the record which measurement refused it."
+        },
+        {
+          "label": "Why",
+          "text": "the owner, 2026-08-18, verbatim — *\"i think there should be more fences.\"* Image 12 of `data/sources/assets/owner_brief_2026_08_18/README.md`, Chicago circa 1833 looking east, is what he was reading: **split-rail and board fences line the roads and enclose every property in the view.** An enclosure is the NORM of an 1830s town lot and this model had four of them — a wagon yard, a pound, a hotel's rear yard and fifteen garden plots. A town whose lots are open prairie to the alley is a claim about property nobody made. **Nothing here is attested and the scheme IS the invention.** No source this project holds names a fence on any of these lots — not that there was one, not what it was made of, not how high it stood. What is attested is a NORM, and it arrives as two retrospective pictures: image 12 above, and the Kinzie-view plate's picket-fenced garden plots that L129 already rests on. Both are tier-5 pictorial: they may drive treatment, materials and setting and they may never drive a coordinate, which is exactly how they are used here. Every vertex of every run carries `reconstructed`, so hiding that tier takes all 3.5 km down at once and leaves the lots exactly as the sources leave them. **What is a rule rather than a taste.** WHERE the timber stands is the committed plat's and nothing else: every run is a piece of a lot line out of `data/traces/vectors/thompson_lots.json`, corner to corner, and the only derived numbers on it are where along that line the fence starts (the head of the yard, 10 ft or more clear of the committed building nearest the street and no more than 40 ft from the rear line) and where it stops for a committed footprint standing on the line. A side line claimed by two neighbours carries ONE fence — a party fence is one fence — and the heavier type wins, because the man who wants his yard private is the one who pays for it. WHICH TYPE follows the traffic class this project already grades its own streets with in `data/streets/1835.json`: a block all four of whose bounding streets are `principal` or `ordinary` is in the built core, and on it a lot carrying a trade takes **board** (the yard behind a store is private working ground — which is what the town's one attested board fence encloses) and a lot carrying only dwellings takes **picket** (the Kinzie plate's treatment, the same one the garden plots are drawn with); a block that touches a street classed `light` — Washington, State, Clinton — is on the town's edge or up an outlying lane and takes **split rail**, which is what image 12 shows running out of the town. `tools/check.sh` re-derives all three records byte for byte, so the rule stays the answer to \"why this lot and why this fence\" rather than several hundred numbers somebody typed. **What is invented inside the rule** is every dimension: the heights (5 ft 6 in board, 4 ft picket, 4 ft 6 in rail — each read against a fence already in this dataset rather than chosen fresh), the post rhythm, the post sizes, the stock widths and the gaps beside them, the 40 ft cap on the yard, and the gateway. A Chicago or Cook County lawful-fence ordinance of the 1830s would replace most of those numbers outright and this project holds none. **What these records deliberately DO NOT say is what is inside them.** L158 draws the ground within a fence from the record's own `ground.treatment`; these three state none, and carry `geometry: \"absent\"` with it. A town lot's yard held a woodpile, a privy, a stable, a patch of trodden mud and a patch of grass in an arrangement that changed with the season and the household, and nothing states which was where on any lot in this town. A garden can say what it is because a garden is one thing; a yard is not, so the prairie sward stays exactly as the flora layer plants it and the fence claims only the line it stands on. That is a deliberate difference from L158 and not an oversight. **What is NOT here.** The continuous street-lining fences at the road edge — the other half of what image 12 shows — are T-0069's, and a line fenced twice is worse than a line fenced once. Lots outside the 19 platted blocks (the West Division beyond the plat, the reservation, the North Division) have no committed lot geometry to derive a line from at all, which is the same S9 gap L129 records. And the fence is still not a collision surface: a walker walks through it, as they have since L127. **One thing this entry deliberately does NOT record as a liberty, because it is not one.** The first cut of this scheme held four blocks at the plat's western margin back — 26 improved lots that pass the rule in every respect — for the renderer's 80-draw-call ceiling, and said so on the records. A budget is not a claim about 1835, and a model that quietly leaves out what it can afford to leave out is exactly the omission this document exists to prevent. The owner ruled on 2026-08-21, verbatim, *\"ok to raise the draw call budget\"*, so the ceiling moved to 96 with its own reasoning at the definition site (`renderers/web/js/main.js`) and the blocks came back. The town this record fences is now the town the rule chooses, and nothing else."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a Chicago or Cook County fence ordinance of the 1830s; any tax, insurance or sale description of a town lot naming a fence, a yard or an enclosure; and holding the two plates as proper `chicagology_*` source records (T-0075), which would give the treatment a citation instead of a committed path. Related: **L127** and **L128** (the two hand-authored fences), **L129** (the garden pickets, whose rule this one is built on), **L139** (the Sauganash's board fence), **L156** (what `light` does to this layer's shadows), **L158** (the ground inside a fence, which these records decline to state)."
         },
         {
           "label": "Recorded",
