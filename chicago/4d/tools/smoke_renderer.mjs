@@ -300,6 +300,28 @@ const SHADOW_REACH_M = 240;
 const SHADOW_MAP_FULL = 4096;
 const SHADOW_MAP_LOW = 2048;
 /**
+ * T-0115 — and the rig now depends on the scene-detail level, so the gate has
+ * to know BOTH rigs rather than one.
+ *
+ * At `light` the box steps back to the ±120 m the project shipped between
+ * R-W3b(a) and R-W5a2, and the map halves with it, which is the whole of what
+ * makes the step worth taking: 2·120/2048 is 11.7 cm on desktop and 2·120/1024
+ * is 23.4 cm on a phone, both exactly the texel the ±240 m rig resolves. So the
+ * assertion below is no longer "the reach is 240" — it is "whichever rig this
+ * level asks for is carried AT THE UNCHANGED TEXEL", which is a stronger claim
+ * than the one it replaces: it catches a level that bought its reach by
+ * blurring the eave a visitor stands under instead of by halving the box.
+ *
+ * It bites hardest on mobile, which boots at `light` without anybody touching
+ * the control, so the phone is the viewport that measures the stepped rig.
+ */
+const SHADOW_REACH_LIGHT_M = 120;
+const shadowRigFor = (level, touch) => {
+  const reachM = level === 'light' ? SHADOW_REACH_LIGHT_M : SHADOW_REACH_M;
+  const mapSize = (touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL) * (reachM / SHADOW_REACH_M);
+  return { reachM, mapSize, texelM: (2 * reachM) / mapSize };
+};
+/**
  * R-W5a2 — the whole untextured town is ONE batch, and it must stay one.
  *
  * This is the number the reach above is standing on. R-W3b(a) measured the reach
@@ -4602,6 +4624,18 @@ for (const [label, viewport, touch] of [
     // its OWN ceiling, and does turning it down actually draw less? A setting that
     // relabels the budget without changing the scene would pass the first and fail
     // the second, which is exactly the failure worth catching.
+    //
+    // T-0115 added a third question, and it is the one that keeps the first
+    // answerable as the town grows. Until August 2026 the setting had a lever
+    // on flora and trees and on nothing else, so 61 % of the light frame was
+    // drawn exactly as `full` drew it, and the bottom rung went 11 % over a
+    // ceiling no single merge had done anything wrong to. The level now also
+    // decides how far the sun's shadow is cast and whether the derived
+    // furniture — fences, yard goods, plank walks, signboards, wharves, boats —
+    // is drawn a second time for it. So this reads back what each level DID to
+    // the scene rather than what its table asked for: `light` must cast none of
+    // that furniture and the other two must cast all of it, which is a claim
+    // that fails loudly if a new furniture layer is mounted outside the policy.
     const detail = await page.evaluate(async () => {
       const a = window.__chicago4d;
       const started = a.detail;
@@ -4610,8 +4644,11 @@ for (const [label, viewport, touch] of [
         await a.setDetail(level);
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
         const s = a.stats();
+        const f = a.furnitureShadows;
         seen.push({ level, tris: s.triangles, calls: s.drawCalls,
-          ceiling: a.detailLevels[level].triangles });
+          ceiling: a.detailLevels[level].triangles,
+          reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
+          furnitureMeshes: f.meshes, furnitureCasting: f.casting });
       }
       await a.setDetail(started);
       return { seen, restored: a.detail === started };
@@ -4627,8 +4664,21 @@ for (const [label, viewport, touch] of [
       detail.seen.map((s) => `${s.level} ${s.tris}`).join(' > '));
     check(`${label}: the level the visitor started on is restored`, detail.restored,
       JSON.stringify(detail));
+    // The trim, asserted on the meshes rather than on the table that asked for
+    // it: a policy that reaches `DETAIL` and not the scene passes every check
+    // above unchanged, which is the failure this one exists to catch.
+    check(`${label}: the light tier draws no furniture into the shadow map`,
+      light.furnitureMeshes > 0 && light.furnitureCasting === 0
+      && full.furnitureCasting === full.furnitureMeshes
+      && balanced.furnitureCasting === balanced.furnitureMeshes,
+      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes}`).join(', '));
+    check(`${label}: the light tier's shorter shadow reach costs no texel`,
+      light.reachM < full.reachM && Math.abs(light.texelM - full.texelM) < 1e-6,
+      detail.seen.map((s) => `${s.level} ±${s.reachM} m at `
+        + `${(s.texelM * 100).toFixed(1)} cm/texel`).join(', '));
     console.log(`        detail  ${detail.seen.map((s) =>
-      `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls)`).join('  ·  ')}`);
+      `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls, ±${s.reachM} m, `
+      + `${s.furnitureCasting}/${s.furnitureMeshes} furniture casting)`).join('  ·  ')}`);
 
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
@@ -5090,14 +5140,22 @@ for (const [label, viewport, touch] of [
     // without: the rig CARRIES the documented reach at the documented texel
     // size, and winding the reach back to the old ±60 m CHANGES the frame. A
     // reach wired to nothing passes the first on its own.
+    //
+    // T-0115: the rig the level asks for, not one rig. The reach and the map
+    // both step at `light`, and `shadowRigFor` above holds the pair — so the
+    // texel this asserts is the SAME number at either level, which is the
+    // claim. `restored` below winds back to THIS level's reach rather than to
+    // 240, or the phone (which boots at `light`) would be asked to restore a
+    // frame it never drew.
+    const rigLevel = await page.evaluate(() => window.__chicago4d.detail);
     const rig = await page.evaluate(() => window.__chicago4d.world.shadowRig);
-    const wantMap = touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL;
-    const wantTexel = (2 * SHADOW_REACH_M) / wantMap;
-    check(`${label}: the sun's shadow reaches ${SHADOW_REACH_M} m at the documented texel`,
-      rig.reachM === SHADOW_REACH_M && rig.mapSize === wantMap,
+    const want = shadowRigFor(rigLevel, touch);
+    check(`${label}: the sun's shadow reaches ${want.reachM} m at the documented texel `
+      + `(scene detail '${rigLevel}')`,
+      rig.reachM === want.reachM && rig.mapSize === want.mapSize,
       `±${rig.reachM} m over a ${rig.mapSize}² map = ${(rig.texelM * 100).toFixed(1)} cm `
-      + `per texel (want ±${SHADOW_REACH_M} m over ${wantMap}² = `
-      + `${(wantTexel * 100).toFixed(1)} cm)`);
+      + `per texel (want ±${want.reachM} m over ${want.mapSize}² = `
+      + `${(want.texelM * 100).toFixed(1)} cm)`);
 
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
@@ -5105,18 +5163,18 @@ for (const [label, viewport, touch] of [
     const reachOld = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const dReach = signatureDistance(reachFull, reachOld);
     const restored = await page.evaluate(
-      (m) => window.__chicago4d.world.setShadowReach(m), SHADOW_REACH_M);
+      (m) => window.__chicago4d.world.setShadowReach(m), want.reachM);
     const reachBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const dReachBack = signatureDistance(reachFull, reachBack);
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
 
     check(`${label}: the shadow reach reaches the render`,
       woundBack === 60 && dReach.worst >= SHADOW_REACH_MIN_WORST,
-      `winding ±${SHADOW_REACH_M} m back to ±60 m moved the worst cell by `
+      `winding ±${want.reachM} m back to ±60 m moved the worst cell by `
       + `${dReach.worst}, mean ${dReach.mean?.toFixed(2)} `
       + `(need worst>=${SHADOW_REACH_MIN_WORST})`);
     check(`${label}: restoring the shadow reach restores the frame`,
-      restored === SHADOW_REACH_M && dReachBack.mean <= 0.1 && dReachBack.worst <= 3,
+      restored === want.reachM && dReachBack.mean <= 0.1 && dReachBack.worst <= 3,
       `±${restored} m, residual mean ${dReachBack.mean?.toFixed(2)}, `
       + `worst-cell delta ${dReachBack.worst}`);
     console.log(`        shadow reach: ±${rig.reachM} m at `

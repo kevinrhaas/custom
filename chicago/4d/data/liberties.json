@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 154,
+  "count": 155,
   "liberties": [
     {
       "id": "L1",
@@ -11585,6 +11585,29 @@
         {
           "label": "How to resolve",
           "text": "a Chicago town order on sidewalks of the right date; a grading or wharfing order for Water Street east of Dearborn; any view of the slough mouth or the South Water bank showing the crossing's walking surface or a bank walk; a committed crossing at the La Salle mouth would close the one gap in the run."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L155",
+      "title": "At `light` the sun reaches half as far and the town's small timber casts no shadow, and both numbers are a device's business rather than 1835's",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-21",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the scene-detail control now changes two things about the SUN as well as the density of the sward (T-0115, `renderers/web/js/main.js` `DETAIL`). At `light` — which is the level a phone boots into without anybody touching the control — the shadow box that follows the visitor steps back from **±240 m to ±120 m**, and the **derived furniture** (the fences, the yard goods, the plank walks, the wharf decks and the moored hulls) is not drawn into the shadow map at all. The hanging SIGNBOARDS are the one exception and keep casting at every level: a board is the only furniture here whose function is to be read from the street, its shadow is what lifts it off the wall it is bolted to, and dropping it took the release gate's own \"the board reaches the screen\" reading from 0.72 to 0.28 against a 0.30 bar. Keeping it costs 1,380 triangles, 1.6 % of the saving. `full` and `balanced` are unchanged in both respects. **Nothing states either number and nothing could — but neither is a claim about the town.** The furniture still stands exactly where its records put it, drawn exactly as it is drawn at every other level, and it still RECEIVES the shadows of the buildings and the timber around it. What it stops doing is being drawn a second time for the sun. A fence's PRESENCE is a claim this project argues from a record; the stripe that fence lays on the ground is lighting, and lighting is not evidence. The same test is the one L121 applies to the wood one layer over: what may give way is whatever is a rendering decision rather than a claim. **Where ±120 m comes from, because a reach is not a free parameter.** It is not invented for this entry: it is the reach this project shipped between **R-W3b(a)** and **R-W5a2**, chosen then because ±60 m left 5 to 8 of the town's structures casting anything at all, and superseded only when collapsing the town to one batch made ±240 m affordable in draw calls. `light` is the level for machines that cannot afford what R-W5a2 bought. **The map halves with the box**, so the texel is arithmetically unchanged — 2·120/2048 is 11.7 cm on desktop and 2·120/1024 is 23.4 cm on a phone, the same two figures the ±240 m rig resolves — which means nothing a visitor stands next to gets softer. The step costs REACH and nothing else, and it also quarters the shadow map's memory, which is the largest single GPU allocation this scene makes. **Why the tier needed this at all, which is the honest part.** Measured on the published mirror at the release gate's own stand, desktop: `full` 850,657 of its 1,000,000 ceiling, `balanced` 769,279 of 800,000, and `light` **668,293 of 600,000** — eleven percent over. The ladder promises a 40 % step from `full` to `light`; it was delivering 21.4 %, because the setting had a lever on flora and trees and on nothing else, and those are 39 % of the frame. A 40 % cut cannot be taken out of 39 % of a scene. Every layer the town has grown since the tiers were written — fences, goods, walks, boards, docks, boats — was grown outside the tiers' reach. The ceiling was not re-budgeted to fix that; the control was given a lever on the rest of what it draws. **Consequence.** A visitor at `light` sees the same town in the same places, and past 120 m from where they stand the buildings and trees meet the ground with nothing under them. Within 120 m the shadows are exactly as sharp as they have ever been. Fences, barrels, plank walks, wharves and hulls lay no shadow of their own at any distance, so at `light` they read slightly lighter against the ground they stand on; the hanging boards still do. Measured at the gate's stand: desktop 668,293 → 584,761 of 600,000 and 55 → 49 draw calls; mobile 639,379 → 555,847 and 53 → 47. As L121 already says of the wood, no figure in this repository is quoted at `light`: every banked measurement and every published number is `full`, which this parcel does not touch."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same instrument L121 asks for — a frame-time measurement on a real low-end machine — would say whether the step is the right size, or whether the honest answer is cascades (**R-W3b(b)**), which would spend the texels where they are looked at and make the step unnecessary. Chunking the town-wide furniture meshes so a fence behind the camera is culled is the other measured route, and it would cost the visitor nothing at all. Related: **L121**, the same decision for the wood; ROADMAP **R-W3b(a)** and **R-W5a2** for the reach's own history."
         },
         {
           "label": "Recorded",

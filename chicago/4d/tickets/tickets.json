@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 20, 2026, 9:13 PM",
+  "generated_ct": "Aug 20, 2026, 9:57 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2010,7 +2010,7 @@
     {
       "id": "T-0115",
       "title": "Desktop light detail draws 605k triangles against its own 600k ceiling",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2020,7 +2020,7 @@
       "opened": "2026-08-20",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/20/2026, 9:57:58 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 67

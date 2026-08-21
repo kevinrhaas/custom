@@ -1,7 +1,7 @@
 ---
 id: T-0115
 title: Desktop light detail draws 605k triangles against its own 600k ceiling
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/20/2026, 9:57:58 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -103,3 +103,112 @@ stays under its own ceiling at 590,922 of 600,000 (was 582,828 — headroom is n
 ~9k, worth knowing before the next content merge). The trim candidates above are
 unchanged; if the walk itself ever has to give tiers back, the per-segment meshes
 make a distance or detail-level cut on this layer a local change.
+
+---
+
+## Attributed and repaired 2026-08-21 — the tier's lever covered 39 % of its own frame
+
+**Where the frame goes.** Measured on the published mirror at the release gate's OWN stand —
+`frame('sauganash_hotel', 26)`, the last camera move before the scene-detail check — by hiding one
+scene child at a time and reading the delta in `renderer.info.render.triangles`. The rows sum
+exactly to the total, so this is the whole of it. Desktop 1280×800, `light`, at dev `b67b949`:
+
+| layer | triangles | share | does the detail level move it? |
+|---|---:|---:|---|
+| trees | 246,204 | 36.8 % | **yes** — `keep` 0.60 at `light` |
+| terrain | 162,651 | 24.3 % | no |
+| structures (the town's buildings) | 75,946 | 11.4 % | no |
+| enclosures (fences) | 66,332 | 9.9 % | no |
+| streets | 44,872 | 6.7 % | no |
+| frontage (plank walks, boards, posts) | 32,472 | 4.9 % | no |
+| yard (goods, wagons, the shed) | 20,672 | 3.1 % | no |
+| flora (the sward) | 12,596 | 1.9 % | **yes** — the tune at `light` |
+| signage | 2,760 | 0.4 % | no |
+| boats | 2,144 | 0.3 % | no |
+| wharves | 1,632 | 0.2 % | no |
+| sky | 12 | — | no |
+| **total** | **668,293** | | **39 % of it moves** |
+| *of which the sun's shadow pass* | *222,784* | *33.3 %* | *(it redraws every caster)* |
+
+That last row is worth its own line: a third of what the gate reads is the shadow map redrawing
+geometry the colour pass already drew. Per layer, the shadow pass costs trees 125,268, structures
+36,742, enclosures 33,166, frontage 14,004, yard 10,336, signage 1,380, boats 1,072, wharves 816.
+Terrain, streets and flora cast nothing.
+
+**And the diagnosis the table gives, which is bigger than any one merge.** The same three levels at
+the same stand:
+
+| level | drawn | its ceiling | |
+|---|---:|---:|---|
+| `full` | 850,657 | 1,000,000 | 85 % |
+| `balanced` | 769,279 | 800,000 | 96 % |
+| `light` | **668,293** | **600,000** | **111 %** |
+
+The ladder PROMISES a 40 % step from `full` to `light` — that is what 1,000,000 → 600,000 says. It
+was DELIVERING 21.4 %, and it could not deliver more: **a 40 % cut cannot be taken out of the 39 %
+of the scene the setting had a lever on.** Every layer in the ledger above — the sloughs' terrain,
+the dooryard plantings, the Green Tree's and the Sauganash's fabric, the river plank walk — landed
+outside the tier's reach, which is why no single one of them was doing anything wrong and the
+bottom rung still went eleven percent over. The rung was arithmetically unreachable.
+
+**The route taken: trim, not re-budget.** The 600,000 stands exactly where it was. What changed is
+that `light` now gives way on two more things, both chosen by the same test the sward passes — a
+rendering decision rather than a claim — and both of them the SUN rather than the town:
+
+* the shadow box steps back from ±240 m to ±120 m **and the map halves with it**, so the texel is
+  arithmetically unchanged (11.7 cm desktop, 23.4 cm phone). ±120 m is not invented here: it is the
+  reach this project shipped between R-W3b(a) and R-W5a2, and `light` is the level for machines
+  that cannot afford what R-W5a2 bought. It also quarters the shadow map's memory.
+* the **derived furniture** — fences, yard goods, plank walks, wharf decks, moored hulls — is no
+  longer drawn into the shadow map. It stands where it stands, drawn as it is drawn, still
+  receiving the shadows around it. Buildings, terrain and timber keep casting at every level.
+
+**The hanging signboards were in that list and were taken back out, by measurement.** A board is
+the only furniture in this town whose whole function is to be READ from the street, and its shadow
+is what lifts it off the wall. With the boards not casting, the gate's own liveness check —
+hide the signage layer at the Tremont's footway, require the frame to change — fell to mean 0.28
+against its 0.30 bar, where it reads 0.72 with the shadow in. The shadow was most of what the board
+contributed to the frame. The bar was NOT moved; the boards keep casting, at a cost of 1,380
+triangles, 1.6 % of this parcel's saving.
+
+| viewport, `light`, gate's stand | before | after | ceiling |
+|---|---:|---:|---:|
+| desktop 1280×800 | 668,293 (55 calls) | **584,761 (49 calls)** | 600,000 / 80 |
+| mobile 390×780 | 639,379 (53 calls) | **555,847 (47 calls)** | 600,000 / 80 |
+
+Both rows are the same probe standing at `frame('sauganash_hotel', 26)` before and after, so they
+are comparable to the triangle. The GATE's own mobile reading is lower again — 507,280 of 600,000
+at 44 calls — because the mobile pass runs its thumbstick test after that framing and walks the
+camera on a little before the detail check; the desktop pass does not, and the gate's desktop
+reading is 584,761 at 49 calls, to the triangle. `full` and `balanced` are untouched. The ladder now delivers 31.4 % of its promised
+40 %. Recorded as docs/LIBERTIES.md **L155** (L121's entry for the wood, one layer over).
+
+**Found on the way, and fixed here because the new gate depends on it:** `api.detail` was a getter
+written inside an `Object.assign` literal, so it was invoked once and its VALUE copied — the
+harness had been reporting whichever level the page BOOTED into, forever. The smoke's "the level
+the visitor started on is restored" check was comparing a constant with the constant it was made
+from and could not fail. `main.js` names the trap twenty lines further down; the rule had simply
+not been applied to this one. It is a live getter now.
+
+**What is still open, measured rather than guessed — for whoever takes the fence tickets.**
+
+1. **The ceiling is a ONE-STAND measurement and the gate's stand is not the worst frame.** Standing
+   on Lake Street at Canal looking east down the street — a long axial view that puts most of the
+   town in the frustum — the same `light` tier draws **796,840 triangles at 68 calls** after this
+   repair (and would have drawn ~882,000 before it). Nothing here regressed that; it has always
+   been true and nothing has ever measured it. A ceiling checked at one camera is a spot reading,
+   not an invariant, and the honest instrument is the worst stand of a set.
+2. **The town-wide furniture meshes are never culled.** `enclosures` is one 33,166-triangle mesh
+   spanning the whole town, so every fence in Chicago draws in every frame including the ones
+   behind the camera; `yard` (10,336) and `signage` (1,380) are the same. T-0119 already solved
+   this for the river walk by chunking it per segment. Doing the same to the fences would cost the
+   visitor NOTHING at any tier and is the largest free saving left.
+3. **The next lever inside this tier, costed:** a picket pale is a 10-triangle prism whose two
+   22 mm edge faces and 22 mm top cap are 6 of those 10. Drawing a pale at `light` as a
+   zero-thickness double-sided plank would save ~14,000 triangles on the 2,335 pales standing
+   today, and — the part that matters for T-0067/T-0068/T-0069 — would make every pale those
+   tickets add cost 4 triangles at `light` instead of 10.
+
+Desktop headroom after this parcel is 15,239 (2.5 %) and mobile 44,153 (7.4 %). That is real
+headroom and it is not a lot of it; item 2 above is where the next one should come from, because
+it is the only one on the list that costs a visitor nothing.
