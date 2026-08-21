@@ -593,7 +593,8 @@ export function createWorld({
   // doubles too, for the same reason and the same result. `bias` and
   // `normalBias` below are in world units and are calibrated to the TEXEL, not
   // to the reach, which is why holding the texel size is what lets them stand.
-  light.shadow.mapSize.setScalar(lowSpec ? 2048 : 4096);
+  const baseMap = lowSpec ? 2048 : 4096;
+  light.shadow.mapSize.setScalar(baseMap);
   light.shadow.bias = -0.0004;
   light.shadow.normalBias = 0.045;
 
@@ -777,6 +778,45 @@ export function createWorld({
       shadowRig.reachM = r;
       shadowRig.texelM = (2 * r) / light.shadow.mapSize.x;
       return r;
+    },
+    /**
+     * THE SCENE-DETAIL RIG — T-0115. The reach AND the map together, so the
+     * TEXEL is what stays fixed.
+     *
+     * `setShadowReach` above moves the box and leaves the map alone, which is
+     * exactly what the gate's liveness check wants: wind the reach back, watch
+     * the frame change, wind it forward. It is the wrong instrument for a
+     * detail level, because a level that halves the box and keeps a 4096² map
+     * pays the same fill and the same memory for a smaller shadow — it buys
+     * nothing except a shorter reach. Halving the map with the box is what
+     * makes the step affordable, and it holds the one number the block by
+     * `light.shadow` says must hold: 2·120/2048 is 11.7 cm on desktop and
+     * 2·120/1024 is 23.4 cm on a phone, both the texel this rig has resolved
+     * since R-W3b(a). Nothing a visitor stands next to gets softer; what the
+     * step costs is reach, and it costs it where the visitor asked for a
+     * cheaper frame.
+     *
+     * @param {number} metres half-width of the box, in metres
+     * @returns {{reachM:number, mapSize:number, texelM:number}} what took effect
+     */
+    setShadowRig(metres) {
+      const r = Math.max(1, Number(metres) || 0);
+      const map = Math.max(512, Math.round(baseMap * (r / SHADOW_REACH_M)));
+      cam.left = -r; cam.right = r; cam.top = r; cam.bottom = -r;
+      cam.updateProjectionMatrix();
+      if (map !== light.shadow.mapSize.x) {
+        // A shadow map is sized at allocation, so the old render target has to
+        // go before three will build one at the new size. Disposing without
+        // clearing the handle leaves three re-using a destroyed texture.
+        light.shadow.mapSize.setScalar(map);
+        light.shadow.map?.dispose();
+        light.shadow.map = null;
+      }
+      light.shadow.needsUpdate = true;
+      shadowRig.reachM = r;
+      shadowRig.mapSize = map;
+      shadowRig.texelM = (2 * r) / map;
+      return { reachM: r, mapSize: map, texelM: shadowRig.texelM };
     },
     /**
      * K24. The visitor's brightness aid, in stops above the calibrated grade.
