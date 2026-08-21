@@ -3,7 +3,6 @@
 T-0067 — Fenced ground is not prairie: yards, gardens and pens
 T-0068 — More fences: the town encloses its property
 T-0069 — Fences line the streets, and plank sidewalks run beside them
-T-0066 — Signboards carry the location's name, and no two are alike
 T-0064 — More wagons, all over a frontier town
 T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings
