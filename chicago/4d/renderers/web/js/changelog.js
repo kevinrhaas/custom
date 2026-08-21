@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 222, title: 'The jail is the strongbox its engraving draws', kind: 'fix', ts: '2026-08-21T19:17:03.725Z', date: 'Aug 21, 2026, 2:17 PM CT',
+    items: [
+      'The owner asked that the first Cook County jail be made accurate to its engraving. The plate draws a low log strongbox \u2014 squared timber, a near-flat roof. What stood on the public square was a cabin: a 32-degree gable, which was this archetype\u2019s own default for a building nothing had a picture of.',
+      'The roof comes down to near-flat and the jail loses most of a metre of height \u2014 3.15 m to the ridge where it stood 4.09 m. Come up Randolph past the pound and it reads as a squat box now rather than one more cabin roof on the square.',
+      'The pitch is the only dimension the plate was allowed to move, and that is a rule rather than a scruple: a retrospective view may drive form, materials and massing, and never a coordinate or a footprint outline. The jail\u2019s 20 by 15 foot plan is still invented, and its card still says so.',
+      'What the plate did settle is the walls. The record used to call hewn-versus-round logs unattested, which left the squared timber it draws standing on convention; the engraving draws squared logs laid horizontally, so the wall is evidence now instead of habit. The images themselves are still held as the brief\u2019s written record rather than as source records \u2014 that identification is its own work, still open \u2014 so the card cites them by path.',
+    ] },
   { v: 221, title: 'More wagons, all over a frontier town', kind: 'feature', ts: '2026-08-21T17:21:59.007Z', date: 'Aug 21, 2026, 12:21 PM CT',
     items: [
       'There were four wagons in Chicago. There are sixty-eight. Walk down Lake Street, the river street or any of the cross streets now and you pass them drawn up at the verge the way a working town leaves them — which is what the owner asked for: of course there would be more wagons all over the place in a frontier town.',

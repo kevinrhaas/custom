@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings
 T-0072 — The Wolf Tavern's pole sign, from its documentation
 T-0065 — Period names, brands and labels on the goods

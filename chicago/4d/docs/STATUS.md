@@ -1,5 +1,42 @@
 # STATUS
 
+## Shipped 2026-08-21 — T-0070: the jail made accurate to its engraving
+
+**The ask (owner, 2026-08-18):** the jail *"should be made more accurate"* to the engraving of the
+first Cook County jail, image 1 of the 2026-08-18 brief. That plate draws a low log strongbox —
+squared timber, a near-flat roof, minimal openings — with the fences and plank walks beside it that
+T-0069 has already built.
+
+**What was wrong.** `log_jail` carried a 32° gable, and 32° is not a finding: it is
+`outbuilding_params.default_roof_pitch_deg`, the archetype's own default, kept deliberately on
+2026-08-11 because nothing attested a pitch. The record said so in its own note. With a picture of
+this particular building now in the dataset, a convention loses to it.
+
+**What changed, and it is two attributes.** `roof_pitch_deg` 32.0 → **12.0**, still `inferred`,
+with the plate as the reasoning: 0.486 m of rise over the 2.286 m half-span, ridge at **3.146 m**
+where it stood at **4.089 m**. And `construction`'s note stopped calling hewn-versus-round
+unattested — the plate draws squared logs laid horizontally, which is what
+`common/logwork.hewn_log_wall` has been building all along, so the wall is evidence now rather than
+a convention standing where evidence should be. The value's own grade (`attested`, Andreas) is
+unchanged.
+
+**What deliberately did not change.** The footprint (20 × 15 ft, `reconstructed`, invented), the
+position, the bearing, and `wall_height_m` (2.66 m). A tier-5 pictorial may drive form, materials
+and massing as `inferred` and **never a coordinate or a footprint outline** — the brief's own README
+says so — and 2.66 m under a near-flat roof is already the low, squat building the plate shows.
+Moving a dimension to match an impression would be inventing a measurement.
+
+**`roof_type` stays `gable`, and that is a stated limit rather than an oversight.** The plate is
+held here as the brief's WRITTEN record — the image binaries were supplied in-session and are not
+committed; T-0075 owns identifying them against the Andreas plate numbering and creating the source
+records — and "near-flat" does not distinguish one slope from two. A single-slope reading is a
+legitimate rival that nothing this project holds can settle, and the record now says that in the
+open. When T-0075 lands the plate as a source record, that is the attribute to revisit.
+
+**Verification.** `tools/check.sh` green; `tools/smoke_renderer.mjs` green at 390×780 and 1280×800,
+zero page errors; `tools/bake.sh --only log_jail` regenerated the master, the web derivative and the
+sidecar in the same commit, so nothing is stale.
+
 ## Shipped 2026-08-21 — T-0066: the signboards say what they are
 
 **The ask, verbatim (owner, 2026-08-18).** *"you can and should put the name of the location on

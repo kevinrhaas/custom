@@ -687,8 +687,8 @@
     "log_jail__log_1833.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
-      "bytes": 79412,
-      "inputs_sha256": "690f2c181d69860d0395350b8a260907169aa1c41aa8b425cb714e55a8313064",
+      "bytes": 79408,
+      "inputs_sha256": "731cbc1b604465853fe950b8b804740f4ef67b63ccaf679b57573f5af9ea1af4",
       "kind": "generated",
       "phase_id": "log_1833",
       "structure_id": "log_jail"
