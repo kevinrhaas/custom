@@ -63,7 +63,7 @@ records byte for byte in `tools/check.sh`.
 WHAT IS INVENTED is the whole scheme: that these lots were fenced at all, which fence each
 one got, how deep the yard is, the rhythm of the posts and the stock they carry, and the
 gateway on the alley. All of it is graded `reconstructed` and claimed in `docs/LIBERTIES.md`
-L160, on the precedent of L129.
+L161, on the precedent of L129.
 
 WHAT IS NOT DECLARED, deliberately: a ground treatment. `renderers/web/js/yards.js` will
 draw the inside of any enclosure whose record states one, and these records state none —

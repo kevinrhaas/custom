@@ -839,7 +839,7 @@
     },
     "recon_1835_blk_lake_clark_a3_04__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4252,
+      "bytes": 4436,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "6ed526ff6b37053fc219fdbc5929bfddc4d1213a8b6efdca24902ad1e6e2f86d",
       "kind": "placeholder",
@@ -889,7 +889,7 @@
     },
     "recon_1835_blk_lake_market_a3_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4260,
+      "bytes": 4440,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "ef7b2001751092b6cbcdf36526eda27a8aef176b1ff29d60e43aa0a33955be85",
       "kind": "placeholder",
@@ -909,7 +909,7 @@
     },
     "recon_1835_blk_lake_market_d2_04__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4596,
+      "bytes": 4768,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "b64b7930cf2b999f2cfb2a6501a88e6580e5408f4a6eb169733567e91c858a0e",
       "kind": "placeholder",
@@ -949,7 +949,7 @@
     },
     "recon_1835_blk_randolph_clark_a3_08__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4284,
+      "bytes": 4468,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "d154f658a5f76893d50915b3276c7277be8a10c1678909b14940d5244e9b1853",
       "kind": "placeholder",
@@ -959,7 +959,7 @@
     },
     "recon_1835_blk_randolph_clark_a4_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4300,
+      "bytes": 4480,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "a69de882bcd2bb2de248c0e4df6f83d7406ff5b964169f86d4163f50175cb429",
       "kind": "placeholder",
@@ -989,7 +989,7 @@
     },
     "recon_1835_blk_randolph_clark_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4596,
+      "bytes": 4768,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "fcdbc0c6e88cb4c54619946512c2888f3a8970fcf4fe77c75876518a71e0e145",
       "kind": "placeholder",
@@ -1049,7 +1049,7 @@
     },
     "recon_1835_blk_randolph_clinton_a3_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4316,
+      "bytes": 4496,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "e76a9ee0a407e9ed8e19086aafcd28803360fda0fc889c6a99b2daf98416db9f",
       "kind": "placeholder",
@@ -1119,7 +1119,7 @@
     },
     "recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4292,
+      "bytes": 4472,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "6f903061c2988f0e9ce1cf3d9d2123841cdf81e881c2cccd86b80b89c371c303",
       "kind": "placeholder",
@@ -1129,7 +1129,7 @@
     },
     "recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4308,
+      "bytes": 4492,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "4f6940aaa394ea6e8673fe3c7bf538469b859d6ac8845a8a8dd5224f5343e24f",
       "kind": "placeholder",
@@ -1149,7 +1149,7 @@
     },
     "recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4636,
+      "bytes": 4816,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "005c324da17515901526cb5e4d5377fef527848f4e21741f67f13814a19cd66b",
       "kind": "placeholder",
@@ -1199,7 +1199,7 @@
     },
     "recon_1835_blk_randolph_franklin_a3_08__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4296,
+      "bytes": 4476,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "98fafb4d39bc0f438fe1f3f4b35f8c0e3813e6512cb90c5b2fdfd99ab373a342",
       "kind": "placeholder",
@@ -1219,7 +1219,7 @@
     },
     "recon_1835_blk_randolph_franklin_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4608,
+      "bytes": 4776,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "cc7a7d72e21c644081353b4630ab509633be305bb04a30eb634e0e83546d74c6",
       "kind": "placeholder",
@@ -1289,7 +1289,7 @@
     },
     "recon_1835_blk_randolph_market_a3_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4328,
+      "bytes": 4508,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "7e5b8aee6d3cd3153d3ee38f3c9100c44ce4d00d36082d55167bc00578da7382",
       "kind": "placeholder",
@@ -1299,7 +1299,7 @@
     },
     "recon_1835_blk_randolph_market_a4_06__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4296,
+      "bytes": 4480,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "6fe09e61c8b1059381a73649a30c7fb12d9e18829b32990beeb82a1de80fa549",
       "kind": "placeholder",
@@ -1359,7 +1359,7 @@
     },
     "recon_1835_blk_randolph_wells_a3_09__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4296,
+      "bytes": 4480,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "763b940999e0d86251a40ae61f23c68d2fc199f14aed46d34fa0541724da5be3",
       "kind": "placeholder",
@@ -1369,7 +1369,7 @@
     },
     "recon_1835_blk_randolph_wells_a4_10__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4300,
+      "bytes": 4468,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "75f0d954e2fe1c7f88a0b46c247631beabf6d0b68a16216e630e0cdbab8f1efa",
       "kind": "placeholder",
@@ -1389,7 +1389,7 @@
     },
     "recon_1835_blk_randolph_wells_d2_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4636,
+      "bytes": 4816,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "5c94ac7d5746573ffcebd05d7c1f1ae0bee5f13a77798d6d1827b28ce13c02c4",
       "kind": "placeholder",
@@ -1449,7 +1449,7 @@
     },
     "recon_1835_blk_south_water_clark_a3_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4296,
+      "bytes": 4476,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "f60eed3ed70e31267246307b6dd69ab53ec17d288a5cc5928e6c965952df3e42",
       "kind": "placeholder",
@@ -1499,7 +1499,7 @@
     },
     "recon_1835_blk_south_water_dearborn_a3_06__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4308,
+      "bytes": 4492,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "5f85720794130bae7d762835d60d5e67f965d2aed2eb44c9116a79bb6a456bf4",
       "kind": "placeholder",
@@ -1539,7 +1539,7 @@
     },
     "recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4636,
+      "bytes": 4808,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "8903939390e6b545f7de5f4e8342093ecaa1e01f4a325c6ecd0fc725728144d6",
       "kind": "placeholder",
@@ -1569,7 +1569,7 @@
     },
     "recon_1835_blk_south_water_franklin_a3_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4316,
+      "bytes": 4500,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "35ed09fe0f30356282dcff708fc16359e8a8581887a5419fe9f773260530d31d",
       "kind": "placeholder",
@@ -1589,7 +1589,7 @@
     },
     "recon_1835_blk_south_water_franklin_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4664,
+      "bytes": 4832,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "5b928b1631347ca04ab9024748275410c6025426022cfae54b325695eb2b15d2",
       "kind": "placeholder",
@@ -1639,7 +1639,7 @@
     },
     "recon_1835_blk_south_water_lasalle_a3_07__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4340,
+      "bytes": 4524,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "0fd976656b2453f4feb87afb7b35daff1795ecb81b56f5491f11b759abe7e7ba",
       "kind": "placeholder",
@@ -1659,7 +1659,7 @@
     },
     "recon_1835_blk_south_water_lasalle_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4628,
+      "bytes": 4800,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "5ae7661fde1bf13f47f17b73677806128eec236ba6879948454a86411912cd92",
       "kind": "placeholder",
@@ -1709,7 +1709,7 @@
     },
     "recon_1835_blk_south_water_wells_a3_08__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4296,
+      "bytes": 4480,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "ef02133caeffa8d2838ba6e6f628b771a8e7c2399fae5c1bdd6ab6f3797c5abf",
       "kind": "placeholder",
@@ -1729,7 +1729,7 @@
     },
     "recon_1835_blk_south_water_wells_d2_06__inferred_1835.glb": {
       "archetype": "outbuilding",
-      "bytes": 4656,
+      "bytes": 4836,
       "generator": "generators/inferred_placeholder.py",
       "inputs_sha256": "13cc1ef03c47cb134020d5a629297d0685bd59a46e67ace82fb4994c4934a7d7",
       "kind": "placeholder",

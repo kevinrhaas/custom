@@ -2814,9 +2814,18 @@ for (const [label, viewport, touch] of [
       // or a registered walker deck standing over it — the river walk's
       // crossing footway rides the Slough Log Bridge's committed deck over the
       // slough pool, where the terrain under a board is the carved bed (T-0119).
+      //
+      // A WALK'S OWN WALKING SURFACE IS NOT SUCH A DECK, and T-0069 is where the
+      // difference had to be drawn. The street edge publishes a deck per stretch
+      // of its own planks so the visitor stands ON them, and that deck IS the top
+      // of the timber being measured — counting it as the base would ask every
+      // board to tie into itself and read the whole walk as sunk by its own rise.
+      // Those decks are the ones named `…__footway_<n>`; the ground is what their
+      // boards tie into and the ground is what they are measured against.
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
+          if (/__footway_\d+$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -2840,6 +2849,32 @@ for (const [label, viewport, touch] of [
       // original walks stand on, the original band still binds.
       let bandBreaches = 0;
       let worstBreach = 0;
+      // A FENCE IS NOT A DECK (T-0069). The street-lining fences share their
+      // walk's chunk — one street edge, one mesh — so the band below has to be
+      // told which timber is a floor and which is a fence standing beside one.
+      // The test is geometric and needs no new attribute: a fence's own line is
+      // on the record, its stock reaches 0.085 m across it at the widest (the
+      // post), and the nearest walk vertex is the deck's inner edge 0.25 m off.
+      // Everything within 0.2 m of a fence line is fence and is not measured as
+      // a deck; nothing else in the layer is within a metre of one.
+      const fenceLines = [];
+      for (const r of f?.records ?? []) {
+        for (const fence of r.fences ?? []) {
+          const line = fence.path_local_enu_m ?? [];
+          for (let i = 0; i + 1 < line.length; i++) fenceLines.push([line[i], line[i + 1]]);
+        }
+      }
+      const onFence = (e, n) => {
+        for (const [a0, b0] of fenceLines) {
+          const de = b0[0] - a0[0];
+          const dn = b0[1] - a0[1];
+          const l2 = de * de + dn * dn || 1;
+          let t = ((e - a0[0]) * de + (n - a0[1]) * dn) / l2;
+          t = Math.max(0, Math.min(1, t));
+          if (Math.hypot(a0[0] + de * t - e, a0[1] + dn * t - n) <= 0.2) return true;
+        }
+        return false;
+      };
       const reliefAt = (e, n) => {
         const g0 = terrain.surfaceHeight(e, n);
         let lo = g0;
@@ -2863,7 +2898,7 @@ for (const [label, viewport, touch] of [
           const deck = deckAt(e, n);
           const base = deck === null ? ground
             : (Number.isFinite(ground) ? Math.max(ground, deck) : deck);
-          if (Number.isFinite(base)) {
+          if (Number.isFinite(base) && !onFence(e, n)) {
             const d = y - base;
             highest = Math.max(highest, d);
             // The deck: everything under a metre. The post and its board are
@@ -2936,16 +2971,18 @@ for (const [label, viewport, touch] of [
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
       };
     });
-    check(`${label}: the frontage layer lays all three records' walks and stands their posts`,
-      frontage.census?.records === 3 && frontage.census?.walks === 8
-        && frontage.census?.crossings === 3
-        && frontage.census?.posts === 3 && frontage.census?.refused === 5
+    check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
+      frontage.census?.records === 4 && frontage.census?.walks === 29
+        && frontage.census?.crossings === 12
+        && frontage.census?.posts === 3 && frontage.census?.fences === 12
+        && frontage.census?.refused === 53
         && frontage.recordIds.join(',')
-          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage'
+          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
       `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
       + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
-      + `${frontage.census?.posts} post(s), ${frontage.verts} vertices, `
+      + `${frontage.census?.posts} post(s), ${frontage.census?.fences} fence run(s), `
+      + `${frontage.verts} vertices, `
       + `${frontage.census?.refused} wall(s) refused, `
       + `problems [${frontage.problems.join(' | ') || 'none'}]`);
     // NOT MERELY GRADED — graded reconstructed, every vertex. No source record in
@@ -2984,9 +3021,10 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Seventeen
-    // meshes and no more — the shared timber plus the river walk's fifteen
-    // culling chunks (T-0119), all on ONE material, and the painted name on
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-eight
+    // meshes and no more — the shared timber, the river walk's fifteen culling
+    // chunks (T-0119) and the town street edge's twenty-one (T-0069, one per run
+    // of sidewalk), all on ONE material, and the painted name on
     // its own mesh, the only thing here that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
@@ -2994,7 +3032,7 @@ for (const [label, viewport, touch] of [
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 17,
+        && frontage.meshes === 38,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -3210,6 +3248,214 @@ for (const [label, viewport, touch] of [
       riverPick.some((h) => h.id === 'river_plank_walk' && h.name === 'The river plank walk'),
       `25 aims returned [${[...new Set(riverPick.map((h) => `${h.id}:${h.name}`))].join(', ')
         || 'nothing'}]`);
+
+
+    // --- the town's street edge (T-0069) ----------------------------------
+    //
+    // The owner, of the first Cook County jail engraving: "note the fences
+    // lining the street and what appears to be plank sidewalks. all of the
+    // streets should be updated like this... at least south of the river or
+    // near the river." The record that answers it is generated from the platted
+    // block faces, and everything a dataset gate can ask of it — which face,
+    // which stretch, how far off the lot line — is already asked by
+    // `tools/generate_frontage_works.py --check`. What CANNOT be asked there is
+    // the only thing the owner would notice: that the walk is a surface a
+    // visitor is standing ON rather than a stripe they sink through, that it is
+    // continuous from one end of a street to the other, that a crossing carries
+    // them over the road at a corner, and that no part of it lies in the
+    // travelled way. All four are decided at load, out of a terrain sample and
+    // the walker's own deck registry, so they are decided here or nowhere.
+    const edge = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const f = a?.frontage;
+      const rec = (f?.records ?? []).find((r) => r.id === 'town_street_edge');
+      const walks = (f?.walks ?? []).filter((w) => w.belongs_to === 'town_street_edge');
+      const decks = (a.decks ?? []).filter((d) => /^blk_.*__footway_/.test(d.id));
+
+      // ---- WALKED END TO END, along one core street south of the river.
+      // Lake Street's north frontage through two whole platted blocks and the
+      // board crossing over Wells Street between them: about 220 m of walk, all
+      // of it derived from the plat and none of it placed. The walker is stood
+      // on the walk's own centreline every two metres and asked what is under
+      // their boots — the deck the record published, or the mud.
+      const chain = ['blk_south_water_franklin_south_walk_1',
+        'blk_south_water_franklin_south_crossing_blk_south_water_wells_south',
+        'blk_south_water_wells_south_walk_1']
+        .map((id) => walks.find((w) => w.id === id) ?? null);
+      const march = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
+        missing: chain.filter((w) => !w).length };
+      let previous = null;
+      for (const w of chain) {
+        if (!w) continue;
+        const line = w.centreline_local_enu_m;
+        for (let s = 0; s + 1 < line.length; s += 1) {
+          const [ae, an] = line[s];
+          const [be, bn] = line[s + 1];
+          const len = Math.hypot(be - ae, bn - an);
+          march.run += len;
+          if (previous) {
+            march.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
+          }
+          const steps = Math.max(2, Math.round(len / 2));
+          for (let i = 0; i <= steps; i += 1) {
+            const e = ae + (be - ae) * (i / steps);
+            const n = an + (bn - an) * (i / steps);
+            a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
+            const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
+            march.samples += 1;
+            if (lift > 0.04) march.onPlanks += 1;
+            march.worstLift = Math.min(march.worstLift, lift);
+          }
+          previous = [be, bn];
+        }
+      }
+
+      // ---- AND WALKED, not teleported, over the crossing at the corner.
+      // Start on the planks a few metres short of the crossing, point along it,
+      // and push forward: the boot must stay on boards the whole way over the
+      // road and come off onto the far block's walk. A crossing that were only
+      // drawn — no deck registered — would drop the walker into the ruts here
+      // and every other check in this file would stay green.
+      const cross = chain[1];
+      const gait = { blocked: 0, offPlanks: 0, strides: 0, worstStride: 0,
+        startE: null, endE: null };
+      if (cross) {
+        const [c0, c1] = cross.centreline_local_enu_m;
+        const bearing = (Math.atan2(c1[0] - c0[0], c1[1] - c0[1]) * 180) / Math.PI;
+        const back = 6.0;
+        const len = Math.hypot(c1[0] - c0[0], c1[1] - c0[1]) || 1;
+        a.walker.teleport({
+          local_e: c0[0] - ((c1[0] - c0[0]) / len) * back,
+          local_n: c0[1] - ((c1[1] - c0[1]) / len) * back,
+          yaw_deg: bearing,
+        });
+        gait.startE = a.walker.state.e;
+        let prevY = a.walker.state.groundY;
+        a.intent.forward = 1;
+        for (let i = 0; i < 500; i += 1) {
+          a.walker.update(0.05, a.intent);
+          const st = a.walker.state;
+          gait.strides += 1;
+          gait.worstStride = Math.max(gait.worstStride, Math.abs(st.groundY - prevY));
+          prevY = st.groundY;
+          if (st.blocked) gait.blocked += 1;
+          if (st.groundY - a.terrain.walkHeight(st.e, st.n) <= 0.04) gait.offPlanks += 1;
+          if (Math.hypot(st.e - c1[0], st.n - c1[1]) < 1.0) break;
+        }
+        a.intent.forward = 0;
+        gait.endE = a.walker.state.e;
+        gait.reached = Math.hypot(a.walker.state.e - c1[0], a.walker.state.n - c1[1]);
+      }
+
+      // ---- AND NOT ONE BOARD OF IT IN THE TRAVELLED WAY. A sidewalk is at the
+      // lot line; the track is the street's own committed half-width out of
+      // data/streets/1835.json, which is the number this layer has refused to
+      // cross since T-0082. Measured on the walks themselves against the street
+      // layer's own prepared centrelines, so it is the drawn geometry that
+      // answers rather than a field the generator wrote about itself.
+      const track = { checked: 0, inTrack: 0, worstVerge: Infinity, worst: null };
+      for (const w of walks) {
+        if (w.kind !== 'plank_walk') continue;   // a crossing crosses, by design
+        const street = (a.streets?.records ?? []).find((r) => r.id === w.street);
+        if (!street) continue;
+        const line = w.centreline_local_enu_m;
+        const hw = (w.width_m ?? 1.83) / 2;
+        for (let s = 0; s + 1 < line.length; s += 1) {
+          const [ae, an] = line[s];
+          const [be, bn] = line[s + 1];
+          const steps = Math.max(2, Math.round(Math.hypot(be - ae, bn - an) / 4));
+          for (let i = 0; i <= steps; i += 1) {
+            const e = ae + (be - ae) * (i / steps);
+            const n = an + (bn - an) * (i / steps);
+            let d = Infinity;
+            for (let k = 1; k < street.path.length; k += 1) {
+              const [x1, y1] = street.path[k - 1];
+              const [x2, y2] = street.path[k];
+              const dx = x2 - x1;
+              const dy = y2 - y1;
+              const l2 = dx * dx + dy * dy || 1;
+              let t = ((e - x1) * dx + (n - y1) * dy) / l2;
+              t = Math.max(0, Math.min(1, t));
+              d = Math.min(d, Math.hypot(x1 + dx * t - e, y1 + dy * t - n));
+            }
+            const verge = d - hw - street.track_width_m / 2;
+            track.checked += 1;
+            if (verge < 0) {
+              track.inTrack += 1;
+              if (verge < track.worstVerge) track.worst = w.id;
+            }
+            track.worstVerge = Math.min(track.worstVerge, verge);
+          }
+        }
+      }
+
+      // ---- AND NOTHING GROWS THROUGH IT. The T-0124 instrument, asked of the
+      // street edge's own deck rectangles: the placer at the centre of each,
+      // for the generic community and for every species the ground's own zone
+      // could deal there, wet and dry alike.
+      const subs = a.flora.substrates();
+      const floor = { decks: 0, rootable: 0, speciesAsked: 0, speciesHits: 0 };
+      for (const k of (f?.keepOut ?? [])) {
+        if (k.id !== 'town_street_edge__walk') continue;
+        floor.decks += 1;
+        let e = 0;
+        let n = 0;
+        for (const q of k.pts) { e += q[0]; n += q[1]; }
+        e /= k.pts.length;
+        n /= k.pts.length;
+        if (a.flora.plantableAt(e, n)) floor.rootable += 1;
+        const z = subs.find((x) => x.id === a.flora.zoneAt(e, n));
+        for (const sp of (z ? z.dry.concat(z.wet) : [])) {
+          floor.speciesAsked += 1;
+          if (a.flora.stationOf(e, n, sp) !== null) floor.speciesHits += 1;
+        }
+      }
+      return {
+        hasRecord: !!rec,
+        cardId: rec?.card?.id ?? null,
+        fences: (rec?.fences ?? []).length,
+        faces: rec?.rule?.faces_laid ?? null,
+        walkM: rec?.rule?.walk_m ?? null,
+        decks: decks.length,
+        march, gait, track, floor,
+      };
+    });
+    check(`${label}: the street edge is generated from the plat, not placed on one block`,
+      edge.hasRecord && edge.cardId === 'town_street_edge'
+        && edge.faces === 16 && edge.walkM >= 1100 && edge.fences >= 10
+        && edge.decks >= 80,
+      `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
+      + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
+      + `${edge.decks} walking deck(s) registered`);
+    // THE ACCEPTANCE CLAUSE, and it is a walking one: stand anywhere along
+    // 220 m of Lake Street's north frontage and the boards are under the boot.
+    // One sample in the mud is a hole in the sidewalk, so the bar is every one.
+    check(`${label}: Lake Street's walk is continuous and walkable end to end`,
+      edge.march.missing === 0 && edge.march.samples > 100
+        && edge.march.onPlanks === edge.march.samples
+        && edge.march.gaps === 0 && edge.march.run > 200,
+      `${edge.march.onPlanks} of ${edge.march.samples} sample(s) stood on planks over `
+      + `${edge.march.run?.toFixed(0)} m, ${edge.march.gaps} gap(s) in the chain, `
+      + `least lift ${edge.march.worstLift?.toFixed(3)} m, `
+      + `${edge.march.missing} run(s) missing from the record`);
+    check(`${label}: a board crossing carries the walker over the road at the corner`,
+      edge.gait.strides > 0 && edge.gait.blocked === 0 && edge.gait.offPlanks === 0
+        && edge.gait.reached < 1.5 && edge.gait.worstStride <= 0.35,
+      `${edge.gait.strides} stride(s) from E ${edge.gait.startE?.toFixed(1)} to `
+      + `E ${edge.gait.endE?.toFixed(1)}, ${edge.gait.blocked} blocked, `
+      + `${edge.gait.offPlanks} stride(s) off the boards, ended `
+      + `${edge.gait.reached?.toFixed(2)} m from the far walk, worst step `
+      + `${edge.gait.worstStride?.toFixed(2)} m`);
+    check(`${label}: no plank sidewalk lies in the travelled track`,
+      edge.track.checked > 200 && edge.track.inTrack === 0,
+      `${edge.track.inTrack} of ${edge.track.checked} station(s) inside a track edge`
+      + `${edge.track.worst ? ` (worst ${edge.track.worst})` : ''}, least verge `
+      + `${edge.track.worstVerge?.toFixed(2)} m`);
+    check(`${label}: no street-edge walk admits a rooted plant through its deck`,
+      edge.floor.decks > 90 && edge.floor.rootable === 0
+        && edge.floor.speciesHits === 0,
+      `${edge.floor.decks} deck(s), ${edge.floor.rootable} rootable, `
+      + `${edge.floor.speciesHits} of ${edge.floor.speciesAsked} species stations granted`);
 
     // --- the river wharves (T-0041) --------------------------------------
     //
@@ -4932,6 +5178,18 @@ for (const [label, viewport, touch] of [
     }
 
     // --- budgets ------------------------------------------------------------
+    //
+    // THE DRAW-CALL CEILING IS 120 SINCE 2026-08-21, RAISED FROM 80 — a conscious
+    // re-budget on the owner's ruling (*"or just raise the budget?"*), argued in
+    // full where the number is set, `main.js` BUDGET. The short of it: 80 was set
+    // when every derived layer was one town-spanning mesh, and T-0067, T-0119 and
+    // T-0069 have since chunked those layers so the frustum can cull them, which
+    // trades triangles for draw calls on purpose — and the sun's pass draws every
+    // chunk in its box a second time. Measured at this stand: 65 calls before the
+    // street edge and 78 after it. The bar is still read from `stats.budget`
+    // rather than written here, so this check follows the definition site and
+    // cannot drift from it; what is asserted is unchanged, and the per-tier check
+    // below holds every level to the same number.
     const stats = await page.evaluate(() => window.__chicago4d.stats());
     // THE CALL CEILING IS PINNED HERE AS WELL AS READ (T-0068). This check used
     // to compare the frame against whatever number `main.js` happened to be
@@ -4949,7 +5207,7 @@ for (const [label, viewport, touch] of [
     // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
     // check further down, which is where a re-budget of those would show.
     check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
-      stats.budget.drawCalls === 96,
+      stats.budget.drawCalls === 120,
       `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
     check(`${label}: draw calls under budget`, stats.drawCalls <= stats.budget.drawCalls,
       `${stats.drawCalls} calls (budget ${stats.budget.drawCalls})`);

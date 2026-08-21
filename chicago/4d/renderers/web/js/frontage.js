@@ -9,6 +9,34 @@
  * culling-sized chunks, registers its over-water planks with the walker
  * (`walkableDecks`), and answers a pick with its own card.
  *
+ * T-0069 MADE IT THE STREET'S EDGE. The owner, of the first Cook County jail
+ * engraving: *"note the fences lining the street and what appears to be plank
+ * sidewalks. all of the streets should be updated like this... at least south of
+ * the river or near the river."* The record that answers it
+ * (`data/frontage/town_street_edge.json`) is a town's worth of the same two
+ * things this file already drew, laid on the platted block faces rather than on
+ * a wall, and it brings three additions — all of them additive, and the two
+ * inns' and the river walk's geometry comes out byte for byte unchanged:
+ *
+ *  * **`chunk`.** A walk, a crossing and a fence that carry the same `chunk` id
+ *    build ONE mesh with one bounding sphere. That is culling AND draw calls at
+ *    once: a block face's sidewalk, the crossing at its corner and the fence
+ *    behind it are one street edge and one draw call, so a town's worth of them
+ *    costs meshes by the block face rather than by the object.
+ *  * **`stringer_pitch_m`.** The stringers under a walk used to be two boxes
+ *    under EVERY board — three quarters of a walk's triangles for the strip of
+ *    shadow under its edge. A record may now lay them in BAYS instead, and the
+ *    generator only sets it where it has audited the ground flat enough for a
+ *    bay-length stringer to meet it (see `tools/generate_frontage_works.py`).
+ *  * **`fences`.** A board fence at the frontage line, with the walk at its
+ *    foot, which is what the jail engraving shows. It is drawn HERE and not by
+ *    `enclosures.js` for two reasons that are the same reason: an enclosure
+ *    takes a closed PERIMETER and encloses ground that gets its own treatment
+ *    (`yards.js`), and a street-lining run is an open line that encloses
+ *    nothing — it is the street edge, which is this layer's whole subject. And
+ *    sharing the walk's chunk is what keeps the pair inside the draw-call
+ *    budget the scene actually has.
+ *
  * WHY THIS IS A LAYER AND NOT MORE YARD GOODS. A barrel or a wagon stands on a
  * building's own ground and is derived from its walls alone, which is what
  * `yard.js` draws. A walk and a crossing stand in the STREET, and the number
@@ -66,6 +94,15 @@ const SKIRT_M = 0.02;
 const PLANK_GAP_M = 0.02;
 /** A crossing is subdivided this often ALONG its run so it follows the ground. */
 const CROSSING_STEP_M = 0.9;
+/** How far a fence board's stock reaches across the line it stands on. */
+const FENCE_BOARD_T_M = 0.022;
+/** A fence rail's section — the same sawn stuff `enclosures.js` hangs. */
+const FENCE_RAIL_W_M = 0.09;
+const FENCE_RAIL_H_M = 0.13;
+/** A drop this steep between two fence posts is a bank, not a street line. */
+const FENCE_MAX_STEP_M = 1.0;
+/** The longest piece of walk deck handed to the planting block-list at once. */
+const KEEPOUT_PIECE_M = 12;
 
 /**
  * One box, 12 triangles, flat-shaded from its own face normals. `u` is the
@@ -73,7 +110,8 @@ const CROSSING_STEP_M = 0.9;
  * Deliberately the same helper shape as `signage.js` and `enclosures.js` — three
  * layers drawing small timber the same way is one thing to reason about.
  */
-function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
+function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level,
+                 skipUnderside = false) {
   const vx = -uz;
   const vz = ux;
   const P = (a, b, c) => [
@@ -93,7 +131,11 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
     [[4, 7, 6], [4, 6, 5], [0, 1, 0]],
     [[0, 1, 2], [0, 2, 3], [0, -1, 0]],
   ];
-  for (const [t1, t2, n] of faces) {
+  // `skipUnderside` drops the last pair, which is the buried face of a fence
+  // board standing in the ground — the same two triangles `enclosures.js`
+  // drops off a pale, for the same reason: at a town's worth of boards it is
+  // thousands of triangles nobody can ever see.
+  for (const [t1, t2, n] of (skipUnderside ? faces.slice(0, 5) : faces)) {
     for (const tri of [t1, t2]) {
       for (const i of tri) {
         buf.pos.push(p[i][0], p[i][1], p[i][2]);
@@ -139,6 +181,17 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
   const thick = walk.plank_thickness_m ?? 0.055;
   const pitch = walk.plank_pitch_m ?? 0.26;
   const deckY = Number.isFinite(walk.deck_m) ? walk.deck_m : null;
+  // THE STRINGER BAY (T-0069). Without `stringer_pitch_m` the stringers are laid
+  // under EVERY board, which is what this layer has done since T-0082 and is
+  // exactly right for a walk a few metres long on ground that tilts. A record
+  // that states a bay lays them at that pitch instead — one pair of stringers
+  // carrying several boards — and the generator sets it only where it has
+  // audited the ground flat enough across a bay for the pair to still meet it.
+  const bay = Number.isFinite(walk.stringer_pitch_m) && walk.stringer_pitch_m > pitch
+    ? walk.stringer_pitch_m : null;
+  // A record may say its boards carry no underside (T-0069). Two triangles a
+  // board, facing the earth they are laid on, on a town's worth of them.
+  const bare = walk.plank_underside === false;
   const n = Math.max(1, Math.round(len / pitch));
   const step = len / n;
   let drawn = 0;
@@ -152,14 +205,14 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
     const top = (onDeck ? deckY : g) + rise;
     // The board itself, its long axis ACROSS the run.
     pushBox(buf, cx, top - thick / 2, cz, wx, wz,
-      halfW, Math.max(0.02, (step - PLANK_GAP_M) / 2), thick / 2, level);
+      halfW, Math.max(0.02, (step - PLANK_GAP_M) / 2), thick / 2, level, bare);
     // Two stringers under its edges, from the ground to the underside — only
     // where the ground itself carries the walk (see the header note above).
     // Each stringer reaches the ground under ITS OWN line, not the board
     // centre's: on cross-sloped ground (the river walk's bank verge, T-0119)
     // the downhill edge stands a board-width of slope over the land, and a
     // fixed-length stringer left exactly that gap open to daylight.
-    if (!onDeck) {
+    if (!onDeck && bay === null) {
       for (const s of [-1, 1]) {
         const sx = cx + wx * s * (halfW - 0.09);
         const sz = cz + wz * s * (halfW - 0.09);
@@ -171,6 +224,35 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
       }
     }
     drawn += 1;
+  }
+  // The bay-laid stringers, marched on their own pitch. Each one is a box, so
+  // its underside is FLAT: it takes the LOWEST ground under its own line — its
+  // two ends and its middle — so the timber reaches the land everywhere along
+  // the bay rather than leaving the downhill half of it open to daylight, and
+  // its top meets the board underside at the bay's centre.
+  if (bay !== null && deckY === null) {
+    const bays = Math.max(1, Math.round(len / bay));
+    const bstep = len / bays;
+    for (let i = 0; i < bays; i += 1) {
+      const t = (i + 0.5) * bstep;
+      const cx = ax + rx * t;
+      const cz = az + rz * t;
+      const g = groundAt(terrain, cx, -cz);
+      if (g === null) continue;
+      for (const s of [-1, 1]) {
+        const ox = wx * s * (halfW - 0.09);
+        const oz = wz * s * (halfW - 0.09);
+        let low = null;
+        for (const d of [-bstep / 2, 0, bstep / 2]) {
+          const gs = groundAt(terrain, cx + ox + rx * d, -(cz + oz + rz * d));
+          if (gs !== null && (low === null || gs < low)) low = gs;
+        }
+        const under = Math.max(0.01, (g + rise - thick) - (low ?? g) + SKIRT_M);
+        pushBox(buf,
+          cx + ox, g + rise - thick - under / 2 + SKIRT_M / 2, cz + oz,
+          rx, rz, bstep / 2, 0.045, under / 2, level);
+      }
+    }
   }
   return drawn;
 }
@@ -230,7 +312,13 @@ function buildCrossing(buf, walk, terrain, level, problems) {
   const bw = width / boards;
   const rise = walk.rise_m ?? 0.06;
   const thick = walk.plank_thickness_m ?? 0.055;
-  const segs = Math.max(1, Math.round(len / CROSSING_STEP_M));
+  // How often the crossing is cut along its run so it follows the camber. The
+  // default is a board's own length; a record laid on ground its generator has
+  // audited flat may state a longer one, which is the same trade the walk's
+  // stringer bay makes and for the same reason (T-0069).
+  const stride = Number.isFinite(walk.plank_step_m) && walk.plank_step_m > CROSSING_STEP_M
+    ? walk.plank_step_m : CROSSING_STEP_M;
+  const segs = Math.max(1, Math.round(len / stride));
   const step = len / segs;
   let drawn = 0;
   for (let i = 0; i < segs; i += 1) {
@@ -243,12 +331,96 @@ function buildCrossing(buf, walk, terrain, level, problems) {
     for (let j = 0; j < boards; j += 1) {
       const off = (j + 0.5) * bw - width / 2;
       pushBox(buf, cx + wx * off, top - thick / 2, cz + wz * off, rx, rz,
-        step / 2, Math.max(0.02, (bw - PLANK_GAP_M) / 2), thick / 2, level);
+        step / 2, Math.max(0.02, (bw - PLANK_GAP_M) / 2), thick / 2, level,
+        walk.plank_underside === false);
     }
     drawn += 1;
   }
   if (!drawn) {
     problems.push(`frontage: ${walk.id} found no ground under any board — nothing is laid`);
+    return false;
+  }
+  return true;
+}
+
+/**
+ * A FENCE LINING THE STREET (T-0069): posts on the frontage line, two stringers
+ * between them and boards butted across, which is the fence the first Cook County
+ * jail engraving puts at the lot line with a plank walk at its foot.
+ *
+ * Construction, dimensions and refusals are deliberately the same as
+ * `enclosures.js` draws a `board` fence with — the same posts, the same courses
+ * inside the height, the same butted stock, the same refusal of a post whose
+ * foot is in the water and of a bay that drops like a bank. What is NOT the same
+ * is which layer owns it, and the header says why: an enclosure is a closed
+ * perimeter whose interior gets a ground treatment, and this is an open line at
+ * the street's edge that encloses nothing. It shares its walk's chunk, so a
+ * block face's whole street edge is one mesh.
+ */
+function buildFence(buf, fence, terrain, level, problems) {
+  const path = fence.path_local_enu_m;
+  if (!Array.isArray(path) || path.length < 2) {
+    problems.push(`frontage: ${fence.id} carries no line — no fence is set`);
+    return false;
+  }
+  const height = fence.height_m ?? 1.37;
+  const courses = Math.max(1, Math.round(fence.rail_courses ?? 2));
+  const spacing = Math.max(1, fence.post_spacing_m ?? 2.44);
+  const postHalf = (fence.post_square_m ?? 0.12) / 2;
+  const boardW = Math.max(0.05, fence.board_width_m ?? 0.254);
+  const boardPitch = boardW + Math.max(0, fence.board_gap_m ?? 0.006);
+  let posts = 0;
+  for (let seg = 0; seg + 1 < path.length; seg += 1) {
+    const a = path[seg];
+    const b = path[seg + 1];
+    const de = b[0] - a[0];
+    const dn = b[1] - a[1];
+    const len = Math.hypot(de, dn);
+    if (len < 0.5) continue;
+    const bays = Math.max(1, Math.round(len / spacing));
+    const ux = de / len;
+    const uz = -dn / len;            // local ENU to the renderer's (E, up, -N)
+    const feet = [];
+    for (let i = 0; i <= bays; i += 1) {
+      const e = a[0] + de * (i / bays);
+      const n = a[1] + dn * (i / bays);
+      const y = terrain.isWater?.(e, n) ? null : groundAt(terrain, e, n);
+      feet.push(y === null ? null : { e, n, y });
+    }
+    for (let i = 0; i <= bays; i += 1) {
+      const f = feet[i];
+      if (!f) continue;
+      pushBox(buf, f.e, f.y + height / 2, -f.n, ux, uz,
+        postHalf, postHalf, height / 2, level, true);
+      posts += 1;
+    }
+    for (let i = 0; i < bays; i += 1) {
+      const p = feet[i];
+      const q = feet[i + 1];
+      if (!p || !q || Math.abs(p.y - q.y) > FENCE_MAX_STEP_M) continue;
+      const bayLen = Math.hypot(q.e - p.e, q.n - p.n);
+      if (bayLen < 0.05) continue;
+      for (let c = 1; c <= courses; c += 1) {
+        const f = courses > 1 ? 0.22 + 0.58 * ((c - 1) / (courses - 1)) : 0.55;
+        pushBox(buf,
+          (p.e + q.e) / 2, (p.y + q.y) / 2 + height * f - FENCE_RAIL_H_M / 2,
+          -(p.n + q.n) / 2, ux, uz,
+          bayLen / 2, FENCE_RAIL_W_M / 2, FENCE_RAIL_H_M / 2, level, true);
+      }
+      const count = Math.max(1, Math.floor(bayLen / boardPitch));
+      const first = (bayLen - (count - 1) * boardPitch) / 2;
+      for (let k = 0; k < count; k += 1) {
+        const t = (first + k * boardPitch) / bayLen;
+        pushBox(buf,
+          p.e + (q.e - p.e) * t, p.y + (q.y - p.y) * t + height / 2,
+          -(p.n + (q.n - p.n) * t), ux, uz,
+          boardW / 2, FENCE_BOARD_T_M / 2, height / 2, level, true);
+      }
+    }
+  }
+  if (!posts) {
+    problems.push(`frontage: ${fence.id} found no dry ground under any post `
+      + '— no fence is set');
     return false;
   }
   return true;
@@ -450,9 +622,11 @@ export async function createFrontage({
      *  to the walker's registry. `y` is the plank top — the deck the record
      *  rides plus the walk's own rise — so the boot and the board agree. */
     walkableDecks: [],
+    /** The street-lining fence runs actually built (T-0069). */
+    fences: [],
     census: {
       records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
-      refused: 0, meshes: 0,
+      fences: 0, decks: 0, refused: 0, meshes: 0,
     },
     pickAt: () => null,
     dispose: () => {},
@@ -493,6 +667,23 @@ export async function createFrontage({
    * far as culling needs it to), each carrying the walk's owner for the pick.
    */
   const chunks = [];
+  /**
+   * NAMED CHUNKS (T-0069). A record may put a `chunk` id on a walk, a crossing
+   * or a fence, and everything carrying the same id lands in one buffer and
+   * becomes one mesh. The town street edge names a chunk per platted block face,
+   * so a face's sidewalk, the crossing at its corner and the fence behind it are
+   * one bounding sphere and one draw call rather than three of each.
+   */
+  const named = new Map();
+  const bufFor = (chunk, pickId) => {
+    if (!chunk) return null;
+    let hit = named.get(chunk);
+    if (!hit) {
+      hit = { buf: { pos: [], nrm: [], conf: [] }, pickId };
+      named.set(chunk, hit);
+    }
+    return hit;
+  };
   const cards = new Map();
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`frontage: ${id} — ${why}`); continue; }
@@ -525,9 +716,15 @@ export async function createFrontage({
       const level = LEVEL[walk.confidence] ?? 1;
       const line = walk.centreline_local_enu_m ?? [];
       const crossing = walk.kind === 'board_crossing';
-      const chunked = !crossing && Array.isArray(line) && line.length > 2;
+      const named0 = bufFor(walk.chunk, walk.belongs_to);
+      const chunked = !named0 && !crossing && Array.isArray(line) && line.length > 2;
       let ok;
-      if (chunked) {
+      if (named0) {
+        // A named chunk: lay straight into the face's own buffer (T-0069).
+        ok = crossing
+          ? buildCrossing(named0.buf, walk, terrain, level, problems)
+          : buildWalk(named0.buf, walk, terrain, level, problems);
+      } else if (chunked) {
         // One chunk per segment; the walk is laid iff any segment laid boards.
         let laid = 0;
         for (let i = 0; i + 1 < line.length; i += 1) {
@@ -563,11 +760,38 @@ export async function createFrontage({
           pts: walk.deck_span_local_enu_m,
         });
       }
+      /**
+       * AND THE WALK A VISITOR STANDS ON (T-0069). A sidewalk that a walker
+       * sinks through is a painted stripe, not a walk, so every run and every
+       * crossing on the town street edge publishes its own walking surfaces —
+       * the same `{ id, y, pts }` the bridge decks and the river footway
+       * publish, through the same registry (T-0045), because there is exactly
+       * one mechanism in this project for "the visitor is standing on
+       * something that is not the heightfield" and this is it. The heights are
+       * the GENERATOR's: it cuts each run into the longest pieces whose ground
+       * stays inside one flat deck and takes the highest ground under each,
+       * which is what keeps `max(deck, ground)` on the planks from end to end.
+       */
+      for (const [i, deck] of (walk.footway_decks ?? []).entries()) {
+        if (!Number.isFinite(deck?.y) || !Array.isArray(deck.pts) || deck.pts.length < 3) {
+          problems.push(`frontage: ${walk.id} deck ${i} is not a surface — skipped`);
+          continue;
+        }
+        out.walkableDecks.push({ id: `${walk.id}__footway_${i}`, y: deck.y, pts: deck.pts });
+        out.census.decks += 1;
+      }
       // The walk's deck rectangles, in ENU, for the planting block-list — one
       // per centreline segment, so a polyline blocks its whole run. The
       // builders work in world x/z; this stays in the (e, n) frame the flora
       // layer tests in. Exact width on purpose - a tuft leaning over the edge
       // is a verge, a tuft rooted mid-deck is a hole in the model.
+      // A LONG SEGMENT IS CUT INTO PIECES, and it is the planting layer that
+      // asks for it: `flora.js` rejects most candidates with one squared
+      // distance against each block's own bounding circle, and a hundred-metre
+      // rectangle has a fifty-metre circle — so a town-length walk would drag
+      // every tuft within fifty metres of it down the slow path. Same ground,
+      // same block, in pieces the circle test can actually reject.
+      const hw = (walk.width_m ?? 1.83) / 2;
       for (let i = 0; i + 1 < line.length; i += 1) {
         const wa = line[i];
         const wb = line[i + 1];
@@ -575,15 +799,36 @@ export async function createFrontage({
         const dn = wb[1] - wa[1];
         const wl = Math.hypot(de, dn);
         if (wl < 0.5) continue;
-        const hw = (walk.width_m ?? 1.83) / 2;
-        const pe = (-dn / wl) * hw;
-        const pn = (de / wl) * hw;
-        out.keepOut.push({
-          id: `${walk.belongs_to}__walk`,
-          pts: [[wa[0] + pe, wa[1] + pn], [wb[0] + pe, wb[1] + pn],
-            [wb[0] - pe, wb[1] - pn], [wa[0] - pe, wa[1] - pn]],
-        });
+        const cuts = Math.max(1, Math.ceil(wl / KEEPOUT_PIECE_M));
+        for (let k = 0; k < cuts; k += 1) {
+          const t0 = k / cuts;
+          const t1 = (k + 1) / cuts;
+          const ae = wa[0] + de * t0;
+          const an = wa[1] + dn * t0;
+          const be = wa[0] + de * t1;
+          const bn = wa[1] + dn * t1;
+          const pe = (-dn / wl) * hw;
+          const pn = (de / wl) * hw;
+          out.keepOut.push({
+            id: `${walk.belongs_to}__walk`,
+            pts: [[ae + pe, an + pn], [be + pe, bn + pn],
+              [be - pe, bn - pn], [ae - pe, an - pn]],
+          });
+        }
       }
+    }
+    // The street-lining fences (T-0069). A fence that names a chunk lands in
+    // that face's own buffer beside the walk it stands behind; one with no
+    // chunk falls back to the layer's shared mesh, exactly as a post does.
+    for (const fence of record.fences ?? []) {
+      const level = LEVEL[fence.confidence] ?? 1;
+      const bucket = bufFor(fence.chunk, fence.belongs_to);
+      const target = bucket ? bucket.buf : buf;
+      const from = buf.pos.length / 9;
+      if (!buildFence(target, fence, terrain, level, problems)) continue;
+      if (!bucket) spans.push({ id: fence.belongs_to, from, to: buf.pos.length / 9 });
+      out.fences.push(fence);
+      out.census.fences += 1;
     }
     for (const post of record.posts ?? []) {
       const level = LEVEL[post.confidence] ?? 1;
@@ -597,6 +842,11 @@ export async function createFrontage({
       if (board.text) out.census.lettered += 1;
       boards.push({ ...board, level });
     }
+  }
+  // The named chunks join the polyline ones: same material, same render order,
+  // one bounding sphere each (T-0069).
+  for (const [id, hit] of named) {
+    if (hit.buf.pos.length) chunks.push({ buf: hit.buf, pickId: hit.pickId, id });
   }
   if (!buf.pos.length && !chunks.length) {
     if (out.census.records) {

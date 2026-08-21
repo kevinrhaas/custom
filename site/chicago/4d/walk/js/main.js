@@ -149,45 +149,56 @@ const DETAIL = {
   light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
-
 /**
- * THE DRAW-CALL CEILING, AND WHY IT IS 96 RATHER THAN 80 — T-0068.
+ * THE DRAW-CALL BUDGET, RAISED FROM 80 TO 120 ON 2026-08-21 — a conscious
+ * re-budget, written down here where the number is set, and never a silent one.
  *
- * 80 was set when the scene was buildings, terrain and vegetation, and the only
- * thing it had to bound was the BATCHING strategy: the town's GLBs merge into a
- * handful of instanced batches, and 80 said "three hundred buildings must not
- * become three hundred calls". It was never a measurement of what a machine can
- * do; it was a guard on a design decision, and it did that job.
+ * THE OWNER'S RULING, verbatim: *"ok to raise the draw call budget, if you need
+ * to make that a user friendly option in settings because it wont work on some
+ * machines but will on others/most then that is ok"* — and immediately after,
+ * *"or just raise the budget?"*. No new setting was built: the scene-detail
+ * control below IS the user-facing option, and `light` remains the floor a weak
+ * machine has to hold, inside its own unchanged 600,000-triangle ceiling.
  *
- * What changed is that the scene now has LAYERS THAT CULL. T-0067 stopped
- * drawing the whole town's fences in every frame by building them in
- * culling-sized chunks, and chunking buys its saving by SPENDING CALLS: a mesh
- * small enough for the frustum to leave out is a mesh that costs a call when it
- * is left in, and a second one when it is drawn into the shadow map. That trade
- * is worth taking — a visible chunk is a few hundred triangles where the merged
- * layer was 33,166 everywhere, forever — but it means the call count now scales
- * with how much of the town is IN FRONT OF YOU rather than with how many
- * batches the loader made. Holding 80 while putting a town's worth of fence on
- * that layer would have meant not building the fence, which is the tail wagging
- * the dog.
+ * WHY 80 STOPPED MEANING WHAT IT MEANT. It was set when every derived layer was
+ * ONE mesh — one fence mesh for the whole town, one plank-walk mesh, one yard
+ * mesh — and a draw call was a thing to be hoarded. T-0115 measured what that
+ * cost: a mesh spanning Chicago has a bounding sphere no frustum can cull, so
+ * 33,166 triangles of fence were drawn in every frame including the fences
+ * behind the camera. T-0067, T-0119 and T-0069 all took the same remedy and
+ * chunked their layers, which DELIBERATELY converts triangles into draw calls —
+ * and the sun's own pass draws every chunk inside its ±240 m box a second time,
+ * so a chunk costs two. The triangle ceilings are the tiers a visitor chooses
+ * between and they are unchanged; the call count is the price of the culling
+ * that keeps those ceilings reachable, and holding it at 80 would mean giving
+ * back the culling.
  *
- * So the owner ruled, 2026-08-21, and the number moved rather than the town:
- * *"ok to raise the draw call budget"*. **96**, read off the measurement rather
- * than picked: the release gate's own desktop stand reads 65 calls on dev
- * before this parcel and 73–79 with the plat's lot lines on it, depending on
- * how the chunker packs them (T-0115's ledger carries the whole ladder). 96 is
- * that worst reading plus about a fifth — room for the fence tickets still open
- * without being so loose that a re-merged town-wide mesh would slip past. It is
- * a CONSCIOUS RE-BUDGET and not a relaxed assertion: the gate still fails the
- * moment the scene passes the number, and the number now says what it was
- * measured against.
+ * MEASURED, at the release gate's own stand (`frame('sauganash_hotel', 26)`),
+ * desktop, published mirror: 65 calls before T-0069's street edge and **78**
+ * after it — inside the old 80, and with nothing left. That is the number this
+ * raise is against: not a parcel that overran, but a budget with two calls of
+ * headroom in a town that is still being built. 120 is half again the measured
+ * worst, which is the same order of margin the triangle ceilings carry.
  *
- * WHAT IT DOES NOT LICENSE. `light` is the floor and stays the floor — it is
- * the tier a weak machine falls back to, it keeps its own triangle ceiling
- * untouched, and it draws no furniture into the shadow map at all, which is
- * most of what a chunked layer costs in calls. No triangle ceiling moves here.
+ * WHAT WOULD MAKE IT SMALLER AGAIN, costed and not done here (T-0115's ledger,
+ * T-0127): a plank walk lies 11 cm proud of the ground and its own shadow is
+ * about 4 cm wide at noon. If the ground-hugging furniture stopped casting into
+ * the shadow map while the standing furniture kept casting, the frontage layer's
+ * six shadow-pass calls at this stand would go for nothing a visitor can see.
+ * That needs a per-mesh opt-out in `applyShadowTier` and a smoke check that
+ * counts the exempt meshes rather than assuming every furniture mesh casts.
+ *
+ * RECONCILED 2026-08-21, and the number stands at 120. Two parcels raised this
+ * ceiling the same afternoon, each measuring only itself against dev: the street
+ * edge (T-0069) read 78 calls and chose 120; the lot-line fences (T-0068) read 79
+ * and chose 96. Neither had seen the other. Merged they stack — dev's 65 plus
+ * roughly thirteen for the walks and fourteen for the fences — so 96 would have
+ * been spent almost the moment both landed, which is how a ceiling comes to be
+ * re-raised twice in a week. 120 is kept because it is the number with room in
+ * it, and because the argument below is about what a ceiling is FOR, not about
+ * the one parcel that happened to reach it first.
  */
-const BUDGET = { drawCalls: 96, triangles: DETAIL.full.triangles };
+const BUDGET = { drawCalls: 120, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
