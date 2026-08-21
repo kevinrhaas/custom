@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 6:55 AM",
+  "generated_ct": "Aug 21, 2026, 10:59 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1057,7 +1057,7 @@
     {
       "id": "T-0061",
       "title": "Shed roofs have no gable ends, so 55 buildings are open to the sky",
-      "state": "open",
+      "state": "claimed",
       "epic": "RENDERING",
       "requested_by": "owner",
       "seen": true,
@@ -1067,7 +1067,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/21/2026, 9:46:32 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 44
@@ -2223,6 +2223,60 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 67
+    },
+    {
+      "id": "T-0128",
+      "title": "The placeholder dwellings' roofs are unfinished: a flat slab where a roof should be",
+      "state": "withdrawn",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": "2026-08-21",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0129",
+      "title": "The La Salle slough is dammed by a tongue of land where the street crosses it",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0130",
+      "title": "The signs should read as the trade wrote them, not as we label the building",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 68
     }
   ]
 }
