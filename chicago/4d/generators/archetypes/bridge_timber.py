@@ -17,10 +17,18 @@ the conflict rather than resolving it away.
 The 1834 Dearborn Street drawbridge is built through this archetype too, and it brought
 the draw with it: `draw_span_m` clears the intermediate supports out of the opening and
 stations `gallows_frames` at its ends, `gallows_height_m` sets how far they stand over
-the deck. What is NOT built is the leaf and the tackle — see `_gallows`, where the
-reasoning belongs, because the sources describe a silhouette and not a mechanism. The
-approaches at either end of that bridge are not built either, and its record declares
-them.
+the deck.
+
+**On 2026-08-21 the draw grew the rest of what the plates show** — `gallows_braced`
+(knee braces and shores, the frames' A), `draw_lifting_gear` (the hoist chains) and
+`draw_leaves` (the joint timber of a closed two-leaf draw). All three default OFF, so
+every bridge that predates them resolves to exactly the bridge it resolved to before.
+The evidence is a different kind from everything else on this archetype: two
+retrospective engravings recorded in
+`data/sources/assets/owner_brief_2026_08_18/README.md`, tier-5 pictorial, which may
+drive form as `inferred` and never a coordinate. What is still NOT built is a leaf
+RAISED, because that is the one thing no plate settles — see `_gallows`. The approaches
+at either end of that bridge are not built either, and its record declares them.
 
 The north-branch bridge is documented in 1832-33 as "formed of stringers and only
 fitted for foot passengers" and "useless for teams", yet on 18 Aug 1835 it carried the
@@ -29,10 +37,15 @@ nothing records what. The archetype's defaults build the *later* reading, becaus
 scene date is 1835-07-01: four stringers rather than two, a full plank deck rather than
 a walkway. Both of those are `inferred` at best and the records should say so.
 
-## Railings: deliberately none
+## Railings: deliberately none ON THE BRANCH BRIDGES
 
 **Decision: no railing, and the parameter defaults to False.** The reasoning, recorded
-here because the absence is as much a claim as a presence would be:
+here because the absence is as much a claim as a presence would be. **Every argument
+below is about the two LOG bridges over the branches, and the counter-argument at the
+foot of it turned out to be the whole story for the third crossing** — on 2026-08-21
+the Dearborn record set `railing: true`, on the strength of the two engravings the
+owner supplied, which draw it railed. The default is unchanged and so is the reasoning;
+what changed is that one record now has evidence and says so.
 
 - **Updated 2026-08-10: the absence is now stated rather than merely unattested, and it
   has an expiry date nobody wrote down.** The 1883 old-settlers statement (Andreas
@@ -73,6 +86,7 @@ called out in the report for this parcel.
 
 from __future__ import annotations
 
+import math
 import sys
 from pathlib import Path
 
@@ -85,7 +99,7 @@ from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.bridge_timber_params import BridgeTimberParams  # noqa: E402
 
-M_LOG, M_DECK, M_FILL = 0, 1, 2
+M_LOG, M_DECK, M_FILL, M_IRON = 0, 1, 2, 3
 
 PLANK_PITCH_M = 0.42      # a split puncheon, flat face up
 SAWN_PITCH_M = 0.26       # a sawn plank, narrower and regular
@@ -98,6 +112,23 @@ DECK_RGBA = (0.47, 0.41, 0.32, 1.0)   # weathered split-log deck, greyer than a 
 # Crib fill: river stone and gravel, not the pale clay-and-lime that chinks a cabin.
 # Reusing CHINK_RGBA here made the piers read as stacks of whitewashed slabs.
 FILL_RGBA = (0.300, 0.295, 0.270, 1.0)
+# Wrought iron, weathered: the hoist chains, and NOT ON THE MATERIAL SHEET. Every
+# other colour this module names is local for the same reason (see DECK_RGBA and
+# FILL_RGBA above) — `common/materials.py` is the sheet for wall, roof and paint
+# substrates and holds no metal at all. Adding one properly is the material sheet's
+# own parcel (T-0007); until then this is declared here, in the open, rather than
+# borrowed from a timber row it is not. Dark and only faintly specular, because a
+# chain that catches the sun reads as a rope of light at 60 m and the frames are the
+# silhouette this bridge is remembered by, not the tackle.
+IRON_RGBA = (0.118, 0.112, 0.104, 1.0)
+
+# The hoist chain's section, drawn as a slim square run rather than as links. Links
+# would be a few thousand triangles on a member that subtends about two pixels from
+# the bank, and the plate shows a line, not a linkage.
+CHAIN_S = 0.042
+# How far a leaf-edge timber stands proud of the deck boards. Low enough to step over
+# without noticing, which is what a bridge deck's joint beams are.
+LEAF_PROUD_M = 0.055
 
 
 def build(params: BridgeTimberParams, name: str):
@@ -136,6 +167,14 @@ def build(params: BridgeTimberParams, name: str):
         _abutments(b, params, bearing_z, params.conf("abutments"))
     if params.railing:
         _railing(b, params, deck_z, params.conf("railing"))
+    # The closed draw's own timber — the bearing beams at the opening's ends, the two
+    # leaves' edge beams, and their butts meeting at mid-draw. It divides the deck
+    # visually and not structurally: the boards run through, so the crossing is as
+    # walkable as it was. Confidence is the leaf count's, because the count is the
+    # claim; see _draw_leaves.
+    if params.draw_leaves:
+        _draw_leaves(b, params, deck_z,
+                     params.worst_conf("draw_leaves", "draw_span_m"))
     # The gallows frames over a draw. Their POSITIONS are documented (either end of a
     # documented opening) and their SIZE is not, so the whole frame takes the height's
     # confidence: a frame whose height is a guess is a guessed frame, even though we
@@ -144,6 +183,13 @@ def build(params: BridgeTimberParams, name: str):
         _gallows(b, params, xg, deck_z, bearing_z,
                  params.worst_conf("gallows_height_m", "gallows_frames",
                                    "draw_span_m"))
+        # The tackle, hung from the frame that was just built. Separate from _gallows
+        # because it is separate evidence: the frames come from a sentence and the
+        # chains from a plate.
+        if params.draw_lifting_gear == "chain_hoist":
+            _hoist_chains(b, params, xg, deck_z,
+                          params.worst_conf("draw_lifting_gear", "gallows_height_m",
+                                            "draw_span_m"))
 
     mats = [
         # The sheet's hewn-log roughness (0.92), which this module used to miss by
@@ -154,6 +200,7 @@ def build(params: BridgeTimberParams, name: str):
                         roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("deck", DECK_RGBA, roughness=0.95),
         simple_material("fill", FILL_RGBA, roughness=0.98),
+        simple_material("iron", IRON_RGBA, roughness=0.62),
     ]
     return b.to_object(mats)
 
@@ -331,6 +378,46 @@ def _abutments(b: MeshBuilder, p: BridgeTimberParams, bearing_z: float,
         _crib(b, x0, 0.22, x1, p.width_m - 0.22, bearing_z, conf)
 
 
+def _strut(b: MeshBuilder, p0, p1, s: float, conf: float, mat: int) -> None:
+    """A square-section timber between two arbitrary points.
+
+    `log_prism` only runs along an axis, by design — every log in this archetype is
+    square to the deck. A brace is the one member that is not, so it gets its own
+    swept box rather than a relaxation of the log helper: a raking round log would
+    have to answer how its ends are cut, and a squared brace does not.
+
+    Winding is load-bearing here, not decoration. glTF meshes are single-sided, so a
+    quad wound the wrong way is a hole. The section ring is built counter-clockwise
+    about the axis, which makes `(near[i], near[i+1], far[i+1], far[i])` face outward
+    for every side and lets the two caps be the ring in order and in reverse.
+    """
+    d = [p1[i] - p0[i] for i in range(3)]
+    length = math.sqrt(sum(c * c for c in d))
+    if length < 1e-6:
+        return
+    d = [c / length for c in d]
+    ref = (0.0, 0.0, 1.0) if abs(d[2]) < 0.9 else (1.0, 0.0, 0.0)
+    u = [d[1] * ref[2] - d[2] * ref[1],
+         d[2] * ref[0] - d[0] * ref[2],
+         d[0] * ref[1] - d[1] * ref[0]]
+    un = math.sqrt(sum(c * c for c in u))
+    u = [c / un for c in u]
+    v = [d[1] * u[2] - d[2] * u[1],
+         d[2] * u[0] - d[0] * u[2],
+         d[0] * u[1] - d[1] * u[0]]
+    # Counter-clockwise about d, given d = u x v.
+    corners = [(+1, +1), (-1, +1), (-1, -1), (+1, -1)]
+    near = [tuple(p0[i] + s * (a * u[i] + c * v[i]) for i in range(3))
+            for a, c in corners]
+    far = [tuple(p1[i] + s * (a * u[i] + c * v[i]) for i in range(3))
+           for a, c in corners]
+    for i in range(4):
+        j = (i + 1) % 4
+        b.add_poly([near[i], near[j], far[j], far[i]], conf, mat)
+    b.add_poly(far, conf, mat)
+    b.add_poly(list(reversed(near)), conf, mat)
+
+
 def _gallows(b: MeshBuilder, p: BridgeTimberParams, xc: float, deck_z: float,
              bearing_z: float, conf: float) -> None:
     """One gallows frame: two heavy posts straddling the deck under a head timber.
@@ -343,18 +430,26 @@ def _gallows(b: MeshBuilder, p: BridgeTimberParams, xc: float, deck_z: float,
     gallows is, structurally, is in the name: two uprights and a cross-head, with the
     tackle hung from the head.
 
-    WHAT IS DELIBERATELY NOT BUILT, and each omission is a fork in the evidence that
-    the mesh refuses to take:
+    WHAT THIS FUNCTION REFUSED TO BUILD UNTIL 2026-08-21, AND WHY TWO OF THE THREE
+    ARE NOW BUILT. The list below was written against the two TEXTS this project
+    holds, and as a reading of a text it was right and still is: Andreas and the
+    chicagology transcription name no tackle, no leaf and no brace. What changed is
+    that the project acquired a second KIND of evidence for this structure — the two
+    engravings recorded in `data/sources/assets/owner_brief_2026_08_18/README.md`
+    (images 2 and 3), tier-5 pictorial, which may drive form as `inferred`.
 
-    - **No tackle.** Chain, rope, windlass, counterweight — no source names any of
-      them. The dossiers say "opened manually with chains"; neither underlying text
-      contains the word.
-    - **No leaf, raised or lowered.** The deck runs continuously across the opening,
-      which is the state that fits every reading of the source at once: one leaf, two
-      leaves, or a section lifted bodily between the frames. A raised leaf would have
-      to pick one, and picking would be an invention wearing the most conspicuous
-      position on the bridge.
-    - **No bracing.** A frame this tall was certainly braced, and no source says how.
+    - **Tackle.** Built where a record says `draw_lifting_gear: chain_hoist`, in
+      `_hoist_chains`, because both plates draw chains falling from the frames. Still
+      absent by default, and still absent from the texts.
+    - **Bracing.** Built where a record says `gallows_braced`, below, because both
+      plates draw the frames as an A and not as a bare portal. Sections and angles are
+      this module's own.
+    - **No leaf raised.** Unchanged, and it is the one of the three that no plate
+      settles: the deck runs continuously across the opening, which is the state that
+      fits every reading of the source at once — one leaf, two leaves, or a section
+      lifted bodily between the frames. A RAISED leaf would have to pick one. What
+      `_draw_leaves` adds is the joint timber of a draw lying DOWN, which a record may
+      decline by leaving `draw_leaves` at zero.
 
     The posts run from the bearing line rather than from the deck, because a frame
     hoisting a sixty-foot draw is framed down into the substructure and not stood on
@@ -370,14 +465,117 @@ def _gallows(b: MeshBuilder, p: BridgeTimberParams, xc: float, deck_z: float,
                   skip=("bottom",))
     # The head timber across the two posts, overhanging each by its own section so the
     # joint reads as a lapped cross-head rather than a butt.
-    b.add_box(xc - s * 0.85, -out - 2 * s, top - 0.36,
+    head_z = top - 0.36
+    b.add_box(xc - s * 0.85, -out - 2 * s, head_z,
               xc + s * 0.85, p.width_m + out + 2 * s, top, conf, M_LOG)
+    if not p.gallows_braced:
+        return
+    # THE A. Two knee braces in the frame's own plane, rising from the posts to the
+    # underside of the head, and one shore per post raking down the span AWAY from
+    # the opening to the bearing line. Face-on from an approach the knees close the
+    # portal into a triangle; in profile from the bank the shores do. That is the
+    # silhouette both plates draw, and every number in the next six lines is this
+    # module's — the plates show a braced frame, not a schedule of scantlings.
+    kn = 0.105                      # half-section of a knee brace
+    reach = min(1.35, p.width_m * 0.45)
+    for y_post, sgn_y in ((-out, 1.0), (p.width_m + out, -1.0)):
+        _strut(b, (xc, y_post + sgn_y * s, top - 2.05),
+               (xc, y_post + sgn_y * (s + reach), head_z + 0.04),
+               kn, conf, M_LOG)
+    sh = 0.125                      # half-section of a shore
+    sgn_x = -1.0 if xc < p.span_m / 2.0 else 1.0
+    for y_post in (-out, p.width_m + out):
+        _strut(b, (xc + sgn_x * s, y_post, deck_z + 2.60),
+               (xc + sgn_x * (s + 2.85), y_post, bearing_z + 0.06),
+               sh, conf, M_LOG)
+
+
+def _hoist_chains(b: MeshBuilder, p: BridgeTimberParams, xc: float, deck_z: float,
+                  conf: float) -> None:
+    """The chains, falling from one gallows head to the free end of its leaf.
+
+    **WHAT THIS IS EVIDENCE OF, EXACTLY.** Both engravings in the 2026-08-18 owner
+    brief (README images 2 and 3) draw chains running from the frames down to the
+    draw. That is a tier-5 pictorial view — retrospective, drawn decades after 1835 —
+    and the project's rule for one is that it may drive form as `inferred` and may
+    never drive a coordinate. So: THAT there were chains is the plate's, at
+    `inferred`. Everything below — two per frame, one each side of the deck, straight,
+    this section, this anchorage — is the module's, at `reconstructed`, and it is a
+    liberty.
+
+    **WHAT IT IS NOT EVIDENCE OF.** Andreas and the chicagology page still say nothing
+    about tackle, and the record's three readings of how the opening was closed still
+    all stand. A retrospective engraver had the same problem this project has and
+    fewer scruples, so a plate drawn in the 1880s showing an 1834 bridge may be
+    reporting the mechanism or may be importing a later one. The chain is built
+    because the owner asked for the bridge his plates show and because
+    `reconstructed` is the tier that carries exactly this; it is not a finding.
+
+    **The run.** From the underside of the head timber, out and down to the leaf's
+    free end at the centre of the opening — the geometry a hinged leaf's hoist has,
+    and the one the plates draw. Placed just OUTSIDE the deck edge so a visitor walks
+    under nothing: the chain lands on the leaf's outer edge beam, not on the footway.
+    Drawn taut. A chain carrying a closed leaf is in fact slack, and a catenary here
+    would be four times the triangles for a sag no one can see at 60 m.
+    """
+    if not p.draw_span_m:
+        return
+    mid = p.span_m / 2.0
+    head_z = deck_z + p.gallows_height_m - 0.36
+    for y in (-0.14, p.width_m + 0.14):
+        _strut(b, (xc, y, head_z), (mid, y, deck_z + LEAF_PROUD_M * 0.5),
+               CHAIN_S, conf, M_IRON)
+        # The eye the chain is shackled to, at the head. Small, and it is what stops
+        # the run reading as a wire that ends in mid-air.
+        b.add_box(xc - 0.09, y - 0.075, head_z - 0.14, xc + 0.09, y + 0.075,
+                  head_z + 0.02, conf, M_IRON)
+
+
+def _draw_leaves(b: MeshBuilder, p: BridgeTimberParams, deck_z: float,
+                 conf: float) -> None:
+    """The joint timber of a draw lying down: what makes a closed opening legible.
+
+    The deck boards are untouched and run straight through, so the crossing stays as
+    walkable as it was — `_deck` never learns there is a draw. What is added is the
+    framing a leaf has at its edges: a bearing timber across the deck at each end of
+    the opening, where a leaf is hinged and where it lands; an edge beam down each
+    side of each leaf; and, at the centre of the opening, the two leaves' ends butted
+    against each other with a finger of daylight between them.
+
+    **This is the choice the record makes and the mesh used to refuse.** Two leaves,
+    each hinged at its own frame, is one of the three readings
+    `form.draw_lifting_gear` enumerates, and it is the one both plates draw. A record
+    that would rather take no view leaves `draw_leaves` at zero and gets the 2026-08-11
+    bridge back, unbroken across the opening. Nothing here is attested; the whole run
+    carries the leaf count's confidence and owes docs/LIBERTIES.md an entry.
+
+    Proud of the deck by `LEAF_PROUD_M` — 55 mm, a threshold rather than a step.
+    """
+    if not p.draw_span_m:
+        return
+    mid = p.span_m / 2.0
+    lo, hi = mid - p.draw_span_m / 2.0, mid + p.draw_span_m / 2.0
+    z0, z1 = deck_z - p.plank_t_m, deck_z + LEAF_PROUD_M
+    # The two bearing timbers, at the ends of the opening.
+    for x in (lo, hi):
+        b.add_box(x - 0.17, -0.10, z0, x + 0.17, p.width_m + 0.10, z1, conf, M_LOG,
+                  skip=("bottom",))
+    # The leaves' butts at the centre, with the joint between them.
+    for x0, x1 in ((mid - 0.36, mid - 0.025), (mid + 0.025, mid + 0.36)):
+        b.add_box(x0, -0.10, z0, x1, p.width_m + 0.10, z1, conf, M_LOG,
+                  skip=("bottom",))
+    # An edge beam down each side of each leaf, which is also what the hoist chain
+    # lands on.
+    for y0, y1 in ((-0.10, 0.03), (p.width_m - 0.03, p.width_m + 0.10)):
+        for a, c in ((lo, mid - 0.025), (mid + 0.025, hi)):
+            b.add_box(a, y0, z0, c, y1, z1, conf, M_LOG, skip=("bottom",))
 
 
 def _railing(b: MeshBuilder, p: BridgeTimberParams, deck_z: float,
              conf: float) -> None:
     """A pole rail on posts. OFF by default — see the module docstring for the
-    argument, which is the substantive part of this function."""
+    argument, which is the substantive part of this function. The Dearborn Street
+    drawbridge turns it on; the two branch bridges do not."""
     h, r = 0.95, 0.06
     step = max(p.span_m / max(round(p.span_m / 2.2), 1), 1.0)
     n = int(p.span_m / step)

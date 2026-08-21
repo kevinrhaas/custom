@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 2:17 PM",
+  "generated_ct": "Aug 21, 2026, 4:07 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1237,7 +1237,7 @@
     {
       "id": "T-0071",
       "title": "The Dearborn drawbridge area, improved to its engravings",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -1245,12 +1245,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-18",
-      "closed": null,
+      "closed": "2026-08-21",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0072",
@@ -2313,6 +2313,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0132",
+      "title": "The Dearborn drawbridge's own form, to its engravings: A-frames, chains, leaves, rails",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0071",
+      "opened": "2026-08-21",
+      "closed": "2026-08-21",
+      "pr": "298",
+      "claimed_by": "run 8/21/2026, 2:43:23 PM CT",
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0133",
+      "title": "The bank structures at the Dearborn bridge, from the engravings",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0071",
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 0
     }
   ]
 }

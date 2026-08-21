@@ -124,6 +124,18 @@ PIER_KINDS = ("crib", "bent", "pile")
 # decade and which a later phase of the same archetype could carry.
 DECK_KINDS = ("puncheon", "plank")
 
+# WHAT HOISTED THE DRAW. `None` is the state this archetype built from 2026-08-11 to
+# 2026-08-21: gallows frames standing over a closed opening with nothing hung from
+# them, because the two TEXTS this project holds (Andreas, and the chicagology page
+# that transcribes him) name no tackle at all. `chain_hoist` hangs a chain from each
+# frame's head down to the deck, and it is not a re-reading of those texts — they are
+# still silent. It is the PLATES: the two engravings recorded in
+# `data/sources/assets/owner_brief_2026_08_18/README.md` (images 2 and 3) draw chains
+# falling from the frames to the leaves, and a tier-5 pictorial view may drive form as
+# `inferred`. A record turning this on owes docs/LIBERTIES.md the arrangement, because
+# the plate shows THAT there were chains and not how many, how heavy, or how rigged.
+DRAW_GEAR = (None, "chain_hoist")
+
 # The documented specification, in metres, for both log bridges at the forks.
 DOC_WIDTH_M = 3.05        # "These bridges were ten feet wide" — Cleaver, documented
 DOC_CLEARANCE_M = 1.83    # "about six feet above the water" — old settlers, DOCUMENTED
@@ -187,6 +199,10 @@ CONSUMED = frozenset({
     # supports out of itself and stations the frames, the count sets how many frames
     # there are, and the height is the silhouette.
     "draw_span_m", "gallows_frames", "gallows_height_m",
+    # The engravings' half, added 2026-08-21 for T-0132. Each reaches vertices: the
+    # bracing changes the frame from a bare portal into the plates' A, the gear hangs
+    # the chains, and the leaf count divides the closed deck across the opening.
+    "gallows_braced", "draw_lifting_gear", "draw_leaves",
 })
 
 
@@ -264,6 +280,31 @@ class BridgeTimberParams:
     # own. A record must state it `conjectural`, and the geometry it drives is the
     # silhouette of the whole crossing — see bridge_timber._gallows.
     gallows_height_m: float = 6.4
+
+    # THE ENGRAVINGS' HALF, added 2026-08-21. Three parameters off one body of
+    # evidence, and it is a different KIND of evidence from everything above:
+    # `gallows_frames` and `draw_span_m` come from a text, and these come from two
+    # retrospective engravings. See DRAW_GEAR for what that buys and what it does not.
+    #
+    # `gallows_braced` puts raking timber into the frame — knee braces under the head
+    # and a shore down to the bearing line, leaning away from the opening. The plates
+    # draw the frames as an A rather than as two bare posts; the members' sections,
+    # angles and count are this module's own and are a liberty.
+    gallows_braced: bool = False
+
+    # What hoisted the draw. See DRAW_GEAR. `chain_hoist` hangs one chain each side of
+    # the deck from each frame's head down to the deck, taut and vertical.
+    draw_lifting_gear: str | None = None
+
+    # How many leaves the opening was closed by. ZERO IS NOT "NONE" — it is this
+    # archetype's original and still-defensible reading, a deck that runs unbroken
+    # across the opening and takes no view. Two divides the closed deck: a bearing
+    # timber at each end of the opening and the two leaves' butts meeting at its
+    # centre. The deck boards themselves are unchanged and stay walkable; what is
+    # added is the timber at the joints, which is what makes a draw legible as a draw
+    # while it is down. A record setting this above zero is choosing one of the three
+    # readings form.draw_lifting_gear enumerates, and owes docs/LIBERTIES.md the choice.
+    draw_leaves: int = 0
 
     # Derived in __post_init__ from clearance + structure depth unless a record
     # overrides it. Kept derived because clearance is the documented number and deck
@@ -386,6 +427,24 @@ class BridgeTimberParams:
                     f"draw_span_m {self.draw_span_m} must be at least 3 m and shorter "
                     f"than the span it opens ({self.span_m}); a draw as wide as the "
                     f"bridge is not a draw, it is a ferry")
+        if self.draw_lifting_gear not in DRAW_GEAR:
+            raise ParamError(
+                f"draw_lifting_gear '{self.draw_lifting_gear}' is not in {DRAW_GEAR}; "
+                f"a mechanism this archetype cannot build is a claim the mesh cannot "
+                f"keep")
+        if self.draw_lifting_gear and not self.draw_span_m:
+            raise ParamError("draw_lifting_gear without draw_span_m: tackle and no "
+                             "opening to hoist")
+        if self.draw_leaves not in (0, 1, 2):
+            raise ParamError(
+                f"draw_leaves {self.draw_leaves} outside 0-2. Three leaves is not a "
+                f"reading anybody has ever put on this bridge")
+        if self.draw_leaves and not self.draw_span_m:
+            raise ParamError("draw_leaves without draw_span_m: a leaf is what closes "
+                             "an opening, so leaves with no opening is a record that "
+                             "lost half its evidence")
+        if self.gallows_braced and not self.gallows_frames:
+            raise ParamError("gallows_braced without gallows_frames: nothing to brace")
         if not 0 <= self.gallows_frames <= 2:
             raise ParamError(f"gallows_frames {self.gallows_frames} outside 0-2. The "
                              f"one bridge in this dataset that had them had two, one "
@@ -453,6 +512,13 @@ def from_phase(phase: dict, record: dict | None = None) -> BridgeTimberParams:
                      else float(val("draw_span_m"))),
         gallows_frames=int(val("gallows_frames", 0)),
         gallows_height_m=float(val("gallows_height_m", 6.4)),
+        # `val` returns the old boolean `false` for a record that predates the gear,
+        # and falsy collapses to None — so a record written before 2026-08-21 resolves
+        # to exactly the bridge it resolved to then.
+        gallows_braced=bool(val("gallows_braced", False)),
+        draw_lifting_gear=(str(val("draw_lifting_gear"))
+                           if val("draw_lifting_gear") else None),
+        draw_leaves=int(val("draw_leaves", 0) or 0),
         confidence=confidences,
     )
     p.validate()
