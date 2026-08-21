@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0132 — The Dearborn drawbridge's own form, to its engravings: A-frames, chains, leaves, rails
 T-0133 — The bank structures at the Dearborn bridge, from the engravings
 T-0072 — The Wolf Tavern's pole sign, from its documentation
 T-0065 — Period names, brands and labels on the goods

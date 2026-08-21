@@ -1,7 +1,7 @@
 ---
 id: T-0132
 title: The Dearborn drawbridge's own form, to its engravings: A-frames, chains, leaves, rails
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: T-0071
 opened: 2026-08-21
-closed: null
-pr: null
+closed: 2026-08-21
+pr: 298
 claimed_by: run 8/21/2026, 2:43:23 PM CT
 blocked_on: null
 needs_bake: true
