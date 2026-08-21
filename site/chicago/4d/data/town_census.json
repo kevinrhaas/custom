@@ -10,9 +10,9 @@
   "data/residents/households/"
  ],
  "buildings": {
-  "standing": 326,
+  "standing": 330,
   "target": 665,
-  "records_in_scene": 335,
+  "records_in_scene": 339,
   "basis": "Physical roofs credited by the 665-roof reconciliation, not structure records: a bridge, a pier, a palisade and a parade ground are records that are not buildings.",
   "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
  },

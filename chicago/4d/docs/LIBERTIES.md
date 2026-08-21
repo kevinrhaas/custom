@@ -5273,6 +5273,90 @@ show), **T-0063** (the boats in the reach), **T-0075** (identifying these plates
 source records).
 **Recorded:** 2026-08-21.
 
+### L164 — Four freight sheds on the north bank at the Dearborn crossing, every board of them invented
+
+**Covers:** `north_bank_shed_dearborn_e1.function`, `north_bank_shed_dearborn_e1.shed_1835.documented_range`, `north_bank_shed_dearborn_e1.shed_1835.footprint`, `north_bank_shed_dearborn_e1.shed_1835.form.construction`, `north_bank_shed_dearborn_e1.shed_1835.form.door`, `north_bank_shed_dearborn_e1.shed_1835.form.door_side`, `north_bank_shed_dearborn_e1.shed_1835.form.paint`, `north_bank_shed_dearborn_e1.shed_1835.form.roof_pitch_deg`, `north_bank_shed_dearborn_e1.shed_1835.form.roof_type`, `north_bank_shed_dearborn_e1.shed_1835.form.wall_height_m`, `north_bank_shed_dearborn_e1.shed_1835.position`, `north_bank_shed_dearborn_e2.function`, `north_bank_shed_dearborn_e2.shed_1835.documented_range`, `north_bank_shed_dearborn_e2.shed_1835.footprint`, `north_bank_shed_dearborn_e2.shed_1835.form.construction`, `north_bank_shed_dearborn_e2.shed_1835.form.door`, `north_bank_shed_dearborn_e2.shed_1835.form.door_side`, `north_bank_shed_dearborn_e2.shed_1835.form.paint`, `north_bank_shed_dearborn_e2.shed_1835.form.roof_pitch_deg`, `north_bank_shed_dearborn_e2.shed_1835.form.roof_type`, `north_bank_shed_dearborn_e2.shed_1835.form.wall_height_m`, `north_bank_shed_dearborn_e2.shed_1835.position`, `north_bank_shed_dearborn_e3.function`, `north_bank_shed_dearborn_e3.shed_1835.documented_range`, `north_bank_shed_dearborn_e3.shed_1835.footprint`, `north_bank_shed_dearborn_e3.shed_1835.form.construction`, `north_bank_shed_dearborn_e3.shed_1835.form.door`, `north_bank_shed_dearborn_e3.shed_1835.form.door_side`, `north_bank_shed_dearborn_e3.shed_1835.form.paint`, `north_bank_shed_dearborn_e3.shed_1835.form.roof_pitch_deg`, `north_bank_shed_dearborn_e3.shed_1835.form.roof_type`, `north_bank_shed_dearborn_e3.shed_1835.form.wall_height_m`, `north_bank_shed_dearborn_e3.shed_1835.position`, `north_bank_shed_dearborn_w.function`, `north_bank_shed_dearborn_w.shed_1835.documented_range`, `north_bank_shed_dearborn_w.shed_1835.footprint`, `north_bank_shed_dearborn_w.shed_1835.form.construction`, `north_bank_shed_dearborn_w.shed_1835.form.door`, `north_bank_shed_dearborn_w.shed_1835.form.door_side`, `north_bank_shed_dearborn_w.shed_1835.form.paint`, `north_bank_shed_dearborn_w.shed_1835.form.roof_pitch_deg`, `north_bank_shed_dearborn_w.shed_1835.form.roof_type`, `north_bank_shed_dearborn_w.shed_1835.form.wall_height_m`, `north_bank_shed_dearborn_w.shed_1835.position`.
+
+**Decision:** the north bank of the main stem at the Dearborn drawbridge carries **four low
+freight sheds** where it carried nothing — one west of the bridge line and three downstream of it,
+standing back from North Water Street with their wagon doors to the river street. **Not one of them
+is attested.** Every value on all four records is graded `reconstructed`, including the fact that a
+building stood there at all, and all four disappear with the rest of the reconstructed tier when a
+visitor turns it off.
+
+**Why:** the owner's brief of 2026-08-18 supplied an engraving of this reach from farther out —
+image 3, written up at `data/sources/assets/owner_brief_2026_08_18/README.md` — and what it draws
+below the bridge is *masts crowding the reach, a light structure near the mouth, and low warehouses
+on the banks*. The ground either side of the Dearborn crossing was empty in this model until this
+run. The standing ruling of the same day grades the answer: *"you are totally fine to be liberal
+with adding reconstructed items when i ask for things, you can just label and mark them as such."*
+T-0133 is the ticket; T-0071 is the parent ask, whose first half built the bridge itself (**L163**).
+
+**What the plate is allowed to decide, and what it is not.** Image 3 is **tier-5 pictorial** —
+retrospective, drawn decades after 1835 — so under this project's standing rule it may drive
+massing, form, materials and setting, and it may never drive a coordinate. It therefore decides
+**that** working sheds stood on this bank and roughly what they looked like. It decides nothing
+about which station, which size, which pitch or which door, and none of those were read off it.
+
+**WHERE is derived, and the derivation is the honest part of the record.** Two committed things and
+one stated offset: the drawn track of **North Water Street** (`data/streets/1835.json`,
+`track_width_m` 6.0) puts the front wall 2.00 m back from the track's north edge at each station,
+squared to the street's own bearing there; and the **committed heightfield**
+(`data/terrain/epochs/e1834_harbor_cut`) has to carry every corner on modelled ground above the
+water with no more than 0.35 m of relief across the rectangle — the same clause the infill
+generators hold themselves to. Both are re-checkable by hand from the numbers in each
+`position.note`. No derivation `method` in the schema can recompute it, so all four declare
+`not_derivable` and write the rule out instead.
+
+**What was invented, item by item.** The four stations. The four footprints — 20 x 32, 24 x 36,
+18 x 34 and 28 x 44 ft, drawn inside family **F1**'s own band (18 x 32 to 28 x 50 ft) in
+`data/reconstruction/1835_building_inventory.json`, frontage short and depth running back from the
+street, which is the crosswalk's F1 shape. The eave heights, 11 to 12.8 ft inside F1's 10-13 ft
+band. The roofs: three gables at 27, 30 and 33 degrees and one shed at 23, all inside F1's 5:12 to
+9:12. The construction: vertical boarding on three, **hewn log on one**, which is there to break
+the row — four sheds built to one specification would claim they were built together, and nothing
+supports that. The wagon doors, their side, and the unpainted boards. **The dates**: the range
+opens on 1834-08-01, the day the bridge record opens, because the reason to stand a shed on this
+particular reach is the traffic the crossing brought to it.
+
+**They stand back from the water, and that is a decision this entry owns.** The front walls are
+4.5 to 10.5 m from the traced 1834 waterline with the river street between them and it, not on the
+bank edge where a plate viewed from downstream reads them. Two things put them there: the modelled
+bank at this reach climbs from the water to the plateau in three to four metres, so a building on
+the slope fails the relief clause above rather than standing on the bank; and the one **attested**
+river frontage this project holds a picture of — image 11, South Water Street in 1834 — is exactly
+this relation, a working row facing the river across the river street with the bank left open. The
+honest statement is that the plate would have them nearer the water and the terrain will not take
+them there yet. **T-0004** (raise and graduate the banks) is the parcel that would change the
+answer.
+
+**The south bank is empty for a measured reason and not an oversight.** The same plate shows
+warehouses on both banks. At the Dearborn reach the platted **South Water Street** corridor runs to
+within about 1.7 m of the traced 1834 waterline, so there is no ground on that side for a building
+that is not standing in the platted street — and this project's corridor ratchet refuses a new one
+by construction. That measurement is its own ticket rather than a liberty, because nothing was
+invented to get around it.
+
+**What this costs the count.** The inventory's district matrix allows the **north** division one
+warehouse-or-freight roof and the Kinzie and Hunter forwarding store already stands on it. These
+four are therefore recorded in
+`data/reconstruction/1835_existing_roof_reconciliation.json` as substituting **zero** anonymous
+slots: they are an addition above the district's estimate rather than a substitution inside it, and
+the programme file reports the excess rather than hiding it. The estimate is a reconstruction too,
+and the plate is evidence about this bank that the estimate did not have.
+
+**How to resolve:** a lot record for the north bank below Dearborn, a forwarding merchant's
+advertisement giving an address on this reach, or any contemporary — not retrospective — view of
+the north bank. Identifying image 3 against the Andreas/chicagology plate numbering and making it a
+source record (**T-0075**) would not upgrade the buildings, but it would let these records cite a
+`source_id` instead of a committed path.
+
+Related: **L163** (the bridge these sheds stand beside), **L132** (the wharves at the two frontages
+whose records state a dock — these four state none, so they get none), **L160** and **L161** (the
+same shape of claim at town scale), **T-0004**, **T-0058**, **T-0075**.
+**Recorded:** 2026-08-21.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

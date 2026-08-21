@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0133 — The bank structures at the Dearborn bridge, from the engravings
 T-0072 — The Wolf Tavern's pole sign, from its documentation
 T-0065 — Period names, brands and labels on the goods
 T-0075 — Hold the 2026-08-18 owner brief as source records
@@ -66,3 +65,4 @@ T-0126 — The openings-and-glazing half of the material sheet: one dark, one ti
 T-0127 — South Water Street and the rest of the town get the street edge
 T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
+T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
