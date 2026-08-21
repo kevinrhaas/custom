@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 224, title: 'Freight sheds stand on the north bank at the drawbridge', kind: 'feature', ts: '2026-08-21T22:18:46.472Z', date: 'Aug 21, 2026, 5:18 PM CT',
+    items: [
+      'The owner\u2019s second engraving of the Dearborn drawbridge shows the reach below it with low warehouses on the banks. The north bank at the crossing was open grass. Four sheds stand on it now \u2014 one west of the bridge line, three downstream of it.',
+      'They read as a working row rather than a terrace: a log store shed under a shed roof stands between boarded gable sheds of three different sizes, all of them low, unpainted, and turned to the river street with a wagon door.',
+      'Not one of them is attested. A retrospective engraving may say what a building on this bank looked like and may never say where one stood, so where they stand comes from the river street\u2019s own committed line and from ground the model has already drawn \u2014 written out on each card. Hide the reconstructed tier and all four go.',
+      'They stand back from the water with the street between them and it, which is nearer the attested South Water frontage than the plate: the modelled bank climbs to the plateau in three or four metres and will not carry a building on the slope yet. The south bank stays empty for a plainer reason \u2014 the platted street runs to within two metres of the waterline there, and no ground is left to build on.',
+    ] },
   { v: 223, title: 'The drawbridge gets the frames, chains and rails its engravings draw', kind: 'feature', ts: '2026-08-21T20:02:45.906Z', date: 'Aug 21, 2026, 3:02 PM CT',
     items: [
       'The owner, of the two old engravings of the Dearborn Street drawbridge: the whole bridge area needs to be improved. What stood there was a long low causeway with two bare posts and a beam over the gap — correct, and not the bridge in the pictures.',

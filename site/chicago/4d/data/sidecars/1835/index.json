@@ -2367,6 +2367,30 @@
       "asset": "gltf/newberry_dole_warehouse__frame_1833.glb"
     },
     {
+      "id": "north_bank_shed_dearborn_e1",
+      "name": "The first freight shed east of the Dearborn draw",
+      "sidecar": "sidecars/1835/north_bank_shed_dearborn_e1.json",
+      "asset": "gltf/north_bank_shed_dearborn_e1__shed_1835.glb"
+    },
+    {
+      "id": "north_bank_shed_dearborn_e2",
+      "name": "The log store shed east of the Dearborn draw",
+      "sidecar": "sidecars/1835/north_bank_shed_dearborn_e2.json",
+      "asset": "gltf/north_bank_shed_dearborn_e2__shed_1835.glb"
+    },
+    {
+      "id": "north_bank_shed_dearborn_e3",
+      "name": "The long freight shed east of the Dearborn draw",
+      "sidecar": "sidecars/1835/north_bank_shed_dearborn_e3.json",
+      "asset": "gltf/north_bank_shed_dearborn_e3__shed_1835.glb"
+    },
+    {
+      "id": "north_bank_shed_dearborn_w",
+      "name": "The freight shed west of the Dearborn draw",
+      "sidecar": "sidecars/1835/north_bank_shed_dearborn_w.json",
+      "asset": "gltf/north_bank_shed_dearborn_w__shed_1835.glb"
+    },
+    {
       "id": "north_branch_bridge",
       "name": "North Branch Bridge",
       "sidecar": "sidecars/1835/north_branch_bridge.json",

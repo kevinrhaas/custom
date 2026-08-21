@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 4:07 PM",
+  "generated_ct": "Aug 21, 2026, 5:19 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2335,7 +2335,7 @@
     {
       "id": "T-0133",
       "title": "The bank structures at the Dearborn bridge, from the engravings",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -2345,10 +2345,28 @@
       "opened": "2026-08-21",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/21/2026, 4:28:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0134",
+      "title": "The south bank at the Dearborn reach has no ground outside the platted street corridor",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-21",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
     }
   ]
 }

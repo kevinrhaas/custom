@@ -1,5 +1,47 @@
 # STATUS
 
+## Shipped 2026-08-21 — T-0133: four freight sheds on the north bank at the Dearborn crossing
+
+**The ask.** Image 3 of the owner's brief of 2026-08-18 is an engraving of the reach below the
+Dearborn drawbridge: masts crowding the water, a light structure near the mouth, **low warehouses on
+the banks**. T-0133 is the second half of T-0071 (the first half, T-0132, built the bridge itself)
+and its acceptance is that bank structures the plates attest stand at the Dearborn approaches, each
+at its honest tier with a liberty for what was invented.
+
+**What shipped.** Four `outbuilding` records on the **north** bank — `north_bank_shed_dearborn_w`
+west of the bridge line and `_e1`, `_e2`, `_e3` downstream of it — low, unpainted, wagon door to the
+river street. Three are vertical-boarded gables (27°, 30°, 33°) and one is a hewn-log shed roof at
+23°; footprints are 20×32, 24×36, 18×34 and 28×44 ft, every one inside family **F1**'s own band
+(18×32 to 28×50 ft). **Every value on all four is `reconstructed`**, including the fact that a
+building stood there at all, and `docs/LIBERTIES.md` **L164** claims all 44 invented tokens.
+
+**Where they stand, and it is a rule rather than a hand.** A tier-5 pictorial may drive massing,
+form, materials and setting and may never drive a coordinate, so the plate decides only THAT sheds
+stood here. The front wall is set 2.00 m back from the north edge of North Water Street's committed
+track at each station, squared to the street's own bearing there, and every corner has to stand on
+modelled ground above the water with ≤ 0.35 m of relief across the rectangle — the clause the infill
+generators hold themselves to. All four clear the platted corridors, the committed footprints and
+each other.
+
+**Two limits stated in the open.** (1) They stand 4.5–10.5 m back from the traced 1834 waterline
+with the river street between, not on the bank edge where the plate reads them: the modelled bank
+climbs from water to plateau in three to four metres, and a building on that slope fails the relief
+clause. T-0004 (raise and graduate the banks) is what would change the answer. (2) **The south bank
+is empty for a measured reason.** At the Dearborn reach the platted South Water Street corridor
+reaches to within about **1.7 m** of the traced waterline, so no building fits there that is not
+standing in the platted street, and the corridor ratchet refuses a new one by construction. That
+measurement is now its own ticket rather than something worked around.
+
+**What it costs the count.** The inventory's district matrix allows the north division ONE
+warehouse-or-freight roof and the Kinzie & Hunter forwarding store already holds it, so all four are
+recorded in `1835_existing_roof_reconciliation.json` as substituting **zero** anonymous slots —
+additions above the district's estimate, not substitutions inside it. `reconcile_665.py`
+regenerated: 330 roofs standing, 335 remaining, and the north district's remainder falls 69 → 65.
+
+**Verification.** `tools/check.sh` green; `tools/smoke_renderer.mjs` green at 390×780 and 1280×800,
+zero page errors; all four masters, their web derivatives and their sidecars regenerated in the same
+commit, and `tools/publish.sh` mirrored the result.
+
 ## Shipped 2026-08-21 — T-0070: the jail made accurate to its engraving
 
 **The ask (owner, 2026-08-18):** the jail *"should be made more accurate"* to the engraving of the

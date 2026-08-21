@@ -756,6 +756,42 @@
       "phase_id": "frame_1833",
       "structure_id": "newberry_dole_warehouse"
     },
+    "north_bank_shed_dearborn_e1__shed_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 139064,
+      "inputs_sha256": "2b44283b47648934a61762a360e8cda3157d8071abacf19002cc75c8f2b45a97",
+      "kind": "generated",
+      "phase_id": "shed_1835",
+      "structure_id": "north_bank_shed_dearborn_e1"
+    },
+    "north_bank_shed_dearborn_e2__shed_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 67832,
+      "inputs_sha256": "1b9a122f62ac5ccd9e9e627381f626c2b67dfd952a7079c9231504df18430178",
+      "kind": "generated",
+      "phase_id": "shed_1835",
+      "structure_id": "north_bank_shed_dearborn_e2"
+    },
+    "north_bank_shed_dearborn_e3__shed_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 164028,
+      "inputs_sha256": "fea7a97bef70b7d5d563021328fcd8e1b6825dd711cc0858d17dda7388dd80ca",
+      "kind": "generated",
+      "phase_id": "shed_1835",
+      "structure_id": "north_bank_shed_dearborn_e3"
+    },
+    "north_bank_shed_dearborn_w__shed_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 124396,
+      "inputs_sha256": "3aa5f7f3db4d4b525606c2f394fc7964aefa485c5e7889652b87066c1d42d32b",
+      "kind": "generated",
+      "phase_id": "shed_1835",
+      "structure_id": "north_bank_shed_dearborn_w"
+    },
     "north_branch_bridge__log_1832.glb": {
       "archetype": "bridge_timber",
       "baked_ao": false,
