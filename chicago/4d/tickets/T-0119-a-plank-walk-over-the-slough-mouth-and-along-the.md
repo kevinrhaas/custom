@@ -1,7 +1,7 @@
 ---
 id: T-0119
 title: A plank walk over the slough mouth, and along the river into town
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-20
+pr: 285
+claimed_by: run 8/20/2026, 7:36:51 PM CT
 blocked_on: null
 needs_bake: false
 ---

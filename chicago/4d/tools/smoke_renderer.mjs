@@ -2278,9 +2278,13 @@ for (const [label, viewport, touch] of [
       const a = window.__chicago4d;
       const f = a?.frontage;
       const terrain = a?.terrain;
-      const mesh = (f?.group?.children ?? []).find((c) => c.name === 'frontage');
+      // The layer's timber is the shared mesh plus the river walk's culling
+      // chunks (T-0119) — one material, many bounding spheres. Every vertex
+      // assertion below walks all of them.
+      const timber = (f?.group?.children ?? [])
+        .filter((c) => c.name === 'frontage' || c.name === 'frontage-chunk');
+      const mesh = timber.find((c) => c.name === 'frontage');
       const letters = (f?.group?.children ?? []).find((c) => c.name === 'frontage-lettering');
-      const g = mesh?.geometry;
       const post = f?.posts?.[0] ?? null;
       let sink = Infinity;
       let deckTop = -Infinity;
@@ -2288,31 +2292,92 @@ for (const [label, viewport, touch] of [
       let boardLow = Infinity;
       let ungraded = 0;
       let notReconstructed = 0;
-      const conf = g?.getAttribute('_confidence');
-      if (conf) {
+      let verts = 0;
+      for (const t of timber) {
+        const conf = t.geometry?.getAttribute('_confidence');
+        if (!conf) continue;
         for (let i = 0; i < conf.count; i++) {
           const v = conf.getX(i);
           if (!(v >= 0 && v <= 1)) ungraded++;
           else if (v < 1) notReconstructed++;
         }
       }
-      if (g) {
-        const pos = g.getAttribute('position');
-        const postGround = post
-          ? terrain.surfaceHeight(post.at_local_enu_m[0], post.at_local_enu_m[1]) : null;
+      // What a board must tie into is the surface a visitor walks: the ground,
+      // or a registered walker deck standing over it — the river walk's
+      // crossing footway rides the Slough Log Bridge's committed deck over the
+      // slough pool, where the terrain under a board is the carved bed (T-0119).
+      const deckAt = (e, n) => {
+        let y = null;
+        for (const d of a.decks ?? []) {
+          if (y !== null && d.y <= y) continue;
+          let hit = false;
+          const pts = d.pts;
+          for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+            const [xi, yi] = pts[i];
+            const [xj, yj] = pts[j];
+            if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+          }
+          if (hit) y = d.y;
+        }
+        return y;
+      };
+      const postGround = post
+        ? terrain.surfaceHeight(post.at_local_enu_m[0], post.at_local_enu_m[1]) : null;
+      // A RIGID BOARD ON TILTED GROUND departs from grade by the relief across
+      // its own width — the river walk (T-0119) crosses the Dearborn approach's
+      // graded ramp and the pinched bank verge, where the land falls a quarter
+      // metre inside a board's reach. So a vertex that leaves the flat band is
+      // allowed exactly the relief the ground shows within a board's half-width
+      // of it, and not a millimetre of licence more; on the flat ground the
+      // original walks stand on, the original band still binds.
+      let bandBreaches = 0;
+      let worstBreach = 0;
+      const reliefAt = (e, n) => {
+        const g0 = terrain.surfaceHeight(e, n);
+        let lo = g0;
+        let hi = g0;
+        for (const [de, dn] of [[0.95, 0], [-0.95, 0], [0, 0.95], [0, -0.95]]) {
+          const gg = terrain.surfaceHeight(e + de, n + dn);
+          if (Number.isFinite(gg)) { lo = Math.min(lo, gg); hi = Math.max(hi, gg); }
+        }
+        return Number.isFinite(hi - lo) ? hi - lo : 0;
+      };
+      for (const t of timber) {
+        const pos = t.geometry?.getAttribute('position');
+        if (!pos) continue;
+        verts += pos.count;
         for (let i = 0; i < pos.count; i++) {
           // world is (E, up, -N)
           const e = pos.getX(i);
           const y = pos.getY(i);
           const n = -pos.getZ(i);
           const ground = terrain.surfaceHeight(e, n);
-          if (Number.isFinite(ground)) {
-            const d = y - ground;
+          const deck = deckAt(e, n);
+          const base = deck === null ? ground
+            : (Number.isFinite(ground) ? Math.max(ground, deck) : deck);
+          if (Number.isFinite(base)) {
+            const d = y - base;
             highest = Math.max(highest, d);
             // The deck: everything under a metre. The post and its board are
             // measured against the post's own ground below, because a pole is
             // not laid on the land the way a walk is.
-            if (d < 1.0) { sink = Math.min(sink, d); deckTop = Math.max(deckTop, d); }
+            if (d < 1.0) {
+              if (d >= -0.06 && d <= 0.18) {
+                sink = Math.min(sink, d);
+                deckTop = Math.max(deckTop, d);
+              } else {
+                const relief = reliefAt(e, n);
+                if (relief <= 0.12) {
+                  // Flat ground, out of band: the original fault, unexcused.
+                  sink = Math.min(sink, d);
+                  deckTop = Math.max(deckTop, d);
+                } else if (d < -(0.06 + relief) || d > 0.18 + relief) {
+                  bandBreaches += 1;
+                  worstBreach = Math.max(worstBreach,
+                    d > 0 ? d - (0.18 + relief) : -(0.06 + relief) - d);
+                }
+              }
+            }
           }
           if (Number.isFinite(postGround) && y - postGround > 2.0) {
             boardLow = Math.min(boardLow, y - postGround);
@@ -2327,6 +2392,7 @@ for (const [label, viewport, touch] of [
         const stand = terrain.surfaceHeight(e0, n0);
         let top = -Infinity;
         let low = Infinity;
+        const g = mesh?.geometry;         // the posts live in the shared mesh
         if (g && Number.isFinite(stand)) {
           const pos = g.getAttribute('position');
           for (let i = 0; i < pos.count; i++) {
@@ -2347,7 +2413,7 @@ for (const [label, viewport, touch] of [
         census: f?.census ?? null,
         meshes: f?.group?.children?.length ?? 0,
         names: (f?.group?.children ?? []).map((c) => c.name),
-        verts: g?.getAttribute('position')?.count ?? 0,
+        verts,
         letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
         letterMap: !!letters?.material?.map,
         timberMap: !!mesh?.material?.map,
@@ -2358,14 +2424,16 @@ for (const [label, viewport, touch] of [
         clearOfTrack: post?.clear_of_track_m ?? null,
         walks: f?.walks ?? [],
         sink, deckTop, highest, boardLow, ungraded, notReconstructed,
+        bandBreaches, worstBreach,
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
       };
     });
-    check(`${label}: the frontage layer lays both records' walks and stands their posts`,
-      frontage.census?.records === 2 && frontage.census?.walks === 4
-        && frontage.census?.crossings === 2
-        && frontage.census?.posts === 3 && frontage.census?.refused === 4
-        && frontage.recordIds.join(',') === 'green_tree_frontage,sauganash_frontage'
+    check(`${label}: the frontage layer lays all three records' walks and stands their posts`,
+      frontage.census?.records === 3 && frontage.census?.walks === 8
+        && frontage.census?.crossings === 3
+        && frontage.census?.posts === 3 && frontage.census?.refused === 5
+        && frontage.recordIds.join(',')
+          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage'
         && frontage.verts > 0 && frontage.problems.length === 0,
       `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
       + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
@@ -2380,16 +2448,22 @@ for (const [label, viewport, touch] of [
       frontage.ungraded === 0 && frontage.notReconstructed === 0 && frontage.verts > 0,
       `${frontage.ungraded} out of range, ${frontage.notReconstructed} claiming better `
       + 'than reconstructed');
-    // THE DECK TIES INTO THE GROUND IT CROSSES. Every board samples the terrain
-    // under its own centre, so no part of a walk may hang over the land or be
-    // swallowed by it. The record lays the deck 0.11 m up on 55 mm boards with a
-    // stringer reaching to grade, so the whole layer under a metre lives in a
-    // band about 0.13 m deep; the bounds here are that band with room for the
-    // difference between a sample at a board's centre and one at its corner.
+    // THE DECK TIES INTO THE GROUND IT CROSSES. Every board samples the surface
+    // a visitor walks under its own centre — the terrain, or a registered deck
+    // over water — so no part of a walk may hang over the land or be swallowed
+    // by it. On flat ground the whole layer under a metre lives in a band about
+    // 0.13 m deep, and that band still binds; on tilted ground (the river
+    // walk's ramp crossing and bank pinch, T-0119) a rigid board may depart by
+    // at most the relief across its own width, measured per vertex, and each
+    // stringer reaches the ground under its own line so the departure is
+    // carried on timber rather than open to daylight.
     check(`${label}: the plank decks tie into the ground they cross`,
-      frontage.sink >= -0.06 && frontage.deckTop > 0.05 && frontage.deckTop <= 0.18,
-      `deepest ${frontage.sink?.toFixed(3)} m below grade, highest deck vertex `
-      + `${frontage.deckTop?.toFixed(3)} m above it`);
+      frontage.sink >= -0.06 && frontage.deckTop > 0.05 && frontage.deckTop <= 0.18
+        && frontage.bandBreaches === 0,
+      `deepest ${frontage.sink?.toFixed(3)} m below grade, highest flat-ground deck `
+      + `vertex ${frontage.deckTop?.toFixed(3)} m above it, ${frontage.bandBreaches} `
+      + `vertice(s) past even their own relief allowance (worst by `
+      + `${frontage.worstBreach?.toFixed(3)} m)`);
     // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
     // height came from a number beside the mesh rather than from a terrain sample
     // floats; a board hung too low is one a visitor walks through.
@@ -2402,16 +2476,17 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Two meshes and
-    // no more — timber in one draw call, and the painted name in the second,
-    // which is the only thing here that may carry a texture.
+    // inventing a sign, which is exactly what L25 and L130 refuse. Seventeen
+    // meshes and no more — the shared timber plus the river walk's fifteen
+    // culling chunks (T-0119), all on ONE material, and the painted name on
+    // its own mesh, the only thing here that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 2,
+        && frontage.meshes === 17,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -2518,6 +2593,115 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at the Sauganash's frontage opens the hotel it belongs to`,
       saugPick.includes('sauganash_hotel'),
       `25 aims returned [${[...new Set(saugPick)].join(', ') || 'nothing'}]`);
+
+    // --- and the river plank walk (T-0119) --------------------------------
+    //
+    // The first frontage record that is not a building's frontage: the plank
+    // footway over the State slough's mouth on the Slough Log Bridge's
+    // committed deck, and the riverside walk from it along the south bank to
+    // Jones's landing. Its failure modes are its own, and none is visible to a
+    // dataset gate: the footway must be a surface the walker STANDS ON over
+    // water (a deck registered from the walk record, T-0045's machinery), the
+    // planks must actually be under the boot at the mouth, and the whole run
+    // must publish its floor to the planting block-list.
+    const river = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const f = a?.frontage;
+      const rec = (f?.records ?? []).find((r) => r.id === 'river_walk_frontage');
+      const footway = (f?.walks ?? []).find((w) => w.id === 'river_plank_walk_crossing_footway');
+      const deck = (a.decks ?? []).find((d) => d.id === 'river_plank_walk_crossing_footway__footway');
+      const keepOut = (f?.keepOut ?? []).filter((k) => k.id === 'river_plank_walk__walk').length;
+      // Planks under the boot at the mouth: timber vertices inside the deck
+      // span, at the footway's own plank band and no other height.
+      let boardVerts = 0;
+      for (const t of f?.group?.children ?? []) {
+        if (t.name !== 'frontage' && t.name !== 'frontage-chunk') continue;
+        const pos = t.geometry?.getAttribute('position');
+        if (!pos) continue;
+        for (let i = 0; i < pos.count; i++) {
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          if (e < 805.4 || e > 813.2 || n < 13.1 || n > 15.3) continue;
+          const y = pos.getY(i);
+          if (deck && y > deck.y - 0.06 && y <= deck.y + 1e-6) boardVerts += 1;
+        }
+      }
+      // Stand mid-deck, over the water: the planks, not the wading barrier,
+      // hold the walker up — the exact-equality contract the bridge decks keep.
+      a.walker.teleport({ local_e: 809.4, local_n: 14.2, yaw_deg: 270 });
+      const stood = {
+        groundY: a.walker.state.groundY,
+        wet: a.terrain.isWater(809.4, 14.2),
+        barrier: a.terrain.walkHeight(809.4, 14.2),
+      };
+      // And the crossing is walkable END TO END: west off the deck onto the
+      // graded bank, no step refusal, ground continuous under every stride.
+      let worstStride = 0;
+      let prevY = a.walker.state.groundY;
+      let blocked = 0;
+      a.intent.forward = 1;
+      for (let i = 0; i < 220; i += 1) {
+        a.walker.update(0.05, a.intent);
+        worstStride = Math.max(worstStride, Math.abs(a.walker.state.groundY - prevY));
+        prevY = a.walker.state.groundY;
+        if (a.walker.state.blocked) blocked += 1;
+      }
+      a.intent.forward = 0;
+      return {
+        hasRecord: !!rec,
+        cardId: rec?.card?.id ?? null,
+        footwayDeckM: footway?.deck_m ?? null,
+        deckY: deck?.y ?? null,
+        walkRise: footway?.rise_m ?? null,
+        keepOut,
+        boardVerts,
+        stood,
+        walkedToE: a.walker.state.e,
+        worstStride,
+        blocked,
+      };
+    });
+    check(`${label}: the river walk publishes its floor and registers its crossing deck`,
+      river.hasRecord && river.cardId === 'river_plank_walk'
+        && river.keepOut >= 15
+        && river.deckY !== null && river.footwayDeckM !== null
+        && Math.abs(river.deckY - (river.footwayDeckM + river.walkRise)) < 1e-9,
+      `record ${river.hasRecord}, card ${river.cardId}, ${river.keepOut} keep-out `
+      + `rect(s), walker deck at ${river.deckY} m against deck_m ${river.footwayDeckM} `
+      + `+ rise ${river.walkRise}`);
+    check(`${label}: the walker stands on the planks over the water at the mouth`,
+      river.stood.wet === true && river.stood.groundY === river.deckY
+        && river.stood.barrier > river.deckY + 1,
+      `stood at ${river.stood.groundY} m over water=${river.stood.wet}, deck `
+      + `${river.deckY} m, barrier ${river.stood.barrier} m`);
+    check(`${label}: the crossing reads as planks underfoot, and walks off onto the bank`,
+      river.boardVerts >= 100 && river.walkedToE < 802 && river.blocked === 0
+        && river.worstStride <= 0.35,
+      `${river.boardVerts} plank vertice(s) in the footway band, walked west to `
+      + `E ${river.walkedToE?.toFixed(1)}, ${river.blocked} blocked stride(s), worst `
+      + `step ${river.worstStride?.toFixed(2)} m`);
+
+    // Aiming at the riverside run answers the walk's OWN card — there is no
+    // building on this bank for it to belong to, so the layer carries the
+    // record the popup shows, the same arrangement the boats keep (T-0063).
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: 600.0, local_n: 17.5, yaw_deg: 180, pitch_deg: -45 }));
+    await page.waitForTimeout(600);
+    const riverPick = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = a.frontage.pickAt({ x, y }, a.camera);
+          if (hit?.id) hits.push({ id: hit.id, name: hit.record?.sidecar?.name ?? null });
+        }
+      }
+      return hits;
+    });
+    check(`${label}: aiming at the riverside walk answers its own reconstructed card`,
+      riverPick.some((h) => h.id === 'river_plank_walk' && h.name === 'The river plank walk'),
+      `25 aims returned [${[...new Set(riverPick.map((h) => `${h.id}:${h.name}`))].join(', ')
+        || 'nothing'}]`);
 
     // --- the river wharves (T-0041) --------------------------------------
     //

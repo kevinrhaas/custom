@@ -81,3 +81,16 @@ so the density is essentially unchanged); the remainder is flora on the ground t
 straightened mouth and closed bay returned to plantable prairie (the woody planter's
 reach grew 189,492 → 189,518 nodes, re-banked per the gate). Mobile light stays under
 its own ceiling at 582,828. The 0.13 % delta does not change the trim candidates above.
+
+**Measured worse by T-0119, 2026-08-21:** the river plank walk adds ~17,856 scene
+triangles to the measured frame at the light tier — desktop light reads 667,013 of
+600,000 (was 649,157). The walk's full timber is ~64k triangles over its 439 m run,
+but it is deliberately built as fifteen per-segment meshes with their own bounding
+spheres (the first frontage geometry that is not one draw call), so only the reaches
+inside the frustum draw: the detail check's own stand sees roughly a quarter of it,
+and a visitor at the slough mouth looking west down the run sees most of it. Draw
+calls rose 52 → 55 in the measured frame, still under the 80 budget. Mobile light
+stays under its own ceiling at 590,922 of 600,000 (was 582,828 — headroom is now
+~9k, worth knowing before the next content merge). The trim candidates above are
+unchanged; if the walk itself ever has to give tiers back, the per-segment meshes
+make a distance or detail-level cut on this layer a local change.
