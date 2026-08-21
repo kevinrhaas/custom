@@ -1,7 +1,7 @@
 ---
 id: T-0067
 title: Fenced ground is not prairie: yards, gardens and pens
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/21/2026, 3:49:31 AM CT
 blocked_on: null
 needs_bake: false
 ---
