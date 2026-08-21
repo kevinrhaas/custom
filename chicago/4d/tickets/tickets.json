@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 20, 2026, 9:13 PM",
+  "generated_ct": "Aug 20, 2026, 10:23 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -113,16 +113,17 @@
     {
       "id": "T-0007",
       "title": "Wire the material sheet into the records: repaint the town",
-      "state": "open",
+      "state": "claimed",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": true,
       "effort": "M",
       "legacy_id": "R-W2b",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/20/2026, 9:57:20 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -2204,6 +2205,24 @@
       "blocked_on": "Which gives — the bake (stepped pickets), the mound, or the placement? Three options in the ticket; each changes a different researched claim. No dimension moves without your say-so.",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0126",
+      "title": "The openings-and-glazing half of the material sheet: one dark, one timber",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-20",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 71
     }
   ]
 }

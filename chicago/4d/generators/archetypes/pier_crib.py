@@ -48,6 +48,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from common.logwork import COURSE_M, HEWN_RGBA, hewn_log_wall  # noqa: E402
+from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.pier_crib_params import PierCribParams  # noqa: E402
 
@@ -90,7 +91,9 @@ def build(params: PierCribParams, name: str):
         _crib(b, x0, y0, x1, y1, params.deck_height_m, conf)
 
     mats = [
-        simple_material("log", HEWN_RGBA, roughness=0.93),
+        # The sheet's hewn-log roughness (0.92); see bridge_timber for the crib note.
+        simple_material("log", HEWN_RGBA,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("fill", FILL_RGBA, roughness=0.98),
     ]
     return b.to_object(mats)

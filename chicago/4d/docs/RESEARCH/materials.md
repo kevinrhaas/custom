@@ -338,3 +338,85 @@ carry it.
 
 Nothing above was derived from a source this repository does not hold, and no confidence was
 raised to make a row look finished.
+
+---
+
+## 6. WIRED IN — T-0007, 2026-08-21
+
+**Everything above §6 is R-W2a's document and is left exactly as it was written.** This
+section is the record of the parcel that made it reach the town: `generators/common/materials.py`
+is this sheet as code, and every wall, roof, log, chinking and heavy-timber surface in the
+shipped GLBs now takes its colour and its roughness from a row of it.
+
+### 6.1 The mechanism
+
+A surface is **a substrate times a finish**, which is the shape §2.1 already argued when it
+called whitewash, lead paint and iron oxide "overlay, not a tile":
+
+- a **substrate** owns the roughness, the tile and the module the tile is a whole number of —
+  clapboard 0.86 / 4.48 m / 32 courses, hewn log 0.92 / 4.08 m / 12 courses, sawn board 0.94 /
+  4.00 m, brick and stone with `tile_m = None` because §3.2 says the rate cannot be set;
+- a **finish** owns the colour, and the three coatings own a roughness too and override the
+  substrate's — limewash 0.90, lead paint 0.60, iron oxide 0.85.
+
+`resolve(substrate, finish)` returns the pair the exporter needs, and the tile rates sit beside
+it unused for now, waiting for the bake half to draw an atlas against the same numbers rather
+than against a second set.
+
+### 6.2 What now selects a surface — the "selected by" column, answered
+
+| what the record says | where it lives | what it now drives | how many records |
+|---|---|---|---|
+| `reconstruction.finish_key` | the 665-roof programme's block | the wall colour on every archetype building | **222** |
+| `reconstruction.roof_condition` | the same | the roof colour on every archetype building | **218** |
+| `form.paint` | the phase | a stated coating, which outranks the dealt finish | 44 + the Sauganash |
+| `form.cladding` | the phase | the wall substrate, so its roughness | 27 stated, 22 read |
+| `form.construction` | the phase | the substrate where no cladding is stated | every record |
+
+`from_phase` takes the **record** as well as the phase from this parcel on, because
+`finish_key` and `roof_condition` are not form attributes — they sit one level up, in
+`reconstruction`, which is why no archetype could read them. `generators/mesh_inputs.py` passes
+the same pair, so the staleness hash still sees exactly what the builder sees.
+
+### 6.3 Which findings this discharges, and which it does not
+
+- **Finding 4 — the data spoke a vocabulary no archetype read: DISCHARGED.** On the 244
+  archetype buildings a weathered roof and a fresh one were the same pixel and every unpainted
+  wall in Chicago was one tone. 222 records were carrying a finish into nothing; they now paint
+  the building.
+- **Finding 5 — two palettes with nothing in common: DISCHARGED.** Both generators read one
+  table. The convergence went the way this sheet said it should — onto §1.1's vocabulary,
+  because it is the one the records speak — so the placeholder GLBs are byte-identical and it
+  is the archetypes that moved. Three whitewashes became one (the frame archetypes' 0.88/0.87/
+  0.83, `fort_structure`'s undocumented 0.86/0.85/0.80 and the placeholder's 0.847/0.820/0.737);
+  two reds became one.
+- **Finding 2 — one log wall in Chicago was a different timber: DISCHARGED.** `frame_tavern`
+  was the last importer of the paler hewn-log value; `LOG_RGBA` is deleted and the Sauganash's
+  wing is built from the town's log, in front of the station named after it.
+- **Finding 1 — the chimney is not a material here: NOT TOUCHED.** It is its own ticket
+  (T-0008) and it opens with a research question about frontier chimneys, not a palette.
+- **Finding 3 — `timber` is one name over two materials: NOT TOUCHED**, and now recorded on the
+  sheet's `heavy_timber` row so the next reader meets it. Split out as **T-0126** with the §2.3
+  convergence below.
+- **§3.1's roughness MAP: NOT BUILT, and deliberately.** The sheet says the deliverable is a
+  map and not better constants, and a map is a texture: it belongs to the bake half. What this
+  parcel could honestly ship is the *between-surface* variation the sheet already argued,
+  applied per record — which is why a limewashed wall, a lead-painted one, a log wall and a
+  weathered board wall are now four different roughnesses instead of two.
+- **§2.3's four values for one dark opening: NOT TOUCHED.** It is the openings-and-glazing
+  family, not the wall-and-roof family this parcel wired, and it is **T-0126** rather than
+  half-done here.
+
+### 6.4 The covering half is still honest
+
+**R-W2a finding 2 stands and nothing here contradicts it.** No source in this repository states
+what any Chicago roof of 1835 was covered with, so `generators/common/materials.py` has no
+`shingle` row and no `roof_board` row. What it has is one `roof_plane` substrate whose own note
+says the covering is unstated, and four **weathering conditions** — the vocabulary 218 records
+actually carry. A roof that is `darkened` is a claim about weather, not about material. The
+roughness of every roof in the town is still each archetype's own committed literal, left alone
+on purpose: §2.2 separates a board roof from a shingle field by 0.03 of roughness, and moving
+that number either way would be choosing a covering nobody wrote down.
+
+The shingle exposure, the brick course and the stone course are all still open, all still §5's,
+and all still unresolvable from what this project holds.

@@ -46,9 +46,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.logwork import (  # noqa: E402
     CHINK_RGBA, HEWN_RGBA, RELIEF_M, hewn_log_wall,
 )
-from common.mesh import (  # noqa: E402
-    PAINT_RGBA, ROOF_RGBA, MeshBuilder, simple_material,
-)
+from common import materials  # noqa: E402
+from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.log_dwelling_params import LogDwellingParams  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
@@ -107,12 +106,23 @@ def build(params: LogDwellingParams, name: str):
         # convention above dimensions do not drag an object's character down.
         _sign(b, params, params.conf("sign", "reconstructed"))
 
+    # ---- the surfaces, off the sheet (T-0007) --------------------------------
+    # The log core is the town's log fabric and does not vary: a cabin's walls ARE
+    # its finish. What varies is the FRAME ADDITION, which is a clapboarded wall like
+    # any other and now wears the finish the record deals it, and the roof, which
+    # takes the weathering condition 218 records state — a condition, never a
+    # covering (materials.md finding 2). See `common/materials.py`.
+    frame_finish = materials.wall_finish(params.frame_paint, params.finish_key)
+    frame_rgba, frame_rough = materials.resolve(
+        materials.wall_substrate(cladding="clapboard"), frame_finish)
     mats = [
-        simple_material("log", HEWN_RGBA, roughness=0.92),
-        simple_material("chinking", CHINK_RGBA, roughness=0.95),
-        simple_material("roof", ROOF_RGBA, roughness=0.9),
-        simple_material("frame",
-                        PAINT_RGBA.get(params.frame_paint, PAINT_RGBA["unpainted"])),
+        simple_material("log", HEWN_RGBA,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
+        simple_material("chinking", CHINK_RGBA,
+                        roughness=materials.SUBSTRATES["chinking"].roughness),
+        simple_material("roof", materials.roof_finish(params.roof_condition).rgba,
+                        roughness=0.9),
+        simple_material("frame", frame_rgba, roughness=frame_rough),
         simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
         simple_material("sign", SIGN_RGBA, roughness=0.85),
     ]

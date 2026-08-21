@@ -70,6 +70,12 @@ ADDITION_SIDES = ("front", "end")
 # its default and every log building got exactly one stack whatever the record
 # said. Samuel Miller's house says two. The parameter is now `chimneys` and it is
 # the count.
+# `finish_key` and `roof_condition` are NOT in this set and must not be, although the
+# archetype now reads both (T-0007). This set names FORM attributes — what a phase
+# states about the building — and those two live in the record's `reconstruction`
+# block, the 665-roof programme's own ledger, one level above the phase. That is why
+# no archetype could read them for as long as `from_phase` took only a phase, and it
+# is what `docs/RESEARCH/materials.md` §4 finding 4 was pointing at.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
     "loft", "chimneys", "sign", "frame_paint",
@@ -141,6 +147,17 @@ class LogDwellingParams:
     # exists so the sidecar can say what the board carried while the mesh says only
     # that a board hung there.
     sign: str | None = None
+
+    # The finish the 665-roof programme dealt this building, and how weathered its
+    # roof is. NOT form attributes — they live in the record's `reconstruction`
+    # block, which is why `from_phase` takes the record — and until T-0007 they were
+    # read by `generators/inferred_placeholder.py` alone, so a weathered roof and a
+    # fresh one were the same pixel on every archetype building in the town
+    # (docs/RESEARCH/materials.md §4 finding 4). None on every named or documented
+    # building, which carries no reconstruction block and therefore keeps exactly the
+    # colours it had. `common/materials.py` is what turns either into a surface.
+    finish_key: str | None = None
+    roof_condition: str | None = None
 
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
@@ -241,7 +258,7 @@ class LogDwellingParams:
                 f"record the building as frame")
 
 
-def from_phase(phase: dict) -> LogDwellingParams:
+def from_phase(phase: dict, record: dict | None = None) -> LogDwellingParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence.
@@ -265,6 +282,9 @@ def from_phase(phase: dict) -> LogDwellingParams:
     ys = [p[1] for p in poly]
     width, depth = max(xs) - min(xs), max(ys) - min(ys)
 
+    # `reconstruction` is the 665-roof programme's own block: it is present on every
+    # anonymous or household roof it dealt and absent from every named building.
+    recon = (record or {}).get("reconstruction") or {}
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
@@ -292,6 +312,11 @@ def from_phase(phase: dict) -> LogDwellingParams:
                                  else float(val("frame_addition_height_m"))),
         frame_paint=str(val("frame_paint", "unpainted")),
         sign=(None if sign is None else str(sign)),
+        # The programme's own finish deal, read off the record rather than the
+        # phase. `wall_finish` in `common/materials.py` states the order these are
+        # applied in and why a stated coating outranks them.
+        finish_key=recon.get("finish_key"),
+        roof_condition=recon.get("roof_condition"),
         confidence=confidences,
     )
     p.validate()

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 154,
+  "count": 155,
   "liberties": [
     {
       "id": "L1",
@@ -10251,6 +10251,37 @@
         {
           "label": "How to resolve",
           "text": "T-0075's identifications would raise the citations from committed README paths to source records; a better scan of any of the three views could correct the sizes; a photograph does not exist — the hotel burned in 1851 — so the dimensions stay this entry's unless a measured description surfaces in Andreas p. 106 or an insurance record."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L155",
+      "title": "The material sheet paints the town: the programme's dealt finish outranks a defaulted `paint`, and a roof's weathering is not its covering",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-21",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`generators/common/materials.py` — `docs/RESEARCH/materials.md` written as code — now decides the colour and the roughness of every wall, roof, log, chinking and heavy-timber surface in the shipped GLBs (T-0007), and three choices inside it are this project's rather than any source's. **First**, where a record carries both a `reconstruction.finish_key` and a `form.paint`, the dealt finish decides the wall. **Second**, the roof colour of every archetype building is taken from `reconstruction.roof_condition` — fresh, weathered, darkened, patched — so a town whose 234 roof slots were one colour now carries four. **Third**, the roughness of every wall in the town moves onto the sheet's per-substrate values (clapboard 0.86, hewn log 0.92, sawn board 0.94, brick 0.90, rubble stone 0.93, trodden earth 0.95) with the three coatings overriding them (limewash 0.90, lead paint 0.60, iron oxide 0.85), replacing the flat 0.75 / 0.85 / 0.92 each archetype used to apply to everything it built."
+        },
+        {
+          "label": "Why",
+          "text": "the first is not a tie-break between rival claims — all 44 records carrying both attributes AGREE, stating `whitewash` against `whitewash` and `red` against `red_oxide`. It is a choice between a value the 665-roof programme dealt against a committed, gated schedule and a `paint: unpainted` that the archetypes' own defaults wrote into the record with a note saying in terms that the family band does not speak to paint or finish and the value is the generator's type default. The dealt finish is the better evidence of the two, and 156 records were carrying it into nothing. The second and third are the sheet's own numbers, and the sheet grades them honestly: the finish and condition vocabularies are `reconstructed`, bounded by `owner_chicago_1835_reconstruction_spec_2026`, and every roughness in the sheet is reasoned rather than sourced — no source this project holds measures the gloss of anything, and none ever will."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walking South Water Street sees a town of many finishes where before every unpainted wall was one brown and every roof one grey, and **none of that variety is evidence.** It is a schedule's deal, rendered. The one thing it does NOT do is claim a roof covering: R-W2a finding 2 stands, no record in this dataset states what any Chicago roof of 1835 was made of, and the sheet carries no `shingle` and no `roof_board` row. A `darkened` roof is a statement about weather. Each archetype's roof ROUGHNESS is left as its own committed literal for the same reason — the sheet separates a board roof from a shingle field by 0.03 of roughness, and moving that number either way would be choosing between two coverings nobody wrote down."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source that states a covering for any Chicago building of 1835 turns the roof half from a condition into a material and is worth a parcel of its own (materials.md §5 names the schema question it raises across 315 records). A source that states a finish for any named building would raise that building's wall out of the programme's deal and into its own attestation. Neither would change the mechanism, only the rows it reads."
         },
         {
           "label": "Recorded",

@@ -233,7 +233,13 @@ def main() -> int:
             continue
 
         to_params, build_fn = ARCHETYPES[arch]
-        params = to_params(phase)
+        # The whole record, not only the phase. The phase carries a building's FORM;
+        # the finish the 665-roof programme dealt it lives one level up, in the
+        # record's `reconstruction` block — `finish_key` on 222 records and
+        # `roof_condition` on 218, read until T-0007 by the placeholder generator
+        # alone. `mesh_inputs.resolve_params` passes the same pair, so the staleness
+        # hash sees exactly what the builder sees.
+        params = to_params(phase, st)
         name = f"{st['id']}__{phase['id']}"
 
         reset_scene()

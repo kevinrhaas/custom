@@ -17,6 +17,8 @@ import math
 
 import bpy  # noqa: F401  (imported for type context; used by callers)
 
+from common import materials
+
 
 class MeshBuilder:
     """Accumulates vertices, faces and per-vertex confidence, then emits a mesh."""
@@ -141,18 +143,32 @@ def simple_material(name: str, rgba=(0.8, 0.8, 0.8, 1.0), roughness: float = 0.7
     return mat
 
 
+# The paints, READ OFF THE SHEET rather than declared here (T-0007). `materials.py`
+# is docs/RESEARCH/materials.md in code. Two of these four values move as a result,
+# and both moves are the sheet's finding 5: the town was painted by two generators
+# with not one colour in common, and whitewash and iron-oxide red are the two
+# finishes both of them named. The vocabulary the RECORDS speak wins, because it is
+# the one 222 records already carry and no archetype was reading.
 PAINT_RGBA = {
-    "white": (0.90, 0.89, 0.85, 1.0),
-    "unpainted": (0.52, 0.44, 0.34, 1.0),
-    "whitewash": (0.88, 0.87, 0.83, 1.0),
-    "red": (0.55, 0.16, 0.13, 1.0),
+    "white": materials.FINISHES["white_paint"].rgba,
+    "unpainted": materials.FINISHES["unpainted"].rgba,
+    "whitewash": materials.FINISHES["whitewash"].rgba,
+    "red": materials.FINISHES["red_oxide"].rgba,
 }
 
+# Not on the sheet, and deliberately: exactly one record in the dataset states
+# shutters (the Sauganash's documented bright blue) and the archetypes build them
+# only where a record attests them, so `green` and `black` have never shipped a
+# single slot. materials.md §1 records that the palette is not carrying dead weight
+# into the scene; a sheet row for a surface that does not exist would be.
 SHUTTER_RGBA = {
     "bright_blue": (0.14, 0.32, 0.62, 1.0),
     "green": (0.16, 0.30, 0.20, 1.0),
     "black": (0.06, 0.06, 0.07, 1.0),
 }
 
-LOG_RGBA = (0.42, 0.33, 0.24, 1.0)
-ROOF_RGBA = (0.34, 0.30, 0.27, 1.0)
+# LOG_RGBA is GONE. It was the paler of the two hewn-log values this project held —
+# materials.md finding 2 — and `frame_tavern` was the only importer left, which made
+# the Sauganash's wing the one log wall in Chicago built from a different timber than
+# the other 52. `common.materials.HEWN_LOG` is now the town's only log.
+ROOF_RGBA = materials.ROOF_DEFAULT.rgba

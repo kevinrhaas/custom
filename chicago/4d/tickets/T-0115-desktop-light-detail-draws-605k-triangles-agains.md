@@ -103,3 +103,13 @@ stays under its own ceiling at 590,922 of 600,000 (was 582,828 — headroom is n
 ~9k, worth knowing before the next content merge). The trim candidates above are
 unchanged; if the walk itself ever has to give tiers back, the per-segment meshes
 make a distance or detail-level cut on this layer a local change.
+**Measured NEUTRAL by T-0007, 2026-08-21:** the material sheet repaint moves 207 of the
+243 committed GLBs and adds **not one triangle**. Diffed asset by asset against `HEAD`
+across all three trees — `assets/gltf`, `assets/web` and `site/chicago/4d/data/gltf` —
+the total is **431,637 before and 431,637 after, delta +0**, and no asset changed its
+material COUNT either (the parcel varies values, never slot counts, which also keeps
+K36(a)'s five-material palette-fold threshold where it was: 275 assets still sit at
+four). Desktop light reads **668,293 of 600,000** on this branch and mobile light passes
+its own ceiling; both figures are inherited from the merges already on `dev` and are
+unchanged by this parcel. Recorded here so the next attribution pass does not have to
+re-measure a repaint to find out it was free.
