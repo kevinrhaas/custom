@@ -176,7 +176,7 @@
         "shutter_type": {
           "value": "louvred",
           "confidence": "inferred",
-          "note": "THE WEAKEST OF THE THREE VIEWS' CLAIMS, AND CARDED AS SUCH — IMAGE 10 ONLY. The Trowbridge drawing (image 10 of data/sources/assets/owner_brief_2026_08_18/README.md) is the one view that resolves the leaves at all, and it draws 'louvred shutters on the sash'; the Petford watercolour and the Braunhold engraving read at no such grain and can neither agree nor disagree, and Wau-Bun's sentence gives only the colour. One tier-5 retrospective drawing may still drive a fenestration detail as inferred — the same rule that admitted the Green Tree's plate-read chimney placement — but nothing corroborates this one, so the slats carry this attribute's confidence in the mesh rather than the attested colour's, and the brief's binaries being uncommitted, the citation is the README until T-0075 lands identifications. Slat count and pitch are the archetype's numbers: docs/LIBERTIES.md L153."
+          "note": "THE WEAKEST OF THE THREE VIEWS' CLAIMS, AND CARDED AS SUCH — IMAGE 10 ONLY. The Trowbridge drawing (image 10 of data/sources/assets/owner_brief_2026_08_18/README.md) is the one view that resolves the leaves at all, and it draws 'louvred shutters on the sash'; the Petford watercolour and the Braunhold engraving read at no such grain and can neither agree nor disagree, and Wau-Bun's sentence gives only the colour. One tier-5 retrospective drawing may still drive a fenestration detail as inferred — the same rule that admitted the Green Tree's plate-read chimney placement — but nothing corroborates this one, so the slats carry this attribute's confidence in the mesh rather than the attested colour's, and the brief's binaries being uncommitted, the citation is the README until T-0075 lands identifications. Slat count and pitch are the archetype's numbers: docs/LIBERTIES.md L154."
         },
         "construction": {
           "value": "balloon_frame",
@@ -226,7 +226,7 @@
           "sources": [
             "andreas_1884_v1"
           ],
-          "note": "THE WING KEPT ITS OWN DOOR, OPENING DIRECT TO GRADE in its street face — no stoop, no climb to the frame block's floor: the 1829 cabin's entrance surviving in use. Two of the three views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Braunhold engraving in Andreas puts the wing's shed-roofed porch over 'the door' (image 9), and the Trowbridge drawing states 'the log wing's door direct to grade' (image 10). Tier-5 retrospective views may drive fenestration as inferred and never a dimension: the leaf's size and its centred position are the archetype's numbers, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so images 9 and 10 are cited via the README until T-0075 lands identifications."
+          "note": "THE WING KEPT ITS OWN DOOR, OPENING DIRECT TO GRADE in its street face — no stoop, no climb to the frame block's floor: the 1829 cabin's entrance surviving in use. Two of the three views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Braunhold engraving in Andreas puts the wing's shed-roofed porch over 'the door' (image 9), and the Trowbridge drawing states 'the log wing's door direct to grade' (image 10). Tier-5 retrospective views may drive fenestration as inferred and never a dimension: the leaf's size and its centred position are the archetype's numbers, claimed at docs/LIBERTIES.md L154. The brief's binaries are not yet committed, so images 9 and 10 are cited via the README until T-0075 lands identifications."
         },
         "log_wing_porch_hood": {
           "value": true,
@@ -234,7 +234,7 @@
           "sources": [
             "andreas_1884_v1"
           ],
-          "note": "A SHED-ROOFED PORCH HOOD OVER THE WING DOOR, ON POSTS TO GRADE — IMAGE 9 ONLY: the Braunhold engraving draws 'the log wing with its shed-roofed porch over the door' (data/sources/assets/owner_brief_2026_08_18/README.md), and neither the Petford view nor the Trowbridge drawing resolves a hood either way, so this is a single-view inference and weaker than the door it shelters — the geometry carries this attribute's own confidence, not the door's. Pitch, projection and the two posts are the archetype's numbers: docs/LIBERTIES.md L153."
+          "note": "A SHED-ROOFED PORCH HOOD OVER THE WING DOOR, ON POSTS TO GRADE — IMAGE 9 ONLY: the Braunhold engraving draws 'the log wing with its shed-roofed porch over the door' (data/sources/assets/owner_brief_2026_08_18/README.md), and neither the Petford view nor the Trowbridge drawing resolves a hood either way, so this is a single-view inference and weaker than the door it shelters — the geometry carries this attribute's own confidence, not the door's. Pitch, projection and the two posts are the archetype's numbers: docs/LIBERTIES.md L154."
         },
         "roof_pitch_deg": {
           "value": 38.0,
@@ -253,7 +253,7 @@
           "sources": [
             "andreas_1884_v1"
           ],
-          "note": "A SMALL FLAT-HOODED FRONTISPIECE ON THE MAIN BLOCK'S FRONT DOOR. Both street views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Petford 1831 watercolour puts 'a small flat-hooded entrance frontispiece/porch on the front door' (image 8), and the Braunhold engraving in Andreas draws 'the clapboard block's wide entrance surround' (image 9). This is a door SURROUND, not the veranda the gallery attribute records as absent — the same views that show the frontispiece show no gallery, so the two claims agree rather than conflict. Tier-5 retrospective views may drive form as inferred and never a dimension: the hood and pilaster sizes are the archetype's numbers, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
+          "note": "A SMALL FLAT-HOODED FRONTISPIECE ON THE MAIN BLOCK'S FRONT DOOR. Both street views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Petford 1831 watercolour puts 'a small flat-hooded entrance frontispiece/porch on the front door' (image 8), and the Braunhold engraving in Andreas draws 'the clapboard block's wide entrance surround' (image 9). This is a door SURROUND, not the veranda the gallery attribute records as absent — the same views that show the frontispiece show no gallery, so the two claims agree rather than conflict. Tier-5 retrospective views may drive form as inferred and never a dimension: the hood and pilaster sizes are the archetype's numbers, claimed at docs/LIBERTIES.md L154. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
         },
         "chimneys": {
           "value": 2,
@@ -268,7 +268,7 @@
         "roof_colour": {
           "value": "moss_green",
           "confidence": "inferred",
-          "note": "THE PETFORD VIEW'S TONE, AND ONLY ITS: the 1831 watercolour (image 8 of data/sources/assets/owner_brief_2026_08_18/README.md) gives the shingle roof a dark green/moss colour — weathered shingles gone green, or the painter's reading of them — and the engravings, being monochrome, can neither agree nor disagree. A single tier-5 watercolour may drive a material tone as inferred; the exact colour value is the archetype's, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
+          "note": "THE PETFORD VIEW'S TONE, AND ONLY ITS: the 1831 watercolour (image 8 of data/sources/assets/owner_brief_2026_08_18/README.md) gives the shingle roof a dark green/moss colour — weathered shingles gone green, or the painter's reading of them — and the engravings, being monochrome, can neither agree nor disagree. A single tier-5 watercolour may drive a material tone as inferred; the exact colour value is the archetype's, claimed at docs/LIBERTIES.md L154. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
         },
         "siding_exposure_m": {
           "value": 0.152,

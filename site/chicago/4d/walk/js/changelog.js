@@ -1,10 +1,17 @@
 export const CHANGELOG = [ // newest first
-  { v: 211, title: 'The Sauganash is dressed to its three views', kind: 'feature', ts: '2026-08-21T01:12:21.100Z', date: 'Aug 20, 2026, 8:12 PM CT',
+  { v: 212, title: 'The Sauganash is dressed to its three views', kind: 'feature', ts: '2026-08-21T02:13:10.840Z', date: 'Aug 20, 2026, 9:13 PM CT',
     items: [
       'Chicago’s first hotel now wears what its three surviving pictures show. The log wing — the 1829 cabin the frame block was built onto — keeps its own working door, opening straight onto the ground with no step, under a small shed-roofed porch hood on two posts. And the main block’s front door gets the small flat-hooded surround both street views draw.',
       'The chimneys are brick now, and the shingle roof carries the dark moss-green tone of the one coloured picture, an 1831 watercolour. The engravings are black and white, so both colour claims rest on that single witness, and the record says so.',
       'The famous bright-blue shutters — the one vivid detail a period visitor actually wrote down — now hang as louvred leaves, slats and all. The slats appear in only one of the three views, the weakest of the claims, and the card grades them accordingly: aim at the hotel and the Evidence panel says which claim rests on what. In the confidence view the slats even read one grade weaker than the leaves they sit in.',
       'Every dimension — the door leaf, the hood, the surround, the slat pitch — is invented within the views and admitted in the liberties ledger. The views are retrospective, drawn decades later; nothing new here is graded better than inferred.',
+    ] },
+  { v: 211, title: 'Planks over the slough mouth, and along the river into town', kind: 'feature', ts: '2026-08-21T01:10:37.691Z', date: 'Aug 20, 2026, 8:10 PM CT',
+    items: [
+      'The log bridge at the State Street slough’s mouth now carries what a person actually walks: a plank footway laid along its deck, boards underfoot from one graded approach to the other. Stand on it and you stand on the planks — over the water, at the deck height the bridge’s own record states — and walk off either end onto the graded bank without a hop.',
+      'From that crossing the planks carry on along the river towards town, as the owner asked: a six-foot plank walk threading the verge between the Water Street track and the bank, crossing the Dearborn drawbridge approach on a board crossing, and ending at Jones’s landing, where the wharves begin. The run breaks once, honestly, at the La Salle slough’s mouth — the bank itself is interrupted there, no crossing is documented, and the street’s own fill carries you between the two reaches.',
+      'The walk is reconstructed and says so. Aim at it anywhere and it answers with its own card — what it is, what bounded it (the bridge’s committed deck ends, the traced bank, the committed wharf), and that no source states a walk stood on this ground. Hide the reconstructed tier and the whole walk goes back to bare bank.',
+      'Every invented coordinate is audited rather than merely written down: on every commit the generator re-checks that each board stands on dry committed ground clear of the travelled way, that the run still ends at the committed landing, and that the one gap in it is still water.',
     ] },
   { v: 210, title: 'The sloughs flow the way a prairie drain does', kind: 'fix', ts: '2026-08-21T00:28:56.813Z', date: 'Aug 20, 2026, 7:28 PM CT',
     items: [

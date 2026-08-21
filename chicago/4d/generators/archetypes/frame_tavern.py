@@ -385,7 +385,7 @@ def _frontispiece(b: MeshBuilder, params: FrameTavernParams, cx: float,
     the Sauganash's, drawn by both street views of the 2026-08-18 owner brief
     (images 8 and 9; T-0092): a flat pilaster each side of the leaf and a
     shallow flat hood over it, all in the wall's own paint. The views give the
-    FORM; every dimension here is the archetype's, and docs/LIBERTIES.md L153
+    FORM; every dimension here is the archetype's, and docs/LIBERTIES.md L154
     owns the invention. Carries the frontispiece attribute's own confidence,
     which is weaker than the attested paint it is drawn in.
     """
@@ -411,7 +411,7 @@ def _louvres(b: MeshBuilder, params: FrameTavernParams, lo: float, hi: float,
     weakest of the three views' claims; T-0092). The slats therefore carry the
     shutter_type attribute's own confidence, NOT the attested colour's: the
     leaf stays as documented and the louvres admit what they rest on. Slat
-    count and pitch are the archetype's numbers (docs/LIBERTIES.md L153).
+    count and pitch are the archetype's numbers (docs/LIBERTIES.md L154).
     """
     c = params.worst_conf("shutters", "shutter_type")
     n = 8
@@ -479,7 +479,7 @@ def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
     # The wing's own door, direct to grade in its street face — the 1829 cabin
     # kept its entrance when the frame block was built on (images 9 and 10 of
     # the 2026-08-18 owner brief; T-0092). A recess like every opening at this
-    # LOD, centred on the wing; leaf size is the archetype's (L153). Carries
+    # LOD, centred on the wing; leaf size is the archetype's (L154). Carries
     # the door attribute's own confidence, not the wing's.
     if params.log_wing_door:
         c_d = params.conf("log_wing_door")
@@ -491,7 +491,7 @@ def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
     # The shed-roofed porch hood over that door, on two slim posts to grade —
     # only the Braunhold engraving (image 9) draws it, and the geometry carries
     # that single-view claim's own confidence. Plank pitch, projection and the
-    # posts are the archetype's numbers (L153).
+    # posts are the archetype's numbers (L154).
     if params.log_wing_porch_hood:
         c_h = params.conf("log_wing_porch_hood")
         cxw = ww / 2

@@ -3,7 +3,11 @@
  * named boards on posts that stand between a building and the street it fronts
  * on. Written for the Green Tree Tavern (T-0082) and made a town layer by the
  * Sauganash Hotel (T-0090), which brought the second record and the first post
- * with nothing hanging on it.
+ * with nothing hanging on it. T-0119 brought the first record that is not a
+ * building's frontage at all — the river plank walk, which rides a committed
+ * bridge deck at the slough mouth (`deck_m`), runs on polyline centrelines in
+ * culling-sized chunks, registers its over-water planks with the walker
+ * (`walkableDecks`), and answers a pick with its own card.
  *
  * WHY THIS IS A LAYER AND NOT MORE YARD GOODS. A barrel or a wagon stands on a
  * building's own ground and is derived from its walls alone, which is what
@@ -107,30 +111,25 @@ function groundAt(terrain, e, n) {
 }
 
 /**
- * A run of boards laid ACROSS the way a foot travels — an ordinary plank walk.
- * Each board samples the terrain under its own centre, and two short stringers
- * under its edges close the gap to the ground so the deck never reads as
- * floating over a fall it does not follow.
+ * One straight run of boards laid ACROSS the way a foot travels, pushed into
+ * `buf`. Each board samples the terrain under its own centre, and two short
+ * stringers under its edges close the gap to the ground so the deck never reads
+ * as floating over a fall it does not follow.
+ *
+ * `deckY` (T-0119) is the committed deck a walk may RIDE — the Slough Log
+ * Bridge's own `walk_surface_m`, carried onto the record as `deck_m`. Where the
+ * deck stands above the ground (over the carved channel), the boards take the
+ * deck and the stringers are omitted, because boards on a deck lie on the deck;
+ * where the ground stands higher (the graded approaches), the ground wins,
+ * exactly as the walker's own surface rule decides it.
  */
-function buildWalk(buf, walk, terrain, level, problems) {
-  const line = walk.centreline_local_enu_m;
-  if (!Array.isArray(line) || line.length < 2) {
-    problems.push(`frontage: ${walk.id} carries no centreline — nothing is laid`);
-    return false;
-  }
-  const [a, b] = line;
-  // Local ENU (E, N) to the renderer's world (E, up, -N).
-  const ax = a[0];
-  const az = -a[1];
-  const bx = b[0];
-  const bz = -b[1];
+function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
+  const az = -ay;
+  const bz = -by;                 // local ENU (E, N) to the renderer's (E, up, -N)
   const dx = bx - ax;
   const dz = bz - az;
   const len = Math.hypot(dx, dz);
-  if (len < 0.5) {
-    problems.push(`frontage: ${walk.id} is ${len.toFixed(2)} m long — nothing is laid`);
-    return false;
-  }
+  if (len < 0.5) return 0;
   const rx = dx / len;
   const rz = dz / len;            // along the run
   const wx = -rz;
@@ -139,6 +138,7 @@ function buildWalk(buf, walk, terrain, level, problems) {
   const rise = walk.rise_m ?? 0.11;
   const thick = walk.plank_thickness_m ?? 0.055;
   const pitch = walk.plank_pitch_m ?? 0.26;
+  const deckY = Number.isFinite(walk.deck_m) ? walk.deck_m : null;
   const n = Math.max(1, Math.round(len / pitch));
   const step = len / n;
   let drawn = 0;
@@ -147,19 +147,50 @@ function buildWalk(buf, walk, terrain, level, problems) {
     const cx = ax + rx * t;
     const cz = az + rz * t;
     const g = groundAt(terrain, cx, -cz);
-    if (g === null) continue;
-    const top = g + rise;
+    if (g === null && deckY === null) continue;
+    const onDeck = deckY !== null && (g === null || deckY > g);
+    const top = (onDeck ? deckY : g) + rise;
     // The board itself, its long axis ACROSS the run.
     pushBox(buf, cx, top - thick / 2, cz, wx, wz,
       halfW, Math.max(0.02, (step - PLANK_GAP_M) / 2), thick / 2, level);
-    // Two stringers under its edges, from the ground to the underside.
-    const under = Math.max(0.01, rise - thick + SKIRT_M);
-    for (const s of [-1, 1]) {
-      pushBox(buf,
-        cx + wx * s * (halfW - 0.09), top - thick - under / 2 + SKIRT_M / 2, cz + wz * s * (halfW - 0.09),
-        rx, rz, step / 2, 0.045, under / 2, level);
+    // Two stringers under its edges, from the ground to the underside — only
+    // where the ground itself carries the walk (see the header note above).
+    // Each stringer reaches the ground under ITS OWN line, not the board
+    // centre's: on cross-sloped ground (the river walk's bank verge, T-0119)
+    // the downhill edge stands a board-width of slope over the land, and a
+    // fixed-length stringer left exactly that gap open to daylight.
+    if (!onDeck) {
+      for (const s of [-1, 1]) {
+        const sx = cx + wx * s * (halfW - 0.09);
+        const sz = cz + wz * s * (halfW - 0.09);
+        const gs = groundAt(terrain, sx, -sz);
+        const under = Math.max(0.01, (top - thick) - (gs ?? g) + SKIRT_M);
+        pushBox(buf,
+          sx, top - thick - under / 2 + SKIRT_M / 2, sz,
+          rx, rz, step / 2, 0.045, under / 2, level);
+      }
     }
     drawn += 1;
+  }
+  return drawn;
+}
+
+/**
+ * A plank walk: one straight run for a two-point centreline, or a connected
+ * chain of them for a polyline (T-0119 — the river walk is the first record to
+ * carry one; a 400 m run pinned as a list of two-point records would be nine
+ * ids for one claim).
+ */
+function buildWalk(buf, walk, terrain, level, problems) {
+  const line = walk.centreline_local_enu_m;
+  if (!Array.isArray(line) || line.length < 2) {
+    problems.push(`frontage: ${walk.id} carries no centreline — nothing is laid`);
+    return false;
+  }
+  let drawn = 0;
+  for (let i = 0; i + 1 < line.length; i += 1) {
+    drawn += laySegment(buf, walk, line[i][0], line[i][1],
+      line[i + 1][0], line[i + 1][1], terrain, level);
   }
   if (!drawn) {
     problems.push(`frontage: ${walk.id} found no ground under any board — nothing is laid`);
@@ -413,6 +444,12 @@ export async function createFrontage({
      *  as the wharves' keepOut — `{ id, pts }`, consumed by flora's
      *  footprintCircles. */
     keepOut: [],
+    /** Walker decks (T-0119): where a walk RIDES a committed deck over water,
+     *  the planks are a surface a visitor stands ON, so the walk publishes the
+     *  same `{ id, y, pts }` shape `decksFrom()` builds and main.js appends it
+     *  to the walker's registry. `y` is the plank top — the deck the record
+     *  rides plus the walk's own rise — so the boot and the board agree. */
+    walkableDecks: [],
     census: {
       records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
       refused: 0, meshes: 0,
@@ -445,41 +482,107 @@ export async function createFrontage({
   const buf = { pos: [], nrm: [], conf: [] };
   const spans = [];
   const boards = [];
+  /**
+   * CHUNKED TIMBER (T-0119). The layer's timber has been one draw call since
+   * T-0082, and for walks a few metres long that is right. The river walk is
+   * 400 m of boards, and one geometry spanning Wolf Point to the slough mouth
+   * has a bounding sphere no frustum ever culls — every triangle of a walk
+   * behind the camera would be drawn from everywhere in the town. So a walk
+   * with a POLYLINE centreline builds one small mesh per segment instead
+   * (same material, same render order — the draw-call principle bends only as
+   * far as culling needs it to), each carrying the walk's owner for the pick.
+   */
+  const chunks = [];
+  const cards = new Map();
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`frontage: ${id} — ${why}`); continue; }
     out.records.push(record);
     out.census.records += 1;
     out.census.refused += (record.refused ?? []).length;
+    // A record that is its own subject (the river walk) rather than a
+    // building's frontage carries a `card` block, and the layer answers a pick
+    // on it with a registry-shaped record of its own — the same shape the boat
+    // layer builds, for the same reason: there is no structure to open.
+    if (record.card?.id) {
+      cards.set(record.card.id, {
+        id: record.card.id,
+        sidecar: {
+          name: record.card.name ?? record.name ?? record.card.id,
+          phase: null,
+          placement: {
+            symbolic_location: record.card.symbolic_location ?? '',
+            position_confidence: 'reconstructed',
+            position_sources: [],
+            position_note: record.card.position_note ?? record.existence?.note ?? '',
+          },
+          attributes: record.card.attributes ?? {},
+          citations: [],
+          research_note: record.card.research_note ?? record.research_note ?? '',
+        },
+      });
+    }
     for (const walk of record.walks ?? []) {
       const level = LEVEL[walk.confidence] ?? 1;
-      const from = buf.pos.length / 9;
+      const line = walk.centreline_local_enu_m ?? [];
       const crossing = walk.kind === 'board_crossing';
-      const ok = crossing
-        ? buildCrossing(buf, walk, terrain, level, problems)
-        : buildWalk(buf, walk, terrain, level, problems);
+      const chunked = !crossing && Array.isArray(line) && line.length > 2;
+      let ok;
+      if (chunked) {
+        // One chunk per segment; the walk is laid iff any segment laid boards.
+        let laid = 0;
+        for (let i = 0; i + 1 < line.length; i += 1) {
+          const cbuf = { pos: [], nrm: [], conf: [] };
+          const boardsLaid = laySegment(cbuf, walk, line[i][0], line[i][1],
+            line[i + 1][0], line[i + 1][1], terrain, level);
+          if (!boardsLaid) continue;
+          chunks.push({ buf: cbuf, pickId: walk.belongs_to });
+          laid += boardsLaid;
+        }
+        ok = laid > 0;
+        if (!ok) {
+          problems.push(`frontage: ${walk.id} found no ground under any board `
+            + '— nothing is laid');
+        }
+      } else {
+        const from = buf.pos.length / 9;
+        ok = crossing
+          ? buildCrossing(buf, walk, terrain, level, problems)
+          : buildWalk(buf, walk, terrain, level, problems);
+        if (ok) spans.push({ id: walk.belongs_to, from, to: buf.pos.length / 9 });
+      }
       if (!ok) continue;
-      spans.push({ id: walk.belongs_to, from, to: buf.pos.length / 9 });
       out.walks.push(walk);
       out.census[crossing ? 'crossings' : 'walks'] += 1;
-      // The walk's deck rectangle, in ENU, for the planting block-list. The
+      // A walk that rides a committed deck registers the planks as a surface
+      // the walker stands on (T-0119) — see `walkableDecks` above.
+      if (Number.isFinite(walk.deck_m) && Array.isArray(walk.deck_span_local_enu_m)
+          && walk.deck_span_local_enu_m.length >= 3) {
+        out.walkableDecks.push({
+          id: `${walk.id}__footway`,
+          y: walk.deck_m + (walk.rise_m ?? 0.11),
+          pts: walk.deck_span_local_enu_m,
+        });
+      }
+      // The walk's deck rectangles, in ENU, for the planting block-list — one
+      // per centreline segment, so a polyline blocks its whole run. The
       // builders work in world x/z; this stays in the (e, n) frame the flora
       // layer tests in. Exact width on purpose - a tuft leaning over the edge
       // is a verge, a tuft rooted mid-deck is a hole in the model.
-      const [wa, wb] = walk.centreline_local_enu_m ?? [];
-      if (wa && wb) {
+      for (let i = 0; i + 1 < line.length; i += 1) {
+        const wa = line[i];
+        const wb = line[i + 1];
         const de = wb[0] - wa[0];
         const dn = wb[1] - wa[1];
         const wl = Math.hypot(de, dn);
-        if (wl >= 0.5) {
-          const hw = (walk.width_m ?? 1.83) / 2;
-          const pe = (-dn / wl) * hw;
-          const pn = (de / wl) * hw;
-          out.keepOut.push({
-            id: `${walk.belongs_to}__walk`,
-            pts: [[wa[0] + pe, wa[1] + pn], [wb[0] + pe, wb[1] + pn],
-              [wb[0] - pe, wb[1] - pn], [wa[0] - pe, wa[1] - pn]],
-          });
-        }
+        if (wl < 0.5) continue;
+        const hw = (walk.width_m ?? 1.83) / 2;
+        const pe = (-dn / wl) * hw;
+        const pn = (de / wl) * hw;
+        out.keepOut.push({
+          id: `${walk.belongs_to}__walk`,
+          pts: [[wa[0] + pe, wa[1] + pn], [wb[0] + pe, wb[1] + pn],
+            [wb[0] - pe, wb[1] - pn], [wa[0] - pe, wa[1] - pn]],
+        });
       }
     }
     for (const post of record.posts ?? []) {
@@ -495,7 +598,7 @@ export async function createFrontage({
       boards.push({ ...board, level });
     }
   }
-  if (!buf.pos.length) {
+  if (!buf.pos.length && !chunks.length) {
     if (out.census.records) {
       problems.push('frontage: the records loaded and not one board was laid');
     }
@@ -539,7 +642,29 @@ export async function createFrontage({
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   group.add(mesh);
-  out.census.meshes = 1;
+
+  // The chunked walks (T-0119): one small mesh per polyline segment, sharing
+  // the layer's material and render order, each with its own bounding sphere so
+  // a reach of the river walk behind the camera culls instead of drawing. The
+  // pick carries the owner on the mesh itself — a chunk is one walk's timber
+  // and nothing else, so it needs no face-span arithmetic.
+  const chunkMeshes = [];
+  for (const chunk of chunks) {
+    const cgeo = new THREE.BufferGeometry();
+    cgeo.setAttribute('position', new THREE.Float32BufferAttribute(chunk.buf.pos, 3));
+    cgeo.setAttribute('normal', new THREE.Float32BufferAttribute(chunk.buf.nrm, 3));
+    cgeo.setAttribute('_confidence', new THREE.Float32BufferAttribute(chunk.buf.conf, 1));
+    cgeo.computeBoundingSphere();
+    const cmesh = new THREE.Mesh(cgeo, mat);
+    cmesh.renderOrder = 1;                 // same street-decal ordering as above
+    cmesh.name = 'frontage-chunk';
+    cmesh.castShadow = true;
+    cmesh.receiveShadow = true;
+    cmesh.userData.pickId = chunk.pickId;
+    group.add(cmesh);
+    chunkMeshes.push(cmesh);
+  }
+  out.census.meshes = group.children.length;
 
   const letters = makeLettering(boards);
   let letterMat = null;
@@ -568,27 +693,40 @@ export async function createFrontage({
     letterMesh.castShadow = false;
     letterMesh.receiveShadow = false;
     group.add(letterMesh);
-    out.census.meshes = 2;
+    out.census.meshes = group.children.length;
     out.lettering = letters.text;
   }
   group.userData.census = out.census;
 
   const raycaster = new THREE.Raycaster();
-  /** The building this walk or post belongs to, or null. */
+  /**
+   * What a pick on this layer answers: the id of the building (or, for a
+   * record that is its own subject, the walk) the timber belongs to — plus,
+   * when the layer holds its own card for that id, the registry-shaped record
+   * main.js hands the popup when the registry has nothing under it (T-0119).
+   */
   out.pickAt = (ndc, camera) => {
     if (!camera) return null;
     raycaster.setFromCamera(ndc ?? new THREE.Vector2(0, 0), camera);
     raycaster.far = Math.max(400, camera.position.y * 4);
-    const hits = raycaster.intersectObject(mesh, false);
+    const hits = raycaster.intersectObjects([mesh, ...chunkMeshes], false);
     if (!hits.length) return null;
     const hit = hits[0];
-    const span = spans.find((sp) => hit.faceIndex >= sp.from && hit.faceIndex < sp.to);
-    if (!span) return null;
-    return { id: span.id, point: hit.point.clone(), distance: hit.distance };
+    let id = hit.object.userData.pickId ?? null;
+    if (!id) {
+      const span = spans.find((sp) => hit.faceIndex >= sp.from && hit.faceIndex < sp.to);
+      if (!span) return null;
+      id = span.id;
+    }
+    return {
+      id, point: hit.point.clone(), distance: hit.distance,
+      record: cards.get(id) ?? null,
+    };
   };
 
   out.dispose = () => {
     geo.dispose();
+    for (const c of chunkMeshes) c.geometry.dispose();
     mat.dispose();
     if (letters) { letters.geo.dispose(); letters.texture.dispose(); }
     if (letterMat) letterMat.dispose();

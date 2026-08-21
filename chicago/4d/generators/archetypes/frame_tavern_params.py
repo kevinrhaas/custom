@@ -91,7 +91,7 @@ class FrameTavernParams:
     # A small flat-hooded surround on the facade's centred entrance — the
     # Sauganash's, drawn by both street views (T-0092). Frontage scheme only:
     # the gable_front scheme dresses its own doors. Sizes are the archetype's;
-    # docs/LIBERTIES.md L153 owns them.
+    # docs/LIBERTIES.md L154 owns them.
     entrance_frontispiece: bool = False
     # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
     # the one rhythm every frame building wore until T-0049 — and stays the default
@@ -167,7 +167,7 @@ class FrameTavernParams:
     # entry read off the 2026-08-18 brief's views (T-0092). Separate flags
     # because the evidence separates: two views draw the door, only the
     # engraving draws the hood. Leaf and hood sizes are the archetype's;
-    # docs/LIBERTIES.md L153 owns them.
+    # docs/LIBERTIES.md L154 owns them.
     log_wing_door: bool = False
     log_wing_porch_hood: bool = False
 
