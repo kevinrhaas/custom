@@ -111,7 +111,7 @@ const VERSION = '0.1.0';
  *   measurement that decided it.
  *
  * Measured together at the same stand: desktop 668,293 → 584,761 of 600,000,
- * 55 → 49 draw calls. Recorded in docs/LIBERTIES.md L155, which is L121's
+ * 55 → 49 draw calls. Recorded in docs/LIBERTIES.md L156, which is L121's
  * entry for the wood one layer over.
  */
 const DETAIL = {

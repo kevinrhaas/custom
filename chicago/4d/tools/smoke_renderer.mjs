@@ -1754,16 +1754,16 @@ for (const [label, viewport, touch] of [
     // A rigid mesh takes ONE anchor, and the contract anchors it at the LOWEST
     // ground under it (buildings.groundUnder; the "shares the terrain surface"
     // check gates that bedding at 3 m). For the stockade that is the bank foot
-    // under the north-west bastion — and since the mound raise of v202 the
-    // parade-side ground stands ~2.5 m over that anchor, so from the fort road
-    // only ~1.2 m of picket shows and a level gaze sails over the wall into
-    // the compound. Measured 2026-08-20 and filed as T-0125 with the numbers;
-    // the remedy (stepped bake, mound, or placement) is a judgement about the
-    // reconstruction and waits on the owner. The stand here is the bank foot,
-    // where wall and anchor still meet and the full twelve feet is rendered
-    // fact — so this gate answers for the BAKE whatever becomes of the mound,
-    // and the parade-side clearance is deliberately not asserted either way:
-    // that number is exactly what T-0125 exists to settle.
+    // under the north-west bastion, and the stand below is there — where wall
+    // and anchor meet and the full twelve feet is rendered fact, so this gate
+    // answers for the BAKE whatever else moves.
+    //
+    // It once answered for the bake alone. The mound raise of v202 left the
+    // parade standing ~2.5 m over that anchor, so from the fort road only
+    // ~1.2 m of picket showed; T-0125 measured it and the owner ruled that the
+    // GROUND should give (2026-08-21). It did — the bank face at the fort
+    // narrows to 8 m, L155 — and the parade side is now gated too, at the
+    // bottom of this block, instead of being left open.
     const fortPair = await page.evaluate(() => {
       const a = window.__chicago4d;
       const bounds = a.buildings.instanceBounds();
@@ -1803,6 +1803,17 @@ for (const [label, viewport, touch] of [
         gardenCard = document.querySelector('#popup h2')?.textContent ?? '';
       }
       a.popup.close();
+      // The parade side, facing the south wall — the approach T-0125 was
+      // opened on. NOT the middle of that wall: a level gaze from about
+      // (1148, 189) returns nothing at all, because it goes straight through
+      // the SOUTH GATEWAY into the parade beyond. Kinzie and Andreas both
+      // state gates north and south, the record builds them, and a stand
+      // aimed at the doorway measures the doorway. This one is offset east of
+      // it, onto wall.
+      a.walker.teleport({ local_e: 1155.0, local_n: 190.0, yaw_deg: 8, pitch_deg: 0 });
+      a.step();
+      const paradeEyeY = a.walker.state.eyeY;
+      const paradeHit = a.pick({ x: 0, y: 0 });
       return {
         stockade: {
           statedM: stated('fort_dearborn_palisade', 'picket_height_m'),
@@ -1822,6 +1833,11 @@ for (const [label, viewport, touch] of [
           levelPick: levelHit?.id ?? null,
           aims: [...new Set(aims)],
           card: gardenCard,
+        },
+        parade: {
+          topY: topOf('fort_dearborn_palisade'),
+          eyeY: paradeEyeY,
+          levelPick: paradeHit?.id ?? null,
         },
       };
     });
@@ -1857,6 +1873,31 @@ for (const [label, viewport, touch] of [
       && !/stockade/.test(fortPair.garden.card),
       `15 aims returned [${fortPair.garden.aims.join(', ') || 'nothing'}], `
       + `card "${fortPair.garden.card}"`);
+    // T-0125, settled. The wall used to stand at 5.06 m over a parade at 3.65 m
+    // — 1.41 m of picket against a 1.68 m eye, so a level gaze crossed the wall
+    // into the compound and a visitor walked up to a twelve-foot stockade that
+    // reached his chest. The ground gave, on the owner's ruling: the bank face
+    // at the fort narrows to 8 m (L155) and the north wall's ground rises
+    // 1.26 → 2.57 m, which lifts the anchor and stands 2.34 m of picket — a
+    // little under eight feet — over the parade, where four feet showed.
+    //
+    // The bar is 0.5 m of wall over the eye: the same bar its sibling check
+    // above holds for the same property at the bank foot, and a bar this
+    // ground can keep. The full twelve feet from the parade would need the
+    // north wall's ground to equal the parade's exactly, and across a 4.5 m
+    // gap to the waterline that means a vertical face of earth at the river.
+    // That is not ground, so it is not built; a stepped or draped bake
+    // (T-0125 option 1) is the route to full height everywhere if it is ever
+    // wanted. What this gate holds is that a visitor cannot see over the wall.
+    check(`${label}: the stockade stands over a walker's eye from the parade side`,
+      fortPair.parade.topY !== null
+      && fortPair.parade.topY - fortPair.parade.eyeY >= 0.5,
+      `wall top y ${fortPair.parade.topY?.toFixed(2)}, `
+      + `eye y ${fortPair.parade.eyeY?.toFixed(2)} at the fort road `
+      + `(need 1.0 m of wall over the eye)`);
+    check(`${label}: a level gaze from the parade side stops at the stockade`,
+      fortPair.parade.levelPick === 'fort_dearborn_palisade',
+      `level pick returned ${fortPair.parade.levelPick ?? 'nothing'}`);
 
     // --- the business signboards (T-0039) ------------------------------------
     //
