@@ -24,10 +24,20 @@
  *    generalised it to two dozen boards, and it generalises again with force:
  *    nothing this project holds says what was in any barrel in Chicago on this
  *    date, still less whose it was.
- *  * It is ONE draw call for the whole layer, like the fences and the boards —
- *    and it stayed one draw call when the canvas arrived. A tilt is not timber
- *    and must not read as timber, so the layer carries a per-vertex colour and
- *    keeps a single material, rather than growing a second mesh for one arch.
+ *  * It carries ONE MATERIAL and draws in CULLING-SIZED CHUNKS (T-0064). It was
+ *    one draw call for the whole layer for as long as the layer was a hundred
+ *    and fifty barrels on twenty-six frontages and four wagons — and it kept
+ *    that one call when the canvas arrived, because a tilt is not timber and
+ *    must not read as timber, so the tone moved onto the VERTICES rather than
+ *    into a second material. Then T-0064 put sixty-four more wagons across the whole
+ *    town, and a single geometry spanning the whole town has a bounding sphere
+ *    no frustum ever culls: every wagon in Chicago would draw in every frame,
+ *    including the ones behind the camera. T-0115 measured exactly that on the
+ *    fences and named it the largest free saving left in the scene; T-0119 fixed
+ *    it for the river walk and T-0067 for the fences. So the goods now go into
+ *    `CHUNK_M`-square buckets by where they stand, one mesh each, all on the
+ *    same material — and the draw-call principle bends exactly as far as culling
+ *    needs it to and no further.
  *  * It marks itself. Every vertex carries `_confidence` at `reconstructed`,
  *    because the FACT of goods on these frontages is reconstructed — the
  *    weakest thing deciding that the vertex exists at all. So the whole layer
@@ -46,6 +56,16 @@
  *    wall; AGENTS.md's standing constraint is not relaxed by a plate, so what is
  *    taken from the picture is the bench and the sitters stay reference. A bench
  *    with nobody on it is the honest half of that image.
+ *  * It draws NO DRAFT ANIMALS either, and after T-0064 that is the constraint
+ *    with the most geometry hanging off it. Sixty-eight wagons — farm boxes,
+ *    covered emigrant wagons and two-wheeled carts — stand at the verges of this
+ *    town's streets and in its working yards — and every one of them stands
+ *    UNHITCHED, because this project models no animal in the scene at all
+ *    (`fauna.js` is a card, not a herd). A wagon's tongue and a cart's shafts lie
+ *    DOWN ON THE GROUND at their own inclination, and the covered wagons and the
+ *    yard wagons have an ox-yoke lying on the grass beside them. The yoke is the
+ *    honest half of a team, the same way the empty bench is the honest half of
+ *    the Trowbridge sitters.
  */
 
 import * as THREE from 'three';
@@ -65,7 +85,20 @@ const LEVEL = { attested: 0, documented: 0, inferred: 0.5, reconstructed: 1 };
  */
 const BARREL_SIDES = 10;
 const WHEEL_SIDES = 12;
-const WHEEL_SPOKES = 6;
+/**
+ * T-0064 CUT TWO OF THESE, and both cuts are the same argument the barrel's
+ * missing hoops already make: triangles spent on something the eye cannot
+ * resolve. The wheel keeps its 12 sides — a 1.37 m wheel at 10 would show its
+ * facets to anyone standing beside it — but a wheel used to carry SIX spoke
+ * boxes (twelve spokes' worth) where five reads identically at any distance a
+ * visitor can be, and its hub was a 10-sided cask 9 cm in radius, which is a
+ * cylinder drawn finer than the plank next to it. Together that is 32 triangles off
+ * every wheel — 128 off a four-wheeled wagon, 64 off a cart, 7,744 across the
+ * sixty-eight now standing — and it is part of what pays for them (T-0115's
+ * ledger).
+ */
+const WHEEL_SPOKES = 5;
+const HUB_SIDES = 6;
 const WHEEL_RIM_M = 0.09;    // the felloe's radial depth
 const WHEEL_T_M = 0.07;      // the tyre's width
 const HUB_R_M = 0.09;
@@ -121,6 +154,28 @@ const CANVAS_COLOUR = 0xbfb49b;
 
 /** The tilt: how many facets the canvas arch is drawn with. */
 const TILT_SEGS = 8;
+
+/**
+ * THE CART'S SHAFTS AND THE YOKE'S BOWS (T-0064) — sections only, as everywhere
+ * else on this layer. How long a shaft is and how wide a yoke's beam are the
+ * record's claims (`cart_m`, `ox_yoke_m`); how thick the stick is drawn is the
+ * renderer's, exactly as the barrel's stave count and the wheel's spokes are.
+ */
+const SHAFT_T_M = 0.045;
+const CART_SHAFT_GAUGE_M = 0.62;   // between the two shafts, at their roots
+const YOKE_BOW_DROP_M = 0.10;      // how far a bow's end shows below the beam
+
+/**
+ * How far a chunk may reach before the layer starts a new one, in metres of
+ * ground. Deliberately larger than the fences' 30 m: a fence is a continuous run
+ * of very small boxes and chunking it finely costs nothing, while the goods are
+ * a few dozen isolated objects spread over a square kilometre — small buckets
+ * here would buy culling at the price of a draw call per wagon, and draw calls
+ * are the tightest number in this scene (T-0115). At 100 m a chunk is about a
+ * platted block and a half, which is the distance over which a visitor either
+ * sees all of it or none of it.
+ */
+const CHUNK_M = 100;
 
 /** The shed's roof boards, as thick as a board and no thicker. */
 const DECK_T_M = 0.04;
@@ -228,9 +283,12 @@ function pushBoxV(buf, c, ea, eb, ec0, level) {
  *
  * `sides` staves gives 4·sides side triangles and 2·(sides−2) head triangles;
  * at 10 that is 56 for a whole barrel, which is what lets a hundred and fifty of
- * them cost less than one building.
+ * them cost less than one building. It defaults to a cask's ten and is passed
+ * down to six for a WHEEL HUB, which is the same solid at a fifth of the size
+ * and does not need a cask's roundness (T-0064).
  */
-function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level) {
+function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level,
+  sides = BARREL_SIDES) {
   const [ax, ay, az] = axis;
   const [rx, ry, rz] = right;
   // the third axis of the frame, right × axis
@@ -245,8 +303,8 @@ function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level) {
   const half = len / 2;
   const ring = (t, r) => {
     const out = [];
-    for (let i = 0; i < BARREL_SIDES; i += 1) {
-      out.push(at(t, r, (i / BARREL_SIDES) * Math.PI * 2));
+    for (let i = 0; i < sides; i += 1) {
+      out.push(at(t, r, (i / sides) * Math.PI * 2));
     }
     return out;
   };
@@ -260,8 +318,8 @@ function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level) {
     const L = Math.hypot(dx, dy, dz) || 1;
     return [dx / L, dy / L, dz / L];
   };
-  for (let i = 0; i < BARREL_SIDES; i += 1) {
-    const j = (i + 1) % BARREL_SIDES;
+  for (let i = 0; i < sides; i += 1) {
+    const j = (i + 1) % sides;
     for (const [a, b] of [[lo, mid], [mid, hi]]) {
       tri(buf, a[i], b[i], b[j], nOf(b[i], 0), level);
       tri(buf, a[i], b[j], a[j], nOf(a[i], 0), level);
@@ -269,7 +327,7 @@ function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level) {
   }
   for (const [ringPts, sign] of [[lo, -1], [hi, 1]]) {
     const n = [ax * sign, ay * sign, az * sign];
-    for (let i = 1; i < BARREL_SIDES - 1; i += 1) {
+    for (let i = 1; i < sides - 1; i += 1) {
       if (sign > 0) tri(buf, ringPts[0], ringPts[i], ringPts[i + 1], n, level);
       else tri(buf, ringPts[0], ringPts[i + 1], ringPts[i], n, level);
     }
@@ -356,7 +414,7 @@ function pushWheel(buf, cx, cy, cz, axle, radius, level) {
   }
   // the hub
   pushBarrel(buf, cx, cy, cz, axle, [rx, 0, rz], WHEEL_T_M * 2.2, HUB_R_M, HUB_R_M * 0.8,
-    level);
+    level, HUB_SIDES);
 }
 
 /**
@@ -409,6 +467,43 @@ function pushTilt(buf, cx, cy, cz, fx, fz, sx, sz, halfLen, halfW, rise, level) 
     tri(buf, a, c, b, flip, level);
     tri(buf, a, d, c, flip, level);
   }
+}
+
+/**
+ * A POLE LYING DOWN — a wagon's tongue, a cart's shaft — from its root at the
+ * vehicle to its tip resting on the grass. Factored out of `buildWagon` when
+ * T-0064 gave the cart a pair of them: the arithmetic that settles where the tip
+ * lands is the same arithmetic in both places, and two copies of a fixed point
+ * is two chances to get it wrong.
+ *
+ * `rootAlong`/`rootY` are where the pole leaves the vehicle, `len` is its own
+ * length (NOT its horizontal run — the recorded number is the stick), and
+ * `across` offsets it sideways so a cart's two shafts run either side of where
+ * an animal would be if one were drawn, which one never is.
+ */
+function pushPole(buf, x, z, base, fx, fz, sx, sz, rootAlong, rootY, len, across,
+  half, level) {
+  // The tip rests ON the ground rather than in it, so its centre sits half the
+  // pole's VERTICAL section above the grass — which is `half / cos θ`, and θ is
+  // itself set by the drop. One pass of the fixed point settles it to a hundredth
+  // of a millimetre at these inclinations, so it does not need a loop.
+  const drop0 = Math.max(rootY - base - half, 0);
+  const cos0 = Math.sqrt(Math.max(len ** 2 - drop0 ** 2, 0)) / (len || 1);
+  const tipY = base + half / Math.max(cos0, 1e-6);
+  const drop = Math.max(rootY - tipY, 0);
+  const run = Math.sqrt(Math.max(len ** 2 - drop ** 2, 0));
+  const midAlong = rootAlong + run / 2;
+  const midY = (rootY + tipY) / 2;
+  const poleLen = Math.hypot(run, drop) || 1;
+  const pa = [(fx * run) / poleLen, -drop / poleLen, (fz * run) / poleLen];
+  const pb = [sx, 0, sz];
+  const pc = [pa[1] * pb[2] - pa[2] * pb[1], pa[2] * pb[0] - pa[0] * pb[2],
+    pa[0] * pb[1] - pa[1] * pb[0]];
+  pushBoxV(buf,
+    [x + fx * midAlong + sx * across, midY, z + fz * midAlong + sz * across],
+    [pa[0] * (poleLen / 2), pa[1] * (poleLen / 2), pa[2] * (poleLen / 2)],
+    [pb[0] * half, pb[1] * half, pb[2] * half],
+    [pc[0] * half, pc[1] * half, pc[2] * half], level);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -613,33 +708,8 @@ function buildWagon(buf, wagon, form, terrain, level, problems) {
   // The recorded 2.75 m is now the pole's LENGTH rather than its horizontal
   // run, which is what the number means: the tip lands 2.71 m ahead of the body
   // instead of 2.75 m, well inside the 4.6 m the wagon is measured by.
-  const halfT = TONGUE_T_M / 2;
-  const rootAlong = L / 2;
-  const rootY = base + form.wagonFrontWheel / 2;
-  // The tip rests ON the ground rather than in it, so its centre sits half the
-  // pole's VERTICAL section above the grass — which is `halfT / cos θ`, and θ
-  // is itself set by the drop. One pass of the fixed point settles it to a
-  // hundredth of a millimetre at this inclination, so it does not need a loop.
-  const drop0 = Math.max(rootY - base - halfT, 0);
-  const cos0 = Math.sqrt(Math.max(form.wagonTongue ** 2 - drop0 ** 2, 0))
-    / form.wagonTongue;
-  const tipY = base + halfT / Math.max(cos0, 1e-6);
-  const drop = Math.max(rootY - tipY, 0);
-  const run = Math.sqrt(Math.max(form.wagonTongue ** 2 - drop ** 2, 0));
-  const tipAlong = rootAlong + run;
-  const midAlong = (rootAlong + tipAlong) / 2;
-  const midY = (rootY + tipY) / 2;
-  // The pole's own frame: down its inclination, across the wagon, and the third
-  // axis from the cross of those two so the section stays square to the stick.
-  const poleLen = Math.hypot(run, drop) || 1;
-  const pa = [(fx * run) / poleLen, -drop / poleLen, (fz * run) / poleLen];
-  const pb = [sx, 0, sz];
-  const pc = [pa[1] * pb[2] - pa[2] * pb[1], pa[2] * pb[0] - pa[0] * pb[2],
-    pa[0] * pb[1] - pa[1] * pb[0]];
-  pushBoxV(buf, [x + fx * midAlong, midY, z + fz * midAlong],
-    [pa[0] * (poleLen / 2), pa[1] * (poleLen / 2), pa[2] * (poleLen / 2)],
-    [pb[0] * halfT, pb[1] * halfT, pb[2] * halfT],
-    [pc[0] * halfT, pc[1] * halfT, pc[2] * halfT], level);
+  pushPole(buf, x, z, base, fx, fz, sx, sz, L / 2,
+    base + form.wagonFrontWheel / 2, form.wagonTongue, 0, TONGUE_T_M / 2, level);
   // AND THE TILT, on the wagons the record marks covered. The canvas springs
   // from the body's top rail, is pulled a little past the end bows, and is the
   // only thing on this layer drawn in something other than the timber tone.
@@ -649,7 +719,96 @@ function buildWagon(buf, wagon, form, terrain, level, problems) {
     pushTilt(buf, x, bed + H, z, fx, fz, sx, sz, L / 2 + over, W / 2, rise, level);
     buf.tint = buf.timber;
   }
+  if (wagon.yoke) pushYoke(buf, x, z, base, fx, fz, sx, sz, form, L, level);
   return true;
+}
+
+/**
+ * A TWO-WHEELED CART (T-0064), and the whole reason it exists is that "more
+ * wagons all over the place" is not one vehicle repeated sixty times. One axle,
+ * tall wheels, a short box sitting straight on the axle because there is no
+ * second one to balance against, and a pair of SHAFTS instead of a tongue —
+ * down on the grass at their own inclination, because nothing is in them and
+ * nothing ever will be.
+ *
+ * Everything it is made of is already here: the wheel, the box and the pole are
+ * the wagon's own primitives, and the only numbers it adds are the record's
+ * `cart_m`. It costs a little over half a farm wagon's triangles, which is what
+ * lets the lanes of this town have vehicles on them at all.
+ */
+function buildCart(buf, wagon, form, terrain, level, problems) {
+  const at = wagon.at_local_enu_m;
+  if (!Array.isArray(at) || at.length !== 2) return false;
+  const base = groundAt(terrain, at[0], at[1]);
+  if (base === null) {
+    problems.push(`yard: ${wagon.id} has no ground under it — no cart is drawn`);
+    return false;
+  }
+  const b = ((wagon.bearing_deg ?? 0) * Math.PI) / 180;
+  const fx = Math.sin(b);
+  const fz = -Math.cos(b);
+  const sx = Math.cos(b);
+  const sz = Math.sin(b);
+  const x = at[0];
+  const z = -at[1];
+  const [L, W, H, wheelD, bedY, shaft] = form.cart;
+  const bed = base + bedY;
+  // the box: a floor and four sides, the wagon's own construction at the cart's
+  // own size.
+  pushBox(buf, x, bed, z, fx, fz, L / 2, W / 2, 0.035, level);
+  for (const s of [-1, 1]) {
+    pushBox(buf, x + sx * s * (W / 2), bed + H / 2, z + sz * s * (W / 2),
+      fx, fz, L / 2, 0.03, H / 2, level);
+    pushBox(buf, x + fx * s * (L / 2), bed + H / 2, z + fz * s * (L / 2),
+      sx, sz, W / 2, 0.03, H / 2, level);
+  }
+  // ONE axle, under the box's middle where a cart's has to be: the load is
+  // balanced over it rather than carried between two of them.
+  const r = wheelD / 2;
+  const axY = base + r;
+  pushBox(buf, x, axY, z, sx, sz, W / 2 + WHEEL_T_M, AXLE_T_M / 2, AXLE_T_M / 2,
+    level);
+  for (const s of [-1, 1]) {
+    pushWheel(buf, x + sx * s * (W / 2 + WHEEL_T_M), axY,
+      z + sz * s * (W / 2 + WHEEL_T_M), [sx * s, 0, sz * s], r, level);
+  }
+  // And the two shafts, either side of the empty ground where an animal would
+  // stand if this project drew one, which it does not.
+  for (const s of [-1, 1]) {
+    pushPole(buf, x, z, base, fx, fz, sx, sz, L / 2, bed - 0.035, shaft,
+      s * (CART_SHAFT_GAUGE_M / 2), SHAFT_T_M / 2, level);
+  }
+  if (wagon.yoke) pushYoke(buf, x, z, base, fx, fz, sx, sz, form, L, level);
+  return true;
+}
+
+/**
+ * THE OX-YOKE LAID BY — a beam and its two bows, lying flat on the grass beside
+ * a wagon whose team is out. It is the one object on this layer that exists
+ * BECAUSE of what this project refuses to draw: there are no animals in this
+ * scene, so a covered wagon standing with its tongue on the ground and nothing
+ * else to say for itself reads as abandoned rather than outspanned. The yoke is
+ * the honest half of a team, exactly as the Green Tree's empty bench is the
+ * honest half of the sitters in its plate.
+ *
+ * Laid ACROSS the wagon's line, a little ahead of the body and out on the near
+ * side, which is where a yoke comes off. The bows are drawn as two short sticks
+ * dropping from the beam's ends rather than as bent timber: a bow is a curve,
+ * and a curve this small is triangles spent on something a visitor reads as two
+ * pegs either way.
+ */
+function pushYoke(buf, x, z, base, fx, fz, sx, sz, form, bodyL, level) {
+  const [beam, sq, bow, bowSq] = form.yoke;
+  const along = bodyL / 2 + 0.55;
+  const across = form.yokeOffset;
+  const cx = x + fx * along + sx * across;
+  const cz = z + fz * along + sz * across;
+  // The beam lies across the wagon's own line, flat on the ground.
+  pushBox(buf, cx, base + sq / 2, cz, sx, sz, beam / 2, sq / 2, sq / 2, level);
+  for (const s of [-1, 1]) {
+    pushBox(buf, cx + sx * s * (beam / 2 - bowSq), base + sq + bow / 2 - YOKE_BOW_DROP_M,
+      cz + sz * s * (beam / 2 - bowSq), fx, fz, bowSq / 2, bowSq / 2, bow / 2, level);
+  }
 }
 
 /**
@@ -788,6 +947,12 @@ function readForm(record) {
     benchPlank: v('bench_plank_m', 0.045),
     wagonTilt: v('wagon_tilt_m', [1.1, 0.12]),
     shedTimber: v('shed_timber_m', [0.14, 0.16]),
+    // T-0064's two additions: the two-wheeled cart and the yoke laid by. Same
+    // contract as everything above — the record owns the claim, this file owns
+    // only what a triangle is made of.
+    cart: v('cart_m', [1.98, 1.07, 0.5, 1.42, 0.86, 2.44]),
+    yoke: v('ox_yoke_m', [1.42, 0.12, 0.34, 0.05]),
+    yokeOffset: 1.35,
   };
 }
 
@@ -809,7 +974,7 @@ export async function createYardGoods({
     benches: [],
     sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
-      benches: 0, sheds: 0, refused: 0 },
+      byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0 },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -845,96 +1010,141 @@ export async function createYardGoods({
    */
   const timber = new THREE.Color(GOODS_COLOUR);
   const canvasTone = new THREE.Color(CANVAS_COLOUR);
-  const buf = {
-    pos: [], nrm: [], conf: [], col: [],
+  const tones = {
     timber: [timber.r, timber.g, timber.b],
     canvas: [canvasTone.r, canvasTone.g, canvasTone.b],
-    tint: [timber.r, timber.g, timber.b],
   };
   /**
-   * WHICH BUSINESS A TRIANGLE BELONGS TO. The layer is one draw call, so a hit
-   * on the mesh knows nothing about which barrel it landed on unless each
-   * frontage banks the half-open range of triangles it emitted — the same span
-   * table `signage.js` keeps, and for the same reason.
+   * THE CHUNKS, and what decides which one a thing goes in: WHERE IT STANDS.
+   * Every object on this layer is anchored at a point in local ENU, so the
+   * bucket is that point's `CHUNK_M` cell and nothing else — no sorting, no
+   * clustering pass, and the same answer every load. Objects that belong to one
+   * frontage go in one bucket even if a case at the far end of a long wall would
+   * technically fall over a boundary: a frontage is one pick target and one
+   * bounding sphere's worth of ground, and splitting it would buy nothing.
+   *
+   * WHICH BUSINESS A TRIANGLE BELONGS TO is still a span table, per chunk. The
+   * fences answered the same question with `userData.pickId` once they chunked,
+   * because a fence chunk is one record's timber — but a yard chunk is a block
+   * of the town and holds three shops' barrels and a wagon that belongs to
+   * nobody, so the range each object emitted is still the only honest answer.
    */
-  const spans = [];
+  const chunks = new Map();
+  const chunkAt = (e, n) => {
+    const key = `${Math.floor(e / CHUNK_M)},${Math.floor(n / CHUNK_M)}`;
+    let chunk = chunks.get(key);
+    if (!chunk) {
+      chunk = {
+        key,
+        buf: { pos: [], nrm: [], conf: [], col: [], ...tones, tint: tones.timber },
+        spans: [],
+      };
+      chunks.set(key, chunk);
+    }
+    return chunk;
+  };
+  /** The anchor a group of objects is bucketed by — the first one that has one. */
+  const anchorOf = (things) => {
+    for (const t of things) {
+      const at = t?.at_local_enu_m;
+      if (Array.isArray(at) && at.length === 2) return at;
+    }
+    return null;
+  };
+  /** Emit into one chunk, banking the triangle range under `id` if there is one. */
+  const emit = (chunk, id, draw) => {
+    const from = chunk.buf.pos.length / 9;
+    const drew = draw(chunk.buf);
+    if (!drew) return false;
+    if (id) chunk.spans.push({ id, from, to: chunk.buf.pos.length / 9 });
+    return true;
+  };
+
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`yard: ${id} — ${why}`); continue; }
     out.records.push(record);
     out.census.records += 1;
     out.census.refused += (record.refused ?? []).length;
+    out.census.wagonsRefused += (record.wagons_refused ?? []).length;
     const form = readForm(record);
     const level = LEVEL[record.existence?.confidence] ?? 1;
     for (const frontage of record.frontages ?? []) {
-      const from = buf.pos.length / 9;
+      const anchor = anchorOf(frontage.items ?? []);
+      if (!anchor) continue;
+      const chunk = chunkAt(anchor[0], anchor[1]);
       let drew = 0;
+      const from = chunk.buf.pos.length / 9;
       for (const item of frontage.items ?? []) {
-        if (!buildItem(buf, item, form, terrain, LEVEL[frontage.confidence] ?? level,
-          problems, frontage.structure_id)) continue;
+        if (!buildItem(chunk.buf, item, form, terrain,
+          LEVEL[frontage.confidence] ?? level, problems, frontage.structure_id)) continue;
         drew += 1;
         out.census.objects += 1;
         if (item.kind === 'barrel') out.census.barrels += 1;
         if (item.kind === 'crate') out.census.crates += 1;
       }
       if (!drew) continue;
-      spans.push({ id: frontage.structure_id, from, to: buf.pos.length / 9 });
+      chunk.spans.push({ id: frontage.structure_id, from,
+        to: chunk.buf.pos.length / 9 });
       out.frontages.push(frontage);
       out.census.frontages += 1;
     }
     for (const wagon of record.wagons ?? []) {
-      const from = buf.pos.length / 9;
-      if (!buildWagon(buf, wagon, form, terrain, LEVEL[wagon.confidence] ?? level,
-        problems)) continue;
+      const at = wagon.at_local_enu_m;
+      if (!Array.isArray(at) || at.length !== 2) continue;
+      // A CART IS NOT A WAGON WITH TWO WHEELS MISSING, so the record's `kind`
+      // picks the builder rather than a flag inside one. `farm_box` is the
+      // default for a record written before T-0064 gave the field a name.
+      const build = (wagon.kind === 'cart' ? buildCart : buildWagon);
       // A wagon standing in a yard belongs to the building whose yard it is, so a
       // pick on it opens that card. `belongs_to` names it; without one the wagon
-      // is unpickable and the aim falls through, which is the fences' behaviour.
-      if (wagon.belongs_to) {
-        spans.push({ id: wagon.belongs_to, from, to: buf.pos.length / 9 });
-      }
+      // is unpickable and the aim falls through, which is the fences' behaviour —
+      // and it is the RIGHT answer for a wagon standing in a public street, which
+      // belongs to nobody this record can name.
+      if (!emit(chunkAt(at[0], at[1]), wagon.belongs_to,
+        (b) => build(b, wagon, form, terrain, LEVEL[wagon.confidence] ?? level,
+          problems))) continue;
       out.wagons.push(wagon);
       out.census.wagons += 1;
+      out.census.byKind[wagon.kind ?? 'farm_box'] =
+        (out.census.byKind[wagon.kind ?? 'farm_box'] ?? 0) + 1;
       out.census.objects += 1;
     }
     for (const bench of record.benches ?? []) {
-      const from = buf.pos.length / 9;
-      if (!buildItem(buf, bench, form, terrain, LEVEL[bench.confidence] ?? level,
-        problems, bench.belongs_to ?? bench.id)) continue;
+      const at = bench.at_local_enu_m;
+      if (!Array.isArray(at) || at.length !== 2) continue;
       // Same pick contract as the wagons: a bench against an inn's front wall
       // belongs to that inn, so aiming at it opens the inn's card.
-      if (bench.belongs_to) {
-        spans.push({ id: bench.belongs_to, from, to: buf.pos.length / 9 });
-      }
+      if (!emit(chunkAt(at[0], at[1]), bench.belongs_to,
+        (b) => buildItem(b, bench, form, terrain, LEVEL[bench.confidence] ?? level,
+          problems, bench.belongs_to ?? bench.id))) continue;
       out.benches.push(bench);
       out.census.benches += 1;
       out.census.objects += 1;
     }
     for (const shed of record.sheds ?? []) {
-      const from = buf.pos.length / 9;
-      if (!buildShed(buf, shed, form, terrain, LEVEL[shed.confidence] ?? level,
-        problems)) continue;
+      const at = shed.at_local_enu_m;
+      if (!Array.isArray(at) || at.length !== 2) continue;
       // Same pick contract as the wagons and the bench: the shed at an inn's
       // yard end belongs to that inn, so aiming at it opens the inn's card.
-      if (shed.belongs_to) {
-        spans.push({ id: shed.belongs_to, from, to: buf.pos.length / 9 });
-      }
+      if (!emit(chunkAt(at[0], at[1]), shed.belongs_to,
+        (b) => buildShed(b, shed, form, terrain, LEVEL[shed.confidence] ?? level,
+          problems))) continue;
       out.sheds.push(shed);
       out.census.sheds += 1;
       out.census.objects += 1;
     }
   }
-  if (!buf.pos.length) {
+  const built = [...chunks.values()].filter((c) => c.buf.pos.length);
+  if (!built.length) {
     if (out.census.records) {
       problems.push('yard: the records loaded and not one object was stood out');
     }
     return out;
   }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(buf.pos, 3));
-  geo.setAttribute('normal', new THREE.Float32BufferAttribute(buf.nrm, 3));
-  geo.setAttribute('_confidence', new THREE.Float32BufferAttribute(buf.conf, 1));
-  geo.setAttribute('color', new THREE.Float32BufferAttribute(buf.col, 3));
-  geo.computeBoundingSphere();
+  // Sorted by key so the scene graph is the same on every load — a chunk order
+  // that depended on Map insertion would depend on the record's own order, and a
+  // gate comparing two runs would be comparing two orders.
+  built.sort((a, b) => (a.key < b.key ? -1 : 1));
 
   /**
    * White, and the colour comes off the geometry. `<color_fragment>` multiplies
@@ -959,11 +1169,26 @@ export async function createYardGoods({
    */
   mat.customProgramCacheKey = () => 'chicago4d-yard-goods-timber';
 
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.name = 'yard';
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  group.add(mesh);
+  const meshes = [];
+  for (const chunk of built) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(chunk.buf.pos, 3));
+    geo.setAttribute('normal', new THREE.Float32BufferAttribute(chunk.buf.nrm, 3));
+    geo.setAttribute('_confidence',
+      new THREE.Float32BufferAttribute(chunk.buf.conf, 1));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(chunk.buf.col, 3));
+    // The whole point of the chunk: its own bounding sphere, around its own
+    // block of the town, so the frustum can leave it out.
+    geo.computeBoundingSphere();
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.name = 'yard-chunk';
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    mesh.userData.spans = chunk.spans;
+    group.add(mesh);
+    meshes.push(mesh);
+  }
+  out.census.chunks = meshes.length;
   group.userData.census = out.census;
 
   const raycaster = new THREE.Raycaster();
@@ -972,14 +1197,21 @@ export async function createYardGoods({
     if (!camera) return null;
     raycaster.setFromCamera(ndc ?? new THREE.Vector2(0, 0), camera);
     raycaster.far = Math.max(400, camera.position.y * 4);
-    const hits = raycaster.intersectObject(mesh, false);
+    const hits = raycaster.intersectObjects(meshes, false);
     if (!hits.length) return null;
     const hit = hits[0];
+    // The span table is the CHUNK's, so a hit resolves against the objects that
+    // chunk actually holds and a face index cannot be read against another
+    // block's table.
+    const spans = hit.object?.userData?.spans ?? [];
     const span = spans.find((sp) => hit.faceIndex >= sp.from && hit.faceIndex < sp.to);
     if (!span) return null;
     return { id: span.id, point: hit.point.clone(), distance: hit.distance };
   };
 
-  out.dispose = () => { geo.dispose(); mat.dispose(); };
+  out.dispose = () => {
+    for (const m of meshes) m.geometry.dispose();
+    mat.dispose();
+  };
   return out;
 }
