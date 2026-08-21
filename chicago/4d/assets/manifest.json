@@ -138,8 +138,8 @@
     "dearborn_street_drawbridge__draw_1834.glb": {
       "archetype": "bridge_timber",
       "baked_ao": false,
-      "bytes": 557196,
-      "inputs_sha256": "0fe11d4dbdf31e9c2d343a526237b9048a41b6071269b24367d23fbbcabc444e",
+      "bytes": 638488,
+      "inputs_sha256": "3b53192756be84f8af8b4fc0a763ed489c6a2ffeefb77de0b179b7a1f14bd937",
       "kind": "generated",
       "phase_id": "draw_1834",
       "structure_id": "dearborn_street_drawbridge"
@@ -760,7 +760,7 @@
       "archetype": "bridge_timber",
       "baked_ao": false,
       "bytes": 200972,
-      "inputs_sha256": "12ba8d4aedc89189e9ba9bdd8dc17c8e996dd9c83aa895211e50dfc4d2b953aa",
+      "inputs_sha256": "2a2efdd0ac66833a38351de5414656a4581c6ab94f6702207d8fded0e068f2f9",
       "kind": "generated",
       "phase_id": "log_1832",
       "structure_id": "north_branch_bridge"
@@ -2960,7 +2960,7 @@
       "archetype": "bridge_timber",
       "baked_ao": false,
       "bytes": 38144,
-      "inputs_sha256": "da88b4e909bfc27b7cbe25eefddf35b986590c5fe80e745073be5e2996d27f08",
+      "inputs_sha256": "9a6d185d7eaccdf3de3e347c422fa9ab949e7eaea338b3a25c02c80ca5bcaeca",
       "kind": "generated",
       "phase_id": "log_1833",
       "structure_id": "slough_log_bridge"
@@ -2969,7 +2969,7 @@
       "archetype": "bridge_timber",
       "baked_ao": false,
       "bytes": 171344,
-      "inputs_sha256": "d1ff5492686e7033e102fc73c9640d4024ac25d72c6fc8693d39ff09b938e91c",
+      "inputs_sha256": "2b3f096d831e42c36370694cc036eaf7044221e3454192a7ad64c191575cd53a",
       "kind": "generated",
       "phase_id": "log_1833",
       "structure_id": "south_branch_raft_bridge"

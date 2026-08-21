@@ -882,10 +882,24 @@ no tackle. The draw is built **closed**, which is the only state agnostic betwee
 arrangements the sources permit. `gallows_height_m` is conjectural and carries the whole frame's
 confidence, so the most conspicuous object on the crossing is the one the confidence view
 dithers hardest.
+**Evidence since, 2026-08-21: the engraving this entry asked for arrived, and the tackle is
+built.** "How to resolve" below names *an engraving* as one of the three things that would
+settle the hoist. The owner's brief of 2026-08-18 supplies two of them, and both draw chains
+falling from the frames to the draw. `form.draw_lifting_gear` has moved from `false` /
+`geometry: record_only` to `chain_hoist` at `inferred`, and the frames' bracing, the closed
+draw's leaf timber and the deck's railing came with it — all of that is **L163**, which carries
+the new inventions and the caveat that a retrospective plate is exactly the vector by which a
+later bridge's mechanism reached every modern retelling of this one. **One token has therefore
+left the `Covers:` list below — `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear` —
+and it is named here so the removal is on the record rather than silent.** The other six still
+stand: the footprint, the frames' height, the simplified overall length, the pier count, the
+pier kind and the width are as invented as they were. The entry stays out of the Resolved
+section for that reason; what was resolved is one line of it, not the liberty.
 **How to resolve:** any description of the draw's framing or its hoist — a repair contract, a
 council order, an engraving. The bridge was repaired in 1835, so a repair record is the most
-likely thing to exist.
-**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`.
+likely thing to exist. A CONTEMPORARY view, as against the retrospective plates L163 works
+from, would settle what those plates only suggest.
+**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`.
 **Recorded:** 2026-08-10.
 **Evidence since, 2026-08-19:** the ground_contact token is withdrawn. T-0046's approach
 earthworks (L147) raise Dearborn Street to the deck at both ends and the record no longer
@@ -5180,6 +5194,83 @@ Related: **L131** (the barrels, cases and the one attested wagon), **L133** (the
 wagons and its bench), **L134** (its wagon shed), **L158** (the fenced ground a wagon may and may
 not stand on), **L153** (the plank walks it may not stand on), **L156** (the tier this layer's
 shadow gives way at).
+**Recorded:** 2026-08-21.
+
+### L163 — The Dearborn drawbridge, built to its engravings: the frames' bracing, the hoist chains, a two-leaf draw and a railed deck
+
+**Covers:** `dearborn_street_drawbridge.draw_1834.form.draw_leaves`
+
+**Decision:** the 1834 Dearborn Street drawbridge gains four things it did not have between
+2026-08-11 and 2026-08-21 — **knee braces and shores in its gallows frames**, **a hoist chain
+each side of the deck at each frame**, **the joint timber of a closed two-leaf draw**, and **a
+railed deck**. The owner asked for it in as many words on 2026-08-18: *"the whole bridge area
+needs to be improved."*
+
+**Why, and it is a change of EVIDENCE rather than a change of mind.** Everything this record
+refused to build, it refused on the strength of two TEXTS — Andreas's paragraph and the
+chicagology page that transcribes it — and as a reading of a text the refusal was right and
+still is. Neither names a chain, a leaf, a brace or a rail. What the project acquired on
+2026-08-18 is a second kind of evidence: two engravings of this crossing, recorded at
+`data/sources/assets/owner_brief_2026_08_18/README.md`, images 2 and 3. They draw the frames as
+an A, chains falling from them to the draw, and the deck railed. Those are **tier-5 pictorial**
+views — retrospective, drawn decades after 1835 — and this project's standing rule for one is
+that it may drive massing, form, materials and setting as `inferred`, and may never drive a
+coordinate. Three of the four rows are graded `inferred` on that footing. The fourth,
+`draw_leaves`, is graded `reconstructed`, because it settles a MECHANISM and a plate is not
+strong enough for that.
+
+**What was invented, item by item, because none of it is on any plate at a scale that could
+be measured:**
+
+- **The bracing:** two knee braces per frame rising from the posts to the underside of the head
+  timber, reaching 1.35 m inboard; one shore per post raking 2.85 m down the span away from the
+  opening to the bearing line; 0.105 m and 0.125 m half-sections. The plate shows a braced
+  frame, not a schedule of scantlings. Everything but "it was braced, visibly, above the deck"
+  is this project's.
+- **The chains:** two per frame, one each side of the deck, running from the underside of the
+  head to the free end of that frame's leaf at the centre of the opening, outboard of the deck
+  edge so nothing crosses the footway. Drawn taut and straight and as a 0.084 m run rather than
+  as links — a chain carrying a closed leaf is in fact slack, and a catenary of links would be
+  thousands of triangles for a sag nobody can see from the bank. Their colour is a local
+  wrought-iron value declared in `generators/archetypes/bridge_timber.py`, because the material
+  sheet holds no metal at all (T-0007 owns that gap).
+- **The two leaves:** a bearing timber across the deck at each end of the opening, an edge beam
+  down each side of each leaf, and the two leaves' ends butted at the centre of the draw with a
+  25 mm joint between them. **No leaf is raised.** The deck boards run straight through
+  underneath and the timber stands 55 mm proud — a threshold, not a step — so the crossing is
+  exactly as walkable as it was and a visitor is shown where the bridge opened without being
+  told it is open.
+- **The railing:** 0.95 m rails on posts at about 2.2 m, which are the numbers
+  `bridge_timber._railing` has carried unused since 2026-08-10. No source gives a height, a
+  spacing or a section for this bridge. The archetype's default of no railing is unchanged and
+  so is its argument, which is entirely about the two LOG bridges over the branches: the 1883
+  old-settlers statement has THOSE two 'without railings, for the first few years'.
+
+**Consequence.** The most conspicuous object on the crossing was already the one the confidence
+view dithers hardest — the frames, whose height nothing states — and this entry adds three more
+dithered things around it. That is the right way round and it is also a warning: a visitor who
+turns the confidence view off sees a considered piece of civil engineering, and the honest
+statement is that its silhouette is a nineteenth-century engraver's and its dimensions are
+ours. The one claim the mesh still refuses is a leaf in the air.
+
+**The contamination risk, stated because it is the reason this is a liberty and not a finding.**
+Every modern retelling of this bridge calls it double-leaf and worked by chains, and neither
+word is in either underlying text; on the chicagology page they belong to the 1890s bascule and
+the 1907 and 1963 bridges. A retrospective engraver had the same problem and fewer scruples, so
+a plate drawn in the 1880s may be reporting the 1834 mechanism or importing a later one. That is
+precisely why the arrangement is labelled at its tier rather than argued into the texts, and why
+`form.draw_lifting_gear` still records all three readings of the written evidence and asserts
+none of them.
+
+**How to resolve:** the February 1834 proposals Andreas mentions, the trustees' specification,
+the twenty-five-dollar premium drawing, or the repair accounts of September 1834 and 1835. Any
+of the four would replace a plate with a number. A contemporary — not retrospective — view of
+the river mouth looking west would settle the silhouette on its own.
+
+Related: **L29** (the same archetype's invented pier spacing), **L157** (the material sheet the
+iron is not on), **T-0071** and its second half **T-0133** (the bank structures the same plates
+show), **T-0063** (the boats in the reach), **T-0075** (identifying these plates and making them
+source records).
 **Recorded:** 2026-08-21.
 
 ## Resolved
