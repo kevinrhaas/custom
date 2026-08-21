@@ -85,7 +85,12 @@
       "sources": [
         "kinzie_waubun_1856"
       ],
-      "note": "Wau-Bun, same sentence. The single most distinctive documented visual feature of the building."
+      "note": "Wau-Bun, same sentence. The single most distinctive documented visual feature of the building. Wau-Bun gives the COLOUR and nothing else about the leaves; since T-0092 the leaf construction is carried by shutter_type — a far weaker, single-view claim graded on its own."
+    },
+    "shutter_type": {
+      "value": "louvred",
+      "confidence": "inferred",
+      "note": "THE WEAKEST OF THE THREE VIEWS' CLAIMS, AND CARDED AS SUCH — IMAGE 10 ONLY. The Trowbridge drawing (image 10 of data/sources/assets/owner_brief_2026_08_18/README.md) is the one view that resolves the leaves at all, and it draws 'louvred shutters on the sash'; the Petford watercolour and the Braunhold engraving read at no such grain and can neither agree nor disagree, and Wau-Bun's sentence gives only the colour. One tier-5 retrospective drawing may still drive a fenestration detail as inferred — the same rule that admitted the Green Tree's plate-read chimney placement — but nothing corroborates this one, so the slats carry this attribute's confidence in the mesh rather than the attested colour's, and the brief's binaries being uncommitted, the citation is the README until T-0075 lands identifications. Slat count and pitch are the archetype's numbers: docs/LIBERTIES.md L153."
     },
     "construction": {
       "value": "balloon_frame",
@@ -127,7 +132,23 @@
         "andreas_1884_v1",
         "kurz_allison_1893"
       ],
-      "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied."
+      "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied. Since T-0092 the wing's own entrance is carried by log_wing_door and log_wing_porch_hood, each at its own grade."
+    },
+    "log_wing_door": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "THE WING KEPT ITS OWN DOOR, OPENING DIRECT TO GRADE in its street face — no stoop, no climb to the frame block's floor: the 1829 cabin's entrance surviving in use. Two of the three views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Braunhold engraving in Andreas puts the wing's shed-roofed porch over 'the door' (image 9), and the Trowbridge drawing states 'the log wing's door direct to grade' (image 10). Tier-5 retrospective views may drive fenestration as inferred and never a dimension: the leaf's size and its centred position are the archetype's numbers, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so images 9 and 10 are cited via the README until T-0075 lands identifications."
+    },
+    "log_wing_porch_hood": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "A SHED-ROOFED PORCH HOOD OVER THE WING DOOR, ON POSTS TO GRADE — IMAGE 9 ONLY: the Braunhold engraving draws 'the log wing with its shed-roofed porch over the door' (data/sources/assets/owner_brief_2026_08_18/README.md), and neither the Petford view nor the Trowbridge drawing resolves a hood either way, so this is a single-view inference and weaker than the door it shelters — the geometry carries this attribute's own confidence, not the door's. Pitch, projection and the two posts are the archetype's numbers: docs/LIBERTIES.md L153."
     },
     "roof_pitch_deg": {
       "value": 38.0,
@@ -140,10 +161,28 @@
       "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe.",
       "geometry": "simplified"
     },
+    "entrance_frontispiece": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "A SMALL FLAT-HOODED FRONTISPIECE ON THE MAIN BLOCK'S FRONT DOOR. Both street views of the 2026-08-18 owner brief draw it (data/sources/assets/owner_brief_2026_08_18/README.md): the Petford 1831 watercolour puts 'a small flat-hooded entrance frontispiece/porch on the front door' (image 8), and the Braunhold engraving in Andreas draws 'the clapboard block's wide entrance surround' (image 9). This is a door SURROUND, not the veranda the gallery attribute records as absent — the same views that show the frontispiece show no gallery, so the two claims agree rather than conflict. Tier-5 retrospective views may drive form as inferred and never a dimension: the hood and pilaster sizes are the archetype's numbers, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
+    },
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference."
+      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference. The stacks' material is carried by chimney_material since T-0092."
+    },
+    "chimney_material": {
+      "value": "brick",
+      "confidence": "inferred",
+      "note": "BRICK STACKS, AND THE COLOUR RESTS ON ONE VIEW: the Petford 1831 watercolour (image 8 of data/sources/assets/owner_brief_2026_08_18/README.md) colours both chimneys brick-red over the white clapboard — the only coloured witness to this building — and the engraved views draw masonry stacks without being able to say of what. Brick is also the plausible reading on its own terms: a hotel raised in 1831 at the settlement's centre, when brick was reaching Chicago in trade, and no period text describes the stacks either way. A single tier-5 view may drive a material as inferred; the brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
+    },
+    "roof_colour": {
+      "value": "moss_green",
+      "confidence": "inferred",
+      "note": "THE PETFORD VIEW'S TONE, AND ONLY ITS: the 1831 watercolour (image 8 of data/sources/assets/owner_brief_2026_08_18/README.md) gives the shingle roof a dark green/moss colour — weathered shingles gone green, or the painter's reading of them — and the engravings, being monochrome, can neither agree nor disagree. A single tier-5 watercolour may drive a material tone as inferred; the exact colour value is the archetype's, claimed at docs/LIBERTIES.md L153. The brief's binaries are not yet committed, so the citation is the README until T-0075 lands identifications."
     },
     "siding_exposure_m": {
       "value": 0.152,

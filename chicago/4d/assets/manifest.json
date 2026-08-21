@@ -166,7 +166,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19632,
-      "inputs_sha256": "74c3280e8150a2222c37141c50e0e6c14c99e8275c665c555ef39e1c7228e7d7",
+      "inputs_sha256": "92baaf1eb53ca7f9980584d4cf2ce01f5fd816d6fd246a9123bd558309de7e48",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "exchange_coffee_house"
@@ -319,7 +319,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 45484,
-      "inputs_sha256": "fb6c4af7a40bbd4f669ffc76821c6ddf8f52802e40715f093b51d74359b59c1d",
+      "inputs_sha256": "46cbd0f5889f6f118377f237d78bf38b4d45cfc84bd28abf0ec36e30627f6341",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
@@ -2258,7 +2258,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 20624,
-      "inputs_sha256": "8145ebe195242094b5f1fb58634928aaf09b9aab4cb9b8c49d25bdd4f41c45d9",
+      "inputs_sha256": "391922735527e4bd45a776a95f166b6b6061d531373fd3489724fccbcd8378d2",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_h2_030"
@@ -2267,7 +2267,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 20624,
-      "inputs_sha256": "2c5a42cb66ac7cc09e0303ea23408711893ee3a8f9da2437c1a369475d73fd64",
+      "inputs_sha256": "619b35454927b37fa603b3aa8e6fd6817bf797c1a57cebedb225a0c237fe4296",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_h3_045"
@@ -2276,7 +2276,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 13904,
-      "inputs_sha256": "a0cfa5f6c5a0d1136bbd20e289ace55c7016aa5e9dd7246e779b16aa0053862a",
+      "inputs_sha256": "d8131f2907d879bd115f24a31a58ebabaf53697e289d1173d20a3f410e5ae27c",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_i2_015"
@@ -2285,7 +2285,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 20628,
-      "inputs_sha256": "e59730a3431224b5e3ad9853098be02d451a74080732742c11c4e8d53ec17929",
+      "inputs_sha256": "a92c5fe3daaf34cffb3c12d942d7b87fe3a248ee802e7b4682fdccc923a7c428",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_t1_028"
@@ -2950,8 +2950,8 @@
     "sauganash_hotel__frame_1831.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
-      "bytes": 43416,
-      "inputs_sha256": "b25a3e73d7bbfaf7f4462d29375189073d0ac44e4333a5398e300d194591f6f2",
+      "bytes": 94408,
+      "inputs_sha256": "f055069f52c032c978fa0215ab03a8471599ba39e534581c692f139b937d6296",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
@@ -2996,7 +2996,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19612,
-      "inputs_sha256": "47a6d98f5fa91bf77ee32dc029041fdcf3317f7eea8fd29f997fa2b3855e1fa9",
+      "inputs_sha256": "675bb258d6de7b3b17b07766274e8f0d912b1c217b8ec97d5b934637eb381a12",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "steamboat_hotel"
@@ -3048,7 +3048,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 21528,
-      "inputs_sha256": "c18362bfd4a115e979bfaf4df25ff72351c730be9d351ac9266d3ea7b25a5954",
+      "inputs_sha256": "4ac142b10d150aa141c9d5da47607301e7d24d357a97a0c7ca2807b9a490001a",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "tremont_house_1"
@@ -3085,7 +3085,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 20248,
-      "inputs_sha256": "0908247113038a2342d132e019edbad77db8743a3644fd95c8bbcd954189e746",
+      "inputs_sha256": "53e9a471336b6a571ff8915d99ee86ab92479071444bce9768fa9bb3d3d53635",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "western_hotel"

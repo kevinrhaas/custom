@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 211, title: 'The Sauganash is dressed to its three views', kind: 'feature', ts: '2026-08-21T01:12:21.100Z', date: 'Aug 20, 2026, 8:12 PM CT',
+    items: [
+      'Chicago’s first hotel now wears what its three surviving pictures show. The log wing — the 1829 cabin the frame block was built onto — keeps its own working door, opening straight onto the ground with no step, under a small shed-roofed porch hood on two posts. And the main block’s front door gets the small flat-hooded surround both street views draw.',
+      'The chimneys are brick now, and the shingle roof carries the dark moss-green tone of the one coloured picture, an 1831 watercolour. The engravings are black and white, so both colour claims rest on that single witness, and the record says so.',
+      'The famous bright-blue shutters — the one vivid detail a period visitor actually wrote down — now hang as louvred leaves, slats and all. The slats appear in only one of the three views, the weakest of the claims, and the card grades them accordingly: aim at the hotel and the Evidence panel says which claim rests on what. In the confidence view the slats even read one grade weaker than the leaves they sit in.',
+      'Every dimension — the door leaf, the hood, the surround, the slat pitch — is invented within the views and admitted in the liberties ledger. The views are retrospective, drawn decades later; nothing new here is graded better than inferred.',
+    ] },
   { v: 210, title: 'The sloughs flow the way a prairie drain does', kind: 'fix', ts: '2026-08-21T00:28:56.813Z', date: 'Aug 20, 2026, 7:28 PM CT',
     items: [
       'The State Street slough now empties straight into the river — one reach, square to the bank, under the log bridge. As first carved, its last stretch turned east and ran thirty-odd metres along the shore, and that six-foot trench filled as a little bay in the riverbank. The bay is gone. The 1834 survey’s drawn notch in the bank, forty metres east, stays exactly as traced — evidence kept, no longer claimed as the drain’s outfall — and the record says which of the two fixed points moved and why.',

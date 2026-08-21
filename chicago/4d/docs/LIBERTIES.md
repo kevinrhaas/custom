@@ -4745,6 +4745,38 @@ requires it; this entry's Covers admits the parts that are invented outright.
 **Covers:** `green_tree_tavern.form.rear_ell`, `green_tree_tavern.form.side_additions`.
 **Recorded:** 2026-08-20.
 
+### L153 — The Sauganash's fabric from the three views: wing door and hood, frontispiece, brick and moss, and the louvre pitch
+
+**Decision:** the Sauganash Hotel (`sauganash_hotel`, frame_1831) is dressed to the three
+retrospective views of the 2026-08-18 owner brief (T-0092): the log wing gets its own door
+direct to grade — a 1.0 × 1.85 m leaf centred on the wing's street face — under a shed-roofed
+porch hood 1.7 m across, projecting 0.8 m and falling 2.12 → 1.90 m onto two slim hewn posts;
+the main block's front door gets a small flat-hooded entrance frontispiece — 0.23 m pilasters
+to 2.18 m and a flat hood slab-and-crown to 2.31 m spanning 1.9 m; the stacks turn unpainted
+brick and the shingle roof takes the Petford view's dark green/moss tone (0.20/0.26/0.17
+linear RGB); and the attested bright-blue shutters gain louvred slats, eight to the leaf.
+**Why:** images 8, 9 and 10 of `data/sources/assets/owner_brief_2026_08_18/README.md` — the
+Petford 1831 watercolour, the Braunhold/Andreas engraving and the Trowbridge drawing — draw
+all of it, and tier-5 pictorial sources may drive form, fenestration and materials as
+`inferred` and never a coordinate or a measurement. So every SCHEME here is the views' and
+every NUMBER is the archetype's: no source states a dimension of the leaf, the hood, the
+frontispiece or a slat, and both colour claims rest on the one coloured witness (the
+watercolour), the engravings being monochrome. The claims are graded value by value on the
+record at their own honest strength — the door on two views, the hood on the engraving alone,
+the louvres on the Trowbridge drawing alone, which the record's own note calls the weakest of
+the three claims.
+**Consequence:** a visitor at Lake and Market sees the wing keep its own working entrance
+under a hood, a dressed front door, brick stacks and a moss-dark roof — none of it described
+by any 1835 witness, whose one vivid sentence gives the white paint and the bright-blue
+shutters — and cannot read a single size off the mesh as evidence. The Evidence panel's
+grades say what each claim rests on; the geometry carries each claim's own confidence (the
+louvre slats are graded weaker than the leaves they sit in); this entry admits the numbers.
+**How to resolve:** T-0075's identifications would raise the citations from committed README
+paths to source records; a better scan of any of the three views could correct the sizes; a
+photograph does not exist — the hotel burned in 1851 — so the dimensions stay this entry's
+unless a measured description surfaces in Andreas p. 106 or an insurance record.
+**Recorded:** 2026-08-21.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

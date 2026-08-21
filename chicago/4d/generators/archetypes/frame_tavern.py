@@ -27,6 +27,17 @@ from archetypes.frame_tavern_params import FrameTavernParams  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_LOG, M_SHUTTER, M_GLASS = 0, 1, 2, 3, 4
+# Appended only when a record states brick stacks (chimney_material, T-0092) —
+# appended conditionally so every building without the claim keeps its exact
+# five-material list and its committed bytes.
+M_BRICK = 5
+
+# Colours the record can select beyond common.mesh's stock set. Local to this
+# archetype on purpose: common/ bytes are hashed into every archetype's mesh
+# inputs, and a colour only frame taverns read does not belong in a file whose
+# edit would stale the whole town.
+BRICK_RGBA = (0.45, 0.23, 0.17, 1.0)       # unpainted soft-mud brick
+ROOF_MOSS_RGBA = (0.20, 0.26, 0.17, 1.0)   # the Petford view's dark green/moss shingle
 
 # The exposed face per course is `params.siding_exposure_m` — a record's own mill
 # stock since T-0049, defaulting to 0.14 m (~5.5 in), which was a constant here.
@@ -107,30 +118,43 @@ def build(params: FrameTavernParams, name: str):
     # chimneys — as many stacks as the record counts. "frontage" spaces them
     # across the frontage at the depth midline (the original arrangement, kept
     # exactly so no committed building moves); "gable_ends" stands one ON the
-    # ridge line at each gable end, which is what plate "11" draws.
+    # ridge line at each gable end, which is what plate "11" draws. A record
+    # that states the stacks' material (the Sauganash's brick, off the Petford
+    # view — T-0092) recolours them and folds that claim's confidence in; the
+    # material attribute joins the worst-of only when stated, because an absent
+    # key reads as `reconstructed` and would degrade every committed stack.
+    ch_attrs = ["chimneys"] + (["chimney_material"] if params.chimney_material else [])
+    m_ch = M_BRICK if params.chimney_material == "brick" else M_ROOF
     if params.chimney_placement == "gable_ends":
-        c_ch = params.worst_conf("chimneys", "chimney_placement")
+        c_ch = params.worst_conf(*ch_attrs, "chimney_placement")
         inset = 0.6
         spots = ([(inset, d / 2), (w - inset, d / 2)] if w >= d
                  else [(w / 2, inset), (w / 2, d - inset)])
         for cx, cy in spots:
             b.add_box(cx - 0.45, cy - 0.45, wall_z, cx + 0.45, cy + 0.45,
-                      ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
+                      ridge_z + 0.55, c_ch, m_ch, skip=("bottom",))
     else:
-        c_ch = params.conf("chimneys")
+        c_ch = params.worst_conf(*ch_attrs) if len(ch_attrs) > 1 else params.conf("chimneys")
         for fx in _stack_fractions(params.chimneys):
             cx = w * fx
             b.add_box(cx - 0.45, d / 2 - 0.45, wall_z, cx + 0.45, d / 2 + 0.45,
-                      ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
+                      ridge_z + 0.55, c_ch, m_ch, skip=("bottom",))
+
+    # The roof keeps the archetype's weathered grey unless the record states a
+    # colour — only the Petford watercolour is a coloured witness to any of
+    # these roofs, and only the building it paints wears its tone (T-0092).
+    roof_rgba = ROOF_MOSS_RGBA if params.roof_colour == "moss_green" else ROOF_RGBA
 
     mats = [
         simple_material("wall", PAINT_RGBA.get(params.paint, PAINT_RGBA["unpainted"])),
-        simple_material("roof", ROOF_RGBA, roughness=0.9),
+        simple_material("roof", roof_rgba, roughness=0.9),
         simple_material("log", LOG_RGBA, roughness=0.9),
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
         simple_material("glass", (0.09, 0.11, 0.13, 1.0), roughness=0.25),
     ]
+    if params.chimney_material == "brick":
+        mats.append(simple_material("brick", BRICK_RGBA, roughness=0.85))
     return b.to_object(mats)
 
 
@@ -327,6 +351,8 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
                 b.add_poly([(cx + 0.6, yy, 0), (cx - 0.6, yy, 0),
                             (cx - 0.6, yy, 2.1), (cx + 0.6, yy, 2.1)],
                            conf, M_GLASS)
+                if params.entrance_frontispiece:
+                    _frontispiece(b, params, cx, d)
                 continue
             for y, sgn in ((0.0, -1.0), (d, 1.0)):
                 yy = y + sgn * depth
@@ -349,6 +375,56 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
                         b.add_poly([(a_, yl, z0), (b_, yl, z0),
                                     (b_, yl, z0 + win_h), (a_, yl, z0 + win_h)],
                                    c_shut, M_SHUTTER)
+                        if params.shutter_type == "louvred":
+                            _louvres(b, params, lo, hi, yl, sgn, z0, win_h)
+
+
+def _frontispiece(b: MeshBuilder, params: FrameTavernParams, cx: float,
+                  d: float) -> None:
+    """The small flat-hooded entrance surround on the facade's centred door —
+    the Sauganash's, drawn by both street views of the 2026-08-18 owner brief
+    (images 8 and 9; T-0092): a flat pilaster each side of the leaf and a
+    shallow flat hood over it, all in the wall's own paint. The views give the
+    FORM; every dimension here is the archetype's, and docs/LIBERTIES.md L153
+    owns the invention. Carries the frontispiece attribute's own confidence,
+    which is weaker than the attested paint it is drawn in.
+    """
+    c = params.conf("entrance_frontispiece")
+    # flanking pilasters, just outside the 1.2 m door leaf
+    for side in (-1, 1):
+        x_in = cx + side * 0.62
+        x_out = cx + side * 0.85
+        b.add_box(min(x_in, x_out), d, 0, max(x_in, x_out), d + 0.09, 2.18,
+                  c, M_WALL, skip=("bottom", "front"))
+    # the flat hood: a shallow slab across the pilasters, and a thinner crown
+    # proud of it — "small" and "flat" are the whole of what the views state
+    b.add_box(cx - 0.95, d, 2.18, cx + 0.95, d + 0.42, 2.26, c, M_WALL,
+              skip=("front",))
+    b.add_box(cx - 1.02, d, 2.26, cx + 1.02, d + 0.47, 2.31, c, M_WALL,
+              skip=("front",))
+
+
+def _louvres(b: MeshBuilder, params: FrameTavernParams, lo: float, hi: float,
+             yl: float, sgn: float, z0: float, win_h: float) -> None:
+    """Slat relief on one shutter leaf — the louvred construction only the
+    Trowbridge drawing resolves (image 10 of the 2026-08-18 owner brief, the
+    weakest of the three views' claims; T-0092). The slats therefore carry the
+    shutter_type attribute's own confidence, NOT the attested colour's: the
+    leaf stays as documented and the louvres admit what they rest on. Slat
+    count and pitch are the archetype's numbers (docs/LIBERTIES.md L153).
+    """
+    c = params.worst_conf("shutters", "shutter_type")
+    n = 8
+    x0s, x1s = lo + 0.025, hi - 0.025
+    a_, b_ = (x0s, x1s) if sgn < 0 else (x1s, x0s)
+    y_in = yl + sgn * 0.008     # slat's upper edge, near the leaf
+    y_out = yl + sgn * 0.028    # lower edge, canted proud — a louvre sheds rain
+    top, bot = z0 + win_h - 0.10, z0 + 0.10
+    pitch = (top - bot) / (n - 1)
+    for i in range(n):
+        zt = top - i * pitch
+        b.add_poly([(a_, y_out, zt - 0.09), (b_, y_out, zt - 0.09),
+                    (b_, y_in, zt), (a_, y_in, zt)], c, M_SHUTTER)
 
 
 def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
@@ -399,3 +475,42 @@ def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
     for x in (-oh, ww + oh):
         b.add_poly([(x, yf, wh - thk), (x, yf, wh),
                     (x, yb, wh + rise), (x, yb, wh + rise - thk)], c, M_ROOF)
+
+    # The wing's own door, direct to grade in its street face — the 1829 cabin
+    # kept its entrance when the frame block was built on (images 9 and 10 of
+    # the 2026-08-18 owner brief; T-0092). A recess like every opening at this
+    # LOD, centred on the wing; leaf size is the archetype's (L153). Carries
+    # the door attribute's own confidence, not the wing's.
+    if params.log_wing_door:
+        c_d = params.conf("log_wing_door")
+        cxw = ww / 2
+        yd = y0 + 0.02
+        b.add_poly([(cxw + 0.5, yd, 0), (cxw - 0.5, yd, 0),
+                    (cxw - 0.5, yd, 1.85), (cxw + 0.5, yd, 1.85)], c_d, M_GLASS)
+
+    # The shed-roofed porch hood over that door, on two slim posts to grade —
+    # only the Braunhold engraving (image 9) draws it, and the geometry carries
+    # that single-view claim's own confidence. Plank pitch, projection and the
+    # posts are the archetype's numbers (L153).
+    if params.log_wing_porch_hood:
+        c_h = params.conf("log_wing_porch_hood")
+        cxw = ww / 2
+        hw, hp, thk2 = 0.85, 0.80, 0.055    # half-width, projection, plank
+        zw, zo = 2.12, 1.90                 # z at the wall / at the outer eave
+        x0h, x1h = cxw - hw, cxw + hw
+        yo = y0 + hp
+        for dz in (0.0, -thk2):             # upper and lower faces
+            b.add_poly([(x0h, yo, zo + dz), (x1h, yo, zo + dz),
+                        (x1h, y0, zw + dz), (x0h, y0, zw + dz)], c_h, M_ROOF)
+        # fascia along the outer eave, closed rake edges — same rule as the
+        # wing's own lean-to: a roof needs an edge or it reads as a slab
+        b.add_poly([(x0h, yo, zo - thk2), (x1h, yo, zo - thk2),
+                    (x1h, yo, zo), (x0h, yo, zo)], c_h, M_ROOF)
+        for x in (x0h, x1h):
+            b.add_poly([(x, yo, zo - thk2), (x, yo, zo),
+                        (x, y0, zw), (x, y0, zw - thk2)], c_h, M_ROOF)
+        # the posts: hewn stuff like the wing, standing on the ground the door
+        # opens onto
+        for x in (x0h + 0.06, x1h - 0.06):
+            b.add_box(x - 0.045, yo - 0.135, 0, x + 0.045, yo - 0.045,
+                      zo - thk2, c_h, M_LOG, skip=("bottom", "top"))

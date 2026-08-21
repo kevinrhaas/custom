@@ -1,7 +1,7 @@
 ---
 id: T-0092
 title: The Sauganash's fabric corrected to the three views: log wing, frontispiece, chimneys and shutters
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0043
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/20/2026, 7:37:27 PM CT
 blocked_on: null
 needs_bake: true
 ---
