@@ -81,11 +81,17 @@ import json
 import math
 from pathlib import Path
 
+# The plat's own face arithmetic (T-0077/T-0078), imported rather than copied:
+# which line a block face is, which way its fronts look, and where along it a
+# point lands. `tools/` is this script's own directory, so it is on sys.path.
+from block_faces import face_frame, project
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SIDECARS = DATA / "sidecars" / "1835"
 STREETS = DATA / "streets" / "1835.json"
 WHARVES = DATA / "wharves" / "river_landings.json"
+LOTS = DATA / "traces" / "vectors" / "thompson_lots.json"
 EPOCH = DATA / "terrain" / "epochs" / "e1834_harbor_cut"
 OUTDIR = DATA / "frontage"
 INDEX = OUTDIR / "index.json"
@@ -182,6 +188,103 @@ RIVER_WEST_REACH = [[667.0, 13.9], [638.0, 14.4], [600.0, 15.0], [576.0, 15.4],
 RIVER_WHARF_REACH = [[459.5, 14.3], [455.0, 24.0], [448.0, 32.0], [428.0, 37.5],
                      [396.0, 40.2], [357.5, 40.3]]    # La Salle mouth .. Jones's landing
 RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level at this N
+
+# THE TOWN'S STREET EDGE (T-0069). The owner, of the first Cook County jail
+# engraving: "note the fences lining the street and what appears to be plank
+# sidewalks. all of the streets should be updated like this... at least south of
+# the river or near the river." Four plates in the same brief agree — image 1
+# (the jail: board fences at the frontage line with a plank walk at their foot),
+# images 8 and 9 (the Sauganash: plank walks on BOTH frontages with board
+# crossings over the road) and image 6 (the Green Tree: plank walks and
+# crossings). Those are the same two treatments this generator already writes at
+# two buildings; what T-0069 adds is that they stop being a building's frontage
+# and become the STREET'S EDGE, laid from the platted grid rather than from a
+# wall.
+#
+# WHY THE PLAT AND NOT THE SIDECARS. A walk "at the lot line" needs a lot line,
+# and this project has one: `data/traces/vectors/thompson_lots.json`, whose every
+# block edge IS a committed street centreline offset by half the committed 80 ft
+# corridor (its own `_doc` says so, and tools/generate_plat_lots.py re-derives it
+# on every commit). So the treatment comes off the street network by
+# construction: move a centreline and every walk below moves with it. Nothing
+# here is hand-placed on one block.
+#
+# THE BOUNDARY DRAWN, and it is the ticket's own words: the two streets that run
+# ALONG the river's south bank — SOUTH WATER STREET, which IS the bank, and LAKE
+# STREET one block behind it — through the platted blocks between Market Street
+# and State Street. Both frontages of Lake, and the one frontage South Water has
+# (its north side is the river bank, wharves and landings, not a platted block).
+# That is "at least south of the river or near the river", and it is the town's
+# whole trading core in 1835.
+#
+# Randolph Street, Washington Street, the cross streets' own frontages and the
+# West Division across the South Branch are the same rule applied to more faces,
+# and they are a follow-up ticket rather than a half-drawn town — stated in the
+# record's own `refused` rather than left as a silent gap.
+EDGE_STREETS = ("south_water", "lake")
+EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
+EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
+EDGE_OFFSET_M = EDGE_FENCE_CLEAR_M + WALK_W_M / 2.0   # walk centre, out from the lot line
+EDGE_SPAN_M = 5.2           # the march step: twenty boards, and the unit a face is laid in
+EDGE_FLAT_M = 0.07          # relief a single walking deck may carry (see the audit)
+EDGE_DRY_M = 0.15           # least ground under a board centre, m over datum
+EDGE_MIN_RUN_M = 10.4       # two spans; a shorter stretch is a landing, not a sidewalk
+EDGE_DECK_MAX_M = 20.8      # four spans: the longest one flat walking surface
+# HOW FAR A WALKING DECK REACHES PAST THE BOARDS IT COVERS. A deck is a polygon
+# and a visitor standing exactly on its edge is a point-in-polygon question with
+# no good answer: the gate found one sample in a hundred and thirteen standing in
+# the mud at the seam between a walk and the crossing that continues it. So each
+# deck laps this far past its own stretch at both ends, which closes every seam
+# and every run end at the cost of a hand's breadth of lifted ground.
+EDGE_DECK_LAP_M = 0.08
+EDGE_BUILDING_CLEAR_M = 0.0  # a committed wall inside the deck refuses the board, full stop
+EDGE_PLANK_PITCH_M = 0.32   # 12.5 in boards — a street walk's stock, wider than an inn's
+EDGE_STRINGER_PITCH_M = 2.08  # boards to a stringer bay (see the note on cost)
+EDGE_STRINGER_ROLL_M = 0.04   # ground a single bay-length stringer may span (audited)
+EDGE_CROSS_STEP_M = 1.8       # a crossing is cut this often along its run
+# A TOWN'S WORTH OF BOARDS IS A DIFFERENT ARITHMETIC FROM AN INN'S FRONTAGE, and
+# these three numbers are the whole of the difference. A walk board is a box, and
+# of its twelve triangles the two facing the earth under it are the ones nobody
+# will ever stand low enough to see; a stringer bay carries several boards where
+# the two inns' walks carry one each; and street stock is wider than an inn's
+# trim. Measured at the release gate's own stand these three take the layer from
+# 61.6 to 42.8 triangles a metre, which is what makes a whole street affordable
+# at all — and not one of them moves a board a millimetre from where it lies.
+EDGE_PLANK_UNDERSIDE = False
+# HOW THE STREET EDGE IS CHUNKED: one mesh per RUN of walk, carrying the
+# crossings that spring from it and the fence standing behind it. A chunk's
+# bounding sphere is what the frustum and the sun's own box test, so chunk size is
+# a straight trade — finer chunks cull better and cost a draw call each — and it
+# was measured three ways rather than guessed: per run (~55 m), per 120 m reach
+# and per 200 m reach. Coarser chunks cull worse, and the cost lands on the tier
+# that can least afford it: at 200 m the MAIN pass drew nearly half the town's
+# street edge from a stand that could see sixty metres of it, and `light` — the
+# floor a weak machine has to hold — read 595,079 of 600,000 against 583,033 per
+# run. Per run wins on the number that matters and spends draw calls instead,
+# which the owner ruled on 2026-08-21 is the cheaper of the two.
+EDGE_CROSS_W_M = 1.83       # a corner crossing is a walk's width, not a stride's
+EDGE_CROSS_PLANKS = 6
+EDGE_TRACK_MARGIN_M = 0.35  # least verge between the walk's outer edge and the track
+
+# THE STREET-LINING FENCE. The jail engraving's fences stand at the frontage
+# line, in front of the building and behind the walk, which is where a fence goes
+# when the lot is improved and the building is NOT built out to the street. That
+# is the rule: a lot gets a street fence iff it is improved and its own committed
+# walls stand back from its frontage line. A lot built to the line needs none —
+# the building IS the street wall, which is what the engraving shows either side
+# of its fenced yards.
+EDGE_FENCE_SETBACK_M = 3.0  # least distance from the frontage line to the nearest wall
+EDGE_FENCE_H_M = 1.37       # 4 ft 6 in — a street fence, not the Sauganash's private 6 ft
+EDGE_FENCE_BOARD_W_M = 0.305
+EDGE_FENCE_BOARD_GAP_M = 0.006
+EDGE_FENCE_POST_SPACING_M = 2.44
+EDGE_FENCE_POST_SQ_M = 0.12
+EDGE_FENCE_COURSES = 2
+
+# The record's own id, and the liberty that claims every invented metre in it.
+STREET_EDGE_ID = "town_street_edge"
+STREET_EDGE_RECORD_ID = "town_street_edge"
+STREET_EDGE_LIBERTY = "L160"
 
 
 # ---------------------------------------------------------------------------- #
@@ -1279,6 +1382,870 @@ def river_record(walks: list, refused: list) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------- #
+# THE TOWN'S STREET EDGE (T-0069) — plank sidewalks at the lot line, board
+# crossings at the corners, and the fences that line the street behind them.
+#
+# Everything below is derived from two committed things and nothing else: the
+# platted block grid (whose every face is a committed street centreline offset by
+# half the committed corridor) and the committed footprints standing on it. The
+# march is the whole rule — a face is walked in EDGE_SPAN_M steps, each step is
+# asked four questions, and the steps that answer them become the walk. A step
+# that fails says which question failed it, and the answer is written into the
+# record's `refused` rather than quietly skipped.
+# ---------------------------------------------------------------------------- #
+
+
+def _lots() -> dict:
+    return _load(LOTS)
+
+
+def _placed_footprints() -> list[dict]:
+    """Every committed footprint in the scene, placed into local ENU.
+
+    Read once and carried as a centre + radius + polygon, because the march below
+    asks "is a wall standing on this board" thousands of times and all but a
+    handful of those questions are answered by one squared distance.
+    """
+    out = []
+    for path in sorted(SIDECARS.glob("*.json")):
+        sc = _load(path)
+        place = sc.get("placement") or {}
+        poly = (sc.get("footprint") or {}).get("polygon") or []
+        if place.get("local_e") is None or len(poly) < 3:
+            continue
+        pts = [_to_enu(u, v, place) for u, v in poly]
+        ce = sum(p[0] for p in pts) / len(pts)
+        cn = sum(p[1] for p in pts) / len(pts)
+        r = max(math.hypot(p[0] - ce, p[1] - cn) for p in pts)
+        out.append({"id": sc.get("id") or path.stem, "pts": pts,
+                    "e": ce, "n": cn, "r": r,
+                    "at": (float(place["local_e"]), float(place["local_n"]))})
+    return out
+
+
+def _inside(pt, poly) -> bool:
+    """Point in polygon, local ENU. The same ray cast every other tool here uses."""
+    x, y = pt
+    hit = False
+    n = len(poly)
+    for i in range(n):
+        x1, y1 = poly[i]
+        x2, y2 = poly[(i + 1) % n]
+        if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
+            hit = not hit
+    return hit
+
+
+def _wall_on(point, half_w, outward, buildings) -> str | None:
+    """The committed building standing where a board of this width would lie, or None.
+
+    Three probes across the deck — both edges and the centre — because a wall that
+    clips the outer half of a walk is as much in the way as one that covers it,
+    and a board is only 1.83 m wide.
+    """
+    for b in buildings:
+        if (b["e"] - point[0]) ** 2 + (b["n"] - point[1]) ** 2 > (b["r"] + half_w + 1.0) ** 2:
+            continue
+        for off in (-half_w, 0.0, half_w):
+            probe = (point[0] + outward[0] * off, point[1] + outward[1] * off)
+            if _inside(probe, b["pts"]):
+                return b["id"]
+    return None
+
+
+def _march(frame, offset_m, half_w, hf, buildings, span_m=EDGE_SPAN_M):
+    """Walk a block face in EDGE_SPAN_M steps and ask each step whether a walk may
+    be laid on it. Returns (spans, why) — one entry per step.
+
+    The four questions, and each is a way a plank sidewalk goes wrong:
+
+      * **Is the ground there at all?** A step outside the committed heightfield
+        has nothing to lay a board on.
+      * **Is it dry?** The La Salle and State Street sloughs cross these
+        frontages, and a board over open water is a bridge nobody committed.
+      * **Is it flat enough to be ONE walking surface?** The walker stands on a
+        registered deck at one height per span (see `footway_decks` below), so a
+        span whose ground rolls by more than EDGE_FLAT_M would leave a visitor
+        floating over its low end. Where the land rolls, the walk breaks.
+      * **Is anything already standing on it?** Several documented South Water
+        stores were placed off the modern kerb rather than off this project's
+        platted line and stand out past it. A walk laid through one of them
+        would be a walk through a wall.
+    """
+    origin = frame["origin"]
+    along = frame["along"]
+    outward = frame["outward"]
+    length = frame["length"]
+    steps = max(1, round(length / span_m))
+    step = length / steps
+    # THREE LINES, not one. The deck is 1.83 m wide and its stringers stand on
+    # its own edges, so a step is sampled on the walk's centre AND on the two
+    # lines the timber actually reaches the ground on. A centreline-only march
+    # would call a cross-sloped verge flat and leave the downhill stringer
+    # hanging.
+    stringer = half_w - 0.09
+    lines = (0.0, -stringer, stringer)
+    spans = []
+    for i in range(steps):
+        lo = i * step
+        hi = lo + step
+        blocked = None
+        stations = max(2, int(round(step / PLANK_PITCH_M)))
+        by_line = [[] for _ in lines]
+        for j in range(stations + 1):
+            t = lo + (hi - lo) * j / stations
+            pt = (origin[0] + along[0] * t + outward[0] * offset_m,
+                  origin[1] + along[1] * t + outward[1] * offset_m)
+            for k, off in enumerate(lines):
+                by_line[k].append(hf.height(pt[0] + outward[0] * off,
+                                            pt[1] + outward[1] * off))
+            if blocked is None:
+                blocked = _wall_on(pt, half_w, outward, buildings)
+        heights = [h for line in by_line for h in line]
+        low = min(heights)
+        high = max(heights)
+        # The stringer bay's own question, and it is the one that decides
+        # whether a bay-length stringer may replace a board-length pair: a box
+        # has a flat underside, so it reaches the LOWEST ground it spans and
+        # stands proud of the highest by the difference. Asked per stringer line
+        # over every window one bay long.
+        bay_stations = max(1, int(round(EDGE_STRINGER_PITCH_M / (step / stations))))
+        roll = 0.0
+        for line in by_line[1:]:
+            for a in range(0, max(1, len(line) - bay_stations)):
+                window = line[a:a + bay_stations + 1]
+                roll = max(roll, max(window) - min(window))
+        if blocked:
+            why = f"{blocked} stands on it"
+        elif low < EDGE_DRY_M:
+            why = f"the ground under it is {low:+.2f} m — at or under the water"
+        elif high - low > EDGE_FLAT_M:
+            why = (f"the ground under it rolls {high - low:.2f} m, past the "
+                   f"{EDGE_FLAT_M} m one walking deck may carry")
+        elif roll > EDGE_STRINGER_ROLL_M:
+            why = (f"the ground under one stringer bay rolls {roll:.3f} m, past the "
+                   f"{EDGE_STRINGER_ROLL_M} m a bay-length stringer may span")
+        else:
+            why = None
+        spans.append({"lo": lo, "hi": hi, "low": low, "high": high,
+                      "roll": roll, "why": why})
+    return spans
+
+
+def _runs_from(spans):
+    """Consecutive laid steps, grouped into runs no shorter than EDGE_MIN_RUN_M."""
+    runs = []
+    start = None
+    for i, sp in enumerate(spans):
+        if sp["why"] is None and start is None:
+            start = i
+        if sp["why"] is not None and start is not None:
+            runs.append((start, i))
+            start = None
+    if start is not None:
+        runs.append((start, len(spans)))
+    return [(a, b) for a, b in runs if spans[b - 1]["hi"] - spans[a]["lo"] >= EDGE_MIN_RUN_M]
+
+
+def _decks(spans, a, b, frame, offset_m, half_w, rise_m):
+    """The walking surfaces a run publishes to the walker.
+
+    T-0045 gave this project a deck registry and T-0119 put a plank walk on it;
+    this is the same machinery at town scale. A deck is FLAT — one height over one
+    rectangle — so the run is cut into the longest pieces whose ground stays
+    inside EDGE_FLAT_M, and each piece takes the HIGHEST ground under it plus the
+    walk's own rise. Highest and not mean: the walker's rule is
+    `max(deck, ground)`, so a deck under the ground at any point would drop the
+    visitor off its planks onto the mud in the middle of a sidewalk.
+    """
+    origin = frame["origin"]
+    along = frame["along"]
+    outward = frame["outward"]
+    out = []
+    i = a
+    while i < b:
+        j = i + 1
+        low = spans[i]["low"]
+        high = spans[i]["high"]
+        while j < b:
+            nlow = min(low, spans[j]["low"])
+            nhigh = max(high, spans[j]["high"])
+            if nhigh - nlow > EDGE_FLAT_M:
+                break
+            if spans[j]["hi"] - spans[i]["lo"] > EDGE_DECK_MAX_M:
+                break
+            low, high = nlow, nhigh
+            j += 1
+        lo = spans[i]["lo"] - EDGE_DECK_LAP_M
+        hi = spans[j - 1]["hi"] + EDGE_DECK_LAP_M
+        pts = []
+        for t, s in ((lo, -1), (hi, -1), (hi, 1), (lo, 1)):
+            e = origin[0] + along[0] * t + outward[0] * (offset_m + s * half_w)
+            n = origin[1] + along[1] * t + outward[1] * (offset_m + s * half_w)
+            pts.append([_round(e), _round(n)])
+        out.append({"y": _round(high + rise_m, 3), "pts": pts,
+                    "ground_roll_m": _round(high - low, 3)})
+        i = j
+    return out
+
+
+def _point_on(frame, t, offset_m):
+    return (frame["origin"][0] + frame["along"][0] * t + frame["outward"][0] * offset_m,
+            frame["origin"][1] + frame["along"][1] * t + frame["outward"][1] * offset_m)
+
+
+def _track_verge(frame, offset_m, half_w, streets, street_id) -> float:
+    """Least distance from the walk's outer edge to the travelled track's edge,
+    measured against the street's own committed centreline rather than assumed
+    from the corridor. A walk in the travelled way is the one thing this layer
+    has refused since T-0082, and the plat's own offset is not a substitute for
+    asking."""
+    st = streets.get(street_id)
+    if not st or len(st["path"]) < 2:
+        return -1.0
+    worst = float("inf")
+    steps = max(2, int(frame["length"] / 4.0))
+    for i in range(steps + 1):
+        t = frame["length"] * i / steps
+        edge = _point_on(frame, t, offset_m + half_w)
+        d, _ = _nearest_on_path(edge, st["path"])
+        worst = min(worst, d - st["track_w"] / 2.0)
+    return worst
+
+
+def _edge_faces(lots_doc):
+    """Every platted block face that fronts one of the two covered streets, with
+    its committed frame. The faces are the plat's, and the plat's are the street
+    network's: `tools/generate_plat_lots.py` builds every one of these edges by
+    offsetting a committed centreline out of `data/streets/1835.json`."""
+    out = []
+    for block in lots_doc.get("blocks", []):
+        if block["id"] in EDGE_SKIP_BLOCKS:
+            continue
+        bounded = block.get("bounded_by") or {}
+        for face in ("north", "south"):
+            street = bounded.get(face)
+            if street not in EDGE_STREETS:
+                continue
+            frame = face_frame(block, face)
+            # The block lies south of a street it bounds on its NORTH face, so
+            # that face stands on the street's SOUTH side, and the other way
+            # round. The side is what pairs two faces across the same road.
+            out.append({
+                "block": block, "face": face, "street": street,
+                "side": "south" if face == "north" else "north",
+                "frame": frame,
+            })
+    out.sort(key=lambda f: (f["street"], f["side"], f["frame"]["origin"][0]))
+    return out
+
+
+def _fence_runs(entry, laid, buildings, hf, refused):
+    """The street-lining fences on one face: one run per stretch of improved lots
+    whose own walls stand back from the frontage line.
+
+    THE RULE, and each clause is the engraving read literally. A lot gets a
+    street fence iff (1) it is one of the plat's own lots on this face, (2) a
+    committed building stands on it — an unimproved lot is prairie and the town
+    did not fence prairie, (3) that building is NOT built out to the frontage
+    line, because where it is the BUILDING is the street wall and a fence in
+    front of it would be a second one, and (4) the walk was actually laid at its
+    foot, which is what the plate shows and what keeps a fence off ground this
+    generator has already refused as wet, rolling or occupied.
+    """
+    frame = entry["frame"]
+    block = entry["block"]
+    face = entry["face"]
+    runs = []
+    for index, lot in enumerate(block.get("lots", [])):
+        if lot.get("tier") != face:
+            continue
+        spans = [project(frame, tuple(p)) for p in lot["polygon"]]
+        s0 = min(s for s, _ in spans)
+        s1 = max(s for s, _ in spans)
+        here = [b for b in buildings if _inside(b["at"], lot["polygon"])]
+        if not here:
+            refused.append({"structure_id": f"{block['id']}_lot{index}",
+                            "wall": f"{block['id']} {face} face, lot {index}",
+                            "why": ("no committed building stands on this platted lot — an "
+                                    "unimproved lot is open prairie and takes no street "
+                                    "fence.")})
+            continue
+        setback = min(-project(frame, p)[1] for b in here for p in b["pts"])
+        if setback < EDGE_FENCE_SETBACK_M:
+            refused.append({"structure_id": f"{block['id']}_lot{index}",
+                            "wall": f"{block['id']} {face} face, lot {index}",
+                            "why": (f"{here[0]['id']} stands {setback:.2f} m from this lot's "
+                                    f"frontage line, inside the {EDGE_FENCE_SETBACK_M} m a "
+                                    "street fence needs — the building IS the street wall "
+                                    "here, and a fence in front of it would be a second "
+                                    "one.")})
+            continue
+        # Clipped to the walk actually laid at its foot, then only the part of
+        # that clip which is long enough to be a fence rather than a gatepost.
+        for lo, hi in laid:
+            a = max(s0, lo)
+            b = min(s1, hi)
+            if b - a < 6.0:
+                continue
+            runs.append({"a": a, "b": b, "lot": index, "chunk": None,
+                         "setback": setback, "who": here[0]["id"]})
+    # Neighbouring lots share a fence line, so their runs are welded into one
+    # rather than drawn as two fences that meet at a post nobody described.
+    runs.sort(key=lambda r: r["a"])
+    welded = []
+    for r in runs:
+        if welded and r["a"] - welded[-1]["b"] < 0.5:
+            welded[-1]["b"] = max(welded[-1]["b"], r["b"])
+            welded[-1]["lots"].append(r["lot"])
+            welded[-1]["setback"] = min(welded[-1]["setback"], r["setback"])
+            continue
+        welded.append({"a": r["a"], "b": r["b"], "lots": [r["lot"]],
+                       "setback": r["setback"]})
+    return welded
+
+
+def build_street_edge() -> tuple[list, list, list, dict]:
+    """The town's street edge: the walks, the corner crossings, the street-lining
+    fences, and every refusal that shaped them."""
+    hf = _heightfield()
+    streets = _streets()
+    lots_doc = _lots()
+    buildings = _placed_footprints()
+    faces = _edge_faces(lots_doc)
+    half_w = WALK_W_M / 2.0
+
+    walks: list = []
+    fences: list = []
+    refused: list = []
+    laid_by_face: dict = {}
+    census = {"faces": 0, "runs": 0, "walk_m": 0.0, "crossings": 0, "cross_m": 0.0,
+              "fences": 0, "fence_m": 0.0, "decks": 0}
+
+    for entry in faces:
+        block = entry["block"]
+        face = entry["face"]
+        frame = entry["frame"]
+        street = entry["street"]
+        name = streets[street]["name"]
+        key = f"{block['id']}_{face}"
+        verge = _track_verge(frame, EDGE_OFFSET_M, half_w, streets, street)
+        if verge < EDGE_TRACK_MARGIN_M:
+            refused.append({"structure_id": key, "wall": f"{block['id']} {face} face", "why": (
+                f"a walk at this face's lot line would leave {verge:.2f} m between its "
+                f"outer edge and the {name} track, under the {EDGE_TRACK_MARGIN_M} m a "
+                "walk must keep out of the travelled way — no walk is laid.")})
+            continue
+        spans = _march(frame, EDGE_OFFSET_M, half_w, hf, buildings)
+        runs = _runs_from(spans)
+        if not runs:
+            worst = spans[0]["why"] if spans else "the face has no length"
+            refused.append({"structure_id": key, "wall": f"{block['id']} {face} face", "why": (
+                f"no stretch of this face {EDGE_MIN_RUN_M:.1f} m long passed the march "
+                f"(first refusal: {worst}) — no walk is laid.")})
+            continue
+        census["faces"] += 1
+        laid = []
+        for k, (a, b) in enumerate(runs, start=1):
+            lo = spans[a]["lo"]
+            hi = spans[b - 1]["hi"]
+            laid.append((lo, hi))
+            # One mesh per run, named on the record rather than decided in the
+            # renderer: "which timber shares a bounding sphere" is a property of
+            # the ground it stands on, and the record is what holds the ground.
+            chunk = f"{key}_{k}"
+            start = _point_on(frame, lo, EDGE_OFFSET_M)
+            end = _point_on(frame, hi, EDGE_OFFSET_M)
+            decks = _decks(spans, a, b, frame, EDGE_OFFSET_M, half_w, WALK_RISE_M)
+            census["runs"] += 1
+            census["walk_m"] += hi - lo
+            census["decks"] += len(decks)
+            walks.append({
+                "id": f"{key}_walk_{k}",
+                "belongs_to": STREET_EDGE_ID,
+                "kind": "plank_walk",
+                "confidence": "reconstructed",
+                "street": street,
+                "street_name": name,
+                "chunk": chunk,
+                "centreline_local_enu_m": [[_round(start[0]), _round(start[1])],
+                                           [_round(end[0]), _round(end[1])]],
+                "width_m": WALK_W_M,
+                "rise_m": WALK_RISE_M,
+                "plank_run": "across",
+                "plank_pitch_m": EDGE_PLANK_PITCH_M,
+                "plank_thickness_m": PLANK_T_M,
+                "plank_underside": EDGE_PLANK_UNDERSIDE,
+                "stringer_pitch_m": EDGE_STRINGER_PITCH_M,
+                "lot_line_offset_m": _round(EDGE_OFFSET_M),
+                "verge_to_track_m": _round(verge),
+                "footway_decks": decks,
+                "note": (
+                    f"THE PLANK SIDEWALK ON THE {name.upper()} FRONTAGE of "
+                    f"{block['id']}'s {face} face, at the lot line. WHERE is DERIVED and "
+                    "nothing here is placed: the face is a committed street centreline "
+                    "offset by half the committed 80 ft corridor "
+                    "(data/traces/vectors/thompson_lots.json, re-derived by "
+                    "tools/generate_plat_lots.py), and the walk's centre lies "
+                    f"{EDGE_OFFSET_M:.3f} m outward of it — {EDGE_FENCE_CLEAR_M} m of "
+                    "daylight off the fence line and half a walk's width — leaving "
+                    f"{verge:.2f} m of verge between its outer edge and the {name} track. "
+                    f"This run is the stretch from {lo:.1f} m to {hi:.1f} m along the "
+                    "face that passed the march: dry committed ground, flat enough for "
+                    "one walking deck, and nothing already standing on it. What is "
+                    "invented is the width, the rise, the plank pitch and that a walk "
+                    "stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md "
+                    f"{STREET_EDGE_LIBERTY}."
+                ),
+            })
+        laid_by_face[key] = {"entry": entry, "laid": laid, "verge": verge,
+                             "chunks": [f"{key}_{k}" for k in range(1, len(runs) + 1)]}
+        for run in _fence_runs(entry, laid, buildings, hf, refused):
+            a = run["a"]
+            b = run["b"]
+            chunk = None
+            for k, (lo, hi) in enumerate(laid, start=1):
+                if a >= lo - 1e-6 and b <= hi + 1e-6:
+                    chunk = f"{key}_{k}"
+            if chunk is None:
+                continue
+            p0 = _point_on(frame, a, 0.0)
+            p1 = _point_on(frame, b, 0.0)
+            census["fences"] += 1
+            census["fence_m"] += b - a
+            fences.append({
+                "id": f"{key}_fence_{len(fences) + 1}",
+                "belongs_to": STREET_EDGE_ID,
+                "kind": "board_fence",
+                "confidence": "reconstructed",
+                "street": street,
+                "street_name": name,
+                "chunk": chunk,
+                "path_local_enu_m": [[_round(p0[0]), _round(p0[1])],
+                                     [_round(p1[0]), _round(p1[1])]],
+                "height_m": EDGE_FENCE_H_M,
+                "board_width_m": EDGE_FENCE_BOARD_W_M,
+                "board_gap_m": EDGE_FENCE_BOARD_GAP_M,
+                "post_spacing_m": EDGE_FENCE_POST_SPACING_M,
+                "post_square_m": EDGE_FENCE_POST_SQ_M,
+                "rail_courses": EDGE_FENCE_COURSES,
+                "lots": run["lots"],
+                "least_setback_m": _round(run["setback"]),
+                "note": (
+                    "A FENCE LINING THE STREET, on the lot line with the plank walk at "
+                    "its foot — which is the first Cook County jail engraving read "
+                    "literally (data/sources/assets/owner_brief_2026_08_18/README.md, "
+                    "image 1: board fences at the frontage line, a plank walk beside "
+                    f"them). WHERE is derived: it stands on {block['id']}'s own platted "
+                    f"frontage line from {a:.1f} m to {b:.1f} m along the {face} face, "
+                    f"covering lot(s) {', '.join(str(i) for i in run['lots'])} — every "
+                    "one of them improved by a committed building whose nearest wall "
+                    f"stands {run['setback']:.2f} m back from that line, which is the "
+                    "clause that decides a fence is what lines the street here rather "
+                    "than a wall. The board width, the gap, the bay, the post and the "
+                    "height are the treatment the plate shows and no source gives: "
+                    f"docs/LIBERTIES.md {STREET_EDGE_LIBERTY}."
+                ),
+            })
+
+    # ---- the crossings ----------------------------------------------------- #
+    # A crossing joins two walks, so every one below is derived from the two ends
+    # it joins and from nothing else. Two kinds: over a CROSS street, where a walk
+    # runs on down the same side of the same street past a corner; and over the
+    # street ITSELF, where a walk faces another across the road — which is what
+    # images 8 and 9 show at the Sauganash.
+    def crossing(cid, a_pt, b_pt, street_id, chunk, why):
+        st = streets[street_id]
+        run = math.hypot(b_pt[0] - a_pt[0], b_pt[1] - a_pt[1])
+        stations = max(2, int(round(run / PLANK_PITCH_M)))
+        low = float("inf")
+        high = -float("inf")
+        for i in range(stations + 1):
+            t = i / stations
+            e = a_pt[0] + (b_pt[0] - a_pt[0]) * t
+            n = a_pt[1] + (b_pt[1] - a_pt[1]) * t
+            g = hf.height(e, n)
+            low = min(low, g)
+            high = max(high, g)
+        if low < EDGE_DRY_M:
+            refused.append({"structure_id": cid, "wall": f"crossing over {st['name']}",
+                            "why": (f"the ground under it falls to {low:+.2f} m — at or "
+                                    "under the water; no crossing is laid.")})
+            return
+        rise = _round(WALK_RISE_M / 2.0)
+        # The crossing's own walking decks: the same flat-deck rule the walks
+        # keep, cut straight out of the run because a crossing is one straight
+        # line and its relief is measured end to end.
+        decks = []
+        pieces = max(1, math.ceil(run / EDGE_DECK_MAX_M))
+        hw = EDGE_CROSS_W_M / 2.0
+        ux = (b_pt[0] - a_pt[0]) / run
+        un = (b_pt[1] - a_pt[1]) / run
+        rolled = 0.0
+        for p in range(pieces):
+            t0 = run * p / pieces - EDGE_DECK_LAP_M
+            t1 = run * (p + 1) / pieces + EDGE_DECK_LAP_M
+            plow = float("inf")
+            phigh = -float("inf")
+            for i in range(max(2, int((t1 - t0) / PLANK_PITCH_M)) + 1):
+                t = t0 + (t1 - t0) * i / max(2, int((t1 - t0) / PLANK_PITCH_M))
+                g = hf.height(a_pt[0] + ux * t, a_pt[1] + un * t)
+                plow = min(plow, g)
+                phigh = max(phigh, g)
+            rolled = max(rolled, phigh - plow)
+            pts = []
+            for t, s in ((t0, -1), (t1, -1), (t1, 1), (t0, 1)):
+                pts.append([_round(a_pt[0] + ux * t - un * s * hw),
+                            _round(a_pt[1] + un * t + ux * s * hw)])
+            decks.append({"y": _round(phigh + rise, 3), "pts": pts,
+                          "ground_roll_m": _round(phigh - plow, 3)})
+        if rolled > EDGE_FLAT_M * 2:
+            refused.append({"structure_id": cid, "wall": f"crossing over {st['name']}",
+                            "why": (f"the ground under it rolls {rolled:.2f} m inside one "
+                                    "walking deck; no crossing is laid.")})
+            return
+        census["crossings"] += 1
+        census["cross_m"] += run
+        census["decks"] += len(decks)
+        walks.append({
+            "id": cid,
+            "belongs_to": STREET_EDGE_ID,
+            "kind": "board_crossing",
+            "confidence": "reconstructed",
+            "street": street_id,
+            "street_name": st["name"],
+            "chunk": chunk,
+            "centreline_local_enu_m": [[_round(a_pt[0]), _round(a_pt[1])],
+                                       [_round(b_pt[0]), _round(b_pt[1])]],
+            "width_m": EDGE_CROSS_W_M,
+            "rise_m": rise,
+            "plank_run": "along",
+            "plank_count": EDGE_CROSS_PLANKS,
+            "plank_thickness_m": PLANK_T_M,
+            "plank_underside": EDGE_PLANK_UNDERSIDE,
+            "plank_step_m": EDGE_CROSS_STEP_M,
+            "run_m": _round(run),
+            "footway_decks": decks,
+            "note": (
+                f"A BOARD CROSSING OVER {st['name'].upper()}. {why} Its boards run the "
+                "way a foot travels rather than across it, which is what a crossing is "
+                "FOR — it spans the ruts instead of lying in them — and it lies lower "
+                "than the walk because a wheel crosses it. WHERE is derived: the two "
+                "ends are the two walks it joins, so the run is the corridor those "
+                f"walks stop either side of, {run:.1f} m of it, and the crossing exists "
+                "only where both of them were laid. docs/LIBERTIES.md "
+                f"{STREET_EDGE_LIBERTY}."
+            ),
+        })
+
+    # Along a side: consecutive faces on the same side of the same street, joined
+    # over the cross street between them.
+    sides: dict = {}
+    for key, rec in laid_by_face.items():
+        sides.setdefault((rec["entry"]["street"], rec["entry"]["side"]), []).append((key, rec))
+    for (street, side), members in sorted(sides.items()):
+        members.sort(key=lambda m: m[1]["entry"]["frame"]["origin"][0])
+        for (ka, ra), (kb, rb) in zip(members, members[1:]):
+            fa = ra["entry"]["frame"]
+            fb = rb["entry"]["frame"]
+            end = _point_on(fa, ra["laid"][-1][1], EDGE_OFFSET_M)
+            start = _point_on(fb, rb["laid"][0][0], EDGE_OFFSET_M)
+            gap = math.hypot(start[0] - end[0], start[1] - end[1])
+            cid = f"{ka}_crossing_{kb}"
+            if gap > 34.0:
+                refused.append({"structure_id": cid, "wall": "corner crossing", "why": (
+                    f"the two walks stop {gap:.1f} m apart, wider than the platted "
+                    "corridor between them — the walk on one side was refused short of "
+                    "its corner, so no crossing is laid.")})
+                continue
+            crossing(cid, end, start, street, ra["chunks"][-1],
+                     "Images 6 and 8 give plank sidewalks WITH board crossings at the "
+                     "town's two inns, so the fact is the plates' and every dimension "
+                     "is invented.")
+    # Across a street: the two sides of the same street, where a face on one is
+    # opposite a face on the other.
+    for street in EDGE_STREETS:
+        north = sides.get((street, "north"), [])
+        south = sides.get((street, "south"), [])
+        for kn, rn in north:
+            fn = rn["entry"]["frame"]
+            n0 = fn["origin"][0]
+            n1 = n0 + fn["length"]
+            for ks, rs in south:
+                fs = rs["entry"]["frame"]
+                s0 = fs["origin"][0]
+                s1 = s0 + fs["length"]
+                overlap = min(n1, s1) - max(n0, s0)
+                if overlap < 40.0:
+                    continue
+                # At the WEST end of the overlap, a few metres in: a crossing over
+                # the road is at a corner, not in the middle of a block.
+                at_e = max(n0, s0) + 4.0
+                tn = at_e - n0
+                ts = at_e - s0
+                if not any(lo <= tn <= hi for lo, hi in rn["laid"]):
+                    continue
+                if not any(lo <= ts <= hi for lo, hi in rs["laid"]):
+                    continue
+                a_pt = _point_on(fn, tn, EDGE_OFFSET_M)
+                b_pt = _point_on(fs, ts, EDGE_OFFSET_M)
+                crossing(f"{kn}_crossing_over_{street}", a_pt, b_pt, street,
+                         rn["chunks"][0],
+                         "The Petford watercolour and the Braunhold engraving of the "
+                         "Sauganash (images 8 and 9) both put a board crossing over the "
+                         "road between walks on opposite frontages.")
+                break
+
+    # THE BOUNDARY, WRITTEN DOWN WHERE EVERY OTHER REFUSAL IS. A face this
+    # generator never looked at leaves no trace of its own, so the two clauses
+    # that bounded the run say so here rather than only in a comment.
+    refused.append({
+        "structure_id": "town_street_edge",
+        "wall": "Randolph Street, Washington Street and the cross streets' own frontages",
+        "why": (
+            "OUT OF THIS RECORD'S BOUNDARY RATHER THAN REFUSED BY IT. The owner's "
+            "ask is 'at least south of the river or near the river', and the two "
+            "streets that run along the bank — South Water and Lake — are what "
+            "this record lays. Randolph and Washington are a block and two blocks "
+            "further south, and the cross streets (Market, Franklin, Wells, La "
+            "Salle, Clark, Dearborn, State) have two block faces apiece that "
+            "nothing here touches, so a walker turning a corner steps off the "
+            "boards. It is the same rule on more faces and it is a follow-up "
+            "ticket rather than a half-drawn town."
+        ),
+    })
+    refused.append({
+        "structure_id": "blk_lake_clinton",
+        "wall": "Lake Street's West Division frontage, across the South Branch",
+        "why": (
+            "this block stands in the WEST DIVISION, across the South Branch from "
+            "the town the owner's 'south of the river or near the river' names, "
+            "and it is separated from every other face on this record by a river "
+            "with one bridge on it. The same rule would lay the same walk there; "
+            "it belongs with the rest of the town in the follow-up ticket rather "
+            "than as one stranded block."
+        ),
+    })
+    walks.sort(key=lambda w: w["id"])
+    fences.sort(key=lambda f: f["id"])
+    refused.sort(key=lambda r: (r["structure_id"], r.get("wall", "")))
+    census["walk_m"] = _round(census["walk_m"], 1)
+    census["cross_m"] = _round(census["cross_m"], 1)
+    census["fence_m"] = _round(census["fence_m"], 1)
+    return walks, fences, refused, census
+
+
+def street_edge_record(walks: list, fences: list, refused: list, census: dict) -> dict:
+    bounds_note = (
+        "WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted "
+        "block faces that front the two streets running along the river's south bank "
+        "— SOUTH WATER STREET, which is the bank itself, and LAKE STREET one block "
+        "behind it, both frontages — between Market Street and State Street. That is "
+        "the owner's 'at least south of the river or near the river', and it is the "
+        "town's trading core in 1835. Every face is a committed street centreline "
+        "offset by half the committed 80 ft corridor, so the line a walk lies on is "
+        "the street network's and not this file's: move a centreline and every board "
+        "here moves with it. Within that boundary the march decides, face by face and "
+        "step by step — a stretch carries a walk where the ground is dry committed "
+        "ground, flat enough for one walking deck, clear of the travelled track and "
+        "clear of anything already standing on it — and `refused` says which clause "
+        "refused every stretch that does not. THE SOUTH WATER FRONTAGES COME OUT IN "
+        "PIECES, and the reason is a finding rather than a fault of this rule: "
+        "several documented stores on that side (Carpenter's, Jones's, Peck's, "
+        "Kinzie's forwarding store, the two newspaper offices) were placed against "
+        "the MODERN kerb rather than against this project's own platted line and "
+        "stand up to 6.9 m out past it, so the walk breaks around them until those "
+        "placements are reconciled with the plat. Randolph Street, Washington Street, "
+        "the cross streets' own frontages and the West Division across the South "
+        "Branch are the same rule on more faces and are a follow-up ticket."
+    )
+    return {
+        "_doc": (
+            "The town's street edge (T-0069) — the plank sidewalks at the lot line, "
+            "the board crossings at the corners, and the board fences that line the "
+            "street behind them, along South Water Street and Lake Street. NOT "
+            "structure records and NOT baked geometry: boards and posts standing on "
+            "ground this project has already built, drawn at load by "
+            "renderers/web/js/frontage.js. GENERATED by "
+            "tools/generate_frontage_works.py from the committed plat grid and the "
+            "committed footprints, and re-derived byte for byte by tools/check.sh — "
+            "because 'which stretch of which street carries a walk' is a rule and a "
+            "rule has to be auditable. Nothing here is hand-placed on one block: move "
+            "a street centreline in data/streets/1835.json and every walk, crossing "
+            "and fence in this file moves with it."
+        ),
+        "id": STREET_EDGE_RECORD_ID,
+        "name": ("The town's street edge: plank sidewalks, board crossings and the "
+                 "fences that line the street"),
+        "kind": "frontage",
+        "scene": "1835",
+        "target_date": "1835-07-01",
+        "coordinates": (
+            "Local East-North-Up metres from data/datum.json's origin, the same frame "
+            "data/streets/1835.json, data/traces/vectors/thompson_lots.json and the "
+            "sidecars' placement.local_e / local_n use."
+        ),
+        "existence": {
+            "value": True,
+            "confidence": "reconstructed",
+            "sources": [],
+            "note": (
+                "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT A WALK, A CROSSING OR "
+                "A FENCE STOOD ON ANY PARTICULAR STRETCH OF THESE STREETS ON 1 JULY "
+                "1835. What is held is four owner-supplied reference views, written up "
+                "verbatim at data/sources/assets/owner_brief_2026_08_18/README.md, and "
+                "the owner's own reading of the first of them: of the first Cook County "
+                "jail engraving (image 1), 'note the fences lining the street and what "
+                "appears to be plank sidewalks. all of the streets should be updated "
+                "like this... at least south of the river or near the river.' Image 6 "
+                "(the Green Tree) gives 'plank sidewalks with board crossings'; image 8 "
+                "(the Petford watercolour of the Sauganash) gives 'plank sidewalk with "
+                "a board crossing over the road'; image 9 (the Braunhold engraving of "
+                "the same hotel) gives 'plank walks on both frontages'. All four are "
+                "tier-5 pictorial and retrospective: they may drive setting, materials "
+                "and treatment and they may never drive a coordinate, which is exactly "
+                "the division kept here — WHAT stands is the plates', WHERE is the "
+                "committed plat's. The plates are not yet held as source records "
+                "(T-0075 owns that), so `sources` is deliberately empty and the "
+                "citation is a committed path. That is a reconstruction in this "
+                "project's third tier and it is graded and claimed as one: "
+                f"docs/LIBERTIES.md {STREET_EDGE_LIBERTY}."
+            ),
+        },
+        "treatment": {
+            "confidence": "reconstructed",
+            "note": (
+                f"Walk {WALK_W_M} m wide, its inner edge {EDGE_FENCE_CLEAR_M} m off the "
+                f"lot line, its deck {WALK_RISE_M} m over the ground, {PLANK_T_M} m "
+                f"boards at a {EDGE_PLANK_PITCH_M} m pitch — street stock, wider than "
+                f"the {PLANK_PITCH_M} m trim on the two inns' own walks — laid ACROSS "
+                "the way a foot travels, and each board still samples the terrain under "
+                "its own centre. The boards carry no underside: two triangles a board, "
+                "facing the earth they are laid on, on tens of thousands of them. Its "
+                f"stringers are laid at a {EDGE_STRINGER_PITCH_M} m bay rather than "
+                "under every board: a town's worth of sidewalk is tens of thousands of "
+                "small boxes, the stringer under a board is a quarter of the walk's "
+                "silhouette and three quarters of its cost, and the ground these "
+                "streets cross is flat enough (the march refuses any stretch that rolls "
+                f"more than {EDGE_FLAT_M} m inside a walking deck) that a bay-length "
+                "stringer meets it as closely as a board-length one did. Crossings "
+                f"{EDGE_CROSS_W_M} m wide and {EDGE_CROSS_PLANKS} boards laid ALONG the "
+                f"run. Fences {EDGE_FENCE_H_M} m tall — 4 ft 6 in, a street fence and "
+                "not the Sauganash's private six-foot yard wall — of "
+                f"{EDGE_FENCE_BOARD_W_M} m boards butted at {EDGE_FENCE_BOARD_GAP_M} m "
+                f"on {EDGE_FENCE_COURSES} stringers, posts every "
+                f"{EDGE_FENCE_POST_SPACING_M} m. Not one of those numbers is a "
+                "record's; they are how the layer is DRAWN."
+            ),
+        },
+        "rule": {
+            "note": (
+                "A block face carries a walk iff it fronts one of the two covered "
+                "streets and a walk at its lot line still clears that street's own "
+                f"travelled track by {EDGE_TRACK_MARGIN_M} m. The face is then MARCHED "
+                f"in {EDGE_SPAN_M} m steps, and a step carries boards iff the ground "
+                f"under it stands at least {EDGE_DRY_M} m over datum, rolls no more "
+                f"than {EDGE_FLAT_M} m (which is what lets the whole step be ONE deck a "
+                "visitor stands on), and carries no committed footprint. Consecutive "
+                f"carrying steps become a run; a run under {EDGE_MIN_RUN_M} m is a "
+                "landing rather than a sidewalk and is dropped. A crossing exists only "
+                "where two runs stop either side of one corridor. A lot gets a street "
+                "fence iff it is improved and its nearest committed wall stands "
+                f"{EDGE_FENCE_SETBACK_M} m or more back from its own frontage line — "
+                "where it does not, the building is the street wall. Every refusal "
+                "below names the clause that refused it. Read them in "
+                "tools/generate_frontage_works.py."
+            ),
+            "covered_streets": list(EDGE_STREETS),
+            "faces_laid": census["faces"],
+            "walk_m": census["walk_m"],
+            "crossing_m": census["cross_m"],
+            "fence_m": census["fence_m"],
+            "walking_decks": census["decks"],
+        },
+        "card": {
+            "id": STREET_EDGE_ID,
+            "name": "The town's street edge",
+            "symbolic_location": (
+                "South Water Street and Lake Street, between Market Street and State "
+                "Street — the plank sidewalks at the lot line, the board crossings at "
+                "the corners and over the road, and the fences behind them."
+            ),
+            "position_note": bounds_note,
+            "attributes": {
+                "existence": {
+                    "value": True,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "Asked for by the owner, 2026-08-18, of the first Cook County "
+                        "jail engraving: 'note the fences lining the street and what "
+                        "appears to be plank sidewalks. all of the streets should be "
+                        "updated like this... at least south of the river or near the "
+                        "river.' No 1835 source names a walk or a fence on any "
+                        "particular stretch of these streets."
+                    ),
+                },
+                "walk_m": {
+                    "value": census["walk_m"],
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        f"{census['runs']} run(s) of sidewalk on {census['faces']} "
+                        "platted block face(s), plus "
+                        f"{census['cross_m']} m of board crossing at "
+                        f"{census['crossings']} corner(s). Nothing measured: every "
+                        "metre is derived from the committed plat and audited against "
+                        "the committed ground."
+                    ),
+                },
+                "fence_m": {
+                    "value": census["fence_m"],
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        f"{census['fences']} street-lining fence run(s), on the lots "
+                        "the rule found improved and standing back from their own "
+                        "frontage line."
+                    ),
+                },
+                "width_m": {
+                    "value": WALK_W_M,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": "Six feet — two people passing; the layer's own drawn width.",
+                },
+            },
+            "research_note": (
+                "A walk from data/frontage/ — not a structure record. " + bounds_note
+                + " What would move it off reconstruction: a Chicago town order on "
+                "sidewalks of the right date — the corporation legislated wooden walks "
+                "within a few years of 1835, and an order would give a width and a "
+                "material at a stroke; a tax, insurance or sale description naming a "
+                "walk or a fence in front of a named lot; or holding the jail, Green "
+                "Tree and Sauganash plates as proper source records (T-0075)."
+            ),
+        },
+        "walks": walks,
+        "fences": fences,
+        "posts": [],
+        "refused": refused,
+        "research_note": (
+            "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on "
+            "sidewalks or on lawful fences of the right date; a tax, insurance or sale "
+            "description naming a walk or a fence in front of a named lot; or holding "
+            "the four reference plates as proper source records with their institutions "
+            "and dates (T-0075). AND ONE THING THAT WOULD CHANGE THE SHAPE OF THE RUN "
+            "WITHOUT CHANGING ITS EVIDENCE: several documented South Water Street "
+            "stores were placed against the modern kerb rather than against this "
+            "project's own platted line and stand out past it, which is why the walk on "
+            "that side breaks around them. Re-placing those records against the plat "
+            "would close those gaps, and the refusals below name every one of them."
+        ),
+    }
+
+
 def index_record() -> dict:
     """The manifest the renderer fetches before it fetches anything else.
 
@@ -1310,7 +2277,8 @@ def index_record() -> dict:
             "data/signage/, data/yard/ and the sidecars' placement.local_e / local_n use."
         ),
         "frontage": [{"id": c["record_id"], "file": c["out"]} for c in BUILDINGS]
-        + [{"id": "river_walk_frontage", "file": "river_walk_frontage.json"}],
+        + [{"id": "river_walk_frontage", "file": "river_walk_frontage.json"},
+           {"id": STREET_EDGE_RECORD_ID, "file": "town_street_edge.json"}],
     }
 
 
@@ -1334,6 +2302,14 @@ def main() -> int:
                    json.dumps(river_record(river_walks, river_refused), indent=2,
                               ensure_ascii=False) + "\n",
                    "the river plank walk"))
+    edge_walks, edge_fences, edge_refused, edge_census = build_street_edge()
+    totals = [totals[0] + len(edge_walks), totals[1], totals[2] + len(edge_refused)]
+    fences_written = len(edge_fences)
+    wanted.append((OUTDIR / "town_street_edge.json",
+                   json.dumps(street_edge_record(edge_walks, edge_fences, edge_refused,
+                                                 edge_census), indent=2,
+                              ensure_ascii=False) + "\n",
+                   "the town's street edge"))
     wanted.append((INDEX, json.dumps(index_record(), indent=2, ensure_ascii=False) + "\n",
                    "the manifest"))
 
@@ -1350,16 +2326,22 @@ def main() -> int:
             for d in drift:
                 print(f"  - {d}")
             return 1
-        print(f"verified {len(BUILDINGS) + 1} frontage record(s): {totals[0]} "
-              f"walk/crossing run(s) and {totals[1]} post(s) "
-              f"({totals[2]} refusal(s) stated)")
+        print(f"verified {len(BUILDINGS) + 2} frontage record(s): {totals[0]} "
+              f"walk/crossing run(s), {fences_written} street-lining fence run(s) and "
+              f"{totals[1]} post(s) ({totals[2]} refusal(s) stated)")
         return 0
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
     for path, text, _ in wanted:
         path.write_text(text, encoding="utf-8")
-    print(f"wrote {len(BUILDINGS) + 1} frontage record(s) and their manifest — "
-          f"{totals[0]} walk/crossing run(s), {totals[1]} post(s) ({totals[2]} refused)")
+    print(f"wrote {len(BUILDINGS) + 2} frontage record(s) and their manifest — "
+          f"{totals[0]} walk/crossing run(s), {fences_written} street-lining fence "
+          f"run(s), {totals[1]} post(s) ({totals[2]} refused)")
+    print(f"  street edge: {edge_census['faces']} block face(s), "
+          f"{edge_census['walk_m']} m of walk in {edge_census['runs']} run(s), "
+          f"{edge_census['crossings']} crossing(s) ({edge_census['cross_m']} m), "
+          f"{edge_census['fences']} fence run(s) ({edge_census['fence_m']} m), "
+          f"{edge_census['decks']} walking deck(s)")
     return 0
 
 

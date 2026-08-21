@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0068 — More fences: the town encloses its property
-T-0069 — Fences line the streets, and plank sidewalks run beside them
 T-0064 — More wagons, all over a frontier town
 T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings
@@ -67,5 +66,6 @@ T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the 
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
+T-0127 — South Water Street and the rest of the town get the street edge
 T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
