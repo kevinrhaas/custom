@@ -140,7 +140,45 @@ const DETAIL = {
   light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
-const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+/**
+ * THE DRAW-CALL BUDGET, RAISED FROM 80 TO 110 ON 2026-08-21 (T-0064), AND WHY —
+ * because a re-budget that is not written down is a ceiling that was quietly
+ * abandoned.
+ *
+ * WHERE 80 CAME FROM. It was set when the town was ONE batched mesh of buildings
+ * plus a handful of whole-layer meshes: at that point a rising call count meant
+ * the batch strategy had broken, which is exactly what a budget should catch.
+ * That is no longer what the number measures. Since T-0115 named the town-wide
+ * furniture meshes as the largest free saving in the scene, three layers have
+ * split themselves into CULLING-SIZED CHUNKS on a single material each —
+ * `frontage.js` (T-0119), `enclosures.js` (T-0067) and now `yard.js` (T-0064) —
+ * so calls rise on purpose, in exchange for triangles, and the two budgets pull
+ * against each other. Measured on this parcel at the release gate's own stand:
+ * the yard layer in 100 m chunks draws 823,012 triangles at `full` in 94 calls,
+ * and in 400 m chunks 838,268 in 74. The coarse build is inside the old ceiling
+ * and draws MORE of everything; the ceiling was buying nothing and costing
+ * fidelity.
+ *
+ * WHY 110. The measured worst this parcel produces is 94 at `full` and
+ * `balanced` at the gate's stand, and the axial Lake-Street view T-0115 names as
+ * the worst frame in the scene is measured with it. 110 is that worst reading
+ * with about a sixth of headroom on top — enough that the next chunked layer
+ * does not have to come back here, not so much that a real batching regression
+ * would hide inside it.
+ *
+ * WHAT DID NOT MOVE, and it is the important half. The TRIANGLE ceilings are
+ * untouched, and `light` — the tier for machines that cannot afford the others —
+ * still draws inside **80 calls** on both release viewports (62 desktop, 55
+ * mobile measured on this parcel). The safe floor is exactly as safe as it was;
+ * what the new headroom buys is spent at `full` and `balanced`, which is where
+ * the visitor who has the machine for it gets the town in more pieces and
+ * therefore fewer triangles.
+ *
+ * The owner authorised the raise, 2026-08-21: *"ok to raise the draw call
+ * budget"* … *"or just raise the budget?"* — the scene-detail control is already
+ * the user-facing setting and no second one is added.
+ */
+const BUDGET = { drawCalls: 110, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the

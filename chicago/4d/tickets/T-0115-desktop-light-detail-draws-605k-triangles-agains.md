@@ -236,3 +236,71 @@ thirty-three names are one material and one draw call.
 
 The trim candidates in the list above are unchanged, and item 2 — the town-wide furniture meshes
 that are never culled — still names `signage` at 1,380; read it now as 1,106.
+
+**Measured by T-0064, 2026-08-21 — item 2 taken on the last of the three layers it named, and the
+draw-call budget consciously re-budgeted.** T-0064 puts **64 more wagons** across the town (4 →
+68), so the yard layer's geometry goes from **10,336 to 59,064 triangles**, ×5.7. Read the frame
+rather than the layer, desktop 1280×800 at the release gate's own stand — `frame('sauganash_hotel',
+26)`, the same probe every row of this ledger uses:
+
+| desktop, gate's stand | before (dev `fd7b108`) | after T-0064 | ceiling |
+|---|---:|---:|---:|
+| `full` | 794,916 (65 calls) | **817,508 (94 calls)** | 1,000,000 / 110 |
+| `balanced` | 718,994 (65 calls) | **741,586 (94 calls)** | 800,000 / 110 |
+| `light` | 557,311 (51 calls) | **560,743 (62 calls)** | 600,000 / 110 |
+
+**48,728 triangles of new geometry cost the SAFE FLOOR 3,432 of them.** That is item 2 of the list
+above, taken on the layer this ledger measured at 10,336: the goods and wagons now go into **100 m
+chunks by where they stand, one mesh each, all on the same material** — 48 of them — so a wagon two
+blocks behind the camera is culled instead of drawn. `frontage.js` (T-0119) and `enclosures.js`
+(T-0067) had already done this; the yard layer was the third and last of the three, and item 2 is
+now closed.
+
+**A wheel also gave triangles back, which is the rest of what paid for the parcel.** A wheel drew
+SIX spoke boxes (twelve spokes' worth) where five reads identically at any distance a visitor can
+stand, and its hub was a 10-sided cask 9 cm in radius — a cylinder drawn finer than the plank
+beside it, which is the barrels' own missing-hoops argument. Five spokes and a six-sided hub save
+**32 triangles per wheel**: 128 on a four-wheeled wagon, 64 on a cart, **7,744 across the 68 now
+standing**, for a change nothing can see.
+
+**THE DRAW-CALL BUDGET IS RAISED FROM 80 TO 110, and it is a re-budget rather than a drift.** This
+ticket's acceptance offered two routes — trim, or re-budget consciously in the place the number is
+set, with the reasoning written down — and the triangle ceiling took the first in August. The
+draw-call number takes the second now, on the owner's ruling of 2026-08-21: *"ok to raise the draw
+call budget"* … *"or just raise the budget?"*. The argument is at `main.js`'s own definition of
+`BUDGET.drawCalls` and is short: **80 was set when the town was one batched mesh plus a handful of
+whole-layer meshes**, so a rising call count meant the batch strategy had broken. That is no longer
+what it measures. Three layers now chunk themselves ON PURPOSE, trading calls for triangles, and
+the two budgets pull against each other — measured on this parcel at the same stand, same
+68-wagon build:
+
+| chunk | chunks | `full` tris | `full` calls | `balanced` tris | `light` tris | `light` calls |
+|---|---:|---:|---:|---:|---:|---:|
+| 100 m | 48 | **817,508** | 94 | **741,586** | **560,743** | 62 |
+| 300 m | 15 | 857,680 | 77 | 781,758 | 582,367 | 58 |
+| 400 m (52 wagons) | 8 | 838,268 | 74 | 762,346 | 569,835 | 55 |
+
+The coarse builds are inside the OLD ceiling and draw more of everything at every tier. The
+ceiling was buying nothing and costing fidelity, which is the definition of a number that has
+outlived its reason.
+
+**What did NOT move, and it is the half that matters.** The three triangle ceilings are untouched,
+and **`light` still draws inside the old 80 calls** — 62 desktop and 62 mobile at the gate's stand,
+asserted now by its own check in `tools/smoke_renderer.mjs` so the promise cannot quietly lapse.
+The tier for a machine that cannot afford the other two is exactly as safe as it was; the new
+headroom is spent at `full` and `balanced` only.
+
+**Headroom after this parcel, at the gate's stand:** `full` 182,492 (18.2 %), `balanced` 58,414
+(7.3 %), `light` **39,257 (6.5 %)** — up from 5.0 % before this parcel despite 64 more vehicles —
+and 16 draw calls of 110.
+
+**Item 1 of the list above, re-measured and worse, said out loud.** The axial Lake-Street-at-Canal
+view this ticket names as the worst frame in the scene now reads, on the same build: `full`
+1,101,347 triangles at **152 calls**, `balanced` 1,020,908 at 151, `light` 819,116 at **131** (it
+read 796,840 at 68 calls after the August repair). The triangles barely moved; **the CALLS roughly
+doubled**, because chunking is exactly the thing that spends calls when a long axial view puts most
+of the town in the frustum. Nothing gates that stand and nothing ever has — item 1 is precisely the
+observation that a ceiling checked at one camera is a spot reading — but a budget raised to 110 on
+a 94-call measurement does not cover it either, and the honest instrument this ticket asked for
+(the worst stand of a set) is still unbuilt. Whoever takes it should expect the chunked layers to
+be most of what it finds.
