@@ -440,15 +440,28 @@ def record(runs, openings, refused):
         "ground": {
             "value": "cultivated garden ground",
             "confidence": "reconstructed",
-            "geometry": "absent",
+            "geometry": "drawn",
+            "treatment": "dooryard_garden",
             "note": (
-                "NOT DRAWN, AND SAYING SO IS THE POINT — the same admission the wagon yard "
-                "record makes. The ground inside these fences is the prairie sward the "
-                "flora layer plants everywhere else in the town. A kitchen garden is beds "
-                "and bare earth and a crop that changes with the month, and nothing states "
-                "what was grown on any lot in this town, so the fence is built and the "
-                "ground is left alone rather than invented. This is the honest residual of "
-                "the record and it is claimed in docs/LIBERTIES.md L129."
+                "DRAWN SINCE 2026-08-21 (T-0067). This block used to read 'NOT DRAWN, AND "
+                "SAYING SO IS THE POINT' — the ground inside these fences was the prairie "
+                "sward the flora layer plants everywhere else in the town, which made a "
+                "garden fence a rectangle of pales around nothing. The owner named exactly "
+                "that on 2026-08-18: 'fences around properties inside the fence would not be "
+                "wild prairie but curated lawn and garden or animal pens'. So the sward is "
+                "suppressed inside every plot on this record and renderers/web/js/yards.js "
+                "lays `dooryard_garden` in its place: short kept green over the plot, a bank "
+                "of tilled beds in rows on the side away from the gateway, and a trodden "
+                "path in from the gateway itself. NO NEW COORDINATE IS AUTHORED FOR ANY OF "
+                "IT — every run on this record already closes a ring, and the ground is that "
+                "ring; the beds and the path are derived inside it from the plot's own axes "
+                "and this record's own gateway, and both are clipped to the ring so neither "
+                "can escape its fence. WHAT IS STILL TRUE IS THE OLD ADMISSION'S REASON: a "
+                "kitchen garden is beds and bare earth and a crop that changes with the "
+                "month, and nothing states what was grown on any lot in this town. The "
+                "treatment is therefore graded reconstructed like the fence over it, it "
+                "disappears with the rest of that tier, and docs/LIBERTIES.md L158 claims "
+                "the scheme on the precedent of L129."
             ),
         },
         "refused": refused,

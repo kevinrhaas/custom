@@ -87,10 +87,19 @@
     }
   },
   "ground": {
-    "value": "yard, not prairie",
+    "value": "dooryard green, garden beds and a path in from the gate",
     "confidence": "reconstructed",
-    "geometry": "absent",
-    "note": "NOT DRAWN, AND SAYING SO IS THE POINT — the same residual data/enclosures/western_hotel_wagon_yard.json states for its own yard. The ground inside this fence is still the prairie sward the flora layer plants over the whole town, and image 12 of the owner's brief is explicit that fenced ground in this town read as garden, orchard and dooryard green rather than as prairie. Wearing or planting it would be a surface treatment this record cannot bound, and the general fix is a ticket of its own (T-0067). What IS drawn inside the fence is the trees the same plate shows behind it: data/flora/plantings/sauganash_yard.json."
+    "geometry": "drawn",
+    "treatment": "dooryard_garden",
+    "interior_local_enu_m": [
+      [101.40, -130.60],
+      [101.40, -150.92],
+      [119.50, -151.07],
+      [119.50, -127.50],
+      [113.40, -127.50],
+      [113.40, -130.60]
+    ],
+    "note": "DRAWN SINCE 2026-08-21 (T-0067). This block used to read 'NOT DRAWN, AND SAYING SO IS THE POINT' and then named the ticket that would fix it: the ground inside this fence was the prairie sward, while image 12 of the owner's brief is explicit that fenced ground in this town read as garden, orchard and dooryard green rather than as prairie. It reads that way now — the sward is suppressed inside the ring below and renderers/web/js/yards.js lays `dooryard_garden`: short kept green over the whole yard, a bank of tilled beds in the corner farthest from the Market Street gateway, and a trodden path in from that gateway. THE BEDS ARE A RULE AND NOT A CLAIM ABOUT THIS INN'S KITCHEN: at most four, inset from the fence, laid away from the gate, so that one rule fills a 28 x 20 ft town garden plot and leaves a hotel's back yard mostly green with a garden patch in one corner. Nothing states what stood on this ground; the whole treatment is graded reconstructed and claimed in docs/LIBERTIES.md L158. What is drawn inside the fence besides the ground is the trees the same plate shows behind it — data/flora/plantings/sauganash_yard.json — which this treatment does not disturb: the SWARD is suppressed here and the woody layer is not. THE INTERIOR IS AUTHORED, for the reason the run note gives: this yard's north side is WALLS, not fence. The ring leaves the hotel's south-west corner (101.40 / -130.60), follows the fence south, east along the rear line and north up the shop's east wall line to the shop's south-east corner (119.50 / -127.50), then west along the shop's south wall to the shop's south-west corner (113.40) and south to the hotel's south-east corner, closing along the hotel's south wall. Every metre is a committed footprint edge or a coordinate already on this record's own run; the step between the two south walls is the 3.1 m the shop stands back from the hotel, and that is in the committed sidecars rather than invented here."
   },
   "research_note": "THE YARD SIDE OF THE SAUGANASH, which is the half of the owner's three views nothing had been built from. docs/LIBERTIES.md L136 took the FRONT of this building from the same three plates — the plank walks, the board crossing and the two hitching posts — and left the fence and the trees standing in the brief unbuilt; T-0091 is that remainder. WHAT IS EVIDENCE HERE IS THE KIND AND THE FACT: a vertical-board fence, tall, enclosing the rear yard, with trees behind it, in three retrospective views that agree. WHAT IS DERIVED is every coordinate — two committed footprints and one committed lot polygon give the whole line except its depth. WHAT IS INVENTED is the depth rule, the height, the board and post dimensions, the course count and the gateway, all graded reconstructed and claimed in docs/LIBERTIES.md L139. WHAT WOULD UPGRADE IT: holding the Petford, Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed brief path this record cites into a source_id; or any Chicago fence ordinance of the 1830s, or a tax or insurance description of the Lake and Market corner lot, none of which this project holds."
 }

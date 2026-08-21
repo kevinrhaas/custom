@@ -25,7 +25,7 @@ mark them as such."* So this record now carries, for every board:
     combinations the trade actually used, assigned so that no two boards within
     `NEIGHBOUR_M` of each other share a mounting, a style or a ground colour.
 
-All three are RECONSTRUCTED and graded so. `docs/LIBERTIES.md` **L158** is the claim.
+All three are RECONSTRUCTED and graded so. `docs/LIBERTIES.md` **L159** is the claim.
 
 THE RULE THAT CHOOSES A FRONTAGE, and every clause is doing work. A structure gets a
 sign iff
@@ -163,7 +163,7 @@ MOUNTING_CYCLE = {
 # THE STYLES. Ground, letters, letterform and panel — the combinations an American
 # signwriter of the 1830s worked in. Nothing here is a Chicago record: no wording,
 # device or colour of any sign in this town survives, so the whole table is
-# reconstruction and is graded as one (L158). What it is NOT is arbitrary: black
+# reconstruction and is graded as one (L159). What it is NOT is arbitrary: black
 # grounds with gilt letters, white lead grounds with black, ochre (the cheapest
 # pigment on any colourman's shelf), Venetian red, Prussian blue and Brunswick green
 # are the trade's ordinary stock, and the letterforms are the four the period's
@@ -807,7 +807,7 @@ def record(signs: list, refused: list) -> dict:
                 "did so in 1830s America is not in dispute. That is a reconstruction "
                 "in this project's third tier, not an attestation, and it is graded "
                 "and claimed as one: docs/LIBERTIES.md L130 for the fact of a sign, "
-                "L158 for its wording, its mounting and its colours. THE GREEN TREE "
+                "L159 for its wording, its mounting and its colours. THE GREEN TREE "
                 "PLATE IS NOT PART OF THE ARGUMENT — docs/ROADMAP.md K5 (b) cites its "
                 "hanging sign, but data/sources/chm_green_tree_1859.json records that "
                 "the image has never been seen and is unverified, so it underwrites "
@@ -835,7 +835,7 @@ def record(signs: list, refused: list) -> dict:
                 "a signwriter painted it is not anybody's record. The LETTERFORM, the "
                 "colours and the panel come from `style`, a table of the combinations "
                 "the trade worked in rather than of anything Chicago recorded. "
-                "docs/LIBERTIES.md L158. What is NOT drawn, still: an image or a trade "
+                "docs/LIBERTIES.md L159. What is NOT drawn, still: an image or a trade "
                 "device on any board. L25 stands for the wolf, and no source describes "
                 "the painting on any other."
             ),

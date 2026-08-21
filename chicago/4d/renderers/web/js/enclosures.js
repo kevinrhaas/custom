@@ -38,9 +38,21 @@
  *  * It refuses water. A post whose foot is in the river mask is dropped, the
  *    way `trees.js` refuses a stem below the waterline. A fence marching into
  *    the water would be a claim about a shoreline this layer knows nothing of.
- *  * It is ONE draw call for the whole layer. Posts and rails are emitted into
- *    a single non-indexed buffer, because a fence is a lot of very small boxes
- *    and eighty draw calls for eighty sticks is how a phone loses its frame.
+ *  * It draws in CULLING-SIZED CHUNKS. It used to be one draw call for the whole
+ *    layer — posts and rails emitted into a single non-indexed buffer, because a
+ *    fence is a lot of very small boxes and eighty draw calls for eighty sticks
+ *    is how a phone loses its frame. That was right while the only enclosures
+ *    were one yard and one pound, and it stopped being right the moment the
+ *    dooryard pickets put fifteen plots across the whole South Division: one
+ *    geometry spanning the town has a bounding sphere no frustum ever culls, so
+ *    every fence in Chicago was drawn in every frame including the ones behind
+ *    the camera — 33,166 triangles, everywhere, forever. T-0115 measured that
+ *    and named it the largest free saving left in the scene, and T-0119 had
+ *    already solved the same problem one layer over (`frontage.js` builds the
+ *    river walk as one mesh per segment). So a run — or a piece of a run no
+ *    longer than `CHUNK_M` across — is its own mesh with its own bounding
+ *    sphere, on the SAME material, and the draw-call principle bends exactly as
+ *    far as culling needs it to and no further.
  *  * It marks itself. Every vertex carries `_confidence`, and it carries the
  *    grade of the WEAKEST thing that decides where that vertex is — which for
  *    every fence in this dataset is the fence type, and every fence type here is
@@ -83,6 +95,17 @@ const PALE_T_M = 0.022;
 /** A drop this steep between neighbouring posts is a bank, not a yard. */
 const MAX_STEP_M = 1.5;
 
+/**
+ * How far a chunk is allowed to reach before the layer starts a new one, in
+ * metres of bounding-box diagonal. The number is a culling decision and nothing
+ * else: small enough that a mesh's bounding sphere is local to the fence it
+ * draws (a dooryard plot is 10.5 m corner to corner and is always one chunk),
+ * large enough that a town's worth of fence is tens of meshes rather than
+ * hundreds. A chunk boundary can only fall between two bays, so no member is
+ * ever split.
+ */
+const CHUNK_M = 30;
+
 /* -------------------------------------------------------------------------- */
 /* geometry                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -93,18 +116,35 @@ const MAX_STEP_M = 1.5;
  * small boxes and the underside of every one of them is buried in the ground it
  * stands on; at 3 500 pales that face is 7 000 triangles nobody can ever see, and
  * the scene's `light` detail ceiling is the tightest of the three.
+ *
+ * ...or **4, with `plank`**, which is what a pale takes at `light` (T-0067,
+ * costed by T-0115). A pale is a 22 mm-thick prism, and of its ten triangles SIX
+ * are the two 22 mm edge faces and the 22 mm top cap — three quarters of the
+ * geometry for one fortieth of the silhouette. At `light` a pale is drawn as a
+ * zero-thickness double-sided plank instead: the two broad faces only, each with
+ * its own outward normal so it lights correctly from either side of the fence
+ * without a second material. The pale keeps its width, its height, its position
+ * and its rhythm; what it loses is a thickness you cannot see from more than a
+ * metre away and could never see at all from the side the fence is meant to be
+ * read from. Measured on the 2,335 pales standing today: ~14,000 triangles, and
+ * every pale the fence tickets add after this costs 4 at `light` instead of 10.
+ * `full` and `balanced` draw the prism, unchanged.
  */
 function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level,
-                 skipUnderside = false) {
+                 skipUnderside = false, plank = false) {
   // `u` is the horizontal unit vector along the box; `v` is horizontal and
   // perpendicular to it. Up is world Y, always: a leaning fence post is a
   // claim about ground this layer does not make.
   const vx = -uz;
   const vz = ux;
+  // A plank is the same box with its thickness taken out, so the two broad
+  // faces below land exactly on the line the pale's centre is authored on —
+  // which is where the prism's own centre stood.
+  const w = plank ? 0 : halfW;
   const P = (a, b, c) => [
-    cx + ux * a * halfLen + vx * b * halfW,
+    cx + ux * a * halfLen + vx * b * w,
     cy + c * halfH,
-    cz + uz * a * halfLen + vz * b * halfW,
+    cz + uz * a * halfLen + vz * b * w,
   ];
   const p = [
     P(-1, -1, -1), P(1, -1, -1), P(1, 1, -1), P(-1, 1, -1),
@@ -118,7 +158,13 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level,
     [[4, 7, 6], [4, 6, 5], [0, 1, 0]],
     [[0, 1, 2], [0, 2, 3], [0, -1, 0]],
   ];
-  for (const [t1, t2, n] of (skipUnderside ? faces.slice(0, 5) : faces)) {
+  // `faces` runs +u, -u, +v, -v, top, underside. A plank keeps the two BROAD
+  // faces, which for a pale are the ±v pair: `halfLen` is the pale's recorded
+  // width along the run and `halfW` its thickness across it, so the faces that
+  // carry the fence are the ones perpendicular to v. The six it drops are the
+  // two edge faces, the top cap and the buried underside.
+  const wanted = plank ? faces.slice(2, 4) : (skipUnderside ? faces.slice(0, 5) : faces);
+  for (const [t1, t2, n] of wanted) {
     for (const tri of [t1, t2]) {
       for (const i of tri) {
         buf.pos.push(p[i][0], p[i][1], p[i][2]);
@@ -196,9 +242,29 @@ function stretches(path, s, gaps) {
 /* building one enclosure                                                      */
 /* -------------------------------------------------------------------------- */
 
-function buildRecord(buf, record, terrain, problems) {
+/**
+ * A chunk under construction: one buffer, and the bounding box of the ground it
+ * has covered so far. `reaches` is the diagonal of that box, which is what
+ * `CHUNK_M` bounds — a mesh whose bounding sphere is bigger than its own fence
+ * is a mesh the frustum cannot cull.
+ */
+function newChunk() {
+  return { pos: [], nrm: [], conf: [],
+    minE: Infinity, maxE: -Infinity, minN: Infinity, maxN: -Infinity };
+}
+function cover(chunk, e, n) {
+  if (e < chunk.minE) chunk.minE = e;
+  if (e > chunk.maxE) chunk.maxE = e;
+  if (n < chunk.minN) chunk.minN = n;
+  if (n > chunk.maxN) chunk.maxN = n;
+}
+function reaches(chunk) {
+  if (!Number.isFinite(chunk.minE)) return 0;
+  return Math.hypot(chunk.maxE - chunk.minE, chunk.maxN - chunk.minN);
+}
+
+function buildRecord(record, terrain, problems, { plankPales = false } = {}) {
   const form = record.form ?? {};
-  const firstTri = buf.pos.length / 9;
   const height = form.height_m?.value ?? 1.37;
   const courses = Math.max(1, Math.round(form.rail_courses?.value ?? 3));
   const spacing = Math.max(1, form.post_spacing_m?.value ?? 2.9);
@@ -233,9 +299,26 @@ function buildRecord(buf, record, terrain, problems) {
   let posts = 0;
   let pales = 0;
   let dropped = 0;
+  /**
+   * The chunking, and where its boundaries are ALLOWED to fall. A new chunk is
+   * opened when the one in hand has reached `CHUNK_M` across, and only ever
+   * between two bays — the post, its rails and its pales all go into the same
+   * buffer, so no member is ever split across two meshes and nothing moves by a
+   * millimetre. The chunks are otherwise exactly the timber the single buffer
+   * held: the same boxes, in the same places, on the same material.
+   */
+  const chunks = [];
+  let buf = newChunk();
+  const flush = () => {
+    if (buf.pos.length) chunks.push(buf);
+    buf = newChunk();
+  };
   for (const run of record.runs ?? []) {
     const path = run.path_local_enu_m;
     if (!Array.isArray(path) || path.length < 2) continue;
+    // A run is its own chunk (or several): two plots on opposite sides of the
+    // town share a record and must not share a bounding sphere.
+    flush();
     const s = measure(path);
     const gaps = (record.openings ?? [])
       .map((o) => ({ d: arcOf(path, s, o.at_local_enu_m), width: o.width_m ?? 4.27, o }))
@@ -258,17 +341,23 @@ function buildRecord(buf, record, terrain, problems) {
         if (terrain.isWater?.(e, north)) { feet.push(null); dropped++; continue; }
         feet.push({ e, n: north, y: terrain.surfaceHeight(e, north) });
       }
-      for (const f of feet) {
-        if (!f) continue;
+      const post = (f) => {
+        if (!f) return;
+        cover(buf, f.e, f.n);
         pushBox(buf, f.e, f.y + height / 2, -f.n, 1, 0,
           postHalf, postHalf, height / 2, level);
         posts++;
-      }
+      };
       for (let i = 0; i < n; i++) {
+        // The bay's own near post, then its timber: one bay is the smallest
+        // thing a chunk boundary may fall between, so it is emitted whole.
+        if (reaches(buf) > CHUNK_M) flush();
+        post(feet[i]);
         const a = feet[i];
         const b = feet[i + 1];
         if (!a || !b) continue;
         if (Math.abs(a.y - b.y) > MAX_STEP_M) { dropped++; continue; }
+        cover(buf, b.e, b.n);
         const de = b.e - a.e;
         const dn = b.n - a.n;
         const len = Math.hypot(de, dn);
@@ -300,18 +389,22 @@ function buildRecord(buf, record, terrain, problems) {
             const f = (first + k * palePitch) / len;
             pushBox(buf,
               a.e + de * f, a.y + (b.y - a.y) * f + height / 2, -(a.n + dn * f),
-              ux, uz, paleW / 2, PALE_T_M / 2, height / 2, level, true);
+              ux, uz, paleW / 2, PALE_T_M / 2, height / 2, level, true, plankPales);
             pales++;
           }
         }
       }
+      // The stretch's far post: the loop above emits each bay's NEAR post, so
+      // the last one would otherwise be left off the end of every run.
+      post(feet[n]);
     }
   }
+  flush();
   if (!posts) {
     problems.push(`enclosures: ${record.id} drew nothing — every post stood in water `
       + 'or the record carries no run with two points');
   }
-  return { posts, pales, dropped, firstTri, lastTri: buf.pos.length / 9 };
+  return { chunks, posts, pales, dropped };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -324,20 +417,29 @@ async function getJSON(url) {
   return res.json();
 }
 
+/** The detail levels at which a pale is drawn as a plank rather than a prism.
+ *  Named here rather than read out of `main.js` so the layer answers for its own
+ *  geometry; `main.js` passes the level and this decides what that level means
+ *  to a fence. See the note on `pushBox`. */
+const PLANK_LEVELS = new Set(['light']);
+
 /**
- * @param {object} o dataBase (data/ root) · terrain · confidence · problems
+ * @param {object} o dataBase (data/ root) · terrain · confidence · problems ·
+ *                   detail (the scene-detail level, `full` by default)
  * @returns {Promise<{group: THREE.Group, records: object[], census: object,
- *                    dispose: function}>}
+ *                    setDetail: function, dispose: function}>}
  */
 export async function createEnclosures({
-  dataBase, terrain, confidence = null, problems = [],
+  dataBase, terrain, confidence = null, problems = [], detail = 'full',
 } = {}) {
   const group = new THREE.Group();
   group.name = 'enclosures';
-  const out = { group, records: [], census: { enclosures: 0, posts: 0, pales: 0, dropped: 0 },
+  const out = { group, records: [],
+    census: { enclosures: 0, posts: 0, pales: 0, dropped: 0, chunks: 0 },
     // Replaced once there is a mesh to raycast; a layer that drew nothing still
     // answers a pick, with nothing.
     pickAt: () => null,
+    setDetail: () => false,
     dispose: () => {} };
 
   if (!dataBase || !terrain) {
@@ -361,44 +463,11 @@ export async function createEnclosures({
     } catch (err) { return [e.id, null, err.message]; }
   }));
 
-  const buf = { pos: [], nrm: [], conf: [] };
-  /**
-   * WHICH RECORD A TRIANGLE BELONGS TO, and why this layer bothers.
-   *
-   * The whole layer is one draw call, so a hit on the mesh knows nothing about
-   * which fence it landed on. That was fine while the only enclosure was a yard
-   * nobody could ask a question about. It stopped being fine with the estray pen
-   * (T-0051): the pen is a STRUCTURE RECORD whose geometry moved here, its card
-   * is still compiled from `data/structures/estray_pen.json`, and a visitor who
-   * could click Chicago's first public building while it was a roofed box must
-   * not lose the card because the model got more honest about its roof.
-   *
-   * So each record banks the half-open range of triangles it emitted, and a pick
-   * resolves `faceIndex` back to `structure_id`. An enclosure with no
-   * `structure_id` — the wagon yard — resolves to nothing and is not pickable,
-   * which is correct: there is no card behind it.
-   */
-  const spans = [];
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`enclosures: ${id} — ${why}`); continue; }
-    const { posts, pales, dropped, firstTri, lastTri } =
-      buildRecord(buf, record, terrain, problems);
-    if (record.structure_id && lastTri > firstTri) {
-      spans.push({ id: record.structure_id, from: firstTri, to: lastTri });
-    }
     out.records.push(record);
-    out.census.enclosures++;
-    out.census.posts += posts;
-    out.census.pales += pales;
-    out.census.dropped += dropped;
   }
-  if (!buf.pos.length) return out;
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(buf.pos, 3));
-  geo.setAttribute('normal', new THREE.Float32BufferAttribute(buf.nrm, 3));
-  geo.setAttribute('_confidence', new THREE.Float32BufferAttribute(buf.conf, 1));
-  geo.computeBoundingSphere();
+  if (!out.records.length) return out;
 
   const mat = new THREE.MeshStandardMaterial({
     color: new THREE.Color(WOOD), roughness: 0.92, metalness: 0.0,
@@ -431,12 +500,87 @@ export async function createEnclosures({
    */
   mat.customProgramCacheKey = () => 'chicago4d-enclosure-timber';
 
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.name = 'enclosures';
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  group.add(mesh);
-  group.userData.census = out.census;
+  /**
+   * WHICH RECORD A MESH BELONGS TO, and why this layer bothers.
+   *
+   * A hit on a merged buffer knows nothing about which fence it landed on. That
+   * was fine while the only enclosure was a yard nobody could ask a question
+   * about. It stopped being fine with the estray pen (T-0051): the pen is a
+   * STRUCTURE RECORD whose geometry moved here, its card is still compiled from
+   * `data/structures/estray_pen.json`, and a visitor who could click Chicago's
+   * first public building while it was a roofed box must not lose the card
+   * because the model got more honest about its roof.
+   *
+   * It used to be answered with banked triangle ranges and a `faceIndex` lookup.
+   * Chunking answers it better and for free: a chunk is timber from ONE record,
+   * so the owner rides on the mesh (`userData.pickId`) exactly as it does on the
+   * chunked plank walks in `frontage.js`. An enclosure with no `structure_id` —
+   * the wagon yard, the town's garden pickets — carries null and is not
+   * pickable, which is correct: there is no card behind it.
+   */
+  let meshes = [];
+
+  /**
+   * Build (or rebuild) the layer's meshes at the level in hand. Rebuilding is
+   * what a change of scene detail costs here, and it costs no fetch: the records
+   * are already loaded, and geometry this small is faster to rebuild than a
+   * second copy of it is to keep. `problems` is only collected on the FIRST
+   * build — a rebuild that re-reported every one of them would grow the panel
+   * every time a visitor touched the detail control.
+   */
+  let level = detail;
+  let firstBuild = true;
+  function build() {
+    for (const m of meshes) { group.remove(m); m.geometry.dispose(); }
+    meshes = [];
+    const sink = firstBuild ? problems : [];
+    const census = { enclosures: 0, posts: 0, pales: 0, dropped: 0, chunks: 0 };
+    const plankPales = PLANK_LEVELS.has(level);
+    for (const record of out.records) {
+      const r = buildRecord(record, terrain, sink, { plankPales });
+      for (const chunk of r.chunks) {
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(chunk.pos, 3));
+        geo.setAttribute('normal', new THREE.Float32BufferAttribute(chunk.nrm, 3));
+        geo.setAttribute('_confidence', new THREE.Float32BufferAttribute(chunk.conf, 1));
+        // The whole point of the chunk: its own bounding sphere, around its own
+        // fence, so the frustum can leave it out.
+        geo.computeBoundingSphere();
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.name = 'enclosure-chunk';
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        mesh.userData.pickId = record.structure_id ?? null;
+        mesh.userData.recordId = record.id;
+        group.add(mesh);
+        meshes.push(mesh);
+        census.chunks += 1;
+      }
+      census.enclosures += 1;
+      census.posts += r.posts;
+      census.pales += r.pales;
+      census.dropped += r.dropped;
+    }
+    firstBuild = false;
+    Object.assign(out.census, census);
+    group.userData.census = out.census;
+  }
+  build();
+  if (!meshes.length) return out;
+
+  /**
+   * A change of scene detail, applied in place. Returns whether anything was
+   * rebuilt, so the caller can re-apply the shadow policy only when it has to —
+   * every mesh here is new after a rebuild and starts out casting.
+   */
+  out.setDetail = (next) => {
+    if (!next || next === level) return false;
+    const was = PLANK_LEVELS.has(level);
+    level = next;
+    if (PLANK_LEVELS.has(level) === was) return false;
+    build();
+    return true;
+  };
 
   const raycaster = new THREE.Raycaster();
   /**
@@ -448,14 +592,18 @@ export async function createEnclosures({
     if (!camera) return null;
     raycaster.setFromCamera(ndc ?? new THREE.Vector2(0, 0), camera);
     raycaster.far = Math.max(400, camera.position.y * 4);
-    const hits = raycaster.intersectObject(mesh, false);
+    const hits = raycaster.intersectObjects(meshes, false);
     if (!hits.length) return null;
     const hit = hits[0];
-    const span = spans.find((sp) => hit.faceIndex >= sp.from && hit.faceIndex < sp.to);
-    if (!span) return null;
-    return { id: span.id, point: hit.point.clone(), distance: hit.distance };
+    const id = hit.object?.userData?.pickId ?? null;
+    if (!id) return null;
+    return { id, point: hit.point.clone(), distance: hit.distance };
   };
 
-  out.dispose = () => { geo.dispose(); mat.dispose(); };
+  out.dispose = () => {
+    for (const m of meshes) m.geometry.dispose();
+    meshes = [];
+    mat.dispose();
+  };
   return out;
 }

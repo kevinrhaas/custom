@@ -104,8 +104,17 @@
   "ground": {
     "value": "bare, worn earth",
     "confidence": "reconstructed",
-    "geometry": "absent",
-    "note": "NOT DRAWN, AND SAYING SO IS THE POINT. A yard that wagon trains were driven into daily was not grass, and the ground inside this fence is still the prairie sward the flora layer plants everywhere else on the west side. Wearing it bare would mean a surface treatment this record cannot bound — nothing states the yard's ground, its extent of wear, or whether it was gravelled, planked or plain mud — so the fence is built and the ground is left alone rather than invented. This is the honest residual of this record and it is claimed in docs/LIBERTIES.md."
+    "geometry": "drawn",
+    "treatment": "worn_earth",
+    "interior_local_enu_m": [
+      [-143.05, -281.67],
+      [-143.05, -298.00],
+      [-124.50, -298.00],
+      [-124.50, -263.38],
+      [-130.86, -263.38],
+      [-130.86, -281.67]
+    ],
+    "note": "DRAWN SINCE 2026-08-21 (T-0067), AND WHAT IS DRAWN IS STILL AN INVENTION. This block used to read 'NOT DRAWN, AND SAYING SO IS THE POINT' — a yard that wagon trains were driven into daily was not grass, and the ground inside this fence was the same prairie sward the flora layer plants everywhere else on the west side. The owner said so in as many words on 2026-08-18: 'the wagon yard would probably be dirty dusty ground'. So the sward is suppressed inside the ring below and renderers/web/js/yards.js lays `worn_earth` in its place — bare hoof- and wheel-worn dirt, with sparse trampled grass surviving in a fringe at the fence line where the wheels do not reach. NOTHING STATES ANY OF IT: not the yard's surface, not its extent of wear, not whether it was gravelled, planked or plain mud. So the treatment is graded reconstructed, it disappears with the rest of that tier, and it is claimed in docs/LIBERTIES.md L158. THE INTERIOR IS AUTHORED RATHER THAN DERIVED FROM THE RUNS, and it has to be: this yard's fourth side is BUILDINGS. The ring walks the hotel's west wall line south from the hotel's own south-west corner (-143.05 / -281.67) to the stable's north face (N -298.00), east along that face to the yard's east line (E -124.50), north up it to the hotel's front wall line (N -263.38), west to the hotel's north-east corner (-130.86), and back down the hotel's east wall and along its south wall to the start. Every metre of it is a committed building corner or a coordinate already on this record's own runs; not one number here is new, and the ring encloses neither the hotel nor the stable."
   },
   "citations": [
     {

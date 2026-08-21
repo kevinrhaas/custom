@@ -1380,10 +1380,18 @@ for (const [label, viewport, touch] of [
     // every one of these questions is answerable here and nowhere else. The last
     // one is the acceptance clause of its ticket: not "the data loaded" but "you
     // can see it from where a visitor stands".
+    //
+    // T-0067 replaced the layer's "one draw call" question with the OPPOSITE
+    // one, and the swap is a strengthening rather than a relaxation. One mesh
+    // spanning the whole town has a bounding sphere no frustum can cull, so
+    // every fence in Chicago drew in every frame including the ones behind the
+    // camera — 33,166 triangles of it, which T-0115 measured and named the
+    // largest free saving left in the scene. The layer now builds culling-sized
+    // chunks, and the assertion below is what makes a future re-merge fail
+    // loudly instead of quietly costing a phone its frame.
     const encl = await page.evaluate(() => {
       const e = window.__chicago4d.enclosures;
-      const mesh = e?.group?.children?.[0] ?? null;
-      const g = mesh?.geometry ?? null;
+      const meshes = (e?.group?.children ?? []).filter((c) => c.isMesh);
       const box = { minE: Infinity, maxE: -Infinity, minN: Infinity, maxN: -Infinity };
       for (const r of e?.records ?? []) {
         for (const run of r.runs ?? []) {
@@ -1394,8 +1402,18 @@ for (const [label, viewport, touch] of [
         }
       }
       let worst = 0;
-      if (g) {
+      let verts = 0;
+      let ungraded = 0;
+      let graded = 0;
+      // The widest bounding sphere on the layer: this is the number that decides
+      // whether the frustum can do anything at all, so it is read rather than
+      // inferred from the chunk count.
+      let widestSphere = 0;
+      for (const mesh of meshes) {
+        const g = mesh.geometry;
         const pos = g.getAttribute('position');
+        verts += pos.count;
+        widestSphere = Math.max(widestSphere, g.boundingSphere?.radius ?? Infinity);
         for (let i = 0; i < pos.count; i++) {
           // world is (E, up, -N)
           const e0 = pos.getX(i);
@@ -1403,17 +1421,20 @@ for (const [label, viewport, touch] of [
           worst = Math.max(worst,
             box.minE - e0, e0 - box.maxE, box.minN - n0, n0 - box.maxN);
         }
-      }
-      const conf = g?.getAttribute('_confidence');
-      let ungraded = 0;
-      if (conf) for (let i = 0; i < conf.count; i++) {
-        if (!(conf.getX(i) >= 0 && conf.getX(i) <= 1)) ungraded++;
+        const conf = g.getAttribute('_confidence');
+        if (!conf) continue;
+        graded += 1;
+        for (let i = 0; i < conf.count; i++) {
+          if (!(conf.getX(i) >= 0 && conf.getX(i) <= 1)) ungraded++;
+        }
       }
       return {
         census: e?.census ?? null,
-        meshes: e?.group?.children?.length ?? 0,
-        verts: g?.getAttribute('position')?.count ?? 0,
-        hasConfidence: !!conf, ungraded,
+        meshes: meshes.length,
+        graded,
+        verts,
+        widestSphere,
+        ungraded,
         outsideRuns: Number.isFinite(worst) ? worst : null,
         ids: (e?.records ?? []).map((r) => r.id),
       };
@@ -1423,15 +1444,18 @@ for (const [label, viewport, touch] of [
       `${encl.census?.enclosures} enclosure(s), ${encl.census?.posts} posts, `
       + `${encl.verts} vertices, ${encl.census?.dropped} member(s) refused, `
       + `ids [${encl.ids.join(', ')}]`);
-    check(`${label}: the whole enclosure layer is one draw call`,
-      encl.meshes === 1, `${encl.meshes} mesh(es) in the group`);
+    check(`${label}: the enclosure layer is chunked so the frustum can cull it`,
+      encl.meshes > 1 && encl.widestSphere <= 40,
+      `${encl.meshes} mesh(es) in the group, widest bounding sphere `
+      + `${encl.widestSphere?.toFixed(1)} m (one town-wide mesh reads ~700 m)`);
     // Unmarked geometry rendering as though it were evidence is the one failure
     // the confidence view exists to prevent, and a layer built in JS can put a
     // vertex on screen without ever passing through the GLB contract that would
     // have caught it.
     check(`${label}: every fence vertex carries a confidence grade`,
-      encl.hasConfidence && encl.ungraded === 0,
-      `attribute ${encl.hasConfidence ? 'present' : 'MISSING'}, ${encl.ungraded} out of range`);
+      encl.meshes > 0 && encl.graded === encl.meshes && encl.ungraded === 0,
+      `${encl.graded} of ${encl.meshes} chunk(s) carry the attribute, `
+      + `${encl.ungraded} value(s) out of range`);
     // The fence stands where the record puts it. The tolerance is the post's own
     // half-section plus a rail's, which is the most a member can legitimately
     // overhang the line its own centre is authored on.
@@ -1591,21 +1615,23 @@ for (const [label, viewport, touch] of [
         for (let k = 1; k < run.length; k++) d = Math.min(d, segDist(pe, pn, run[k - 1], run[k]));
         return d;
       };
-      // The DRAWN fence, off the layer's one merged buffer: how much timber
+      // The DRAWN fence, off EVERY chunk the layer built (T-0067 — it used to be
+      // one merged buffer and reading `children[0]` was enough): how much timber
       // stands on this record's own line, and how tall the tallest of it stands
       // over the ground under it. A rail fence and a board fence of the same
       // height differ by an order of magnitude in the first number, which is
       // what makes this a test of the branch rather than of the record.
-      const g = a.enclosures?.group?.children?.[0]?.geometry ?? null;
-      const pos = g?.getAttribute('position') ?? null;
       let onLine = 0;
       let top = 0;
-      for (let i = 0; pos && i < pos.count; i++) {
-        const pe = pos.getX(i);
-        const pn = -pos.getZ(i);
-        if (onRun(pe, pn) > 0.25) continue;
-        onLine++;
-        top = Math.max(top, pos.getY(i) - a.terrain.surfaceHeight(pe, pn));
+      for (const mesh of a.enclosures?.group?.children ?? []) {
+        const pos = mesh.geometry?.getAttribute('position');
+        for (let i = 0; pos && i < pos.count; i++) {
+          const pe = pos.getX(i);
+          const pn = -pos.getZ(i);
+          if (onRun(pe, pn) > 0.25) continue;
+          onLine++;
+          top = Math.max(top, pos.getY(i) - a.terrain.surfaceHeight(pe, pn));
+        }
       }
       // And the stems the YARD's planting record placed, each asked whether it
       // stands inside the fence it is supposed to stand behind. Filtered to the
@@ -1674,6 +1700,159 @@ for (const [label, viewport, touch] of [
     check(`${label}: the trees behind the fence reach the screen with it`,
       dTrees.worst >= 6 && dTrees.mean >= 0.3,
       `cell delta mean ${dTrees.mean?.toFixed(2)}, worst ${dTrees.worst} (need worst>=6)`);
+
+    // --- fenced ground is not prairie (T-0067) --------------------------------
+    //
+    // The owner, 2026-08-18: "everplace that is fenced in would have a different
+    // ground, the wagon yard would probably be dirty dusty ground and fences
+    // around properties inside the fence would not be wild prairie but curated
+    // lawn and garden or animal pens." Every fence above enclosed the same wild
+    // sward as the ground outside it, and three of the four records SAID SO in
+    // their own `ground` blocks with `geometry: "absent"`.
+    //
+    // Two halves, and both are asserted because either one alone looks finished:
+    // a treatment laid over a sward that still grows through it is a hole in the
+    // model, and a suppressed sward with nothing laid in its place is bare
+    // terrain inside a fence. The placer is asked DIRECTLY at interior points —
+    // the same instrument T-0124 uses on the plank decks, `plantableAt` plus
+    // `stationOf` for every species the ground's own zone could deal there,
+    // which is the half that regressed silently before.
+    const fenced = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const y = a.yards;
+      const subs = a.flora.substrates();
+      // One interior of each treatment, probed at the OPENEST point in it — a
+      // working yard, an animal pen and a picketed dooryard. Not a centroid: the
+      // Western Hotel's yard is an L wrapped round the hotel's own corner and
+      // the average of its six corners lands inside the hotel.
+      const wanted = ['worn_earth', 'trodden_earth', 'dooryard_garden'];
+      const stands = wanted.map((t) => {
+        const i = (y?.interiors ?? []).find((x) => x.treatment === t);
+        if (!i) return { treatment: t, missing: true };
+        const [e, n] = i.at;
+        const zone = a.flora.zoneAt(e, n);
+        const z = subs.find((x) => x.id === zone);
+        let speciesAsked = 0;
+        let speciesHits = 0;
+        for (const sp of (z ? z.dry.concat(z.wet) : [])) {
+          speciesAsked += 1;
+          if (a.flora.stationOf(e, n, sp) !== null) speciesHits += 1;
+        }
+        return {
+          treatment: t, id: i.id, e, n,
+          reads: y.treatmentAt(e, n),
+          suppressed: y.suppressesSward(e, n),
+          rootable: a.flora.plantableAt(e, n),
+          zone, speciesAsked, speciesHits,
+        };
+      });
+      // The treatment's own geometry: laid, graded, and casting nothing. A
+      // ground treatment lying ON the ground has nothing to cast onto, and it is
+      // deliberately outside the furniture-shadow policy for that reason.
+      let tris = 0;
+      let ungraded = 0;
+      let notReconstructed = 0;
+      let casting = 0;
+      for (const mesh of y?.group?.children ?? []) {
+        const g = mesh.geometry;
+        tris += g.getAttribute('position').count / 3;
+        if (mesh.castShadow) casting += 1;
+        const conf = g.getAttribute('_confidence');
+        if (!conf) { ungraded += 1; continue; }
+        for (let i = 0; i < conf.count; i++) {
+          const v = conf.getX(i);
+          if (!(v >= 0 && v <= 1)) ungraded += 1;
+          else if (v < 1) notReconstructed += 1;
+        }
+      }
+      // AND THE SUPPRESSION IS CONFINED. Sampled over the whole modelled box, so
+      // it is a property of the dataset rather than of where anyone stands: an
+      // interior polygon that went wrong — an unclosed ring, a sign flipped —
+      // would take the prairie off half the town and every check above would
+      // still pass.
+      const hf = a.terrain.heightfield;
+      let land = 0;
+      let inside = 0;
+      for (let n = hf.originN; n <= hf.originN + hf.depthM; n += 4) {
+        for (let e = hf.originE; e <= hf.originE + hf.widthM; e += 4) {
+          if (a.terrain.isWater(e, n)) continue;
+          land += 1;
+          if (y.suppressesSward(e, n)) inside += 1;
+        }
+      }
+      // A record that DECLARES a treatment and got no interior is the failure
+      // this layer would most quietly make — an interior derived from runs that
+      // no longer close, or an authored ring that lost a coordinate. Asked of
+      // the records rather than of a count, so the assertion survives the town
+      // growing another fence.
+      const declared = (a.enclosures?.records ?? [])
+        .filter((r) => r.ground?.treatment)
+        .map((r) => ({ id: r.id, treatment: r.ground.treatment,
+          interiors: (y?.interiors ?? []).filter((i) => i.record === r.id).length }));
+      return {
+        stands,
+        declared,
+        census: y?.census ?? null,
+        meshes: (y?.group?.children ?? []).length,
+        tris, ungraded, notReconstructed, casting,
+        suppressedFraction: land ? inside / land : 1,
+      };
+    });
+    check(`${label}: every fenced interior in the town carries a ground treatment`,
+      fenced.declared.length >= 4 && fenced.declared.every((d) => d.interiors >= 1)
+      && fenced.census?.interiors >= 18 && fenced.meshes >= 3 && fenced.tris > 0
+      && Object.keys(fenced.census?.byTreatment ?? {}).length === 3,
+      `${fenced.declared.length} record(s) declare a treatment `
+      + `[${fenced.declared.map((d) => `${d.id} ${d.treatment} x${d.interiors}`).join(', ')}]; `
+      + `${fenced.census?.interiors} interior(s) in ${fenced.meshes} mesh(es), `
+      + `${fenced.tris} triangles, ${fenced.census?.beds} bed(s), `
+      + `${fenced.census?.paths} path(s), treatments `
+      + JSON.stringify(fenced.census?.byTreatment ?? {}));
+    for (const s of fenced.stands) {
+      check(`${label}: the ground inside a '${s.treatment}' fence reads as its own type`,
+        !s.missing && s.reads === s.treatment && s.suppressed === true,
+        s.missing ? 'no interior carries this treatment at all'
+          : `${s.id} at E ${s.e?.toFixed(1)} / N ${s.n?.toFixed(1)} reads `
+            + `${JSON.stringify(s.reads)}`);
+      check(`${label}: no prairie plant roots inside a '${s.treatment}' fence`,
+        !s.missing && s.rootable === false && s.speciesHits === 0 && s.speciesAsked > 0,
+        s.missing ? 'no interior carries this treatment at all'
+          : `rootable ${s.rootable}, ${s.speciesHits} of ${s.speciesAsked} `
+            + `${s.zone} species granted a station`);
+    }
+    check(`${label}: the fenced ground is graded reconstructed and casts no shadow`,
+      fenced.ungraded === 0 && fenced.notReconstructed === 0 && fenced.casting === 0,
+      `${fenced.ungraded} ungraded vertex/vertices, ${fenced.notReconstructed} graded `
+      + `better than reconstructed, ${fenced.casting} mesh(es) casting`);
+    check(`${label}: the sward is suppressed inside the fences and essentially nowhere else`,
+      fenced.suppressedFraction > 0 && fenced.suppressedFraction < 0.002,
+      `${(fenced.suppressedFraction * 100).toFixed(3)} % of the modelled dry ground`);
+
+    // AND IT READS, from inside two of the three. Stand in the Western Hotel's
+    // wagon yard and in one of the town's picketed dooryards, look at the ground,
+    // and hold the clock so the grass cannot supply the difference. Same bar as
+    // the fences, the boards and the goods: worst >= 6 and mean >= 0.3.
+    for (const stand of [
+      { id: 'worn_earth', name: 'the wagon yard', yaw: 200 },
+      { id: 'dooryard_garden', name: 'a picketed dooryard', yaw: 20 },
+    ]) {
+      const at = fenced.stands.find((s) => s.treatment === stand.id);
+      if (!at || at.missing) continue;
+      await page.evaluate(({ e, n, yaw }) => window.__chicago4d.walker.teleport(
+        { local_e: e, local_n: n, yaw_deg: yaw, pitch_deg: -38 }),
+      { e: at.e, n: at.n, yaw: stand.yaw });
+      await page.waitForTimeout(350);
+      await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+      const withGround = await page.evaluate(() => window.__chicago4d.capture());
+      await page.evaluate(() => { window.__chicago4d.yards.group.visible = false; });
+      const withoutGround = await page.evaluate(() => window.__chicago4d.capture());
+      await page.evaluate(() => { window.__chicago4d.yards.group.visible = true; });
+      await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+      const d = signatureDistance(withGround, withoutGround);
+      check(`${label}: the ground in ${stand.name} reaches the screen from inside it`,
+        d.worst >= 6 && d.mean >= 0.3,
+        `cell delta mean ${d.mean?.toFixed(2)}, worst ${d.worst} (need worst>=6)`);
+    }
 
     // --- the dooryard plantings (T-0074) -------------------------------------
     //
@@ -2042,7 +2221,7 @@ for (const [label, viewport, touch] of [
       boards.casts, `signage mesh castShadow ${boards.casts}`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. The fact of
     // a sign on these frontages is invented (L130) and so are its wording, its
-    // colours and its mounting (L158); a single vertex claiming to be inferred
+    // colours and its mounting (L159); a single vertex claiming to be inferred
     // or attested would be this layer overstating the one thing it must not.
     check(`${label}: every signboard vertex is graded reconstructed`,
       boards.hasConfidence && boards.ungraded === 0 && boards.notReconstructed === 0,
