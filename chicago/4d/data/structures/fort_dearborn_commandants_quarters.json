@@ -116,10 +116,6 @@
           "confidence": "inferred",
           "note": "Bare brick. Nothing says this building was rendered, painted or whitewashed; the whitewash in the sources belongs to the board fence of the 1850s compound and to John H. Kinzie's boyhood memory of the FIRST fort's blockhouses."
         }
-      },
-      "ground_contact": {
-        "state": "approach_not_modelled",
-        "note": "THE GROUND ARRIVED WHILE THIS PARCEL WAS BEING WRITTEN, AND IT IS NOT LEVEL. When these records were made the terrain box stopped at local E +320 and the whole complex stood over nothing; S2e parcel (b) landed the same day and the heightfield now reaches E +1700. The fort turns out to sit on a plateau at about 3.33 m that falls away to the river between N +245 and N +270 — which is what a fort on a river bank inside a bend should do, and it is the first time this project has had ground under this structure to check against. WHAT DOES NOT REACH IT: the north side of this outline crosses the top of that fall and stands clear of the terrain by more than the walker's 0.35 m step-up rule. Nothing in the record is wrong; the archetype builds a level base at one elevation and NO CUT, FILL, REVETMENT, PLATFORM OR FOUNDATION IS MODELLED, and the real work plainly had one - a stockade is set in a trench and a brick range needs footings. What would settle it is either a levelled section of the bank, which no source reached gives, or terrain work that models the platform the fort stood on. MEASURED GAP: 0.46 m at the worst point of the outline."
       }
     }
   ],
