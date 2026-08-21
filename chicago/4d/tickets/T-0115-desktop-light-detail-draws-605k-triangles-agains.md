@@ -1,7 +1,7 @@
 ---
 id: T-0115
 title: Desktop light detail draws 605k triangles against its own 600k ceiling
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 289
 claimed_by: run 8/20/2026, 9:57:58 PM CT
 blocked_on: null
 needs_bake: false
