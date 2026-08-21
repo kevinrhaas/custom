@@ -1,7 +1,7 @@
 ---
 id: T-0123
 title: Prove the fort stockade stands its full twelve feet, and name what a visitor walks up to
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-20
+pr: 283
+claimed_by: run 8/20/2026, 3:25:57 PM CT
 blocked_on: null
 needs_bake: false
 ---

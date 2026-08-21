@@ -1712,6 +1712,130 @@ for (const [label, viewport, touch] of [
       dBush.worst >= 6 && dBush.mean >= 0.3,
       `cell delta mean ${dBush.mean?.toFixed(2)}, worst ${dBush.worst} (need worst>=6)`);
 
+    // --- the fort stockade against the garden fence (T-0123) -----------------
+    //
+    // The owner walked up to a wall at Fort Dearborn and reported it "way too
+    // short ... below my height". Two structures on that reservation answer to
+    // "a wall you can walk up to", and they are the SAME palisade archetype in
+    // its two modes: the stockade — picket_height_m 3.7 m, the record's honest
+    // number for Kinzie's "high pickets" — and the garrison garden's worm
+    // fence, 1.3 m stated, 1.14 m built, chest height by design. This block
+    // holds that pair as a gate, in the walker's own terms: the fence
+    // deliberately under a visitor's eye, the stockade over it, and a tap on
+    // either answering with its own name — so nobody ever takes this
+    // measurement by hand again, and a change that flattens the wall or raises
+    // the fence fails loudly. The stated heights are pinned literally: they
+    // move only on the owner's say-so (T-0123 rule 3), and this line moves in
+    // the same commit.
+    //
+    // WHERE THE WALKER STANDS FOR THE STOCKADE, AND WHY IT IS THE RIVER BANK.
+    // A rigid mesh takes ONE anchor, and the contract anchors it at the LOWEST
+    // ground under it (buildings.groundUnder; the "shares the terrain surface"
+    // check gates that bedding at 3 m). For the stockade that is the bank foot
+    // under the north-west bastion — and since the mound raise of v202 the
+    // parade-side ground stands ~2.5 m over that anchor, so from the fort road
+    // only ~1.2 m of picket shows and a level gaze sails over the wall into
+    // the compound. Measured 2026-08-20 and filed as T-0125 with the numbers;
+    // the remedy (stepped bake, mound, or placement) is a judgement about the
+    // reconstruction and waits on the owner. The stand here is the bank foot,
+    // where wall and anchor still meet and the full twelve feet is rendered
+    // fact — so this gate answers for the BAKE whatever becomes of the mound,
+    // and the parade-side clearance is deliberately not asserted either way:
+    // that number is exactly what T-0125 exists to settle.
+    const fortPair = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const bounds = a.buildings.instanceBounds();
+      const stated = (id, key) => a.registry.get(id)?.sidecar?.attributes?.[key]?.value ?? null;
+      const topOf = (id) => {
+        const b = bounds[id];
+        const p = a.buildings.positionOf(id);
+        return b && p ? p.y + b.max[1] : null;
+      };
+      // The bank foot below the north-west bastion, facing the wall corner.
+      a.walker.teleport({ local_e: 1125.0, local_n: 256.5, yaw_deg: 143, pitch_deg: 0 });
+      a.step();
+      const stockadeEyeY = a.walker.state.eyeY;
+      const stockadeHit = a.pick({ x: 0, y: 0 });
+      const stockadeCard = document.querySelector('#popup h2')?.textContent ?? '';
+      // The owner's stand: on the reservation outside the garden's north-east
+      // fence, facing it on his own reported bearing — the fort at his back.
+      a.walker.teleport({ local_e: 1106.2, local_n: 124.0, yaw_deg: 233, pitch_deg: 0 });
+      a.step();
+      const gardenEyeY = a.walker.state.eyeY;
+      const levelHit = a.pick({ x: 0, y: 0 });
+      // A tap where a hand would land: aims dropped a little below level, at
+      // the rails of a chest-high fence three to four metres off. The spread
+      // covers the zig-zag's own offset and the daylight between rail courses.
+      const aims = [];
+      let gardenNdc = null;
+      for (const y of [-0.2, -0.35, -0.5]) {
+        for (const x of [-0.5, -0.25, 0, 0.25, 0.5]) {
+          const hit = a.pick({ x, y });
+          if (hit?.id) aims.push(hit.id);
+          if (!gardenNdc && hit?.id === 'fort_dearborn_garrison_garden') gardenNdc = { x, y };
+        }
+      }
+      let gardenCard = '';
+      if (gardenNdc) {
+        a.pick(gardenNdc);
+        gardenCard = document.querySelector('#popup h2')?.textContent ?? '';
+      }
+      a.popup.close();
+      return {
+        stockade: {
+          statedM: stated('fort_dearborn_palisade', 'picket_height_m'),
+          meshM: bounds.fort_dearborn_palisade
+            ? bounds.fort_dearborn_palisade.max[1] - bounds.fort_dearborn_palisade.min[1]
+            : null,
+          topY: topOf('fort_dearborn_palisade'),
+          eyeY: stockadeEyeY,
+          levelPick: stockadeHit?.id ?? null,
+          card: stockadeCard,
+        },
+        garden: {
+          statedM: stated('fort_dearborn_garrison_garden', 'fence_height_m'),
+          builtM: bounds.fort_dearborn_garrison_garden?.max[1] ?? null,
+          topY: topOf('fort_dearborn_garrison_garden'),
+          eyeY: gardenEyeY,
+          levelPick: levelHit?.id ?? null,
+          aims: [...new Set(aims)],
+          card: gardenCard,
+        },
+      };
+    });
+    // The record's twelve feet reached the bake. 0.15 m of tolerance is the
+    // cap rail the archetype adds over the stated picket, nothing more.
+    check(`${label}: the stockade's pickets are baked at the record's twelve feet`,
+      fortPair.stockade.statedM === 3.7 && fortPair.stockade.meshM !== null
+      && Math.abs(fortPair.stockade.meshM - fortPair.stockade.statedM) <= 0.15,
+      `record ${fortPair.stockade.statedM} m, mesh ${fortPair.stockade.meshM?.toFixed(2)} m`);
+    check(`${label}: the stockade tops a walker's eye where wall and anchor meet`,
+      fortPair.stockade.topY !== null
+      && fortPair.stockade.topY - fortPair.stockade.eyeY >= 0.5,
+      `wall top y ${fortPair.stockade.topY?.toFixed(2)}, `
+      + `eye y ${fortPair.stockade.eyeY?.toFixed(2)} (need 0.5 m of wall over the eye)`);
+    check(`${label}: a level gaze there stops at the stockade, and the card says so`,
+      fortPair.stockade.levelPick === 'fort_dearborn_palisade'
+      && /stockade/.test(fortPair.stockade.card),
+      `pick ${fortPair.stockade.levelPick ?? 'nothing'}, card "${fortPair.stockade.card}"`);
+    // The opposite number: 1.14 m of worm fence, deliberately below the eye.
+    check(`${label}: the garden fence holds below the eye of the walker who meets it`,
+      fortPair.garden.statedM === 1.3
+      && fortPair.garden.builtM !== null && fortPair.garden.builtM <= 1.35
+      && fortPair.garden.eyeY - fortPair.garden.topY >= 0.3,
+      `built ${fortPair.garden.builtM?.toFixed(2)} m against a stated `
+      + `${fortPair.garden.statedM} m, fence top y ${fortPair.garden.topY?.toFixed(2)}, `
+      + `eye y ${fortPair.garden.eyeY?.toFixed(2)} (need 0.3 m of eye over the fence)`);
+    check(`${label}: a level gaze sails clean over the garden fence`,
+      fortPair.garden.levelPick !== 'fort_dearborn_garrison_garden',
+      `level pick returned ${fortPair.garden.levelPick ?? 'nothing'}`);
+    check(`${label}: a tap on the garden fence names the garden, not a fort wall`,
+      fortPair.garden.aims.includes('fort_dearborn_garrison_garden')
+      && /garrison garden/.test(fortPair.garden.card)
+      && !/stockade/.test(fortPair.garden.card),
+      `15 aims returned [${fortPair.garden.aims.join(', ') || 'nothing'}], `
+      + `card "${fortPair.garden.card}"`);
+
     // --- the business signboards (T-0039) ------------------------------------
     //
     // A second layer drawn from the dataset rather than baked, and the first one

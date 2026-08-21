@@ -1,7 +1,7 @@
 ---
 id: T-0120
 title: The treeline swims as you move, and stops where it should carry on
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-20
+pr: 282
+claimed_by: run 8/20/2026, 3:25:24 PM CT
 blocked_on: null
 needs_bake: false
 ---
