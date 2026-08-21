@@ -1,7 +1,7 @@
 ---
 id: T-0007
 title: Wire the material sheet into the records: repaint the town
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: R-W2b
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-20
+pr: 288
 claimed_by: run 8/20/2026, 9:57:20 PM CT
 blocked_on: null
 needs_bake: false
