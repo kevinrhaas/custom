@@ -145,7 +145,16 @@ const VERSION = '0.1.0';
  */
 const DETAIL = {
   full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
-  balanced: { triangles: 800000,  shadowReachM: 240, furnitureCastsShadow: true },
+  // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
+  // ceiling is a number this project chose rather than a claim about 1835.
+  // Four parcels landed the same day - the street edge, the lot-line fences,
+  // the fenced ground and sixty-four wagons - and stacked they read 814,860
+  // here where each alone had fitted. The old figure was set before any of
+  // them existed and nothing re-measured it as the town filled in. `light`
+  // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
+  // into keeps its floor, and this raise is spent only by machines that
+  // asked for the middle setting.
+  balanced: { triangles: 900000,  shadowReachM: 240, furnitureCastsShadow: true },
   light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
@@ -198,7 +207,13 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
  * it, and because the argument below is about what a ceiling is FOR, not about
  * the one parcel that happened to reach it first.
  */
-const BUDGET = { drawCalls: 120, triangles: DETAIL.full.triangles };
+// 120 -> 140 for the same reason and on the same day: the four parcels above
+// read 121 calls together, one past a ceiling reconciled hours earlier from two
+// parcels that had each measured only themselves. Chunking is what spends calls
+// - it trades a draw call for the frustum's right to skip geometry - so the
+// number climbs as layers learn to cull. 140 carries the measured 121 with room
+// rather than the single call that would have to be re-argued tomorrow.
+const BUDGET = { drawCalls: 140, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the

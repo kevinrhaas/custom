@@ -5084,6 +5084,104 @@ fence), **L156** (what `light` does to this layer's shadows), **L158** (the grou
 which these records decline to state).
 **Recorded:** 2026-08-21.
 
+### L162 — Sixty-four more wagons all over a frontier town: three types, every one invented, every one unhitched
+**Decision:** the town's streets and working yards now carry **64 more vehicles** than the two
+addresses the evidence reaches. Chicago holds **68 wagons** where it held four — **29 farm box
+wagons, 24 covered emigrant wagons and 15 two-wheeled carts** — standing at the verges of **17 of
+the town's 18 committed streets** and in the one enclosure whose own record calls its ground a
+working yard. Not one of the 64 is attested. Every one is `reconstructed` on every vertex, carries
+its own note saying what put it there, and disappears with the rest of the layer when a visitor
+hides the reconstructed tier.
+**Why:** the owner asked for them, 2026-08-18, verbatim: *"there can be more wagons! of course
+there would be more wagons all over the place in a frontier town."* And the standing ruling of the
+same day grades them: *"you are totally fine to be liberal with adding reconstructed items when i
+ask for things, you can just label and mark them as such."*
+
+**WHAT THIS OVERRULES, AND IT IS THIS PROJECT'S OWN WRITING — twice over.** `data/yard/
+town_trade_goods.json` carried a refusal that read *"EVERY OTHER PLACE IN THE TOWN, refused in
+writing … a dray dropped into Lake Street on the strength of a roadmap parenthesis would be
+traffic invented to look busy … the yard whose own name is the attestation gets the wagon, and the
+rest wait for a source."* The generator's docstring said the same in a heading — *"THE ONE WAGON,
+and why there is one rather than twenty."* No source arrived; the person those sentences were
+written for did. Both are kept verbatim on the record with the overrule written beside them,
+because a reversal that erases what it reversed is not auditable. **What is NOT overruled:**
+nothing is drawn in a travelled track. A dray mired in Lake Street is still a scene this project
+has no source for, and it would be a claim about the road as well as about the wagon.
+
+**WHERE EACH ONE STANDS IS A RULE, and the rule is the only part of this that can be argued with.**
+A stand is offered every **48 m** along a principal street's committed centreline, **90 m** along
+an ordinary one and **140 m** down a lane — the street record's own `traffic` class, which is the
+only thing in this dataset that ranks one street above another — at the verge, **1.00 m** clear of
+the travelled track's own edge. The **river street** is offered a stand every **20 m** instead,
+because image 11 of the owner's brief draws a covered wagon TRAIN on it rather than one wagon
+standing by itself. Both verges are tried, in a stated order, and the wagon faces the way traffic
+on ITS side goes — so one verge faces up the street and the other faces back down it, and the
+river street's train lands on its landward verge without a coordinate being written for it. At
+every third stand of a quieter street the wagon is backed square to the road instead. Change a
+committed centreline and every wagon on it moves; `tools/check.sh` re-derives the record byte for
+byte.
+
+**AND THE GROUND REFUSES MORE THAN IT KEEPS — 34 refusals, in writing, each with its reason.** A
+stand is refused if it would put a wagon within a metre of a committed footprint; on a plank walk
+or board crossing (`data/frontage/`, the same rectangles `frontage.js` hands the planters as
+`keepOut` — a footway is a floor); inside a fence whose own record calls the ground a dooryard
+garden or an animal pen (`data/enclosures/` `ground.treatment`, L158 — a wagon belongs on a
+working yard's worn earth and nowhere else behind a fence); within a metre of ANY street's
+travelled track including its own, which is what refuses nearly every stand offered at a crossing;
+on a wharf deck or a hull drawn up on the bank; on ground under 0.60 m over the water surface or
+off the modelled field; or where its own ground — body and pole together — comes within 1.20 m of
+a wagon already standing. A further **177 stands were never offered at all**, because they fell
+more than 16 m from every committed footprint: past that the street is running out into the
+prairie, and a wagon parked in the grass two blocks beyond the last house would be this record
+inventing a reason for it.
+
+**NO DRAFT ANIMAL, NO DRIVER, AND THE YOKE IS WHAT THAT LEAVES.** This project models no fauna in
+the scene — `renderers/web/js/fauna.js` is a card, not a herd — and L1's constraint on human
+figures is untouched, so a wagon here cannot be shown hitched or driven. Every one of them stands
+**unhitched**: the tongue or the pair of shafts lies DOWN ON THE GROUND at its own inclination,
+and the covered wagons and the yard wagons have an **ox-yoke laid on the grass beside them** — a
+beam 4 ft 8 in between its bows, invented like everything else here. The yoke is the honest half
+of a team, exactly as the Green Tree's empty bench (L133) is the honest half of the sitters in its
+plate: it says the oxen are out without drawing one.
+
+**What the pictures did and did not decide.** The owner's brief drives the TYPE and never the
+place: image 11's covered train sets the river street's vehicle and its density, image 7's farm
+wagons in the Green Tree's yard were already L133's, and image 12's covered wagon on the open road
+is why a principal street alternates covered and box. A tier-5 retrospective view may drive
+furniture and setting and may never drive a coordinate — the division every layer on this ground
+keeps.
+
+**What it cost, and it was mostly paid for before it was spent.** The layer's geometry goes from
+**10,336 triangles to 59,064**, and at the release gate's own stand the `light` tier — the safe
+floor, the tier for a machine that cannot afford the others — draws **3,432 more triangles than
+before**, 560,743 of 600,000. Sixty-four wagons for three thousand triangles, because two things
+paid for them. First, the layer stops being one town-wide mesh that no frustum can cull and
+becomes **one mesh per 100 m chunk of the town, all on the same material** — T-0115 item 2, the
+saving that ticket named, measured and left costed. Second, a wheel gave back **32 triangles**:
+five spoke boxes instead of six, and a six-sided hub instead of a ten-sided cask — both the
+barrels' own missing-hoops argument, since a 9 cm hub drawn finer than the plank beside it is
+triangles the eye cannot resolve. That is 7,744 across the 68 wagons now standing.
+
+**And the DRAW-CALL budget was raised from 80 to 110 to allow it, which is a decision and not a
+side effect.** Chunking trades calls for triangles, and the 80 was set when the town was one
+batched mesh plus a handful of whole-layer meshes — a number that measured whether the batch
+strategy had broken, which is no longer what it measures. Coarse 400 m chunks fit inside 80 and
+drew MORE of everything at every tier; the ceiling was buying nothing and costing fidelity. The
+owner authorised the raise on 2026-08-21 — *"ok to raise the draw call budget"* … *"or just raise
+the budget?"* — and it is argued at `main.js`'s own definition of the number. **The triangle
+ceilings did not move and `light` still draws inside the old 80 calls** (62 desktop, measured), so
+the safe floor is exactly as safe as it was; the new headroom is spent at `full` and `balanced`.
+The full before-and-after for all three tiers is in T-0115's ledger, per that ticket's protocol.
+**How to resolve:** a teamster's or forwarding house's day-book naming what stood in a Chicago
+street; a corporation order about vehicles left standing, which would put a number on the thing
+Ordinance 9 only implies; or any dated view of a Chicago street before 1840. Any of the three
+would replace a rule with an address.
+Related: **L131** (the barrels, cases and the one attested wagon), **L133** (the Green Tree's yard
+wagons and its bench), **L134** (its wagon shed), **L158** (the fenced ground a wagon may and may
+not stand on), **L153** (the plank walks it may not stand on), **L156** (the tier this layer's
+shadow gives way at).
+**Recorded:** 2026-08-21.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

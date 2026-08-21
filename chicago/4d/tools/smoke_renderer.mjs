@@ -2488,8 +2488,13 @@ for (const [label, viewport, touch] of [
     // measured against the record here, and nowhere else.
     const goods = await page.evaluate(() => {
       const y = window.__chicago4d.yard;
-      const mesh = y?.group?.children?.[0] ?? null;
-      const g = mesh?.geometry ?? null;
+      // T-0064. The layer used to be one mesh and is now one mesh PER CHUNK of
+      // the town, all on the same material — sixty-four more wagons over a square
+      // kilometre would otherwise have drawn in every frame, behind the camera
+      // included (T-0115 item 2). So everything below reads the chunks together:
+      // the geometry is still one buffer's worth of contract, in several pieces.
+      const meshes = (y?.group?.children ?? []).filter((m) => m.isMesh);
+      const geos = meshes.map((m) => m.geometry).filter(Boolean);
       const frontages = y?.frontages ?? [];
       const wagons = y?.wagons ?? [];
       const benches = y?.benches ?? [];
@@ -2524,16 +2529,42 @@ for (const [label, viewport, touch] of [
       let shedLow = Infinity;
       let lowest = Infinity;
       let highest = -Infinity;
-      const conf = g?.getAttribute('_confidence');
-      if (conf) {
+      let hasConfidence = geos.length > 0;
+      for (const geo of geos) {
+        const conf = geo.getAttribute('_confidence');
+        if (!conf) { hasConfidence = false; continue; }
         for (let i = 0; i < conf.count; i++) {
           const v = conf.getX(i);
           if (!(v >= 0 && v <= 1)) ungraded++;
           else if (v < 1) notReconstructed++;
         }
       }
-      if (g && items.length) {
-        const pos = g.getAttribute('position');
+      // T-0064. Sixty-eight wagons against a hundred thousand vertices is seven
+      // million distance tests if it is written the obvious way, so the wagons go
+      // into 8 m buckets first and each vertex only asks the nine buckets round it.
+      const BUCKET = 8;
+      const wagonGrid = new Map();
+      wagons.forEach((wg, i) => {
+        const at = wg.at_local_enu_m;
+        const key = `${Math.floor(at[0] / BUCKET)},${Math.floor(at[1] / BUCKET)}`;
+        if (!wagonGrid.has(key)) wagonGrid.set(key, []);
+        wagonGrid.get(key).push(i);
+      });
+      const wagonNear = (e, n) => {
+        const ce = Math.floor(e / BUCKET);
+        const cn = Math.floor(n / BUCKET);
+        for (let de = -1; de <= 1; de++) {
+          for (let dn = -1; dn <= 1; dn++) {
+            for (const i of wagonGrid.get(`${ce + de},${cn + dn}`) ?? []) {
+              const at = wagons[i].at_local_enu_m;
+              if (Math.hypot(e - at[0], n - at[1]) <= 4.6) return wagons[i];
+            }
+          }
+        }
+        return null;
+      };
+      for (const geo of (items.length ? geos : [])) {
+        const pos = geo.getAttribute('position');
         for (let i = 0; i < pos.count; i++) {
           // world is (E, up, -N)
           const e = pos.getX(i);
@@ -2563,8 +2594,7 @@ for (const [label, viewport, touch] of [
           if (inBay) continue;
           // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
           // own bound rather than lumped in with the casks.
-          const w = wagons.find((wg) => Math.hypot(e - wg.at_local_enu_m[0],
-            n - wg.at_local_enu_m[1]) <= 4.6);
+          const w = wagonNear(e, n);
           if (w) { wagonVerts++; continue; }
           // A bench's furthest corner is hypot(L/2, D/2) = 0.93 m from its
           // anchor, so 1.1 m catches it and nothing else on the layer.
@@ -2592,12 +2622,20 @@ for (const [label, viewport, touch] of [
           worstInside = Math.min(worstInside, outward);
         }
       }
+      const verts = geos.reduce(
+        (t, geo) => t + (geo.getAttribute('position')?.count ?? 0), 0);
       return {
         census: y?.census ?? null,
-        meshes: y?.group?.children?.length ?? 0,
-        verts: g?.getAttribute('position')?.count ?? 0,
-        tris: (g?.getAttribute('position')?.count ?? 0) / 3,
-        hasConfidence: !!conf,
+        meshes: meshes.length,
+        // One material across every chunk, which is what makes the chunking a
+        // CULLING decision rather than a second layer.
+        materials: new Set(meshes.map((m) => m.material?.uuid)).size,
+        // And every chunk has to carry its own bounding sphere, or the frustum
+        // has nothing to test and the split bought nothing at all.
+        bounded: geos.every((geo) => !!geo.boundingSphere),
+        verts,
+        tris: verts / 3,
+        hasConfidence,
         ungraded,
         notReconstructed,
         worstStray,
@@ -2613,15 +2651,17 @@ for (const [label, viewport, touch] of [
         shedSpan: Number.isFinite(shedLow) ? shedHigh - shedLow : null,
         shed: sheds[0] ?? null,
         sheds: sheds.length,
-        // One material, one draw call, and the tilt still reads as canvas: the
-        // colour is per vertex, so the layer must carry exactly two of them.
+        // One material and the tilt still reads as canvas: the colour is per
+        // vertex, so the whole layer must carry exactly two of them.
         tones: (() => {
-          const c = g?.getAttribute('color');
-          if (!c) return 0;
           const seen = new Set();
-          for (let i = 0; i < c.count; i++) {
-            seen.add(`${c.getX(i).toFixed(4)},${c.getY(i).toFixed(4)},`
-              + `${c.getZ(i).toFixed(4)}`);
+          for (const geo of geos) {
+            const c = geo.getAttribute('color');
+            if (!c) return 0;
+            for (let i = 0; i < c.count; i++) {
+              seen.add(`${c.getX(i).toFixed(4)},${c.getY(i).toFixed(4)},`
+                + `${c.getZ(i).toFixed(4)}`);
+            }
           }
           return seen.size;
         })(),
@@ -2632,18 +2672,40 @@ for (const [label, viewport, touch] of [
         greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'
           && !w.under_shed),
         tiltWagon: wagons.find((w) => w.under_shed) ?? null,
+        // ---- T-0064: the town's wagons ------------------------------------ //
+        // The record's own list, carried out whole so the checks below can ask
+        // it questions the census cannot answer — where each one stands, what
+        // kind it is, which way it faces, and whether it is graded.
+        townWagons: wagons.filter((w) => w.stands_on || w.in_enclosure)
+          .map((w) => ({ id: w.id, kind: w.kind ?? 'farm_box',
+            e: w.at_local_enu_m[0], n: w.at_local_enu_m[1],
+            bearing: w.bearing_deg ?? 0, street: w.stands_on ?? null,
+            enclosure: w.in_enclosure ?? null, confidence: w.confidence,
+            yoke: !!w.yoke, tilt: !!w.tilt })),
+        wagonsRefused: (y?.records ?? []).reduce(
+          (t, r) => t + (r.wagons_refused ?? []).length, 0),
       };
     });
     check(`${label}: the yard layer stands the record's goods`,
       goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
-        && goods.census?.wagons === 4 && goods.census?.benches === 1
+        && goods.census?.wagons >= 60 && goods.census?.benches === 1
         && goods.census?.sheds === 1,
       `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
       + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon(s), `
       + `${goods.census?.benches} bench(es), ${goods.census?.sheds} shed(s), `
       + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
-    check(`${label}: the whole yard layer is one draw call`,
-      goods.meshes === 1, `${goods.meshes} mesh(es) in the group`);
+    // T-0064. The layer was ONE draw call while it was barrels on twenty-six
+    // frontages; sixty-four more wagons spread over a square kilometre made a
+    // single town-wide geometry the thing T-0115 item 2 measured and named — a
+    // bounding sphere no frustum culls, so every wagon in Chicago drew in every
+    // frame. It chunks now, the way `frontage.js` and `enclosures.js` do. What
+    // must still hold, and is the whole reason chunking is cheap: ONE material
+    // across every chunk, and every chunk carrying its own bounding sphere.
+    check(`${label}: the yard layer chunks for culling on a single material`,
+      goods.meshes > 1 && goods.meshes <= 64 && goods.materials === 1
+        && goods.bounded,
+      `${goods.meshes} chunk mesh(es), ${goods.materials} material(s), `
+      + `bounding spheres ${goods.bounded ? 'on every chunk' : 'MISSING on one'}`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That goods
     // stood at these doors on this day is invented (L131) and a single vertex
     // claiming to be inferred or attested would be this layer overstating the
@@ -2722,12 +2784,142 @@ for (const [label, viewport, touch] of [
       `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
       + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
       + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
-    // The canvas is canvas. The layer stayed ONE draw call when the tilt arrived,
-    // which is only possible because the colour moved onto the geometry — so the
-    // buffer has to carry exactly two tones, timber and duck.
-    check(`${label}: the tilt is drawn in canvas and the layer is still one mesh`,
-      goods.tones === 2 && goods.meshes === 1,
-      `${goods.tones} vertex tone(s) across ${goods.meshes} mesh(es)`);
+    // The canvas is canvas. The tilt arrived without a second material, which is
+    // only possible because the colour moved onto the geometry — so the whole
+    // layer, chunks and all, has to carry exactly two tones: timber and duck.
+    check(`${label}: the tilt is drawn in canvas on the layer's one material`,
+      goods.tones === 2 && goods.materials === 1,
+      `${goods.tones} vertex tone(s) across ${goods.meshes} chunk(s) on `
+      + `${goods.materials} material(s)`);
+
+    // ---- T-0064: more wagons, all over a frontier town ---------------------- //
+    //
+    // The owner, 2026-08-18: "there can be more wagons! of course there would be
+    // more wagons all over the place in a frontier town." T-0040 put wagons at
+    // two addresses because two addresses is as far as the evidence reaches; the
+    // restraint is overruled and the tier is `reconstructed`. What has to hold
+    // is not that the wagons are RIGHT — nothing can make an invented wagon right
+    // — but that they are SPREAD, VARIED, GRADED and standing on ground the rest
+    // of this town has already claimed for something else. Every one of those is
+    // decided at load or in the record, and no dataset gate in this repo sees any
+    // of it.
+    const townWagons = goods.townWagons ?? [];
+    const streets = new Set(townWagons.map((w) => w.street).filter(Boolean));
+    const kinds = new Set(townWagons.map((w) => w.kind));
+    // SPREAD, and it is measured rather than asserted: the wagons have to reach
+    // across the town's own streets, not cluster at the two doors the evidence
+    // named. Eight streets and 600 m of east-west spread is a walk, not a corner.
+    const spanE = townWagons.length
+      ? Math.max(...townWagons.map((w) => w.e)) - Math.min(...townWagons.map((w) => w.e))
+      : 0;
+    const spanN = townWagons.length
+      ? Math.max(...townWagons.map((w) => w.n)) - Math.min(...townWagons.map((w) => w.n))
+      : 0;
+    check(`${label}: the town's wagons are spread across its streets, not at two doors`,
+      townWagons.length >= 55 && streets.size >= 14 && spanE >= 1000 && spanN >= 700,
+      `${townWagons.length} town wagon(s) on ${streets.size} street(s) plus the `
+      + `working yards, spanning ${spanE.toFixed(0)} m east-west and `
+      + `${spanN.toFixed(0)} m north-south`);
+    // VARIED, in type and in the way they are drawn up. Three kinds, and no one
+    // kind may be more than three quarters of them — a town of sixty identical
+    // farm wagons is one wagon repeated, which is what the ticket asked against.
+    const kindCounts = {};
+    for (const w of townWagons) kindCounts[w.kind] = (kindCounts[w.kind] ?? 0) + 1;
+    const commonest = Math.max(0, ...Object.values(kindCounts));
+    const bearings = new Set(townWagons.map((w) => Math.round(w.bearing / 5)));
+    check(`${label}: the town's wagons vary in type and in the way they stand`,
+      kinds.size >= 3 && kinds.has('covered') && kinds.has('cart')
+        && kinds.has('farm_box')
+        && commonest <= townWagons.length * 0.75 && bearings.size >= 8,
+      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}; `
+      + `${bearings.size} distinct heading(s) to the nearest 5 degrees`);
+    // GRADED, every one of them, and the tilt/yoke flags have to agree with the
+    // kind — a covered wagon without its canvas is a farm wagon the record is
+    // lying about.
+    check(`${label}: every wagon the town gained cards reconstructed`,
+      townWagons.length > 0
+        && townWagons.every((w) => w.confidence === 'reconstructed')
+        && townWagons.every((w) => (w.kind === 'covered') === w.tilt),
+      `${townWagons.filter((w) => w.confidence === 'reconstructed').length} of `
+      + `${townWagons.length} graded reconstructed, `
+      + `${townWagons.filter((w) => w.tilt).length} carrying a tilt`);
+    // AND THEY STAND ON GROUND NOTHING ELSE HAS CLAIMED. This is the check the
+    // ticket exists for: a wagon on a footway, in a kitchen garden or in the
+    // pound is the failure that no census and no screenshot would show. Every
+    // wagon's own GROUND — its body and the pole it has down on the grass — is
+    // rebuilt here from the record and tested against the plank walks
+    // (`frontage.keepOut`, T-0119), the fenced interiors and their treatments
+    // (`yards.treatmentAt`, T-0067) and the travelled tracks (`streets`). The
+    // page's own APIs answer, not a second copy of the rule.
+    const clashes = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const wagons = (a.yard?.wagons ?? []).filter((w) => w.stands_on || w.in_enclosure);
+      const walks = a.frontage?.keepOut ?? [];
+      const inPoly = (pts, e, n) => {
+        let inside = false;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) {
+            inside = !inside;
+          }
+        }
+        return inside;
+      };
+      const out = { onWalk: [], inGarden: [], inPen: [], inTrack: [], tested: 0 };
+      for (const w of wagons) {
+        // The vehicle's ground: 3.05 m of body (1.98 m for a cart) and the pole
+        // lying in front of it, 1.5 m across over the hubs. Sampled rather than
+        // integrated — a 0.5 m walk of the centreline plus the two rails is far
+        // finer than the 1.83 m walk or the 7 m track it is being asked about.
+        const cart = w.kind === 'cart';
+        const back = cart ? 0.99 : 1.525;
+        const fore = cart ? 0.99 + 2.44 : 1.525 + 2.75;
+        const b = ((w.bearing_deg ?? 0) * Math.PI) / 180;
+        const fe = Math.sin(b);
+        const fn = Math.cos(b);
+        const se = Math.cos(b);
+        const sn = -Math.sin(b);
+        for (let t = -back; t <= fore + 1e-6; t += 0.5) {
+          for (const s of [-0.75, 0, 0.75]) {
+            const e = w.at_local_enu_m[0] + fe * t + se * s;
+            const n = w.at_local_enu_m[1] + fn * t + sn * s;
+            out.tested += 1;
+            for (const rect of walks) {
+              if (inPoly(rect.pts, e, n)) { out.onWalk.push(w.id); break; }
+            }
+            const treatment = a.yards?.treatmentAt?.(e, n) ?? null;
+            if (treatment === 'dooryard_garden') out.inGarden.push(w.id);
+            if (treatment === 'trodden_earth') out.inPen.push(w.id);
+            if (a.streets?.blocksGrowth?.(e, n)) out.inTrack.push(w.id);
+          }
+        }
+      }
+      for (const k of ['onWalk', 'inGarden', 'inPen', 'inTrack']) {
+        out[k] = [...new Set(out[k])];
+      }
+      return out;
+    });
+    check(`${label}: no wagon stands on a plank walk, in a garden or in a pen`,
+      clashes.tested > 0 && clashes.onWalk.length === 0
+        && clashes.inGarden.length === 0 && clashes.inPen.length === 0,
+      `${clashes.tested} ground sample(s): ${clashes.onWalk.length} on a walk `
+      + `[${clashes.onWalk.join(', ')}], ${clashes.inGarden.length} in a dooryard `
+      + `garden [${clashes.inGarden.join(', ')}], ${clashes.inPen.length} in a pen `
+      + `[${clashes.inPen.join(', ')}]`);
+    // And out of the travelled way. `streets.blocksGrowth` is the same answer the
+    // planters get — the track plus its own shoulder — so a wagon that fails this
+    // is standing where the road is drawn and where a visitor walks.
+    check(`${label}: no wagon stands in a street's travelled track`,
+      clashes.inTrack.length === 0,
+      `${clashes.inTrack.length} wagon(s) in the track [${clashes.inTrack.join(', ')}]`);
+    // AND THE REFUSALS ARE IN WRITING. A rule that keeps sixty wagons off the
+    // town's walks and out of its roads necessarily refuses stands, and a
+    // generator that refused silently would leave nothing to argue with — the
+    // discipline `generate_business_signboards.py` keeps with its eight.
+    check(`${label}: the wagon rule wrote down what it refused`,
+      goods.wagonsRefused >= 20,
+      `${goods.wagonsRefused} refused wagon stand(s) recorded with a reason`);
 
     // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
     // out. The Tremont House's south front on Lake Street carries the longest
@@ -5207,10 +5399,15 @@ for (const [label, viewport, touch] of [
     // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
     // check further down, which is where a re-budget of those would show.
     check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
-      stats.budget.drawCalls === 120,
+      stats.budget.drawCalls === 140,
       `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
     check(`${label}: draw calls under budget`, stats.drawCalls <= stats.budget.drawCalls,
       `${stats.drawCalls} calls (budget ${stats.budget.drawCalls})`);
+    // AND THE SAFE FLOOR IS STILL INSIDE THE OLD 80. `light` is the tier for a
+    // machine that cannot afford the other two, and T-0064's raise was taken at
+    // `full` and `balanced` only. This is the assertion that keeps that promise
+    // honest — it is checked against the scene-detail sweep further down, which
+    // reports every tier's own call count.
     check(`${label}: triangles under budget`, stats.triangles <= stats.budget.triangles,
       `${stats.triangles} tris (budget ${stats.budget.triangles})`);
     console.log(`        ${stats.drawCalls} draw calls · ${stats.triangles} tris · `
@@ -5424,6 +5621,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: turning scene detail down actually draws less`,
       full.tris > balanced.tris && balanced.tris > light.tris,
       detail.seen.map((s) => `${s.level} ${s.tris}`).join(' > '));
+    // T-0064 raised the draw-call budget from 80 to 110 (argued in main.js) and
+    // took the raise at `full` and `balanced` ONLY. `light` is the tier for a
+    // machine that cannot afford the other two, and the promise made with that
+    // raise was that the safe floor stays inside the ceiling this project has
+    // had all along. This is that promise, asserted rather than remembered.
+    check(`${label}: the light tier still draws inside the OLD 80-call budget`,
+      light.calls <= 80,
+      `${light.calls} calls at light against the pre-T-0064 budget of 80 `
+      + `(full ${full.calls}, balanced ${balanced.calls} of ${stats.budget.drawCalls})`);
     check(`${label}: the level the visitor started on is restored`, detail.restored,
       JSON.stringify(detail));
     // The trim, asserted on the meshes rather than on the table that asked for

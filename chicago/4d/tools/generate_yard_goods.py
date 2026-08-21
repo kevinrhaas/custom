@@ -48,15 +48,51 @@ and the door between them stays clear. How many is arithmetic on the frontage an
 lottery: one barrel per 2.2 m of usable wall, capped at four, a crate past them once
 there is 4 m of wall to hold one, and a second crate stacked on it at 7 m.
 
-THE ONE WAGON, and why there is one rather than twenty. No source in this repository puts
+THE ATTESTED WAGON, and why it used to be the only one. No source in this repository puts
 a wagon at any place in this town on any day. One place is named for them:
 `data/enclosures/western_hotel_wagon_yard.json`, whose attested sentence is *"In the rear
 was the large stable and the yard into which the trains were driven."* So a wagon stands
 in the yard the source calls a wagon yard, at the point in it derived to be furthest from
-every fence line and every committed wall, and nowhere else. Scattering drays along Lake
-Street would be this record inventing traffic; refusing to draw a wagon at all would leave
-the one yard the town describes as a wagon yard empty. The ticket asked for wagons and
-gets the one the evidence carries, with the refusal written down.
+every fence line and every committed wall. That wagon and the Green Tree's are the two
+addresses evidence reaches, and until T-0064 they were the only wagons in Chicago.
+
+THE TOWN'S OWN WAGONS (T-0064), AND THE RESTRAINT THAT WAS OVERRULED. This file used to
+end the paragraph above with *"Scattering drays along Lake Street would be this record
+inventing traffic"*, and the record's own research note filed the rest of a frontier
+town's traffic as an open ticket. **The owner closed it, 2026-08-18, verbatim: "there can
+be more wagons! of course there would be more wagons all over the place in a frontier
+town."** His standing ruling of the same day covers the tier: *"you are totally fine to be
+liberal with adding reconstructed items when i ask for things, you can just label and mark
+them as such."* So the wagons are scattered now, every one of them `reconstructed`, every
+one of them carded and marked — and WHERE each one stands is still a rule rather than a
+list somebody typed, because that is the only part of this the evidence can hold.
+
+THE STANDS ARE OFFERED BY THE STREETS AND KEPT BY THE GROUND. A stand is offered every
+`TOWN_PITCH_M` of a street's own centreline — 34 m on a principal street, 70 m on an
+ordinary one, 110 m down a lane, because that is the traffic each carries — at the verge
+outside the travelled track. Then the ground answers, and it refuses far more than it
+keeps. A stand is refused IN WRITING, with its reason, if it would put a wagon inside a
+committed footprint or within a metre of one; on a plank walk or a board crossing
+(`data/frontage/`, the same rectangles `frontage.js` hands the planters as `keepOut`); in
+a dooryard garden or an animal pen (`data/enclosures/`'s own `ground.treatment` — a wagon
+belongs on a WORKING yard's worn earth and nowhere else behind a fence); in the travelled
+track of any street including its own, at a crossing most of all; on a wharf deck or a
+beached hull; below the water surface or off the modelled ground; or within six metres of
+a wagon already standing. Both sides of the street are tried, in a stated order, and a
+stand that fails on both records both reasons.
+
+WHAT THE PICTURES DRIVE, and it is the type rather than the place. The owner's brief
+(`data/sources/assets/owner_brief_2026_08_18/README.md`) draws an ox-drawn COVERED WAGON
+TRAIN on the river street (image 11), farm wagons in the Green Tree's yard and a covered
+wagon under its shed (image 7), and a covered wagon on the open road (image 12). A tier-5
+retrospective view may drive furniture and setting and may never drive a coordinate, so
+the plates decide WHAT stands and the street lines decide WHERE: the river street's wagons
+are all covered and all drawn up the same way, a principal street alternates covered and
+farm box, an ordinary street runs farm boxes with a two-wheeled cart at every third stand,
+and a lane gets carts. NO DRAFT ANIMAL IS DRAWN ANYWHERE — this project models no fauna in
+the scene at all (`renderers/web/js/fauna.js` is a card, not a herd) — so every wagon here
+stands UNHITCHED: tongues and shafts down on the ground, and the ox-yokes laid by on the
+grass beside the covered wagons and the yard wagons.
 
 WHAT IS INVENTED is every object on this record: that these particular frontages had goods
 out on 1 July 1835, how many, and what a barrel, a crate and a wagon of this place and year
@@ -78,13 +114,20 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "generators"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from archetypes.frame_tavern_params import from_phase as _tavern_params  # noqa: E402
+from heightfield import Heightfield  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SIDECARS = DATA / "sidecars" / "1835"
 STRUCTURES = DATA / "structures"
 ENCLOSURES = DATA / "enclosures"
+FRONTAGE = DATA / "frontage"
+STREETS = DATA / "streets" / "1835.json"
+WHARVES = DATA / "wharves" / "river_landings.json"
+BOATS = DATA / "boats" / "era_boats.json"
+EPOCH = DATA / "terrain" / "epochs" / "e1834_harbor_cut"
 OUT = DATA / "yard" / "town_trade_goods.json"
 
 # Clause 2. `function.value` as the structure records write it, and why goods belong on
@@ -145,6 +188,72 @@ WAGON_REAR_WHEEL_D_M = 1.37   # 4 ft 6 in
 WAGON_FRONT_WHEEL_D_M = 1.07  # 3 ft 6 in
 WAGON_TONGUE_M = 2.75
 WAGON_CLEAR_M = 1.6        # the half-width of ground a parked wagon needs round it
+
+# THE TWO-WHEELED CART — T-0064's third type, and the cheapest vehicle in the town. One
+# axle, tall wheels, a short box and a pair of shafts instead of a tongue. Every number
+# invented and recorded converted, the same as the farm wagon's above.
+CART_BODY_L_M = 1.98       # 6 ft 6 in
+CART_BODY_W_M = 1.07       # 3 ft 6 in, the same track as the wagon
+CART_BODY_H_M = 0.50
+CART_WHEEL_D_M = 1.42      # 4 ft 8 in — a cart wheel is taller than a wagon's
+CART_BED_Y_M = 0.86        # the bed's underside above the ground
+CART_SHAFT_M = 2.44        # 8 ft, down on the grass because nothing is in them
+
+# THE OX-YOKE LAID BY. No draft animal is drawn anywhere in this scene, so a wagon that
+# came in off the road stands unhitched and its yoke lies on the grass beside it. A beam
+# and two bows, invented, recorded converted from feet.
+YOKE_BEAM_M = 1.42         # 4 ft 8 in between the bows
+YOKE_BEAM_SQ_M = 0.12
+YOKE_BOW_M = 0.34          # the bow's own reach past the beam
+YOKE_BOW_SQ_M = 0.05
+YOKE_OFFSET_M = 1.35       # from the wagon's centreline, out on the near side
+
+# --------------------------------------------------------------------------- #
+# THE TOWN'S OWN WAGONS — T-0064. Every constant here is a RULE'S parameter rather
+# than a claim about any wagon: how often a street offers a stand, and how much air a
+# wagon has to have round it before this record will draw one. The wagon itself is
+# still the farm wagon above.
+# --------------------------------------------------------------------------- #
+# How much street run buys one offered stand, by the street record's OWN `traffic`
+# class. A principal street carries the traffic and is where a wagon stands waiting;
+# a lane sees one now and then. Nothing measures this and nothing could; what makes
+# it a rule rather than a scatter is that it is arithmetic on a committed centreline.
+TOWN_PITCH_M = {"principal": 48.0, "ordinary": 90.0, "light": 140.0}
+TOWN_PITCH_DEFAULT_M = 140.0
+# THE RIVER STREET IS THE ONE STREET A PICTURE SPEAKS ABOUT. Image 11 of the owner's
+# brief draws an ox-drawn COVERED WAGON TRAIN on it — a run of tilts nose to tail, not
+# one wagon standing by itself — so South Water's stands are offered four times as
+# often as any other principal street's and every one of them is covered. The plate
+# gives the FORM and the density; the committed centreline still gives every metre.
+TOWN_TRAIN_STREET = "south_water"
+TOWN_TRAIN_PITCH_M = 20.0
+# A wagon stands where there is a town to stand in. Past this from every committed
+# footprint the street is running out into the prairie, and a wagon parked in the
+# grass two blocks past the last house would be this record inventing a reason.
+TOWN_REACH_M = 16.0
+TOWN_TRACK_CLEAR_M = 1.00   # between a wagon's own ground and any travelled track
+TOWN_WALK_CLEAR_M = 0.60    # and any plank walk or board crossing
+TOWN_WALL_CLEAR_M = 1.00    # and any committed wall
+TOWN_WHARF_CLEAR_M = 0.80   # and any committed wharf deck
+TOWN_HULL_CLEAR_M = 4.00    # and any hull drawn up on the bank
+TOWN_DRY_M = 0.60           # over the water surface, under the wheels
+TOWN_EDGE_INSET_M = 3.00    # off the heightfield's own edge
+TOWN_GAP_M = 1.20           # of air between one wagon's ground and the next's
+WAGON_HALF_W_M = 0.75       # the wagon's own half-width over its hubs
+
+# What each kind is called in the prose of its own record.
+KIND_WORDS = {
+    "farm_box": "farm box wagon",
+    "covered": "covered emigrant wagon",
+    "cart": "two-wheeled cart",
+}
+
+# Clause: fenced ground. `data/enclosures/` states what the ground inside each fence is
+# (T-0067). A wagon belongs on a WORKING yard's worn earth; a dooryard garden and an
+# animal pen are refused in writing.
+WORKING_YARD_TREATMENT = "worn_earth"
+YARD_WAGON_MAX = 3          # per working yard, the attested one included
+YARD_LATTICE_M = 0.5
 
 # THE GREEN TREE'S YARD — ticket T-0080, and the first place in this town where a
 # PICTURE rather than a rule says what stood outside a door. The Trowbridge drawing
@@ -465,11 +574,13 @@ def build_wagons(cars: dict) -> tuple[list, list]:
         "confidence": "reconstructed",
         "at_local_enu_m": [_round(best[0]), _round(best[1])],
         "bearing_deg": _round(bearing, 1),
+        "kind": "farm_box",
         "clearance_m": _round(best_clear),
         "note": (
-            "THE ONE WAGON IN THE TOWN, and the reason there is one rather than twenty. "
-            "No source this project holds puts a wagon at any place in Chicago on any "
-            "day. One place is NAMED for them: data/enclosures/western_hotel_wagon_yard"
+            "THE ATTESTED WAGON — the one stand in this town that rests on a source "
+            "rather than on a rule. No source this project holds puts a wagon at any "
+            "place in Chicago on any day. One place is NAMED for them: "
+            "data/enclosures/western_hotel_wagon_yard"
             ".json rests on chicagology_prefire278's 'In the rear was the large stable "
             "and the yard into which the trains were driven', which is a yard, in a "
             "stated place, that wagons were driven into. THE STAND IS DERIVED: a 0.25 m "
@@ -477,16 +588,26 @@ def build_wagons(cars: dict) -> tuple[list, list]:
             f"clearance to every committed wall and every fence line is greatest — "
             f"{_round(best_clear):.2f} m here. The bearing is the yard's long axis. What "
             "is invented is that a wagon was standing in it at noon on 1 July 1835, and "
-            "the wagon itself: docs/LIBERTIES.md L131."
+            "the wagon itself: docs/LIBERTIES.md L131. The town's OTHER wagons — the ones "
+            "standing at the street verges and filling this yard round it — are T-0064's "
+            "and rest on nothing but the owner's instruction and a rule: L162."
         ),
     }], [{"enclosure_id": "*", "why": (
-        "EVERY OTHER PLACE IN THE TOWN, refused in writing. docs/ROADMAP.md K5 (c) "
-        "offers 'wagons/drays (documented mired on Lake St)' — this project holds no "
+        "EVERY OTHER PLACE IN THE TOWN, refused in writing UNTIL 2026-08-21, AND THE "
+        "REFUSAL IS NOW OVERRULED. This entry used to read: 'docs/ROADMAP.md K5 (c) "
+        "offers wagons/drays (documented mired on Lake St) — this project holds no "
         "source record for that, and a dray dropped into Lake Street on the strength of "
-        "a roadmap parenthesis would be traffic invented to look busy. Wagons at the "
-        "stores, at the forwarding houses' doors and on South Water Street are all "
-        "plausible and none of them is attested; the yard whose own name is the "
-        "attestation gets the wagon, and the rest wait for a source.")}]
+        "a roadmap parenthesis would be traffic invented to look busy … the yard whose "
+        "own name is the attestation gets the wagon, and the rest wait for a source.' No "
+        "source arrived. The OWNER did, 2026-08-18: 'there can be more wagons! of course "
+        "there would be more wagons all over the place in a frontier town.' T-0064 is "
+        "that instruction and the town's wagons below are it, every one of them "
+        "reconstructed and every one of them placed by a rule over the committed street "
+        "lines rather than by a hand — see `town_wagon_rule` on this record and "
+        "docs/LIBERTIES.md L162. What is still refused, and refused for the same reason "
+        "as before, is a wagon standing IN a travelled track: a dray mired in Lake "
+        "Street is a scene this project has no source for and would be a claim about the "
+        "road as well as about the wagon.")}]
 
 
 # --------------------------------------------------------------------------- #
@@ -588,6 +709,7 @@ def build_green_tree_yard(cars: dict) -> tuple[list, list, list, list]:
             wagons.append({
                 "id": f"green_tree_tavern_yard_wagon_{i + 1}",
                 "belongs_to": GREEN_TREE_ID,
+                "kind": "farm_box",
                 "confidence": "reconstructed",
                 "at_local_enu_m": [_round(e), _round(nn)],
                 "bearing_deg": _round((bearing + 180.0) % 360.0, 1),
@@ -787,6 +909,7 @@ def _green_tree_wagon_shed(sc: dict, place: dict, poly: list,
         "id": "green_tree_tavern_shed_wagon",
         "belongs_to": GREEN_TREE_ID,
         "under_shed": shed["id"],
+        "kind": "covered",
         "tilt": True,
         "confidence": "reconstructed",
         "at_local_enu_m": [_round(e), _round(nn)],
@@ -811,6 +934,461 @@ def _green_tree_wagon_shed(sc: dict, place: dict, poly: list,
 
 
 # --------------------------------------------------------------------------- #
+# the town's own wagons — T-0064                                               #
+# --------------------------------------------------------------------------- #
+
+def _town_world(cars: dict) -> dict:
+    """Everything a wagon standing in this town has to keep clear of, read ONCE.
+
+    Every entry here is read out of the record that already owns it, and nothing is
+    restated: the plank walks are the same rectangles `frontage.js` hands the planters
+    as `keepOut`, the fenced interiors are the same rings `yards.js` lays its ground
+    treatments over and answers `treatmentAt` from, the travelled tracks are the same
+    half-widths `streets.js` draws and `generate_frontage_works.py` refuses a signpost
+    against, and the wharf decks and beached hulls are `wharves.keepOut` and
+    `boats.keepOut`. A second mechanism for any of them would be a second answer, and
+    two answers about the same ground is how a wagon ends up standing on a footway.
+    """
+    walls = [(sid, w) for sid, w in
+             ((sid, _footprint_world(sc)) for sid, sc in cars.items()) if len(w) >= 3]
+
+    streets = []
+    for s in _load(STREETS).get("streets", []):
+        path = [tuple(p) for p in s.get("path_local_enu_m", [])]
+        if len(path) < 2:
+            continue
+        streets.append({
+            "id": s["id"],
+            "name": s.get("name_1835") or s["id"],
+            "path": path,
+            "track_w": float(s.get("track_width_m") or 7.0),
+            "traffic": s.get("traffic") or "light",
+        })
+    streets.sort(key=lambda s: s["id"])
+
+    # The walks, segment by segment with their own half-width — exactly the rectangles
+    # `frontage.js` builds for `keepOut`, derived here from the same records.
+    walks = []
+    for path in sorted(FRONTAGE.glob("*.json")):
+        if path.name == "index.json":
+            continue
+        rec = _load(path)
+        for walk in rec.get("walks", []):
+            line = walk.get("centreline_local_enu_m") or []
+            half = float(walk.get("width_m") or 1.83) / 2.0
+            for i in range(len(line) - 1):
+                walks.append((tuple(line[i]), tuple(line[i + 1]), half,
+                              walk.get("id") or rec.get("id")))
+
+    # The fenced interiors and what the record says the ground inside each one IS.
+    # `yards.js` bounds them the same two ways and in the same order: an authored
+    # interior ring where the record carries one, otherwise every run that closes.
+    fenced = []
+    for path in sorted(ENCLOSURES.glob("*.json")):
+        if path.name == "index.json":
+            continue
+        rec = _load(path)
+        ground = rec.get("ground") or {}
+        treatment = ground.get("treatment")
+        if not treatment:
+            continue
+        authored = ground.get("interior_local_enu_m")
+        if isinstance(authored, list) and len(authored) >= 3:
+            fenced.append({"record": rec["id"], "treatment": treatment,
+                           "ring": [tuple(p) for p in authored],
+                           "runs": [[tuple(p) for p in (r.get("path_local_enu_m") or [])]
+                                    for r in rec.get("runs", [])]})
+            continue
+        for run in rec.get("runs", []):
+            pts = [tuple(p) for p in (run.get("path_local_enu_m") or [])]
+            if len(pts) >= 4 and math.hypot(pts[0][0] - pts[-1][0],
+                                            pts[0][1] - pts[-1][1]) < 0.5:
+                fenced.append({"record": rec["id"], "treatment": treatment,
+                               "ring": pts[:-1], "runs": [pts]})
+
+    decks = [w["deck_quad_local_enu_m"] for w in _load(WHARVES).get("wharves", [])
+             if len(w.get("deck_quad_local_enu_m") or []) >= 3]
+    hulls = [tuple(b["position_local_enu_m"]) for b in _load(BOATS).get("boats", [])
+             if b.get("state") == "beached" and b.get("position_local_enu_m")]
+
+    hf = Heightfield.load(EPOCH)
+    if hf is None:
+        raise SystemExit(f"no heightfield at {EPOCH}")
+    return {"walls": walls, "streets": streets, "walks": walks, "fenced": fenced,
+            "decks": decks, "hulls": hulls, "hf": hf,
+            "water_m": float(hf.meta.get("water_surface_m", 0.0))}
+
+
+def _quads_overlap(a: list, b: list) -> bool:
+    """Do two convex quadrilaterals share any ground? Separating axis, exactly.
+
+    Written out rather than approximated by a distance between anchors, because two
+    wagons standing seven metres apart nose to nose still have their tongues through
+    each other: a wagon is 3 m of body and up to 2.75 m of pole lying on the grass in
+    front of it, and the pole is the half of it a centre-to-centre distance cannot see.
+    """
+    for poly in (a, b):
+        for i in range(len(poly)):
+            x1, y1 = poly[i]
+            x2, y2 = poly[(i + 1) % len(poly)]
+            ax, ay = -(y2 - y1), (x2 - x1)
+            L = math.hypot(ax, ay)
+            if L == 0:
+                continue
+            ax, ay = ax / L, ay / L
+            pa = [p[0] * ax + p[1] * ay for p in a]
+            pb = [p[0] * ax + p[1] * ay for p in b]
+            if max(pa) < min(pb) - 1e-9 or max(pb) < min(pa) - 1e-9:
+                return False
+    return True
+
+
+def _ground_quad(e: float, n: float, bearing: float, back: float,
+                 fore: float, margin: float = 0.0) -> list:
+    """The ground a wagon covers: its body and whatever is down on the grass.
+
+    `bearing` is the compass bearing the wagon's NOSE points, which is the frame
+    `renderers/web/js/yard.js` builds from (forward is (sin b, cos b) in ENU). `back`
+    reaches behind the stand and `fore` ahead of it, so a tongue or a pair of shafts
+    lying on the ground is inside the rectangle the refusals are tested against — the
+    thing a visitor actually trips over.
+    """
+    b = math.radians(bearing)
+    fe, fn = math.sin(b), math.cos(b)
+    se, sn = math.cos(b), -math.sin(b)
+    half = WAGON_HALF_W_M + margin
+    return [(e + fe * a + se * s, n + fn * a + sn * s)
+            for a, s in ((-back - margin, -half), (-back - margin, half),
+                         (fore + margin, half), (fore + margin, -half))]
+
+
+def _wagon_ground(wagon: dict, margin: float = 0.0) -> list:
+    """The ground an already-recorded wagon covers, read back off the record."""
+    back, fore = _kind_reach(wagon.get("kind") or "farm_box")
+    at = wagon["at_local_enu_m"]
+    return _ground_quad(at[0], at[1], wagon.get("bearing_deg") or 0.0, back, fore, margin)
+
+
+def _stand_refusal(quad: list, world: dict, taken: list) -> str | None:
+    """Why this stand may not have a wagon on it, or None. Ordered most-telling first."""
+    pts = list(quad) + [(sum(p[0] for p in quad) / 4.0, sum(p[1] for p in quad) / 4.0)]
+    hf = world["hf"]
+    lo_e = hf.origin_e + TOWN_EDGE_INSET_M
+    hi_e = hf.origin_e + (hf.cols - 1) * hf.cell_m - TOWN_EDGE_INSET_M
+    lo_n = hf.origin_n + TOWN_EDGE_INSET_M
+    hi_n = hf.origin_n + (hf.rows - 1) * hf.cell_m - TOWN_EDGE_INSET_M
+    for p in pts:
+        if not (lo_e <= p[0] <= hi_e and lo_n <= p[1] <= hi_n):
+            return ("it reaches off the modelled ground, where there is no terrain to "
+                    "stand a wheel on.")
+        if hf.height(p[0], p[1]) < world["water_m"] + TOWN_DRY_M:
+            return (f"the ground under it is under {TOWN_DRY_M:.2f} m over the water "
+                    "surface — a wagon standing in the river or in the slough would be "
+                    "a claim about the bank, not about the wagon.")
+    for sid, poly in world["walls"]:
+        if any(_dist_to_polygon(p, poly) < TOWN_WALL_CLEAR_M for p in pts):
+            return (f"it stands within {TOWN_WALL_CLEAR_M:.2f} m of {sid}'s committed "
+                    "footprint — a wagon drawn through a wall.")
+    for a, b, half, wid in world["walks"]:
+        if any(_dist_to_path(p, [a, b]) < half + TOWN_WALK_CLEAR_M for p in pts):
+            return (f"it stands on the plank walk {wid} (T-0119). A footway is a floor "
+                    "and a wagon parked across it is the town's own Ordinance 9 "
+                    "complaint, drawn.")
+    for interior in world["fenced"]:
+        if interior["treatment"] == WORKING_YARD_TREATMENT:
+            continue
+        if any(_poly_contains(p, interior["ring"]) for p in pts):
+            what = {"dooryard_garden": "a kept dooryard garden",
+                    "trodden_earth": "an animal pen"}.get(
+                        interior["treatment"], interior["treatment"])
+            return (f"it stands inside {interior['record']}, which its own record calls "
+                    f"{what} (T-0067). A wagon belongs on a working yard's worn earth; "
+                    "it does not stand in the cabbages or in the pound.")
+    for st in world["streets"]:
+        if any(_dist_to_path(p, st["path"]) < st["track_w"] / 2 + TOWN_TRACK_CLEAR_M - 1e-6
+               for p in pts):
+            return (f"it reaches into the {st['name']} travelled track, which is where "
+                    "a visitor walks. Nothing on this layer is drawn in a roadway.")
+    for deck in world["decks"]:
+        if any(_dist_to_polygon(p, deck) < TOWN_WHARF_CLEAR_M for p in pts):
+            return "it stands on a committed wharf deck, which is a floor over water."
+    centre = pts[-1]
+    for hull in world["hulls"]:
+        if math.hypot(centre[0] - hull[0], centre[1] - hull[1]) < TOWN_HULL_CLEAR_M:
+            return "it stands on a hull drawn up on the bank."
+    # And the wagons already standing, GROUND against ground rather than anchor against
+    # anchor: `taken` carries each one's own rectangle, its pole included, already grown
+    # by the gap this record keeps between two parked wagons.
+    for other in taken:
+        if _quads_overlap(quad, other):
+            return ("another wagon already stands on that ground — its body, or the pole "
+                    f"it has down on the grass, is inside the {TOWN_GAP_M:.2f} m of air "
+                    "this record keeps between two parked wagons.")
+    return None
+
+
+def _street_kind(street: dict, ordinal: int) -> str:
+    """WHICH VEHICLE, decided by the street's own `traffic` class and the ordinal.
+
+    Arithmetic, not a lottery, and the plates decide the vocabulary rather than the
+    place. The RIVER STREET is the one street a picture speaks about: image 11 of the
+    owner's brief draws an ox-drawn covered wagon train on it, so every stand on South
+    Water is covered and they are all drawn up the same way. A principal street
+    alternates covered and farm box; an ordinary street runs farm boxes with a cart at
+    every third stand; a lane gets carts, because a cart is what goes down a lane.
+    """
+    if street["id"] == TOWN_TRAIN_STREET:
+        return "covered"
+    if street["traffic"] == "principal":
+        return "covered" if ordinal % 2 == 0 else "farm_box"
+    if street["traffic"] == "ordinary":
+        return "cart" if ordinal % 3 == 0 else "farm_box"
+    return "cart"
+
+
+def _kind_reach(kind: str) -> tuple[float, float]:
+    """How far a vehicle of this kind reaches behind and ahead of its own stand."""
+    if kind == "cart":
+        return CART_BODY_L_M / 2, CART_BODY_L_M / 2 + CART_SHAFT_M
+    return WAGON_BODY_L_M / 2, WAGON_BODY_L_M / 2 + WAGON_TONGUE_M
+
+
+def _walk_street(street: dict, pitch: float):
+    """Every offered station along a centreline: (point, unit heading, ordinal)."""
+    path = street["path"]
+    total = sum(math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1])
+                for i in range(len(path) - 1))
+    at = pitch / 2.0
+    k = 0
+    while at < total:
+        acc = 0.0
+        for i in range(len(path) - 1):
+            a, b = path[i], path[i + 1]
+            seg = math.hypot(b[0] - a[0], b[1] - a[1])
+            if seg <= 0:
+                continue
+            if acc + seg >= at:
+                t = (at - acc) / seg
+                k += 1
+                yield ((a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t),
+                       ((b[0] - a[0]) / seg, (b[1] - a[1]) / seg), k)
+                break
+            acc += seg
+        at += pitch
+
+
+def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
+    """The wagons standing about the town — at the street verges and in the yards.
+
+    T-0064, and the owner's instruction is the whole reason it exists: *"there can be
+    more wagons! of course there would be more wagons all over the place in a frontier
+    town."* What that instruction does NOT supply is a single coordinate, so this is the
+    same shape of derivation the barrels already are — a rule over committed lines, with
+    every refusal written down beside what it refused.
+    """
+    world = _town_world(cars)
+    wagons: list = []
+    refused: list = []
+    # Every wagon already on the record, as the GROUND it covers rather than as a point:
+    # the two the evidence reaches and the two in the Green Tree's yard are handed in,
+    # and nothing here is stood on ground one of them is already on.
+    taken = [_wagon_ground(w, TOWN_GAP_M) for w in placed]
+    off_town = 0
+
+    # ---- A. the street verges --------------------------------------------- #
+    for street in world["streets"]:
+        pitch = (TOWN_TRAIN_PITCH_M if street["id"] == TOWN_TRAIN_STREET
+                 else TOWN_PITCH_M.get(street["traffic"], TOWN_PITCH_DEFAULT_M))
+        square_ok = street["traffic"] != "principal"
+        for point, head, k in _walk_street(street, pitch):
+            kind = _street_kind(street, k)
+            back, fore = _kind_reach(kind)
+            # SQUARE TO THE ROAD at every third stand of a quieter street, nose to the
+            # lot line so the pole lies away from the traffic. A principal street's edge
+            # is where a wagon stands ALONG it; a lane has the room to back one in.
+            square = square_ok and k % 3 == 0
+            reasons = []
+            stood = False
+            # BOTH SIDES ARE TRIED, in a stated order: the side the ordinal names first,
+            # then the other. The order alternates down the street, which is what keeps
+            # a run of stands from all piling onto one verge — and trying the second
+            # side is what puts a train on the river street, whose north verge is the
+            # river and refuses every time.
+            for side in ((1, -1) if k % 2 else (-1, 1)):
+                nrm = (-head[1] * side, head[0] * side)
+                lateral = (WAGON_BODY_L_M / 2 if square else WAGON_HALF_W_M)
+                off = street["track_w"] / 2 + TOWN_TRACK_CLEAR_M + lateral + 0.05
+                e = point[0] + nrm[0] * off
+                n = point[1] + nrm[1] * off
+                near = min((_dist_to_polygon((e, n), w) for _, w in world["walls"]),
+                           default=1e9)
+                if near > TOWN_REACH_M:
+                    off_town += 1
+                    continue
+                # THE BEARING IS THE SIDE'S, not the ordinal's: a wagon at a road edge
+                # is drawn up facing the way traffic on its own side goes, so every
+                # wagon on one verge faces one way and the other verge faces back — a
+                # train where the stands run together, and two orientations everywhere
+                # else, without a single number being picked.
+                if square:
+                    bearing = math.degrees(math.atan2(nrm[0], nrm[1])) % 360.0
+                else:
+                    head_b = math.degrees(math.atan2(head[0], head[1])) % 360.0
+                    bearing = head_b if side > 0 else (head_b + 180.0) % 360.0
+                quad = _ground_quad(e, n, bearing, back, fore)
+                why = _stand_refusal(quad, world, taken)
+                if why:
+                    reasons.append(f"on the {'left' if side > 0 else 'right'} verge, {why}")
+                    continue
+                yoked = kind == "covered"
+                wagons.append({
+                    "id": f"town_wagon_{street['id']}_{k}",
+                    "kind": kind,
+                    "stands_on": street["id"],
+                    "belongs_to": None,
+                    "tilt": kind == "covered",
+                    "yoke": yoked,
+                    "confidence": "reconstructed",
+                    "at_local_enu_m": [_round(e), _round(n)],
+                    "bearing_deg": _round(bearing, 1),
+                    "drawn_up": "square to the road" if square else "along the road",
+                    "clear_of_track_m": _round(off - lateral - street["track_w"] / 2),
+                    "note": (
+                        f"A {KIND_WORDS[kind]} standing at the verge of "
+                        f"{street['name']}, and it is HERE because the rule put it here. "
+                        "The owner asked for the town's wagons, 2026-08-18: 'there can be "
+                        "more wagons! of course there would be more wagons all over the "
+                        "place in a frontier town.' He gave no place, so the place is "
+                        f"derived: a stand is offered every {pitch:.0f} m along this "
+                        f"street's committed centreline (its traffic class is "
+                        f"'{street['traffic']}'), at the verge "
+                        f"{_round(off - lateral - street['track_w'] / 2):.2f} m clear of "
+                        "the travelled track, drawn up "
+                        f"{'square to the road' if square else 'along the road'} and "
+                        "facing the way traffic on this side of it goes. THE TEAM IS NOT "
+                        "DRAWN and never will be: this project models no animal in the "
+                        "scene, so the wagon stands unhitched with its "
+                        f"{'shafts' if kind == 'cart' else 'tongue'} down on the ground"
+                        f"{' and its ox-yoke laid by on the grass' if yoked else ''}. "
+                        "Everything about it is invented — that it stood here at noon on "
+                        "1 July 1835, whose it was, and what it was carrying, which is "
+                        "why it carries no mark of any kind: docs/LIBERTIES.md L162."
+                    ),
+                })
+                taken.append(_ground_quad(e, n, bearing, back, fore, TOWN_GAP_M))
+                stood = True
+                break
+            if not stood and reasons:
+                refused.append({"stand": f"{street['id']} {k}", "street": street["name"],
+                                "why": " · ".join(reasons)})
+
+    # ---- B. the working yards ---------------------------------------------- #
+    # Clause: a wagon behind a fence stands on WORKING ground. `data/enclosures/` states
+    # what the ground inside each of its fences is (T-0067) and `yards.js` draws it; the
+    # yards whose treatment is worn earth are the ones a wagon was driven into, and this
+    # fills them round whatever already stands there.
+    for interior in world["fenced"]:
+        if interior["treatment"] != WORKING_YARD_TREATMENT:
+            continue
+        ring = interior["ring"]
+        e_lo, e_hi = min(p[0] for p in ring), max(p[0] for p in ring)
+        n_lo, n_hi = min(p[1] for p in ring), max(p[1] for p in ring)
+        bearing = 0.0 if (n_hi - n_lo) >= (e_hi - e_lo) else 90.0
+        here = [q for q in taken
+                if any(_poly_contains(p, ring) for p in q)]
+        room = YARD_WAGON_MAX - len(here)
+        if room <= 0:
+            refused.append({"stand": interior["record"], "why": (
+                f"the yard already carries {len(here)} wagon(s), which is the "
+                f"{YARD_WAGON_MAX} a yard this size is given — no more are stood in it "
+                "rather than a yard packed to look busy.")})
+            continue
+        # The stands are SEARCHED on a lattice and taken openest-first, the same way the
+        # attested wagon's own stand is: the point whose least clearance to every fence
+        # line and every committed wall is greatest, then the next one that is still a
+        # parked wagon's width of ground away from everything already standing.
+        lattice = []
+        rows = int((n_hi - n_lo) / YARD_LATTICE_M)
+        cols = int((e_hi - e_lo) / YARD_LATTICE_M)
+        for i in range(rows + 1):
+            n = _round(n_lo + i * YARD_LATTICE_M, 3)
+            for j in range(cols + 1):
+                e = _round(e_lo + j * YARD_LATTICE_M, 3)
+                if not _poly_contains((e, n), ring):
+                    continue
+                clear = min([_dist_to_polygon((e, n), w) for _, w in world["walls"]]
+                            + [_dist_to_path((e, n), r) for r in interior["runs"]
+                               if len(r) >= 2])
+                if clear < WAGON_CLEAR_M:
+                    continue
+                lattice.append((clear, e, n))
+        lattice.sort(key=lambda c: (-c[0], c[2], c[1]))
+        stood = 0
+        passed_over = 0
+        last_why = None
+        for clear, e, n in lattice:
+            if stood >= room:
+                break
+            kind = "covered" if stood % 2 == 0 else "farm_box"
+            back, fore = _kind_reach(kind)
+            face = (bearing + 180.0) % 360.0 if stood % 2 else bearing
+            quad = _ground_quad(e, n, face, back, fore)
+            # A lattice slot whose ground is already under a wagon is passed over in
+            # silence — the search is walking a 0.5 m grid and half of it is under the
+            # wagon it just stood. Every OTHER reason is counted and the last one is
+            # quoted, so the yard's own entry says what the ground refused rather than
+            # burying the record under four hundred near-identical lines.
+            if any(_quads_overlap(quad, other) for other in taken):
+                continue
+            why = _stand_refusal(quad, world, taken)
+            if why:
+                passed_over += 1
+                last_why = why
+                continue
+            wagons.append({
+                "id": f"town_wagon_{interior['record']}_{stood + 1}",
+                "kind": kind,
+                "in_enclosure": interior["record"],
+                "belongs_to": None,
+                "tilt": kind == "covered",
+                "yoke": True,
+                "confidence": "reconstructed",
+                "at_local_enu_m": [_round(e), _round(n)],
+                "bearing_deg": _round(face, 1),
+                "drawn_up": "along the yard's long axis",
+                "clearance_m": _round(clear),
+                "note": (
+                    f"A {KIND_WORDS[kind]} standing in {interior['record']}, whose "
+                    "own record calls the ground inside it worn earth — a WORKING yard "
+                    "(T-0067), which is the only fenced ground on this layer a wagon is "
+                    "allowed on. The stand is searched, not chosen: a "
+                    f"{YARD_LATTICE_M:.2f} m lattice over the yard's own interior ring, "
+                    "openest first, keeping only points whose least clearance to every "
+                    "committed wall and every fence line of this yard is at least "
+                    f"{WAGON_CLEAR_M:.2f} m — {_round(clear):.2f} m here — and whose "
+                    "ground, pole included, is clear of every wagon already standing. The "
+                    "bearing is the yard's own long axis, turned end for end at every "
+                    "second wagon the way a yard full of them stands. THE TEAM IS NOT "
+                    "DRAWN: the wagon is unhitched, tongue down and yoke laid by on the "
+                    "ground. Invented entirely — docs/LIBERTIES.md L162."
+                ),
+            })
+            taken.append(_ground_quad(e, n, face, back, fore, TOWN_GAP_M))
+            stood += 1
+        if passed_over:
+            refused.append({"stand": interior["record"], "why": (
+                f"{passed_over} lattice slot(s) inside this yard were open ground and "
+                "were still refused, the last of them because " + last_why)})
+    refused.append({"stand": "*", "why": (
+        f"{off_town} offered stand(s) fell more than {TOWN_REACH_M:.0f} m from every "
+        "committed footprint in the town and are not enumerated one by one. Past that "
+        "the street is running out into the prairie: a wagon parked in the grass two "
+        "blocks beyond the last house would be this record inventing a reason for it to "
+        "be there, and the reason is the whole of what an invented object has to have.")})
+    return wagons, refused
+
+
+# --------------------------------------------------------------------------- #
 # the record                                                                   #
 # --------------------------------------------------------------------------- #
 
@@ -819,11 +1397,13 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
     items = sum(len(f["items"]) for f in frontages)
     return {
         "_doc": (
-            "Goods standing at the town's trading frontages — barrels and cases on the "
-            "footway at the taverns and the stores, the wagons standing in the yard a "
-            "source calls a wagon yard and in the Green Tree's, the bench against that "
-            "inn's front wall and the open-sided wagon shed at its yard end with a "
-            "covered wagon under it. NOT structure records and NOT geometry that comes out "
+            "Goods standing on the town's own ground — barrels and cases on the "
+            "footway at the taverns and the stores, the bench against the Green Tree's "
+            "front wall, the open-sided wagon shed at its yard end, and THE TOWN'S "
+            "WAGONS: the one the source calls a wagon yard carries, the ones a picture "
+            "puts in the Green Tree's, and the farm wagons, covered emigrant wagons and "
+            "two-wheeled carts standing at the street verges and in the working yards "
+            "all over a frontier town (T-0064). NOT structure records and NOT geometry that comes out "
             "of Blender: a barrel on a footway is a small object standing on ground this "
             "project has already drawn, so it is derived from the committed footprints "
             "and placements and drawn at load by renderers/web/js/yard.js — the same "
@@ -847,6 +1427,13 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
             "frontages": len(frontages),
             "objects": items,
             "wagons": len(wagons),
+            "wagons_by_kind": {
+                kind: sum(1 for w in wagons if (w.get("kind") or "farm_box") == kind)
+                for kind in ("farm_box", "covered", "cart")
+            },
+            "wagons_at_street_verges": sum(1 for w in wagons if w.get("stands_on")),
+            "wagons_in_yards": sum(1 for w in wagons if w.get("in_enclosure")),
+            "wagon_stands_refused": len(wagons_refused),
             "benches": len(benches),
             "sheds": len(sheds),
         },
@@ -952,6 +1539,40 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                     "Not one of those numbers is attested for Chicago or for this yard. "
                     "The spoke count, the rim and the hub are the renderer's and are "
                     "claimed in the same liberty."
+                ),
+            },
+            "cart_m": {
+                "value": [CART_BODY_L_M, CART_BODY_W_M, CART_BODY_H_M,
+                          CART_WHEEL_D_M, CART_BED_Y_M, CART_SHAFT_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED — T-0064's third vehicle, and the cheapest thing on wheels "
+                    "in this town. A two-wheeled cart: a body 6 ft 6 in by 3 ft 6 in and "
+                    "20 in deep, on a single pair of 4 ft 8 in wheels, with 8 ft shafts "
+                    "instead of a tongue. Not one of those numbers is attested for "
+                    "Chicago. What bounds them is the vehicle: a cart's wheels have to "
+                    "be taller than a wagon's because they carry the load alone, and its "
+                    "body has to sit on the axle because there is no second one to "
+                    "balance against. Why a cart at all: 'more wagons all over the place' "
+                    "is not one vehicle repeated sixty times, and a cart is what went "
+                    "down a lane. THE SHAFTS ARE DOWN ON THE GROUND — there is no animal "
+                    "in them and there never will be."
+                ),
+            },
+            "ox_yoke_m": {
+                "value": [YOKE_BEAM_M, YOKE_BEAM_SQ_M, YOKE_BOW_M, YOKE_BOW_SQ_M],
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED. A yoke beam 4 ft 8 in between the bows, 4.7 in square, "
+                    "with the two bows showing 13 in past it, lying on the grass beside "
+                    "a wagon that came in off the road. Nothing attests a yoke in "
+                    "Chicago. IT IS HERE BECAUSE THE ANIMALS ARE NOT: this project draws "
+                    "no fauna in the scene at all, so a wagon cannot be shown hitched, "
+                    "and a covered wagon standing with its tongue on the ground and "
+                    "nothing else to say for itself reads as abandoned rather than "
+                    "outspanned. The yoke laid by is the honest half of a team — the "
+                    "same argument the Green Tree's empty bench makes about the sitters "
+                    "in its plate."
                 ),
             },
             "bench_size_m": {
@@ -1085,6 +1706,87 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                 "them now would be a change nothing asked for."
             ),
         },
+        "town_wagon_rule": {
+            "confidence": "reconstructed",
+            "ticket": "T-0064",
+            "instruction": (
+                "The owner, 2026-08-18, verbatim: 'there can be more wagons! of course "
+                "there would be more wagons all over the place in a frontier town.' And "
+                "the standing ruling that grades them, from the same day: 'you are "
+                "totally fine to be liberal with adding reconstructed items when i ask "
+                "for things, you can just label and mark them as such.'"
+            ),
+            "offered_note": (
+                "A stand is OFFERED every "
+                f"{TOWN_PITCH_M['principal']:.0f} m along a principal street's committed "
+                f"centreline, every {TOWN_PITCH_M['ordinary']:.0f} m along an ordinary "
+                f"one and every {TOWN_PITCH_M['light']:.0f} m down a lane — the street "
+                "record's own `traffic` class, which is the only thing in this dataset "
+                "that ranks one street above another. The RIVER STREET is offered a "
+                f"stand every {TOWN_TRAIN_PITCH_M:.0f} m instead, because image 11 of "
+                "the owner's brief draws a covered wagon TRAIN on it rather than one "
+                "wagon standing by itself. The stand sits at the verge, "
+                f"{TOWN_TRACK_CLEAR_M:.2f} m clear of the travelled track's own edge, on "
+                "whichever side of the road the ground will take it — the side the "
+                "ordinal names is tried first and the other second, which is what puts "
+                "the river street's train on its landward verge without a coordinate "
+                "being written for it. A wagon faces the way traffic on ITS side goes, "
+                "so one verge faces up the street and the other faces back down it; at "
+                "every third stand of a quieter street it is backed square to the road "
+                "instead, nose to the lot line. Nothing here is a chosen number: change "
+                "the committed centreline and every wagon on it moves."
+            ),
+            "refusal_note": (
+                "A stand is REFUSED, in writing and with its reason, if it would put a "
+                f"wagon within {TOWN_WALL_CLEAR_M:.2f} m of a committed footprint; on a "
+                "plank walk or a board crossing (data/frontage/, the same rectangles "
+                "frontage.js hands the planters as keepOut — a footway is a floor); "
+                "inside a fence whose own record calls the ground a dooryard garden or "
+                "an animal pen (data/enclosures/ ground.treatment, T-0067 — a wagon "
+                "belongs on a working yard's worn earth and nowhere else behind a "
+                f"fence); within {TOWN_TRACK_CLEAR_M:.2f} m of ANY street's travelled "
+                "track including its own, which is what refuses nearly every stand "
+                "offered at a crossing; on a committed wharf deck or a hull drawn up on "
+                f"the bank; on ground under {TOWN_DRY_M:.2f} m over the water surface or "
+                f"off the modelled field; or where its own ground — the "
+                f"body and the pole down on the grass — comes within {TOWN_GAP_M:.2f} m "
+                "of a wagon already standing. The refusals are on this record under "
+                "`wagons_refused`, one entry per stand, with both sides' reasons where "
+                "both sides were tried and both failed."
+            ),
+            "reach_m": TOWN_REACH_M,
+            "reach_note": (
+                f"And a stand more than {TOWN_REACH_M:.0f} m from every committed "
+                "footprint is not offered at all. Past that the street is running out "
+                "into the prairie, and a wagon parked in the grass two blocks beyond the "
+                "last house would be this record inventing a reason for it — the reason "
+                "being the whole of what an invented object has to have. Those are "
+                "counted rather than enumerated; the count is the last entry of "
+                "`wagons_refused`."
+            ),
+            "kinds_note": (
+                "WHICH VEHICLE is the street's own traffic class again, and the plates "
+                "supply the vocabulary rather than the place: the river street is all "
+                "covered wagons (image 11), a principal street alternates covered and "
+                "farm box, an ordinary street runs farm boxes with a two-wheeled cart at "
+                "every third stand, and a lane gets carts. NO DRAFT ANIMAL IS DRAWN "
+                "ANYWHERE. This project models no fauna in the scene — "
+                "renderers/web/js/fauna.js is a card and not a herd — so every wagon on "
+                "this record stands UNHITCHED, tongue or shafts down on the ground, and "
+                "the covered wagons and the yard wagons have their ox-yokes laid by on "
+                "the grass. No human figure is drawn either, here or anywhere in this "
+                "project."
+            ),
+            "yards_note": (
+                "Behind a fence the rule is different and stricter: the only fenced "
+                f"ground a wagon may stand on is a yard whose own record calls it "
+                f"'{WORKING_YARD_TREATMENT}' (T-0067), and the stands in it are searched "
+                f"on a {YARD_LATTICE_M:.2f} m lattice openest-first — the point whose "
+                "least clearance to every committed wall and every fence line of that "
+                "yard is greatest — to a ceiling of "
+                f"{YARD_WAGON_MAX} wagons including whatever already stands there."
+            ),
+        },
         "frontages": frontages,
         "wagons": wagons,
         "benches": benches,
@@ -1100,11 +1802,19 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
             "account of walking the street; or the pre-fire photographs of surviving "
             "1830s frontages actually opened at their holding institutions. WHAT THIS "
             "RECORD IS STILL SHORT OF, stated rather than left to be noticed: Ordinance "
-            "9's timber, stone and brick are not drawn at all; nothing stands in a "
-            "roadway though the ordinance is about roadways; and the wagons in this town "
-            "still stand at two addresses out of hundreds — the yard a source names for "
-            "wagons, and the one inn a picture shows them in. T-0064 is the ticket for "
-            "the rest of a frontier town's traffic. THE SHED IS THE FIRST ROOF THIS "
+            "9's timber, stone and brick are not drawn at all; and nothing stands in a "
+            "roadway though the ordinance is about roadways. WHAT IS NO LONGER SHORT, "
+            "and it is worth being exact about what changed: this note used to end 'the "
+            "wagons in this town still stand at two addresses out of hundreds', and "
+            "T-0064 answered it on the owner's instruction rather than on a source. The "
+            "town's wagons are spread now, and NOT ONE OF THEM IS BETTER EVIDENCED THAN "
+            "IT WAS — the two the evidence reaches are still the wagon-yard's and the "
+            "Green Tree's, everything else is `reconstructed` on a rule, and the rule is "
+            "on this record under `town_wagon_rule` so it can be argued with. WHAT WOULD "
+            "MOVE THE REST: a teamster's or a forwarding house's day-book naming what "
+            "stood in the street; a Chicago corporation order about vehicles left "
+            "standing, which would put a number on the thing Ordinance 9 only implies; "
+            "or any dated view of a Chicago street before 1840. THE SHED IS THE FIRST ROOF THIS "
             "LAYER HAS EVER DRAWN, and it is worth saying what that does not mean: it "
             "is not a structure record, it has no archetype and it is not baked, "
             "because it is derived from a committed footprint the way a fence and a "
@@ -1125,6 +1835,13 @@ def main() -> int:
     gt_wagons, benches, sheds, gt_refused = build_green_tree_yard(cars)
     wagons = wagons + gt_wagons
     wagons_refused = wagons_refused + gt_refused
+    # T-0064's town wagons come LAST, and they are handed every stand already taken so
+    # nothing new is stood where something already is. The order is also the record's
+    # order, which keeps the two evidence-backed wagons at the head of the list where a
+    # reader meets them first.
+    town_wagons, town_refused = build_town_wagons(cars, wagons)
+    wagons = wagons + town_wagons
+    wagons_refused = wagons_refused + town_refused
     text = json.dumps(record(frontages, refused, wagons, wagons_refused, benches, sheds),
                       indent=2, ensure_ascii=False) + "\n"
     objects = sum(len(f["items"]) for f in frontages)
@@ -1137,14 +1854,17 @@ def main() -> int:
                   f"rule in tools/generate_yard_goods.py")
             return 1
         print(f"verified {objects} object(s) on {len(frontages)} trading frontage(s), "
-              f"{len(wagons)} wagon(s), {len(benches)} bench(es) and {len(sheds)} "
-              f"shed(s) ({len(refused)} frontage(s) refused with a reason)")
+              f"{len(wagons)} wagon(s) ({len(town_wagons)} of them the town's), "
+              f"{len(benches)} bench(es) and {len(sheds)} shed(s) "
+              f"({len(refused)} frontage(s) and {len(town_refused)} wagon stand(s) "
+              "refused with a reason)")
         return 0
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)} — {objects} object(s) on {len(frontages)} "
-          f"frontage(s), {len(wagons)} wagon(s), {len(benches)} bench(es), "
-          f"{len(sheds)} shed(s) ({len(refused)} refused)")
+          f"frontage(s), {len(wagons)} wagon(s) ({len(town_wagons)} of them the town's), "
+          f"{len(benches)} bench(es), {len(sheds)} shed(s) "
+          f"({len(refused)} frontage(s) and {len(town_refused)} wagon stand(s) refused)")
     return 0
 
 
