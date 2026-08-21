@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0068 — More fences: the town encloses its property
-T-0069 — Fences line the streets, and plank sidewalks run beside them
 T-0064 — More wagons, all over a frontier town
 T-0070 — The jail made accurate to its engraving
 T-0071 — The Dearborn drawbridge area, improved to its engravings

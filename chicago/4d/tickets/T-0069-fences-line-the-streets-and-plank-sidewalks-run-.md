@@ -1,7 +1,7 @@
 ---
 id: T-0069
 title: Fences line the streets, and plank sidewalks run beside them
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-21
+pr: 293
 claimed_by: run 8/21/2026, 7:24:08 AM CT
 blocked_on: null
 needs_bake: false
