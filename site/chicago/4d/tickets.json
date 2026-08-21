@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 20, 2026, 11:51 PM",
+  "generated_ct": "Aug 21, 2026, 3:27 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2191,7 +2191,7 @@
     {
       "id": "T-0125",
       "title": "The stockade sank into the raised mound: four feet of picket show from the parade",
-      "state": "blocked-owner",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "steward",
       "seen": false,
@@ -2199,10 +2199,10 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-20",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": "Which gives — the bake (stepped pickets), the mound, or the placement? Three options in the ticket; each changes a different researched claim. No dimension moves without your say-so.",
+      "closed": "2026-08-20",
+      "pr": "287",
+      "claimed_by": "run 8/20/2026, 10:08:23 PM CT",
+      "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
     },

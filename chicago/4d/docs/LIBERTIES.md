@@ -1050,48 +1050,6 @@ than a structure one; the species are already named by the source.
 **Covers:** `fort_dearborn_garrison_garden.fence_1816.form.fence_height_m`, `fort_dearborn_garrison_garden.fence_1816.form.rail_courses`, `fort_dearborn_garrison_garden.fence_1816.form.panel_length_m`, `fort_dearborn_garrison_garden.fence_1816.form.panel_offset_m`, `fort_dearborn_garrison_garden.fence_1816.form.planting`.
 **Recorded:** 2026-08-11.
 
-### L46 — The fort stands on a bank the model has no cut or fill for
-**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
-their north sides — 1.40 m and 0.46 m at the worst point — and are declared
-`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
-the complex.
-**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
-N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
-of the stockade and the north face of the brick range cross the top of that fall, and the
-archetypes build a level base at one elevation. The real work plainly had something under it —
-a picket line is set in a trench and a brick range needs footings — and no source reached
-describes either.
-**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
-slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
-bank, and a model with no earthworks in it.
-**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
-models the platform the fort stood on, which is a terrain parcel rather than a structure one.
-**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
-**Recorded:** 2026-08-11.
-**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
-entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
-could see it"* and covered the **ground contact of all fourteen** structures in this complex,
-because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
-**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
-so twelve of the fourteen simply land, their declarations are gone from the records, and the two
-that remain fail for a completely different and much more interesting reason, which is what the
-entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
-the **root house**, whose positions were always `conjectural`, had been put where no ground
-existed to contradict them and turned out to be standing in the channel; both moved onto the
-bank top and both notes say so.
-**The half of the original entry that is NOT superseded, because it is about the machinery and
-not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
-m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
-two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
-specifically to catch a building standing on nothing — reported a **perfect landing**. Every
-structure L40 covers was caught only because the clamped edge varies along a wall and produced a
-gap; the fort was far enough out and square enough on to produce none. The gate could see
-buildings that were nearly right and was blind to the one that was completely wrong.
-`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
-declaration matches the measurement were written for that and stay whether or not any structure
-currently needs them — and turning them on immediately flagged two structures in other parcels
-that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
-
 ### L41 — The harbour piers are a measured line, an interpolated length and an invented width
 **Decision:** `north_pier` and `south_pier` are drawn as timber crib lines 900 ft and 400 ft
 long and **25 ft wide**. The bearing and the landward root of both are measured off Wright
@@ -4777,7 +4735,7 @@ photograph does not exist — the hotel burned in 1851 — so the dimensions sta
 unless a measured description surfaces in Andreas p. 106 or an insurance record.
 **Recorded:** 2026-08-21.
 
-### L155 — The material sheet paints the town: the programme's dealt finish outranks a defaulted `paint`, and a roof's weathering is not its covering
+### L156 — The material sheet paints the town: the programme's dealt finish outranks a defaulted `paint`, and a roof's weathering is not its covering
 
 **Decision:** `generators/common/materials.py` — `docs/RESEARCH/materials.md` written as code
 — now decides the colour and the roughness of every wall, roof, log, chinking and heavy-timber
@@ -4824,6 +4782,49 @@ line saying what settled them. The gate exempts this section from the check that
 value is still an invention, which is what lets an append-only document survive its own data
 being corrected.
 
+
+### L46 — The fort stands on a bank the model has no cut or fill for
+**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
+their north sides — 1.40 m and 0.46 m at the worst point — and are declared
+`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
+the complex.
+**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
+N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
+of the stockade and the north face of the brick range cross the top of that fall, and the
+archetypes build a level base at one elevation. The real work plainly had something under it —
+a picket line is set in a trench and a brick range needs footings — and no source reached
+describes either.
+**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
+slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
+bank, and a model with no earthworks in it.
+**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
+models the platform the fort stood on, which is a terrain parcel rather than a structure one.
+**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
+**Recorded:** 2026-08-11.
+**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
+entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
+could see it"* and covered the **ground contact of all fourteen** structures in this complex,
+because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
+**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
+so twelve of the fourteen simply land, their declarations are gone from the records, and the two
+that remain fail for a completely different and much more interesting reason, which is what the
+entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
+the **root house**, whose positions were always `conjectural`, had been put where no ground
+existed to contradict them and turned out to be standing in the channel; both moved onto the
+bank top and both notes say so.
+**The half of the original entry that is NOT superseded, because it is about the machinery and
+not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
+m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
+two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
+specifically to catch a building standing on nothing — reported a **perfect landing**. Every
+structure L40 covers was caught only because the clamped edge varies along a wall and produced a
+gap; the fort was far enough out and square enough on to produce none. The gate could see
+buildings that were nearly right and was blind to the one that was completely wrong.
+`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
+declaration matches the measurement were written for that and stay whether or not any structure
+currently needs them — and turning them on immediately flagged two structures in other parcels
+that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
+**Resolved:** 2026-08-21, by exactly the terrain work this entry asked for. T-0125 narrowed the bank face across the fort's river frontage from 20 m to 8 m (L155), on the owner's ruling that the ground should give rather than the bake or the placement; the ground under the stockade's north wall rose from 1.26 m to 2.57 m and both structures now LAND on the terrain, within the gate's 0.35 m. The `approach_not_modelled` declarations are dropped from both records in the same commit. Note what did and did not happen: the fall to the river is still there and is still uncut — no revetment, platform or footing is modelled anywhere in the complex, and a picket line is still set in no trench. What changed is that the fort's own ground now reaches its walls, so the pickets no longer stand up out of the slope on nothing.
 
 ### L30 — The bridge lands on nothing, and no approach is modelled
 **Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
@@ -5998,4 +5999,40 @@ The walk publishes its floor to the planting block-list, so nothing roots throug
 wharfing order for Water Street east of Dearborn; any view of the slough mouth or the
 South Water bank showing the crossing's walking surface or a bank walk; a committed
 crossing at the La Salle mouth would close the one gap in the run.
+**Recorded:** 2026-08-21.
+
+### L155 — Terrain: the fort's river frontage is cut steeper than the banks either side of it
+**Decision:** the south division's `face_profile` in
+`data/terrain/epochs/e1834_harbor_cut/terrain_spec.json` is narrowed from the reach's 20 m
+to **8 m across E 1103–1180**, the stockade's river frontage, with shoulders at 1085 and
+1215 holding the neighbouring bank unchanged. Nothing about the mound itself moves: its
+centre, its 45 m flat top, its 75 m outer radius and its +3.8 ft rise to the dossier zone's
+own +12 ft apex are all as v202 left them, and `picket_height_m` stays 3.7 m. What changes
+is the WIDTH OF THE BANK FACE at the fort, and with it the ground under the fort's north
+wall — from 1.26 m to 2.57 m — so the stockade's mesh, which anchors at the lowest
+ground beneath it, no longer sinks two and a half metres into its own footprint.
+**Why:** the fort had to stand on its mound, and as built it did not. The bank ramp
+multiplies every land level by `1 − (1 − d/face)²` — zero at the waterline, full only at
+`face` metres inland — and the traced 1834 waterline runs **4.5 m** north of the stockade's
+north-west corner and **7 m** north of its north-east. A 20 m face simply does not fit
+between the fort and the river, so the ramp reached some 15 m inside the walls and scaled
+the north wall's ground to a third of its height; from the parade only 1.41 m of a 3.80 m
+wall showed, under a 1.68 m eye. That is the fault the owner reported on 2026-08-19 and
+ruled on for this ticket on 2026-08-21 ("regrade the mound under the wall line"), and it is
+also flatly contrary to what the source says the landform is: the mound is "formed by the
+curve of the river at its base on its three sides" — the river at the mound's BASE, not
+partway up the fort's wall. The mound's own note claimed a north face of "+12 ft over about
+a 25 m run"; there is no 25 m run at the fort's corners, and that sentence is corrected in
+the same commit rather than left standing.
+**What is invented:** the 8 m figure and the two shoulder positions. No source states the
+width or the angle of the fort's river face. The number is not free, though: it is the
+FLATTEST face that fits the measured 4.5 m gap while holding the mound's level to the wall
+line, and it carries the fort's 2.57 m of bank to the waterline over about 4.3 m — **1:1.7**, or 31°,
+measured on the rebaked heightfield and INSIDE the ~34° angle of repose for sand rather than
+past it, so the face is steep but not steeper than ground of this material stands. What licenses a steeper face here than upstream is the epoch itself: `e1834_harbor_cut`
+is the DREDGED channel, and the south edge of a made cut stands steeper than the alluvial
+bank it replaced. Graded `inferred` with the mound it belongs to, and reported in the
+gradient audit under the `fort_dearborn_mound` band, which the dossier's modelling rule 1
+already exempts by name.
+**Ticket:** T-0125. **Supersedes nothing**; amends the ground v202 (T-0004) built.
 **Recorded:** 2026-08-21.
