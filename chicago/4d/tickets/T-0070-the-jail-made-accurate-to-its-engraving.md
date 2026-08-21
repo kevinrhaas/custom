@@ -1,7 +1,7 @@
 ---
 id: T-0070
 title: The jail made accurate to its engraving
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/21/2026, 12:53:16 PM CT
 blocked_on: null
 needs_bake: false
 ---
