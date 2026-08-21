@@ -59,14 +59,94 @@ const VERSION = '0.1.0';
  * scale at all: the reconstruction is not allowed to get less true because a
  * machine is slow, so what gives way is the sward, which is the only layer whose
  * count is a rendering decision rather than a claim.
+ *
+ * ---------------------------------------------------------------------------
+ * T-0115 — WHY THE SWARD ALONE COULD NOT HOLD THE BOTTOM RUNG, AND WHAT ELSE
+ * GIVES WAY NOW.
+ *
+ * The paragraph above is the design as written, and by August 2026 it had
+ * stopped being arithmetically possible. Measured on the published mirror at
+ * the release gate's own stand (`frame('sauganash_hotel', 26)`), desktop:
+ *
+ *   full     850,657 of 1,000,000    85 % of its ceiling
+ *   balanced 769,279 of   800,000    96 %
+ *   light    668,293 of   600,000   111 %  — over, and the reason for T-0115
+ *
+ * The ladder PROMISES a 40 % step from `full` to `light` — that is what
+ * 1,000,000 → 600,000 says. It DELIVERED 21.4 %. It could not deliver more,
+ * because the setting had a lever on only 39 % of the frame: flora and trees.
+ * The other 61 % — terrain, buildings, streets, fences, yard goods, plank
+ * walks, signboards, wharves, boats, and the sun's second pass over all of
+ * them — was drawn identically at every level. **A 40 % cut cannot be taken
+ * out of 39 % of a scene.** Everything the town grew after the tiers were
+ * written was grown outside the tiers' reach, which is exactly how the ceiling
+ * eroded: nothing was wrong with any one merge, and the control had no hold on
+ * any of them.
+ *
+ * The ceiling is NOT re-budgeted. What is added is two more things that give
+ * way at `light`, chosen by the same test the sward passes — a rendering
+ * decision rather than a claim — and both of them are the SUN rather than the
+ * town:
+ *
+ *   `shadowReachM` — how far from the visitor the sun's shadow is cast. At
+ *   `light` the box steps back to the ±120 m this project shipped between
+ *   R-W3b(a) and R-W5a2, and the map halves with it so the TEXEL is unchanged
+ *   (world.js `setShadowRig`). Nothing a visitor stands next to gets softer;
+ *   what the step costs is reach — past 120 m the town meets the ground with
+ *   nothing under it — and it also quarters the shadow map's memory, which is
+ *   the largest single GPU allocation this scene makes and the one a weak
+ *   machine feels first.
+ *
+ *   `furnitureCastsShadow` — whether the DERIVED FURNITURE casts into the
+ *   shadow map at all. A fence, a barrel, a plank walk, a dock and a moored
+ *   hull are drawn from committed records and their PRESENCE is a claim; the
+ *   stripe each one lays on the ground is lighting, and lighting is not a
+ *   claim. At `light` they stand exactly where they stand, drawn exactly as
+ *   they are drawn, still RECEIVING the shadows of the buildings and the timber
+ *   around them — they just stop being drawn a second time for the sun.
+ *   Buildings, terrain and the timber keep casting at every level: a town whose
+ *   houses and trees met the ground with nothing under them is the defect
+ *   R-W3b(a) exists to have fixed, and this does not reopen it. The hanging
+ *   signboards keep casting too, and FURNITURE_LAYERS below says why with the
+ *   measurement that decided it.
+ *
+ * Measured together at the same stand: desktop 668,293 → 584,761 of 600,000,
+ * 55 → 49 draw calls. Recorded in docs/LIBERTIES.md L156, which is L121's
+ * entry for the wood one layer over.
  */
 const DETAIL = {
-  full:     { triangles: 1000000 },
-  balanced: { triangles: 800000 },
-  light:    { triangles: 600000 },
+  full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
+  balanced: { triangles: 800000,  shadowReachM: 240, furnitureCastsShadow: true },
+  light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+
+/**
+ * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
+ * name each one gives its own group.
+ *
+ * What they have in common is the thing that makes the rule defensible: every
+ * one is small timber (or a small hull) built at load from a committed record
+ * rather than baked, standing ON the town rather than being the town.
+ * `structures`, `terrain`, `streets`, `trees` and `flora` are deliberately not
+ * in this list — the first three are the reconstruction itself, and the last
+ * two already give way through their own density.
+ *
+ * AND `signage` IS NOT IN IT EITHER, which is the one exception and was decided
+ * by a measurement rather than by taste. A hanging board is the only furniture
+ * in this town whose whole function is to be READ, from the street, at a few
+ * metres — and the shadow it throws is what lifts it off the wall it is bolted
+ * to. Dropping it from the shadow map cost exactly that: with the boards no
+ * longer casting, hiding the whole signage layer moved the release gate's own
+ * 12-cell signature at the Tremont's footway by mean 0.28 against its 0.30 bar,
+ * where the same measurement reads 0.72 with the shadow in — so the shadow was
+ * most of what the board was contributing to the frame. Keeping the boards
+ * casting costs 1,380 triangles of this tier's 84,912-triangle saving: 1.6 % of
+ * the saving, 0.2 % of the tier, for the only piece of furniture the visitor is
+ * meant to look directly at.
+ */
+const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats'];
 
 /**
  * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
@@ -384,6 +464,31 @@ async function boot() {
   };
   BUDGET.triangles = DETAIL[detailLevel].triangles;
 
+  /**
+   * T-0115 — the half of a detail level that is the SUN rather than the town.
+   *
+   * Separate from `applyDetail` below because it is instant and reversible:
+   * nothing is rebuilt, no record is re-read, and switching back restores the
+   * frame exactly. It is applied here at boot as well as on every change, so a
+   * phone — which starts at `light` without anybody touching the control —
+   * boots into the same rig a desktop gets by choosing it.
+   */
+  function applyShadowTier(level) {
+    const want = DETAIL[level] ?? DETAIL.full;
+    world.setShadowRig(want.shadowReachM);
+    const casts = want.furnitureCastsShadow !== false;
+    for (const name of FURNITURE_LAYERS) {
+      const group = scene3d.getObjectByName(name);
+      // A layer that drew nothing (a record that failed to load, a fence whose
+      // every post stood in water) simply has no group, and that is not an
+      // error here — the problem is already recorded where it happened.
+      if (!group) continue;
+      group.traverse((o) => { if (o.isMesh) o.castShadow = casts; });
+    }
+    return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
+  }
+  applyShadowTier(detailLevel);
+
   let flora = await createFlora({
     dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
@@ -414,6 +519,11 @@ async function boot() {
     if (!DETAIL[level] || level === detailLevel) return;
     detailLevel = level;
     BUDGET.triangles = DETAIL[level].triangles;
+    // The sun's half of the level takes effect on THIS frame rather than after
+    // the replanting: it costs nothing to apply, and a visitor who turns the
+    // setting down on a machine that is struggling should get the cheap half of
+    // the answer immediately instead of behind two layer rebuilds.
+    applyShadowTier(level);
     // Serialise: a visitor clicking through the options faster than the rebuild
     // would otherwise interleave two plantings into one scene.
     const run = (detailPending ?? Promise.resolve()).then(async () => {
@@ -973,7 +1083,16 @@ async function boot() {
     dataBase: bases.dataBase,
     detailLevels: DETAIL,
     detailOrder: DETAIL_ORDER,
-    get detail() { return detailLevel; },
+    // The setter side only. `detail` and `furnitureShadows` are LIVE readings
+    // and are defined with the other live ones below — FOUND BY T-0115, and it
+    // is the trap the K24 note twenty lines down already names: a getter
+    // written in this literal is invoked ONCE by Object.assign and its value
+    // copied, so `api.detail` had been frozen at whatever level the page booted
+    // into ever since it was added. Nothing looked wrong, which is the trouble
+    // with it — the smoke's "the level the visitor started on is restored"
+    // check was comparing a constant with the constant it was made from and
+    // could not fail. The rule was written down; it had simply not been applied
+    // to this one.
     setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     // R-A1. The gates measure the DEFAULT, so they need to be able to read this
@@ -1077,6 +1196,35 @@ async function boot() {
   // be written: anything on the harness whose answer changes after boot is
   // defined HERE. A getter in the literal above is a frozen snapshot.
   Object.defineProperties(api, {
+    /** The level the visitor is actually on, now rather than at boot (T-0115). */
+    detail: { get: () => detailLevel, enumerable: true },
+    /**
+     * T-0115. What the level's shadow half actually DID to the scene, read off
+     * the scene rather than off the table that asked for it — R-A1's rule about
+     * assertions again: a gate that reads `DETAIL[level]` back is reading its
+     * own intent, and the failure worth catching is a policy that reaches the
+     * table and not the meshes. `casting` counts the furniture meshes still
+     * drawn for the sun, so 0 is the claim `light` makes and anything else is
+     * the bug — including a NEW furniture layer mounted outside the policy,
+     * which is the way this will most likely be broken.
+     */
+    furnitureShadows: {
+      get: () => {
+        let meshes = 0;
+        let casting = 0;
+        for (const name of FURNITURE_LAYERS) {
+          const group = scene3d.getObjectByName(name);
+          if (!group) continue;
+          group.traverse((o) => {
+            if (!o.isMesh) return;
+            meshes += 1;
+            if (o.castShadow) casting += 1;
+          });
+        }
+        return { layers: FURNITURE_LAYERS.slice(), meshes, casting };
+      },
+      enumerable: true,
+    },
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },

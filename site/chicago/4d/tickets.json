@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 3:27 AM",
+  "generated_ct": "Aug 21, 2026, 3:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2011,7 +2011,7 @@
     {
       "id": "T-0115",
       "title": "Desktop light detail draws 605k triangles against its own 600k ceiling",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2019,12 +2019,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-20",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-20",
+      "pr": "289",
+      "claimed_by": "run 8/20/2026, 9:57:58 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": null
     },
     {
       "id": "T-0116",
@@ -2060,7 +2060,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 66
     },
     {
       "id": "T-0118",
@@ -2132,7 +2132,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 67
     },
     {
       "id": "T-0122",
@@ -2150,7 +2150,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 68
     },
     {
       "id": "T-0123",
@@ -2222,7 +2222,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 70
+      "queue_rank": 69
     }
   ]
 }

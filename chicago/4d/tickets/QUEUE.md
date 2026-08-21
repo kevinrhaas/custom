@@ -66,7 +66,6 @@ T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
 T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
-T-0115 — Desktop light detail draws 605k triangles against its own 600k ceiling
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
