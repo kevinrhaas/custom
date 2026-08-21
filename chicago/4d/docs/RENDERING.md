@@ -112,9 +112,19 @@ here and must not be quoted.
 Also on the books: current full-scene budgets are 49 / 53 draw calls and 378,647 / 499,343
 triangles at 390×780 / 1280×800 *(the draw-call halves are 16-batch figures and are superseded —
 R-W5a2 merged the town to one batch on 2026-08-17 and the worst desktop anchor reads 50 of 80)*,
-against gates of ≤ 80 draw calls and per-tier triangle
+against gates of **≤ 120 draw calls** and per-tier triangle
 ceilings (1,000,000 full / 800,000 balanced / 600,000 light). There is headroom, and the
 program spends it deliberately.
+
+**The draw-call gate was 80 until 2026-08-21 and is 120 now** — a conscious re-budget on
+the owner's ruling (*"or just raise the budget?"*), argued at the definition site in
+`renderers/web/js/main.js` `BUDGET`. The 80 was set when every derived layer was ONE
+town-spanning mesh; T-0067, T-0119 and T-0069 have since chunked those layers so the
+frustum can cull them, which trades triangles for draw calls deliberately, and the sun's
+own pass draws every chunk inside its ±240 m box a second time. Measured at the release
+gate's stand (`frame('sauganash_hotel', 26)`), desktop: 65 calls before T-0069's street
+edge and 78 after it. The TRIANGLE ceilings are unchanged and `light` remains the floor a
+weak machine has to hold.
 
 ---
 
@@ -688,7 +698,7 @@ recipes in Appendix B.
 | Vegetated-pixel extent | present to the fog-90 % distance | §1 item 1 |
 | White-card / albedo integrity | white wall in band; log-wall R/B ≈ 1.75 | world.js measurement |
 | 8-axis rubric | mean ≥ 8.0, no axis < 7, ≤ 4 iterations | Joliet QUALITY-LOG protocol |
-| Draw calls (`walk/`) | ≤ 80 main pass; extra passes accounted separately | existing BUDGET + W5 |
+| Draw calls (`walk/`) | ≤ 120 (raised from 80, 2026-08-21 — see §above and `main.js` BUDGET); shadow pass included in the count | existing BUDGET + W5 |
 | Triangles (`walk/`) | ≤ 1,000,000 / 800,000 / 600,000 by tier | existing DETAIL |
 | Published site | ≤ 25 MB until H2's sanctioned raise (~100 MB) | validate.py + §8 |
 | Drawn ground vs the heightfield | within the 22 mm road lift at **every** field sample, after conforming (16-bit: 12.9 mm worst; 14-bit was 46.3 mm at 87 samples) | R-W6, `tools/measure_terrain_horizontal.mjs` |

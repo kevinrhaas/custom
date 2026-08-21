@@ -140,7 +140,46 @@ const DETAIL = {
   light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
-const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+/**
+ * THE DRAW-CALL BUDGET, RAISED FROM 80 TO 120 ON 2026-08-21 — a conscious
+ * re-budget, written down here where the number is set, and never a silent one.
+ *
+ * THE OWNER'S RULING, verbatim: *"ok to raise the draw call budget, if you need
+ * to make that a user friendly option in settings because it wont work on some
+ * machines but will on others/most then that is ok"* — and immediately after,
+ * *"or just raise the budget?"*. No new setting was built: the scene-detail
+ * control below IS the user-facing option, and `light` remains the floor a weak
+ * machine has to hold, inside its own unchanged 600,000-triangle ceiling.
+ *
+ * WHY 80 STOPPED MEANING WHAT IT MEANT. It was set when every derived layer was
+ * ONE mesh — one fence mesh for the whole town, one plank-walk mesh, one yard
+ * mesh — and a draw call was a thing to be hoarded. T-0115 measured what that
+ * cost: a mesh spanning Chicago has a bounding sphere no frustum can cull, so
+ * 33,166 triangles of fence were drawn in every frame including the fences
+ * behind the camera. T-0067, T-0119 and T-0069 all took the same remedy and
+ * chunked their layers, which DELIBERATELY converts triangles into draw calls —
+ * and the sun's own pass draws every chunk inside its ±240 m box a second time,
+ * so a chunk costs two. The triangle ceilings are the tiers a visitor chooses
+ * between and they are unchanged; the call count is the price of the culling
+ * that keeps those ceilings reachable, and holding it at 80 would mean giving
+ * back the culling.
+ *
+ * MEASURED, at the release gate's own stand (`frame('sauganash_hotel', 26)`),
+ * desktop, published mirror: 65 calls before T-0069's street edge and **78**
+ * after it — inside the old 80, and with nothing left. That is the number this
+ * raise is against: not a parcel that overran, but a budget with two calls of
+ * headroom in a town that is still being built. 120 is half again the measured
+ * worst, which is the same order of margin the triangle ceilings carry.
+ *
+ * WHAT WOULD MAKE IT SMALLER AGAIN, costed and not done here (T-0115's ledger,
+ * T-0127): a plank walk lies 11 cm proud of the ground and its own shadow is
+ * about 4 cm wide at noon. If the ground-hugging furniture stopped casting into
+ * the shadow map while the standing furniture kept casting, the frontage layer's
+ * six shadow-pass calls at this stand would go for nothing a visitor can see.
+ * That needs a per-mesh opt-out in `applyShadowTier` and a smoke check that
+ * counts the exempt meshes rather than assuming every furniture mesh casts.
+ */
+const BUDGET = { drawCalls: 120, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
