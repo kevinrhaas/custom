@@ -162,9 +162,11 @@ const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
  * 12-cell signature at the Tremont's footway by mean 0.28 against its 0.30 bar,
  * where the same measurement reads 0.72 with the shadow in — so the shadow was
  * most of what the board was contributing to the frame. Keeping the boards
- * casting costs 1,380 triangles of this tier's 84,912-triangle saving: 1.6 % of
+ * casting cost 1,380 triangles of this tier's 84,912-triangle saving: 1.6 % of
  * the saving, 0.2 % of the tier, for the only piece of furniture the visitor is
- * meant to look directly at.
+ * meant to look directly at. It costs 1,106 since T-0066 gave the signs their
+ * names — a painted band is two triangles where a bracket board is sixty, and
+ * the lettering itself is a texture atlas rather than geometry.
  */
 const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats'];
 

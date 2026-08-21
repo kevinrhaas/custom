@@ -1,5 +1,78 @@
 # STATUS
 
+## Shipped 2026-08-21 — T-0066: the signboards say what they are
+
+**The ask, verbatim (owner, 2026-08-18).** *"you can and should put the name of the location on
+the sign board. the sign boards should have variation in color and style and signage font and
+color, some signs may hang from an awning and others may be on the building or painted on the face
+of the building. you need to add more signage and be period correct and it is fine if they are
+reconstructions."*
+
+**What it overrules, and it is this project's own writing.** T-0039 built the signage layer with
+every board BLANK, and L130 argued the blankness was *"the second half of the honesty"*. That
+argument was sound and the person it was written for has overruled it. **L25 is untouched**: its
+subject is an IMAGE nobody described — the Wolf Point wolf — and no board in this town carries a
+picture or a trade device. A NAME is a different object; the dataset already holds it and the card
+already shows it.
+
+**How a name gets onto a plank, in a project with no build step and no font pipeline.** The same
+technique T-0082 used for the Green Tree's post board — a canvas drawn at load — scaled to a whole
+town. Thirty-three signs in ten colourways cannot be thirty-three textures on a layer that is ONE
+draw call, so the layer paints **one atlas** (a grid of 512×256 cells plus one cell of plain
+weathered timber) and every triangle it emits carries a `uv` into it. A bracket arm samples the
+timber cell; a board's two faces sample its own painted cell, mirrored on the back so the name
+does not read backwards. **The lettering therefore costs zero triangles**, and the layer is still
+one mesh with one material — the invariant the smoke has held since T-0039.
+
+**What the record now decides, all of it re-derived byte for byte by `tools/check.sh`.**
+`sign_text` (the record's own `name`, less a trailing parenthetical — so board and card agree by
+construction); `mounting`, one of five; `style`, one of ten colourways × four letterforms; the
+board's own width and height, derived from the length of its name inside the range its mounting
+allows and inside the frontage it stands on; and `reach_m`, the furthest that mounting may put a
+vertex from its own anchor, which is what the smoke holds each sign to.
+
+**The variation is a rule, not a list.** A stable hash of the structure id sets a style preference
+order and the first style is taken that no sign within 40 m already uses — neither its id nor its
+ground colour. Mountings come from a per-trade-class cycle, advanced past anything a neighbour
+within 40 m already hangs. Measured over the whole town: **0 of the 14 sign pairs within 40 m share a
+style or a ground colour**, and the South Water row alone carries 10 signs on 4 mountings in 7
+ground colours.
+
+**More signage: 23 signs → 33.** The trade rule gains a WORKS AND WAREHOUSE class — three smiths'
+shops (one refused, see below), three warehouses, two packing houses, a tannery, a soap and candle
+manufactory, a brickyard — which paints its firm's name on its front and hangs nothing over a
+footway nobody walked. That class carries one extra clause: the record's name must contain a
+PROPRIETOR (a possessive or an ampersand), which refuses *"The Old Bank Building"* and *"Government
+Blacksmith Shop"* in writing rather than painting a modern nickname on an 1835 wall.
+
+**The mountings built:** `bracket_board` 6 (the wolf sign's own geometry, unchanged),
+`awning_board` 7, `wall_board` 6, `post_board` 1, `facade_painted` 13. The post is the one mounting
+that stands in the STREET rather than on the building, so it is refused — in writing, and the cycle
+advances — wherever the fronting street's travelled track comes within a metre of where it would
+stand, or where the frontage layer already lays a plank walk outside that wall. The Green Tree's
+own post board (T-0082, L135) is the exemplar the shape is copied from and is untouched. A painted
+band stands with its foot 2.30 m up rather than at the height a BOARD hangs at: measured on the
+render, a band at board height lands across the doorway of every frontage that has one, behind any
+surround standing proud of the wall. It drops back under the eave only where the wall has not the
+height for both.
+
+**Cheaper, not dearer.** The layer draws **1,106 triangles** where it drew 1,380 (−274), and
+because the boards are the one piece of furniture still casting at `light` (T-0115 kept them
+casting by measurement, and the smoke now asserts it) the measured frame falls by twice that.
+Per mounting: a painted name is 2 triangles, a wall board 24, a bracket board 60, an awning 72, a
+post 72. Recorded in T-0115's ledger.
+
+**What is NOT claimed.** No source in this repository gives the wording, the colour, the letterform
+or the mounting of a single sign in this town. Every part of all four is `reconstructed` on every
+vertex, so hiding that tier takes all thirty-three down at once and leaves the town mute with one
+wolf sign at the forks. `docs/LIBERTIES.md` **L158** is the claim and states the overrule of L130
+explicitly rather than quietly editing it.
+
+**Not verified.** The generator half (a baked town carrying its own boards) is still owed —
+ROADMAP K5 (b) — and this is the renderer-side layer as before. The letterforms are browser font
+stacks approximating the period's four working faces, not period type; legibility from a walker's
+distance was the test that was actually applied, and it is a rendering choice rather than a claim.
+
 ## Shipped 2026-08-21 — T-0007: the material sheet reaches the town
 
 **The ask.** R-W2a measured the town's surfaces and wrote `docs/RESEARCH/materials.md` — 1,353

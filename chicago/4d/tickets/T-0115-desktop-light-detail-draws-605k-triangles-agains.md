@@ -212,3 +212,27 @@ not been applied to this one. It is a live getter now.
 Desktop headroom after this parcel is 15,239 (2.5 %) and mobile 44,153 (7.4 %). That is real
 headroom and it is not a lot of it; item 2 above is where the next one should come from, because
 it is the only one on the list that costs a visitor nothing.
+
+**Measured BETTER by T-0066, 2026-08-21 — the first content merge since this repair that gives
+tiers back.** Naming the town's signboards and varying their mountings takes the signage layer
+from 1,380 triangles to **1,106** (−274, −19.9 %), and because the boards are the one piece of
+furniture still casting at `light` the measured frame falls by twice that: **−548**. Desktop
+`light` at the gate's own stand reads **584,167 of 600,000** (was 584,715), to the triangle, and
+`full` reads 850,063 (was 850,657). Draw calls are unchanged at 49 — the layer is still ONE call,
+because the lettering is a texture atlas rather than geometry. Desktop headroom at `light` is now
+15,833 (2.6 %), up from 15,285. The gate's own mobile reading is 508,233 of 600,000 at 44 calls,
+which is not differenced against this ticket's 507,280 above: the mobile pass walks the camera on
+after its thumbstick test, and three content merges have landed between the two readings.
+
+Where the saving comes from, since more signs now stand in the town, not fewer (23 → 33): a
+mounting's triangles vary by an order of magnitude and the cheap ones are the ones the ticket
+needed most. A name painted straight onto a building is **2** triangles; a board fixed flat on the
+front under a cap is **24**; a bracket board is **60** (unchanged — it is still the wolf sign's own
+geometry); an awning hood with a board under it is **72**; a post at the street edge is **72**. The
+town now draws 13 painted names, 6 wall boards, 6 brackets, 7 awnings and 1 post. **The lettering
+itself costs nothing at all**, which was the design constraint this ticket set on T-0066: every
+triangle carries a `uv` into a single canvas atlas painted at load, so thirty-three colourways and
+thirty-three names are one material and one draw call.
+
+The trim candidates in the list above are unchanged, and item 2 — the town-wide furniture meshes
+that are never culled — still names `signage` at 1,380; read it now as 1,106.
