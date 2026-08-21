@@ -1,7 +1,7 @@
 ---
 id: T-0066
 title: Signboards carry the location's name, and no two are alike
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/21/2026, 3:54:47 AM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -1899,24 +1899,34 @@ for (const [label, viewport, touch] of [
       fortPair.parade.levelPick === 'fort_dearborn_palisade',
       `level pick returned ${fortPair.parade.levelPick ?? 'nothing'}`);
 
-    // --- the business signboards (T-0039) ------------------------------------
+    // --- the business signs (T-0039, widened by T-0066) ----------------------
     //
     // A second layer drawn from the dataset rather than baked, and the first one
     // that hangs geometry OFF a building instead of standing it on the ground.
-    // That is where its failure modes live: a board is positioned by arithmetic
+    // That is where its failure modes live: a sign is positioned by arithmetic
     // on the footprint, the placement and the facade bearing, so one sign error
-    // anywhere in that chain puts two dozen planks inside the walls, or floating
-    // in the road behind them, and every dataset gate in this repo would pass.
-    // So the geometry is measured against the record here, and nowhere else.
+    // anywhere in that chain puts three dozen planks inside the walls, or
+    // floating in the road behind them, and every dataset gate in this repo
+    // would pass. So the geometry is measured against the record here, and
+    // nowhere else.
+    //
+    // T-0066 gave every sign a NAME, a MOUNTING and a STYLE, and each of those
+    // is a new way for the layer to be wrong without erroring: a name that does
+    // not match the card behind it, a mounting whose reach nobody bounded, or a
+    // town that quietly goes back to thirty-three identical boards. Each is
+    // asserted below rather than described.
     const boards = await page.evaluate(() => {
       const s = window.__chicago4d.signage;
       const mesh = s?.group?.children?.[0] ?? null;
       const g = mesh?.geometry ?? null;
       const signs = s?.signs ?? [];
+      const spans = s?.spans ?? [];
       let ungraded = 0;
       let notReconstructed = 0;
-      let worstStray = 0;      // furthest a vertex sits from its own anchor
-      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
+      let worstOver = -Infinity;   // furthest PAST its own declared reach
+      let worstReach = 0;          // the largest reach any sign declares
+      let worstInside = 0;         // deepest a vertex sits BEHIND its own facade
+      let unattributed = 0;        // a triangle belonging to no sign
       const conf = g?.getAttribute('_confidence');
       if (conf) {
         for (let i = 0; i < conf.count; i++) {
@@ -1925,66 +1935,163 @@ for (const [label, viewport, touch] of [
           else if (v < 1) notReconstructed++;
         }
       }
-      if (g && signs.length) {
+      // EVERY VERTEX AGAINST ITS OWN SIGN. The layer publishes the half-open
+      // triangle range each sign emitted, so this does not have to guess which
+      // anchor a vertex belongs to by proximity — which with a post standing two
+      // metres out in the street would sometimes guess the neighbour.
+      const uvRects = new Map();
+      const byId = new Map(signs.map((sg) => [sg.structure_id, sg]));
+      if (g && spans.length) {
         const pos = g.getAttribute('position');
-        for (let i = 0; i < pos.count; i++) {
-          // world is (E, up, -N)
-          const e = pos.getX(i);
-          const n = -pos.getZ(i);
-          let best = null;
-          let bestD = Infinity;
-          for (const sg of signs) {
-            const d = Math.hypot(e - sg.anchor_local_enu_m[0], n - sg.anchor_local_enu_m[1]);
-            if (d < bestD) { bestD = d; best = sg; }
+        const uv = g.getAttribute('uv');
+        for (const sp of spans) {
+          const sg = byId.get(sp.id);
+          if (!sg) { unattributed++; continue; }
+          const reach = sg.reach_m ?? 2.2;
+          worstReach = Math.max(worstReach, reach);
+          const b = ((sg.facade_bearing_deg ?? 0) * Math.PI) / 180;
+          let u0 = Infinity; let v0 = Infinity; let u1 = -Infinity; let v1 = -Infinity;
+          for (let t = sp.from; t < sp.to; t++) {
+            for (let k = 0; k < 3; k++) {
+              const i = t * 3 + k;
+              const e = pos.getX(i);           // world is (E, up, -N)
+              const n = -pos.getZ(i);
+              const de = e - sg.anchor_local_enu_m[0];
+              const dn = n - sg.anchor_local_enu_m[1];
+              worstOver = Math.max(worstOver, Math.hypot(de, dn) - reach);
+              // Positive is out of the wall, along the facade's own normal.
+              worstInside = Math.min(worstInside, de * Math.sin(b) + dn * Math.cos(b));
+              if (uv) {
+                u0 = Math.min(u0, uv.getX(i)); u1 = Math.max(u1, uv.getX(i));
+                v0 = Math.min(v0, uv.getY(i)); v1 = Math.max(v1, uv.getY(i));
+              }
+            }
           }
-          worstStray = Math.max(worstStray, bestD);
-          const b = ((best.facade_bearing_deg ?? 0) * Math.PI) / 180;
-          // Positive is out of the wall, along the facade's own normal.
-          const outward = (e - best.anchor_local_enu_m[0]) * Math.sin(b)
-            + (n - best.anchor_local_enu_m[1]) * Math.cos(b);
-          worstInside = Math.min(worstInside, outward);
+          if (uv) {
+            uvRects.set(sp.id, [u0, v0, u1, v1].map((x) => x.toFixed(4)).join(','));
+          }
         }
       }
+      // The variation the owner asked for, measured on the record: no two signs
+      // a walker can see at once may share a style or a ground colour.
+      const NEAR_M = 40;
+      let pairs = 0;
+      let sameStyle = 0;
+      let sameGround = 0;
+      for (let i = 0; i < signs.length; i++) {
+        for (let j = i + 1; j < signs.length; j++) {
+          const a = signs[i];
+          const b = signs[j];
+          const d = Math.hypot(a.anchor_local_enu_m[0] - b.anchor_local_enu_m[0],
+            a.anchor_local_enu_m[1] - b.anchor_local_enu_m[1]);
+          if (d > NEAR_M) continue;
+          pairs++;
+          if (a.style?.id === b.style?.id) sameStyle++;
+          if (a.style?.ground === b.style?.ground) sameGround++;
+        }
+      }
+      // The South Water row, which is the street the town actually reads as one:
+      // every sign whose anchor sits on the frontage line north of the block.
+      const row = signs.filter((sg) => sg.anchor_local_enu_m[1] > -10
+        && sg.anchor_local_enu_m[1] < 12
+        && sg.anchor_local_enu_m[0] > 180 && sg.anchor_local_enu_m[0] < 760);
       return {
         census: s?.census ?? null,
         meshes: s?.group?.children?.length ?? 0,
         verts: g?.getAttribute('position')?.count ?? 0,
         hasConfidence: !!conf,
+        hasUV: !!g?.getAttribute('uv'),
+        hasMap: !!mesh?.material?.map,
+        casts: mesh?.castShadow === true,
         ungraded,
         notReconstructed,
-        worstStray,
+        worstOver,
+        worstReach,
         worstInside,
+        unattributed,
+        spans: spans.length,
         signs: signs.length,
+        named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
+        distinctArt: new Set(uvRects.values()).size,
+        mountings: new Set(signs.map((sg) => sg.mounting)).size,
+        grounds: new Set(signs.map((sg) => sg.style?.ground)).size,
+        faces: new Set(signs.map((sg) => sg.style?.face)).size,
+        pairs,
+        sameStyle,
+        sameGround,
+        rowSigns: row.length,
+        rowMountings: new Set(row.map((sg) => sg.mounting)).size,
+        rowGrounds: new Set(row.map((sg) => sg.style?.ground)).size,
         ids: signs.map((sg) => sg.structure_id),
       };
     });
-    check(`${label}: the signage layer hangs the record's boards`,
+    check(`${label}: the signage layer puts up the record's signs`,
       boards.census?.boards >= 20 && boards.signs === boards.census?.boards
+        && boards.spans === boards.signs && boards.unattributed === 0
         && boards.verts > 0,
-      `${boards.census?.boards} board(s) from ${boards.census?.records} record(s), `
+      `${boards.census?.boards} sign(s) from ${boards.census?.records} record(s), `
       + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
     check(`${label}: the whole signage layer is one draw call`,
       boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
+    // AND ITS SHADOW IS STILL IN THE FRAME. T-0115 dropped the derived furniture
+    // out of the shadow map at `light` and put the signboards back in by
+    // measurement, because the shadow is most of what a board contributes to the
+    // frame at the Tremont's footway. A later trim that quietly swept them up
+    // with the fences would fail here rather than in the liveness check below.
+    check(`${label}: the signs still cast into the shadow map`,
+      boards.casts, `signage mesh castShadow ${boards.casts}`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. The fact of
-    // a board on these frontages is invented (L130) and a single vertex claiming
-    // to be inferred or attested would be this layer overstating the one thing
-    // it must not.
+    // a sign on these frontages is invented (L130) and so are its wording, its
+    // colours and its mounting (L158); a single vertex claiming to be inferred
+    // or attested would be this layer overstating the one thing it must not.
     check(`${label}: every signboard vertex is graded reconstructed`,
       boards.hasConfidence && boards.ungraded === 0 && boards.notReconstructed === 0,
       `attribute ${boards.hasConfidence ? 'present' : 'MISSING'}, ${boards.ungraded} out `
       + `of range, ${boards.notReconstructed} claiming better than reconstructed`);
-    // The board hangs on the wall it belongs to. The bracket is 1.15 m and the
-    // board 0.88 m across, so nothing legitimately reaches 2.2 m from its anchor
-    // — a transposed axis or a dropped rotation would be metres out, not
-    // centimetres.
-    check(`${label}: no signboard strays from the frontage it hangs on`,
-      boards.worstStray > 0 && boards.worstStray <= 2.2,
-      `furthest vertex ${boards.worstStray?.toFixed(2)} m from its own anchor`);
-    // And it hangs OUT of the wall, not into the parlour behind it. The strut's
-    // own half-section is the only thing entitled to sit on the wall plane.
-    check(`${label}: every signboard hangs outside its own facade`,
+    // EVERY SIGN INSIDE ITS OWN DECLARED REACH. The record computes, per sign,
+    // how far its own mounting may put a vertex from its own anchor — 1.06 m for
+    // a board fixed flat on a wall, 2.58 m for a post out at the street edge —
+    // so this holds the smallest board to a bound a metre tighter than the
+    // largest one needs, which one flat number never could. The 3 m ceiling on
+    // the reaches themselves is the second half of it: a mounting that declared
+    // itself twenty metres long would satisfy the first test and fail this one.
+    check(`${label}: no sign strays past the reach its own mounting declares`,
+      boards.worstOver > -Infinity && boards.worstOver <= 0.05
+        && boards.worstReach <= 3.0,
+      `worst vertex ${boards.worstOver?.toFixed(3)} m past its own reach; `
+      + `largest reach declared ${boards.worstReach?.toFixed(2)} m`);
+    // And it stands OUT of the wall, not into the parlour behind it. A painted
+    // name lies ON the front by construction, so the bar is a few centimetres of
+    // tolerance rather than zero.
+    check(`${label}: every sign stands outside its own facade`,
       boards.worstInside >= -0.05,
       `deepest vertex ${boards.worstInside?.toFixed(3)} m behind the facade plane`);
+    // --- what the signs SAY, and that no two of them are alike (T-0066) ------
+    //
+    // The owner asked for three things in one sentence — the name on the board,
+    // variation in colour and style, and more signage — and all three are the
+    // kind of thing that erodes silently. A refactor that lost the atlas would
+    // draw thirty-three blank planks and error nowhere.
+    check(`${label}: every sign carries its business's name, painted`,
+      boards.named === boards.signs && boards.census?.lettered === boards.signs
+        && boards.hasUV && boards.hasMap
+        && boards.distinctArt === boards.signs,
+      `${boards.named}/${boards.signs} named, ${boards.census?.lettered} lettered, `
+      + `uv ${boards.hasUV ? 'present' : 'MISSING'}, `
+      + `atlas ${boards.hasMap ? 'bound' : 'MISSING'}, `
+      + `${boards.distinctArt} distinct painted face(s)`);
+    check(`${label}: no two signs within sight of each other are alike`,
+      boards.pairs > 0 && boards.sameStyle === 0 && boards.sameGround === 0,
+      `${boards.pairs} pair(s) within 40 m — ${boards.sameStyle} share a style, `
+      + `${boards.sameGround} share a ground colour`);
+    check(`${label}: the town puts its signs up five different ways`,
+      boards.mountings >= 5 && boards.grounds >= 8 && boards.faces >= 4,
+      `${boards.mountings} mounting(s), ${boards.grounds} ground colour(s), `
+      + `${boards.faces} letterform(s) across ${boards.signs} signs`);
+    check(`${label}: one street's signs are visibly different from each other`,
+      boards.rowSigns >= 6 && boards.rowMountings >= 3 && boards.rowGrounds >= 5,
+      `South Water row: ${boards.rowSigns} sign(s), ${boards.rowMountings} `
+      + `mounting(s), ${boards.rowGrounds} ground colour(s)`);
 
     // AND IT READS FROM THE STREET, which is the whole point of a sign. Stand on
     // the footway in front of the Tremont House — a south-facing hotel frontage —
@@ -2014,21 +2121,42 @@ for (const [label, viewport, touch] of [
       `cell delta mean ${dSign.mean?.toFixed(2)}, worst ${dSign.worst} (need worst>=6)`);
 
     // A sign is a thing you read and then walk into, so aiming at the board has
-    // to open the business behind it and not the wall past it.
+    // to open the business behind it and not the wall past it — AND THE CARD IT
+    // OPENS HAS TO SAY WHAT THE BOARD SAYS (T-0066). A visitor who reads a name
+    // off a plank and then taps the plank must not be shown a different
+    // business; the record carries `sign_text` for exactly that agreement, and
+    // this is where the two are put side by side.
     const boardPick = await page.evaluate(() => {
       const hits = [];
+      let card = null;
       for (const x of [-0.2, -0.1, 0, 0.1, 0.2]) {
         for (const y of [-0.1, 0, 0.1, 0.2, 0.3]) {
           const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
+          if (!hit?.id) continue;
+          hits.push(hit.id);
+          if (hit.id === 'tremont_house_1' && !card) {
+            card = hit.record?.sidecar?.name ?? null;
+          }
         }
       }
-      return hits;
+      const sign = (window.__chicago4d.signage.signs ?? [])
+        .find((s) => s.structure_id === 'tremont_house_1') ?? null;
+      return { hits, card, painted: sign?.sign_text ?? null };
     });
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
     check(`${label}: aiming at a signboard opens the business behind it`,
-      boardPick.includes('tremont_house_1'),
-      `25 aims returned [${[...new Set(boardPick)].join(', ') || 'nothing'}]`);
+      boardPick.hits.includes('tremont_house_1'),
+      `25 aims returned [${[...new Set(boardPick.hits)].join(', ') || 'nothing'}]`);
+    // The card's name may carry a trailing parenthetical the board does not —
+    // "Tremont House (the first)" is this project telling itself which Tremont
+    // it means — so the agreement asked for is that the painted name IS the
+    // card's name, up to that one documented reduction and to capitals.
+    const cardName = (boardPick.card ?? '').replace(/\s*\([^)]*\)\s*$/, '').trim();
+    check(`${label}: the name painted on the board is the name on its card`,
+      !!boardPick.painted && !!cardName
+      && boardPick.painted.toUpperCase() === cardName.toUpperCase(),
+      `board reads "${boardPick.painted ?? 'nothing'}", card says `
+      + `"${boardPick.card ?? 'nothing'}"`);
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //

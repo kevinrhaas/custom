@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 157,
+  "count": 158,
   "liberties": [
     {
       "id": "L1",
@@ -10227,6 +10227,41 @@
         {
           "label": "How to resolve",
           "text": "a source that states a covering for any Chicago building of 1835 turns the roof half from a condition into a material and is worth a parcel of its own (materials.md §5 names the schema question it raises across 315 records). A source that states a finish for any named building would raise that building's wall out of the programme's deal and into its own attestation. Neither would change the mechanism, only the rows it reads."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L158",
+      "title": "The town's signs say what they are: thirty-three invented names, in ten colourways, on five mountings",
+      "section": "per_subject",
+      "subjects": [
+        "mansion_house",
+        "tremont_house_1",
+        "wolf_point_tavern"
+      ],
+      "covers": [],
+      "recorded": "2026-08-21",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every sign on the business layer now carries the **name of the business behind it**, painted on the board or straight onto the front of the building, in one of **ten colourways** and **four letterforms**, on one of **five mountings** — `bracket_board` (the wolf sign's own arm and straps), `awning_board` (the same plank hung under a hood that falls 0.34 m to its outer edge), `wall_board` (a board fixed flat on the front under a cap), `post_board` (a pole at the street edge 1.90 m out from the wall, with a cross-arm and the board under it) and `facade_painted` (the name on the boards of the building and no board at all). The count rises from 23 signs to **33**: the trade list gains a WORKS AND WAREHOUSE class — smiths, warehouses, packing houses, a tannery, a soap and candle manufactory, a brickyard — which paints its firm on its front and hangs nothing. The wording, the colours, the letterform, the mounting and the panel are all `reconstructed`, on every vertex. `tools/generate_business_signboards.py` chooses all of it, `tools/check.sh` re-derives the record byte for byte, and `renderers/web/js/signage.js` draws what the record says."
+        },
+        {
+          "label": "Why",
+          "text": "the owner asked for it, 2026-08-18, verbatim: *\"you can and should put the name of the location on the sign board. the sign boards should have variation in color and style and signage font and color, some signs may hang from an awning and others may be on the building or painted on the face of the building. you need to add more signage and be period correct and it is fine if they are reconstructions.\"* The standing ruling on invention covers the tier: *\"you are totally fine to be liberal with adding reconstructed items when i ask for things, you can just label and mark them as such.\"* **WHAT THIS OVERRULES, AND IT IS THIS PROJECT'S OWN WRITING.** L130 ended *\"**The blankness is the second half of the honesty** … two dozen invented shop names painted across the scene would be the most conspicuous fiction in it\"*, and the generator's docstring said the same in stronger words. That reasoning was sound and it has been overruled by the person it was written for. Read it now as the argument that was available before the ask, not as a rule still standing. **L25 is NOT overruled and is not touched.** Its subject is an IMAGE — the Wolf Point Tavern's painted wolf, which no source describes — and no board in this town carries a picture or a trade device. A NAME is a different object: the dataset already holds it, the card already shows it, and the only thing invented in painting it on a plank is that a signwriter was paid to do so. **What bounds the invention, in three parts.** *The WORDING* is `sign_text`, which is the record's own `name` and nothing else, less a trailing parenthetical where the dataset carries one (\"Tremont House (the first)\" is this project telling itself which Tremont it means, not something a signwriter put on a board). So the sign and the card agree by construction, and the smoke asserts the agreement at the Tremont's own board rather than trusting it. What is invented is that the business announced itself under that name, and it is graded `reconstructed` even where the name itself is attested. *The STYLE* is a table of ten grounds and four faces in `tools/generate_business_signboards.py`, and **not one entry is a Chicago record**. No wording, device or colour of any sign in this town survives. What the table is not is arbitrary: black grounds with gilt letters, white lead with black, ochre (the cheapest pigment on a colourman's shelf), Venetian red, Prussian blue and Brunswick green are the trade's ordinary stock, and the four faces are the period's working letters — the signwriter's roman, the fat face that IS the 1830s display letter, the Egyptian slab that arrives beside it, and the plain block. WHICH sign gets which is a rule, not a list: a stable hash of the structure id sets a preference order, and the first style is taken that no sign within 40 m already uses — neither its id nor its ground colour. That is the owner's *\"no two are alike\"*, enforced on every commit and asserted in the smoke over every pair of signs a walker can see at once. *The MOUNTING* is chosen by the trade's class from a cycle, so the cycle advances down a class rather than repeating: a public house draws from awning / bracket / post, a counter from bracket / wall / awning / painted, an office from wall / bracket / painted, and a works is always painted. A mounting a neighbour within 40 m already uses is passed over, and a POST — the one mounting that stands in the street rather than on the building — is refused in writing wherever the fronting street's travelled track comes within a metre of where it would stand, or where the frontage layer already lays a plank walk outside that wall. Every refusal is in the record's own `mounting_note`. A painted band stands with its foot 2.30 m up so it clears a door head, and drops back under the eave only where the wall has not the height for that — which is where paint goes on a front, and also invented. Not one dimension of any mounting is a record's. **THE ONE MOUNTING THAT IS NOT INVENTED IN KIND.** The post-hung board is the arrangement images 6 and 7 of `data/sources/assets/owner_brief_2026_08_18/README.md` actually show at the Green Tree, and T-0082 drew it there from that evidence (L135). This entry copies its SHAPE to one other frontage, the Mansion House, which has no such plate — so the shape is a plate's and the claim that this inn used it is not."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walking South Water Street now reads the town instead of guessing at it, and **every word of what they read is ours**. The counterweight is the same one L130 built and it is unchanged: every vertex of the layer is graded `reconstructed`, so hiding that level takes all thirty-three signs down at once and leaves the town as the sources leave it — mute, with one wolf sign at the forks. What a visitor cannot see from the street is that the names are the dataset's and the paint is not; the card behind each sign says so, and this entry is why. **And the tier got cheaper, not dearer.** The layer draws **1,106 triangles** where it drew 1,380, because a painted band is two triangles and a board fixed flat on a wall is twenty-four where a bracket is sixty. The lettering costs nothing at all: the whole town's paint is ONE canvas atlas and every triangle carries a `uv` into it, so the layer is still one draw call with one material, which is the invariant `tools/smoke_renderer.mjs` has held since T-0039."
+        },
+        {
+          "label": "How to resolve",
+          "text": "unchanged from L130 and now with more to answer for — a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale description naming a shop sign; a traveller's account of walking South Water Street; or any pre-fire photograph of a surviving 1830s frontage opened at its holding institution (the Green Tree plate, ICHi-040230, is the nearest and is unseen). One that gave a WORDING, a COLOUR or a MOUNTING for a named house would be the first thing this project has ever held that could take one of those three off the reconstructed tier."
         },
         {
           "label": "Recorded",
