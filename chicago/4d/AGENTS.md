@@ -162,6 +162,31 @@ pattern to learn: **when the owner asks for something, the scene needing it IS t
 build it at the reconstructed tier, label it, record the liberty, and do not ration it to the
 attested instances. The rationing instinct is the bug this section exists to fix.
 
+**And the same ruling reaches the frame budget, 2026-08-21, verbatim: "ok to raise the draw
+call budget, if you need to make that a user friendly option in settings because it wont work
+on some machines but will on others/most then that is ok" — and, immediately after, "or just
+raise the budget?"** So: **just raise it.** A performance ceiling is not a claim about 1835 and
+it is not evidence; it is a number this project chose, and when a parcel the owner asked for
+needs more of it, the number moves rather than the parcel shrinking. Three constraints survive,
+and they are the whole of it:
+
+- **Never silently.** The number moves at the place it is defined, with the reasoning written
+  there — where the old figure came from and what supports the new one — and the check that
+  guards it updated to match, with its justification. That is a conscious re-budget (T-0115's
+  acceptance names it as one of the two honest routes) and it is NOT the same act as weakening
+  an assertion to make a red go away. Say which one you are doing.
+- **`light` is the floor and stays the floor.** The scene-detail control (`full`/`balanced`/
+  `light`) IS the "user friendly option in settings" the owner was offering to have built — it
+  already ships, so no new UI is wanted. `light` is the tier a weak machine boots into; keep it
+  inside its own ceiling and spend new headroom at the tiers above it.
+- **Measure, then move.** Raise it because a parcel needs it and you have the number, not
+  pre-emptively. A ceiling checked at one camera stand is a spot reading, not an invariant
+  (T-0115 item 1, still open).
+
+The pattern is the same one above: **when the owner asks for something, the scene needing it IS
+the justification.** Rationing the town to a budget nobody defended is the same bug as rationing
+it to the attested instances.
+
 ## THE QUEUE — how work is chosen (since 2026-08-17)
 
 **`tickets/` is the single operational answer to "what next".** The owner asked for it
