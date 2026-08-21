@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 218, title: 'The lean-to roofs close their open ends', kind: 'fix', ts: '2026-08-21T15:59:35.627Z', date: 'Aug 21, 2026, 10:59 AM CT',
+    items: [
+      'Fifty-four of the town\u2019s smallest dwellings \u2014 the rough plank cabins and shanties whose shape is a stand-in rather than a building drawn from a record \u2014 had a lean-to roof that sloped up from front to back and then simply stopped at the sides. Where the wall should have finished as a triangle under the slope there was nothing at all, so from the right angle a visitor could see through the building to the sky. Both ends are now closed on every one of them.',
+      'The two-sided roofs never had this fault: that half of the code had always filled its gable ends, and the lean-to half drew its one slope and stopped. What was missing was ordinary wall, and it is recorded as wall rather than as roof \u2014 it is the top of the side wall, not a covering, and nothing about what these roofs are made of is claimed by fixing them.',
+      'The owner reported it twice, three days apart, standing at the same cabin on Lake Street. It was diagnosed the first time and waited its turn in the queue; this is the sweep, applied to every building of the class rather than to the one he happened to be looking at.',
+    ] },
   { v: 217, title: 'The signboards say what they are', kind: 'feature', ts: '2026-08-21T11:55:44.341Z', date: 'Aug 21, 2026, 6:55 AM CT',
     items: [
       'Every shop board in Chicago was blank. You could stand under one and have no idea whose door you were at. They carry the name of the business now — painted on the board, the same name the card behind it gives you when you tap it, so reading the street and inspecting the street tell you the same thing.',

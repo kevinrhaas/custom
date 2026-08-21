@@ -44,7 +44,6 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
 T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
@@ -68,3 +67,5 @@ T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the 
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
+T-0130 — The signs should read as the trade wrote them, not as we label the building
+T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
