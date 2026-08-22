@@ -3938,16 +3938,19 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Nine boats since T-0063 — three schooners in the reach below the
-    // drawbridge, four rowboats at the South Water bank, two canoes at the
+    // Thirteen boats since T-0140 — three schooners in the reach below the
+    // drawbridge and TWO AT THE WOLF POINT LANDINGS, four rowboats at the South
+    // Water bank and two more at the west bank at the forks, two canoes at the
     // fort landing — and ZERO refused: every authored position was chosen
     // against the committed heightfield, so a refusal appearing here means the
-    // terrain moved under the record and the record was not re-read.
+    // terrain moved under the record and the record was not re-read. FIVE
+    // planting keep-outs, one per BEACHED hull (the two South Water skiffs, the
+    // Wolf Point skiff and the two fort canoes); an afloat hull needs none.
     check(`${label}: every authored boat is on the water`,
-      flotilla.census?.boats === 9 && flotilla.census?.refused === 0
-        && flotilla.census?.schooners === 3 && flotilla.census?.rowboats === 4
+      flotilla.census?.boats === 13 && flotilla.census?.refused === 0
+        && flotilla.census?.schooners === 5 && flotilla.census?.rowboats === 6
         && flotilla.census?.canoes === 2 && flotilla.verts > 0
-        && flotilla.keepOut === 4,
+        && flotilla.keepOut === 5,
       `${flotilla.census?.boats} boat(s) (${flotilla.census?.schooners} schooner(s), `
       + `${flotilla.census?.rowboats} rowboat(s), ${flotilla.census?.canoes} canoe(s)), `
       + `${flotilla.census?.refused} refused, ${flotilla.verts} vertices, `

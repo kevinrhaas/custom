@@ -55,7 +55,6 @@ T-0113 — The nightly bake refuses its own publish: 30 masters now compress sma
 T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
-T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0127 — South Water Street and the rest of the town get the street edge
 T-0130 — The signs should read as the trade wrote them, not as we label the building
