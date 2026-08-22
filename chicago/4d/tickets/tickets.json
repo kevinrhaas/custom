@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 2:27 PM",
+  "generated_ct": "Aug 22, 2026, 3:01 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2279,12 +2279,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0130",
       "title": "The signs should read as the trade wrote them, not as we label the building",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -2292,12 +2292,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-21",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-22",
+      "pr": "305",
+      "claimed_by": "run 8/22/2026, 12:10:48 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": null
     },
     {
       "id": "T-0131",
@@ -2369,7 +2369,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0135",
@@ -2405,7 +2405,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0137",
@@ -2423,7 +2423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0138",
@@ -2441,7 +2441,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0139",
@@ -2459,7 +2459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0140",
@@ -2513,7 +2513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0143",
@@ -2531,7 +2531,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 62
     }
   ]
 }

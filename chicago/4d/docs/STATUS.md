@@ -310,6 +310,69 @@ numbers are unchanged by this parcel to the decimal (walker 100–250 m ΔL* 1.8
 aerial 250–600 m ΔL* 2.0 of 4.6, weber 0.0922). The marks were also read off the render at the
 Tremont House and Peck's store frontages — which is how the first build was caught writing every
 case in the town mirrored.
+## Shipped 2026-08-22 — T-0130: the signs read as the trade wrote them
+
+**The ask (owner, 2026-08-21), of the Philo Carpenter board T-0066 had shipped:** *"philo would
+not have referred to his own place as log drug store, it would be philo carpenter, drugs and
+medicines, or druggist or whatever he would have referred to himself as on the sign, that may be
+different than the name of the building for us, the sign may read differently historically."* Of
+the next one: *"same with hogan's store."* Widened the same day: *"i guess do a pass on all those
+signs and make sure they feel right for the era."* He then supplied **seven pages of 1833-35
+Chicago newspaper advertising** in which the town's businesses write their own copy.
+
+**The defect, in one sentence.** `_sign_text()` painted the structure record's own `name` and its
+docstring defended that — *"the card a visitor opens by tapping the board has to say what the
+board says"* — which collapsed two different objects. A record's `name` is OUR label for a
+BUILDING; a signboard carries what the TRADE lettered. Thirty-three boards were carrying museum
+captions.
+
+**What shipped.** The wording is now its own field and may differ from the `name`. All 33 boards
+are re-lettered from `SIGN_WORDING` in `tools/generate_business_signboards.py`, in the
+advertisements' own register — proprietor or firm first and largest, the trade beneath, the place
+last and smallest — carried per line with a role (`sign_lines`) and lettered in that hierarchy by
+`renderers/web/js/signage.js`. **14 are `inferred`** on a firm's own advertised line, **19 are
+`reconstructed`** from the trade vocabulary those pages evidence, and **0 are `attested`**. The
+identity correction the owner named is made: "Hogan's Store" reads **BREWSTER, HOGAN & CO. /
+Forwarding & Commission**, which the building's own `aka` already knew.
+
+**Nothing is `attested`, and that is the owner's own ruling rather than caution.** The seven pages
+were supplied as images in conversation and are **not committed** to `data/sources/assets/`; a
+transcription is not a citation. His instruction, verbatim: *"I will give you all those data
+sources later in a more comprehensive form proceed where you can and label reconstruction or
+inferred with a note as you like."* So every newspaper-derived note quotes its advertisement, names
+its date, says where the transcription came from, and says the value is to be **upgraded to
+`attested`** when the pages land. **The four-step upgrade recipe is written into the T-0130
+ticket** so it survives the run that wrote it. Goss & Cobb's page is committed already and is the
+first to revisit.
+
+**The golden mortar.** Carpenter's 1835 notice heads itself *"AT THE SIGN OF THE GOLDEN MORTAR"* —
+a Chicago signboard described in print by the man who owned it, in the scene year — so a gilt
+mortar and pestle is **painted** on his South Water board rather than the phrase being lettered.
+**L25 is untouched**: it withholds an image nobody described, which is the opposite case. The
+device does not generalise — one belongs to a shop only where its own advertisement names one —
+and the smoke pins the count at exactly one rather than bounding it below.
+
+**The check is CORRECTED, not relaxed.** T-0066 asserted string equality between board and card at
+one board, which was the wrong invariant once the two fields separated. What replaces it is
+`sign_identity` — the proprietor, firm or house, which must appear in both — asserted at the
+Tremont's own board, over every sign in the town, and beside two new absolute assertions: no board
+carries the word "log", and every board letters a trade as well as a proprietor. The generator
+refuses to build if any of them fails.
+
+**Cost: zero.** Measured on the published mirror, the signage layer draws **1,106 triangles in one
+mesh before and after**, on the same 4096 × 1536 atlas — the lettering lives in the atlas every
+triangle already samples, and the painted device is canvas too. Recorded in T-0115's ledger.
+
+**Findings raised rather than buried**, in the record's own `findings` array: J. S. C. Hogan's
+separate South Water dry-goods store, which the pages distinguish and the model does not carry;
+Pierce & Abbott against this project's Asahel Pierce; P. Pryne & Co. against Pruyne & Kimball;
+three advertisements that locate themselves by a neighbour and can be checked against this model's
+placements; and a list of firms the pages name that the town lacks — none of which has been given
+an invented building.
+
+**Verification.** `tools/check.sh` green; smoke green at 390×780 (stages 1-4) and 1280×800 (stages
+1-2), zero page errors, with only the known pre-existing T-0114 road-legibility reds in stage 3.
+`docs/LIBERTIES.md` **L166**.
 
 ## Shipped 2026-08-21 — T-0072: the Wolf Tavern's sign flies from a pole, and the wolf is on it
 

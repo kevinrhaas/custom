@@ -55,7 +55,6 @@ T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the 
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0127 — South Water Street and the rest of the town get the street edge
-T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
