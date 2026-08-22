@@ -57,6 +57,11 @@ from archetypes.frame_storefront_params import (  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_TRIM, M_GLASS, M_SIGN, M_TIMBER = 0, 1, 2, 3, 4, 5
+# Appended only where the record counts a stack (T-0008) — appended rather than
+# inserted, and conditionally, for the reason `log_dwelling` gives at its own mats
+# list: a material slot nothing references still reaches the glTF, so adding one
+# unconditionally would rewrite every chimneyless master in the archetype.
+M_CHIMNEY = 6
 
 # The exposed face per course is `params.siding_exposure_m` — a record's own mill
 # stock since T-0049, defaulting to 0.14 m (~5.5 in), which was a constant here.
@@ -158,7 +163,8 @@ def build(params: FrameStorefrontParams, name: str):
     if p.framing_exposed:
         _exposed_framing(b, p, mx0, my0, mx1, my1, wall_z, ridge_z, c_frame)
 
-    _chimneys(b, p, mx0, my0, mx1, my1, ridge_z, wall_z, p.conf("chimneys"))
+    _chimneys(b, p, mx0, my0, mx1, my1, ridge_z, wall_z, p.conf("chimneys"),
+              M_CHIMNEY if p.chimneys > 0 else M_ROOF)
 
     # ---- the surfaces, off the sheet (T-0007) --------------------------------
     # This is the ONE archetype in the project that already read `cladding`, and it
@@ -183,6 +189,14 @@ def build(params: FrameStorefrontParams, name: str):
         simple_material("sign", SIGN_RGBA, roughness=0.85),
         simple_material("timber", TIMBER_RGBA, roughness=0.92),
     ]
+    # THE STACK IS NOT THE ROOF (T-0008). R-W2a finding 1: every stack this archetype
+    # built took `M_ROOF` and came out painted its roof's weathering condition. A
+    # store's stack rises on the ridge line through the roof, so it is masonry, and
+    # the masonry this town had was brick — `common/materials.py` § the chimney stack,
+    # and docs/RESEARCH/chimneys.md.
+    if p.chimneys > 0:
+        stack = materials.chimney_finish("interior")
+        mats.append(simple_material("chimney", stack.rgba, roughness=stack.roughness))
     return b.to_object(mats)
 
 
@@ -1012,7 +1026,7 @@ def _rake(b: MeshBuilder, axis: str, plane: float, u0: float, u1: float,
 
 def _chimneys(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float,
               x1: float, y1: float, ridge_z: float, wall_z: float,
-              conf: float) -> None:
+              conf: float, mat: int) -> None:
     """As many stacks as the record counts, on the ridge line.
 
     The COUNT is the record's and the arrangement is the archetype's, which is what
@@ -1038,10 +1052,10 @@ def _chimneys(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float,
             cy = y0 + (y1 - y0) * f
             top = ridge_z + 0.55
         b.add_box(cx - half, cy - half, wall_z - 0.6, cx + half, cy + half, top,
-                  conf, M_ROOF, skip=("bottom",))
+                  conf, mat, skip=("bottom",))
         b.add_box(cx - half - 0.07, cy - half - 0.07, top,
                   cx + half + 0.07, cy + half + 0.07, top + 0.16,
-                  conf, M_ROOF, skip=("bottom",))
+                  conf, mat, skip=("bottom",))
 
 
 def _stack_fractions(n: int) -> tuple[float, ...]:

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 167,
+  "count": 169,
   "liberties": [
     {
       "id": "L1",
@@ -9816,7 +9816,7 @@
     },
     {
       "id": "L146",
-      "title": "Nine boats on the river, every hull of them invented",
+      "title": "Thirteen boats on the river, every hull of them invented",
       "section": "per_subject",
       "subjects": [],
       "covers": [],
@@ -9825,7 +9825,7 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "the river carries watercraft now — `data/boats/era_boats.json`, drawn by `renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main stem below the Dearborn Street drawbridge, two rowboats on the water off the South Water bank and two drawn up at its edge, and two bark canoes hauled out on the bank below Fort Dearborn. Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position, heading and dimension is authored in the record with its own note. The layer refuses rather than adjusts — a boat without its own draft of water under the whole keel, a beached hull authored onto open water or up on the prairie, or any hull within 30 m of the drawbridge's crossing line is not drawn, with the reason on the record."
+          "text": "the river carries watercraft now — `data/boats/era_boats.json`, drawn by `renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main stem below the Dearborn Street drawbridge, TWO MORE AT THE WOLF POINT LANDINGS (T-0140 — one in the branch reach above the forks, one in the South Branch reach below them abreast Robert Kinzie's store), two rowboats on the water off the South Water bank and two drawn up at its edge, one skiff afloat off the west bank at Wolf Point and one hauled out below its cabins, and two bark canoes hauled out on the bank below Fort Dearborn. Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position, heading and dimension is authored in the record with its own note. The layer refuses rather than adjusts — a boat without its own draft of water under the whole keel, a beached hull authored onto open water or up on the prairie, or any hull within 30 m of the drawbridge's crossing line is not drawn, with the reason on the record."
         },
         {
           "label": "Why",
@@ -9833,11 +9833,11 @@
         },
         {
           "label": "What bounds the invention",
-          "text": "the TYPES — the 2026-08-18 brief's two drawbridge engravings (images 2 and 3) show schooner-rigged vessels moored close by the bridge and masts crowding the reach below it; image 11, the South Water 1834 view, draws rowboats on the water and at the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach; and 1830s lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd, against the committed heightfield, which is what the refusal rules hold each hull to. The CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on depicting Native presence stands in full — no figures, no encampment, no staging — and any depiction of the Potawatomi themselves remains out of scope pending consultation. What would replace the invention: harbour-master or newspaper records of vessels lying in the river in the summer of 1835 — the Chicago Democrat's marine columns are the instrument."
+          "text": "the TYPES — the 2026-08-18 brief's two drawbridge engravings (images 2 and 3) show schooner-rigged vessels moored close by the bridge and masts crowding the reach below it; image 11, the South Water 1834 view, draws rowboats on the water and at the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach; and 1830s lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd, against the committed heightfield, which is what the refusal rules hold each hull to; the WOLF POINT berths are DERIVED rather than picked, each one an offset off the committed west bank abreast a frontage this project already stands, at close to the westernmost line where the heightfield floats that hull at all — so the reach's own shoaling, not taste, decides how near the bank a schooner may lie. WHAT THOSE TWO DO NOT REPRODUCE, and it is recorded rather than glossed: plate \"11\" hangs its masts over the GREEN TREE's roofline, and from that inn's own visitor stand these read beside and beyond it instead — the committed placement puts the tavern a full block back from the bank, and no mast at 157 m can subtend a ridge that subtends 10 degrees at 24 m. T-0141 carries the arithmetic and the placement question to the owner. The CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on depicting Native presence stands in full — no figures, no encampment, no staging — and any depiction of the Potawatomi themselves remains out of scope pending consultation. What would replace the invention: harbour-master or newspaper records of vessels lying in the river in the summer of 1835 — the Chicago Democrat's marine columns are the instrument."
         },
         {
           "label": "Recorded",
-          "text": "2026-08-19."
+          "text": "2026-08-19; extended 2026-08-22 (T-0140)."
         }
       ]
     },
@@ -10827,6 +10827,62 @@
         {
           "label": "Ticket",
           "text": "T-0065, from the owner's brief of 2026-08-18. **Supersedes L131's \"no marks\" clause**; L131 keeps its reasoning verbatim and gains a pointer here. Related: **L159** (the boards' names and letterforms, the same override one layer over), **L162** (the wagons, the same override the same day), **L25** (where the restraint started), **L130**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-22."
+        }
+      ]
+    },
+    {
+      "id": "L167",
+      "title": "\"Vacant\" and \"to let\" on 118 anonymous roofs: a title composed from an ABSENCE in the residents layer",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-22",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the anonymous reconstruction programme's 222 roofs no longer show their production identity as the title of their card (**T-0076**, the owner on 2026-08-18: *\"give the locations useful names not technical D3 #03 names, you can have that somewhere on the card for reference identity purposes but dont make it the title\"*). `renderers/web/js/display-name.js` composes the title a visitor reads from the record and the residents layer: **\"The Pratt house\"** where a household lives there, **\"Newell's stable\"** where one only works there, **\"A privy\"** for an outbuilding — and, where the residents layer places nobody, **\"A vacant one-room frame cottage\"** or, for premises a town would have advertised, the 1830s phrasing **\"A narrow two-story store, to let\"**. **The liberty is the last of those and only the last of those.** The first three are compositions of data already recorded and graded: the household is the residents layer's own inferred household, the description is the archetype's own, and both keep their chips. **The fourth asserts an absence.** No source says any of these roofs stood empty on 1 July 1835. What is true is narrower and duller: the inferred-household programme (**K1** phase two) places the households the town's demonstrable trades require — 104 of the 222 — and stops, so the other 118 are **unmodelled**, not attested empty. \"Vacant\" and \"to let\" are therefore a reading of our own dataset's edge, presented in the town's voice. **Why it was taken rather than refused.** The alternative is a title that says nothing at all — a part number, which is what the owner objected to — or a hedge in the largest text on the card (\"occupancy not modelled\"), which is a sentence about this project rather than about 1835. A town of 3,265 people did not have 118 empty houses in it, and the honest half of that is that the model does not know who was in them. So the title speaks plainly and **the card carries the qualification directly beneath it**, in the same block as the RECONSTRUCTED flag: no household is recorded here, which is not evidence that it stood empty. **Nothing in the dataset moved.** `sidecar.name` is untouched — it is what the parcel recipes re-derive, what the GLBs are named for, and what the release gate's naming assertion reads — and it is printed on the card as the reference line, and searchable, exactly as the owner asked."
+        },
+        {
+          "label": "How to resolve",
+          "text": "extend the residents layer until it reaches every roof, at which point the vacancy titles disappear on their own; or record occupancy as a graded ATTRIBUTE of the record rather than as the absence of a link, which would let a card say *reconstructed: unoccupied* with a chip on it like every other claim here."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0076, from the owner's brief of 2026-08-18. Related: **L1** (the town draws no people, which is why a household reaches a visitor only as text), **L81** (the anonymous roofs themselves, none of them a recovered building), **L84** (the households nobody named), **L94** (the rule that decides which roof gets an occupant — the same edge, one layer down)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-22."
+        }
+      ]
+    },
+    {
+      "id": "L168",
+      "title": "The stack is not the roof: brick on 112 framed buildings, cat-and-clay on 31 log cabins",
+      "section": "per_subject",
+      "subjects": [
+        "brickyard_north_side"
+      ],
+      "covers": [],
+      "recorded": "2026-08-22",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every chimney stack this town's Blender archetypes build now carries a masonry material of its own instead of the ROOF material it was built with. **157 stacks on 143 buildings** (measured off the resolved parameters of the committed masters): brick on the 112 framed buildings — `frame_dwelling`, `frame_storefront`, `frame_tavern` — and a stick-and-clay daub on the 31 log dwellings. `docs/RESEARCH/chimneys.md` is the argument in full; this is what was invented. **What is NOT invented, and it is most of it.** The COUNT of stacks is the record's, on every building. The POSITION is the archetype's and **L26** has owned it since the archetypes were written — an interior stack at the gable of a framed house, an exterior stack against the gable of a log cabin — and nothing here moves one by a millimetre. The DISPOSITION each fabric follows from was already committed prose: `log_dwelling._stack` has always said its stack is *\"a stick-and-clay or fieldstone stack built against the gable\"* so it *\"can be pulled away from the building when it catches fire\"*, and `frame_dwelling._chimneys` has always said its stack *\"rising inside the wall and breaking the roof at the ridge\"*. Those two sentences described two materials while the renderer painted both of them the colour of the roof. **The brick is INFERRED and is not a new number.** It is `frame_tavern`'s committed `BRICK_RGBA` (0.45/0.23/0.17 linear, roughness 0.85), which **L154** already records as read off the Petford watercolour of the Sauganash — the one coloured witness in this repository to any Chicago chimney, and it says *brick*. What T-0008 adds is the generalisation from that one building to the other 111, and the warrant for it is the town's own: Blodgett's brick-yard opened on the North Side in the spring of 1833 (`brickyard_north_side`, Andreas p. 1161) and the Lake House went up in brick in 1835. An interior flue through a timber roof has to be masonry, and this is the masonry that was being made two blocks away. The Sauganash's own masters are byte-for-byte unchanged, which is the proof the value did not move. **The clay is RECONSTRUCTED, and this is the invention.** Nothing in this repository attests any log house's stack — not its fabric, not its colour, not that it existed beyond the record's count. The tone is bounded rather than read, by two values already shipping: it cannot be as pale as the CHINKING it is daubed with (0.700/0.670/0.590), which is the same clay sheltered under an eave while a stack takes weather and smoke on every face; and it cannot be as dark as the palest ROOF CONDITION (`weathered`, 0.424/0.384/0.345), or it stops reading as masonry against the roof beside it, which is the whole defect this parcel fixes. Nothing states where between the two it sits, so it sits at the **midpoint to three decimals: 0.562/0.527/0.468**, at the sheet's `earth` roughness of 0.95 because the surface is daub. **Fieldstone is the other half of `log_dwelling`'s own sentence and is not built** — a stone stack is a different silhouette as well as a different colour, and choosing between the two per building would need evidence nobody has. One treatment, declared. **What a visitor sees.** A brick-red stack on the framed houses and stores, a pale clay stack on the log cabins, and in both cases a chimney that no longer disappears into the roof it passes through. The confidence view is unchanged: a stack still carries its record's `chimneys` confidence, so hiding `reconstructed` hides exactly what it hid before. **Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal ground, four constructions, and neither answer above reaches them (**T-0137**). The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in linear red from this one (**T-0138**). And nothing here says what any roof was COVERED with; R-W2a finding 2 stands."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source describing a Chicago chimney — an insurance survey, a builder's account, a recollection naming brick or clay at a named house — promotes §2 to attested for that building and replaces §3 outright."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0008, opened by R-W2a finding 1 as ROADMAP **R-W2c**. Related: **L26** (every chimney's position, which this does not touch), **L154** (the Sauganash's brick, read off the plate), **L157** (the material sheet painting the town, and the roof's weathering that is not its covering)."
         },
         {
           "label": "Recorded",

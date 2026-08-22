@@ -85,6 +85,11 @@ import { openQuestionsFor, uncertaintyEntryHtml } from './exclusions.js';
 // reason the liberties have one entry renderer. The argument for the mark, and
 // for the two states that deliberately get none, is in that file.
 import { geometryMark } from './geometry.js';
+// The title a visitor reads, which since T-0076 is not the production identity the
+// generators number a roof by. Shared with the Go-to menu and the liberties list for
+// the reason every other renderer thing here is shared: three surfaces naming one
+// building three ways is how a town becomes a spreadsheet.
+import { displayName } from './display-name.js';
 
 const CONF_ORDER = { attested: 0, inferred: 1, reconstructed: 2 };
 
@@ -683,6 +688,30 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       const aka = Array.isArray(s.aka) && s.aka.length
         ? `<p class="pop-aka">also ${s.aka.map(escapeHtml).join(' · ')}</p>` : '';
 
+      // WHAT THIS BUILDING IS CALLED (T-0076, the owner on 2026-08-18: "give the
+      // locations useful names not technical D3 #03 names, you can have that somewhere
+      // on the card for reference identity purposes but dont make it the title"). The
+      // rule and its reasoning are in display-name.js; what belongs here is the other
+      // half of his sentence — the production identity keeps a line on the card, because
+      // `Reconstructed D3 one-room frame cottage #017` is what the parcel re-derives,
+      // what the GLB is named for, and what somebody reading the dataset has in hand.
+      const called = displayName(s, record.id);
+      const spec = called.spec
+        ? `<p class="pop-spec">Reconstruction reference
+             <code>${escapeHtml(called.spec)}</code></p>`
+        : '';
+      // A title that says "vacant" or "to let" is asserting an ABSENCE, and this project
+      // does not let an absence pass as a finding. The residents layer places the
+      // households the town's trades demand — 104 of the 222 anonymous roofs — and stops
+      // there; the rest are unmodelled, not attested empty. The distinction is one
+      // sentence and the alternative is a card that quietly upgrades silence to evidence.
+      const unoccupied = called.vacant
+        ? `<span class="pop-flag">No household is recorded here, which is not evidence
+             that it stood empty. The residents layer models the households this town's
+             trades demand and reaches 104 of the anonymous roofs; this is one of the
+             others, so the title describes the building rather than its occupancy.</span>`
+        : '';
+
       // Empty when no dossier has been WRITTEN for this record — the compiler
       // resolves the path against the repository rather than naming one by
       // convention and hoping (ROADMAP K26). Thirty documented buildings are in
@@ -696,8 +725,9 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       root.innerHTML = `
         <div class="pop-head">
           <div>
-            <h2>${escapeHtml(s.name ?? record.id)}</h2>
+            <h2>${escapeHtml(called.title)}</h2>
             ${aka}
+            ${spec}
           </div>
           <button class="pop-close" type="button" data-close aria-label="Close">×</button>
         </div>
@@ -707,6 +737,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
             ${evidence(place)}</div>
           ${provisional}
           ${reconstruction}
+          ${unoccupied}
           ${placeholderAsset}
         </div>
 
