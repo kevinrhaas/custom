@@ -323,6 +323,112 @@ const shadowRigFor = (level, touch) => {
   return { reachM, mapSize, texelM: (2 * reachM) / mapSize };
 };
 /**
+ * THE STAND SET — the cameras the frame budget is gated at (T-0135).
+ *
+ * Until 2026-08-22 everything this project believed about its own frame cost
+ * came from ONE camera: `frame('sauganash_hotel', 26)`, the last move before the
+ * scene-detail block. It is a courtyard view of a single hotel with the town
+ * mostly behind the camera, and it is not the worst frame a visitor can reach —
+ * it is close to the best.
+ *
+ * That mattered because the number the gate read was getting BETTER as the
+ * number a visitor can hit got worse. Three layers were chunked in the week
+ * before this ticket (frontage T-0119, enclosures T-0067, yard T-0064) so the
+ * frustum can skip what is behind you. At an ordinary stand that is a large win.
+ * Down a long street it is a loss: the whole town is in frustum at once, nothing
+ * culls, and every chunk that bought the win becomes its own draw call. A guard
+ * rail that improves when the thing it guards gets worse is the worst possible
+ * shape for a guard rail, and it is why the draw-call ceiling could be raised
+ * twice in one afternoon (80 -> 120 -> 140) with every raise honestly argued
+ * against a reading now known to be optimistic.
+ *
+ * So the budget is read at a NAMED SET and gated on the WORST of it. Each stand
+ * is here for a stated reason — a way this scene gets expensive that the others
+ * do not cover — so the set can be argued with rather than trusted, and so a
+ * stand can be added when somebody finds a worse one.
+ *
+ * MEASURED 2026-08-22 on the source tree at 1280x800, `full`, for the record and
+ * for whoever wants to argue with the membership:
+ *
+ *   Lake at Canal, east      200 calls   1,320,377 tris   <- worst on both axes
+ *   the forks, from Wolf Pt  181 calls   1,318,202 tris
+ *   South Water at Wells     183 calls   1,267,605 tris
+ *   Lake and Market          149 calls   1,112,086 tris
+ *   the open aerial          119 calls     971,455 tris
+ *   the Sauganash at 26 m    121 calls     960,515 tris   <- the old sole stand
+ *   Newberry & Dole's wharf   94 calls     812,603 tris
+ *
+ * South Water is NOT in the set: it is inside the set's worst on both axes and
+ * its shape — an axial street down built frontage — is already carried by Lake
+ * at Canal, so it would cost the gate a stand's worth of time and buy no
+ * coverage. Newberry & Dole's and the two Sauganash anchors are cheaper still.
+ * Both readings are kept here so that judgement is checkable rather than
+ * asserted.
+ *
+ * THE COST, measured on the same day, because a gate nobody can run is not a
+ * gate either. Stage 2 of the DESKTOP pass ran **9 m 32 s** without this sweep,
+ * against the ten-minute ceiling a steward run's single foreground command has;
+ * fifteen more rendered frames of a 1.3-million-triangle scene on CI's software
+ * renderer put it over, and the run is killed mid-section. The MOBILE pass runs
+ * the whole sweep in 3 m 52 s and is unaffected. That is T-0121 — the four-way
+ * stage split has outgrown its sections — and the answer to it is to re-cut the
+ * stages, NOT to measure fewer stands: measuring one friendly stand is the
+ * defect this set exists to close. Until T-0121 lands, run the desktop pass's
+ * stage 2 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=2`, no
+ * timeout) or read the mobile pass, which finds the same worst stand.
+ *
+ * `kind` is how the harness gets there: `frame` stands a distance off a
+ * structure, `anchor` teleports to one of `data/scenes/1835.json`'s authored
+ * viewpoints — the same viewpoints the Go-to menu offers a visitor, which is
+ * the point. Nothing here is a camera invented for the test.
+ */
+const STANDS = [
+  {
+    id: 'sauganash_26', kind: 'frame', target: 'sauganash_hotel', distance: 26,
+    label: 'the Sauganash at 26 m',
+    // Kept, and kept FIRST, so every figure this project has ever recorded stays
+    // comparable with the new reading. It is also the only stand that is not an
+    // authored viewpoint, which is why it cannot be the only one.
+    why: 'the stand every earlier budget was measured at, kept for continuity',
+  },
+  {
+    id: 'lake_at_canal', kind: 'anchor', target: 'green_tree',
+    label: 'Lake Street at Canal, east down the axis',
+    // The known worst, and the reason this ticket exists: standing at the west
+    // end of Lake Street looking east puts the whole platted town inside one
+    // frustum, so every chunked layer pays for all of its chunks and the sun
+    // pays for them again.
+    why: 'the long axial street — nothing culls, so chunking costs instead of saves',
+  },
+  {
+    id: 'the_forks', kind: 'anchor', target: 'forks',
+    label: 'the forks, from Wolf Point',
+    // A different expensive shape from an axial street: across open water there
+    // is no building to occlude another, so the far bank draws in full. It is
+    // within two triangles per thousand of Lake at Canal and it gets there by an
+    // unrelated route, which is what makes it worth its place.
+    why: 'across open water — no occluders at all, and the far bank draws whole',
+  },
+  {
+    id: 'from_above', kind: 'anchor', target: 'from_above',
+    label: 'the open aerial',
+    // The ceiling on what the scene can cost AT ALL: everything is in front of
+    // the camera by construction. It reads cheaper than the axial views because
+    // distance culling and the flora density falloff both bite from 175 m up —
+    // which is itself worth gating, because a change that breaks the falloff
+    // shows here first.
+    why: 'everything in frustum by construction — the whole-scene upper bound',
+  },
+  {
+    id: 'lake_and_market', kind: 'anchor', target: 'lake_market',
+    label: 'Lake and Market, the corner itself',
+    // Standing IN the densest built corner rather than looking at it: near
+    // geometry at full detail, the tier the flora and fence LODs are least able
+    // to help with.
+    why: 'the densest built corner, stood in rather than looked at',
+  },
+];
+/**
  * R-W5a2 — the whole untextured town is ONE batch, and it must stay one.
  *
  * This is the number the reach above is standing on. R-W3b(a) measured the reach
@@ -5407,27 +5513,35 @@ for (const [label, viewport, touch] of [
 
     // --- budgets ------------------------------------------------------------
     //
-    // THE DRAW-CALL CEILING IS 120 SINCE 2026-08-21, RAISED FROM 80 — a conscious
-    // re-budget on the owner's ruling (*"or just raise the budget?"*), argued in
-    // full where the number is set, `main.js` BUDGET. The short of it: 80 was set
-    // when every derived layer was one town-spanning mesh, and T-0067, T-0119 and
-    // T-0069 have since chunked those layers so the frustum can cull them, which
-    // trades triangles for draw calls on purpose — and the sun's pass draws every
-    // chunk in its box a second time. Measured at this stand: 65 calls before the
-    // street edge and 78 after it. The bar is still read from `stats.budget`
-    // rather than written here, so this check follows the definition site and
-    // cannot drift from it; what is asserted is unchanged, and the per-tier check
-    // below holds every level to the same number.
+    // THE BUDGET IS NO LONGER GATED HERE. It is gated at a NAMED SET of stands
+    // and on the WORST of them, in the scene-detail block below, which is the
+    // one place the whole set can be walked at every tier for the price of
+    // walking it once (T-0135; `STANDS` at the top of this file is the set, with
+    // each stand's reason written beside it).
+    //
+    // What stays here is the reference reading — the Sauganash at 26 m, the
+    // single camera this project measured itself at until 2026-08-22 — kept so
+    // every figure ever recorded in `main.js`, LIBERTIES and the roadmap boxes
+    // stays comparable, and kept LABELLED as a reference rather than as a gate so
+    // nobody reads it as one again. The two assertions below are still hard: a
+    // scene that regressed at the friendly stand has regressed everywhere.
+    //
+    // THE DRAW-CALL CEILING IS 140 SINCE 2026-08-21, raised from 80 in three
+    // steps that afternoon — a conscious re-budget on the owner's ruling (*"or
+    // just raise the budget?"*), argued in full where the number is set,
+    // `main.js` BUDGET. The short of it: 80 was set when every derived layer was
+    // one town-spanning mesh, and T-0067, T-0119 and T-0069 have since chunked
+    // those layers so the frustum can cull them, which trades triangles for draw
+    // calls on purpose — and the sun's pass draws every chunk in its box a second
+    // time. The bar is still READ from `stats.budget` rather than written here, so
+    // this check follows the definition site and cannot drift from it.
     const stats = await page.evaluate(() => window.__chicago4d.stats());
     // THE CALL CEILING IS PINNED HERE AS WELL AS READ (T-0068). This check used
     // to compare the frame against whatever number `main.js` happened to be
     // carrying, so a scene that had outgrown its budget could be made green by
     // editing the budget — the exact move T-0115's ledger exists to make
-    // impossible to do quietly. 96 is the number this gate was written against:
-    // raised from 80 on the owner's ruling of 2026-08-21, because a chunked
-    // layer spends draw calls to buy culling and 80 was a guard on the batching
-    // strategy rather than a measurement. Moving it has to move this line too,
-    // in the same commit, with the measurement that justified it.
+    // impossible to do quietly. Moving the number has to move this line too, in
+    // the same commit, with the measurement that justified it.
     //
     // Only the CALL ceiling is pinned here, and deliberately: the triangle
     // budget follows the detail tier the visitor is on (`BUDGET.triangles` is
@@ -5437,15 +5551,14 @@ for (const [label, viewport, touch] of [
     check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
       stats.budget.drawCalls === 140,
       `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
-    check(`${label}: draw calls under budget`, stats.drawCalls <= stats.budget.drawCalls,
-      `${stats.drawCalls} calls (budget ${stats.budget.drawCalls})`);
-    // AND THE SAFE FLOOR IS STILL INSIDE THE OLD 80. `light` is the tier for a
-    // machine that cannot afford the other two, and T-0064's raise was taken at
-    // `full` and `balanced` only. This is the assertion that keeps that promise
-    // honest — it is checked against the scene-detail sweep further down, which
-    // reports every tier's own call count.
-    check(`${label}: triangles under budget`, stats.triangles <= stats.budget.triangles,
-      `${stats.triangles} tris (budget ${stats.budget.triangles})`);
+    check(`${label}: draw calls under budget at the reference stand`,
+      stats.drawCalls <= stats.budget.drawCalls,
+      `${stats.drawCalls} calls (budget ${stats.budget.drawCalls}) — `
+      + `the gate is the worst-stand check below`);
+    check(`${label}: triangles under budget at the reference stand`,
+      stats.triangles <= stats.budget.triangles,
+      `${stats.triangles} tris (budget ${stats.budget.triangles}) — `
+      + `the gate is the worst-stand check below`);
     console.log(`        ${stats.drawCalls} draw calls · ${stats.triangles} tris · `
       + `${stats.batches} batch(es) · ${stats.structures} structure(s) · `
       + `${(stats.bytes / 1024).toFixed(0)} KB of GLB · ${stats.fps} fps`);
@@ -5631,43 +5744,117 @@ for (const [label, viewport, touch] of [
     // the scene rather than what its table asked for: `light` must cast none of
     // that furniture and the other two must cast all of it, which is a claim
     // that fails loudly if a new furniture layer is mounted outside the policy.
-    const detail = await page.evaluate(async () => {
+    //
+    // T-0135 added the fourth, and it is the one that makes the first mean
+    // anything: every level is now walked at the WHOLE STAND SET and held to its
+    // ceiling at the worst of them. A tier ceiling checked at one friendly camera
+    // is a spot reading, and a spot reading is what let the ladder go on being
+    // described as a 40 % step while the bottom rung was, at an axial view, doing
+    // 25 %. The per-level rows below print the worst stand by name, so a level
+    // that fails says WHERE.
+    const detail = await page.evaluate(async (stands) => {
       const a = window.__chicago4d;
+      const settle = () => new Promise((r) => requestAnimationFrame(
+        () => requestAnimationFrame(r)));
       const started = a.detail;
       const seen = [];
+      // The reference stand is walked LAST, and that is a cost decision with a
+      // number behind it: a frame at this scene costs about three seconds on the
+      // software renderer CI uses, and finishing the sweep where the rest of the
+      // suite expects the visitor to be saves one per level rather than teleport
+      // back afterwards. `restoredAt` below asserts the order actually did that,
+      // so the saving cannot quietly become a camera left up in the air.
+      const order = [...stands.filter((s) => s.kind !== 'frame'),
+        ...stands.filter((s) => s.kind === 'frame')];
       for (const level of a.detailOrder) {
         await a.setDetail(level);
-        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+        await settle();
+        const atStands = [];
+        for (const st of order) {
+          // `goTo` on the aerial anchor turns flight ON; every `frame` stand
+          // turns it off again, which is why one has to be last.
+          if (st.kind === 'frame') { a.setFly(false); a.frame(st.target, st.distance); }
+          else a.goTo(st.target);
+          await settle();
+          const r = a.stats();
+          atStands.push({ id: st.id, label: st.label, tris: r.triangles, calls: r.drawCalls });
+        }
+        // The furniture and shadow-rig readings are properties of the LEVEL, not
+        // of where the camera is standing, so they are taken once — and taken
+        // with the visitor back at the reference stand, which is both where the
+        // rest of the suite expects them and what keeps `tris`/`calls` below the
+        // same reference figures this line has always reported.
         const s = a.stats();
         const f = a.furnitureShadows;
         seen.push({ level, tris: s.triangles, calls: s.drawCalls,
           ceiling: a.detailLevels[level].triangles,
+          atStands,
+          worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
+          worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
           reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
           furnitureMeshes: f.meshes, furnitureCasting: f.casting });
       }
       await a.setDetail(started);
-      return { seen, restored: a.detail === started };
-    });
+      return { seen, restored: a.detail === started, flying: a.flying,
+        restoredAt: order[order.length - 1].id };
+    }, STANDS);
     for (const s of detail.seen) {
-      check(`${label}: scene detail '${s.level}' stays inside its own ceiling`,
-        s.tris <= s.ceiling && s.calls <= stats.budget.drawCalls,
-        `${s.tris} tris of ${s.ceiling}, ${s.calls} calls`);
+      check(`${label}: scene detail '${s.level}' stays inside its own ceiling at the WORST stand`,
+        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= stats.budget.drawCalls,
+        `${s.worstTris.tris.toLocaleString('en-US')} tris of `
+        + `${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}, `
+        + `${s.worstCalls.calls} calls of ${stats.budget.drawCalls} at ${s.worstCalls.label} `
+        + `— spread: ${s.atStands.slice().sort((a, b) => b.tris - a.tris)
+          .map((x) => `${x.label} ${x.tris.toLocaleString('en-US')}/${x.calls}c`).join(' · ')}`);
     }
     const [full, balanced, light] = detail.seen;
-    check(`${label}: turning scene detail down actually draws less`,
-      full.tris > balanced.tris && balanced.tris > light.tris,
-      detail.seen.map((s) => `${s.level} ${s.tris}`).join(' > '));
+    // THE DRAW-CALL GATE, and the whole of it (T-0135). The budget block above
+    // reads the reference stand for continuity; this is the assertion. It takes
+    // the maximum over every stand at every tier — a draw call is not a tier's
+    // property the way its triangle ceiling is, so the number a visitor can
+    // reach is the worst frame anywhere in the set, whatever level they chose.
+    const townWorstCalls = detail.seen
+      .flatMap((lv) => lv.atStands.map((x) => ({ ...x, level: lv.level })))
+      .reduce((a, b) => (b.calls > a.calls ? b : a));
+    check(`${label}: draw calls under budget at the town's WORST frame`,
+      townWorstCalls.calls <= stats.budget.drawCalls,
+      `${townWorstCalls.calls} calls at ${townWorstCalls.label}, '${townWorstCalls.level}' `
+      + `(budget ${stats.budget.drawCalls}) — spread by level: `
+      + detail.seen.map((lv) => `${lv.level} ${lv.worstCalls.calls} at ${lv.worstCalls.label}`)
+        .join(' · '));
+    // Asserted PER STAND rather than on one reading, because "turning it down
+    // draws less" is a claim about the control and not about a camera: a level
+    // that cut the near flora and nothing else would hold at the reference stand
+    // and fail down the street, which is the shape of the defect T-0115 found.
+    const ladderBroken = STANDS.map((s) => {
+      const at = (lv) => lv.atStands.find((x) => x.id === s.id);
+      return { label: s.label, f: at(full).tris, b: at(balanced).tris, l: at(light).tris };
+    }).filter((r) => !(r.f > r.b && r.b > r.l));
+    check(`${label}: turning scene detail down actually draws less, at every stand`,
+      ladderBroken.length === 0,
+      ladderBroken.length
+        ? ladderBroken.map((r) => `${r.label} ${r.f} > ${r.b} > ${r.l}`).join('; ')
+        : STANDS.map((s) => {
+          const r = detail.seen.map((lv) => lv.atStands.find((x) => x.id === s.id).tris);
+          return `${s.label} ${((1 - r[2] / r[0]) * 100).toFixed(0)} %`;
+        }).join(' · '));
     // T-0064 raised the draw-call budget from 80 to 110 (argued in main.js) and
     // took the raise at `full` and `balanced` ONLY. `light` is the tier for a
     // machine that cannot afford the other two, and the promise made with that
     // raise was that the safe floor stays inside the ceiling this project has
-    // had all along. This is that promise, asserted rather than remembered.
+    // had all along. This is that promise, asserted rather than remembered — and
+    // since T-0135 it is asserted at the worst stand, which is the only place a
+    // promise about weak machines was ever worth anything.
     check(`${label}: the light tier still draws inside the OLD 80-call budget`,
-      light.calls <= 80,
-      `${light.calls} calls at light against the pre-T-0064 budget of 80 `
-      + `(full ${full.calls}, balanced ${balanced.calls} of ${stats.budget.drawCalls})`);
-    check(`${label}: the level the visitor started on is restored`, detail.restored,
-      JSON.stringify(detail));
+      light.worstCalls.calls <= 80,
+      `${light.worstCalls.calls} calls at light at ${light.worstCalls.label} against `
+      + `the pre-T-0064 budget of 80 (full ${full.worstCalls.calls}, `
+      + `balanced ${balanced.worstCalls.calls} of ${stats.budget.drawCalls}, both worst-stand)`);
+    check(`${label}: the level the visitor started on is restored`,
+      detail.restored && !detail.flying && detail.restoredAt === STANDS[0].id,
+      `${detail.restored ? 'level restored' : 'level NOT restored'}, `
+      + `${detail.flying ? 'left flying' : 'back on foot'}, `
+      + `sweep ended at ${detail.restoredAt} (want ${STANDS[0].id})`);
     // The trim, asserted on the meshes rather than on the table that asked for
     // it: a policy that reaches `DETAIL` and not the scene passes every check
     // above unchanged, which is the failure this one exists to catch.
@@ -5683,6 +5870,11 @@ for (const [label, viewport, touch] of [
     console.log(`        detail  ${detail.seen.map((s) =>
       `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls, ±${s.reachM} m, `
       + `${s.furnitureCasting}/${s.furnitureMeshes} furniture casting)`).join('  ·  ')}`);
+    for (const s of detail.seen) {
+      console.log(`        ${s.level.padEnd(9)} worst ${s.worstTris.tris.toLocaleString('en-US').padStart(11)} tris `
+        + `of ${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}  ·  `
+        + `worst ${String(s.worstCalls.calls).padStart(4)} calls at ${s.worstCalls.label}`);
+    }
 
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
