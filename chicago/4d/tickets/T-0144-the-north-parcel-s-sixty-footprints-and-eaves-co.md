@@ -1,7 +1,7 @@
 ---
 id: T-0144
 title: The North parcel's sixty footprints and eaves come from the family band
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: T-V1(b)
 parent: T-0011
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 314
 claimed_by: run 8/22/2026, 3:09:39 PM CT
 blocked_on: null
 needs_bake: false
