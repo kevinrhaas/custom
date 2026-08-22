@@ -1,7 +1,7 @@
 ---
 id: T-0010
 title: Finish the heightfield east
-state: claimed
+state: done
 epic: GROUND
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: T-E3
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 313
 claimed_by: run 8/22/2026, 1:24:06 PM CT
 blocked_on: null
 needs_bake: true
