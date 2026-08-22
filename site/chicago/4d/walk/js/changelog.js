@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 227, title: 'The reference plates become citations you can follow', kind: 'feature', ts: '2026-08-22T05:37:52.582Z', date: 'Aug 22, 2026, 12:37 AM CT',
+    items: [
+      'Open the Sauganash Hotel\u2019s card and read down to its shutters, or the drawbridge\u2019s and read down to its chains. The line under each used to point at a file in this repository. It names a plate now \u2014 who drew it, what it is called, where to read it, and a copy at the Internet Archive for the day the page goes.',
+      'Four of the twelve reference views the owner sent on 18 August are identified: W. E. S. Trowbridge\u2019s drawings of the Green Tree Tavern and of the Sauganash, the wood engraving \u201cOld Dearborn Street (Old Point) Bridge\u201d, and N. Roswell Gifford\u2019s view of the first Tremont House standing in its row of shops. Every one was fetched and looked at before a word was written about it.',
+      'The other eight say so, and say what was searched. The jail engraving, the Wolf Tavern, the two Braunhold plates, the Petford watercolour, the South Water postcard and the view of 1833 are marked unidentified-pending, each with the next place to look \u2014 Andreas at page-image level, a museum accession number, a rights line to be read off the object.',
+      'A citation does not promote a claim, and none of these did. All four are retrospective pictures made decades after 1835: they may say what a thing looked like and may never say where it stood. The shutters are still inferred from one drawing nothing corroborates, and the card still says so.',
+      'One thing got worse on paper and truer in fact. Neither plate has a rights line, so citing them turned two values into recorded cases of the town being built on a source nobody has cleared \u2014 which was already the case, invisibly, and is now banked and countable.',
+      'Nothing in the town moved. No building changed shape, no ground moved, and the scene draws exactly what it drew this morning.',
+    ] },
   { v: 226, title: 'The barrels and cases say what is in them', kind: 'feature', ts: '2026-08-22T02:39:45.437Z', date: 'Aug 21, 2026, 9:39 PM CT',
     items: [
       'Walk up to the goods stacked outside any of the two dozen shops and taverns and you can read them now. A cask is stencilled FLOUR, PORK, SALT, WHISKEY — a druggist\u2019s is LINSEED OIL or EPSOM SALTS — and every third one carries the house\u2019s own brand burned into the head instead: P. F. W. PECK, NEWBERRY & DOLE, GREEN TREE TAVERN. The packing cases carry a shipping mark, the merchant over CHICAGO, and the forwarding houses\u2019 cases add FROM BUFFALO.',
