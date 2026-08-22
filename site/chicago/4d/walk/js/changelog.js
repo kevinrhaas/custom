@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 232, title: 'Neighbouring houses stop wearing one paint', kind: 'fix', ts: '2026-08-22T14:36:30.880Z', date: 'Aug 22, 2026, 9:36 AM CT',
+    items: [
+      'Walk a street of small houses and the two standing side by side read as two buildings. About a tenth of the town\u2019s nearest-neighbour pairs were close enough in tone to pass for one paint; the closest pair you can now find differs by three times what it did.',
+      'Nothing got brighter or drabber, and no wall reaches a shade it could not reach yesterday. Every colour is still dealt from the same range \u2014 what changed is that a building now picks its shade knowing what stands within sixty metres of it, instead of dealing blind and sometimes landing on its neighbour\u2019s.',
+      'The two buildings a source actually describes \u2014 the Sauganash\u2019s white and the one record that says unpainted \u2014 are untouched to the bit, as they always are, and the town repaints itself the same way on every load.',
+      'It costs nothing to draw: same triangles, same draw calls.',
+    ] },
   { v: 231, title: 'Masts at Wolf Point', kind: 'feature', ts: '2026-08-22T12:36:06.975Z', date: 'Aug 22, 2026, 7:36 AM CT',
     items: [
       'Two lake schooners lie moored at the forks now, where the town had none \u2014 one in the branch reach above Wolf Point, one below it in the South Branch abreast Robert Kinzie\u2019s store, with a skiff on the water beside them and another hauled out on the bank. Walk to the forks and their masts stand over the west-bank roofs.',
