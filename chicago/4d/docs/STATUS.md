@@ -1,5 +1,51 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0009: the deep corridor cluster is the street moving, not the buildings
+
+**THE TICKET'S PREMISE IS REFUTED AND NOTHING WAS MOVED.** T-0009 (= ROADMAP K30(c)) asked for the
+repair K30(b) had prescribed: redraw the bodies of the buildings drawn standing in the roadway onto
+the correct side of their own frontage. Running it would have moved **twelve documented buildings a
+full footprint depth behind the frontages their own committed control was offset to**. The
+refutation is arithmetic, it is a command, and it is banked as **K30(d)**.
+
+**The flag K30(b) read cannot tell two opposite drawings apart.** `body_toward_street` is true
+both when the anchor sits on the KERB and the body grows across the frontage into the road, and
+when the anchor sits at the BACK corner — set back by the footprint's own depth — so that the body
+grows forward and its street-facing FACE lands on the frontage. The first is a fault; the second is
+correct.
+
+**`tools/measure_corridor_intrusion.py --anchors` separates them,** by measuring which of the
+footprint's two faces the anchor coincides with along the street normal. **It is the back corner on
+all 17 records in the deep mode and the kerb face on none of them.** The only three records whose
+point IS the kerb face are `tremont_house_1`, `exchange_coffee_house` and `western_hotel` — exactly
+the three K30(b) finding 3 named as already drawn correctly and ruined by reflection. Both
+conventions are in the dataset; K30(b) had them the wrong way round.
+
+**The dataset already said so where it is machine-checked.** `position.derivation` constrains a
+FACE to a kerb, never the anchor — `sauganash_hotel`'s block reads *"the depth is in the polygon,
+so the constraint is on the face"* — and `check_position_derivations` recomputes five placements
+from `data/traces/street_control.json` on every commit. The twelve records' prose sums reproduce to
+the centimetre: `peck_store`'s origin is its intersection centre less 12.2 m less its own width and
+depth, and its north face lands on the derived kerb exactly; the four whose notes only quote the
+kerb line have their face on the interpolated kerb to **0.01 m**; `log_jail`'s north face IS the
+public square's NW inside corner.
+
+**What is actually in the road is the road.** `data/streets/1835.json` says of `south_water` that
+east of Franklin the line *"is shifted into the dry half of the platted riverfront corridor"* —
+`plat_corridors` offsets that drawn line to make the legal corridor, so shifting the line re-plats
+the street. Measured against the intersection centres the placements were derived from, the
+committed line stands **4.3–8.8 m south** of them (Franklin −8.56, Wells −8.80, LaSalle −4.30,
+Clark −4.90, Dearborn −6.20), which is the whole of the 4.51–8.17 m the ten South Water records lap.
+And the shift is not a mistake either: `chicago_american_office`'s own note records the traced 1834
+south bank running 18.7 m north of its north face, so a corridor centred on the modern control puts
+its northern half in the river.
+
+**T-0009 is `blocked-owner`,** because all three ways out change something with a source behind it:
+move the ten buildings south with the street; derive the platted corridor from the survey control
+rather than from the drawn line; or accept that this reach of South Water had water where its north
+half is drawn. No structure record, coordinate, footprint, confidence or baseline was touched and
+`docs/LIBERTIES.md` gains no entry.
+
 ## Shipped 2026-08-22 — T-0008: the chimney stops being painted the colour of the roof
 
 **The defect, opened by R-W2a's own measurement of the shipped GLBs (finding 1) and carried as

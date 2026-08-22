@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
-T-0009 — Redraw 29 building bodies out of the roadway
 T-0010 — Finish the heightfield east
 T-0011 — The sixty North Division records get their sampled bands
 T-0012 — Ship the 16-bit ground the script already computes
