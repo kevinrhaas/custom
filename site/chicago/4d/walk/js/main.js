@@ -191,7 +191,26 @@ const VERSION = '0.1.0';
  * third half — MEASURE, THEN MOVE. This is the measure. The move is his.
  */
 const DETAIL = {
-  full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
+  // RAISED 2026-08-22 TO CARRY THE WORST STAND, ON THE OWNER'S RULING ("raise
+  // it, I think"), and this is the entry that says what it cost. T-0135 built
+  // the instrument that walks five named stands instead of one and found the
+  // town 32% over at `full`, 27% at `balanced` and 65% at `light` — at
+  // viewpoints the Go-to menu already offers. Nothing had regressed; the
+  // ceilings were authored as reference-stand numbers and only the reference
+  // stand was ever measured.
+  //
+  // WHAT WAS GIVEN UP, SAID PLAINLY: `light` now carries 1,050,000, which is
+  // MORE than `full` promised the day before this commit. The bottom rung is
+  // heavier than the old top rung, so `light` is no longer a floor a weak
+  // machine can be promised — it is merely the cheapest of three expensive
+  // tiers. That was the trade the owner took knowingly, and T-0136 exists to
+  // win the floor back by trimming the axial view (distance culling or an LOD
+  // down a long street) rather than by pretending the number is small.
+  //
+  // These are worst-stand numbers now, not reference-stand numbers, with about
+  // 6% of headroom over the measured worst. The next parcel that breaches them
+  // is breaching a bar that means something.
+  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
   // Four parcels landed the same day - the street edge, the lot-line fences,
@@ -201,8 +220,8 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
-  balanced: { triangles: 900000,  shadowReachM: 240, furnitureCastsShadow: true },
-  light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
+  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true },
+  light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 /**
@@ -272,7 +291,10 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
 // would be the fourth raise in two days and the first one aimed at a reading
 // taken specifically to show that raising to fit the reading is the bug. The
 // gate is red at the worst stand on purpose. See T-0135.
-const BUDGET = { drawCalls: 140, triangles: DETAIL.full.triangles };
+// 140 -> 215 on the same ruling and the same measurement: the worst stand draws
+// 200 calls at `full` where the reference stand drew 121. Chunking is what
+// spends calls down a long street, and T-0136 is where that gets traded back.
+const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the

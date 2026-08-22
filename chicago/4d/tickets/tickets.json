@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 12:12 AM",
+  "generated_ct": "Aug 22, 2026, 3:11 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2385,6 +2385,78 @@
       "blocked_on": "The gate now reads the worst of five named stands and it is RED: 1,320,377 tris of 1,000,000 at full, 1,144,787 of 900,000 at balanced, 992,617 of 600,000 at light, and 200 draw calls of 140 — all at Lake Street looking east from Canal. Raise the ceilings to carry it (which puts light above the ceiling full carries today, so the ladder and the weak-machine floor both stop meaning anything), or trim the axial view to fit them (a rendering programme: distance culling or LOD down a long street)? Measured 2026-08-22; nothing regressed, this is the first honest reading.",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0144",
+      "title": "Win the light tier back as a floor: trim the axial view instead of carrying it",
+      "state": "split",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "L",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": "2026-08-22",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0145",
+      "title": "Distance-cull the furniture layers at the light tier",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0144",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0146",
+      "title": "Merge far chunks back into single draws",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0144",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0147",
+      "title": "Re-lower the ceilings once the trims land",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0144",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
     }
   ]
 }

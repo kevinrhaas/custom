@@ -5549,7 +5549,7 @@ for (const [label, viewport, touch] of [
     // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
     // check further down, which is where a re-budget of those would show.
     check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
-      stats.budget.drawCalls === 140,
+      stats.budget.drawCalls === 215,
       `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
     check(`${label}: draw calls under budget at the reference stand`,
       stats.drawCalls <= stats.budget.drawCalls,
@@ -5838,18 +5838,31 @@ for (const [label, viewport, touch] of [
           const r = detail.seen.map((lv) => lv.atStands.find((x) => x.id === s.id).tris);
           return `${s.label} ${((1 - r[2] / r[0]) * 100).toFixed(0)} %`;
         }).join(' · '));
-    // T-0064 raised the draw-call budget from 80 to 110 (argued in main.js) and
-    // took the raise at `full` and `balanced` ONLY. `light` is the tier for a
-    // machine that cannot afford the other two, and the promise made with that
-    // raise was that the safe floor stays inside the ceiling this project has
-    // had all along. This is that promise, asserted rather than remembered — and
-    // since T-0135 it is asserted at the worst stand, which is the only place a
-    // promise about weak machines was ever worth anything.
-    check(`${label}: the light tier still draws inside the OLD 80-call budget`,
-      light.worstCalls.calls <= 80,
-      `${light.worstCalls.calls} calls at light at ${light.worstCalls.label} against `
-      + `the pre-T-0064 budget of 80 (full ${full.worstCalls.calls}, `
-      + `balanced ${balanced.worstCalls.calls} of ${stats.budget.drawCalls}, both worst-stand)`);
+    // THIS ASSERTION WAS WEAKENED ON 2026-08-22, AND CALLING IT ANYTHING ELSE
+    // WOULD BE A LIE. It used to hold that `light` draws inside the 80 calls
+    // this project budgeted before any of the 2026-08 content landed — the
+    // promise that the tier a weak machine boots into stays affordable. T-0135
+    // measured it at the WORST stand for the first time and found 167 calls
+    // down Lake Street. The owner ruled to raise the ceilings rather than trim
+    // the view ("raise it, I think", 2026-08-22), which surrenders that promise
+    // knowingly: `light` now carries 1,050,000 triangles, more than `full`
+    // promised the day before.
+    //
+    // So the absolute floor is gone and this check no longer guards it. What it
+    // guards instead is the one thing still true and still worth something: the
+    // ladder must keep WORKING — `light` has to be materially cheaper than
+    // `full` at the worst stand, or the setting is decoration. The bar is a
+    // ratio, not a count, and it is deliberately not tuned to sit just under
+    // today's reading.
+    //
+    // T-0147 restores the absolute bar after T-0145 and T-0146 trim the axial
+    // view. When it does, this check should go back to being a count — and a
+    // count is what a promise to a person looks like.
+    check(`${label}: the light tier stays materially cheaper than full at the worst stand`,
+      light.worstCalls.calls <= full.worstCalls.calls * 0.9,
+      `${light.worstCalls.calls} calls at light against ${full.worstCalls.calls} at full, `
+      + `worst stand ${light.worstCalls.label} — the pre-2026-08 floor of 80 calls was `
+      + `surrendered by the owner's raise-or-trim ruling; T-0147 wins it back`);
     check(`${label}: the level the visitor started on is restored`,
       detail.restored && !detail.flying && detail.restoredAt === STANDS[0].id,
       `${detail.restored ? 'level restored' : 'level NOT restored'}, `

@@ -64,3 +64,6 @@ T-0127 — South Water Street and the rest of the town get the street edge
 T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
+T-0145 — Distance-cull the furniture layers at the light tier
+T-0146 — Merge far chunks back into single draws
+T-0147 — Re-lower the ceilings once the trims land
