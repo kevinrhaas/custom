@@ -5664,6 +5664,53 @@ this for a week, and **K25(b)** for the south parcel still owing it.
 **Recorded:** 2026-08-22.
 
 
+### L171 — The North parcel's pitches sampled from their own band, and the ridge gated so the repair did not move the fault one field over
+
+**Decision:** the sixty anonymous North Division records take their `roof_pitch_deg` from the
+family's authored rise:run band — the `7:12-10:12` in the crosswalk's `roof` column — instead of
+the one constant per family that `tools/generate_north_infill.py` had retyped into Python, and
+the sample is **constrained by the family's `ridge_ft` band**: where part of the pitch band would
+put the ridge outside the ridge band, the sampler draws from the part that does not.
+`recon_1835_north_w5_040`'s loft is taken from the family's `levels` string in the same pass, which
+is where it should always have come from — W5 authors "1", flat, and a retyped tuple had given it a
+loft the specification never mentions. Every one of these values still grades `reconstructed` and
+still cites the band as a typology rather than as evidence about the building.
+
+**Why:** T-0144 moved footprint, storeys and eave onto their bands and deliberately stopped short of
+the pitch, because a pitch is not a dimension that stands on its own. It and the footprint together
+make the RIDGE, the crosswalk authors a band for that too, and repairing ten pitches into their band
+while pushing ten ridges out of theirs would have been the same fault one field over. So the pitch
+moved and the ridge gained an instrument in the same commit: `tools/measure_ridge_band.py` models
+every reconstructed roof's ridge from the archetype's own roof arithmetic (`tools/ridge_model.py`),
+checks that model against the ridge the committed GLB actually carries, and ratchets the residual.
+Ten North pitches and one North loft came inside their bands; seventeen North ridges came inside
+theirs; the dataset-wide count of roofs standing outside their ridge band fell from 121 to 104.
+
+**What it does NOT do, and this is the honest half.** It does not put every North ridge in its band,
+and it will not, because for several families **no pitch inside the authored pitch band can reach
+the authored ridge band at the footprint the family authors**. The A1 stable is the clearest case:
+the outbuilding archetype runs a gable ridge down the LONG axis, so the roof climbs half the SHORT
+one, and an A1 drawn inside its own footprint band cannot reach a 17 ft ridge at 10:12 — the steepest
+pitch A1 allows. Four North roofs stay outside their ridge band for that reason and are banked, with
+a hundred more across the rest of the town that this parcel did not touch. Leaving the pitch band to
+reach the ridge band would have satisfied a gate by disobeying the other committed claim, so the
+sampler stays inside the pitch band and the conflict is filed as its own ticket rather than papered
+over by a pitch nobody claims.
+
+**Consequence:** sixty roofs that stood at twenty-four pitches now stand at sixty, and the town's
+North side reads as sixty buildings rather than a family repeated. A visitor who hides
+`reconstructed` loses all of it. A reader who compares a record's pitch against the crosswalk will
+now find it inside the band it cites — and, for a hundred and four roofs across the town, will find
+the ridge over it outside the band beside it, which `tools/ridge_band_baseline.json` states in full
+rather than leaving to be discovered.
+
+**How to resolve:** a decision on which of the two committed bands gives way where an archetype
+cannot satisfy both — the pitch band, the ridge band, or the archetype's ridge orientation. That is
+the owner's call about the specification and not a repair an agent should make; it is the ticket.
+
+**Recorded:** 2026-08-22.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

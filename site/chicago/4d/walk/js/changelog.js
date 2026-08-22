@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 237, title: 'The North roofs get their own pitches, and their ridges checked', kind: 'fix', ts: '2026-08-22T22:18:17.941Z', date: 'Aug 22, 2026, 5:18 PM CT',
+    items: [
+      'Yesterday the sixty buildings north of the river got their own widths, depths and eave lines. Their ROOF SLOPES were left alone on purpose, and this is the other half: all sixty are drawn at a pitch taken from the range the reconstruction specification gives their family, rather than at one slope typed in once and dealt to every building of that type.',
+      'Ten of them were sloped OUTSIDE the range their own card cited — a card claiming one thing while the roof does another. All ten are inside it now. So is one stable that had been given a hayloft its family never mentions.',
+      'The reason the slopes waited a day is that a slope is not a measurement on its own: it and the footprint together decide how high the RIDGE stands, and the specification gives a range for that too, which nothing here had ever read. Repairing ten slopes while pushing ten ridges out of their range would have moved the fault one field sideways rather than fixing it, so the ridge got an instrument in the same pass.',
+      'It measures rather than assumes: it works out the ridge from the way each kind of building actually frames its roof, then opens the built model and reads the ridge off it, and refuses to be trusted if the two disagree. They agree on all 257 reconstructed buildings. Seventeen North ridges came inside their range as a result, and the town-wide count of roofs outside theirs fell from 121 to 104.',
+      'The remaining 104 are stated rather than quietly carried, and most of them cannot be fixed by tilting a roof. A stable whose ridge runs down its long side simply cannot reach the ridge height its family is given, at any slope that family allows — two parts of the specification disagreeing with each other. That is a question for the owner and it has its own ticket; nothing was widened to make a check pass.',
+      'No building was added, removed or moved, and no confidence changed. Every one of these roofs was always invented and every card still says so.',
+    ] },
   { v: 236, title: 'Sixty roofs north of the river stop being two dozen', kind: 'fix', ts: '2026-08-22T21:33:20.517Z', date: 'Aug 22, 2026, 4:33 PM CT',
     items: [
       'The cluster between the north bank and Michigan Street was twenty-four buildings dealt sixty times \u2014 thirty-six of the sixty were an exact twin of another roof standing near them. They are sixty separate buildings now: different widths, different depths, different eave lines along the same row.',

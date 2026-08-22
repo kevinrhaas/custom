@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 5:16 PM",
+  "generated_ct": "Aug 22, 2026, 5:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2569,6 +2569,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
+    },
+    {
+      "id": "T-0148",
+      "title": "The A1 stable cannot reach its ridge band at any pitch its family allows",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     }
   ]
 }
