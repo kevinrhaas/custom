@@ -1,7 +1,7 @@
 ---
 id: T-0135
 title: The draw-call ceiling is checked at one camera, and it is not the worst one
-state: open
+state: blocked-owner
 epic: META
 requested_by: owner
 seen: true
@@ -11,8 +11,8 @@ parent: null
 opened: 2026-08-21
 closed: null
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 8/21/2026, 11:05:00 PM CT
+blocked_on: The gate now reads the worst of five named stands and it is RED: 1,320,377 tris of 1,000,000 at full, 1,144,787 of 900,000 at balanced, 992,617 of 600,000 at light, and 200 draw calls of 140 — all at Lake Street looking east from Canal. Raise the ceilings to carry it (which puts light above the ceiling full carries today, so the ladder and the weak-machine floor both stop meaning anything), or trim the axial view to fit them (a rendering programme: distance culling or LOD down a long street)? Measured 2026-08-22; nothing regressed, this is the first honest reading.
 needs_bake: false
 ---
 

@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
-T-0145 — The North parcel's roof pitches, and the ridge band that gates them
+T-0150 — Distance-cull the furniture layers at the light tier
 T-0012 — Ship the 16-bit ground the script already computes
 T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
 T-0014 — 79 ground vertices face downward
@@ -57,6 +56,9 @@ T-0126 — The openings-and-glazing half of the material sheet: one dark, one ti
 T-0127 — South Water Street and the rest of the town get the street edge
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
+T-0145 — Distance-cull the furniture layers at the light tier
+T-0146 — Merge far chunks back into single draws
+T-0147 — Re-lower the ceilings once the trims land
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
