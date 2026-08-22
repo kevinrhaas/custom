@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 164,
+  "count": 165,
   "liberties": [
     {
       "id": "L1",
@@ -939,7 +939,7 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-08-10."
+          "text": "2026-08-10. **SUPERSEDED 2026-08-21 by L165 (T-0072).** A period description WAS held, in a source this project already carried: chicagology's Wolf's Point note says a picture of a wolf was painted on the board, that the fort blacksmith made its hinges and that it hung on a sapling. The entry above is kept verbatim because its argument — that an invented image would be the most conspicuous fabrication in the scene — is the right question, and L165 answers it rather than ignoring it. What this entry got wrong is that a blank board is not the neutral option when a source says otherwise."
         }
       ]
     },
@@ -10741,6 +10741,54 @@
         {
           "label": "How to resolve",
           "text": "a lot record for the north bank below Dearborn, a forwarding merchant's advertisement giving an address on this reach, or any contemporary — not retrospective — view of the north bank. Identifying image 3 against the Andreas/chicagology plate numbering and making it a source record (**T-0075**) would not upgrade the buildings, but it would let these records cite a `source_id` instead of a committed path. Related: **L163** (the bridge these sheds stand beside), **L132** (the wharves at the two frontages whose records state a dock — these four state none, so they get none), **L160** and **L161** (the same shape of claim at town scale), **T-0004**, **T-0058**, **T-0075**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L165",
+      "title": "The Wolf Tavern's sign: the pole it flies from, and the wolf painted on it",
+      "section": "per_subject",
+      "subjects": [
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "wolf_point_tavern",
+          "phase": "log_frame_1828",
+          "aspect": "form.sign_device"
+        }
+      ],
+      "recorded": "2026-08-21",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the tavern's signboard no longer hangs from a bracket on the wall. It flies from a **cross-arm at the head of a sapling** standing in front of the building, on two iron hinge straps, and the board carries a **flat dark silhouette of a wolf** on both faces. Every dimension of the arrangement is the archetype's: the pole stands `POLE_ABOVE_RIDGE_M` = 2.55 m over the ridge with a 7.4 m floor under that, `POLE_BUTT_R` = 0.105 m at the butt tapering to 0.072 m, set 0.40 m into the ground and 1.15 m out from the facade, the arm reaches 1.52 m, the board is 0.92 × 0.68 × 0.055 m hung 0.17 m under the arm, and the wolf fills about four fifths of it. Where along the front it stands — 1.85 m off the door's centre, clear of the doorway — is the archetype's too. The outline itself is `generators/archetypes/log_dwelling.py` `_WOLF_UV`: a standing canine in profile, ears up, brush low, no attitude and no ground line."
+        },
+        {
+          "label": "Why",
+          "text": "because the source describes all three things and the model was carrying none of them. chicagology's Wolf's Point note (`chicagology_prefire273`): *\"Wentworth was ambitious, and wanted a sign to attract wayfarers. Lieutenant Allen made one for him out of a piece of a box. He painted a picture of a wolf on it. The fort blacksmith made hinges, and the wolf sign was hung on a sapling. The tavern was the first institution to have a sign board in Chicago.\"* A sapling is a standing trunk, not a wall bracket; hinges are ironwork, not a bare board; and a picture of a wolf was on it. That passage sits in a NOTE at the foot of the page rather than in the 1857 magazine body which earned `chicagology_prefire273` its tier 2, and it names no author and cites nothing — which is the ceiling on the whole arrangement, and the reason `form.sign_mount` reads `inferred`. The 2026-08-18 owner brief's engraving of this tavern (image 4) draws the same thing from the outside — a mast-tall pole with a cross-arm and the board flying from it, which the owner read as *\"almost like a flag\"* — and a tier-5 pictorial view may drive form as `inferred`, which is the grade `form.sign_mount` carries. **The wolf is the part that needed a decision, and it reverses one this project made.** **L25** held that the board must stay blank because a wolf painted from imagination would be the most conspicuous fabrication in the scene. The risk was real and the conclusion was wrong: a source says a picture of a wolf was on that board, so an EMPTY board asserts the opposite of the evidence, in the one place every visitor walks up to. What is lost is the draughtsmanship, not the subject, and the three-tier vocabulary exists for exactly that gap — build at the lowest tier that honestly carries it and say what bounded the invention (AGENTS.md § RECONSTRUCTED IS A TIER; the owner's standing ruling of 2026-08-18 says the same in his own words). The bounds: the plainest reading of \"a picture of a wolf\", in the one pigment a sign painter at the forks had — lampblack in oil, which is why it is drawn at 0.116/0.098/0.086 and not at black — laid flat on box stock, carrying no snarl, no landscape and no lettering, because each of those would be a second invention resting on the first."
+        },
+        {
+          "label": "Consequence",
+          "text": "the most famous object at Wolf Point is now visible from most of the west side and carries a device a visitor will read as a wolf. That device is ours. Nobody has seen the board since the 1830s and no description of the painting survives; a visitor who assumes the silhouette is recovered iconography is assuming more than the confidence chip says, which is why this entry, and not the chip, is where the distinction is legible. The pole's height is the other soft number: it was chosen so the sign clears the roof it advertises, which is what \"to attract wayfarers\" needs, and nothing states it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a period depiction of the board itself, or the engraving in image 4 identified against the Andreas/chicagology plate numbering and held as a source record (**T-0075**) at a resolution that shows the device. Neither would recover the drawing; both would replace a reconstruction with a citation for the arrangement."
+        },
+        {
+          "label": "Covers",
+          "text": "`wolf_point_tavern.log_frame_1828.form.sign_device`."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0072. **Supersedes L25** on the blank board; L25 keeps its reasoning verbatim and gains a pointer here. Related: **L22** (archetype surfaces), **L24** (the frame addition's side), **L26** (where a chimney stands), **L159** (the town's other boards, which carry names because nothing attests a device on any of them)."
         },
         {
           "label": "Recorded",

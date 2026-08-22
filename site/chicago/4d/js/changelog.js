@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 225, title: 'The Wolf Tavern\u2019s sign flies from a pole, wolf and all', kind: 'feature', ts: '2026-08-22T00:02:06.738Z', date: 'Aug 21, 2026, 7:02 PM CT',
+    items: [
+      'The tavern at Wolf Point kept its signboard flat against the wall beside the door. It stands on a pole now \u2014 a sapling set in the ground, a cross-arm lashed at the head, and the board swinging from it on two iron hinges, well above the roof. You can see it from across the forks.',
+      'And there is a wolf on the board. It has been blank since the day it was built.',
+      'Both come out of one sentence nobody here had read closely enough: the fort blacksmith made the hinges, Lieutenant Allen painted the wolf on a piece of a box, and the sign was hung on a sapling. The tavern had the first signboard in Chicago.',
+      'What is ours: the shape of the wolf. That a wolf was painted there is written down; how it was drawn is lost, and the silhouette on the board is a plain standing animal we drew. The pole\u2019s height is ours too \u2014 tall enough to be seen, which is what a sign for wayfarers has to be.',
+    ] },
   { v: 224, title: 'Freight sheds stand on the north bank at the drawbridge', kind: 'feature', ts: '2026-08-21T22:18:46.472Z', date: 'Aug 21, 2026, 5:18 PM CT',
     items: [
       'The owner\u2019s second engraving of the Dearborn drawbridge shows the reach below it with low warehouses on the banks. The north bank at the crossing was open grass. Four sheds stand on it now \u2014 one west of the bridge line, three downstream of it.',
