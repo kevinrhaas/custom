@@ -63,6 +63,5 @@ T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command 
 T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0127 — South Water Street and the rest of the town get the street edge
-T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor

@@ -1,7 +1,7 @@
 ---
 id: T-0130
 title: The signs should read as the trade wrote them, not as we label the building
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-21
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 305
 claimed_by: run 8/22/2026, 12:10:48 AM CT
 blocked_on: null
 needs_bake: false
