@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 228, title: 'Buildings are known by the people in them', kind: 'feature', ts: '2026-08-22T07:05:51.697Z', date: 'Aug 22, 2026, 2:05 AM CT',
+    items: [
+      'Click one of the 222 anonymous reconstructed roofs and its card used to open \u201cReconstructed D3 one-room frame cottage #017\u201d. It reads \u201cThe Pratt house\u201d now \u2014 the household the residents layer places there \u2014 or \u201cNewell\u2019s stable\u201d where they only work in it. The Go-to list is the same list of names.',
+      'Where nobody is recorded, the title says the building instead: \u201cA vacant one-room frame cottage\u201d, or the phrasing a town of the 1830s used for premises going spare \u2014 \u201cA narrow two-story store, to let\u201d. A privy is just a privy.',
+      'The owner asked for it: give the locations useful names not technical D3 #03 names, you can have that somewhere on the card for reference identity purposes but dont make it the title. So the code is still there, one small line under the title, and search still finds a building by either \u2014 by \u201cD3 #017\u201d or by \u201cPratt\u201d.',
+      'A title that says vacant is not a finding, and the card says so under it. The residents layer places the households this town\u2019s trades demand and reaches 104 of these roofs; the other 118 are unmodelled rather than attested empty.',
+      'Nothing in the town moved. No building changed shape and no ground moved \u2014 what changed is what the cards call things.',
+    ] },
   { v: 227, title: 'The reference plates become citations you can follow', kind: 'feature', ts: '2026-08-22T05:37:52.582Z', date: 'Aug 22, 2026, 12:37 AM CT',
     items: [
       'Open the Sauganash Hotel\u2019s card and read down to its shutters, or the drawbridge\u2019s and read down to its chains. The line under each used to point at a file in this repository. It names a plate now \u2014 who drew it, what it is called, where to read it, and a copy at the Internet Archive for the day the page goes.',

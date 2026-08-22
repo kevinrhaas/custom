@@ -1,5 +1,52 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0076: buildings are named for their people, not their spec codes
+
+**The ask (owner, 2026-08-18), verbatim:** *"this name is not great Reconstructed D3 one-room frame
+cottage #03, i would like when you put people in the houses to give it the name of their house or
+call it a vacant one room frame cottage or use a term like for let or current for the era that it
+is available. you should have the marker that it is reconstructed so that should be sufficient.
+give the locations useful names not technical D3 #03 names, you can have that somewhere on the card
+for reference identity purposes but dont make it the title."*
+
+**What shipped.** `renderers/web/js/display-name.js` composes the title for the 222 anonymous
+reconstructed roofs, from data the record and the residents layer already carry: **"The Pratt
+house"** where a household lives there (104 roofs are adopted by the inferred-household programme),
+**"The Dufresne boarding house"** where the household lives in the premises it keeps, **"Newell's
+stable"** where one only works there, **"A privy"** for an outbuilding, **"A vacant one-room frame
+cottage"** where nobody is placed, and **"A narrow two-story store, to let"** for premises a town
+would have advertised. The card, the Go-to list and the liberties panel all take the same title
+from the same function, so the three surfaces cannot drift.
+
+**The production identity is kept, which was the other half of the ask.** `sidecar.name` is
+untouched — it is what the parcel recipes re-derive byte for byte, what the GLBs are named for, and
+what the release gate's own naming assertion reads — and it is printed under the title as a small
+reference line. The Go-to search takes both, plus the household name: "D3 #017" and "Pratt" find
+the same roof.
+
+**What is honest about "vacant", and L167 is the entry.** No source says any of these roofs stood
+empty. The residents layer places the households this town's trades demand and reaches 104 of the
+222; the other 118 are **unmodelled, not attested empty**. The title says the building plainly, as
+the owner asked, and the card carries that qualification directly under it in the same block as the
+RECONSTRUCTED flag. Nothing in `data/` moved: this is a display layer over records that are
+unchanged to the byte.
+
+**Verification.** `tools/check.sh` green. `tools/smoke_renderer.mjs --published` green on mobile
+390×780 stages 1, 2 and 4 and desktop 1280×800 stages 1 and 2, with four new gates in stage 2 — no
+building titles itself by its part number (222 anonymous roofs scanned, and the rule re-run against
+planted records so a scan of nothing cannot pass), the card shows that title with the reference
+line under it, and search still answers to both names. **One knowingly red and two knowingly
+unrun:** mobile stage 3 carries the two road-legibility failures of **T-0114**, unchanged by this
+parcel to the decimal (walker 100–250 m ΔL* 1.8 of 3.2, weber 0.0795; aerial 250–600 m ΔL* 2.0 of
+4.6, weber 0.0922), and desktop stages 3 and 4 do not fit the ten-minute foreground ceiling on this
+runner (**T-0121**, open).
+
+**What was deliberately not done.** A workplace title names the household and not the trade —
+"McCarthy's shop", not "McCarthy's blacksmith shop" — because the trade words in the descriptions
+are hedged ("carpenter or joiner shop", "small shop or office") and collapsing them would invent a
+specificity the record does not carry. The trade is on the card, in the residents section, and in
+the reference line.
+
 ## Shipped 2026-08-22 — T-0065: the goods say what is in them
 
 **The ask (owner, 2026-08-18), verbatim:** *"you can add period correct names and brands and labels
