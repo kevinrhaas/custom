@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
-T-0075 — Hold the 2026-08-18 owner brief as source records
 T-0076 — Buildings are named for their people, not their spec codes
 T-0008 — 199 chimneys are painted roof-colour
 T-0009 — Redraw 29 building bodies out of the roadway
@@ -65,3 +64,4 @@ T-0127 — South Water Street and the rest of the town get the street edge
 T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
+T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
