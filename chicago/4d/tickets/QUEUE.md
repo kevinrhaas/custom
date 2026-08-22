@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
-T-0065 — Period names, brands and labels on the goods
 T-0075 — Hold the 2026-08-18 owner brief as source records
 T-0076 — Buildings are named for their people, not their spec codes
 T-0008 — 199 chimneys are painted roof-colour

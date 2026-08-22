@@ -1,7 +1,7 @@
 ---
 id: T-0065
 title: Period names, brands and labels on the goods
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-21
+pr: 302
+claimed_by: run 8/21/2026, 9:29:27 PM CT
 blocked_on: null
 needs_bake: false
 ---
