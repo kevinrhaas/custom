@@ -6933,7 +6933,7 @@ Related: **L121**, the same decision for the wood; ROADMAP **R-W3b(a)** and **R-
 reach's own history.
 **Recorded:** 2026-08-21.
 
-### L167 — The signs read as the trade wrote them: thirty-three boards re-worded, fourteen off the firms' own advertisements, and one painted device
+### L169 — The signs read as the trade wrote them: thirty-three boards re-worded, fourteen off the firms' own advertisements, and one painted device
 **Decision:** the wording on a signboard is now its OWN field, separate from the structure
 record's `name`, and the two are allowed to differ. Every one of the thirty-three boards is
 re-lettered in the period's register — **proprietor or firm first and largest, the trade beneath,
