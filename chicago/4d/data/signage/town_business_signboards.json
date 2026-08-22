@@ -16,10 +16,14 @@
     "note": "NO SOURCE STATES THAT ANY OF THESE PARTICULAR BUILDINGS CARRIED A SIGN, and this record never says one does. What is held is the bound: one Chicago business of these years is attested to have hung a sign — the Wolf Point Tavern's painted wolf, by about 1833 — and the town's first newspaper, 26 November 1833, is full of businesses trading under names at named addresses, in a settlement whose own sources describe its houses being known BY their signs (the Wolf Point house is 'under the sign of the Travelers' Home'; the Exchange Coffee House's later 'Illinois Exchange' is recorded as a change of sign). A named trade on a public street announced itself, and how it did so in 1830s America is not in dispute. That is a reconstruction in this project's third tier, not an attestation, and it is graded and claimed as one: docs/LIBERTIES.md L130 for the fact of a sign, L159 for its wording, its mounting and its colours. THE GREEN TREE PLATE IS NOT PART OF THE ARGUMENT — docs/ROADMAP.md K5 (b) cites its hanging sign, but data/sources/chm_green_tree_1859.json records that the image has never been seen and is unverified, so it underwrites nothing here."
   },
   "lettering": {
-    "value": "the name the dataset gives the location, painted on the sign",
+    "value": "what the trade wrote — the proprietor or firm, the trade, and the place, in the period's own words and spelling",
     "confidence": "reconstructed",
     "geometry": "canvas texture, drawn at load",
-    "note": "DRAWN SINCE 2026-08-21, AND THE REVERSAL IS THE OWNER'S. This block used to read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS LAYER', on L25's reasoning generalised: no source gives the wording of any sign in this town, so every board stayed a blank plank. The owner's instruction of 2026-08-18 overrules it — 'you can and should put the name of the location on the sign board … it is fine if they are reconstructions' — and this project's own standing ruling covers the tier: 'you are totally fine to be liberal with adding reconstructed items when i ask for things, you can just label and mark them as such.' So the WORDING on each sign is the name this dataset already gives that location (`sign_text`, and the card a visitor opens by tapping the sign shows the same words), and it is graded `reconstructed` — the name is the project's, the decision that a signwriter painted it is not anybody's record. The LETTERFORM, the colours and the panel come from `style`, a table of the combinations the trade worked in rather than of anything Chicago recorded. docs/LIBERTIES.md L159. What is NOT drawn, still: an image or a trade device on any board. L25 stands for the wolf, and no source describes the painting on any other."
+    "tiers": {
+      "inferred": 14,
+      "reconstructed": 19
+    },
+    "note": "DRAWN SINCE 2026-08-21, AND RE-WORDED THE SAME DAY. This block used to read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS LAYER', on L25's reasoning generalised: no source gives the wording of any sign in this town, so every board stayed a blank plank. The owner's instruction of 2026-08-18 overruled it — 'you can and should put the name of the location on the sign board … it is fine if they are reconstructions' — and T-0066 then painted THE RECORD'S OWN `name` on every board. T-0130 CORRECTS THAT, on the owner's word of 2026-08-21: 'philo would not have referred to his own place as log drug store, it would be philo carpenter, drugs and medicines, or druggist or whatever he would have referred to himself as on the sign, that may be different than the name of the building for us, the sign may read differently historically' — and, widening it, 'i guess do a pass on all those signs and make sure they feel right for the era'. A record's `name` is OUR LABEL FOR A BUILDING ('Philo Carpenter's Log Drug Store'); a board carries what a signwriter lettered. The two are now separate fields and are allowed to differ. What they must still agree about is WHO: every sign declares a `sign_identity` that appears in the board AND in the card, the generator refuses to build without it, and tools/smoke_renderer.mjs asserts it at run time over every sign. THE REGISTER is the advertisements' own — proprietor or firm first and largest, the trade beneath, the place last and smallest — carried per line in `sign_lines` and lettered in that hierarchy by renderers/web/js/signage.js. Period spelling is theirs and is kept. THE TIERS: a wording taken off a firm's own advertisement is `inferred`; one built out of the evidenced trade vocabulary for a business that left no advertisement is `reconstructed`. NOT ONE IS `attested` YET, and each note says why and what would change it — the seven 1833-35 newspaper pages behind these wordings were supplied as images in conversation on 2026-08-21 and are not committed to data/sources/assets/, so they are transcriptions and a transcription is not a citation. The owner's ruling of that day is the authority for proceeding anyway: 'I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like.' The LETTERFORM, the colours and the panel remain `style`, a table of the combinations the trade worked in rather than of anything Chicago recorded (docs/LIBERTIES.md L159; L166 for the wording). ONE DEVICE IS NOW PAINTED and it is the one a Chicago tradesman described himself: Carpenter's golden mortar, `sign_device` — see its own note. No other board carries an image, and L25 is untouched: it withholds the Wolf Point wolf because that IMAGE was never described, which is the opposite case to a shop whose own advertisement names its sign."
   },
   "treatment": {
     "confidence": "reconstructed",
@@ -83,6 +87,13 @@
         "facade_painted"
       ]
     },
+    "lines_by_mounting": {
+      "bracket_board": 2,
+      "awning_board": 2,
+      "post_board": 2,
+      "wall_board": 3,
+      "facade_painted": 3
+    },
     "styles": [
       "gold_on_black",
       "black_on_white",
@@ -96,15 +107,28 @@
       "white_on_brown"
     ],
     "neighbour_m": 40.0,
+    "wording_note": "WHAT A BOARD MAY SAY, and it is a rule rather than a list somebody liked. Every board is worded from SIGN_WORDING in tools/generate_business_signboards.py: the proprietor or firm, the trade in the period's own words, and the place — in that order, which is the order the advertisements themselves use. The generator refuses to build a board for a frontage the table does not word, refuses one whose declared `sign_identity` is not in both the board and the card, and refuses one that carries the word 'log' — the three ways the old behaviour could come back. How much of an entry is lettered depends on the mounting: `lines_by_mounting` above, because a signwriter letters what fits and a plank swinging over a footway holds less than a name painted across a whole front.",
     "excluded_trades_note": "Stables, churches, schools, the court-house, the jail, the agency house, the fort and every dwelling are outside both trade lists. A stable is the yard of the house that owns it and announces nothing of its own; the rest are not trades. Frederick Thomas's shop is refused one clause further down, because its own record says no source reached says what he sold."
   },
   "signs": [
     {
       "structure_id": "bates_auction_room",
       "name": "John Bates Jr.'s Auction Room",
-      "sign_text": "John Bates Jr.'s Auction Room",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "J. BATES, JR. / Auctioneer",
+      "sign_lines": [
+        {
+          "text": "J. BATES, JR.",
+          "role": "name"
+        },
+        {
+          "text": "Auctioneer",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Bates",
+      "sign_text_from": "His own advertisement signs itself \"J. BATES, JR.\" over the single trade word \"Auctioneer\" — the whole of a sale-room's copy, because an auctioneer sells his name. The record's own label, \"John Bates Jr.'s Auction Room\", describes the building for a modern reader; the board carries the man. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "auction_room",
       "trade_confidence": "attested",
       "trade_class": "office",
@@ -128,13 +152,13 @@
       "facade_bearing_deg": 90.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.87,
-      "board_h_m": 0.64,
+      "board_w_m": 1.69,
+      "board_h_m": 0.71,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 1.06,
+      "reach_m": 0.97,
       "wall_height_m": 3.6,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -160,9 +184,21 @@
     {
       "structure_id": "brickyard_north_side",
       "name": "Blodgett's Brickyard",
-      "sign_text": "Blodgett's Brickyard",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "T. K. BLODGETT / Brick Maker",
+      "sign_lines": [
+        {
+          "text": "T. K. BLODGETT",
+          "role": "name"
+        },
+        {
+          "text": "Brick Maker",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Blodgett",
+      "sign_text_from": "No advertisement for this yard is in the pages read. Andreas names Tyler K. Blodgett and calls him \"undoubtedly the first brick-maker\", and the record's own occupants block carries him, so the board is built in the register the pages evidence — proprietor, then trade — out of the trade's own word. Reconstructed: nobody records that this yard announced itself at all, let alone in these words.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "brickyard",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -186,13 +222,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.15,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.3,
-      "board_h_m": 0.48,
+      "board_w_m": 2.42,
+      "board_h_m": 0.61,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.27,
+      "reach_m": 1.33,
       "wall_height_m": 2.4,
       "wall_height_from": "the record",
       "frontage_m": 14.0,
@@ -218,9 +254,21 @@
     {
       "structure_id": "brown_boarding_house",
       "name": "Rufus Brown's Boarding House",
-      "sign_text": "Rufus Brown's Boarding House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "RUFUS BROWN / Boarding House",
+      "sign_lines": [
+        {
+          "text": "RUFUS BROWN",
+          "role": "name"
+        },
+        {
+          "text": "Boarding House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Brown",
+      "sign_text_from": "No advertisement for this house is in the pages read. \"Boarding House\" is the period's own term and the record's own function; the proprietor is the record's. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "boarding_house",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -244,16 +292,16 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.66,
-      "board_h_m": 0.64,
+      "board_w_m": 1.56,
+      "board_h_m": 0.6,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.56,
+        "awning_width_m": 2.46,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 2.05,
+      "reach_m": 2.02,
       "wall_height_m": 2.9,
       "wall_height_from": "the record",
       "frontage_m": 7.32,
@@ -279,9 +327,21 @@
     {
       "structure_id": "carpenter_south_water_store",
       "name": "Philo Carpenter's South Water Street Store",
-      "sign_text": "Philo Carpenter's South Water Street Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "PHILO CARPENTER / Druggist",
+      "sign_lines": [
+        {
+          "text": "PHILO CARPENTER",
+          "role": "name"
+        },
+        {
+          "text": "Druggist",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Carpenter",
+      "sign_text_from": "HIS OWN 1835 WORDS, AND THE SCENE IS 1835. The advertisement heads itself \"PHILO CARPENTER, Wholesale & Retail Druggist, AT THE SIGN OF THE GOLDEN MORTAR, South Water Street, Chicago\" and goes on \"has just received and now offers for sale, one of the largest and best selected assortments of DRUGS AND MEDICINES, Paints, Oils, & Dye-Stuffs, ever offered in the State of Illinois\". Man, trade, street — in that order, which is the order the board letters. THIS IS THE FRONTAGE THE ADVERTISEMENT PLACES ON SOUTH WATER STREET, so it is this board and not his older Lake Street shop that carries the golden mortar. The 1833 copy for the same man reads \"DRUGS AND MEDICINES\" and is used on that older shop, because firms rewrote their lines and this project models the later day. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a bracket board, which carries 2 lines, so the place line — \"South Water Street\" — is not lettered here: a signwriter letters what fits. For the same reason the trade is shortened from \"Wholesale & Retail Druggist\" to \"Druggist\".",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "drug_store",
       "trade_confidence": "inferred",
       "trade_class": "counter",
@@ -305,14 +365,14 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.46,
-      "board_h_m": 0.73,
+      "board_w_m": 1.84,
+      "board_h_m": 0.92,
       "board_thickness_m": 0.05,
       "geometry": {
         "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.48,
+      "reach_m": 1.59,
       "wall_height_m": 3.0,
       "wall_height_from": "the record",
       "frontage_m": 7.62,
@@ -333,14 +393,35 @@
           387.3,
           1.9
         ]
-      ]
+      ],
+      "sign_device": {
+        "id": "golden_mortar",
+        "label": "a mortar and pestle, gilt",
+        "colour": "#d9b036",
+        "shade": "#7a5c14",
+        "confidence": "inferred",
+        "note": "A CHICAGO SIGNBOARD DESCRIBED BY ITS OWN OWNER, IN PRINT, IN THE SCENE YEAR. Philo Carpenter's 1835 advertisement heads itself \"PHILO CARPENTER, Wholesale & Retail Druggist, AT THE SIGN OF THE GOLDEN MORTAR, South Water Street, Chicago\". A mortar and pestle is the druggist's universal device, and a Detroit house advertising on the same pages \"at the sign of the Large Pitcher\" shows the convention was live and ordinary. So this board carries the device PAINTED rather than the phrase lettered: the sign is what he described, not a sentence about it. THIS IS THE OPPOSITE CASE TO L25, WHICH STANDS UNTOUCHED — L25 withholds the Wolf Point wolf because that IMAGE was never described, and here the owner of the shop describes his own board. What is invented is the DRAUGHTSMANSHIP: the outline is a plain bowl, rim and pestle, no ornament and no ground line. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+        "share": 0.3
+      }
     },
     {
       "structure_id": "chicago_american_office",
       "name": "The Chicago American Office",
-      "sign_text": "The Chicago American Office",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "CHICAGO AMERICAN / Printing Office",
+      "sign_lines": [
+        {
+          "text": "CHICAGO AMERICAN",
+          "role": "name"
+        },
+        {
+          "text": "Printing Office",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Chicago American",
+      "sign_text_from": "The paper was twenty-three days old on the scene date and no advertisement of its own is in the pages read. A newspaper office announced the PAPER — the Democrat's own imprint does exactly that — so the board carries the title and the trade, in the register the pages evidence. T. O. Davis's name is on the record and deliberately not on the board: a paper's office was known by its paper. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "printing_office",
       "trade_confidence": "attested",
       "trade_class": "office",
@@ -397,9 +478,27 @@
     {
       "structure_id": "chicago_democrat_office",
       "name": "The Chicago Democrat Office",
-      "sign_text": "The Chicago Democrat Office",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "CHICAGO DEMOCRAT / Printing Office / South Water & Clark Streets",
+      "sign_lines": [
+        {
+          "text": "CHICAGO DEMOCRAT",
+          "role": "name"
+        },
+        {
+          "text": "Printing Office",
+          "role": "trade"
+        },
+        {
+          "text": "South Water & Clark Streets",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Chicago Democrat",
+      "sign_text_from": "THE PAPER'S OWN IMPRINT, in a source this repository already holds and whose page images are committed: \"THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.\" That is the office naming itself and its junction, which is what a board carries. Note precisely what it does NOT settle and the board does not claim: WHICH of the four corners, which the record argues separately and which the pencilled \"S. W.\" in that page's margin is a later reader's gloss on rather than evidence for. Graded `inferred` rather than `attested` because the imprint is a masthead and not a description of a signboard.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "printing_office_and_store",
       "trade_confidence": "inferred",
       "trade_class": "office",
@@ -421,15 +520,15 @@
         1.72
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.86,
+      "arm_height_m": 3.28,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.51,
-      "board_h_m": 0.56,
+      "board_w_m": 3.11,
+      "board_h_m": 0.98,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.38,
+      "reach_m": 1.68,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -455,9 +554,21 @@
     {
       "structure_id": "clybourn_slaughterhouse",
       "name": "Archibald Clybourne's Log Slaughter-House",
-      "sign_text": "Archibald Clybourne's Log Slaughter-House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "A. CLYBOURNE / Slaughtering & Packing",
+      "sign_lines": [
+        {
+          "text": "A. CLYBOURNE",
+          "role": "name"
+        },
+        {
+          "text": "Slaughtering & Packing",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Clybourne",
+      "sign_text_from": "No advertisement for this plant is in the pages read. Andreas has Clybourne killing for the garrison from 1827 and packing commercially from 1833, and \"packing\" is the trade's own word in this town — Newberry & Dole's own advertising uses it. The record's label calls the building a \"Log Slaughter-House\", which is this project describing walls; a drover reading the front needed the firm and the trade. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "slaughterhouse_packing",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -481,13 +592,13 @@
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.93,
-      "board_h_m": 0.69,
+      "board_w_m": 2.66,
+      "board_h_m": 0.76,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.59,
+      "reach_m": 1.45,
       "wall_height_m": 2.8,
       "wall_height_from": "the record",
       "frontage_m": 12.0,
@@ -513,9 +624,21 @@
     {
       "structure_id": "dole_warehouse_south",
       "name": "George W. Dole's Warehouse",
-      "sign_text": "George W. Dole's Warehouse",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "GEO. W. DOLE / Forwarding & Commission Merchant",
+      "sign_lines": [
+        {
+          "text": "GEO. W. DOLE",
+          "role": "name"
+        },
+        {
+          "text": "Forwarding & Commission Merchant",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Dole",
+      "sign_text_from": "The firm NEWBERRY & DOLE advertises in both 1833 and 1835 and its warehouse on the north bank carries that firm's own line. THIS building is Dole's own 1832 warehouse and slaughter yard on the south side, and no advertisement in the pages read is signed by Dole alone — so the trade words are the firm's and the single-partner line is ours. Reconstructed for that reason rather than for any doubt about the trade.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "warehouse_and_slaughter_yard",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -537,15 +660,15 @@
         -126.48
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.92,
+      "arm_height_m": 3.2,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.48,
-      "board_h_m": 0.62,
+      "board_w_m": 2.96,
+      "board_h_m": 0.9,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.36,
+      "reach_m": 1.6,
       "wall_height_m": 3.6,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -571,9 +694,23 @@
     {
       "structure_id": "elston_soap_candle_manufactory",
       "name": "Daniel Elston & Co.'s Soap and Candle Manufactory",
-      "sign_text": "Daniel Elston & Co.'s Soap and Candle Manufactory",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "DANIEL ELSTON & CO. / Chicago Soap and Candle Manufactory",
+      "sign_lines": [
+        {
+          "text": "DANIEL ELSTON & CO.",
+          "role": "name"
+        },
+        {
+          "text": "Chicago Soap and Candle Manufactory",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Elston",
+      "sign_text_from": "The firm's own advertisement heads itself \"Chicago Soap and Candle Manufactory\" over \"DANIEL ELSTON & CO.\", and pays cash for tallow and for house ashes. It is in the committed issue of 26 November 1833 as well as in the owner's pages — with one caveat that travels with the name and is the committed source record's own: the word after the ampersand is OBLITERATED BY AN INK BLOT, and \"Co.\" is a reasonable expansion rather than a reading. Graded `inferred` for that, and because an advertisement is not a description of a board.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "soap_candle_manufactory",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -597,13 +734,13 @@
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 3.17,
-      "board_h_m": 0.63,
+      "board_w_m": 3.05,
+      "board_h_m": 0.74,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.71,
+      "reach_m": 1.65,
       "wall_height_m": 2.8,
       "wall_height_from": "the record",
       "frontage_m": 10.0,
@@ -629,9 +766,21 @@
     {
       "structure_id": "exchange_coffee_house",
       "name": "Exchange Coffee House",
-      "sign_text": "Exchange Coffee House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "EXCHANGE COFFEE HOUSE / Public House",
+      "sign_lines": [
+        {
+          "text": "EXCHANGE COFFEE HOUSE",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Exchange",
+      "sign_text_from": "No advertisement for this house is in the pages read. \"Public House\" is E. Wentworth's own trade line on the 1833 page and is the period's word for what this building was; the house name is the one Mark Beaubien's successors christened it with in 1834. A coffee house of these years lodged and fed people, and the record's own note says so. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "tavern_inn",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -655,14 +804,14 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.35,
-      "board_h_m": 0.57,
+      "board_w_m": 1.46,
+      "board_h_m": 0.62,
       "board_thickness_m": 0.05,
       "geometry": {
         "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.45,
+      "reach_m": 1.48,
       "wall_height_m": 5.2,
       "wall_height_from": "the record",
       "frontage_m": 14.0,
@@ -688,9 +837,27 @@
     {
       "structure_id": "goss_cobb_saddlery",
       "name": "Goss & Cobb, saddle and harness makers",
-      "sign_text": "Goss & Cobb, saddle and harness makers",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "GOSS & COBB / Saddle & Harness Making / Lake & Canal Streets",
+      "sign_lines": [
+        {
+          "text": "GOSS & COBB",
+          "role": "name"
+        },
+        {
+          "text": "Saddle & Harness Making",
+          "role": "trade"
+        },
+        {
+          "text": "Lake & Canal Streets",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Goss",
+      "sign_text_from": "THE FIRM'S OWN WORDS, OFF A COMMITTED PAGE IMAGE, read from the scan on 2026-08-11 and quoted verbatim in this building's own record: \"[Saddle & H]arness Making. GOSS & COBB, respectfully inform the inhabitants of Chicago and the neighboring settlements, that they have opened a shop in this village, on the conner of Lake and Canal-streets\". Heading, firm, address — which is the whole of the board. THIS IS THE FIRST WORDING IN THE SET THAT COULD BE UPGRADED: its page is already committed at data/sources/assets/chicago_democrat_1833_11_26/, and what keeps it `inferred` is that an advertisement heading is still not a description of a signboard.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "saddlery_and_harness_shop",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -714,13 +881,13 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.14,
-      "board_h_m": 0.84,
+      "board_w_m": 2.29,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 1.19,
+      "reach_m": 1.27,
       "wall_height_m": 3.0,
       "wall_height_from": "the record",
       "frontage_m": 9.14,
@@ -746,9 +913,23 @@
     {
       "structure_id": "h_jones_store",
       "name": "Jones's Grocery and Provision Store",
-      "sign_text": "Jones's Grocery and Provision Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "JONES / Grocery & Provision Store",
+      "sign_lines": [
+        {
+          "text": "JONES",
+          "role": "name"
+        },
+        {
+          "text": "Grocery & Provision Store",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Jones",
+      "sign_text_from": "The advertisement is headed \"Grocery & Provision Store\" and signed by Jones — which is the board, in the order the trade wrote it. THE INITIAL IS DELIBERATELY NOT PAINTED, and that is this record refusing to decide something its own source record refuses to decide: Andreas writes \"H. Jones\", the advertisement in the committed issue reads \"B. JONES\", and the structure record carries the surname and not the initial because B and H are among the easiest letters to confuse in a display face of this period on a damaged sheet. A board that picked one would be the signage layer settling a question the dataset has left open.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "grocery_and_provision_store",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -807,9 +988,21 @@
     {
       "structure_id": "harmon_loomis_store",
       "name": "Harmon & Loomis's Store",
-      "sign_text": "Harmon & Loomis's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "HARMON, LOOMIS & CO. / Dry Goods & Groceries",
+      "sign_lines": [
+        {
+          "text": "HARMON, LOOMIS & CO.",
+          "role": "name"
+        },
+        {
+          "text": "Dry Goods & Groceries",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Harmon",
+      "sign_text_from": "THE 1835 LINE, PREFERRED OVER THE 1833 ONE. The firm advertises in 1835 as \"HARMON, LOOMIS & CO.\" under the head \"New Goods!\", offering \"Dry Goods, Groceries and Hard Ware\"; the 1833 pages carry the same house as \"C. & I. HARMON\" with \"Dry Goods, Crockery, Hardware, Wet and Dry Groceries\" and again as \"HARMON, LOOMIS & CO.\". The later name is the one standing on the scene date, and the record's own `aka` already carries both. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. For the same reason the trade is shortened from \"Dry Goods, Groceries & Hardware\" to \"Dry Goods & Groceries\".",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "store",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -833,14 +1026,14 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.41,
-      "board_h_m": 0.64,
+      "board_w_m": 1.46,
+      "board_h_m": 0.66,
       "board_thickness_m": 0.05,
       "geometry": {
         "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.47,
+      "reach_m": 1.48,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -866,9 +1059,21 @@
     {
       "structure_id": "hogan_store",
       "name": "Hogan's Store",
-      "sign_text": "Hogan's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "BREWSTER, HOGAN & CO. / Forwarding & Commission",
+      "sign_lines": [
+        {
+          "text": "BREWSTER, HOGAN & CO.",
+          "role": "name"
+        },
+        {
+          "text": "Forwarding & Commission",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Hogan",
+      "sign_text_from": "THE IDENTITY IS CORRECTED, NOT JUST THE WORDING. The firm's own advertisement reads \"BREWSTER, HOGAN & CO. Forwarding & Commission MERCHANTS, Chicago—Illinois\", and adds dry goods and groceries below. Our label, \"Hogan's Store\", is a shorthand for one partner; the building's own record already knows better and lists \"Brewster, Hogan & Co.'s store\" in its `aka` and names the firm in its change note — the log store was partitioned, post office on one side and this firm's store on the other. THE PAGES ALSO DISTINGUISH A SECOND HOGAN and this board is not him: \"J. S. C. HOGAN\", \"Dry Goods, Groceries, Hardware, Crockery and Glass Ware\", \"South Water Street, one door below Dearborn\" — a different trade at a different address from this building at the Lake Street junction. Whether the model should ALSO carry J. S. C. Hogan's South Water store is a placement question and is raised, not silently answered. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a bracket board, which carries 2 lines, so the place line — \"Chicago—Illinois\" — is not lettered here: a signwriter letters what fits. For the same reason the trade is shortened from \"Forwarding & Commission Merchants\" to \"Forwarding & Commission\".",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "store",
       "trade_confidence": "inferred",
       "trade_class": "counter",
@@ -892,14 +1097,14 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.2,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.11,
-      "board_h_m": 0.47,
+      "board_w_m": 1.46,
+      "board_h_m": 0.62,
       "board_thickness_m": 0.05,
       "geometry": {
         "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.4,
+      "reach_m": 1.48,
       "wall_height_m": 2.5,
       "wall_height_from": "the record",
       "frontage_m": 13.72,
@@ -925,9 +1130,25 @@
     {
       "structure_id": "jh_kinzie_forwarding_store",
       "name": "J. H. Kinzie's Store",
-      "sign_text": "J. H. Kinzie's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "JOHN H. KINZIE / Forwarding & Commission Merchant / Agent, Troy & Erie Line",
+      "sign_lines": [
+        {
+          "text": "JOHN H. KINZIE",
+          "role": "name"
+        },
+        {
+          "text": "Forwarding & Commission Merchant",
+          "role": "trade"
+        },
+        {
+          "text": "Agent, Troy & Erie Line",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Kinzie",
+      "sign_text_from": "His own line, and the 1835 form of it: \"JOHN H. KINZIE, Forwarding & Commission Merchant … Agent for the Troy & Erie Line\", the 1833 pages carrying the same man as a \"Storage, Forwarding & Commission Merchant\" for the same line. The agency is on the third line because that is what a shipper walking the street needed to read; it is the place line's slot and it does the place line's job. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "forwarding_and_commission_store",
       "trade_confidence": "attested",
       "trade_class": "office",
@@ -951,13 +1172,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.6,
-      "board_h_m": 0.63,
+      "board_w_m": 2.3,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 0.92,
+      "reach_m": 1.27,
       "wall_height_m": 3.6,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -983,9 +1204,21 @@
     {
       "structure_id": "kinzie_hunter_warehouse",
       "name": "Kinzie & Hunter's Warehouse",
-      "sign_text": "Kinzie & Hunter's Warehouse",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "KINZIE & HUNTER / Forwarding & Commission Merchants",
+      "sign_lines": [
+        {
+          "text": "KINZIE & HUNTER",
+          "role": "name"
+        },
+        {
+          "text": "Forwarding & Commission Merchants",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Kinzie",
+      "sign_text_from": "No advertisement for this firm is in the pages read. The record's own function is `forwarding_commission_warehouse` and its note says the trade is held by association with the neighbouring dock rather than by any statement — Andreas separately has a Kinzie, Hunter & Co. in the LUMBER trade in these years. So the trade words are the town's own, the firm is the record's, and the whole line is reconstructed. If the lumber reading is right the board should read \"Lumber Dealer & Commission Merchant\", which is David Carver's own 1835 line and is the form to reach for; that is a research question, not a wording one.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "forwarding_commission_warehouse",
       "trade_confidence": "inferred",
       "trade_class": "works",
@@ -1007,15 +1240,15 @@
         56.2
       ],
       "facade_bearing_deg": 180.0,
-      "arm_height_m": 2.86,
+      "arm_height_m": 3.11,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.51,
-      "board_h_m": 0.56,
+      "board_w_m": 2.99,
+      "board_h_m": 0.81,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.38,
+      "reach_m": 1.62,
       "wall_height_m": 3.4,
       "wall_height_from": "the record",
       "frontage_m": 12.0,
@@ -1041,9 +1274,21 @@
     {
       "structure_id": "madore_beaubien_house",
       "name": "Madore Beaubien's Log House",
-      "sign_text": "Madore Beaubien's Log House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "MADORE BEAUBIEN / Dry Goods & Groceries",
+      "sign_lines": [
+        {
+          "text": "MADORE BEAUBIEN",
+          "role": "name"
+        },
+        {
+          "text": "Dry Goods & Groceries",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Beaubien",
+      "sign_text_from": "No advertisement for him is in the pages read. He was licensed as a merchant in 1831 — the year the building went up — and the record's own `aka` carries \"Madore Beaubien's store\", so the board carries the man and the plainest of the town's own counter trades. The record's label, \"Madore Beaubien's Log House\", is this project naming a building by its walls. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "dwelling_and_store",
       "trade_confidence": "inferred",
       "trade_class": "counter",
@@ -1067,13 +1312,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.2,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.81,
-      "board_h_m": 0.67,
+      "board_w_m": 1.93,
+      "board_h_m": 0.88,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 1.03,
+      "reach_m": 1.09,
       "wall_height_m": 2.5,
       "wall_height_from": "the record",
       "frontage_m": 9.14,
@@ -1099,9 +1344,21 @@
     {
       "structure_id": "mansion_house",
       "name": "Mansion House",
-      "sign_text": "Mansion House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "MANSION HOUSE / Public House",
+      "sign_lines": [
+        {
+          "text": "MANSION HOUSE",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Mansion",
+      "sign_text_from": "No advertisement for this house is in the pages read, though the 1833 pages locate Matthias Mason's smithy \"nearly opposite Graves' Tavern\", which is this building under its keeper's name. \"Public House\" is E. Wentworth's own 1833 trade line. The house name is the one the record carries at the scene date, when Markle rather than Graves had it. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "tavern_inn",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -1125,8 +1382,8 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.3,
       "height_datum": "the ground under the post itself, sampled where it stands: the post is in the street, not on the building. `post_height_m` is its head over that ground and `arm_height_m` does not apply",
-      "board_w_m": 1.27,
-      "board_h_m": 0.49,
+      "board_w_m": 1.57,
+      "board_h_m": 0.61,
       "board_thickness_m": 0.05,
       "geometry": {
         "stand_m": 1.9,
@@ -1135,7 +1392,7 @@
         "post_height_m": 3.78,
         "post_square_m": 0.16
       },
-      "reach_m": 2.58,
+      "reach_m": 2.67,
       "wall_height_m": 2.6,
       "wall_height_from": "the record",
       "frontage_m": 12.0,
@@ -1161,9 +1418,23 @@
     {
       "structure_id": "mason_blacksmith_shop",
       "name": "Matthias Mason & Co.'s Blacksmith Shop",
-      "sign_text": "Matthias Mason & Co.'s Blacksmith Shop",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "MATTHIAS MASON & CO. / Blacksmithing",
+      "sign_lines": [
+        {
+          "text": "MATTHIAS MASON & CO.",
+          "role": "name"
+        },
+        {
+          "text": "Blacksmithing",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Mason",
+      "sign_text_from": "The firm's own advertisement is headed \"Blacksmithing Business\" over \"MATTHIAS MASON & CO.\", on \"Main-street, nearly opposite Graves' Tavern\". The board takes the firm and the trade word and NOT the address: \"Main-street\" is a street name this project does not otherwise hold, recorded as a finding in docs/RESEARCH/residents_1835.md § 7, and lettering it here would be the signage layer asserting a street the streets layer does not carry.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "blacksmith_shop",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -1187,13 +1458,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.85,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.84,
-      "board_h_m": 0.62,
+      "board_w_m": 2.6,
+      "board_h_m": 0.69,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.54,
+      "reach_m": 1.42,
       "wall_height_m": 3.1,
       "wall_height_from": "the record",
       "frontage_m": 6.1,
@@ -1219,9 +1490,21 @@
     {
       "structure_id": "miller_house",
       "name": "Miller House",
-      "sign_text": "Miller House",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "MILLER HOUSE / Store",
+      "sign_lines": [
+        {
+          "text": "MILLER HOUSE",
+          "role": "name"
+        },
+        {
+          "text": "Store",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Miller",
+      "sign_text_from": "The hardest board in the set, and the wording is deliberately thin. The record's function on the scene date is a store with the keeper living over it; its occupants are NOT attested at that date; Samuel Miller had removed to the place that became Michigan City and the tavern had reverted to store use after 1832. So there is no proprietor to letter, and the board carries the name the settlement knew the building by — \"Miller House\", \"Miller's Tavern\", \"Fork Tavern\" are its own `aka` — over the plainest period word for what it was doing. Inventing a keeper or a stock would be worse than a thin board. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "store_residence",
       "trade_confidence": "inferred",
       "trade_class": "counter",
@@ -1245,16 +1528,16 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.3,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.2,
-      "board_h_m": 0.51,
+      "board_w_m": 1.5,
+      "board_h_m": 0.64,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.1,
+        "awning_width_m": 2.4,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.91,
+      "reach_m": 2.0,
       "wall_height_m": 2.6,
       "wall_height_from": "the record",
       "frontage_m": 9.0,
@@ -1280,9 +1563,21 @@
     {
       "structure_id": "miller_tannery",
       "name": "John Miller's Tannery",
-      "sign_text": "John Miller's Tannery",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "JOHN MILLER / Tannery",
+      "sign_lines": [
+        {
+          "text": "JOHN MILLER",
+          "role": "name"
+        },
+        {
+          "text": "Tannery",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Miller",
+      "sign_text_from": "No advertisement for this tan-yard is in the pages read. The function is the best-attested thing about the building — \"a log house … that he used as a tannery, Chicago's first recorded factory\" — and the proprietor is named. The board carries the two and drops the walls. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "tannery",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -1307,7 +1602,7 @@
       "arm_height_m": 2.25,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
       "board_w_m": 2.33,
-      "board_h_m": 0.55,
+      "board_h_m": 0.67,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
@@ -1338,9 +1633,25 @@
     {
       "structure_id": "newberry_dole_slaughterhouse_south_branch",
       "name": "Newberry & Dole's Slaughter-House, South Branch",
-      "sign_text": "Newberry & Dole's Slaughter-House, South Branch",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "NEWBERRY & DOLE / Slaughtering & Packing / South Branch",
+      "sign_lines": [
+        {
+          "text": "NEWBERRY & DOLE",
+          "role": "name"
+        },
+        {
+          "text": "Slaughtering & Packing",
+          "role": "trade"
+        },
+        {
+          "text": "South Branch",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Newberry",
+      "sign_text_from": "The FIRM's own advertised line is the forwarding one and it is lettered on their warehouse. For this plant the pages give nothing: what is recorded is Andreas's sentence about a slaughter-house on the South Branch where three hundred cattle and fourteen hundred hogs were packed in its first season. So the firm is theirs and the trade line is ours, out of the town's own word for the trade. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "slaughterhouse_packing",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -1364,13 +1675,13 @@
       "facade_bearing_deg": 270.0,
       "arm_height_m": 2.95,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 3.11,
-      "board_h_m": 0.75,
+      "board_w_m": 2.96,
+      "board_h_m": 1.02,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.68,
+      "reach_m": 1.6,
       "wall_height_m": 3.2,
       "wall_height_from": "the record",
       "frontage_m": 12.0,
@@ -1396,9 +1707,27 @@
     {
       "structure_id": "newberry_dole_warehouse",
       "name": "Newberry & Dole's Forwarding and Commission Warehouse",
-      "sign_text": "Newberry & Dole's Forwarding and Commission Warehouse",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "NEWBERRY & DOLE / Storage, Forwarding & Commission Merchants / Agents, Merchants Line",
+      "sign_lines": [
+        {
+          "text": "NEWBERRY & DOLE",
+          "role": "name"
+        },
+        {
+          "text": "Storage, Forwarding & Commission Merchants",
+          "role": "trade"
+        },
+        {
+          "text": "Agents, Merchants Line",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Newberry",
+      "sign_text_from": "THE 1835 LINE, PREFERRED OVER THE 1833 ONE, and the 1833 one is in a committed source: \"NEWBERRY & DOLE, Forwarding & Commission MERCHANTS\" in the issue of 26 November 1833, which this project's own record calls \"the first contemporary document in this dataset and about as good as evidence of a trade gets, since the advertiser was paying for it and his customers had to be able to find him\". By 1835 the firm advertises as \"Storage, Forwarding and Commission Merchants\" and \"Agents for the Merchants Line\", and the agency goes on the third line because that is what a shipper needed off the river. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "forwarding_commission_warehouse",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -1420,15 +1749,15 @@
         6.2
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 3.07,
+      "arm_height_m": 3.15,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 3.29,
-      "board_h_m": 0.77,
+      "board_w_m": 3.56,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.77,
+      "reach_m": 1.9,
       "wall_height_m": 3.4,
       "wall_height_from": "the record",
       "frontage_m": 11.0,
@@ -1454,9 +1783,25 @@
     {
       "structure_id": "peck_store",
       "name": "P. F. W. Peck's Store",
-      "sign_text": "P. F. W. Peck's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "P. F. W. PECK / Dry Goods, Groceries & Hardware / South Water Street",
+      "sign_lines": [
+        {
+          "text": "P. F. W. PECK",
+          "role": "name"
+        },
+        {
+          "text": "Dry Goods, Groceries & Hardware",
+          "role": "trade"
+        },
+        {
+          "text": "South Water Street",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Peck",
+      "sign_text_from": "The 1833 pages carry \"P. F. PECK\" at the corner of LaSalle and South Water with staple articles, salt, flour, butter and feathers, and the same man reports the town's prices current for the Democrat. The record independently has him \"advertising dry goods, hardware and groceries through 1834-35\", which is the trade line the board takes; the street is his own. Graded `inferred` and not better because the goods line is assembled from the record and the page rather than lifted whole off one advertisement. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "store_and_dwelling",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -1478,15 +1823,15 @@
         0.12
       ],
       "facade_bearing_deg": 0.0,
-      "arm_height_m": 2.9,
+      "arm_height_m": 3.45,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.33,
-      "board_h_m": 0.6,
+      "board_w_m": 3.23,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.29,
+      "reach_m": 1.74,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -1512,9 +1857,23 @@
     {
       "structure_id": "philo_carpenter_log_shop",
       "name": "Philo Carpenter's Log Drug Store",
-      "sign_text": "Philo Carpenter's Log Drug Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "PHILO CARPENTER / Drugs and Medicines",
+      "sign_lines": [
+        {
+          "text": "PHILO CARPENTER",
+          "role": "name"
+        },
+        {
+          "text": "Drugs and Medicines",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Carpenter",
+      "sign_text_from": "HIS 1833 WORDS ON HIS 1832 SHOP, and the split is deliberate. The advertisement dated 22 November 1833 in the committed issue reads \"PHILO CARPENTER, CHICAGO—ILL. Will keep constantly on hand, a general assortment of DRUGS AND MEDICINES, Oils, Paints, Dye-Stuffs, &c. &c.\" — name first, trade second, which is the board. By 1835 he has rewritten himself as a \"Wholesale & Retail Druggist\" AT THE SIGN OF THE GOLDEN MORTAR on South Water Street, and that later line and that device go on the South Water frontage, not on this one. A FINDING THIS BOARD RAISES RATHER THAN BURIES: this record's own occupants block says NO SOURCE REACHED NAMES ANYONE IN THIS BUILDING IN 1835 and its change note calls the log shop's survival doubtful once he had the South Water store. If the shop had passed to another keeper by 1 July 1835, this board names the wrong man — which is a research question for the structure record, not a wording that can be fixed here. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [
+        "chicago_democrat_1833_11_26"
+      ],
       "trade": "drug_store",
       "trade_confidence": "inferred",
       "trade_class": "counter",
@@ -1538,13 +1897,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.2,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.96,
-      "board_h_m": 0.8,
+      "board_w_m": 1.87,
+      "board_h_m": 0.93,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 1.1,
+      "reach_m": 1.06,
       "wall_height_m": 2.5,
       "wall_height_from": "the record",
       "frontage_m": 6.1,
@@ -1570,9 +1929,25 @@
     {
       "structure_id": "pierce_blacksmith_shop",
       "name": "Asahel Pierce's Blacksmith Shop",
-      "sign_text": "Asahel Pierce's Blacksmith Shop",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "A. PIERCE / Blacksmithing / Lake & Canal Streets",
+      "sign_lines": [
+        {
+          "text": "A. PIERCE",
+          "role": "name"
+        },
+        {
+          "text": "Blacksmithing",
+          "role": "trade"
+        },
+        {
+          "text": "Lake & Canal Streets",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Pierce",
+      "sign_text_from": "A FINDING RAISED RATHER THAN ADOPTED. The 1833 pages carry \"PIERCE & ABBOTT\" under the head \"New Blacksmith Shop\", which is very probably this smithy — but this project's record names Asahel Pierce alone as builder and proprietor and says nothing about a partner, and a signage layer is not the place to add one to a structure record. So the board letters the man the record carries, in the register the pages evidence, graded `reconstructed`; if the structure record adopts the partnership the board should become \"PIERCE & ABBOTT\" and rise to `inferred` with it. The street is the record's own `aka`.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "blacksmith_shop",
       "trade_confidence": "attested",
       "trade_class": "works",
@@ -1596,13 +1971,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.75,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.63,
-      "board_h_m": 0.49,
+      "board_w_m": 2.9,
+      "board_h_m": 0.76,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.44,
+      "reach_m": 1.57,
       "wall_height_m": 3.0,
       "wall_height_from": "the record",
       "frontage_m": 9.0,
@@ -1628,9 +2003,25 @@
     {
       "structure_id": "pruyne_kimball_drugstore",
       "name": "Pruyne & Kimball's Drug Store",
-      "sign_text": "Pruyne & Kimball's Drug Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "PRUYNE & KIMBALL / Druggists / South Water Street",
+      "sign_lines": [
+        {
+          "text": "PRUYNE & KIMBALL",
+          "role": "name"
+        },
+        {
+          "text": "Druggists",
+          "role": "trade"
+        },
+        {
+          "text": "South Water Street",
+          "role": "place"
+        }
+      ],
+      "sign_identity": "Pruyne",
+      "sign_text_from": "No advertisement for this partnership is in the pages read, and the trade word is borrowed rather than theirs: \"Druggist\" is Carpenter's own 1835 self-description, which is what makes it the right period word for the town's second drug store. Andreas gives the partnership and the street and nothing else. A NEAR-MISS WORTH RAISING: the 1835 pages carry \"P. PRYNE & CO.\" twice, both times in the grocery and dry-goods line rather than the drug line — whether that is the same Pruyne is a research question this board does not answer. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "drug_store",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -1654,13 +2045,13 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.87,
-      "board_h_m": 0.72,
+      "board_w_m": 2.14,
+      "board_h_m": 1.15,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.02
       },
-      "reach_m": 1.06,
+      "reach_m": 1.19,
       "wall_height_m": 3.0,
       "wall_height_from": "the record",
       "frontage_m": 7.62,
@@ -1686,9 +2077,21 @@
     {
       "structure_id": "robert_kinzie_store",
       "name": "Robert A. Kinzie's Store",
-      "sign_text": "Robert A. Kinzie's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "R. A. KINZIE / Dry Goods & Groceries",
+      "sign_lines": [
+        {
+          "text": "R. A. KINZIE",
+          "role": "name"
+        },
+        {
+          "text": "Dry Goods & Groceries",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Kinzie",
+      "sign_text_from": "No advertisement for him is in the pages read. The record has a storehouse dealing in groceries and Indian goods and its keeper among the town's licensed traders, and it warns that the trade's continuity past the 1833 treaty is not attested. The board therefore carries the counter trade the town's own advertising uses and says nothing about the Indian trade, which the record will not stand behind at the scene date. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "store",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -1712,16 +2115,16 @@
       "facade_bearing_deg": 90.0,
       "arm_height_m": 2.2,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.56,
-      "board_h_m": 0.6,
+      "board_w_m": 1.66,
+      "board_h_m": 0.64,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.46,
+        "awning_width_m": 2.56,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 2.02,
+      "reach_m": 2.05,
       "wall_height_m": 2.5,
       "wall_height_from": "the archetype's default, because the record carries no wall height — the same number the wall itself is drawn at",
       "frontage_m": 7.0,
@@ -1747,9 +2150,21 @@
     {
       "structure_id": "sauganash_hotel",
       "name": "Sauganash Hotel",
-      "sign_text": "Sauganash Hotel",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "SAUGANASH HOTEL / Public House",
+      "sign_lines": [
+        {
+          "text": "SAUGANASH HOTEL",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Sauganash",
+      "sign_text_from": "No advertisement for this house is in the pages read. \"Public House\" is E. Wentworth's own 1833 trade line. The house name is the one the town used and the record carries; its earlier names, Eagle Exchange Tavern and Chicago Hotel, are in its `aka` and belong to earlier years. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "tavern_inn",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -1773,16 +2188,16 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.29,
-      "board_h_m": 0.5,
+      "board_w_m": 1.59,
+      "board_h_m": 0.61,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.19,
+        "awning_width_m": 2.49,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.94,
+      "reach_m": 2.03,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.0,
@@ -1808,9 +2223,21 @@
     {
       "structure_id": "steamboat_hotel",
       "name": "Steamboat Hotel",
-      "sign_text": "Steamboat Hotel",
-      "sign_text_from": "the record's own name, which is what the card shows",
-      "sign_text_confidence": "reconstructed",
+      "sign_text": "JOHN DAVIS / Steam-Boat Hotel",
+      "sign_lines": [
+        {
+          "text": "JOHN DAVIS",
+          "role": "name"
+        },
+        {
+          "text": "Steam-Boat Hotel",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Steamboat Hotel",
+      "sign_text_from": "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, house, street — the board is the advertisement. The hyphen is the advertisement's own spelling and is kept. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a bracket board, which carries 2 lines, so the place line — \"North Water Street\" — is not lettered here: a signwriter letters what fits.",
+      "sign_text_confidence": "inferred",
+      "sign_text_sources": [],
       "trade": "hotel",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -1834,14 +2261,14 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.17,
-      "board_h_m": 0.63,
+      "board_w_m": 1.46,
+      "board_h_m": 0.79,
       "board_thickness_m": 0.05,
       "geometry": {
         "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.41,
+      "reach_m": 1.48,
       "wall_height_m": 5.2,
       "wall_height_from": "the record",
       "frontage_m": 15.0,
@@ -1867,9 +2294,21 @@
     {
       "structure_id": "thomas_church_store",
       "name": "Thomas Church's Store",
-      "sign_text": "Thomas Church's Store",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "THOMAS CHURCH / Dry Goods & Groceries",
+      "sign_lines": [
+        {
+          "text": "THOMAS CHURCH",
+          "role": "name"
+        },
+        {
+          "text": "Dry Goods & Groceries",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Church",
+      "sign_text_from": "No advertisement for him is in the pages read. The source names him as the BUILDER of the first store building on Lake Street and says nothing about who kept it or what it sold — the record says so in as many words. So the board carries the name the record carries over the plainest of the town's own counter trades, and it is reconstructed twice over: the wording is ours, and so is the assumption that the builder was the keeper.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "store",
       "trade_confidence": "attested",
       "trade_class": "counter",
@@ -1891,15 +2330,15 @@
         -100.02
       ],
       "facade_bearing_deg": 180.0,
-      "arm_height_m": 2.88,
+      "arm_height_m": 3.1,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 2.33,
-      "board_h_m": 0.58,
+      "board_w_m": 2.63,
+      "board_h_m": 0.8,
       "board_thickness_m": 0.05,
       "geometry": {
         "proud_m": 0.03
       },
-      "reach_m": 1.29,
+      "reach_m": 1.44,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -1925,9 +2364,21 @@
     {
       "structure_id": "tremont_house_1",
       "name": "Tremont House (the first)",
-      "sign_text": "Tremont House",
-      "sign_text_from": "the record's own name less its trailing parenthetical, which disambiguates the model rather than naming the house",
+      "sign_text": "TREMONT HOUSE / Public House",
+      "sign_lines": [
+        {
+          "text": "TREMONT HOUSE",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Tremont House",
+      "sign_text_from": "No advertisement for the house is in the pages read, though attorneys on them give their offices as \"opposite the Tremont House\", which is the house being used as a landmark by strangers — exactly what a hotel's board is for. \"Public House\" is E. Wentworth's own 1833 trade line. The record's parenthetical, \"(the first)\", is this project telling itself which of three Tremonts it models and was never on a board. Ira Couch kept it and is deliberately not lettered: an inn of this town announced its HOUSE. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "hotel",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -1951,16 +2402,16 @@
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.23,
-      "board_h_m": 0.53,
+      "board_w_m": 1.53,
+      "board_h_m": 0.66,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.13,
+        "awning_width_m": 2.43,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.92,
+      "reach_m": 2.01,
       "wall_height_m": 5.2,
       "wall_height_from": "the record",
       "frontage_m": 15.24,
@@ -1986,9 +2437,21 @@
     {
       "structure_id": "western_hotel",
       "name": "Western Hotel",
-      "sign_text": "Western Hotel",
-      "sign_text_from": "the record's own name, which is what the card shows",
+      "sign_text": "WESTERN HOTEL / Public House",
+      "sign_lines": [
+        {
+          "text": "WESTERN HOTEL",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "Western Hotel",
+      "sign_text_from": "No advertisement for this house is in the pages read. \"Public House\" is E. Wentworth's own 1833 trade line, and this is the west-side wagon-trade house — \"the stopping place for all the farmers town from the west\" — whose custom came off the road and had to read the board from it. W. H. Stow built it and kept it, and is not lettered for the same reason Ira Couch is not. Reconstructed.",
       "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
       "trade": "tavern_inn",
       "trade_confidence": "attested",
       "trade_class": "house",
@@ -2012,16 +2475,16 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.23,
-      "board_h_m": 0.47,
+      "board_w_m": 1.53,
+      "board_h_m": 0.59,
       "board_thickness_m": 0.05,
       "geometry": {
         "awning_projection_m": 1.45,
         "awning_drop_m": 0.34,
-        "awning_width_m": 2.13,
+        "awning_width_m": 2.43,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 1.92,
+      "reach_m": 2.01,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,
@@ -2087,5 +2550,13 @@
       "why": "it already has one. This is the single record in the dataset that ATTESTS a sign, and the board hangs in its GLB already (phase log_frame_1828, docs/LIBERTIES.md L25). A second board here would be this layer duplicating the only real one."
     }
   ],
-  "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale description naming a shop sign; any of the pre-fire photographs of a surviving 1830s frontage actually being opened at its holding institution (the Green Tree 1859 plate, ICHi-040230, is the nearest and is unseen); or a traveller's account of walking South Water Street. Any one of those would let a sign here be regraded record by record — and one that gave a WORDING, a COLOUR or a MOUNTING for a named house would be the first thing this project has ever held that could take one of these three off the reconstructed tier."
+  "research_note": "THE FIRST THING TO DO, AND IT IS ALREADY HALF DONE: COMMIT THE SEVEN PAGES. The wordings graded `inferred` above are transcribed from 1833-35 Chicago newspaper pages the owner supplied as IMAGES IN CONVERSATION on 2026-08-21 — one carrying 'Chicago, Dec. 31, 1833' with a 'CHICAGO PRICES CURRENT … Reported for the Democrat by P. F. Peck' that identifies the Chicago Democrat, one 'Chicago, Dec. 4, 1833', and several of 1835 carrying an 'ARRIVALS OF VESSELS AT CHICAGO, 1835' table and a Post Office list of letters remaining 'on the 31st day of March, 1835'. Drop those images into data/sources/assets/ with a source record and EVERY `inferred` WORDING HERE BECOMES A CANDIDATE FOR `attested`, one board at a time, each note already saying what its page says. Goss & Cobb's is the nearest: its page is committed already. WHAT WOULD MOVE THE REST — the fact of a sign, its colours and its mounting — is unchanged: a Chicago or Cook County sign ordinance of the 1830s; an insurance, tax or sale description naming a shop sign; any of the pre-fire photographs of a surviving 1830s frontage actually being opened at its holding institution (the Green Tree 1859 plate, ICHi-040230, is the nearest and is unseen); or a traveller's account of walking South Water Street.",
+  "findings": [
+    "J. S. C. HOGAN advertises in 1835 from 'South Water Street, one door below Dearborn' in dry goods, groceries, hardware, crockery and glass ware. The model carries ONE Hogan building, the log store at the Lake Street junction, which its own record identifies as Brewster, Hogan & Co.'s. The pages distinguish the two businesses and the model does not — a placement question, raised rather than silently answered.",
+    "PIERCE & ABBOTT advertise a 'New Blacksmith Shop' on the 1833 pages. This project's record names Asahel Pierce alone as builder and proprietor. If the partnership is his, the board should read PIERCE & ABBOTT and rise from `reconstructed` to `inferred`; a signage generator is not the place to add a partner to a structure record.",
+    "P. PRYNE & CO. appears twice on the 1835 pages, both times in groceries and dry goods, never in drugs. The model carries Pruyne & Kimball as a drug store on Andreas's word. Whether these are the same Pruyne is unresolved and the board says nothing about it.",
+    "Two 1835 advertisements locate themselves BY A NEIGHBOUR — Wm. H. Taylor's boot store 'a few rods north of Newberry & Dole's', J. Curtiss's office 'first door west of Jones, King & Co.' — and a third 'opposite the Tremont House'. Those are checkable against this model's own placements and are a wayfinding gift for whoever takes the placement sweep.",
+    "Firms the pages name and the model does not yet carry at all: WM. H. TAYLOR (boot, shoe and leather), J. H. MULFORD (watches and jewelry), DAVID CARVER (lumber dealer and commission merchant), MAGIE & WILKINSON (boots, shoes and hats), F. J. CONANT (clothing warehouse), Doct. WM. H. KENNICOTT (medicine and dentistry), and a bench of attorneys. Each is a placement question, not a wording one, and none has been invented a building here.",
+    "Out-of-town houses advertise on the same pages — Patterson, Gardner & Mather of Detroit 'at the sign of the Large Pitcher', Cromelien, Brothers & Co. of New York. They are useful as REGISTER and must never be hung in Chicago. The Large Pitcher is quoted in the golden mortar's note for exactly that reason: it shows the convention was ordinary, and it belongs to Detroit."
+  ]
 }

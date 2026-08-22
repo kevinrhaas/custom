@@ -16,8 +16,7 @@ reconstructions."* The standing ruling on invention applies: *"you are totally f
 liberal with adding reconstructed items when i ask for things, you can just label and
 mark them as such."* So this record now carries, for every board:
 
-  * the WORDING — the name the dataset already gives that location, so a visitor who
-    reads the board and then taps it is shown the same words on the card;
+  * the WORDING — what a signwriter lettered on that frontage: see SIGN_WORDING below;
   * a MOUNTING — bracket-hung over the footway, hung under an awning, fixed flat on the
     building, standing on a post at the street edge, or the name painted straight onto
     the face of the building;
@@ -25,7 +24,35 @@ mark them as such."* So this record now carries, for every board:
     combinations the trade actually used, assigned so that no two boards within
     `NEIGHBOUR_M` of each other share a mounting, a style or a ground colour.
 
-All three are RECONSTRUCTED and graded so. `docs/LIBERTIES.md` **L159** is the claim.
+`docs/LIBERTIES.md` **L159** is the claim for the mounting and the style, and **L166**
+for the wording.
+
+T-0130 CORRECTS THE WORDING, and the correction is the owner's, 2026-08-21, verbatim:
+*"philo would not have referred to his own place as log drug store, it would be philo
+carpenter, drugs and medicines, or druggist or whatever he would have referred to himself
+as on the sign, that may be different than the name of the building for us, the sign may
+read differently historically."* And, of the next one: *"same with hogan's store."* And,
+widening it to the set: *"i guess do a pass on all those signs and make sure they feel
+right for the era."*
+
+T-0066 painted the STRUCTURE RECORD'S OWN `name` on the board, less a trailing
+parenthetical, and this docstring used to defend that: *"the card a visitor opens by
+tapping the board has to say what the board says."* THAT COLLAPSED TWO DIFFERENT OBJECTS.
+
+  * A record's `name` is OUR LABEL FOR A BUILDING — descriptive, disambiguating, written
+    so a modern reader knows which structure is meant: "Philo Carpenter's Log Drug Store",
+    "Hogan's Store", "Tremont House (the first)". The word "log" is in there because the
+    walls are log. No druggist painted the construction of his own shop on his own board.
+  * A SIGNBOARD carries what the TRADE lettered — the proprietor or the firm, and the
+    trade he practised, in the register a signwriter actually worked in.
+
+So the two fields are now separate and are allowed to differ. The structure keeps its
+`name` for the card and the search box; the board carries `sign_text` out of
+SIGN_WORDING. What the two must still agree about is WHO THIS IS: every entry declares a
+`sign_identity` — the proprietor, the firm or the house — and this file refuses to build
+unless that identity appears in the board AND in the card. `tools/smoke_renderer.mjs`
+asserts the same thing at run time, over every sign and at the Tremont's own board. That
+is a CORRECTION of T-0066's string-equality assertion, not a relaxation of it.
 
 THE RULE THAT CHOOSES A FRONTAGE, and every clause is doing work. A structure gets a
 sign iff
@@ -207,6 +234,553 @@ STYLES = [
 # Clause 3.
 TRADE_GRADES = {"attested", "documented", "inferred"}
 
+# --- WHAT THE BOARDS SAY (T-0130) -------------------------------------------
+#
+# THE REGISTER, taken from the advertisements themselves rather than from a modern eye:
+# the PROPRIETOR OR FIRM first and largest, the TRADE beneath it, and the PLACE last and
+# smallest. Carpenter's 1835 advertisement heads itself "PHILO CARPENTER, Wholesale &
+# Retail Druggist, … South Water Street, Chicago"; Brewster, Hogan & Co.'s reads
+# "BREWSTER, HOGAN & CO. Forwarding & Commission MERCHANTS, Chicago—Illinois". Both put
+# the man or the firm on the top line in the largest letter, the trade in a second face
+# beneath, and the place last. That hierarchy is the record's (`sign_lines` carries the
+# role of each line) and `renderers/web/js/signage.js` letters it.
+#
+# PERIOD SPELLING IS THEIRS AND IS KEPT. "Stationary" for stationery, "Sattinetts",
+# "Merselles", the em-dashed "Chicago—Illinois" — a board that modernises its own
+# spelling stops feeling like 1835, which is half of what the owner asked for.
+#
+# WHERE THE 1833 AND 1835 COPY DIFFER, THE 1835 WINS. The scene is 1 July 1835 and firms
+# rewrote their lines: Carpenter advertises "DRUGS AND MEDICINES" in 1833 and calls
+# himself "Wholesale & Retail Druggist" by 1835.
+#
+# THE TIERS, AND WHY NOT ONE OF THEM IS `attested` YET. The owner supplied seven pages of
+# 1833-35 Chicago newspaper advertising as IMAGES IN CONVERSATION on 2026-08-21 and ruled,
+# verbatim: *"I will give you all those data sources later in a more comprehensive form
+# proceed where you can and label reconstruction or inferred with a note as you like"*.
+# So a wording taken off those pages is graded `inferred` — reasoned from a document about
+# THIS PARTICULAR FIRM — and every one of those notes says what the advertisement says,
+# where it came from, that the transcription is not yet a citation, and that it is to be
+# UPGRADED TO `attested` when the page images land in `data/sources/assets/`. A
+# transcription in a ticket is not a source record, and this file will not pretend it is.
+# A wording with no surviving advertisement is `reconstructed` and built out of the trade
+# vocabulary those same pages evidence.
+PENDING = (
+    "TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED "
+    "to data/sources/assets/, so this is graded `inferred` rather than `attested` on the "
+    "owner's own ruling of that day: \"I will give you all those data sources later in a "
+    "more comprehensive form proceed where you can and label reconstruction or inferred "
+    "with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are "
+    "committed as a source record and this note can cite one."
+)
+
+# The device Carpenter's own advertisement names. A device belongs to a shop only where
+# that shop's own advertisement names one — see the note.
+DEVICES = {
+    "golden_mortar": {
+        "id": "golden_mortar",
+        "label": "a mortar and pestle, gilt",
+        "colour": "#d9b036",
+        "shade": "#7a5c14",
+        "confidence": "inferred",
+        "note": (
+            "A CHICAGO SIGNBOARD DESCRIBED BY ITS OWN OWNER, IN PRINT, IN THE SCENE YEAR. "
+            "Philo Carpenter's 1835 advertisement heads itself \"PHILO CARPENTER, "
+            "Wholesale & Retail Druggist, AT THE SIGN OF THE GOLDEN MORTAR, South Water "
+            "Street, Chicago\". A mortar and pestle is the druggist's universal device, "
+            "and a Detroit house advertising on the same pages \"at the sign of the Large "
+            "Pitcher\" shows the convention was live and ordinary. So this board carries "
+            "the device PAINTED rather than the phrase lettered: the sign is what he "
+            "described, not a sentence about it. THIS IS THE OPPOSITE CASE TO L25, WHICH "
+            "STANDS UNTOUCHED — L25 withholds the Wolf Point wolf because that IMAGE was "
+            "never described, and here the owner of the shop describes his own board. "
+            "What is invented is the DRAUGHTSMANSHIP: the outline is a plain bowl, rim "
+            "and pestle, no ornament and no ground line. " + PENDING
+        ),
+    },
+}
+
+# HOW MANY LINES EACH MOUNTING CARRIES. A signwriter letters what fits: a plank swinging
+# over a footway takes the man and his trade, and a board fixed flat on a wall or a name
+# painted across a whole front has room for the street as well. This is why `sign_text`
+# is resolved AFTER the mounting is chosen and not before.
+LINES_BY_MOUNTING = {
+    "bracket_board": 2,
+    "awning_board": 2,
+    "post_board": 2,
+    "wall_board": 3,
+    "facade_painted": 3,
+}
+
+# EVERY BOARD IN THE TOWN, in the trade's own words where they survive.
+#
+#   name         line 1 — the proprietor, the firm or the house, largest
+#   trade        line 2 — the trade, in the period's own words
+#   trade_short  line 2 where the mounting has room for two lines only
+#   place        line 3 — the street or the town, smallest, where the board has room
+#   identity     the token the board and the card must BOTH carry (see _norm)
+#   grade        `inferred` (a firm's own advertisement) or `reconstructed`
+#   device       a painted device, where the firm's own advertisement names one
+#   sources      COMMITTED source records only — the owner's 2026-08-21 pages are not
+#                committed and are described in `why` instead
+#   why          what the evidence says, quoted, and what would upgrade the grade
+SIGN_WORDING = {
+    "bates_auction_room": {
+        "name": "J. BATES, JR.", "trade": "Auctioneer", "identity": "Bates",
+        "grade": "inferred",
+        "why": (
+            "His own advertisement signs itself \"J. BATES, JR.\" over the single trade "
+            "word \"Auctioneer\" — the whole of a sale-room's copy, because an auctioneer "
+            "sells his name. The record's own label, \"John Bates Jr.'s Auction Room\", "
+            "describes the building for a modern reader; the board carries the man. "
+            + PENDING
+        ),
+    },
+    "brickyard_north_side": {
+        "name": "T. K. BLODGETT", "trade": "Brick Maker", "identity": "Blodgett",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this yard is in the pages read. Andreas names Tyler K. "
+            "Blodgett and calls him \"undoubtedly the first brick-maker\", and the "
+            "record's own occupants block carries him, so the board is built in the "
+            "register the pages evidence — proprietor, then trade — out of the trade's "
+            "own word. Reconstructed: nobody records that this yard announced itself at "
+            "all, let alone in these words."
+        ),
+    },
+    "brown_boarding_house": {
+        "name": "RUFUS BROWN", "trade": "Boarding House", "identity": "Brown",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read. \"Boarding House\" is "
+            "the period's own term and the record's own function; the proprietor is the "
+            "record's. Reconstructed."
+        ),
+    },
+    "carpenter_south_water_store": {
+        "name": "PHILO CARPENTER", "trade": "Wholesale & Retail Druggist",
+        "trade_short": "Druggist", "place": "South Water Street",
+        "identity": "Carpenter", "grade": "inferred", "device": "golden_mortar",
+        "why": (
+            "HIS OWN 1835 WORDS, AND THE SCENE IS 1835. The advertisement heads itself "
+            "\"PHILO CARPENTER, Wholesale & Retail Druggist, AT THE SIGN OF THE GOLDEN "
+            "MORTAR, South Water Street, Chicago\" and goes on \"has just received and now "
+            "offers for sale, one of the largest and best selected assortments of DRUGS "
+            "AND MEDICINES, Paints, Oils, & Dye-Stuffs, ever offered in the State of "
+            "Illinois\". Man, trade, street — in that order, which is the order the board "
+            "letters. THIS IS THE FRONTAGE THE ADVERTISEMENT PLACES ON SOUTH WATER STREET, "
+            "so it is this board and not his older Lake Street shop that carries the "
+            "golden mortar. The 1833 copy for the same man reads \"DRUGS AND MEDICINES\" "
+            "and is used on that older shop, because firms rewrote their lines and this "
+            "project models the later day. " + PENDING
+        ),
+    },
+    "chicago_american_office": {
+        "name": "CHICAGO AMERICAN", "trade": "Printing Office",
+        "identity": "Chicago American", "grade": "reconstructed",
+        "why": (
+            "The paper was twenty-three days old on the scene date and no advertisement "
+            "of its own is in the pages read. A newspaper office announced the PAPER — the "
+            "Democrat's own imprint does exactly that — so the board carries the title and "
+            "the trade, in the register the pages evidence. T. O. Davis's name is on the "
+            "record and deliberately not on the board: a paper's office was known by its "
+            "paper. Reconstructed."
+        ),
+    },
+    "chicago_democrat_office": {
+        "name": "CHICAGO DEMOCRAT", "trade": "Printing Office",
+        "place": "South Water & Clark Streets", "identity": "Chicago Democrat",
+        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "THE PAPER'S OWN IMPRINT, in a source this repository already holds and whose "
+            "page images are committed: \"THE DEMOCRAT, Is published every Tuesday, in the "
+            "village of Chicago, Cook co. Ill. in the building on the corner of South Water "
+            "and Clark-streets.\" That is the office naming itself and its junction, which "
+            "is what a board carries. Note precisely what it does NOT settle and the board "
+            "does not claim: WHICH of the four corners, which the record argues separately "
+            "and which the pencilled \"S. W.\" in that page's margin is a later reader's "
+            "gloss on rather than evidence for. Graded `inferred` rather than `attested` "
+            "because the imprint is a masthead and not a description of a signboard."
+        ),
+    },
+    "clybourn_slaughterhouse": {
+        "name": "A. CLYBOURNE", "trade": "Slaughtering & Packing",
+        "identity": "Clybourne", "grade": "reconstructed",
+        "why": (
+            "No advertisement for this plant is in the pages read. Andreas has Clybourne "
+            "killing for the garrison from 1827 and packing commercially from 1833, and "
+            "\"packing\" is the trade's own word in this town — Newberry & Dole's own "
+            "advertising uses it. The record's label calls the building a \"Log "
+            "Slaughter-House\", which is this project describing walls; a drover reading "
+            "the front needed the firm and the trade. Reconstructed."
+        ),
+    },
+    "dole_warehouse_south": {
+        "name": "GEO. W. DOLE", "trade": "Forwarding & Commission Merchant",
+        "trade_short": "Forwarding & Commission", "identity": "Dole",
+        "grade": "reconstructed",
+        "why": (
+            "The firm NEWBERRY & DOLE advertises in both 1833 and 1835 and its warehouse "
+            "on the north bank carries that firm's own line. THIS building is Dole's own "
+            "1832 warehouse and slaughter yard on the south side, and no advertisement in "
+            "the pages read is signed by Dole alone — so the trade words are the firm's "
+            "and the single-partner line is ours. Reconstructed for that reason rather "
+            "than for any doubt about the trade."
+        ),
+    },
+    "elston_soap_candle_manufactory": {
+        "name": "DANIEL ELSTON & CO.", "trade": "Chicago Soap and Candle Manufactory",
+        "trade_short": "Soap & Candle Manufactory", "identity": "Elston",
+        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "The firm's own advertisement heads itself \"Chicago Soap and Candle "
+            "Manufactory\" over \"DANIEL ELSTON & CO.\", and pays cash for tallow and for "
+            "house ashes. It is in the committed issue of 26 November 1833 as well as in "
+            "the owner's pages — with one caveat that travels with the name and is the "
+            "committed source record's own: the word after the ampersand is OBLITERATED BY "
+            "AN INK BLOT, and \"Co.\" is a reasonable expansion rather than a reading. "
+            "Graded `inferred` for that, and because an advertisement is not a description "
+            "of a board."
+        ),
+    },
+    "exchange_coffee_house": {
+        "name": "EXCHANGE COFFEE HOUSE", "trade": "Public House",
+        "identity": "Exchange", "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read. \"Public House\" is E. "
+            "Wentworth's own trade line on the 1833 page and is the period's word for what "
+            "this building was; the house name is the one Mark Beaubien's successors "
+            "christened it with in 1834. A coffee house of these years lodged and fed "
+            "people, and the record's own note says so. Reconstructed."
+        ),
+    },
+    "goss_cobb_saddlery": {
+        "name": "GOSS & COBB", "trade": "Saddle & Harness Making",
+        "place": "Lake & Canal Streets", "identity": "Goss",
+        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "THE FIRM'S OWN WORDS, OFF A COMMITTED PAGE IMAGE, read from the scan on "
+            "2026-08-11 and quoted verbatim in this building's own record: \"[Saddle & "
+            "H]arness Making. GOSS & COBB, respectfully inform the inhabitants of Chicago "
+            "and the neighboring settlements, that they have opened a shop in this "
+            "village, on the conner of Lake and Canal-streets\". Heading, firm, address — "
+            "which is the whole of the board. THIS IS THE FIRST WORDING IN THE SET THAT "
+            "COULD BE UPGRADED: its page is already committed at "
+            "data/sources/assets/chicago_democrat_1833_11_26/, and what keeps it "
+            "`inferred` is that an advertisement heading is still not a description of a "
+            "signboard."
+        ),
+    },
+    "h_jones_store": {
+        "name": "JONES", "trade": "Grocery & Provision Store",
+        "identity": "Jones", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "The advertisement is headed \"Grocery & Provision Store\" and signed by Jones "
+            "— which is the board, in the order the trade wrote it. THE INITIAL IS "
+            "DELIBERATELY NOT PAINTED, and that is this record refusing to decide "
+            "something its own source record refuses to decide: Andreas writes \"H. "
+            "Jones\", the advertisement in the committed issue reads \"B. JONES\", and the "
+            "structure record carries the surname and not the initial because B and H are "
+            "among the easiest letters to confuse in a display face of this period on a "
+            "damaged sheet. A board that picked one would be the signage layer settling a "
+            "question the dataset has left open."
+        ),
+    },
+    "harmon_loomis_store": {
+        "name": "HARMON, LOOMIS & CO.", "trade": "Dry Goods, Groceries & Hardware",
+        "trade_short": "Dry Goods & Groceries", "identity": "Harmon",
+        "grade": "inferred",
+        "why": (
+            "THE 1835 LINE, PREFERRED OVER THE 1833 ONE. The firm advertises in 1835 as "
+            "\"HARMON, LOOMIS & CO.\" under the head \"New Goods!\", offering \"Dry Goods, "
+            "Groceries and Hard Ware\"; the 1833 pages carry the same house as \"C. & I. "
+            "HARMON\" with \"Dry Goods, Crockery, Hardware, Wet and Dry Groceries\" and "
+            "again as \"HARMON, LOOMIS & CO.\". The later name is the one standing on the "
+            "scene date, and the record's own `aka` already carries both. " + PENDING
+        ),
+    },
+    "hogan_store": {
+        "name": "BREWSTER, HOGAN & CO.", "trade": "Forwarding & Commission Merchants",
+        "trade_short": "Forwarding & Commission", "place": "Chicago—Illinois",
+        "identity": "Hogan", "grade": "inferred",
+        "why": (
+            "THE IDENTITY IS CORRECTED, NOT JUST THE WORDING. The firm's own advertisement "
+            "reads \"BREWSTER, HOGAN & CO. Forwarding & Commission MERCHANTS, "
+            "Chicago—Illinois\", and adds dry goods and groceries below. Our label, "
+            "\"Hogan's Store\", is a shorthand for one partner; the building's own record "
+            "already knows better and lists \"Brewster, Hogan & Co.'s store\" in its `aka` "
+            "and names the firm in its change note — the log store was partitioned, post "
+            "office on one side and this firm's store on the other. THE PAGES ALSO "
+            "DISTINGUISH A SECOND HOGAN and this board is not him: \"J. S. C. HOGAN\", "
+            "\"Dry Goods, Groceries, Hardware, Crockery and Glass Ware\", \"South Water "
+            "Street, one door below Dearborn\" — a different trade at a different address "
+            "from this building at the Lake Street junction. Whether the model should ALSO "
+            "carry J. S. C. Hogan's South Water store is a placement question and is "
+            "raised, not silently answered. " + PENDING
+        ),
+    },
+    "jh_kinzie_forwarding_store": {
+        "name": "JOHN H. KINZIE", "trade": "Forwarding & Commission Merchant",
+        "trade_short": "Forwarding & Commission", "place": "Agent, Troy & Erie Line",
+        "identity": "Kinzie", "grade": "inferred",
+        "why": (
+            "His own line, and the 1835 form of it: \"JOHN H. KINZIE, Forwarding & "
+            "Commission Merchant … Agent for the Troy & Erie Line\", the 1833 pages "
+            "carrying the same man as a \"Storage, Forwarding & Commission Merchant\" for "
+            "the same line. The agency is on the third line because that is what a "
+            "shipper walking the street needed to read; it is the place line's slot and "
+            "it does the place line's job. " + PENDING
+        ),
+    },
+    "kinzie_hunter_warehouse": {
+        "name": "KINZIE & HUNTER", "trade": "Forwarding & Commission Merchants",
+        "trade_short": "Forwarding & Commission", "identity": "Kinzie",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this firm is in the pages read. The record's own "
+            "function is `forwarding_commission_warehouse` and its note says the trade is "
+            "held by association with the neighbouring dock rather than by any statement — "
+            "Andreas separately has a Kinzie, Hunter & Co. in the LUMBER trade in these "
+            "years. So the trade words are the town's own, the firm is the record's, and "
+            "the whole line is reconstructed. If the lumber reading is right the board "
+            "should read \"Lumber Dealer & Commission Merchant\", which is David Carver's "
+            "own 1835 line and is the form to reach for; that is a research question, not "
+            "a wording one."
+        ),
+    },
+    "madore_beaubien_house": {
+        "name": "MADORE BEAUBIEN", "trade": "Dry Goods & Groceries",
+        "identity": "Beaubien", "grade": "reconstructed",
+        "why": (
+            "No advertisement for him is in the pages read. He was licensed as a merchant "
+            "in 1831 — the year the building went up — and the record's own `aka` carries "
+            "\"Madore Beaubien's store\", so the board carries the man and the plainest of "
+            "the town's own counter trades. The record's label, \"Madore Beaubien's Log "
+            "House\", is this project naming a building by its walls. Reconstructed."
+        ),
+    },
+    "mansion_house": {
+        "name": "MANSION HOUSE", "trade": "Public House", "identity": "Mansion",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read, though the 1833 pages "
+            "locate Matthias Mason's smithy \"nearly opposite Graves' Tavern\", which is "
+            "this building under its keeper's name. \"Public House\" is E. Wentworth's own "
+            "1833 trade line. The house name is the one the record carries at the scene "
+            "date, when Markle rather than Graves had it. Reconstructed."
+        ),
+    },
+    "mason_blacksmith_shop": {
+        "name": "MATTHIAS MASON & CO.", "trade": "Blacksmithing",
+        "identity": "Mason", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "The firm's own advertisement is headed \"Blacksmithing Business\" over "
+            "\"MATTHIAS MASON & CO.\", on \"Main-street, nearly opposite Graves' Tavern\". "
+            "The board takes the firm and the trade word and NOT the address: "
+            "\"Main-street\" is a street name this project does not otherwise hold, "
+            "recorded as a finding in docs/RESEARCH/residents_1835.md § 7, and lettering "
+            "it here would be the signage layer asserting a street the streets layer does "
+            "not carry."
+        ),
+    },
+    "miller_house": {
+        "name": "MILLER HOUSE", "trade": "Store", "identity": "Miller",
+        "grade": "reconstructed",
+        "why": (
+            "The hardest board in the set, and the wording is deliberately thin. The "
+            "record's function on the scene date is a store with the keeper living over "
+            "it; its occupants are NOT attested at that date; Samuel Miller had removed to "
+            "the place that became Michigan City and the tavern had reverted to store use "
+            "after 1832. So there is no proprietor to letter, and the board carries the "
+            "name the settlement knew the building by — \"Miller House\", \"Miller's "
+            "Tavern\", \"Fork Tavern\" are its own `aka` — over the plainest period word "
+            "for what it was doing. Inventing a keeper or a stock would be worse than a "
+            "thin board. Reconstructed."
+        ),
+    },
+    "miller_tannery": {
+        "name": "JOHN MILLER", "trade": "Tannery", "identity": "Miller",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this tan-yard is in the pages read. The function is the "
+            "best-attested thing about the building — \"a log house … that he used as a "
+            "tannery, Chicago's first recorded factory\" — and the proprietor is named. "
+            "The board carries the two and drops the walls. Reconstructed."
+        ),
+    },
+    "newberry_dole_slaughterhouse_south_branch": {
+        "name": "NEWBERRY & DOLE", "trade": "Slaughtering & Packing",
+        "place": "South Branch", "identity": "Newberry", "grade": "reconstructed",
+        "why": (
+            "The FIRM's own advertised line is the forwarding one and it is lettered on "
+            "their warehouse. For this plant the pages give nothing: what is recorded is "
+            "Andreas's sentence about a slaughter-house on the South Branch where three "
+            "hundred cattle and fourteen hundred hogs were packed in its first season. So "
+            "the firm is theirs and the trade line is ours, out of the town's own word for "
+            "the trade. Reconstructed."
+        ),
+    },
+    "newberry_dole_warehouse": {
+        "name": "NEWBERRY & DOLE",
+        "trade": "Storage, Forwarding & Commission Merchants",
+        "trade_short": "Forwarding & Commission", "place": "Agents, Merchants Line",
+        "identity": "Newberry", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "THE 1835 LINE, PREFERRED OVER THE 1833 ONE, and the 1833 one is in a "
+            "committed source: \"NEWBERRY & DOLE, Forwarding & Commission MERCHANTS\" in "
+            "the issue of 26 November 1833, which this project's own record calls \"the "
+            "first contemporary document in this dataset and about as good as evidence of "
+            "a trade gets, since the advertiser was paying for it and his customers had to "
+            "be able to find him\". By 1835 the firm advertises as \"Storage, Forwarding "
+            "and Commission Merchants\" and \"Agents for the Merchants Line\", and the "
+            "agency goes on the third line because that is what a shipper needed off the "
+            "river. " + PENDING
+        ),
+    },
+    "peck_store": {
+        "name": "P. F. W. PECK", "trade": "Dry Goods, Groceries & Hardware",
+        "trade_short": "Dry Goods & Groceries", "place": "South Water Street",
+        "identity": "Peck", "grade": "inferred",
+        "why": (
+            "The 1833 pages carry \"P. F. PECK\" at the corner of LaSalle and South Water "
+            "with staple articles, salt, flour, butter and feathers, and the same man "
+            "reports the town's prices current for the Democrat. The record independently "
+            "has him \"advertising dry goods, hardware and groceries through 1834-35\", "
+            "which is the trade line the board takes; the street is his own. Graded "
+            "`inferred` and not better because the goods line is assembled from the record "
+            "and the page rather than lifted whole off one advertisement. " + PENDING
+        ),
+    },
+    "philo_carpenter_log_shop": {
+        "name": "PHILO CARPENTER", "trade": "Drugs and Medicines",
+        "trade_short": "Druggist", "identity": "Carpenter", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_11_26"],
+        "why": (
+            "HIS 1833 WORDS ON HIS 1832 SHOP, and the split is deliberate. The "
+            "advertisement dated 22 November 1833 in the committed issue reads \"PHILO "
+            "CARPENTER, CHICAGO—ILL. Will keep constantly on hand, a general assortment of "
+            "DRUGS AND MEDICINES, Oils, Paints, Dye-Stuffs, &c. &c.\" — name first, trade "
+            "second, which is the board. By 1835 he has rewritten himself as a \"Wholesale "
+            "& Retail Druggist\" AT THE SIGN OF THE GOLDEN MORTAR on South Water Street, "
+            "and that later line and that device go on the South Water frontage, not on "
+            "this one. A FINDING THIS BOARD RAISES RATHER THAN BURIES: this record's own "
+            "occupants block says NO SOURCE REACHED NAMES ANYONE IN THIS BUILDING IN 1835 "
+            "and its change note calls the log shop's survival doubtful once he had the "
+            "South Water store. If the shop had passed to another keeper by 1 July 1835, "
+            "this board names the wrong man — which is a research question for the "
+            "structure record, not a wording that can be fixed here. " + PENDING
+        ),
+    },
+    "pierce_blacksmith_shop": {
+        "name": "A. PIERCE", "trade": "Blacksmithing", "place": "Lake & Canal Streets",
+        "identity": "Pierce", "grade": "reconstructed",
+        "why": (
+            "A FINDING RAISED RATHER THAN ADOPTED. The 1833 pages carry \"PIERCE & "
+            "ABBOTT\" under the head \"New Blacksmith Shop\", which is very probably this "
+            "smithy — but this project's record names Asahel Pierce alone as builder and "
+            "proprietor and says nothing about a partner, and a signage layer is not the "
+            "place to add one to a structure record. So the board letters the man the "
+            "record carries, in the register the pages evidence, graded `reconstructed`; "
+            "if the structure record adopts the partnership the board should become "
+            "\"PIERCE & ABBOTT\" and rise to `inferred` with it. The street is the "
+            "record's own `aka`."
+        ),
+    },
+    "pruyne_kimball_drugstore": {
+        "name": "PRUYNE & KIMBALL", "trade": "Druggists",
+        "place": "South Water Street", "identity": "Pruyne",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this partnership is in the pages read, and the trade "
+            "word is borrowed rather than theirs: \"Druggist\" is Carpenter's own 1835 "
+            "self-description, which is what makes it the right period word for the "
+            "town's second drug store. Andreas gives the partnership and the street and "
+            "nothing else. A NEAR-MISS WORTH RAISING: the 1835 pages carry \"P. PRYNE & "
+            "CO.\" twice, both times in the grocery and dry-goods line rather than the "
+            "drug line — whether that is the same Pruyne is a research question this "
+            "board does not answer. Reconstructed."
+        ),
+    },
+    "robert_kinzie_store": {
+        "name": "R. A. KINZIE", "trade": "Dry Goods & Groceries", "identity": "Kinzie",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for him is in the pages read. The record has a storehouse "
+            "dealing in groceries and Indian goods and its keeper among the town's "
+            "licensed traders, and it warns that the trade's continuity past the 1833 "
+            "treaty is not attested. The board therefore carries the counter trade the "
+            "town's own advertising uses and says nothing about the Indian trade, which "
+            "the record will not stand behind at the scene date. Reconstructed."
+        ),
+    },
+    "sauganash_hotel": {
+        "name": "SAUGANASH HOTEL", "trade": "Public House", "identity": "Sauganash",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read. \"Public House\" is E. "
+            "Wentworth's own 1833 trade line. The house name is the one the town used and "
+            "the record carries; its earlier names, Eagle Exchange Tavern and Chicago "
+            "Hotel, are in its `aka` and belong to earlier years. Reconstructed."
+        ),
+    },
+    "steamboat_hotel": {
+        "name": "JOHN DAVIS", "trade": "Steam-Boat Hotel",
+        "place": "North Water Street", "identity": "Steamboat Hotel",
+        "grade": "inferred",
+        "why": (
+            "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the "
+            "strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat "
+            "Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, "
+            "on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, "
+            "house, street — the board is the advertisement. The hyphen is the "
+            "advertisement's own spelling and is kept. " + PENDING
+        ),
+    },
+    "thomas_church_store": {
+        "name": "THOMAS CHURCH", "trade": "Dry Goods & Groceries", "identity": "Church",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for him is in the pages read. The source names him as the "
+            "BUILDER of the first store building on Lake Street and says nothing about who "
+            "kept it or what it sold — the record says so in as many words. So the board "
+            "carries the name the record carries over the plainest of the town's own "
+            "counter trades, and it is reconstructed twice over: the wording is ours, and "
+            "so is the assumption that the builder was the keeper."
+        ),
+    },
+    "tremont_house_1": {
+        "name": "TREMONT HOUSE", "trade": "Public House", "identity": "Tremont House",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for the house is in the pages read, though attorneys on them "
+            "give their offices as \"opposite the Tremont House\", which is the house being "
+            "used as a landmark by strangers — exactly what a hotel's board is for. "
+            "\"Public House\" is E. Wentworth's own 1833 trade line. The record's "
+            "parenthetical, \"(the first)\", is this project telling itself which of three "
+            "Tremonts it models and was never on a board. Ira Couch kept it and is "
+            "deliberately not lettered: an inn of this town announced its HOUSE. "
+            "Reconstructed."
+        ),
+    },
+    "western_hotel": {
+        "name": "WESTERN HOTEL", "trade": "Public House", "identity": "Western Hotel",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read. \"Public House\" is E. "
+            "Wentworth's own 1833 trade line, and this is the west-side wagon-trade house "
+            "— \"the stopping place for all the farmers town from the west\" — whose "
+            "custom came off the road and had to read the board from it. W. H. Stow built "
+            "it and kept it, and is not lettered for the same reason Ira Couch is not. "
+            "Reconstructed."
+        ),
+    },
+}
+
+# What a wording may be graded. `attested` is deliberately absent: see PENDING.
+WORDING_GRADES = {"inferred", "reconstructed"}
+
 # Clause 6, added 2026-08-18 with ticket T-0082 and kept by T-0066. A frontage whose OWN
 # reference view shows a board on a POST at the corner does not also get a second board
 # hung on its wall by this rule. The Green Tree is the only one: images 6 and 7 of the
@@ -266,6 +840,27 @@ PER_LETTER_M = 0.030
 BOARD_H_MIN_M = 0.34
 BOARD_H_MAX_M = 1.15
 FACADE_MIN_FRONTAGE_M = 3.0   # under this a painted band has nowhere to run
+
+# T-0130: a board is now sized off its LONGEST LINE rather than off the whole string,
+# because the wording is a hierarchy of two or three lines and not one run of words. Two
+# corrections come with that.
+#
+#  * A second and third line want width as well as height — a firm and a trade set one
+#    over the other read wider than either alone — so each extra line adds this much.
+#  * They want height too, but ONLY where the board is fixed to the building. A board
+#    hung over a footway cannot grow downwards without hanging into the people walking
+#    under it, and its head is already fixed by the eave; a board fixed flat on a wall
+#    and a name painted across a front have the whole elevation to grow into.
+LINE_WIDTH_BONUS_M = 0.30
+LINE_H_MUL = {1: 1.00, 2: 1.22, 3: 1.42}
+LINE_H_MOUNTINGS = {"wall_board", "facade_painted"}
+
+# A PAINTED DEVICE NEEDS BOARD, and it must not take it off the lettering. Exactly one
+# board in this town carries one, and it gets this much extra plank to stand in — added
+# to the ceiling as well as to the want, because "as long as its name needs and no
+# longer" becomes "as long as its name and its device need" when a shop has both.
+DEVICE_W_M = 0.38
+DEVICE_SHARE = 0.30       # of the board's face, reserved for the device, left-hand end
 
 # Two signs closer together than this must not share a mounting, a style or a ground
 # colour. 40 m is about a platted lot and a half — near enough that a walker sees both
@@ -410,24 +1005,94 @@ def _frontage_walled() -> set:
     return out
 
 
-def _sign_text(name: str) -> tuple[str, str]:
-    """What is painted, and why it is not simply the record's name verbatim.
+def _norm(s: str) -> str:
+    """Letters and digits only, upper case — the form identities are compared in.
 
-    It very nearly is, and that is the point: the card a visitor opens by tapping the
-    board has to say what the board says. The one thing dropped is a trailing
-    parenthetical — "Tremont House (the first)" is this project telling itself which of
-    three Tremonts it is modelling, not something a signwriter put on a board.
+    "Steam-Boat Hotel" on a board and "Steamboat Hotel" on a card are the same house
+    written two ways, and the advertisement's own hyphen is kept on the board because
+    period spelling is part of the point. So the comparison drops everything that is not
+    a letter or a digit rather than asking the two objects to agree on punctuation.
     """
-    text = name.strip()
-    why = "the record's own name, which is what the card shows"
-    if text.endswith(")") and "(" in text:
-        cut = text.rindex("(")
-        stripped = text[:cut].strip()
-        if stripped:
-            text = stripped
-            why = ("the record's own name less its trailing parenthetical, which "
-                   "disambiguates the model rather than naming the house")
-    return " ".join(text.split()), why
+    return "".join(ch for ch in s.upper() if ch.isalnum())
+
+
+def _sign_wording(sid: str, name: str, mounting: str) -> dict:
+    """What is lettered on THIS board, and why it is not the record's own name.
+
+    THE TWO OBJECTS ARE DIFFERENT AND T-0066 COLLAPSED THEM. A record's `name` is this
+    project's label for a STRUCTURE — "Philo Carpenter's Log Drug Store" — and a board
+    carries what a signwriter lettered for a TRADE. Read the SIGN_WORDING table above for
+    the register and the tiers; this function only picks how much of an entry fits the
+    mounting the rule has already chosen, and holds the one invariant that survives the
+    separation: the board and the card must agree about WHO this is.
+
+    Raises rather than falling back. A frontage the rule newly selects and the table does
+    not word would otherwise quietly go back to carrying the museum caption, which is the
+    exact defect this replaced.
+    """
+    entry = SIGN_WORDING.get(sid)
+    if entry is None:
+        raise SystemExit(
+            f"SIGN WORDING MISSING: {sid} is selected for a board and "
+            f"tools/generate_business_signboards.py has no wording for it. Add an entry "
+            f"to SIGN_WORDING — the proprietor or firm, the trade in the period's own "
+            f"words, the tier and the reason. Do NOT let it fall back to the record's "
+            f"name: that is the defect T-0130 corrected.")
+    grade = entry["grade"]
+    if grade not in WORDING_GRADES:
+        raise SystemExit(f"SIGN WORDING GRADE: {sid} is graded {grade!r}; only "
+                         f"{sorted(WORDING_GRADES)} are available (see PENDING).")
+
+    room = LINES_BY_MOUNTING[mounting]
+    lines = [{"text": entry["name"], "role": "name"}]
+    trade = entry.get("trade_short") if room < 3 and entry.get("trade_short") \
+        else entry.get("trade")
+    if trade:
+        lines.append({"text": trade, "role": "trade"})
+    if room >= 3 and entry.get("place"):
+        lines.append({"text": entry["place"], "role": "place"})
+    text = " / ".join(ln["text"] for ln in lines)
+
+    # THE INVARIANT THAT REPLACES STRING EQUALITY. The board and the card are allowed to
+    # differ — that is the whole correction — but a visitor who reads a name off a plank
+    # and then taps the plank must not be shown a different business. So the entry names
+    # the identity and this refuses to build unless it is in both objects.
+    ident = entry["identity"]
+    if _norm(ident) not in _norm(text):
+        raise SystemExit(f"SIGN IDENTITY: {sid}'s board reads {text!r} and does not "
+                         f"carry its declared identity {ident!r}.")
+    if _norm(ident) not in _norm(name):
+        raise SystemExit(f"SIGN IDENTITY: {sid}'s card reads {name!r} and does not "
+                         f"carry its declared identity {ident!r} — the board and the "
+                         f"card would disagree about whose business this is.")
+    # No board carries this project's own way of describing a building.
+    if "LOG" in [w.strip(",.").upper() for w in text.split()]:
+        raise SystemExit(f"SIGN WORDING: {sid}'s board reads {text!r}. No signwriter "
+                         f"painted the construction of a shop on its own board.")
+
+    why = entry["why"]
+    if room < 3 and entry.get("place"):
+        why += (f" The board is a {mounting.replace('_', ' ')}, which carries "
+                f"{room} lines, so the place line — \"{entry['place']}\" — is not "
+                f"lettered here: a signwriter letters what fits.")
+    if room < 3 and entry.get("trade_short"):
+        why += (f" For the same reason the trade is shortened from "
+                f"\"{entry['trade']}\" to \"{entry['trade_short']}\".")
+
+    out = {
+        "lines": lines,
+        "text": text,
+        "identity": ident,
+        "grade": grade,
+        "why": why,
+        "sources": list(entry.get("sources") or []),
+    }
+    if entry.get("device"):
+        # `share` is how much of the board's face the device stands in, and it is on the
+        # record rather than in the renderer for the same reason every other dimension
+        # here is: a board's proportions are the record's business.
+        out["device"] = dict(DEVICES[entry["device"]], share=DEVICE_SHARE)
+    return out
 
 
 def _candidates() -> tuple[list, list]:
@@ -576,8 +1241,6 @@ def build_record() -> tuple[list, list]:
                          "wall height — the same number the wall itself is drawn at")
         head = min(wall - EAVE_CLEAR_M, MAX_HEIGHT_M)
 
-        text, text_from = _sign_text(cand["name"])
-
         # The centre of the front wall, in ENU, and the way it faces — the two things
         # every mounting test below needs.
         bearing = place.get("rotation_deg") or 0.0
@@ -651,15 +1314,28 @@ def build_record() -> tuple[list, list]:
                 style = found
                 break
 
+        # --- WHAT IT SAYS, which the mounting has to be known to answer -------
+        # A signwriter letters what fits, so the wording is resolved AFTER the mounting
+        # rather than before it: a plank swinging over a footway takes the man and his
+        # trade, and a name painted across a whole front has room for his street too.
+        word = _sign_wording(sid, cand["name"], mounting)
+        text = word["text"]
+        n_lines = len(word["lines"])
+        longest = max(len(ln["text"]) for ln in word["lines"])
+
         # --- the sign's own size ----------------------------------------------
         size = BOARD_SIZE[mounting]
-        w = _clamp(size["base"] + PER_LETTER_M * len(text), size["min"], size["max"])
+        extra = DEVICE_W_M if word.get("device") else 0.0
+        w = _clamp(size["base"] + PER_LETTER_M * longest
+                   + LINE_WIDTH_BONUS_M * (n_lines - 1) + extra,
+                   size["min"], size["max"] + extra)
         if mounting == "facade_painted":
             w = min(w, frontage - 1.2)
         else:
             w = min(w, frontage - 2 * END_CLEAR_M)
         w = max(w, 0.7)
-        h = _clamp(w / (style["aspect"] * size["aspect_mul"]),
+        tall = LINE_H_MUL[n_lines] if mounting in LINE_H_MOUNTINGS else 1.0
+        h = _clamp(w / (style["aspect"] * size["aspect_mul"]) * tall,
                    BOARD_H_MIN_M, BOARD_H_MAX_M)
 
         # --- where it sits on the wall ----------------------------------------
@@ -729,12 +1405,15 @@ def build_record() -> tuple[list, list]:
                      "post is in the street, not on the building. `post_height_m` is "
                      "its head over that ground and `arm_height_m` does not apply")
 
-        signs.append({
+        sign = {
             "structure_id": sid,
             "name": cand["name"],
             "sign_text": text,
-            "sign_text_from": text_from,
-            "sign_text_confidence": "reconstructed",
+            "sign_lines": word["lines"],
+            "sign_identity": word["identity"],
+            "sign_text_from": word["why"],
+            "sign_text_confidence": word["grade"],
+            "sign_text_sources": word["sources"],
             "trade": cand["trade"],
             "trade_confidence": cand["grade"],
             "trade_class": cand["cls"],
@@ -758,15 +1437,22 @@ def build_record() -> tuple[list, list]:
             "frontage_m": _round(frontage, 2),
             "ground_quad_local_enu_m": [[_round(p[0], 2), _round(p[1], 2)]
                                         for p in quad],
-        })
+        }
+        # A DEVICE ONLY WHERE THE SHOP'S OWN ADVERTISEMENT NAMES ONE. Exactly one does.
+        if word.get("device"):
+            sign["sign_device"] = word["device"]
+        signs.append(sign)
 
     return signs, refused
 
 
 def record(signs: list, refused: list) -> dict:
     mounts: dict[str, int] = {}
+    tiers: dict[str, int] = {}
     for s in signs:
         mounts[s["mounting"]] = mounts.get(s["mounting"], 0) + 1
+        g = s["sign_text_confidence"]
+        tiers[g] = tiers.get(g, 0) + 1
     return {
         "_doc": (
             "The town's business signs. NOT structure records and NOT geometry that "
@@ -815,29 +1501,54 @@ def record(signs: list, refused: list) -> dict:
             ),
         },
         "lettering": {
-            "value": "the name the dataset gives the location, painted on the sign",
+            "value": ("what the trade wrote — the proprietor or firm, the trade, and "
+                      "the place, in the period's own words and spelling"),
             "confidence": "reconstructed",
             "geometry": "canvas texture, drawn at load",
+            "tiers": {k: tiers[k] for k in sorted(tiers)},
             "note": (
-                "DRAWN SINCE 2026-08-21, AND THE REVERSAL IS THE OWNER'S. This block "
-                "used to read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS "
-                "LAYER', on L25's reasoning generalised: no source gives the wording "
-                "of any sign in this town, so every board stayed a blank plank. The "
-                "owner's instruction of 2026-08-18 overrules it — 'you can and should "
-                "put the name of the location on the sign board … it is fine if they "
-                "are reconstructions' — and this project's own standing ruling covers "
-                "the tier: 'you are totally fine to be liberal with adding "
-                "reconstructed items when i ask for things, you can just label and "
-                "mark them as such.' So the WORDING on each sign is the name this "
-                "dataset already gives that location (`sign_text`, and the card a "
-                "visitor opens by tapping the sign shows the same words), and it is "
-                "graded `reconstructed` — the name is the project's, the decision that "
-                "a signwriter painted it is not anybody's record. The LETTERFORM, the "
-                "colours and the panel come from `style`, a table of the combinations "
-                "the trade worked in rather than of anything Chicago recorded. "
-                "docs/LIBERTIES.md L159. What is NOT drawn, still: an image or a trade "
-                "device on any board. L25 stands for the wolf, and no source describes "
-                "the painting on any other."
+                "DRAWN SINCE 2026-08-21, AND RE-WORDED THE SAME DAY. This block used to "
+                "read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS LAYER', on "
+                "L25's reasoning generalised: no source gives the wording of any sign in "
+                "this town, so every board stayed a blank plank. The owner's instruction "
+                "of 2026-08-18 overruled it — 'you can and should put the name of the "
+                "location on the sign board … it is fine if they are reconstructions' — "
+                "and T-0066 then painted THE RECORD'S OWN `name` on every board. "
+                "T-0130 CORRECTS THAT, on the owner's word of 2026-08-21: 'philo would "
+                "not have referred to his own place as log drug store, it would be philo "
+                "carpenter, drugs and medicines, or druggist or whatever he would have "
+                "referred to himself as on the sign, that may be different than the name "
+                "of the building for us, the sign may read differently historically' — "
+                "and, widening it, 'i guess do a pass on all those signs and make sure "
+                "they feel right for the era'. A record's `name` is OUR LABEL FOR A "
+                "BUILDING ('Philo Carpenter's Log Drug Store'); a board carries what a "
+                "signwriter lettered. The two are now separate fields and are allowed to "
+                "differ. What they must still agree about is WHO: every sign declares a "
+                "`sign_identity` that appears in the board AND in the card, the "
+                "generator refuses to build without it, and tools/smoke_renderer.mjs "
+                "asserts it at run time over every sign. THE REGISTER is the "
+                "advertisements' own — proprietor or firm first and largest, the trade "
+                "beneath, the place last and smallest — carried per line in `sign_lines` "
+                "and lettered in that hierarchy by renderers/web/js/signage.js. Period "
+                "spelling is theirs and is kept. THE TIERS: a wording taken off a firm's "
+                "own advertisement is `inferred`; one built out of the evidenced trade "
+                "vocabulary for a business that left no advertisement is "
+                "`reconstructed`. NOT ONE IS `attested` YET, and each note says why and "
+                "what would change it — the seven 1833-35 newspaper pages behind these "
+                "wordings were supplied as images in conversation on 2026-08-21 and are "
+                "not committed to data/sources/assets/, so they are transcriptions and a "
+                "transcription is not a citation. The owner's ruling of that day is the "
+                "authority for proceeding anyway: 'I will give you all those data sources "
+                "later in a more comprehensive form proceed where you can and label "
+                "reconstruction or inferred with a note as you like.' The LETTERFORM, "
+                "the colours and the panel remain `style`, a table of the combinations "
+                "the trade worked in rather than of anything Chicago recorded "
+                "(docs/LIBERTIES.md L159; L166 for the wording). ONE DEVICE IS NOW "
+                "PAINTED and it is the one a Chicago tradesman described himself: "
+                "Carpenter's golden mortar, `sign_device` — see its own note. No other "
+                "board carries an image, and L25 is untouched: it withholds the Wolf "
+                "Point wolf because that IMAGE was never described, which is the "
+                "opposite case to a shop whose own advertisement names its sign."
             ),
         },
         "treatment": {
@@ -883,8 +1594,23 @@ def record(signs: list, refused: list) -> dict:
             "public_trades": sorted(PUBLIC_TRADES),
             "works_trades": sorted(WORKS_TRADES),
             "mounting_cycles": MOUNTING_CYCLE,
+            "lines_by_mounting": LINES_BY_MOUNTING,
             "styles": [s["id"] for s in STYLES],
             "neighbour_m": NEIGHBOUR_M,
+            "wording_note": (
+                "WHAT A BOARD MAY SAY, and it is a rule rather than a list somebody "
+                "liked. Every board is worded from SIGN_WORDING in "
+                "tools/generate_business_signboards.py: the proprietor or firm, the "
+                "trade in the period's own words, and the place — in that order, which "
+                "is the order the advertisements themselves use. The generator refuses "
+                "to build a board for a frontage the table does not word, refuses one "
+                "whose declared `sign_identity` is not in both the board and the card, "
+                "and refuses one that carries the word 'log' — the three ways the old "
+                "behaviour could come back. How much of an entry is lettered depends on "
+                "the mounting: `lines_by_mounting` above, because a signwriter letters "
+                "what fits and a plank swinging over a footway holds less than a name "
+                "painted across a whole front."
+            ),
             "excluded_trades_note": (
                 "Stables, churches, schools, the court-house, the jail, the agency "
                 "house, the fort and every dwelling are outside both trade lists. A "
@@ -897,16 +1623,58 @@ def record(signs: list, refused: list) -> dict:
         "signs": signs,
         "refused": refused,
         "research_note": (
-            "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago or Cook County "
-            "sign ordinance of the 1830s; an insurance, tax or sale description naming "
-            "a shop sign; any of the pre-fire photographs of a surviving 1830s "
-            "frontage actually being opened at its holding institution (the Green Tree "
-            "1859 plate, ICHi-040230, is the nearest and is unseen); or a traveller's "
-            "account of walking South Water Street. Any one of those would let a sign "
-            "here be regraded record by record — and one that gave a WORDING, a COLOUR "
-            "or a MOUNTING for a named house would be the first thing this project has "
-            "ever held that could take one of these three off the reconstructed tier."
+            "THE FIRST THING TO DO, AND IT IS ALREADY HALF DONE: COMMIT THE SEVEN PAGES. "
+            "The wordings graded `inferred` above are transcribed from 1833-35 Chicago "
+            "newspaper pages the owner supplied as IMAGES IN CONVERSATION on 2026-08-21 "
+            "— one carrying 'Chicago, Dec. 31, 1833' with a 'CHICAGO PRICES CURRENT … "
+            "Reported for the Democrat by P. F. Peck' that identifies the Chicago "
+            "Democrat, one 'Chicago, Dec. 4, 1833', and several of 1835 carrying an "
+            "'ARRIVALS OF VESSELS AT CHICAGO, 1835' table and a Post Office list of "
+            "letters remaining 'on the 31st day of March, 1835'. Drop those images into "
+            "data/sources/assets/ with a source record and EVERY `inferred` WORDING HERE "
+            "BECOMES A CANDIDATE FOR `attested`, one board at a time, each note already "
+            "saying what its page says. Goss & Cobb's is the nearest: its page is "
+            "committed already. WHAT WOULD MOVE THE REST — the fact of a sign, its "
+            "colours and its mounting — is unchanged: a Chicago or Cook County sign "
+            "ordinance of the 1830s; an insurance, tax or sale description naming a shop "
+            "sign; any of the pre-fire photographs of a surviving 1830s frontage "
+            "actually being opened at its holding institution (the Green Tree 1859 "
+            "plate, ICHi-040230, is the nearest and is unseen); or a traveller's account "
+            "of walking South Water Street."
         ),
+        "findings": [
+            "J. S. C. HOGAN advertises in 1835 from 'South Water Street, one door below "
+            "Dearborn' in dry goods, groceries, hardware, crockery and glass ware. The "
+            "model carries ONE Hogan building, the log store at the Lake Street junction, "
+            "which its own record identifies as Brewster, Hogan & Co.'s. The pages "
+            "distinguish the two businesses and the model does not — a placement "
+            "question, raised rather than silently answered.",
+            "PIERCE & ABBOTT advertise a 'New Blacksmith Shop' on the 1833 pages. This "
+            "project's record names Asahel Pierce alone as builder and proprietor. If the "
+            "partnership is his, the board should read PIERCE & ABBOTT and rise from "
+            "`reconstructed` to `inferred`; a signage generator is not the place to add a "
+            "partner to a structure record.",
+            "P. PRYNE & CO. appears twice on the 1835 pages, both times in groceries and "
+            "dry goods, never in drugs. The model carries Pruyne & Kimball as a drug "
+            "store on Andreas's word. Whether these are the same Pruyne is unresolved and "
+            "the board says nothing about it.",
+            "Two 1835 advertisements locate themselves BY A NEIGHBOUR — Wm. H. Taylor's "
+            "boot store 'a few rods north of Newberry & Dole's', J. Curtiss's office "
+            "'first door west of Jones, King & Co.' — and a third 'opposite the Tremont "
+            "House'. Those are checkable against this model's own placements and are a "
+            "wayfinding gift for whoever takes the placement sweep.",
+            "Firms the pages name and the model does not yet carry at all: WM. H. TAYLOR "
+            "(boot, shoe and leather), J. H. MULFORD (watches and jewelry), DAVID CARVER "
+            "(lumber dealer and commission merchant), MAGIE & WILKINSON (boots, shoes and "
+            "hats), F. J. CONANT (clothing warehouse), Doct. WM. H. KENNICOTT (medicine "
+            "and dentistry), and a bench of attorneys. Each is a placement question, not "
+            "a wording one, and none has been invented a building here.",
+            "Out-of-town houses advertise on the same pages — Patterson, Gardner & Mather "
+            "of Detroit 'at the sign of the Large Pitcher', Cromelien, Brothers & Co. of "
+            "New York. They are useful as REGISTER and must never be hung in Chicago. The "
+            "Large Pitcher is quoted in the golden mortar's note for exactly that reason: "
+            "it shows the convention was ordinary, and it belongs to Detroit.",
+        ],
     }
 
 

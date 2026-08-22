@@ -431,3 +431,29 @@ observation that a ceiling checked at one camera is a spot reading — but a bud
 a 94-call measurement does not cover it either, and the honest instrument this ticket asked for
 (the worst stand of a set) is still unbuilt. Whoever takes it should expect the chunked layers to
 be most of what it finds.
+
+**Measured by T-0130, 2026-08-22 — a parcel with a delta of exactly zero, which is worth banking
+as much as a costly one.** T-0130 re-worded all thirty-three signboards, turned each one from a
+single string into a two- or three-line hierarchy with its own type sizes, and painted a trade
+device — a gilt mortar and pestle — onto one of them. Measured on the published mirror, the
+signage layer before and after:
+
+| signage layer | dev `745d9d5` | after T-0130 |
+|---|---:|---:|
+| triangles | 1,106 | **1,106** |
+| meshes (draw calls) | 1 | **1** |
+| atlas canvas | 4096 × 1536 | **4096 × 1536** |
+
+**Why it is free, and it is the reason T-0066 built the layer this way.** The lettering lives in
+ONE canvas atlas that every triangle already carries a `uv` into, so a three-line wording set in a
+hierarchy costs exactly what a one-line name cost: nothing. The painted device is canvas as well —
+**zero triangles for an image on a board**. The only geometry that moved is board SIZE, and a
+board's vertex count does not depend on its dimensions: the same five mountings in the same
+distribution (13 painted bands, 7 awnings, 6 brackets, 6 wall boards, 1 post) emit the same 1,106
+triangles.
+
+Frame at the T-0135 gate's stand, desktop 1280×800, `full`: **960,668 triangles of 1,000,000 and
+121 draw calls of 140** — the same numbers dev carries, since the delta above is zero. Noted per
+T-0135: that gate now stands at the worst frame rather than the friendliest, so this headroom is
+real headroom and not the old camera's flattery. Nothing here was spent, and nothing is claimed
+back.

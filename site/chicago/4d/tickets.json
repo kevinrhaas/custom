@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 8:58 PM",
+  "generated_ct": "Aug 22, 2026, 12:10 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2281,7 +2281,7 @@
     {
       "id": "T-0130",
       "title": "The signs should read as the trade wrote them, not as we label the building",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -2291,7 +2291,7 @@
       "opened": "2026-08-21",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/22/2026, 12:10:48 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 63
