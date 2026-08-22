@@ -9,13 +9,18 @@
   "existence": {
     "value": true,
     "confidence": "reconstructed",
-    "sources": [],
-    "note": "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT A WALK, A CROSSING OR A POST STOOD ON THIS GROUND ON 1 JULY 1835. What is held is two owner-supplied reference views of this inn, written up verbatim at data/sources/assets/owner_brief_2026_08_18/README.md: image 6, the Braunhold engraving of 1838, gives 'post-mounted hanging signboard at the corner; plank sidewalks with board crossings', and image 7, the Trowbridge drawing, gives 'the hanging \"GREEN TREE\" sign on its post'. Both are tier-5 pictorial and retrospective, and the plates themselves are not yet held as source records — T-0075 owns that — so `sources` is deliberately empty and the citation is a committed path. That is a reconstruction in this project's third tier and it is graded and claimed as one: docs/LIBERTIES.md L135."
+    "sources": [
+      "trowbridge_green_tree_1902"
+    ],
+    "note": "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT A WALK, A CROSSING OR A POST STOOD ON THIS GROUND ON 1 JULY 1835. What is held is two owner-supplied reference views of this inn, written up verbatim at data/sources/assets/owner_brief_2026_08_18/README.md: image 6, the Braunhold engraving of 1838, gives 'post-mounted hanging signboard at the corner; plank sidewalks with board crossings', and image 7, the Trowbridge drawing, gives 'the hanging \"GREEN TREE\" sign on its post'. Both are tier-5 pictorial and retrospective. ONE OF THE TWO IS NOW A SOURCE RECORD: T-0075 identified image 7 as W. E. S. Trowbridge's drawing 'The Green Tree Tavern in 1835', signed and dated 1902, and it is cited here as `trowbridge_green_tree_1902`. Image 6, the Braunhold engraving, is stated to be an Andreas 1884 plate and is not reproduced on any page this project holds, so it stays a committed path and the README's identification table says what was searched. A citation does not promote the claim: a tier-5 retrospective may drive setting and may never drive a coordinate, so this is still a reconstruction in this project's third tier, graded and claimed as one: docs/LIBERTIES.md L135."
   },
   "lettering": {
     "value": "GREEN TREE",
     "confidence": "inferred",
     "geometry": "drawn",
+    "sources": [
+      "trowbridge_green_tree_1902"
+    ],
     "note": "THE FIRST LETTERING THIS PROJECT HAS EVER DRAWN, and the decision is argued rather than assumed. docs/LIBERTIES.md L25 leaves the Wolf Point Tavern's board blank and L130 leaves twenty-four more blank, for a reason that does not reach this one: L25's subject is an IMAGE nobody has described — no source says how the wolf was painted — while this board's subject is a NAME, image 7 states it in as many words, and the name is already committed on data/structures/green_tree_tavern.json. Leaving it blank would be discarding evidence the project holds. So the WORDING is graded `inferred` against the plate, and what remains invented is the LETTERFORM — the face, the size, the spacing, the colour and the paint's wear — which no source gives and which L135 claims. The other boards in the town stay blank: nothing states what any of THEM said."
   },
   "treatment": {
@@ -126,7 +131,7 @@
       "hanger_drop_m": 0.18,
       "text": "GREEN TREE",
       "text_confidence": "inferred",
-      "text_sources_note": "data/sources/assets/owner_brief_2026_08_18/README.md, image 7 — the Trowbridge drawing of this inn, described there as 'the hanging \"GREEN TREE\" sign on its post'. The plate is not held as a source record yet; T-0075 owns making one, and until it does the citation is a committed path rather than a source_id.",
+      "text_sources_note": "`trowbridge_green_tree_1902` — W. E. S. Trowbridge's drawing 'The Green Tree Tavern in 1835', signed 1902, image 7 of the owner's brief of 2026-08-18 and identified under T-0075 on 2026-08-22. The plate was retrieved and read: the board hangs from a post at the street edge and is lettered GREEN TREE. The wording is the plate's; the letterform is ours (docs/LIBERTIES.md L135).",
       "clear_of_track_m": 6.65,
       "note": "THE NAMED BOARD ON ITS POST, at the corner of the two streets. Image 6 puts a post-mounted hanging signboard at this inn's corner and image 7 says what is on it. WHERE is derived: the post stands 2.93 m out from each of the two walls that make the corner — clear of both walks by 0.90 m — with 6.65 m still between it and the travelled track. Its cross-arm runs along the front wall away from the corner, so the board's face looks down the street the inn fronts on. The pole, the arm and the board are invented in every dimension, and so is the letterform; the WORDING is the plate's. docs/LIBERTIES.md L135."
     }
@@ -143,5 +148,5 @@
       "why": "no street centreline lies outward of this wall within 22 m — a walk here would be a walk through the inn's own yard."
     }
   ],
-  "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on sidewalks — the corporation legislated wooden walks within a few years of 1835 and an order of the right date would give a width and a material at a stroke; a tax, insurance or sale description naming a walk in front of a lot; or holding the Braunhold and Trowbridge plates as proper source records with their institutions and dates (T-0075), which would turn the committed path in `existence.note` into a source_id and the lettering's warrant into a citation."
+  "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on sidewalks — the corporation legislated wooden walks within a few years of 1835 and an order of the right date would give a width and a material at a stroke; a tax, insurance or sale description naming a walk in front of a lot; or holding the Braunhold plate as a proper source record with its institution and date. The Trowbridge plate IS one now (`trowbridge_green_tree_1902`, T-0075, 2026-08-22), which is what turned the lettering's warrant from a committed path into a citation; the Braunhold engraving of 1838 is still cited by path and the next attempt at it should go to Andreas volume I at page-image level. Neither citation moves this layer off reconstruction — a plate may say a walk was the treatment and can never say one stood on THIS ground."
 }

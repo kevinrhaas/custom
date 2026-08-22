@@ -4016,6 +4016,14 @@ lie at, and it moves if either of those recorded values moves. The recorded 2.75
 the pole's LENGTH rather than its horizontal run, which is what the number means; the tip lands
 2.70 m ahead of the body instead of 2.75 m. Nothing about the wagon's sizes changed, and no new
 value was invented.
+**Revised:** 2026-08-22 (T-0065) — **the "no marks" clause of this entry is superseded by L166.**
+Its decision above reads *"No barrel carries a brand, a merchant's name, a stencil or a mark, and
+no case is labelled"*; the owner overruled that on 2026-08-18 (*"you can add period correct names
+and brands and labels to things"*), and every cask and case on this record now carries a
+stencilled commodity word, the house's own brand or a shipping mark. The reasoning above is kept
+verbatim because it was the honest reading before he ruled, and L166 states what now bounds the
+marks. Nothing else in this entry changes: the frontages, the counts, the placements and the
+objects' sizes are exactly as they were.
 
 ### L132 — Two river docks, stated in one clause and invented in every dimension
 **Decision:** the two warehouses whose records state a dock — `newberry_dole_warehouse` and
@@ -5424,6 +5432,70 @@ nothing attests a device on any of them).
 **Recorded:** 2026-08-21.
 
 
+### L166 — The goods say what they are: a stencil, a brand and a shipping mark on 148 casks and cases, every word of them dealt
+**Decision:** every barrel and every packing case on `data/yard/town_trade_goods.json` now carries
+a **MARK** — 102 casks and 46 cases, at 26 named trading frontages, **70 distinct marks** in three
+letterforms. A cask carries a stencilled **commodity word** (FLOUR, PORK, SALT, WHISKEY, LINSEED
+OIL, POTASH…), except every third one, which carries the **house's own brand** burned into its
+head (P. F. W. PECK, NEWBERRY & DOLE, GREEN TREE TAVERN). A case carries a **shipping mark** — the
+consignee over CHICAGO, and the forwarding houses' cases add FROM BUFFALO. The marks are dealt by
+`tools/generate_yard_goods.py`, re-derived byte for byte by `tools/check.sh`, and painted by
+`renderers/web/js/yard.js` onto one canvas atlas, so a mark costs no triangles and the layer keeps
+its one material.
+**Why:** because **L131 said the opposite and the owner overruled it**. That entry's decision read
+*"No barrel carries a brand, a merchant's name, a stencil or a mark, and no case is labelled"* —
+L25's discipline for the one documented sign, generalised twice. The owner, **2026-08-18,
+verbatim: "you can add period correct names and brands and labels to things."** It is the third
+time the same restraint has been overruled by the same person on the same day — the wagons
+(L162), the signs (L159, T-0066) — and his standing ruling of that day is the tier: *"you are
+totally fine to be liberal with adding reconstructed items when i ask for things, you can just
+label and mark them as such."*
+**What bounds the invention, and this is the whole of the fence.** A mark may say **three things
+and nothing else**.
+1. **The house's own name**, which is not invented at all: it is the record's name, the same
+   string the signboard over the door paints (`_house_mark` takes the possessive owner out of it,
+   so "P. F. W. Peck's Store" brands P. F. W. PECK and "Tremont House (the first)" brands TREMONT
+   HOUSE). A cask at Peck's door and the board above it therefore agree, which is the point.
+2. **A commodity word out of the trade's OWN attested description.** The dossiers write these
+   businesses up in their own advertisements' words — Peck *"advertising dry goods, hardware and
+   groceries"*, Brewster & Hogan *"dealers in dry goods, groceries and hardware"*, Jones's
+   *"grocery and provision store"* (`docs/research/04-structures-south.md`). So the CATEGORY a
+   stencil names is the source's; what is invented is only which word of that category lands on
+   which cask. Six stock lists, one per trade class, are on the record as `mark_rule.stocks`.
+3. **A destination and one port.** A case in transit carried its consignee and where it was going,
+   so the cases read the house over CHICAGO. The forwarding houses' cases name where they came
+   from, and the port is not free either: BUFFALO is the lake head this project has in writing —
+   the schooner *Jackson* from Buffalo, 1833-06-27, and the *Illinois* into the river in 1834.
+**Nothing else.** No trademark, no maker this town is not recorded as dealing with, no price, no
+date, no slogan, no lot number. A word that is neither the house's own name nor a period commodity
+of its own attested trade does not go on a barrel.
+**What is invented, plainly.** That any of these particular casks carried any mark at all on
+1 July 1835; which word each one carries; that every third cask was branded rather than stencilled;
+that the cases were marked to Chicago and that the forwarding houses' came from Buffalo rather than
+from anywhere else. **The trading house's list is held deliberately short** — flour, salt, powder
+and tobacco — and nothing on it names or depicts the people that house traded with, which is
+AGENTS.md's standing constraint and is not relaxed by a barrel.
+**The letterforms are invented too, exactly as the boards' are (L159).** A browser ships no 1830s
+specimen book, so three faces approximate the period's working hands: a condensed, widely tracked
+STENCIL drawn with the bridges a cut plate has to leave; a roman BRAND in a browner ink, because a
+brand is scorched wood and not paint; and a plain upright SHIPPING mark, brush-written. What they
+have to do is be legible from the footway and not read as modern type.
+**How it is drawn, and what it costs.** One canvas atlas, 8 columns of 192 px cells, one cell per
+distinct mark plus a white one. Every vertex on the layer that carries no mark samples the white
+cell, and white multiplies to nothing — so a wagon, a fence rail of a shed and an unmarked stave
+are drawn exactly as they were before this layer had a texture. **No triangle was added and no
+draw call was added**: the marks ride on the same single material and the same `CHUNK_M` buckets.
+**Consequence:** a visitor who walks up to the casks outside Peck's store can read what is in them,
+and no source says any of those particular barrels held anything. The confidence view still takes
+the whole layer away at `reconstructed`, marks and all, because the mark cannot be more certain
+than the barrel it is painted on.
+**Ticket:** T-0065, from the owner's brief of 2026-08-18. **Supersedes L131's "no marks" clause**;
+L131 keeps its reasoning verbatim and gains a pointer here. Related: **L159** (the boards' names
+and letterforms, the same override one layer over), **L162** (the wagons, the same override the
+same day), **L25** (where the restraint started), **L130**.
+**Recorded:** 2026-08-22.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
@@ -6745,7 +6817,7 @@ Related: **L121**, the same decision for the wood; ROADMAP **R-W3b(a)** and **R-
 reach's own history.
 **Recorded:** 2026-08-21.
 
-### L166 — The signs read as the trade wrote them: thirty-three boards re-worded, fourteen off the firms' own advertisements, and one painted device
+### L167 — The signs read as the trade wrote them: thirty-three boards re-worded, fourteen off the firms' own advertisements, and one painted device
 **Decision:** the wording on a signboard is now its OWN field, separate from the structure
 record's `name`, and the two are allowed to differ. Every one of the thirty-three boards is
 re-lettered in the period's register — **proprietor or firm first and largest, the trade beneath,

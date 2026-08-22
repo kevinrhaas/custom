@@ -1,5 +1,44 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0065: the goods say what is in them
+
+**The ask (owner, 2026-08-18), verbatim:** *"you can add period correct names and brands and labels
+to things."* It is the third of that day's overrides of the same restraint — the wagons (T-0064) and
+the signboards (T-0066) were the other two — and this one lands on the layer that had the restraint
+written into its own file header: *"It draws no mark, brand, stencil or label. Not on any barrel or
+case, ever."*
+
+**What shipped.** All 148 objects on `data/yard/town_trade_goods.json` — 102 casks and 46 packing
+cases at 26 named trading frontages — carry a mark, dealt by `tools/generate_yard_goods.py` and
+re-derived byte for byte by `check.sh`. A standing cask is stencilled with a commodity word across
+three staves of its BILGE, which is the face a visitor reads from the footway; every third one
+carries the house's own brand there instead. An empty laid on its side is marked on its HEAD, which
+is the only face of a lying cask that reads the right way up. A case carries a shipping mark — the
+consignee over CHICAGO, and the forwarding houses' cases add FROM BUFFALO. Seventy distinct marks,
+in three invented letterforms, on one canvas atlas.
+
+**What bounds it, and L166 is the entry.** Three things may go on a barrel: the house's own name
+(already in the dataset, already on the board over its door), a commodity word out of the trade's
+own attested advertisement (Peck's *"dry goods, hardware and groceries"*, Jones's *"grocery and
+provision store"*), and a destination with the one port this project has in writing (Buffalo, from
+the schooner arrivals in the dossier). Nothing else — no trademark, no price, no date, no maker this
+town is not recorded as dealing with. Everything is `reconstructed`, on every vertex, so hiding that
+tier still takes the whole layer away, marks and all. L131's "no marks" clause is superseded and
+keeps its reasoning verbatim.
+
+**It costs nothing.** The marks are a texture atlas on the layer's existing single material, so the
+town has the same triangles, the same materials and the same draw calls it had before. Everything
+unmarked samples a white cell, which multiplies to the timber it already was.
+
+**Verification.** `tools/check.sh` green. `tools/smoke_renderer.mjs --published` green on mobile
+390×780 stages 1, 2 and 4 and on desktop 1280×800 stages 1 and 2, with two new gates in the yard
+section — every cask and case marked, and every uv on the sheet. **Two knowingly unrun and one
+knowingly red:** desktop stages 3 and 4 do not fit the ten-minute foreground ceiling on this runner
+(**T-0121**, open), and mobile stage 3 carries the two road-legibility failures of **T-0114**, whose
+numbers are unchanged by this parcel to the decimal (walker 100–250 m ΔL* 1.8 of 3.2, weber 0.0795;
+aerial 250–600 m ΔL* 2.0 of 4.6, weber 0.0922). The marks were also read off the render at the
+Tremont House and Peck's store frontages — which is how the first build was caught writing every
+case in the town mirrored.
 ## Shipped 2026-08-22 — T-0130: the signs read as the trade wrote them
 
 **The ask (owner, 2026-08-21), of the Philo Carpenter board T-0066 had shipped:** *"philo would

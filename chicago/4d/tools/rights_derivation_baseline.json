@@ -25,6 +25,14 @@
       "sole_support": false,
       "confidence": "attested"
     },
+    "dearborn_street_drawbridge/draw_1834/form.draw_lifting_gear": {
+      "kind": "structure",
+      "blocked_sources": [
+        "dearborn_street_bridge_1834_engraving"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
+    },
     "dearborn_street_drawbridge/draw_1834/form.draw_span_m": {
       "kind": "structure",
       "blocked_sources": [
@@ -212,6 +220,14 @@
       "kind": "structure",
       "blocked_sources": [
         "chicagology_prefire273"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
+    },
+    "sauganash_hotel/frame_1831/form.shutter_type": {
+      "kind": "structure",
+      "blocked_sources": [
+        "trowbridge_sauganash_hotel"
       ],
       "sole_support": true,
       "confidence": "inferred"

@@ -24,7 +24,7 @@ mark them as such."* So this record now carries, for every board:
     combinations the trade actually used, assigned so that no two boards within
     `NEIGHBOUR_M` of each other share a mounting, a style or a ground colour.
 
-`docs/LIBERTIES.md` **L159** is the claim for the mounting and the style, and **L166**
+`docs/LIBERTIES.md` **L159** is the claim for the mounting and the style, and **L167**
 for the wording.
 
 T-0130 CORRECTS THE WORDING, and the correction is the owner's, 2026-08-21, verbatim:
@@ -1543,7 +1543,7 @@ def record(signs: list, refused: list) -> dict:
                 "reconstruction or inferred with a note as you like.' The LETTERFORM, "
                 "the colours and the panel remain `style`, a table of the combinations "
                 "the trade worked in rather than of anything Chicago recorded "
-                "(docs/LIBERTIES.md L159; L166 for the wording). ONE DEVICE IS NOW "
+                "(docs/LIBERTIES.md L159; L167 for the wording). ONE DEVICE IS NOW "
                 "PAINTED and it is the one a Chicago tradesman described himself: "
                 "Carpenter's golden mortar, `sign_device` — see its own note. No other "
                 "board carries an image, and L25 is untouched: it withholds the Wolf "
