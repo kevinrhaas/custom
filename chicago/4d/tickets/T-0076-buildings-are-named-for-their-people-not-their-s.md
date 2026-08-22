@@ -1,7 +1,7 @@
 ---
 id: T-0076
 title: Buildings are named for their people, not their spec codes
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-22
+pr: 306
+claimed_by: run 8/22/2026, 1:54:24 AM CT
 blocked_on: null
 needs_bake: false
 ---

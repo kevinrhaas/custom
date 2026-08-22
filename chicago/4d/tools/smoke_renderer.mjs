@@ -4351,6 +4351,92 @@ for (const [label, viewport, touch] of [
       && naming.planted[2] === null,
       `planted verdicts: ${JSON.stringify(naming.planted)}`);
 
+    // --- and the title may not be a part number at all (T-0076) -------------
+    //
+    // Owner-reported from the same card: "this name is not great Reconstructed D3
+    // one-room frame cottage #03 … give the locations useful names not technical D3 #03
+    // names, you can have that somewhere on the card for reference identity purposes but
+    // dont make it the title." The rule is `js/display-name.js`; this asserts the three
+    // things that rule owes a visitor, on the shipped module rather than on a copy of it.
+    //
+    // Whole-registry again, for the naming gate's reason: the titles are composed by one
+    // function over one dataset, so a regression arrives 222 at a time. The card check
+    // underneath is what makes it about the CARD — a title composed correctly and never
+    // rendered would satisfy a registry scan and satisfy nobody standing in the town.
+    const titles = await page.evaluate(async () => {
+      const mod = await import(new URL('js/display-name.js', location.href).href);
+      const registry = window.__chicago4d.registry;
+      const specShaped = [];
+      let anonymous = 0;
+      let empty = 0;
+      for (const [id, record] of registry) {
+        const s = record?.sidecar;
+        if (!s) continue;
+        const { title, spec } = mod.displayName(s, id);
+        if (!title) empty += 1;
+        if (s.reconstruction?.status === 'inferred_anonymous') {
+          anonymous += 1;
+          if (/#\s*\d+\s*$/.test(title) || /^Reconstructed\b/.test(title)) {
+            specShaped.push(`${id}: "${title}"`);
+          }
+          // The other half of the owner's sentence: the production identity is kept.
+          if (spec !== s.name) specShaped.push(`${id}: reference line lost "${s.name}"`);
+        }
+      }
+      // A scan of a clean tree is indistinguishable from a scan of nothing, so the rule
+      // is also run against records made up here — one occupied, one empty, one named.
+      const anon = (extra) => ({
+        name: 'Reconstructed D3 one-room frame cottage #03',
+        reconstruction: { status: 'inferred_anonymous', family: 'D3' }, ...extra });
+      const planted = {
+        occupied: mod.displayName(anon({ residents: [{ name: 'The Tuttle household — a '
+          + 'reconstructed carpenter (south division)', relation: 'lived here',
+          persons: [{ name: 'Amos Tuttle', relationship: 'head' }] }] }), 'x').title,
+        vacant: mod.displayName(anon({}), 'x').title,
+        named: mod.displayName({ name: 'Green Tree Tavern' }, 'green_tree_tavern').title,
+      };
+      // And the search has to answer to BOTH names, which is the whole argument for
+      // keeping the production identity anywhere.
+      const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
+        ?.reconstruction?.status === 'inferred_anonymous'
+        && (registry.get(id)?.sidecar?.residents ?? []).length);
+      const sidecar = registry.get(anonId)?.sidecar ?? {};
+      const terms = mod.searchTerms(sidecar, anonId);
+      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
+      // The card itself: opened on that record, reading what a visitor reads.
+      window.__chicago4d.popup.show(registry.get(anonId));
+      const card = {
+        id: anonId,
+        heading: document.querySelector('#popup h2')?.textContent?.trim() ?? '',
+        reference: document.querySelector('#popup .pop-spec')?.textContent ?? '',
+        expected: mod.displayName(sidecar, anonId).title,
+        spec: sidecar.name,
+      };
+      window.__chicago4d.popup.close();
+      return { specShaped, anonymous, empty, planted, card,
+               searchable: {
+                 bySpec: terms.includes(sidecar.name ?? '\u0000'),
+                 byHousehold: !!surname && terms.includes(surname[1]),
+               } };
+    });
+    check(`${label}: no building titles itself by its part number`,
+      titles.anonymous > 100 && titles.empty === 0 && titles.specShaped.length === 0,
+      `${titles.anonymous} anonymous roofs, ${titles.empty} untitled, `
+      + `${titles.specShaped.length} still spec-titled — ${titles.specShaped.slice(0, 3).join(' | ')}`);
+    check(`${label}: the naming rule titles a house for its people and an empty one plainly`,
+      titles.planted.occupied === 'The Tuttle house'
+      && titles.planted.vacant === 'A vacant one-room frame cottage'
+      && titles.planted.named === 'Green Tree Tavern',
+      `planted: ${JSON.stringify(titles.planted)}`);
+    check(`${label}: the card shows that title and keeps the reference below it`,
+      titles.card.heading === titles.card.expected
+      && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
+      `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
+      + `over reference "${titles.card.reference.trim()}"`);
+    check(`${label}: search still finds it by its part number and by its household`,
+      titles.searchable.bySpec && titles.searchable.byHousehold,
+      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
+
     // --- hiding a level (K17) ----------------------------------------------
     //
     // The other half of the confidence control. Colouring asks how sure we are;

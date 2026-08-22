@@ -5496,6 +5496,50 @@ same day), **L25** (where the restraint started), **L130**.
 **Recorded:** 2026-08-22.
 
 
+### L167 — "Vacant" and "to let" on 118 anonymous roofs: a title composed from an ABSENCE in the residents layer
+**Decision:** the anonymous reconstruction programme's 222 roofs no longer show their production
+identity as the title of their card (**T-0076**, the owner on 2026-08-18: *"give the locations
+useful names not technical D3 #03 names, you can have that somewhere on the card for reference
+identity purposes but dont make it the title"*). `renderers/web/js/display-name.js` composes the
+title a visitor reads from the record and the residents layer: **"The Pratt house"** where a
+household lives there, **"Newell's stable"** where one only works there, **"A privy"** for an
+outbuilding — and, where the residents layer places nobody, **"A vacant one-room frame cottage"**
+or, for premises a town would have advertised, the 1830s phrasing **"A narrow two-story store, to
+let"**.
+
+**The liberty is the last of those and only the last of those.** The first three are compositions
+of data already recorded and graded: the household is the residents layer's own inferred household,
+the description is the archetype's own, and both keep their chips. **The fourth asserts an
+absence.** No source says any of these roofs stood empty on 1 July 1835. What is true is narrower
+and duller: the inferred-household programme (**K1** phase two) places the households the town's
+demonstrable trades require — 104 of the 222 — and stops, so the other 118 are **unmodelled**, not
+attested empty. "Vacant" and "to let" are therefore a reading of our own dataset's edge, presented
+in the town's voice.
+
+**Why it was taken rather than refused.** The alternative is a title that says nothing at all — a
+part number, which is what the owner objected to — or a hedge in the largest text on the card
+("occupancy not modelled"), which is a sentence about this project rather than about 1835. A town
+of 3,265 people did not have 118 empty houses in it, and the honest half of that is that the model
+does not know who was in them. So the title speaks plainly and **the card carries the
+qualification directly beneath it**, in the same block as the RECONSTRUCTED flag: no household is
+recorded here, which is not evidence that it stood empty.
+
+**Nothing in the dataset moved.** `sidecar.name` is untouched — it is what the parcel recipes
+re-derive, what the GLBs are named for, and what the release gate's naming assertion reads — and
+it is printed on the card as the reference line, and searchable, exactly as the owner asked.
+
+**How to resolve:** extend the residents layer until it reaches every roof, at which point the
+vacancy titles disappear on their own; or record occupancy as a graded ATTRIBUTE of the record
+rather than as the absence of a link, which would let a card say *reconstructed: unoccupied* with a
+chip on it like every other claim here.
+
+**Ticket:** T-0076, from the owner's brief of 2026-08-18. Related: **L1** (the town draws no
+people, which is why a household reaches a visitor only as text), **L81** (the anonymous roofs
+themselves, none of them a recovered building), **L84** (the households nobody named), **L94** (the
+rule that decides which roof gets an occupant — the same edge, one layer down).
+**Recorded:** 2026-08-22.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
