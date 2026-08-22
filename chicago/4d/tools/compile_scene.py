@@ -1066,6 +1066,24 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     fauna_cites = compile_fauna_sources(scene_id, sources, outdir)
     resident_cites = compile_residents_sources(scene_id, sources, outdir)
 
+    # A SIDECAR WHOSE STRUCTURE HAS GONE IS NOT INERT, which is why this sweeps
+    # rather than leaves them. The compiler only ever wrote sidecars, so a record
+    # deleted between two compiles left its sidecar behind — and the derived layers
+    # read `data/sidecars/`, not `data/structures/`, so the town went on fencing and
+    # planting the yard of a house that no longer existed while every gate stayed
+    # green: the layer re-derived exactly, from an input nobody had noticed was a
+    # ghost. Found 2026-08-22 in T-0105's own merge, which left three of them.
+    keep = {entry["id"] for entry in index} | set(skipped) | {
+        "index", "exclusions", "terrain", "fauna_sources", "residents_sources"}
+    for stale in sorted(outdir.glob("*.json")):
+        if stale.stem in keep:
+            continue
+        if CHECK:
+            DRIFT.append(f"{stale.relative_to(ROOT)} is a sidecar for a structure the "
+                         f"dataset no longer carries")
+        else:
+            stale.unlink()
+
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
           f"{ground} ground claim(s), {fauna_cites} fauna source(s), "
           f"{resident_cites} resident source(s)"

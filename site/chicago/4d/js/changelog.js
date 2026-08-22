@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 233, title: 'Three phantom yards stop being drawn', kind: 'fix', ts: '2026-08-22T18:03:20.005Z', date: 'Aug 22, 2026, 1:03 PM CT',
+    items: [
+      'Three houses were built at Randolph and State this morning and then rebuilt a different way. The first three were deleted \u2014 but the town went on drawing their fences and their dooryard bushes, standing around nothing, because the layers that plant a yard read a compiled copy of each building rather than the building itself, and nothing swept the copies of the deleted three.',
+      'They are gone, and so is the hole they came through: compiling the town now removes the copy of a building the dataset no longer carries, and the gate refuses one that survives.',
+      'Nothing else in the town moved.',
+    ] },
   { v: 232, title: 'Three roofs on one lot at Randolph and State', kind: 'feature', ts: '2026-08-22T16:54:11.426Z', date: 'Aug 22, 2026, 11:54 AM CT',
     items: [
       'The block face on Randolph between Dearborn and State was open grass. Three houses stand shoulder to shoulder on it now \u2014 a cottage of a storey and a half at the west end, a one-room frame cottage beside it, an older log cabin closing the row \u2014 with a woodshed in the yard behind them. Walk east along Randolph and the row is on your right.',
