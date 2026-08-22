@@ -31,7 +31,7 @@ from html.parser import HTMLParser
 SRC = (sys.argv[1] if len(sys.argv) > 1 else 'wau-bun/sources').rstrip('/') + '/'
 OUT = 'site/wau-bun/js/data-text-part%d.js'
 RETOLD = 'wau-bun/modern/'   # hand-written retellings, one <scene-id>.txt per scene
-DARK   = 'wau-bun/dark/'     # the modern horror-suspense retelling, same shape
+DARK   = 'wau-bun/dark/'     # the tauter retelling, same shape
 DUMP   = 'wau-bun/source-scenes/'   # per-scene source text, for writing against
 OUTDARK = 'site/wau-bun/js/data-dark-part%d.js'
 REUSE_MAX = 0.10   # a dark passage may echo at most this much source narration
@@ -283,17 +283,32 @@ def build(ranges):
 def words(paras): return len(' '.join(paras).split())
 
 QUOTE = re.compile(r'"[^"]*"')
-def _narration(t):
+OPEN_RUN = re.compile(r'"[^"]*$')
+def _narration(paras):
     """Dialogue has to keep its wording, so it would inflate any similarity
-    measure. Strip quoted speech and look only at the narration."""
-    return re.sub(r'[^a-z0-9 ]', ' ', QUOTE.sub(' ', t).lower()).split()
+    measure. Strip quoted speech and look only at the narration.
+
+    Paragraph by paragraph, because a multi-paragraph quotation in this book
+    opens a quote on EVERY paragraph and closes only on the last. Matching
+    pairs across the whole passage therefore pairs the wrong marks and leaves
+    half the dialogue counted as narration — which scored some scenes as
+    unfixable however well they were re-voiced.
+
+    Known limit: speech nested in single quotes (the source uses them inside a
+    quoted testimony) is not stripped, so those few scenes read a little high."""
+    out = []
+    for para in paras:
+        p = QUOTE.sub(' ', para)     # closed pairs first
+        p = OPEN_RUN.sub(' ', p)     # then a quote that runs to the paragraph end
+        out.append(p)
+    return re.sub(r'[^a-z0-9 ]', ' ', ' '.join(out).lower()).split()
 
 def reuse(dark_paras, src_paras, n=8):
     """Fraction of the source's narration n-grams that survive verbatim in the
     retelling. A genuinely re-voiced passage sits near zero; a passage that was
     edited sentence-by-sentence instead of rewritten sits high."""
-    S = set(zip(*[_narration(' '.join(src_paras))[i:] for i in range(n)]))
-    D = set(zip(*[_narration(' '.join(dark_paras))[i:] for i in range(n)]))
+    S = set(zip(*[_narration(src_paras)[i:] for i in range(n)]))
+    D = set(zip(*[_narration(dark_paras)[i:] for i in range(n)]))
     return (len(S & D) / len(S)) if S else 0.0
 
 def dump_sources(number, out, ids, titles):
@@ -365,10 +380,10 @@ for number, ranges in PARTS:
     # fetched by a reader who actually opens that mode
     have = [sid for sid in ids if out[sid]['dark']]
     if have:
-        dk = ['/* Wau-Bun — Part %d, the same scenes retold in a modern' % number,
-              '   horror-suspense voice: the events, people, places and turns of the 1856',
-              '   text, in present-day English with the dread it actually carried. Original',
-              '   prose written for this app — nothing is quoted from any other book.',
+        dk = ['/* Wau-Bun — Part %d, the same scenes retold in a tauter, more' % number,
+              '   immediate voice: the events, people, places and turns of the 1856 text,',
+              '   in present-day English, with nothing added. Original prose written for',
+              '   this app — nothing is quoted from any other book.',
               '   Generated — do not hand-edit; the passages live in wau-bun/dark/<scene>.txt.',
               '   Loaded only when a reader opens this mode. */',
               'var WAUBUN_DARK_PART%d = {' % number]

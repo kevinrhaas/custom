@@ -12,8 +12,8 @@
    panel) is a history entry, so the browser Back button always undoes exactly
    one step and the URL is shareable.
 
-   Each scene reads four ways: a summary, a light modernization, a modern
-   horror-suspense retelling, and the 1856 original. The prose lives in
+   Each scene reads four ways: a summary, a light modernization, a tauter
+   retelling, and the 1856 original. The prose lives in
    js/data-text-part<N>.js (modern + 1856) and js/data-dark-part<N>.js, fetched
    only when a reader first opens a mode that needs it — first paint stays
    light however many readings the app offers. */
@@ -29,11 +29,12 @@
   var MODES = [
     { id: 'summary',  label: 'Summary',  note: 'What happens, in brief.' },
     { id: 'modern',   label: 'Modern',   note: 'The contemporary-English edition, in full.' },
-    { id: 'dark',     label: 'Dark',     note: 'The same events in a modern horror-suspense voice.' },
+    { id: 'dark',     label: 'Retold',   note: 'The same events, told close and taut — nothing added.' },
     { id: 'original', label: '1856',     note: 'Juliette Kinzie\'s original text, in full.' }
   ];
-  // which file each mode's prose lives in — 'dark' is its own bundle so a
-  // reader who never opens it never downloads it
+  // Which file each mode's prose lives in. The retelling has its own bundle so
+  // a reader who never opens it never downloads it. Its id and paths are still
+  // 'dark' from when the mode was first cut; only the label changed.
   var BUNDLE = { modern: 'text', original: 'text', dark: 'dark' };
 
   var MINCELL = 5, MAXCELL = 34;      // chart square, px
@@ -189,7 +190,7 @@
 
   /* ---------------- full text, fetched on demand -------------------------
      One file per part per bundle: data-text-part<N>.js carries the modern and
-     1856 passages, data-dark-part<N>.js the horror-suspense retelling. A file
+     1856 passages, data-dark-part<N>.js the tauter retelling. A file
      is requested the first time a reader opens a mode that needs it, and never
      before — first paint stays light however many readings the app offers. */
   var text = {};   // "<part>|<bundle>" -> { state, waiters }
@@ -863,7 +864,7 @@
     var paras = passage(sc.id, state.mode);
     if (!paras || !paras.length) {
       box.appendChild(el('div', 'wb-note', state.mode === 'dark'
-        ? 'This scene has not been retold in the dark voice yet. The summary is below.'
+        ? 'This scene has not been retold yet. The summary is below.'
         : 'The text for this scene could not be loaded. The summary is below.'));
       box.innerHTML += summaryHTML(sc);
       return box;
@@ -888,8 +889,8 @@
     if (state.mode === 'original')
       return ch + ' of the 1856 first edition — Juliette Kinzie\'s own words, unaltered.';
     if (state.mode === 'dark')
-      return ch + ', retold in a modern horror-suspense voice. Every event, person, place and'
-        + ' turn of the 1856 text is kept; the language is new, written for this app.';
+      return ch + ', retold for this app in a tauter, more immediate voice. Every event, person,'
+        + ' place and turn of the 1856 text is kept, and nothing is added — only the telling is new.';
     return ch + (isRetold
       ? ', retold in a plain modern voice — every event, name and detail of the original kept.'
       : ', in an earlier, lighter modernization. The full rewrite is working through the part scene by scene.');

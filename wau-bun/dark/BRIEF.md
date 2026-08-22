@@ -5,11 +5,14 @@ It is in the public domain. This app already offers each scene three ways:
 a summary, a light modernization, and her 1856 original.
 
 This is a **fourth** reading of the same book: the identical events, told in a
-modern horror-suspense voice. The book earns it — it contains a massacre, a
-captivity, a starvation winter, a woman held under water to keep her out of a
-fight, prisoners tunnelling out of a black-hole, a man asking cheerful
-questions on his way to the gallows. The 1856 prose reports those things in a
-drawing-room register. This mode restores the dread they actually carried.
+tauter, more immediate modern voice. The book contains a massacre, a captivity,
+a starvation winter, a woman held under the lake to keep her out of a fight,
+prisoners tunnelling out of a black-hole, a man asking cheerful questions on
+his way to the gallows — and it reports all of it in the same even
+drawing-room register it uses for a dinner party. This mode lets the material
+read at its own weight.
+
+It is **not** a horror story and it is not an adaptation. Nothing is added.
 
 ## What you are writing
 
@@ -73,23 +76,38 @@ share almost nothing else.
 
 ## The voice
 
-The target is contemporary popular horror-suspense. That is a set of craft
-habits, not any particular author's book:
+**This is a tone, not a genre.** You are not writing a horror story. You are
+telling Kinzie's account with better pacing and sharper concreteness than an
+1856 drawing-room register allows. The events are already frightening where
+they are frightening and already funny where they are funny; your job is to
+stop the prose from muffling either.
 
-- Short declarative sentences under pressure. Let a one-line paragraph land.
-- Concrete sensory detail over abstraction: what it smelled like, what the
-  ground did underfoot, what the light was doing.
-- Dread built out of ordinary things — a dog standing over something, a dish
-  of food pulled close in the dark, a sail that will not fill.
-- Close narration: what the narrator noticed, and what she noticed she was
-  thinking, in the order she noticed it.
-- Withhold and reveal. The source often front-loads its outcome; you may hold
-  the turn until the end of the paragraph, as long as you do not change it.
-- Restraint at the worst moments. The most violent material in this book does
-  not need heightening; report it plainly and let it do its own work.
-- Do not overreach for atmosphere in quiet, funny or domestic scenes — a good
-  deal of this book is comic, and comedy in a taut voice stays comic. Match the
-  scene, not a genre template.
+What that means in practice:
+
+- Short declarative sentences where the source is tense. Let a short paragraph
+  land instead of trailing into a subordinate clause.
+- Prefer the concrete noun the source already gives you over its abstraction —
+  if it says the ground was miry, say what the ground did; do not invent a
+  smell, a sound, a temperature or a sky that the source never mentions.
+- Order matters more than adjectives. The source often front-loads its outcome;
+  you may hold the turn to the end of the paragraph. That is where nearly all
+  of the effect should come from.
+- Close narration: what she noticed, in the order she noticed it.
+- Restraint at the worst moments. The violent material in this book does not
+  need heightening. Report it plainly.
+
+**Do not manufacture dread.** No ominous foreshadowing the source does not
+have. No "something was wrong." No dwelling on menace in a scene that is
+actually about a wet trunk or a badly-made short-cake. A great deal of this
+book is domestic and comic, and those scenes must come out domestic and comic —
+merely told with more life. If you find yourself darkening a scene to match a
+mood, you have gone wrong.
+
+**Add nothing.** Not an image, not a sensation, not an inference about what
+someone felt or feared, not a detail of weather or light. If it is not in the
+source passage, it does not go in yours. This is the rule that outranks every
+craft note above: a vivid sentence you invented is worse than a flat one you
+did not.
 
 **Write original prose.** Do not quote, paraphrase, or imitate any passage from
 any modern novel, and do not name any author anywhere in your output. The style
