@@ -26,11 +26,14 @@
   var CH = {};
   WAUBUN_CHARACTERS.forEach(function (c) { CH[c.id] = c; });
 
+  // `action` is the wording on the scene panel's button for this mode. It lives
+  // here so adding a mode cannot leave two buttons sharing a label, which is
+  // exactly what a three-way ternary did when the fourth mode arrived.
   var MODES = [
-    { id: 'summary',  label: 'Summary',  note: 'What happens, in brief.' },
-    { id: 'modern',   label: 'Modern',   note: 'The contemporary-English edition, in full.' },
-    { id: 'dark',     label: 'Retold',   note: 'The same events, told close and taut — nothing added.' },
-    { id: 'original', label: '1856',     note: 'Juliette Kinzie\'s original text, in full.' }
+    { id: 'summary',  label: 'Summary',  action: 'Read scene',    note: 'What happens, in brief.' },
+    { id: 'modern',   label: 'Modern',   action: 'Full text →',   note: 'The contemporary-English edition, in full.' },
+    { id: 'dark',     label: 'Retold',   action: 'Retold →',      note: 'The same events, told close and taut — nothing added.' },
+    { id: 'original', label: '1856',     action: 'Original 1856 →', note: 'Juliette Kinzie\'s original text, in full.' }
   ];
   // Which file each mode's prose lives in. The retelling has its own bundle so
   // a reader who never opens it never downloads it. Its id and paths are still
@@ -1119,7 +1122,7 @@
         var acts = el('div', 'wb-panelacts');
         MODES.forEach(function (m) {
           var btn = el('button', 'wb-btn' + (m.id === 'summary' ? '' : ' primary'),
-            m.id === 'summary' ? 'Read scene ' + (pos + 1) + ' →' : (m.id === 'modern' ? 'Full text →' : 'Original 1856 →'));
+            m.id === 'summary' ? m.action + ' ' + (pos + 1) + ' →' : m.action);
           btn.type = 'button';
           btn.title = m.note;
           btn.addEventListener('click', function () {
