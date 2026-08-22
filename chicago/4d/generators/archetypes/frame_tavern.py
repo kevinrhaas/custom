@@ -28,16 +28,31 @@ from archetypes.frame_tavern_params import FrameTavernParams  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_LOG, M_SHUTTER, M_GLASS = 0, 1, 2, 3, 4
-# Appended only when a record states brick stacks (chimney_material, T-0092) —
-# appended conditionally so every building without the claim keeps its exact
-# five-material list and its committed bytes.
+# Appended wherever the record counts a stack. It was appended only when a record
+# STATED brick (chimney_material, T-0092) until T-0008 discharged R-W2a finding 1:
+# every other tavern's stacks were taking M_ROOF and coming out painted their own
+# roof's weathering condition. A tavern is a framed block and its stacks rise on the
+# ridge line through the roof, so they are masonry on the same argument as the
+# Sauganash's — see common/materials.py § the chimney stack. Still appended
+# CONDITIONALLY, so a tavern with no stack keeps its exact five-material list.
 M_BRICK = 5
 
-# Colours the record can select beyond common.mesh's stock set. Local to this
-# archetype on purpose: common/ bytes are hashed into every archetype's mesh
-# inputs, and a colour only frame taverns read does not belong in a file whose
-# edit would stale the whole town.
-BRICK_RGBA = (0.45, 0.23, 0.17, 1.0)       # unpainted soft-mud brick
+# Colours the record can select beyond common.mesh's stock set. This block used to
+# say they were local to this archetype ON PURPOSE — `common/` bytes are hashed into
+# every archetype's mesh inputs, so a colour only frame taverns read did not belong
+# in a file whose edit stales the whole town.
+#
+# T-0008 MOVED THE BRICK OUT ANYWAY, and the reason the trade-off flipped is worth
+# stating rather than silently reversing. It is no longer a colour only frame taverns
+# read: 112 framed buildings across three more archetypes now carry the same stack,
+# so a copy per archetype is materials.md §2.3's own complaint made four times over
+# — the shape T-0007 already refused for the hewn log. And the cost that argued for
+# the copy is smaller than it was: Blender has been on the improve runner since
+# 2026-08-19, so a `common/` edit is a two-and-a-half-minute rebuild of 245 masters
+# in the same commit rather than a parcel that cannot go green. The value itself is
+# UNCHANGED, so the Sauganash's masters come out byte-for-byte identical — which is
+# the check that this was a move and not a repaint.
+BRICK_RGBA = materials.CHIMNEY_BRICK.rgba
 ROOF_MOSS_RGBA = (0.20, 0.26, 0.17, 1.0)   # the Petford view's dark green/moss shingle
 
 # The exposed face per course is `params.siding_exposure_m` — a record's own mill
@@ -119,13 +134,19 @@ def build(params: FrameTavernParams, name: str):
     # chimneys — as many stacks as the record counts. "frontage" spaces them
     # across the frontage at the depth midline (the original arrangement, kept
     # exactly so no committed building moves); "gable_ends" stands one ON the
-    # ridge line at each gable end, which is what plate "11" draws. A record
-    # that states the stacks' material (the Sauganash's brick, off the Petford
-    # view — T-0092) recolours them and folds that claim's confidence in; the
-    # material attribute joins the worst-of only when stated, because an absent
-    # key reads as `reconstructed` and would degrade every committed stack.
+    # ridge line at each gable end, which is what plate "11" draws.
+    #
+    # EVERY stack here is brick since T-0008, not only the Sauganash's. A tavern is
+    # a framed block and these stacks rise on the ridge line through the roof, which
+    # is the argument common/materials.py § the chimney stack makes for the whole
+    # framed town; before it, nine of these ten buildings were drawing their stacks
+    # in the roof material. What `chimney_material` still does is CONFIDENCE: where
+    # a record states the fabric (the Sauganash's brick, off the Petford view —
+    # T-0092) that claim folds into the worst-of, and where it does not, the
+    # attribute stays out of it, because an absent key reads as `reconstructed` and
+    # would degrade every committed stack for a rule rather than for a claim.
     ch_attrs = ["chimneys"] + (["chimney_material"] if params.chimney_material else [])
-    m_ch = M_BRICK if params.chimney_material == "brick" else M_ROOF
+    m_ch = M_BRICK if params.chimneys > 0 else M_ROOF
     if params.chimney_placement == "gable_ends":
         c_ch = params.worst_conf(*ch_attrs, "chimney_placement")
         inset = 0.6
@@ -171,8 +192,9 @@ def build(params: FrameTavernParams, name: str):
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
         simple_material("glass", (0.09, 0.11, 0.13, 1.0), roughness=0.25),
     ]
-    if params.chimney_material == "brick":
-        mats.append(simple_material("brick", BRICK_RGBA, roughness=0.85))
+    if params.chimneys > 0:
+        mats.append(simple_material("brick", BRICK_RGBA,
+                                    roughness=materials.CHIMNEY_BRICK.roughness))
     return b.to_object(mats)
 
 

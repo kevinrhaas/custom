@@ -80,6 +80,12 @@ from archetypes.frame_dwelling_params import (  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_TRIM, M_DARK, M_SHUTTER = 0, 1, 2, 3, 4
+# Appended only where the record counts a stack (T-0008) — appended rather than
+# inserted, and conditionally, for the reason `log_dwelling` gives at its own
+# mats list: a material slot nothing references still reaches the glTF, so adding
+# one unconditionally would rewrite every chimneyless master in the archetype for
+# a colour none of them uses.
+M_CHIMNEY = 5
 
 # The exposed face of a course is `params.siding_exposure_m` — a record's own mill
 # stock since T-0049, defaulting to 0.14 m (~5.5 in), which was this constant.
@@ -158,7 +164,8 @@ def build(params: FrameDwellingParams, name: str):
         else None
 
     _chimneys(b, params, w, y0, d, wall_z, ridge_z, ell_ridge_z,
-              params.conf("chimneys", "reconstructed"))
+              params.conf("chimneys", "reconstructed"),
+              M_CHIMNEY if params.chimneys > 0 else M_ROOF)
 
     if params.porch:
         _porch(b, params, openings, d, wall_z, params.conf("porch", "reconstructed"))
@@ -194,6 +201,16 @@ def build(params: FrameDwellingParams, name: str):
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
     ]
+    # THE STACK IS NOT THE ROOF (T-0008). Until this parcel every stack this
+    # archetype built took `M_ROOF`, so a chimney was painted whatever weathering
+    # condition its roof was dealt — R-W2a finding 1, and 71 of the town's 157 stacks
+    # are this archetype's.
+    # A stack that rises inside the wall and breaks the roof at the ridge is masonry
+    # by necessity, and the masonry this town had was brick: `common/materials.py`
+    # § the chimney stack, and docs/RESEARCH/chimneys.md.
+    if params.chimneys > 0:
+        stack = materials.chimney_finish("interior")
+        mats.append(simple_material("chimney", stack.rgba, roughness=stack.roughness))
     return b.to_object(mats)
 
 
@@ -687,7 +704,7 @@ def _stack_positions(p: FrameDwellingParams, w: float) -> list:
 
 def _chimneys(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float, d: float,
               wall_z: float, ridge_z: float, ell_ridge_z: float | None,
-              conf: float) -> None:
+              conf: float, mat: int) -> None:
     """As many stacks as the record counts, placed by the archetype.
 
     The count is the record's; everything else about a stack here is invented, so the
@@ -709,22 +726,22 @@ def _chimneys(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float, d: fl
         return
     yc = (y0 + d) / 2.0
     for cx in _stack_positions(p, w):
-        _stack(b, cx, yc, wall_z, ridge_z, conf)
+        _stack(b, cx, yc, wall_z, ridge_z, conf, mat)
     if p.ell and p.chimneys >= 2 and ell_ridge_z is not None:
         ex0, ex1 = _ell_extent(p, w)
         # near the wing's own outer gable, and kept inside it however short it is
         cy = min(0.95, max(0.55, p.ell_depth_m * 0.3))
-        _stack(b, (ex0 + ex1) / 2.0, cy, p.ell_height_m, ell_ridge_z, conf)
+        _stack(b, (ex0 + ex1) / 2.0, cy, p.ell_height_m, ell_ridge_z, conf, mat)
 
 
 def _stack(b: MeshBuilder, cx: float, cy: float, base_z: float, ridge_z: float,
-           conf: float) -> None:
+           conf: float, mat: int) -> None:
     """One stack, from inside the roof to a corbelled head above the ridge."""
     half = 0.42
     b.add_box(cx - half, cy - half, base_z - 0.4, cx + half, cy + half,
-              ridge_z + 0.62, conf, M_ROOF, skip=("bottom",))
+              ridge_z + 0.62, conf, mat, skip=("bottom",))
     b.add_box(cx - half - 0.07, cy - half - 0.07, ridge_z + 0.62,
-              cx + half + 0.07, cy + half + 0.07, ridge_z + 0.78, conf, M_ROOF,
+              cx + half + 0.07, cy + half + 0.07, ridge_z + 0.78, conf, mat,
               skip=("bottom",))
 
 

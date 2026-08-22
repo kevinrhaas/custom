@@ -1,5 +1,68 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0008: the chimney stops being painted the colour of the roof
+
+**The defect, opened by R-W2a's own measurement of the shipped GLBs (finding 1) and carried as
+ROADMAP R-W2c since 2026-08-16.** `frame_dwelling`, `frame_storefront` and `log_dwelling` built
+every chimney stack with the ROOF material, so a stack came out wearing whatever weathering
+condition its own roof was dealt — a chimney that disappears into the roof it passes through, from
+the footway, on most of the town.
+
+**It was not a palette fix, and R-W2c said so before this run started.** The two stacks this town
+has are two different objects, and both archetypes had already argued which in committed prose:
+`frame_dwelling._chimneys` says its stack rises *inside* the wall and breaks the roof at the ridge;
+`log_dwelling._stack` says its stack is built *against* the gable so it can be pulled away when it
+catches fire. Two dispositions, two materials, and the renderer was painting both of them roof.
+
+**What shipped.** `docs/RESEARCH/chimneys.md` — the fabric question answered from what this
+repository holds — plus two rows on the material sheet and a conditional `M_CHIMNEY` in four
+archetypes. **157 stacks on 143 buildings** now carry a masonry material of their own:
+
+- **Brick on the 112 framed buildings**, `inferred`. The one coloured witness here to any Chicago
+  chimney is the Petford watercolour of the Sauganash, and the owner's brief reads **"brick
+  chimneys"** off it. Blodgett's brick-yard opened on the North Side in the spring of 1833
+  (`brickyard_north_side`, Andreas p. 1161); the Lake House went up in brick in 1835. And an
+  interior flue through a timber roof has to be masonry. The VALUE is `frame_tavern`'s committed
+  `BRICK_RGBA`, wired to the Sauganash by T-0092, moved into `common/materials.py` verbatim — the
+  same convergence T-0007 made for the hewn log — so the Sauganash's own masters come out
+  byte-for-byte unchanged.
+- **Cat-and-clay on the 31 log cabins**, `reconstructed` and bounded rather than picked: no paler
+  than the CHINKING it is daubed with (0.700/0.670/0.590), no darker than the palest ROOF
+  CONDITION (0.424/0.384/0.345) or it stops reading as masonry, and at the midpoint of the two to
+  three decimals — **0.562/0.527/0.468** — because nothing states where between them it sits.
+  Fieldstone is the other half of `log_dwelling`'s own sentence and is deliberately not built.
+  **docs/LIBERTIES.md L168** records the invention; L26 keeps every stack's position, untouched.
+
+**It cost no draw call, and that is a fact worth keeping.** `buildings.js::materialKey` batches on
+type, emissive, metalness, the four maps, side, transparency and flat-shading — never on base
+colour and never on roughness, both of which have ridden per vertex since R-W5a2. So two new
+colours merge into buckets that already exist: **113 draw calls before and 113 after**, measured at
+`south_water`, 1280×800. Adding a COLOUR to this town is free; adding a MAP would not be.
+
+**Where R-W2a's count does not reproduce, stated rather than quietly restated.** R-W2c says *219
+stacks on 199 buildings*. The resolved parameters of the committed masters give **157 on 143**
+(frame_dwelling 71/69, frame_storefront 33/33, log_dwelling 34/31, frame_tavern 19/10). The
+2026-08-16 figure is not re-derivable from anything committed and is left as written; this run's
+number is the one measured here, on this tree.
+
+**What is NOT fixed, in writing.** The fort's ten garrison buildings keep roof-coloured stacks —
+1816, seventeen years before the brick-yard, federal ground, and `construction` running log, brick,
+earth and stone across the records, so neither answer above reaches them without inventing a third
+(**T-0137**). The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in
+linear red from the archetypes' (**T-0138**); converging it rewrites 90 masters and the banked
+passthrough set. Nothing here says what any roof was COVERED with — R-W2a finding 2 stands.
+And a trap surfaced on the way: `generators/build.py` cannot build
+`cook_county_courthouse_1835` at all, because its only phase runs October to December 1835 and the
+only scene targets 1 July — so every `generators/common/` edit stales a committed asset that the
+bake has no committed route to heal (**T-0139**). This run got past it with a throwaway
+script; that is the thing the ticket exists to stop needing.
+
+**Verification.** 245 generated masters rebuilt on the runner's own Blender, web derivatives
+regenerated, `tools/publish.sh` in the same commit. `tools/check.sh` green, including the
+staleness gate that is the whole reason the bake had to come with the change.
+`node tools/smoke_renderer.mjs` green at 390×780 and 1280×800 with zero page errors. Before/after
+at `south_water`: `docs/evidence/t-0008-{before,after}.png`.
+
 ## Shipped 2026-08-22 — T-0076: buildings are named for their people, not their spec codes
 
 **The ask (owner, 2026-08-18), verbatim:** *"this name is not great Reconstructed D3 one-room frame
