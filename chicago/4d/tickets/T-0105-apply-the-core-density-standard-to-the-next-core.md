@@ -1,7 +1,7 @@
 ---
 id: T-0105
 title: Apply the core density standard to the next core block below the bar
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0073
 opened: 2026-08-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 11:01:21 AM CT
 blocked_on: null
 needs_bake: false
 ---
