@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 234, title: 'Nine buildings stop telling you the ground under them is missing', kind: 'fix', ts: '2026-08-22T18:51:49.569Z', date: 'Aug 22, 2026, 1:51 PM CT',
+    items: [
+      'Nine cards \u2014 the Cobweb Castle, the Steamboat Hotel, the Beaubien homestead, Watkins\u2019s school, the brickyard, Newberry & Dole\u2019s warehouse, the log bridge at the foot of State and both harbour piers \u2014 told a reader in their own words that they stood outside the modelled world, on no ground at all. The ground arrived under every one of them on 11 August, when the terrain was extended east to the harbour mouth. Nobody told the cards.',
+      'The notes are corrected rather than deleted: each one now says what it used to say, when it stopped being true, and what the field actually reads under the building. The two piers still stand over water with no ramp to them, which is a different absence and is the one their cards keep.',
+      'Nothing moved, nothing was rebuilt, and no confidence changed. The ground was there the whole time.',
+      'It is checkable rather than asserted: tools/measure_east_band.mjs walks the 229 records east of where the field used to stop, in the real page, and reports which of them stand on it.',
+    ] },
   { v: 233, title: 'Three phantom yards stop being drawn', kind: 'fix', ts: '2026-08-22T18:03:20.005Z', date: 'Aug 22, 2026, 1:03 PM CT',
     items: [
       'Three houses were built at Randolph and State this morning and then rebuilt a different way. The first three were deleted \u2014 but the town went on drawing their fences and their dooryard bushes, standing around nothing, because the layers that plant a yard read a compiled copy of each building rather than the building itself, and nothing swept the copies of the deleted three.',
