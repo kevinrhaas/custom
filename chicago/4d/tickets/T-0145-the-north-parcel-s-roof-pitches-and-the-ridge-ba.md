@@ -1,7 +1,7 @@
 ---
 id: T-0145
 title: The North parcel's roof pitches, and the ridge band that gates them
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: true
@@ -11,7 +11,7 @@ parent: T-0011
 opened: 2026-08-22
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 5:16:59 PM CT
 blocked_on: null
 needs_bake: false
 ---
