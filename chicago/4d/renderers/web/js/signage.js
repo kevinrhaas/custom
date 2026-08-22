@@ -24,6 +24,16 @@
  *  * and a per-sign STYLE — ground colour, letter colour, letterform and panel,
  *    assigned by the generator so that no two signs within 40 m match.
  *
+ * T-0130 RE-WORDED ALL OF IT AND THIS FILE LETTERS THE HIERARCHY. A board no
+ * longer carries the record's `name` — that is OUR label for a BUILDING, and a
+ * signboard carries what the trade lettered. The record now hands over
+ * `sign_lines`, each with a ROLE, and the advertisements' own register is drawn
+ * from it: the proprietor or firm FIRST AND LARGEST, the trade beneath it, the
+ * place last and smallest ("PHILO CARPENTER / Wholesale & Retail Druggist /
+ * South Water Street"). Line sizes are relative (`ROLE_WEIGHT`) and the whole
+ * block is then fitted to the board, so a long trade line shrinks the type
+ * rather than breaking the hierarchy.
+ *
  * The record owns all of it. `tools/generate_business_signboards.py` does the
  * choosing and the arithmetic, `tools/check.sh` re-derives its record byte for
  * byte, and this file only draws what that record says.
@@ -48,10 +58,14 @@
  *    sloping ground would float off its own wall. A POST is not on the building:
  *    it stands in the street, so it is measured from the ground under itself.
  *    The record says which datum each sign uses (`height_datum`).
- *  * It draws no IMAGE and no trade device. L25 decided that for the town's one
- *    documented sign — a painted wolf nobody has described — and nothing here
- *    disturbs it. A NAME is a different thing from a picture: the dataset holds
- *    the name and the card already shows it.
+ *  * It draws ONE trade device, and only where the shop's own advertisement
+ *    names one. Exactly one does: Philo Carpenter's 1835 notice heads itself
+ *    "AT THE SIGN OF THE GOLDEN MORTAR", which is a Chicago signboard described
+ *    by the man who owned it, so the mortar is PAINTED on his board rather than
+ *    the phrase being lettered. That is the opposite case to L25, which stands
+ *    untouched: L25 withholds the Wolf Point wolf because that IMAGE was never
+ *    described. Every other board is lettering only, and the record decides —
+ *    this file draws `sign_device` when it is there and nothing when it is not.
  *  * It is ONE draw call for the whole layer, like the fences.
  *  * It marks itself. Every vertex carries `_confidence` at `reconstructed`,
  *    because the FACT of a sign on these frontages is reconstructed — the
@@ -180,10 +194,20 @@ function lineWidth(ctx, str, size, face) {
 }
 
 /**
+ * THE PERIOD'S OWN HIERARCHY, as a ratio of type sizes. Both advertisements the
+ * wording came off put the proprietor on the top line in the largest letter, the
+ * trade beneath it in a second face, and the place last and smallest — so a
+ * board that set all three the same size would carry the right words in the
+ * wrong voice. The numbers are a signwriter's ordinary step and are invented;
+ * what is not invented is the ORDER, which is the advertisements'.
+ */
+const ROLE_WEIGHT = { name: 1.0, trade: 0.60, place: 0.44 };
+
+/**
  * The wording broken into `n` lines, balanced by length. A shop board carried
- * two or three lines far more often than one, and a name this dataset writes out
- * in full ("Philo Carpenter's South Water Street Store") has to break somewhere
- * or come out too small to read.
+ * two or three lines far more often than one, and a trade line the period wrote
+ * out in full ("Storage, Forwarding & Commission Merchants") has to break
+ * somewhere or take the whole board down with it.
  */
 function splitInto(words, n) {
   if (n === 1) return [words.join(' ')];
@@ -225,8 +249,59 @@ function drawTracked(ctx, str, cx, cy, size, face) {
 }
 
 /**
- * One sign's cell: its ground, its panel and its name, fitted to the shape of
- * the actual sign so the letters are not stretched when the quad samples it.
+ * THE GOLDEN MORTAR — the one painted device in this town, and the only image on
+ * any board but the wolf. A mortar and pestle: a tapering bowl on a foot, a
+ * flared rim, and the pestle standing out of it to the right. Gilt fill with a
+ * darker shade under it, which is how a gilder worked a device on a board and is
+ * also what keeps it legible on either a dark or a light ground.
+ *
+ * `s` is the device's height in pixels; (cx, cy) its centre. Nothing here is a
+ * record's — the record says a golden mortar was on the board, not how it was
+ * drawn — so the outline is deliberately plain: no ornament, no ground line.
+ */
+function drawDevice(ctx, cx, cy, s, gold, shade) {
+  const r = s * 0.34;              // bowl half-width at the rim
+  const foot = cy + s * 0.44;
+  const rim = cy - s * 0.06;
+  ctx.save();
+  ctx.lineJoin = 'round';
+  // The pestle first, so the bowl's rim crosses in front of it.
+  ctx.save();
+  ctx.translate(cx + r * 0.42, rim - s * 0.06);
+  ctx.rotate(-0.42);
+  ctx.fillStyle = shade;
+  ctx.fillRect(-s * 0.075, -s * 0.52, s * 0.15, s * 0.62);
+  ctx.fillStyle = gold;
+  ctx.fillRect(-s * 0.055, -s * 0.50, s * 0.11, s * 0.58);
+  ctx.beginPath();
+  ctx.ellipse(0, -s * 0.48, s * 0.105, s * 0.095, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+  // The bowl: rim band, tapering body, and a foot under it.
+  ctx.fillStyle = gold;
+  ctx.strokeStyle = shade;
+  ctx.lineWidth = Math.max(1.5, s * 0.035);
+  ctx.beginPath();
+  ctx.moveTo(cx - r, rim);
+  ctx.lineTo(cx + r, rim);
+  ctx.lineTo(cx + r * 0.80, rim + s * 0.13);
+  ctx.lineTo(cx + r * 0.42, foot - s * 0.10);
+  ctx.lineTo(cx - r * 0.42, foot - s * 0.10);
+  ctx.lineTo(cx - r * 0.80, rim + s * 0.13);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.rect(cx - r * 0.62, foot - s * 0.11, r * 1.24, s * 0.11);
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
+
+/**
+ * One sign's cell: its ground, its panel, its device where it has one, and its
+ * wording in the register the record hands over — fitted to the shape of the
+ * actual sign so the letters are not stretched when the quad samples it.
  * Returns the sub-rectangle, in pixels, that the sign's face maps to.
  */
 function paintCell(ctx, x, y, cellW, sign) {
@@ -268,40 +343,86 @@ function paintCell(ctx, x, y, cellW, sign) {
     ctx.stroke();
   }
 
-  // The wording. Try one, two and three lines and keep whichever lets the
-  // letters be biggest — the board is a derived width and the name is a given,
-  // so the type is what gives way.
-  const text = String(sign.sign_text || '').toUpperCase();
-  const words = text.split(/\s+/).filter(Boolean);
-  const maxW = rw * 0.86;
-  const maxH = rh * 0.78;
+  // THE DEVICE takes the left-hand end of the face and the lettering takes the
+  // rest. The record says how much (`share`), because a board's proportions are
+  // the record's business; where there is no device the lettering has it all.
+  const dev = sign.sign_device || null;
+  const devShare = dev ? Math.min(0.45, Math.max(0.1, dev.share ?? 0.3)) : 0;
+  const tx = rx + rw * devShare;
+  const tw = rw * (1 - devShare);
+  if (dev) {
+    const s = Math.min(rh * 0.80, rw * devShare * 0.92);
+    drawDevice(ctx, rx + (rw * devShare) / 2, ry + rh / 2, s,
+      dev.colour || '#d9b036', dev.shade || '#7a5c14');
+  }
+
+  // THE WORDING, in the record's own hierarchy. Each line carries a role and a
+  // role carries a relative size, so the proprietor reads largest and the place
+  // smallest whatever the board turns out to be. A `trade` or `place` line that
+  // is long may take TWO rows rather than dragging the whole block down with it,
+  // which is why the arrangements are enumerated instead of one being assumed.
+  const given = Array.isArray(sign.sign_lines) && sign.sign_lines.length
+    ? sign.sign_lines
+    : [{ text: String(sign.sign_text || ''), role: 'name' }];
+  const src = given
+    .map((l) => ({
+      words: String(l.text || '').toUpperCase().split(/\s+/).filter(Boolean),
+      w: ROLE_WEIGHT[l.role] ?? 1.0,
+    }))
+    .filter((l) => l.words.length);
+  // Every arrangement: each line takes one row, or two where it has the words
+  // for it and is not the name (a firm's name stays on its own line — that is
+  // the register). At most three source lines, so at most four arrangements.
+  const options = [[]];
+  for (let i = 0; i < src.length; i += 1) {
+    const l = src[i];
+    const splits = (l.w < 1.0 && l.words.length >= 3) ? [1, 2] : [1];
+    const next = [];
+    for (const opt of options) {
+      for (const n of splits) {
+        const rows = splitInto(l.words, n);
+        if (!rows) continue;
+        next.push(opt.concat(rows.map((t) => ({ text: t, w: l.w }))));
+      }
+    }
+    options.length = 0;
+    options.push(...next);
+  }
+  const maxW = tw * 0.88;
+  const maxH = rh * 0.80;
   let best = null;
-  for (let n = 1; n <= Math.min(3, words.length); n += 1) {
-    const lines = splitInto(words, n);
-    if (!lines) continue;
+  for (const rows of options) {
+    if (!rows.length) continue;
     let lo = 4;
     let hi = Math.ceil(rh);
     while (lo < hi) {
       const mid = Math.ceil((lo + hi + 1) / 2);
-      const blockH = n * mid * 1.16;
+      const blockH = rows.reduce((a, r) => a + mid * r.w * 1.20, 0);
       const fits = blockH <= maxH
-        && lines.every((l) => lineWidth(ctx, l, mid, face) <= maxW);
+        && rows.every((r) => lineWidth(ctx, r.text, mid * r.w, face) <= maxW);
       if (fits) lo = mid; else hi = mid - 1;
     }
-    if (!best || lo > best.size) best = { lines, size: lo };
+    // Prefer the arrangement that lets the NAME be biggest; on a tie, fewer rows.
+    if (!best || lo > best.size || (lo === best.size && rows.length < best.rows.length)) {
+      best = { rows, size: lo };
+    }
   }
-  if (best && best.size >= 5) {
-    const lh = best.size * 1.16;
-    const top = ry + rh / 2 - ((best.lines.length - 1) * lh) / 2;
-    for (let i = 0; i < best.lines.length; i += 1) {
-      const ly = top + i * lh;
+  if (best && best.size >= 4) {
+    const heights = best.rows.map((r) => best.size * r.w * 1.20);
+    const blockH = heights.reduce((a, b) => a + b, 0);
+    const cxText = tx + tw / 2;
+    let ly = ry + rh / 2 - blockH / 2;
+    for (let i = 0; i < best.rows.length; i += 1) {
+      const size = best.size * best.rows[i].w;
+      const mid = ly + heights[i] / 2;
       if (face.shade) {
         ctx.fillStyle = isDark(ground) ? 'rgba(0,0,0,0.55)' : 'rgba(0,0,0,0.30)';
-        drawTracked(ctx, best.lines[i], rx + rw / 2 + best.size * 0.05,
-          ly + best.size * 0.06, best.size, face);
+        drawTracked(ctx, best.rows[i].text, cxText + size * 0.05, mid + size * 0.06,
+          size, face);
       }
       ctx.fillStyle = letter;
-      drawTracked(ctx, best.lines[i], rx + rw / 2, ly, best.size, face);
+      drawTracked(ctx, best.rows[i].text, cxText, mid, size, face);
+      ly += heights[i];
     }
   }
   return { rx, ry, rw, rh };

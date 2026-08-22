@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 235, title: 'Sixty roofs north of the river stop being two dozen', kind: 'fix', ts: '2026-08-22T20:10:26.128Z', date: 'Aug 22, 2026, 3:10 PM CT',
+  { v: 236, title: 'Sixty roofs north of the river stop being two dozen', kind: 'fix', ts: '2026-08-22T21:33:20.517Z', date: 'Aug 22, 2026, 4:33 PM CT',
     items: [
       'The cluster between the north bank and Michigan Street was twenty-four buildings dealt sixty times \u2014 thirty-six of the sixty were an exact twin of another roof standing near them. They are sixty separate buildings now: different widths, different depths, different eave lines along the same row.',
       'Nothing new was invented to do it. The reconstruction specification has always described each family of building as a RANGE \u2014 a one-room frame cottage is sixteen to twenty feet by eighteen to twenty-four \u2014 and this parcel had that range typed into it as a single number, once per family. The range is used as a range now, by the same rule the blocks south of the river already use.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'A family whose range dips below the height its own doorway needs is drawn from the part of the range that can carry the door, and one with no room at all fails loudly instead of being quietly raised out of its typology. Nothing was widened to make a check pass.',
       'Roof pitches are deliberately untouched: eleven of these roofs still slope a fraction outside their cited range, and putting that right means gating the ridge height in the same pass. It has its own ticket.',
       'No roof was added or removed, nothing moved, and no confidence changed. The sizes were always invented and every card still says so.',
+    ] },
+  { v: 235, title: 'The shop signs read as the trade wrote them', kind: 'fix', ts: '2026-08-22T20:01:49.952Z', date: 'Aug 22, 2026, 3:01 PM CT',
+    items: [
+      'Every signboard in town said what WE call the building. One of them read \u201cPhilo Carpenter\u2019s Log Drug Store\u201d. No druggist ever painted the construction of his own shop on his own board, and the owner said so: it would be philo carpenter, drugs and medicines, or druggist \u2014 that may be different than the name of the building for us.',
+      'All thirty-three are re-lettered. They read the way the town\u2019s own newspaper advertising reads \u2014 the man or the firm on the top line in the largest letter, his trade beneath it, his street last and smallest. PHILO CARPENTER, Druggist. JONES, Grocery & Provision Store. JOHN DAVIS, Steam-Boat Hotel, North Water Street. The spelling is theirs, hyphen and all.',
+      'Fourteen boards now carry a firm\u2019s own advertised words rather than ours, off seven pages of 1833\u201335 Chicago newspaper the owner supplied. Where a firm advertised in both years the later line wins, because the day being modelled is 1 July 1835: Carpenter sold \u201cdrugs and medicines\u201d in 1833 and called himself a wholesale and retail druggist by 1835, and his two shops carry one line each.',
+      'It corrected a name as well as a wording. \u201cHogan\u2019s Store\u201d was our shorthand for one partner in Brewster, Hogan & Co., forwarding and commission merchants \u2014 which is what the board says now, and what the building\u2019s own record already said in a field nobody had read onto the sign.',
+      'And there is a picture on a board for the second time in this town. Carpenter\u2019s 1835 notice heads itself \u201cat the sign of the Golden Mortar\u201d \u2014 a Chicago signboard described in print by the man who owned it \u2014 so a gilt mortar and pestle is painted on his South Water board. No other shop gets a device: one belongs to a trade only where that trade\u2019s own advertisement names it.',
+      'What is still ours, and the cards say so: that any of these buildings put a sign out at all, and the colours, the letterforms and the mountings. Nineteen of the wordings have no surviving advertisement behind them and are reconstructed from the trades\u2019 own vocabulary. None of the fourteen is marked attested yet either \u2014 the newspaper pages are not in the archive here, and a transcription is not a citation, so each of those notes says which advertisement it came from and what would let it be upgraded.',
     ] },
   { v: 234, title: 'Nine buildings stop telling you the ground under them is missing', kind: 'fix', ts: '2026-08-22T18:51:49.569Z', date: 'Aug 22, 2026, 1:51 PM CT',
     items: [

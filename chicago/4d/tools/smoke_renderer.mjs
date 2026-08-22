@@ -2329,6 +2329,24 @@ for (const [label, viewport, touch] of [
         spans: spans.length,
         signs: signs.length,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
+        // T-0130: the board and the card have to agree about WHO, over the whole
+        // set and not only at the Tremont. Punctuation is dropped because the
+        // board keeps the advertisement's own spelling ("Steam-Boat Hotel") and
+        // the card carries this project's ("Steamboat Hotel").
+        identityMismatch: signs.filter((sg) => {
+          const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+          const id = norm(sg.sign_identity);
+          return !id || !norm(sg.sign_text).includes(id) || !norm(sg.name).includes(id);
+        }).map((sg) => sg.structure_id),
+        // And no board has gone back to carrying this project's own way of
+        // describing a BUILDING. "Log" is the tell T-0130 was raised over.
+        labelled: signs.filter((sg) => /\blog\b/i.test(sg.sign_text || ''))
+          .map((sg) => sg.structure_id),
+        // Every board names a trade as well as a proprietor — the register the
+        // advertisements use, and the thing a descriptive label never carried.
+        withTrade: signs.filter((sg) => (sg.sign_lines || [])
+          .some((l) => l.role === 'trade')).length,
+        devices: signs.filter((sg) => sg.sign_device).map((sg) => sg.structure_id),
         distinctArt: new Set(uvRects.values()).size,
         mountings: new Set(signs.map((sg) => sg.mounting)).size,
         grounds: new Set(signs.map((sg) => sg.style?.ground)).size,
@@ -2439,10 +2457,9 @@ for (const [label, viewport, touch] of [
 
     // A sign is a thing you read and then walk into, so aiming at the board has
     // to open the business behind it and not the wall past it — AND THE CARD IT
-    // OPENS HAS TO SAY WHAT THE BOARD SAYS (T-0066). A visitor who reads a name
-    // off a plank and then taps the plank must not be shown a different
-    // business; the record carries `sign_text` for exactly that agreement, and
-    // this is where the two are put side by side.
+    // OPENS HAS TO BE THE SAME BUSINESS (T-0066, corrected by T-0130). The
+    // record carries `sign_identity` for exactly that agreement, and this is
+    // where the board and the card are put side by side.
     const boardPick = await page.evaluate(() => {
       const hits = [];
       let card = null;
@@ -2458,22 +2475,62 @@ for (const [label, viewport, touch] of [
       }
       const sign = (window.__chicago4d.signage.signs ?? [])
         .find((s) => s.structure_id === 'tremont_house_1') ?? null;
-      return { hits, card, painted: sign?.sign_text ?? null };
+      return {
+        hits, card, painted: sign?.sign_text ?? null,
+        identity: sign?.sign_identity ?? null,
+      };
     });
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
     check(`${label}: aiming at a signboard opens the business behind it`,
       boardPick.hits.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(boardPick.hits)].join(', ') || 'nothing'}]`);
-    // The card's name may carry a trailing parenthetical the board does not —
-    // "Tremont House (the first)" is this project telling itself which Tremont
-    // it means — so the agreement asked for is that the painted name IS the
-    // card's name, up to that one documented reduction and to capitals.
-    const cardName = (boardPick.card ?? '').replace(/\s*\([^)]*\)\s*$/, '').trim();
-    check(`${label}: the name painted on the board is the name on its card`,
-      !!boardPick.painted && !!cardName
-      && boardPick.painted.toUpperCase() === cardName.toUpperCase(),
+    // THIS ASSERTION IS CORRECTED BY T-0130, NOT RELAXED BY IT, and the
+    // difference is worth being explicit about because a check that gets weaker
+    // usually got weaker to go green.
+    //
+    // T-0066 asserted STRING EQUALITY: the painted name IS the card's name, up
+    // to a trailing parenthetical. That was enforcing the wrong invariant,
+    // because it took two different objects to be one. A record's `name` is OUR
+    // LABEL FOR A BUILDING — "Philo Carpenter's Log Drug Store", "Hogan's Store"
+    // — written so a modern reader knows which structure is meant. A SIGNBOARD
+    // carries what the trade lettered: the proprietor or firm and his trade, in
+    // the register a signwriter worked in. Held to equality, the board could
+    // only ever be the museum caption, which is the defect T-0130 was raised
+    // over. The two are now allowed to differ.
+    //
+    // What must NOT differ is WHO. A visitor who reads a name off a plank and
+    // then taps the plank must not be shown a different business, so the record
+    // declares a `sign_identity` — the proprietor, the firm or the house — and
+    // it has to appear in the board AND in the card. That is asserted here at
+    // the Tremont's own board against the CARD THE PICK ACTUALLY OPENED, and
+    // over every sign in the town in the check below, which is more than
+    // equality ever covered: equality was only ever tested at this one board.
+    const cardName = (boardPick.card ?? '').trim();
+    const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const who = norm(boardPick.identity);
+    check(`${label}: the board and the card agree about whose business this is`,
+      !!boardPick.painted && !!cardName && !!who
+      && norm(boardPick.painted).includes(who) && norm(cardName).includes(who),
       `board reads "${boardPick.painted ?? 'nothing'}", card says `
-      + `"${boardPick.card ?? 'nothing'}"`);
+      + `"${boardPick.card ?? 'nothing'}", both must carry `
+      + `"${boardPick.identity ?? 'no declared identity'}"`);
+    check(`${label}: every board names its proprietor and its trade, not our label`,
+      boards.identityMismatch?.length === 0 && boards.labelled?.length === 0
+        && boards.withTrade === boards.signs,
+      `${boards.identityMismatch?.length} board(s) disagree with their card `
+      + `[${(boards.identityMismatch ?? []).join(', ')}], `
+      + `${boards.labelled?.length} carry a building label `
+      + `[${(boards.labelled ?? []).join(', ')}], `
+      + `${boards.withTrade}/${boards.signs} letter a trade`);
+    // ONE PAINTED DEVICE IN THE TOWN, and it is the one a Chicago tradesman
+    // described himself: Carpenter's golden mortar, from his own 1835 notice
+    // "AT THE SIGN OF THE GOLDEN MORTAR". A device must not spread to trades
+    // whose advertisements name none — that would be this layer generalising an
+    // invention — so the count is pinned exactly rather than bounded below.
+    check(`${label}: the golden mortar is on Carpenter's board and on no other`,
+      boards.devices?.length === 1
+        && boards.devices[0] === 'carpenter_south_water_store',
+      `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //
