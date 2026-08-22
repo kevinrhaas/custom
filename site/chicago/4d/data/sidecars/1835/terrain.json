@@ -19,7 +19,7 @@
     },
     {
       "label": "Measured relief",
-      "text": "Land in the modelled box runs 0.0 to 11.286 ft above the water surface, and the channel floor reaches -17.405 ft below it. Measured from the committed heightfield, not asserted."
+      "text": "Land in the modelled box runs -1.966 to 12.285 ft above the water surface, and the channel floor reaches -17.405 ft below it. Measured from the committed heightfield, not asserted."
     }
   ],
   "claims": [
@@ -598,7 +598,8 @@
       "notes": [
         "The whole story of this division is one sentence: 'the elevation of the original topography east of State Street lay from nine to ten feet above the surface of the lake, whereas to the west of State Street, it sloped down to the river in a level plain elevated only two to three feet above the river'. So the plain holds 2.9 ft west of State (zone 9, unchanged from the first pass), drops through a break-of-slope band at State Street (zone 10), and stands 7.6 to 9.4 ft east of it (zone 8, '+7 to +9 gently falling west'), rising into the lakeshore sand-ridge belt at 9.4-9.5 ft (zone 3, '+9 to +10 crest'). The bank crest follows: 2.4 ft at the forks (zone 13) and 8.0 ft along the reservation, which is Swearingen's measured 8 ft south bank at Fort Dearborn in 1803 (zone 12) — the only bank height in this box that was ever measured.",
         "State Street's line is not estimated. Two of the eight ground-control points that fix this project's datum are on it: State & Madison (the PLSS section corner, local E +837.6) and Wolcott & Ohio, Wolcott being today's North State Street (local E +822.5). The break-of-slope band is centred on E +830 and runs E +780 to +880 — 100 m, which is 328 ft, inside dossier zone 10's 200-400 ft transition band. It falls 4.7 ft over 328 ft, against zone 10's stated 'drop ~5-6 ft over 300 ft'.",
-        "Plain 7.6 -> 9.4 ft over E +880 to +1230 is 0.47 ft per 300 ft, inside the dossier's flatness rule with no exemption needed. The break band and the sand-ridge belt are declared in relief_bands below and are excluded from the rule by name."
+        "Plain 7.6 -> 9.4 ft over E +880 to +1230 is 0.47 ft per 300 ft, inside the dossier's flatness rule with no exemption needed. The break band and the sand-ridge belt are declared in relief_bands below and are excluded from the rule by name.",
+        "THE FORT'S RIVER FRONTAGE STANDS STEEPER THAN THE BANKS EITHER SIDE OF IT, and it has to: the traced 1834 waterline runs 4.5 m north of the stockade's north-west corner and 7 m north of its north-east corner, while the reach's own 20 m face needs four times that distance to bring ground to full height. Built at 20 m the ramp reached some 15 m INSIDE the fort and scaled the north wall's ground to 1.26 m against the parade's 3.65 m, sinking a twelve-foot stockade to four feet of visible picket (T-0125, on the owner's ruling of 2026-08-21 that the ground gives rather than the bake or the placement). Held at 8 m over E 1103-1180 the ground reaches the mound's level at the wall line and the fall happens OUTSIDE the stockade, which is what the source describes: the mound is 'formed by the curve of the river at its base on its three sides' - the river at the BASE of the mound, not partway up the fort's wall. The figure is not free invention: the 1834 harbour cut is a DREDGED channel, and the south edge of a made cut stands steeper than the alluvial bank upstream of it; 8 m carries the fort's 2.57 m of bank to the waterline over about 4.3 m, measured after the rebake - roughly 1:1.7, or 31 degrees, INSIDE the ~34 degree angle of repose for sand rather than past it, and the flattest face that fits the measured gap. The shoulders at 1085/1215 hold the neighbouring reach unchanged. Invented within those bounds and admitted at docs/LIBERTIES.md L155."
       ]
     },
     {
@@ -839,6 +840,222 @@
       ]
     },
     {
+      "id": "swales.lasalle_slough_lower",
+      "group": "the prairie swales",
+      "label": "lasalle_slough_lower",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "depth_ft",
+          "value": 3.2
+        }
+      ],
+      "sources": [
+        "wright_1834",
+        "conley_stelzer_1933"
+      ],
+      "citations": [
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5,
+          "tier_label": "modern retrospective illustration/reconstruction"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ],
+      "notes": [
+        "T-0005, amended T-0118. The second of the three Main Branch sloughs: the watercourse Wright 1834 draws dropping south off the main stem just east of La Salle Street, whose traced mouth is the south-shore re-entrant at E +462..+469 (docs/RESEARCH/clark_reach_bulge_1834.md section 4). EXISTENCE AND MOUTH are Wright's, drawn on the sheet this terrain is fitted to. THE COURSE INLAND is inferred from Conley/Stelzer 1933 (asset_use 'orientation'), which carries it up the west half of the La Salle-Clark block; its lower reach is washed as open water to about Lake Street, which is what the 3.2 ft cut expresses: on the 2.4-2.9 ft plain the bed sits about -0.6 ft and holds a narrow strip of standing backwater, the 'marshy, wet, little current' form the dossier gives these sloughs. WIDTH AND DEPTH ARE INVENTED - no source gives either; 8 m overall is inside the north-side slough's measured 7.1 m band and the 15-40 ft the dossier gives zone 14. The channel starts at N -7, one grid cell SOUTH of the platted South Water Street corridor, because Wright draws the stream stopping at the street line ('the trace stops there with it') - the street crossed on fill or a culvert nothing describes, so the corridor itself is left unbroken. T-0118 (the owner, against an 1830s engraving: the built line was 'too straight' and the join with the upper entry read as a dry sill) bent the invented alignment into the meander a prairie drain actually cuts - same traced mouth, same west-half-of-the-block corridor, swings of 7-10 m threading the committed roofs (old_bank_building cleared by 2.4 m at its nearest) - and added the depth_profile so the bed GRADES from the wet mouth reach up through the Lake Street crossing instead of stepping: 3.2 ft holds to about N -74, then shallows to 2.2 ft at the join, putting the water's edge about N -93, north of the Lake Street corridor, which stays dry. The join depth 2.2 ft is carried on by the upper entry at the same figure, so the two entries carve one continuous bed. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+      ]
+    },
+    {
+      "id": "swales.lasalle_slough_upper",
+      "group": "the prairie swales",
+      "label": "lasalle_slough_upper",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 3.5
+        },
+        {
+          "key": "depth_ft",
+          "value": 2.2
+        }
+      ],
+      "sources": [
+        "conley_stelzer_1933"
+      ],
+      "citations": [
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5,
+          "tier_label": "modern retrospective illustration/reconstruction"
+        }
+      ],
+      "notes": [
+        "T-0005, amended T-0118. The La Salle slough above its wet lower reach: Conley/Stelzer draws the watercourse continuing as a dark drain past Lake Street and TERMINATING JUST NORTH OF RANDOLPH STREET, which is the terminus this entry carries (position to inferred under the source's 'orientation' ceiling, read at about 20-30 m tolerance). The working cut of 1.8 ft through the middle reaches leaves the bed at roughly +0.8..+0.9 ft - a dry midsummer swale falling toward its own wet mouth, not open water, matching the map's change of rendering. Alignment between the mouth reach and the terminus is invented; it threads the committed reconstructed roofs, which is exactly as unattested as any other line here. T-0118 amended the invented parts three ways, all inside the same bounds: the line meanders instead of ruling a straight N-S course (the owner's engraving standard - a prairie drain crosses ground at an angle); the depth_profile opens at 2.2 ft to meet the lower entry's graded join at the same figure, so the watercourse is continuous with NO dry sill stepping across it - the deepest point of this entry, hence depth_ft 2.2, still leaving the join bed at about +0.4 ft, ABOVE datum, honouring the dossier's above-datum thalweg for these inland courses; and the last two knots FEATHER the cut to zero at the head, so the ground closes over the terminus instead of ending in an open trench (the visible hollow now dies out about 15-20 m short of the last vertex, well inside the terminus reading's own 20-30 m tolerance). Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+      ]
+    },
+    {
+      "id": "swales.state_slough_course",
+      "group": "the prairie swales",
+      "label": "state_slough_course",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 5.0
+        },
+        {
+          "key": "depth_ft",
+          "value": 2.2
+        },
+        {
+          "key": "dossier_zone",
+          "value": 14,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273",
+        "conley_stelzer_1933"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        },
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5,
+          "tier_label": "modern retrospective illustration/reconstruction"
+        }
+      ],
+      "notes": [
+        "T-0005, amended T-0118. The third Main Branch slough, dossier zone 14 - the South Division's natural drain, deferred by this spec since the box first covered it and now built. THE ROUTE IS DOCUMENTED: it drained the public-square pond and the Wells Street marsh, 'passed over the site of the Tremont House and entered the river at the end of State Street' (chicagology_prefire273, transcribed at docs/research/01-terrain-hydrology.md section 2.2). Conley/Stelzer 1933 draws the full winding course and supplies the waypoints this line carries to inferred: head just east of Clark between Washington and Randolph (the square's drain), a mid-block Dearborn crossing about N -190, then north-east under the ridge toe toward State. THE DEPTH IS THE DOSSIER'S: row 14 gives the thalweg as 1.5-3.0 ft below the adjacent plain at about +0.5..+1.5 ft absolute, and 2.2 ft off the 2.9 ft plain lands the bed at +0.7 - a damp swale in July, NOT open water, which is why this is a swale and not a watercourse cut below datum. WIDTH is the dossier's 15-40 ft band read near its top (10 m). The exact line between the documented waypoints is invented and threads the committed roofs. T-0118 added the depth_profile: the cut used to run its full 2.2 ft to the head vertex and stop, leaving an open-ended trench cut into level prairie, and the owner asked that it 'level out with the rest of the land'. The head now FEATHERS from zero at the first vertex to the full 2.2 ft over the first ~58 m, so the ground closes over the drain's head the way a watercourse actually rises out of the ground; the head vertex itself does not move, and the visible hollow dies out inside the head reading's own 20-30 m tolerance. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+      ]
+    },
+    {
+      "id": "swales.state_slough_mouth",
+      "group": "the prairie swales",
+      "label": "state_slough_mouth",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 3.0
+        },
+        {
+          "key": "depth_ft",
+          "value": 6.2
+        },
+        {
+          "key": "dossier_zone",
+          "value": 14,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273",
+        "wright_1834",
+        "conley_stelzer_1933"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        },
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5,
+          "tier_label": "modern retrospective illustration/reconstruction"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ],
+      "notes": [
+        "T-0005, remade by T-0118. Zone 14's last reach, from about N -60 into the river. AS FIRST BUILT this entry visited the Slough Log Bridge's committed deck and then turned east and ran ~35 m ALONG the shore to Wright's traced re-entrant at E +850..+856 - and the owner, against an 1830s engraving, read exactly what that shape is: a six-foot trench dug parallel to the bank fills as a BAY, not a mouth. A watercourse meets open water square, in one reach. The two pins the dogleg served cannot both be honoured by a straight entry, so ONE MOVED, and it is the TRACED RE-ENTRANT that this line no longer ends inside: the reach now runs straight north under the committed deck (E +805..+813, N +13..+16, whose approach cuts already grade the street to it and whose 8 m span was authored to cross a north-running channel - the deck ends now seat about 1 m outside the carve on either side) and crosses the waterline square at about E +809.5, N +25. WHY THE MOUTH MOVED AND NOT THE BRIDGE: the bridge is a committed structure whose position record carries its own reasoning and whose approach earthworks are committed grading of Water Street, and moving it east into the rising State ridge toe would demand street cuts twice as deep through ground the spec grades for the break-of-slope - a larger invention than the offset this accepts. The documentary mouth - 'entered the river at the end of State Street', which the State ground control puts at about E +827 at the bank - sits BETWEEN the two pins: the built mouth at +809.5 is ~18 m west of it, inside the sheet's own +/-20 m georeference band, while the traced notch was ~25 m east of it (docs/RESEARCH/main_branch_sloughs_1833.md section 3 accepted that offset in the other direction). The re-entrant itself is EVIDENCE and stays exactly as traced in the waterline - a small drawn notch in the bank 40 m east of the built mouth, no longer claimed as this drain's outfall. The depth_profile grades the cut from the course entry's 2.2 ft at the hand-over to the full 6.2 ft against the ridge toe, so the damp course falls smoothly into the backed-up pool (about N -25 to the river) instead of meeting it at an over-deepened joint; 6.2 ft is kept where the pool is deepest because the toe's own crest stands 4-6 ft over this reach. Under the pool the bed is invisible and its exact figure is a modelling convenience. Depth and width invented, bounded as the course entry's are. Recorded in docs/LIBERTIES.md; see docs/RESEARCH/main_branch_sloughs_1833.md."
+      ]
+    },
+    {
       "id": "watercourses.north_side_slough",
       "group": "the watercourses",
       "label": "north_side_slough",
@@ -885,6 +1102,350 @@
       ],
       "notes": [
         "Existence and course documented by Wright 1834; width measured off the drafted band; depth invented. A shallow, still, connected backwater is the form the sources describe for sloughs off the Main Branch: 'marshy, wet areas with little current'."
+      ]
+    },
+    {
+      "id": "approaches.north_branch_west",
+      "group": "the bridge approaches",
+      "label": "north_branch_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "north_branch_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west (Canal Street) approach to the North Branch bridge, on the Kinzie Street alignment. That an approach existed is a necessity - the 1883 settlers' statement makes this a wagon bridge and its deck stands 2.22 m over a bank at the waterline - but its form is invented: an earth ramp at 1 in 12, meeting the deck at grade at the traced waterline. Deck height restated from the structure record's clearance stack; if that record moves, the ground-contact gate reopens the gap and fails, which is what holds the two files together."
+      ]
+    },
+    {
+      "id": "approaches.north_branch_east",
+      "group": "the bridge approaches",
+      "label": "north_branch_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "north_branch_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the North Branch bridge, carrying Kinzie Street onto the deck. Same footing as north_branch_west: existence necessary for a wagon bridge, form invented at 1 in 12."
+      ]
+    },
+    {
+      "id": "approaches.south_branch_west",
+      "group": "the bridge approaches",
+      "label": "south_branch_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "south_branch_raft_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west approach to the South Branch bridge, between Lake and Randolph. The 1883 settlers' statement covers both branch bridges - 'these were both wagon bridges' - so the necessity argument is the same as the North Branch's; the form is invented at 1 in 12. Every entry's line runs deck-end first, inland toe second."
+      ]
+    },
+    {
+      "id": "approaches.south_branch_east",
+      "group": "the bridge approaches",
+      "label": "south_branch_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "south_branch_raft_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the South Branch bridge, toward the town side. Same footing as south_branch_west."
+      ]
+    },
+    {
+      "id": "approaches.dearborn_south",
+      "group": "the bridge approaches",
+      "label": "dearborn_south",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "dearborn_street_drawbridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The south approach to the Dearborn Street drawbridge, from the foot of Dearborn on South Water. Andreas describes about 300 ft of timber causeway with a 60 ft draw; the causeway itself is the committed deck, and this is the earthwork that gets a team from the street onto it. Form invented at 1 in 12."
+      ]
+    },
+    {
+      "id": "approaches.dearborn_north",
+      "group": "the bridge approaches",
+      "label": "dearborn_north",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "dearborn_street_drawbridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "fill"
+        },
+        {
+          "key": "deck_ft",
+          "value": 7.283
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The north approach to the Dearborn Street drawbridge, onto the Kinzie's Addition side. Same footing as dearborn_south."
+      ]
+    },
+    {
+      "id": "approaches.slough_west",
+      "group": "the bridge approaches",
+      "label": "slough_west",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "slough_log_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "cut"
+        },
+        {
+          "key": "deck_ft",
+          "value": 2.723
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The west approach to the slough crossing - the opposite problem from the river bridges: this low deck sits 0.35-0.49 m BELOW the banks at its ends, so the road is graded DOWN to it, a shallow cut rising inland at 1 in 12 until it meets the natural ground. A road descending to a low log crossing is the minimal reading of how anyone used it; the cut's form is invented."
+      ]
+    },
+    {
+      "id": "approaches.slough_east",
+      "group": "the bridge approaches",
+      "label": "slough_east",
+      "confidence": "reconstructed",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bridge",
+          "value": "slough_log_bridge",
+          "mesh": "record_only"
+        },
+        {
+          "key": "mode",
+          "value": "cut"
+        },
+        {
+          "key": "deck_ft",
+          "value": 2.723
+        },
+        {
+          "key": "grade",
+          "value": 0.0833
+        },
+        {
+          "key": "half_width_m",
+          "value": 4.0
+        },
+        {
+          "key": "side_slope",
+          "value": 0.5
+        },
+        {
+          "key": "end_overhang_m",
+          "value": 3.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The east approach to the slough crossing. Same footing as slough_west."
       ]
     },
     {
@@ -1254,10 +1815,6 @@
     {
       "dossier_zone": 5,
       "why": "the 'white sand hills both to the north and south' of the fort are the only explicit dune reference and no source places a single one of them. Inventing hummocks in the quadrant where Fort Dearborn and the Beaubien houses stand would put relief under buildings on no evidence at all."
-    },
-    {
-      "dossier_zone": 14,
-      "why": "the slough from the public-square pond to the river at the foot of State Street is now INSIDE the box (its mouth is at about E +830). Deferred to ROADMAP S2e parcel (c), hydrology: its route is documented and its width and depth are conjectural, and cutting a conjectural channel through the block where the business district stands is a decision that belongs with the other watercourses, not smuggled in with the ground. DATED AT THE SCENE, AND THE SCENE ALREADY DRAWS THE BRIDGE OVER IT: the Slough Log Bridge stands on Water Street on 1835-07-01 and the source runs that crossing past 1840, so a visitor walks onto a timber crossing laid over open prairie. The date is inferred from the crossing, not from the watercourse — data/terrain/1835_intown_water_dating.json zone 14."
     },
     {
       "dossier_zone": 15,

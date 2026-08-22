@@ -95,6 +95,21 @@ dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) —
 `SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
 desktop half belongs to a runner without the per-command ceiling.
 
+**RESOLVED 2026-08-20 by T-0060: the smoke takes `SMOKE_STAGE=1..4`, and each stage fits the
+ten-minute command.** The body of each viewport is cut at three section boundaries verified for
+crossing bindings (two crossed — `terrainLoad`, `streetLayer` — and both are now read before the
+split; the scans that missed them are written up in the ticket). Measured on the improve runner,
+mobile against the published mirror: **stage 1 — 1 m 54 s, 74 staged checks · stage 2 — 3 m 00 s,
+91 · stage 3 — 3 m 17 s, 33 · stage 4 — 7 m 30 s, 143**, plus 9 always-on checks (boot, loader
+problems, run-to-completion, page errors, vendor) taken in EVERY invocation — the run prints that
+split so the halves can be audited to add up to an unfiltered pass: 341 staged + 9 = 350. The
+page-error assertion is no longer the tail of an unrunnable body: a mid-suite throw is caught,
+recorded as its own FAIL, and the tail still runs. The unfiltered single-process reference lives
+in `.github/workflows/chicago-4d-smoke.yml` (push-to-its-own-path or dispatch on main) — that is
+the "runner without the per-command ceiling" this section asked for. Desktop stage timings are
+not yet measured; stage 4 is the one to watch (its mobile 7 m 30 s includes the shared
+street-layer reading), and if it overruns on desktop the fifth cut goes in then, the same way.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
@@ -2209,7 +2224,7 @@ unchanged to the triangle; the same frame-difference budget R-W5a measured itsel
 | | parcel | scope |
 |---|---|---|
 | **R-W2a** | ~~**the material sheet**~~ · **DONE 2026-08-16 — `docs/RESEARCH/materials.md`. Read its §4 before texturing anything: the chimney is not a material here, no record states a roof covering, and 27 % of the town is painted by a generator that shares no colour with the other 73 %** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
-| **R-W2b** | **wire the sheet in** | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
+| **R-W2b** | ~~**wire the sheet in**~~ · **LANDED 2026-08-21 as T-0007** — `generators/common/materials.py` is the sheet as code and 207 of 243 committed GLBs were repainted from it. **The records needed no new material field:** `finish_key` (222 records) and `roof_condition` (218) were already committed in the `reconstruction` block, one level ABOVE the phase, which is exactly why no archetype could read them — so the wiring is `from_phase(phase, record)` rather than a 315-record schema change. Triangle delta 0 and material-count delta 0 (K36(a)'s five-material threshold binds hard). Findings 2 and 5 discharged; **finding 2's covering half stands untouched** — no `shingle` row exists and roofs are graded by weathering CONDITION. `docs/LIBERTIES.md` L155; materials.md §6; STATUS.md. | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
 
 **R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
 rendering. Do not merge the two: a sheet argued and a sheet applied are different reviews.
@@ -8842,6 +8857,63 @@ bearing, different viewport, different day, same symptom. Two things follow:
    emergent path over the river) before anyone spends a run on it — this frame looks *down a dry
    street* with the river off to the left. Suspect 1, the ring fade, survives that; check it first.
 
+### T-0035 — the flowers grow up out of the ground as you approach · **DONE 2026-08-18 · OWNER-REPORTED 2026-08-17**
+
+**THE OWNER'S REPORT:** *"the flowers still seem like they grow out of the ground as you approach
+them, they do not fade in as you walk towards, they grow up."* **"Still" is the whole finding** —
+this is his SECOND report on the same ring, and the first one was answered without answering it.
+
+**WHAT THE FIRST ANSWER DID.** His 2026-08-14 report — *"grass and flowers appear out of the ground
+as you walk towards them"* — was diagnosed as a RATE problem and it really was one: the ramp was
+baked into the height on the CPU and could only change when the lattice was rebuilt, so a plant
+arrived at 55 % of its height between one frame and the next. The repair moved the ramp into the
+vertex program (continuous, per frame) and inset the fade ring inside its own lattice by the rebuild
+step, so nothing is ever drawn before it is placed. The `popIn` gate in the smoke holds both halves
+and is still green — measured on this branch, **53 arrivals over a 3 m walk, worst arrival 0.0 % of
+the ramp**, which is the inset doing exactly what it was built for.
+
+**AND IT LEFT THE RAMP DRIVING SCALE.** `transformed *= chiFade` — the whole plant, uniformly, about
+its own base, with a matching world-space descent (`chiDrop = aChiRise * (1 - chiFade)`) that slid a
+flower head down its own stalk so it stayed on the shrinking stem. **A plant that goes from nothing
+to full size about its base is growing, however finely you subdivide the growth.** The first repair
+made the growth SMOOTH, which is not what he asked for either time.
+
+**THE FIX: THE RAMP IS COVERAGE, NOT HEIGHT.** `flora.js` § `plantMaterial` hands `chiFade` to the
+fragment shader as a varying and resolves it with the ordered 4×4 Bayer screen-door dither this
+project already uses to draw an unevidenced wall (`confidence.js`) — chosen over real translucency
+because a sward is eight thousand double-sided instances that would have to be depth-sorted every
+frame, and over a per-instance stochastic cut because that is a pop, which is the defect the ring
+was built to remove. Three consequences:
+
+* **Height is 0 or 1 and nothing between** (`heightOf`). A drawn plant is drawn at the height its
+  record gives it, at every distance it is drawn at at all.
+* **The head descent is gone with the scale it chased.** R-BUG7's invariant survives intact and gets
+  simpler: `maybeHead`'s clamp gives `foot <= plantH`, and nothing scales either side of it now.
+* **Contouring is broken by a per-instance phase.** Sixteen dither levels against a ramp in DISTANCE
+  would be sixteen concentric rings about the walker — § S6a item 3's "constant world radius is a
+  constant screen row" all over again — so each plant offsets its threshold by a hash of its own
+  world position. `fract(bayer + phase)` is still uniform on [0,1), so coverage is unchanged.
+
+**THE GATE, and it is a new one rather than a re-run.** The smoke's popIn walk now also reads the
+drawn HEIGHT of every plant over the same twenty paces: *a plant is drawn at its own height, faint,
+never short* — no plant that is drawn at all is drawn short, and nothing already on screen gains
+height between two frames a pace apart. **Measured: shortest drawn plant 100.0 % of its own height,
+worst gain 0.0 % per 0.15 m pace. The same reading of the OLD height term over the same walk is
+0.02 %** — a plant drawn at a five-thousandth of its height, which is what growing out of the ground
+looks like written down.
+
+It is deliberately not asked of ARRIVALS alone. The inset means a plant arrives at coverage zero, so
+an arrival-only reading asks the question of a plant that is not yet drawn and passes on anything;
+the gate reads every drawn plant in every frame of the walk. `tools/measure_head_support.mjs` and
+the smoke's R-BUG7 gate lose their `* fade` terms in the same commit, because both reproduce the
+vertex program and a mirror that drifts stops reading the drawing.
+
+**COST.** Draw calls 41 and 611,823 triangles, unchanged: the instances were always in the buffer,
+the ramp only ever changed their size. What the band pays instead is fill — plants inside it are
+rasterised whole rather than shrunken — and what it saves is the annulus outside the fade ring,
+which now collapses to a point instead of rasterising a full-size plant to discard every fragment.
+
+
 ### R-BUG6(a) — the shadow grid slid under every step, and the control that cleared it was inert · **DONE 2026-08-17 · SEEN in motion · opened 2026-08-16 by R-BUG1**
 
 **Phase:** lane 1, renderer only · **Runner:** improve-runner · **Files:**
@@ -9595,6 +9667,21 @@ is the renderer-side half and needs none. What (b) still owes: the GENERATOR hal
 carries its own boards; and any source that gives a WORDING, which is the only thing that could
 ever put lettering on one.
 
+**And that last sentence was overtaken by the owner — T-0066, 2026-08-21.** *"you can and should
+put the name of the location on the sign board. the sign boards should have variation in color and
+style and signage font and color, some signs may hang from an awning and others may be on the
+building or painted on the face of the building. you need to add more signage and be period
+correct and it is fine if they are reconstructions."* So the layer now carries the NAME of every
+business it selects — the name the record already gives it, so the sign and the card agree — in
+one of ten colourways and four letterforms, on one of five mountings (bracket, awning hood, board
+on the wall, post at the street edge, and the name painted straight onto the building), dealt so
+that no two signs within 40 m share a style or a ground colour. The count is 23 → **33**: the
+trade rule gains a WORKS AND WAREHOUSE class that paints its firm on its front and hangs nothing.
+**L25 is untouched** — no board carries an image or a trade device, and the wolf is still a wolf
+with no words on it. Everything T-0066 adds is `reconstructed` and claimed at **L158**. What (b)
+still owes is unchanged and now shorter: the GENERATOR half, and a source that gives a wording, a
+colour or a mounting for a named house.
+
 **(c) is shipped IN PART, on a YARD layer, and its evidence is the strongest on this box.**
 **T-0040**: `data/yard/`, `renderers/web/js/yard.js`, generated by `tools/generate_yard_goods.py`
 and re-derived by `tools/check.sh` — **149 objects at 26 trading frontages** (102 upright casks,
@@ -9708,7 +9795,7 @@ DEPTH; the depths here are residuals of the block, and finding a stated one is w
 the lot lines off conjecture. (e) Nothing draws the grid — when the lot lines reach the screen
 they need a liberty and a confidence treatment with them.
 
-### K8 — River bank heights *(research first, then terrain)*
+### K8 — River bank heights *(research first, then terrain)* · **DONE 2026-08-20 (T-0004)**
 The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The
 dossier gives +2–4 ft banks at the forks (documented) but the FORT stood on distinctly rising
 ground — "the flattened mound", the 1830 Harrison plan's bank, Swearingen's 18-ft pool at the
@@ -9716,6 +9803,19 @@ fort bend. Parcel: re-read `01-terrain-hydrology.md` and the primary accounts; r
 GRADUATE the fort-reach south bank as the evidence supports; record the disagreement between
 the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
 documented height. Gradient audit re-run; exemption itemised like the others.
+
+**Shipped**: the mound raised from the zone's mid-range to its stated apex —
+`fort_dearborn_mound.rise_ft` 2.8 → 3.8, flat top +11.0 → +12.0 ft, the north face carrying
+the full rise to the waterline at 1:6.8 (inside the bank block's 1:6–1:10 band). The
+disagreement is three-cornered, not two, and is recorded rather than averaged in
+`docs/RESEARCH/fort_reach_bank_heights.md`: the witnesses (Swearingen 1803 tier-1 ~8 ft;
+Hubbard 1881 "not over eight feet", a correction pushing DOWN) keep the BANK, zone 6's
++10–12/apex +12 takes the mound, and the plates' 10–20 ft is refused as a build input.
+Hubbard-vs-zone-6 stands unresolved on the record — if the owner rules the witnesses outrank
+the dossier's reconciliation, the mound drops to ~+8; that is a ruling, not a research gap.
+Measured: 2,169 changed cells, max +0.305 m, zero outside the mound's 75 m radius — the forks
+byte-identical. Gradient audit PASS (plain max 0.468), mound band itemised as before. The
+bank now standing is what unblocks T-0099's track from the north gate down to the water.
 
 ### K9 — Navigation and settings UI · **DONE 2026-08-13**
 (a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now

@@ -189,6 +189,7 @@ export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) 
           x: (p.x / rect.width) * 2 - 1,
           y: -(p.y / rect.height) * 2 + 1,
         };
+        intent.interactSource = 'point';
         intent.interact = true;
       }
     }

@@ -59,6 +59,14 @@
       "sole_support": true,
       "confidence": "inferred"
     },
+    "green_tree_tavern/frame_1833/form.elevation_scheme": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
+    },
     "green_tree_tavern/frame_1833/form.paint": {
       "kind": "structure",
       "blocked_sources": [
@@ -67,6 +75,14 @@
       "sole_support": true,
       "confidence": "inferred"
     },
+    "green_tree_tavern/frame_1833/form.rear_ell": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "reconstructed"
+    },
     "green_tree_tavern/frame_1833/form.roof_type": {
       "kind": "structure",
       "blocked_sources": [
@@ -74,6 +90,14 @@
       ],
       "sole_support": true,
       "confidence": "attested"
+    },
+    "green_tree_tavern/frame_1833/form.side_entrance": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire127"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
     },
     "green_tree_tavern/frame_1833/form.stories": {
       "kind": "structure",
@@ -297,6 +321,40 @@
       "sole_support": true,
       "confidence": "reconstructed"
     },
+    "terrain/e1834_harbor_cut/swales.lasalle_slough_lower": {
+      "kind": "ground",
+      "blocked_sources": [
+        "conley_stelzer_1933"
+      ],
+      "sole_support": false,
+      "confidence": "reconstructed"
+    },
+    "terrain/e1834_harbor_cut/swales.lasalle_slough_upper": {
+      "kind": "ground",
+      "blocked_sources": [
+        "conley_stelzer_1933"
+      ],
+      "sole_support": true,
+      "confidence": "reconstructed"
+    },
+    "terrain/e1834_harbor_cut/swales.state_slough_course": {
+      "kind": "ground",
+      "blocked_sources": [
+        "chicagology_prefire273",
+        "conley_stelzer_1933"
+      ],
+      "sole_support": true,
+      "confidence": "reconstructed"
+    },
+    "terrain/e1834_harbor_cut/swales.state_slough_mouth": {
+      "kind": "ground",
+      "blocked_sources": [
+        "chicagology_prefire273",
+        "conley_stelzer_1933"
+      ],
+      "sole_support": false,
+      "confidence": "reconstructed"
+    },
     "thomas_church_store/frame_1834/form.construction": {
       "kind": "structure",
       "blocked_sources": [
@@ -389,10 +447,19 @@
     "wolf_point_tavern/log_frame_1828/form.sign": {
       "kind": "structure",
       "blocked_sources": [
+        "chicagology_prefire273",
         "drloih_wolf_point"
       ],
       "sole_support": true,
       "confidence": "attested"
+    },
+    "wolf_point_tavern/log_frame_1828/form.sign_mount": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire273"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
     },
     "wolf_point_tavern_stable/stable_1831/form.construction": {
       "kind": "structure",

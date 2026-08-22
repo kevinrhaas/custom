@@ -28,6 +28,16 @@ const CLIP_STEPS = 6;
 // a metre it is no longer a road anybody could walk down, and a sliver at the
 // waterline would be a claim rather than a rendering.
 const MIN_PANEL_W_M = 1.0;
+// T-0110. A panel is allowed to miss the ground between its own vertices by
+// this much before it is subdivided; each subdivision halves the panel both
+// ways, to at most 2^MAX_DRAPE_LEVEL pieces per axis (0.28 m along a 2.25 m
+// step). The tolerance is the LIFT_M scale on purpose: a miss under it stays
+// inside what the polygon offset already absorbs, so refining past it would
+// spend triangles the picture cannot show. Measured on the shipped field, the
+// whole town settles for +9k triangles (~1.5 % of the 'light' ceiling) and
+// only bridge-approach and bank panels refine at all.
+const DRAPE_TOL_M = 0.03;
+const MAX_DRAPE_LEVEL = 3;
 const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
 
 /**
@@ -211,7 +221,119 @@ function sampled(path) {
   return out;
 }
 
-function addRecord(buffers, record, terrain) {
+/**
+ * T-0110 — THE ROAD MUST FOLLOW THE GROUND IT CLAIMS TO LIE ON.
+ *
+ * The owner reported, walking Kinzie Street onto the North Branch bridge an
+ * hour after T-0046 raised its approach earthworks: the track "gets pixely and
+ * you can see grass triangles and it ends with a black line and more grass."
+ * Replayed against the committed heightfield, the mechanism is not the water
+ * trim the ticket first suspected — the trims hold full width up both ramps —
+ * it is that a panel was ONE planar quad, 2.25 m long and two vertices wide,
+ * and an embankment is not planar. Between the corners the fill's crest rose
+ * through the ribbon by up to **1.49 m** (west approach nose; 1.41 m east,
+ * 1.09 m at the Dearborn drawbridge approach on North Water). The terrain is
+ * opaque and wins the depth test, so everywhere it broke the surface the road
+ * simply was not drawn: his green wedges, and his road ending short of the
+ * deck. The smoke's `worstDrape` gate never saw it because it samples
+ * VERTICES, and every vertex was perfectly draped.
+ *
+ * The fix is refinement, not flattening: where a panel's own vertices miss the
+ * field between themselves by more than DRAPE_TOL_M, the panel subdivides —
+ * halving both axes per level — and every new vertex samples
+ * `terrain.surfaceHeight()` exactly as the corners always have. The module's
+ * standing contract is untouched: the terrain is never edited, the walker
+ * still stands on the same heightfield, and a level-0 panel emits byte-for-byte
+ * the geometry this function always emitted, so the flat town (94 % of panels)
+ * is arithmetically unchanged.
+ *
+ * Three refusals, all deliberate:
+ * - A level is REJECTED if any of its new row centres or vertices lands on
+ *   water. The R-BUG4 rule ("clip, don't paint a ford") binds interior
+ *   vertices the same as corners, and the smoke's wet-vertex gate counts
+ *   positions, not heights.
+ * - A panel that touches ground OFF the heightfield grid stays at level 0.
+ *   Out there `surfaceHeight()` answers a fallback constant, not a
+ *   measurement, and refining against a constant would manufacture cliffs at
+ *   the map border.
+ * - Interior rows re-run the SAME dryReach trim as panel ends, so the drawn
+ *   edge follows the waterline at the refined resolution instead of
+ *   interpolating across it.
+ *
+ * Neighbouring panels can settle on different levels; the shared row's edge
+ * vertices coincide exactly (same centreline point, same trim), and any
+ * T-junction gap between interior columns is bounded by DRAPE_TOL_M — the
+ * coarser panel's own acceptance test ran on that very row.
+ */
+function refinedPanel(terrain, a, b, ue, un, ends, dryReach) {
+  const build = (level) => {
+    const R = 1 << level;
+    const rows = [];
+    for (let r = 0; r <= R; r++) {
+      const t = r / R;
+      const pe = a[0] + (b[0] - a[0]) * t;
+      const pn = a[1] + (b[1] - a[1]) * t;
+      if (r > 0 && r < R && terrain.isWater(pe, pn)) return null;
+      const reachL = r === 0 ? ends.aL : r === R ? ends.bL : dryReach(pe, pn, ue, un);
+      const reachR = r === 0 ? ends.aR : r === R ? ends.bR : dryReach(pe, pn, -ue, -un);
+      const row = [];
+      for (let c = 0; c <= R; c++) {
+        const f = c / R;
+        // Rounded to the float32 the position buffer will store, and sampled
+        // AT that value: on the ~1:1 ramp flanks the double-precision position
+        // and its stored float32 stand on ground ~1e-5 m apart, which is
+        // exactly the drape budget the smoke holds vertices to.
+        const e = Math.fround((pe + ue * reachL) * (1 - f) + (pe - ue * reachR) * f);
+        const n = Math.fround((pn + un * reachL) * (1 - f) + (pn - un * reachR) * f);
+        const interior = (r > 0 && r < R) || (c > 0 && c < R);
+        if (interior && terrain.isWater(e, n)) return null;
+        row.push([e, n, terrain.surfaceHeight(e, n) + LIFT_M]);
+      }
+      rows.push(row);
+    }
+    return rows;
+  };
+  // Worst |field − ribbon| between the grid's own vertices, probed at the
+  // half-points of every sub-quad. Off-grid probes are skipped: no measurement,
+  // no verdict.
+  const residual = (rows) => {
+    let worst = 0;
+    for (let r = 0; r < rows.length - 1; r++) {
+      for (let c = 0; c < rows[r].length - 1; c++) {
+        const q = [rows[r][c], rows[r][c + 1], rows[r + 1][c], rows[r + 1][c + 1]];
+        for (let i = 0; i <= 2; i++) {
+          for (let j = 0; j <= 2; j++) {
+            const ft = i / 2;
+            const fs = j / 2;
+            const e = (q[0][0] * (1 - fs) + q[1][0] * fs) * (1 - ft)
+              + (q[2][0] * (1 - fs) + q[3][0] * fs) * ft;
+            const n = (q[0][1] * (1 - fs) + q[1][1] * fs) * (1 - ft)
+              + (q[2][1] * (1 - fs) + q[3][1] * fs) * ft;
+            if (!terrain.inBounds(e, n)) continue;
+            const y = (q[0][2] * (1 - fs) + q[1][2] * fs) * (1 - ft)
+              + (q[2][2] * (1 - fs) + q[3][2] * fs) * ft;
+            worst = Math.max(worst, Math.abs(terrain.surfaceHeight(e, n) + LIFT_M - y));
+          }
+        }
+      }
+    }
+    return worst;
+  };
+  let grid = build(0);
+  if (grid.some((row) => row.some(([e, n]) => !terrain.inBounds(e, n)))) return grid;
+  let level = 0;
+  let miss = residual(grid);
+  while (miss > DRAPE_TOL_M && level < MAX_DRAPE_LEVEL) {
+    const next = build(level + 1);
+    if (!next) break;
+    grid = next;
+    level += 1;
+    miss = residual(grid);
+  }
+  return grid;
+}
+
+function addRecord(buffers, record, terrain, stats) {
   const key = record.surface;
   const buf = buffers.get(key) ?? { pos: [], uv: [], conf: [], idx: [] };
   buffers.set(key, buf);
@@ -276,21 +398,32 @@ function addRecord(buffers, record, terrain) {
       along += length;
       continue;
     }
-    const corners = [
-      [a[0] + ue * aL, a[1] + un * aL], [a[0] - ue * aR, a[1] - un * aR],
-      [b[0] + ue * bL, b[1] + un * bL], [b[0] - ue * bR, b[1] - un * bR],
-    ];
-
+    // T-0110: a grid of (level+1)² draped vertices — one quad at level 0,
+    // which is this function's historical output exactly.
+    const grid = refinedPanel(terrain, a, b, ue, un, { aL, aR, bL, bR }, dryReach);
+    const rows = grid.length - 1;
+    const cols = grid[0].length - 1;
     const base = buf.pos.length / 3;
-    for (const [e, n] of corners) {
-      buf.pos.push(e, terrain.surfaceHeight(e, n) + LIFT_M, -n);
-      buf.conf.push(confidence);
+    for (let r = 0; r <= rows; r++) {
+      // Across first, distance along second. The texture repeats every eight
+      // metres, long enough that its ruts read as travel rather than corduroy.
+      const v = (along + (length * r) / rows) / 8;
+      for (let c = 0; c <= cols; c++) {
+        const [e, n, y] = grid[r][c];
+        buf.pos.push(e, y, -n);
+        buf.conf.push(confidence);
+        buf.uv.push(c / cols, v);
+      }
     }
-    // Across first, distance along second. The texture repeats every eight
-    // metres, long enough that its ruts read as travel rather than corduroy.
-    buf.uv.push(0, along / 8, 1, along / 8,
-      0, (along + length) / 8, 1, (along + length) / 8);
-    buf.idx.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const i00 = base + r * (cols + 1) + c;
+        const i10 = i00 + cols + 1;
+        buf.idx.push(i00, i10, i00 + 1, i00 + 1, i10, i10 + 1);
+      }
+    }
+    stats.panels += 1;
+    if (rows > 1) stats.refinedPanels += 1;
     along += length;
   }
 }
@@ -432,7 +565,10 @@ export function createStreets({ terrain, records = [], confidence = null } = {})
   const prepared = records.filter((r) => Array.isArray(r.path_local_enu_m)
       && r.path_local_enu_m.length >= 2).map(prepare);
   const buffers = new Map();
-  for (const record of prepared) addRecord(buffers, record, terrain);
+  // T-0110. With refinement a panel is no longer a fixed six indices, so the
+  // smoke's panel-accounting gate reads these counters instead of index math.
+  const stats = { panels: 0, refinedPanels: 0 };
+  for (const record of prepared) addRecord(buffers, record, terrain, stats);
   const resources = [];
   // R-A1. One uniform object shared by every surface's material, so the aid
   // cannot end up applied to the graded tracks and not the worn ones.
@@ -500,6 +636,7 @@ export function createStreets({ terrain, records = [], confidence = null } = {})
   return {
     group,
     records: prepared,
+    stats,
     status,
     hitsAt,
     blocksGrowth,

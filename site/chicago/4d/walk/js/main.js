@@ -29,9 +29,12 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
+import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
+import { createFrontage } from './frontage.js';
 import { createWharves } from './wharves.js';
+import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -57,14 +60,188 @@ const VERSION = '0.1.0';
  * scale at all: the reconstruction is not allowed to get less true because a
  * machine is slow, so what gives way is the sward, which is the only layer whose
  * count is a rendering decision rather than a claim.
+ *
+ * ---------------------------------------------------------------------------
+ * T-0115 — WHY THE SWARD ALONE COULD NOT HOLD THE BOTTOM RUNG, AND WHAT ELSE
+ * GIVES WAY NOW.
+ *
+ * The paragraph above is the design as written, and by August 2026 it had
+ * stopped being arithmetically possible. Measured on the published mirror at
+ * the release gate's own stand (`frame('sauganash_hotel', 26)`), desktop:
+ *
+ *   full     850,657 of 1,000,000    85 % of its ceiling
+ *   balanced 769,279 of   800,000    96 %
+ *   light    668,293 of   600,000   111 %  — over, and the reason for T-0115
+ *
+ * The ladder PROMISES a 40 % step from `full` to `light` — that is what
+ * 1,000,000 → 600,000 says. It DELIVERED 21.4 %. It could not deliver more,
+ * because the setting had a lever on only 39 % of the frame: flora and trees.
+ * The other 61 % — terrain, buildings, streets, fences, yard goods, plank
+ * walks, signboards, wharves, boats, and the sun's second pass over all of
+ * them — was drawn identically at every level. **A 40 % cut cannot be taken
+ * out of 39 % of a scene.** Everything the town grew after the tiers were
+ * written was grown outside the tiers' reach, which is exactly how the ceiling
+ * eroded: nothing was wrong with any one merge, and the control had no hold on
+ * any of them.
+ *
+ * The ceiling is NOT re-budgeted. What is added is two more things that give
+ * way at `light`, chosen by the same test the sward passes — a rendering
+ * decision rather than a claim — and both of them are the SUN rather than the
+ * town:
+ *
+ *   `shadowReachM` — how far from the visitor the sun's shadow is cast. At
+ *   `light` the box steps back to the ±120 m this project shipped between
+ *   R-W3b(a) and R-W5a2, and the map halves with it so the TEXEL is unchanged
+ *   (world.js `setShadowRig`). Nothing a visitor stands next to gets softer;
+ *   what the step costs is reach — past 120 m the town meets the ground with
+ *   nothing under it — and it also quarters the shadow map's memory, which is
+ *   the largest single GPU allocation this scene makes and the one a weak
+ *   machine feels first.
+ *
+ *   `furnitureCastsShadow` — whether the DERIVED FURNITURE casts into the
+ *   shadow map at all. A fence, a barrel, a plank walk, a dock and a moored
+ *   hull are drawn from committed records and their PRESENCE is a claim; the
+ *   stripe each one lays on the ground is lighting, and lighting is not a
+ *   claim. At `light` they stand exactly where they stand, drawn exactly as
+ *   they are drawn, still RECEIVING the shadows of the buildings and the timber
+ *   around them — they just stop being drawn a second time for the sun.
+ *   Buildings, terrain and the timber keep casting at every level: a town whose
+ *   houses and trees met the ground with nothing under them is the defect
+ *   R-W3b(a) exists to have fixed, and this does not reopen it. The hanging
+ *   signboards keep casting too, and FURNITURE_LAYERS below says why with the
+ *   measurement that decided it.
+ *
+ * Measured together at the same stand: desktop 668,293 → 584,761 of 600,000,
+ * 55 → 49 draw calls. Recorded in docs/LIBERTIES.md L156, which is L121's
+ * entry for the wood one layer over.
+ *
+ * ---------------------------------------------------------------------------
+ * T-0067 — AND THE THIRD THING THAT GIVES WAY, WHICH IS TIMBER RATHER THAN SUN.
+ *
+ * T-0115's ledger left two costed findings for whoever took the fence tickets,
+ * and this is the second of them: a picket pale is a 10-triangle prism whose two
+ * 22 mm edge faces and 22 mm top cap are SIX of those ten — three quarters of
+ * the geometry for a fortieth of the silhouette. At `light` a pale is drawn as a
+ * zero-thickness double-sided plank instead (`enclosures.js` `pushBox`), which
+ * is 4 triangles: same width, same height, same place, same rhythm, and a
+ * thickness you could only see by standing on the fence line and looking along
+ * it. It passes the same test the sward and the shadow reach pass — a rendering
+ * decision rather than a claim — and it is the lever that keeps the fence
+ * tickets affordable, because every pale T-0067, T-0068 and T-0069 add now costs
+ * 4 triangles at `light` rather than 10.
+ *
+ * T-0068 extended the same plank to `balanced`, and for the tier's own sake: the
+ * middle tier had never taken anything off this layer, so a pale cost the same
+ * ten triangles there as at `full` and the town's fences scaled identically at
+ * both. With 3.5 km of lot line on the layer that put `balanced` at 794,000 of
+ * its 800,000 while `full` sat 150,000 clear of its own — a ceiling doing no
+ * work. `balanced` now gives up the 22 mm, worth about 56,000 triangles, and
+ * `full` still draws the prism. `enclosures.js` `PLANK_LEVELS` is where that
+ * lives, and no triangle ceiling moved to pay for any of it.
+ *
+ * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
+ * cull it, is not a tier at all — it costs a visitor nothing at any level and is
+ * simply how `enclosures.js` builds now.)
  */
 const DETAIL = {
-  full:     { triangles: 1000000 },
-  balanced: { triangles: 800000 },
-  light:    { triangles: 600000 },
+  full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
+  // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
+  // ceiling is a number this project chose rather than a claim about 1835.
+  // Four parcels landed the same day - the street edge, the lot-line fences,
+  // the fenced ground and sixty-four wagons - and stacked they read 814,860
+  // here where each alone had fitted. The old figure was set before any of
+  // them existed and nothing re-measured it as the town filled in. `light`
+  // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
+  // into keeps its floor, and this raise is spent only by machines that
+  // asked for the middle setting.
+  balanced: { triangles: 900000,  shadowReachM: 240, furnitureCastsShadow: true },
+  light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
-const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+/**
+ * THE DRAW-CALL BUDGET, RAISED FROM 80 TO 120 ON 2026-08-21 — a conscious
+ * re-budget, written down here where the number is set, and never a silent one.
+ *
+ * THE OWNER'S RULING, verbatim: *"ok to raise the draw call budget, if you need
+ * to make that a user friendly option in settings because it wont work on some
+ * machines but will on others/most then that is ok"* — and immediately after,
+ * *"or just raise the budget?"*. No new setting was built: the scene-detail
+ * control below IS the user-facing option, and `light` remains the floor a weak
+ * machine has to hold, inside its own unchanged 600,000-triangle ceiling.
+ *
+ * WHY 80 STOPPED MEANING WHAT IT MEANT. It was set when every derived layer was
+ * ONE mesh — one fence mesh for the whole town, one plank-walk mesh, one yard
+ * mesh — and a draw call was a thing to be hoarded. T-0115 measured what that
+ * cost: a mesh spanning Chicago has a bounding sphere no frustum can cull, so
+ * 33,166 triangles of fence were drawn in every frame including the fences
+ * behind the camera. T-0067, T-0119 and T-0069 all took the same remedy and
+ * chunked their layers, which DELIBERATELY converts triangles into draw calls —
+ * and the sun's own pass draws every chunk inside its ±240 m box a second time,
+ * so a chunk costs two. The triangle ceilings are the tiers a visitor chooses
+ * between and they are unchanged; the call count is the price of the culling
+ * that keeps those ceilings reachable, and holding it at 80 would mean giving
+ * back the culling.
+ *
+ * MEASURED, at the release gate's own stand (`frame('sauganash_hotel', 26)`),
+ * desktop, published mirror: 65 calls before T-0069's street edge and **78**
+ * after it — inside the old 80, and with nothing left. That is the number this
+ * raise is against: not a parcel that overran, but a budget with two calls of
+ * headroom in a town that is still being built. 120 is half again the measured
+ * worst, which is the same order of margin the triangle ceilings carry.
+ *
+ * WHAT WOULD MAKE IT SMALLER AGAIN, costed and not done here (T-0115's ledger,
+ * T-0127): a plank walk lies 11 cm proud of the ground and its own shadow is
+ * about 4 cm wide at noon. If the ground-hugging furniture stopped casting into
+ * the shadow map while the standing furniture kept casting, the frontage layer's
+ * six shadow-pass calls at this stand would go for nothing a visitor can see.
+ * That needs a per-mesh opt-out in `applyShadowTier` and a smoke check that
+ * counts the exempt meshes rather than assuming every furniture mesh casts.
+ *
+ * RECONCILED 2026-08-21, and the number stands at 120. Two parcels raised this
+ * ceiling the same afternoon, each measuring only itself against dev: the street
+ * edge (T-0069) read 78 calls and chose 120; the lot-line fences (T-0068) read 79
+ * and chose 96. Neither had seen the other. Merged they stack — dev's 65 plus
+ * roughly thirteen for the walks and fourteen for the fences — so 96 would have
+ * been spent almost the moment both landed, which is how a ceiling comes to be
+ * re-raised twice in a week. 120 is kept because it is the number with room in
+ * it, and because the argument below is about what a ceiling is FOR, not about
+ * the one parcel that happened to reach it first.
+ */
+// 120 -> 140 for the same reason and on the same day: the four parcels above
+// read 121 calls together, one past a ceiling reconciled hours earlier from two
+// parcels that had each measured only themselves. Chunking is what spends calls
+// - it trades a draw call for the frustum's right to skip geometry - so the
+// number climbs as layers learn to cull. 140 carries the measured 121 with room
+// rather than the single call that would have to be re-argued tomorrow.
+const BUDGET = { drawCalls: 140, triangles: DETAIL.full.triangles };
+
+/**
+ * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
+ * name each one gives its own group.
+ *
+ * What they have in common is the thing that makes the rule defensible: every
+ * one is small timber (or a small hull) built at load from a committed record
+ * rather than baked, standing ON the town rather than being the town.
+ * `structures`, `terrain`, `streets`, `trees` and `flora` are deliberately not
+ * in this list — the first three are the reconstruction itself, and the last
+ * two already give way through their own density.
+ *
+ * AND `signage` IS NOT IN IT EITHER, which is the one exception and was decided
+ * by a measurement rather than by taste. A hanging board is the only furniture
+ * in this town whose whole function is to be READ, from the street, at a few
+ * metres — and the shadow it throws is what lifts it off the wall it is bolted
+ * to. Dropping it from the shadow map cost exactly that: with the boards no
+ * longer casting, hiding the whole signage layer moved the release gate's own
+ * 12-cell signature at the Tremont's footway by mean 0.28 against its 0.30 bar,
+ * where the same measurement reads 0.72 with the shadow in — so the shadow was
+ * most of what the board was contributing to the frame. Keeping the boards
+ * casting cost 1,380 triangles of this tier's 84,912-triangle saving: 1.6 % of
+ * the saving, 0.2 % of the tier, for the only piece of furniture the visitor is
+ * meant to look directly at. It costs 1,106 since T-0066 gave the signs their
+ * names — a painted band is two triangles where a bracket board is sixty, and
+ * the lettering itself is a texture atlas rather than geometry.
+ */
+const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats'];
 
 /**
  * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
@@ -243,19 +420,49 @@ async function boot() {
   });
   scene3d.add(streets.group);
 
+  // WHICH DETAIL LEVEL, resolved here rather than beside the vegetation because
+  // the fence layer is the first thing that needs it: a pale is 10 triangles at
+  // `full` and 4 at `light` (T-0067), so the level has to be known before the
+  // first fence is built. A phone starts at `light` and a desktop at `full`; the
+  // visitor's own choice, once made, outranks the guess and is what
+  // `hud.settings.detail` carries.
+  let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
+    : (coarse ? 'light' : 'full');
+  const detailOpts = () => ({ detail: detailLevel });
+
   // The town's fence lines — yards, pens, garden pickets. An enclosure takes a
   // PERIMETER rather than a footprint and is roofless, which is why it is not a
   // structure record and carries no GLB: docs/LIBERTIES.md L10 and L60 have both
   // been waiting on exactly that shape, and this is the half of it that needs no
   // bake. Mounted after the streets so a frontage fence is drawn against the
-  // travelled way it stands on, and before the vegetation for no reason but
-  // reading order — a fence blocks no growth, because nothing says the ground
-  // inside one was cleared.
+  // travelled way it stands on, and before the vegetation because the ground
+  // inside one now decides what may grow there — see the fenced ground below.
   const enclosures = await createEnclosures({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, ...detailOpts(),
   });
   scene3d.add(enclosures.group);
   api.enclosures = enclosures;
+
+  /**
+   * THE GROUND INSIDE THOSE FENCES (T-0067). The owner: *"everplace that is
+   * fenced in would have a different ground, the wagon yard would probably be
+   * dirty dusty ground and fences around properties inside the fence would not
+   * be wild prairie but curated lawn and garden or animal pens."* Three of the
+   * four enclosure records said the same thing about themselves, in their own
+   * `ground` blocks, with `geometry: "absent"`.
+   *
+   * It is its own layer and its own scene child rather than a second mesh inside
+   * `enclosures` for two reasons that are both about policy rather than tidiness:
+   * a ground treatment casts no shadow and must not be swept into
+   * FURNITURE_LAYERS' traverse, and hiding the FENCE (which several gates do) must
+   * not take the ground with it. It takes the enclosure records straight off the
+   * layer above rather than re-fetching them.
+   */
+  const yards = createFencedGround({
+    records: enclosures.records, terrain, confidence, problems,
+  });
+  scene3d.add(yards.group);
+  api.yards = yards;
 
   // The boards the businesses hung out over the footway. Like a fence, a
   // signboard is derived geometry rather than baked geometry — a plank on a
@@ -282,6 +489,29 @@ async function boot() {
   scene3d.add(yard.group);
   api.yard = yard;
 
+  // The frontage works — the plank walks along a building's street walls, the
+  // board crossing over the road and the named board on its post at the corner
+  // (T-0082). Derived geometry like the fences, the boards and the goods, so it
+  // needs no bake — but it is the first layer derived from a building AND a
+  // street at once: where a walk may lie is decided by the travelled track's own
+  // half-width out of data/streets/1835.json. Mounted after the yard because the
+  // two divide one building's ground between them — the yard layer owns what
+  // stands on its own lot and this owns what lies in the street outside it.
+  const frontage = await createFrontage({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(frontage.group);
+  api.frontage = frontage;
+  /**
+   * A walk that RIDES a committed deck registers its planks as a surface the
+   * walker stands on (T-0119): the river walk's crossing footway lies over the
+   * State slough's water at the mouth, where the terrain answers with the
+   * wading barrier and only a deck may carry a visitor. The walker holds
+   * `decks` by reference, so appending here is enough — and the planting
+   * composition below picks the same rectangles up with the rest of `decks`.
+   */
+  for (const d of frontage.walkableDecks ?? []) decks.push(d);
+
   // The river docks at the two forwarding warehouses whose own records state
   // one (T-0041). Derived geometry like the fences, the boards and the goods, so
   // it needs no bake — but it is the first of these layers that stands OVER THE
@@ -297,6 +527,21 @@ async function boot() {
   scene3d.add(wharves.group);
   api.wharves = wharves;
 
+  // The boats on the river (T-0063) — the owner's ask, verbatim: "you can add
+  // boats correct for the era! they would exist." Derived at load like the
+  // docks, but AUTHORED rather than ruled: no rule can derive where a moored
+  // schooner lay, so data/boats/ states each hull and docs/LIBERTIES.md L146
+  // claims the invention. An afloat hull rides the water plane at its own
+  // draft and a beached one sits on the terrain; the layer refuses a boat its
+  // own water cannot carry. Mounted after the wharves for reading order — the
+  // two share the river and deliberately never touch: the wharf record draws
+  // no vessel at its decks, and the boats ride the open reaches.
+  const boats = await createBoats({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(boats.group);
+  api.boats = boats;
+
   /**
    * What the PLANTERS treat as built ground: the buildings' footprints plus the
    * wharf decks. A deck is a floor, and a forb growing up through the planks
@@ -305,7 +550,17 @@ async function boot() {
    * structure id — a second polygon under a building's id would answer for the
    * building itself.
    */
-  const planting = footprints.concat(wharves.keepOut);
+  const planting = footprints.concat(
+    wharves.keepOut, boats.keepOut,
+    // The plank walks and crossings (T-0085/T-0124): a sidewalk is as much a
+    // floor as a wharf deck, and the sward was rooting straight through it.
+    frontage.keepOut,
+    // And the walkable decks the registry itself carries (the bridges, the
+    // slough crossing): their polygons already exist for the walker; the
+    // planting layer now refuses them too, so nothing grows up between the
+    // planks of a bridge deck either.
+    decks,
+  );
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
@@ -314,11 +569,8 @@ async function boot() {
   // gate onto a bare plane and grew a prairie a second later would be showing
   // the visitor a loading state and calling it 1835. Missing records degrade to
   // NOTHING planted plus a recorded problem — never to an invented community.
-  // A phone starts at `light` and a desktop at `full`; the visitor's own choice,
-  // once made, outranks the guess and is what `hud.settings.detail` carries.
-  let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
-    : (coarse ? 'light' : 'full');
-  const detailOpts = () => ({ detail: detailLevel });
+  // (`detailLevel` is resolved much earlier — up beside the fences, which need
+  // it to know what a pale costs.)
   /**
    * Vertical pixels per radian of field, for the horizon band — the one layer
    * whose correctness is measured in pixels, because it draws an angular
@@ -334,9 +586,50 @@ async function boot() {
   };
   BUDGET.triangles = DETAIL[detailLevel].triangles;
 
+  /**
+   * T-0115 — the half of a detail level that is the SUN rather than the town.
+   *
+   * Separate from `applyDetail` below because it is instant and reversible:
+   * nothing is rebuilt, no record is re-read, and switching back restores the
+   * frame exactly. It is applied here at boot as well as on every change, so a
+   * phone — which starts at `light` without anybody touching the control —
+   * boots into the same rig a desktop gets by choosing it.
+   */
+  function applyShadowTier(level) {
+    const want = DETAIL[level] ?? DETAIL.full;
+    world.setShadowRig(want.shadowReachM);
+    const casts = want.furnitureCastsShadow !== false;
+    for (const name of FURNITURE_LAYERS) {
+      const group = scene3d.getObjectByName(name);
+      // A layer that drew nothing (a record that failed to load, a fence whose
+      // every post stood in water) simply has no group, and that is not an
+      // error here — the problem is already recorded where it happened.
+      if (!group) continue;
+      group.traverse((o) => { if (o.isMesh) o.castShadow = casts; });
+    }
+    return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
+  }
+  applyShadowTier(detailLevel);
+
+  /**
+   * WHERE THE SWARD MAY NOT GROW (T-0067), composed rather than replacing the
+   * street's own answer. Two things block a prairie plant now: the travelled
+   * track it would grow through, and a FENCE it would grow inside — the wagon
+   * yard's dust, the pound's trodden earth, a dooryard's kept green are all
+   * ground somebody worked, and none of them is 1.5 m of bluestem.
+   *
+   * THE TREES ARE DELIBERATELY NOT BLOCKED and the difference is the whole
+   * reason this is composed here rather than pushed into `planting`. The
+   * dooryard plantings (T-0074) and the Sauganash's own three stems stand INSIDE
+   * these fences BY RECORD; a block-list entry that reached the woody layer
+   * would delete every one of them and file a problem for each, which is this
+   * ticket undoing another one. The sward is the only layer that gives way.
+   */
+  const swardBlocked = (e, n) => streets.blocksGrowth(e, n) || yards.suppressesSward(e, n);
+
   let flora = await createFlora({
     dataBase: bases.dataBase, terrain, footprints: planting,
-    growthBlocked: streets.blocksGrowth,
+    growthBlocked: swardBlocked,
     confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
@@ -364,6 +657,18 @@ async function boot() {
     if (!DETAIL[level] || level === detailLevel) return;
     detailLevel = level;
     BUDGET.triangles = DETAIL[level].triangles;
+    // The fence's half of the level, first: `light` draws a pale as a plank and
+    // the other two as a prism (T-0067), and the layer rebuilds its own meshes
+    // in place from records it has already loaded. It is done BEFORE the shadow
+    // tier because every mesh is new after a rebuild and starts out casting —
+    // `applyShadowTier` below is what settles that, and settling it first would
+    // settle it on meshes that are about to be thrown away.
+    enclosures.setDetail?.(level);
+    // The sun's half of the level takes effect on THIS frame rather than after
+    // the replanting: it costs nothing to apply, and a visitor who turns the
+    // setting down on a machine that is struggling should get the cheap half of
+    // the answer immediately instead of behind two layer rebuilds.
+    applyShadowTier(level);
     // Serialise: a visitor clicking through the options faster than the rebuild
     // would otherwise interleave two plantings into one scene.
     const run = (detailPending ?? Promise.resolve()).then(async () => {
@@ -371,7 +676,7 @@ async function boot() {
       flora.dispose?.();
       flora = await createFlora({
         dataBase: bases.dataBase, terrain, footprints: planting,
-        growthBlocked: streets.blocksGrowth,
+        growthBlocked: swardBlocked,
         confidence, problems, ...detailOpts(),
       });
       scene3d.add(flora.group);
@@ -599,6 +904,17 @@ async function boot() {
     if (backends.active === pointerlock && !pointerlock.isLocked && !gateOpen) pointerlock.lock();
   });
 
+  // Escape closes an open inspection card (T-0108). Escape is ALSO the
+  // browser's own pointer-lock release, which no page may intercept — so this
+  // cooperates rather than fights: while the pointer is locked the browser
+  // eats the keystroke and unlocks, and the press that reaches us is the one
+  // with nothing else to do. Acting only when a card is open leaves Escape's
+  // meaning everywhere else untouched.
+  window.addEventListener('keydown', (e) => {
+    if (e.code !== 'Escape' || isTyping(e.target)) return;
+    if (popup.openId) popup.close();
+  });
+
   // ---- picking ---------------------------------------------------------- //
 
   function inspect(ndc = null) {
@@ -641,6 +957,20 @@ async function boot() {
       if (record) hit = { ...goods, record };
     }
     /**
+     * And so can the walk under a visitor's feet, or the board on its post at
+     * the corner — which is the whole function of a sign: it stands out at the
+     * street edge, so from the road it is nearer to the crosshair than the inn
+     * behind it. Both open the building whose frontage they are (T-0082).
+     */
+    const frontageHit = frontage.pickAt(ndc, camera);
+    if (frontageHit && (!hit || frontageHit.distance < hit.distance)) {
+      // The registry answers for a building's frontage; a record that is its
+      // own subject — the river plank walk (T-0119) — carries its card on the
+      // layer, the same arrangement the boats keep.
+      const record = loaded.registry.get(frontageHit.id) ?? frontageHit.record;
+      if (record) hit = { ...frontageHit, record };
+    }
+    /**
      * And so can a wharf, which is the largest thing on any of these derived
      * layers: it reaches out over the water in front of the warehouse, so from
      * the bank it is nearer to the crosshair than the shed it belongs to. A dock
@@ -650,6 +980,16 @@ async function boot() {
     if (dock && (!hit || dock.distance < hit.distance)) {
       const record = loaded.registry.get(dock.id);
       if (record) hit = { ...dock, record };
+    }
+    /**
+     * And so can a boat, which is the one pickable thing here that belongs to
+     * no structure at all: a hull answers with its OWN card record, built by
+     * the boat layer from data/boats/ — type, size, state and what bounded the
+     * invention — rather than through the registry (T-0063).
+     */
+    const boat = boats.pickAt(ndc, camera);
+    if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
+      hit = { ...boat };
     }
     if (!hit) {
       popup.close();
@@ -824,7 +1164,11 @@ async function boot() {
     backends.active?.update?.(dt);
     terrain.update(dt);
     const asked = intent.takeInteract();
-    if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
+    // The inspect KEY toggles: the reach that opened the card also closes it
+    // (T-0108). A click or tap always re-inspects — aiming at a second
+    // building with a card open should open that building, not shut the first.
+    if (asked && asked.source === 'key' && popup.openId) popup.close();
+    else if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
     const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
     const walkDt = frameDt / walkSteps;
     for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
@@ -884,7 +1228,16 @@ async function boot() {
     dataBase: bases.dataBase,
     detailLevels: DETAIL,
     detailOrder: DETAIL_ORDER,
-    get detail() { return detailLevel; },
+    // The setter side only. `detail` and `furnitureShadows` are LIVE readings
+    // and are defined with the other live ones below — FOUND BY T-0115, and it
+    // is the trap the K24 note twenty lines down already names: a getter
+    // written in this literal is invoked ONCE by Object.assign and its value
+    // copied, so `api.detail` had been frozen at whatever level the page booted
+    // into ever since it was added. Nothing looked wrong, which is the trouble
+    // with it — the smoke's "the level the visitor started on is restored"
+    // check was comparing a constant with the constant it was made from and
+    // could not fail. The rule was written down; it had simply not been applied
+    // to this one.
     setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     // R-A1. The gates measure the DEFAULT, so they need to be able to read this
@@ -988,6 +1341,35 @@ async function boot() {
   // be written: anything on the harness whose answer changes after boot is
   // defined HERE. A getter in the literal above is a frozen snapshot.
   Object.defineProperties(api, {
+    /** The level the visitor is actually on, now rather than at boot (T-0115). */
+    detail: { get: () => detailLevel, enumerable: true },
+    /**
+     * T-0115. What the level's shadow half actually DID to the scene, read off
+     * the scene rather than off the table that asked for it — R-A1's rule about
+     * assertions again: a gate that reads `DETAIL[level]` back is reading its
+     * own intent, and the failure worth catching is a policy that reaches the
+     * table and not the meshes. `casting` counts the furniture meshes still
+     * drawn for the sun, so 0 is the claim `light` makes and anything else is
+     * the bug — including a NEW furniture layer mounted outside the policy,
+     * which is the way this will most likely be broken.
+     */
+    furnitureShadows: {
+      get: () => {
+        let meshes = 0;
+        let casting = 0;
+        for (const name of FURNITURE_LAYERS) {
+          const group = scene3d.getObjectByName(name);
+          if (!group) continue;
+          group.traverse((o) => {
+            if (!o.isMesh) return;
+            meshes += 1;
+            if (o.castShadow) casting += 1;
+          });
+        }
+        return { layers: FURNITURE_LAYERS.slice(), meshes, casting };
+      },
+      enumerable: true,
+    },
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },

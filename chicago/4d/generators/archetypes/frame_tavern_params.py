@@ -36,10 +36,25 @@ CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
 # tools/validate.py holds every attribute outside it to a `geometry:` declaration
 # on the record, so adding a parameter here without adding its name is a gate
 # failure rather than a silently unbuilt attribute.
+# `finish_key` and `roof_condition` are NOT in this set and must not be, although the
+# archetype now reads both (T-0007). This set names FORM attributes — what a phase
+# states about the building — and those two live in the record's `reconstruction`
+# block, the 665-roof programme's own ledger, one level above the phase. That is why
+# no archetype could read them for as long as `from_phase` took only a phase, and it
+# is what `docs/RESEARCH/materials.md` §4 finding 4 was pointing at.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
-    "paint", "shutters", "gallery", "log_wing", "chimneys",
+    "paint", "siding_exposure_m", "shutters", "gallery", "log_wing", "chimneys",
+    "elevation_scheme", "chimney_placement", "side_entrance", "rear_ell",
+    "shutter_type", "entrance_frontispiece", "chimney_material", "roof_colour",
+    "log_wing_door", "log_wing_porch_hood",
 })
+
+# The compass names a record may use for a wall-mounted feature, as bearings.
+# Local face bearings follow from the placement's rotation_deg (the facade
+# bearing): the +y face IS the facade, so +y carries rotation_deg itself and the
+# other three walls follow at right angles.
+_COMPASS_DEG = {"north": 0.0, "east": 90.0, "south": 180.0, "west": 270.0}
 
 # Where this archetype touches the ground, read by tools/validate.py's ground
 # contact check. `perimeter`: the whole footprint outline meets the terrain at
@@ -73,7 +88,22 @@ class FrameTavernParams:
     # appearance
     paint: str = "white"
     shutters: str | None = None
+    # The leaf construction, when a view resolves it. None draws the solid leaf
+    # the archetype has always drawn; "louvred" adds slat relief to each leaf —
+    # the Sauganash's, read off the Trowbridge drawing alone (T-0092), so the
+    # slats carry that attribute's own (weaker) confidence, not the colour's.
+    shutter_type: str | None = None
     gallery: bool = False
+    # A small flat-hooded surround on the facade's centred entrance — the
+    # Sauganash's, drawn by both street views (T-0092). Frontage scheme only:
+    # the gable_front scheme dresses its own doors. Sizes are the archetype's;
+    # docs/LIBERTIES.md L154 owns them.
+    entrance_frontispiece: bool = False
+    # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
+    # the one rhythm every frame building wore until T-0049 — and stays the default
+    # for a record that carries no value. The deal that writes record values is
+    # tools/deal_siding_stock.py and docs/LIBERTIES.md owns the invention.
+    siding_exposure_m: float = 0.14
 
     # How many stacks stand on the block. The COUNT comes from the record; where
     # they stand and what they are made of do not — no source describes a stack on
@@ -81,6 +111,53 @@ class FrameTavernParams:
     # docs/LIBERTIES.md owns the arrangement. Two is the default because two is what
     # both surviving depictions of the Sauganash show.
     chimneys: int = 2
+
+    # How the elevations are dressed. "frontage" is the archetype's original
+    # scheme — bays across the two y faces, entrance centred on the facade —
+    # read off the Sauganash depictions and still the default. "gable_front" is
+    # the Green Tree's scheme, read off plate "11" of the 2026-08-11 reference
+    # set (T-0083): the building fronts on a GABLE END, so the even bays run
+    # along the two eaves elevations, the gable faces carry the doors and the
+    # attic lights, and a second entrance may stand mid-eaves where a record
+    # attests one. Requires depth_m > width_m so the ridge actually runs along
+    # the deep axis and the facade is a gable end.
+    elevation_scheme: str = "frontage"
+
+    # What the stacks are made of, where a view says. None keeps the archetype's
+    # roof-toned masses (the original treatment, kept exactly so no committed
+    # building's stacks recolour); "brick" draws them in unpainted brick — the
+    # Sauganash's, coloured by the Petford watercolour (T-0092).
+    chimney_material: str | None = None
+
+    # The roof's colour, where a view says. None keeps ROOF_RGBA (the archetype's
+    # weathered-shingle grey, and every committed building's until T-0092);
+    # "moss_green" is the Petford view's dark green/moss shingle tone.
+    roof_colour: str | None = None
+
+    # Where the stacks stand. "frontage" is the original arrangement — spaced
+    # across the frontage at the depth midline, the fractions read off the two
+    # Sauganash depictions — kept as the default so no committed building moves.
+    # "gable_ends" stands one stack ON the ridge line at each gable end, the
+    # disposition plate "11" draws for the Green Tree. With this placement the
+    # record's chimney count must be exactly 2.
+    chimney_placement: str = "frontage"
+
+    # The resolved LOCAL wall carrying an attested second entrance mid-eaves:
+    # None, "x_min" or "x_max". Records state a compass direction
+    # (side_entrance: "south"); from_phase resolves it against rotation_deg so
+    # the record never has to know which local axis faces the street. Only read
+    # by the gable_front scheme.
+    side_entrance_face: str | None = None
+
+    # A lower gabled tail off the REAR gable end — the Green Tree's low
+    # addition, John Gray's testimony sized by the two retrospective views
+    # (T-0083). Ridge continues the main axis at a lower eave; a wide carriage
+    # door opens in its own (far) gable. All reconstructed; docs/LIBERTIES.md
+    # owns the sizes.
+    rear_ell: bool = False
+    rear_ell_width_m: float = 5.5
+    rear_ell_depth_m: float = 4.5
+    rear_ell_wall_m: float = 2.6
 
     # the attached log wing — the Sauganash's 1829 cabin surviving as a wing.
     # See docs/RESEARCH/sauganash_hotel.md.
@@ -91,6 +168,25 @@ class FrameTavernParams:
     log_wing_width_m: float = 5.0
     log_wing_depth_m: float = 4.0
     log_wing_height_m: float = 2.35
+    # The wing's own door, direct to grade in its street face, and the
+    # shed-roofed porch hood over it — the two halves of the Sauganash's wing
+    # entry read off the 2026-08-18 brief's views (T-0092). Separate flags
+    # because the evidence separates: two views draw the door, only the
+    # engraving draws the hood. Leaf and hood sizes are the archetype's;
+    # docs/LIBERTIES.md L154 owns them.
+    log_wing_door: bool = False
+    log_wing_porch_hood: bool = False
+
+    # The finish the 665-roof programme dealt this building, and how weathered its
+    # roof is. NOT form attributes — they live in the record's `reconstruction`
+    # block, which is why `from_phase` takes the record — and until T-0007 they were
+    # read by `generators/inferred_placeholder.py` alone, so a weathered roof and a
+    # fresh one were the same pixel on every archetype building in the town
+    # (docs/RESEARCH/materials.md §4 finding 4). None on every named or documented
+    # building, which carries no reconstruction block and therefore keeps exactly the
+    # colours it had. `common/materials.py` is what turns either into a surface.
+    finish_key: str | None = None
+    roof_condition: str | None = None
 
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
@@ -115,6 +211,9 @@ class FrameTavernParams:
                              f"(no building in 1835 Chicago exceeded three)")
         if not 1.8 <= self.wall_height_m <= 14.0:
             raise ParamError(f"wall_height_m {self.wall_height_m} outside 1.8-14 m")
+        if not 0.10 <= self.siding_exposure_m <= 0.16:
+            raise ParamError(f"siding_exposure_m {self.siding_exposure_m} outside "
+                             f"0.10-0.16 m (~4-6.3 in): not a period clapboard exposure")
         if self.roof_type not in ROOF_TYPES:
             raise ParamError(f"roof_type '{self.roof_type}' not in {ROOF_TYPES}")
         if not 10.0 <= self.roof_pitch_deg <= 60.0:
@@ -134,14 +233,70 @@ class FrameTavernParams:
         for k, v in self.confidence.items():
             if v not in CONFIDENCE_VALUE:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
+        if self.elevation_scheme not in ("frontage", "gable_front"):
+            raise ParamError(f"elevation_scheme '{self.elevation_scheme}' not in "
+                             f"('frontage', 'gable_front')")
+        if self.chimney_placement not in ("frontage", "gable_ends"):
+            raise ParamError(f"chimney_placement '{self.chimney_placement}' not in "
+                             f"('frontage', 'gable_ends')")
+        if self.elevation_scheme == "gable_front":
+            if self.depth_m <= self.width_m:
+                raise ParamError(
+                    f"elevation_scheme 'gable_front' on a footprint {self.width_m} x "
+                    f"{self.depth_m} m: the scheme means the building fronts on a gable "
+                    f"end, which needs the ridge along the deep axis (depth > width)")
+            if self.shutters:
+                raise ParamError("elevation_scheme 'gable_front' draws no shutters — "
+                                 "no record needs both yet, and drawing them wrong "
+                                 "would be worse than refusing")
+        if self.chimney_placement == "gable_ends" and self.chimneys != 2:
+            raise ParamError(f"chimney_placement 'gable_ends' stands one stack at each "
+                             f"gable end, so the count must be 2, not {self.chimneys}")
+        if self.side_entrance_face not in (None, "x_min", "x_max"):
+            raise ParamError(f"side_entrance_face '{self.side_entrance_face}' not in "
+                             f"(None, 'x_min', 'x_max')")
+        if self.side_entrance_face and self.elevation_scheme != "gable_front":
+            raise ParamError("side_entrance is only read by the gable_front scheme — "
+                             "on the frontage scheme it would silently build nothing")
+        if self.rear_ell:
+            if self.rear_ell_width_m > self.width_m:
+                raise ParamError("rear ell is wider than the block it attaches to")
+            if not 1.8 <= self.rear_ell_wall_m < self.wall_height_m:
+                raise ParamError(f"rear_ell_wall_m {self.rear_ell_wall_m} must sit in "
+                                 f"1.8 m..the main wall height — the ell is the LOW "
+                                 f"addition or it is not this ell")
         if self.log_wing:
             if self.log_wing_width_m > self.width_m:
                 raise ParamError("log wing is wider than the block it attaches to")
             if not 1.8 <= self.log_wing_height_m <= 4.0:
                 raise ParamError(f"log_wing_height_m {self.log_wing_height_m} outside 1.8-4 m")
+        if self.shutter_type not in (None, "louvred"):
+            raise ParamError(f"shutter_type '{self.shutter_type}' not in (None, 'louvred')")
+        if self.shutter_type and not self.shutters:
+            raise ParamError("shutter_type without shutters — a slat needs a leaf to "
+                             "sit in, and a record that means louvres should state "
+                             "the shutters they are cut into")
+        if self.entrance_frontispiece and self.elevation_scheme != "frontage":
+            raise ParamError("entrance_frontispiece dresses the frontage scheme's "
+                             "centred facade door — the gable_front scheme carries "
+                             "its own door treatment, and drawing both would be a "
+                             "building no view shows")
+        if self.chimney_material not in (None, "brick"):
+            raise ParamError(f"chimney_material '{self.chimney_material}' not in "
+                             f"(None, 'brick')")
+        if self.roof_colour not in (None, "moss_green"):
+            raise ParamError(f"roof_colour '{self.roof_colour}' not in "
+                             f"(None, 'moss_green')")
+        if self.log_wing_door and not self.log_wing:
+            raise ParamError("log_wing_door without log_wing — a door needs a wing "
+                             "to open into")
+        if self.log_wing_porch_hood and not self.log_wing_door:
+            raise ParamError("log_wing_porch_hood without log_wing_door — the hood "
+                             "the engraving draws stands over the wing's door, and "
+                             "a hood over blank logs is a claim no view makes")
 
 
-def from_phase(phase: dict) -> FrameTavernParams:
+def from_phase(phase: dict, record: dict | None = None) -> FrameTavernParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence.
@@ -178,8 +333,29 @@ def from_phase(phase: dict) -> FrameTavernParams:
             f"{max(abs(min(xs)), abs(min(ys))):.2f} m from where its footprint puts it. "
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
+    # `reconstruction` is the 665-roof programme's own block: it is present on every
+    # anonymous or household roof it dealt and absent from every named building.
+    recon = (record or {}).get("reconstruction") or {}
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
+
+    # A side entrance is stated as a compass direction; the local wall it lands
+    # on follows from the facade bearing. Only the four cardinal walls exist,
+    # and a direction that names the facade or the rear names no side wall.
+    side_face = None
+    side = val("side_entrance")
+    if side is not None:
+        rot = float((phase.get("position") or {}).get("rotation_deg") or 0.0)
+        want = _COMPASS_DEG.get(str(side))
+        if want is None:
+            raise ParamError(f"side_entrance '{side}' is not a compass direction "
+                             f"(north/east/south/west)")
+        faces = {"x_max": (rot + 90.0) % 360.0, "x_min": (rot + 270.0) % 360.0}
+        matches = [f for f, b in faces.items() if abs((b - want + 180) % 360 - 180) < 45.0]
+        if not matches:
+            raise ParamError(f"side_entrance '{side}' does not name an eaves-side wall "
+                             f"of a building whose facade bears {rot} deg")
+        side_face = matches[0]
 
     p = FrameTavernParams(
         width_m=round(width, 3),
@@ -190,10 +366,26 @@ def from_phase(phase: dict) -> FrameTavernParams:
         roof_pitch_deg=float(val("roof_pitch_deg", 38.0)),
         construction=str(val("construction", "braced_frame")),
         paint=str(val("paint", "unpainted")),
+        siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         shutters=val("shutters"),
+        shutter_type=val("shutter_type"),
         gallery=bool(val("gallery", False)),
+        entrance_frontispiece=bool(val("entrance_frontispiece", False)),
         log_wing=bool(val("log_wing", False)),
+        log_wing_door=bool(val("log_wing_door", False)),
+        log_wing_porch_hood=bool(val("log_wing_porch_hood", False)),
         chimneys=int(val("chimneys", 2)),
+        chimney_material=val("chimney_material"),
+        roof_colour=val("roof_colour"),
+        elevation_scheme=str(val("elevation_scheme", "frontage")),
+        chimney_placement=str(val("chimney_placement", "frontage")),
+        side_entrance_face=side_face,
+        rear_ell=bool(val("rear_ell", False)),
+        # The programme's own finish deal, read off the record rather than the
+        # phase. `wall_finish` in `common/materials.py` states the order these are
+        # applied in and why a stated coating outranks them.
+        finish_key=recon.get("finish_key"),
+        roof_condition=recon.get("roof_condition"),
         confidence=confidences,
     )
     p.validate()

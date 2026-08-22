@@ -136,14 +136,58 @@ const TUNE = {
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2 },
   mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0, fringe: 3.0 },
   forb: { radius: 26.0, cell: 3.4, perCell: 4, band: 5.0, fringe: 3.0 },
+  /**
+   * THE FAR BAND — T-0086, and the ONE rule it is built around.
+   *
+   * The owner, 2026-08-18: the sward "does not look right … you can see them
+   * fade in when in long distance view … would be nice if you could see them in
+   * the distance blurred faintly further out." Past the mid ring nothing at all
+   * was drawn: the meadow ended at a radius and the ground beyond it carried
+   * the prairie albedo's colour and no plants.
+   *
+   * **It is drawn with the mid ring's own clump card, not with a sheet.** A
+   * solid far-field vegetation mesh was shipped here once and reverted, because
+   * it hid foundations and plant roots while the visitor walked on the real
+   * heightfield below it. Every far card is a ROOTED instance standing on
+   * `terrain.surfaceHeight` at a station `station()` allows — the same building
+   * footprints, the same travelled track, the same waterline — so there is no
+   * second land surface to walk under and nothing stands where a plant may not.
+   *
+   * **And it fades by DENSITY, not by the screen-door dither**, which is the
+   * other half of the report. A ramp in coverage resolved by a 4x4 Bayer matrix
+   * is invisible at arm's length and a band of dots at fifty metres seen down a
+   * shallow view, because distance compresses the whole ramp into a few screen
+   * rows: at 60 m the mid ring's 7 m band is nine pixels tall. So a far card is
+   * drawn whole or not at all, and what changes with distance is how MANY of
+   * them there are — `keepAt` against a world-anchored per-slot rank. A
+   * stochastic density ramp has no edge in it to dither.
+   *
+   * `inner`/`innerRamp` hand over to the detailed rings the same way: the band
+   * thins to nothing as the walker closes on it, so a 3 m aggregate card is
+   * never met at arm's length and never pops out of a hard inner circle.
+   */
+  far: {
+    columns: 9,
+    // TWO BANDS, and the reason is that one lattice cannot do this. A single
+    // world-uniform spacing that is right at twenty-five metres is a thousand
+    // cards at a hundred and fifty, and one that is right at a hundred and
+    // fifty leaves a hole where the detailed rings hand over. So the near band
+    // is a fine lattice of small clumps and the deep band a coarse lattice of
+    // wide ones, each carrying its own ramps, and they overlap across forty to
+    // sixty metres where each is thinning into the other.
+    bands: [
+      { inner: 16.0, innerRamp: 10.0, radius: 62.0, ramp: 30.0, cell: 3.4, perCell: 1, keep: 0.80, wide: [1.5, 2.6], lift: 1.14 },
+      { inner: 44.0, innerRamp: 24.0, radius: 175.0, ramp: 92.0, cell: 9.5, perCell: 1, keep: 0.74, wide: [2.6, 4.6], lift: 1.20 },
+    ],
+  },
   /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
-  cap: { near: 2400, mid: 4400, forb: 900, head: 820 },
+  cap: { near: 2400, mid: 4400, forb: 900, head: 820, far: 420 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
   /**
    * Rebuild the lattice when the camera has moved this far. It is also the
    * margin the fade ring is inset by (`ringsFor`), so it is the width of the
-   * annulus of already-placed, zero-height plants that stands between the
-   * lattice edge and the first plant with any height in it. 1.2 m was the
+   * annulus of already-placed, wholly-dithered-away plants that stands between
+   * the lattice edge and the first plant with any coverage in it. 1.2 m was the
    * figure while the fade was frozen between rebuilds; halved now that the
    * inset is what it buys, because a metre of the near ring is a lot of it.
    */
@@ -158,12 +202,14 @@ const TUNE = {
  *
  * A ring returned as `[outer, band, inner, innerBand]` — the four numbers the
  * shader reads out of `aChiRing` — is inset from the lattice that carries it by
- * `step` at BOTH edges, so a plant is always already placed, at scale zero,
- * before the distance at which it is worth any height at all. Without the inset
- * a plant outside the lattice at one rebuild is up to `step` inside the fade
- * ring by the next, and arrives at `step / band` of full size in a single
- * frame: 55% for the near ring as it stood, which is the "grass and flowers
- * appear out of the ground as you walk towards them" the owner reported.
+ * `step` at BOTH edges, so a plant is always already placed, at coverage zero,
+ * before the distance at which it is worth drawing at all. Without the inset a
+ * plant outside the lattice at one rebuild is up to `step` inside the fade ring
+ * by the next, and arrives at `step / band` of the ramp in a single frame: 55%
+ * for the near ring as it stood, which is the "grass and flowers appear out of
+ * the ground as you walk towards them" the owner reported. That was the FIRST
+ * of his two reports; T-0035 is the second, and the answer to it is that the
+ * ramp no longer touches the geometry at all (see `heightOf`).
  *
  * The outer edge is bought by moving the fade IN — growing the lattice instead
  * would cost a 34% wider near annulus of instances against 6% of triangle
@@ -262,12 +308,75 @@ function ringAt(base, off, out) {
 }
 
 /** The ramp the vertex shader applies, in JS, so the two cannot disagree about
- *  where a plant starts to grow. Kept identical to the GLSL in `plantMaterial`. */
+ *  where a plant starts to be drawn. Kept identical to the GLSL in
+ *  `plantMaterial`. Since T-0035 the ramp is COVERAGE, not height: it is the
+ *  alpha the screen-door dither resolves, and `heightOf` below is the whole of
+ *  what it does to the geometry. */
 function fadeOf(ring, d) {
   const outer = clamp01((ring[0] - d) / Math.max(ring[1], 1e-4));
   const inner = ring[3] > 0 ? clamp01((d - ring[2]) / ring[3]) : 1;
   return outer * inner;
 }
+
+/**
+ * How much of its own recorded height a plant on this ring is DRAWN at, in JS,
+ * for the same reason `fadeOf` is here: the gates read the drawing back and
+ * must not have to guess at the vertex program.
+ *
+ * It is `0` or `1` and nothing between, and that IS the fix for T-0035 — the
+ * owner's "the flowers grow up out of the ground as you approach" was the ramp
+ * driving `transformed *= chiFade`. Keep this in step with the GLSL: it is what
+ * `tools/measure_head_support.mjs` and the smoke's R-BUG7 gate scale a plant's
+ * top and a stalk's foot by, so a height ramp reintroduced without changing
+ * this line puts those gates back to measuring a drawing that no longer exists.
+ */
+function heightOf(ring, d) {
+  return fadeOf(ring, d) > 0 ? 1 : 0;
+}
+
+/**
+ * THE FAR BAND'S RAMP — what fraction of its lattice slots carry a card at `d`
+ * metres from the walker. T-0086.
+ *
+ * Zero at both ends and flat in the middle, and the ends are the whole point.
+ * The outer one is the recession: over `ramp` metres of ground the band thins
+ * from `keep` to nothing, so the meadow runs out instead of stopping, and it
+ * does it without a coverage ramp for the screen-door dither to quantise into a
+ * band of dots. The inner one is the handover: a card that stands for several
+ * metres of sward has no business being met at arm's length, so the band thins
+ * back to nothing over `innerRamp` as the walker closes on it and the detailed
+ * rings — which reach past it — carry the ground from there in.
+ *
+ * A slot's own rank is a function of WORLD position (`farRank`), so a card
+ * appears and disappears at ITS OWN radius rather than every card in a ring
+ * doing it together, and it makes the same decision from every camera.
+ */
+function farKeepAt(d, band) {
+  const inner = band.innerRamp > 0 ? clamp01((d - band.inner) / band.innerRamp) : 1;
+  const outer = band.ramp > 0 ? clamp01((band.radius - d) / band.ramp) : 1;
+  return band.keep * inner * outer;
+}
+
+/** The two bands' combined reach at `d`, which is the number a measurement
+ *  wants: zero inside the detailed rings, zero past the deep band, and never
+ *  zero in between — a hole there is the bald ring this whole band exists to
+ *  close. */
+function farCoverAt(d, t) {
+  return t.bands.reduce((a, b) => a + farKeepAt(d, b), 0);
+}
+
+/** This slot's place in the queue for a card, in [0, 1), from where it stands
+ *  and nothing else — quantised to 1/8 m, which is finer than any lattice this
+ *  module scatters on, so one slot keeps one rank across every rebuild. */
+function farRank(e, n, band) {
+  return unitHash(Math.round(e * 8), Math.round(n * 8), 0x1b9f31c7 ^ (band * 0x9e3779b9));
+}
+
+/** The far band is not faded by the shader at all — see `farKeepAt`. This is
+ *  the ring that says so: an outer radius nothing can reach, and a band wide
+ *  enough that `chiFade` lands on 1 and the fragment shader's guard skips the
+ *  dither branch entirely. */
+const FAR_RING = [1e9, 1e-4, 0, 0];
 
 /** Nearer than this, plants go all the way round whatever the cone says. */
 const CONE_KEEP_M = 3.5;
@@ -288,7 +397,18 @@ const LOW = {
   // the size.
   mid: { inner: 3.0, radius: 13.0, fringe: 1.6 },
   forb: { radius: 13.0, fringe: 1.6 },
-  cap: { near: 420, mid: 900, forb: 260, head: 240 },
+  // ...and the far band is where the phone gains most, because thirteen metres
+  // is where its detailed rings stop. It is also where it can least afford
+  // geometry, so the band is shallower, coarser and smaller-carded than the
+  // desktop's rather than the same band drawn thinly.
+  far: {
+    columns: 7,
+    bands: [
+      { inner: 9.5, innerRamp: 6.5, radius: 40.0, ramp: 20.0, cell: 3.9, perCell: 1, keep: 0.74, wide: [1.4, 2.3], lift: 1.14 },
+      { inner: 30.0, innerRamp: 16.0, radius: 120.0, ramp: 64.0, cell: 11.0, perCell: 1, keep: 0.70, wide: [2.4, 4.2], lift: 1.20 },
+    ],
+  },
+  cap: { near: 420, mid: 900, forb: 260, head: 240, far: 190 },
 };
 
 /**
@@ -305,7 +425,14 @@ const MID = {
   near: { radius: 6.2, tuftsPerM2: 6.4 },
   mid: { inner: 4.0, radius: 18.0, fringe: 2.2 },
   forb: { radius: 17.5, fringe: 2.2 },
-  cap: { near: 1500, mid: 2700, forb: 580, head: 520 },
+  far: {
+    columns: 8,
+    bands: [
+      { inner: 13.0, innerRamp: 8.5, radius: 52.0, ramp: 26.0, cell: 3.6, perCell: 1, keep: 0.78, wide: [1.5, 2.5], lift: 1.14 },
+      { inner: 38.0, innerRamp: 20.0, radius: 150.0, ramp: 80.0, cell: 10.0, perCell: 1, keep: 0.72, wide: [2.5, 4.4], lift: 1.20 },
+    ],
+  },
+  cap: { near: 1500, mid: 2700, forb: 580, head: 520, far: 300 },
 };
 
 /** The closed `form` list, split by how it is drawn. */
@@ -597,7 +724,13 @@ export async function createFlora({
     corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, tune.cap.head),
     compound: instSet('flora-head-compound', compoundGeometry(), headMat, tune.cap.head),
   };
-  const sets = [nearSet, midSet, forbSet, rosetteSet, shrubSet, ...Object.values(heads)];
+  // T-0086. The far band, on the mid ring's own material and its own archetype:
+  // one more instanced set, one more draw call, no new shader program. Nine
+  // columns rather than seven because this card stands further off and for more
+  // ground — a silhouette read at fifty metres wants more tops in it, and two
+  // extra triangles is what they cost.
+  const farSet = instSet('flora-far', cardGeometry(tune.far.columns), cardMat, tune.cap.far);
+  const sets = [nearSet, midSet, forbSet, rosetteSet, shrubSet, farSet, ...Object.values(heads)];
   for (const s of sets) { group.add(s.mesh); disposables.push(s.mesh.geometry); }
 
   // ---- placement --------------------------------------------------------- //
@@ -631,6 +764,18 @@ export async function createFlora({
    *  lattice slot to choose which half of the community it may pick from. */
   function station(e, n, zone, species, wet = water.isWater(e, n)) {
     if (growthBlocked(e, n)) return null;
+    // THE FLOOR TEST COMES BEFORE THE WATER TEST, and the order is the bug it
+    // fixes. This block-list rejection used to sit below the `wet` early return,
+    // so it only ever governed DRY ground - and every deck standing over water
+    // (a wharf, a bridge) was invisible to it. An emergent bulrush is exactly as
+    // entitled to the riverbed under a dock as a bluestem is to the soil under a
+    // walk, and neither may come up through the planks. Owner-reported twice:
+    // reeds through the dock decks, sward through the sidewalks (T-0085/T-0124).
+    for (const b of blocks) {
+      const dx = e - b.e;
+      const dz = n - b.n;
+      if (dx * dx + dz * dz < b.r2 && pointInPolygon(b.pts, e, n)) return null;
+    }
     if (wet) {
       // A water BUFFER is not permission for every member of that community to
       // stand in the channel. Only records whose recorded `substrate` puts them
@@ -645,11 +790,6 @@ export async function createFlora({
     // `nymphaea_odorata` are 0.01-0.10 m tall, so the failure was quiet — pads at
     // ankle height standing on the soil of the marsh edge rather than on water.
     if (species?.substrate === 'open_water') return null;
-    for (const b of blocks) {
-      const dx = e - b.e;
-      const dz = n - b.n;
-      if (dx * dx + dz * dz < b.r2 && pointInPolygon(b.pts, e, n)) return null;
-    }
     return terrain.surfaceHeight(e, n);
   }
 
@@ -797,10 +937,50 @@ export async function createFlora({
 
   // Forbs and their heads share the head sets with the graminoids, so the two
   // ground rebuilds have to happen together or the heads would be half-cleared.
+  /**
+   * THE FAR BAND — T-0086. The sward past the detailed rings.
+   *
+   * One aggregate clump card per kept lattice slot, rooted on the heightfield at
+   * a station the placer allows, drawn whole, and thinned toward both ends of
+   * the band by `farKeepAt`. Nothing here fades in the shader: `FAR_RING` puts
+   * every card wholly inside its ring, so the dither branch never runs and
+   * there is no stipple to see.
+   *
+   * It is NOT counted into the drawn census. The census is a population — how
+   * many plants of each species the frame drew against how many its recorded
+   * abundance asks for — and a far card is not a plant. It is the several
+   * metres of matrix the band no longer draws individually, so counting one as
+   * a drawn stem would inflate every community's matrix count by the area of an
+   * annulus four times the size of the ring the census is about. The species
+   * deal is still made, and still off the community's own recorded weights,
+   * because it is what gives the card its colour and its height.
+   */
+  function rebuildFar(camE, camN, cone) {
+    farSet.reset();
+    farSet.ring(FAR_RING);
+    tune.far.bands.forEach((band, i) => {
+      scatter(camE, camN, band.cell, band.perCell, band.radius, band.inner,
+        0x3a91c7 ^ (i * 0x85ebca6b), 'lattice', cone,
+        (e, n, r, rng, _cellSeed, u) => {
+          if (farRank(e, n, i) >= farKeepAt(r, band)) return;
+          const zone = finder(e, n);
+          if (!zone || !zone.graminoids.length) return;
+          const wet = water.isWater(e, n);
+          const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
+            zone.matrixShare, u);
+          if (!sp) return;
+          const y = station(e, n, zone, sp, wet);
+          if (y === null) return;
+          placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+        });
+    });
+  }
+
   function rebuildAll(camE, camN, cone) {
     openCensus();
     rebuildGround(camE, camN, cone);
     rebuildForbs(camE, camN, cone);
+    rebuildFar(camE, camN, cone);
     closeCensus();
     for (const s of sets) s.commit();
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
@@ -868,8 +1048,14 @@ export async function createFlora({
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
-     *  plant cannot arrive already grown. */
+     *  plant cannot arrive already grown. The far band is deliberately NOT a
+     *  layer here: it carries no fade ring for that gate to inset, and the
+     *  invariant it does carry is the one below. */
     rings: { step, layers: rings },
+    /** T-0086. The far band's own tuning and its ramp, so a measurement asks
+     *  the placer what fraction of the ground carries a card at `d` rather than
+     *  re-deriving it. Zero at both ends is the assertion worth making. */
+    farBand: { ...tune.far, coverAt: (d) => farCoverAt(d, tune.far) },
     /**
      * The height multiplier the vertex shader gives an instance of `setName`
      * standing `d` metres from the camera — the same ramp, in JS.
@@ -884,6 +1070,15 @@ export async function createFlora({
       const ring = ringOfSet[setName];
       if (!ring) return null;
       return fadeOf(outer === undefined ? ring.fade
+        : [outer, ring.fade[1], ring.fade[2], ring.fade[3]], d);
+    },
+    /** What fraction of its recorded height this plant is drawn at — `heightOf`,
+     *  reached the same way `fadeAt` reaches `fadeOf`. Since T-0035 a drawn
+     *  plant is drawn whole, so this is 1 wherever `fadeAt` is above zero. */
+    heightAt(setName, d, outer) {
+      const ring = ringOfSet[setName];
+      if (!ring) return null;
+      return heightOf(outer === undefined ? ring.fade
         : [outer, ring.fade[1], ring.fade[2], ring.fade[3]], d);
     },
     /** Where this ground's own boundary stands relative to its layer's nominal
@@ -1019,13 +1214,14 @@ function sunFromScene(group, uniforms, problems) {
 function mergeTune(level) {
   const t = {
     near: { ...TUNE.near }, mid: { ...TUNE.mid }, forb: { ...TUNE.forb },
-    cap: { ...TUNE.cap }, step: { ...TUNE.step },
+    far: { ...TUNE.far }, cap: { ...TUNE.cap }, step: { ...TUNE.step },
   };
   const preset = level === 'light' ? LOW : level === 'balanced' ? MID : null;
   if (preset) {
     Object.assign(t.near, preset.near);
     Object.assign(t.mid, preset.mid);
     Object.assign(t.forb, preset.forb);
+    Object.assign(t.far, preset.far);
     Object.assign(t.cap, preset.cap);
   }
   return t;
@@ -2384,6 +2580,30 @@ function placeCard(set, sp, zone, e, y, n, rng) {
     c[2] * 0.72 + m[2] * 0.28, sp.conf);
 }
 
+/**
+ * A far card: the same clump archetype the mid ring draws, standing for the
+ * several metres of sward the band no longer draws plant by plant. T-0086.
+ *
+ * Two things separate it from `placeCard`. Its height is drawn from the UPPER
+ * half of the species' recorded range and lifted a little, because what an
+ * aggregate shows against the sky is the tallest plants in the patch and not
+ * the mean of them (LIBERTIES L137). And it carries much more of the
+ * community's own mean colour — aerial perspective is not modelled below the
+ * fog's reach, and a spray of unrelated hues at sixty metres reads as noise
+ * where a patch of one green reads as a meadow.
+ */
+function placeFarCard(set, sp, zone, e, y, n, rng, band) {
+  const u = 0.45 + 0.55 * rng();
+  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * band.lift;
+  const w = band.wide[0] + (band.wide[1] - band.wide[0]) * rng();
+  const c = tint(sp, rng(), rng()).map((x) => x * patchOf(e, n));
+  const m = zone.matColor;
+  set.push(e, y, n, 0, h, w, 0.5 + rng(),
+    c[0] * 0.38 + m[0] * 0.62,
+    c[1] * 0.38 + m[1] * 0.62,
+    c[2] * 0.38 + m[2] * 0.62, sp.conf);
+}
+
 function placeForb(set, sp, e, y, n, rng) {
   const h = sp.height[0] + (sp.height[1] - sp.height[0]) * rng();
   // The leaf archetype is drawn at a nominal one metre, so whatever scales the
@@ -2491,9 +2711,9 @@ function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
     // lean that have to be kept in agreement. Four repairs went into keeping
     // them in agreement and the fifth is not doing that again.
     // Clamped into the plant, both ends. The upper clamp is what makes the
-    // assertion provable rather than measured: `foot <= plantH` and the shader
-    // scales both by the same ramp, so the stalk's foot is under the plant's
-    // own top at every fade, not just at the one the gate happened to stand at.
+    // assertion provable rather than measured: `foot <= plantH`, and since
+    // T-0035 the shader scales neither of them, so the stalk's foot is under
+    // the plant's own top at every distance the pair is drawn at.
     const foot = Math.min(plantH, Math.max(0, rise - reach * size * Math.cos(lean)));
     if (!set.push(
       e,
@@ -2801,9 +3021,10 @@ const PEDUNCLE = {
  * `chiFade` scales the whole thing about the foot, so a head slides down its own
  * stalk as its plant shrinks instead of staying out at a fixed offset while the
  * stalk that was supposed to reach it gets shorter. The head's rise is then
- * `footRise <= plantHeight` and the shader's own descent gives
- * `foot = base + footRise * fade <= base + height * fade = the plant's top` at
- * EVERY fade — which is the assertion, proved rather than measured.
+ * `footRise <= plantHeight`, and that inequality is the assertion — proved
+ * rather than measured. Since T-0035 nothing shrinks at all: the ring ramp is
+ * coverage, every drawn plant is drawn at its recorded height, and the clamp in
+ * `maybeHead` carries the invariant on its own at the one size there is.
  */
 function peduncle(g, drop = 1.5, wide = 0.022, k = 0.42) {
   for (let i = 0; i < 2; i++) {
@@ -3250,6 +3471,7 @@ attribute vec3 aSide;       // offset from the archetype's axis, in real metres
 attribute vec4 aFlora;      // height, spread, arch, yaw
 attribute vec4 aChiRing;    // fade ring: outer, band, inner, innerBand
 attribute float aChiRise;   // metres this origin stands over its plant's base
+                            // — read by the gates, no longer by this program
 uniform float uChiTime;
 uniform vec2  uChiWind;
 uniform float uChiSway;
@@ -3257,6 +3479,8 @@ uniform float uChiWaveK;
 varying vec3 vChiNW;        // world normal, unflipped
 varying vec3 vChiPW;        // world position
 varying float vChiLit;      // how much of the sky this point can see, 0..1.6
+varying float vChiFade;     // the ring ramp, as coverage: 0 absent, 1 solid
+varying float vChiDither;   // this plant's own phase on the ordered dither
 ` + shader.vertexShader
       .replace('#include <beginnormal_vertex>', /* glsl */`
 #include <beginnormal_vertex>
@@ -3268,11 +3492,10 @@ varying float vChiLit;      // how much of the sky this point can see, 0..1.6
 `)
       .replace('#include <begin_vertex>', /* glsl */`
 #include <begin_vertex>
-float chiDrop = 0.0;
 {
   vec3 chiInst = vec3(instanceMatrix[3][0], instanceMatrix[3][1], instanceMatrix[3][2]);
   float chiT = clamp(transformed.y, 0.0, 1.0);
-  // The ring fade, measured from where the camera IS this frame. It used to be
+  // The ring ramp, measured from where the camera IS this frame. It used to be
   // baked into the height on the CPU, where it could only change when the
   // lattice was rebuilt — every 1.2 m walked, against a 2.2 m band, so a plant
   // came up out of the ground to 55% of its height between one frame and the
@@ -3281,18 +3504,41 @@ float chiDrop = 0.0;
   float chiD = distance(cameraPosition.xz, chiInst.xz);
   float chiFade = clamp((aChiRing.x - chiD) / max(aChiRing.y, 1e-4), 0.0, 1.0);
   if (aChiRing.w > 0.0) chiFade *= clamp((chiD - aChiRing.z) / aChiRing.w, 0.0, 1.0);
-  // A flower head's origin is up the stem, so shrinking it in place would leave
-  // it hanging over its own plant. It descends to the base at the same rate.
-  chiDrop = aChiRise * (1.0 - chiFade);
+  // **THE RAMP IS AN ALPHA, NOT A HEIGHT** (T-0035). The owner, twice: plants
+  // "grow up out of the ground" as you walk at them rather than fading in. Both
+  // repairs before this one made the ramp SMOOTHER — continuous per frame, then
+  // inset inside its own lattice so no plant arrived already grown — and both
+  // left the ramp driving SCALE, which is the thing he was describing. A plant
+  // that goes from zero to full size about its own base is growing, however
+  // finely you subdivide it.
+  //
+  // So the ramp is handed to the fragment shader as coverage and the geometry
+  // is drawn at the height the record gives it, at every distance it is drawn
+  // at at all. The plant stands its full height the first frame it exists;
+  // what changes with distance is how much of it is written.
+  //
+  // Outside the ramp entirely it collapses to a point rather than rasterising
+  // a full-size plant only to discard every fragment of it: the annulus between
+  // the fade edge and the lattice edge is \`step\` metres wide plus the fringe,
+  // and it carries a real share of the near lattice.
+  vChiFade = chiFade;
+  // A per-instance phase on the ordered dither below. The 4x4 matrix has
+  // sixteen levels, and a ramp in DISTANCE quantised to sixteen levels is
+  // sixteen concentric contours about the walker — the same "constant world
+  // radius is a constant screen row" failure the fringe was built to break
+  // (ROADMAP § S6a item 3). Offsetting each plant's threshold by a hash of its
+  // own world position scatters the contour across the field: fract(bayer +
+  // phase) is still uniform on [0,1), so the expected coverage is unchanged.
+  vChiDither = fract(sin(dot(floor(chiInst.xz * 64.0), vec2(12.9898, 78.233))) * 43758.5453);
   // Arch each blade outward along its own azimuth, in nominal space.
   transformed.xz += aDir * (aFlora.z * chiT * chiT);
   // Scale: height from the record, spread from the archetype's own proportions.
   transformed.y *= aFlora.x;
   transformed.xz *= aFlora.y;
   transformed += aSide;
-  // ...and then the whole plant, uniformly, about its own base. Uniform because
-  // a plant that grows in is a plant, and one that only gets taller is a stretch.
-  transformed *= chiFade;
+  // ...and nothing scales it by the ramp. See \`vChiFade\` above: a plant is
+  // drawn at its own height or it is not drawn.
+  transformed *= step(1e-4, chiFade);
   ${billboard ? /* glsl */`
   // Turn the card to the camera about Y. Nothing else uses the yaw slot here.
   vec2 chiToCam = cameraPosition.xz - chiInst.xz;
@@ -3314,7 +3560,7 @@ float chiDrop = 0.0;
   float chiPh = dot(chiInst.xz, uChiWind) * uChiWaveK + uChiTime;
   float chiGust = 0.62 + 0.38 * sin(chiPh * 0.31 + 1.7);
   transformed.xz += uChiWind
-    * (uChiSway * chiGust * sin(chiPh) * chiT * chiT * aFlora.x * chiFade);
+    * (uChiSway * chiGust * sin(chiPh) * chiT * chiT * aFlora.x);
   `}
   // The world-space frame the sun terms need, built HERE rather than read off
   // three's vNormal: <defaultnormal_vertex> has already run by this point, so
@@ -3322,7 +3568,6 @@ float chiDrop = 0.0;
   // matrix carries a real rotation for the tilted flower heads.
   vChiNW = normalize(mat3(modelMatrix) * mat3(instanceMatrix) * objectNormal);
   vChiPW = (modelMatrix * instanceMatrix * vec4(transformed, 1.0)).xyz;
-  vChiPW.y -= chiDrop;
   // The archetype's own base-to-tip ramp, BEFORE the species colour multiplies
   // it. It is the one occlusion term this module has — how deep in the clump
   // this point sits — and it has to gate every light path, not just the
@@ -3332,16 +3577,20 @@ float chiDrop = 0.0;
   vChiLit = color.g;
 }
 `)
-      // `chiDrop` is a WORLD-space descent of the instance's origin, and the
-      // instance matrix carries a real rotation for the tilted heads, so it
-      // cannot be folded into `transformed` — it goes on after the instance
-      // transform and before the view matrix.
+      // The head descent that used to live here — a world-space lowering of a
+      // flower head's origin by `aChiRise * (1 - fade)`, patched in after the
+      // instance transform because the instance matrix carries a real rotation —
+      // is GONE with the scale it existed to chase. It kept a head on its stem
+      // while its plant shrank; nothing shrinks now, so `foot <= plantH` holds
+      // at the one size everything is drawn at (R-BUG7's invariant, and the
+      // clamp in `maybeHead` is still what proves it). `aChiRise` stays on the
+      // instance because `tools/measure_head_support.mjs` and the smoke read it
+      // back to locate a stalk's foot.
       .replace('#include <project_vertex>', /* glsl */`
 vec4 mvPosition = vec4(transformed, 1.0);
 #ifdef USE_INSTANCING
   mvPosition = instanceMatrix * mvPosition;
 #endif
-mvPosition.y -= chiDrop;
 mvPosition = modelViewMatrix * mvPosition;
 gl_Position = projectionMatrix * mvPosition;
 `);
@@ -3360,7 +3609,36 @@ uniform vec3 uChiSky;
 varying vec3 vChiNW;
 varying vec3 vChiPW;
 varying float vChiLit;
-` + shader.fragmentShader.replace('#include <opaque_fragment>', /* glsl */`
+varying float vChiFade;
+varying float vChiDither;
+
+// Ordered 4x4 Bayer, the same screen-door translucency the confidence view
+// dithers an unevidenced wall with (confidence.js) — a stable per-pixel
+// threshold, so no sorting, no blending and no order dependence inside a batch.
+// A sward is the case that most needs those properties: eight thousand
+// double-sided instances that would have to be depth-sorted every frame to be
+// drawn transparent, on a material three renders in the opaque pass.
+float chiBayer4(vec2 fragXY) {
+  int x = int(mod(fragXY.x, 4.0));
+  int y = int(mod(fragXY.y, 4.0));
+  int i = x + y * 4;
+  float m[16];
+  m[0]  =  0.0; m[1]  =  8.0; m[2]  =  2.0; m[3]  = 10.0;
+  m[4]  = 12.0; m[5]  =  4.0; m[6]  = 14.0; m[7]  =  6.0;
+  m[8]  =  3.0; m[9]  = 11.0; m[10] =  1.0; m[11] =  9.0;
+  m[12] = 15.0; m[13] =  7.0; m[14] = 13.0; m[15] =  5.0;
+  float v = 0.0;
+  for (int k = 0; k < 16; k++) { if (k == i) v = m[k]; }
+  return (v + 0.5) / 16.0;
+}
+` + shader.fragmentShader.replace('#include <clipping_planes_fragment>', /* glsl */`
+#include <clipping_planes_fragment>
+// T-0035. Coverage first, before a single lighting instruction is spent on a
+// fragment that is about to be thrown away — and guarded, so a plant that is
+// wholly inside its ring reaches the shader that existed before this: the
+// branch is what the confidence view's own comment warns about paying for.
+if (vChiFade < 1.0 && fract(chiBayer4(gl_FragCoord.xy) + vChiDither) >= vChiFade) discard;
+`).replace('#include <opaque_fragment>', /* glsl */`
 {
   // The face we can see, whichever side of the sheet it is.
   vec3 chiN = normalize(vChiNW) * (gl_FrontFacing ? 1.0 : -1.0);

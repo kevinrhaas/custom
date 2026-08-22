@@ -157,10 +157,16 @@ HALL_FRACTION = 0.62
 # tools/validate.py holds every attribute outside this set to a `geometry:` declaration
 # on the record, so adding a parameter here without adding its name is a gate failure
 # rather than a silently unbuilt attribute.
+# `finish_key` and `roof_condition` are NOT in this set and must not be, although the
+# archetype now reads both (T-0007). This set names FORM attributes — what a phase
+# states about the building — and those two live in the record's `reconstruction`
+# block, the 665-roof programme's own ledger, one level above the phase. That is why
+# no archetype could read them for as long as `from_phase` took only a phase, and it
+# is what `docs/RESEARCH/materials.md` §4 finding 4 was pointing at.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "knee_wall_m", "roof_type", "roof_pitch_deg",
     "construction", "plan", "bays", "porch", "ell", "ell_wall_height_m",
-    "chimneys", "paint", "shutters",
+    "chimneys", "paint", "shutters", "siding_exposure_m",
 })
 # NOT in the set, and each absence is a decision rather than an oversight:
 #   `cladding`      — this archetype always builds clapboard over sheathing, so a
@@ -235,6 +241,13 @@ class FrameDwellingParams:
     shutters: str | None = None
     porch: str | None = None
 
+    # The clapboard's exposed face. 0.14 m (~5.5 in) is the archetype's own stock —
+    # the one rhythm every frame building wore until T-0049 — and stays the default
+    # for a record that carries no value. A record that does carry `siding_exposure_m`
+    # is stating which mill stock its walls were hung with; the deal that wrote those
+    # values is tools/deal_siding_stock.py and docs/LIBERTIES.md owns the invention.
+    siding_exposure_m: float = 0.14
+
     # How many stacks the house carries. The COUNT is the record's; where they stand is
     # the archetype's — first at one gable, second at the other or on the ell — and
     # docs/LIBERTIES.md L26 owns that arrangement for every archetype here.
@@ -250,6 +263,17 @@ class FrameDwellingParams:
     # A kitchen wing is lower than the house it serves — that subordination is most of
     # what makes it read as an ell rather than as a second house. None means "derive".
     ell_wall_height_m: float | None = None
+
+    # The finish the 665-roof programme dealt this building, and how weathered its
+    # roof is. NOT form attributes — they live in the record's `reconstruction`
+    # block, which is why `from_phase` takes the record — and until T-0007 they were
+    # read by `generators/inferred_placeholder.py` alone, so a weathered roof and a
+    # fresh one were the same pixel on every archetype building in the town
+    # (docs/RESEARCH/materials.md §4 finding 4). None on every named or documented
+    # building, which carries no reconstruction block and therefore keeps exactly the
+    # colours it had. `common/materials.py` is what turns either into a surface.
+    finish_key: str | None = None
+    roof_condition: str | None = None
 
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
@@ -357,6 +381,12 @@ class FrameDwellingParams:
                 f"and is a real state, not a rounding; three storeys is not a dwelling "
                 f"question in 1835, when the town's first three-storey building (the "
                 f"Saloon Building, 1836) had not been begun")
+        # The bound is the period stock set: a 4 in exposure is the narrowest siding
+        # the deal's sources describe and 6 in the widest. Outside it the value is not
+        # a clapboard course at all and the record is wrong, not unusual.
+        if not 0.10 <= self.siding_exposure_m <= 0.16:
+            raise ParamError(f"siding_exposure_m {self.siding_exposure_m} outside "
+                             f"0.10-0.16 m (~4-6.3 in): not a period clapboard exposure")
         if self.construction not in CONSTRUCTIONS:
             raise ParamError(
                 f"construction '{self.construction}' not in {CONSTRUCTIONS}. A log house "
@@ -640,7 +670,7 @@ def read_plan(poly: list) -> dict:
             "ell_width_m": ell_width, "ell_depth_m": ell_depth, "ell_side": side}
 
 
-def from_phase(phase: dict) -> FrameDwellingParams:
+def from_phase(phase: dict, record: dict | None = None) -> FrameDwellingParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence. The
@@ -681,6 +711,9 @@ def from_phase(phase: dict) -> FrameDwellingParams:
             "is wrong — an archetype cannot decide which, and building the rectangle "
             "would silently overwrite an attested plan")
 
+    # `reconstruction` is the 665-roof programme's own block: it is present on every
+    # anonymous or household roof it dealt and absent from every named building.
+    recon = (record or {}).get("reconstruction") or {}
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
@@ -703,6 +736,7 @@ def from_phase(phase: dict) -> FrameDwellingParams:
         plan=str(val("plan", "hall_parlour")),
         bays=int(val("bays", 0)),
         paint=str(val("paint", "unpainted")),
+        siding_exposure_m=float(val("siding_exposure_m", 0.14)),
         shutters=(None if shutters in (None, False, "") else str(shutters)),
         porch=(None if porch in (None, False, "") else str(porch)),
         chimneys=int(val("chimneys", 1)),
@@ -712,6 +746,11 @@ def from_phase(phase: dict) -> FrameDwellingParams:
         ell_side=plan_from_footprint["ell_side"],
         ell_wall_height_m=(None if val("ell_wall_height_m") is None
                            else float(val("ell_wall_height_m"))),
+        # The programme's own finish deal, read off the record rather than the
+        # phase. `wall_finish` in `common/materials.py` states the order these are
+        # applied in and why a stated coating outranks them.
+        finish_key=recon.get("finish_key"),
+        roof_condition=recon.get("roof_condition"),
         confidence=confidences,
     )
     p.resolve()

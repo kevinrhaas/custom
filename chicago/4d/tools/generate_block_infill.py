@@ -75,6 +75,19 @@ from inferred_occupancy import occupancy  # noqa: E402
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
 
+# The face of a committed block — the line a party-line street row stands on, the way
+# its fronts look, and where along it a wall lands. Authored once, in the module the
+# first frontage run (T-0077) and this one both import, because a face retyped beside
+# the committed boundary would be a second opinion about the same ground.
+from block_faces import extent as face_extent, face_frame  # noqa: E402
+from block_faces import project as face_project  # noqa: E402
+
+# How many party-line units a lot of the committed grid holds (T-0079). Authored in
+# tools/reconcile_665.py because that is where the schedule counts with it; imported
+# here rather than retyped, so the ceiling the schedule deals against and the ceiling
+# the generator enforces cannot become two numbers.
+from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
+
 # The family band, and the one rule that turns it into an instance's dimensions. It
 # used to live in this file; the North Division parcel needed the same arithmetic and
 # had a retyped constant instead, so the rule moved to one module both import
@@ -107,6 +120,26 @@ INVENTED_NOTE = (
     "spec is cited because the invention is bounded by it, which is what makes it "
     "defensible rather than arbitrary; the GRADE is the bottom tier because nothing "
     "here is a reading of a source about this thing. "
+)
+
+
+FRONTAGE_NOTE = (
+    "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0078). This building does "
+    "not stand centred on a lot at a typology setback: it stands ON the {face} face of "
+    "{block}, the town's river business front, whose line and bearing are read from the "
+    "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
+    "geometry the lot grid and the corridor gate are derived from. Its front wall is "
+    "{setback} m back from that lot line, which is the closest line the plat module's own "
+    "margin allows and is not a measurement of this frontage, and its east wall is fixed "
+    "by {anchor}. The bearing is the face's own, so the front looks at {street} Street and "
+    "the river beyond it, as every documented store on this face does. The run carries no "
+    "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
+    "INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here at all, which "
+    "building it was, and that these particular units stood shoulder to shoulder. What the "
+    "1834 South Water Street view supports is the TREATMENT — a continuous working row "
+    "facing the river rather than detached cottages set back on grass — and the treatment "
+    "is what this placement takes from it. Standing on a derived block face is not standing "
+    "on a recovered lot, and the side lot lines this row crosses were always conjectural."
 )
 
 
@@ -427,20 +460,32 @@ def polygon_gap(a: list[tuple[float, float]], b: list[tuple[float, float]]) -> f
 # records
 # --------------------------------------------------------------------------
 
-def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
-                spec: dict, family: str, datum: dict, seq: int) -> dict:
+def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | None,
+                spec: dict, family: str, datum: dict, seq: int,
+                face: dict | None = None) -> dict:
     sid = f"{PREFIX}{block['block_id'].removeprefix('blk_')}_{family.lower()}_{seq:02d}"
     if spec["band_ft"] is None:
         raise SystemExit(f"{family} has no numeric footprint band in the crosswalk")
     width, depth = dimensions_m(family, spec["band_ft"], sid)
 
+    on_frontage = slot["stands_on"] == "frontage"
     fronts_alley = slot["stands_on"] == "alley"
-    edge_mid = frame["rear_mid"] if fronts_alley else frame["front_mid"]
-    inward = ((-frame["inward"][0], -frame["inward"][1]) if fronts_alley
-              else frame["inward"])
-    setback = float(slot["setback_m"])
-    lateral = float(slot.get("lateral_m") or 0.0)
-    local_e, local_n, bearing = place(edge_mid, inward, setback, lateral, width, depth)
+    if on_frontage:
+        # The coordinate is resolved in a second pass, by `place_frontage`, because a
+        # run is a CHAIN: the unit at the end of the face is fixed by the block's own
+        # corner and every unit west of it by the wall of the one before, so no unit's
+        # position is known until its anchor's is. Everything else about the record —
+        # its dimensions, its form, what it discloses — is known here.
+        setback = float(block["frontage"]["setback_m"])
+        lateral = 0.0
+        local_e, local_n, bearing = 0.0, 0.0, round(face["bearing"], 2)
+    else:
+        edge_mid = frame["rear_mid"] if fronts_alley else frame["front_mid"]
+        inward = ((-frame["inward"][0], -frame["inward"][1]) if fronts_alley
+                  else frame["inward"])
+        setback = float(slot["setback_m"])
+        lateral = float(slot.get("lateral_m") or 0.0)
+        local_e, local_n, bearing = place(edge_mid, inward, setback, lateral, width, depth)
 
     finish_key, paint = finish_for(sid)
     function = FUNCTIONS.get(family) or (spec["label"] or family).lower()
@@ -457,11 +502,29 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
              f"{bounded['east'].replace('_', ' ').title()}, "
              f"{bounded['south'].replace('_', ' ').title()} and "
              f"{bounded['west'].replace('_', ' ').title()}")
-    where += (f"; a yard building off the block alley behind the {slot['fronts'].title()} "
-              "Street frontage" if fronts_alley
-              else f"; standing back from the {faces.title()} Street frontage")
+    if on_frontage:
+        where += (f"; standing ON the {faces.replace('_', ' ').title()} Street frontage "
+                  "itself, one unit of the party-line river row")
+    else:
+        where += (f"; a yard building off the block alley behind the {slot['fronts'].title()} "
+                  "Street frontage" if fronts_alley
+                  else f"; standing back from the {faces.title()} Street frontage")
 
-    position_note = (
+    anchor = slot.get("anchor") or {}
+    described = (
+        f"the {anchor.get('corner')} end of the run's own frontage, "
+        f"{float(anchor.get('clear_m', LOT_MARGIN_M)):.1f} m clear of the side lot line at "
+        f"that end" if "corner" in anchor
+        else f"the west wall of {anchor['abut_west_of']}, which it shares a party line with"
+        if anchor.get("abut_west_of")
+        else f"the east wall of {anchor['abut_east_of']}, which it shares a party line with"
+        if anchor.get("abut_east_of")
+        else f"{float(anchor.get('clear_m', 0)):.1f} m west of {anchor.get('clear_west_of')}, "
+        f"which stands proud of the platted line and so cannot share a wall with the row")
+    position_note = FRONTAGE_NOTE.format(
+        face=block["frontage"]["face"], block=block["block_id"],
+        setback=f"{setback:.2f}", anchor=described,
+        street=slot["fronts"].replace("_", " ").title()) if on_frontage else (
         "Interpretive placement on a GENERATED lot, not a recovered parcel. The lot "
         "geometry is the K7 plat module's — this project has never read Thompson's "
         "numbering off a sheet, and the side lot lines and the alley are conjectural "
@@ -483,6 +546,18 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
         "roof_condition": ("fresh", "darkened", "patched", "weathered")[seq % 4],
         "age_state": ("new", "recent", "established", "older_frontier")[seq % 4],
     }
+    if on_frontage:
+        # A unit of a row holds no lot: it stands across the run's frontage, and which
+        # of the run's conjectural side lines fall under it is not a claim this parcel
+        # makes. The lots the run was DEALT are named on the block's frontage entry,
+        # where the ledger can count them, rather than shared out one per unit here.
+        del reconstruction["lot_index"]
+        reconstruction["frontage"] = {
+            "block": block["block_id"], "face": block["frontage"]["face"],
+            "setback_m": setback,
+            "abuts": anchor.get("abut_west_of") or anchor.get("abut_east_of"),
+            "why": block["frontage"]["why"],
+        }
     mapping = (" H-family house massing currently resolves through the frame dwelling "
                "archetype; no larger house generator is implemented."
                if family.startswith("H") else "")
@@ -514,6 +589,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
+        **({"_frontage": anchor} if on_frontage else {}),
         "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
                           "665-roof programme; exact presence, lot, position, footprint, "
@@ -530,10 +606,18 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
     alley = [tuple(p) for p in grid["alley_local_enu_m"]]
     frames = [lot_frame(lot, alley) for lot in grid["lots"]]
 
+    frontage = block.get("frontage")
+    face = face_frame(grid, frontage["face"]) if frontage else None
+    strip = frontage_strip(block, grid, face) if frontage else None
+
     records = []
     for seq, slot in enumerate(block["slots"], start=1):
-        lot_index = int(slot["lot"])
-        if not 0 <= lot_index < len(frames):
+        on_frontage = slot["stands_on"] == "frontage"
+        if on_frontage and frontage is None:
+            raise SystemExit(f"{block['block_id']}: a slot stands on the frontage, but "
+                             f"the block names no frontage for the run to stand on")
+        lot_index = None if on_frontage else int(slot["lot"])
+        if lot_index is not None and not 0 <= lot_index < len(frames):
             raise SystemExit(f"{block['block_id']} has no lot {lot_index}")
         family = slot["family"]
         if family in REFUSED_FAMILIES:
@@ -544,9 +628,12 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
         spec = table.get(family)
         if spec is None:
             raise SystemExit(f"family {family} is not in the crosswalk")
-        records.append(make_record(block, slot, lot_index, frames[lot_index], spec,
-                                   family, datum, seq))
-    check_block(block, grid, frames, records, datum)
+        records.append(make_record(
+            block, slot, lot_index, None if on_frontage else frames[lot_index], spec,
+            family, datum, seq, face))
+    if frontage:
+        place_frontage(block, face, strip, records, datum)
+    check_block(block, grid, frames, records, datum, face, strip)
     return records
 
 
@@ -554,8 +641,223 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
 # the gates, run before a single file is written
 # --------------------------------------------------------------------------
 
+# --------------------------------------------------------------------------
+# the party-line frontage (T-0078)
+# --------------------------------------------------------------------------
+#
+# The placements above are one principal roof per lot, centred on its own lot at a
+# typology setback with a lateral nudge. That is a DISTRIBUTION of roofs across a
+# block, and it is the right shape for a residential back street. It is the wrong
+# shape for the town's business front: the owner's reference for South Water Street
+# in 1834 shows the south bank as a CONTINUOUS working row — one-storey log and frame
+# buildings shoulder to shoulder facing the river, the street between them and the
+# grassy bank — and this row rendered as detached cottages seven metres back from the
+# frontage, each looking away from the river at the block's interior.
+#
+# So a slot may say instead that it stands ON the block face, and it then takes three
+# things from the committed plat rather than from the recipe: the line it fronts, the
+# bearing of that line, and where along it its east wall lands. Nothing here authors a
+# coordinate. A run is anchored either on the east end of its own frontage or on the
+# wall of a building already standing on the face, and it packs west from there.
+#
+# What the run gives up is the one-roof-per-lot geometry, and the trade is stated
+# rather than assumed: the side lot lines inside a run are conjectural — every record
+# this generator writes has always said so — while the block face is not. A row is a
+# claim about the FACE. The lots it was dealt are named on the block's `frontage`
+# entry so the ledger can still count them, and the strip's OUTER lines keep the same
+# margin every other roof here keeps.
+
+
+def frontage_strip(block: dict, grid: dict, face: dict) -> dict:
+    """The ground one run may stand on: its own lots of one block face, as one strip.
+
+    Measured, not authored. The lots are projected onto the face; the strip runs from
+    the west line of the westmost to the east line of the eastmost, and every lot in
+    between has to adjoin its neighbour — a run is one stretch of frontage, and lots
+    with somebody else's roof between them are two runs and have to say so.
+    """
+    frontage = block["frontage"]
+    lots = frontage["lots"]
+    if not lots:
+        raise SystemExit(f"{block['block_id']}: a frontage run stands on no lots")
+    spans = []
+    for index in lots:
+        if not 0 <= index < len(grid["lots"]):
+            raise SystemExit(f"{block['block_id']} has no lot {index} for its frontage run")
+        corners = [face_project(face, tuple(p)) for p in grid["lots"][index]["polygon"]]
+        along = (min(c[0] for c in corners), max(c[0] for c in corners))
+        offs = (min(c[1] for c in corners), max(c[1] for c in corners))
+        if offs[1] < -0.5:
+            raise SystemExit(f"{block['block_id']}: lot {index} does not reach the "
+                             f"{frontage['face']} face, so no run of that face can be "
+                             f"dealt its roof")
+        spans.append((along, offs, index))
+    spans.sort()
+    for (a, _, i), (b, _, j) in zip(spans, spans[1:]):
+        if b[0] > a[1] + 0.5:
+            raise SystemExit(f"{block['block_id']}: lots {i} and {j} do not adjoin on "
+                             f"the {frontage['face']} face — a run is one continuous "
+                             f"stretch of frontage, not a list of lots")
+    return {"along_min": spans[0][0][0], "along_max": spans[-1][0][1],
+            "off_min": min(s[1][0] for s in spans), "off_max": max(s[1][1] for s in spans),
+            "lots": [s[2] for s in spans]}
+
+
+def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
+                   datum: dict) -> None:
+    """Stand every slot that declared the frontage on it, in run order.
+
+    Anchors resolve in passes because a run is a chain: the unit at the east end is
+    fixed by the end of the run's own frontage, and each unit west of it by the wall
+    of the one before. An anchor may also name a building this parcel did not write,
+    which is how a run butts onto a store that is already standing on the face.
+    """
+    pending = {r["id"]: r for r in records if r.get("_frontage")}
+    if not pending:
+        return
+    mine = {r["id"] for r in records}
+    committed = dict(footprints(datum, exclude=mine))
+    setback = float(block["frontage"]["setback_m"])
+    resolved: dict[str, list[tuple[float, float]]] = {}
+
+    while pending:
+        progressed = False
+        for sid, record in list(pending.items()):
+            anchor = record["_frontage"]
+            phase = record["phases"][0]
+            polygon = phase["footprint"]["polygon"]
+            width = max(p[0] for p in polygon) - min(p[0] for p in polygon)
+            depth = max(p[1] for p in polygon) - min(p[1] for p in polygon)
+            if "corner" in anchor:
+                # T-0079 opened the WEST end. A run anchored east packs back toward the
+                # block corner and stops wherever the roofs it was dealt run out, so the
+                # corner lot's corner is the one piece of frontage a row can never reach —
+                # and a corner built to the corner is exactly what the street plates show.
+                # A west-anchored run starts against the corner margin instead and chains
+                # east with `abut_east_of`, which is the same party line read the other way.
+                if anchor["corner"] not in ("east", "west"):
+                    raise SystemExit(f"{sid}: a run anchors on the east or the west end "
+                                     f"of its face, not {anchor['corner']!r}")
+                if anchor["corner"] == "east":
+                    east = strip["along_max"] - float(anchor.get("clear_m", LOT_MARGIN_M))
+                else:
+                    east = strip["along_min"] + float(anchor.get("clear_m", LOT_MARGIN_M)) + width
+            else:
+                # `abut_west_of` shares a party line with the named building and stands west
+                # of it; `abut_east_of` is the same wall from the other side, for a run that
+                # chains away from the west corner. `clear_west_of` stands a stated distance
+                # west instead, which is how a run breaks around a documented store that
+                # stands PROUD of the platted line. Several of the South Water stores do:
+                # they were placed from typed coordinates before the plat module existed and
+                # their walls sit in the corridor, so a row on the platted line cannot share
+                # a wall with them and the three-metre separation rule — not this recipe —
+                # is what fixes the size of the break.
+                target = (anchor.get("abut_west_of") or anchor.get("abut_east_of")
+                          or anchor.get("clear_west_of"))
+                if target is None:
+                    raise SystemExit(f"{sid}: a frontage slot anchors on an end of the "
+                                     f"run, abuts a named building or stands clear west "
+                                     f"of one")
+                neighbour = resolved.get(target) or committed.get(target)
+                if neighbour is None:
+                    if target in mine:
+                        continue  # its own anchor has not been placed yet
+                    raise SystemExit(f"{sid}: nothing in the dataset is called {target}")
+                span = face_extent(face, neighbour)
+                east = span[1] + width if anchor.get("abut_east_of") else span[0]
+                if "clear_west_of" in anchor:
+                    east -= float(anchor["clear_m"])
+            # The footprint's (0, 0) corner, which is what the GLB contract anchors on:
+            # walk back from the east wall along the face, then in from the face line by
+            # the setback and the building's own depth.
+            base = (face["origin"][0] + face["along"][0] * (east - width)
+                    + face["outward"][0] * (-setback - depth),
+                    face["origin"][1] + face["along"][1] * (east - width)
+                    + face["outward"][1] * (-setback - depth))
+            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            position = phase["position"]
+            position["utm_e"] = round(float(datum["origin_utm_e"]) + local_e, 3)
+            position["utm_n"] = round(float(datum["origin_utm_n"]) + local_n, 3)
+            theta = math.radians(float(position["rotation_deg"]))
+            cos, sin = math.cos(theta), math.sin(theta)
+            resolved[sid] = [(local_e + u * cos + v * sin, local_n - u * sin + v * cos)
+                             for u, v in polygon]
+            del pending[sid]
+            progressed = True
+        if not progressed:
+            raise SystemExit("a frontage run anchors on itself: " + ", ".join(sorted(pending)))
+
+    for record in records:
+        record.pop("_frontage", None)
+
+
+def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
+                   datum: dict) -> None:
+    """A row is a row: on one line, in order, and touching.
+
+    Three assertions, because each of the three is a way the row stops being one and
+    none of them is visible in a diff of coordinates. The front walls sit on one line
+    to the millimetre or the street wall steps; a run's units are in the order its
+    anchors deal them or "west of" means nothing; and a party line is a shared wall, so
+    a gap inside a run is a defect while the gap between a run and a documented store
+    further along the face is the frontage the parcel was not dealt.
+    """
+    row = [r for r in records if r["reconstruction"].get("frontage")]
+    if not row:
+        return
+    frontage = block["frontage"]
+    setback = {r["reconstruction"]["frontage"]["setback_m"] for r in row}
+    if len(setback) != 1:
+        raise SystemExit(f"{block['block_id']}: the {frontage['face']} frontage is set "
+                         f"back by {sorted(setback)} m — a street wall is one line")
+    stated = float(next(iter(setback)))
+    if stated < LOT_MARGIN_M - 1e-6:
+        raise SystemExit(f"{block['block_id']}: a run set back {stated} m stands inside "
+                         f"the {LOT_MARGIN_M} m margin the plat module keeps off a lot "
+                         f"line. The row crosses the side lines between its own units, "
+                         f"which are conjectural; it does not cross the street line")
+    spans = {}
+    for record in row:
+        world = world_polygon(record, datum)
+        offs = [face_project(face, p)[1] for p in world]
+        if abs(max(offs) + stated) > 0.005:
+            raise SystemExit(f"{record['id']} fronts {max(offs):.3f} m off the "
+                             f"{frontage['face']} face of {block['block_id']}, not its "
+                             f"stated setback")
+        spans[record["id"]] = face_extent(face, world)
+    for record in row:
+        target = record["reconstruction"]["frontage"].get("abuts")
+        if not target or target not in spans:
+            continue
+        # A shared wall is one wall from either side: the record is west of its neighbour
+        # or east of it, and the party line is the smaller of the two readings. Taking the
+        # minimum rather than branching on the recipe's key means the assertion is a
+        # measurement of the geometry and cannot be satisfied by relabelling the anchor.
+        gap = min(abs(spans[target][0] - spans[record["id"]][1]),
+                  abs(spans[record["id"]][0] - spans[target][1]))
+        if gap > 0.005:
+            raise SystemExit(f"{record['id']} stands {gap:.3f} m from the party line it "
+                             f"shares with {target}")
+    # the run inside its own frontage, clear of the lines it did not earn
+    for record in row:
+        for point in world_polygon(record, datum):
+            along, off = face_project(face, point)
+            # 5 mm, the tolerance the setback line above uses and for the same reason:
+            # a placement is rounded to the millimetre before it is written.
+            if not (strip["along_min"] + LOT_MARGIN_M - .005 <= along
+                    <= strip["along_max"] - LOT_MARGIN_M + .005):
+                raise SystemExit(f"{record['id']} reaches past the end of its own "
+                                 f"frontage on {block['block_id']}, inside the "
+                                 f"{LOT_MARGIN_M} m margin of a side line the run does "
+                                 f"not stand across")
+            if not (strip["off_min"] + LOT_MARGIN_M - .005 <= off <= -LOT_MARGIN_M + .005):
+                raise SystemExit(f"{record['id']} stands {off:.2f} m off the "
+                                 f"{frontage['face']} face, outside the run's own ground")
+
+
 def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict],
-                datum: dict) -> None:
+                datum: dict, face: dict | None = None,
+                strip: dict | None = None) -> None:
     from plat_corridors import corridors, intrusion  # noqa: PLC0415
     from heightfield import Heightfield  # noqa: PLC0415
 
@@ -608,9 +910,42 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
                              f"state its reasoning. A refusal this project cannot read "
                              f"back is indistinguishable from an omission")
 
-    # one principal roof per lot, and no lot carries two
+    # one principal roof per lot, and no lot carries two. A frontage run holds no lot
+    # per unit — it stands across its own stretch of the face — so it counts against the
+    # lots the recipe named for it, and the count is gated: a run may not carry more
+    # roofs than the lots it was dealt, which is the same ceiling stated the same way.
+    frontage = block.get("frontage")
+    row = [r for r in records if r["reconstruction"].get("frontage")]
+    if frontage and not row:
+        raise SystemExit(f"{block['block_id']}: the block names a frontage run and no "
+                         f"slot stands on it")
+    if row and not frontage:
+        raise SystemExit(f"{block['block_id']}: a roof stands on a frontage the block "
+                         f"does not name")
     used = [r["reconstruction"]["lot_index"] for r in records
-            if r["reconstruction"]["inventory_class"] == "principal_functional"]
+            if r["reconstruction"]["inventory_class"] == "principal_functional"
+            and "lot_index" in r["reconstruction"]]
+    if frontage:
+        # T-0079, the core density standard. This gate used to read `!=`: a run carried
+        # exactly one roof per lot it was dealt, which made a row exactly as dense as the
+        # lot grid and left "a row is denser than the lot grid" a sentence with no
+        # arithmetic behind it. The ceiling is now the one the schedule counts in —
+        # `ROW_UNITS_PER_LOT` units per lot of frontage, measured at the smallest lot on
+        # the committed grid — and the run's OWN strip, which `check_frontage` already
+        # holds it inside with the plat's margin at each end, is what makes it physical.
+        # Two ceilings, and the tighter one binds; neither of them is the conjectural
+        # side lot line, which is the whole point.
+        if len(row) > ROW_UNITS_PER_LOT * len(frontage["lots"]):
+            raise SystemExit(f"{block['block_id']}: the run carries {len(row)} roofs on "
+                             f"{len(frontage['lots'])} lot(s) of frontage, past the "
+                             f"{ROW_UNITS_PER_LOT} units a lot of this grid holds at the "
+                             f"row's own measured spacing. A row is denser than the lot "
+                             f"grid, not unbounded by it")
+        if any(r["reconstruction"]["inventory_class"] != "principal_functional"
+               for r in row):
+            raise SystemExit(f"{block['block_id']}: a yard building cannot stand in the "
+                             f"street row — an ancillary roof serves the lot behind it")
+        used += list(frontage["lots"])
     if len(set(used)) != len(used):
         raise SystemExit(f"{block['block_id']}: two principal roofs on one lot")
 
@@ -648,8 +983,16 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # on read every one of its lots as free.
     occupied = occupied_lots({"blocks": [grid]}, datum,
                              exclude=mine_ids).get(block["block_id"], {})
+    for index in (frontage["lots"] if frontage else []):
+        holder = occupied.get(index)
+        if holder is not None:
+            raise SystemExit(f"{block['block_id']}: lot {index} already carries {holder}, "
+                             f"so the frontage run cannot be dealt its roof. The "
+                             f"schedule's headroom is the block's, not the lot's")
     for record in records:
         recon = record["reconstruction"]
+        if "lot_index" not in recon:
+            continue
         index, holder = recon["lot_index"], occupied.get(recon["lot_index"])
         if holder is None:
             continue
@@ -663,7 +1006,7 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     for record in records:
         recon = record["reconstruction"]
         if (recon["inventory_class"] != "principal_functional"
-                and recon["lot_index"] not in set(used)):
+                and recon.get("lot_index") not in set(used)):
             raise SystemExit(f"{block['block_id']}: the yard building on lot "
                              f"{recon['lot_index']} stands behind no roof — an ancillary "
                              f"building serves the lot it is in the yard of")
@@ -701,8 +1044,14 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
                          f"already occupied, nor named open. Every lot of a block this "
                          f"parcel claims has to be accounted for")
 
+    # a row stands on its face; everything else stands on its lot
+    if frontage:
+        check_frontage(block, face, strip, records, datum)
+
     # every footprint inside its own lot, clear of the conjectural side lines
     for record, (sid, poly) in zip(records, mine):
+        if "lot_index" not in record["reconstruction"]:
+            continue
         lot = frames[record["reconstruction"]["lot_index"]]["polygon"]
         for pt in poly:
             if not point_in_polygon(pt, lot):
@@ -723,9 +1072,24 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
             raise SystemExit(f"{sid} reaches {depth:.1f} m inside the platted "
                              f"{lanes[street]['name']} corridor")
 
-    # nothing within three metres of anything else in the dataset
+    # nothing within three metres of anything else in the dataset — EXCEPT a declared
+    # party wall, which is not a collision (T-0077, and the same exemption the household
+    # generator carries). The rule exists to stop two records occupying one yard; a row
+    # on a shared line is the other thing two footprints can do, and the exemption is
+    # exactly as wide as the claim that earns it — a record naming its neighbour in
+    # `reconstruction.frontage.abuts`, which `check_frontage` above has already gated to
+    # be a shared wall to the millimetre rather than a near miss. A building that merely
+    # happens to be close still fails.
+    abutted = set()
+    for record in records:
+        target = (record["reconstruction"].get("frontage") or {}).get("abuts")
+        if target:
+            abutted.add((record["id"], target))
+            abutted.add((target, record["id"]))
     for sid, poly in mine:
         for other_id, other in others + [(s, p) for s, p in mine if s != sid]:
+            if (sid, other_id) in abutted:
+                continue
             gap = polygon_gap(poly, other)
             if gap < MIN_SEPARATION_M:
                 raise SystemExit(f"{sid} stands {gap:.2f} m from {other_id}")

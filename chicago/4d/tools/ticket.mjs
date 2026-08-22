@@ -32,6 +32,7 @@
  * tickets/README.md documents is exactly what parses; nothing else does.
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync, renameSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
@@ -111,6 +112,151 @@ function today() {
 
 function slugOf(title) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
+}
+
+const git = (args) => execFileSync('git', args, {
+  cwd: ROOT, encoding: 'utf8', timeout: 20_000, stdio: ['ignore', 'pipe', 'ignore'],
+});
+
+/** The branch this checkout is on, or '' when detached or there is no git. */
+function currentBranch() {
+  try { return git(['rev-parse', '--abbrev-ref', 'HEAD']).trim(); } catch { return ''; }
+}
+
+/**
+ * Every branch head on the remote, read ONCE per process — `inflight` asks about
+ * a hundred tickets and one `ls-remote` answers all of them. `main` and `dev` are
+ * never work-in-progress, so they never appear.
+ *
+ * Failure returns [] on purpose: these callers stand between a run and its work,
+ * and a network blip must never be able to stop one.
+ */
+let branchCache = null;
+function remoteBranches() {
+  if (branchCache) return branchCache;
+  try {
+    branchCache = git(['ls-remote', '--heads', 'origin'])
+      .split('\n')
+      .map((l) => {
+        const [sha, ref] = l.split('\t');
+        return { name: ref?.split('refs/heads/')[1]?.trim(), sha: sha?.trim() };
+      })
+      .filter((b) => b.name && b.name !== 'main' && b.name !== 'dev');
+  } catch {
+    branchCache = [];
+  }
+  return branchCache;
+}
+
+/**
+ * THE HIGHEST TICKET NUMBER ANYWHERE — this tree, plus every ticket sitting on a
+ * branch that has not merged yet.
+ *
+ * Ids used to be `max + 1` over the LOCAL tickets directory, which only ever holds
+ * what has merged. Two branches opened the same afternoon therefore both computed
+ * the same next number, and `check` refused the second one at the merge. That
+ * happened THREE TIMES in two days (T-0084, T-0111, T-0116), and each time the
+ * repair cost a rebase — and, until `restamp` was fixed alongside this, the
+ * renumbered ticket also lost its place in the owner's queue.
+ *
+ * So look where the in-flight numbers actually are: the tickets directory of every
+ * `steward/*` branch on the remote. One `ls-tree` per branch, no checkout, no
+ * fetch of file contents — the FILENAMES carry the ids.
+ *
+ * Best-effort, like everything else here that touches the network: no git, no
+ * remote, or a stale clone just means the old local-only answer, never a refusal
+ * to create a ticket. It narrows the window; `check` still closes it.
+ */
+function remoteIdMax() {
+  try {
+    // Refresh the steward refs so a branch pushed minutes ago is visible. Cheap:
+    // these branches are a few commits off dev and share nearly all their objects.
+    try {
+      git(['fetch', '--quiet', '--prune', 'origin', '+refs/heads/steward/*:refs/remotes/origin/steward/*']);
+    } catch { /* offline, or no such refspec — fall through to whatever is cached */ }
+    const refs = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin/steward'])
+      .split('\n').map((s) => s.trim()).filter(Boolean);
+    // `<ref>:<path>` resolves against the CWD, not the top of the tree — from
+    // `chicago/4d` a path of `chicago/4d/tickets` silently reads as
+    // `chicago/4d/chicago/4d/tickets` and returns EMPTY WITH EXIT 0, which is how
+    // this scan first shipped finding nothing at all and quietly handing back the
+    // old local-only answer. So ask git where the top is and read from there.
+    const top = git(['rev-parse', '--show-toplevel']).trim();
+    const dir = `${git(['rev-parse', '--show-prefix']).trim()}tickets`;
+    let max = 0;
+    for (const ref of refs) {
+      let names = '';
+      try {
+        names = execFileSync('git', ['ls-tree', '--name-only', `${ref}:${dir}`], {
+          cwd: top, encoding: 'utf8', timeout: 20_000, stdio: ['ignore', 'pipe', 'ignore'],
+        });
+      } catch { continue; }        // a branch from before the queue existed
+      for (const m of names.matchAll(/^T-(\d{4})-/gm)) max = Math.max(max, Number(m[1]));
+    }
+    return max;
+  } catch {
+    return 0;
+  }
+}
+
+/** The next free id, counting merged tickets AND every branch still in flight. */
+function nextIdNum(tickets) {
+  const local = Math.max(0, ...tickets.map((t) => Number(/^T-(\d{4})$/.exec(t.id ?? '')?.[1] ?? 0)));
+  return Math.max(local, remoteIdMax()) + 1;
+}
+
+const idOf = (n) => `T-${String(n).padStart(4, '0')}`;
+
+/**
+ * How many hours since this branch was last pushed to, or null if unknowable.
+ *
+ * NOT ancestry. Everything here squash-merges, so a merged branch's head is never
+ * an ancestor of `dev` and `merge-base --is-ancestor` answers "unmerged" for every
+ * branch that ever landed — a confidently wrong signal, which is worse than none.
+ * Age is the honest one: a steward run lasts under two hours, so a branch whose tip
+ * is a day old is not a run at work, whatever its ticket says.
+ *
+ * Reads the commit only if it is already in this clone (it is, for anything fetched);
+ * no network, and null when the object is absent.
+ */
+function branchAgeHours(sha) {
+  if (!sha) return null;
+  try {
+    const ts = Number(git(['log', '-1', '--format=%ct', sha]).trim());
+    return Number.isFinite(ts) ? (Date.now() / 1000 - ts) / 3600 : null;
+  } catch {
+    return null;
+  }
+}
+
+/** A run lasts ~1 hour; nothing older than this is one, whatever else is true. */
+const RUN_HOURS = 3;
+
+/**
+ * Does this branch name carry this ticket's number?
+ *
+ * Branch names are not standardised — the same ticket has been worked on
+ * `steward/t62-more-docks` and `steward/t-0062-more-docks` — so match the NUMBER
+ * with its padding and its separator optional, and refuse to match a longer one
+ * (T-0062 must not fire on `t-0620`).
+ */
+function branchCarries(branch, id) {
+  const n = /^T-(\d+)$/.exec(id)?.[1];
+  if (!n) return false;
+  return new RegExp(`(?:^|[^0-9a-z])t-?0*${Number(n)}(?![0-9])`, 'i').test(branch);
+}
+
+/** Branches that look like somebody ELSE is already working this ticket. */
+function remoteBranchesFor(id) {
+  const here = currentBranch();
+  return remoteBranches()
+    .filter((b) => b.name !== here && branchCarries(b.name, id))
+    .map((b) => {
+      const age = branchAgeHours(b.sha);
+      return age !== null && age > RUN_HOURS
+        ? `${b.name}  (last pushed ${Math.round(age)}h ago — older than a run, likely litter)`
+        : b.name;
+    });
 }
 
 function find(tickets, id) {
@@ -281,8 +427,7 @@ switch (cmd) {
     const title = args.filter((a) => !a.startsWith('--')
       && a !== flag('epic') && a !== flag('by') && a !== flag('effort') && a !== flag('legacy')).join(' ');
     if (!title) { console.error('usage: ticket.mjs new "title" [--epic E] [--by owner|loop|steward] [--seen] [--needs-bake] [--effort M] [--legacy OLD-ID]'); process.exit(1); }
-    const max = Math.max(0, ...tickets.map((t) => Number(/^T-(\d{4})$/.exec(t.id ?? '')?.[1] ?? 0)));
-    const id = `T-${String(max + 1).padStart(4, '0')}`;
+    const id = idOf(nextIdNum(tickets));
     const t = {
       file: path.join(DIR, `${id}-${slugOf(title)}.md`),
       id, title, state: 'open',
@@ -307,6 +452,25 @@ switch (cmd) {
       console.error(`${t.id} is effort L — ${EFFORT.L}.\n`
         + `Split it first, and the pieces keep this ticket's place in the queue:\n`
         + `  node tools/ticket.mjs split ${t.id} "first piece" "second piece"`);
+      process.exit(1);
+    }
+    // A claim only reaches `dev` when its PR merges, so a run that opens a PR and
+    // does not merge it leaves the ticket reading `open` to the NEXT run, which
+    // then does the same work twice. That happened to T-0062 on 2026-08-19: run
+    // 943 opened PR #258 green and deferred the merge on a smoke it could not
+    // finish; run 944 read the queue, saw T-0062 open at the top, and rebuilt it
+    // from scratch on its own branch. Two runs, one ticket, one of them binned.
+    //
+    // The remote branch list is the one piece of shared state a run CAN see
+    // before it starts, so look there. Best-effort by construction: no network,
+    // no git, or a detached checkout just means no warning — never a false stop.
+    const rival = remoteBranchesFor(t.id);
+    if (rival.length && !has('force')) {
+      console.error(`${t.id} looks like it is already being worked:\n`
+        + rival.map((b) => `  ${b}`).join('\n')
+        + `\nCheck whether that branch has an open PR before starting. If it is stale,\n`
+        + `or that branch is yours, claim it anyway:\n`
+        + `  node tools/ticket.mjs claim ${t.id} --force`);
       process.exit(1);
     }
     t.state = 'claimed';
@@ -349,15 +513,28 @@ switch (cmd) {
   case 'restamp': {
     // The duplicate-id remedy. Renumber ONE ticket (the younger of a colliding
     // pair) to the next free id, renaming its file with it.
-    const t = tickets.find((x) => path.basename(x.file) === args[0]) ?? find(tickets, args[0]);
-    const max = Math.max(0, ...tickets.map((x) => Number(/^T-(\d{4})$/.exec(x.id ?? '')?.[1] ?? 0)));
-    const old = t.id; queueRemove(old);
-    t.id = `T-${String(max + 1).padStart(4, '0')}`;
+    //
+    // Takes a path as readily as a bare filename or an id: with two files sharing
+    // an id, `find` by id cannot tell them apart, so the FILE is the only way to
+    // say which one moves — and the first thing anyone reaches for is the path
+    // `check` just printed.
+    const arg = args[0] ?? '';
+    const t = tickets.find((x) => x.file === path.resolve(arg))
+      ?? tickets.find((x) => path.basename(x.file) === path.basename(arg))
+      ?? find(tickets, arg);
+    const old = t.id;
+    // KEEP ITS PLACE IN THE QUEUE. This used to remove the old line and append
+    // the new one at the BOTTOM, so renumbering a ticket silently re-prioritised
+    // it — and the owner orders that file. A restamp changes a ticket's NUMBER
+    // and nothing else about it.
+    const line = queueIds().indexOf(old);
+    t.id = idOf(nextIdNum(tickets));
     const dest = path.join(DIR, `${t.id}-${slugOf(t.title)}.md`);
     writeTicket(t); renameSync(t.file, dest); t.file = dest;
-    if (WORKABLE.includes(t.state)) queueAppend(t);
+    if (line >= 0) queueReplace(old, [`${t.id} — ${t.title}`]);
+    else if (WORKABLE.includes(t.state)) queueAppend(t);
     generateBoard(loadAll());
-    console.log(`${old} → ${t.id}`);
+    console.log(`${old} → ${t.id}${line >= 0 ? ' (queue place kept)' : ''}`);
     break;
   }
   case 'split': {
@@ -370,11 +547,11 @@ switch (cmd) {
       console.error(`usage: ticket.mjs split ${t.id} "first piece" "second piece" [...]`);
       process.exit(1);
     }
-    let max = Math.max(0, ...tickets.map((x) => Number(/^T-(\d{4})$/.exec(x.id ?? '')?.[1] ?? 0)));
+    let next = nextIdNum(tickets) - 1;
     const rows = [];
     titles.forEach((title, n) => {
-      max += 1;
-      const id = `T-${String(max).padStart(4, '0')}`;
+      next += 1;
+      const id = idOf(next);
       const child = {
         file: path.join(DIR, `${id}-${slugOf(title)}.md`),
         id, title, state: 'open', epic: t.epic, requested_by: t.requested_by,
@@ -407,6 +584,74 @@ switch (cmd) {
     break;
   }
   case 'board': generateBoard(tickets); console.log(`BOARD.md + tickets.json regenerated (${tickets.length} tickets)`); break;
+  /**
+   * WHAT IS BEING WORKED ON RIGHT NOW — the one question the files cannot answer.
+   *
+   * A ticket's state lives in its file, and the file only reaches `dev` when its PR
+   * merges, so BOARD.md can show the queue and what has landed but never what is in
+   * flight. The remote branch list can: a run pushes its branch in its first commit,
+   * hours before anything merges. So read the branches and map them back to tickets.
+   *
+   * Three things fall out of that mapping, and each is worth seeing:
+   *   - a branch on an OPEN ticket — that is the loop, working, right now;
+   *   - a branch on a DONE ticket — a leftover, safe to delete;
+   *   - a ticket the files call `claimed` with no branch — an abandoned claim.
+   */
+  case 'inflight': {
+    const here = currentBranch();
+    const branches = remoteBranches();
+    const rows = [];
+    for (const b of branches) {
+      const t = tickets.find((x) => branchCarries(b.name, x.id));
+      if (t) rows.push({ b: b.name, t, age: branchAgeHours(b.sha) });
+    }
+    // Live work first: a young branch on a ticket that is not finished.
+    const isLive = (r) => !['done', 'withdrawn'].includes(r.t.state) && (r.age === null || r.age <= RUN_HOURS);
+    rows.sort((a, b) => Number(isLive(b)) - Number(isLive(a)) || a.t.id.localeCompare(b.t.id));
+
+    if (!branches.length) {
+      console.log('no remote branches readable (no network, or no git) — nothing to report');
+      break;
+    }
+    const live = rows.filter(isLive);
+    const cold = rows.filter((r) => !isLive(r));
+    const age = (r) => (r.age === null ? '' : r.age < 1 ? `${Math.round(r.age * 60)}m ago` : `${Math.round(r.age)}h ago`);
+
+    if (!live.length) {
+      console.log('IN FLIGHT — nothing. No fresh branch carries a ticket number.');
+    } else {
+      console.log(`IN FLIGHT — ${live.length} branch(es) pushed within ${RUN_HOURS}h on unfinished tickets:\n`);
+      for (const r of live) {
+        console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
+        console.log(`          ↳ ${r.b}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+      }
+    }
+    console.log('Git cannot tell you whether a branch LANDED — everything here squash-merges,');
+    console.log('so a merged branch never becomes an ancestor of dev. The PR list is the truth:');
+    console.log('  https://github.com/kevinrhaas/custom/pulls\n');
+
+    if (cold.length) {
+      console.log(`Cold — finished tickets, or branches older than a run (${cold.length}):`);
+      for (const r of cold) {
+        console.log(`  ${r.b}  (${r.t.id}, ${r.t.state}${age(r) ? ', ' + age(r) : ''})`);
+      }
+      console.log('  Most are leftovers whose PR merged; delete with `git push origin --delete <branch>`.\n');
+    }
+
+    // A claim with no branch behind it is the shape of an abandoned run.
+    const orphans = tickets.filter((t) => ['claimed', 'review'].includes(t.state)
+      && !rows.some((r) => r.t.id === t.id));
+    if (orphans.length) {
+      console.log(`Claimed in the merged files, with no branch on the remote (${orphans.length}) —`);
+      console.log('a run that claimed and never pushed, or a branch already deleted:');
+      for (const t of orphans) console.log(`  ${t.id}  ${t.title}${t.claimed_by ? `  [${t.claimed_by}]` : ''}`);
+      console.log('');
+    }
+
+    const unmatched = branches.length - rows.length;
+    if (unmatched > 0) console.log(`${unmatched} other branch(es) carry no ticket number (bakes, chores) — not listed.`);
+    break;
+  }
   case 'check': {
     const problems = check(tickets);
     if (problems.length) {
@@ -420,6 +665,6 @@ switch (cmd) {
     break;
   }
   default:
-    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|list|board|check');
+    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|board|check');
     process.exit(cmd ? 1 : 0);
 }

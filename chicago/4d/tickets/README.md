@@ -35,6 +35,53 @@ tickets link into them. A ticket is the index card; the box is the file.
 6. Found new work along the way? `node tools/ticket.mjs new "title" --by loop` —
    it lands at the **bottom** of QUEUE. Agents never reorder QUEUE; only the owner
    does. That one rule is what makes the owner's priorities durable.
+7. **Finish the PR inside the run that opened it.** Merge it when the gate is green,
+   or `block` it, or label it `hold` and say why — but never end a run with your own
+   PR sitting open. The next section is what that costs.
+
+## A claim is only real once its PR merges
+
+The state lives in the ticket file, and the ticket file only reaches `dev` when the PR
+does. So a run that opens a PR and walks away leaves the ticket reading `open` at the
+top of the queue, and **the next run does the same work again.**
+
+Not hypothetical. On 2026-08-19 run 943 opened PR #258 for T-0062 with a green gate and
+deferred the merge on a desktop smoke it could not finish inside the run; run 944 read
+the queue an hour later, saw T-0062 open at the top, and rebuilt it from scratch on its
+own branch (#259, which merged). Two runs, one ticket, one of them binned — about
+seventy minutes of loop time.
+
+Two things close it, and neither substitutes for the other:
+
+- **`ticket.mjs claim` looks for a rival branch first.** It reads `git ls-remote` and
+  refuses if a remote branch name carries this ticket's number in any of the shapes the
+  loop has actually used (`t62-…`, `t-0062-…`). Check whether that branch has an open
+  PR before starting; if it is stale, or it is yours, `--force` past it. Best-effort by
+  construction — no network or no git means no warning, never a false stop.
+- **Rule 7 above.** The guard only helps the *next* run. Finishing the PR is what keeps
+  the queue honest for everyone.
+
+## Seeing what is being worked on right now
+
+Same reason, same blind spot: `BOARD.md` shows the queue and what has landed, and it
+cannot show a claim in flight. The branch list can, because a run pushes its branch in
+its first commit, hours before anything merges.
+
+```
+node tools/ticket.mjs inflight
+```
+
+It maps every remote branch back to the ticket whose number it carries, and separates
+**live** (pushed within three hours, on an unfinished ticket — a run lasts about one) from
+**cold** (a finished ticket, or a branch older than any run could be). It also lists
+claims sitting in the merged files with no branch behind them, which is the shape of a
+run that claimed and died.
+
+**What it deliberately does not claim:** whether a branch's work LANDED. Everything here
+squash-merges, so a merged branch's head never becomes an ancestor of `dev` and
+`merge-base --is-ancestor` answers "unmerged" for every branch that ever shipped —
+confidently wrong, which is worse than silent. Age and ticket state are the honest
+signals; the PR list is the authority.
 
 ## Sizing: effort is measured in RUNS, and L must be split
 
@@ -96,10 +143,25 @@ owner's call, made by ordering QUEUE.md.
 
 `T-0001` upward, assigned by `ticket.mjs new`, flat across all epics (the epic is
 a field, not a number range — renumbering by category is how the old scheme got
-K45(b2) and R-M1c). Two branches that each create a ticket can collide on the next
-number; `ticket.mjs check` (run by `tools/check.sh`) refuses duplicate IDs at the
-merge, and `ticket.mjs restamp T-NNNN` renumbers the younger one. Migrated tickets
-keep their old parcel id in `legacy_id` so old PRs and ROADMAP boxes still resolve.
+K45(b2) and R-M1c). Migrated tickets keep their old parcel id in `legacy_id`, so old
+PRs and ROADMAP boxes still resolve.
+
+**Numbers are allocated against work IN FLIGHT, not just work that merged.** The
+number used to be `max + 1` over this directory, which holds only what has landed —
+so two branches opened the same afternoon both picked it and `check` refused the
+second one at the merge. That happened three times in two days (T-0084, T-0111,
+T-0116). `new` and `split` now also read the tickets directory of every `steward/*`
+branch on the remote, by filename: one `ls-tree` per branch, no checkout, no file
+contents. Best-effort by construction — no git, no network, or a stale clone falls
+back to the local answer rather than refusing to create a ticket.
+
+That narrows the window; it cannot close it (two runs can still allocate in the same
+minute). So the backstop stands: **`check` refuses duplicate ids at the merge**, and
+`ticket.mjs restamp <file-or-id>` renumbers one. Give it the PATH `check` printed —
+with two files sharing an id, the id alone cannot say which one moves. **A restamp
+keeps the ticket's place in QUEUE.md**: it changes a number and nothing else. (It
+used to remove the line and append at the bottom, which silently re-prioritised the
+one file agents may not reorder.)
 
 ## Front matter
 

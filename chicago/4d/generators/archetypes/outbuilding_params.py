@@ -163,6 +163,12 @@ SHED_RISE_RATIO_MAX = 1.5
 # frame_tavern. The single small unglazed vent this archetype cuts is a fixed default;
 # a tint is not a building, and calling that "consumed" would excuse the omission this
 # set exists to surface.
+# `finish_key` and `roof_condition` are NOT in this set and must not be, although the
+# archetype now reads both (T-0007). This set names FORM attributes — what a phase
+# states about the building — and those two live in the record's `reconstruction`
+# block, the 665-roof programme's own ledger, one level above the phase. That is why
+# no archetype could read them for as long as `from_phase` took only a phase, and it
+# is what `docs/RESEARCH/materials.md` §4 finding 4 was pointing at.
 CONSUMED = frozenset({
     "construction", "roof_type", "roof_pitch_deg", "wall_height_m",
     "door", "door_side", "door_width_m", "door_height_m",
@@ -280,6 +286,17 @@ class OutbuildingParams:
     board_gap_m: float = 0.012
 
     paint: str = "unpainted"
+
+    # The finish the 665-roof programme dealt this building, and how weathered its
+    # roof is. NOT form attributes — they live in the record's `reconstruction`
+    # block, which is why `from_phase` takes the record — and until T-0007 they were
+    # read by `generators/inferred_placeholder.py` alone, so a weathered roof and a
+    # fresh one were the same pixel on every archetype building in the town
+    # (docs/RESEARCH/materials.md §4 finding 4). None on every named or documented
+    # building, which carries no reconstruction block and therefore keeps exactly the
+    # colours it had. `common/materials.py` is what turns either into a surface.
+    finish_key: str | None = None
+    roof_condition: str | None = None
 
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
@@ -559,7 +576,7 @@ class OutbuildingParams:
                 f"wall: state wall_height_m, or record a smaller door")
 
 
-def from_phase(phase: dict) -> OutbuildingParams:
+def from_phase(phase: dict, record: dict | None = None) -> OutbuildingParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence.
@@ -595,6 +612,9 @@ def from_phase(phase: dict) -> OutbuildingParams:
             f"{max(abs(min(xs)), abs(min(ys))):.2f} m from where its footprint puts it. "
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
+    # `reconstruction` is the 665-roof programme's own block: it is present on every
+    # anonymous or household roof it dealt and absent from every named building.
+    recon = (record or {}).get("reconstruction") or {}
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
@@ -630,6 +650,11 @@ def from_phase(phase: dict) -> OutbuildingParams:
         loft=bool(val("loft", False)),
         board_gap_m=float(val("board_gap_m", 0.012)),
         paint=str(val("paint", "unpainted")),
+        # The programme's own finish deal, read off the record rather than the
+        # phase. `wall_finish` in `common/materials.py` states the order these are
+        # applied in and why a stated coating outranks them.
+        finish_key=recon.get("finish_key"),
+        roof_condition=recon.get("roof_condition"),
         confidence=confidences,
     )
     p.validate()

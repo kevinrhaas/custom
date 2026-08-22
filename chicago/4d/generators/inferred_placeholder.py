@@ -15,6 +15,7 @@ import hashlib
 import json
 import math
 import struct
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -24,22 +25,27 @@ WEB = ROOT / "assets" / "web"
 MANIFEST = ROOT / "assets" / "manifest.json"
 PREFIX = "recon_1835_"
 
-WALL_COLOURS = {
-    "fresh_timber": "#C3A478", "weathered_timber": "#817D72",
-    "whitewash": "#D8D1BC", "ochre": "#A98B52",
-    "red_oxide": "#7A4437", "mixed_patch": "#BFAE8E",
-}
-ROOF_COLOURS = {"fresh": "#5E4938", "darkened": "#4B4037",
-                "patched": "#3C3732", "weathered": "#6C6258"}
+sys.path.insert(0, str(ROOT / "generators"))
+
+from common import materials  # noqa: E402
+
+# THIS GENERATOR'S PALETTE IS NOW THE TOWN'S (T-0007). The six wall finishes and the
+# four roof conditions below were written here and read nowhere else, which is
+# docs/RESEARCH/materials.md finding 5: 27 % of the town was painted by a generator
+# sharing not one colour and not one roughness with the other 73 %. They have moved
+# to `common/materials.py` — the sheet — where the nine Blender archetypes now read
+# them too, and these names stay as the local view of it. The VALUES are unchanged to
+# the last bit, deliberately: 94 committed GLBs are gated on their exact bytes, and
+# this parcel converges the two palettes by moving the archetypes onto the records'
+# vocabulary rather than by moving the vocabulary.
+WALL_COLOURS = {k: materials.FINISHES[k].rgba
+                for k in ("fresh_timber", "weathered_timber", "whitewash",
+                          "ochre", "red_oxide", "mixed_patch")}
+ROOF_COLOURS = {k: v.rgba for k, v in materials.ROOF_CONDITIONS.items()}
 
 
 def load(path: Path):
     return json.loads(path.read_text())
-
-
-def hex_rgba(value: str) -> list[float]:
-    value = value.lstrip("#")
-    return [int(value[i:i + 2], 16) / 255 for i in (0, 2, 4)] + [1.0]
 
 
 def normal(a, b, c):
@@ -85,6 +91,17 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
         rise = min(wall_h * .72, math.tan(pitch) * d)
         quad(groups["roof"], (-.12,wall_h, .12), (w+.12,wall_h,.12),
              (w+.12,wall_h+rise,-d-.12), (-.12,wall_h+rise,-d-.12))
+        # AND THE TWO ENDS THE SLOPE LEAVES OPEN (T-0061). A shed roof rises from
+        # the front wall to the back, so each side wall finishes as a right
+        # triangle between the two — and without them a visitor sees straight
+        # through the building to the sky under the slope. The gable branch below
+        # has always filled its ends; this branch drew the slope and stopped, so
+        # every placeholder carrying `roof_type: shed` stood open. Wound the same
+        # way round as the gable's own end fills, and put in the `wall` group
+        # because that is what they are: the top of the wall, not roof covering,
+        # which also keeps them off the roof material the record grades.
+        tri(groups["wall"], (0,wall_h,0), (0,wall_h+rise,-d), (0,wall_h,-d))
+        tri(groups["wall"], (w,wall_h,-d), (w,wall_h+rise,-d), (w,wall_h,0))
     else:
         rise = min(wall_h * .85, math.tan(pitch) * d / 2)
         ridge = wall_h + rise
@@ -122,17 +139,19 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
             cx = w * (.35 if i == 0 else .68)
             box(groups["chimney"], cx-.18, cx+.18, wall_h+.35, top, -d*.56, -d*.45)
 
-    materials = [
-        {"name": f"placeholder_wall_{meta['finish_key']}", "pbrMetallicRoughness": {"baseColorFactor": hex_rgba(WALL_COLOURS[meta["finish_key"]]), "metallicFactor": 0, "roughnessFactor": .86}, "doubleSided": True},
-        {"name": f"placeholder_roof_{meta['roof_condition']}", "pbrMetallicRoughness": {"baseColorFactor": hex_rgba(ROOF_COLOURS[meta["roof_condition"]]), "metallicFactor": 0, "roughnessFactor": .9}, "doubleSided": True},
-        {"name": "placeholder_opening_dark", "pbrMetallicRoughness": {"baseColorFactor": hex_rgba("#2D3D33"), "metallicFactor": 0, "roughnessFactor": .7}, "doubleSided": True},
-        {"name": "placeholder_chimney_brick", "pbrMetallicRoughness": {"baseColorFactor": hex_rgba("#89503F"), "metallicFactor": 0, "roughnessFactor": .88}, "doubleSided": True},
+    # `mats`, not `materials`: the module of that name is the sheet these values now
+    # come from, and shadowing it here would silently reintroduce the local palette.
+    mats = [
+        {"name": f"placeholder_wall_{meta['finish_key']}", "pbrMetallicRoughness": {"baseColorFactor": list(WALL_COLOURS[meta["finish_key"]]), "metallicFactor": 0, "roughnessFactor": .86}, "doubleSided": True},
+        {"name": f"placeholder_roof_{meta['roof_condition']}", "pbrMetallicRoughness": {"baseColorFactor": list(ROOF_COLOURS[meta["roof_condition"]]), "metallicFactor": 0, "roughnessFactor": .9}, "doubleSided": True},
+        {"name": "placeholder_opening_dark", "pbrMetallicRoughness": {"baseColorFactor": list(materials.hex_rgba("#2D3D33")), "metallicFactor": 0, "roughnessFactor": .7}, "doubleSided": True},
+        {"name": "placeholder_chimney_brick", "pbrMetallicRoughness": {"baseColorFactor": list(materials.hex_rgba("#89503F")), "metallicFactor": 0, "roughnessFactor": .88}, "doubleSided": True},
     ]
-    return groups, materials
+    return groups, mats
 
 
 def glb_for(record: dict) -> bytes:
-    groups, materials = record_geometry(record)
+    groups, mats = record_geometry(record)
     blob = bytearray()
     views, accessors, primitives = [], [], []
     material_index = {name: i for i, name in enumerate(("wall", "roof", "opening", "chimney"))}
@@ -170,7 +189,7 @@ def glb_for(record: dict) -> bytes:
         "nodes": [{"name": f"{sid}__{phase}", "mesh": 0,
                    "extras": {"structure_id": sid, "phase_id": phase, "scene_ids": ["1835"]}}],
         "meshes": [{"name": f"{sid}__{phase}", "primitives": primitives}],
-        "materials": materials, "buffers": [{"byteLength": len(blob)}],
+        "materials": mats, "buffers": [{"byteLength": len(blob)}],
         "bufferViews": views, "accessors": accessors,
     }
     js = json.dumps(doc, separators=(",", ":"), ensure_ascii=False).encode()

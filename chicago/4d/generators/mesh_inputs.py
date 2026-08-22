@@ -25,8 +25,11 @@ disbelieved, and a disbelieved gate is worse than no gate: it teaches the reader
 that "stale" means nothing. So this one hashes **what the builder can actually
 see**:
 
-1. the *resolved* archetype parameters — `from_phase(phase)`, not the phase — so
-   only a value the generator reads counts, and it counts after defaulting;
+1. the *resolved* archetype parameters — `from_phase(phase, record)`, not the phase
+   and not the record — so only a value the generator reads counts, and it counts
+   after defaulting. The record joined the phase in T-0007, when the archetypes
+   started reading the finish the 665-roof programme dealt them; it is passed rather
+   than hashed, for the same reason the phase is;
 2. every `@property` the parameter class derives from those fields, because
    `addition_height_m`'s 2.55/4.7 constants are as load-bearing as any field;
 3. the confidence *floats*, not the labels, so a change to `CONFIDENCE_VALUE`
@@ -108,8 +111,15 @@ def _params_doc(params) -> dict:
     }
 
 
-def resolve_params(archetype: str, phase: dict):
-    """`from_phase` for one archetype, imported without Blender."""
+def resolve_params(archetype: str, phase: dict, record: dict | None = None):
+    """`from_phase` for one archetype, imported without Blender.
+
+    The record travels alongside the phase because the finish the 665-roof programme
+    dealt a building is not a form attribute — it sits one level up, in the record's
+    `reconstruction` block — and since T-0007 the archetypes read it. `build.py`
+    passes the same pair, which is the property this module exists to hold: the hash
+    is taken over what the builder can actually see, and over nothing else.
+    """
     gen = str(ROOT / "generators")
     if gen not in sys.path:
         sys.path.insert(0, gen)
@@ -118,7 +128,7 @@ def resolve_params(archetype: str, phase: dict):
     except Exception as e:  # noqa: BLE001
         raise InputsError(f"no importable parameter module for archetype "
                           f"'{archetype}': {e}") from e
-    return mod.from_phase(phase)
+    return mod.from_phase(phase, record)
 
 
 def structure_inputs_doc(structure: dict, phase: dict, archetype: str | None = None) -> dict:
@@ -136,7 +146,7 @@ def structure_inputs_doc(structure: dict, phase: dict, archetype: str | None = N
         "structure": structure.get("id"),
         "phase": phase.get("id"),
         "archetype": arch,
-        "params": _params_doc(resolve_params(arch, phase)),
+        "params": _params_doc(resolve_params(arch, phase, structure)),
         "code": _code_shas(arch),
         "blender_pin": (ROOT / "generators" / "blender.pin").read_text().strip(),
     }

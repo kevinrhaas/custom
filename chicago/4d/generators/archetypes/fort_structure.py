@@ -37,6 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.logwork import (  # noqa: E402
     CHINK_RGBA, HEWN_RGBA, RELIEF_M, hewn_log_wall,
 )
+from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, ROOF_RGBA, simple_material  # noqa: E402
 from archetypes.fort_structure_params import FortStructureParams  # noqa: E402
 
@@ -50,9 +51,15 @@ WALL_RGBA = {
     "stone": (0.58, 0.56, 0.51, 1.0),
     "earth": (0.34, 0.30, 0.22, 1.0),
 }
+# A coating over whatever the wall is made of, and OFF THE SHEET since T-0007. This
+# module used to carry a THIRD whitewash value — 0.86/0.85/0.80, against the frame
+# archetypes' 0.88/0.87/0.83 and the placeholder generator's 0.847/0.820/0.737 — for
+# no reason anybody wrote down. materials.md finding 5 is exactly that: the town was
+# painted by generators sharing no palette. One limewash now, and it states its own
+# gloss because a limewashed wall is the flattest surface in the town (§2.1).
 PAINT_OVER = {
-    "whitewash": (0.86, 0.85, 0.80, 1.0),
-    "white": (0.90, 0.89, 0.85, 1.0),
+    "whitewash": materials.FINISHES["whitewash"].rgba,
+    "white": materials.FINISHES["white_paint"].rgba,
 }
 
 
@@ -72,11 +79,24 @@ def build(params: FortStructureParams, name: str):
 
     base = WALL_RGBA.get(params.construction, WALL_RGBA["log"])
     wall_rgba = PAINT_OVER.get(params.paint, base)
+    # The gloss of a fort wall, by what it is MADE of, off the sheet (T-0007): brick
+    # 0.90, rubble stone 0.93, hewn log 0.92, trodden earth 0.95, a sided frame wall
+    # 0.86 — against the single 0.92 every fort surface used to share, which put a
+    # limewashed magazine and a turf root-house cellar at the same gloss. A coating
+    # states its own and overrides the fabric's, which is what puts the whitewashed
+    # walls of the fort at the same flat 0.90 as the whitewashed walls of the town.
+    substrate = materials.wall_substrate(construction=params.construction,
+                                         default="hewn_log")
+    _, wall_rough = materials.resolve(
+        substrate, materials.wall_finish(paint=params.paint))
     mats = [
-        simple_material(params.construction, wall_rgba, roughness=0.92),
+        simple_material(params.construction, wall_rgba, roughness=wall_rough),
+        # The roof takes the town's default tone: no fort record deals a weathering
+        # condition, and none states a covering either (materials.md finding 2).
         simple_material("roof", ROOF_RGBA, roughness=0.9),
         simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
-        simple_material("chinking", CHINK_RGBA, roughness=0.95),
+        simple_material("chinking", CHINK_RGBA,
+                        roughness=materials.SUBSTRATES["chinking"].roughness),
     ]
     return b.to_object(mats)
 

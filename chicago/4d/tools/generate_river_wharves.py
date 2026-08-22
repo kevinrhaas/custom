@@ -19,16 +19,20 @@ layer, and every dimension of it is invented. That is `reconstructed` in this
 project's third tier, which AGENTS.md § RECONSTRUCTED IS A TIER says is a licence
 to build rather than an admission of defeat.
 
-THE RULE, and it is the whole answer to "why these two and no others":
+THE RULE, and it is the whole answer to "why these frontages and no others":
 
-    a sidecar standing on the scene date, whose own `dock` attribute is true and
-    graded `attested` or `inferred` — not `reconstructed`, because a dock resting
-    on a reconstructed dock would be an invention on an invention.
+    a sidecar standing on the scene date whose own `dock` attribute is true.
 
-Run over the whole town that rule selects exactly two records and refuses every
-other frontage on the river, including the ones a person would have guessed at
-(the South Water stores, the lumber landing, the ferry). Nothing else in this
-dataset says it had a dock.
+T-0041 shipped that rule with a grade clause — attested or inferred only, no
+`reconstructed`, because a dock resting on a reconstructed dock read as an
+invention on an invention — and it selected exactly two records. On 2026-08-18
+the owner overruled the rationing, verbatim "you can add more docks!" (T-0062,
+with the standing ruling in AGENTS.md § RECONSTRUCTED IS A TIER), so five South
+Water merchant records now STATE a reconstructed landing, each with its bound in
+its own note, and this generator draws them. The selection still lives in the
+data: a record with no dock statement — the Temple Building's meeting house on
+the same frontage, the lumber landing, the ferry — still gets no wharf, and
+"why this frontage" is still answered by a record rather than by this file.
 
 WHAT IS DERIVED AND WHAT IS INVENTED — the division this file exists to keep
 auditable:
@@ -75,10 +79,17 @@ OUT = ROOT / "data" / "wharves" / "river_landings.json"
 sys.path.insert(0, str(ROOT / "tools"))
 from heightfield import Heightfield          # noqa: E402  (path set above)
 
-# The grades a dock statement has to carry before a wharf is drawn on it. A
-# `reconstructed` dock would be this layer inventing a structure to serve an
-# invention, which is the clause that refuses the anonymous river frontage.
-DOCK_GRADES = ("attested", "documented", "inferred")
+# The grades a dock statement may carry. T-0041 shipped this tuple WITHOUT
+# `reconstructed` — a dock resting on a reconstructed dock read as an invention
+# on an invention — and the owner overruled that reading on 2026-08-18, verbatim
+# "you can add more docks!", with the general ruling recorded in AGENTS.md
+# § RECONSTRUCTED IS A TIER: be liberal with reconstructed items when asked,
+# label them as such. So a sidecar may now STATE a reconstructed dock (T-0062
+# authored five, each with its bound in its own note) and this generator draws
+# it. What has not changed: the selection still lives in the DATA — a sidecar
+# with no dock statement still gets no wharf, so "why this frontage" is still
+# answered by a record and never by this file.
+DOCK_GRADES = ("attested", "documented", "inferred", "reconstructed")
 
 # --- the invented figures, all of them, in one place ------------------------ #
 # They are copied into the record's `form` block with their reasons; they are
@@ -149,19 +160,27 @@ def bank_lines() -> list[dict]:
     return out
 
 
-def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple]:
-    """(distance, foot point, unit tangent) for the nearest segment of a polyline."""
+def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple, float, float]:
+    """(distance, foot point, unit tangent, arclength at foot, total arclength)
+    for the nearest segment of a polyline. The two arclengths exist for clause
+    4b: a deck may only stand where the bank is actually TRACED, and the test is
+    its run against the trace's own extent rather than a guess about endpoints.
+    """
     best = None
+    s = 0.0
+    total = sum(math.hypot(b[0] - a[0], b[1] - a[1])
+                for a, b in zip(points, points[1:]))
     for a, b in zip(points, points[1:]):
         dx, dy = b[0] - a[0], b[1] - a[1]
         L2 = dx * dx + dy * dy
+        L = math.sqrt(L2) or 1.0
         t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((p[0] - a[0]) * dx
                                                    + (p[1] - a[1]) * dy) / L2))
         q = (a[0] + t * dx, a[1] + t * dy)
         d = math.hypot(p[0] - q[0], p[1] - q[1])
         if best is None or d < best[0]:
-            L = math.sqrt(L2) or 1.0
-            best = (d, q, (dx / L, dy / L))
+            best = (d, q, (dx / L, dy / L), s + t * L, total)
+        s += L
     return best
 
 
@@ -184,8 +203,9 @@ def build_record() -> tuple[list, list]:
         grade = dock.get("confidence")
         if grade not in DOCK_GRADES:
             refused.append({"structure_id": sid, "why": (
-                f"its dock is graded {grade}. A wharf drawn on a reconstructed "
-                "dock would be an invention resting on an invention.")})
+                f"its dock is graded {grade!r}, which is not a grade this "
+                "project's confidence model has. A statement this layer cannot "
+                "classify is a statement it does not draw.")})
             continue                                             # clause 2
 
         place = sc.get("placement") or {}
@@ -201,7 +221,7 @@ def build_record() -> tuple[list, list]:
         frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
 
         near = [(nearest_on(b["points"], mid), b) for b in banks]
-        (dist, foot, tangent), bank = min(near, key=lambda r: r[0][0])
+        (dist, foot, tangent, foot_s, bank_len), bank = min(near, key=lambda r: r[0][0])
         # Outward is across the bank, away from the building it serves. Deriving
         # it from the building rather than from the polygon's winding is what
         # keeps a wharf on the water when a bank line is re-traced the other way.
@@ -210,6 +230,23 @@ def build_record() -> tuple[list, list]:
             nx, ny = -nx, -ny
 
         half = frontage / 2.0 + APRON_M
+
+        # CLAUSE 4b (T-0062): every metre of the deck must stand off a traced
+        # metre of bank. The 1834 bank polylines end at local E 390 and three
+        # stated South Water landings lie east of that; without this clause all
+        # three snapped to the trace's terminal vertex and stacked on one point
+        # — a modelling error wearing three wharves' clothes. A landing refused
+        # here is STATED AND NOT DRAWN until the trace reaches it (T-0106),
+        # because a deck derived from a bank that is not there is derived from
+        # nothing.
+        if foot_s - half < 0.0 or foot_s + half > bank_len:
+            refused.append({"structure_id": sid, "why": (
+                "its frontage lies beyond the traced 1834 bank line, so part of "
+                "its deck would stand off bank nobody traced. The dock "
+                "statement stands; the landing is drawn when the trace reaches "
+                "this reach (T-0106).")})
+            continue                                             # clause 4b
+
         heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
         face = (foot[0] + nx * FACE_OUT_M, foot[1] + ny * FACE_OUT_M)
         corners = [                       # heel-left, heel-right, face-right, face-left
@@ -275,8 +312,11 @@ def build_record() -> tuple[list, list]:
 def record(wharves: list, refused: list) -> dict:
     return {
         "_doc": (
-            "The town's river wharves — a plank deck on timber cribs at each of "
-            "the two warehouses whose own record states a dock. NOT structure "
+            "The town's river wharves and landings — a plank deck on timber "
+            "cribs at each frontage whose own record states a dock: the two "
+            "forwarding warehouses whose dock the dossier states (T-0041), and "
+            "the five South Water merchant landings reconstructed under the "
+            "owner's ruling of 2026-08-18 (T-0062). NOT structure "
             "records and NOT geometry that comes out of Blender: a deck on cribs "
             "is a box on boxes standing on ground and water this project already "
             "draws, so it is derived from the committed footprint, the traced "
@@ -289,7 +329,7 @@ def record(wharves: list, refused: list) -> dict:
             "a rule has to be auditable."
         ),
         "id": "river_landings",
-        "name": "The river wharves at the forwarding warehouses",
+        "name": "The river wharves and the South Water landings",
         "kind": "wharves",
         "scene": "1835",
         "target_date": "1835-07-01",
@@ -321,17 +361,30 @@ def record(wharves: list, refused: list) -> dict:
                 "— which docs/LIBERTIES.md L66 recorded as owed and L132 now "
                 "claims. NOTHING HERE IS PROMOTED ABOVE reconstructed on the "
                 "strength of the sentence: a dock is stated, and this is what a "
-                "dock is drawn as."
+                "dock is drawn as. THE FIVE SOUTH WATER LANDINGS (T-0062) STAND "
+                "ONE TIER LOWER STILL: no source states a dock at any of them, "
+                "and their existence is itself reconstructed under the owner's "
+                "ruling of 2026-08-18 ('you can add more docks!'), bounded per "
+                "frontage in each record's own dock note — the trade that takes "
+                "goods off the water, the working reach the 2026-08-18 brief "
+                "shows crowded with masts, and the wharfing-out practice of the "
+                "south bank. Claimed at docs/LIBERTIES.md L145. Each wharf row "
+                "below reports its own dock_confidence, which is the honest "
+                "division between the stated docks and the invented ones."
             ),
         },
         "rule": {
             "note": (
                 "A sidecar standing on the scene date whose own `dock` attribute "
-                "is true and graded attested or inferred. Run over the whole town "
-                "that selects exactly two records and refuses every other river "
-                "frontage in the dataset — the South Water stores, the lumber "
-                "landing, the ferry — because nothing else in this project says "
-                "it had a dock. Read the clauses and their reasons in "
+                "is true. T-0041 shipped the rule with a grade clause — attested "
+                "or inferred only — and it selected exactly two records; the "
+                "owner overruled the rationing on 2026-08-18 ('you can add more "
+                "docks!'), so five South Water merchant records now state a "
+                "reconstructed landing, each bounded in its own note, and the "
+                "rule draws them too. The selection still lives in the data: a "
+                "record with no dock statement — the Temple Building's meeting "
+                "house on the same frontage, the lumber landing, the ferry — "
+                "still gets no wharf. Read the clauses and their reasons in "
                 "tools/generate_river_wharves.py."
             ),
             "dock_grades": list(DOCK_GRADES),

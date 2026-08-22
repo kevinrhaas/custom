@@ -1211,6 +1211,12 @@ kbd {
 }
 
 .confidence-menu {
+  /* The HUD is pointer-events: none so the view stays live underneath, and
+     every interactive piece re-enables it for itself. This panel rides in the
+     chip group but is not a .chip, so without its own auto every checkbox
+     click fell THROUGH to the canvas — re-locking the pointer and tripping
+     the click-away handler at once (T-0108). */
+  pointer-events: auto;
   position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
   width: 268px; padding: 12px; border-radius: 12px;
   background: var(--panel-solid); border: 1px solid var(--edge);

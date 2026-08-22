@@ -151,6 +151,42 @@ of `docs/LIBERTIES.md`. The bar was never "only build what is proven" — it is 
 what you built."** Those are different, and the second one is compatible with building a great deal
 more than this loop has been building.
 
+**The owner doubled down, 2026-08-18, verbatim: "in general i think you are being too cautious on
+adding items to the scene. you are totally fine to be liberal with adding reconstructed items when i
+ask for things, you can just label and mark them as such."** He said it while overriding, one by
+one, the conservative readings the loop had settled into: only the two attested docks ("you can add
+more docks!"), no boats ("you can add boats correct for the era! they would exist"), wagons only at
+attested doors ("of course there would be more wagons all over the place in a frontier town"), signs
+only where attested ("you need to add more signage … it is fine if they are reconstructions"). The
+pattern to learn: **when the owner asks for something, the scene needing it IS the justification** —
+build it at the reconstructed tier, label it, record the liberty, and do not ration it to the
+attested instances. The rationing instinct is the bug this section exists to fix.
+
+**And the same ruling reaches the frame budget, 2026-08-21, verbatim: "ok to raise the draw
+call budget, if you need to make that a user friendly option in settings because it wont work
+on some machines but will on others/most then that is ok" — and, immediately after, "or just
+raise the budget?"** So: **just raise it.** A performance ceiling is not a claim about 1835 and
+it is not evidence; it is a number this project chose, and when a parcel the owner asked for
+needs more of it, the number moves rather than the parcel shrinking. Three constraints survive,
+and they are the whole of it:
+
+- **Never silently.** The number moves at the place it is defined, with the reasoning written
+  there — where the old figure came from and what supports the new one — and the check that
+  guards it updated to match, with its justification. That is a conscious re-budget (T-0115's
+  acceptance names it as one of the two honest routes) and it is NOT the same act as weakening
+  an assertion to make a red go away. Say which one you are doing.
+- **`light` is the floor and stays the floor.** The scene-detail control (`full`/`balanced`/
+  `light`) IS the "user friendly option in settings" the owner was offering to have built — it
+  already ships, so no new UI is wanted. `light` is the tier a weak machine boots into; keep it
+  inside its own ceiling and spend new headroom at the tiers above it.
+- **Measure, then move.** Raise it because a parcel needs it and you have the number, not
+  pre-emptively. A ceiling checked at one camera stand is a spot reading, not an invariant
+  (T-0115 item 1, still open).
+
+The pattern is the same one above: **when the owner asks for something, the scene needing it IS
+the justification.** Rationing the town to a budget nobody defended is the same bug as rationing
+it to the attested instances.
+
 ## THE QUEUE — how work is chosen (since 2026-08-17)
 
 **`tickets/` is the single operational answer to "what next".** The owner asked for it
@@ -161,7 +197,9 @@ is the contract. The short form:
 - **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
   `needs_bake` on the improve runner, with the skip stated in the PR). `node
   tools/ticket.mjs list --workable` prints the same order.
-- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`.
+- **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
+  inflight` shows what other branches are already carrying a ticket number, which is the
+  only live view of work the merged files cannot show yet.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
   actually see it, not only in a PR body.
@@ -171,6 +209,13 @@ is the contract. The short form:
 - **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
   starts. This is not optional bookkeeping; an owner request going untracked for days is
   the exact failure this system exists to close.
+- **Finish your PR inside the run that opened it** — merge on a green gate, or `block`, or
+  label it `hold` with the reason. **A claim is only real once its PR merges**: the state
+  lives in the ticket file, so an abandoned open PR leaves the ticket reading `open` at the
+  top of the queue and the next run rebuilds the same work. It cost about seventy minutes
+  on 2026-08-19 (run 943's PR #258 left open, run 944 redoing T-0062 as #259). `claim` now
+  checks `git ls-remote` for a rival branch carrying the ticket's number and refuses with a
+  `--force` escape — but that only protects the NEXT run; finishing the PR is your half.
 - **Size in RUNS before you claim.** `XS` part of a run · `S` one run · `M` one run,
   tight (or one run plus a bake) · `L` **more than one run, and `claim` refuses it**.
   The test is the acceptance clause: *if it needs more than one demonstration, it is

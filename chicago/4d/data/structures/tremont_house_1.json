@@ -111,6 +111,11 @@
           ],
           "note": "A DOCUMENTED ABSENCE, AND ONE OF THE FEW THINGS ANYBODY WROTE DOWN ABOUT THIS BUILDING. Ira Couch, who took the house in 1834, 'found the house a mere shell, WITHOUT ANY SIDEWALK AROUND IT, and poorly furnished' - Chicago Tribune, 2 February 1874, transcribed on chicagology_prefire021. The same letter, under 'The Muddy Days': 'Around this corner, in early spring-time, it was impossible to drive the stage, and the passengers had to walk some two blocks; on account if the marshy state of the ground, the horses could not navigate' (the 'if' for 'of' is the page's). This project builds no plank walks anywhere, so the value is recorded rather than built: it is a negative finding about the ground around the building and never was a build instruction. It belongs in the record because the scene's ground treatment at this corner should be mud, not boards, and because the phrase 'a mere shell' is the closest thing to a description of the fabric that survives.",
           "geometry": "record_only"
+        },
+        "siding_exposure_m": {
+          "value": 0.127,
+          "confidence": "reconstructed",
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 5 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
         }
       },
       "change_note": "The house as built in 1833 by Alanson Sweet and kept through the scene date by Ira Couch. No change of fabric is attested inside the phase - Andreas records changes of proprietor (Sweet and a man from Canada named Darwin, then the Couch brothers, then James Couch from 1836) and no alteration - so the whole 1833-1839 span is modelled as one state, which is a limitation of the evidence rather than a claim that nothing changed."

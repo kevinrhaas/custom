@@ -46,9 +46,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from common.mesh import (  # noqa: E402
-    PAINT_RGBA, ROOF_RGBA, MeshBuilder, simple_material,
-)
+from common import materials  # noqa: E402
+from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.frame_storefront_params import (  # noqa: E402
     CORNER_BOARD_M, POST_FACE_M, POST_SPACING_M, SHEATHING_M, SHOP_BAY_W_M,
     SHOP_DOOR_W_M, SHOP_FASCIA_M, SHOP_MULLION_M, SHOP_PILASTER_M, SHOP_SILL_Z_M,
@@ -59,7 +58,8 @@ from archetypes.frame_storefront_params import (  # noqa: E402
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_TRIM, M_GLASS, M_SIGN, M_TIMBER = 0, 1, 2, 3, 4, 5
 
-CLAPBOARD_COURSE_M = 0.14      # exposed face of a period clapboard, ~5.5 in
+# The exposed face per course is `params.siding_exposure_m` — a record's own mill
+# stock since T-0049, defaulting to 0.14 m (~5.5 in), which was a constant here.
 # MeshBuilder.add_gable_roof's default overhang, and the reason it is named here:
 # that helper fills each gable end with a solid triangle standing this far outboard
 # of the wall, so anything drawn ON a gable — a loft opening, an open frame — has to
@@ -160,10 +160,24 @@ def build(params: FrameStorefrontParams, name: str):
 
     _chimneys(b, p, mx0, my0, mx1, my1, ridge_z, wall_z, p.conf("chimneys"))
 
-    wall_rgba = PAINT_RGBA.get(p.paint, PAINT_RGBA["unpainted"])
+    # ---- the surfaces, off the sheet (T-0007) --------------------------------
+    # This is the ONE archetype in the project that already read `cladding`, and it
+    # is the one whose walls therefore have three different substrates: clapboard at
+    # 0.86, board-and-batten at 0.88, plain vertical board at 0.90. Those are the
+    # sheet's roughnesses, each argued from the surface's own rhythm; the store's
+    # single 0.85 for all three is what they replace. The colour is the finish — a
+    # stated coating first, then the finish the programme dealt, then the committed
+    # unpainted tone. See `common/materials.py`.
+    finish = materials.wall_finish(p.paint, p.finish_key)
+    wall_rgba, wall_rough = materials.resolve(
+        materials.wall_substrate(construction=p.construction, cladding=p.cladding),
+        finish)
+    roof_rgba = materials.roof_finish(p.roof_condition).rgba
     mats = [
-        simple_material("wall", wall_rgba, roughness=0.85),
-        simple_material("roof", ROOF_RGBA, roughness=0.9),
+        simple_material("wall", wall_rgba, roughness=wall_rough),
+        # A weathering condition, never a covering — materials.md finding 2. The
+        # roughness stays the archetype's own literal for the same reason.
+        simple_material("roof", roof_rgba, roughness=0.9),
         simple_material("trim", _trim_rgba(wall_rgba), roughness=0.8),
         simple_material("glass", GLASS_RGBA, roughness=0.25),
         simple_material("sign", SIGN_RGBA, roughness=0.85),
@@ -327,24 +341,25 @@ def _skin(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float,
         gx0, gx1, head = front_gap
         gap = (gx0, gx1, head + SHOP_FASCIA_M)
     if p.cladding == "clapboard":
-        _clapboard(b, x0, y0, x1, y1, wall_z, conf, gap)
+        _clapboard(b, x0, y0, x1, y1, wall_z, conf, gap, p.siding_exposure_m)
     else:
         _vertical_boards(b, p, x0, y0, x1, y1, wall_z, conf, gap)
 
 
 def _clapboard(b: MeshBuilder, x0: float, y0: float, x1: float, y1: float,
                wall_z: float, conf: float,
-               gap: tuple[float, float, float] | None) -> None:
+               gap: tuple[float, float, float] | None, course: float) -> None:
     """Horizontal lap courses, modelled as one proud lip per course.
 
     The lip is wound so its normal points away from the wall and up, which is the
-    face a person standing in the street actually sees.
+    face a person standing in the street actually sees. `course` is the record's
+    own mill stock (params.siding_exposure_m) — the exposed face per course.
     """
     lip = CLAD_RELIEF_M
     drop = 0.022
-    n = int(wall_z / CLAPBOARD_COURSE_M)
+    n = int(wall_z / course)
     for i in range(1, n):
-        z = i * CLAPBOARD_COURSE_M
+        z = i * course
         for a, c in _front_spans(x0, x1, z, gap):
             b.add_poly([(a, y1 + lip, z - drop), (c, y1 + lip, z - drop),
                         (c, y1, z), (a, y1, z)], conf, M_WALL)
@@ -790,7 +805,8 @@ def _ell(b: MeshBuilder, p: FrameStorefrontParams, conf: float,
         b.add_box(ex0, ey0, 0.0, ex1, ey1, ez, conf, M_WALL,
                   skip=("bottom", "top", "left"))
         _clapboard_faces(b, ex0, ey0, ex1, ey1, ez, c_clad,
-                         faces=("front", "back", "right"))
+                         faces=("front", "back", "right"),
+                         course=p.siding_exposure_m)
         b.add_gable_roof(ex0 + 0.26, ey0, ex1, ey1, ez, p.roof_pitch_deg, conf,
                          M_ROOF, ridge_along_x=True)
         yc = (ey0 + ey1) / 2.0
@@ -804,7 +820,7 @@ def _ell(b: MeshBuilder, p: FrameStorefrontParams, conf: float,
     b.add_box(ex0, ey0, 0.0, ex1, ey1, ez, conf, M_WALL,
               skip=("bottom", "top", "back"))
     _clapboard_faces(b, ex0, ey0, ex1, ey1, ez, c_clad,
-                     faces=("front", "left", "right"))
+                     faces=("front", "left", "right"), course=p.siding_exposure_m)
     _lean_to(b, ex0, ey0, ex1, ey1, ez, p.ell_depth_m, conf)
     xc = (ex0 + ex1) / 2.0
     _opening(b, "y", ey0, xc - 0.42, xc + 0.42, ez * 0.34, ez * 0.34 + 0.95,
@@ -843,12 +859,13 @@ def _lean_to(b: MeshBuilder, x0: float, y0: float, x1: float, y1: float,
 
 
 def _clapboard_faces(b: MeshBuilder, x0: float, y0: float, x1: float, y1: float,
-                     wall_z: float, conf: float, faces: tuple[str, ...]) -> None:
+                     wall_z: float, conf: float, faces: tuple[str, ...],
+                     course: float) -> None:
     """Lap courses on named elevations only — the ell abuts the store on one side
     and siding driven into that joint is a z-fighting stripe down the seam."""
     lip, drop = CLAD_RELIEF_M, 0.022
-    for i in range(1, int(wall_z / CLAPBOARD_COURSE_M)):
-        z = i * CLAPBOARD_COURSE_M
+    for i in range(1, int(wall_z / course)):
+        z = i * course
         if "back" in faces:
             b.add_poly([(x0, y1 + lip, z - drop), (x1, y1 + lip, z - drop),
                         (x1, y1, z), (x0, y1, z)], conf, M_WALL)

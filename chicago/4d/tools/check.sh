@@ -76,6 +76,23 @@ step "the platted block and lot grid re-derives from the module" \
 step "the dooryard garden pickets re-derive from the rule that chose their lots" \
   python3 tools/generate_dooryard_pickets.py --check
 
+# The lot-line yard fences are the same shape of claim at town scale: the owner asked for
+# more fences, image 12 of his brief shows an 1830s town where every property is enclosed,
+# and no source names a fence on any lot in Chicago. So WHICH lots and WHICH fence is a
+# rule again — the committed plat for the lines, the committed footprints for where the
+# yard begins, and the street records' own traffic classes for the type — re-derived here
+# so kilometres of fence stay auditable rather than several hundred typed numbers (T-0068).
+step "the lot-line yard fences re-derive from the rule that chose their lots and types" \
+  python3 tools/generate_lot_line_fences.py --check
+
+# The dooryard plantings are the same shape one layer greener: the owner's brief and its
+# image 12 attest a TREATMENT — trees and bushes kept close around the houses — and no
+# source counts or places any particular house's stems. So which house keeps what is a
+# RULE over the committed dwellings, streets, fences and ground, re-derived here so the
+# 125 stems stay auditable rather than 125 numbers somebody typed (T-0074).
+step "the dooryard plantings re-derive from the rule that dealt their stems" \
+  python3 tools/generate_dooryard_plantings.py --check
+
 # The business signboards are the same shape of claim one layer over: exactly one record
 # in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
 # reconstruction chosen by a rule about trades rather than a list of shops somebody liked.
@@ -102,6 +119,14 @@ step "the yard goods re-derive from the rule that chose their frontages" \
 # wharf with it or fail here (ROADMAP K5 (e), T-0041).
 step "the river wharves re-derive from the records that state a dock" \
   python3 tools/generate_river_wharves.py --check
+
+# The frontage works are the fifth record of this shape and the first derived from
+# a building AND a street at once: where a plank walk may lie is decided by the
+# travelled track's own half-width out of data/streets/1835.json, not by the wall
+# alone. Re-derived here for the same reason as the four above — "which wall gets a
+# walk" is a rule, and a rule that is not re-run is a rule nobody is keeping (T-0082).
+step "the frontage works re-derive from the rule that chose their walls" \
+  python3 tools/generate_frontage_works.py --check
 
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk

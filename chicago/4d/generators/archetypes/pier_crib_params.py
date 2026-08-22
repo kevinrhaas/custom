@@ -258,7 +258,7 @@ CONSUMED = frozenset({"length_m", "width_m", "deck_height_m", "construction"})
 LENGTH_AGREEMENT_TOL_M = 0.1
 
 
-def from_phase(phase: dict) -> PierCribParams:
+def from_phase(phase: dict, record: dict | None = None) -> PierCribParams:
     """Resolve one structure phase into generator parameters.
 
     The footprint polygon is the pier's plan: its u extent is the length along the

@@ -38,6 +38,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from common.logwork import HEWN_RGBA  # noqa: E402
+from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, ROOF_RGBA, simple_material  # noqa: E402
 from archetypes.palisade_params import PalisadeParams  # noqa: E402
 
@@ -60,7 +61,11 @@ def build(params: PalisadeParams, name: str):
         _stockade(b, params)
 
     mats = [
-        simple_material("log", HEWN_RGBA, roughness=0.93),
+        # 0.93 was this module's own number; the sheet gives hewn log 0.92, and
+        # T-0007 converges the three stray log surfaces onto it so that every log
+        # in the town traces to one row of docs/RESEARCH/materials.md.
+        simple_material("log", HEWN_RGBA,
+                        roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("roof", GATE_RGBA, roughness=0.88),
         simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
     ]

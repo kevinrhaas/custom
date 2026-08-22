@@ -15,10 +15,10 @@
  * The one thing that is not the heightfield: **bridge decks** (T-0001). A deck is
  * a surface the visitor stands on that the terrain knows nothing about, so the
  * floor is `surfaceAt()` rather than `terrain.walkHeight()` and every path in this
- * module asks it. What that does NOT yet do is get you ONTO a deck from the bank:
- * a deck stands 2.22 m over a waterline the ground meets at zero, the step-up rule
- * refuses 2.22 m the way it refuses a wall, and the approach earthworks that close
- * that gap are geometry and need the bake. See docs/STATUS.md.
+ * module asks it. Getting ONTO a deck from the bank asks nothing of this module:
+ * the approach earthworks (T-0046) grade the terrain itself to meet each deck at
+ * its ends, so the walk up is ordinary heightfield walking and the step from
+ * earth to planks is millimetres. See docs/LIBERTIES.md L147.
  */
 
 import * as THREE from 'three';

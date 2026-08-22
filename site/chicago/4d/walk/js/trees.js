@@ -269,7 +269,13 @@ const RING_RADIUS = 1100;
  *  occlude a horizon another parcel might extend. */
 const RING_FOOT_M = -12;
 /** Metres of camera movement that force the band to be re-solved. 0.75 m is
- *  about a sixth of a degree of parallax on the nearest far body — subpixel. */
+ *  about a sixth of a degree of parallax on the nearest far body — subpixel.
+ *  T-0120: this schedules only the EXPENSIVE part — which bearings carry
+ *  timber, at what distance and crown height. The eye-HEIGHT term is not
+ *  quantised by any threshold: it is finished per frame in the band's vertex
+ *  shader (see `uEyeY`), because theta depends on eyeY through one linear
+ *  term and baking it in at solve time welded the band to the eye between
+ *  solves. */
 const RING_REBUILD_M = 0.75;
 /**
  * How near a far body may come before it is dropped from the band. A silhouette
@@ -1001,6 +1007,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const manifest = await fetchOk(manifestUrl);
   const specs = {};
   const byZone = {};
+  const shrubByZone = {};
   const bands = {};
   const unimplemented = new Set();
   const zonesRead = [];
@@ -1012,6 +1019,38 @@ async function loadTimberZones(dataBase, problems = []) {
     zonesRead.push(id);
     bands[id] = {};
     for (const sp of rec.species ?? []) {
+      // A DOORYARD SHRUB (T-0074). `shrub_low` is flora.js's stratum — dealt on
+      // its own lattice at the zone's recorded density — and it stays that way:
+      // nothing here enters `specs`, `byZone` or `bands`, so no community deal
+      // moves. What a lattice cannot do is put a currant AT a particular door,
+      // which is exactly what a planting record states — so the species is held
+      // in a separate table the planting loop alone reads, drawn with its own
+      // three-puff clump archetype (`addShrubClump`) at its own recorded band.
+      // That path draws no head, so the July berry cluster the record carries
+      // is NOT drawn — the planting record says so rather than leaving the
+      // drop silent.
+      if (sp.role === 'shrub_low' && sp.form === 'shrub_low') {
+        const dark = rgbHex(sp.july?.foliage_rgb);
+        shrubByZone[id] = shrubByZone[id] ?? {};
+        shrubByZone[id][sp.id] = {
+          common: sp.common ?? sp.id,
+          form: 'shrub',
+          h: Array.isArray(sp.height_m) && sp.height_m.length === 2
+            ? sp.height_m : [0.8, 1.5],
+          crownW: Array.isArray(sp.width_m) && sp.width_m.length === 2
+            ? sp.width_m : null,
+          dark: dark ?? 0x53663c,
+          light: dark != null ? lighten(dark) : 0x7d9159,
+          // Invented, as every bark in SPECIES is: dull grey-brown shrub wood,
+          // darker than the aspen's pale bole, lighter than the dark openings.
+          bark: 0x6a5c4b,
+          conf: Math.max(0.5, CONFIDENCE_VALUE[sp.confidence] ?? 0.5),
+          july: sp.july?.appearance ?? null,
+          head: null,
+          fromRecord: true,
+        };
+        continue;
+      }
       if (sp.role !== 'tree' && sp.role !== 'thicket') continue;
       const form = FORM_OF[sp.form];
       if (!form) { unimplemented.add(sp.form); continue; }
@@ -1069,7 +1108,20 @@ async function loadTimberZones(dataBase, problems = []) {
       if (!specs[sp.id]) specs[sp.id] = spec;
     }
   }
-  return { specs, byZone, bands, unimplemented: [...unimplemented], zonesRead, heads };
+  // THE STEMS A RECORD PLACES ITSELF. Everything above is ecology — what may
+  // grow in a community and how densely — and it answers for the wood. It
+  // cannot answer for a tree somebody KEPT: image 8 of the owner's brief shows
+  // trees standing behind the Sauganash's yard fence, and no density over the
+  // settled town will ever put one there rather than three doors down. So a
+  // planting record states the stem, and it is read through the same manifest
+  // and by the same rule as everything else here — exactly the files named,
+  // never a probe.
+  const plantings = [];
+  for (const entry of manifest.plantings ?? []) {
+    plantings.push(await fetchOk(new URL(entry.file, manifestUrl)));
+  }
+  return { specs, byZone, shrubByZone, bands, unimplemented: [...unimplemented],
+    zonesRead, heads, plantings };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1518,6 +1570,53 @@ function addThicket(buf, spec, x, groundY, z, rnd, scale = 1) {
 }
 
 /**
+ * One dooryard shrub: a knee-high leaf clump on a few woody sticks (T-0074).
+ *
+ * NOT `addThicket` at small scale, and the difference is the budget: a thicket
+ * is 7-12 full stems each carrying one or two foliage masses — right for a
+ * 3 m bank willow screen read from across the river, and 685 scene triangles
+ * for a currant bush a metre tall (measured on the published mirror,
+ * 2026-08-20). A currant reads as ONE rounded mass with wood at its base, so
+ * that is what is drawn: three short stems, three overlapping puffs, ~84
+ * near-buffer triangles. The crown width is the record's own `width_m` band
+ * when it carries one, the same rule the trees follow.
+ */
+function addShrubClump(buf, spec, x, groundY, z, rnd, scale = 1) {
+  const conf = spec.conf ?? 0.5;
+  const h = lerp(spec.h[0], spec.h[1], rnd()) * scale;
+  const w = (Array.isArray(spec.crownW)
+    ? lerp(spec.crownW[0], spec.crownW[1], rnd()) : h * 0.95) * scale;
+  const dark = linear(spec.dark);
+  const light = linear(spec.light);
+  const bark = linear(spec.bark).map((v) => v * BARK_ALBEDO);
+  const tint = 0.90 + rnd() * 0.20;
+  const d2 = dark.map((v) => v * tint);
+  const l2 = light.map((v) => v * tint);
+  for (let i = 0; i < 3; i++) {
+    const a = (i / 3) * Math.PI * 2 + rnd() * 1.2;
+    const out = w * (0.10 + rnd() * 0.14);
+    const sh = h * (0.45 + rnd() * 0.30);
+    // Rooted below grade like the thicket's stems, so a clump on a slope sits.
+    addStem(buf, x, groundY - 0.08, z,
+      x + Math.cos(a) * out, groundY + sh, z + Math.sin(a) * out,
+      0.014 + rnd() * 0.010, 0.008, bark, 4, 0.06, 0.42, conf);
+  }
+  // A knee-high clump is nearly all lit shell — there is no deep interior for
+  // the thicket's low shade values to describe — so the lit fraction sits high,
+  // or the bush renders as a shadow blob against the sward (it did).
+  const pr = w * 0.42;
+  addPuff(buf, x, groundY + h - pr * 0.55, z, pr, 0.80, d2, l2,
+    0.62 + rnd() * 0.28, 0.30, rnd, conf);
+  for (let i = 0; i < 2; i++) {
+    const a = rnd() * Math.PI * 2;
+    addPuff(buf, x + Math.cos(a) * w * 0.22, groundY + h * 0.55,
+      z + Math.sin(a) * w * 0.22, pr * 0.82, 0.78, d2, l2,
+      0.46 + rnd() * 0.30, 0.26, rnd, conf);
+  }
+  return h;
+}
+
+/**
  * One tree, written into `buf` at (x, groundY, z). The forms differ where the
  * sources say they differ: a bur oak is not a gallery elm with a wider crown,
  * it is a short bole under heavy horizontal limbs holding a wide flat crown —
@@ -1526,6 +1625,7 @@ function addThicket(buf, spec, x, groundY, z, rnd, scale = 1) {
  */
 function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
   if (spec.form === 'thicket') return addThicket(buf, spec, x, groundY, z, rnd, scale);
+  if (spec.form === 'shrub') return addShrubClump(buf, spec, x, groundY, z, rnd, scale);
   const conf = spec.conf ?? 0.5;
   const h = lerp(spec.h[0], spec.h[1], rnd()) * scale;
   const dbh = lerp(spec.dbh[0], spec.dbh[1], rnd()) * scale;
@@ -1722,6 +1822,11 @@ export async function createTrees({
     omitted: OMITTED_TIMBER.map((o) => ({
       ...o, elevation_deg: apparentTopDeg(o.canopy_m, o.distance_m, 1.68) + horizonDipDeg(1.68),
     })),
+    // T-0091. Stems a planting record placed itself, kept apart from `trees`
+    // and from `species` on purpose: those two are the DEALT population the
+    // census gates read against each community's recorded weights, and a tree
+    // somebody kept in a yard answers to no density at all.
+    planted: 0, plantedStems: [],
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
     rejectedBelowWaterline: 0, lowestStationY: null,
     // ROADMAP K45(c). `headSpecies` is which records carry a July
@@ -2413,6 +2518,89 @@ export async function createTrees({
     }
   }
 
+  /* ---- 3b. the stems a record places itself ------------------------------ */
+
+  /**
+   * T-0091. The planter above deals a wood from the land, and a KEPT tree is
+   * not dealt: it stands where somebody left it, in a yard, and no density over
+   * a cleared town block will ever put one behind a particular fence. So a
+   * planting record states the stem and this places exactly that stem.
+   *
+   * It runs AFTER the sweep on purpose. Everything above draws from the shared
+   * `rnd` in a fixed order, so a placed stem inserted earlier would redeal the
+   * whole wood; here it changes nothing that was already planted.
+   *
+   * Every refusal below is the sweep's own refusal, asked of a point the record
+   * chose rather than of one the loop offered, and each one is REPORTED rather
+   * than skipped quietly — a stem a record asks for and the renderer declines
+   * to draw is a fault in the record, and a silent decline is how a record goes
+   * on saying a tree is there for months after it stopped being drawn.
+   */
+  for (const rec of records.plantings ?? []) {
+    for (const stem of rec.stems ?? []) {
+      const where = `${rec.id}/${stem.id}`;
+      const at = stem.at_local_enu_m;
+      if (!Array.isArray(at) || at.length !== 2) {
+        problems.push(`trees: planting ${where} carries no at_local_enu_m pair — not drawn`);
+        continue;
+      }
+      const [pe, pn] = at;
+      // THE ZONE THE RECORD NAMES, not the shared first-zone-wins table. The
+      // same binomial is a different tree in two communities — the gallery elm
+      // is recorded at 18-26 m and the settled town's relict survivor at 16-24 —
+      // and a planting is always a claim about ONE of them. `byZone` is the same
+      // per-community table the dune cottonwood already reads.
+      const table = records.byZone?.[rec.zone];
+      if (!table) {
+        problems.push(`trees: planting ${rec.id} names zone ${rec.zone}, which this module `
+          + 'reads no woody species from — nothing in the record is drawn');
+        break;
+      }
+      // The zone's woody table first, then its dooryard shrubs (T-0074) — a
+      // stated stem may be either, and both tables are built from the zone's
+      // own species records, so the rule holds: the ecology of a stem belongs
+      // to the zone records and not to a planting file.
+      const spec = table[stem.species] ?? records.shrubByZone?.[rec.zone]?.[stem.species];
+      if (!spec) {
+        problems.push(`trees: planting ${where} names species ${stem.species}, which `
+          + `${rec.zone} does not describe — not drawn, because the ecology of a stem `
+          + 'belongs to the zone records and not to a planting file');
+        continue;
+      }
+      // The stated height has to lie inside the species' OWN recorded band. A
+      // planting record may choose where in that band a stem sits — a kept tree
+      // is a cut-back tree — and it may not invent a tree the records do not
+      // describe, which is what a height outside the band would be.
+      const band = spec.h;
+      const h = stem.height_m;
+      if (!(typeof h === 'number' && h >= band[0] && h <= band[1])) {
+        problems.push(`trees: planting ${where} states ${h} m against ${stem.species}'s `
+          + `recorded ${band[0]}-${band[1]} m — not drawn`);
+        continue;
+      }
+      if (terrain.isWater(pe, pn)) {
+        problems.push(`trees: planting ${where} stands in the river mask — not drawn`);
+        continue;
+      }
+      const gy = terrain.surfaceHeight(pe, pn);
+      if (gy < dryFloorY) {
+        problems.push(`trees: planting ${where} stands ${(dryFloorY - gy).toFixed(2)} m `
+          + 'below the planter\'s own dry floor — not drawn');
+        continue;
+      }
+      if (blocked(pe, pn)) {
+        problems.push(`trees: planting ${where} stands inside a committed footprint or on `
+          + 'the travelled track — not drawn');
+        continue;
+      }
+      addTree(buffers[chunkOf(pe, pn)], { ...spec, h: [h, h] }, pe, gy, worldZ(pn), rnd);
+      noteStation(pe, pn, gy);
+      stats.planted++;
+      stats.plantedStems.push({ id: stem.id, record: rec.id, e: pe, n: pn,
+        species: stem.species, height_m: h });
+    }
+  }
+
   // THE BUDGET IS A BACKSTOP AND A BOUND BACKSTOP IS A DEFECT (ROADMAP K45(b2)).
   // The loop sweeps south to north, so a cap reached partway through does not
   // thin the wood — it deletes its north end and leaves a straight edge. That is
@@ -2496,6 +2684,17 @@ uniform float uWind;
   // The profile BEFORE the crown/gap modulation, kept so the gate can ask what
   // the modulation did rather than re-deriving the noise that drives it.
   const rawRad = new Float32Array(BINS);
+  // T-0120 — each bin's modulated elevation as a LINEAR FUNCTION of the eye
+  // height, theta(eyeY) = binA - binS * eyeY. The solve's theta depends on the
+  // eye through exactly one linear term ((hgt - eyeY)/d - d/(2*R_EFF)), so the
+  // expensive part — which bearings carry timber, at what distance and crown
+  // height — can stay on the RING_REBUILD_M schedule while the eye-height term
+  // is finished per frame in the vertex shader against `uEyeY`. Before this,
+  // eyeY was baked into each vertex at solve time: between solves the band was
+  // welded to the eye, rode up and down with it, and SNAPPED to the re-solved
+  // profile when a threshold tripped — the owner's "up and down wildly".
+  const binA = new Float32Array(BINS);
+  const binS = new Float32Array(BINS);
   // Vertical pixels per radian, re-read from the live viewport each solve. The
   // band is the one thing in this file whose correctness is measured in pixels
   // rather than in metres, because what it draws is an angular silhouette.
@@ -2514,9 +2713,17 @@ uniform float uWind;
   const hPos = new Float32Array(BINS * 4 * 3);
   const hCol = new Float32Array(BINS * 4 * 3);
   const hIdx = new Uint32Array(BINS * 6);
+  // T-0120 — the two halves of theta(eyeY) = aTheta0 - aSlope * eyeY, carried
+  // per vertex so the shader can finish the eye-height term every frame. A
+  // foot vertex carries slope 0: the foot is a fixed RING_FOOT_M below the eye
+  // by design, tucked under the water plane and any far ground.
+  const hTheta0 = new Float32Array(BINS * 4);
+  const hSlope = new Float32Array(BINS * 4);
   const hGeo = new THREE.BufferGeometry();
   hGeo.setAttribute('position', new THREE.BufferAttribute(hPos, 3).setUsage(THREE.DynamicDrawUsage));
   hGeo.setAttribute('color', new THREE.BufferAttribute(hCol, 3).setUsage(THREE.DynamicDrawUsage));
+  hGeo.setAttribute('aTheta0', new THREE.BufferAttribute(hTheta0, 1).setUsage(THREE.DynamicDrawUsage));
+  hGeo.setAttribute('aSlope', new THREE.BufferAttribute(hSlope, 1).setUsage(THREE.DynamicDrawUsage));
   hGeo.setAttribute('_confidence', new THREE.BufferAttribute(new Float32Array(BINS * 4).fill(0.5), 1));
   hGeo.setIndex(new THREE.BufferAttribute(hIdx, 1));
   hGeo.setDrawRange(0, 0);
@@ -2530,6 +2737,29 @@ uniform float uWind;
   // Authored in display space against the rendered sky, so it must not be tone
   // mapped a second time. See the header: this band opts out of the scene fog.
   farMat.toneMapped = false;
+  // T-0120 — the eye height, per FRAME rather than per solve. The CPU writes
+  // each top vertex at the height the solve's own eyeY gives it, and this
+  // shader recomputes the same expression against the LIVE eye, so between
+  // solves the band stands where the world says instead of riding the eye.
+  // At the moment of a re-solve the two agree exactly — theta is exactly
+  // linear in eyeY — which is what removes the snap.
+  const uEyeY = { value: 2.7 };
+  {
+    const prior = farMat.onBeforeCompile;
+    farMat.onBeforeCompile = (shader, renderer) => {
+      if (typeof prior === 'function') prior(shader, renderer);
+      shader.uniforms.uEyeY = uEyeY;
+      shader.vertexShader = `
+attribute float aTheta0;
+attribute float aSlope;
+uniform float uEyeY;
+` + shader.vertexShader.replace('#include <begin_vertex>', /* glsl */`
+#include <begin_vertex>
+  transformed.y = ${RING_RADIUS.toFixed(1)} * tan(aTheta0 - aSlope * uEyeY);
+`);
+    };
+    farMat.needsUpdate = true;
+  }
   confidence?.patch(farMat);
   const hMesh = new THREE.Mesh(hGeo, farMat);
   hMesh.name = 'horizon-timber';
@@ -2542,11 +2772,31 @@ uniform float uWind;
   const haze = hazeDisplayLinear();
   const timber = linear(TIMBER_SRGB);
 
-  /** Solve the band for an eye at (e, n, eyeY) and write it into the buffers. */
-  function solveHorizon(camE, camN, eyeY) {
+  // The stand of the LIVE solve, so `horizonCensus()` can re-run exactly the
+  // solve the visitor is looking at rather than one at a guessed position.
+  let solvedE = 0;
+  let solvedN = 0;
+  let solvedY = 2.7;
+
+  /**
+   * Solve the band for an eye at (e, n, eyeY) and write it into the buffers.
+   *
+   * `record`, when given, is the T-0120 measuring instrument: it is called at
+   * every decision that removes a sample or bin from the band —
+   * `('near'|'wet'|'below', bodyId, bearingRad, d)` — at every winning
+   * coverage update — `('top', bodyId, bin, d)` — and once per timbered bin
+   * after modulation — `('bin', bin, rawPx, drawnPx, kFloor)`. Normal frames
+   * pass nothing and pay one falsy check per sample.
+   */
+  function solveHorizon(camE, camN, eyeY, record) {
+    solvedE = camE;
+    solvedN = camN;
+    solvedY = eyeY;
     topRad.fill(-1);
     binDist.fill(0);
     rawRad.fill(0);
+    binA.fill(0);
+    binS.fill(0);
     pxPerRad = readPxPerRad();
 
     let wetSkipped = 0;
@@ -2568,7 +2818,8 @@ uniform float uWind;
           // twenty metres, and a body four hundred metres out does.
           const stepM = Math.max(16, d * 0.030);
           t += stepM;
-          if (d < MIN_FAR_M) continue;
+          const bearing = Math.atan2(dx, dn);
+          if (d < MIN_FAR_M) { record?.('near', body.id, bearing, d); continue; }
           // ROADMAP R-BUG5. THE ONE QUESTION EVERY BODY OF TIMBER MUST ANSWER,
           // and until 2026-08-16 this loop never asked it. `communityAt()` has
           // refused the traced water mask outright since the near-field planter
@@ -2587,19 +2838,22 @@ uniform float uWind;
           // returns the fallback height and answers "dry" — which is the honest
           // answer there, because this project has no survey of that ground and
           // a clip that claimed one would be inventing it.
-          if (terrain.isWater(pe, pn)) { wetSkipped++; continue; }
+          if (terrain.isWater(pe, pn)) { wetSkipped++; record?.('wet', body.id, bearing, d); continue; }
 
-          const bearing = Math.atan2(dx, dn);
           const hgt = lerp(body.canopy[0], body.canopy[1],
             noise1((bearing * d) / 55, 3));
           const theta = (hgt - eyeY) / d - d / (2 * R_EFF);
-          if (theta <= 0) continue;
+          if (theta <= 0) { record?.('below', body.id, bearing, d); continue; }
           const halfAng = (stepM * 0.5 + body.crown * 0.5) / d;
           const lo = Math.floor((bearing - halfAng) / binRad);
           const hi = Math.ceil((bearing + halfAng) / binRad);
           for (let k = lo; k <= hi; k++) {
             const b = ((k % BINS) + BINS) % BINS;
-            if (theta > topRad[b]) { topRad[b] = theta; binDist[b] = d; }
+            if (theta > topRad[b]) {
+              topRad[b] = theta;
+              binDist[b] = d;
+              record?.('top', body.id, b, d);
+            }
           }
         }
       }
@@ -2635,10 +2889,29 @@ uniform float uWind;
       // the RESULT rather than a cap on `k`, so it binds exactly where the
       // pixels are scarce and nowhere else — the near treelines keep their
       // gaps to the last per cent.
+      //
+      // T-0120: COMPRESSED into [kFloor, 1] rather than clamped at kFloor. The
+      // clamp took every bin whose modulated crown fell under the floor to
+      // exactly MIN_SILHOUETTE_PX, and on a body whose raw crown is one or two
+      // pixels that is MOST bins — the owner's frame shows the result, a
+      // dead-flat run at the left horizon, exactly the flat-topped block this
+      // file warns "reads as a distant BUILDING". Remapping keeps the floor's
+      // whole contract (nothing drawn under MIN_SILHOUETTE_PX where the raw
+      // crown affords it; raw sub-pixel bearings still get k = 1) while the
+      // crown texture survives above the floor. Where the band is well
+      // resolved, kFloor is small and the remap is within a few per cent of
+      // the old clamp — a 0.02 gap on a 40 px treeline still opens to a
+      // couple of pixels of sky.
       const kFloor = Math.min(1, MIN_SILHOUETTE_PX / Math.max(rawPx, 1e-6));
-      if (k < kFloor) k = kFloor;
+      k = kFloor + (1 - kFloor) * k;
       topRad[b] = topRad[b] * k;
+      // T-0120: the same modulated elevation, decomposed against the eye.
+      // theta(eyeY) = k*((hgt/d - d/(2*R_EFF)) - eyeY/d); rawRad holds the
+      // bracket evaluated at the SOLVE eye, so add the solve eye back in.
+      binA[b] = k * (rawRad[b] + eyeY / d);
+      binS[b] = k / d;
       const px = topRad[b] * pxPerRad;
+      record?.('bin', b, rawPx, px, kFloor);
       if (rawPx >= MIN_SILHOUETTE_PX) {
         resolvable++;
         if (px < worstResolvablePx) worstResolvablePx = px;
@@ -2661,7 +2934,11 @@ uniform float uWind;
     let indices = 0;
     const footTheta = RING_FOOT_M / RING_RADIUS;
     const y0 = RING_RADIUS * footTheta;
-    const putVert = (ang, theta, d) => {
+    // T-0120: a top vertex carries theta as its (aTheta0, aSlope) pair; the
+    // CPU height written here is the same expression at the SOLVE eye, kept so
+    // anything reading the buffer (raycasts, tests) sees what the last solve
+    // saw. A foot vertex is a fixed RING_FOOT_M below the eye — slope 0.
+    const putVert = (ang, thA, thS, d) => {
       const sx = Math.sin(ang) * RING_RADIUS;
       const sz = -Math.cos(ang) * RING_RADIUS;
       const mixTop = hazeAt(d);
@@ -2673,12 +2950,14 @@ uniform float uWind;
       hCol[i0] = lerp(timber[0], haze[0], mixBot);
       hCol[i0 + 1] = lerp(timber[1], haze[1], mixBot);
       hCol[i0 + 2] = lerp(timber[2], haze[2], mixBot);
+      hTheta0[verts] = footTheta; hSlope[verts] = 0;
       verts++;
       const i1 = verts * 3;
-      hPos[i1] = sx; hPos[i1 + 1] = RING_RADIUS * Math.tan(theta); hPos[i1 + 2] = sz;
+      hPos[i1] = sx; hPos[i1 + 1] = RING_RADIUS * Math.tan(thA - thS * eyeY); hPos[i1 + 2] = sz;
       hCol[i1] = lerp(timber[0], haze[0], mixTop);
       hCol[i1 + 1] = lerp(timber[1], haze[1], mixTop);
       hCol[i1 + 2] = lerp(timber[2], haze[2], mixTop);
+      hTheta0[verts] = thA; hSlope[verts] = thS;
       verts++;
     };
 
@@ -2699,15 +2978,20 @@ uniform float uWind;
       for (let j = 0; j <= len; j++) {
         const left = (start + b + j - 1 + BINS) % BINS;
         const right = (start + b + j) % BINS;
-        const tl = j === 0 ? 0 : topRad[left];
-        const tr = j === len ? 0 : topRad[right];
         // A run ends in its outermost CROWN, at nearly full height. Tapering
         // the ends to the ground instead draws a smooth dome, and a smooth dome
         // on a lake-plain horizon reads as a hill — there are no hills here, so
         // that silhouette is a geological claim the sources flatly contradict.
-        const theta = j === 0 ? tr * 0.88 : j === len ? tl * 0.88 : (tl + tr) * 0.5;
+        // The same end taper and shared-vertex average are applied to the
+        // (A, S) pair — theta is linear in eyeY, so combining the halves
+        // combines the function.
+        let thA = j === 0 ? binA[right] * 0.88
+          : j === len ? binA[left] * 0.88 : (binA[left] + binA[right]) * 0.5;
+        let thS = j === 0 ? binS[right] * 0.88
+          : j === len ? binS[left] * 0.88 : (binS[left] + binS[right]) * 0.5;
+        if (thA - thS * eyeY < 1e-5) { thA = 1e-5; thS = 0; }
         const d = j === len ? binDist[left] : binDist[right];
-        putVert((start + b + j) * binRad, Math.max(theta, 1e-5), d);
+        putVert((start + b + j) * binRad, thA, thS, d);
       }
       // Wound so the INSIDE of the ring faces the camera at its centre. The
       // other winding is silently invisible — a back-faced band culls away and
@@ -2722,6 +3006,8 @@ uniform float uWind;
 
     hGeo.attributes.position.needsUpdate = true;
     hGeo.attributes.color.needsUpdate = true;
+    hGeo.attributes.aTheta0.needsUpdate = true;
+    hGeo.attributes.aSlope.needsUpdate = true;
     hGeo.index.needsUpdate = true;
     hGeo.setDrawRange(0, indices);
     // R-BUG5: how much of the band this solve refused to draw because the mask
@@ -2821,6 +3107,61 @@ uniform float uWind;
     },
 
     /**
+     * T-0120 — the measuring instrument for "the band stops where it should
+     * carry on". Re-runs the LIVE solve (same stand, same viewport) with a
+     * recorder attached and returns, bearing by bearing, what the band drew
+     * and what each rule cut, so a reported gap can be attributed to
+     * MIN_FAR_M, to the water mask, to the eye-level cull, to the sub-pixel
+     * floor, or to the dossier's own silence — measured, not guessed. The
+     * rewritten buffers are identical (the same arguments produce the same
+     * solve), so calling this from a console or a test changes nothing on
+     * screen.
+     *
+     * `bins` lists every timbered bearing: `{ bin, bearingDeg, body, d,
+     * rawPx, drawnPx, kFloor }` — `kFloor` at 1 means the raw silhouette was
+     * already sub-pixel and the crown modulation was suppressed. `cuts` lists
+     * every sample a rule removed: `{ rule: 'near'|'wet'|'below', body,
+     * bearingDeg, d }`. A bearing in neither list has no recorded timber at
+     * all — the dossier's silence, not a renderer rule.
+     */
+    horizonCensus() {
+      const bodyOf = new Array(BINS).fill(null);
+      const bins = [];
+      const cuts = [];
+      const record = (kind, a1, a2, a3, a4) => {
+        if (kind === 'top') { bodyOf[a2] = a1; return; }
+        if (kind === 'bin') {
+          bins.push({
+            bin: a1,
+            bearingDeg: ((((a1 + 0.5) * binRad) * 180 / Math.PI) + 360) % 360,
+            body: bodyOf[a1],
+            d: binDist[a1],
+            rawPx: a2,
+            drawnPx: a3,
+            kFloor: a4,
+          });
+          return;
+        }
+        cuts.push({
+          rule: kind,
+          body: a1,
+          bearingDeg: ((a2 * 180 / Math.PI) + 360) % 360,
+          d: a3,
+        });
+      };
+      solveHorizon(solvedE, solvedN, solvedY, record);
+      return {
+        stand: { e: solvedE, n: solvedN, eyeY: solvedY },
+        pxPerRad,
+        binDeg: 360 / BINS,
+        minSilhouettePx: MIN_SILHOUETTE_PX,
+        minFarM: MIN_FAR_M,
+        bins,
+        cuts,
+      };
+    },
+
+    /**
      * The sRGB the band's fully-hazed end displays at, so the gate can compare
      * it against `scene.fog.color` — the two must be the same colour, and were
      * 16 red and 12 green apart until 2026-08-13.
@@ -2836,6 +3177,14 @@ uniform float uWind;
       if (!camera) return;
       const p = camera.position;
       horizon.position.set(p.x, p.y, p.z);
+      // T-0120: the eye-height term of every vertex is finished in the vertex
+      // shader against THIS value, every frame — the band no longer rides the
+      // eye between solves and no longer snaps when a solve lands. The
+      // vertical re-solve below survives only to refresh the DISCRETE
+      // decisions eyeY feeds (the theta <= 0 cull, the pixel floor); the
+      // re-solved profile agrees with the shader-corrected one to under a
+      // fiftieth of a pixel, because theta is exactly linear in eyeY.
+      uEyeY.value = p.y;
       const e = p.x;
       const n = -p.z;
       // A viewport change moves the pixel the floor is measured in, so it is a

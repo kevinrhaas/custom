@@ -134,6 +134,33 @@ def seg_distance(E, N, pts):
     return best
 
 
+def seg_distance_along(E, N, pts):
+    """As `seg_distance`, but also returns the ARC LENGTH along the polyline at
+    each grid point's nearest point on it — the coordinate a swale's authored
+    `depth_profile` is stated in. Measured from the line's FIRST vertex, in
+    metres, so the profile reads in the same direction the line is written."""
+    best = np.full(E.shape, np.inf, np.float64)
+    along = np.zeros(E.shape, np.float64)
+    acc = 0.0
+    for i in range(len(pts) - 1):
+        ax, ay = pts[i]
+        bx, by = pts[i + 1]
+        dx, dy = bx - ax, by - ay
+        length = math.hypot(dx, dy)
+        if length < 1e-6:
+            d = np.hypot(E - ax, N - ay)
+            a_here = np.full(E.shape, acc)
+        else:
+            t = np.clip(((E - ax) * dx + (N - ay) * dy) / (length * length), 0.0, 1.0)
+            d = np.hypot(E - (ax + t * dx), N - (ay + t * dy))
+            a_here = acc + t * length
+        closer = d < best
+        best = np.where(closer, d, best)
+        along = np.where(closer, a_here, along)
+        acc += length
+    return best, along
+
+
 def point_in_ring(E, N, ring):
     """Crossing-number point-in-polygon, vectorised over the grid."""
     inside = np.zeros(E.shape, bool)
@@ -363,13 +390,49 @@ def build_field(spec, feats, origin):
         band.setdefault(md["id"], np.zeros(E.shape, bool))
         band[md["id"]] |= rr <= out
 
-    # ---- swales in the west prairie --------------------------------------
+    # ---- swales: the prairie drains and the in-town sloughs ----------------
+    # One cut field, combined by MAX rather than by sum (T-0118): the slough
+    # courses are single watercourses written as more than one entry, and where
+    # two entries meet at a shared vertex the sum used to dig a joint deeper
+    # than either entry states (the -5.0 ft State joint L149 recorded as a
+    # convenience). With max, entries whose depths agree at the join carve one
+    # continuous bed and no entry can deepen another. Nothing else changes:
+    # no two swales cross, so away from the joins max and sum are the same
+    # number.
+    #
+    # `depth_ft` remains the entry's one stated depth. An entry may add a
+    # `depth_profile` — [[along_m, depth_ft], ...] knots in arc length from the
+    # line's first vertex, linearly interpolated, held constant beyond the
+    # ends — so a course can feather out to grade at its head instead of
+    # running its full cut to the last vertex and stopping (the open-trench
+    # fault), and a two-entry watercourse can grade through its join instead
+    # of stepping (the dry-sill fault). The profile's deepest knot must equal
+    # `depth_ft`, so the figure a reader (and the Evidence panel) sees is the
+    # depth the ground actually reaches.
+    swale_cut = np.zeros(E.shape)
     for s in spec.get("swales", []):
-        dd = seg_distance(E, N, [tuple(p) for p in s["line"]])
+        pts = [tuple(p) for p in s["line"]]
+        depth = float(s["depth_ft"])
+        knots = s.get("depth_profile")
+        if knots:
+            deepest = max(float(k[1]) for k in knots)
+            if abs(deepest - depth) > 1e-6:
+                raise SystemExit(
+                    f"swale '{s.get('id')}': depth_profile reaches {deepest} ft "
+                    f"but depth_ft states {depth} ft — the stated figure must "
+                    f"be the depth the ground reaches")
+            dd, along = seg_distance_along(E, N, pts)
+            d_ft = np.interp(along, [float(k[0]) for k in knots],
+                             [float(k[1]) for k in knots])
+        else:
+            dd = seg_distance(E, N, pts)
+            d_ft = depth
         hw = float(s["half_width_m"])
         prof = np.clip(1.0 - (dd / hw) ** 2, 0.0, 1.0)
-        level_ft = level_ft - float(s["depth_ft"]) * prof
-        conj_land |= prof > 0.01
+        cut = d_ft * prof
+        np.maximum(swale_cut, cut, out=swale_cut)
+        conj_land |= cut > 0.02
+    level_ft = level_ft - swale_cut
     band["swales"] = conj_land.copy()
 
     # ---- micro-relief -----------------------------------------------------
@@ -395,6 +458,58 @@ def build_field(spec, feats, origin):
     t_bank = np.clip(d_land / face, 0.0, 1.0)
     ramp = 1.0 - (1.0 - t_bank) ** 2
     h_ft = np.where(water, depth_ft, (level_ft + micro) * ramp)
+
+    # ---- bridge approach earthworks (T-0046) ------------------------------
+    # Every bridge deck ends on the traced waterline, where the bank ramp above
+    # puts the ground at exactly zero — so without these, no deck can be entered
+    # from its bank. Each approach is a graded road corridor along its spec line
+    # (deck-end first): a `fill` RAISES the ground to `deck_ft` at the deck end,
+    # falling inland at `grade`, level for `half_width_m` either side of the
+    # line with `side_slope` shoulders beyond, and carries the crest
+    # `end_overhang_m` past the deck end into the shallows — the fill the log
+    # abutment cribs retain, and the only place this generator deliberately
+    # raises traced water above the plane. A `cut` is the mirror: the ground is
+    # graded DOWN to the deck at the end, rising inland at the same grade, and
+    # carried the same overhang under the deck (on land only) so the ends read
+    # down to the crossing rather than standing proud beside it. Both are
+    # applied as max()/min() against the assembled surface, so each dies
+    # out exactly where the natural ground takes over — no toe step, no berm.
+    # The crest is packed one seat BELOW the deck surface, not flush with it.
+    # Physically that is what an earth approach against a plank deck is — the
+    # fill packs under the plank line and the last step onto the boards is a
+    # step. Numerically it is load-bearing: the walker resolves its floor as
+    # max(deck, ground) over the deck polygon, and a crest quantised to the
+    # heightfield's 5 mm lattice can land a float's width ABOVE the deck it was
+    # authored to meet, which would put the walker on ground instead of planks
+    # for the first stride of every crossing. 0.06 ft (18 mm) clears both the
+    # quantisation and the bilinear mixing while staying far inside the 0.35 m
+    # step-up rule.
+    APPROACH_SEAT_FT = 0.06
+    for ap in spec.get("approaches", []):
+        (a_e, a_n), (b_e, b_n) = [(float(p[0]), float(p[1])) for p in ap["line"]]
+        length = math.hypot(b_e - a_e, b_n - a_n)
+        ux, uy = (b_e - a_e) / length, (b_n - a_n) / length
+        t_ap = (E - a_e) * ux + (N - a_n) * uy
+        d_ap = np.abs(-(E - a_e) * uy + (N - a_n) * ux)
+        shoulder_ft = np.maximum(d_ap - float(ap["half_width_m"]), 0.0) \
+            * float(ap["side_slope"]) / FT
+        fall_ft = float(ap["grade"]) * np.maximum(t_ap, 0.0) / FT
+        over = float(ap["end_overhang_m"])
+        before = h_ft
+        if ap["mode"] == "fill":
+            target = float(ap["deck_ft"]) - APPROACH_SEAT_FT - fall_ft - shoulder_ft
+            zone = (t_ap >= -over) & (t_ap <= length) \
+                & np.where(water, (t_ap <= over) & (d_ap <= float(ap["half_width_m"])),
+                           True)
+            h_ft = np.where(zone, np.maximum(h_ft, target), h_ft)
+        else:
+            target = float(ap["deck_ft"]) - APPROACH_SEAT_FT + fall_ft + shoulder_ft
+            zone = (t_ap >= -over) & (t_ap <= length) & ~water
+            h_ft = np.where(zone, np.minimum(h_ft, target), h_ft)
+        touched = np.abs(h_ft - before) > 1e-6
+        conj_land |= touched & ~water
+        band.setdefault(f"approach_{ap['id']}", np.zeros(E.shape, bool))
+        band[f"approach_{ap['id']}"] |= touched
 
     conf = np.where(water, CONF_CONJECTURAL, CONF_INFERRED)
     conf = np.where(conj_land & ~water, CONF_CONJECTURAL, conf)
@@ -742,12 +857,14 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--epoch", default="e1834_harbor_cut")
     ap.add_argument("--glb", action="store_true", help="also build the GLBs (needs Blender)")
-    ap.add_argument("--decimate-deg", type=float, default=0.04,
+    ap.add_argument("--decimate-deg", type=float, default=0.03,
                     help="planar-dissolve angle limit for the ground mesh; 0 disables. "
-                         "0.04 deg was picked by measurement, not taste: it is the loosest "
-                         "limit whose mesh still tracks the heightfield inside "
-                         "MESH_FIT_TOLERANCE_M (16 mm max, 3 mm rms), and it throws away "
-                         "two thirds of the triangles a plain grid would carry.")
+                         "Picked by measurement, not taste: the loosest limit whose mesh "
+                         "still tracks the heightfield inside MESH_FIT_TOLERANCE_M, and it "
+                         "throws away two thirds of the triangles a plain grid would carry. "
+                         "0.04 deg held that bound (16 mm max, 3 mm rms) until T-0118's "
+                         "graded slough beds; against them it departs 34 mm, over the 30 mm "
+                         "tolerance, and 0.03 tracks at 2 mm for 8 KB more GLB.")
     ap.add_argument("--out", default=str(ROOT / "assets" / "gltf"))
     args = ap.parse_args(argv_after_ddash())
     _unbuffer()

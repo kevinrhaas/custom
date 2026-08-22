@@ -232,7 +232,7 @@ class PalisadeParams:
                              f"against a {self.panel_length_m} m panel")
 
 
-def from_phase(phase: dict) -> PalisadeParams:
+def from_phase(phase: dict, record: dict | None = None) -> PalisadeParams:
     """Resolve one structure phase into generator parameters.
 
     Reads only the attested `value` of each form attribute plus its confidence.

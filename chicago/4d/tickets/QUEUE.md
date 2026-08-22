@@ -1,14 +1,8 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0046 — Bridge approach earthworks meet the deck at grade
-T-0049 — Unpainted boards as a surface: board-width irregularity and lap rhythm
-T-0035 — Flowers grow up out of the ground as you approach instead of fading in
-T-0004 — Raise and graduate the river banks at the fort reach
-T-0005 — The three Main Branch sloughs, from the 1833 map
-T-0042 — Image-accuracy pass: the Green Tree Tavern
-T-0043 — Image-accuracy pass: the Sauganash
-T-0044 — Image-accuracy pass: the next two landmark plates
-T-0007 — Wire the material sheet into the records: repaint the town
+T-0065 — Period names, brands and labels on the goods
+T-0075 — Hold the 2026-08-18 owner brief as source records
+T-0076 — Buildings are named for their people, not their spec codes
 T-0008 — 199 chimneys are painted roof-colour
 T-0009 — Redraw 29 building bodies out of the roadway
 T-0010 — Finish the heightfield east
@@ -44,5 +38,30 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0060 — The smoke's mobile half no longer fits the runner's ten-minute command ceiling
-T-0061 — Shed roofs have no gable ends, so 55 buildings are open to the sky
+T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
+T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
+T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
+T-0095 — The fort's corner works and its two documented gates, as the plate draws them
+T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
+T-0097 — The ground around the fort is full prairie, where both plates show it bare and trodden
+T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
+T-0099 — The bank track from the fort's north gate down to the water
+T-0100 — A street's geometry confidence never reaches the picture
+T-0103 — Every platted-block roof faces away from the street it fronts
+T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
+T-0105 — Apply the core density standard to the next core block below the bar
+T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
+T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
+T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
+T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
+T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
+T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
+T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
+T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
+T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
+T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
+T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
+T-0127 — South Water Street and the rest of the town get the street edge
+T-0130 — The signs should read as the trade wrote them, not as we label the building
+T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
+T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
