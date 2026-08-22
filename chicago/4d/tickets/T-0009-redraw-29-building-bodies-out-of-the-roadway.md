@@ -1,16 +1,17 @@
 ---
 id: T-0009
 title: Redraw 29 building bodies out of the roadway
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: true
 effort: M
 legacy_id: K30(c)
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 5:26:36 AM CT
 blocked_on: null
 needs_bake: true
 ---
