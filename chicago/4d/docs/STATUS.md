@@ -1,5 +1,47 @@
 # STATUS
 
+## Shipped 2026-08-21 — T-0072: the Wolf Tavern's sign flies from a pole, and the wolf is on it
+
+**The ask (owner, 2026-08-18), of the sign close-up in image 4 of his brief:** *"its almost like a
+flag, you should be able to get documentation of what this sign/flag was and put it at the tavern
+correctly."* The ticket's own instruction was to do the documentation first.
+
+**The documentation, and it was already in the dataset.** `chicagology_prefire273` — a source this
+project has cited for the tavern's fabric since 2026-08-09 — carries, in a note at the foot of the
+page: *"Wentworth was ambitious, and wanted a sign to attract wayfarers. Lieutenant Allen made one
+for him out of a piece of a box. He painted a picture of a wolf on it. The fort blacksmith made
+hinges, and the wolf sign was hung on a sapling. The tavern was the first institution to have a sign
+board in Chicago."* Four things there are geometry, and the model had one of them: a board. A
+**sapling** is a standing trunk, not the wall bracket the archetype had been building; the
+**hinges** are ironwork nobody had drawn; and a **picture of a wolf** was on a board this project
+had deliberately left blank. The owner's engraving draws exactly that arrangement from outside — a
+mast-tall pole, a cross-arm, the board flying from it.
+
+**What shipped.** Two new form attributes on the archetype. `sign_mount` = `sapling_pole`
+(**inferred**), which builds a set pole clearing the ridge by 2.55 m, a lashed cross-arm, two iron
+hinge straps and the board flying from them; and `sign_device` = `wolf` (**reconstructed**), a flat
+dark silhouette painted on both faces. Both default off, so no other board in the town moved. The
+tavern's mesh went 470 → 784 triangles and the town's frame is unchanged within its budget.
+
+**The grading is the careful part, and it runs lower than the find suggests.** The sapling sentence
+is in the page's editorial NOTE, not in the 1857 Chicago Magazine body that earned that source its
+tier 2, and the note names no author and cites nothing. The cross-arm comes only from the
+engraving, which is tier-5 pictorial and may drive form as `inferred` and never a coordinate. So
+`sign_mount` takes the weaker half of its own value and reads `inferred`; the source record now
+says where the passage sits and why.
+
+**L25 is superseded, and that is the entry worth reading.** For eleven months this project held that
+the board must stay blank because a wolf painted from imagination would be its most conspicuous
+fabrication. The risk was real and the conclusion was wrong: a source says a picture of a wolf was
+on that board, so an empty one asserts the opposite of the evidence in the one place every visitor
+walks up to. What is lost is the draughtsmanship, not the subject. **L165** claims the outline, the
+pole's every dimension and the pigment, and L25 keeps its reasoning verbatim with a pointer to it.
+
+**Verification.** `tools/check.sh` green; `tools/smoke_renderer.mjs` green at 390×780 and 1280×800,
+zero page errors, against the published mirror. All 43 `log_dwelling` masters rebaked in the same
+commit — the parameter class gained two fields, so every building of that archetype re-hashed — with
+their web derivatives, sidecars and `tools/publish.sh` mirror.
+
 ## Shipped 2026-08-21 — T-0133: four freight sheds on the north bank at the Dearborn crossing
 
 **The ask.** Image 3 of the owner's brief of 2026-08-18 is an engraving of the reach below the

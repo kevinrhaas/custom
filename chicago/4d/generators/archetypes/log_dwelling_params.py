@@ -49,6 +49,17 @@ CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 # gambrel roof in 1835 Chicago would be a claim, not a default, so the archetype
 # refuses it loudly rather than quietly substituting a gable.
 LOG_ROOF_TYPES = ("gable", "shed")
+
+# How a signboard is displayed. `bracket` is an arm off the wall; `sapling_pole` is
+# a slender trunk set in the ground with a cross-arm at its head, which is what the
+# Wolf Point sources describe and what its engraving draws. See `sign_mount`.
+SIGN_MOUNTS = ("bracket", "sapling_pole")
+
+# What may be painted on a board. Deliberately an enumeration rather than free text:
+# the value drives an outline this module owns, so a record naming a device the
+# archetype cannot draw has to be refused rather than silently given a blank board.
+SIGN_DEVICES = (None, "wolf")
+
 ADDITION_SIDES = ("front", "end")
 
 # The form attributes whose VALUE this archetype reads. See the same set in
@@ -78,7 +89,7 @@ ADDITION_SIDES = ("front", "end")
 # is what `docs/RESEARCH/materials.md` §4 finding 4 was pointing at.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
-    "loft", "chimneys", "sign", "frame_paint",
+    "loft", "chimneys", "sign", "sign_mount", "sign_device", "frame_paint",
     "frame_addition", "frame_addition_side", "frame_addition_width_m",
     "frame_addition_depth_m", "frame_addition_stories", "frame_addition_height_m",
 })
@@ -141,12 +152,31 @@ class LogDwellingParams:
     frame_addition_height_m: float | None = None
     frame_paint: str = "unpainted"
 
-    # A hanging signboard, as a string naming what was painted on it. The geometry
-    # is a board on a bracket; the image is NOT modelled and must not be, because
-    # nothing survives of what the Wolf Point wolf actually looked like. The value
-    # exists so the sidecar can say what the board carried while the mesh says only
-    # that a board hung there.
+    # A hanging signboard, as a string naming what was painted on it. The value
+    # exists so the sidecar can say what the board carried; whether the mesh draws
+    # the device is `sign_device`'s question and not this one's.
     sign: str | None = None
+
+    # HOW THE BOARD WAS DISPLAYED, added 2026-08-21 for T-0072. `bracket` is what
+    # this archetype built from the start — a board on an arm off the wall beside
+    # the door, an arrangement nothing attests and which was chosen because it is
+    # what a tavern sign usually is. `sapling_pole` is what the Wolf Point sources
+    # actually describe: "the wolf sign was hung on a sapling" (chicagology's Wolf's
+    # Point note, chicagology_prefire273), which is a slender trunk set in the ground
+    # and not a wall bracket, and which the 2026-08-18 owner brief's engraving of the
+    # tavern draws as a mast-tall pole with a cross-arm and the board flying from it.
+    # A record has to choose; the default stays `bracket` so no other building moves.
+    sign_mount: str = "bracket"
+
+    # WHETHER THE DEVICE IS PAINTED ON THE BOARD, and it is a separate attribute
+    # from `sign` for the reason gallows_braced is separate from gallows_frames: the
+    # subject is one claim and the drawing is another, and they are evidenced
+    # differently. `None` leaves the board blank, which is what every board in this
+    # dataset was until T-0072 and what docs/LIBERTIES.md L25 argued for. `wolf`
+    # paints a flat canine silhouette, and a record turning it on is claiming only
+    # THAT a wolf was painted there — the outline is the archetype's own and owes
+    # docs/LIBERTIES.md an entry.
+    sign_device: str | None = None
 
     # The finish the 665-roof programme dealt this building, and how weathered its
     # roof is. NOT form attributes — they live in the record's `reconstruction`
@@ -209,6 +239,19 @@ class LogDwellingParams:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
         if self.sign is not None and not str(self.sign).strip():
             raise ParamError("sign is present but empty — omit it or say what it showed")
+        if self.sign_mount not in SIGN_MOUNTS:
+            raise ParamError(
+                f"sign_mount '{self.sign_mount}' not in {SIGN_MOUNTS} — how a board "
+                f"was displayed is evidence, so an unknown mounting is refused "
+                f"rather than defaulted to the commonest one")
+        if self.sign_device not in SIGN_DEVICES:
+            raise ParamError(
+                f"sign_device '{self.sign_device}' not in {SIGN_DEVICES} — this "
+                f"archetype draws only the devices whose outline it owns")
+        if self.sign_device is not None and self.sign is None:
+            raise ParamError(
+                "sign_device is set with no sign — a device is painted ON a board, "
+                "so the board has to be stated first")
         if not isinstance(self.chimneys, int) or isinstance(self.chimneys, bool):
             raise ParamError(f"chimneys {self.chimneys!r} is not a whole number — the "
                              f"record states a count, not whether there was one")
@@ -312,6 +355,9 @@ def from_phase(phase: dict, record: dict | None = None) -> LogDwellingParams:
                                  else float(val("frame_addition_height_m"))),
         frame_paint=str(val("frame_paint", "unpainted")),
         sign=(None if sign is None else str(sign)),
+        sign_mount=str(val("sign_mount", "bracket")),
+        sign_device=(None if val("sign_device") is None
+                     else str(val("sign_device"))),
         # The programme's own finish deal, read off the record rather than the
         # phase. `wall_finish` in `common/materials.py` states the order these are
         # applied in and why a stated coating outranks them.

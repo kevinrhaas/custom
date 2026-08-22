@@ -447,10 +447,19 @@
     "wolf_point_tavern/log_frame_1828/form.sign": {
       "kind": "structure",
       "blocked_sources": [
+        "chicagology_prefire273",
         "drloih_wolf_point"
       ],
       "sole_support": true,
       "confidence": "attested"
+    },
+    "wolf_point_tavern/log_frame_1828/form.sign_mount": {
+      "kind": "structure",
+      "blocked_sources": [
+        "chicagology_prefire273"
+      ],
+      "sole_support": true,
+      "confidence": "inferred"
     },
     "wolf_point_tavern_stable/stable_1831/form.construction": {
       "kind": "structure",

@@ -15,12 +15,31 @@ door, the sign and any front addition are all on +y. Getting this wrong is a sil
 error — the building looks fine and faces the wrong way — so it is stated here as well
 as in the contract.
 
-**The sign is a board, not a picture.** The wolf sign is documented; what the painted
-wolf looked like is not, and no image of it survives. So the geometry is a signboard
-hanging from a bracket, and the `sign` parameter carries the *subject* as a string for
-the sidecar to report. Painting a wolf on it would be manufacturing evidence in exactly
-the way AGENTS.md rule 1 forbids, and it would be the most-photographed invention in
-the scene.
+**The sign is a board, and since 2026-08-21 it may carry a picture — T-0072.** The
+paragraph this replaces read: *"The wolf sign is documented; what the painted wolf
+looked like is not, and no image of it survives. So the geometry is a signboard hanging
+from a bracket, and the `sign` parameter carries the subject as a string for the sidecar
+to report. Painting a wolf on it would be manufacturing evidence in exactly the way
+AGENTS.md rule 1 forbids, and it would be the most-photographed invention in the scene."*
+It is kept because its caution was right about the one thing that has not changed — the
+DRAUGHTSMANSHIP of the Wolf Point wolf is lost and nothing here recovers it.
+
+What changed is that the sources were read further. chicagology's Wolf's Point note
+(`chicagology_prefire273`) says how the board was made, hung and decorated: *"Wentworth
+was ambitious, and wanted a sign to attract wayfarers. Lieutenant Allen made one for him
+out of a piece of a box. He painted a picture of a wolf on it. The fort blacksmith made
+hinges, and the wolf sign was hung on a sapling. The tavern was the first institution to
+have a sign board in Chicago."* Three things in that passage are geometry — a board, iron
+hinges, and a **sapling** rather than a wall bracket — and the 2026-08-18 owner brief's
+engraving of the tavern draws exactly that: a mast-tall pole with a cross-arm, the board
+flying from it. `sign_mount` builds it.
+
+So a blank board is now a positive misstatement: a source says a picture of a wolf was on
+it, and leaving the board empty asserts the opposite of the evidence. `sign_device` paints
+a flat canine silhouette — **the FACT is attested and the OUTLINE is this module's own**,
+which is the `reconstructed` tier doing its job (AGENTS.md § RECONSTRUCTED IS A TIER) and
+is recorded in docs/LIBERTIES.md. It defaults off, so no other board in the town gains a
+picture; nothing here licenses a device on a board whose subject is not attested.
 
 **Log courses and corner notching** come from common/logwork.py, which is
 frame_tavern._log_wing's visual language factored out. That is deliberate: the
@@ -44,20 +63,45 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from common.logwork import (  # noqa: E402
-    CHINK_RGBA, HEWN_RGBA, RELIEF_M, hewn_log_wall,
+    CHINK_RGBA, HEWN_RGBA, RELIEF_M, hewn_log_wall, log_prism,
 )
 from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.log_dwelling_params import LogDwellingParams  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
-M_LOG, M_CHINK, M_ROOF, M_FRAME, M_DARK, M_SIGN = 0, 1, 2, 3, 4, 5
+M_LOG, M_CHINK, M_ROOF, M_FRAME, M_DARK, M_SIGN, M_PAINT = 0, 1, 2, 3, 4, 5, 6
 
 CLAPBOARD_COURSE_M = 0.14   # exposed face of a period clapboard, ~5.5 in
 # A weathered board, left deliberately neutral. What colour the Wolf Point signboard
 # was painted is unattested; a neutral board makes a claim about as small as geometry
 # can make while still being visible.
 SIGN_RGBA = (0.60, 0.54, 0.44, 1.0)
+# The device painted on a board. Dark and flat — a sign painter at the forks in the
+# early 1830s had lampblack in oil and little else, and a silhouette is what reads at
+# the distance a pole sign is meant to be read from. Not black: a hand-ground black
+# in linseed goes brown-grey, and a true black would read as a hole in the board.
+PAINT_RGBA = (0.116, 0.098, 0.086, 1.0)
+
+# --- the sapling pole sign (T-0072) -------------------------------------------
+# Every number here is this module's own. The sources give a board made "out of a
+# piece of a box", iron hinges, and a sapling to hang it on; they give no dimension
+# at all, and the engraving is a tier-5 retrospective that may drive form and never a
+# measurement. What bounds them: a sapling stout enough to carry a board and stand a
+# lake wind is a young trunk of about this butt diameter, and a sign meant "to attract
+# wayfarers" has to clear the tavern's own ridge to be seen down the river bank.
+POLE_ABOVE_RIDGE_M = 2.55   # how far the head stands over the roof it advertises
+POLE_MIN_TOP_M = 7.4        # ...and a floor under it, for a low building
+POLE_BUTT_R = 0.105         # butt radius; a sapling, not a mast
+POLE_HEAD_R = 0.072
+POLE_SET_M = 0.40           # how deep the butt is set below the wall line
+POLE_STANDOFF_M = 1.15      # how far out from the facade it stands
+POLE_ARM_M = 1.52           # the cross-arm's reach
+POLE_ARM_R = 0.055
+SIGN_BOARD = (0.92, 0.68, 0.055)     # width along the arm, drop, thickness
+SIGN_HANGER_DROP_M = 0.17            # the hinge straps between arm and board
+DEVICE_FRACTION = (0.78, 0.80)       # of the board, before the outline's own aspect
+DEVICE_PROUD_M = 0.006
 
 
 def build(params: LogDwellingParams, name: str):
@@ -104,7 +148,19 @@ def build(params: LogDwellingParams, name: str):
         # The BOARD's confidence is the confidence that a sign hung there. Its size
         # and its bracket are invented, but those are dimensional, and by the
         # convention above dimensions do not drag an object's character down.
-        _sign(b, params, params.conf("sign", "reconstructed"))
+        #
+        # THE MOUNTING IS A SEPARATE CLAIM and takes its own confidence, because at
+        # Wolf Point it is the better-evidenced half: a source says the board hung on
+        # a sapling and no source says a board hung on a bracket anywhere. So the
+        # pole is built at `sign_mount`'s grade and the board it carries at `sign`'s,
+        # least-confident-wins over the pair for the members that are both.
+        if params.sign_mount == "sapling_pole":
+            _sign_pole(b, params, ridge_z,
+                       params.worst_conf("sign", "sign_mount"),
+                       params.conf("sign", "reconstructed"),
+                       params.conf("sign_device", "reconstructed"))
+        else:
+            _sign(b, params, params.conf("sign", "reconstructed"))
 
     # ---- the surfaces, off the sheet (T-0007) --------------------------------
     # The log core is the town's log fabric and does not vary: a cabin's walls ARE
@@ -126,6 +182,13 @@ def build(params: LogDwellingParams, name: str):
         simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
         simple_material("sign", SIGN_RGBA, roughness=0.85),
     ]
+    # M_PAINT is appended only where a device is actually painted, and only ever
+    # LAST, so every index above it is fixed. A material slot nothing references
+    # still reaches the glTF, and adding one to all 43 log buildings would have
+    # rewritten 43 masters — and with them their compressed derivatives and the
+    # banked passthrough set — for a colour none of them uses.
+    if params.sign and params.sign_device:
+        mats.append(simple_material("paint", PAINT_RGBA, roughness=0.72))
     return b.to_object(mats)
 
 
@@ -499,3 +562,129 @@ def _sign(b: MeshBuilder, p: LogDwellingParams, conf: float) -> None:
                   conf, M_SIGN, skip=("top", "bottom"))
     b.add_box(x - bw / 2, yb - bt / 2, z - drop - bh,
               x + bw / 2, yb + bt / 2, z - drop, conf, M_SIGN)
+
+
+# --------------------------------------------------------- the pole sign (T-0072)
+
+# THE WOLF, AS AN OUTLINE THIS MODULE OWNS. A canine in profile, facing along -u,
+# in a unit box: u runs nose-to-tail, v runs paw-to-ear-tip, and the caller scales
+# it onto the board. Counter-clockwise as read in (u, v), which is what `_device`
+# needs to wind the front face outward.
+#
+# WHAT IT DOES AND DOES NOT CLAIM. It claims that a picture of a wolf was painted on
+# the board — "He painted a picture of a wolf on it", chicagology_prefire273 — and
+# nothing whatever about how Lieutenant Allen drew it. Nobody has seen that board
+# since the 1830s. The outline is a plain standing-canine silhouette: ears up, brush
+# tail low, no attitude, no snarl and no landscape, because every one of those would
+# be a second invention on top of the first. Recorded in docs/LIBERTIES.md.
+_WOLF_UV = (
+    (0.020, 0.630),   # nose
+    (0.050, 0.560), (0.140, 0.575), (0.200, 0.500),   # jaw, chin, throat
+    (0.240, 0.390),                                   # chest
+    (0.220, 0.200), (0.200, 0.020), (0.290, 0.020), (0.300, 0.220),  # foreleg
+    (0.340, 0.340), (0.520, 0.310), (0.600, 0.280),   # belly
+    (0.610, 0.020), (0.700, 0.020), (0.690, 0.240),   # hind leg
+    (0.780, 0.340), (0.840, 0.400),                   # thigh, tail root
+    (0.960, 0.330), (0.990, 0.440), (0.860, 0.520),   # the brush
+    (0.800, 0.620), (0.620, 0.650), (0.460, 0.610),   # rump, back, withers
+    (0.380, 0.690), (0.310, 0.750),                   # shoulder, neck
+    (0.280, 0.870), (0.245, 0.990), (0.215, 0.855),   # rear ear
+    (0.175, 0.965), (0.145, 0.830),                   # front ear
+    (0.080, 0.730), (0.000, 0.665),                   # muzzle
+)
+# The outline's own proportion, so a board of any shape gets a wolf and not a
+# stretched dog. Read off _WOLF_UV rather than written down twice.
+_WOLF_ASPECT = ((max(u for u, _ in _WOLF_UV) - min(u for u, _ in _WOLF_UV))
+                / (max(v for _, v in _WOLF_UV) - min(v for _, v in _WOLF_UV)))
+
+
+def _device(b: MeshBuilder, y: float, half: float, pts_xz, conf: float,
+            mat: int) -> None:
+    """A thin flat device lying in an x-z plane, extruded +-`half` in y.
+
+    The y-facing twin of `_plate`, and separate from it rather than a generalisation
+    of it: `_plate` takes its polygon in (y, z) because every brace in this module
+    runs across the building, and a sign faces along it. `pts_xz` is counter-clockwise
+    read in (x, z), which puts the front face's normal at -y and the back face's at
+    +y; both are emitted, so the board reads painted from either side, which is what
+    a sign hanging in the open is.
+    """
+    n = len(pts_xz)
+    b.add_poly([(x, y - half, z) for x, z in pts_xz], conf, mat)
+    b.add_poly([(x, y + half, z) for x, z in reversed(pts_xz)], conf, mat)
+    for i in range(n):
+        (xa, za), (xb, zb) = pts_xz[i], pts_xz[(i + 1) % n]
+        b.add_poly([(xa, y + half, za), (xb, y + half, zb),
+                    (xb, y - half, zb), (xa, y - half, za)], conf, mat)
+
+
+def _sign_pole(b: MeshBuilder, p: LogDwellingParams, ridge_z: float,
+               conf_pole: float, conf_board: float, conf_device: float) -> None:
+    """A signboard flying from a cross-arm at the head of a sapling.
+
+    THE ARRANGEMENT IS THE SOURCE'S, NOT THE ARCHETYPE'S. "The fort blacksmith made
+    hinges, and the wolf sign was hung on a sapling" — chicagology's Wolf's Point
+    note. A sapling is a young trunk set in the ground, so the board does not hang off
+    the tavern at all: it stands beside it, and the 2026-08-18 owner brief's engraving
+    of this building draws the pole mast-tall with a cross-arm at the head and the
+    board flying from the arm, which the owner read as "almost like a flag". Three
+    elements are therefore evidence — pole, hinges, board — and every DIMENSION below
+    is invented within the bounds stated at the constants.
+
+    IT CLEARS THE RIDGE ON PURPOSE. A sign wanted "to attract wayfarers" coming down
+    the river bank has to be seen over the roof it belongs to, and a pole that stops
+    at the eaves is a bracket with extra steps. `POLE_ABOVE_RIDGE_M` is what that
+    costs, and the floor under it keeps a low cabin's pole from reading as a stake.
+
+    IT STANDS IN FRONT AND SLIGHTLY OFF THE DOOR, on the facade side (+y, per the
+    orientation note in the module docstring), clear of the eave and clear of the
+    doorway a visitor walks through. Its butt is set below the wall line, not sitting
+    on it: the pole is the only part of this archetype that leaves the footprint
+    outline, so the ground under it is whatever the terrain does a metre out, and a
+    set butt absorbs that instead of floating over it.
+    """
+    bx0, _, bx1, face = _core_extent(p)
+    xm = (bx0 + bx1) / 2.0
+    px = min(xm + 1.85, bx1 - 0.55)
+    py = face + POLE_STANDOFF_M
+
+    top = max(ridge_z + POLE_ABOVE_RIDGE_M, POLE_MIN_TOP_M)
+    mid = top * 0.56
+    log_prism(b, (px, py, -POLE_SET_M), (px, py, mid), POLE_BUTT_R, conf_pole,
+              M_LOG, sides=8)
+    log_prism(b, (px, py, mid), (px, py, top), POLE_HEAD_R, conf_pole, M_LOG,
+              sides=8)
+
+    # The cross-arm, lashed across the head and running along the facade so the board
+    # presents its face to the bank rather than its edge. A short tail behind the pole
+    # so it reads as lashed across rather than socketed into it.
+    arm_z = top - 0.30
+    log_prism(b, (px - 0.20, py, arm_z), (px + POLE_ARM_M, py, arm_z),
+              POLE_ARM_R, conf_pole, M_LOG, sides=6)
+
+    bw, bh, bt = SIGN_BOARD
+    cx = px + POLE_ARM_M * 0.62
+    board_top = arm_z - POLE_ARM_R - SIGN_HANGER_DROP_M
+
+    # The blacksmith's hinges, which are the one piece of ironwork the sources give
+    # this building. Straps, not links: a hinge holds the board to the arm, and a
+    # board on chain would swing edge-on in the wind and stop being a sign.
+    for hx in (cx - bw * 0.34, cx + bw * 0.34):
+        b.add_box(hx - 0.030, py - 0.014, board_top,
+                  hx + 0.030, py + 0.014, arm_z + POLE_ARM_R * 0.4,
+                  conf_pole, M_DARK)
+
+    b.add_box(cx - bw / 2.0, py - bt / 2.0, board_top - bh,
+              cx + bw / 2.0, py + bt / 2.0, board_top, conf_board, M_SIGN)
+
+    if p.sign_device == "wolf":
+        fw, fh = DEVICE_FRACTION
+        dw = bw * fw
+        dh = min(bh * fh, dw / _WOLF_ASPECT)
+        dw = dh * _WOLF_ASPECT
+        ox = cx - dw / 2.0
+        oz = board_top - bh + (bh - dh) / 2.0
+        pts = [(ox + u * dw, oz + v * dh) for u, v in _WOLF_UV]
+        for side in (-1.0, 1.0):
+            _device(b, py + side * (bt / 2.0 + DEVICE_PROUD_M / 2.0),
+                    DEVICE_PROUD_M / 2.0, pts, conf_device, M_PAINT)
