@@ -894,9 +894,11 @@
     if (state.mode === 'dark')
       return ch + ', retold for this app in a tauter, more immediate voice. Every event, person,'
         + ' place and turn of the 1856 text is kept, and nothing is added — only the telling is new.';
+    // every scene now carries a hand-written Modern text; the fallback wording
+    // stays for a scene added later that has not been given one yet
     return ch + (isRetold
-      ? ', retold in a plain modern voice — every event, name and detail of the original kept.'
-      : ', in an earlier, lighter modernization. The full rewrite is working through the part scene by scene.');
+      ? ', in plain present-day English — every event, name and detail of the original kept.'
+      : ', in the lighter modernization this app was built from, pending its own rendering.');
   }
 
   function scrollToPage() {

@@ -79,9 +79,18 @@ Characters live in `js/data-characters.js` with an `id`, `name`, optional
 Two bundles per part, each **fetched only when a reader first opens a mode that
 needs it**, never on first paint:
 
-- `js/data-text-part<N>.js` holds two passages per scene — `modern`, the
-  contemporary-English edition this app was built from, and `original`, the
-  1856 first edition (Project Gutenberg #12183, public domain).
+- `js/data-text-part<N>.js` holds two passages per scene — `original`, the 1856
+  first edition (Project Gutenberg #12183, public domain), and `modern`, the
+  whole passage in plain present-day English.
+
+  Modern is a translation between two forms of English, not an abridgement and
+  not a new voice: same paragraph, same order, same facts, same jokes, same
+  length, with the periodic sentences and inversions rebuilt into something a
+  person would say out loud. All 158 scenes now have one, hand-written, at
+  100.8% of the source's length in total (median 101% per scene). They live one
+  per scene in `wau-bun/modern/<scene-id>.txt`; `wau-bun/modern/BRIEF.md` is the
+  specification. A scene without one falls back to the light modernization the
+  app was originally built from, and the note under the passage says so.
 - `js/data-dark-part<N>.js` holds the **Retold** version: the same events in a
   tauter, more immediate voice. The book contains a massacre, a captivity, a
   starvation spring and a woman held under the lake to keep her out of a fight,
