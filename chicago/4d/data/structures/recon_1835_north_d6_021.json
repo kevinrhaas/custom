@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447526.053,
-        "utm_n": 4637600.372,
+        "utm_e": 447526.103,
+        "utm_n": 4637600.768,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster north_water_west; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,20 +30,20 @@
             0
           ],
           [
-            6.706,
+            6.805,
             0
           ],
           [
-            6.706,
-            9.144
+            6.805,
+            9.935
           ],
           [
             0,
-            9.144
+            9.935
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 22 × 30 ft rectangle assigned by the reconstruction recipe within the D6 family band; no individual dimensions are documented."
+        "note": "A 6.80 × 9.94 m rectangle sampled deterministically inside the D6 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "stories": {
@@ -55,7 +55,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D6 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "wall_height_m": {
-          "value": 3.6,
+          "value": 3.255,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"

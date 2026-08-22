@@ -78,11 +78,28 @@ def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, floa
     return round(width, 3), round(depth, 3)
 
 
-def storeys(levels: str) -> tuple[float, bool]:
-    """(storeys, has a loft) from the crosswalk's `levels` string."""
+def storeys(levels: str, key: str | None = None) -> tuple[float, bool]:
+    """(storeys, has a loft) from the crosswalk's `levels` string.
+
+    Three of the crosswalk's families author `levels` as a BAND rather than a value —
+    T1 is `1.5-2`, W2 is `1-1.5` — for the same reason the footprint and eave columns
+    are bands: the typology covers a range and no source narrows it. Those are sampled
+    on the half-storey step the vocabulary uses, from the same stable key as every
+    other dimension, so a family that stands more than once does not stand at one
+    height. A band asked for without a key still fails loudly: collapsing it to its
+    low end silently is the retyping this module exists to stop.
+    """
     text = str(levels or "1").strip()
     loft = "loft" in text
     head = text.split("+")[0].strip()
+    band = RANGE_RE.match(head)
+    if band:
+        lo, hi = float(band.group(1)), float(band.group(2))
+        if key is None:
+            raise SystemExit(f"levels '{levels}' is a band, not a value; pass a key to "
+                             f"sample it rather than collapsing it")
+        steps = [lo + .5 * i for i in range(int(round((hi - lo) / .5)) + 1)]
+        return steps[min(int(stable_fraction(key, 9) * len(steps)), len(steps) - 1)], loft
     try:
         return float(head), loft
     except ValueError:

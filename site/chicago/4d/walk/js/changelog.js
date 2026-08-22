@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 236, title: 'Sixty roofs north of the river stop being two dozen', kind: 'fix', ts: '2026-08-22T21:33:20.517Z', date: 'Aug 22, 2026, 4:33 PM CT',
+    items: [
+      'The cluster between the north bank and Michigan Street was twenty-four buildings dealt sixty times \u2014 thirty-six of the sixty were an exact twin of another roof standing near them. They are sixty separate buildings now: different widths, different depths, different eave lines along the same row.',
+      'Nothing new was invented to do it. The reconstruction specification has always described each family of building as a RANGE \u2014 a one-room frame cottage is sixteen to twenty feet by eighteen to twenty-four \u2014 and this parcel had that range typed into it as a single number, once per family. The range is used as a range now, by the same rule the blocks south of the river already use.',
+      'Seventeen of the sixty carried an eave height OUTSIDE the range their own card cited. That is a card claiming one thing while the building does another, and all seventeen stand inside their range now.',
+      'A family whose range dips below the height its own doorway needs is drawn from the part of the range that can carry the door, and one with no room at all fails loudly instead of being quietly raised out of its typology. Nothing was widened to make a check pass.',
+      'Roof pitches are deliberately untouched: eleven of these roofs still slope a fraction outside their cited range, and putting that right means gating the ridge height in the same pass. It has its own ticket.',
+      'No roof was added or removed, nothing moved, and no confidence changed. The sizes were always invented and every card still says so.',
+    ] },
   { v: 235, title: 'The shop signs read as the trade wrote them', kind: 'fix', ts: '2026-08-22T20:01:49.952Z', date: 'Aug 22, 2026, 3:01 PM CT',
     items: [
       'Every signboard in town said what WE call the building. One of them read \u201cPhilo Carpenter\u2019s Log Drug Store\u201d. No druggist ever painted the construction of his own shop on his own board, and the owner said so: it would be philo carpenter, drugs and medicines, or druggist \u2014 that may be different than the name of the building for us.',

@@ -16,8 +16,8 @@
   },
   "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": 727.439,
-    "local_n": 218.657,
+    "local_e": 727.694,
+    "local_n": 218.487,
     "rotation_deg": 180.0,
     "position_confidence": "reconstructed",
     "position_sources": [],
@@ -35,21 +35,21 @@
         0
       ],
       [
-        4.877,
+        5.389,
         0
       ],
       [
-        4.877,
-        7.315
+        5.389,
+        6.975
       ],
       [
         0,
-        7.315
+        6.975
       ]
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "A 16 × 24 ft rectangle assigned by the reconstruction recipe within the A1 family band; no individual dimensions are documented."
+    "note": "A 5.39 × 6.97 m rectangle sampled deterministically inside the A1 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
   },
   "attributes": {
     "wall_height_m": {

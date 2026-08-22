@@ -16,8 +16,8 @@
   },
   "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": 1113.048,
-    "local_n": 324.877,
+    "local_e": 1114.032,
+    "local_n": 325.622,
     "rotation_deg": 180.0,
     "position_confidence": "reconstructed",
     "position_sources": [],
@@ -35,25 +35,25 @@
         0
       ],
       [
-        6.096,
+        8.065,
         0
       ],
       [
-        6.096,
-        9.754
+        8.065,
+        11.243
       ],
       [
         0,
-        9.754
+        11.243
       ]
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "A 20 × 32 ft rectangle assigned by the reconstruction recipe within the A2 family band; no individual dimensions are documented."
+    "note": "A 8.06 × 11.24 m rectangle sampled deterministically inside the A2 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
   },
   "attributes": {
     "wall_height_m": {
-      "value": 3.42,
+      "value": 4.492,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
