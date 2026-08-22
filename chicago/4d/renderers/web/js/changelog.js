@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 235, title: 'Sixty roofs north of the river stop being two dozen', kind: 'fix', ts: '2026-08-22T20:10:26.128Z', date: 'Aug 22, 2026, 3:10 PM CT',
+    items: [
+      'The cluster between the north bank and Michigan Street was twenty-four buildings dealt sixty times \u2014 thirty-six of the sixty were an exact twin of another roof standing near them. They are sixty separate buildings now: different widths, different depths, different eave lines along the same row.',
+      'Nothing new was invented to do it. The reconstruction specification has always described each family of building as a RANGE \u2014 a one-room frame cottage is sixteen to twenty feet by eighteen to twenty-four \u2014 and this parcel had that range typed into it as a single number, once per family. The range is used as a range now, by the same rule the blocks south of the river already use.',
+      'Seventeen of the sixty carried an eave height OUTSIDE the range their own card cited. That is a card claiming one thing while the building does another, and all seventeen stand inside their range now.',
+      'A family whose range dips below the height its own doorway needs is drawn from the part of the range that can carry the door, and one with no room at all fails loudly instead of being quietly raised out of its typology. Nothing was widened to make a check pass.',
+      'Roof pitches are deliberately untouched: eleven of these roofs still slope a fraction outside their cited range, and putting that right means gating the ridge height in the same pass. It has its own ticket.',
+      'No roof was added or removed, nothing moved, and no confidence changed. The sizes were always invented and every card still says so.',
+    ] },
   { v: 234, title: 'Nine buildings stop telling you the ground under them is missing', kind: 'fix', ts: '2026-08-22T18:51:49.569Z', date: 'Aug 22, 2026, 1:51 PM CT',
     items: [
       'Nine cards \u2014 the Cobweb Castle, the Steamboat Hotel, the Beaubien homestead, Watkins\u2019s school, the brickyard, Newberry & Dole\u2019s warehouse, the log bridge at the foot of State and both harbour piers \u2014 told a reader in their own words that they stood outside the modelled world, on no ground at all. The ground arrived under every one of them on 11 August, when the terrain was extended east to the harbour mouth. Nobody told the cards.',

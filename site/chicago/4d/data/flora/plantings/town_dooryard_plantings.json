@@ -558,8 +558,8 @@
       "id": "recon_1835_north_d1_001_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        475.77,
-        165.78
+        475.76,
+        165.83
       ],
       "height_m": 19.1,
       "confidence": "reconstructed",
@@ -569,8 +569,8 @@
       "id": "recon_1835_north_d1_001_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        486.6,
-        156.6
+        475.3,
+        158.13
       ],
       "height_m": 1.44,
       "confidence": "reconstructed",
@@ -580,8 +580,8 @@
       "id": "recon_1835_north_d1_013_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        591.92,
-        325.33
+        591.87,
+        325.3
       ],
       "height_m": 18.0,
       "confidence": "reconstructed",
@@ -591,8 +591,8 @@
       "id": "recon_1835_north_d1_013_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        608.08,
-        325.33
+        608.13,
+        325.3
       ],
       "height_m": 17.7,
       "confidence": "reconstructed",
@@ -602,8 +602,8 @@
       "id": "recon_1835_north_d1_013_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        593.4,
-        336.6
+        606.64,
+        336.64
       ],
       "height_m": 1.16,
       "confidence": "reconstructed",
@@ -613,8 +613,8 @@
       "id": "recon_1835_north_d1_013_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        606.6,
-        336.6
+        593.36,
+        336.64
       ],
       "height_m": 1.26,
       "confidence": "reconstructed",
@@ -625,7 +625,7 @@
       "species": "populus_deltoides",
       "at_local_enu_m": [
         720.0,
-        311.33
+        311.61
       ],
       "height_m": 20.3,
       "confidence": "reconstructed",
@@ -635,8 +635,8 @@
       "id": "recon_1835_north_d1_023_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        726.6,
-        301.6
+        720.0,
+        286.39
       ],
       "height_m": 1.01,
       "confidence": "reconstructed",
@@ -647,7 +647,7 @@
       "species": "populus_deltoides",
       "at_local_enu_m": [
         465.0,
-        316.33
+        316.17
       ],
       "height_m": 19.0,
       "confidence": "reconstructed",
@@ -657,8 +657,8 @@
       "id": "recon_1835_north_d1_053_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        469.23,
-        315.78
+        469.19,
+        315.62
       ],
       "height_m": 19.4,
       "confidence": "reconstructed",
@@ -669,7 +669,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         500.0,
-        333.67
+        333.65
       ],
       "height_m": 17.4,
       "confidence": "reconstructed",
@@ -680,7 +680,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         495.77,
-        334.22
+        334.21
       ],
       "height_m": 16.7,
       "confidence": "reconstructed",
@@ -691,7 +691,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         620.0,
-        353.67
+        353.48
       ],
       "height_m": 16.2,
       "confidence": "reconstructed",
@@ -701,8 +701,8 @@
       "id": "recon_1835_north_d1_060_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        613.4,
-        363.4
+        615.24,
+        361.76
       ],
       "height_m": 0.98,
       "confidence": "reconstructed",
@@ -712,8 +712,8 @@
       "id": "recon_1835_north_d1_060_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        613.4,
-        376.6
+        624.76,
+        361.76
       ],
       "height_m": 0.84,
       "confidence": "reconstructed",
@@ -723,8 +723,8 @@
       "id": "recon_1835_north_d3_002_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        506.95,
-        167.16
+        506.97,
+        167.15
       ],
       "height_m": 16.1,
       "confidence": "reconstructed",
@@ -734,8 +734,8 @@
       "id": "recon_1835_north_d3_002_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        521.6,
-        171.6
+        519.65,
+        156.94
       ],
       "height_m": 1.18,
       "confidence": "reconstructed",
@@ -745,8 +745,8 @@
       "id": "recon_1835_north_d3_006_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        679.79,
-        196.71
+        670.43,
+        212.91
       ],
       "height_m": 1.46,
       "confidence": "reconstructed",
@@ -756,8 +756,8 @@
       "id": "recon_1835_north_d3_016_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        710.77,
-        165.78
+        710.83,
+        165.57
       ],
       "height_m": 18.4,
       "confidence": "reconstructed",
@@ -768,7 +768,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         715.0,
-        166.33
+        166.12
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -778,8 +778,8 @@
       "id": "recon_1835_north_d3_016_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        721.6,
-        156.6
+        708.55,
+        143.55
       ],
       "height_m": 1.42,
       "confidence": "reconstructed",
@@ -789,8 +789,8 @@
       "id": "recon_1835_north_d3_016_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        721.6,
-        143.4
+        708.55,
+        156.45
       ],
       "height_m": 1.16,
       "confidence": "reconstructed",
@@ -800,8 +800,8 @@
       "id": "recon_1835_north_d3_024_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        766.6,
-        326.6
+        764.66,
+        311.93
       ],
       "height_m": 1.38,
       "confidence": "reconstructed",
@@ -811,8 +811,8 @@
       "id": "recon_1835_north_d3_038_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        431.95,
-        327.84
+        432.17,
+        327.9
       ],
       "height_m": 16.4,
       "confidence": "reconstructed",
@@ -822,8 +822,8 @@
       "id": "recon_1835_north_d3_042_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        1018.05,
-        322.16
+        1017.87,
+        322.11
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -833,7 +833,7 @@
       "id": "recon_1835_north_d3_042_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        1020.33,
+        1020.15,
         320.0
       ],
       "height_m": 18.0,
@@ -844,8 +844,8 @@
       "id": "recon_1835_north_d3_042_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        1003.4,
-        313.4
+        1010.0,
+        311.85
       ],
       "height_m": 0.96,
       "confidence": "reconstructed",
@@ -855,8 +855,8 @@
       "id": "recon_1835_north_d3_042_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        1003.4,
-        326.6
+        1010.0,
+        328.15
       ],
       "height_m": 1.06,
       "confidence": "reconstructed",
@@ -867,7 +867,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         540.0,
-        321.33
+        321.16
       ],
       "height_m": 18.1,
       "confidence": "reconstructed",
@@ -877,8 +877,8 @@
       "id": "recon_1835_north_d3_055_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        544.23,
-        320.78
+        544.18,
+        320.6
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -888,8 +888,8 @@
       "id": "recon_1835_north_d4_004_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        585.0,
-        189.0
+        589.93,
+        171.46
       ],
       "height_m": 1.27,
       "confidence": "reconstructed",
@@ -899,8 +899,8 @@
       "id": "recon_1835_north_d4_012_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        680.0,
-        164.0
+        684.99,
+        163.64
       ],
       "height_m": 0.95,
       "confidence": "reconstructed",
@@ -910,8 +910,8 @@
       "id": "recon_1835_north_d4_017_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        749.5,
-        179.53
+        749.47,
+        179.58
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -921,8 +921,8 @@
       "id": "recon_1835_north_d4_017_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        755.0,
-        179.0
+        763.06,
+        170.0
       ],
       "height_m": 0.95,
       "confidence": "reconstructed",
@@ -932,7 +932,7 @@
       "id": "recon_1835_north_d4_025_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        788.0,
+        787.92,
         300.0
       ],
       "height_m": 17.2,
@@ -943,8 +943,8 @@
       "id": "recon_1835_north_d4_025_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        788.58,
-        304.4
+        788.51,
+        304.42
       ],
       "height_m": 16.4,
       "confidence": "reconstructed",
@@ -954,8 +954,8 @@
       "id": "recon_1835_north_d4_025_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        805.0,
-        309.0
+        810.04,
+        291.27
       ],
       "height_m": 0.91,
       "confidence": "reconstructed",
@@ -966,7 +966,7 @@
       "species": "populus_deltoides",
       "at_local_enu_m": [
         1140.0,
-        318.0
+        317.87
       ],
       "height_m": 19.7,
       "confidence": "reconstructed",
@@ -976,8 +976,8 @@
       "id": "recon_1835_north_d4_039_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1135.6,
-        318.58
+        1135.57,
+        318.45
       ],
       "height_m": 18.3,
       "confidence": "reconstructed",
@@ -987,8 +987,8 @@
       "id": "recon_1835_north_d4_039_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        1140.0,
-        326.0
+        1147.16,
+        342.16
       ],
       "height_m": 1.36,
       "confidence": "reconstructed",
@@ -999,7 +999,7 @@
       "species": "ribes_spp",
       "at_local_enu_m": [
         1140.0,
-        356.0
+        374.12
       ],
       "height_m": 1.08,
       "confidence": "reconstructed",
@@ -1010,7 +1010,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         585.0,
-        328.0
+        327.72
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -1020,8 +1020,8 @@
       "id": "recon_1835_north_d4_056_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        585.0,
-        336.0
+        593.28,
+        345.0
       ],
       "height_m": 1.4,
       "confidence": "reconstructed",
@@ -1031,8 +1031,8 @@
       "id": "recon_1835_north_d4_056_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        585.0,
-        354.0
+        576.72,
+        345.0
       ],
       "height_m": 1.19,
       "confidence": "reconstructed",
@@ -1042,7 +1042,7 @@
       "id": "recon_1835_north_d5_019_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        855.33,
+        855.34,
         174.24
       ],
       "height_m": 20.2,
@@ -1053,8 +1053,8 @@
       "id": "recon_1835_north_d5_019_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        841.63,
-        162.76
+        842.45,
+        172.55
       ],
       "height_m": 0.91,
       "confidence": "reconstructed",
@@ -1064,7 +1064,7 @@
       "id": "recon_1835_north_d5_026_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        867.67,
+        868.17,
         325.0
       ],
       "height_m": 17.8,
@@ -1075,8 +1075,8 @@
       "id": "recon_1835_north_d5_026_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        867.07,
-        320.43
+        867.56,
+        320.3
       ],
       "height_m": 20.6,
       "confidence": "reconstructed",
@@ -1086,8 +1086,8 @@
       "id": "recon_1835_north_d5_037_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        867.49,
-        352.51
+        867.76,
+        352.24
       ],
       "height_m": 16.3,
       "confidence": "reconstructed",
@@ -1097,8 +1097,8 @@
       "id": "recon_1835_north_d5_037_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        863.37,
-        367.24
+        849.48,
+        374.57
       ],
       "height_m": 1.05,
       "confidence": "reconstructed",
@@ -1109,7 +1109,7 @@
       "species": "populus_deltoides",
       "at_local_enu_m": [
         625.0,
-        322.67
+        322.92
       ],
       "height_m": 20.1,
       "confidence": "reconstructed",
@@ -1119,8 +1119,8 @@
       "id": "recon_1835_north_d5_057_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        616.63,
-        302.76
+        630.46,
+        314.45
       ],
       "height_m": 1.27,
       "confidence": "reconstructed",
@@ -1130,8 +1130,8 @@
       "id": "recon_1835_north_d5_057_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        616.63,
-        307.24
+        630.46,
+        295.55
       ],
       "height_m": 0.94,
       "confidence": "reconstructed",
@@ -1142,7 +1142,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         450.0,
-        182.33
+        181.98
       ],
       "height_m": 16.8,
       "confidence": "reconstructed",
@@ -1152,8 +1152,8 @@
       "id": "recon_1835_north_d6_044_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        1201.63,
-        357.76
+        1217.59,
+        367.59
       ],
       "height_m": 0.85,
       "confidence": "reconstructed",
@@ -1163,8 +1163,8 @@
       "id": "recon_1835_north_d6_058_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        663.8,
-        324.17
+        656.16,
+        324.33
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -1174,8 +1174,8 @@
       "id": "recon_1835_north_d6_058_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        651.63,
-        307.76
+        668.52,
+        314.92
       ],
       "height_m": 0.89,
       "confidence": "reconstructed",
@@ -1186,7 +1186,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         900.0,
-        351.9
+        352.25
       ],
       "height_m": 17.6,
       "confidence": "reconstructed",
@@ -1196,8 +1196,8 @@
       "id": "recon_1835_north_d7_031_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        895.32,
-        352.52
+        895.41,
+        352.85
       ],
       "height_m": 16.0,
       "confidence": "reconstructed",
@@ -1207,8 +1207,8 @@
       "id": "recon_1835_north_d7_031_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        908.74,
-        375.05
+        891.56,
+        374.88
       ],
       "height_m": 0.96,
       "confidence": "reconstructed",

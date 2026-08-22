@@ -1,7 +1,8 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
-T-0011 — The sixty North Division records get their sampled bands
+T-0144 — The North parcel's sixty footprints and eaves come from the family band
+T-0145 — The North parcel's roof pitches, and the ridge band that gates them
 T-0012 — Ship the 16-bit ground the script already computes
 T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
 T-0014 — 79 ground vertices face downward

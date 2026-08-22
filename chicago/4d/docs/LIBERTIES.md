@@ -5611,6 +5611,58 @@ plate), **L157** (the material sheet painting the town, and the roof's weatherin
 covering).
 **Recorded:** 2026-08-22.
 
+### L169 — The North Division's sixty roofs are sixty buildings now: every width, depth and eave drawn inside the family band instead of one figure per family
+**Decision:** the sixty anonymous roofs of the North Division parcel take their footprint and their
+eave height from the reconstruction specification's per-family BAND, sampled deterministically on a
+stable per-record key, by the same module the phase-one south blocks and the fourteen platted blocks
+already use (`tools/family_bands.py`). Before this they took one retyped width, one retyped depth and
+one retyped eave per family, so twenty-three families stood for sixty buildings: **thirty-six of the
+sixty were an exact twin of another roof in the same parcel**, and **seventeen carried an eave height
+outside the band their own note cited** — a note claiming a range while the value sat below it.
+
+**WHAT IS INVENTED, and it is exactly what was invented before.** That any of these sixty buildings
+stood at all; where each one stood; how big it was. Nothing here promotes a single value: every
+dimension still grades `reconstructed`, still cites the specification's family band as a TYPOLOGY
+rather than as evidence about this building, and still says in its own note that no individual
+dimensions are documented. **Sampling adds variety, not knowledge.** What changed is that a band
+authored as a range is now used as a range, instead of being collapsed to a point and then contradicted.
+
+**Why uniformity was itself a claim.** Twenty-four massings dealt sixty times is a statement about the
+North Division — that its houses were built to a pattern — and no source makes it. The uniformity was
+never argued for; it was an artefact of where the numbers were typed. A visitor reading the horizon
+north of the river was being shown a regularity this project cannot support, and that is a stronger
+claim than the invented sizes it was made of.
+
+**The one number that moved to fit an archetype rather than a source**, recorded because L148 records
+the same thing for the block parcel: a family whose authored eave band dips below the height its
+archetype needs to header its own door is sampled from the part of the band the archetype can build —
+2.05 m for a man door, more for a wagon or stable door, asked of the archetype's own door table rather
+than retyped. A family whose WHOLE band sits under that floor fails loudly instead of being quietly
+raised out of its own typology. Nothing was widened to make a check pass.
+
+**What this deliberately does NOT touch.** Roof pitch. The specification authors pitch as a band too
+(`7:12-10:12` for most families) and couples it to a committed `ridge_ft` band, so sampling the pitch
+without gating the ridge would put ridges outside a band their own note cites — the exact fault this
+entry is repairing, moved one field over. Eleven North records still carry a pitch outside their cited
+band, all of them within half a 1:12 step of its edge, and they are owed to their own ticket rather
+than folded in here.
+
+**Consequence:** the town north of the river reads as sixty separately-built roofs rather than two
+dozen repeated ones — different widths, different depths, different eave lines along the same
+cluster — and the seventeen records whose note cited a band they stood outside now stand inside it.
+The 665-roof total does not move, no record is added or removed, and no position changes except the
+one slot the recipe already shifted for terrain.
+
+**How to resolve:** any parcel-by-parcel register of North Division roofs for July 1835 — a tax list,
+an insurance description, an itemised loss list — would replace a sampled rectangle with a measured
+one on the same line, which is what the 665-roof programme's substitution clause exists for.
+
+**Ticket:** T-0011, from ROADMAP **T-V1(a)**'s census. Related: **L148** (the same rule on the platted
+blocks, and the same door-headroom floor), ROADMAP **T-V1(b)** for the circular dependency that parked
+this for a week, and **K25(b)** for the south parcel still owing it.
+**Covers:** `recon_1835_north_*.*.footprint`, `recon_1835_north_*.*.form.wall_height_m`.
+**Recorded:** 2026-08-22.
+
 
 ## Resolved
 

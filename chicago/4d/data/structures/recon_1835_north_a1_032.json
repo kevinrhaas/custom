@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447800.139,
-        "utm_n": 4637614.457,
+        "utm_e": 447800.394,
+        "utm_n": 4637614.287,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,20 +30,20 @@
             0
           ],
           [
-            4.877,
+            5.389,
             0
           ],
           [
-            4.877,
-            7.315
+            5.389,
+            6.975
           ],
           [
             0,
-            7.315
+            6.975
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 16 × 24 ft rectangle assigned by the reconstruction recipe within the A1 family band; no individual dimensions are documented."
+        "note": "A 5.39 × 6.97 m rectangle sampled deterministically inside the A1 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "wall_height_m": {
