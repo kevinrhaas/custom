@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 11:01 AM",
+  "generated_ct": "Aug 22, 2026, 11:53 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2495,6 +2495,42 @@
       "blocked_on": "The Green Tree's committed placement puts it a full block back from the west bank, so no mast can subtend its roofline from the visitor's own stand. Its own position_note records the alternative (DRLOIH's 'Lake and West Water', about 145 m east). Settle the placement, or accept that the plate's composition is unreproducible here?",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0142",
+      "title": "The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0143",
+      "title": "Apply the core density standard to the next core block below the bar (successor to T-0105)",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
     }
   ]
 }

@@ -64,3 +64,5 @@ T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at pa
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale
+T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
+T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
