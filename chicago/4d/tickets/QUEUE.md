@@ -45,7 +45,6 @@ T-0099 — The bank track from the fort's north gate down to the water
 T-0100 — A street's geometry confidence never reaches the picture
 T-0103 — Every platted-block roof faces away from the street it fronts
 T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
-T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
@@ -64,3 +63,5 @@ T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at pa
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale
+T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
+T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)

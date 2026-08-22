@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 9:01 AM",
+  "generated_ct": "Aug 22, 2026, 12:59 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1833,7 +1833,7 @@
     {
       "id": "T-0105",
       "title": "Apply the core density standard to the next core block below the bar",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1841,12 +1841,12 @@
       "legacy_id": null,
       "parent": "T-0073",
       "opened": "2026-08-19",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-22",
+      "pr": "311",
+      "claimed_by": "run 8/22/2026, 11:01:21 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": null
     },
     {
       "id": "T-0106",
@@ -1864,7 +1864,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 45
     },
     {
       "id": "T-0107",
@@ -1882,7 +1882,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 46
     },
     {
       "id": "T-0108",
@@ -1918,7 +1918,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0110",
@@ -1954,7 +1954,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0112",
@@ -1972,7 +1972,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0113",
@@ -1990,7 +1990,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0114",
@@ -2008,7 +2008,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0115",
@@ -2062,7 +2062,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0118",
@@ -2134,7 +2134,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0122",
@@ -2224,7 +2224,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0127",
@@ -2242,7 +2242,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0128",
@@ -2278,7 +2278,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0130",
@@ -2296,7 +2296,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0131",
@@ -2368,7 +2368,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0135",
@@ -2404,7 +2404,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0137",
@@ -2422,7 +2422,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0138",
@@ -2440,7 +2440,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0139",
@@ -2458,7 +2458,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 62
     },
     {
       "id": "T-0140",
@@ -2495,6 +2495,42 @@
       "blocked_on": "The Green Tree's committed placement puts it a full block back from the west bank, so no mast can subtend its roofline from the visitor's own stand. Its own position_note records the alternative (DRLOIH's 'Lake and West Water', about 145 m east). Settle the placement, or accept that the plate's composition is unreproducible here?",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0142",
+      "title": "The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
+    },
+    {
+      "id": "T-0143",
+      "title": "Apply the core density standard to the next core block below the bar (successor to T-0105)",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
     }
   ]
 }

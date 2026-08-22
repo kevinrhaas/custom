@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 232, title: 'Three roofs on one lot at Randolph and State', kind: 'feature', ts: '2026-08-22T16:54:11.426Z', date: 'Aug 22, 2026, 11:54 AM CT',
+    items: [
+      'The block face on Randolph between Dearborn and State was open grass. Three houses stand shoulder to shoulder on it now \u2014 a cottage of a storey and a half at the west end, a one-room frame cottage beside it, an older log cabin closing the row \u2014 with a woodshed in the yard behind them. Walk east along Randolph and the row is on your right.',
+      'Nine roofs already stood on this block, dealt when the rule allowed one house to a lot. That ceiling was raised in August to three, measured at the smallest lot in the town, and this is the first block to be dealt a SECOND time under the new one.',
+      'Which face got the row is measured rather than chosen: counting what stands within 25 m of each street, Randolph carries 7 documented buildings and 7 inferred households against Washington\u2019s 1 and 0. The best roof stands at the west end because that is the end nearer the Dearborn drawbridge, the only crossing of the river in July 1835.',
+      'No roof was added to the town: the four come out of the district\u2019s own remainder and the total is still 665. That anyone built here, that there were three of them, and that they shared walls are all inventions, and each card says so.',
+    ] },
   { v: 231, title: 'Masts at Wolf Point', kind: 'feature', ts: '2026-08-22T12:36:06.975Z', date: 'Aug 22, 2026, 7:36 AM CT',
     items: [
       'Two lake schooners lie moored at the forks now, where the town had none \u2014 one in the branch reach above Wolf Point, one below it in the South Branch abreast Robert Kinzie\u2019s store, with a skiff on the water beside them and another hauled out on the bank. Walk to the forks and their masts stand over the west-bank roofs.',

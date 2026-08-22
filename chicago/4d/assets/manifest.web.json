@@ -1,5 +1,5 @@
 {
-  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp \u2014 mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP \u2014 a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
+  "$note": "ROADMAP K39. sha256 of the MASTER each derivative in assets/web/ was produced from, written by tools/web_derivatives.sh in the same run that produced the bytes, and read by tools/measure_web_derivatives.py assertion 9. It answers 'has the master been rebuilt since?' from CONTENT rather than from a timestamp — mtime cannot, because on a fresh clone every master is older than its derivative by checkout order (K38, measured 334 of 334). DERIVED, and not bankable: the remedy for a mismatch is `tools/web_derivatives.sh --only <name>`, never an edit of this file. It names the MASTER, not the STEP — a derivative made by an older flag set from this same master is recorded correctly here and reproduces nothing (ROADMAP K40).",
   "written_by": "tools/web_derivatives.sh",
   "masters": {
     "bates_auction_room__frame_1834.glb": "67fc5153354d2c30a6ce38dfb19f7dc521df8a6b69611cc92aa5a7e7ab714620",
@@ -129,11 +129,15 @@
     "recon_1835_blk_randolph_dearborn_a2_08__inferred_1835.glb": "da2797a0cd14e45c9f57380889c0c927d20b5632f95d387fedf8456f07b4dce0",
     "recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb": "c61822be104496da51eb1f624ca20adca435d54817c9d143bb990a86e9991255",
     "recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb": "3ba93632eb3bc6503364126ef7b40b30c74c0fc1a58f20283c8fe0556b004a1c",
+    "recon_1835_blk_randolph_dearborn_a4_13__inferred_1835.glb": "173b0375b771502d693a163296dfdb122006f2dfada12ba6e3e65238b1596262",
     "recon_1835_blk_randolph_dearborn_d1_04__inferred_1835.glb": "758bf00ee653ffdea167d6ded7293a998c9d6dda29f44889a481e77359fc7380",
+    "recon_1835_blk_randolph_dearborn_d1_12__inferred_1835.glb": "7336a2afd0fd5e59425425cdf8e7d8e3a353b1bb72bc93e66101555948eda39a",
     "recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb": "8654749bb1d59bbe027157f51ddb58506edd6189981521b67fe1671578d9c56a",
     "recon_1835_blk_randolph_dearborn_d3_01__inferred_1835.glb": "c7732e6ac886e1cf14d5d39a8d4bc9558c33211cf77ef08e04e0a4f0afedbf21",
+    "recon_1835_blk_randolph_dearborn_d3_11__inferred_1835.glb": "97c821981cd1924cf1874ddd5ed46b661955e9bf9520267f5f348501fca5b327",
     "recon_1835_blk_randolph_dearborn_d4_03__inferred_1835.glb": "ccf3fef910c3f862ff1d3b768c9003e236a5ca41387d413086d7c946819c5eb0",
     "recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb": "95dad887841e2316f4aa2d56866a069e366efd5788e8f98f930dd7ad55e944df",
+    "recon_1835_blk_randolph_dearborn_d6_10__inferred_1835.glb": "bef85b95aa773b24faaa8e49311aa6fa9ac98f48006649c0df1c5b369445fd64",
     "recon_1835_blk_randolph_franklin_a1_07__inferred_1835.glb": "c2bd2e85f6869f217cea9af35b459c9a3ff6cea52b0a76cf76397413763d631f",
     "recon_1835_blk_randolph_franklin_a3_08__inferred_1835.glb": "6d269af3cddcbfa7467ac457e82edcb7b637a781b58a3f52889ee0a9ba378c2c",
     "recon_1835_blk_randolph_franklin_d1_06__inferred_1835.glb": "4e1d5a1df1c0cac0d9c5ad18bc261433ed2ecd87d9ea6315e705fa00f63a74d7",
