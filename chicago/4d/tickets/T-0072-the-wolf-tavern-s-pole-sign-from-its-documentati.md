@@ -1,7 +1,7 @@
 ---
 id: T-0072
 title: The Wolf Tavern's pole sign, from its documentation
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-21
+pr: 300
 claimed_by: run 8/21/2026, 7:02:27 PM CT
 blocked_on: null
 needs_bake: false
