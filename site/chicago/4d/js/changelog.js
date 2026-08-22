@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 226, title: 'The barrels and cases say what is in them', kind: 'feature', ts: '2026-08-22T02:39:45.437Z', date: 'Aug 21, 2026, 9:39 PM CT',
+    items: [
+      'Walk up to the goods stacked outside any of the two dozen shops and taverns and you can read them now. A cask is stencilled FLOUR, PORK, SALT, WHISKEY — a druggist\u2019s is LINSEED OIL or EPSOM SALTS — and every third one carries the house\u2019s own brand burned into the head instead: P. F. W. PECK, NEWBERRY & DOLE, GREEN TREE TAVERN. The packing cases carry a shipping mark, the merchant over CHICAGO, and the forwarding houses\u2019 cases add FROM BUFFALO.',
+      'The owner asked for it: you can add period correct names and brands and labels to things. Until today the model refused to put a single mark on a barrel.',
+      'What a mark may say is fenced. The house\u2019s name is the one already on the signboard over its door. The commodity comes from the trade\u2019s own advertisement — Peck advertised dry goods, hardware and groceries, Jones kept a grocery and provision store — so the category is the source\u2019s and only the word on the individual cask is ours. Buffalo is the one port this project has in writing. Nothing else goes on a barrel: no trademark, no price, no date.',
+      'It costs nothing to draw. The marks are painted on one sheet at load and read straight off the timber, so the town has the same triangles and the same draw calls it had this morning.',
+    ] },
   { v: 225, title: 'The Wolf Tavern\u2019s sign flies from a pole, wolf and all', kind: 'feature', ts: '2026-08-22T00:02:06.738Z', date: 'Aug 21, 2026, 7:02 PM CT',
     items: [
       'The tavern at Wolf Point kept its signboard flat against the wall beside the door. It stands on a pole now \u2014 a sapling set in the ground, a cross-arm lashed at the head, and the board swinging from it on two iron hinges, well above the roof. You can see it from across the forks.',

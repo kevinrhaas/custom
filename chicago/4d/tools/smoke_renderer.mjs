@@ -2633,6 +2633,25 @@ for (const [label, viewport, touch] of [
         // And every chunk has to carry its own bounding sphere, or the frustum
         // has nothing to test and the split bought nothing at all.
         bounded: geos.every((geo) => !!geo.boundingSphere),
+        // T-0065. The marks ride on the ONE material as a canvas atlas, so what
+        // has to hold is that the material carries a map at all, that every
+        // chunk carries the uv to read it with, and that no uv leaves the sheet
+        // — a uv off the atlas is a mark painted on nothing, silently.
+        mapped: meshes.every((m) => !!m.material?.map?.image),
+        hasUV: geos.length > 0 && geos.every((geo) => !!geo.getAttribute('uv')),
+        uvOut: (() => {
+          let bad = 0;
+          for (const geo of geos) {
+            const uv = geo.getAttribute('uv');
+            if (!uv) { bad += 1; continue; }
+            for (let i = 0; i < uv.count; i += 1) {
+              const u = uv.getX(i);
+              const v = uv.getY(i);
+              if (!(u >= 0 && u <= 1 && v >= 0 && v <= 1)) bad += 1;
+            }
+          }
+          return bad;
+        })(),
         verts,
         tris: verts / 3,
         hasConfidence,
@@ -2706,6 +2725,23 @@ for (const [label, viewport, touch] of [
         && goods.bounded,
       `${goods.meshes} chunk mesh(es), ${goods.materials} material(s), `
       + `bounding spheres ${goods.bounded ? 'on every chunk' : 'MISSING on one'}`);
+    // T-0065. Every cask and every case carries a mark the record dealt it — a
+    // stencilled commodity, the house's brand, or a shipping mark — and the
+    // census counts what was actually PAINTED rather than what the record asked
+    // for, so an atlas that silently refused a cell reads as a shortfall here.
+    check(`${label}: every cask and case carries the mark its record deals it`,
+      goods.census?.marked === goods.items && goods.census?.markCells >= 40,
+      `${goods.census?.marked} of ${goods.items} object(s) marked, out of `
+      + `${goods.census?.markCells} atlas cell(s)`);
+    // And the marks cost the layer nothing it did not already spend: they are
+    // painted on the SAME single material as a texture, so every chunk carries
+    // a uv and every uv lands on the sheet. Everything unmarked reads the white
+    // cell, which multiplies to the timber it was before there was an atlas.
+    check(`${label}: the marks ride on the layer's own material, on the sheet`,
+      goods.mapped && goods.hasUV && goods.uvOut === 0,
+      `map ${goods.mapped ? 'present' : 'MISSING'}, uv `
+      + `${goods.hasUV ? 'on every chunk' : 'MISSING on one'}, ${goods.uvOut} `
+      + 'coordinate(s) off the atlas');
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That goods
     // stood at these doors on this day is invented (L131) and a single vertex
     // claiming to be inferred or attested would be this layer overstating the

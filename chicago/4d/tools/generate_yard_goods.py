@@ -97,9 +97,43 @@ grass beside the covered wagons and the yard wagons.
 WHAT IS INVENTED is every object on this record: that these particular frontages had goods
 out on 1 July 1835, how many, and what a barrel, a crate and a wagon of this place and year
 looked like. All of it is graded `reconstructed` and claimed in `docs/LIBERTIES.md` L131.
-What is NOT invented and must never be: no barrel carries a mark, a brand, a merchant's
-name or a stencil, and no crate is labelled — the same discipline L25 and L130 keep for the
-signboards, and for the same reason. Nothing here says what was in any of them.
+
+THE MARKS ON THEM (T-0065), AND THE RESTRAINT THAT WAS OVERRULED. This file used to end the
+paragraph above with *"no barrel carries a mark, a brand, a merchant's name or a stencil, and
+no crate is labelled"* — L25's discipline for the one documented sign, generalised twice.
+**The owner closed it, 2026-08-18, verbatim: "you can add period correct names and brands and
+labels to things."** His standing ruling of the same day covers the tier: *"you are totally
+fine to be liberal with adding reconstructed items when i ask for things, you can just label
+and mark them as such."* It is the same override T-0064 took for the wagons and T-0066 for the
+signboards, and the answer is the same shape: the mark is `reconstructed`, it is dealt by a
+RULE rather than typed, and `docs/LIBERTIES.md` L166 states its bounds.
+
+WHAT A MARK MAY SAY, and every clause of this is a fence around the invention.
+
+  * **The house's own name** — already in this dataset, already attested, already painted on
+    the board one layer over. `_house_mark` takes the possessive owner out of the record's
+    name ("P. F. W. Peck's Store" -> "P. F. W. PECK") and otherwise keeps the name the
+    signboard paints, so a cask at Peck's door and the board over it agree.
+  * **A commodity word from the trade's OWN attested description.** The dossiers write these
+    businesses up in their own advertisements' words — Peck *"advertising dry goods, hardware
+    and groceries"*, Brewster & Hogan *"dealers in dry goods, groceries and hardware"*, Jones's
+    *"grocery and provision store"* — so the CATEGORY a stencil names is the category the
+    source names, and only the individual word on the individual cask is invented. The stocks
+    are in `MARK_STOCKS`, one list per trade class, each list bounded by that description.
+  * **A destination, and one port.** A packing case in transit carried its consignee and where
+    it was going, so the cases read the house's mark over "CHICAGO". The forwarding houses'
+    cases add the port they came from, and the port is not free either: the schooner arrivals
+    the dossiers record come from BUFFALO (`docs/research/04-structures-south.md`, the
+    *Jackson* from Buffalo 1833-06-27).
+  * **Nothing else.** No trademark, no maker nobody in this town is recorded as dealing with,
+    no price, no date, no slogan. A word that is not the house's own name or a period commodity
+    of its own attested trade does not go on a barrel.
+
+WHICH MARK LANDS ON WHICH CASK is dealt, not chosen: `_rank` is a sha1 of the structure id, so
+the deal is the same on every run and two neighbouring frontages do not both open with FLOUR.
+Every third cask on a frontage carries the HOUSE's brand instead of a commodity, because a
+cooper's or a merchant's brand burned into the head is as period-correct as the stencil and it
+is what ties the goods to the door they stand at.
 
     python3 tools/generate_yard_goods.py            write the record
     python3 tools/generate_yard_goods.py --check    re-derive and diff
@@ -108,6 +142,7 @@ signboards, and for the same reason. Nothing here says what was in any of them.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -155,6 +190,153 @@ TRADE_GRADES = {"attested", "documented", "inferred"}
 # Clause 5. Federal ground inside the palisade. The corporation's ordinance is the whole
 # evidence on this record and it did not reach these two doors.
 FORT_TRADES = {"provision store", "sutler's store"}
+
+# --------------------------------------------------------------------------- #
+# THE MARKS (T-0065)                                                           #
+# --------------------------------------------------------------------------- #
+
+# Which stock a trade's casks carry. The KEY is the class, the trades map onto it below,
+# and every list is bounded by what the dossiers say that class of business dealt in —
+# never by what would look good on a barrel.
+MARK_STOCK_CLASS = {
+    "tavern_inn": "provision",
+    "hotel": "provision",
+    "boarding_house": "provision",
+    "grocery_and_provision_store": "provision",
+    "store": "counter",
+    "store_residence": "counter",
+    "store_and_dwelling": "counter",
+    "dwelling_and_store": "counter",
+    "printing_office_and_store": "counter",
+    "drug_store": "druggist",
+    "dwelling_and_trading_house": "trading",
+    "forwarding_and_commission_store": "forwarding",
+    "forwarding_commission_warehouse": "forwarding",
+    "auction_room": "auction",
+}
+
+# The words themselves, and what bounds each list.
+MARK_STOCKS = {
+    # A public house is fed out of the same barrels a provision store is, and the
+    # dossiers write Jones's up as a "grocery and provision store" in its own 1834
+    # advertisement's words.
+    "provision": ["FLOUR", "PORK", "SALT", "WHISKEY", "CIDER", "VINEGAR"],
+    # Peck "advertising dry goods, hardware and groceries", Brewster & Hogan "dealers in
+    # dry goods, groceries and hardware" — the counter trades' own descriptions.
+    "counter": ["FLOUR", "SALT", "SUGAR", "COFFEE", "NAILS", "WHISKEY"],
+    # A druggist's barrels are a druggist's: oil, spirits and the two bulk salts every
+    # period shop list carries. Carpenter's trade is attested; the stock is not.
+    "druggist": ["LINSEED OIL", "TURPENTINE", "EPSOM SALTS", "ALUM"],
+    # A trading house's stock stands on the ground before it goes inside. Kept to the
+    # provisions and the two dry stores every frontier counter held; nothing here names
+    # or depicts the people the house traded with, which is AGENTS.md's L1 constraint.
+    "trading": ["FLOUR", "SALT", "POWDER", "TOBACCO"],
+    # A forwarding house's barrels are somebody else's, in transit between a vessel and
+    # a wagon — the produce the lake trade moved out of this river.
+    "forwarding": ["FLOUR", "PORK", "SALT", "POTASH"],
+    # An auction's lots are whatever came off the last vessel.
+    "auction": ["FLOUR", "SALT", "NAILS", "TOBACCO"],
+}
+
+# What a packing case says when it is not carrying a shipping mark: the class's own dry
+# goods, in the one word a case would be stencilled with.
+MARK_CASE_WORD = {
+    "provision": "TEA",
+    "counter": "DRY GOODS",
+    "druggist": "GLASS",
+    "trading": "HARDWARE",
+    "forwarding": "MERCHANDISE",
+    "auction": "SUNDRIES",
+}
+
+# The one port this project can name. `docs/research/04-structures-south.md` records the
+# schooner Jackson arriving from Buffalo on 1833-06-27 and the Illinois entering the
+# river in 1834; Buffalo is the lake head this dataset has in writing, so it is the only
+# place of shipment a case is allowed to name.
+MARK_PORT = "BUFFALO"
+
+# Every third cask carries the house's brand rather than a commodity word.
+MARK_BRAND_EVERY = 3
+
+
+def _rank(sid: str, n: int) -> int:
+    """A stable integer for a structure id, so the deal is the same on every run.
+
+    hashlib rather than `hash()` for the reason tools/generate_business_signboards.py
+    gives at the same line: Python randomises string hashing per process, and a record
+    that re-derives differently on the next run is not a derivation.
+    """
+    return int(hashlib.sha1(sid.encode("utf-8")).hexdigest()[:8], 16) % n
+
+
+def _house_mark(name: str) -> str:
+    """The house's own mark, as a stencil or a brand would carry it.
+
+    The possessive owner where the record's name has one — "P. F. W. Peck's Store" is
+    marked "P. F. W. PECK", "Newberry & Dole's Forwarding and Commission Warehouse" is
+    "NEWBERRY & DOLE" — because that is the part a merchant burned into a stave, and the
+    trailing trade words are this dataset saying what the building is. Where there is no
+    possessive the mark is the name the signboard paints, less the parenthetical that
+    disambiguates the model rather than naming the house: "Tremont House (the first)" is
+    marked "TREMONT HOUSE", the same string tools/generate_business_signboards.py's
+    `_sign_text` puts on the board over the door.
+    """
+    text = " ".join((name or "").split())
+    if text.endswith(")") and "(" in text:
+        text = text[:text.rindex("(")].strip()
+    for poss in ("'s ", "\u2019s "):
+        if poss in text:
+            text = text[:text.index(poss)]
+            break
+    # A brand does not open with the definite article: "The Chicago Democrat Office" is
+    # marked CHICAGO DEMOCRAT OFFICE, the way a masthead's own name reads.
+    if text.lower().startswith("the "):
+        text = text[4:]
+    return text.upper()
+
+
+def _mark_items(items: list, sid: str, name: str, trade: str) -> None:
+    """Deal every barrel and case on one frontage its mark, in place.
+
+    The deal is `_rank(sid)` offset so the town does not read FLOUR, FLOUR, FLOUR down a
+    street, and the ORDER within a frontage is the order the objects were stood out, so
+    the mark a cask carries is a function of where it stands and nothing else.
+    """
+    klass = MARK_STOCK_CLASS.get(trade)
+    if klass is None:
+        return
+    stock = MARK_STOCKS[klass]
+    house = _house_mark(name)
+    start = _rank(sid, len(stock))
+    barrel_i = 0
+    crate_i = 0
+    for item in items:
+        if item["kind"] == "barrel":
+            if barrel_i % MARK_BRAND_EVERY == MARK_BRAND_EVERY - 1:
+                item["mark"] = {
+                    "lines": [house],
+                    "letterform": "brand",
+                    "says": "house",
+                }
+            else:
+                item["mark"] = {
+                    "lines": [stock[(start + barrel_i) % len(stock)]],
+                    "letterform": "stencil",
+                    "says": "commodity",
+                }
+            barrel_i += 1
+        elif item["kind"] == "crate":
+            if crate_i == 0:
+                lines = [house, "CHICAGO"]
+                if klass == "forwarding":
+                    lines = [house, "CHICAGO", f"FROM {MARK_PORT}"]
+                item["mark"] = {"lines": lines, "letterform": "shipping",
+                                "says": "shipping"}
+            else:
+                item["mark"] = {"lines": [MARK_CASE_WORD[klass]],
+                                "letterform": "stencil", "says": "commodity"}
+            crate_i += 1
+
 
 # THE OBJECTS, and why their sizes are here rather than on the record. A barrel's girth
 # and a crate's boards are HOW a thing is drawn, not a claim about any shop — the same
@@ -492,6 +674,11 @@ def build_frontages(ids: list[str], cars: dict) -> tuple[list, list]:
                 "a nudged coordinate is a placed one.")})
         if not kept:
             continue
+
+        # T-0065. The marks are dealt over what STANDS, after clause 6 has taken away
+        # anything that fell inside a neighbour's footprint — so a dropped cask does not
+        # leave a hole in the deal and the third-cask brand still lands on a third cask.
+        _mark_items(kept, sid, sc.get("name") or "", trade)
 
         quad = [_to_enu(uu, vv, place) for uu, vv in (
             (min(p[0] for p in poly), min(p[1] for p in poly)),
@@ -1436,6 +1623,11 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
             "wagon_stands_refused": len(wagons_refused),
             "benches": len(benches),
             "sheds": len(sheds),
+            "marked_objects": sum(
+                1 for f in frontages for it in f["items"] if it.get("mark")),
+            "distinct_marks": len({
+                " / ".join(it["mark"]["lines"])
+                for f in frontages for it in f["items"] if it.get("mark")}),
         },
         "existence": {
             "value": True,
@@ -1668,6 +1860,49 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                     "settled for the one documented sign and L130 generalised."
                 ),
             },
+        },
+        "mark_rule": {
+            "note": (
+                "T-0065. Every barrel and every case on this record carries a MARK, and "
+                "the mark is dealt by a rule rather than typed. The owner asked for it "
+                "on 2026-08-18 — \u201cyou can add period correct names and brands and "
+                "labels to things\u201d — and the tier is his standing ruling of the same "
+                "day: reconstructed, labelled as such, and bounded. What a mark may say "
+                "is the whole of the invention's fence: the HOUSE'S OWN NAME, which is "
+                "already in this dataset and already painted on the board over the door; "
+                "a COMMODITY WORD out of the trade's own attested description (Peck "
+                "advertising dry goods, hardware and groceries; Jones's grocery and "
+                "provision store), so the category is the source's and only the word on "
+                "the individual cask is invented; and, on a case in transit, its "
+                "destination and the one port this project can name in writing. Nothing "
+                "else — no trademark, no maker this town is not recorded as dealing "
+                "with, no price, no date, no slogan. Read the clauses in "
+                "tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166."
+            ),
+            "confidence": "reconstructed",
+            "stocks": {k: list(v) for k, v in sorted(MARK_STOCKS.items())},
+            "case_words": dict(sorted(MARK_CASE_WORD.items())),
+            "port": MARK_PORT,
+            "brand_every": MARK_BRAND_EVERY,
+            "deal_note": (
+                "Which word lands on which cask is a sha1 of the structure id offset "
+                "into the trade class's stock list, then the cask's own place in the "
+                "row — the same deal tools/generate_business_signboards.py uses to "
+                "choose a colourway, and for the same reason: two neighbouring "
+                "frontages must not both open with FLOUR, and the answer must be the "
+                "same on every run. Every third cask carries the house's brand instead "
+                "of a commodity, burned into the head the way a cooper's or a "
+                "merchant's mark was."
+            ),
+            "letterforms_note": (
+                "Three, and they are the signboards' faces one layer down (T-0066): a "
+                "STENCIL for a commodity word, cut with the bridges a stencil plate "
+                "leaves; a BRAND for the house's own mark on a barrel head; and a "
+                "SHIPPING mark, brush-written, on the face of a packing case. The "
+                "letterform is invented exactly as the boards' is (L159) and is drawn "
+                "by renderers/web/js/yard.js on one canvas atlas, so a mark costs no "
+                "triangles and the layer keeps its one material."
+            ),
         },
         "rule": {
             "note": (

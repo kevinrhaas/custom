@@ -19,7 +19,9 @@
     "wagons_in_yards": 3,
     "wagon_stands_refused": 35,
     "benches": 1,
-    "sheds": 1
+    "sheds": 1,
+    "marked_objects": 148,
+    "distinct_marks": 70
   },
   "existence": {
     "value": true,
@@ -142,6 +144,64 @@
       "note": "NOT DRAWN, AND IT IS THE SAME DISCIPLINE THE SIGNBOARDS KEEP. No barrel carries a brand, a merchant's name, a stencil or a mark of any kind, and no case is labelled. Nothing this project holds says what was in any barrel in Chicago on this date, still less whose it was, and painted names on two hundred casks would be the most conspicuous fiction in the scene — the point docs/LIBERTIES.md L25 settled for the one documented sign and L130 generalised."
     }
   },
+  "mark_rule": {
+    "note": "T-0065. Every barrel and every case on this record carries a MARK, and the mark is dealt by a rule rather than typed. The owner asked for it on 2026-08-18 — “you can add period correct names and brands and labels to things” — and the tier is his standing ruling of the same day: reconstructed, labelled as such, and bounded. What a mark may say is the whole of the invention's fence: the HOUSE'S OWN NAME, which is already in this dataset and already painted on the board over the door; a COMMODITY WORD out of the trade's own attested description (Peck advertising dry goods, hardware and groceries; Jones's grocery and provision store), so the category is the source's and only the word on the individual cask is invented; and, on a case in transit, its destination and the one port this project can name in writing. Nothing else — no trademark, no maker this town is not recorded as dealing with, no price, no date, no slogan. Read the clauses in tools/generate_yard_goods.py and the bounds in docs/LIBERTIES.md L166.",
+    "confidence": "reconstructed",
+    "stocks": {
+      "auction": [
+        "FLOUR",
+        "SALT",
+        "NAILS",
+        "TOBACCO"
+      ],
+      "counter": [
+        "FLOUR",
+        "SALT",
+        "SUGAR",
+        "COFFEE",
+        "NAILS",
+        "WHISKEY"
+      ],
+      "druggist": [
+        "LINSEED OIL",
+        "TURPENTINE",
+        "EPSOM SALTS",
+        "ALUM"
+      ],
+      "forwarding": [
+        "FLOUR",
+        "PORK",
+        "SALT",
+        "POTASH"
+      ],
+      "provision": [
+        "FLOUR",
+        "PORK",
+        "SALT",
+        "WHISKEY",
+        "CIDER",
+        "VINEGAR"
+      ],
+      "trading": [
+        "FLOUR",
+        "SALT",
+        "POWDER",
+        "TOBACCO"
+      ]
+    },
+    "case_words": {
+      "auction": "SUNDRIES",
+      "counter": "DRY GOODS",
+      "druggist": "GLASS",
+      "forwarding": "MERCHANDISE",
+      "provision": "TEA",
+      "trading": "HARDWARE"
+    },
+    "port": "BUFFALO",
+    "brand_every": 3,
+    "deal_note": "Which word lands on which cask is a sha1 of the structure id offset into the trade class's stock list, then the cask's own place in the row — the same deal tools/generate_business_signboards.py uses to choose a colourway, and for the same reason: two neighbouring frontages must not both open with FLOUR, and the answer must be the same on every run. Every third cask carries the house's brand instead of a commodity, burned into the head the way a cooper's or a merchant's mark was.",
+    "letterforms_note": "Three, and they are the signboards' faces one layer down (T-0066): a STENCIL for a commodity word, cut with the bridges a stencil plate leaves; a BRAND for the house's own mark on a barrel head; and a SHIPPING mark, brush-written, on the face of a packing case. The letterform is invented exactly as the boards' is (L159) and is drawn by renderers/web/js/yard.js on one canvas atlas, so a mark costs no triangles and the layer keeps its one material."
+  },
   "rule": {
     "note": "A named record (not inf_/recon_, not 'Reconstructed'), a GOODS-KEEPING trade whose stock arrived in boxes and barrels, that trade attested or inferred rather than reconstructed, standing on the scene date, on the TOWN's ground rather than inside the fort's palisade, and a strip in front of the facade clear of every other committed footprint. How many objects is arithmetic on the frontage — one barrel per 2.2 m of usable wall to a cap of four, a case past them at 4 m, a second case stacked at 7 m, and a public house's empty laid on its side at 5 m — never a lottery. Read the clauses and their reasons in tools/generate_yard_goods.py.",
     "goods_trades": [
@@ -212,7 +272,14 @@
             687.87,
             -44.51
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -221,7 +288,14 @@
             687.87,
             -45.13
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -230,7 +304,14 @@
             687.87,
             -45.75
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "JOHN BATES JR."
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -239,7 +320,14 @@
             687.87,
             -46.37
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -248,7 +336,15 @@
             687.87,
             -47.67
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "JOHN BATES JR.",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -257,7 +353,14 @@
             687.87,
             -47.67
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "SUNDRIES"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -298,7 +401,14 @@
             425.15,
             -23.35
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -307,7 +417,14 @@
             425.77,
             -23.35
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -316,7 +433,14 @@
             426.74,
             -23.35
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "RUFUS BROWN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "crate",
@@ -325,7 +449,15 @@
             428.07,
             -23.35
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "RUFUS BROWN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -366,7 +498,14 @@
             388.11,
             2.45
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TURPENTINE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -375,7 +514,14 @@
             388.73,
             2.45
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "EPSOM SALTS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -384,7 +530,14 @@
             389.35,
             2.45
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PHILO CARPENTER"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "crate",
@@ -393,7 +546,15 @@
             390.65,
             2.45
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PHILO CARPENTER",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -434,7 +595,14 @@
             552.21,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -443,7 +611,14 @@
             552.83,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -452,7 +627,14 @@
             553.45,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "CHICAGO DEMOCRAT OFFICE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -461,7 +643,14 @@
             554.07,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -470,7 +659,15 @@
             555.37,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "CHICAGO DEMOCRAT OFFICE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -479,7 +676,14 @@
             555.37,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -520,7 +724,14 @@
             318.31,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -529,7 +740,14 @@
             317.69,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -538,7 +756,14 @@
             317.07,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "EXCHANGE COFFEE HOUSE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -547,7 +772,14 @@
             316.45,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -556,7 +788,14 @@
             315.48,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -565,7 +804,15 @@
             314.16,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "EXCHANGE COFFEE HOUSE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -574,7 +821,14 @@
             314.16,
             -100.21
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -615,7 +869,14 @@
             -148.04,
             -95.39
           ],
-          "bearing_deg": 270.0
+          "bearing_deg": 270.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -624,7 +885,14 @@
             -148.04,
             -94.77
           ],
-          "bearing_deg": 270.0
+          "bearing_deg": 270.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -633,7 +901,14 @@
             -148.04,
             -94.15
           ],
-          "bearing_deg": 270.0
+          "bearing_deg": 270.0,
+          "mark": {
+            "lines": [
+              "GREEN TREE TAVERN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -642,7 +917,14 @@
             -148.04,
             -93.18
           ],
-          "bearing_deg": 270.0
+          "bearing_deg": 270.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -651,7 +933,15 @@
             -148.04,
             -91.86
           ],
-          "bearing_deg": 270.0
+          "bearing_deg": 270.0,
+          "mark": {
+            "lines": [
+              "GREEN TREE TAVERN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -692,7 +982,14 @@
             348.11,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -701,7 +998,14 @@
             348.73,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -710,7 +1014,14 @@
             349.35,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JONES"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -719,7 +1030,14 @@
             349.97,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -728,7 +1046,15 @@
             351.26,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JONES",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -737,7 +1063,14 @@
             351.26,
             3.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -778,7 +1111,14 @@
             588.81,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -787,7 +1127,14 @@
             589.43,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -796,7 +1143,14 @@
             590.05,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "HARMON & LOOMIS"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -805,7 +1159,14 @@
             590.67,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "COFFEE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -814,7 +1175,15 @@
             591.97,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "HARMON & LOOMIS",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -823,7 +1192,14 @@
             591.97,
             2.27
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -864,7 +1240,14 @@
             119.29,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -873,7 +1256,14 @@
             118.67,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SUGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -882,7 +1272,14 @@
             118.05,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "HOGAN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -891,7 +1288,14 @@
             117.43,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -900,7 +1304,15 @@
             116.13,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "HOGAN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -909,7 +1321,14 @@
             116.13,
             -98.75
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -950,7 +1369,14 @@
             1091.31,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TOBACCO"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -959,7 +1385,14 @@
             1091.93,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -968,7 +1401,14 @@
             1092.55,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "COL. JEAN BAPTISTE BEAUBIEN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -977,7 +1417,14 @@
             1093.17,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "POWDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -986,7 +1433,15 @@
             1094.46,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "COL. JEAN BAPTISTE BEAUBIEN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -995,7 +1450,14 @@
             1094.46,
             150.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "HARDWARE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1036,7 +1498,14 @@
             258.11,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1045,7 +1514,14 @@
             258.73,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1054,7 +1530,14 @@
             259.35,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "J. H. KINZIE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1063,7 +1546,14 @@
             259.97,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "POTASH"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1072,7 +1562,16 @@
             261.26,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "J. H. KINZIE",
+              "CHICAGO",
+              "FROM BUFFALO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1081,7 +1580,14 @@
             261.26,
             1.57
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "MERCHANDISE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1122,7 +1628,14 @@
             114.49,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1131,7 +1644,14 @@
             113.87,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "POTASH"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1140,7 +1660,14 @@
             113.25,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "KINZIE & HUNTER"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1149,7 +1676,14 @@
             112.63,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1158,7 +1692,16 @@
             111.33,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "KINZIE & HUNTER",
+              "CHICAGO",
+              "FROM BUFFALO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1167,7 +1710,14 @@
             111.33,
             55.65
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "MERCHANDISE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1208,7 +1758,14 @@
             678.61,
             1.54
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1217,7 +1774,14 @@
             679.23,
             1.54
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1226,7 +1790,14 @@
             679.85,
             1.54
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "MADORE BEAUBIEN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "crate",
@@ -1235,7 +1806,15 @@
             681.14,
             1.54
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "MADORE BEAUBIEN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1244,7 +1823,14 @@
             681.14,
             1.54
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1285,7 +1871,14 @@
             723.41,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1294,7 +1887,14 @@
             722.79,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1303,7 +1903,14 @@
             722.17,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "MANSION HOUSE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1312,7 +1919,14 @@
             721.55,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1321,7 +1935,14 @@
             720.58,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1330,7 +1951,15 @@
             719.25,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "MANSION HOUSE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1339,7 +1968,14 @@
             719.25,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1380,7 +2016,14 @@
             13.19,
             49.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1389,7 +2032,14 @@
             12.57,
             49.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SUGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1398,7 +2048,14 @@
             11.95,
             49.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "MILLER HOUSE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "crate",
@@ -1407,7 +2064,15 @@
             10.66,
             49.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "MILLER HOUSE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1416,7 +2081,14 @@
             10.66,
             49.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1457,7 +2129,14 @@
             201.11,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1466,7 +2145,14 @@
             201.73,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "POTASH"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1475,7 +2161,14 @@
             202.35,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NEWBERRY & DOLE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1484,7 +2177,14 @@
             202.97,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1493,7 +2193,16 @@
             204.27,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NEWBERRY & DOLE",
+              "CHICAGO",
+              "FROM BUFFALO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1502,7 +2211,14 @@
             204.27,
             6.75
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "MERCHANDISE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1543,7 +2259,14 @@
             428.91,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1552,7 +2275,14 @@
             429.53,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1561,7 +2291,14 @@
             430.15,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "P. F. W. PECK"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1570,7 +2307,14 @@
             430.77,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1579,7 +2323,15 @@
             432.06,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "P. F. W. PECK",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1588,7 +2340,14 @@
             432.06,
             0.67
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1629,7 +2388,14 @@
             114.21,
             -122.07
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "LINSEED OIL"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1638,7 +2404,14 @@
             114.83,
             -122.07
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TURPENTINE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1647,7 +2420,15 @@
             116.12,
             -122.07
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PHILO CARPENTER",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -1688,7 +2469,14 @@
             628.11,
             1.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "EPSOM SALTS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1697,7 +2485,14 @@
             628.73,
             1.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "ALUM"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1706,7 +2501,14 @@
             629.35,
             1.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PRUYNE & KIMBALL"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "crate",
@@ -1715,7 +2517,15 @@
             630.64,
             1.95
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PRUYNE & KIMBALL",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -1756,7 +2566,14 @@
             -62.15,
             -63.61
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1765,7 +2582,14 @@
             -62.15,
             -64.23
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "SUGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1774,7 +2598,15 @@
             -62.15,
             -65.52
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "ROBERT A. KINZIE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         }
       ]
     },
@@ -1815,7 +2647,14 @@
             102.21,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1824,7 +2663,14 @@
             102.83,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1833,7 +2679,14 @@
             103.45,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SAUGANASH HOTEL"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1842,7 +2695,14 @@
             104.07,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1851,7 +2711,14 @@
             105.04,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1860,7 +2727,15 @@
             106.37,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SAUGANASH HOTEL",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1869,7 +2744,14 @@
             106.37,
             -122.05
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -1910,7 +2792,14 @@
             967.19,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1919,7 +2808,14 @@
             966.57,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1928,7 +2824,14 @@
             965.95,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "STEAMBOAT HOTEL"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -1937,7 +2840,14 @@
             965.33,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -1946,7 +2856,14 @@
             964.36,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -1955,7 +2872,15 @@
             963.03,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "STEAMBOAT HOTEL",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -1964,7 +2889,14 @@
             963.03,
             282.45
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -2005,7 +2937,14 @@
             520.59,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SUGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2014,7 +2953,14 @@
             519.97,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "COFFEE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2023,7 +2969,14 @@
             519.35,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "THOMAS CHURCH"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -2032,7 +2985,14 @@
             518.73,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -2041,7 +3001,15 @@
             517.43,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "THOMAS CHURCH",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -2050,7 +3018,14 @@
             517.43,
             -100.57
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -2091,7 +3066,14 @@
             687.01,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2100,7 +3082,14 @@
             686.39,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2109,7 +3098,14 @@
             685.77,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TREMONT HOUSE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -2118,7 +3114,14 @@
             685.15,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2127,7 +3130,14 @@
             684.18,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -2136,7 +3146,15 @@
             682.86,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TREMONT HOUSE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -2145,7 +3163,14 @@
             682.86,
             -101.11
           ],
-          "bearing_deg": 180.0
+          "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -2186,7 +3211,14 @@
             -142.24,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "VINEGAR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2195,7 +3227,14 @@
             -141.62,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2204,7 +3243,14 @@
             -141.0,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WESTERN HOTEL"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -2213,7 +3259,14 @@
             -140.38,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "SALT"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2222,7 +3275,14 @@
             -139.41,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -2231,7 +3291,15 @@
             -138.09,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WESTERN HOTEL",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -2240,7 +3308,14 @@
             -138.09,
             -262.83
           ],
-          "bearing_deg": 0.0
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     },
@@ -2281,7 +3356,14 @@
             -69.75,
             -45.91
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2290,7 +3372,14 @@
             -69.75,
             -46.53
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "CIDER"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2299,7 +3388,14 @@
             -69.75,
             -47.15
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "WOLF POINT TAVERN"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
         },
         {
           "kind": "barrel",
@@ -2308,7 +3404,14 @@
             -69.75,
             -47.77
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "barrel",
@@ -2317,7 +3420,14 @@
             -69.75,
             -48.74
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "PORK"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         },
         {
           "kind": "crate",
@@ -2326,7 +3436,15 @@
             -69.75,
             -50.07
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "WOLF POINT TAVERN",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
         },
         {
           "kind": "crate",
@@ -2335,7 +3453,14 @@
             -69.75,
             -50.07
           ],
-          "bearing_deg": 90.0
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
         }
       ]
     }

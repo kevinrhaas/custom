@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 165,
+  "count": 166,
   "liberties": [
     {
       "id": "L1",
@@ -9200,7 +9200,7 @@
       ],
       "covers": [],
       "recorded": "2026-08-18",
-      "revised": "2026-08-18",
+      "revised": "2026-08-22",
       "fields": [
         {
           "label": "Decision",
@@ -9225,6 +9225,10 @@
         {
           "label": "Revised",
           "text": "2026-08-18 (T-0084) — **the tongue is now drawn at an inclination, and the inclination is invented.** It was drawn as a horizontal box deep enough to span the drop from the front axle to the ground, on the stated reasoning that a stick's exact angle is not a claim this record makes; the effect was a 2.75 m pole 0.055 m thick rendered 0.48 m deep, which reads in the scene as a plank lying in the grass, and the owner read it that way from the Green Tree's yard on the day it shipped. It is now a box of the tongue's own section along its own line, which puts the angle on the record instead of hiding it inside a slab: the pole runs from the front axle's centre down to the ground with its far end resting on the grass, **10.6 degrees**, because nothing is hitched to it. What bounds that number is the two ends — the recorded front-wheel radius sets the root and the ground sets the tip — so it is the only angle an unhitched pole of this length can lie at, and it moves if either of those recorded values moves. The recorded 2.75 m is now read as the pole's LENGTH rather than its horizontal run, which is what the number means; the tip lands 2.70 m ahead of the body instead of 2.75 m. Nothing about the wagon's sizes changed, and no new value was invented."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-22 (T-0065) — **the \"no marks\" clause of this entry is superseded by L166.** Its decision above reads *\"No barrel carries a brand, a merchant's name, a stencil or a mark, and no case is labelled\"*; the owner overruled that on 2026-08-18 (*\"you can add period correct names and brands and labels to things\"*), and every cask and case on this record now carries a stencilled commodity word, the house's own brand or a shipping mark. The reasoning above is kept verbatim because it was the honest reading before he ruled, and L166 states what now bounds the marks. Nothing else in this entry changes: the frontages, the counts, the placements and the objects' sizes are exactly as they were."
         }
       ]
     },
@@ -10793,6 +10797,40 @@
         {
           "label": "Recorded",
           "text": "2026-08-21."
+        }
+      ]
+    },
+    {
+      "id": "L166",
+      "title": "The goods say what they are: a stencil, a brand and a shipping mark on 148 casks and cases, every word of them dealt",
+      "section": "per_subject",
+      "subjects": [
+        "peck_store",
+        "tremont_house_1"
+      ],
+      "covers": [],
+      "recorded": "2026-08-22",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every barrel and every packing case on `data/yard/town_trade_goods.json` now carries a **MARK** — 102 casks and 46 cases, at 26 named trading frontages, **70 distinct marks** in three letterforms. A cask carries a stencilled **commodity word** (FLOUR, PORK, SALT, WHISKEY, LINSEED OIL, POTASH…), except every third one, which carries the **house's own brand** burned into its head (P. F. W. PECK, NEWBERRY & DOLE, GREEN TREE TAVERN). A case carries a **shipping mark** — the consignee over CHICAGO, and the forwarding houses' cases add FROM BUFFALO. The marks are dealt by `tools/generate_yard_goods.py`, re-derived byte for byte by `tools/check.sh`, and painted by `renderers/web/js/yard.js` onto one canvas atlas, so a mark costs no triangles and the layer keeps its one material."
+        },
+        {
+          "label": "Why",
+          "text": "because **L131 said the opposite and the owner overruled it**. That entry's decision read *\"No barrel carries a brand, a merchant's name, a stencil or a mark, and no case is labelled\"* — L25's discipline for the one documented sign, generalised twice. The owner, **2026-08-18, verbatim: \"you can add period correct names and brands and labels to things.\"** It is the third time the same restraint has been overruled by the same person on the same day — the wagons (L162), the signs (L159, T-0066) — and his standing ruling of that day is the tier: *\"you are totally fine to be liberal with adding reconstructed items when i ask for things, you can just label and mark them as such.\"* **What bounds the invention, and this is the whole of the fence.** A mark may say **three things and nothing else**. 1. **The house's own name**, which is not invented at all: it is the record's name, the same string the signboard over the door paints (`_house_mark` takes the possessive owner out of it, so \"P. F. W. Peck's Store\" brands P. F. W. PECK and \"Tremont House (the first)\" brands TREMONT HOUSE). A cask at Peck's door and the board above it therefore agree, which is the point. 2. **A commodity word out of the trade's OWN attested description.** The dossiers write these businesses up in their own advertisements' words — Peck *\"advertising dry goods, hardware and groceries\"*, Brewster & Hogan *\"dealers in dry goods, groceries and hardware\"*, Jones's *\"grocery and provision store\"* (`docs/research/04-structures-south.md`). So the CATEGORY a stencil names is the source's; what is invented is only which word of that category lands on which cask. Six stock lists, one per trade class, are on the record as `mark_rule.stocks`. 3. **A destination and one port.** A case in transit carried its consignee and where it was going, so the cases read the house over CHICAGO. The forwarding houses' cases name where they came from, and the port is not free either: BUFFALO is the lake head this project has in writing — the schooner *Jackson* from Buffalo, 1833-06-27, and the *Illinois* into the river in 1834. **Nothing else.** No trademark, no maker this town is not recorded as dealing with, no price, no date, no slogan, no lot number. A word that is neither the house's own name nor a period commodity of its own attested trade does not go on a barrel. **What is invented, plainly.** That any of these particular casks carried any mark at all on 1 July 1835; which word each one carries; that every third cask was branded rather than stencilled; that the cases were marked to Chicago and that the forwarding houses' came from Buffalo rather than from anywhere else. **The trading house's list is held deliberately short** — flour, salt, powder and tobacco — and nothing on it names or depicts the people that house traded with, which is AGENTS.md's standing constraint and is not relaxed by a barrel. **The letterforms are invented too, exactly as the boards' are (L159).** A browser ships no 1830s specimen book, so three faces approximate the period's working hands: a condensed, widely tracked STENCIL drawn with the bridges a cut plate has to leave; a roman BRAND in a browner ink, because a brand is scorched wood and not paint; and a plain upright SHIPPING mark, brush-written. What they have to do is be legible from the footway and not read as modern type. **How it is drawn, and what it costs.** One canvas atlas, 8 columns of 192 px cells, one cell per distinct mark plus a white one. Every vertex on the layer that carries no mark samples the white cell, and white multiplies to nothing — so a wagon, a fence rail of a shed and an unmarked stave are drawn exactly as they were before this layer had a texture. **No triangle was added and no draw call was added**: the marks ride on the same single material and the same `CHUNK_M` buckets."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor who walks up to the casks outside Peck's store can read what is in them, and no source says any of those particular barrels held anything. The confidence view still takes the whole layer away at `reconstructed`, marks and all, because the mark cannot be more certain than the barrel it is painted on."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0065, from the owner's brief of 2026-08-18. **Supersedes L131's \"no marks\" clause**; L131 keeps its reasoning verbatim and gains a pointer here. Related: **L159** (the boards' names and letterforms, the same override one layer over), **L162** (the wagons, the same override the same day), **L25** (where the restraint started), **L130**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-22."
         }
       ]
     },
