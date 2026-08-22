@@ -1,7 +1,7 @@
 ---
 id: T-0075
 title: Hold the 2026-08-18 owner brief as source records
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-22
+pr: 304
+claimed_by: run 8/22/2026, 12:24:46 AM CT
 blocked_on: null
 needs_bake: false
 ---

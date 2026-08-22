@@ -2435,6 +2435,24 @@ for (const [label, viewport, touch] of [
         spans: spans.length,
         signs: signs.length,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
+        // T-0130: the board and the card have to agree about WHO, over the whole
+        // set and not only at the Tremont. Punctuation is dropped because the
+        // board keeps the advertisement's own spelling ("Steam-Boat Hotel") and
+        // the card carries this project's ("Steamboat Hotel").
+        identityMismatch: signs.filter((sg) => {
+          const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+          const id = norm(sg.sign_identity);
+          return !id || !norm(sg.sign_text).includes(id) || !norm(sg.name).includes(id);
+        }).map((sg) => sg.structure_id),
+        // And no board has gone back to carrying this project's own way of
+        // describing a BUILDING. "Log" is the tell T-0130 was raised over.
+        labelled: signs.filter((sg) => /\blog\b/i.test(sg.sign_text || ''))
+          .map((sg) => sg.structure_id),
+        // Every board names a trade as well as a proprietor — the register the
+        // advertisements use, and the thing a descriptive label never carried.
+        withTrade: signs.filter((sg) => (sg.sign_lines || [])
+          .some((l) => l.role === 'trade')).length,
+        devices: signs.filter((sg) => sg.sign_device).map((sg) => sg.structure_id),
         distinctArt: new Set(uvRects.values()).size,
         mountings: new Set(signs.map((sg) => sg.mounting)).size,
         grounds: new Set(signs.map((sg) => sg.style?.ground)).size,
@@ -2545,10 +2563,9 @@ for (const [label, viewport, touch] of [
 
     // A sign is a thing you read and then walk into, so aiming at the board has
     // to open the business behind it and not the wall past it — AND THE CARD IT
-    // OPENS HAS TO SAY WHAT THE BOARD SAYS (T-0066). A visitor who reads a name
-    // off a plank and then taps the plank must not be shown a different
-    // business; the record carries `sign_text` for exactly that agreement, and
-    // this is where the two are put side by side.
+    // OPENS HAS TO BE THE SAME BUSINESS (T-0066, corrected by T-0130). The
+    // record carries `sign_identity` for exactly that agreement, and this is
+    // where the board and the card are put side by side.
     const boardPick = await page.evaluate(() => {
       const hits = [];
       let card = null;
@@ -2564,22 +2581,62 @@ for (const [label, viewport, touch] of [
       }
       const sign = (window.__chicago4d.signage.signs ?? [])
         .find((s) => s.structure_id === 'tremont_house_1') ?? null;
-      return { hits, card, painted: sign?.sign_text ?? null };
+      return {
+        hits, card, painted: sign?.sign_text ?? null,
+        identity: sign?.sign_identity ?? null,
+      };
     });
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
     check(`${label}: aiming at a signboard opens the business behind it`,
       boardPick.hits.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(boardPick.hits)].join(', ') || 'nothing'}]`);
-    // The card's name may carry a trailing parenthetical the board does not —
-    // "Tremont House (the first)" is this project telling itself which Tremont
-    // it means — so the agreement asked for is that the painted name IS the
-    // card's name, up to that one documented reduction and to capitals.
-    const cardName = (boardPick.card ?? '').replace(/\s*\([^)]*\)\s*$/, '').trim();
-    check(`${label}: the name painted on the board is the name on its card`,
-      !!boardPick.painted && !!cardName
-      && boardPick.painted.toUpperCase() === cardName.toUpperCase(),
+    // THIS ASSERTION IS CORRECTED BY T-0130, NOT RELAXED BY IT, and the
+    // difference is worth being explicit about because a check that gets weaker
+    // usually got weaker to go green.
+    //
+    // T-0066 asserted STRING EQUALITY: the painted name IS the card's name, up
+    // to a trailing parenthetical. That was enforcing the wrong invariant,
+    // because it took two different objects to be one. A record's `name` is OUR
+    // LABEL FOR A BUILDING — "Philo Carpenter's Log Drug Store", "Hogan's Store"
+    // — written so a modern reader knows which structure is meant. A SIGNBOARD
+    // carries what the trade lettered: the proprietor or firm and his trade, in
+    // the register a signwriter worked in. Held to equality, the board could
+    // only ever be the museum caption, which is the defect T-0130 was raised
+    // over. The two are now allowed to differ.
+    //
+    // What must NOT differ is WHO. A visitor who reads a name off a plank and
+    // then taps the plank must not be shown a different business, so the record
+    // declares a `sign_identity` — the proprietor, the firm or the house — and
+    // it has to appear in the board AND in the card. That is asserted here at
+    // the Tremont's own board against the CARD THE PICK ACTUALLY OPENED, and
+    // over every sign in the town in the check below, which is more than
+    // equality ever covered: equality was only ever tested at this one board.
+    const cardName = (boardPick.card ?? '').trim();
+    const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const who = norm(boardPick.identity);
+    check(`${label}: the board and the card agree about whose business this is`,
+      !!boardPick.painted && !!cardName && !!who
+      && norm(boardPick.painted).includes(who) && norm(cardName).includes(who),
       `board reads "${boardPick.painted ?? 'nothing'}", card says `
-      + `"${boardPick.card ?? 'nothing'}"`);
+      + `"${boardPick.card ?? 'nothing'}", both must carry `
+      + `"${boardPick.identity ?? 'no declared identity'}"`);
+    check(`${label}: every board names its proprietor and its trade, not our label`,
+      boards.identityMismatch?.length === 0 && boards.labelled?.length === 0
+        && boards.withTrade === boards.signs,
+      `${boards.identityMismatch?.length} board(s) disagree with their card `
+      + `[${(boards.identityMismatch ?? []).join(', ')}], `
+      + `${boards.labelled?.length} carry a building label `
+      + `[${(boards.labelled ?? []).join(', ')}], `
+      + `${boards.withTrade}/${boards.signs} letter a trade`);
+    // ONE PAINTED DEVICE IN THE TOWN, and it is the one a Chicago tradesman
+    // described himself: Carpenter's golden mortar, from his own 1835 notice
+    // "AT THE SIGN OF THE GOLDEN MORTAR". A device must not spread to trades
+    // whose advertisements name none — that would be this layer generalising an
+    // invention — so the count is pinned exactly rather than bounded below.
+    check(`${label}: the golden mortar is on Carpenter's board and on no other`,
+      boards.devices?.length === 1
+        && boards.devices[0] === 'carpenter_south_water_store',
+      `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //
@@ -4044,16 +4101,19 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Nine boats since T-0063 — three schooners in the reach below the
-    // drawbridge, four rowboats at the South Water bank, two canoes at the
+    // Thirteen boats since T-0140 — three schooners in the reach below the
+    // drawbridge and TWO AT THE WOLF POINT LANDINGS, four rowboats at the South
+    // Water bank and two more at the west bank at the forks, two canoes at the
     // fort landing — and ZERO refused: every authored position was chosen
     // against the committed heightfield, so a refusal appearing here means the
-    // terrain moved under the record and the record was not re-read.
+    // terrain moved under the record and the record was not re-read. FIVE
+    // planting keep-outs, one per BEACHED hull (the two South Water skiffs, the
+    // Wolf Point skiff and the two fort canoes); an afloat hull needs none.
     check(`${label}: every authored boat is on the water`,
-      flotilla.census?.boats === 9 && flotilla.census?.refused === 0
-        && flotilla.census?.schooners === 3 && flotilla.census?.rowboats === 4
+      flotilla.census?.boats === 13 && flotilla.census?.refused === 0
+        && flotilla.census?.schooners === 5 && flotilla.census?.rowboats === 6
         && flotilla.census?.canoes === 2 && flotilla.verts > 0
-        && flotilla.keepOut === 4,
+        && flotilla.keepOut === 5,
       `${flotilla.census?.boats} boat(s) (${flotilla.census?.schooners} schooner(s), `
       + `${flotilla.census?.rowboats} rowboat(s), ${flotilla.census?.canoes} canoe(s)), `
       + `${flotilla.census?.refused} refused, ${flotilla.verts} vertices, `
@@ -4456,6 +4516,92 @@ for (const [label, viewport, touch] of [
       naming.planted[0] !== null && naming.planted[1] !== null
       && naming.planted[2] === null,
       `planted verdicts: ${JSON.stringify(naming.planted)}`);
+
+    // --- and the title may not be a part number at all (T-0076) -------------
+    //
+    // Owner-reported from the same card: "this name is not great Reconstructed D3
+    // one-room frame cottage #03 … give the locations useful names not technical D3 #03
+    // names, you can have that somewhere on the card for reference identity purposes but
+    // dont make it the title." The rule is `js/display-name.js`; this asserts the three
+    // things that rule owes a visitor, on the shipped module rather than on a copy of it.
+    //
+    // Whole-registry again, for the naming gate's reason: the titles are composed by one
+    // function over one dataset, so a regression arrives 222 at a time. The card check
+    // underneath is what makes it about the CARD — a title composed correctly and never
+    // rendered would satisfy a registry scan and satisfy nobody standing in the town.
+    const titles = await page.evaluate(async () => {
+      const mod = await import(new URL('js/display-name.js', location.href).href);
+      const registry = window.__chicago4d.registry;
+      const specShaped = [];
+      let anonymous = 0;
+      let empty = 0;
+      for (const [id, record] of registry) {
+        const s = record?.sidecar;
+        if (!s) continue;
+        const { title, spec } = mod.displayName(s, id);
+        if (!title) empty += 1;
+        if (s.reconstruction?.status === 'inferred_anonymous') {
+          anonymous += 1;
+          if (/#\s*\d+\s*$/.test(title) || /^Reconstructed\b/.test(title)) {
+            specShaped.push(`${id}: "${title}"`);
+          }
+          // The other half of the owner's sentence: the production identity is kept.
+          if (spec !== s.name) specShaped.push(`${id}: reference line lost "${s.name}"`);
+        }
+      }
+      // A scan of a clean tree is indistinguishable from a scan of nothing, so the rule
+      // is also run against records made up here — one occupied, one empty, one named.
+      const anon = (extra) => ({
+        name: 'Reconstructed D3 one-room frame cottage #03',
+        reconstruction: { status: 'inferred_anonymous', family: 'D3' }, ...extra });
+      const planted = {
+        occupied: mod.displayName(anon({ residents: [{ name: 'The Tuttle household — a '
+          + 'reconstructed carpenter (south division)', relation: 'lived here',
+          persons: [{ name: 'Amos Tuttle', relationship: 'head' }] }] }), 'x').title,
+        vacant: mod.displayName(anon({}), 'x').title,
+        named: mod.displayName({ name: 'Green Tree Tavern' }, 'green_tree_tavern').title,
+      };
+      // And the search has to answer to BOTH names, which is the whole argument for
+      // keeping the production identity anywhere.
+      const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
+        ?.reconstruction?.status === 'inferred_anonymous'
+        && (registry.get(id)?.sidecar?.residents ?? []).length);
+      const sidecar = registry.get(anonId)?.sidecar ?? {};
+      const terms = mod.searchTerms(sidecar, anonId);
+      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
+      // The card itself: opened on that record, reading what a visitor reads.
+      window.__chicago4d.popup.show(registry.get(anonId));
+      const card = {
+        id: anonId,
+        heading: document.querySelector('#popup h2')?.textContent?.trim() ?? '',
+        reference: document.querySelector('#popup .pop-spec')?.textContent ?? '',
+        expected: mod.displayName(sidecar, anonId).title,
+        spec: sidecar.name,
+      };
+      window.__chicago4d.popup.close();
+      return { specShaped, anonymous, empty, planted, card,
+               searchable: {
+                 bySpec: terms.includes(sidecar.name ?? '\u0000'),
+                 byHousehold: !!surname && terms.includes(surname[1]),
+               } };
+    });
+    check(`${label}: no building titles itself by its part number`,
+      titles.anonymous > 100 && titles.empty === 0 && titles.specShaped.length === 0,
+      `${titles.anonymous} anonymous roofs, ${titles.empty} untitled, `
+      + `${titles.specShaped.length} still spec-titled — ${titles.specShaped.slice(0, 3).join(' | ')}`);
+    check(`${label}: the naming rule titles a house for its people and an empty one plainly`,
+      titles.planted.occupied === 'The Tuttle house'
+      && titles.planted.vacant === 'A vacant one-room frame cottage'
+      && titles.planted.named === 'Green Tree Tavern',
+      `planted: ${JSON.stringify(titles.planted)}`);
+    check(`${label}: the card shows that title and keeps the reference below it`,
+      titles.card.heading === titles.card.expected
+      && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
+      `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
+      + `over reference "${titles.card.reference.trim()}"`);
+    check(`${label}: search still finds it by its part number and by its household`,
+      titles.searchable.bySpec && titles.searchable.byHousehold,
+      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //
@@ -5855,7 +6001,7 @@ for (const [label, viewport, touch] of [
     // ratio, not a count, and it is deliberately not tuned to sit just under
     // today's reading.
     //
-    // T-0147 restores the absolute bar after T-0145 and T-0146 trim the axial
+    // T-0147 restores the absolute bar after T-0150 and T-0146 trim the axial
     // view. When it does, this check should go back to being a count — and a
     // count is what a promise to a person looks like.
     check(`${label}: the light tier stays materially cheaper than full at the worst stand`,

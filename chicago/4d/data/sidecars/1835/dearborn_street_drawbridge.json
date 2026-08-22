@@ -107,7 +107,10 @@
     "draw_lifting_gear": {
       "value": "chain_hoist",
       "confidence": "inferred",
-      "note": "CHAINS, FROM THE PLATES, AND THE THREE READINGS OF THE TEXTS STILL ALL STAND. This attribute read `false` from 2026-08-11 to 2026-08-21 and the note it carried then was right about the texts and is kept in substance below, because nothing in them has changed. WHAT CHANGED IS THAT THIS PROJECT NOW HOLDS PICTURES. The owner's brief of 2026-08-18 supplies two engravings of this crossing (data/sources/assets/owner_brief_2026_08_18/README.md, images 2 and 3) and both draw chains falling from the frames to the draw. Those are TIER 5 PICTORIAL views — retrospective, drawn decades after 1835 — and the standing rule for one is that it may drive form as `inferred` and may never drive a coordinate. So the tag on this row is `inferred` and what it is inferred from is a picture, which is a weaker thing than the `attested` rows above it and a stronger thing than the silence it replaces. THE HONEST CAVEAT, STATED FIRST BECAUSE IT IS THE ONE A READER SHOULD CARRY: an engraver working in the 1880s had this project's problem and fewer scruples, and the chain he drew may be the 1834 bridge's or may be borrowed from a later one — the same contamination that put the words 'double-leaf' and 'chains' into every modern retelling from the 1890s bascule. That is why the mesh's chain is built and labelled rather than argued into the texts. THE TEXTS, UNCHANGED. Andreas gives 'gallows pattern', the frames 'one at either end', the draw 'hoisted', and the frames holding it 'suspended in mid-air'. Neither he nor the chicagology page transcribing him contains the word chain, rope, windlass or leaf about THIS bridge; on that page 'leaves' and 'double-leaf' belong only to the 1890s bascule and the 1907 and 1963 bridges. THREE READINGS STILL FIT EVERY WORD — one leaf hinged at one end and hoisted from both frames; two leaves, each hoisted by the frame at its own end; or the whole sixty-foot section lifted bodily between the two frames — and the texts do not choose. The plates do, and form.draw_leaves is where that choice is recorded and tagged. WHAT IS BUILT: one chain each side of the deck at each frame, running from the underside of the head timber down to the free end of that frame's leaf at the centre of the opening, outboard of the deck edge so nothing crosses the footway. Straight rather than slack, drawn as a run rather than as links. The count, the section, the anchorage and the taut line are the archetype's and are recorded in docs/LIBERTIES.md L163. THE DRAW IS STILL BUILT CLOSED. No leaf is raised, because that is the one thing neither text nor plate settles for a particular moment, and a raised leaf would put a guess in the most conspicuous position on the bridge."
+      "sources": [
+        "dearborn_street_bridge_1834_engraving"
+      ],
+      "note": "CHAINS, FROM THE PLATES, AND THE THREE READINGS OF THE TEXTS STILL ALL STAND. This attribute read `false` from 2026-08-11 to 2026-08-21 and the note it carried then was right about the texts and is kept in substance below, because nothing in them has changed. WHAT CHANGED IS THAT THIS PROJECT NOW HOLDS PICTURES. The owner's brief of 2026-08-18 supplies two engravings of this crossing (data/sources/assets/owner_brief_2026_08_18/README.md, images 2 and 3) and both draw chains falling from the frames to the draw. ONE OF THE TWO IS NOW A SOURCE RECORD: T-0075 identified image 3 on 2026-08-22 as the wood engraving 'Old Dearborn Street (Old Point) Bridge', signed BAKER-CO, and this row cites it as `dearborn_street_bridge_1834_engraving`; the plate was retrieved and read, and the chains falling from the frame heads to the draw are on it. Image 2, the closer view, is a different plate and is still unidentified - see the identification table in the brief's README - so the phrase 'both engravings' above rests on one citation and one committed path. Those are TIER 5 PICTORIAL views — retrospective, drawn decades after 1835 — and the standing rule for one is that it may drive form as `inferred` and may never drive a coordinate. So the tag on this row is `inferred` and what it is inferred from is a picture, which is a weaker thing than the `attested` rows above it and a stronger thing than the silence it replaces. THE HONEST CAVEAT, STATED FIRST BECAUSE IT IS THE ONE A READER SHOULD CARRY: an engraver working in the 1880s had this project's problem and fewer scruples, and the chain he drew may be the 1834 bridge's or may be borrowed from a later one — the same contamination that put the words 'double-leaf' and 'chains' into every modern retelling from the 1890s bascule. That is why the mesh's chain is built and labelled rather than argued into the texts. THE TEXTS, UNCHANGED. Andreas gives 'gallows pattern', the frames 'one at either end', the draw 'hoisted', and the frames holding it 'suspended in mid-air'. Neither he nor the chicagology page transcribing him contains the word chain, rope, windlass or leaf about THIS bridge; on that page 'leaves' and 'double-leaf' belong only to the 1890s bascule and the 1907 and 1963 bridges. THREE READINGS STILL FIT EVERY WORD — one leaf hinged at one end and hoisted from both frames; two leaves, each hoisted by the frame at its own end; or the whole sixty-foot section lifted bodily between the two frames — and the texts do not choose. The plates do, and form.draw_leaves is where that choice is recorded and tagged. WHAT IS BUILT: one chain each side of the deck at each frame, running from the underside of the head timber down to the free end of that frame's leaf at the centre of the opening, outboard of the deck edge so nothing crosses the footway. Straight rather than slack, drawn as a run rather than as links. The count, the section, the anchorage and the taut line are the archetype's and are recorded in docs/LIBERTIES.md L163. THE DRAW IS STILL BUILT CLOSED. No leaf is raised, because that is the one thing neither text nor plate settles for a particular moment, and a raised leaf would put a guess in the most conspicuous position on the bridge."
     },
     "width_m": {
       "value": 3.048,
@@ -220,6 +223,28 @@
         "the number or spacing of bents",
         "the height of the gallows frames or of the deck above the water",
         "which bank the draw was hinged on"
+      ]
+    },
+    {
+      "source_id": "dearborn_street_bridge_1834_engraving",
+      "citation": "\"Old Dearborn Street (Old Point) Bridge\" — wood engraving, lettered in a panel across the foot of the plate and signed BAKER–CO at the lower right. Reproduced on Chicagology, \"Dearborn Street Bridges\", captioned \"First Dearborn Street bridge in 1834\".",
+      "url": "https://chicagology.com/harbor/riverbridges/dearbornstreetbridges/",
+      "archived_url": "http://web.archive.org/web/20260217032420/https://chicagology.com/harbor/riverbridges/dearbornstreetbridges/",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "twin timber gallows frames standing above the deck, braced, with a chain falling from each head to the draw",
+        "a railed deck carried the length of the crossing on timber cribbing",
+        "the draw drawn as two leaves butted at the centre of the opening",
+        "schooner-rigged vessels moored in the reach immediately below the bridge, masts crowding it",
+        "a tapering light or beacon structure on the shore near the mouth",
+        "low warehouses and long shed roofs standing along the river bank"
+      ],
+      "what_it_does_not_supply": [
+        "any coordinate, footprint outline or dimension — including where on the bank any warehouse stood",
+        "a leaf raised: the plate draws the draw closed, and how the leaves were lifted is not shown",
+        "a date of its own, or the year of the scene it draws within the bridge's 1834-1839 life",
+        "the identity of the brief's other Dearborn drawbridge engraving, which this record does not claim"
       ]
     },
     {

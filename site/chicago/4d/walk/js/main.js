@@ -203,7 +203,7 @@ const DETAIL = {
   // MORE than `full` promised the day before this commit. The bottom rung is
   // heavier than the old top rung, so `light` is no longer a floor a weak
   // machine can be promised — it is merely the cheapest of three expensive
-  // tiers. That was the trade the owner took knowingly, and T-0136 exists to
+  // tiers. That was the trade the owner took knowingly, and T-0149 exists to
   // win the floor back by trimming the axial view (distance culling or an LOD
   // down a long street) rather than by pretending the number is small.
   //
@@ -293,7 +293,7 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
 // gate is red at the worst stand on purpose. See T-0135.
 // 140 -> 215 on the same ruling and the same measurement: the worst stand draws
 // 200 calls at `full` where the reference stand drew 121. Chunking is what
-// spends calls down a long street, and T-0136 is where that gets traded back.
+// spends calls down a long street, and T-0149 is where that gets traded back.
 const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
 
 /**

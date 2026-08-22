@@ -159,7 +159,7 @@ not at the top of the queue.
 | — | TOWN | ~~T-I3(a)~~ | **DONE 2026-08-16** — the town's public buildings are **three roofs** and this project already had all three, so the refusal is now absolute rather than argued. The finding is the fourth building: **the court-house was not built yet** — Andreas fixes the season, the month AND the corner the record said nothing fixed, and the citation it had was a **picture caption** — so a record is taken OUT of a scene on evidence for the first time. Read its box before quoting any civic number |
 | 3 | TOWN | **T-I3(b)** | **NOT A PICK WITHOUT THE OWNER.** Three of the six I3 slots are a count of nothing; the inventory's arithmetic is closed, so removing them is either "the town had 662 roofs" or "three roofs were not civic". Two different claims about the town, and the research settles neither |
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
-| — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16** — the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
+| — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16 · ITS CAUSE IS REFUTED 2026-08-22 — read K30(d) before quoting any of this row.** The anchors it compares with the half-width are BACK corners, so the comparison could not see the displacement it looked for; the real cause is the committed `south_water` centreline standing 4.3–8.8 m south of the control the placements were offset from. Its own text follows: the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
 | — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
 | — | TOWN | ~~K28~~ | **DONE 2026-08-16** — three questions, three clauses, **two gates, and not one record moved**. The table is **projections** (the pair reading is refused because it refuses T-A4's fourteenth labouring household, one of the four rule 6 says its third test recovers); there **is** a cap, one adoption per trade per block, which is what makes the projections safe; and test 1 means the trade's **own committed text**, so the laundresses' D2 and the teamsters' D4 are refused with the remedy named. All **21** standing block adoptions already obeyed it. Read its box before quoting any adoption rule |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
@@ -186,9 +186,9 @@ rationed.**
 | — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**. Read its box before shrinking any archetype plate |
 | — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
 | **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
-| **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
+| — | TOWN | ~~K30(c)~~ | **SEEN** | **REFUTED 2026-08-22 (T-0009, K30(d)) — DO NOT RUN THIS REPAIR.** The 29 buildings are still drawn standing in the roadway, but not for this reason: `--anchors` finds the record's point at the BACK corner on **all 17** of the deep records and on the kerb face on **none** of them, so the street-facing FACE is what was placed on the frontage and reflection would take twelve documented buildings a full depth behind their own frontage. The cause is the committed `south_water` centreline, deliberately shifted 4.3–8.8 m south of the control the placements were offset from. **What to do about it is the owner's, and T-0009 is blocked on him** |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
-| **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
+| — | RENDERING | ~~R-W2c~~ | **SEEN** | **DONE 2026-08-22 (T-0008) — the stack is not the roof.** 157 stacks on 143 buildings now carry a masonry material of their own: **brick on 112 framed buildings**, off `frame_tavern`'s committed Petford value moved into the sheet, and a **cat-and-clay daub on 31 log cabins** at the midpoint of the two committed values that bound it. `docs/RESEARCH/chimneys.md` is the fabric argument; L168 records the invention. **Three findings.** It was NOT a one-file fix and it was not palette-only: the two dispositions the archetypes had already argued in prose are two materials, and the fabric had to be researched before either could be chosen. **It cost NO draw call** — `buildings.js::materialKey` batches on maps and flags, never on colour or roughness, both of which ride per vertex, so 113 calls before and 113 after at `south_water`. And R-W2a's *219 stacks on 199 buildings* does not reproduce: the resolved parameters of the committed masters give **157 on 143** across four archetypes. Left standing: the fort (**T-0137**) and the placeholders' second brick (**T-0138**) |
 | — | TOWN | ~~T-V2~~ | **DONE 2026-08-16** — the anchor named South Water Street stood 101 m from it, in a field. Now in the street at Wells, both coordinates read from committed data. **It sat on `hold` two days on a number other parcels had already fixed**: the far band it was parked for reads **2.1 L\* / 71 %** today, not 0.5 / 30 %. Its real finding is R-M1c's, from a second direction — the field stand scored **100 % on six probes of 510** and the street stand shows **93 perceptible stretches against 31** and scores lower. T-V2b folded into R-M1c; baseline re-shoot is T-V2c |
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
@@ -2304,7 +2304,7 @@ drive materials as `inferred` — while being the same `chicagology_*` material
 `assets/LICENSES.md` gates. Procedural tiles built from the dimensional constants in the sheet
 need no new clearance and keep the property this project actually cares about.
 
-### R-W2c — the chimney is roof-coloured on 199 buildings · **UNCLAIMED · opened 2026-08-16 by R-W2a · Effort: S–M**
+### R-W2c — the chimney is roof-coloured on 199 buildings · **DONE 2026-08-22 as ticket T-0008 — brick on the framed town, cat-and-clay on the log cabins**
 
 219 stacks painted `roof` (finding 1 above). **It is not a palette fix, and picking the
 placeholder's brick would be the wrong half of it**: `log_dwelling` argues a stick-and-clay or
@@ -2318,6 +2318,54 @@ owes the same treatment for its *fabric*.
 `generators/common/mesh.py` if a shared value is wanted. **NEEDS ONE BAKE** — it changes
 material assignment on committed geometry, so it cannot go green on the improve runner and
 should ship the research + palette half and say so.
+
+**HOW IT LANDED, 2026-08-22 (T-0008), and the bake half came with it** — Blender has been on the
+improve runner since 2026-08-19, so the parcel shipped whole rather than in halves: 245 generated
+masters rebuilt, derivatives and publish in the same commit.
+
+**The research is `docs/RESEARCH/chimneys.md`** and its answer is the one this box predicted —
+two materials, not one — arrived at from what the repository already held rather than from a
+palette. The framed town gets **brick**, `inferred`: the Petford watercolour of the Sauganash is
+the one coloured witness here to any Chicago chimney and it says brick; Blodgett's brick-yard
+opened on the North Side in the spring of 1833 (`brickyard_north_side`, Andreas p. 1161) and the
+Lake House went up in brick in 1835; and an interior flue through a timber roof has to be masonry.
+The log cabins get a **cat-and-clay daub**, `reconstructed` and bounded rather than picked — no
+paler than the CHINKING it is daubed with, no darker than the palest ROOF CONDITION, and at the
+midpoint of the two because nothing states where between them it sits. Fieldstone is the other
+half of `log_dwelling`'s own sentence and is deliberately not built.
+
+**The tone is not a new number.** `frame_tavern`'s `BRICK_RGBA` moved into
+`generators/common/materials.py` verbatim — the same convergence T-0007 made for the hewn log —
+so the Sauganash's masters come out byte-for-byte unchanged, which is the proof the value did not
+move.
+
+**Three findings.**
+
+1. **It was not a one-file fix.** Four archetype modules and the sheet, because a material index
+   is only the last step: `M_CHIMNEY` is appended CONDITIONALLY in each archetype, on the
+   discipline `log_dwelling` already held itself to for `M_PAINT` — an unreferenced slot still
+   reaches the glTF, so an unconditional append would rewrite every chimneyless master for a
+   colour it does not use. Two `frame_storefront` masters keep their six-material list for
+   exactly that reason.
+2. **It cost NO draw call, and the reason is worth banking.** `buildings.js::materialKey` batches
+   on type, emissive, metalness, the four maps, side, transparency and flat-shading — never on
+   base colour and never on roughness, both of which ride per vertex since R-W5a2. So two new
+   material colours merge into the buckets that already exist: **113 draw calls before and 113
+   after** at `south_water`, 1280×800. A parcel that adds a COLOUR to this town is free; one that
+   adds a MAP is not.
+3. **R-W2a's own count does not reproduce.** This box says 219 stacks on 199 buildings; the
+   resolved parameters of the committed masters give **157 stacks on 143 buildings** across the
+   three archetypes plus `frame_tavern` (frame_dwelling 71/69, frame_storefront 33/33,
+   log_dwelling 34/31, frame_tavern 19/10). The 2026-08-16 figure is not re-derivable from
+   anything committed, so it is left as written and this is the measurement that replaces it.
+
+**Left standing, in writing rather than by omission:** the fort's ten garrison buildings keep
+roof-coloured stacks — 1816, federal ground, four constructions, and neither answer above reaches
+them without inventing a third (**T-0137**); and the 90 inferred placeholders keep their own
+`#89503F` brick, about 20 % apart in linear red from the archetypes' (**T-0138**), because
+converging it moves 90 masters and the banked passthrough set. A third trap surfaced on the way:
+the bake cannot reach `cook_county_courthouse_1835` at all, so any `generators/common/` edit
+leaves it stale with no committed route to heal it (**T-0139**).
 
 ### R-W3b(a) — the shadow reach · **DONE 2026-08-17 — the sun lit the town and shadowed 8 buildings of 331, and the ceiling is draw calls rather than fill**
 
@@ -5935,7 +5983,7 @@ category assertion, `centreline_frame`) · `tools/corridor_intrusion_baseline.js
 (additive only — **no depth changed**) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
 `renderers/web/js/changelog.js`.
 
-### K30(c) — redraw the bodies onto the correct side of their own frontage · **UNCLAIMED · from K30(b) · NEEDS ONE BAKE · Effort: M**
+### K30(c) — redraw the bodies onto the correct side of their own frontage · **REFUTED 2026-08-22 by K30(d) · do not run this repair · from K30(b)**
 
 **Phase:** lane 2, data + geometry · **Runner:** NOT the improve runner — needs `bake.sh`
 
@@ -5957,6 +6005,83 @@ reading of what that record fronts.
 re-run and the repair banked with `--write-baseline`; the residual on each repaired record
 equals its point's penetration to the tolerance finding 3 measured; `tools/check.sh` and
 `tools/smoke_renderer.mjs` green; nothing in `docs/LIBERTIES.md` unless something is invented.
+
+### K30(d) — the deep cluster is the corridor moving, not the bodies · **DONE 2026-08-22 (T-0009)**
+
+**K30(b)'s CAUSE IS REFUTED, AND K30(c)'S REPAIR IS THE WRONG OPERATION ON EVERY RECORD IT
+NAMES.** The refutation is arithmetic and it is a command —
+`tools/measure_corridor_intrusion.py --anchors`. **Nothing was moved, nothing was baked, and
+no confidence changed**, which is the whole point: T-0009 would have redrawn twelve documented
+buildings off the frontages their own committed control was offset to.
+
+**Finding 1 — the flag K30(b) read cannot tell the two arrangements apart.** `body_toward_street`
+is true when the footprint's centroid is on the street side of the record's anchor. Two
+completely different drawings make it true:
+
+- the **anchor at the KERB**, with the body growing across the frontage into the roadway by its
+  own full depth — the fault K30(b) described; and
+- the **anchor at the BACK corner**, set back from the frontage by the footprint's own depth so
+  that the body grows forward and its street-facing **face** lands on the frontage — a correct
+  drawing.
+
+**Finding 2 — it is the back corner on all 17, and `--anchors` is the test.** Measure how far the
+anchor stands from the corridor centreline against how far the footprint's two faces stand from
+it: if the anchor coincides with the NEAR face the point is at the kerb, if with the FAR face the
+point is the back corner. **0 of the 17 records in the deep mode have the point on the kerb
+face.** The only three that do are `tremont_house_1`, `exchange_coffee_house` and `western_hotel`
+— which are exactly the three K30(b) finding 3 named as *already drawn correctly and ruined by
+reflection*. So both conventions are in the dataset, and K30(b) had them the wrong way round.
+
+**Finding 3 — the dataset says so in its own words, and a gate already checks it.** The
+machine-checkable `position.derivation` blocks constrain a FACE to a kerb, never the anchor:
+`sauganash_hotel`'s reads *"the 8 m the note describes as 'the footprint's own depth' is not a
+term here — the depth is in the polygon, so the constraint is on the face"*, and
+`tools/validate.py::check_position_derivations` recomputes five placements from
+`data/traces/street_control.json` on every commit. The prose notes of the twelve agree, and
+their sums reproduce to the centimetre:
+
+| record | what its note says | check |
+|---|---|---|
+| `peck_store` | *"12.2 m west and 12.2 m south of it less the building's own width and depth"* | origin N 4637388.28 committed 4637388.3; north face = LaSalle centre − 12.2 |
+| `chicago_american_office` | *"12.2 m south less the depth so its north face is on the South Water frontage"* | face = Dearborn centre − 12.2, exact |
+| `madore_beaubien_house`, `harmon_loomis_store`, `chicago_democrat_office` | the same sentence | exact |
+| `h_jones_store`, `jh_kinzie_forwarding_store`, `carpenter_south_water_store`, `pruyne_kimball_drugstore` | *"the south kerb taken 12.2 m south of it"*, the kerb interpolated between two intersection centres | face on the interpolated kerb to **0.01 m** in all four |
+| `frederick_thomas_shop` | 33.5 m east of the American office's origin, *"on the same frontage"* | inherits a back corner; its shallower depth leaves the face 1.5 m behind the line |
+| `log_jail` | the square's NW inside corner, *"offset 12.2 m into the block on each axis"* | north face = 4637130.78, the corner itself, exact |
+
+**Finding 4 — the real cause is committed, and the street record states it.**
+`data/streets/1835.json`, `south_water`: *"east of Franklin the line follows the modern Wacker
+control used by the structure placements **but is shifted into the dry half of the platted
+riverfront corridor**."* `plat_corridors` derives the legal corridor by offsetting that committed
+centreline, so shifting the centreline silently re-plats the street. Measured against the
+intersection centres the ten placements were offset from, the committed line stands **4.3–8.8 m
+south** of them — Franklin −8.56, Wells −8.80, LaSalle −4.30, Clark −4.90, Dearborn −6.20 m — and
+that displacement, not any drawing, is the 4.51–8.17 m the ten records lap. K30(b)'s finding 1
+looked for a displacement of that size and concluded it "is not there" because it compared the
+anchors with the half-width; the anchors are back corners, so that comparison could not see it.
+
+**And the shift is not a mistake either, which is what makes this the owner's decision.**
+`chicago_american_office`'s own note records the corroboration from the other side: the traced
+1834 south bank runs **18.7 m north of its north face**, so a corridor centred on the modern
+Wacker control puts its northern half in the river. The street was pulled south onto dry ground;
+the buildings were placed against the unshifted control; nobody reconciled them. Three
+resolutions exist and the research settles none of them:
+
+1. **The buildings follow the street** — ten documented positions move 4–9 m south. A position
+   change on sourced records, which is exactly what AGENTS.md forbids an agent to do alone.
+2. **The corridor stops following the drawn line** — the platted corridor is a legal line off the
+   plat and arguably cannot be moved to dodge water; only the travelled TRACK should have shifted.
+   `plat_corridors` would then take its centreline from the control rather than from the street's
+   drawn path.
+3. **Neither** — 1835 South Water genuinely had its north half over the water as wharf, the
+   frontage is where the records put it, and the intrusion table is measuring a corridor the town
+   never had on that reach.
+
+**Files:** `tools/measure_corridor_intrusion.py` (`--anchors`; `--reflect` re-labelled a
+counterfactual) · `docs/ROADMAP.md` · `chicago/4d/tickets/T-0009-*.md` (blocked on the owner) ·
+`renderers/web/js/changelog.js`. **No structure record, footprint, coordinate, confidence or
+baseline was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
+
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
@@ -6102,7 +6227,33 @@ file; this makes that true of the second generator that needs it.
 **Files:** `tools/family_bands.py` (new) · `tools/measure_massing_variety.py` (new) ·
 `tools/generate_block_infill.py` · `tools/check.sh` · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-#### T-V1(b) — the sixty North records · **NEXT UP · Effort: S to write, and it NEEDS ONE BAKE**
+#### T-V1(b) — the sixty North records · **LANDED 2026-08-22 (T-0144), and the wall it was stuck behind is gone**
+
+**THE CIRCULAR DEPENDENCY BELOW IS RESOLVED, and not by any of the three routes it offered.** Blender
+arrived on the improve runner on 2026-08-19, so the fourth route — the one the box could not see
+because it did not exist — is that the run that changes the data also bakes it. The sixty stale GLBs
+were rebuilt in the same commit as the records that staled them, `tools/validate.py --stale` never
+went red on `dev`, and no policy question had to be decided. Sixty `--only` bakes cost 39 seconds;
+the web derivatives, which are the slow half, cost three minutes for the sixty.
+
+Measured on the landed change, against the box's own table: duplicate instances **36 → 0**, distinct
+massings **24 → 60**, eaves outside their own family band **17 → 0**. Every placement gate passed on
+the sampled footprints, exactly as (a) recorded. `tools/measure_massing_variety.py --gate` now reads
+the North parcel as claiming its sampling and honouring it; the dooryard planting layer re-dealt its
+stems onto the new footprints in the same commit; `docs/LIBERTIES.md` **L170** records the sampling
+rule's fourth parcel; `tools/audit_confidence.py --strict` is green.
+
+**What is still owed, and it is now its own ticket (T-0145):** the roof-pitch half, deferred here for
+the reason given below and unchanged by this — eleven North records carry a pitch outside their cited
+band, all within half a 1:12 step of its edge, and the ridge band has to be gated in the same pass or
+the fault simply moves one field over. `recon_1835_north_w5_040`'s unauthored loft rides with it.
+**K25(b) and the west parcel are still owed the same repair** — 18 south and 5 west eaves outside
+their cited bands — and the wall is gone for them too.
+
+**The record below is kept verbatim**, because the reasoning was right when it was written and the
+thing that changed was the runner, not the argument.
+
+#### T-V1(b), as it stood — **the original block, kept verbatim · Effort: S to write, and it NEEDS ONE BAKE**
 
 **The work is done and measured; what it cannot do is land here.** Wiring
 `generate_north_infill.py` to `family_bands` — deriving width, depth and eave per record from the
@@ -9681,6 +9832,28 @@ trade rule gains a WORKS AND WAREHOUSE class that paints its firm on its front a
 with no words on it. Everything T-0066 adds is `reconstructed` and claimed at **L158**. What (b)
 still owes is unchanged and now shorter: the GENERATOR half, and a source that gives a wording, a
 colour or a mounting for a named house.
+
+**And the wording itself was corrected the next day — T-0130, 2026-08-22, so the paragraph above
+is now the argument that was available before the owner read a board.** T-0066 painted THE
+RECORD'S OWN NAME, which is this project's label for a BUILDING and not what a signwriter
+lettered. The owner, of the Carpenter board: *"philo would not have referred to his own place as
+log drug store … that may be different than the name of the building for us, the sign may read
+differently historically"*; of the next: *"same with hogan's store"*; and then *"i guess do a pass
+on all those signs and make sure they feel right for the era."* All 33 are re-lettered in the
+register the town's own newspaper advertising uses — proprietor or firm first and largest, the
+trade beneath, the place last and smallest — with the wording as its OWN field, free to differ
+from the `name` and tied to it only by a declared `sign_identity` that must appear in both.
+**14 carry a firm's own advertised line (`inferred`)**, 19 are `reconstructed` from the trade
+vocabulary those pages evidence, and **none is `attested`**, because the seven newspaper pages
+behind them are images supplied in conversation and are not committed to `data/sources/assets/`.
+Every one of those notes says what would upgrade it and the recipe is in ticket **T-0130**, so
+what (b) still owes has changed shape: not "a source that gives a wording" — the wordings are here
+— but **the seven pages committed as source records**, which would take fourteen of them off
+`inferred` in an afternoon. **L25 is STILL untouched**, and T-0130 is the case that shows why it is
+about IMAGES rather than about signs: Carpenter's own 1835 notice heads itself *"AT THE SIGN OF THE
+GOLDEN MORTAR"*, so his board carries a painted mortar — a device its owner described in print —
+while the wolf, which nobody described, is L165's and rests on a sentence saying a wolf was on it.
+No other board gets a device, and the smoke pins that count at one. **L166.**
 
 **(c) is shipped IN PART, on a YARD layer, and its evidence is the strongest on this box.**
 **T-0040**: `data/yard/`, `renderers/web/js/yard.js`, generated by `tools/generate_yard_goods.py`

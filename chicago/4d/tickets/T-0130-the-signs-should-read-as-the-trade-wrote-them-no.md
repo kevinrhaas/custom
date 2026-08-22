@@ -1,7 +1,7 @@
 ---
 id: T-0130
 title: The signs should read as the trade wrote them, not as we label the building
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-21
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-22
+pr: 305
+claimed_by: run 8/22/2026, 12:10:48 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -304,3 +304,77 @@ worth raising rather than burying.
 **Ask the owner for the seven page images to be committed** to `data/sources/assets/` so the
 gradings above can cite a source record. Until then they are transcriptions in a ticket, and a
 transcription is not a citation.
+
+---
+
+## Done, 2026-08-22 — the boards re-worded, and the upgrade path written down
+
+**THE OWNER'S RULING THAT LET THIS PROCEED, verbatim, 2026-08-21:**
+
+> *"I will give you all those data sources later in a more comprehensive form proceed where
+> you can and label reconstruction or inferred with a note as you like"*
+
+That is the authority for the tiering below and it is recorded here rather than in a run's
+transcript, because the transcript does not survive and the upgrade path has to.
+
+### What shipped
+
+The structure record's `name` and the board's wording are now **separate fields** and are allowed
+to differ. All **33 boards** are re-lettered from `SIGN_WORDING` in
+`tools/generate_business_signboards.py`, in the advertisements' own register — proprietor or firm
+first and largest, the trade beneath, the place last and smallest — carried per line with a role
+(`sign_lines`) and lettered in that hierarchy by `renderers/web/js/signage.js`.
+
+* **14 `inferred`** — the firm's own advertised line: Bates, Carpenter (both shops), the *Chicago
+  Democrat*, Elston, Goss & Cobb, Jones, Harmon Loomis & Co., Brewster Hogan & Co., J. H. Kinzie,
+  Mason, Newberry & Dole's warehouse, Peck, John Davis's Steam-Boat Hotel.
+* **19 `reconstructed`** — no surviving advertisement; built from the trade vocabulary the same
+  pages evidence (druggist, forwarding & commission merchant, public house, blacksmithing,
+  slaughtering & packing, brick maker, tannery, boarding house, dry goods & groceries).
+* **0 `attested`, deliberately.** The seven pages are images supplied in conversation and are not
+  in `data/sources/assets/`; a transcription is not a citation. Every `inferred` note quotes its
+  advertisement, names its date, says the transcription came from owner-supplied images on
+  2026-08-21, and says the value is to be **upgraded to `attested`** when the pages are committed.
+
+### The upgrade path, for whoever has the pages
+
+1. Commit the seven page images to `data/sources/assets/<source_id>/` with a source record, in the
+   shape of `data/sources/chicago_democrat_1833_11_26.json`.
+2. Add that id to the `sources` list of each `SIGN_WORDING` entry it covers and change that
+   entry's `grade` from `"inferred"` to `"attested"` — and add `"attested"` to `WORDING_GRADES`,
+   which currently refuses it on purpose.
+3. Trim the `PENDING` sentence from those entries' `why`.
+4. Re-run the generator; `tools/check.sh` re-derives the record byte for byte.
+
+**Goss & Cobb's is already citable** — its page is committed at
+`data/sources/assets/chicago_democrat_1833_11_26/` — and what still keeps it `inferred` is that an
+advertisement heading is not a description of a signboard. That is a judgement, not a gap, and it
+is the one to revisit first.
+
+### Identities corrected, and findings raised rather than buried
+
+`hogan_store` now reads **BREWSTER, HOGAN & CO. / Forwarding & Commission**, which its own record
+already knew (its `aka` carries "Brewster, Hogan & Co.'s store"). The record's `findings` array
+carries six things the pages say and the model does not yet answer — J. S. C. Hogan's separate
+South Water store, Pierce & Abbott, P. Pryne & Co. against Pruyne & Kimball, three advertisements
+that locate themselves by a neighbour, a list of firms the town should plausibly have and the
+model lacks, and the out-of-town houses that must never be hung here.
+
+### The golden mortar
+
+Carpenter's 1835 advertisement heads itself *"AT THE SIGN OF THE GOLDEN MORTAR"*, so the device is
+**painted on his South Water board** — canvas, zero triangles — graded `inferred` with the
+wordings and upgradeable with them. It is on that frontage and not on his older Lake Street shop
+because the advertisement that names it also names South Water Street. **L25 is untouched**: it
+withholds an image nobody described, which is the opposite case. The smoke pins the device count
+at exactly one so it cannot spread to a trade whose advertisement names none.
+
+### The check
+
+T-0066's string-equality assertion is **corrected, not relaxed**. The board and the card must now
+agree about **who** — `sign_identity`, which has to appear in both — asserted at the Tremont's own
+board, over every sign in the town, and beside two new absolute assertions: no board carries the
+word "log", and every board letters a trade as well as a proprietor. The generator refuses to
+build if any of them fails.
+
+**Liberty:** L166. **PR:** see the front matter.

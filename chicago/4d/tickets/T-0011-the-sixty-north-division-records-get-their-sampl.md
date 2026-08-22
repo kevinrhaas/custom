@@ -1,16 +1,17 @@
 ---
 id: T-0011
 title: The sixty North Division records get their sampled bands
-state: open
+state: split
 epic: TOWN
 requested_by: loop
 seen: true
 effort: M
 legacy_id: T-V1(b)
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-22
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 2:43:15 PM CT
 blocked_on: null
 needs_bake: true
 ---

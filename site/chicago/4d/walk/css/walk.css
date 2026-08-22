@@ -646,6 +646,10 @@ body.is-touch .crosshair { display: none; }
 .pop-head { display: flex; align-items: flex-start; gap: 10px; }
 .pop-head h2 { margin: 0; font-size: 18px; font-weight: 620; letter-spacing: -0.01em; }
 .pop-aka { margin: 3px 0 0; font-size: 12px; color: var(--ink-dim); }
+/* The production identity, demoted under the title it used to BE (T-0076): small,
+   dimmed and still selectable, because a reference line nobody can copy is decoration. */
+.pop-spec { margin: 3px 0 0; font-size: 11px; color: var(--ink-dim); }
+.pop-spec code { font-size: 11px; }
 .pop-close {
   margin-left: auto;
   width: 30px; height: 30px;
