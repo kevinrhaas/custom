@@ -4613,12 +4613,15 @@ naming any of these merchants' wharves — the same instruments L132 waits on.
 `carpenter_south_water_store.form.dock`
 **Recorded:** 2026-08-19.
 
-### L146 — Nine boats on the river, every hull of them invented
+### L146 — Thirteen boats on the river, every hull of them invented
 
 **Decision:** the river carries watercraft now — `data/boats/era_boats.json`, drawn by
 `renderers/web/js/boats.js`: three two-masted lake schooners moored in the reach of the main
-stem below the Dearborn Street drawbridge, two rowboats on the water off the South Water bank
-and two drawn up at its edge, and two bark canoes hauled out on the bank below Fort Dearborn.
+stem below the Dearborn Street drawbridge, TWO MORE AT THE WOLF POINT LANDINGS (T-0140 — one
+in the branch reach above the forks, one in the South Branch reach below them abreast Robert
+Kinzie's store), two rowboats on the water off the South Water bank and two drawn up at its
+edge, one skiff afloat off the west bank at Wolf Point and one hauled out below its cabins,
+and two bark canoes hauled out on the bank below Fort Dearborn.
 Every boat is unmanned, unnamed, and graded `reconstructed` at every vertex; every position,
 heading and dimension is authored in the record with its own note. The layer refuses rather
 than adjusts — a boat without its own draft of water under the whole keel, a beached hull
@@ -4638,13 +4641,22 @@ the bank; the committed 2026-08-11 fort plates put bark canoes at the fort reach
 lake commerce ran on schooners, with steamers rare calls. The SIZES — a restrained 16.5 m
 schooner because the modelled channel gives under 3 m of water; skiff and canoe dimensions at
 the ordinary proportion of their kinds. The PLACES — the same reaches the engravings crowd,
-against the committed heightfield, which is what the refusal rules hold each hull to. The
+against the committed heightfield, which is what the refusal rules hold each hull to; the
+WOLF POINT berths are DERIVED rather than picked, each one an offset off the committed west
+bank abreast a frontage this project already stands, at close to the westernmost line where
+the heightfield floats that hull at all — so the reach's own shoaling, not taste, decides how
+near the bank a schooner may lie. WHAT THOSE TWO DO NOT REPRODUCE, and it is recorded rather
+than glossed: plate "11" hangs its masts over the GREEN TREE's roofline, and from that inn's
+own visitor stand these read beside and beyond it instead — the committed placement puts the
+tavern a full block back from the bank, and no mast at 157 m can subtend a ridge that
+subtends 10 degrees at 24 m. T-0141 carries the arithmetic and the placement question to the
+owner. The
 CANOES are trade watercraft drawn unmanned from the plates: the standing constraint on
 depicting Native presence stands in full — no figures, no encampment, no staging — and any
 depiction of the Potawatomi themselves remains out of scope pending consultation. What would
 replace the invention: harbour-master or newspaper records of vessels lying in the river in
 the summer of 1835 — the Chicago Democrat's marine columns are the instrument.
-**Recorded:** 2026-08-19.
+**Recorded:** 2026-08-19; extended 2026-08-22 (T-0140).
 
 ### L147 — Terrain: the bridge approaches are invented earthworks
 **Decision:** eight graded road corridors (`approaches` in `terrain_spec.json`, all

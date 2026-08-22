@@ -1,5 +1,43 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0140: masts at Wolf Point, and the half of the plate that cannot be drawn
+
+**Four craft join the boat layer at the forks** — `data/boats/era_boats.json` goes from nine hulls
+to thirteen. Two two-masted lake schooners: one in the branch reach above Wolf Point at local
+E −77.0, N +14.0, one in the South Branch reach below the forks at E −9.0, N −68.0 abreast Robert
+A. Kinzie's store. A skiff afloat off the west bank at E −86.0, N +4.0 and one hauled out on the
+bank below the Wolf Point cabins at E −83.0, N −20.0. Every hull `reconstructed`, unmanned,
+unnamed; L146 extended rather than a new liberty opened, because it is the same invention at a
+second address.
+
+**The berths are derived, not chosen, and that is the only part of a boat's position this project
+can defend.** Each afloat hull lies at close to the westernmost line on its own reach where the
+committed heightfield gives it its draft plus the layer's 0.3 m under the keel along the whole
+keel — 2.07 m of water under the upper schooner, 1.81 m under the lower one against the 1.80 m the
+layer demands, 1.23 m under the skiff. The reach's own shoaling decides how near the bank a hull
+may lie; nothing was nudged, and `boats.js` would have refused any of them outright.
+
+**Why the forks needed them.** Plate "11" of the 2026-08-11 reference set
+(`prefire_views_kevin_2026_08/p6_0.png`) and the Braunhold/Trowbridge views of the same quarter
+hang ship masts over the Wolf Point roofs. Until today the only masted vessels in the scene were
+the three moored 900 m east below the Dearborn drawbridge, and the forks — the busiest water in
+the town — held nothing.
+
+**T-0122 was split, because half its acceptance is not the loop's to meet.** It asked for a mast
+reading above the GREEN TREE's own roofline from that inn's visitor stand. It cannot: the
+`green_tree` anchor stands 24 m west of the inn, whose ridge subtends about 10°, and a 14.5 m mast
+subtends 10° only inside ~83 m — while the nearest water on that bearing is ~157 m out. The cause
+is the placement question the record already carries in its own `position_note`: DRLOIH gives the
+corner as "Lake and West Water", West Water ran along the bank, and *"if the tavern actually stood
+on the riverbank street rather than on Canal, it belongs about 145 m east of where this record
+puts it."* Moving a documented building is the owner's call. **T-0140** is this shipped piece;
+**T-0141** carries the arithmetic and the question, blocked on him.
+
+**Verified:** `tools/check.sh` green · `node tools/smoke_renderer.mjs` green at 390×780 and
+1280×800, zero pageerrors · `node tools/shoot.mjs site/chicago/4d /walk/` at the `forks` and
+`green_tree` anchors, 114 draw calls of a 140 budget at the shoot's own stand, no page errors, and
+the schooner's masts standing over the west-bank roofs in the frame.
+
 ## Shipped 2026-08-22 — T-0009: the deep corridor cluster is the street moving, not the buildings
 
 **THE TICKET'S PREMISE IS REFUTED AND NOTHING WAS MOVED.** T-0009 (= ROADMAP K30(c)) asked for the

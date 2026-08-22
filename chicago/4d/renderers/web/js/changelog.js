@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 231, title: 'Masts at Wolf Point', kind: 'feature', ts: '2026-08-22T12:36:06.975Z', date: 'Aug 22, 2026, 7:36 AM CT',
+    items: [
+      'Two lake schooners lie moored at the forks now, where the town had none \u2014 one in the branch reach above Wolf Point, one below it in the South Branch abreast Robert Kinzie\u2019s store, with a skiff on the water beside them and another hauled out on the bank. Walk to the forks and their masts stand over the west-bank roofs.',
+      'Until today the only masted vessels in Chicago were the three below the Dearborn drawbridge, nearly a kilometre east \u2014 while the plates of this quarter draw ship masts rising directly behind the Wolf Point roofline.',
+      'Every hull is invented and says so. Where each lies is not: a berth is measured off the committed west bank, as close in as the river\u2019s own depth will float that boat and no closer. Tap one to read what is claimed and what is not.',
+    ] },
   { v: 230, title: 'Ten stores are not standing in South Water Street by mistake', kind: 'chore', ts: '2026-08-22T10:29:39.012Z', date: 'Aug 22, 2026, 5:29 AM CT',
     items: [
       'Nothing in the town moved today, and that is the finding. The queue\u2019s next job was to redraw twenty-nine buildings out of the roadway they are drawn standing in \u2014 the most visible defect left in the model. It would have moved twelve documented buildings off the frontages their own sources put them on.',

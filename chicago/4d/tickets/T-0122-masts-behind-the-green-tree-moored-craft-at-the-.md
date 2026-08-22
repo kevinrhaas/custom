@@ -1,7 +1,7 @@
 ---
 id: T-0122
 title: Masts behind the Green Tree: moored craft at the Wolf Point landings
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
+closed: 2026-08-22
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 7:16:11 AM CT
 blocked_on: null
 needs_bake: false
 ---
