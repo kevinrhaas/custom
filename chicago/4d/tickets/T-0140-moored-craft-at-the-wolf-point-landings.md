@@ -1,7 +1,7 @@
 ---
 id: T-0140
 title: Moored craft at the Wolf Point landings
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0122
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 309
 claimed_by: run 8/22/2026, 7:35:30 AM CT
 blocked_on: null
 needs_bake: false
