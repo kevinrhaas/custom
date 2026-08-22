@@ -64,3 +64,6 @@ T-0130 — The signs should read as the trade wrote them, not as we label the bu
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
+T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
+T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
+T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale

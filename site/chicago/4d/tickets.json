@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 2:48 AM",
+  "generated_ct": "Aug 22, 2026, 3:59 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -131,16 +131,17 @@
     {
       "id": "T-0008",
       "title": "199 chimneys are painted roof-colour",
-      "state": "open",
+      "state": "claimed",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": true,
       "effort": "M",
       "legacy_id": "R-W2c",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/22/2026, 2:58:12 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
@@ -2403,6 +2404,60 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 63
+    },
+    {
+      "id": "T-0137",
+      "title": "The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0138",
+      "title": "The placeholders' brick chimney is a different brick from the archetypes'",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0139",
+      "title": "The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
     }
   ]
 }

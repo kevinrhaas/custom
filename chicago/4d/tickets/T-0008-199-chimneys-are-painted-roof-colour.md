@@ -1,16 +1,17 @@
 ---
 id: T-0008
 title: 199 chimneys are painted roof-colour
-state: open
+state: claimed
 epic: RENDERING
 requested_by: loop
 seen: true
 effort: M
 legacy_id: R-W2c
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 2:58:12 AM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 167,
+  "count": 168,
   "liberties": [
     {
       "id": "L1",
@@ -10854,6 +10854,35 @@
         {
           "label": "Ticket",
           "text": "T-0076, from the owner's brief of 2026-08-18. Related: **L1** (the town draws no people, which is why a household reaches a visitor only as text), **L81** (the anonymous roofs themselves, none of them a recovered building), **L84** (the households nobody named), **L94** (the rule that decides which roof gets an occupant — the same edge, one layer down)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-22."
+        }
+      ]
+    },
+    {
+      "id": "L168",
+      "title": "The stack is not the roof: brick on 112 framed buildings, cat-and-clay on 31 log cabins",
+      "section": "per_subject",
+      "subjects": [
+        "brickyard_north_side"
+      ],
+      "covers": [],
+      "recorded": "2026-08-22",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every chimney stack this town's Blender archetypes build now carries a masonry material of its own instead of the ROOF material it was built with. **157 stacks on 143 buildings** (measured off the resolved parameters of the committed masters): brick on the 112 framed buildings — `frame_dwelling`, `frame_storefront`, `frame_tavern` — and a stick-and-clay daub on the 31 log dwellings. `docs/RESEARCH/chimneys.md` is the argument in full; this is what was invented. **What is NOT invented, and it is most of it.** The COUNT of stacks is the record's, on every building. The POSITION is the archetype's and **L26** has owned it since the archetypes were written — an interior stack at the gable of a framed house, an exterior stack against the gable of a log cabin — and nothing here moves one by a millimetre. The DISPOSITION each fabric follows from was already committed prose: `log_dwelling._stack` has always said its stack is *\"a stick-and-clay or fieldstone stack built against the gable\"* so it *\"can be pulled away from the building when it catches fire\"*, and `frame_dwelling._chimneys` has always said its stack *\"rising inside the wall and breaking the roof at the ridge\"*. Those two sentences described two materials while the renderer painted both of them the colour of the roof. **The brick is INFERRED and is not a new number.** It is `frame_tavern`'s committed `BRICK_RGBA` (0.45/0.23/0.17 linear, roughness 0.85), which **L154** already records as read off the Petford watercolour of the Sauganash — the one coloured witness in this repository to any Chicago chimney, and it says *brick*. What T-0008 adds is the generalisation from that one building to the other 111, and the warrant for it is the town's own: Blodgett's brick-yard opened on the North Side in the spring of 1833 (`brickyard_north_side`, Andreas p. 1161) and the Lake House went up in brick in 1835. An interior flue through a timber roof has to be masonry, and this is the masonry that was being made two blocks away. The Sauganash's own masters are byte-for-byte unchanged, which is the proof the value did not move. **The clay is RECONSTRUCTED, and this is the invention.** Nothing in this repository attests any log house's stack — not its fabric, not its colour, not that it existed beyond the record's count. The tone is bounded rather than read, by two values already shipping: it cannot be as pale as the CHINKING it is daubed with (0.700/0.670/0.590), which is the same clay sheltered under an eave while a stack takes weather and smoke on every face; and it cannot be as dark as the palest ROOF CONDITION (`weathered`, 0.424/0.384/0.345), or it stops reading as masonry against the roof beside it, which is the whole defect this parcel fixes. Nothing states where between the two it sits, so it sits at the **midpoint to three decimals: 0.562/0.527/0.468**, at the sheet's `earth` roughness of 0.95 because the surface is daub. **Fieldstone is the other half of `log_dwelling`'s own sentence and is not built** — a stone stack is a different silhouette as well as a different colour, and choosing between the two per building would need evidence nobody has. One treatment, declared. **What a visitor sees.** A brick-red stack on the framed houses and stores, a pale clay stack on the log cabins, and in both cases a chimney that no longer disappears into the roof it passes through. The confidence view is unchanged: a stack still carries its record's `chimneys` confidence, so hiding `reconstructed` hides exactly what it hid before. **Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal ground, four constructions, and neither answer above reaches them (**T-0137**). The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in linear red from this one (**T-0138**). And nothing here says what any roof was COVERED with; R-W2a finding 2 stands."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a source describing a Chicago chimney — an insurance survey, a builder's account, a recollection naming brick or clay at a named house — promotes §2 to attested for that building and replaces §3 outright."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0008, opened by R-W2a finding 1 as ROADMAP **R-W2c**. Related: **L26** (every chimney's position, which this does not touch), **L154** (the Sauganash's brick, read off the plate), **L157** (the material sheet painting the town, and the roof's weathering that is not its covering)."
         },
         {
           "label": "Recorded",

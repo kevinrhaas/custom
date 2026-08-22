@@ -188,7 +188,7 @@ rationed.**
 | **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
 | **1** | TOWN | **K30(c)** | **SEEN** | **29 buildings on eight streets are drawn standing in the roadway.** K30(b) already attributed the cause to the drawing and cleared the made-ground suspect, so this is the repair itself: redraw the bodies onto the correct side of their own frontage. The most visible single defect left in the town, and the analysis is already banked |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
-| **3** | RENDERING | **R-W2c** | **SEEN** | 219 chimney stacks on 199 buildings are painted with their roof's colour. Every one is wrong in a way a visitor can see from the street, and it is a one-file fix opened by R-W2a |
+| — | RENDERING | ~~R-W2c~~ | **SEEN** | **DONE 2026-08-22 (T-0008) — the stack is not the roof.** 157 stacks on 143 buildings now carry a masonry material of their own: **brick on 112 framed buildings**, off `frame_tavern`'s committed Petford value moved into the sheet, and a **cat-and-clay daub on 31 log cabins** at the midpoint of the two committed values that bound it. `docs/RESEARCH/chimneys.md` is the fabric argument; L168 records the invention. **Three findings.** It was NOT a one-file fix and it was not palette-only: the two dispositions the archetypes had already argued in prose are two materials, and the fabric had to be researched before either could be chosen. **It cost NO draw call** — `buildings.js::materialKey` batches on maps and flags, never on colour or roughness, both of which ride per vertex, so 113 calls before and 113 after at `south_water`. And R-W2a's *219 stacks on 199 buildings* does not reproduce: the resolved parameters of the committed masters give **157 on 143** across four archetypes. Left standing: the fort (**T-0137**) and the placeholders' second brick (**T-0138**) |
 | — | TOWN | ~~T-V2~~ | **DONE 2026-08-16** — the anchor named South Water Street stood 101 m from it, in a field. Now in the street at Wells, both coordinates read from committed data. **It sat on `hold` two days on a number other parcels had already fixed**: the far band it was parked for reads **2.1 L\* / 71 %** today, not 0.5 / 30 %. Its real finding is R-M1c's, from a second direction — the field stand scored **100 % on six probes of 510** and the street stand shows **93 perceptible stretches against 31** and scores lower. T-V2b folded into R-M1c; baseline re-shoot is T-V2c |
 | **5** | GROUND | **T-E3** | **SEEN** | the heightfield east (= `S2e`). Ground a visitor can walk onto that is not there today |
 | 6 | TOWN | **T-V1(b)** | SEEN | the sixty North records — but **NEEDS ONE BAKE** and cannot go green on the improve runner. Claim only with the bake available |
@@ -2304,7 +2304,7 @@ drive materials as `inferred` — while being the same `chicagology_*` material
 `assets/LICENSES.md` gates. Procedural tiles built from the dimensional constants in the sheet
 need no new clearance and keep the property this project actually cares about.
 
-### R-W2c — the chimney is roof-coloured on 199 buildings · **UNCLAIMED · opened 2026-08-16 by R-W2a · Effort: S–M**
+### R-W2c — the chimney is roof-coloured on 199 buildings · **DONE 2026-08-22 as ticket T-0008 — brick on the framed town, cat-and-clay on the log cabins**
 
 219 stacks painted `roof` (finding 1 above). **It is not a palette fix, and picking the
 placeholder's brick would be the wrong half of it**: `log_dwelling` argues a stick-and-clay or
@@ -2318,6 +2318,54 @@ owes the same treatment for its *fabric*.
 `generators/common/mesh.py` if a shared value is wanted. **NEEDS ONE BAKE** — it changes
 material assignment on committed geometry, so it cannot go green on the improve runner and
 should ship the research + palette half and say so.
+
+**HOW IT LANDED, 2026-08-22 (T-0008), and the bake half came with it** — Blender has been on the
+improve runner since 2026-08-19, so the parcel shipped whole rather than in halves: 245 generated
+masters rebuilt, derivatives and publish in the same commit.
+
+**The research is `docs/RESEARCH/chimneys.md`** and its answer is the one this box predicted —
+two materials, not one — arrived at from what the repository already held rather than from a
+palette. The framed town gets **brick**, `inferred`: the Petford watercolour of the Sauganash is
+the one coloured witness here to any Chicago chimney and it says brick; Blodgett's brick-yard
+opened on the North Side in the spring of 1833 (`brickyard_north_side`, Andreas p. 1161) and the
+Lake House went up in brick in 1835; and an interior flue through a timber roof has to be masonry.
+The log cabins get a **cat-and-clay daub**, `reconstructed` and bounded rather than picked — no
+paler than the CHINKING it is daubed with, no darker than the palest ROOF CONDITION, and at the
+midpoint of the two because nothing states where between them it sits. Fieldstone is the other
+half of `log_dwelling`'s own sentence and is deliberately not built.
+
+**The tone is not a new number.** `frame_tavern`'s `BRICK_RGBA` moved into
+`generators/common/materials.py` verbatim — the same convergence T-0007 made for the hewn log —
+so the Sauganash's masters come out byte-for-byte unchanged, which is the proof the value did not
+move.
+
+**Three findings.**
+
+1. **It was not a one-file fix.** Four archetype modules and the sheet, because a material index
+   is only the last step: `M_CHIMNEY` is appended CONDITIONALLY in each archetype, on the
+   discipline `log_dwelling` already held itself to for `M_PAINT` — an unreferenced slot still
+   reaches the glTF, so an unconditional append would rewrite every chimneyless master for a
+   colour it does not use. Two `frame_storefront` masters keep their six-material list for
+   exactly that reason.
+2. **It cost NO draw call, and the reason is worth banking.** `buildings.js::materialKey` batches
+   on type, emissive, metalness, the four maps, side, transparency and flat-shading — never on
+   base colour and never on roughness, both of which ride per vertex since R-W5a2. So two new
+   material colours merge into the buckets that already exist: **113 draw calls before and 113
+   after** at `south_water`, 1280×800. A parcel that adds a COLOUR to this town is free; one that
+   adds a MAP is not.
+3. **R-W2a's own count does not reproduce.** This box says 219 stacks on 199 buildings; the
+   resolved parameters of the committed masters give **157 stacks on 143 buildings** across the
+   three archetypes plus `frame_tavern` (frame_dwelling 71/69, frame_storefront 33/33,
+   log_dwelling 34/31, frame_tavern 19/10). The 2026-08-16 figure is not re-derivable from
+   anything committed, so it is left as written and this is the measurement that replaces it.
+
+**Left standing, in writing rather than by omission:** the fort's ten garrison buildings keep
+roof-coloured stacks — 1816, federal ground, four constructions, and neither answer above reaches
+them without inventing a third (**T-0137**); and the 90 inferred placeholders keep their own
+`#89503F` brick, about 20 % apart in linear red from the archetypes' (**T-0138**), because
+converging it moves 90 masters and the banked passthrough set. A third trap surfaced on the way:
+the bake cannot reach `cook_county_courthouse_1835` at all, so any `generators/common/` edit
+leaves it stale with no committed route to heal it (**T-0139**).
 
 ### R-W3b(a) — the shadow reach · **DONE 2026-08-17 — the sun lit the town and shadowed 8 buildings of 331, and the ceiling is draw calls rather than fill**
 

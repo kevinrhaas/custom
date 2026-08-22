@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 229, title: 'Chimneys stop being painted the colour of the roof', kind: 'fix', ts: '2026-08-22T08:48:40.643Z', date: 'Aug 22, 2026, 3:48 AM CT',
+    items: [
+      'Every chimney in the town was drawn in its own roof\u2019s colour \u2014 157 stacks on 143 buildings \u2014 so from the street a chimney vanished into the roof it passes through. They are masonry now, and you can see them.',
+      'A framed house or store carries a brick stack. The one coloured picture anyone here has of a Chicago chimney is the watercolour of the Sauganash, and it paints them brick; Blodgett opened a brick-yard on the North Side in 1833 and the Lake House went up in brick in 1835. The brick is the Sauganash\u2019s own, unchanged \u2014 the rest of the town joins it.',
+      'A log cabin carries a cat-and-clay stack instead: sticks laid up in courses and daubed with the same clay the wall is chinked with, standing against the gable so it could be pulled down when it caught fire. That is what the model has always said these stacks were; it just never painted them that way.',
+      'The clay tone is ours, and bounded rather than chosen. It cannot be as pale as the chinking under the eaves, and it cannot be as dark as the palest roof or it stops reading as masonry \u2014 so it sits exactly halfway between the two. Nothing says where else it would sit.',
+      'Two things are deliberately unchanged: the fort\u2019s stacks, whose buildings are seventeen years older than the town\u2019s brick-yard, and the roofs, which no source describes the covering of at all.',
+      'It costs nothing to draw. Same triangles, same 113 draw calls before and after.',
+    ] },
   { v: 228, title: 'Buildings are known by the people in them', kind: 'feature', ts: '2026-08-22T07:05:51.697Z', date: 'Aug 22, 2026, 2:05 AM CT',
     items: [
       'Click one of the 222 anonymous reconstructed roofs and its card used to open \u201cReconstructed D3 one-room frame cottage #017\u201d. It reads \u201cThe Pratt house\u201d now \u2014 the household the residents layer places there \u2014 or \u201cNewell\u2019s stable\u201d where they only work in it. The Go-to list is the same list of names.',
