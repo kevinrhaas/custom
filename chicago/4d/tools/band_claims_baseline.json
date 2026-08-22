@@ -3,8 +3,8 @@
   "counts": {
     "eave": 37,
     "footprint": 2,
-    "levels": 4,
-    "pitch": 38
+    "levels": 3,
+    "pitch": 28
   },
   "measured": "2026-08-15",
   "offenders": {
@@ -294,83 +294,6 @@
       "family": "D2",
       "marginal": true,
       "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_north_a2_033:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_north_a2_048:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_north_a2_059:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_north_c2_027:pitch": {
-      "band": "33.7-42.5 deg (8:12-11:12)",
-      "detail": "+0.7 deg / +0.21 of a 1:12 step outside",
-      "family": "C2",
-      "marginal": true,
-      "value": "33.0 deg (= 7.79:12)"
-    },
-    "recon_1835_north_d2_003:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_north_d2_014:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_north_d2_029:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_north_d2_046:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_north_h2_030:pitch": {
-      "band": "26.6-36.9 deg (6:12-9:12)",
-      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
-      "family": "H2",
-      "marginal": true,
-      "value": "38.0 deg (= 9.38:12)"
-    },
-    "recon_1835_north_h3_045:pitch": {
-      "band": "26.6-36.9 deg (6:12-9:12)",
-      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
-      "family": "H3",
-      "marginal": true,
-      "value": "38.0 deg (= 9.38:12)"
-    },
-    "recon_1835_north_w5_040:levels": {
-      "band": "'1' (=> 1-1)",
-      "detail": "the band authors no loft",
-      "family": "W5",
-      "marginal": false,
-      "value": "loft = true"
     },
     "recon_1835_south_a2_047:pitch": {
       "band": "33.7-45.0 deg (8:12-12:12)",

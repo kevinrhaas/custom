@@ -45,7 +45,8 @@ from band_notes import split_notes  # noqa: E402
 # eave band their own note cited (ROADMAP T-V1). The band is now used as the range it
 # was authored as.
 from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
-                          storeys, wall_height_m)
+                          pitch_deg, storeys, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 
 OCCUPANCY = occupancy()
@@ -144,7 +145,8 @@ def door_kind(family: str) -> str:
     return "stable" if family == "A1" else "man"
 
 
-def form_for(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
+def form_for(family: str, spec: dict, key: str, seq: int, paint: str,
+             archetype: str, width: float, depth: float) -> dict:
     """The family's form values, with the band citation restricted to what it can cite.
 
     `_form_body` authors every value exactly as it always has, with the citation
@@ -152,10 +154,12 @@ def form_for(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
     the values whose family authors nothing for it to point at, and says instead what
     the value actually is — the reconstruction generator's type default.
     """
-    return split_notes(_form_body(family, spec, key, seq, paint), family, band_note(family))
+    return split_notes(_form_body(family, spec, key, seq, paint, archetype, width, depth),
+                       family, band_note(family))
 
 
-def _form_body(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
+def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
+               archetype: str, width: float, depth: float) -> dict:
     why = band_note(family)
     frame = "balloon_frame" if seq % 2 else "braced_frame"
     # The eave is drawn from the family's authored band, on the same stable key as the
@@ -166,26 +170,41 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
     # about this building.
     wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door_kind(family)))
 
+    # THE PITCH, T-0145. The eave moved onto its band in the pass before this one and
+    # the pitch was deliberately left behind, because a pitch is not a dimension that
+    # stands on its own: it and the footprint together make the RIDGE, and the crosswalk
+    # authors a band for that too. So the sampler is asked for a pitch inside the
+    # family's `N:12-M:12` band that also lands the ridge inside the family's `ridge_ft`
+    # — which needs the run the roof climbs, and that is the archetype's, not the
+    # family's, so `ridge_model` is asked for it. A family whose roof line names no
+    # pitch keeps the type default it always had, and `band_notes` already makes its
+    # note say that is what it is.
+    def pitch(default: float, roof_type: str = "gable",
+              gable_front: bool | None = None) -> float:
+        run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
+        return pitch_deg(family, spec.get("roof"), key, default,
+                         eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
+
     if family == "D1":
         return {
             "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(35.0, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(35.0), why),
             "construction": inferred("log", why), "loft": inferred(True, why),
             "chimneys": inferred(1, why),
         }
 
     if family.startswith("D") and family != "D2" or family == "H1":
         if family in ("D6", "H1"):
-            stories, pitch = 1.5, 42.0
+            stories, pitch_default = 1.5, 42.0
         elif family in ("D7", "H2", "H3"):
-            stories, pitch = 2, 38.0
+            stories, pitch_default = 2, 38.0
         else:
-            stories, pitch = 1, 38.0
+            stories, pitch_default = 1, 38.0
         plan = "centre_passage" if family in ("D7", "H2", "H3") else (
             "single_pen" if family == "D3" else "hall_parlour")
         return {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(pitch_default), why),
             "construction": inferred(frame, why), "plan": inferred(plan, why),
             "bays": inferred(5 if family in ("D7", "H2", "H3") else 3, why),
             "chimneys": inferred(2 if family.startswith("H") else 1, why),
@@ -195,7 +214,8 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
     if family.startswith("C"):
         return {
             "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(33.0, why),
+            "roof_type": inferred("gable", why),
+            "roof_pitch_deg": inferred(pitch(33.0, gable_front=True), why),
             "gable_front": inferred(True, why), "construction": inferred(frame, why),
             "cladding": inferred("clapboard", why), "paint": inferred(paint, why),
             "loft": inferred(family == "C2", why), "chimneys": inferred(1, why),
@@ -209,7 +229,7 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
         return {
             "stories": inferred(1 if family == "I2" else 2, why),
             "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(38.0, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(38.0), why),
             "construction": inferred("braced_frame", why), "paint": inferred(paint, why),
             "gallery": inferred(False, why), "chimneys": inferred(1 if family == "I2" else 2, why),
         }
@@ -219,10 +239,15 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str) -> dict:
     construction = "light_frame" if family in ("W2", "A1", "A2") else "plank"
     return {
         "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),
-        "roof_pitch_deg": inferred(18.0 if roof == "shed" else 32.0, why),
+        "roof_pitch_deg": inferred(pitch(18.0 if roof == "shed" else 32.0, roof), why),
         "construction": inferred(construction, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
-        "loft": inferred(family in ("W2", "W5", "A1", "A2"), why),
+        # THE LOFT IS THE FAMILY'S TO AUTHOR, not this file's (T-0145). A retyped
+        # tuple gave W5 a loft its `levels` never mentions — "1", flat — which is the
+        # same retyping fault as the eave, one field over, and the band-claims gate
+        # named it on `recon_1835_north_w5_040`. `family_bands.storeys` already reads
+        # a loft out of the levels string for every other parcel; it reads it here now.
+        "loft": inferred(storeys(spec["levels"], key)[1], why),
         "board_gap_m": inferred(.012, why), "paint": inferred(paint, why),
     }
 
@@ -301,7 +326,8 @@ def make_record(row: list, datum: dict) -> dict:
                 "confidence": "reconstructed",
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
             },
-            "form": form_for(family, spec, sid, int(seq), paint),
+            "form": form_for(family, spec, sid, int(seq), paint,
+                             archetype_for(family), width, depth),
             "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": inferred(function, f"Assigned from the {family} family to satisfy the aggregate North Division mix; no occupant or individual use is known."),
