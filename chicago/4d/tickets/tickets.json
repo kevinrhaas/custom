@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 21, 2026, 11:05 PM",
+  "generated_ct": "Aug 22, 2026, 12:12 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -143,7 +143,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 2
     },
     {
       "id": "T-0009",
@@ -160,7 +160,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 4
+      "queue_rank": 3
     },
     {
       "id": "T-0010",
@@ -177,7 +177,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 5
+      "queue_rank": 4
     },
     {
       "id": "T-0011",
@@ -194,7 +194,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 6
+      "queue_rank": 5
     },
     {
       "id": "T-0012",
@@ -211,7 +211,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 7
+      "queue_rank": 6
     },
     {
       "id": "T-0013",
@@ -228,7 +228,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 8
+      "queue_rank": 7
     },
     {
       "id": "T-0014",
@@ -245,7 +245,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 9
+      "queue_rank": 8
     },
     {
       "id": "T-0015",
@@ -262,7 +262,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 9
     },
     {
       "id": "T-0016",
@@ -279,7 +279,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 10
     },
     {
       "id": "T-0017",
@@ -296,7 +296,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 11
     },
     {
       "id": "T-0018",
@@ -313,7 +313,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 12
     },
     {
       "id": "T-0019",
@@ -330,7 +330,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 13
     },
     {
       "id": "T-0020",
@@ -347,7 +347,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 14
     },
     {
       "id": "T-0021",
@@ -364,7 +364,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 15
     },
     {
       "id": "T-0022",
@@ -381,7 +381,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 16
     },
     {
       "id": "T-0023",
@@ -398,7 +398,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 17
     },
     {
       "id": "T-0024",
@@ -415,7 +415,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 18
     },
     {
       "id": "T-0025",
@@ -432,7 +432,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 19
     },
     {
       "id": "T-0026",
@@ -449,7 +449,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 21
+      "queue_rank": 20
     },
     {
       "id": "T-0027",
@@ -466,7 +466,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 22
+      "queue_rank": 21
     },
     {
       "id": "T-0028",
@@ -483,7 +483,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 23
+      "queue_rank": 22
     },
     {
       "id": "T-0029",
@@ -500,7 +500,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 23
     },
     {
       "id": "T-0030",
@@ -517,7 +517,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 24
     },
     {
       "id": "T-0031",
@@ -534,7 +534,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 25
     },
     {
       "id": "T-0032",
@@ -551,7 +551,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 26
     },
     {
       "id": "T-0033",
@@ -585,7 +585,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 27
     },
     {
       "id": "T-0035",
@@ -638,7 +638,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 28
     },
     {
       "id": "T-0038",
@@ -818,7 +818,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 29
     },
     {
       "id": "T-0048",
@@ -926,7 +926,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 30
     },
     {
       "id": "T-0054",
@@ -944,7 +944,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 31
     },
     {
       "id": "T-0055",
@@ -962,7 +962,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 32
     },
     {
       "id": "T-0056",
@@ -980,7 +980,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 33
     },
     {
       "id": "T-0057",
@@ -998,7 +998,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 34
     },
     {
       "id": "T-0058",
@@ -1016,7 +1016,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 35
     },
     {
       "id": "T-0059",
@@ -1034,7 +1034,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 37
+      "queue_rank": 36
     },
     {
       "id": "T-0060",
@@ -1322,7 +1322,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": 0
     },
     {
       "id": "T-0076",
@@ -1340,7 +1340,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": 1
     },
     {
       "id": "T-0077",
@@ -1556,7 +1556,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 37
     },
     {
       "id": "T-0090",
@@ -1628,7 +1628,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 38
     },
     {
       "id": "T-0094",
@@ -1646,7 +1646,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 40
+      "queue_rank": 39
     },
     {
       "id": "T-0095",
@@ -1664,7 +1664,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 41
+      "queue_rank": 40
     },
     {
       "id": "T-0096",
@@ -1682,7 +1682,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 41
     },
     {
       "id": "T-0097",
@@ -1700,7 +1700,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 42
     },
     {
       "id": "T-0098",
@@ -1718,7 +1718,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 43
     },
     {
       "id": "T-0099",
@@ -1736,7 +1736,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 44
     },
     {
       "id": "T-0100",
@@ -1754,7 +1754,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 45
     },
     {
       "id": "T-0101",
@@ -1808,7 +1808,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 46
     },
     {
       "id": "T-0104",
@@ -1826,7 +1826,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0105",
@@ -1844,7 +1844,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0106",
@@ -1862,7 +1862,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0107",
@@ -1880,7 +1880,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0108",
@@ -1916,7 +1916,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0110",
@@ -1952,7 +1952,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0112",
@@ -1970,7 +1970,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0113",
@@ -1988,7 +1988,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0114",
@@ -2006,7 +2006,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0115",
@@ -2060,7 +2060,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0118",
@@ -2132,7 +2132,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0122",
@@ -2150,7 +2150,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0123",
@@ -2222,7 +2222,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0127",
@@ -2240,7 +2240,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0128",
@@ -2276,7 +2276,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 63
+      "queue_rank": 62
     },
     {
       "id": "T-0130",
@@ -2294,7 +2294,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0131",
@@ -2366,12 +2366,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 63
     },
     {
       "id": "T-0135",
       "title": "The draw-call ceiling is checked at one camera, and it is not the worst one",
-      "state": "claimed",
+      "state": "blocked-owner",
       "epic": "META",
       "requested_by": "owner",
       "seen": true,
@@ -2382,9 +2382,9 @@
       "closed": null,
       "pr": null,
       "claimed_by": "run 8/21/2026, 11:05:00 PM CT",
-      "blocked_on": null,
+      "blocked_on": "The gate now reads the worst of five named stands and it is RED: 1,320,377 tris of 1,000,000 at full, 1,144,787 of 900,000 at balanced, 992,617 of 600,000 at light, and 200 draw calls of 140 — all at Lake Street looking east from Canal. Raise the ceilings to carry it (which puts light above the ceiling full carries today, so the ladder and the weak-machine floor both stop meaning anything), or trim the axial view to fit them (a rendering programme: distance culling or LOD down a long street)? Measured 2026-08-22; nothing regressed, this is the first honest reading.",
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     }
   ]
 }
