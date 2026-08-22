@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 6:42 PM",
+  "generated_ct": "Aug 22, 2026, 6:45 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2375,7 +2375,7 @@
     {
       "id": "T-0135",
       "title": "The draw-call ceiling is checked at one camera, and it is not the worst one",
-      "state": "open",
+      "state": "blocked-owner",
       "epic": "META",
       "requested_by": "owner",
       "seen": true,
@@ -2385,10 +2385,10 @@
       "opened": "2026-08-21",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
+      "claimed_by": "run 8/21/2026, 11:05:00 PM CT",
+      "blocked_on": "The gate now reads the worst of five named stands and it is RED: 1,320,377 tris of 1,000,000 at full, 1,144,787 of 900,000 at balanced, 992,617 of 600,000 at light, and 200 draw calls of 140 — all at Lake Street looking east from Canal. Raise the ceilings to carry it (which puts light above the ceiling full carries today, so the ladder and the weak-machine floor both stop meaning anything), or trim the axial view to fit them (a rendering programme: distance culling or LOD down a long street)? Measured 2026-08-22; nothing regressed, this is the first honest reading.",
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0136",
@@ -2406,7 +2406,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 58
     },
     {
       "id": "T-0137",
@@ -2424,7 +2424,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 59
     },
     {
       "id": "T-0138",
@@ -2442,7 +2442,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 60
     },
     {
       "id": "T-0139",
@@ -2460,7 +2460,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 61
     },
     {
       "id": "T-0140",
@@ -2514,7 +2514,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 62
     },
     {
       "id": "T-0143",
@@ -2532,7 +2532,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 63
     },
     {
       "id": "T-0144",
@@ -2571,6 +2571,42 @@
       "queue_rank": null
     },
     {
+      "id": "T-0146",
+      "title": "Merge far chunks back into single draws",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0149",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0147",
+      "title": "Re-lower the ceilings once the trims land",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0149",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
+    },
+    {
       "id": "T-0148",
       "title": "The A1 stable cannot reach its ridge band at any pitch its family allows",
       "state": "open",
@@ -2586,7 +2622,43 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0149",
+      "title": "Win the light tier back as a floor: trim the axial view instead of carrying it",
+      "state": "split",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "L",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": "2026-08-22",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0150",
+      "title": "Distance-cull the furniture layers at the light tier",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0149",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 0
     }
   ]
 }
