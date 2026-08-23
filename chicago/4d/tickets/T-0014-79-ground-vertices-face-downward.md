@@ -1,7 +1,7 @@
 ---
 id: T-0014
 title: 79 ground vertices face downward
-state: claimed
+state: done
 epic: GROUND
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: T-BUG2
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 323
 claimed_by: run 8/23/2026, 4:19:40 AM CT
 blocked_on: null
 needs_bake: true
