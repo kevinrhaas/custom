@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0150 — Distance-cull the furniture layers at the light tier
 T-0012 — Ship the 16-bit ground the script already computes
 T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
 T-0014 — 79 ground vertices face downward
