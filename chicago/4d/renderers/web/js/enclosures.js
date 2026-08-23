@@ -699,7 +699,13 @@ export async function createEnclosures({
     }
     for (const record of out.records) {
       const t = tallies.get(record.id);
-      if (!t.posts) {
+      // A record with NO RUNS AT ALL is not a fence that failed to draw — it is a
+      // record that rides this manifest to carry GROUND and says so (T-0097's fort
+      // apron, whose enclosure is the palisade: a committed structure with a baked
+      // GLB, so there is no fence here to draw and a second wall beside the first
+      // is what drawing one would mean). Complaining about it would file a problem
+      // on every load for a record behaving exactly as written.
+      if (!t.posts && (record.runs ?? []).length) {
         sink.push(`enclosures: ${record.id} drew nothing — every post stood in water `
           + 'or the record carries no run with two points');
       }

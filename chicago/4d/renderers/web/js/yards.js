@@ -417,9 +417,20 @@ function layRegion(buf, poly, terrain, o) {
  *     whose fourth side is a BUILDING needs. The Western Hotel's yard is closed
  *     by the hotel and its stable, and the Sauganash's by the hotel and Philo
  *     Carpenter's shop; a fence line alone cannot say where that ground stops.
+ *     T-0097 lets that field carry an ARRAY OF RINGS as well as one ring, because
+ *     the ground a record covers is not always simply connected: the fort's apron
+ *     is the band OUTSIDE its walls, which is a frame of four bands and not a
+ *     disc, and a record that could only state one ring would have had to claim
+ *     the parade inside the walls as well to say it.
  *   * otherwise every run whose own path CLOSES A RING is its own interior,
  *     which is what the pound and each of the fifteen garden plots already are.
  *     No new coordinate is authored for any of them.
+ *
+ * A record may also state `ground.fringe_ring_local_enu_m`: the ONE ring the
+ * trampled-grass fringe is measured from, for a treatment whose interiors are
+ * several. Without it each band would feather at its own four edges, drawing a
+ * grassy seam along the wall and along every internal join — the opposite of
+ * what the fort's plates show, which is bare earth right up to the pickets.
  */
 function interiorsOf(record, problems) {
   const ground = record.ground ?? {};
@@ -433,9 +444,23 @@ function interiorsOf(record, problems) {
   const level = LEVEL[ground.confidence] ?? 1;
   const out = [];
   const authored = ground.interior_local_enu_m;
-  if (Array.isArray(authored) && authored.length >= 3) {
+  // One ring is `[[e, n], ...]` and several are `[[[e, n], ...], ...]`, so the
+  // depth of the first coordinate is what tells them apart — no flag, and a
+  // record written before T-0097 reads exactly as it always did.
+  const many = Array.isArray(authored) && Array.isArray(authored[0])
+    && Array.isArray(authored[0][0]);
+  const fringeRing = Array.isArray(ground.fringe_ring_local_enu_m)
+    && ground.fringe_ring_local_enu_m.length >= 3
+    ? ring(ground.fringe_ring_local_enu_m) : null;
+  if (many) {
+    authored.forEach((r, i) => {
+      if (!Array.isArray(r) || r.length < 3) return;
+      out.push({ id: `${record.id}__interior_${i}`, record: record.id, treatment, level,
+        pts: ring(r), fringePts: fringeRing });
+    });
+  } else if (Array.isArray(authored) && authored.length >= 3) {
     out.push({ id: `${record.id}__interior`, record: record.id, treatment, level,
-      pts: ring(authored) });
+      pts: ring(authored), fringePts: fringeRing });
   } else {
     for (const run of record.runs ?? []) {
       if (!closes(run.path_local_enu_m)) continue;
@@ -552,7 +577,11 @@ export function createFencedGround({
     const uLen = wide ? b.maxE - b.minE : b.maxN - b.minN;
     const vLen = wide ? b.maxN - b.minN : b.maxE - b.minE;
     const reach = FRINGE_M[interior.treatment] ?? 0.8;
-    const fringeOf = (e, n) => Math.min(1, edgeDistance(pts, e, n) / reach);
+    // The fringe is measured from the record's own outer ring where it states
+    // one (T-0097) and from this interior's boundary otherwise — which is the
+    // same answer for every record that has exactly one interior.
+    const fringePts = interior.fringePts ?? pts;
+    const fringeOf = (e, n) => Math.min(1, edgeDistance(fringePts, e, n) / reach);
 
     out.census.cells += layRegion(bufFor(spec.base), pts, terrain, {
       frame, period: PERIOD_M[spec.base], lift: LIFT_M.base, level: interior.level,

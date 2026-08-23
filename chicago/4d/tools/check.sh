@@ -119,6 +119,15 @@ step "the yard goods re-derive from the rule that chose their frontages" \
 step "the building material re-derives from the rule that chose the lots" \
   python3 tools/generate_lot_building_material.py --check
 
+# The fort apron is the same shape of claim about GROUND rather than about things standing
+# on it: both committed Fort Dearborn plates draw the ground round the stockade as bare
+# trodden earth, no source states a foot of it, and the render grew prairie to the pickets.
+# So "how far out is it bare" is a rule, derived from the palisade's own committed footprint
+# and placement, and re-derived here — along with the four assertions the rule has to be true
+# for, which fail this gate rather than a reviewer's attention (T-0097).
+step "the fort apron re-derives from the palisade it is measured off" \
+  python3 tools/generate_fort_apron.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
