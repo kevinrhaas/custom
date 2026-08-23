@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 245, title: 'The dark patches on the prairie are gone', kind: 'fix', ts: '2026-08-23T09:30:29.741Z', date: 'Aug 23, 2026, 4:30 AM CT',
+    items: [
+      'Scattered across the town, on open ground, sat two dozen dark blotches a few metres wide \u2014 grass that fell into shadow with nothing above it to cast one. Stand over any of them and the ground simply went grey. They are gone.',
+      'Each was a patch of ground that had been drawn inside out. The land is built as a sheet of triangles, and a triangle knows which way it faces; two hundred and thirty of them had ended up facing down into the earth or standing exactly on edge. Light asks a surface which way it points before deciding how bright it is, and those answered wrongly.',
+      'The fault was made by the step that thins the ground out \u2014 the town keeps its land light by merging flat patches, and a handful of triangles came back from the merge reversed or squashed to nothing. It has done this since the thinning was added, and the count had been written down and watched rather than fixed.',
+      'What it took was saying plainly what ground IS: seen from straight above, every triangle of it covers real area, and the side you can see is the top. Measured against that, the bad ones separate from the good with nothing in between \u2014 no line to draw by hand, no judgement to make.',
+      'Photographed from directly overhead at six of the sites, five show the blotch before and clean grass after; the ground itself has not moved by a millimetre, and every ray fired at it from above still lands.',
+      'The release check that had been keeping the tally now insists on zero, so this cannot quietly come back.',
+    ] },
   { v: 244, title: 'The shimmer from above is the town\u2019s own edges, not a fault', kind: 'chore', ts: '2026-08-23T08:40:07.560Z', date: 'Aug 23, 2026, 3:40 AM CT',
     items: [
       'Nothing you can see changed today, and this is the third such day in four \u2014 which is over this project\u2019s own limit, and the next round of work has to put something in the town.',

@@ -4325,17 +4325,29 @@ for (const [label, viewport, touch] of [
       `${groundNormals.tiles} tiles, worst ${groundNormals.worstTile?.name}: `
       + `${groundNormals.worstTile?.down}/${groundNormals.worstTile?.verts} down `
       + `(${((groundNormals.worstTile?.share ?? 0) * 100).toFixed(2)}%)`);
-    // (b) THE SCATTERED ONES CANNOT GROW. 79 of 742,581 vertices — 0.011 % —
-    //     come out of the terrain generator facing down, in isolated points
-    //     inside the town rather than in any contiguous patch, which is why they
-    //     produce no visible artefact. They are a real defect (ROADMAP T-BUG2)
-    //     and they are NOT this gate's bug, so this pins the measured number
-    //     rather than pretending it is zero or quietly allowing any figure.
-    //     Fixing them lowers this constant; nothing else may raise it.
-    check(`${label}: no new downward ground normals beyond the known 79`,
-      groundNormals.downward <= 79,
+    // (b) AND THE SCATTERED ONES ARE GONE — the cap is 0, and it is 0 because
+    //     the generator now proves the invariant instead of this gate banking
+    //     the breaches. This assertion was written with a cap of 79 (ROADMAP
+    //     T-BUG2): isolated vertices, inside the town rather than in any
+    //     contiguous patch, that came out of the terrain generator facing down
+    //     and produced no visible artefact — a real defect the gate could pin
+    //     but not fix, so it pinned the measured number and let it only fall.
+    //
+    //     T-0014 fixed it at the source. `generators/terrain_gen.py`
+    //     § _face_the_sky() re-winds the 33 backwards faces the n-gon
+    //     triangulation produced and deletes the 197 that stand edge-on, on a
+    //     classifier with no threshold in it — the plan-projected signed area,
+    //     which on this 2.5 m lattice is either exactly 0.0 or at least
+    //     3.125 m² and never in between. The shipped master's worst ground
+    //     normal now points 0.737 up, so this is not a number sitting near its
+    //     bar: nothing quantisation does to it can reach 0.1.
+    //
+    //     KEEP IT AT 0. A cap that can be raised is a defect that can be
+    //     re-banked, and this one already was, for nine days.
+    check(`${label}: no ground vertex faces downward`,
+      groundNormals.downward === 0,
       `${groundNormals.downward} of ${groundNormals.verts} vertices face down `
-      + `(baseline 79 — see ROADMAP T-BUG2)`);
+      + `(the bar is 0 — see T-0014, was ROADMAP T-BUG2)`);
 
     // And the renderer's OWN account of it, which is the part that was ignored:
     // it pushed the fallback to `problems` every single load and nothing read it.

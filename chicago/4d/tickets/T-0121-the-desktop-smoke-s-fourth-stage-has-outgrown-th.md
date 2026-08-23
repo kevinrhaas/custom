@@ -50,3 +50,11 @@ erosion is monotonic across three measurements (T-0070: stages 3-4 lost; this: 2
 says the repair has to be a re-cut of the desktop body rather than one more stage boundary
 nudged along.
 
+**Re-measured 2026-08-23 by T-0014 (PR #323), and it is no longer the fourth stage
+alone.** On this runner, against the published mirror, `SMOKE_STAGE` at
+1280x800: stage 1 finished; **stage 2 overran the ten-minute foreground ceiling
+and had to be read back after the fact**; **stages 3 and 4 were both killed at
+10:00 (exit 143)** and produced no reading at all. Mobile still fits at every
+stage (2m34s for stage 1). So three of the desktop quarters are now outside the
+ceiling, not one, and a steward run can currently take only half the desktop
+gate in the foreground.
