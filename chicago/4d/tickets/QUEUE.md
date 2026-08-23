@@ -59,3 +59,4 @@ T-0155 — The changelog stamper has the same after-publish trap the ticket tool
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
 T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
+T-0161 — A full bake rebuilds estray_pen, which the dataset refuses to have committed, so every full bake needs a manual deletion to pass its own gate
