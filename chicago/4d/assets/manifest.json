@@ -117,15 +117,6 @@
       "phase_id": "log_1820",
       "structure_id": "cobweb_castle"
     },
-    "cook_county_courthouse_1835__wood_1835.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 100196,
-      "inputs_sha256": "bf6eb92e5046f43ce5c35f578a4c07f0b0a2ba5ccb47017a71aa8342d1817bee",
-      "kind": "generated",
-      "phase_id": "wood_1835",
-      "structure_id": "cook_county_courthouse_1835"
-    },
     "council_house__log_1834.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,

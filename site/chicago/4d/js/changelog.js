@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 251, title: 'The rebuild can now reach every building it is blamed for', kind: 'chore', ts: '2026-08-23T17:02:00.123Z', date: 'Aug 23, 2026, 12:02 PM CT',
+    items: [
+      'Nothing a visitor can see changed. This is about the rebuild \u2014 the slow job that regenerates the town\u2019s 344 building models from the records \u2014 and one model it could never regenerate.',
+      'The town keeps a note of what every model was built from, and refuses to ship one whose records have moved on since. Touch the shared build script, even to correct a comment, and all 344 are marked as needing rebuilding at once. That is the intended behaviour and it works.',
+      'One model could not answer. The first Cook County court-house was put up in the fall of 1835, months after the first of July this town is set on, so the builder skips it \u2014 while the check still held it to account. The rebuild that healed the other 343 could not heal that one, and there was no honest way to get the town green again. Two earlier runs lost their intended change to it: one got past with a throwaway patch, the other reverted a fix it had already proved.',
+      'The court-house model is retired. Nothing loaded it \u2014 the town already listed the building as standing outside its date \u2014 so no visitor loses anything, and its record, its sources and the reasoning behind it are all untouched. A model is made from the record, so the day this town gains a scene set in the autumn the building comes back by the ordinary route.',
+      'And the trap is closed rather than stepped around: the release check now refuses any building model the rebuild cannot reach, naming it and the three ways to fix it. It was shown finding this one before it was trusted.',
+      'It also frees the court-house\u2019s own record. Two corrections from Andreas \u2014 that the building was brick, and which corner of the public square it stood on \u2014 had been written down but not applied, because applying them would have staled a model nobody could rebuild.',
+    ] },
   { v: 250, title: 'Ninety-four buildings stop being grey boxes', kind: 'feature', ts: '2026-08-23T16:38:12.164Z', date: 'Aug 23, 2026, 11:38 AM CT',
     items: [
       'Ninety-four of the town’s anonymous houses and stores have been standing as plain flagged boxes — a rough massing of the right size in the right place, marked in the file as a stand-in rather than a building. They are properly built now: walls, roofs, doorways and the same detail every other reconstructed building on the street already had.',
