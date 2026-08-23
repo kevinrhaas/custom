@@ -1,7 +1,7 @@
 ---
 id: T-0139
 title: The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 333
 claimed_by: run 8/23/2026, 10:45:51 AM CT
 blocked_on: null
 needs_bake: false

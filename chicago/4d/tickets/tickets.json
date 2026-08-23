@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 10:45 AM",
+  "generated_ct": "Aug 23, 2026, 12:00 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2452,7 +2452,7 @@
     {
       "id": "T-0139",
       "title": "The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2460,12 +2460,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-22",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-23",
+      "pr": "333",
       "claimed_by": "run 8/23/2026, 10:45:51 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": null
     },
     {
       "id": "T-0140",
@@ -2519,7 +2519,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0143",
@@ -2537,7 +2537,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0144",
@@ -2627,7 +2627,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0149",
@@ -2753,7 +2753,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0156",
@@ -2771,7 +2771,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0157",
@@ -2789,7 +2789,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0158",
@@ -2807,7 +2807,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0159",
@@ -2825,7 +2825,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 60
     }
   ]
 }
