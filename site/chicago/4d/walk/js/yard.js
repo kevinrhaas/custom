@@ -52,6 +52,17 @@
  *  * It answers a pick. A barrel belongs to the business whose door it stands
  *    at, so clicking it opens that business's card — the same contract the
  *    signboards keep.
+ *  * IT DRAWS THE OTHER HALF OF THE ORDINANCE (T-0057), and it is a second record
+ *    rather than a second column on the first. Ordinance 9 names *timber, stone,
+ *    brick, boxes and barrels*; the boxes and barrels are a merchant's stock on his
+ *    own frontage, and the three building materials are stock of a completely
+ *    different kind — they belong to a building that is GOING UP. Only one structure
+ *    in this scene says it was: `lake_house_construction`, a roofless brick shell
+ *    whose `function` is `hotel_under_construction`, attested. So brick, squared
+ *    timber and footing stone stand on that lot and on no other, `data/yard/
+ *    lot_building_material.json` argues which face each gets, and this file only
+ *    draws them. They are the only things on the layer that are not timber or
+ *    canvas: brick is the town's own chimney brick and stone is a bounded grey.
  *  * It draws A ROOF, once: the open-sided wagon shed at the Green Tree's yard
  *    end (T-0081), posts and plates and a lean-to over a covered wagon. It is
  *    still not a structure record and still not baked — it is derived from that
@@ -160,6 +171,42 @@ const CANVAS_COLOUR = 0xbfb49b;
 
 /** The tilt: how many facets the canvas arch is drawn with. */
 const TILT_SEGS = 8;
+
+/**
+ * THE TWO TONES THE BUILDING MATERIAL BRINGS (T-0057), and only one of them is new.
+ *
+ * BRICK IS NOT NEW. It is this town's ONE brick — `generators/common/materials.py`'s
+ * `CHIMNEY_BRICK`, off the Petford watercolour's brick chimneys, and the same brick
+ * every framed house in the scene carries on its stack. It is written here as the
+ * sheet's own LINEAR triple rather than as an sRGB hex, which is why this constant is
+ * a `setRGB` and its neighbours are `setHex`: a glTF base colour factor is linear by
+ * definition and `THREE.Color.setRGB` defaults to the working colour space, so the two
+ * agree by construction instead of by a conversion somebody did once.
+ *
+ * STONE IS NEW, and the material sheet has no row for it — its `stone` substrate
+ * carries a roughness and no colour, because the one record that uses it says bare
+ * masonry is unattested here. So the tone is RECONSTRUCTED and bounded by two values
+ * this project already ships. It is paler and greyer than the layer's own timber
+ * (0x8a7a5f), or a heap of footing stone stops reading as stone beside the sticks
+ * piled next to it; and it is darker than the chinking clay the log walls are daubed
+ * with (linear 0.700/0.670/0.590), which is the same mineral sitting sheltered under
+ * an eave while a heap in a yard takes the weather. docs/LIBERTIES.md L173.
+ */
+const BRICK_LINEAR = [0.45, 0.23, 0.17];
+const STONE_COLOUR = 0xa8a49b;
+
+/**
+ * The stone heap's own yaw and stagger, which are the RENDERER's the way the barrel's
+ * stave count is: the record says nine blocks in two tiers, and how each one happens
+ * to be lying is not a claim anybody can make about a heap of rubble. Fixed numbers,
+ * not a random deal — a load that changed shape between two loads of the same page
+ * would be a lottery, and this layer has never had one.
+ */
+const STONE_YAW_DEG = [0, 34, -21, 12, -47, 63, -8, 27, -35];
+const STONE_JITTER = [
+  [-0.62, -0.20], [0.08, -0.26], [0.70, -0.14], [-0.30, 0.24], [0.42, 0.20],
+  [-0.72, 0.16], [0.00, 0.02], [0.58, 0.30], [-0.16, -0.02],
+];
 
 /**
  * THE CART'S SHAFTS AND THE YOKE'S BOWS (T-0064) — sections only, as everywhere
@@ -1284,6 +1331,107 @@ async function getJSON(url) {
 }
 
 /** The record's `form` block, read once so no draw reaches into the JSON. */
+/**
+ * ONE PILE OF BUILDING MATERIAL on a lot that was going up — T-0057, and the other
+ * half of Ordinance 9. The ordinance names *timber, stone, brick, boxes and barrels*;
+ * T-0040 drew the boxes and barrels at the trading frontages and left these three,
+ * because they are a different claim about a different kind of ground — building
+ * material belongs to a building that is being BUILT, and only one record in this
+ * scene says any building was.
+ *
+ * THE FRAME IS THE LAYER'S OWN, unchanged: the record's `bearing_deg` is the compass
+ * bearing of the face the pile stands off, so along that face is (cos b, sin b) in
+ * world XZ and out of it is (sin b, -cos b) — the same two lines every barrel and
+ * every signboard in this town is placed by. The pile stands on the TERRAIN at its own
+ * point, like everything else on this layer and unlike the boards one layer over.
+ *
+ * EVERY SIZE IS THE RECORD'S. How many courses a timber pile is, how many blocks a
+ * heap holds and how the two brick tiers step are all in `form`, graded and noted
+ * there. What is this file's is what a triangle is made of: which way a block of
+ * rubble happens to be lying, which is not a claim anybody can make about a heap.
+ */
+function buildStack(buf, item, form, terrain, level, problems, who) {
+  const at = item.at_local_enu_m;
+  if (!Array.isArray(at) || at.length !== 2) return false;
+  const base = groundAt(terrain, at[0], at[1]);
+  if (base === null) {
+    problems.push(`yard: ${who} has no ground under its ${item.kind} — it is not drawn`);
+    return false;
+  }
+  const b = ((item.bearing_deg ?? 0) * Math.PI) / 180;
+  const wx = Math.cos(b);
+  const wz = Math.sin(b);
+  // `pushBox`'s own across-axis, so an offset written here lands where the box's
+  // width does.
+  const vx = -wz;
+  const vz = wx;
+  const x = at[0];
+  const z = -at[1];
+
+  if (item.kind === 'brick') {
+    const [L, W, H] = form.brickStack;
+    const [inset, split] = form.brickTier;
+    const low = H * split;
+    buf.tint = buf.brick;
+    pushBox(buf, x, base + low / 2, z, wx, wz, L / 2, W / 2, low / 2, level);
+    const up = H - low;
+    if (up > 0) {
+      pushBox(buf, x, base + low + up / 2, z, wx, wz,
+        Math.max(L / 2 - inset, 0.05), Math.max(W / 2 - inset, 0.05), up / 2, level);
+    }
+    buf.tint = buf.timber;
+    return true;
+  }
+
+  if (item.kind === 'timber') {
+    const [len, sq] = form.timberStick;
+    const [per, , short] = form.timberPile;
+    const courses = item.courses ?? 4;
+    for (let c = 0; c < courses; c += 1) {
+      // The top course is short, and it is short at ONE END rather than at both:
+      // a pile being worked off loses its sticks from the side the barrow is on,
+      // and a symmetrically shortened top reads as a design.
+      const top = c === courses - 1 && courses > 1;
+      const count = Math.max(1, top ? per - short : per);
+      const shift = top ? (short * sq) / 2 : 0;
+      for (let i = 0; i < count; i += 1) {
+        const acr = (i - (per - 1) / 2) * sq + shift;
+        pushBox(buf, x + vx * acr, base + sq / 2 + c * sq, z + vz * acr,
+          wx, wz, len / 2, sq / 2, sq / 2, level);
+      }
+    }
+    return true;
+  }
+
+  if (item.kind === 'stone') {
+    const [bl, bw, bh] = form.stoneBlock;
+    const [blocks, tiers] = form.stoneHeap;
+    const n = Math.max(1, Math.min(item.blocks ?? blocks, STONE_YAW_DEG.length));
+    // The upper tier is the tail of the deal and is drawn pulled toward the middle,
+    // which is what makes a tipped load read as a heap and not as two layers.
+    const upper = tiers > 1 ? Math.max(1, Math.round(n / 3)) : 0;
+    buf.tint = buf.stone;
+    for (let i = 0; i < n; i += 1) {
+      const high = i >= n - upper;
+      const pull = high ? 0.5 : 1.0;
+      const [ja, jc] = STONE_JITTER[i];
+      const along = ja * 1.0 * pull;
+      const acr = jc * 1.2 * pull;
+      const yaw = b + (STONE_YAW_DEG[i] * Math.PI) / 180;
+      const ux = Math.cos(yaw);
+      const uz = Math.sin(yaw);
+      pushBox(buf,
+        x + wx * along + vx * acr,
+        base + (high ? bh * 1.4 : bh / 2),
+        z + wz * along + vz * acr,
+        ux, uz, bl / 2, bw / 2, bh / 2, level);
+    }
+    buf.tint = buf.timber;
+    return true;
+  }
+  return false;
+}
+
 function readForm(record) {
   const f = record?.form ?? {};
   const v = (k, fallback) => (f[k]?.value ?? fallback);
@@ -1310,6 +1458,15 @@ function readForm(record) {
     cart: v('cart_m', [1.98, 1.07, 0.5, 1.42, 0.86, 2.44]),
     yoke: v('ox_yoke_m', [1.42, 0.12, 0.34, 0.05]),
     yokeOffset: 1.35,
+    // T-0057's building material. Same contract again: every size is the record's
+    // claim, graded and noted there, and the fallbacks are only what keeps a record
+    // written before this parcel from throwing.
+    brickStack: v('brick_stack_m', [2.2, 1.1, 1.05]),
+    brickTier: v('brick_tier_m', [0.18, 0.62]),
+    timberStick: v('timber_stick_m', [3.66, 0.2, 0.2]),
+    timberPile: v('timber_pile', [5, [5, 4], 2]),
+    stoneBlock: v('stone_block_m', [0.7, 0.45, 0.35]),
+    stoneHeap: v('stone_heap', [9, 2]),
   };
 }
 
@@ -1327,12 +1484,13 @@ export async function createYardGoods({
     group,
     records: [],
     frontages: [],
+    lots: [],
     wagons: [],
     benches: [],
     sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
       byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0,
-      marked: 0, markCells: 0 },
+      marked: 0, markCells: 0, lots: 0, piles: 0, byMaterial: {} },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -1418,9 +1576,15 @@ export async function createYardGoods({
    */
   const timber = new THREE.Color(GOODS_COLOUR);
   const canvasTone = new THREE.Color(CANVAS_COLOUR);
+  // Brick goes in as the material sheet's own LINEAR triple; `setRGB` defaults to the
+  // working colour space, so no conversion happens and none can go wrong.
+  const brickTone = new THREE.Color().setRGB(...BRICK_LINEAR);
+  const stoneTone = new THREE.Color(STONE_COLOUR);
   const tones = {
     timber: [timber.r, timber.g, timber.b],
     canvas: [canvasTone.r, canvasTone.g, canvasTone.b],
+    brick: [brickTone.r, brickTone.g, brickTone.b],
+    stone: [stoneTone.r, stoneTone.g, stoneTone.b],
   };
   /**
    * THE CHUNKS, and what decides which one a thing goes in: WHERE IT STANDS.
@@ -1498,6 +1662,33 @@ export async function createYardGoods({
         to: chunk.buf.pos.length / 9 });
       out.frontages.push(frontage);
       out.census.frontages += 1;
+    }
+    /**
+     * THE LOTS THAT WERE GOING UP (T-0057). Same shape as a frontage and for the same
+     * reason: a lot's piles are one pick target — aim at a stack of brick and the
+     * Lake House's card opens — so they go in one chunk and bank one span, exactly as
+     * a shop's barrels do.
+     */
+    for (const lot of record.lots ?? []) {
+      const anchor = anchorOf(lot.items ?? []);
+      if (!anchor) continue;
+      const chunk = chunkAt(anchor[0], anchor[1]);
+      let drew = 0;
+      const from = chunk.buf.pos.length / 9;
+      for (const item of lot.items ?? []) {
+        if (!buildStack(chunk.buf, item, form, terrain,
+          LEVEL[lot.confidence] ?? level, problems, lot.structure_id)) continue;
+        drew += 1;
+        out.census.piles += 1;
+        out.census.objects += 1;
+        out.census.byMaterial[item.kind] =
+          (out.census.byMaterial[item.kind] ?? 0) + 1;
+      }
+      if (!drew) continue;
+      chunk.spans.push({ id: lot.structure_id, from,
+        to: chunk.buf.pos.length / 9 });
+      out.lots.push(lot);
+      out.census.lots += 1;
     }
     for (const wagon of record.wagons ?? []) {
       const at = wagon.at_local_enu_m;
