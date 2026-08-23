@@ -1,7 +1,7 @@
 ---
 id: T-0150
 title: Distance-cull the furniture layers at the light tier
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0149
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 316
 claimed_by: run 8/22/2026, 7:21:13 PM CT
 blocked_on: null
 needs_bake: false
