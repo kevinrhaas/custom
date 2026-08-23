@@ -361,6 +361,24 @@ What has NOT changed: nothing outside the box is modelled, sampled or claimed, t
 sampler returns its fallback there, and the apron is geometry for the horizon only. It costs 2 256
 vertices.
 
+**Revised 2026-08-23 — the apron is 1 549.921875 m per side, and the odd number is the point
+(T-0152).** The width is no longer chosen; it is DERIVED, and by something that has nothing to do
+with the horizon. `tools/web_derivatives.sh` quantises the published ground's POSITION under one
+uniform node scale taken from the mesh's widest axis — which is the box plus two apron widths — so
+the apron is what sets the rung every ground vertex is rounded onto. At 1 500 m that rung was
+76.6 mm and 2.5 m of terrain grid was 32.64 of them, so vertices landed BETWEEN rungs, moved in
+plan by up to 51.9 mm, and were then conformed to the field's height for the wrong place: 77 mm of
+error on the east bank faces, where the road ribbon has 22 mm. `generators/terrain_gen.py` now
+takes the smallest apron of at least 1 500 m for which the rung is an exact submultiple of the grid
+— the cell over 32, 78.125 mm — and every vertex stands on a rung, so quantising rounds it to
+itself. Measured: plan movement 0.0 mm.
+
+Three things are worth saying plainly about that. The apron grew by 49.921875 m per side, so it
+still clears the distance this entry's argument leans on, by more than it did. **The area grew
+with it — 18.35 km² against 17.46** — and the same admission as 2026-08-11 applies: what grew is
+prairie and lake nobody looks at. And it still costs 2 256 vertices, because the ring is the same
+ring; only its outer rectangle moved.
+
 ### L18 — Sauganash Hotel: the 1829 cabin's height and its roof are placeholders
 **Decision:** the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged
 `conjectural`, both carrying the word PLACEHOLDER in their own notes.

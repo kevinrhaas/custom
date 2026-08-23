@@ -210,6 +210,23 @@ Two consequences, and this project has shipped a broken town for each of them:
    centred on its origin, its parts are pulled apart on the way. Convert to float **first**
    (`toFloatAttribute` / `dequantizeGeometry` in `renderers/web/js/terrain.js`), then transform.
 
+**The ground's POSITION rung divides the terrain grid exactly — T-0152, 2026-08-23.** Under
+`KHR_mesh_quantization` the node scale is uniform and taken from the mesh's widest axis, so the
+ground's rung is set by the 2 020 m box plus its two skirt margins. `generators/terrain_gen.py`
+therefore DERIVES the skirt margin — the smallest apron of at least the haze distance for which the
+rung is an exact submultiple of the 2.5 m grid, currently the cell over 32 (78.125 mm, apron
+1 549.921875 m) — so every ground vertex already stands on a rung and quantising rounds it to
+itself. This is the generator's side of the bargain and it **strengthens** the existing terms: the
+mesh, the node, the primitive, the attributes and the extension are all unchanged, and a renderer
+that knew nothing about it reads exactly what it read before. What it buys is on the RENDERER's
+side. `conformGroundToField()` repairs Y by re-reading the field at a vertex's shipped `(E, N)`,
+which is a repair only if the shipped `(E, N)` is the authored one; it was out by up to 51.9 mm in
+plan, which cost 77 mm of drawn-surface error on 60-90 % bank faces against the 22 mm the road
+ribbon is lifted by. It is now 0.0 mm, asserted on the shipped bytes by
+`tools/measure_terrain_horizontal.mjs --gate` and on the generator's side by a refusal to export.
+A change to the terrain box, the grid spacing or the quantiser's own model breaks commensurability
+and fails those gates rather than quietly returning the artefact.
+
 **Only the published tree can catch either of these.** A sidecar's `gltf/<name>.glb` resolves
 against `assets/` in the source tree — the *uncompressed masters* — and against `data/` on the
 site, which `tools/publish.sh` fills from `assets/web/`. So a renderer bug that only exists in

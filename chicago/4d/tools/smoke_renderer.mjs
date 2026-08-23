@@ -4381,7 +4381,7 @@ for (const [label, viewport, touch] of [
         for (let i = 0; i < p.count; i += 1) {
           const e = p.getX(i);
           const n = -p.getZ(i);
-          // The skirt reaches 1.5 km past the modelled box, where there is no
+          // The skirt reaches 1.55 km past the modelled box, where there is no
           // field to be right or wrong about. Scoring it would measure the
           // sampler's fallback rather than the ground.
           if (e < eMin || e > eMax || n < nMin || n > nMax) continue;

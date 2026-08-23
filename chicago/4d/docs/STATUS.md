@@ -1,5 +1,74 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0152: the drawn ground stands exactly where the field says, because the quantiser's rung now divides the grid
+
+**The ask.** The drawn ground stood **77.1 mm** off the field on the east slopes, with **56** of the
+field's 259,689 sample points past the 22 mm road lift — one of them 0.1 m from the centreline of
+North Water Street, 25.0 mm BELOW the ground it carries. Acceptance: zero samples past the lift, on
+the bytes that ship.
+
+**The mechanism, and it was never the bit depth.** `renderers/web/js/terrain.js` reads every ground
+height back off `heightfield.bin` at load, so Y is exact to the micron. It reads that height at the
+vertex's SHIPPED (E, N) — and `tools/web_derivatives.sh` moves those. `gltf-transform` quantises
+POSITION under one uniform node scale set by the mesh's widest axis, which is the 2 020 m box plus
+two skirt margins, so the rung was `5 020 / 2 / 32767` = **76.6 mm** and 2.5 m of terrain grid was
+**32.64** of them. Vertices therefore landed between rungs, up to 51.9 mm out in plan, and a vertex
+conformed at a displaced position holds the field's answer for the wrong place. The cost is
+(slope × displacement) and nothing else, which is why R-W6 could write "flat platted prairie cannot
+show this artefact at any bit depth" and be right, and why the east extension — bank faces at a
+median 62 % slope, worst 87 % — made it visible without this step changing at all.
+
+**Neither easy answer existed.** 16 bits is the format's maximum, and it already ships at 16.
+Passing the master through uncompressed is +5.8 MB against a 22.32 MB payload and a 25 MB budget.
+
+**What was built — the third answer, and it abolishes the displacement rather than shrinking it.**
+The quantiser was measured rather than argued about: on the bytes that shipped, scale = half the
+widest extent, translation = the mesh's own centre, rung = scale / 32767, and **378,581 of 378,582
+axis values reproduce `round((p − centre) / rung)` to the bit** (the one exception is a half-rung
+tie). So it is a ladder, and the only question is whether the generator's vertices stand on its
+rungs. `generators/terrain_gen.py` now DERIVES the skirt margin so that they do:
+
+    rung   = (e_span + 2 · margin) / 2 / 32767
+    margin = 32767 · cell / k − e_span / 2          for rung = cell / k
+
+taking the largest power-of-two `k` whose apron still reaches the haze distance — **k = 32, rung
+78.125 mm, margin 1 549.921875 m**. A power of two on purpose: `gltf-transform` stores a bit depth
+in the container above it, so asking for fewer bits multiplies the rung by a power of two and
+leaves it commensurate. The generator and the shell script are not coupled through a number.
+
+**Measured on the bytes that ship, before → after:**
+
+| | before | after |
+|---|---|---|
+| plan movement, master → shipped | 51.9 mm max | **0.0 mm** |
+| drawn surface vs the field, after conforming | 1.5 rms / 3.9 p99 / **77.1 max** | 1.3 / 3.7 / **6.7** |
+| samples past the 22 mm road lift | **56** (20 on dry ground) | **0** |
+| shipped derivative | 704,004 B | 699,096 B |
+
+6.7 mm IS the master's own decimation error, to the tenth of a millimetre: the compressor now
+contributes nothing at all to the surface a visitor stands on.
+
+**Two gates, on both sides of the bake.** The generator REFUSES to export a ground whose vertices
+do not stand on the rung, and `tools/measure_terrain_horizontal.mjs --gate` — new, in
+`tools/check.sh`, 0.8 s — asserts the same thing on the shipped BYTES, plus the consequence: no
+sample point past the road lift. It was demonstrated firing on the old committed derivative
+("the publish step displaced the ground in plan by 51.9 mm", exit 1) before it was wired in. That
+file had reported for a week without asserting anything, because until now no setting made the
+number pass and a gate on it would only have said that a compressor is a compressor.
+
+**No contract amendment was needed after all.** T-0152 anticipated one, because the fix R-W6 left on
+the table was the SKIRT SPLIT — put the apron in its own mesh so the ground's own box sets the scale
+— and that changes what a terrain GLB contains, which is bilateral. It also only buys a factor of
+2.49 (the ground's box is still 2 020 m wide), which lands at about 31 mm and would have failed the
+acceptance clause. The derived margin needs no structural change: one mesh, one primitive, same
+node, same everything the renderer reads. `docs/GLB-CONTRACT.md` gains a paragraph recording the
+invariant, and gives nothing up.
+
+**What a visitor sees.** On flat ground, nothing — the conforming pass has hidden this since
+R-BUG3c. On the east bank faces and at the North Water Street reach, the roadway, the grass tufts
+and the rooted plants now sit on the ground rather than in it. L17 is revised: the apron is
+1 549.921875 m per side and 18.35 km², up from 1 500 m and 17.46, and still 2 256 vertices.
+
 ## Shipped 2026-08-23 — T-0151: the shipped ground's bit depth is asserted, and its ticket was describing a state the tree had left
 
 **The ask.** T-0012, at number two in the queue: *"the 16-bit ground exists in the bake script and

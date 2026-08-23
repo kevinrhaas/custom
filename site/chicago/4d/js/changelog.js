@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 241, title: 'The road stops floating on the east banks', kind: 'fix', ts: '2026-08-23T05:26:19.197Z', date: 'Aug 23, 2026, 12:26 AM CT',
+    items: [
+      'Where the ground falls steeply — the bank faces east of the town, and the reach beside North Water Street — the roadway, the grass tufts and the rooted plants sat as much as 77 mm above or below the ground they are supposed to rest on. They rest on it now, everywhere, to within 7 mm.',
+      'The cause was the model a visitor downloads. To keep it small, every corner of the ground is snapped onto a fixed three-dimensional grid — and that grid’s spacing is set by how WIDE the whole model is, apron and all. Its rungs stood 76.6 mm apart, and the survey grid the town is measured on steps every 2.5 m: 32.64 rungs, which is not a whole number, so no corner of the ground could land where it was drawn. Each one slid up to 51.9 mm sideways and then read the ground height belonging to its new spot.',
+      'On flat prairie that is invisible, and it was invisible for as long as the modelled ground was flat. The land was extended east to the harbour mouth a fortnight ago, onto banks falling at sixty to ninety per cent — and a sideways slip on a steep slope is a vertical error.',
+      'The fix is a strange-looking number with a plain reason: the ground’s far apron, the plain skirt that runs out to the horizon, is now 1,549.921875 m wide instead of a round 1,500. That width is what sets the rung spacing, and it was chosen so the rungs land exactly 32 to the survey grid’s 2.5 m. Every corner of the ground now sits on a rung already, so snapping it moves it nowhere at all: measured sideways movement, zero.',
+      'What is left is the ground’s own simplification — 6.7 mm, which was always there and which the compression no longer adds a thing to. The town is checked against it on every commit now, at all 259,689 points the survey field defines, and the check was demonstrated catching the old file before it was trusted.',
+      'Nothing about 1835 changed. No building moved, no confidence changed, and the apron is still what it has always been: geometry for the horizon, claiming nothing. It is recorded as a liberty, and the entry now says how wide it is and why.',
+    ] },
   { v: 240, title: 'The ground already shipped at the finer lattice; nothing could say so', kind: 'chore', ts: '2026-08-23T04:51:57.517Z', date: 'Aug 22, 2026, 11:51 PM CT',
     items: [
       'Nothing you can see changed today. The ground under the town is exactly where it was, and it has been since the walker started reading its heights straight off the survey field rather than off the compressed model.',

@@ -369,6 +369,17 @@ step "renderer modules parse" check_js
 step "the ground mesh still meets the heightfield the walker samples" \
   node tools/measure_terrain_fit.mjs --gate
 
+# The OTHER two axes, which conformGroundToField() cannot repair — it reads a
+# height back off the field at a vertex's shipped (E, N), so a vertex the
+# quantiser moved in plan holds the right height for the wrong place, and on the
+# east banks' 60-90 % slopes that cost 77 mm where the road ribbon has 22.
+# generators/terrain_gen.py now derives the skirt margin so the publish step's
+# POSITION rung divides the terrain grid exactly, which puts every ground vertex
+# on a rung and takes the displacement to zero. This asserts the zero on the
+# bytes rather than the arithmetic on the generator's side of the bake (T-0152).
+step "the shipped ground stands where the master does, and inside the road lift" \
+  node tools/measure_terrain_horizontal.mjs --gate
+
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
 # spray stays a mass of leaves rather than shrinking towards a single leaf it

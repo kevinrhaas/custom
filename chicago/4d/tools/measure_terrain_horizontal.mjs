@@ -30,6 +30,7 @@
  * built.
  *
  *   node tools/measure_terrain_horizontal.mjs                     table + verdict
+ *   node tools/measure_terrain_horizontal.mjs --gate              assert, for check.sh
  *   node tools/measure_terrain_horizontal.mjs --json              machine-readable
  *   node tools/measure_terrain_horizontal.mjs --mesh f.glb=label  score a candidate
  *   node tools/measure_terrain_horizontal.mjs --epoch <id>
@@ -40,8 +41,22 @@
  * nothing in this repo may author geometry outside a bake.
  *
  * Exit status is 0 for a report and 1 only when it cannot read what it was asked
- * to read. This reports; it does not gate. `tools/check.sh` holds the master's
- * fit and `tools/smoke_renderer.mjs` holds the surface actually drawn.
+ * to read — EXCEPT under `--gate`, which is new (T-0152) and is the reason the
+ * artefact this file was written to measure no longer exists.
+ *
+ * It reported for a week because there was nothing to assert: no setting made
+ * the number pass, so a gate on it would only have said that a compressor is a
+ * compressor. T-0152 changed that. `generators/terrain_gen.py` now DERIVES the
+ * skirt margin so the quantiser's rung is an exact submultiple of the terrain
+ * grid, which puts every ground vertex on a rung and takes the plan displacement
+ * to zero rather than merely making it small. Zero is a thing a gate can hold,
+ * and it is held here rather than in the generator alone because the generator
+ * asserts its own arithmetic while this asserts the BYTES — the same distinction
+ * `measure_terrain_fit.mjs` draws between a bit depth asked for and one shipped.
+ *
+ * `tools/check.sh` runs it. It also still holds the master's fit through
+ * `measure_terrain_fit.mjs`, and `tools/smoke_renderer.mjs` still holds the
+ * surface actually drawn.
  */
 
 import { readFile, stat } from 'node:fs/promises';
@@ -61,13 +76,21 @@ export const LIFT_M = 0.022;
  * refuses to export a ground mesh past. */
 export const MESH_FIT_TOLERANCE_M = 0.03;
 
+/** How far a shipped vertex may stand from its master's plan position under
+ * `--gate`, in metres. A micron, and deliberately not a budget: since T-0152 the
+ * quantiser's rung divides the terrain grid exactly, so the displacement is zero
+ * by construction and anything above float noise means the construction broke.
+ * It is `generators/terrain_gen.py`'s LATTICE_RESIDUAL_TOLERANCE_M, the same
+ * number on the other side of the bake. */
+export const PLAN_LATTICE_TOLERANCE_M = 1e-6;
+
 // --- the surface, as a rasteriser would read it --------------------------- //
 
 /**
  * A plan-space bucket index over the mesh's triangles, restricted to the
  * heightfield's box.
  *
- * Restricted deliberately: the skirt's triangles run 1.5 km past the box on
+ * Restricted deliberately: the skirt's triangles run 1.55 km past the box on
  * every side, and indexing them whole would put one triangle in thousands of
  * cells to answer queries that are never asked. Outside the box there is no
  * field to compare against anyway — `measureMesh()` skips those vertices for
@@ -410,6 +433,7 @@ async function main() {
     return acc;
   }, []);
   const result = await measureTerrainHorizontal({ epoch, extra });
+  if (argv.includes('--gate')) return gate(result);
   if (argv.includes('--json')) {
     process.stdout.write(`${JSON.stringify(result, null, 1)}\n`);
     return;
@@ -445,6 +469,52 @@ async function main() {
           + `${s.over_lift_nearest_street.distance_m.toFixed(1)} m from the centreline of `
           + `${s.over_lift_nearest_street.street}, `
           + `${mm(s.over_lift_nearest_street.err)} mm over the road it would carry`));
+  }
+}
+
+/**
+ * The two assertions, on the shipped bytes.
+ *
+ * ONE: the shipped ground's vertices stand exactly where the master's do, in
+ * plan. That is the mechanism, and it is the one that fails FIRST — a change in
+ * the box, in the grid spacing, in the bit depth or in `gltf-transform`'s own
+ * quantisation model breaks commensurability, and the displacement comes back
+ * before anything is visible. A micron of slack, four orders under the road lift
+ * and four over the arithmetic's own residual.
+ *
+ * TWO: the consequence, because the mechanism is a theory about the consequence
+ * and the consequence is what a visitor stands on. No sample point where the
+ * drawn ground departs from the field by more than the road lift — which is what
+ * R-BUG3c watched bury the roadway, and what T-0152's acceptance clause names.
+ *
+ * Both are asserted on the SHIPPED derivative only. The master is float and
+ * carries the decimation error the generator already gates; asserting it here
+ * would be a second, weaker copy of `measure_terrain_fit.mjs --gate`.
+ */
+function gate(result) {
+  const shipped = result.meshes.shipped;
+  const moved = shipped.displacement?.plan?.max_abs_m ?? null;
+  const over = shipped.surface.over_lift;
+  const worst = shipped.surface.worst;
+  console.log(`   the shipped ground's vertices stand ${mm(moved)} mm from the master's in plan`
+    + ` (lattice ${mm(shipped.vertical_lattice_m)} mm)`);
+  console.log(`   the drawn surface is within ${mm(result.lift_m)} mm of the field at all `
+    + `${result.query.points.toLocaleString()} sample points: ${over === 0 ? 'yes' : 'NO'}`
+    + ` (worst ${mm(worst.abs)} mm at E ${worst.e.toFixed(1)} N ${worst.n.toFixed(1)})`);
+  if (moved === null || moved > PLAN_LATTICE_TOLERANCE_M) {
+    console.error(`   the publish step displaced the ground in plan by ${mm(moved)} mm. Its `
+      + 'POSITION rung is no longer an exact submultiple of the terrain grid, so a vertex '
+      + "conformed at load holds the field's height for the wrong place. See T-0152 and "
+      + 'generators/terrain_gen.py skirt_margin_m() — the fix is a terrain bake, not a '
+      + 'bit depth.');
+    process.exit(1);
+  }
+  if (over > 0) {
+    console.error(`   ${over.toLocaleString()} of the field's sample points carry ground drawn `
+      + `more than ${mm(result.lift_m)} mm from where the town is anchored, worst `
+      + `${mm(worst.abs)} mm on a ${(worst.slope * 100).toFixed(0)} % slope. The road ribbon is `
+      + 'lifted by exactly that much, so this is the budget that buries a roadway (R-BUG3c).');
+    process.exit(1);
   }
 }
 

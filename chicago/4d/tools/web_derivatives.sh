@@ -197,6 +197,8 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   #
   #   water__e1834_harbor_cut   330.8 mm  ) the two epoch-scale meshes: a 2,020 m
   #   terrain__e1834_harbor_cut 306.4 mm  ) box plus 1.5 km of skirt on each side
+  #                                       ) (the skirt is 1,549.921875 m now, and
+  #                                       )  that number is derived — see below)
   #   north_pier                 16.8 mm
   #   every other asset          ≤ 4.8 mm, median 0.5 mm
   #
@@ -209,6 +211,22 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   # the 22 mm road lift at every one of the field's 259,689 sample points. Asking
   # for 16 bits EVERYWHERE was measured too: +105.7 KB on a 4.47 MB payload
   # (+2.4 %) to buy nothing measurable, so it is not done. See R-W6.
+  #
+  # AND THE BIT DEPTH IS NO LONGER WHAT HOLDS THE GROUND — T-0152, 2026-08-23.
+  # 12.9 mm became 77.1 mm without this step changing at all: the ground was
+  # extended east onto bank faces at 60-90 %, and the cost of this quantiser is
+  # (slope x plan displacement), so steeper ground is a tighter consumer of the
+  # same rung. 16 bits is the format's maximum and the master is 5.8 MB too fat
+  # to pass through, so neither of the two obvious answers was available.
+  # `generators/terrain_gen.py` now DERIVES the skirt margin instead, so that the
+  # uniform scale this step takes from the mesh's widest axis makes the rung an
+  # exact submultiple of the 2.5 m terrain grid — the cell over 32, 78.125 mm.
+  # Every ground vertex then stands on a rung and quantising rounds it to itself:
+  # plan displacement 0.0 mm, drawn surface 6.7 mm worst, which is the master's
+  # own decimation and nothing of this step's. `k` is a power of two on purpose,
+  # so lowering EPOCH_QUANT_BITS multiplies the rung by a power of two and leaves
+  # it commensurate — this step and that generator are not coupled through the
+  # number below. `tools/measure_terrain_horizontal.mjs --gate` holds it.
   #
   # `optimize` has no --quantize-position, so compression moves to the `meshopt`
   # command in a second pass. Verified byte-for-byte: `optimize --compress false`
@@ -339,9 +357,10 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   # CLOSED (T-0151, 2026-08-23): a nightly bake shipped the 16-bit ground, the
   # committed derivative reproduces md5-for-md5 at 16 bits and not at 14, and
   # `tools/measure_terrain_fit.mjs --gate` now ASSERTS the shipped depth instead
-  # of printing it. What is still open is the surface error on the ground as
-  # extended east (77.1 mm worst, 56 samples past the road lift, on 60-90 %
-  # slopes) — T-0152, and it is a generator question, not a bit-depth one.
+  # of printing it. The surface error left on the ground as extended east (77.1 mm
+  # worst, 56 samples past the road lift, on 60-90 % slopes) is CLOSED too —
+  # T-0152, and it was a generator question rather than a bit-depth one: see the
+  # derived skirt margin above.
   fellback=0
   passthrough=0
   for f in assets/gltf/*.glb; do

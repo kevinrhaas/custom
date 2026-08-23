@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 11:51 PM",
+  "generated_ct": "Aug 23, 2026, 12:18 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2682,7 +2682,7 @@
     {
       "id": "T-0152",
       "title": "The drawn ground stands 77 mm off the field on the new east slopes",
-      "state": "open",
+      "state": "claimed",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": true,
@@ -2692,7 +2692,7 @@
       "opened": "2026-08-22",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 12:18:46 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 0
