@@ -1,7 +1,7 @@
 ---
 id: T-0152
 title: The drawn ground stands 77 mm off the field on the new east slopes
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: R-W6(b)
 parent: T-0012
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 320
 claimed_by: run 8/23/2026, 12:18:46 AM CT
 blocked_on: null
 needs_bake: true

@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0152 — The drawn ground stands 77 mm off the field on the new east slopes
 T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
 T-0014 — 79 ground vertices face downward
 T-0015 — Does the AO bake earn its nightly
