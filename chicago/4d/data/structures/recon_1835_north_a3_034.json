@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447908.462,
-        "utm_n": 4637631.714,
+        "utm_e": 447908.43,
+        "utm_n": 4637631.669,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,24 +30,24 @@
             0
           ],
           [
-            1.524,
+            1.459,
             0
           ],
           [
-            1.524,
-            1.829
+            1.459,
+            1.738
           ],
           [
             0,
-            1.829
+            1.738
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 5 × 6 ft rectangle assigned by the reconstruction recipe within the A3 family band; no individual dimensions are documented."
+        "note": "A 1.46 × 1.74 m rectangle sampled deterministically inside the A3 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "wall_height_m": {
-          "value": 2.05,
+          "value": 2.103,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"

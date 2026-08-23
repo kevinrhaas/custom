@@ -215,6 +215,18 @@ step "the anonymous massings that claim a sampled band have one" \
 step "no reconstructed value is newly outside the band its own note cites" \
   python3 tools/measure_band_claims.py --gate --quiet
 
+# The value NO record states and every visitor sees: the RIDGE the sampled pitch and
+# the sampled footprint make together (T-0145). The crosswalk authors a `ridge_ft` band
+# beside every eave band and nothing had ever read that column, so a parcel could repair
+# its pitches into their band and push its roofs out of theirs — the fault moved one
+# field over. This models the ridge from the archetype's own roof arithmetic, checks
+# that model against the ridge the committed GLB actually carries, and ratchets the
+# residual the same way the band-claims gate does. The residual is real and mostly
+# structural: for several families no pitch inside the authored pitch band reaches the
+# authored ridge band at the footprint the family authors.
+step "no reconstructed roof's ridge is newly outside its family band" \
+  python3 tools/measure_ridge_band.py
+
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
 # from Chicago is August 1835, inside this project's first target year — and gives it
 # one mechanism: review_required on any record blocks a scene from being marked

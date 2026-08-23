@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447969.043,
-        "utm_n": 4637760.923,
+        "utm_e": 447969.293,
+        "utm_n": 4637761.167,
         "rotation_deg": 0.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster kinzie_michigan_interior; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,20 +30,20 @@
             0
           ],
           [
-            7.315,
+            6.815,
             0
           ],
           [
-            7.315,
-            9.754
+            6.815,
+            9.266
           ],
           [
             0,
-            9.754
+            9.266
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 24 × 32 ft rectangle assigned by the reconstruction recipe within the D7 family band; no individual dimensions are documented."
+        "note": "A 6.82 × 9.27 m rectangle sampled deterministically inside the D7 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "stories": {
@@ -55,7 +55,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "wall_height_m": {
-          "value": 5.05,
+          "value": 5.428,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
@@ -71,7 +71,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "roof_pitch_deg": {
-          "value": 38.0,
+          "value": 35.8,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"

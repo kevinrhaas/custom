@@ -5611,6 +5611,105 @@ plate), **L157** (the material sheet painting the town, and the roof's weatherin
 covering).
 **Recorded:** 2026-08-22.
 
+### L170 — The North Division's sixty roofs are sixty buildings now: every width, depth and eave drawn inside the family band instead of one figure per family
+**Decision:** the sixty anonymous roofs of the North Division parcel take their footprint and their
+eave height from the reconstruction specification's per-family BAND, sampled deterministically on a
+stable per-record key, by the same module the phase-one south blocks and the fourteen platted blocks
+already use (`tools/family_bands.py`). Before this they took one retyped width, one retyped depth and
+one retyped eave per family, so twenty-three families stood for sixty buildings: **thirty-six of the
+sixty were an exact twin of another roof in the same parcel**, and **seventeen carried an eave height
+outside the band their own note cited** — a note claiming a range while the value sat below it.
+
+**WHAT IS INVENTED, and it is exactly what was invented before.** That any of these sixty buildings
+stood at all; where each one stood; how big it was. Nothing here promotes a single value: every
+dimension still grades `reconstructed`, still cites the specification's family band as a TYPOLOGY
+rather than as evidence about this building, and still says in its own note that no individual
+dimensions are documented. **Sampling adds variety, not knowledge.** What changed is that a band
+authored as a range is now used as a range, instead of being collapsed to a point and then contradicted.
+
+**Why uniformity was itself a claim.** Twenty-four massings dealt sixty times is a statement about the
+North Division — that its houses were built to a pattern — and no source makes it. The uniformity was
+never argued for; it was an artefact of where the numbers were typed. A visitor reading the horizon
+north of the river was being shown a regularity this project cannot support, and that is a stronger
+claim than the invented sizes it was made of.
+
+**The one number that moved to fit an archetype rather than a source**, recorded because L148 records
+the same thing for the block parcel: a family whose authored eave band dips below the height its
+archetype needs to header its own door is sampled from the part of the band the archetype can build —
+2.05 m for a man door, more for a wagon or stable door, asked of the archetype's own door table rather
+than retyped. A family whose WHOLE band sits under that floor fails loudly instead of being quietly
+raised out of its own typology. Nothing was widened to make a check pass.
+
+**What this deliberately does NOT touch.** Roof pitch. The specification authors pitch as a band too
+(`7:12-10:12` for most families) and couples it to a committed `ridge_ft` band, so sampling the pitch
+without gating the ridge would put ridges outside a band their own note cites — the exact fault this
+entry is repairing, moved one field over. Eleven North records still carry a pitch outside their cited
+band, all of them within half a 1:12 step of its edge, and they are owed to their own ticket rather
+than folded in here.
+
+**Consequence:** the town north of the river reads as sixty separately-built roofs rather than two
+dozen repeated ones — different widths, different depths, different eave lines along the same
+cluster — and the seventeen records whose note cited a band they stood outside now stand inside it.
+The 665-roof total does not move, no record is added or removed, and no position changes except the
+one slot the recipe already shifted for terrain.
+
+**How to resolve:** any parcel-by-parcel register of North Division roofs for July 1835 — a tax list,
+an insurance description, an itemised loss list — would replace a sampled rectangle with a measured
+one on the same line, which is what the 665-roof programme's substitution clause exists for.
+
+**Ticket:** T-0011, from ROADMAP **T-V1(a)**'s census. Related: **L148** (the same rule on the platted
+blocks, and the same door-headroom floor), ROADMAP **T-V1(b)** for the circular dependency that parked
+this for a week, and **K25(b)** for the south parcel still owing it.
+**Covers:** `recon_1835_north_*.*.footprint`, `recon_1835_north_*.*.form.wall_height_m`.
+**Recorded:** 2026-08-22.
+
+
+### L171 — The North parcel's pitches sampled from their own band, and the ridge gated so the repair did not move the fault one field over
+
+**Decision:** the sixty anonymous North Division records take their `roof_pitch_deg` from the
+family's authored rise:run band — the `7:12-10:12` in the crosswalk's `roof` column — instead of
+the one constant per family that `tools/generate_north_infill.py` had retyped into Python, and
+the sample is **constrained by the family's `ridge_ft` band**: where part of the pitch band would
+put the ridge outside the ridge band, the sampler draws from the part that does not.
+`recon_1835_north_w5_040`'s loft is taken from the family's `levels` string in the same pass, which
+is where it should always have come from — W5 authors "1", flat, and a retyped tuple had given it a
+loft the specification never mentions. Every one of these values still grades `reconstructed` and
+still cites the band as a typology rather than as evidence about the building.
+
+**Why:** T-0144 moved footprint, storeys and eave onto their bands and deliberately stopped short of
+the pitch, because a pitch is not a dimension that stands on its own. It and the footprint together
+make the RIDGE, the crosswalk authors a band for that too, and repairing ten pitches into their band
+while pushing ten ridges out of theirs would have been the same fault one field over. So the pitch
+moved and the ridge gained an instrument in the same commit: `tools/measure_ridge_band.py` models
+every reconstructed roof's ridge from the archetype's own roof arithmetic (`tools/ridge_model.py`),
+checks that model against the ridge the committed GLB actually carries, and ratchets the residual.
+Ten North pitches and one North loft came inside their bands; seventeen North ridges came inside
+theirs; the dataset-wide count of roofs standing outside their ridge band fell from 121 to 104.
+
+**What it does NOT do, and this is the honest half.** It does not put every North ridge in its band,
+and it will not, because for several families **no pitch inside the authored pitch band can reach
+the authored ridge band at the footprint the family authors**. The A1 stable is the clearest case:
+the outbuilding archetype runs a gable ridge down the LONG axis, so the roof climbs half the SHORT
+one, and an A1 drawn inside its own footprint band cannot reach a 17 ft ridge at 10:12 — the steepest
+pitch A1 allows. Four North roofs stay outside their ridge band for that reason and are banked, with
+a hundred more across the rest of the town that this parcel did not touch. Leaving the pitch band to
+reach the ridge band would have satisfied a gate by disobeying the other committed claim, so the
+sampler stays inside the pitch band and the conflict is filed as its own ticket rather than papered
+over by a pitch nobody claims.
+
+**Consequence:** sixty roofs that stood at twenty-four pitches now stand at sixty, and the town's
+North side reads as sixty buildings rather than a family repeated. A visitor who hides
+`reconstructed` loses all of it. A reader who compares a record's pitch against the crosswalk will
+now find it inside the band it cites — and, for a hundred and four roofs across the town, will find
+the ridge over it outside the band beside it, which `tools/ridge_band_baseline.json` states in full
+rather than leaving to be discovered.
+
+**How to resolve:** a decision on which of the two committed bands gives way where an archetype
+cannot satisfy both — the pitch band, the ridge band, or the archetype's ridge orientation. That is
+the owner's call about the specification and not a repair an agent should make; it is the ticket.
+
+**Recorded:** 2026-08-22.
+
 
 ## Resolved
 
@@ -6962,3 +7061,118 @@ other measured route, and it would cost the visitor nothing at all.
 Related: **L121**, the same decision for the wood; ROADMAP **R-W3b(a)** and **R-W5a2** for the
 reach's own history.
 **Recorded:** 2026-08-21.
+
+### L169 — The signs read as the trade wrote them: thirty-three boards re-worded, fourteen off the firms' own advertisements, and one painted device
+**Decision:** the wording on a signboard is now its OWN field, separate from the structure
+record's `name`, and the two are allowed to differ. Every one of the thirty-three boards is
+re-lettered in the period's register — **proprietor or firm first and largest, the trade beneath,
+the place last and smallest** — out of `SIGN_WORDING` in
+`tools/generate_business_signboards.py`. Fourteen carry a firm's OWN ADVERTISED LINE and are
+graded **`inferred`**; nineteen have no surviving advertisement and are **`reconstructed`** from
+the trade vocabulary those same advertisements evidence. Not one is `attested`, and the reason is
+in the next paragraph. One board carries a **painted device** — Philo Carpenter's golden mortar.
+No board carries this project's descriptive building label, the word "log", or a modern nickname.
+
+**Why:** the owner, 2026-08-21, of the Carpenter board T-0066 had shipped: *"philo would not have
+referred to his own place as log drug store, it would be philo carpenter, drugs and medicines, or
+druggist or whatever he would have referred to himself as on the sign, that may be different than
+the name of the building for us, the sign may read differently historically."* And of the next
+one: *"same with hogan's store."* And, widening it to the set: *"i guess do a pass on all those
+signs and make sure they feel right for the era."* He then supplied **seven pages of 1833-35
+Chicago newspaper advertising** in which the town's businesses write their own copy.
+
+**WHAT T-0066 GOT WRONG, IN ONE SENTENCE.** It painted the record's own `name`, less a trailing
+parenthetical, and its docstring defended that: *"the card a visitor opens by tapping the board
+has to say what the board says."* That collapsed two different objects. A record's `name` is OUR
+LABEL FOR A STRUCTURE — descriptive, disambiguating, written so a modern reader knows which
+building is meant. A SIGNBOARD carries what the TRADE lettered. No druggist painted the
+construction of his own shop on his own board, and thirty-three boards were carrying museum
+captions.
+
+**THE TIER, AND WHY NOTHING IS `attested`.** The seven pages were supplied as IMAGES IN
+CONVERSATION and are **not committed to `data/sources/assets/`**, so a wording taken off them is a
+transcription and a transcription is not a citation. The owner ruled that the work should proceed
+anyway, verbatim: *"I will give you all those data sources later in a more comprehensive form
+proceed where you can and label reconstruction or inferred with a note as you like."* So every
+newspaper-derived wording is `inferred`, and **every one of those notes quotes what its
+advertisement says, names its page and date, states that the transcription came from
+owner-supplied images on 2026-08-21 pending a committed source record, and says in terms that the
+value is to be UPGRADED TO `attested` when those sources land.** Goss & Cobb's is the nearest of
+the fourteen — its page is committed already, at
+`data/sources/assets/chicago_democrat_1833_11_26/` — and what keeps even that one `inferred` is
+that an advertisement heading is still not a description of a signboard.
+
+**What the register is, and it is taken from the sources rather than from a modern eye.** Both
+exemplars put the man or the firm on the top line in the largest letter, the trade beneath in a
+second face, and the place last and smallest: *"PHILO CARPENTER, Wholesale & Retail Druggist … 
+South Water Street, Chicago"* and *"BREWSTER, HOGAN & CO. Forwarding & Commission MERCHANTS,
+Chicago—Illinois."* The record carries the role of each line (`sign_lines`) and
+`renderers/web/js/signage.js` letters the hierarchy — `ROLE_WEIGHT` sets the type sizes, which is
+invented; the ORDER is the advertisements'. **Period spelling is theirs and is kept**
+("Steam-Boat Hotel", "Chicago—Illinois"). **1835 beats 1833** where a firm advertises in both,
+because the scene is 1 July 1835 and firms rewrote their lines — Carpenter reads "Drugs and
+Medicines" in 1833 and calls himself a "Wholesale & Retail Druggist" by 1835, and this town now
+shows both: the 1833 line on his 1832 Lake Street log shop, the 1835 line on the South Water
+store the advertisement actually places.
+
+**HOW MUCH OF AN ENTRY IS LETTERED IS DECIDED BY THE MOUNTING**, which is why the wording is
+resolved after the mounting rather than before it. A plank swinging over a footway carries two
+lines; a board fixed flat on a wall and a name painted across a whole front carry three. A
+signwriter letters what fits, and a place line dropped for want of room says so in the record's
+own `sign_text_from`.
+
+**AN IDENTITY IS CORRECTED, NOT ONLY A WORDING.** "Hogan's Store" is a shorthand for one partner.
+The firm's own advertisement reads **BREWSTER, HOGAN & CO.**, forwarding and commission merchants,
+and the building's own record already knew — its `aka` carries "Brewster, Hogan & Co.'s store" and
+its change note names the firm. The pages also distinguish a SECOND Hogan, J. S. C. Hogan's dry
+goods store on South Water one door below Dearborn, which this model does not carry; that is a
+placement finding and is recorded in the record's own `findings` rather than silently answered.
+
+**THE GOLDEN MORTAR, AND WHY IT IS NOT L25 BEING OVERTURNED.** Carpenter's 1835 advertisement
+heads itself *"AT THE SIGN OF THE GOLDEN MORTAR"* — a Chicago signboard described in print by the
+man who owned it, in the scene year. A mortar and pestle is the druggist's universal device, and a
+Detroit house advertising on the same pages "at the sign of the Large Pitcher" shows the
+convention was live and ordinary. So the device is **painted on his board** rather than the phrase
+being lettered: the sign is the thing he described. **L25 STANDS AND IS NOT TOUCHED.** It withholds
+the Wolf Point wolf because that IMAGE was never described — the opposite case to a shop whose
+owner describes his own board. What is invented here is the DRAUGHTSMANSHIP: a plain bowl, rim and
+pestle, no ornament and no ground line, graded `inferred` on the same footing as the wordings and
+upgradeable with them. **The device does not generalise.** A device belongs to a shop only where
+that shop's own advertisement names one; exactly one does, and `tools/smoke_renderer.mjs` pins the
+count at one rather than bounding it below, so a later run cannot quietly deal mortars to the
+other druggist.
+
+**THE SMOKE CHECK IS CORRECTED, NOT RELAXED, and the distinction matters because a check that gets
+weaker usually got weaker to go green.** T-0066 asserted STRING EQUALITY between the painted name
+and the card's name, at one board. Held to equality the board could only ever be the museum
+caption, so the invariant was wrong by design once the two fields separated. What replaces it is
+`sign_identity`: the proprietor, the firm or the house, which must appear in the board AND in the
+card. That is now asserted three ways where equality was asserted one — at the Tremont's board
+against the card the pick actually opened, over EVERY sign in the town, and alongside two new
+absolute assertions (no board carries the word "log"; every board letters a trade as well as a
+proprietor). The generator refuses to build if any of it fails, so the old behaviour cannot come
+back by accident.
+
+**Consequence:** a visitor walking South Water Street reads *PHILO CARPENTER · DRUGGIST* under a
+gilt mortar, *JONES · GROCERY & PROVISION STORE*, *BREWSTER, HOGAN & CO. · FORWARDING &
+COMMISSION*, *JOHN DAVIS · STEAM-BOAT HOTEL · NORTH WATER STREET* — and fourteen of those lines
+are the firms' own words rather than ours. The counterweight is unchanged: every VERTEX of the
+layer is still graded `reconstructed`, because the fact that any of these buildings carried a sign
+at all is still an invention (L130), so hiding that level takes all thirty-three down at once and
+leaves the town mute with one wolf sign at the forks. What has changed is that the words on them
+are no longer entirely ours.
+
+**And it is triangle-neutral.** The lettering is still one canvas atlas sampled by uvs the boards
+already carried, so a three-line wording in a hierarchy costs exactly what a one-line name cost:
+nothing. The painted device is canvas too — **zero triangles**. The only geometry that moved is
+board SIZE: a board is now measured off its longest LINE rather than off one run of words, with a
+little more width per extra line and, on the two mountings fixed to a building, a little more
+height. The layer draws the same 1,106 triangles in the same one draw call.
+
+**How to resolve:** commit the seven pages. Everything above that is graded `inferred` names its
+page in its own note and is waiting for a source record to cite.
+
+Related: **L159** (the mounting, the style and the colours, unchanged) · **L130** (the fact of a
+sign) · **L25** (the wolf's image, untouched) · **L165** (the Wolf Tavern's pole, untouched) ·
+ticket **T-0130**.
+**Recorded:** 2026-08-22.

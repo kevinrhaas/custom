@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447916.663,
-        "utm_n": 4637607.201,
+        "utm_e": 447917.522,
+        "utm_n": 4637608.967,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,24 +30,24 @@
             0
           ],
           [
-            7.925,
+            9.644,
             0
           ],
           [
-            7.925,
-            12.802
+            9.644,
+            16.333
           ],
           [
             0,
-            12.802
+            16.333
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 26 × 42 ft rectangle assigned by the reconstruction recipe within the W5 family band; no individual dimensions are documented."
+        "note": "A 9.64 × 16.33 m rectangle sampled deterministically inside the W5 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "wall_height_m": {
-          "value": 3.42,
+          "value": 3.507,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
@@ -95,7 +95,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the W5 family's key geometry parameters do not speak to a door side, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous North Division instance."
         },
         "loft": {
-          "value": true,
+          "value": false,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"

@@ -6227,7 +6227,33 @@ file; this makes that true of the second generator that needs it.
 **Files:** `tools/family_bands.py` (new) · `tools/measure_massing_variety.py` (new) ·
 `tools/generate_block_infill.py` · `tools/check.sh` · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-#### T-V1(b) — the sixty North records · **NEXT UP · Effort: S to write, and it NEEDS ONE BAKE**
+#### T-V1(b) — the sixty North records · **LANDED 2026-08-22 (T-0144), and the wall it was stuck behind is gone**
+
+**THE CIRCULAR DEPENDENCY BELOW IS RESOLVED, and not by any of the three routes it offered.** Blender
+arrived on the improve runner on 2026-08-19, so the fourth route — the one the box could not see
+because it did not exist — is that the run that changes the data also bakes it. The sixty stale GLBs
+were rebuilt in the same commit as the records that staled them, `tools/validate.py --stale` never
+went red on `dev`, and no policy question had to be decided. Sixty `--only` bakes cost 39 seconds;
+the web derivatives, which are the slow half, cost three minutes for the sixty.
+
+Measured on the landed change, against the box's own table: duplicate instances **36 → 0**, distinct
+massings **24 → 60**, eaves outside their own family band **17 → 0**. Every placement gate passed on
+the sampled footprints, exactly as (a) recorded. `tools/measure_massing_variety.py --gate` now reads
+the North parcel as claiming its sampling and honouring it; the dooryard planting layer re-dealt its
+stems onto the new footprints in the same commit; `docs/LIBERTIES.md` **L170** records the sampling
+rule's fourth parcel; `tools/audit_confidence.py --strict` is green.
+
+**What is still owed, and it is now its own ticket (T-0145):** the roof-pitch half, deferred here for
+the reason given below and unchanged by this — eleven North records carry a pitch outside their cited
+band, all within half a 1:12 step of its edge, and the ridge band has to be gated in the same pass or
+the fault simply moves one field over. `recon_1835_north_w5_040`'s unauthored loft rides with it.
+**K25(b) and the west parcel are still owed the same repair** — 18 south and 5 west eaves outside
+their cited bands — and the wall is gone for them too.
+
+**The record below is kept verbatim**, because the reasoning was right when it was written and the
+thing that changed was the runner, not the argument.
+
+#### T-V1(b), as it stood — **the original block, kept verbatim · Effort: S to write, and it NEEDS ONE BAKE**
 
 **The work is done and measured; what it cannot do is land here.** Wiring
 `generate_north_infill.py` to `family_bands` — deriving width, depth and eave per record from the
@@ -9806,6 +9832,28 @@ trade rule gains a WORKS AND WAREHOUSE class that paints its firm on its front a
 with no words on it. Everything T-0066 adds is `reconstructed` and claimed at **L158**. What (b)
 still owes is unchanged and now shorter: the GENERATOR half, and a source that gives a wording, a
 colour or a mounting for a named house.
+
+**And the wording itself was corrected the next day — T-0130, 2026-08-22, so the paragraph above
+is now the argument that was available before the owner read a board.** T-0066 painted THE
+RECORD'S OWN NAME, which is this project's label for a BUILDING and not what a signwriter
+lettered. The owner, of the Carpenter board: *"philo would not have referred to his own place as
+log drug store … that may be different than the name of the building for us, the sign may read
+differently historically"*; of the next: *"same with hogan's store"*; and then *"i guess do a pass
+on all those signs and make sure they feel right for the era."* All 33 are re-lettered in the
+register the town's own newspaper advertising uses — proprietor or firm first and largest, the
+trade beneath, the place last and smallest — with the wording as its OWN field, free to differ
+from the `name` and tied to it only by a declared `sign_identity` that must appear in both.
+**14 carry a firm's own advertised line (`inferred`)**, 19 are `reconstructed` from the trade
+vocabulary those pages evidence, and **none is `attested`**, because the seven newspaper pages
+behind them are images supplied in conversation and are not committed to `data/sources/assets/`.
+Every one of those notes says what would upgrade it and the recipe is in ticket **T-0130**, so
+what (b) still owes has changed shape: not "a source that gives a wording" — the wordings are here
+— but **the seven pages committed as source records**, which would take fourteen of them off
+`inferred` in an afternoon. **L25 is STILL untouched**, and T-0130 is the case that shows why it is
+about IMAGES rather than about signs: Carpenter's own 1835 notice heads itself *"AT THE SIGN OF THE
+GOLDEN MORTAR"*, so his board carries a painted mortar — a device its owner described in print —
+while the wolf, which nobody described, is L165's and rests on a sentence saying a wolf was on it.
+No other board gets a device, and the smoke pins that count at one. **L166.**
 
 **(c) is shipped IN PART, on a YARD layer, and its evidence is the strongest on this box.**
 **T-0040**: `data/yard/`, `renderers/web/js/yard.js`, generated by `tools/generate_yard_goods.py`

@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
-        "utm_e": 447855.748,
-        "utm_n": 4637630.677,
+        "utm_e": 447856.12,
+        "utm_n": 4637630.623,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous reconstructed roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
         "confidence": "reconstructed",
@@ -30,24 +30,24 @@
             0
           ],
           [
-            6.096,
+            6.839,
             0
           ],
           [
-            6.096,
-            9.754
+            6.839,
+            9.647
           ],
           [
             0,
-            9.754
+            9.647
           ]
         ],
         "confidence": "reconstructed",
-        "note": "A 20 × 32 ft rectangle assigned by the reconstruction recipe within the A2 family band; no individual dimensions are documented."
+        "note": "A 6.84 × 9.65 m rectangle sampled deterministically inside the A2 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
       },
       "form": {
         "wall_height_m": {
-          "value": 3.42,
+          "value": 3.64,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
@@ -63,7 +63,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the A2 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "roof_pitch_deg": {
-          "value": 32.0,
+          "value": 42.8,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"

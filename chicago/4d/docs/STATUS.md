@@ -1,5 +1,82 @@
 # STATUS
 
+## Shipped 2026-08-22 — T-0105: three roofs on one lot at Randolph and State, and the first block dealt twice
+
+**The ask.** The succession T-0079 owes: carry the core density standard to the next core block
+standing below the bar. T-0079 raised the ceiling from one principal roof per platted lot to
+**three party-line units per lot** — measured at the smallest committed lot, 23.56 m of frontage
+less the plat module's two 1.5 m margins, against the eighteen committed party-line units' mean
+6.072 m — and demonstrated it once, on `blk_lake_clark`.
+
+**What was in the way, and it is the recipe's shape rather than the ground.** Every block that
+carries a free lot on its measured business face had already been dealt once, and
+`data/reconstruction/1835_platted_block_parcels.json` assumed a block is dealt once, built once
+and finished: one entry per block, records numbered from one. Rewriting `blk_randolph_dearborn`'s
+August entry to cover both deals would restate an August schedule under numbers that were not
+true in August. **So a block may now be dealt twice, as a second entry with its own `seq_start`**
+— the record id carries the sequence, and two entries numbering from one would collide on the
+first slot that shared a family. The lot accounting learned one new class with it, *built on by
+another deal on this block*, which it needs in both directions: before the second deal's records
+exist the lot reads as one nobody accounted for, and after they exist calling it "already
+carrying a roof" would say a stranger built it. Nothing else had to move — occupancy, separation
+and the roadway are all measured against the committed dataset rather than against one entry's
+own slots.
+
+**Which block, and it is a fact about the schedule rather than a preference.** Seven platted
+blocks stand `open`. Four of them (`blk_south_water_franklin`, `_lasalle`, `_clark`, `_dearborn`)
+front the reach whose committed street line is the open question in **T-0009**, `blocked-owner`
+since this morning and worth 4.3–8.8 m — standing a tightened row against a line that may move is
+the mistake T-0009 refused to make. `blk_lake_franklin` has the town's strongest business face and
+a deal it cannot carry: D3, A1, an **F3** large *river* warehouse on a block that touches no water,
+and an **I3** the generator refuses by name. `blk_randolph_market`'s two free lots are both on its
+back face. **`blk_randolph_dearborn` is what is left**, and it is one of the two blocks with the
+most headroom in the schedule: 9 roofs standing, 8 of headroom, three free lots — 1 and 5 on
+Washington, **4 on Randolph**.
+
+**The face rule is a command now (T-A14) and this parcel quotes it rather than remembering it:**
+`tools/measure_street_frontage.py randolph washington market franklin` reports Randolph carrying
+**7 documented records and 7 inferred households against Washington's 1 and 0**. Randolph is this
+block's business face by the town's own record, so its one free lot on that face takes the row and
+both free lots on Washington stay open. **The end rule is T-A11's:** this is the easternmost block
+the plat module reaches on the Randolph tier, so the town-centre end of the frontage is the WEST
+one, toward Dearborn Street and the only crossing of the main stem in July 1835 — and the row is
+graded that way.
+
+**What stands.** Three principal roofs on lot 4, on one line, at one 1.5 m setback, on two shared
+party walls: `recon_1835_blk_randolph_dearborn_d6_10`, a one-and-a-half-storey cottage anchored
+1.5 m off the lot's west side line, then `_d3_11`, a one-room frame cottage, then `_d1_12`, an
+older log cabin. The run occupies **17.23 m of the lot's 23.00 m of buildable frontage**, and the
+metres left over are at the east end where the run stops. The fourth roof is the standard's second
+clause — an improved lot carries its outbuildings — so `_a4_13`, a woodshed, stands in lot 4's own
+yard at the alley. Before and after from the same stand in Randolph Street, at local E 797,
+N −257, looking WSW: `docs/RESEARCH/randolph_dearborn_row_{before,after}_2026-08-22.png`.
+
+**The parcel took four of the block's eight roofs and says so.** Nothing is deferred: the other
+four are not refused, they are the next run's, and the two free lots on Washington are the ground
+they will stand on. The block stays `open` in the schedule, which is where **T-0143**, the
+successor, reads it. No roof was added to the town — the four come out of
+`south_plat_beyond_committed_control` and the programme still reconciles at 334 standing, 331
+remaining, 665.
+
+**Two roofs the schedule dealt this block could not be built, and the gates said so rather than
+this parcel deciding it.** H2, the merchant's house, asks at this sequence for a two-storey wall of
+**6.234 m** and `frame_dwelling` refuses anything over **6.2 m**, because the one attested ceiling
+height in this dataset is the Green Tree's seven and a half feet. H1 is dealt the generator's flat
+**44.0 deg** pitch for a storey and a half, which is inside D6's cited 9:12–12:12 and outside H1's
+own 8:12–11:12; `measure_band_claims.py --gate` refuses it by name. Three families are dealt a
+pitch their own crosswalk entry forbids (H1, H2, H3) and nine records of them already stand, so
+the repair moves committed geometry and needs their bake: **T-0142**, filed rather than dodged by
+re-ordering slots until the sampler dealt a shorter house.
+
+**That a log cabin may stand on a commercial frontage is still open (T-0022)** and this parcel does
+not settle it; what stands behind the deal is what T-0079 recorded, the owner's own reference for a
+party-line row drawing log and frame buildings shoulder to shoulder, and this is one more recorded
+instance rather than a ruling.
+
+**Gates.** `./tools/check.sh` green in the foreground after `./tools/publish.sh`;
+`node tools/smoke_renderer.mjs` — see the PR for which halves ran inside the ten-minute command
+ceiling (T-0060/T-0121, unchanged) and how *zero page errors* was answered at both viewports.
+
 ## Shipped 2026-08-22 — T-0140: masts at Wolf Point, and the half of the plate that cannot be drawn
 
 **Four craft join the boat layer at the forks** — `data/boats/era_boats.json` goes from nine hulls
@@ -233,6 +310,69 @@ numbers are unchanged by this parcel to the decimal (walker 100–250 m ΔL* 1.8
 aerial 250–600 m ΔL* 2.0 of 4.6, weber 0.0922). The marks were also read off the render at the
 Tremont House and Peck's store frontages — which is how the first build was caught writing every
 case in the town mirrored.
+## Shipped 2026-08-22 — T-0130: the signs read as the trade wrote them
+
+**The ask (owner, 2026-08-21), of the Philo Carpenter board T-0066 had shipped:** *"philo would
+not have referred to his own place as log drug store, it would be philo carpenter, drugs and
+medicines, or druggist or whatever he would have referred to himself as on the sign, that may be
+different than the name of the building for us, the sign may read differently historically."* Of
+the next one: *"same with hogan's store."* Widened the same day: *"i guess do a pass on all those
+signs and make sure they feel right for the era."* He then supplied **seven pages of 1833-35
+Chicago newspaper advertising** in which the town's businesses write their own copy.
+
+**The defect, in one sentence.** `_sign_text()` painted the structure record's own `name` and its
+docstring defended that — *"the card a visitor opens by tapping the board has to say what the
+board says"* — which collapsed two different objects. A record's `name` is OUR label for a
+BUILDING; a signboard carries what the TRADE lettered. Thirty-three boards were carrying museum
+captions.
+
+**What shipped.** The wording is now its own field and may differ from the `name`. All 33 boards
+are re-lettered from `SIGN_WORDING` in `tools/generate_business_signboards.py`, in the
+advertisements' own register — proprietor or firm first and largest, the trade beneath, the place
+last and smallest — carried per line with a role (`sign_lines`) and lettered in that hierarchy by
+`renderers/web/js/signage.js`. **14 are `inferred`** on a firm's own advertised line, **19 are
+`reconstructed`** from the trade vocabulary those pages evidence, and **0 are `attested`**. The
+identity correction the owner named is made: "Hogan's Store" reads **BREWSTER, HOGAN & CO. /
+Forwarding & Commission**, which the building's own `aka` already knew.
+
+**Nothing is `attested`, and that is the owner's own ruling rather than caution.** The seven pages
+were supplied as images in conversation and are **not committed** to `data/sources/assets/`; a
+transcription is not a citation. His instruction, verbatim: *"I will give you all those data
+sources later in a more comprehensive form proceed where you can and label reconstruction or
+inferred with a note as you like."* So every newspaper-derived note quotes its advertisement, names
+its date, says where the transcription came from, and says the value is to be **upgraded to
+`attested`** when the pages land. **The four-step upgrade recipe is written into the T-0130
+ticket** so it survives the run that wrote it. Goss & Cobb's page is committed already and is the
+first to revisit.
+
+**The golden mortar.** Carpenter's 1835 notice heads itself *"AT THE SIGN OF THE GOLDEN MORTAR"* —
+a Chicago signboard described in print by the man who owned it, in the scene year — so a gilt
+mortar and pestle is **painted** on his South Water board rather than the phrase being lettered.
+**L25 is untouched**: it withholds an image nobody described, which is the opposite case. The
+device does not generalise — one belongs to a shop only where its own advertisement names one —
+and the smoke pins the count at exactly one rather than bounding it below.
+
+**The check is CORRECTED, not relaxed.** T-0066 asserted string equality between board and card at
+one board, which was the wrong invariant once the two fields separated. What replaces it is
+`sign_identity` — the proprietor, firm or house, which must appear in both — asserted at the
+Tremont's own board, over every sign in the town, and beside two new absolute assertions: no board
+carries the word "log", and every board letters a trade as well as a proprietor. The generator
+refuses to build if any of them fails.
+
+**Cost: zero.** Measured on the published mirror, the signage layer draws **1,106 triangles in one
+mesh before and after**, on the same 4096 × 1536 atlas — the lettering lives in the atlas every
+triangle already samples, and the painted device is canvas too. Recorded in T-0115's ledger.
+
+**Findings raised rather than buried**, in the record's own `findings` array: J. S. C. Hogan's
+separate South Water dry-goods store, which the pages distinguish and the model does not carry;
+Pierce & Abbott against this project's Asahel Pierce; P. Pryne & Co. against Pruyne & Kimball;
+three advertisements that locate themselves by a neighbour and can be checked against this model's
+placements; and a list of firms the pages name that the town lacks — none of which has been given
+an invented building.
+
+**Verification.** `tools/check.sh` green; smoke green at 390×780 (stages 1-4) and 1280×800 (stages
+1-2), zero page errors, with only the known pre-existing T-0114 road-legibility reds in stage 3.
+`docs/LIBERTIES.md` **L166**.
 
 ## Shipped 2026-08-21 — T-0072: the Wolf Tavern's sign flies from a pole, and the wolf is on it
 

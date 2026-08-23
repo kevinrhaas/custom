@@ -142,9 +142,75 @@ const VERSION = '0.1.0';
  * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
  * cull it, is not a tier at all — it costs a visitor nothing at any level and is
  * simply how `enclosures.js` builds now.)
+ *
+ * ---------------------------------------------------------------------------
+ * T-0135, 2026-08-22 — THE CEILINGS RE-ARGUED AGAINST THE WORST STAND, AND
+ * DELIBERATELY NOT MOVED.
+ *
+ * Every figure above, and every figure in `BUDGET` below, was read at ONE
+ * camera: `frame('sauganash_hotel', 26)`. The release gate now walks a named set
+ * of five stands and holds each tier to its ceiling at the worst of them
+ * (`tools/smoke_renderer.mjs` `STANDS`, where each stand's reason is written).
+ * This is the first reading of that set — source tree, 1280x800, desktop:
+ *
+ *                              full        balanced      light      light calls
+ *   Lake at Canal, east    1,320,377     1,144,787     992,617          177
+ *   the forks, Wolf Point  1,318,202     1,137,646     984,612          156
+ *   Lake and Market        1,112,086       943,776     729,844           99
+ *   the open aerial          971,455       808,920     615,266           83
+ *   the Sauganash at 26 m    960,515       815,021     587,798           68
+ *   ---------------------------------------------------------------------
+ *   ceiling                1,000,000       900,000     600,000       80 (floor)
+ *
+ * Worst draw calls, `full`: 200 at Lake at Canal against a budget of 140.
+ *
+ * SO THE TOWN IS 32 % OVER AT `full`, 27 % OVER AT `balanced` AND 65 % OVER AT
+ * `light` at the stands a visitor can walk to — and it was over before this
+ * ticket, and before any of the four parcels that raised the ceiling on
+ * 2026-08-21. Nothing regressed here. What changed is that something finally
+ * looked.
+ *
+ * THE NUMBERS ARE NOT MOVED, and that is a decision rather than an oversight.
+ * AGENTS.md's own ruling has two halves and this run can only honour one of
+ * them. "Just raise it" is the first half; "`light` is the floor and stays the
+ * floor" is the second, and raising `light` to carry 992,617 would put the
+ * bottom rung ABOVE the ceiling `full` carries today. That is not a re-budget,
+ * it is the ladder ceasing to exist — and the tier a weak machine boots into is
+ * the one promise in this table that is made to a person rather than to a
+ * number. Raising `full` and `balanced` while `light` sat 65 % over would be
+ * worse still: a ceiling moved to fit the camera that flatters it, which is the
+ * exact defect T-0135 was opened to end.
+ *
+ * The ladder itself still works — 25 % from `full` to `light` at Lake at Canal
+ * against 39 % at the reference stand — so the honest reading is that the
+ * ceilings were authored as REFERENCE-STAND numbers and the scene has outgrown
+ * the shape of the question, not merely its answer. The two routes T-0135 names
+ * are both open (raise, or trim the axial view to fit), and choosing between
+ * them is the owner's: it trades a promise about weak machines against a
+ * rendering programme. Recorded here, at the definition site, per the ruling's
+ * third half — MEASURE, THEN MOVE. This is the measure. The move is his.
  */
 const DETAIL = {
-  full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
+  // RAISED 2026-08-22 TO CARRY THE WORST STAND, ON THE OWNER'S RULING ("raise
+  // it, I think"), and this is the entry that says what it cost. T-0135 built
+  // the instrument that walks five named stands instead of one and found the
+  // town 32% over at `full`, 27% at `balanced` and 65% at `light` — at
+  // viewpoints the Go-to menu already offers. Nothing had regressed; the
+  // ceilings were authored as reference-stand numbers and only the reference
+  // stand was ever measured.
+  //
+  // WHAT WAS GIVEN UP, SAID PLAINLY: `light` now carries 1,050,000, which is
+  // MORE than `full` promised the day before this commit. The bottom rung is
+  // heavier than the old top rung, so `light` is no longer a floor a weak
+  // machine can be promised — it is merely the cheapest of three expensive
+  // tiers. That was the trade the owner took knowingly, and T-0149 exists to
+  // win the floor back by trimming the axial view (distance culling or an LOD
+  // down a long street) rather than by pretending the number is small.
+  //
+  // These are worst-stand numbers now, not reference-stand numbers, with about
+  // 6% of headroom over the measured worst. The next parcel that breaches them
+  // is breaching a bar that means something.
+  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
   // Four parcels landed the same day - the street edge, the lot-line fences,
@@ -154,8 +220,8 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
-  balanced: { triangles: 900000,  shadowReachM: 240, furnitureCastsShadow: true },
-  light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
+  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true },
+  light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 /**
@@ -213,7 +279,22 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
 // - it trades a draw call for the frustum's right to skip geometry - so the
 // number climbs as layers learn to cull. 140 carries the measured 121 with room
 // rather than the single call that would have to be re-argued tomorrow.
-const BUDGET = { drawCalls: 140, triangles: DETAIL.full.triangles };
+//
+// T-0135, 2026-08-22 — AND 140 IS NOT MOVED EITHER, FOR THE REASON THE TABLE IN
+// `DETAIL` ABOVE GIVES. Read at the release gate's new stand set rather than at
+// the Sauganash alone, the worst frame is 200 calls at `full` down Lake Street
+// from Canal, and 177 at `light` against a floor of 80 that has stood since
+// before any layer was chunked. Every raise this ceiling has taken — 80 to 120
+// to 140, all on 2026-08-21 — was argued against a camera that reads 121, so
+// the honest thing to say is not "140 is too low by 60" but "nobody has ever
+// budgeted this scene; they budgeted one view of it." Moving the number today
+// would be the fourth raise in two days and the first one aimed at a reading
+// taken specifically to show that raising to fit the reading is the bug. The
+// gate is red at the worst stand on purpose. See T-0135.
+// 140 -> 215 on the same ruling and the same measurement: the worst stand draws
+// 200 calls at `full` where the reference stand drew 121. Chunking is what
+// spends calls down a long street, and T-0149 is where that gets traded back.
+const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
