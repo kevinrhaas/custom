@@ -5801,6 +5801,54 @@ ordinance), **L166** (the marks on those goods), **L126** (why an anonymous reco
 programme date), **L168** (the brick this borrows).
 **Recorded:** 2026-08-23.
 
+### L174 — The ground outside Fort Dearborn's walls is bare and trodden, twelve metres of it, on a rule
+**Decision:** a band **12.0 m wide immediately outside Fort Dearborn's palisade, on all four
+sides**, is treated as bare trodden earth: the prairie sward is suppressed there and the yard
+layer's `trodden_earth` treatment is laid in its place. The band is `data/enclosures/
+fort_dearborn_apron.json`, written by `tools/generate_fort_apron.py`, re-derived byte for byte by
+`tools/check.sh`, and drawn by `renderers/web/js/yards.js` on the same material and in the same
+buffer as the estray pen — no new surface and no new draw call.
+**Why:** because **both committed Fort Dearborn plates draw that ground bare and the render grew
+bluestem to the foot of the pickets.** T-0044's image-accuracy pass listed it seventh of eight
+gaps. In `p4_0.png` — the fort from the north bank, the stand this project shoots it from — the
+bare, pale, trodden ground runs from the wall foot past a walking figure to the crest of the bank,
+with the track from the gate crossing it, and the sward only resumes beyond. Ground worked daily by
+a garrison does not carry 1.5 m of prairie grass, and the layer already knew how to keep plants off
+a road.
+**What is invented, plainly.** The width. Twelve metres is one number for all four sides, and no
+source states a foot of it. What bounds it: the plates, which are tier-5 pictorial and may drive
+SETTING as `inferred` but may never drive a coordinate, and in which the bare ground scaled against
+the fort's own 53 m side runs to the order of ten to twenty metres; and the fort road's own
+`corridor_width_m`, which is the only other reconstructed distance this project has stated on this
+reservation, so a second unrelated figure would imply a precision neither has. Invented too: that
+the band stops square, where trodden ground fans out from a gate; and that the gate side is worn no
+harder than the other three, which a real post's ground would contradict.
+**What is NOT invented, and the difference is the whole reason this is a generated record.** Not
+one coordinate is authored. Every ring is derived from `fort_dearborn_palisade`'s own committed
+`footprint.polygon` and `placement` in the frame `docs/GLB-CONTRACT.md` fixes, so the ground follows
+the fort if the fort is ever re-placed or re-sized — and the palisade's footprint is itself only
+`inferred`, off the 1830 Harrison plan and Andreas, which this band inherits and can never be better
+than. Four assertions run on every commit: the four bands tile the annulus with no overlap and no
+gap; no band covers the parade inside the walls; the fort road's last traced point stands ON the
+apron, so no collar of untouched prairie is left between the track and the wall; and no other
+enclosure record already treats this ground.
+**What this deliberately does NOT claim.** The ground INSIDE the walls. A single square would have
+been simpler and would have laid a treatment over the parade, which is a second claim about ground
+no committed plate shows; the apron is a frame of four bands instead, and the parade is left as it
+is. It also does not clip the fort road: the road's last seven metres of track lie on the apron,
+both are bare-earth drapes, both are `reconstructed`, and a travelled way crossing a trodden apron
+is what the plate draws. And it does not touch the bank — nothing here regrades a metre of terrain,
+and the north band stops itself at the water because the layer drops any cell whose foot is in the
+river mask.
+**How to resolve:** a garrison return or quartermaster's account describing the ground of the
+reservation; an 1830s survey of the United States Reservation showing cleared ground; or an
+identification of either plate against a dated original, which would raise it above the tier-5
+standing that lets it drive setting and never a coordinate.
+**Ticket:** T-0097, opened by T-0044. Related: **L158** (the ground-treatment scheme this rides),
+**L155** (the fort's river frontage, cut steeper than the banks either side), and the fort road's
+own record (the travelled way that arrives across this band).
+**Recorded:** 2026-08-23.
+
 
 ## Resolved
 
