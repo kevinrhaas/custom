@@ -4907,7 +4907,7 @@ mirror, five block sizes, table above · `tools/critic_shots.mjs --published --v
 --stations prairie_west` before and after. **The desktop half of the smoke was not run and is not
 claimed** — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(e) — does a spatial filter eat the stratification? · **DONE 2026-08-23 (T-0018) — NO, AND IT IS THE OTHER WAY ROUND: the filtered survivors are MORE evenly spread than a rank-blind subsample of the same size. Pooled 0.65, worst row 1.11, and the riverbank residual this parcel was left on has 0.0 % of its slots filtered**
+### K49(e) — does a spatial filter eat the stratification? · **DONE 2026-08-23 (T-0018, TWO PARALLEL RUNS, TWO INSTRUMENTS, ONE ANSWER — NO, AND IT IS THE OTHER WAY ROUND). PR #337 refuted the mechanism in principle on 400 synthetic layer keys and banked its control pair into `tools/check.sh`; PR #338 measured the placer's own filters where they actually run — pooled 0.65 of the rank-blind figure, worst row 1.11, and the riverbank residual this parcel was left on has 0.0 % of its slots filtered**
 
 **K49(c2) found a second symptom of the same suspect, and it is a stronger one than the census rows
 this parcel was opened on.** Its route-1 sweep makes the union of the blocks in a frame an exact
@@ -4946,7 +4946,16 @@ survives is the riverbank's residual **1.30**, which is what this parcel is now 
 possibly the filter, possibly nothing. **Re-scope it before claiming it** — the correlation column
 is still the right instrument and the population it has to explain is now half the size.
 
-**THE ANSWER — 2026-08-23, T-0018.**
+**THE ANSWER — 2026-08-23, T-0018, and it was answered TWICE, by two runs that took the ticket in
+parallel and could not see each other.** Read both; they are different constructions and the pair is
+stronger than either. **PR #337** attacks it analytically: the position→rank map is `feistel(idx,
+half, blockHash)` and `blockHash` is re-keyed per block, so a rule that reads only position cannot
+lean — demonstrated over 400 synthetic layer keys with χ² against uniform, three modelled filter
+shapes indistinguishable from a rank-blind control, and a rank-reading arm four orders of magnitude
+red; its control pair now runs in `tools/check.sh`. **PR #338 — this section — measures the real
+thing**: not a `halfplane` standing for a waterline but `station()` and `crowdsTheWalker()`
+themselves, over the actual town, at ten stations, in the census the project already keeps. What
+follows is that half.
 
 **The instrument, and why it is not the correlation column this box asked for.** `deviation` is a
 functional of the SURVIVORS' ranks alone, so the claim can be put exactly instead of correlated
@@ -4999,6 +5008,13 @@ larger per-slot discrepancy for that reason alone (`z09_sand_prairie` reading th
 refused, `dev/100` 1.08 → 2.63 — below what rank-blind filtering of that size predicts). It does not
 cost the layer its stratification. A census row that got worse behind a filter should be blamed on
 the deal or on the row's size, and this tool now prints both columns to say which.
+
+**What #337 left, and this closes.** A synthetic model answers whether a filter of a given SHAPE can
+bias the deal; it cannot answer whether the filters the placer really runs are those shapes. They
+are: measured in place, every real row sits at or below the rank-blind figure, and the row the
+parcel was left on turns out to refuse nothing at all — which is a stronger statement than #337's
+"5.24 is below the mean deviation at that sample size", because there is no filter there to be
+below anything.
 
 **Files:** `renderers/web/js/flora.js` (`countDealt`, `countDraw` reached through the zone rather
 than a rebuilt Map key, the `rejStation`/`rejWalker` counters on the four censused emits,
