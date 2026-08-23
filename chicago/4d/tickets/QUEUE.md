@@ -63,3 +63,4 @@ T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edi
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
+T-0154 — Closing a ticket after publish.sh always leaves the published mirror stale
