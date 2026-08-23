@@ -1,7 +1,7 @@
 ---
 id: T-0161
 title: A full bake rebuilds estray_pen, which the dataset refuses to have committed, so every full bake needs a manual deletion to pass its own gate
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 5:59:20 PM CT
 blocked_on: null
 needs_bake: false
 ---
