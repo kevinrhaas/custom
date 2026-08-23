@@ -1,7 +1,7 @@
 ---
 id: T-0160
 title: "The nightly content bake has been failing since 2026-08-22: the passthrough baseline no longer matches what a fresh bake compresses"
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 11:05:45 AM CT
 blocked_on: null
 needs_bake: false
 ---
