@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0015 — Does the AO bake earn its nightly
-T-0016 — Report any road band that moves against its own bank
 T-0017 — Re-shoot the south_water critic baseline from the new stand
 T-0018 — Does a spatial filter eat the sward stratification
 T-0019 — Six forb layers ask for more plants than the lattice holds
