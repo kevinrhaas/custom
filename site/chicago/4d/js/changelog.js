@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 240, title: 'The instruments that check this town can be run again', kind: 'fix', ts: '2026-08-23T04:59:50.893Z', date: 'Aug 22, 2026, 11:59 PM CT',
+    items: [
+      'Nothing a visitor can see changed here. This is about the measuring tools the project checks itself with — and twelve of the sixteen of them could not be started at all on the machine that does the work.',
+      'They each open a real browser, photograph the town and count what is in the picture. Only four of them could be told WHICH browser to use; the other twelve could use one particular copy and nothing else, so on a machine without that exact copy they stopped before taking a single frame. All sixteen can now be pointed at whatever browser is present, the same way the release gate always could.',
+      'That is more than a convenience, because almost every one of these tools exists to MEASURE something before a change is allowed to claim it. A tool that will not start does not announce itself as a gap in the evidence — the work simply gets described as measured when nothing measured it.',
+      'The proof is what happened the moment one of them ran. A standing task said that three and a half per cent of the view from above was two surfaces fighting over the same depth, and asked for the town to be rebuilt to separate them. Run for the first time, the instrument reads the flicker at a fifth of a per cent of the frame — already five times better than the target that task set — and finds the exactly-overlapping surfaces it was opened for to be twenty-five pixels. The rebuild would have been spent on almost nothing, and two thirds of what does shimmer is the edge of a tree against the sky, which is just what edges do when a camera moves.',
+      'The task has been left open with the measurement written into it, for the owner to close or re-aim. And a check now refuses any future tool that cannot be pointed at a browser, because this is the second time the habit lapsed.',
+    ] },
   { v: 239, title: 'The town runs lighter on a weak machine', kind: 'fix', ts: '2026-08-23T04:32:53.943Z', date: 'Aug 22, 2026, 11:32 PM CT',
     items: [
       'On the lowest of the three scene-detail settings — the one a phone picks on its own — the small timber of the town is no longer drawn beyond 350 metres. Fences, plank walks, yard goods, wharf decks and moored hulls all stop at that range, and every one of them is back the moment you walk toward it.',

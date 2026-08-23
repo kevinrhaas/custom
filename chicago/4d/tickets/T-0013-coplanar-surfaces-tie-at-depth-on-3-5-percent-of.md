@@ -21,3 +21,52 @@ Needs one bake (geometry separation).
 
 **Acceptance:** the 2 mm-nudge instrument reads ≤ 1 % changed pixels aerial; no visual
 regression at eye height.
+
+---
+
+## MEASURED 2026-08-22 — the premise above is wrong, and the acceptance is already met
+
+`measure_tie_class.mjs` could not be run by anyone until T-0153 fixed it (it was one of
+twelve instruments that could not be pointed at a browser). Run against the published
+mirror the moment it worked, `from_above`, 1280×800, 2 mm nudge:
+
+```
+the frame flickers on 1984 pixels of 1024000          =  0.19 % of the frame
+
+layer          footprint px   its flicker   share    INTERIOR   silhouette
+structures            21304           547   27.6 %        367          180
+trees                 61724           602   30.3 %        257          345
+ground               712203           440   22.2 %         71          369
+unattributed              -           333   16.8 %
+water/streets/flora        -            62    3.1 %
+
+INTERIOR TOTAL: 705 of 1984 (35.5 %) — where a layer fights ITSELF
+EXACTLY CO-PLANAR (LessEqual → Less across all 22 materials):
+  the switch moves    36198 px of the frame
+  of which flickering    25 px   ← 1.3 % of the flicker, 0.0024 % of the frame
+  of which interior       9 px
+control (same pose twice): 0 px · return to base pose: 0 px
+```
+
+Three things follow, and they change what this ticket should be:
+
+1. **The 3.5 % figure is not what the frame does.** Flicker is 0.19 % of the aerial
+   frame, so the stated acceptance — *≤ 1 % changed pixels aerial* — is met by a factor
+   of five, and was met before any work was done. That number appears to have been
+   carried forward as an estimate and never re-measured.
+2. **Exactly-coplanar ties are 25 pixels.** The depth-function switch is an exact test
+   for "two surfaces at the same depth", and it moves 25 of the 1,984 flickering pixels.
+   The geometry separation and the bake this ticket asks for would be spent on 0.0024 %
+   of the frame.
+3. **Two thirds of the flicker is silhouette**, which is what any camera movement does
+   to any edge and is not a defect. The genuine interior share is 705 px — and the
+   largest single owner of it is **trees** (257 px), not the roof/wall junctions the
+   ticket names.
+
+Nothing here was changed to make a check pass; the control and the return-to-pose both
+read 0 px, so the partition is sound.
+
+**Recommendation for the owner:** close this as already-met, or re-scope it onto the
+interior tree flicker, which is the biggest real thing the instrument can see. Deciding
+that is not the loop's call — the ticket was opened `--by loop` against a figure that
+no longer holds, and it is left open and unclaimed for that decision.

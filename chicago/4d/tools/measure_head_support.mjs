@@ -120,6 +120,7 @@ async function loadPlaywright() {
 }
 const { chromium } = await loadPlaywright();
 const browser = await chromium.launch({
+  executablePath: process.env.PW_EXECUTABLE || undefined,
   args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'],
 });
 const page = await browser.newPage({ viewport: VIEWPORT });

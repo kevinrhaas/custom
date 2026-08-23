@@ -95,7 +95,7 @@ if (!wantSource && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
 }
 console.log(`serving ${ROOT} — ${wantSource ? 'source tree' : 'PUBLISHED mirror'}\n`);
 
-const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined, args: ['--enable-unsafe-swiftshader'] });
 // The woody layer is planted over the whole field once, not into a ring that
 // follows the visitor, so unlike the sward its population does not depend on
 // the viewport. Desktop is used because that is where `full` is the default.
