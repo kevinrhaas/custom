@@ -1,7 +1,7 @@
 ---
 id: T-0057
 title: Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 325
 claimed_by: run 8/23/2026, 6:05:00 AM CT
 blocked_on: null
 needs_bake: false
