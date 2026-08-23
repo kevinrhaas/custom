@@ -66,3 +66,30 @@ generator change, an option — and the baseline is re-banked with that cause
 recorded, not merely to make the gate stop complaining. If the mismatch turns out
 to be legitimate drift with no single cause, that is a recorded finding too. A
 green run on `dev` is the demonstration, not a green run on a branch.
+
+---
+
+## 2026-08-23, later — HALF of this ticket's demonstration is discharged, and the other half is not
+
+This ticket's acceptance was emphatic that **"a green run on `dev` is the demonstration, not a green
+run on a branch"**, and when it merged that run had not happened: the newest bake was **#257 at
+15:25Z, a failure**, and this ticket merged at **16:57Z, after it**, touching no path that triggers
+a bake (`generators/**`, `tools/bake.sh`, the workflow file). So it closed with its own
+demonstration outstanding — worth recording, because that is easy to do and hard to notice.
+
+**Bake #258 was dispatched on `dev` to settle it.** What it proves and what it does not:
+
+- **PROVEN — the K38 failure this ticket fixed is gone.** The derivative gate reports *"345 pair(s)
+  carry the master's triangles, node identity and contract attributes; … 3 master passthrough(s),
+  all of them decided (K38); and every one of them records the master it was made from"* and
+  **passes**. T-0029 and T-0113, both of which described that failure, are withdrawn against this
+  run.
+- **NOT PROVEN — that the nightly completes and publishes.** #258 still exits red, on a different
+  fault: a full bake rebuilds `estray_pen`, `validate.py` refuses it twice, and `check.sh` is red
+  straight out of `tools/bake.sh`. That is **T-0161**, which was blocked by T-0139 until today and
+  is being fixed now.
+
+So this ticket's *cause* is settled and its *acceptance sentence* is still owed by one fault it
+never had visibility of. **This morning's "the bake is broken" was two faults wearing one symptom.**
+The remaining half discharges when T-0161 lands and a bake is dispatched on `dev` again — which
+will be the first green end-to-end nightly since 2026-08-22.
