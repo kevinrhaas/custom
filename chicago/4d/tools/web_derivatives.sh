@@ -331,9 +331,17 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   # the epoch derivatives' bit depth is a GEOMETRIC decision (R-W6 set
   # EPOCH_QUANT_BITS against measured drawn-surface error, and the ground and the
   # waterline are what R-BUG3c, R-BUG4 and R-M1a all measure against), and
-  # R-W6(b) is holding those two files pending the owner's word on regenerating
-  # geometry outside a bake. A payload rule does not get to move the water while
-  # that is open. The exclusion is recorded in the gate too, with its number.
+  # a payload rule does not get to move that. The exclusion is recorded in the
+  # gate too, with its number.
+  #
+  # R-W6(b) used to be the second half of this sentence — it held both files
+  # pending the owner's word on regenerating geometry outside a bake. It is
+  # CLOSED (T-0151, 2026-08-23): a nightly bake shipped the 16-bit ground, the
+  # committed derivative reproduces md5-for-md5 at 16 bits and not at 14, and
+  # `tools/measure_terrain_fit.mjs --gate` now ASSERTS the shipped depth instead
+  # of printing it. What is still open is the surface error on the ground as
+  # extended east (77.1 mm worst, 56 samples past the road lift, on 60-90 %
+  # slopes) — T-0152, and it is a generator question, not a bit-depth one.
   fellback=0
   passthrough=0
   for f in assets/gltf/*.glb; do

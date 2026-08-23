@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 240, title: 'The ground already shipped at the finer lattice; nothing could say so', kind: 'chore', ts: '2026-08-23T04:51:57.517Z', date: 'Aug 22, 2026, 11:51 PM CT',
+    items: [
+      'Nothing you can see changed today. The ground under the town is exactly where it was, and it has been since the walker started reading its heights straight off the survey field rather than off the compressed model.',
+      'The queue\u2019s second job was to ship a finer ground: the model a visitor downloads is squeezed onto a ladder of fixed heights, and it was supposed to have been moved from a 306 mm ladder to a 77 mm one a week ago. It HAD been \u2014 quietly, by a nightly rebuild \u2014 and nothing in the project could tell you either way.',
+      'That is the real fault, and it runs both directions. The checks that compare the downloaded model against the master compare triangles, names, materials and the box the building sits in, and the ladder spacing changes none of them. So the coarse ground shipped for days with every check green, and the fine one arrived to exactly the same silence.',
+      'It is checked now, on the bytes the site serves: the spacing is read back out of the model, compared with what the publishing step asks for, and refused if it is coarser. It was demonstrated refusing the old coarse file before it was trusted.',
+      'And the measurement it was hiding is worse than the last one taken. The drawn ground now stands up to 77 mm off the survey field at 56 of 260,000 test points \u2014 not because the ladder moved, but because the ground did: the town\u2019s modelled land was extended east to the harbour mouth, onto slopes steep enough to show the artefact. That has its own ticket and it keeps this one\u2019s place in the queue.',
+    ] },
   { v: 239, title: 'The town runs lighter on a weak machine', kind: 'fix', ts: '2026-08-23T04:32:53.943Z', date: 'Aug 22, 2026, 11:32 PM CT',
     items: [
       'On the lowest of the three scene-detail settings — the one a phone picks on its own — the small timber of the town is no longer drawn beyond 350 metres. Fences, plank walks, yard goods, wharf decks and moored hulls all stop at that range, and every one of them is back the moment you walk toward it.',
