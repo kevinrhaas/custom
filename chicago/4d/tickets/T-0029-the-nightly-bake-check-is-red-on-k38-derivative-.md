@@ -1,14 +1,15 @@
 ---
 id: T-0029
 title: The nightly bake check is red on K38 derivative baselines
-state: open
+state: withdrawn
 epic: PIPELINE
 requested_by: steward
 seen: false
 effort: M
 legacy_id: K38
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-08-23
 pr: null
 claimed_by: null
 blocked_on: null

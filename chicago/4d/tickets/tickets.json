@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 5:59 PM",
+  "generated_ct": "Aug 23, 2026, 6:07 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -501,19 +501,20 @@
     {
       "id": "T-0029",
       "title": "The nightly bake check is red on K38 derivative baselines",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "PIPELINE",
       "requested_by": "steward",
       "seen": false,
       "effort": "M",
       "legacy_id": "K38",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-23",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": null
     },
     {
       "id": "T-0030",
@@ -1988,7 +1989,7 @@
     {
       "id": "T-0113",
       "title": "The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -1996,12 +1997,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-20",
-      "closed": null,
+      "closed": "2026-08-23",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": null
     },
     {
       "id": "T-0114",

@@ -89,5 +89,3 @@ T-0156 — The interior/silhouette discriminator counts edges internal to a laye
 T-0030 — A queue card in Manager reading tickets.json
 
 # --- SUPERSEDED BY T-0160 — candidates for withdrawal, owner's call
-T-0029 — The nightly bake check is red on K38 derivative baselines
-T-0113 — The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
