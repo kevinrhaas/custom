@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0013 — The interior flicker: 624 px where structures and trees fight themselves
 T-0014 — 79 ground vertices face downward
 T-0015 — Does the AO bake earn its nightly
 T-0016 — Report any road band that moves against its own bank
@@ -63,3 +62,5 @@ T-0142 — The H-family houses cannot be built as the schedule deals them: the c
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
+T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
+T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved

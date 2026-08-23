@@ -1,5 +1,35 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0013: the interior flicker is the town's own edges, and none of it is a fight
+
+**Nothing a visitor can see changed, and that is the third such run in four.** It is recorded
+here rather than smoothed over: the visible-progress rule's cap is one invisible run in four,
+the queue's topmost ticket asked for a diagnosis as its first demonstration, and the diagnosis
+came back saying there is nothing to repair. The next run must land something visible.
+
+T-0013 was re-aimed by the owner on 2026-08-23 at the **interior** share of the 2 mm-nudge
+flicker — 370 px on `structures`, 257 on `trees` — where a layer was believed to be fighting
+ITSELF, as opposed to its silhouette against the rest of the scene. It asked for the mechanism
+to be NAMED per layer with evidence before anything was repaired.
+
+`tools/diagnose_interior_flicker.mjs` names it, and it is the same mechanism for both layers:
+**those pixels sit on edges internal to the layer, and an edge is not a defect.** Photographing
+a packed-depth pass at both poses classifies every one of them — 349 of 370 on structures and
+252 of 257 on trees sit on a depth BREAK inside the layer's own footprint; **0 are a depth
+reorder and 0 are shading**. Supersampling heals 83–93 % of them, which is what a coverage-bound
+edge does; going matte across 18 materials changes 164,572 px of the picture and heals none.
+The handful that read no depth at all are the same finding again — a packed depth blended by
+MSAA cannot be decoded, and only a pixel with more than one surface in it gets blended.
+
+**What is now known to be unverified**: the discriminator's name. `interiorOf` knows a layer's
+outline against everything else and cannot see the boundary between two surfaces OF that layer,
+so 94–98 % of what it reports as "interior" is silhouette by any honest reading. The instrument
+was not changed in this run — closing a ticket by rewriting the instrument that measured it is
+the one move this project does not allow — so the number stands and its correction is a ticket.
+
+Measured at `from_above`, 1280×800, published mirror, shadow map off by R-BUG6(a)'s repaired
+control, with the run's own control and return-to-pose both 0 px. Deep box: ROADMAP § R-BUG6(c2).
+
 ## Shipped 2026-08-23 — T-0154: closing a ticket stops leaving the published mirror stale
 
 **The ask.** `site/chicago/4d/tickets.json` is a verbatim copy of `tickets/tickets.json` and
