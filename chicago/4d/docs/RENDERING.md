@@ -126,6 +126,21 @@ gate's stand (`frame('sauganash_hotel', 26)`), desktop: 65 calls before T-0069's
 edge and 78 after it. The TRIANGLE ceilings are unchanged and `light` remains the floor a
 weak machine has to hold.
 
+**Every figure in the two paragraphs above is a REFERENCE-STAND figure, and since
+2026-08-22 the gate is not.** T-0135 replaced the one camera with a named set of five and
+holds each tier to its ceiling at the WORST of them, which found the town 32 % over at
+`full`, 27 % at `balanced` and 65 % at `light` — at viewpoints the Go-to menu already
+offers. The ceilings were raised on the owner's ruling to 1,400,000 / 1,210,000 /
+1,050,000 and the call budget to 215, which made a dishonest number honest and left the
+bottom rung heavier than the old top rung. T-0149 is the programme that wins the floor
+back by trimming the axial view instead of carrying it; its first piece landed on
+2026-08-23 (T-0150) and distance-culls the derived furniture beyond 350 m at `light`
+only, taking the worst stand from 998,073 triangles and 177 calls to 745,933 and 70.
+The ceilings above have NOT yet followed it down — that is T-0147, kept separate so the
+trim has to be measured before the ceiling moves. Read `renderers/web/js/main.js`
+`DETAIL`, `BUDGET` and `FURNITURE_REACH_LIGHT_M` for the arguments and the tables;
+`tools/smoke_renderer.mjs` `STANDS` for the set.
+
 ---
 
 ## 2. Doctrine that binds every track

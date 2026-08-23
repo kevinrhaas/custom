@@ -5923,7 +5923,26 @@ for (const [label, viewport, touch] of [
           else a.goTo(st.target);
           await settle();
           const r = a.stats();
-          atStands.push({ id: st.id, label: st.label, tris: r.triangles, calls: r.drawCalls });
+          const row = { id: st.id, label: st.label, tris: r.triangles, calls: r.drawCalls,
+                        hidden: a.furnitureReach.hidden };
+          // T-0150 — WHAT THE FURNITURE'S REACH IS ACTUALLY WORTH, measured by
+          // turning it off and back on at the stand it exists for, rather than
+          // by reading the table that asked for it. Taken at the axial stand
+          // ONLY, and that is a cost decision: a frame is about three seconds on
+          // the software renderer CI uses, and this stage is already the longest
+          // in the suite (T-0121). Lake at Canal is the stand the trim was
+          // designed against and the one whose reading it has to keep earning.
+          if (st.id === 'lake_at_canal' && a.furnitureReach.reachM !== null) {
+            const on = a.furnitureReach.reachM;
+            a.setFurnitureReach(null);
+            await settle();
+            const off = a.stats();
+            a.setFurnitureReach(on);
+            await settle();
+            row.trimTris = off.triangles - r.triangles;
+            row.trimCalls = off.drawCalls - r.drawCalls;
+          }
+          atStands.push(row);
         }
         // The furniture and shadow-rig readings are properties of the LEVEL, not
         // of where the camera is standing, so they are taken once — and taken
@@ -5934,6 +5953,9 @@ for (const [label, viewport, touch] of [
         const f = a.furnitureShadows;
         seen.push({ level, tris: s.triangles, calls: s.drawCalls,
           ceiling: a.detailLevels[level].triangles,
+          furnitureReachM: a.furnitureReach.reachM,
+          furnitureMeshesReach: a.furnitureReach.meshes,
+          bankedSpheres: a.furnitureReach.banked,
           atStands,
           worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
           worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
@@ -6022,6 +6044,60 @@ for (const [label, viewport, touch] of [
       && full.furnitureCasting === full.furnitureMeshes
       && balanced.furnitureCasting === balanced.furnitureMeshes,
       detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes}`).join(', '));
+    /**
+     * T-0150 — THE FURNITURE'S REACH, asserted as three separate claims because
+     * three separate things can break it.
+     *
+     * FIRST, that only the bottom rung holds anything back. A reach that leaked
+     * into `full` or `balanced` would be a tier a visitor chose deliberately
+     * being quietly cheapened, which is the opposite of what the control is for.
+     * Read off the MESHES (`hidden`, counted at every stand) as well as off the
+     * level, for the reason `furnitureShadows` is: a policy that reaches `DETAIL`
+     * and not the scene passes every ceiling check unchanged.
+     */
+    const hiddenAbove = detail.seen.filter((lv) => lv.level !== 'light')
+      .flatMap((lv) => lv.atStands.map((x) => ({ level: lv.level, ...x })))
+      .filter((x) => x.hidden > 0);
+    check(`${label}: only the light tier holds any furniture back for distance`,
+      light.furnitureReachM !== null && full.furnitureReachM === null
+      && balanced.furnitureReachM === null
+      && hiddenAbove.length === 0 && light.bankedSpheres > 0,
+      hiddenAbove.length
+        ? `${hiddenAbove[0].level} hid ${hiddenAbove[0].hidden} at ${hiddenAbove[0].label}`
+        : detail.seen.map((lv) => `${lv.level} reach ${lv.furnitureReachM ?? 'none'}`).join(', ')
+          + ` — ${light.bankedSpheres} furniture chunk(s) banked`);
+    /**
+     * SECOND, that at `light` it reaches the frame at the stand it was built for.
+     * A reach set to a number larger than the town would satisfy the first check
+     * and do nothing at all.
+     */
+    const axial = light.atStands.find((x) => x.id === 'lake_at_canal');
+    check(`${label}: the light tier holds furniture back down the axial street`,
+      !!axial && axial.hidden > 0,
+      axial ? `${axial.hidden} of ${light.furnitureMeshesReach} furniture chunk(s) `
+        + `beyond ${light.furnitureReachM} m at ${axial.label}`
+        : 'the axial stand was not walked');
+    /**
+     * THIRD, AND IT IS THE ONE WITH THE NUMBER IN IT: the reach is what is doing
+     * the saving. Measured in the gate by turning the cull off at that stand and
+     * reading the same frame twice, so this cannot be satisfied by some unrelated
+     * layer getting cheaper — the difference is attributable by construction.
+     *
+     * The bars are set at roughly half the measurement that chose the reach
+     * (`main.js` FURNITURE_REACH_LIGHT_M: 252,140 triangles and 107 calls at
+     * 1280x800, 248,748 and 102 at 390x780), which is the same order of margin
+     * the ceilings carry. Half rather than just-under, because this is a ratchet
+     * on a MECHANISM and not a budget: a change that halves what the trim is
+     * worth has broken it, and one that trims a little less because the town got
+     * denser inside 350 m has not.
+     */
+    check(`${label}: the furniture reach is what makes the light tier cheaper down that street`,
+      !!axial && axial.trimTris >= 120000 && axial.trimCalls >= 50,
+      axial?.trimTris === undefined
+        ? 'the trim was not measured at the axial stand'
+        : `turning the reach off adds ${axial.trimTris.toLocaleString('en-US')} triangles `
+          + `and ${axial.trimCalls} draw calls at ${axial.label} `
+          + `(need 120,000 and 50)`);
     check(`${label}: the light tier's shorter shadow reach costs no texel`,
       light.reachM < full.reachM && Math.abs(light.texelM - full.texelM) < 1e-6,
       detail.seen.map((s) => `${s.level} ±${s.reachM} m at `

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 238, title: 'The town runs lighter on a weak machine', kind: 'fix', ts: '2026-08-23T01:11:15.049Z', date: 'Aug 22, 2026, 8:11 PM CT',
+    items: [
+      'On the lowest of the three scene-detail settings — the one a phone picks on its own — the small timber of the town is no longer drawn beyond 350 metres. Fences, plank walks, yard goods, wharf decks and moored hulls all stop at that range, and every one of them is back the moment you walk toward it.',
+      'It was the long views down a street that needed it. Standing at the west end of Lake Street looking east, nothing hides anything: the whole town is in front of you at once, and the frame was costing 998,073 triangles and 177 separate draws. It now costs 745,933 and 70 — a quarter less geometry and sixty per cent fewer draws, on the setting that exists for machines that cannot afford either.',
+      'The picture is what did not change, and it was measured rather than assumed. A new tool walks the same five viewpoints the release gate uses, at both screen sizes, and compares the frame against itself with everything drawn. Three of the five do not shift by a single count. The worst shift anywhere is four counts out of 255, at the same street the saving came from — well under what it takes to show that a whole layer is on screen at all.',
+      'It is a drawing decision and not a claim about 1835. Nothing moved, nothing was removed, no card changed and no confidence changed: a fence you cannot see from 400 metres away is still standing exactly where its record puts it, and the census still counts it.',
+      'The middle and top settings are untouched — they draw everything, at every distance, as before. And the ceilings the tiers are held to are deliberately left where they are: bringing them back down is the next piece of this work, kept separate so the saving has to be proved before the bar is allowed to follow it.',
+    ] },
   { v: 237, title: 'The North roofs get their own pitches, and their ridges checked', kind: 'fix', ts: '2026-08-22T22:18:17.941Z', date: 'Aug 22, 2026, 5:18 PM CT',
     items: [
       'Yesterday the sixty buildings north of the river got their own widths, depths and eave lines. Their ROOF SLOPES were left alone on purpose, and this is the other half: all sixty are drawn at a pitch taken from the range the reconstruction specification gives their family, rather than at one slope typed in once and dealt to every building of that type.',

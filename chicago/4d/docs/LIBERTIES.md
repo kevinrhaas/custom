@@ -7146,3 +7146,55 @@ Related: **L159** (the mounting, the style and the colours, unchanged) · **L130
 sign) · **L25** (the wolf's image, untouched) · **L165** (the Wolf Tavern's pole, untouched) ·
 ticket **T-0130**.
 **Recorded:** 2026-08-22.
+
+### L172 — At `light` the town's small timber is not drawn beyond 350 m, and the distance is a device's business rather than 1835's
+**Decision:** the scene-detail control now changes a third thing about the derived furniture, and
+this one is DISTANCE (T-0150, `renderers/web/js/main.js` `FURNITURE_REACH_LIGHT_M`). At `light` —
+the level a phone boots into without anybody touching the control — a chunk of the fences, the
+yard goods, the plank walks, the wharf decks or the moored hulls is not submitted at all once its
+whole bounding sphere lies more than **350 m** from the eye. `full` and `balanced` draw everything,
+at every distance, exactly as before, and so does `light` the moment you walk toward it. The
+hanging signboards are outside the policy at every level for the reason L156 gives.
+
+**Nothing is moved, nothing is re-graded and nothing is un-built.** Every fence stands where its
+record puts it; the census counts it, the confidence view tints it, a card opens on it, and the
+walker still collides with what it always collided with. What changes is only whether a mesh whose
+members are two and a half pixels tall is handed to the GPU. That is the same test L121 and L156
+apply one layer over: what may give way is whatever is a rendering decision rather than a claim,
+and a chunk's visibility from 400 m away is not evidence about 1835.
+
+**Where 350 m comes from, because a reach is not a free parameter.** It was measured before it was
+set, with `tools/measure_furniture_reach.mjs`, at the whole five-stand set T-0135 named and at both
+release viewports, driving the shipped cull rather than a model of it and holding the clock so the
+wind is not counted as a change (the tool prints a residual of the baseline against itself; it is 0
+everywhere). At the worst stand — Lake Street east from Canal, where nothing occludes anything —
+`light` goes from 998,073 triangles and 177 draw calls to **745,933 and 70** on desktop, and from
+966,541 / 167 to 717,793 / 65 on mobile. The 48² frame signature moves by a worst cell of **4**
+counts of 255 there, against the 6-and-mean-0.30 bar the gates use to prove a whole layer is
+visible at all. Three of the five stands do not move by a single count.
+
+**The one stand that pays, said plainly.** The open aerial is a camera 175 m up, so its slant range
+takes in the whole town at once and the cull arrives everywhere in the frame together: worst 6,
+mean 0.03. At 300 m — the figure T-0149 itself suggested — that doubles to 13 and mean 0.06, and at
+250 m it runs to 23 and 0.18. 350 m is the knee, and it keeps 252,140 of the 258,094 triangles and
+107 of the 110 calls that 300 m would have won. 400 m would cost the aerial nothing measurable at
+all and leaves 28,904 triangles and 37 calls on the table; the trade was taken toward the tier's own
+purpose, which is the machine that needs the floor.
+
+**Why the tier needed this, which is the honest part.** T-0135 walked five stands instead of one and
+found `light` 65 % over its ceiling at viewpoints the Go-to menu already offers. The owner raised
+the ceilings to carry it, which made a dishonest number honest and left `light` at 1,050,000 — more
+than `full` had promised the day before, so the bottom rung was no longer a floor anyone could be
+promised. This is the first of the three pieces of T-0149 that win it back. The ceilings themselves
+are deliberately NOT lowered here: that is T-0147, and it is separate so that a ceiling cannot come
+down in the same breath as the trim that justified it.
+
+**How to resolve:** nothing to resolve — it is a rendering decision and it is reversible from the
+Settings panel by choosing `balanced` or `full`. What would retire it is the instrument L121 and
+L156 both ask for: a frame-time measurement on a real low-end machine, which would say whether the
+bottom rung needs the trim at all.
+
+Related: **L156**, the same tier giving up the sun's second pass over the same layers; **L121**, the
+same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), **T-0135** (the stand
+set), **T-0147** (the ceilings that follow this down).
+**Recorded:** 2026-08-23.
