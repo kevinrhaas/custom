@@ -43,7 +43,7 @@ notice it:
 | 4 | The corner works do not rise above the curtain with roofs and lanterns as the plate draws them. | geometry — needs the bake |
 | 5 | No gate is drawn in either documented wall; the plate shows a log-faced work over the gate. | geometry — needs the bake |
 | 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
-| 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | flora rule work, no bake |
+| 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
 | 8 | No trees at the fort; `p4_0` puts a tree mass east of the walls and `p4_1` trees round the buildings on both banks. | no bake |
 
 ## The flagstaff is a documented trap, and this pass refuses it

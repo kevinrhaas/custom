@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0097: the ground outside the fort's walls is bare and trodden
+
+**Visible run**, and the pick needs saying. The topmost workable ticket, T-0015, had a rival branch
+pushed twenty minutes earlier (`steward/t-0015-ao-nightly`), so `claim` would have refused it. Of
+what is left above this one: T-0017, T-0018, T-0021, T-0024 and T-0025 are measurement parcels or
+questions; T-0019's own ROADMAP box (K58) names the measurement as the thing to land first and calls
+the visible route *"not a free tune"*; T-0026, T-0027 and T-0028 need a bake this run did not have
+room for beside a demonstration; and **T-0058 — the one visible ticket above this — was written with
+its acceptance clause left blank**, so it cannot be run without inventing the definition of done,
+which is the one thing this project's own rule says never to do. T-0097 is the topmost ticket that
+both puts something in the town and states what done means. **QUEUE.md was not reordered.**
+
+**The ask.** T-0044's image-accuracy pass read the render against the two committed Fort Dearborn
+plates and listed eight gaps. Number 7: *"The ground round the walls is full prairie sward; both
+plates show it bare and trodden."* In `p4_0.png` — the fort from the north bank, the stand this
+project shoots it from — bare, pale, trodden earth runs from the foot of the pickets past a walking
+figure to the crest of the bank, with the track from the gate crossing it, and the prairie only
+resumes beyond. In the render, bluestem grew to the pickets.
+
+**What shipped.** `data/enclosures/fort_dearborn_apron.json` — a band **12.0 m wide immediately
+outside the palisade, on all four sides** — suppresses the sward there and lays the yard layer's
+`trodden_earth` treatment in its place. Before and after from `p4_0`'s own stand
+(`1145, 300`, yaw 180°) are committed at `docs/evidence/t-0097-before.png` and `-after.png`.
+
+**It is a rule, which is what the acceptance clause asked for.** Not one coordinate is authored:
+`tools/generate_fort_apron.py` derives every ring from `fort_dearborn_palisade`'s committed
+`footprint.polygon` and `placement` in the frame `docs/GLB-CONTRACT.md` fixes, so the ground follows
+the fort if the fort is ever re-placed, and `tools/check.sh` re-derives the file byte for byte.
+**Four assertions run with it and fail the gate rather than a reviewer's attention:** the four bands
+tile the annulus with no overlap and no gap (3,120 m² derived, 3,120 m² expected); no band covers
+the parade inside the walls; `fort_road`'s last traced point stands ON the apron, so no collar of
+untouched prairie is left between the track and the wall; and no other enclosure record already
+treats this ground.
+
+**Two small changes to shared code, both additive.** `ground.interior_local_enu_m` may now carry an
+ARRAY OF RINGS as well as one ring — the apron is the band OUTSIDE the walls, which is a frame of
+four bands and not a disc, and a record that could state only one ring would have had to claim the
+parade as well to say it. And `ground.fringe_ring_local_enu_m` names the ONE ring the trampled-grass
+fringe is measured from: band by band the fringe would have drawn a grassy seam along the wall and
+along every internal join, which is the opposite of what the plate shows. Records written before
+this read exactly as they did. `enclosures.js` also stops filing a problem for a record with no runs
+at all — the enclosure here is the palisade, a committed structure with a baked GLB, so this record
+carries `runs: []` and the ground alone.
+
+**No new draw call and no new surface.** The apron rides the estray pen's existing `trodden_earth`
+buffer and material.
+
+**What is invented, and it is the width.** Twelve metres, one number for all four sides, no source
+for a foot of it. Bounded by the plates — tier-5 pictorial, which may drive setting as `inferred`
+and may never drive a coordinate — where the bare ground scaled against the fort's own 53 m side runs
+to the order of ten to twenty metres, and by the fort road's own `corridor_width_m`, the only other
+reconstructed distance this project has stated on this reservation. `docs/LIBERTIES.md` L174 claims
+it. **What this deliberately does NOT claim:** the ground inside the walls, which no committed plate
+shows; and it does not clip the fort road, whose last seven metres of track lie on the apron — both
+are bare-earth drapes, both `reconstructed`, and a travelled way crossing a trodden apron is what the
+plate draws.
+
+**What is still short, stated rather than left to be noticed.** The band stops square, where trodden
+ground fans out from a gate; the gate side is worn no harder than the other three; and the palisade's
+own footprint is only `inferred`, off the 1830 Harrison plan and Andreas, so this band can never be
+better evidenced than the wall it is measured from.
+
 ## Shipped 2026-08-23 — T-0057: Ordinance 9's other half, on the one lot this town can say was building
 
 **Visible run.** The three tickets above this one in the queue — T-0015, T-0016, T-0017 — are all
