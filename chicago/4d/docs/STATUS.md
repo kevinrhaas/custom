@@ -2138,6 +2138,20 @@ run's half is **T-0048** (done) and the board half is **T-0049** (`needs_bake`).
 tail — a tenth of neighbour pairs still differ by only ~2.4 % of value, because the deal is blind
 to position — is **T-0047**.
 
+**T-0047 closed that tail on 2026-08-22, and the bound did not move.** The deal is no longer
+blind: `facades.js` now deals the whole town at once, offering every building **32** candidates
+out of the interval L126 already fences and taking the one that stands furthest clear of the
+neighbours already dealt — a floor of 0.14 of applied value for two buildings on one spot,
+falling linearly to nothing at 60 m. Candidate 0 is the plain `id|phase` hash, so a building with
+nothing inside 60 m keeps the exact tone it had, and 158 of 339 structures take a different deal.
+Measured on the published mirror with the same instrument: the tenth percentile of applied value
+between nearest neighbours goes **2.4 % → 7.7 %** and the median **10.3 % → 13.3 %**, so the tail
+now reaches **0.58** of the middle where the acceptance asks for 0.5. 338 distinct tones across
+338 structures, **0 identical pairs**, the two attested-paint records untouched and bit-exact.
+**The rejected alternative is recorded because it measured worse:** a two-sided cost, one that
+also pulled a well-separated pair back toward the target, collapsed the median to 4.9 % and the
+ratio to 0.31 — repulsion only pushes, and that is why it is the right shape.
+
 
 
 ## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
