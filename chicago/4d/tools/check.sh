@@ -491,6 +491,14 @@ step "the three levels mean what they say" \
 
 step "data JSON parses" check_json
 
+# Almost every Playwright tool here is a MEASURING instrument, and the rule is
+# that a change is measured before it is claimed. Twelve of the sixteen could
+# not be pointed at a browser, so on a runner without Playwright's own build
+# they died before their first frame — which turns "measured" into "asserted"
+# without anyone deciding to (T-0153).
+step "every browser-launching tool honours PW_EXECUTABLE" \
+  node tools/check_tool_browser.mjs
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

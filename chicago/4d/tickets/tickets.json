@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 22, 2026, 11:51 PM",
+  "generated_ct": "Aug 23, 2026, 12:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -220,7 +220,7 @@
     },
     {
       "id": "T-0013",
-      "title": "Coplanar surfaces tie at depth on 3.5 percent of the aerial frame",
+      "title": "The interior flicker — 624 px where structures and trees fight themselves",
       "state": "open",
       "epic": "RENDERING",
       "requested_by": "loop",
@@ -2696,6 +2696,42 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0153",
+      "title": "Twelve of the sixteen Playwright instruments cannot be pointed at a browser",
+      "state": "done",
+      "epic": "PIPELINE",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-22",
+      "closed": "2026-08-23",
+      "pr": "318",
+      "claimed_by": "run 8/22/2026, 11:51:14 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0154",
+      "title": "Closing a ticket after publish.sh always leaves the published mirror stale",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     }
   ]
 }
