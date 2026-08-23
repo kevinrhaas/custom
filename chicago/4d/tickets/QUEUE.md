@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0161 — A full bake rebuilds estray_pen, which the dataset refuses to have committed, so every full bake needs a manual deletion to pass its own gate
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
