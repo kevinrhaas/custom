@@ -1,5 +1,54 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0151: the shipped ground's bit depth is asserted, and its ticket was describing a state the tree had left
+
+**The ask.** T-0012, at number two in the queue: *"the 16-bit ground exists in the bake script and
+not in the file a visitor loads — the committed derivative still quantises POSITION to 14 bits."*
+
+**Its first sentence was no longer true.** Measured with R-W6's own control — regenerate the
+committed master and compare md5s — `terrain__e1834_harbor_cut.glb` at **16** bits reproduces the
+committed derivative exactly (`5b8446876a425fceace5c7dd7c59688a`, 704,004 bytes) and at 14 bits
+does not (`4b9fb0765a9b5669dd547b32ef156825`, 702,896). The 16-bit ground reached the site in a
+nightly bake that rebuilt the terrain. The water mesh reproduces at both depths
+(`61b38d4bc36964db450b59ac7b646b77`) — R-W6 predicted that in writing: four vertices at y = 0 land
+on the lattice at every depth.
+
+**So the fault was never only "the file is 14-bit". It was that nothing could tell you which it
+was**, in either direction. R-W6(b) diagnosed the mechanism and the diagnosis was right the whole
+time: the derivative gate compares master to derivative on material identity, triangle count, node
+identity and a bounding box within four rungs, and **a bit-depth change moves none of them**.
+`tools/measure_terrain_fit.mjs` printed the lattice in a report column and asserted nothing. So a
+14-bit ground shipped for days with every gate green, then a 16-bit one arrived and every gate was
+equally green, and a ticket sat near the top of the queue for a week asking for something that had
+already happened.
+
+**What was built.** `tools/measure_terrain_fit.mjs` recovers the shipped POSITION bit depth from
+the mesh's own bytes — `gltf-transform` quantises under one uniform node scale set by the widest
+axis, so the rung is `extent / (2**bits − 1)` and inverting it gives the depth as an integer — and
+`--gate` FAILS when it is coarser than `tools/web_derivatives.sh` asks for. The ask is read out of
+the shell rather than restated here, so there is one copy of the number. Demonstrated firing on the
+14-bit file this ticket was written about: *"the shipped ground carries 14-bit POSITION where
+tools/web_derivatives.sh asks for 16"*, exit 1. `tools/check_published.mjs`'s derivative entry says
+so too — it used to say the derivative was only reported.
+
+**What is NOT closed, and it is the honest half of this run — T-0152.** The bit depth is right and
+the surface is worse than R-W6 measured it. On the ground that ships today,
+`tools/measure_terrain_horizontal.mjs` reports the drawn surface, after conforming, at **1.5 rms /
+3.9 p99 / 77.1 max mm** with **56** of the field's 259,689 samples past the 22 mm road lift, 20 of
+them on dry ground. R-W6's 16-bit row was 1.4 / 3.8 / **12.9** and **0** past the lift. The depth
+did not move; **the ground did** — extended east to the harbour mouth, into bank faces at a median
+**62 %** slope (worst sample 87 %), and R-W6 named that mechanism itself: the cost is
+(slope × displacement), and flat platted prairie cannot show the artefact at any bit depth. 16 bits
+is the format's maximum and the uncompressed master is +5.8 MB against a 22.32 MB payload and a
+25 MB budget, so neither of the two easy answers is available. R-W6 wrote down the third and named
+its trigger — *"reopen [the skirt split] if a future epoch's box grows"* — and the box grew. That
+is a generator change, a `docs/GLB-CONTRACT.md` proposal and a terrain bake: its own ticket, at
+T-0012's own place in the queue rather than at the bottom.
+
+**Nothing a visitor can see changed.** The ground under the town is unmoved — the renderer has read
+its heights back off the heightfield since R-BUG3c, so the lattice never reached the eye in the
+first place. What changed is that the town can now tell what it shipped.
+
 ## Shipped 2026-08-22 — T-0105: three roofs on one lot at Randolph and State, and the first block dealt twice
 
 **The ask.** The succession T-0079 owes: carry the core density standard to the next core block

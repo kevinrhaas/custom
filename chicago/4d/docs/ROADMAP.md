@@ -142,7 +142,7 @@ not at the top of the queue.
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
 | — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
-| — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number |
+| — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number. **Its 12.9 mm no longer describes the tree** — re-measured 2026-08-23 on the terrain as extended east, the same 16-bit ground is **77.1 mm** worst with **56** samples past the lift, on 60–90 % slopes that did not exist in the box R-W6 measured. T-0152 |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
@@ -5476,7 +5476,26 @@ tools/smoke_renderer.mjs --published` green. The desktop half was not run and is
 file. **No record, asset, parameter or renderer file changed** — this is a measurement, a
 gate, the documents and a changelog entry.
 
-### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **UNCLAIMED · opened 2026-08-16 by K36(b) · Effort: S · NEEDS ONE BAKE, or an owner's word that a derivative may be regenerated outside one**
+### R-W6(b) — the 16-bit ground is in the script and not in the file a visitor downloads · **CLOSED 2026-08-23 by T-0151 — the file caught up on its own, and that was the second half of the fault**
+
+> **The finding below describes a state the tree has left.** Measured 2026-08-23 with this box's
+> own control: `terrain__e1834_harbor_cut.glb` regenerated from the committed master at **16**
+> bits reproduces the committed derivative md5 for md5
+> (`5b8446876a425fceace5c7dd7c59688a`, 704,004 bytes); at 14 bits it does not
+> (`4b9fb0765a9b5669dd547b32ef156825`, 702,896). A nightly bake shipped the 16-bit ground when it
+> rebuilt the terrain, and **nothing in this repository could say so** — which is the same silence
+> this box was written about, running the other way. Both ends are shut now:
+> `tools/measure_terrain_fit.mjs --gate` recovers the shipped POSITION bit depth from the mesh's own
+> rungs (`extent / (2**bits − 1)`, inverted) and FAILS when it is coarser than
+> `tools/web_derivatives.sh` asks for, demonstrated firing on the 14-bit file.
+> The water mesh reproduces at both depths (`61b38d4bc36964db450b59ac7b646b77`), exactly as R-W6
+> predicted: four vertices at y = 0 land on every lattice.
+>
+> **The numbers below are superseded** — 671/672 KB was a smaller terrain. What is NOT closed is
+> the surface error: on the ground that ships today the worst drawn-surface departure is **77.1 mm**
+> with **56** samples past the 22 mm road lift, because the epoch box grew east into 60–90 % slopes.
+> That is R-W6's own stated reopen condition for the skirt split and it is **T-0152**.
+
 
 R-W6 is marked DONE 2026-08-16: the terrain's quantisation was raised from 14 to 16 bits,
 taking the ground's lattice from 306 mm to 76.6 mm and its worst drawn-surface error from

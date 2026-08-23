@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 238, title: 'The ground already shipped at the finer lattice; nothing could say so', kind: 'chore', ts: '2026-08-23T03:29:04.290Z', date: 'Aug 22, 2026, 10:29 PM CT',
+    items: [
+      'Nothing you can see changed today. The ground under the town is exactly where it was, and it has been since the walker started reading its heights straight off the survey field rather than off the compressed model.',
+      'The queue\u2019s second job was to ship a finer ground: the model a visitor downloads is squeezed onto a ladder of fixed heights, and it was supposed to have been moved from a 306 mm ladder to a 77 mm one a week ago. It HAD been \u2014 quietly, by a nightly rebuild \u2014 and nothing in the project could tell you either way.',
+      'That is the real fault, and it runs both directions. The checks that compare the downloaded model against the master compare triangles, names, materials and the box the building sits in, and the ladder spacing changes none of them. So the coarse ground shipped for days with every check green, and the fine one arrived to exactly the same silence.',
+      'It is checked now, on the bytes the site serves: the spacing is read back out of the model, compared with what the publishing step asks for, and refused if it is coarser. It was demonstrated refusing the old coarse file before it was trusted.',
+      'And the measurement it was hiding is worse than the last one taken. The drawn ground now stands up to 77 mm off the survey field at 56 of 260,000 test points \u2014 not because the ladder moved, but because the ground did: the town\u2019s modelled land was extended east to the harbour mouth, onto slopes steep enough to show the artefact. That has its own ticket and it keeps this one\u2019s place in the queue.',
+    ] },
   { v: 237, title: 'The North roofs get their own pitches, and their ridges checked', kind: 'fix', ts: '2026-08-22T22:18:17.941Z', date: 'Aug 22, 2026, 5:18 PM CT',
     items: [
       'Yesterday the sixty buildings north of the river got their own widths, depths and eave lines. Their ROOF SLOPES were left alone on purpose, and this is the other half: all sixty are drawn at a pitch taken from the range the reconstruction specification gives their family, rather than at one slope typed in once and dealt to every building of that type.',

@@ -82,9 +82,13 @@ const TRANSFORMED = [
   { re: /^data\/gltf\/.*\.glb$/,
     what: 'gltf-transform meshopt derivative built by bake.sh from assets/gltf masters',
     gate: 'R-BUG3c-b: check.sh asserts the committed master against the heightfield and REPORTS the '
-        + 'derivative; the renderer conforms the ground to the field at load, so the drawn surface is '
-        + 'the sampler by construction. This is the entry that cost three parcels — read #145 before '
-        + 'adding another.' },
+        + 'derivative\'s FIT; the renderer conforms the ground to the field at load, so the drawn '
+        + 'surface is the sampler by construction. Its POSITION BIT DEPTH is asserted rather than '
+        + 'reported (T-0012): tools/measure_terrain_fit.mjs --gate recovers the depth from the shipped '
+        + 'rungs and fails if it is coarser than tools/web_derivatives.sh asks for, because the '
+        + 'derivative gate next door compares triangles, node identity, materials and a bounding box '
+        + 'within four rungs and a bit-depth change moves none of them. This is the entry that cost '
+        + 'three parcels — read #145 before adding another.' },
 ];
 
 const walk = (dir, base = '') => {
