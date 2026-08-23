@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 250, title: 'Ninety-four buildings stop being grey boxes', kind: 'feature', ts: '2026-08-23T16:38:12.164Z', date: 'Aug 23, 2026, 11:38 AM CT',
+    items: [
+      'Ninety-four of the town’s anonymous houses and stores have been standing as plain flagged boxes — a rough massing of the right size in the right place, marked in the file as a stand-in rather than a building. They are properly built now: walls, roofs, doorways and the same detail every other reconstructed building on the street already had.',
+      'They were never meant to stay boxes. The nightly rebuild exists partly to turn stand-ins into real buildings, and it had already done exactly that for 132 of them. These 94 were the ones it could not finish, and the reason is worth telling because it was invisible.',
+      'The rebuild has a safety check that watches the compressed files the site actually downloads. Some models are so small that compressing them makes them BIGGER, so the site ships the original instead — and which models those are is written down deliberately, so that a file quietly turning into a plain copy of itself gets noticed. Those 94 were on that written-down list, because a small grey box is exactly the kind of thing compression cannot improve.',
+      'So every night the rebuild made the boxes into buildings, the buildings were big enough to compress properly, the check saw 94 files leave the list it had been told they were on, and it refused to publish — correctly, by its own rule. The upgrade was thrown away and the list was never updated, so the next night did the same thing. It had been doing that since at least the 22nd, on a task nobody had opened.',
+      'The list is updated in the same change that made it move, which is what the check asks for and the reason it asks. What was 93 files shipped as plain copies is now 3.',
+      'The town costs about ten per cent more to draw than it did — the boxes were nearly free and real buildings are not. That was measured before it shipped, not after.',
+    ] },
   { v: 249, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T15:19:00.921Z', date: 'Aug 23, 2026, 10:19 AM CT',
     items: [
       'Prairie grass grew to the foot of the fort\u2019s pickets. Both of the old Fort Dearborn views draw that ground bare \u2014 pale, trodden earth from the wall foot out over the crest of the bank, with the track from the gate crossing it \u2014 and ground a garrison works every day does not carry waist-high bluestem.',
