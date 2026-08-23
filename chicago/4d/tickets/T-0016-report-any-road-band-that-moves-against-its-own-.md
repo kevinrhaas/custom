@@ -1,16 +1,17 @@
 ---
 id: T-0016
 title: Report any road band that moves against its own bank
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: loop
 seen: false
 effort: M
 legacy_id: R-M1d
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 6:32:32 AM CT
 blocked_on: null
 needs_bake: false
 ---
