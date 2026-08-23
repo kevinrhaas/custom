@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 246, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:00:29.158Z', date: 'Aug 23, 2026, 8:00 AM CT',
+  { v: 247, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:05:23.410Z', date: 'Aug 23, 2026, 8:05 AM CT',
     items: [
       'One building in this town was not finished on 1 July 1835. The Lake House, a hotel going up on the north side, stands as a roofless brick shell — and its ground was swept bare. It is a building site now: four stacks of brick along the front it faces the street with, three piles of squared timber down its east flank, and two heaps of footing stone behind it.',
       'The town legislated about exactly this. A village ordinance of November 1833 regulated timber, stone, brick, boxes and barrels stacked in the streets, and the boxes and barrels have stood at the shop doors for a fortnight. The other three had never been drawn, because they belong to a building that is going UP, and nothing here could say which building was.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'What the piles are made OF is not a free choice either. The same account that dates the hotel says it was built of brick and had a basement, so brick and footing stone follow from the record; a three-storey house of that size is floored, joisted and roofed in timber, and its bricklayers worked off timber scaffolding.',
       'Fourteen other buildings whose records open in 1835 were looked at and set aside, each with its reason written down. An 1835 date is usually the first time somebody wrote a building down — a newspaper\u2019s first issue, a deed — and not the day it was begun.',
       'Nothing says any of this stood on that spot on that day, so all of it is marked reconstructed and vanishes when you turn reconstructed detail off. Aim at any pile and the Lake House\u2019s own card opens.',
+    ] },
+  { v: 246, title: 'A road that gets harder to see now says so', kind: 'fix', ts: '2026-08-23T11:57:25.246Z', date: 'Aug 23, 2026, 6:57 AM CT',
+    items: [
+      'Nothing a visitor can see changed here. This is about the release check that asks whether the roads are actually visible against the ground — and about a way it could go quiet while the answer got worse.',
+      'The check walks three viewpoints and measures each one in five distance bands: the road at arm’s length, at a block, at a few blocks, and so on. But it only PASSED or FAILED once per viewpoint. So a single band could lose more than half its readability — from seven probes in ten showing a visible road down to fewer than two in ten — and as long as it stayed the right side of the bar, the viewpoint still passed and the run still printed the same totals it printed the day before. The collapse left no trace anywhere.',
+      'All twenty bands are now written down with what they read, and every run reports any band that has moved away from its recorded figure. In both directions: a band that recovers is as much a thing someone should know about as a band that decays, and a report that only ever complains stops being read.',
+      'It reports and does not judge. The bars themselves were not touched and not one of them moved — they are a provisional baseline the owner ruled on, and the last time this project tightened them it punished a change that had made the picture better and merely darker. Recording what a band reads is a different act from deciding what it ought to read.',
+      'The three bands that are currently below their bar are recorded too, and marked as such. Refusing to write those down would have left the one part of the picture everyone is already worried about as the only part nobody could watch for getting worse.',
+      'It was demonstrated finding a real collapse before it was trusted: told that a band used to read seven in ten, and shown today’s frame where it reads three in ten, it names that band, that viewpoint and that distance without being pointed at any of them.',
     ] },
   { v: 245, title: 'The dark patches on the prairie are gone', kind: 'fix', ts: '2026-08-23T09:30:29.741Z', date: 'Aug 23, 2026, 4:30 AM CT',
     items: [

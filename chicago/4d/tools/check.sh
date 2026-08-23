@@ -531,6 +531,14 @@ step "data JSON parses" check_json
 step "every browser-launching tool honours PW_EXECUTABLE" \
   node tools/check_tool_browser.mjs
 
+# The road-legibility gate fires once per STATION while the measurement is per
+# BAND, so a band could collapse 55 points inside a passing station and the
+# suite would print the same totals before and after. The movement report is
+# what makes that visible; this is the report's own self-test, which replays
+# R-W1's merge and requires it to name south_water 250-600 m unprompted (T-0016).
+step "the road-band movement report names a band that moved" \
+  node tools/road_band_movement.mjs --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

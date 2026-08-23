@@ -105,6 +105,10 @@ async function loadPlaywright() {
   return ns.chromium ? ns : ns.default;
 }
 const { chromium } = await loadPlaywright();
+// T-0016 — the per-band movement report. Pure functions in their own file so
+// the comparison is testable without a browser; see its --self-test.
+import { collect as collectRoadBands, compare as compareRoadBands, render as renderRoadBands }
+  from './road_band_movement.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.SMOKE_PORT || 4187);
@@ -196,6 +200,30 @@ const TYPES = {
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
+
+/**
+ * T-0016 (R-M1d) — THE BANDS ARE ALSO REPORTED AGAINST THEIR OWN BANK.
+ *
+ * The three bars above gate PER STATION; the measurement is PER BAND. A band
+ * can therefore collapse 55 points (71 % → 16 % perceptible) without crossing
+ * ROAD_MIN_PERCEPTIBLE, and the suite prints "229/2 before, 229/2 after" while
+ * it happens. `road_band_movement.mjs` banks each gated band and says out loud
+ * when one moves — in either direction.
+ *
+ * It is a REPORT and not a bar, deliberately. The thresholds above are the
+ * owner's provisional baseline (T-0033 / R-M1b) and R-W1 is the standing proof
+ * that tightening them punishes legitimate work. Nothing below can fail a run.
+ *
+ * Re-bank with `--update-road-bands` in the commit that moved the numbers on
+ * purpose, the same way the far-timber census is re-banked.
+ */
+const ROAD_BAND_BASELINE = path.join(HERE, 'road_band_baseline.json');
+const UPDATE_ROAD_BANDS = process.argv.includes('--update-road-bands');
+const ROAD_BAND_BANKED = (() => {
+  try { return JSON.parse(fs.readFileSync(ROAD_BAND_BASELINE, 'utf8')).bands || {}; }
+  catch { return {}; }
+})();
+const ROAD_BAND_OBSERVED = {};
 
 /**
  * ROADMAP R-BUG5 — the bodies of far timber whose authored polyline crosses
@@ -6409,8 +6437,10 @@ for (const [label, viewport, touch] of [
     // out, which is indistinguishable from a band with no road in it.
     // R-M1c finished that argument one level down: the band's SCORE divided by
     // `seen` too, so an occluder raised it. It divides by `nBare` now.
+    const roadRuns = [];   // T-0016: what each station's bands read this run
     for (const station of ROAD_STATIONS) {
       const road = await roadContrast(page, { id: station.id, kind: station.kind });
+      roadRuns.push({ id: station.id, bands: road.bands });
       const bands = road.bands.filter((b) => b.gated);
       const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
         || b.perceptible < ROAD_MIN_PERCEPTIBLE);
@@ -6429,6 +6459,29 @@ for (const [label, viewport, touch] of [
       check(`${label}: the roads reach the screen ${station.what}`,
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
+    }
+
+    // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
+    //
+    // Printed, never gated. Every check above has already run and its verdict
+    // stands whatever this says; the point is only that a band which collapses
+    // inside a passing station stops being invisible. A filtered run banks
+    // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
+    // cannot silently retire desktop's half of the baseline.
+    const vp = label.split(' ')[0];
+    const observed = collectRoadBands(vp, roadRuns, {
+      failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
+    });
+    Object.assign(ROAD_BAND_OBSERVED, observed);
+    const bankedHere = Object.fromEntries(
+      Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    if (!Object.keys(bankedHere).length) {
+      console.log(`        road bands: nothing banked for ${vp} yet`
+        + ' — re-run with --update-road-bands to bank this run (T-0016)');
+    } else {
+      for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
+        console.log(`        ${line}`);
+      }
     }
 
     // --- R-A1, the road-legibility aid, and the three things it owes --------
@@ -9522,6 +9575,45 @@ for (const [label, viewport, touch] of [
   await browser.close();
 }
 server.close();
+
+// T-0016 — re-bank, in the commit that moved the numbers on purpose.
+//
+// MERGES rather than overwrites, and that is not a convenience. The road bands
+// are measured in stage 3 only, and a full unfiltered pass does not fit the
+// ten-minute foreground command ceiling this repo actually works under (T-0121,
+// still open) — so the only way anyone banks these in practice is one filtered
+// run per viewport. Overwriting would let `SMOKE_VIEWPORT=mobile … --update`
+// silently retire every desktop band, which is the same class of fault as the
+// one this report exists to catch: a number quietly leaving the record.
+// Merging keeps what this run did not measure and says what it left alone.
+if (UPDATE_ROAD_BANDS) {
+  {
+    // Deliberately NOT refused on a red run. A bank is a record of what the
+    // bands read, not a certificate that they read well, and the band everyone
+    // is worried about is exactly the one that is failing — refusing to bank it
+    // would leave T-0114's two reds as the only bands nobody can watch for
+    // further collapse. Bands below their bar are marked `failingGateWhenBanked`
+    // instead, which is what stops the file being read as a pass.
+    const merged = { ...ROAD_BAND_BANKED, ...ROAD_BAND_OBSERVED };
+    const untouched = Object.keys(ROAD_BAND_BANKED).filter((k) => !(k in ROAD_BAND_OBSERVED));
+    fs.writeFileSync(ROAD_BAND_BASELINE, `${JSON.stringify({
+      note: 'T-0016 — what each GATED road band read, so movement against it can be '
+          + 'reported in either direction. A record, NOT a bar: the gate is '
+          + 'ROAD_MIN_DELTA_L / ROAD_MIN_PERCEPTIBLE / ROAD_MIN_PROBES in '
+          + 'smoke_renderer.mjs and nothing here changes it. A band below its bar is '
+          + 'still banked, marked failingGateWhenBanked, so it can be watched for '
+          + 'further collapse. Re-bank with `--update-road-bands`, which MERGES: a '
+          + 'run banks the bands it measured and leaves the rest alone, because the '
+          + 'road bands live in stage 3 and a full unfiltered pass does not fit the '
+          + 'ten-minute command ceiling (T-0121).',
+      bands: Object.fromEntries(Object.entries(merged).sort()),
+    }, null, 2)}\n`);
+    console.log(`\nre-banked ${Object.keys(ROAD_BAND_OBSERVED).length} road band(s)`
+      + ` → ${path.relative(process.cwd(), ROAD_BAND_BASELINE)}`
+      + (untouched.length ? `; left ${untouched.length} band(s) this run did not measure `
+        + `untouched (${[...new Set(untouched.map((k) => k.split('/')[0]))].join(', ')})` : ''));
+  }
+}
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
