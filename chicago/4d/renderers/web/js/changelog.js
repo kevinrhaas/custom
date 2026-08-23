@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 247, title: 'A shading step nobody was running, and could not have run', kind: 'chore', ts: '2026-08-23T13:31:44.176Z', date: 'Aug 23, 2026, 8:31 AM CT',
+    items: [
+      'Nothing a visitor can see changed. A standing question asked whether the nightly rebuild should keep spending time on baked shading — the soft contact shadows in the corners of a building, where a wall meets a roof — or drop it. The answer turned out to be that the nightly has never done it.',
+      'The step exists, but it has always been something you have to ask for by name, and nothing in the project ever asks. Every one of the 345 building models that ships carries no baked shading at all, and the build’s own records agree: not one of them claims otherwise.',
+      'Asked for by hand, it works out at about two extra seconds and four per cent more file size per building — roughly eleven minutes added to a nightly rebuild if it were switched on for the whole town.',
+      'And in the years it has sat unused it has quietly broken, in a way worth being precise about, because the two halves are different. The shading itself is still computed correctly. What comes out the other end of the export is a completely blank sheet — and blank, in this file format, does not mean "no shading", it means "in total darkness". So switching the step on today would not have given anyone the too-heavy shading it was long suspected of; it would have put every building it touched into shadow, while the build’s records asserted the shading was good.',
+      'Nothing was deleted. The step is the beginning of a better idea that is written down and still worth doing, and throwing it away to tidy up would have thrown that away too. Instead the build now refuses to produce a blank sheet: it checks the exported file rather than what it thinks it just made, and stops with a plain explanation. That was demonstrated stopping the real build before it was relied on.',
+      'Two comments in the build that said the opposite of what is true — that the step was being kept exercised, and that it was on by default — now say what it does.',
+    ] },
   { v: 246, title: 'A road that gets harder to see now says so', kind: 'fix', ts: '2026-08-23T11:57:25.246Z', date: 'Aug 23, 2026, 6:57 AM CT',
     items: [
       'Nothing a visitor can see changed here. This is about the release check that asks whether the roads are actually visible against the ground — and about a way it could go quiet while the answer got worse.',

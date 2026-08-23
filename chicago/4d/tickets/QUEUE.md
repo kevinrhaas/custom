@@ -62,3 +62,4 @@ T-0148 — The A1 stable cannot reach its ridge band at any pitch its family all
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
+T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
