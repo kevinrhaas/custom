@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 10:43 AM",
+  "generated_ct": "Aug 23, 2026, 10:54 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2812,7 +2812,7 @@
     {
       "id": "T-0159",
       "title": "promote-to-prod's dry_run promotes to production and says it did not",
-      "state": "open",
+      "state": "done",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
@@ -2820,12 +2820,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-23",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-23",
+      "pr": "328",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": null
     },
     {
       "id": "T-0160",

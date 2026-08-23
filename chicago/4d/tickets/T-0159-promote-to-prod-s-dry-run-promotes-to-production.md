@@ -1,7 +1,7 @@
 ---
 id: T-0159
 title: promote-to-prod's dry_run promotes to production and says it did not
-state: open
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 328
 claimed_by: null
 blocked_on: null
 needs_bake: false
@@ -65,3 +65,47 @@ none.
 **Acceptance:** a `dry_run: true` dispatch leaves `main` unmoved and no new
 `release-v*` tag, with "Back-merge…" and "Publish…" showing as skipped;
 a normal dispatch still promotes. Demonstrated both ways before this is trusted.
+
+---
+
+## DEMONSTRATED 2026-08-23, both directions
+
+The fix could not be tested until it reached `main`, because `workflow_dispatch`
+reads the workflow from the default branch. It got there in `release-v249`.
+
+**A dry run leaves production alone.** Run #11, `dry_run: true`:
+
+```
+main before: 04c28297      latest tag before: release-v249
+main after:  04c28297      latest tag after:  release-v249
+```
+
+and the step list is the part that cannot lie:
+
+```
+ 6  What is on dev                                          success
+ 7  Say what a dry run would have done                      success
+ 8  Back-merge main into dev, then merge dev into main      SKIPPED
+ 9  Publish (GITHUB_TOKEN pushes don't trigger deploy…)     SKIPPED
+```
+
+**A normal dispatch still promotes.** Run #10 moved main 731764b7 → 04c28297,
+"Promote chicago/4d dev→prod: 4 commit(s)", and tagged `release-v249`.
+
+### The cost of the bug, recorded honestly
+
+It fired **twice** before it was fixed, both times on a dry run dispatched as a
+safety check:
+
+- Run #9 — the original defect. Printed "dry_run — nothing promoted." and
+  promoted 27 commits, tagging `release-v248`.
+- Run #10 — the fix existed by then, but only on `dev`. Dispatching against
+  `main` read the OLD workflow, so a dry run promoted 4 commits and tagged
+  `release-v249`. This was avoidable and was not avoided: the run that
+  dispatched it had written, minutes earlier, that the guard was inert on main
+  until it landed there, and then used a dry run as a safety check anyway.
+
+Both promotions were wanted — the owner had asked for them — so no work was lost
+and nothing had to be rolled back. The lesson is not about the outcome: a guard
+that lives on a branch protects nothing, and knowing that in prose is not the
+same as acting on it.
