@@ -1,7 +1,7 @@
 ---
 id: T-0018
 title: Does a spatial filter eat the sward stratification
-state: claimed
+state: done
 epic: FLORA
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: K49(e)
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 337
 claimed_by: run 8/23/2026, 3:36:59 PM CT
 blocked_on: null
 needs_bake: false
