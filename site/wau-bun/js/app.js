@@ -12,9 +12,11 @@
    panel) is a history entry, so the browser Back button always undoes exactly
    one step and the URL is shareable.
 
-   The full text of each scene lives in js/data-text-part<N>.js — one file per
-   part, each fetched only when the reader first needs that part's text, so
-   first paint stays light. */
+   Each scene reads four ways: a summary, a light modernization, a tauter
+   retelling, and the 1856 original. The prose lives in
+   js/data-text-part<N>.js (modern + 1856) and js/data-dark-part<N>.js, fetched
+   only when a reader first opens a mode that needs it — first paint stays
+   light however many readings the app offers. */
 (function () {
   'use strict';
 
@@ -24,11 +26,19 @@
   var CH = {};
   WAUBUN_CHARACTERS.forEach(function (c) { CH[c.id] = c; });
 
+  // `action` is the wording on the scene panel's button for this mode. It lives
+  // here so adding a mode cannot leave two buttons sharing a label, which is
+  // exactly what a three-way ternary did when the fourth mode arrived.
   var MODES = [
-    { id: 'summary',  label: 'Summary',  note: 'What happens, in brief.' },
-    { id: 'modern',   label: 'Modern',   note: 'The contemporary-English edition, in full.' },
-    { id: 'original', label: '1856',     note: 'Juliette Kinzie\'s original text, in full.' }
+    { id: 'summary',  label: 'Summary',  action: 'Read scene',    note: 'What happens, in brief.' },
+    { id: 'modern',   label: 'Modern',   action: 'Full text →',   note: 'The contemporary-English edition, in full.' },
+    { id: 'dark',     label: 'Retold',   action: 'Retold →',      note: 'The same events, told close and taut — nothing added.' },
+    { id: 'original', label: '1856',     action: 'Original 1856 →', note: 'Juliette Kinzie\'s original text, in full.' }
   ];
+  // Which file each mode's prose lives in. The retelling has its own bundle so
+  // a reader who never opens it never downloads it. Its id and paths are still
+  // 'dark' from when the mode was first cut; only the label changed.
+  var BUNDLE = { modern: 'text', original: 'text', dark: 'dark' };
 
   var MINCELL = 5, MAXCELL = 34;      // chart square, px
   var MINHEAD = 56, MAXHEAD = 560;    // scene-title header, px
@@ -40,7 +50,7 @@
     part: 'part1',
     view: 'chart',
     scene: null,          // scene shown in the reader
-    mode: 'summary',      // summary | modern | original
+    mode: 'summary',      // summary | modern | dark | original
     selected: [],         // scene ids selected in the chart
     panel: null,          // { kind:'scene'|'character', id }
     factions: FAC_ORDER.slice(),
@@ -181,34 +191,43 @@
     if (m[3] && MODES.some(function (x) { return x.id === m[3]; })) state.mode = m[3];
   }
 
-  /* ---------------- full text, fetched on demand, one file per part ------- */
-  var text = {};   // part id -> { state: idle|loading|ready|failed, waiters: [] }
-  function textSlot(partId) {
-    return text[partId] || (text[partId] = { state: 'idle', waiters: [] });
+  /* ---------------- full text, fetched on demand -------------------------
+     One file per part per bundle: data-text-part<N>.js carries the modern and
+     1856 passages, data-dark-part<N>.js the tauter retelling. A file
+     is requested the first time a reader opens a mode that needs it, and never
+     before — first paint stays light however many readings the app offers. */
+  var text = {};   // "<part>|<bundle>" -> { state, waiters }
+  function bundleOf(mode) { return BUNDLE[mode] || 'text'; }
+  function textSlot(partId, bundle) {
+    var k = partId + '|' + bundle;
+    return text[k] || (text[k] = { state: 'idle', waiters: [] });
   }
-  function textStore(partId) { return window['WAUBUN_TEXT_PART' + partId.slice(4)]; }
-  function textState(partId) {
-    var t = textSlot(partId);
-    return textStore(partId) ? 'ready' : t.state;
+  function textStore(partId, bundle) {
+    return window[(bundle === 'dark' ? 'WAUBUN_DARK_PART' : 'WAUBUN_TEXT_PART') + partId.slice(4)];
   }
-  function ensureText(cb) {
-    var partId = state.part, t = textSlot(partId);
-    if (textStore(partId)) { t.state = 'ready'; return cb(); }
+  function textState(partId, mode) {
+    var b = bundleOf(mode), t = textSlot(partId, b);
+    return textStore(partId, b) ? 'ready' : t.state;
+  }
+  function ensureText(cb, mode) {
+    var partId = state.part, b = bundleOf(mode || state.mode), t = textSlot(partId, b);
+    if (textStore(partId, b)) { t.state = 'ready'; return cb(); }
     if (t.state === 'failed') return cb();
     t.waiters.push(cb);
     if (t.state === 'loading') return;
     t.state = 'loading';
     var s = document.createElement('script');
-    s.src = 'js/data-text-' + partId + '.js';
+    s.src = 'js/data-' + b + '-' + partId + '.js';
     s.onload = function () { t.state = 'ready'; flush(); };
     s.onerror = function () { t.state = 'failed'; flush(); };
     document.head.appendChild(s);
     function flush() { var w = t.waiters; t.waiters = []; w.forEach(function (f) { f(); }); }
   }
   function passage(sceneId, mode) {
-    var store = textStore(state.part);
+    var store = textStore(state.part, bundleOf(mode));
     if (!store || !store[sceneId]) return null;
-    return store[sceneId][mode] || null;
+    // the dark bundle stores the paragraphs directly; the other holds both texts
+    return (mode === 'dark' ? store[sceneId] : store[sceneId][mode]) || null;
   }
 
   /* ---------------- chrome ---------------- */
@@ -823,8 +842,8 @@
       b.addEventListener('click', function () {
         try { localStorage.setItem('waubun.mode', m.id); } catch (e) {}
         if (m.id === 'summary') return go({ mode: m.id });
-        ensureText(function () { go({ mode: m.id }); });
-        if (textState(state.part) === 'loading') { state.mode = m.id; render(); }
+        ensureText(function () { go({ mode: m.id }); }, m.id);
+        if (textState(state.part, m.id) === 'loading') { state.mode = m.id; render(); }
       });
       seg.appendChild(b);
     });
@@ -840,14 +859,16 @@
       box.innerHTML = summaryHTML(sc);
       return box;
     }
-    if (textState(state.part) === 'loading' || textState(state.part) === 'idle') {
-      ensureText(function () { render(); });
+    if (textState(state.part, state.mode) === 'loading' || textState(state.part, state.mode) === 'idle') {
+      ensureText(function () { render(); }, state.mode);
       box.appendChild(el('div', 'wb-note', 'Fetching the text…'));
       return box;
     }
     var paras = passage(sc.id, state.mode);
     if (!paras || !paras.length) {
-      box.appendChild(el('div', 'wb-note', 'The text for this scene could not be loaded. The summary is below.'));
+      box.appendChild(el('div', 'wb-note', state.mode === 'dark'
+        ? 'This scene has not been retold yet. The summary is below.'
+        : 'The text for this scene could not be loaded. The summary is below.'));
       box.innerHTML += summaryHTML(sc);
       return box;
     }
@@ -855,20 +876,29 @@
     var pr = el('div', 'wb-prose wb-fulltext');
     pr.innerHTML = paras.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
     box.appendChild(pr);
-    var store = textStore(state.part);
+    var store = textStore(state.part, bundleOf(state.mode));
     var isRetold = !!(store && store[sc.id] && store[sc.id].retold);
-    box.appendChild(el('div', 'wb-source',
-      (state.mode === 'original'
-        ? 'Chapter ' + esc(sc.chapter) + ' of the 1856 first edition — Juliette Kinzie\'s own words, unaltered.'
-        : 'Chapter ' + esc(sc.chapter) + (isRetold
-            ? ', retold in a plain modern voice — every event, name and detail of the original kept.'
-            : ', in an earlier, lighter modernization. The full rewrite is working through the part scene by scene.')) +
-      ' ' + words.toLocaleString() + ' words.'));
+    box.appendChild(el('div', 'wb-source', sourceNote(sc, isRetold) + ' ' + words.toLocaleString() + ' words.'));
     var more = el('details', 'wb-details');
     more.appendChild(el('summary', '', 'Summary, plot points and cast'));
     more.appendChild(el('div', '', summaryHTML(sc)));
     box.appendChild(more);
     return box;
+  }
+
+  // what the reader is actually looking at, said plainly under the passage
+  function sourceNote(sc, isRetold) {
+    var ch = 'Chapter ' + esc(sc.chapter);
+    if (state.mode === 'original')
+      return ch + ' of the 1856 first edition — Juliette Kinzie\'s own words, unaltered.';
+    if (state.mode === 'dark')
+      return ch + ', retold for this app in a tauter, more immediate voice. Every event, person,'
+        + ' place and turn of the 1856 text is kept, and nothing is added — only the telling is new.';
+    // every scene now carries a hand-written Modern text; the fallback wording
+    // stays for a scene added later that has not been given one yet
+    return ch + (isRetold
+      ? ', in plain present-day English — every event, name and detail of the original kept.'
+      : ', in the lighter modernization this app was built from, pending its own rendering.');
   }
 
   function scrollToPage() {
@@ -1094,13 +1124,13 @@
         var acts = el('div', 'wb-panelacts');
         MODES.forEach(function (m) {
           var btn = el('button', 'wb-btn' + (m.id === 'summary' ? '' : ' primary'),
-            m.id === 'summary' ? 'Read scene ' + (pos + 1) + ' →' : (m.id === 'modern' ? 'Full text →' : 'Original 1856 →'));
+            m.id === 'summary' ? m.action + ' ' + (pos + 1) + ' →' : m.action);
           btn.type = 'button';
           btn.title = m.note;
           btn.addEventListener('click', function () {
             try { localStorage.setItem('waubun.mode', m.id); } catch (e) {}
             if (m.id === 'summary') return go({ view: 'story', scene: sc.id, mode: 'summary', panel: null });
-            ensureText(function () { go({ view: 'story', scene: sc.id, mode: m.id, panel: null }); });
+            ensureText(function () { go({ view: 'story', scene: sc.id, mode: m.id, panel: null }); }, m.id);
           });
           acts.appendChild(btn);
         });
@@ -1231,7 +1261,7 @@
 
     readHash();
     history.replaceState(snapshot(), '', hashFor());
-    if (state.mode !== 'summary' && state.view === 'story') ensureText(function () { render(); });
+    if (state.mode !== 'summary' && state.view === 'story') ensureText(function () { render(); }, state.mode);
     render();
   }
 
