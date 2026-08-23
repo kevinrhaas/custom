@@ -57,6 +57,23 @@ shows; and it does not clip the fort road, whose last seven metres of track lie 
 are bare-earth drapes, both `reconstructed`, and a travelled way crossing a trodden apron is what the
 plate draws.
 
+**A GATE TURNED RED AND WAS REPLACED RATHER THAN RAISED, and which act that is matters.** T-0067's
+confinement check — *"the sward is suppressed inside the fences and essentially nowhere else"* — held
+the suppressed ground under **0.2 % of the modelled dry ground**, a constant fitted to the four fenced
+records that existed when it was written. The apron is 3,120 m² the dataset DECLARES, which took the
+figure to 0.368 %. Raising the constant to 0.005 would have bought the same red the next time the town
+encloses anything, so the assertion now compares the SAMPLED suppression against the shoelace area of
+the interiors the layer actually built: **4,764 m² declared across 22 interiors in 5 records, 4,592 m²
+recovered by the 4 m sampler — 3.6 % apart**, gated at 20 %, with the absolute ceiling kept at a
+fiftieth of the dry ground as the blow-up guard. That is strictly sharper than what it replaced: the
+old bar could not tell 3,120 m² of apron from 3,120 m² of prairie taken off by a ring that lost a
+coordinate, and the new one fails on the second while passing the first.
+
+**The two road-legibility reds in stage 3 are `dev`'s, not this branch's.** T-0114. Measured both
+ways: `origin/dev` in a clean worktree and this branch print **byte-identical band tables** at both
+viewports — 2-40 m through 600-4000 m, every ΔL*, every perceptible percentage, every sample count.
+This PR moves that gate by zero.
+
 **What is still short, stated rather than left to be noticed.** The band stops square, where trodden
 ground fans out from a gate; the gate side is worn no harder than the other three; and the palisade's
 own footprint is only `inferred`, off the 1830 Harrison plan and Andreas, so this band can never be

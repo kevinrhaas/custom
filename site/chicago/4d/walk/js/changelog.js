@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 248, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T13:50:50.710Z', date: 'Aug 23, 2026, 8:50 AM CT',
+    items: [
+      'Prairie grass grew to the foot of the fort\u2019s pickets. Both of the old Fort Dearborn views draw that ground bare \u2014 pale, trodden earth from the wall foot out over the crest of the bank, with the track from the gate crossing it \u2014 and ground a garrison works every day does not carry waist-high bluestem.',
+      'So the sward now stops twelve metres short of the walls, on all four sides, and bare trodden earth is laid in its place. Stand on the north bank where the old view was drawn and the fort sits on its own worn ground again.',
+      'The band is a rule, not a shape somebody drew. It is measured off the stockade\u2019s own recorded outline, so it follows the fort if the fort ever moves, and it is re-checked on every change \u2014 including that it leaves the parade inside the walls alone, which no old view shows.',
+      'The twelve metres are invented and marked as such: no source states a foot of it. Turn reconstructed detail off and the prairie comes back.',
+    ] },
   { v: 247, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:05:23.410Z', date: 'Aug 23, 2026, 8:05 AM CT',
     items: [
       'One building in this town was not finished on 1 July 1835. The Lake House, a hotel going up on the north side, stands as a roofless brick shell — and its ground was swept bare. It is a building site now: four stacks of brick along the front it faces the street with, three piles of squared timber down its east flank, and two heaps of footing stone behind it.',

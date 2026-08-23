@@ -2043,15 +2043,31 @@ for (const [label, viewport, touch] of [
       // would take the prairie off half the town and every check above would
       // still pass.
       const hf = a.terrain.heightfield;
+      const STEP = 4;
       let land = 0;
       let inside = 0;
-      for (let n = hf.originN; n <= hf.originN + hf.depthM; n += 4) {
-        for (let e = hf.originE; e <= hf.originE + hf.widthM; e += 4) {
+      for (let n = hf.originN; n <= hf.originN + hf.depthM; n += STEP) {
+        for (let e = hf.originE; e <= hf.originE + hf.widthM; e += STEP) {
           if (a.terrain.isWater(e, n)) continue;
           land += 1;
           if (y.suppressesSward(e, n)) inside += 1;
         }
       }
+      // AND THE SUPPRESSED GROUND IS THE GROUND THE RECORDS DECLARE (T-0097).
+      // The sampled area above is compared against the shoelace area of the
+      // interiors the layer actually built, so the assertion is about the
+      // dataset agreeing with itself rather than about a constant somebody
+      // fitted to the fences of the day. An unclosed ring, a flipped sign or a
+      // lost coordinate moves the two apart; a new fence, a new yard or an
+      // apron the size of the fort's moves them together.
+      const shoelace = (pts) => {
+        let acc = 0;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          acc += pts[j][0] * pts[i][1] - pts[i][0] * pts[j][1];
+        }
+        return Math.abs(acc) / 2;
+      };
+      const declaredArea = (y?.interiors ?? []).reduce((t, i) => t + shoelace(i.pts), 0);
       // A record that DECLARES a treatment and got no interior is the failure
       // this layer would most quietly make — an interior derived from runs that
       // no longer close, or an authored ring that lost a coordinate. Asked of
@@ -2068,6 +2084,8 @@ for (const [label, viewport, touch] of [
         meshes: (y?.group?.children ?? []).length,
         tris, ungraded, notReconstructed, casting,
         suppressedFraction: land ? inside / land : 1,
+        declaredArea,
+        sampledArea: inside * STEP * STEP,
       };
     });
     check(`${label}: every fenced interior in the town carries a ground treatment`,
@@ -2096,9 +2114,35 @@ for (const [label, viewport, touch] of [
       fenced.ungraded === 0 && fenced.notReconstructed === 0 && fenced.casting === 0,
       `${fenced.ungraded} ungraded vertex/vertices, ${fenced.notReconstructed} graded `
       + `better than reconstructed, ${fenced.casting} mesh(es) casting`);
-    check(`${label}: the sward is suppressed inside the fences and essentially nowhere else`,
-      fenced.suppressedFraction > 0 && fenced.suppressedFraction < 0.002,
-      `${(fenced.suppressedFraction * 100).toFixed(3)} % of the modelled dry ground`);
+    // T-0097 REPLACED THE HAND-FITTED CEILING HERE, and it is worth saying which
+    // act that is. The bar was `< 0.002` of the modelled dry ground — a number
+    // fitted to the four fenced records that existed when T-0067 wrote it, and one
+    // that a legitimate new record makes red without anything being wrong. The
+    // fort's apron is 3,120 m² of ground the dataset DECLARES, which took the
+    // figure to 0.368 %, and raising a constant to 0.005 would have bought the
+    // same red again the next time the town encloses something.
+    //
+    // So the assertion now compares the SAMPLED suppression against the shoelace
+    // area of the interiors the layer built. That is strictly sharper: the old
+    // bar could not tell 3,120 m² of apron from 3,120 m² of prairie taken off by
+    // a ring that lost a coordinate, and this one fails on the second while
+    // passing the first. The tolerance is the 4 m sampling grid's, not a fudge:
+    // twenty-odd polygons between 50 and 800 m² are counted by their corner
+    // samples, so a fifth either way is what the method can resolve. The absolute
+    // ceiling is kept as the blow-up guard the comment above describes — a
+    // fiftieth of the modelled dry ground, two orders off "half the town".
+    // MEASURED on the day it was written: 4,764 m² declared across 22 interiors
+    // in 5 records, 4,592 m² recovered by the sampler — 3.6 % apart, so the
+    // 20 % tolerance is five times the observed discretisation error and is a
+    // bound on the METHOD rather than a margin fitted to today's polygons.
+    const declaredGap = fenced.declaredArea
+      ? Math.abs(fenced.sampledArea - fenced.declaredArea) / fenced.declaredArea : 1;
+    check(`${label}: the sward is suppressed on the ground the records declare and nowhere else`,
+      fenced.suppressedFraction > 0 && fenced.suppressedFraction < 0.02
+      && fenced.declaredArea > 0 && declaredGap < 0.2,
+      `${(fenced.suppressedFraction * 100).toFixed(3)} % of the modelled dry ground; `
+      + `${fenced.sampledArea.toFixed(0)} m² sampled against ${fenced.declaredArea.toFixed(0)} m² `
+      + `declared by ${fenced.declared.length} record(s) (${(declaredGap * 100).toFixed(1)} % apart)`);
 
     // AND IT READS, from inside two of the three. Stand in the Western Hotel's
     // wagon yard and in one of the town's picketed dooryards, look at the ground,
