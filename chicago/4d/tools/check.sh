@@ -447,6 +447,17 @@ if [ -d ../../site/chicago/4d ]; then
     node tools/check_published.mjs
 fi
 
+# …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
+# already run. `ticket.mjs done` needs the PR number that only exists once the PR
+# is open, which is after the publish, so the documented order left the gate above
+# red every single time and a remembered extra publish.sh was what actually held
+# it together (T-0154; it broke on T-0153/PR #318). ticket.mjs now carries the file
+# to the mirror itself. This asserts BOTH halves in a sandbox — that closing a
+# ticket ends green, AND that a mirror somebody else made stale still fails, which
+# is the half a fix like this one could quietly destroy.
+step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
+  node tools/test_ticket_mirror.mjs
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A

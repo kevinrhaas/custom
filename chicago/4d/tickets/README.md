@@ -31,7 +31,10 @@ tickets link into them. A ticket is the index card; the box is the file.
    of done — never weaken it to pass.
 5. `node tools/ticket.mjs done T-NNNN --pr N` in the closing PR, which also removes
    its QUEUE line and regenerates the board. A ticket that turns out to be blocked
-   gets `block --owner "the question"` instead — never silently abandoned.
+   gets `block --owner "the question"` instead — never silently abandoned. The close
+   comes AFTER `tools/publish.sh` — it needs a PR number that does not exist until the
+   PR is open — and that is fine: the tool carries `tickets.json` to the published
+   mirror as it writes it, so no second publish is needed (T-0154).
 6. Found new work along the way? `node tools/ticket.mjs new "title" --by loop` —
    it lands at the **bottom** of QUEUE. Agents never reorder QUEUE; only the owner
    does. That one rule is what makes the owner's priorities durable.

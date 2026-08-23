@@ -202,7 +202,10 @@ is the contract. The short form:
   only live view of work the merged files cannot show yet.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
-  actually see it, not only in a PR body.
+  actually see it, not only in a PR body. **Closing after `publish.sh` is fine**: the tool
+  carries `tickets.json` to the published mirror itself, so the order below — publish,
+  push, PR, close with the number the PR just got — ends green with no second publish
+  (T-0154; before it, that order left the mirror gate red every time).
 - **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
   "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
   rule is what makes his priorities durable across runs.

@@ -1,5 +1,50 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0154: closing a ticket stops leaving the published mirror stale
+
+**The ask.** `site/chicago/4d/tickets.json` is a verbatim copy of `tickets/tickets.json` and
+`tools/check_published.mjs` compares the two byte for byte — the gate that generalises #145, where a
+published artefact quietly differing from its source hid the terrain quantiser for three parcels.
+`tools/ticket.mjs done` rewrites the source. So the order AGENTS.md states could not be obeyed:
+
+1. do the work, run `tools/publish.sh` — "PUBLISH IN THE SAME COMMIT";
+2. push, open the PR — **the PR number does not exist until this moment**;
+3. `ticket.mjs done T-NNNN --pr N` — "close it in the merging PR";
+4. the mirror is now stale and the gate fails on the next push.
+
+Step 3 needs a number only step 2 can produce, so no ordering of the documented steps ends green. It
+went red on T-0153/PR #318 at 05:11Z. What actually held it together was a REMEMBERED extra
+`publish.sh` after the close — the unwritten step that goes wrong at 3am.
+
+**What was built.** The writer of the file maintains its mirror: `ticket.mjs`'s `generateBoard`
+carries `tickets.json` to the one published path `publish.sh` copies it to. Deliberately narrow, and
+the narrowness is the whole design:
+
+- **only on a real rewrite.** The acceptance clause forbids fixing this by making the gate weaker,
+  and a blanket refresh on every invocation would do exactly that — a mirror somebody else made
+  stale (a hand edit, a half-run publish, a bad merge) would be silently laundered by the next
+  `ticket.mjs check`, and the gate would be reporting on the tool's own last act instead of on what
+  the site ships. `settle()` now returns whether it wrote; the mirror moves only then.
+- **it never creates the mirror directory.** An unpublished checkout stays unpublished; `publish.sh`
+  is what decides the mirror exists.
+- **the copy is pinned.** `ticket.mjs` hard-codes where `publish.sh` puts the file, which is two
+  copies of one fact — this project's recurring fault. `ticket.mjs check` (which `check.sh` runs)
+  asserts publish.sh still contains that exact `cp` line, and names the reconciliation if it does not.
+
+**Demonstrated, both halves, in `tools/test_ticket_mirror.mjs`** — a new `check.sh` step. It builds a
+sandbox of the shape the tools expect (`<tmp>/chicago/4d/…` beside `<tmp>/site/chicago/4d/`), copies
+the three tools and the real ticket files in, and asserts: a freshly published sandbox is green; a
+`done` with a PR number leaves it green **with no second publish**; the mirror really is the closed
+board; a hand-staled mirror **still fails**; a no-op regeneration **does not launder it**; and moving
+publish.sh's copy line is refused by `ticket.mjs check`. Nothing outside the sandbox is written — an
+earlier draft mutated the real `tickets.json` and restored it, which is a working tree nobody can
+explain if it crashes halfway.
+
+**What is NOT fixed, and it is filed rather than folded in.** `renderers/web/js/changelog.js` is
+mirrored to two published paths and `tools/stamp-changelog.mjs` rewrites it, so a run that stamps
+after publishing hits the identical trap. It has not bitten because nothing forces that order —
+unlike the close, which cannot be ordered correctly at all. **T-0155**, XS.
+
 ## Shipped 2026-08-23 — T-0152: the drawn ground stands exactly where the field says, because the quantiser's rung now divides the grid
 
 **The ask.** The drawn ground stood **77.1 mm** off the field on the east slopes, with **56** of the
