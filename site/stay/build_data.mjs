@@ -36,17 +36,20 @@ const arr = v => Array.isArray(v) ? v.filter(x => typeof x === 'string' && x.tri
 function beds(b) {
   if (!b || typeof b !== 'object') return null;
   const out = {};
+  let any = 0;
   for (const k of ['king', 'queen', 'full', 'twin', 'sofa', 'bunk']) {
     const n = num(b[k]);
-    if (n !== null) out[k] = n;
+    if (n !== null) { out[k] = n; any += n; }
   }
-  return Object.keys(out).length ? out : null;
+  // all zeros is not a bed layout — it is an unfilled template, and letting it
+  // through would read on the card as "we checked: no kings"
+  return (Object.keys(out).length && any > 0) ? out : null;
 }
 
 const problems = [];
 function load() {
   const files = readdirSync(HERE).filter(f => /^raw-.*\.json$/.test(f)).sort();
-  const seen = new Map(), out = [];
+  const out = [];
   for (const f of files) {
     const doc = JSON.parse(readFileSync(join(HERE, f), 'utf8'));
     const region = doc.region;
@@ -56,12 +59,6 @@ function load() {
       if (!id) { problems.push(`${f}: a property has no id`); continue; }
       if (!num(p.lat) || !num(p.lon)) { problems.push(`${id}: missing coordinates — dropped (it could not be mapped)`); continue; }
       if (!num(p.bedrooms)) { problems.push(`${id}: no bedroom count — dropped`); continue; }
-
-      // dedupe: same listing URL, or the same house under two names in one town
-      const keys = [str(p.url), `${(str(p.name) || '').toLowerCase()}|${(str(p.city) || '').toLowerCase()}`].filter(Boolean);
-      const dup = keys.find(k => seen.has(k));
-      if (dup) { problems.push(`${id}: duplicate of ${seen.get(dup)} — dropped`); continue; }
-      keys.forEach(k => seen.set(k, id));
 
       const photo = existsSync(join(HERE, 'photos', id + '.jpg')) ? `photos/${id}.jpg` : null;
       out.push({
@@ -86,7 +83,48 @@ function load() {
       });
     }
   }
-  return out;
+  return dedupe(out);
+}
+
+/* Two regional passes can legitimately find the same place — a hilltop retreat
+ * is both "inland" and "unusual". Match on listing id, on URL, and on
+ * name-in-town, then keep whichever record the researcher filled in more
+ * fully rather than whichever happened to be read first. */
+function completeness(p) {
+  let n = 0;
+  for (const [k, v] of Object.entries(p)) {
+    if (v === null || v === false) continue;
+    if (Array.isArray(v)) { n += v.length ? 2 : 0; continue; }
+    if (typeof v === 'object') { n += 2; continue; }
+    n += 1;
+  }
+  return n;
+}
+function dedupe(list) {
+  const keysOf = p => [
+    'id:' + p.id,
+    p.url ? 'url:' + p.url.replace(/[?#].*$/, '').replace(/\/$/, '') : null,
+    `nm:${p.name.toLowerCase()}|${(p.city || '').toLowerCase()}`
+  ].filter(Boolean);
+
+  const owner = new Map(), kept = new Map();
+  for (const p of list) {
+    const hit = keysOf(p).map(k => owner.get(k)).find(Boolean);
+    if (!hit) {
+      kept.set(p.id, p);
+      keysOf(p).forEach(k => owner.set(k, p.id));
+      continue;
+    }
+    const prev = kept.get(hit);
+    if (completeness(p) > completeness(prev)) {
+      kept.set(hit, { ...p, id: prev.id });      // keep the id already registered
+      problems.push(`${p.name}: found twice (${prev.region} + ${p.region}) — kept the fuller ${p.region} record`);
+    } else {
+      problems.push(`${p.name}: found twice (${prev.region} + ${p.region}) — kept the fuller ${prev.region} record`);
+    }
+    keysOf(p).forEach(k => { if (!owner.has(k)) owner.set(k, hit); });
+  }
+  return [...kept.values()];
 }
 
 const properties = load();

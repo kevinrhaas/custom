@@ -424,7 +424,7 @@ function card(p) {
       <div class="noimg"${img ? ' style="display:none"' : ''}>${ICON.house}<span>no photo saved</span></div>
       <span class="pin-badge" style="background:var(--${p._tier})">${p._idx}</span>
       <span class="tier-badge" style="background:var(--${p._tier})">${TIER_LABEL[p._tier]}</span>
-      ${(p.images || []).length ? `<span class="photo-count" data-photo="${esc(p.id)}">📷 ${p.images.length}</span>` : ''}
+      ${(p.images || []).length > 1 ? `<span class="photo-count" data-photo="${esc(p.id)}">📷 ${p.images.length}</span>` : ''}
     </div>
     <div class="card-body">
       <h3>${esc(p.name)}</h3>

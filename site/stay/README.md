@@ -10,7 +10,7 @@ possible**, anywhere from Cedar Key down to Siesta Key and inland to Crystal
 Springs. "A house or other cool accommodations" — so estates, ranch compounds
 and whole-inn buyouts count alongside plain beach houses.
 
-**88 properties across five areas**, found by five research passes run in
+**87 properties across five areas**, found by five research passes run in
 parallel:
 
 | Area | Found | What it's good for |
@@ -18,7 +18,7 @@ parallel:
 | Tampa / St. Pete / Clearwater metro | 23 | The deepest 6–8BR inventory, and the only listings with real quoted prices for these dates |
 | Gulf beaches & barrier islands | 20 | The big king-bed beach houses — Anna Maria and Siesta Key dominate |
 | Cedar Key, Crystal River, Homosassa | 14 | Old-Florida character and December manatee season; thin at this size |
-| Crystal Springs, Dade City, Lakeland, Ocala | 18 | Acreage, ranches and space per dollar |
+| Crystal Springs, Dade City, Lakeland, Ocala | 17 | Acreage, ranches and space per dollar |
 | Estates, inn buyouts and compounds | 13 | The unusual: whole-inn buyouts, island inns, historic mansions |
 
 ## Files
@@ -33,7 +33,7 @@ raw-<region>.json   Raw research output, one file per area (compiler input)
 build_data.mjs      Compiler: validate, dedupe, attach local photos, write js/data.js
 tools/build_geo.py  Map geometry builder — clips and simplifies US Census TIGERweb
 tools/fetch_photos.py  Saves one hero photo per listing into photos/
-photos/<id>.jpg     Local listing photos, downscaled (54 of 88 had a usable image URL)
+photos/<id>.jpg     Local listing photos, downscaled (53 of 87 had a usable image URL)
 ```
 
 ## Regenerating
@@ -84,7 +84,7 @@ size, kings partial or unpublished) · **Worth a look** (right size, not king
 beds) · **Stretch** (outside the band, or several keys).
 
 A listing that never published its bed layout is scored as *unknown*, never as
-zero kings — 19 of the 88 are in that position and their cards say so.
+zero kings — 28 of the 87 are in that position and their cards say so.
 
 ## What is and isn't verified
 
@@ -95,7 +95,7 @@ availability is reported as exactly what was seen and nothing more:
   pages were reachable with a browser user agent, and the embedded state carried
   real 8-night totals, coordinates and per-bedroom bed configurations **for the
   actual trip dates**. These prices are genuine quotes for Dec 19–27, 2026.
-- **68 listings** — "unknown". Found and read, dates not checkable.
+- **67 listings** — "unknown". Found and read, dates not checkable.
 - Prices elsewhere are whatever the source published — often a shoulder-season
   nightly rate or a published range, **not** a Christmas-week quote, which will
   usually be higher.

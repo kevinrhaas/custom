@@ -33,6 +33,26 @@
   --shadow: 0 18px 46px rgba(0,0,0,.55);
 }
 
+/* The viewer's theme has three states, not two. An explicit choice stamps
+   data-theme on the root; the default "system" setting stamps nothing at all,
+   and only prefers-color-scheme separates light from dark there. The guard
+   lets an explicit light choice still beat a dark OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  
+    color-scheme: dark;
+    --bg: #0d1416; --bg-2: #121b1e; --surface: #162023; --surface-2: #1d282c;
+    --border: #27343800; --border: #273438; --border-2: #35464b;
+    --text: #eef3f2; --text-2: #a9b6b5; --text-3: #7b8886;
+    --gulf: #34c2cc; --gulf-2: #5ad7d7;
+    --deep: #9fc6d4; --sand: #cbb08a; --palm: #79ad81; --coral: #f0836a;
+    --ok: #4fbf76; --warn: #e0a24a; --bad: #e06a6a;
+    --exact: #37c39a; --strong: #6fb0e6; --backup: #d9ac52; --stretch: #a8a29a;
+    --water: #0e2f38; --land: #222e33; --lake: #14414e; --river: #35798a;
+    --shadow: 0 18px 46px rgba(0,0,0,.55);
+  }
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
