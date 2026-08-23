@@ -1,6 +1,5 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0015 — Does the AO bake earn its nightly
 T-0017 — Re-shoot the south_water critic baseline from the new stand
 T-0018 — Does a spatial filter eat the sward stratification
 T-0019 — Six forb layers ask for more plants than the lattice holds
@@ -60,4 +59,3 @@ T-0155 — The changelog stamper has the same after-publish trap the ticket tool
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
 T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
-T-0159 — promote-to-prod's dry_run promotes to production and says it did not

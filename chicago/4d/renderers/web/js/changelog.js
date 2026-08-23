@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 250, title: 'The rebuild can now reach every building it is blamed for', kind: 'chore', ts: '2026-08-23T15:51:02.002Z', date: 'Aug 23, 2026, 10:51 AM CT',
+  { v: 251, title: 'The rebuild can now reach every building it is blamed for', kind: 'chore', ts: '2026-08-23T17:02:00.123Z', date: 'Aug 23, 2026, 12:02 PM CT',
     items: [
       'Nothing a visitor can see changed. This is about the rebuild \u2014 the slow job that regenerates the town\u2019s 344 building models from the records \u2014 and one model it could never regenerate.',
       'The town keeps a note of what every model was built from, and refuses to ship one whose records have moved on since. Touch the shared build script, even to correct a comment, and all 344 are marked as needing rebuilding at once. That is the intended behaviour and it works.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'The court-house model is retired. Nothing loaded it \u2014 the town already listed the building as standing outside its date \u2014 so no visitor loses anything, and its record, its sources and the reasoning behind it are all untouched. A model is made from the record, so the day this town gains a scene set in the autumn the building comes back by the ordinary route.',
       'And the trap is closed rather than stepped around: the release check now refuses any building model the rebuild cannot reach, naming it and the three ways to fix it. It was shown finding this one before it was trusted.',
       'It also frees the court-house\u2019s own record. Two corrections from Andreas \u2014 that the building was brick, and which corner of the public square it stood on \u2014 had been written down but not applied, because applying them would have staled a model nobody could rebuild.',
+    ] },
+  { v: 250, title: 'Ninety-four buildings stop being grey boxes', kind: 'feature', ts: '2026-08-23T16:38:12.164Z', date: 'Aug 23, 2026, 11:38 AM CT',
+    items: [
+      'Ninety-four of the town’s anonymous houses and stores have been standing as plain flagged boxes — a rough massing of the right size in the right place, marked in the file as a stand-in rather than a building. They are properly built now: walls, roofs, doorways and the same detail every other reconstructed building on the street already had.',
+      'They were never meant to stay boxes. The nightly rebuild exists partly to turn stand-ins into real buildings, and it had already done exactly that for 132 of them. These 94 were the ones it could not finish, and the reason is worth telling because it was invisible.',
+      'The rebuild has a safety check that watches the compressed files the site actually downloads. Some models are so small that compressing them makes them BIGGER, so the site ships the original instead — and which models those are is written down deliberately, so that a file quietly turning into a plain copy of itself gets noticed. Those 94 were on that written-down list, because a small grey box is exactly the kind of thing compression cannot improve.',
+      'So every night the rebuild made the boxes into buildings, the buildings were big enough to compress properly, the check saw 94 files leave the list it had been told they were on, and it refused to publish — correctly, by its own rule. The upgrade was thrown away and the list was never updated, so the next night did the same thing. It had been doing that since at least the 22nd, on a task nobody had opened.',
+      'The list is updated in the same change that made it move, which is what the check asks for and the reason it asks. What was 93 files shipped as plain copies is now 3.',
+      'The town costs about ten per cent more to draw than it did — the boxes were nearly free and real buildings are not. That was measured before it shipped, not after.',
     ] },
   { v: 249, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T15:19:00.921Z', date: 'Aug 23, 2026, 10:19 AM CT',
     items: [
