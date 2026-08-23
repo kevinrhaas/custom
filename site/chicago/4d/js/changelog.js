@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 243, title: 'Closing a job stops leaving the site out of date', kind: 'fix', ts: '2026-08-23T07:03:07.172Z', date: 'Aug 23, 2026, 2:03 AM CT',
+    items: [
+      'Nothing a visitor can see changed here. This is housekeeping about how this project records its own work — and about a check that was going red on every single job that finished.',
+      'The queue of work is published to the site as a small file, and one check compares the published copy to the original, byte for byte. That check exists because a published file that quietly differs from its source once hid a real fault in the ground for three rounds of work.',
+      'The trouble was the order. A job can only be marked finished once its review has a number, and the number does not exist until after the site has been rebuilt — so marking it finished always changed the original after the copy had been made, and the check always failed. What kept it working was somebody remembering to rebuild a second time.',
+      'Now the tool that writes the file carries it to the site itself. The check is not any softer: a copy that goes stale some other way still fails, and there is a new test that proves both halves — that finishing a job comes out clean, and that a stale copy is still caught.',
+    ] },
   { v: 242, title: 'The road stops floating on the east banks', kind: 'fix', ts: '2026-08-23T06:35:12.975Z', date: 'Aug 23, 2026, 1:35 AM CT',
     items: [
       'Where the ground falls steeply — the bank faces east of the town, and the reach beside North Water Street — the roadway, the grass tufts and the rooted plants sat as much as 77 mm above or below the ground they are supposed to rest on. They rest on it now, everywhere, to within 7 mm.',
