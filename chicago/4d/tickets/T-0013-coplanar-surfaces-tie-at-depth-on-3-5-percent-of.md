@@ -59,14 +59,26 @@ Three things follow, and they change what this ticket should be:
    The geometry separation and the bake this ticket asks for would be spent on 0.0024 %
    of the frame.
 3. **Two thirds of the flicker is silhouette**, which is what any camera movement does
-   to any edge and is not a defect. The genuine interior share is 705 px — and the
-   largest single owner of it is **trees** (257 px), not the roof/wall junctions the
-   ticket names.
+   to any edge and is not a defect. The genuine interior share — where a layer fights
+   ITSELF — is 705 px, and it is owned as follows:
+
+   | layer | interior px | silhouette px | total flicker |
+   |---|---|---|---|
+   | **structures** | **367** | 180 | 547 |
+   | trees | 257 | 345 | 602 |
+   | ground | 71 | 369 | 440 |
+   | streets | 8 | 10 | 18 |
+   | water | 2 | 36 | 38 |
+
+   So the ticket's instinct about WHERE was right: `structures` is the largest interior
+   owner, and roof/wall junctions are inside it. What the ticket got wrong is the
+   magnitude (0.19 %, not 3.5 %) and the mechanism — these are not exact depth ties, so
+   separating geometry is not the lever.
+
+   (An earlier revision of this note named **trees** as the largest interior owner. That
+   was wrong: trees lead on TOTAL flicker at 30.3 %, structures lead on INTERIOR at 367
+   px. Corrected here against a second run of the instrument, which reproduced the
+   partition exactly.)
 
 Nothing here was changed to make a check pass; the control and the return-to-pose both
 read 0 px, so the partition is sound.
-
-**Recommendation for the owner:** close this as already-met, or re-scope it onto the
-interior tree flicker, which is the biggest real thing the instrument can see. Deciding
-that is not the loop's call — the ticket was opened `--by loop` against a figure that
-no longer holds, and it is left open and unclaimed for that decision.
