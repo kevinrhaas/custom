@@ -76,6 +76,7 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible
 T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
 T-0053 — A patched lit material silently inherits another layer's shader program
+T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0021 — Census what the residents' figures reach
 T-0024 — May the face rule rank a store

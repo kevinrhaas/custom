@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 5:50 PM",
+  "generated_ct": "Aug 23, 2026, 5:55 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -341,7 +341,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 47
     },
     {
       "id": "T-0020",
@@ -376,7 +376,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 48
     },
     {
       "id": "T-0022",
@@ -427,7 +427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 49
     },
     {
       "id": "T-0025",
@@ -444,7 +444,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 50
     },
     {
       "id": "T-0026",
@@ -513,7 +513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 57
     },
     {
       "id": "T-0030",
@@ -530,7 +530,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 56
     },
     {
       "id": "T-0031",
@@ -651,7 +651,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 51
     },
     {
       "id": "T-0038",
@@ -975,7 +975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 52
     },
     {
       "id": "T-0056",
@@ -2001,7 +2001,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 58
     },
     {
       "id": "T-0114",
@@ -2415,7 +2415,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 53
     },
     {
       "id": "T-0137",
@@ -2757,7 +2757,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 54
     },
     {
       "id": "T-0156",
@@ -2775,7 +2775,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 55
     },
     {
       "id": "T-0157",
@@ -2866,6 +2866,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0162",
+      "title": "SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 46
     },
     {
       "id": "T-0163",
