@@ -1,5 +1,103 @@
 # STATUS
 
+## Re-shot 2026-08-23 — T-0017: the `south_water` baseline row measures a stand that no longer exists
+
+**T-V2 (#135) moved the `south_water` anchor on 2026-08-15**, from local `(260, -95)` — 101 m south
+of the centreline of the street it is named for, framing a field — to `(329.8, 7.0)`, the Wells
+Street corner. The 2026-08-14 critic baseline was shot the day before. Its `south_water` row has sat
+in the table under one name ever since, next to ten rows that still measure the place they were
+shot, and nothing said so. Both tables now carry a **†** on that row and a footnote naming the
+retired coordinates.
+
+### The re-shoot, and why it is three rows and not two
+
+The obvious reading of this ticket — re-shoot the station and replace the row — is wrong, and the
+run measured why rather than asserting it. **The stand is not the only thing that moved.** Holding
+the retired coordinates fixed and shooting them on today's `dev` with today's harness gives a third
+row, and it does not reproduce the 2026-08-14 numbers either:
+
+**desktop 1280×800, `tools/critic_shots.mjs --stations south_water --metrics`, source tree**
+
+| `south_water` | timber all | timber centre | crown fine | crown G−B | decile L | black px | RMS far/mid/near | flower load | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|
+| **2026-08-14** baseline, retired stand | 0.889 | 0.903 | 1.004 | 27.4 | **2.95** | 0 | 17.0 / 26.7 / 30.1 | 0.0575 | 85 / 570,718 |
+| **2026-08-23**, retired stand `(260, -95)` | 0.8742 | 0.8571 | 1.176 | 28.55 | **8.87** | 0 | 19.83 / 32.38 / 29.43 | 0.0037 | 208 / 1,441,196 |
+| **2026-08-23**, current stand `(329.8, 7.0)` | 0.7000 | 0.6979 | 0.777 | **80.74** | **26.15** | 0 | 11.26 / 2.74 / 0.98 | 0.0020 | 185 / 1,308,796 |
+
+**mobile 390×780**
+
+| `south_water` | timber all | timber centre | crown fine | crown G−B | decile L | black px | RMS far/mid/near | flower load | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|
+| **2026-08-14** baseline, retired stand | 0.836 | 0.811 | 0.755 | 35.9 | **7.54** | 0 | 24.1 / 33.9 / 25.1 | 0.0128 | 83 / 550,065 |
+| **2026-08-23**, retired stand `(260, -95)` | 0.8872 | 0.9077 | 1.527 | 23.05 | **7.64** | 0 | 29.91 / 31.0 / 20.54 | 0.0078 | 196 / 1,402,486 |
+| **2026-08-23**, current stand `(329.8, 7.0)` | 0.8897 | 0.8692 | 0.868 | **73.11** | **37.14** | 0 | 7.24 / 1.57 / 0.43 | 0.0018 | 170 / 1,247,467 |
+
+Rows two and three are one build, one harness, one frozen clock, minutes apart — so **everything
+between them is the stand**, and everything between rows one and two is nine days of town. Both
+gaps are large. `flower load` at the retired stand fell **0.0575 → 0.0037** without the camera
+moving a metre; draw calls at that same stand went **85 → 208** and triangles **570,718 →
+1,441,196**, 2.5×. The dataset says the same thing from the other side: **242 placed structures on
+the baseline commit, 343 today**, and within 200 m of the retired stand **39 → 64**. A stand in a
+field in August is a stand among buildings now.
+
+**So the 2026-08-14 row is not recoverable, only labelled.** It cannot be reproduced by returning
+the camera, and it should not be overwritten with a number from a different town. It is kept, marked
+as the retired stand, and the re-shoot is recorded here beside it.
+
+### What the move did to the picture, and it is mostly a repair
+
+- **The stand came out of the shade.** Darkest-decile L **8.87 → 26.15** desktop and **7.64 → 37.14**
+  mobile. RENDERING § 5 sets the floor at **L ≥ 14**: the retired stand failed it at both viewports
+  on today's build, the current stand clears it at both. Sunlit crown G−B **28.55 → 80.74** desktop,
+  **23.05 → 73.11** mobile, the same cause read on crowns instead of shadows — the field stand sat
+  under near-field timber and the street stand does not.
+- **Grain collapses, and the street is why.** RMS far/mid/near **19.83 / 32.38 / 29.43 → 11.26 /
+  2.74 / 0.98** desktop. Mid and near at the current stand are graded earth roadway, which carries
+  almost no high-frequency texture; at the retired stand they were sward. This is a reading about
+  what a road surface looks like, not a regression — the same surface T-0016's band report measures.
+- **Flower load falls again on the move**, 0.0037 → 0.0020 desktop, for the same reason: less
+  vegetation in frame. Bloom share of ground 0.0307 → 0.0013. § 5's flower target is only meaningful
+  at the open-prairie stations, and `south_water` was never one; standing it in a street makes that
+  plainer, it does not make it worse.
+- **Horizon coverage splits by viewport** — desktop 0.8742 → 0.7000, because the roadway runs to the
+  horizon and opens a gap in the skyline; mobile 0.8872 → 0.8897, unchanged, because the narrower
+  frame is filled by the buildings flanking the street.
+- **The move is cheaper than the stand it replaced** on today's town: 185 draws against 208 desktop,
+  170 against 196 mobile. Both are far over the ≤ 80 budget — that is the town's growth, not the
+  move, and it is true of every station now.
+
+Frames from the two 2026-08-23 stands, desktop, same build:
+`docs/evidence/t-0017-{retired,current}-stand.png`.
+
+### Three things this found that the ticket did not ask for, stated rather than fixed
+
+1. **The 2026-08-14 tables' `timber all` / `timber centre` columns are today's `skyline breaks`,
+   not today's `horizon TIMBER`.** R-W4a (#140, 2026-08-15) showed that measurement was counting
+   the town's roofs as timber and split it in two, keeping `coverageAll` as the skyline figure and
+   adding `timberOnly` beside it. The values in those columns are still comparable to today's
+   `skyline breaks` — the computation did not change — but the heading is the old, disproven name.
+   Left as shot, because rewriting the heading of a banked baseline is a different act from
+   annotating a row.
+2. **The rig now stands at thirteen stations and the baseline table has eleven.**
+   `newberry_dole_wharf` (T-0041) and `north_branch_bridge_deck` (T-0001) were added to
+   `data/scenes/1835.json` after the baseline and have never had a row.
+3. **The § 5 draw-call bullet under those tables is stale for every station, not just this one** —
+   it names four stations over the ≤ 80 budget at 83–97, and `south_water` alone reads 170–185
+   today. Owned by R-W5, which owns the draw-call work; not restated here on one station's evidence.
+
+**No threshold moved, no station was dropped, no gate changed.** `data/scenes/1835.json` was patched
+to the retired coordinates to shoot row two and restored byte-for-byte in the same command; the
+committed scene is untouched, which `tools/check.sh` re-derives.
+
+**Gates.** `tools/check.sh` green. Published smoke, all four stages at both viewports: **888 passed,
+3 failed** — `the roads reach the screen from the walker's eye, down an open street` at both
+viewports and `…from the air, at the aerial anchor` at mobile. All three are the bands R-W1, R-W2
+and R-M1c already own and STATUS already records as knowingly red, and this parcel cannot have
+caused them: **nothing the renderer loads changed.** The whole diff against `dev` under `site/` is
+`tickets.json`, and under `chicago/4d/` it is `docs/`, `tickets/` and two PNGs — zero renderer, data
+or asset files. Naming the count rather than the shape of the failure, because "pre-existing" is a
+claim and the diff is the evidence for it.
+
 ## Shipped 2026-08-23 — T-0097: the ground outside the fort's walls is bare and trodden
 
 **Visible run**, and the pick needs saying. The topmost workable ticket, T-0015, had a rival branch
@@ -8017,7 +8115,7 @@ both viewports, and every station's pitch matched its declaration.
 | `first_post_office` | 0.847 | 0.937 | 0.552 | 12.2 | 5.35 | 11015 | 9.7 / 8.8 / 9.9 | 0.0004 | 66 / 393,698 |
 | `forks` | 0.739 | 0.784 | 0.725 | 35.1 | 25.58 | 0 | 10.0 / 7.1 / 11.4 | 0.0013 | 87 / 596,618 |
 | `green_tree` | 0.731 | 0.735 | 0.670 | 20.3 | 30.88 | 0 | 12.9 / 5.3 / 0.9 | 0.0017 | 91 / 553,498 |
-| `south_water` | 0.889 | 0.903 | 1.004 | 27.4 | 2.95 | 0 | 17.0 / 26.7 / 30.1 | 0.0575 | 85 / 570,718 |
+| `south_water` **†** | 0.889 | 0.903 | 1.004 | 27.4 | 2.95 | 0 | 17.0 / 26.7 / 30.1 | 0.0575 | 85 / 570,718 |
 | `from_above` | 0.212 | 0.180 | 0.830 | 0.2 | 28.24 | 0 | 3.8 / 6.7 / 9.7 | 0.0019 | 67 / 433,090 |
 | `prairie_south` | 0.364 | 0.340 | 0.682 | 27.8 | 3.27 | 2315 | 14.8 / 5.0 / 8.7 | 0.0031 | 73 / 512,018 |
 | `prairie_west` | 0.832 | 0.850 | 0.629 | 24.1 | 13.67 | 0 | 14.4 / 21.8 / 27.7 | 0.0012 | 97 / 618,686 |
@@ -8033,11 +8131,22 @@ both viewports, and every station's pitch matched its declaration.
 | `first_post_office` | 0.919 | 0.989 | 0.541 | 21.1 | 5.26 | 1763 | 14.7 / 9.4 / 0.4 | 0.0001 | 60 / 386,536 |
 | `forks` | 0.749 | 0.731 | 1.337 | 37.5 | 23.42 | 0 | 11.6 / 11.8 / 10.6 | 0 | 82 / 573,840 |
 | `green_tree` | 0.767 | 0.746 | 0.740 | 23.6 | 39.46 | 0 | 6.2 / 1.2 / 0.5 | 0.0002 | 88 / 537,659 |
-| `south_water` | 0.836 | 0.811 | 0.755 | 35.9 | 7.54 | 0 | 24.1 / 33.9 / 25.1 | 0.0128 | 83 / 550,065 |
+| `south_water` **†** | 0.836 | 0.811 | 0.755 | 35.9 | 7.54 | 0 | 24.1 / 33.9 / 25.1 | 0.0128 | 83 / 550,065 |
 | `from_above` | 0.156 | 0.192 | 0.774 | 4.2 | 25.33 | 0 | 6.3 / 11.9 / 10.5 | 0.0012 | 61 / 377,201 |
 | `prairie_south` | 0.467 | 0.492 | 0.612 | 30.8 | 13.76 | 267 | 10.3 / 12.9 / 8.1 | 0.0018 | 71 / 476,074 |
 | `prairie_west` | 0.679 | 0.696 | 0.772 | 24.1 | 10.65 | 0 | 21.0 / 30.8 / 19.6 | 0.0003 | 94 / 605,366 |
 | `river_bank` | 0.713 | 0.773 | 0.814 | 40.3 | 2.77 | 2154 | 21.9 / 33.2 / 6.0 | 0.0004 | 49 / 365,353 |
+
+**† `south_water` here is the RETIRED stand — local `(260, -95)`, "South Water Street, looking
+east", which stood 101 m south of the centreline of the street it is named for and framed a field.**
+T-V2 (#135) moved the anchor on 2026-08-15 to `(329.8, 7.0)`, the Wells Street corner, and every
+`south_water` figure shot from 2026-08-16 onwards measures that stand instead. **The two are not
+comparable and neither is a correction of the other — they are two places.** Both stands were
+re-shot on one build on 2026-08-23 so the move can be read separately from the town's growth; see
+*Re-shot 2026-08-23 — the `south_water` baseline row measures a stand that no longer exists* at the
+top of this file. No other station in these tables moved; `newberry_dole_wharf` (T-0041) and
+`north_branch_bridge_deck` (T-0001) were added to the scene afterwards and have no row here at all,
+so the rig now stands at **thirteen** stations against this table's eleven.
 
 **What the baseline says, against the RENDERING §5 targets.**
 
