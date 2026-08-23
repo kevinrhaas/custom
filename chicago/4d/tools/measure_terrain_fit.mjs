@@ -11,7 +11,7 @@
  * The mesh it measures is the MASTER at `assets/gltf/`. What the browser loads
  * is the derivative at `assets/web/`, written afterwards by the
  * `gltf-transform optimize` step in `tools/bake.sh`, which quantises POSITION to
- * int16 under a single uniform node scale. On a surface 5 km wide and 8.6 m tall
+ * int16 under a single uniform node scale. On a surface 5 km wide and 9 m tall
  * that scale is set by the width, so the vertical lattice it lands on is coarse
  * — and no gate in this project looked at the file that ships.
  *
@@ -310,7 +310,7 @@ export async function measureMesh(file, hf, decoder) {
     const e = xyz[i * 3];
     const y = xyz[i * 3 + 1];
     const n = -xyz[i * 3 + 2];
-    // The skirt carries boundary heights 1.5 km past the modelled box, where
+    // The skirt carries boundary heights 1.55 km past the modelled box, where
     // there is no field to compare against and the sampler clamps. Scoring it
     // would measure the clamp, not the mesh.
     if (!hf.inside(e, n)) continue;
@@ -413,13 +413,20 @@ async function main() {
   //
   // The SHIPPED derivative's FIT is REPORTED and not asserted, because it cannot
   // pass: `gltf-transform optimize` quantises POSITION under one uniform node
-  // scale, which on a mesh 5,020 m wide and 8.6 m tall is a 306 mm vertical
-  // lattice at 14 bits, and 16 — the format's maximum — still lands on 77 mm.
+  // scale, which on a mesh 5,120 m wide and 9.0 m tall is a 306 mm vertical
+  // lattice at 14 bits, and 16 — the format's maximum — still lands on 78 mm.
   // There is no setting that meets 30 mm. `renderers/web/js/terrain.js` reads the
   // heights back off the field at load instead, and it is
   // `tools/smoke_renderer.mjs` that asserts the surface actually DRAWN matches
   // the sampler, because that is where the repair happens. Asserting the fit here
   // would only ever say that a compressor is a compressor.
+  //
+  // THE OTHER TWO AXES ARE ASSERTED, and elsewhere — T-0152. Reading a height
+  // back at a vertex's shipped (E, N) repairs nothing if the quantiser moved the
+  // (E, N), so `generators/terrain_gen.py` derives the skirt margin to make the
+  // POSITION rung an exact submultiple of the terrain grid and the displacement
+  // is zero rather than small. `tools/measure_terrain_horizontal.mjs --gate`
+  // holds that, on these same bytes, in `tools/check.sh`.
   //
   // ITS BIT DEPTH IS A DIFFERENT QUESTION AND IS ASSERTED — T-0012. The depth is
   // not a property of the compressor, it is an instruction this repository gives
