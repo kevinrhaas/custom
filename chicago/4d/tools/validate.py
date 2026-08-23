@@ -34,6 +34,16 @@ from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+# T-0161. `drawn_by` — "this phase builds no mesh" — had four readers and four
+# copies of the test, and the one that mattered most (generators/build.py, the
+# program the sentence is addressed to) did not have it at all, so every full
+# bake rebuilt the retired estray pen and this file then failed it. The rule is
+# imported from the generators now so the builder and the validator cannot drift
+# apart again; `generators/common/phases.py` imports nothing, so `check.sh` stays
+# the sub-second dependency-free gate it is.
+sys.path.insert(0, str(ROOT / "generators"))
+from common.phases import drawn_by_another_layer  # noqa: E402
+
 # A documented_range spanning more than this earns a warning. Chicago between
 # 1833 and 1837 changed faster than almost any settlement in American history;
 # a wide range is usually a research gap wearing a disguise.
@@ -1558,7 +1568,7 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             # No mesh, no ground contact to measure: this phase's geometry is
             # drawn by another layer, which drapes on the heightfield at every
             # post rather than standing a footprint on it.
-            if ph.get("drawn_by"):
+            if drawn_by_another_layer(ph):
                 continue
             pos = ph.get("position") or {}
             poly = (ph.get("footprint") or {}).get("polygon")
@@ -1959,7 +1969,7 @@ def check_drawn_by(structures: dict, rep: Report) -> None:
         sid = st.get("id", name)
         for ph in st.get("phases", []):
             decl = ph.get("drawn_by")
-            if not decl:
+            if not drawn_by_another_layer(ph):
                 continue
             pid = ph.get("id", "?")
             where = f"structure {sid}/{pid}"
@@ -4987,7 +4997,7 @@ def run_param_check(structures: dict, scenes: dict, rep: Report) -> None:
                 # retired is asking a generator about a mesh nobody bakes; what
                 # holds that phase together instead is check_drawn_by(), which
                 # asserts the layer record exists and that no GLB survives it.
-                if ph.get("drawn_by"):
+                if drawn_by_another_layer(ph):
                     continue
                 if arch not in resolvers:
                     no_gen.add(arch)

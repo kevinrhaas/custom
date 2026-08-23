@@ -1,7 +1,7 @@
 ---
 id: T-0113
 title: The nightly bake refuses its own publish: 30 masters now compress smaller than their banked passthrough
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
+closed: 2026-08-23
 pr: null
 claimed_by: null
 blocked_on: null
