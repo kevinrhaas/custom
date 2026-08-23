@@ -1,16 +1,17 @@
 ---
 id: T-0012
 title: Ship the 16-bit ground the script already computes
-state: open
+state: claimed
 epic: RENDERING
 requested_by: loop
 seen: true
 effort: M
 legacy_id: R-W6(b)
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/22/2026, 10:17:39 PM CT
 blocked_on: null
 needs_bake: true
 ---
