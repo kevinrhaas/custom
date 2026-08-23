@@ -66,3 +66,28 @@ self-test is wired into `tools/check.sh`, so the control pair runs on every gate
 
 Full write-up, including what the second guard does not catch: `docs/STATUS.md` under
 *Refuted 2026-08-23*.
+
+---
+
+**ANSWERED A SECOND TIME, IN THE SCENE — PR #338, the same day, by a run that took this ticket in
+parallel and whose `inflight` check could not see the other.** Both are kept: they are different
+constructions and the pair is stronger than either.
+
+#337 above answers whether a filter of a given SHAPE can bias the deal, on 400 synthetic layer keys.
+#338 asks the same question of the filters the placer really runs — `station()` and
+`crowdsTheWalker()` themselves, over the actual town, at ten stations, through the census the
+project already keeps. `flora.js` now counts each species' slots at the moment of the deal as well
+as after the filters, and `tools/measure_sward_draw.mjs` splits the survivors' disagreement into the
+deal's own discrepancy and a selection term `B`, against the hypergeometric `Bnull` a rank-blind
+filter of that size would produce.
+
+**7,844 slots dealt in 29 rows, 23.4 % refused: pooled `B/Bnull` 0.65, median row 0.65, worst row
+1.11.** Every real row sits at or below the rank-blind figure. Controls on the same vectors, 200
+trials: a uniform subsample reads 0.96–1.03, a width-selective one (the walker clearance's own rule)
+reads 3.92–5.00.
+
+**And the row this ticket was left on refuses nothing at all** — `z05_riverbank_timber` reading the
+wet prairie deals 44 and draws 44, `dev/100` 11.91 either side of the filters. Stronger than "5.24
+is below the mean at that sample size": there is no filter there to be below anything.
+
+See `docs/ROADMAP.md` § K49(e) and `docs/STATUS.md` under *Corroborated 2026-08-23*.

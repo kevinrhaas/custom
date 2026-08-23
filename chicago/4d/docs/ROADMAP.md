@@ -204,7 +204,7 @@ rationed.**
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
 | — | RENDERING | ~~R-BUG1~~ | **SEEN** | **DONE 2026-08-16 — the owner's flickering river edge was the NEAR PLANE, and 15.6 % of the drawn bank line is now 3.3 %.** A fixed 0.1 m near against a 3,000 m far leaves two surfaces 350 m away needing 10 cm of separation before the depth buffer can order them, and the waterline is co-planar BY DESIGN. The instrument is the finding: **move the camera 2 mm and photograph the same view twice** — the control is 0 px, so anything that changes is a tie. **Most of what flickers is not the bank (R-BUG6), and its suspect is UNTESTED because the flag written to test it changes nothing.** Read its box before biasing any surface to settle a tie |
-| **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
+| — | RENDERING | ~~K49(e)~~ | UNSEEN | **DONE 2026-08-23 (T-0018) — REFUTED, and in the opposite direction.** The filters do not eat the stratification: over 7,844 dealt slots the survivors sit at **0.65** of what a rank-BLIND filter of the same size departs by, and the riverbank row the parcel was left on refuses **0.0 %** of its slots. The instrument was shown red before it was believed — a width-selective control on the same vectors reads 3.9–5.0. Read its box before blaming a filter for a census row |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | — | RENDERING | ~~K49(c1)~~ | — | **DONE 2026-08-16 — the 25 footprints are in, `unconvertible` 25 → 0, and the conversion is measured and NOT shipped.** It moves the shares by up to 3× (June grass 8.1 % → 24.0 %, wood nettle 1.1 % → 6.3 %) and improves both deviations (matrix 219.19 → 197.46, forb 107.18 → 89.11), and it puts *Scirpus atrovirens* at **1.10 slots owed, 0 drawn** — K49(f)'s absolute gate. Read its box before dealing a sward slot off any number |
 | — | RENDERING | ~~K49(c2)~~ | **SEEN** | **DONE 2026-08-16 — the conversion is SHIPPED and the tail gate is green on the mirror: matrix deviation 219.19 → 154.19, forb 107.18 → 89.11, worst shortfall 15.21 → 8.50.** Route 1 was built and is **refuted at frame scale** (the sweep alone leaves *S. cyperinus* drawn nowhere at 1.11 owed, because a frame does not hold whole blocks — K49(e)'s question); route 3, which K49(c1) said was "not a route to green", **is** what got there. Read its box before proposing a construction to fix a tail |
@@ -4877,6 +4877,14 @@ Giving the block's grid a phase — a change that touches no filter — takes `z
 to **7.67**. The town's regression was the fixed grid's own bias, not `station()`. What is left for
 K49(e) is the riverbank's residual 1.30. Do not quote the paragraph above without this one.
 
+**AND FULLY REFUTED 2026-08-23 by K49(e)/T-0018, which is what that parcel was opened to settle:
+the mechanism is not merely unproven, it runs the OTHER WAY.** Measured over 7,844 dealt slots in
+29 rows, the survivors of `station()` and `crowdsTheWalker()` are **less** unevenly spread across
+species than a rank-blind subsample of the same size — pooled 0.65 of the rank-blind figure, worst
+row 1.11 — and the riverbank row this paragraph is about has **0.0 % of its slots refused**, so no
+filter can be carrying any part of its residual. Finding 3 above is wrong in its direction and is
+kept only as the reasoning it was. Do not quote either paragraph without K49(e)'s box.
+
 **The screenshot, which is the acceptance test K49(b) set.** `prairie_west` desktop, published
 mirror, before and after: **no rows, no diagonal banding, 74 draw calls both ways.** The mix in
 frame changes visibly — the under-drawn grass now has its recorded share — which is the point.
@@ -4899,7 +4907,7 @@ mirror, five block sizes, table above · `tools/critic_shots.mjs --published --v
 --stations prairie_west` before and after. **The desktop half of the smoke was not run and is not
 claimed** — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(e) — does a spatial filter eat the stratification? · **UNCLAIMED · UNSEEN · opened 2026-08-16 by K49(d) · Effort: S · EVIDENCE ADDED 2026-08-16 by K49(c2)**
+### K49(e) — does a spatial filter eat the stratification? · **DONE 2026-08-23 (T-0018, TWO PARALLEL RUNS, TWO INSTRUMENTS, ONE ANSWER — NO, AND IT IS THE OTHER WAY ROUND). PR #337 refuted the mechanism in principle on 400 synthetic layer keys and banked its control pair into `tools/check.sh`; PR #338 measured the placer's own filters where they actually run — pooled 0.65 of the rank-blind figure, worst row 1.11, and the riverbank residual this parcel was left on has 0.0 % of its slots filtered**
 
 **K49(c2) found a second symptom of the same suspect, and it is a stronger one than the census rows
 this parcel was opened on.** Its route-1 sweep makes the union of the blocks in a frame an exact
@@ -4937,6 +4945,87 @@ explanation K49(d) finding 3 offered is refuted for the row it was mostly measur
 survives is the riverbank's residual **1.30**, which is what this parcel is now for: a small term,
 possibly the filter, possibly nothing. **Re-scope it before claiming it** — the correlation column
 is still the right instrument and the population it has to explain is now half the size.
+
+**THE ANSWER — 2026-08-23, T-0018, and it was answered TWICE, by two runs that took the ticket in
+parallel and could not see each other.** Read both; they are different constructions and the pair is
+stronger than either. **PR #337** attacks it analytically: the position→rank map is `feistel(idx,
+half, blockHash)` and `blockHash` is re-keyed per block, so a rule that reads only position cannot
+lean — demonstrated over 400 synthetic layer keys with χ² against uniform, three modelled filter
+shapes indistinguishable from a rank-blind control, and a rank-reading arm four orders of magnitude
+red; its control pair now runs in `tools/check.sh`. **PR #338 — this section — measures the real
+thing**: not a `halfplane` standing for a waterline but `station()` and `crowdsTheWalker()`
+themselves, over the actual town, at ten stations, in the census the project already keeps. What
+follows is that half.
+
+**The instrument, and why it is not the correlation column this box asked for.** `deviation` is a
+functional of the SURVIVORS' ranks alone, so the claim can be put exactly instead of correlated
+across sixteen noisy rows. `flora.js` now counts each species' slots at the moment of the deal
+(`dealt`) as well as after the filters (`drawn`) — the same census one step earlier — and
+`tools/measure_sward_draw.mjs` splits the survivors' disagreement with the deal in two:
+
+| term | what it is |
+|---|---|
+| `dealtDev` | `Σ|dealt_i − share_i·N|` — the discrepancy the DEAL has before any filter |
+| `B` | `Σ|drawn_i − q·dealt_i|`, `q = m/N` — how far the survivors are from the filter having taken the same fraction of every species. Zero for a perfectly even filter |
+| `Bnull` | what `B` reads when the mechanism is ABSENT: `Σ √(2/π)·√(m·p_i(1−p_i)·(N−m)/(N−1))`, the mean absolute deviation of the hypergeometric a rank-blind filter would produce |
+
+**`B/Bnull ≈ 1` refutes the mechanism for a row; `B/Bnull ≫ 1` proves it, and by how much.** The
+figure `deviation` moves on is `dealtDev` scaled by `q` plus `B`, so this is a decomposition and
+not a proxy.
+
+**Finding 1 — the mechanism is refuted, and refuted in the opposite direction.** Over **7,844
+slots dealt in 29 rows, of which the two filters refuse 23.4 %**, the pooled `B/Bnull` is
+**0.65**; the median row is 0.65 and the worst row in the scene is **1.11**. Not one row is
+meaningfully above the rank-blind figure. A filter that selected a biased set of ranks would sit
+ABOVE 1; these sit below it, which says the survivors are spread across the species list MORE
+evenly than an independent subsample of the same size would be. The stratification is not eaten by
+the filter. It partly survives it.
+
+**Finding 2 — the riverbank residual this parcel was left on cannot be the filter at all, because
+nothing is filtered there.** `z05_riverbank_timber` standing in its own community reading the
+wet-prairie matrix list: **44 slots dealt, 44 drawn, 0.0 % refused**, `dev/100` identical before
+and after the filters at 11.91. The residual K49(f) left to this parcel is entirely the DEAL's own
+discrepancy at a 44-slot population — the stratification's granularity, not `station()`. That is
+the alternative this box was required to name if the correlation was not there.
+
+**Finding 3 — the explanation for the sub-1 reading, stated as reasoning and not measured here.**
+`station()` refuses ground in contiguous patches — a building footprint, the far side of a
+waterline, a road — and the block permutation that finding 3 of K49(d) called the danger is what
+makes that safe: a contiguous patch is close to whole blocks, and a whole block is a COMPLETE
+stratum, one slot of every rank. Removing complete strata leaves the remainder exactly stratified,
+which is why `B` lands below the i.i.d. null rather than on it. **The negative is what is proven;
+this paragraph is the reading of it.**
+
+**Finding 4 — the instrument was shown red before it was believed.** Both controls run on the real
+dealt vectors, in `tools/measure_sward_draw.mjs`, 200 trials each: a genuinely uniform subsample of
+the same size reads **0.96–1.03** (so `Bnull` is calibrated, not merely plausible), and one of the
+same size that rejects wide clumps preferentially — which is the rule `crowdsTheWalker()` actually
+applies — reads **3.92–5.00**. The instrument can see the mechanism. It is not there.
+
+**What this licenses, which is the reason the parcel carried the exemption.** `stratum` may be used
+in a heavily filtered layer: the filtering costs the layer its SIZE, and a smaller population has a
+larger per-slot discrepancy for that reason alone (`z09_sand_prairie` reading the mesic list, 51.8 %
+refused, `dev/100` 1.08 → 2.63 — below what rank-blind filtering of that size predicts). It does not
+cost the layer its stratification. A census row that got worse behind a filter should be blamed on
+the deal or on the row's size, and this tool now prints both columns to say which.
+
+**What #337 left, and this closes.** A synthetic model answers whether a filter of a given SHAPE can
+bias the deal; it cannot answer whether the filters the placer really runs are those shapes. They
+are: measured in place, every real row sits at or below the rank-blind figure, and the row the
+parcel was left on turns out to refuse nothing at all — which is a stronger statement than #337's
+"5.24 is below the mean deviation at that sample size", because there is no filter there to be
+below anything.
+
+**Files:** `renderers/web/js/flora.js` (`countDealt`, `countDraw` reached through the zone rather
+than a rebuilt Map key, the `rejStation`/`rejWalker` counters on the four censused emits,
+`closeCensus`) · `tools/measure_sward_draw.mjs` · this box · STATUS + the changelog + the mirror.
+No `data/` change, no bake, nothing drawn moves.
+
+**Verified:** `tools/check.sh` **CHECK PASS** · `node tools/measure_sward_draw.mjs` on the source
+tree and on the published mirror · both viewports, which read identically — and that is itself a
+finding, filed as its own ticket: `SWARD_VIEWPORT=mobile` changes the browser page size but not
+`lowSpec`, so the ring sizes the tool's own header says the viewport decides are in fact the same
+at both.
 
 ### K49(f) — the same 64 numbers in every block · **DONE 2026-08-16 — 2 species absent → 0, matrix deviation 282.90 → 219.19**
 
