@@ -1,7 +1,7 @@
 ---
 id: T-0151
 title: The shipped ground's POSITION bit depth is asserted, not assumed
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: R-W6(b)
 parent: T-0012
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-22
+pr: 317
 claimed_by: run 8/22/2026, 10:27:07 PM CT
 blocked_on: null
 needs_bake: false
