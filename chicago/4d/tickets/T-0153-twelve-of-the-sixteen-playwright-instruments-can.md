@@ -1,7 +1,7 @@
 ---
 id: T-0153
 title: Twelve of the sixteen Playwright instruments cannot be pointed at a browser
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 318
 claimed_by: run 8/22/2026, 11:51:14 PM CT
 blocked_on: null
 needs_bake: false
