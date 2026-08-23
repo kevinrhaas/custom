@@ -72,14 +72,25 @@ jobs:
             printf '%s\n' "$OUT"
           fi
 
-      - name: Stop here on a dry run
+      # T-0159 — the guard is on the DESTRUCTIVE steps, not in a step of its own.
+      #
+      # This used to be a step that printed "nothing promoted" and called
+      # `exit 0`. A non-zero-argument `exit` in a `run:` block ends THAT STEP,
+      # not the job, so every step below it ran anyway: on 2026-08-23 a
+      # `dry_run: true` dispatch printed "dry_run — nothing promoted." and then
+      # promoted 27 commits to main, tagged release-v248 and dispatched the
+      # deploy. The log said one thing and the repository said another.
+      #
+      # A dry run is now expressed the only way that cannot lie: the steps that
+      # move production are skipped, visibly, in the run's own step list.
+      - name: Say what a dry run would have done
         if: inputs.dry_run
         run: |
-          echo "dry_run — nothing promoted."
-          exit 0
+          echo "dry_run — the promotion steps below are SKIPPED."
+          echo "Check the step list: 'Back-merge…' and 'Publish…' must read as skipped."
 
       - name: Back-merge main into dev, then merge dev into main
-        if: steps.survey.outputs.count != '0'
+        if: ${{ !inputs.dry_run && steps.survey.outputs.count != '0' }}
         run: |
           set -e
           git config user.name  "polecat-ci"
@@ -142,7 +153,7 @@ jobs:
           fi
 
       - name: Publish (GITHUB_TOKEN pushes don't trigger deploy — dispatch it)
-        if: steps.survey.outputs.count != '0'
+        if: ${{ !inputs.dry_run && steps.survey.outputs.count != '0' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run deploy.yml --ref main

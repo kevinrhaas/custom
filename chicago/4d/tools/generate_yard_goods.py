@@ -1180,11 +1180,23 @@ def _town_world(cars: dict) -> dict:
         if not treatment:
             continue
         authored = ground.get("interior_local_enu_m")
-        if isinstance(authored, list) and len(authored) >= 3:
-            fenced.append({"record": rec["id"], "treatment": treatment,
-                           "ring": [tuple(p) for p in authored],
-                           "runs": [[tuple(p) for p in (r.get("path_local_enu_m") or [])]
-                                    for r in rec.get("runs", [])]})
+        # One ring is `[[e, n], ...]` and several are `[[[e, n], ...], ...]`, which is
+        # what T-0097's fort apron carries: the ground a record covers is not always
+        # simply connected, and `yards.js` tells the two apart the same way, by the
+        # depth of the first coordinate.
+        rings = []
+        if isinstance(authored, list) and authored and isinstance(authored[0], list) \
+                and authored[0]:
+            if isinstance(authored[0][0], list):
+                rings = [r for r in authored if isinstance(r, list) and len(r) >= 3]
+            elif len(authored) >= 3:
+                rings = [authored]
+        if rings:
+            runs = [[tuple(p) for p in (r.get("path_local_enu_m") or [])]
+                    for r in rec.get("runs", [])]
+            for r in rings:
+                fenced.append({"record": rec["id"], "treatment": treatment,
+                               "ring": [tuple(p) for p in r], "runs": runs})
             continue
         for run in rec.get("runs", []):
             pts = [tuple(p) for p in (run.get("path_local_enu_m") or [])]

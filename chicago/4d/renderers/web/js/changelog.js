@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 249, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T15:19:00.921Z', date: 'Aug 23, 2026, 10:19 AM CT',
+    items: [
+      'Prairie grass grew to the foot of the fort\u2019s pickets. Both of the old Fort Dearborn views draw that ground bare \u2014 pale, trodden earth from the wall foot out over the crest of the bank, with the track from the gate crossing it \u2014 and ground a garrison works every day does not carry waist-high bluestem.',
+      'So the sward now stops twelve metres short of the walls, on all four sides, and bare trodden earth is laid in its place. Stand on the north bank where the old view was drawn and the fort sits on its own worn ground again.',
+      'The band is a rule, not a shape somebody drew. It is measured off the stockade\u2019s own recorded outline, so it follows the fort if the fort ever moves, and it is re-checked on every change \u2014 including that it leaves the parade inside the walls alone, which no old view shows.',
+      'The twelve metres are invented and marked as such: no source states a foot of it. Turn reconstructed detail off and the prairie comes back.',
+    ] },
   { v: 248, title: 'A shading step nobody was running, and could not have run', kind: 'chore', ts: '2026-08-23T14:25:42.360Z', date: 'Aug 23, 2026, 9:25 AM CT',
     items: [
       'Nothing a visitor can see changed. A standing question asked whether the nightly rebuild should keep spending time on baked shading — the soft contact shadows in the corners of a building, where a wall meets a roof — or drop it. The answer turned out to be that the nightly has never done it.',
