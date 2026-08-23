@@ -6630,10 +6630,40 @@ acceptance clause is quoted with its station rather than declared discharged in 
 **Cost:** none in draw calls. The tone folds into the per-vertex colour the batch already carries
 (**R-W5a**), so the untextured town is still one batch and one shadow-pass call.
 
+**AMENDED 2026-08-22 (T-0047) — the deal now knows where the buildings stand, and the bound did not
+move.** The jitter above is dealt from a hash of the record's identity, which is deterministic,
+cheap and blind to the neighbourhood. A blind deal has a tail, and T-0048's own instrument found
+it: over 329 nearest-neighbour pairs inside 60 m the median pair differed by **10.3 %** of applied
+value and the tenth percentile by **2.4 %**, which is at or under what a visitor reads between two
+walls in the same light. About a tenth of the pairs a visitor walks past were two houses wearing
+one paint.
+
+**The fix is a choice inside the bound, not a wider bound.** Every building is offered **32**
+candidate deals drawn from the identical interval this entry already fences — the same
+`jitterValue`, the same halved spread on masonry — and takes the one that stands furthest clear of
+the neighbours already dealt, under a floor of 0.14 of applied value for two buildings on the same
+spot falling linearly to nothing at 60 m. **No wall can reach a shade it could not reach before**,
+because the candidates are drawn from the same interval; what changed is which of them a building
+takes. 158 of 339 structures take a different deal; the other 181 keep the exact tone they had,
+because candidate 0 is the plain `id|phase` hash this entry has always described and a building
+with nothing inside 60 m never enters the pass.
+
+**Measured on the same instrument, published mirror, 1280x800:** the tenth percentile goes
+**2.4 % → 7.7 %** and the median **10.3 % → 13.3 %**, so the tail reaches **0.58** of the middle
+where it reached 0.23. The two attested records are untouched and still bit-exact — they are not
+eligible, so they never enter the pass — and the deal is still deterministic to the id: two loads
+of one scene give one town.
+
+**The alternative that was rejected, measured rather than argued.** A two-sided cost — one that
+also pulled a well-separated pair back toward the target — collapses the town rather than evening
+it: the median pair fell to **4.9 %** and the ratio to **0.31**. Repulsion only pushes, and that is
+why it is the right shape here.
+
 Related: **L22** (wall surfaces are the archetype's, not the record's — this is that finding tinted
 rather than resolved), **L120** (a pale trunk chosen so two trees can be told apart, the same
-invention in the flora), and tickets **T-0048** (this half) and **T-0049** (the board half, which needs the bake).
-**Recorded:** 2026-08-17.
+invention in the flora), and tickets **T-0048** (this half), **T-0047** (the repulsion amendment
+above) and **T-0049** (the board half, which needs the bake).
+**Recorded:** 2026-08-17. **Amended:** 2026-08-22.
 
 ### L127 — The Western Hotel's wagon yard: an attested yard, and a fence nobody described
 **Decision:** the yard behind the Western Hotel is drawn as a **post-and-rail fence, 1.37 m high,

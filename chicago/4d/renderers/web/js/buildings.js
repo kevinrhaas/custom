@@ -31,7 +31,7 @@
 
 import * as THREE from 'three';
 import { enuToWorld, bearingToYaw, toFloatAttribute } from './terrain.js';
-import { toneFor, toneFactors, NEUTRAL_TONE } from './facades.js';
+import { dealTones, toneFor, toneFactors, NEUTRAL_TONE } from './facades.js';
 
 /** Walk up until something claims a structure_id. Returns null if nothing does. */
 export function structureIdOf(object) {
@@ -328,6 +328,19 @@ export function createBuildings({ registry, confidence, terrain }) {
   const groups = new Map();
   /** structure id -> the facade tone applied to every one of its surfaces. */
   const tones = new Map();
+  /**
+   * T-0047. The tone is dealt for the WHOLE town before the load loop, because
+   * a repulsion pass cannot be done a building at a time: it has to know what
+   * is already standing inside 60 m. The deal reads only the sidecars' own
+   * `placement`, so it needs no GLB and no batch, and it is the same answer on
+   * every load — see `facades.js` § the repulsion pass.
+   */
+  const dealt = dealTones([...registry.values()]
+    // Only what will actually be drawn: a record with no GLB stands in nobody's
+    // neighbourhood, and letting it hold a tone clear would move a wall a
+    // visitor can see away from one they cannot.
+    .filter((r) => r.gltf)
+    .map((r) => r.sidecar));
   /** The colour ranges `setWeathering` rewrites: one row per source mesh. */
   const toneRanges = [];
   /** structure id -> its footprint extent in its own local frame, so a building
@@ -361,7 +374,7 @@ export function createBuildings({ registry, confidence, terrain }) {
     // structure rather than per material because on 38 of the shipped assets
     // the material names are gone (ROADMAP K36(a)), and a rule that reads names
     // would skip exactly those buildings.
-    const tone = toneFor(record.sidecar);
+    const tone = dealt.get(record.id) ?? toneFor(record.sidecar);
     tones.set(record.id, tone);
 
     for (const { mesh, matrix } of meshes) {
