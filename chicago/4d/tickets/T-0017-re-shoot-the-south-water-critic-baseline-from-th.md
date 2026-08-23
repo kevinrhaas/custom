@@ -1,7 +1,7 @@
 ---
 id: T-0017
 title: Re-shoot the south_water critic baseline from the new stand
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: T-V2c
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 334
 claimed_by: run 8/23/2026, 12:17:00 PM CT
 blocked_on: null
 needs_bake: false
