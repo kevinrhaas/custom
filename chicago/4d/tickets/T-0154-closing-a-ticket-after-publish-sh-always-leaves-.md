@@ -1,7 +1,7 @@
 ---
 id: T-0154
 title: Closing a ticket after publish.sh always leaves the published mirror stale
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 321
 claimed_by: run 8/23/2026, 1:57:44 AM CT
 blocked_on: null
 needs_bake: false
