@@ -2669,6 +2669,19 @@ for (const [label, viewport, touch] of [
             b: ((it.bearing_deg ?? 0) * Math.PI) / 180 });
         }
       }
+      // T-0057. The building material on the one lot this town can say was going
+      // up. A pile is measured by its OWN bound and against its OWN lot, exactly
+      // as the wagon, the bench and the shed already are: a 0.75 m bar written
+      // for a barrel would fail on a 3.66 m stick that is exactly right.
+      const lots = y?.lots ?? [];
+      const piles = [];
+      for (const lot of lots) {
+        for (const it of lot.items ?? []) {
+          piles.push({ kind: it.kind, e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
+            b: ((it.bearing_deg ?? 0) * Math.PI) / 180,
+            quad: lot.ground_quad_local_enu_m ?? [] });
+        }
+      }
       let ungraded = 0;
       let notReconstructed = 0;
       let worstStray = 0;      // furthest a vertex sits from its own object's anchor
@@ -2685,6 +2698,9 @@ for (const [label, viewport, touch] of [
       // through the inn's wall, out past its eaves or up through its roof. So it
       // is measured in the shed's own frame and it is measured FIRST, because the
       // wagon under it shares its centre and would otherwise absorb the roof.
+      let pileVerts = 0;
+      let pileStray = 0;       // furthest a vertex sits from its own pile's anchor
+      let pileInLot = 0;       // vertices standing inside the building's own footprint
       let shedVerts = 0;
       let shedOut = -Infinity;    // furthest out from the wall, along its normal
       let shedIn = Infinity;      // deepest toward the wall (negative is behind it)
@@ -2726,6 +2742,34 @@ for (const [label, viewport, touch] of [
         }
         return null;
       };
+      // The piles are nine objects on one lot 130 m from the nearest wagon and
+      // further still from the nearest cask, so a plain radius claims them with
+      // nothing to collide with. The radius is the widest pile's own reach — a
+      // timber stick 3.66 m long lying across its pile — plus a margin.
+      // It returns the NEAREST pile and not the first one inside the radius: the
+      // brick stacks stand 3.2 m apart, so a vertex at the near end of one falls
+      // inside its neighbour's radius too, and taking the first match measured
+      // it against the wrong anchor and reported 2.49 m of stray on geometry
+      // that is exactly where the record puts it.
+      const pileNear = (e, n) => {
+        let best = null;
+        let bestD = 2.6;
+        for (const pl of piles) {
+          const d = Math.hypot(e - pl.e, n - pl.n);
+          if (d <= bestD) { bestD = d; best = pl; }
+        }
+        return best;
+      };
+      const inQuad = (e, n, quad) => {
+        let inside = false;
+        for (let i = 0, j = quad.length - 1; i < quad.length; j = i, i += 1) {
+          const [xi, yi] = quad[i];
+          const [xj, yj] = quad[j];
+          if ((yi > n) !== (yj > n)
+            && e < xi + ((n - yi) * (xj - xi)) / ((yj - yi) || 1e-12)) inside = !inside;
+        }
+        return inside;
+      };
       for (const geo of (items.length ? geos : [])) {
         const pos = geo.getAttribute('position');
         for (let i = 0; i < pos.count; i++) {
@@ -2755,6 +2799,17 @@ for (const [label, viewport, touch] of [
             break;
           }
           if (inBay) continue;
+          // T-0057's piles, claimed before the wagons: a pile is measured for how
+          // far it reaches from its own anchor and for the one thing that would
+          // make it wrong, which is a stack of brick standing inside the building
+          // it was delivered for.
+          const pl = pileNear(e, n);
+          if (pl) {
+            pileVerts++;
+            pileStray = Math.max(pileStray, Math.hypot(e - pl.e, n - pl.n));
+            if (inQuad(e, n, pl.quad)) pileInLot++;
+            continue;
+          }
           // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
           // own bound rather than lumped in with the casks.
           const w = wagonNear(e, n);
@@ -2827,6 +2882,11 @@ for (const [label, viewport, touch] of [
         benchStray,
         benchInside,
         benches,
+        pileVerts,
+        pileStray,
+        pileInLot,
+        lots,
+        piles: piles.length,
         shedVerts,
         shedOut,
         shedIn,
@@ -2834,7 +2894,10 @@ for (const [label, viewport, touch] of [
         shed: sheds[0] ?? null,
         sheds: sheds.length,
         // One material and the tilt still reads as canvas: the colour is per
-        // vertex, so the whole layer must carry exactly two of them.
+        // vertex, so the whole layer must carry exactly its OWN tones and no
+        // more. It was two — timber and duck — until T-0057 put brick and stone
+        // on a building lot, and four is now the number a second material would
+        // have been needed for.
         tones: (() => {
           const seen = new Set();
           for (const geo of geos) {
@@ -2983,11 +3046,42 @@ for (const [label, viewport, touch] of [
       `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
       + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
       + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
+    // ---- T-0057: the other half of Ordinance 9 ---------------------------- //
+    //
+    // The ordinance names timber, stone, brick, boxes and barrels; T-0040 drew
+    // the boxes and barrels and refused the rest, because building material
+    // belongs to a building that is GOING UP and the goods record cannot say
+    // which lot was. Exactly one structure in this scene states a construction
+    // state in its own attributes — `lake_house_construction`, attested — so
+    // what has to hold is that the material is on that lot, in all three
+    // materials, and reaches the screen as geometry rather than as a record.
+    check(`${label}: the building material stands on the lot that was going up`,
+      goods.census?.lots === 1 && goods.census?.piles >= 6 && goods.pileVerts > 0
+        && goods.lots?.[0]?.structure_id === 'lake_house_construction'
+        && (goods.census?.byMaterial?.brick ?? 0) > 0
+        && (goods.census?.byMaterial?.timber ?? 0) > 0
+        && (goods.census?.byMaterial?.stone ?? 0) > 0,
+      `${goods.census?.piles} pile(s) on ${goods.census?.lots} lot(s) `
+      + `(${JSON.stringify(goods.census?.byMaterial ?? {})}), ${goods.pileVerts} `
+      + `vertices, lot ${goods.lots?.[0]?.structure_id ?? 'MISSING'}`);
+    // And it stands where a builder's material stands: round the shell, not
+    // inside it. The widest pile is a 3.66 m stick lying across its own pile, so
+    // 1.90 m is the furthest any vertex may sit from its anchor and 2.1 m is the
+    // bar; a transposed axis would be metres out, not centimetres. The second
+    // half is the one that would be visible from the street — the generator
+    // turned its outward normal the wrong way on its first run and put every
+    // one of the nine piles inside the building, which clause 5 caught then and
+    // this catches now.
+    check(`${label}: no pile of material stands inside the building it is for`,
+      goods.pileStray > 0 && goods.pileStray <= 2.1 && goods.pileInLot === 0,
+      `furthest vertex ${goods.pileStray?.toFixed(2)} m from its own pile's anchor, `
+      + `${goods.pileInLot} vertex/vertices inside the lot's own footprint`);
+
     // The canvas is canvas. The tilt arrived without a second material, which is
     // only possible because the colour moved onto the geometry — so the whole
     // layer, chunks and all, has to carry exactly two tones: timber and duck.
     check(`${label}: the tilt is drawn in canvas on the layer's one material`,
-      goods.tones === 2 && goods.materials === 1,
+      goods.tones === 4 && goods.materials === 1,
       `${goods.tones} vertex tone(s) across ${goods.meshes} chunk(s) on `
       + `${goods.materials} material(s)`);
 

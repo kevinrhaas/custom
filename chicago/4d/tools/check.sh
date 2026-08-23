@@ -109,6 +109,16 @@ step "the business signboards re-derive from the rule that chose their frontages
 step "the yard goods re-derive from the rule that chose their frontages" \
   python3 tools/generate_yard_goods.py --check
 
+# And the OTHER HALF of that ordinance, which the goods record refused in writing:
+# timber, stone and brick are building material on a lot that is going up, not a
+# trader's stock on his own frontage. The rule's load-bearing clause is that the
+# structure record has to STATE the construction state itself — a date test would read
+# a first-attestation year as a groundbreaking and deal stacks of brick to buildings
+# that had stood for a year — so exactly one lot in this scene qualifies, and this
+# re-derives which one and where the piles stand (T-0057).
+step "the building material re-derives from the rule that chose the lots" \
+  python3 tools/generate_lot_building_material.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two

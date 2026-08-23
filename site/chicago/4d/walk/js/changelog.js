@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 246, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:00:29.158Z', date: 'Aug 23, 2026, 8:00 AM CT',
+    items: [
+      'One building in this town was not finished on 1 July 1835. The Lake House, a hotel going up on the north side, stands as a roofless brick shell — and its ground was swept bare. It is a building site now: four stacks of brick along the front it faces the street with, three piles of squared timber down its east flank, and two heaps of footing stone behind it.',
+      'The town legislated about exactly this. A village ordinance of November 1833 regulated timber, stone, brick, boxes and barrels stacked in the streets, and the boxes and barrels have stood at the shop doors for a fortnight. The other three had never been drawn, because they belong to a building that is going UP, and nothing here could say which building was.',
+      'So the question was put to the records rather than guessed at. Of 343 buildings standing that summer, exactly one says in its own file that it was under construction, and it says so on good authority: a man who walked past it eight weeks later described the Lake House in course of construction, and it did not open until the autumn of the following year.',
+      'What the piles are made OF is not a free choice either. The same account that dates the hotel says it was built of brick and had a basement, so brick and footing stone follow from the record; a three-storey house of that size is floored, joisted and roofed in timber, and its bricklayers worked off timber scaffolding.',
+      'Fourteen other buildings whose records open in 1835 were looked at and set aside, each with its reason written down. An 1835 date is usually the first time somebody wrote a building down — a newspaper\u2019s first issue, a deed — and not the day it was begun.',
+      'Nothing says any of this stood on that spot on that day, so all of it is marked reconstructed and vanishes when you turn reconstructed detail off. Aim at any pile and the Lake House\u2019s own card opens.',
+    ] },
   { v: 245, title: 'The dark patches on the prairie are gone', kind: 'fix', ts: '2026-08-23T09:30:29.741Z', date: 'Aug 23, 2026, 4:30 AM CT',
     items: [
       'Scattered across the town, on open ground, sat two dozen dark blotches a few metres wide \u2014 grass that fell into shadow with nothing above it to cast one. Stand over any of them and the ground simply went grey. They are gone.',

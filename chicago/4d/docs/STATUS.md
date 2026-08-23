@@ -1,5 +1,55 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0057: Ordinance 9's other half, on the one lot this town can say was building
+
+**Visible run.** The three tickets above this one in the queue — T-0015, T-0016, T-0017 — are all
+measurement parcels, and the last four merged entries run visible / invisible / invisible / visible.
+AGENTS.md's visible-progress rule says that when the top of the queue is all invisible, the run's
+job is to pull a visible parcel up and say in the PR why it was buried. T-0057 is the topmost
+ticket that puts something in the town, and QUEUE.md was not reordered.
+
+**The ask.** Ordinance 9 of 7 November 1833 names *timber, stone, brick, boxes and barrels* stacked
+in the streets. T-0040 shipped the boxes and barrels (L131, `data/yard/town_trade_goods.json`) and
+refused the other three in writing, because building material belongs to a lot that is GOING UP and
+the goods record has no way to say which lot was.
+
+**The census, which is the parcel.** 343 structures stand on the scene date: 256 anonymous infill,
+87 named. **Exactly one carries a construction state in its own attributes** —
+`lake_house_construction`, `function: hotel_under_construction`, graded **attested** off Andreas,
+with `roof_type: none` for the same reason and J. D. Bonnell walking past 'the Lake House in course
+of construction' on 25 August 1835. So `tools/generate_lot_building_material.py` writes nine piles
+on one lot: 4 stacks of brick on the frontage, 3 piles of squared timber down the east flank, 2
+heaps of footing stone at the rear. `tools/check.sh` re-derives the file byte for byte.
+
+**The clause that is NOT in the rule, and refusing to write it is the finding.** No date test.
+`documented_range.from` inside 1835 is a FIRST-ATTESTATION date for the named records — a
+newspaper's first issue on 8 June 1835, a directory line, a deed — and a PROGRAMME date for the
+anonymous ones (L126). Fourteen named records carry an 1835 opening and every one is refused by
+name with that reason in the record's `refused` block, including the north and south piers, which
+really were under documented extension that summer and are refused anyway: harbour works in the
+lake are not a lot in the corporation whose ordinance is the whole evidence.
+
+**Which materials is dealt from the record, not from the ordinance's list in order.** Brick because
+`construction` is brick and attested; stone because the same sentence gives the building a
+basement; timber because a three-storey brick house is floored, joisted and roofed in it and laid
+from timber scaffolding. Brick is the town's own `CHIMNEY_BRICK`, taken as the material sheet's
+linear triple; stone is the one new colour and is bounded between the layer's timber and the
+chinking clay. `docs/LIBERTIES.md` **L173**.
+
+**Not drawn, and said so.** No individual brick and no course — the material sheet records that no
+source here gives a brick or a course dimension. And nothing in the street, which is the nuisance
+the ordinance actually legislated against: this site's own position note carries ~20 m of working
+uncertainty and the traced centreline of Michigan Street runs some 30 m north of where the same
+georeference puts the frontage.
+
+**Verification.** `./tools/check.sh` green. `tools/smoke_renderer.mjs --published`, both release
+viewports, all four stages: mobile 141/112/40/152, desktop 141/109/41/152, **zero page errors**,
+draw calls 42 of 215 and 618k triangles of 1.4 M at the site. Two new checks measure the piles in
+their own frame — furthest vertex 1.90 m from its own anchor, **0 vertices inside the building's
+own footprint**, which is the fault the generator actually made on its first run when it turned the
+outward normal the wrong way. The two `roads reach the screen` reds in stage 3 are **T-0114 and
+pre-existing**: a clean `origin/dev` worktree fails the identical checks with the identical counts.
+
 ## Shipped 2026-08-23 — T-0013: the interior flicker is the town's own edges, and none of it is a fight
 
 **Nothing a visitor can see changed, and that is the third such run in four.** It is recorded
