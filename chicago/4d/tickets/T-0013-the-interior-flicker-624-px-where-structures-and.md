@@ -1,16 +1,17 @@
 ---
 id: T-0013
 title: The interior flicker — 624 px where structures and trees fight themselves
-state: open
+state: claimed
 epic: RENDERING
 requested_by: loop
 seen: false
 effort: M
 legacy_id: R-BUG6(c)
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 3:13:43 AM CT
 blocked_on: null
 needs_bake: true
 ---
