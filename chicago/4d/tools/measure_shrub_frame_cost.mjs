@@ -35,11 +35,20 @@
  *                                driven one at a time by `step()`. Otherwise the
  *                                browser's own rAF pacing — which throttles at
  *                                the display rate — is what gets measured.
- *   `gl.finish()` every frame .. `step()` returns when the commands are
- *                                SUBMITTED, not when they are drawn. Without the
- *                                fence this measures how fast three.js can talk,
- *                                which is the one quantity that does not move
- *                                when a shrub grows 32 triangles.
+ *   a readback every frame .... `step()` returns when the commands are SUBMITTED,
+ *                                not when they are drawn, and MEASURED HERE
+ *                                `gl.finish()` does not close that gap: with a
+ *                                finish alone the whole town reported 2.9 ms a
+ *                                frame while the process took a second per frame
+ *                                of wall clock, because ANGLE's SwiftShader
+ *                                backend does the work in another process. A
+ *                                one-pixel `readPixels` is a real fence — the
+ *                                caller cannot be handed a pixel that has not
+ *                                been drawn — and it is what the renderer's own
+ *                                `capture()` has always used. Without it this
+ *                                measures how fast three.js can TALK, which is
+ *                                the one quantity that does not move when a
+ *                                shrub grows 32 triangles.
  *   the file is patched, served  the candidate grain is injected by rewriting
  *                                `shrub-grain.js` in flight, so both runs load
  *                                the same tree, the same data and the same
@@ -93,8 +102,8 @@ const flagVals = (name) => {
 
 const wantSource = argv.includes('--source');
 const wantJson = argv.includes('--json');
-const FRAMES = Number(flagVal('--frames', 60));
-const WARMUP = Number(flagVal('--warmup', 15));
+const FRAMES = Number(flagVal('--frames', 20));
+const WARMUP = Number(flagVal('--warmup', 5));
 /** The shipped grain first, always: every later row is read against row one. */
 const SHIPPED_FILL = Number(
   /fill:\s*(\d+)/.exec(fs.readFileSync(path.join(HERE, '../renderers/web/js/shrub-grain.js'), 'utf8'))?.[1]);
@@ -132,6 +141,17 @@ const TYPES = {
   '.bin': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml', '.wasm': 'application/wasm', '.md': 'text/markdown',
 };
+/**
+ * The grain in force for the page currently booting, and the reason it is
+ * patched HERE rather than by a Playwright route handler. Registering ANY route
+ * on a context turns on network interception for EVERY request in it, and this
+ * page pulls several hundred GLB and JSON files through it: measured, one page
+ * load went from about eight seconds to over four minutes, which turned a
+ * one-minute instrument into a fifteen-minute one. The server already owns the
+ * bytes, so it does the one-integer rewrite for free.
+ */
+let servedFill = null;
+let patchTook = false;
 const server = http.createServer((req, res) => {
   const url = decodeURIComponent(req.url.split('?')[0]);
   let file = path.join(ROOT, url);
@@ -139,6 +159,14 @@ const server = http.createServer((req, res) => {
   if (!file.startsWith(ROOT) || !fs.existsSync(file)) {
     res.writeHead(404, { 'content-type': 'text/plain' });
     res.end(`not found: ${url}`);
+    return;
+  }
+  if (servedFill !== null && path.basename(file) === 'shrub-grain.js') {
+    const body = fs.readFileSync(file, 'utf8');
+    const next = body.replace(/fill:\s*\d+/, `fill: ${servedFill}`);
+    patchTook = next !== body || servedFill === SHIPPED_FILL;
+    res.writeHead(200, { 'content-type': 'text/javascript', 'cache-control': 'no-store' });
+    res.end(next);
     return;
   }
   res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream' });
@@ -167,21 +195,15 @@ async function openAt(fill, viewport, deviceScaleFactor) {
   const ctx = await browser.newContext({ viewport, deviceScaleFactor });
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`fill ${fill}: ${String(e)}`));
-  let patched = false;
-  await page.route('**/js/shrub-grain.js', async (route) => {
-    const res = await route.fetch();
-    const body = await res.text();
-    const next = body.replace(/fill:\s*\d+/, `fill: ${fill}`);
-    patched = next !== body || fill === SHIPPED_FILL;
-    await route.fulfill({ status: 200, contentType: 'text/javascript', body: next });
-  });
+  servedFill = fill;
+  patchTook = false;
   await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load', timeout: 240000 });
   await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 240000 });
   const seen = await page.evaluate(async () => {
     const mod = await import('./js/shrub-grain.js');
     return mod.SHRUB_GRAIN.fill;
   });
-  if (!patched || seen !== fill) {
+  if (!patchTook || seen !== fill) {
     console.error(`the grain patch did not take: asked for fill ${fill}, the page reports ${seen}`);
     process.exit(2);
   }
@@ -230,12 +252,19 @@ async function timeAt(page, stand, frames, warmup) {
     const gl = a.renderer.getContext();
     const dbg = gl.getExtension('WEBGL_debug_renderer_info');
     const device = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
-    for (let i = 0; i < warmup; i++) { a.step(); gl.finish(); }
+    // The fence. One pixel is enough: readPixels cannot return until the frame
+    // it is reading has actually been rasterised.
+    const px = new Uint8Array(4);
+    const drawAndWait = () => {
+      a.step();
+      gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+      gl.finish();
+    };
+    for (let i = 0; i < warmup; i++) drawAndWait();
     const ms = [];
     for (let i = 0; i < frames; i++) {
       const t0 = performance.now();
-      a.step();
-      gl.finish();
+      drawAndWait();
       ms.push(performance.now() - t0);
     }
     ms.sort((x, y) => x - y);
