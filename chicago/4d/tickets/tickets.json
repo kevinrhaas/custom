@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 4:58 PM",
+  "generated_ct": "Aug 23, 2026, 5:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -483,16 +483,17 @@
     {
       "id": "T-0028",
       "title": "Build out the NEXT anonymous block (one per run)",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": true,
       "effort": "M",
       "legacy_id": "T-A13+",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 5:23:07 PM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 8
@@ -2527,7 +2528,7 @@
     {
       "id": "T-0143",
       "title": "Apply the core density standard to the next core block below the bar (successor to T-0105)",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2537,7 +2538,7 @@
       "opened": "2026-08-22",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 5:25:17 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 50
@@ -2865,6 +2866,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 56
+    },
+    {
+      "id": "T-0163",
+      "title": "South Water's committed centreline stops 878 m short, and it is the only thing left blocking a new platted block",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }
