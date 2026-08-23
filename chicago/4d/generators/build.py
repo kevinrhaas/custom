@@ -119,26 +119,8 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
 
     The fix, when someone picks this up, is a low-poly AO cage — bake the massing
     only, and let the decorative surfaces inherit it — not a stronger denoiser.
-
-    THE PATH IS NOT EXERCISED, and this docstring used to claim it was (T-0015,
-    measured 2026-08-23). Nothing in tools/, .github/ or the nightly passes
-    `--ao`; 0 of 345 shipped GLBs carry an occlusionTexture; every manifest entry
-    recording the field says `baked_ao: false`. In the time it has been
-    opt-in-and-never-opted-in it has also broken, and the two halves are worth
-    keeping apart:
-
-      - the BAKE still works. In memory it reads min 0.000, max 1.000, mean
-        0.2158 over 262,144 texels — which corroborates the darkness described
-        above rather than contradicting it.
-      - the EXPORT does not. The occlusion texture that reaches the GLB is
-        entirely black, min 0 and max 0, confirmed with two independent PNG
-        decoders. So switching `--ao` on today would not ship the too-dark AO
-        this docstring warns about; it would ship a fully-occluded one, and the
-        manifest would record `baked_ao: true` for it.
-
-    `assert_ao_survived_export` below is what turns that from something you find
-    in a rendered frame into something you find in three seconds. The mechanism
-    of the export loss is T-0158.
+    Until then `--ao` exists so the path stays exercised, and the manifest records
+    honestly whether any given asset actually carries AO.
     """
     img = bpy.data.images.new(f"{ob.name}_ao", size, size)
     for mat in ob.data.materials:
@@ -179,54 +161,6 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
         sep = nt.nodes.new("ShaderNodeSeparateColor")
         nt.links.new(tex.outputs["Color"], sep.inputs["Color"])
         nt.links.new(sep.outputs["Red"], node.inputs["Occlusion"])
-
-
-def assert_ao_survived_export(glb: Path) -> None:
-    """T-0015 — refuse a GLB whose occlusion texture carries no occlusion.
-
-    Checked on the EXPORTED BYTES rather than on the image in memory, because
-    memory is not where this breaks: the bake fills the image correctly (mean
-    0.2158, full 0-1 range) and what reaches the GLB is uniformly zero. A guard
-    that read `img.pixels` would pass every time and prove nothing — I wrote
-    that one first and it did exactly that.
-
-    Degeneracy is tested WITHOUT a full PNG decode: inflate the IDAT stream and
-    count distinct byte values. A uniform image has one (plus the per-row filter
-    byte); anything with real shading has dozens. That is a weaker test than
-    decoding — it cannot tell a good AO map from a bad one — but this is a
-    smoke detector, not a light meter, and it needs no dependency the build does
-    not already have.
-    """
-    import struct
-    import zlib
-
-    b = glb.read_bytes()
-    jlen = struct.unpack_from("<I", b, 12)[0]
-    doc = json.loads(b[20:20 + jlen])
-    occ = [m for m in doc.get("materials", []) if "occlusionTexture" in m]
-    if not occ:
-        return
-    off = 20 + jlen
-    blen = struct.unpack_from("<I", b, off)[0]
-    binary = b[off + 8:off + 8 + blen]
-
-    img = doc["images"][doc["textures"][occ[0]["occlusionTexture"]["index"]]["source"]]
-    view = doc["bufferViews"][img["bufferView"]]
-    png = binary[view["byteOffset"]:view["byteOffset"] + view["byteLength"]]
-
-    idat, i = b"", 8
-    while i < len(png):
-        ln = struct.unpack_from(">I", png, i)[0]
-        if png[i + 4:i + 8] == b"IDAT":
-            idat += png[i + 8:i + 8 + ln]
-        i += 12 + ln
-    distinct = len(set(zlib.decompress(idat)))
-    if distinct <= 2:
-        raise SystemExit(
-            f"{glb.name}: the exported occlusion texture holds {distinct} distinct "
-            f"byte value(s), so it carries no occlusion — the bake succeeded and the "
-            f"export lost it. Shipping this would extinguish the asset's ambient "
-            f"light while the manifest recorded baked_ao: true. See T-0158.")
 
 
 def export_glb(ob, structure_id: str, phase_id: str, out: Path) -> Path:
@@ -315,8 +249,6 @@ def main() -> int:
             if args.ao:
                 bake_ao(ob)
         out = export_glb(ob, st["id"], phase["id"], outdir / f"{name}.glb")
-        if args.ao:
-            assert_ao_survived_export(out)   # T-0015
 
         manifest["assets"][out.name] = {
             "kind": "generated",

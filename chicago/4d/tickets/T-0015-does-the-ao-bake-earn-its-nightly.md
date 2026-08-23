@@ -50,17 +50,39 @@ record `baked_ao: true` for it.
 
 Nothing was retired. Deleting `--ao` would foreclose the low-poly AO cage the
 docstring describes as the real fix, and that is a direction call rather than a
-measurement — so this run made the situation *honest and loud* instead:
+measurement.
 
-- `assert_ao_survived_export()` refuses a GLB whose occlusion texture carries no
-  occlusion, checked on the **exported bytes**. Demonstrated firing (`rc=1`) on
-  the real asset before it was trusted; the default path is untouched (`rc=0`).
-- The `bake_ao` docstring claimed "`--ao` exists so the path stays exercised".
-  It is not exercised and it does not work. Corrected, with both measurements.
-- `tools/bake.sh`'s header said `--no-bake` skips "AO baking", which read as
-  though AO were on by default. Corrected.
-- The export loss is **T-0158**, with the eliminations already done recorded so
-  nobody repeats them (it is not the object's selection state).
+**Shipped here:** this measurement; **T-0158** for the export loss, carrying the
+eliminations already done so nobody repeats them (it is not the object's
+selection state); and a correction to `tools/bake.sh`'s header, which said
+`--no-bake` skips "AO baking" and so read as though AO were on by default.
+
+### What was written, demonstrated, and then deliberately NOT shipped
+
+`assert_ao_survived_export()` — a guard that refuses a GLB whose occlusion
+texture carries no occlusion, checked on the **exported bytes** rather than on
+the in-memory image, because memory is not where this breaks. It was written,
+and demonstrated firing (`rc=1`) on the real asset with the default path
+untouched (`rc=0`). It is not in this change, and the reason is **T-0139**:
+
+`generators/mesh_inputs.py` hashes `build.py`'s BYTES into every asset's
+`inputs_sha256`, so editing it — even a comment — stales the whole town. The
+full rebake was run (343 assets, 95 changed bytes, the rest byte-identical) and
+it healed everything **except** `cook_county_courthouse_1835__wood_1835.glb`,
+which the bake cannot reach because its only phase runs 1835-10-01 to 12-31 and
+the scene targets 1835-07-01. That is precisely T-0139, whose own text says the
+previous run got past it "with a throwaway script that monkey-patched
+`resolve_phase` — which is exactly the shape of thing that should not be needed
+twice."
+
+This is the second run to hit it. Using the workaround again would have made the
+thing T-0139 warns about routine, and fixing T-0139 is a different ticket with
+its own acceptance. So the guard and the docstring correction wait for T-0139,
+and belong naturally to whoever takes **T-0158** — fixing the export means
+touching `build.py` and rebaking anyway.
+
+**Evidence for T-0139's priority:** it has now blocked two separate runs, and it
+blocks *any* edit to `build.py`, including a one-line comment.
 
 ### The decision left to the owner
 
