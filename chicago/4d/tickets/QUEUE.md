@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0019 — Six forb layers ask for more plants than the lattice holds
-T-0020 — The last 4.4 points of the shrub shell
 T-0021 — Census what the residents' figures reach
 T-0022 — May the schedule deal log cabins to commercial frontage
 T-0023 — The end rule is exhausted on the Randolph-Washington row

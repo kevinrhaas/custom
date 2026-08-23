@@ -183,7 +183,7 @@ rationed.**
 | — | RENDERING | ~~K53~~ | **SEEN** | **DONE 2026-08-17 — twenty-one shrub records were drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width.** Shrubs 0 → **14** drawn over 32 poses, clump width **0.40 m clamped → 1.80 m median**, and the census is identical plant for plant (2,201 forb-layer plants before, 2,187 + 14 after, every zone conserved). Its finding is the reason the number is 14 and not 140 — **the forb lottery deals by HEAD COUNT, so a hazel covering 7 m² competes as one plant against 40 wild leeks per m²**, and the wet woods' attested dominant shrub gets 0.2 % of the slots. Opened as **K54**. Read its box before quoting a shrub count |
 | — | RENDERING | ~~K54~~ | **SEEN** | **DONE 2026-08-17 — the two strata were sharing one lattice, and where the herb layer saturates it the deal is a subsample by head count. 4 bushes standing over the eight stations → 181.** The shrubs are dealt from their own pass at their own recorded clump density: `z06_dense_forest` **2 → 156** drawn and **40.1 %** of its recorded 94.9 % cover, the riverbank dogwood belt **20.1 % against a recorded 19.5 %**, matrix deviation unmoved to the second decimal and **0 of 98** pairs drawn nowhere. Two findings: **the slot count still mixed units** and planted the riverbank understory **8.8×** too thickly (K55), and **the instrument this parcel named cannot answer its question** — "deviation from the recorded cover" has measured the lattice against its own target since K49(c2). Read its box before quoting 89.11 or any deviation sum across two builds |
 | — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
-| — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**. Read its box before shrinking any archetype plate |
+| — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**, which is now DONE and spent the 4.4 points: read K59's box before timing anything in a browser here. Read this one before shrinking any archetype plate |
 | — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
 | **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
 | — | TOWN | ~~K30(c)~~ | **SEEN** | **REFUTED 2026-08-22 (T-0009, K30(d)) — DO NOT RUN THIS REPAIR.** The 29 buildings are still drawn standing in the roadway, but not for this reason: `--anchors` finds the record's point at the BACK corner on **all 17** of the deep records and on the kerb face on **none** of them, so the street-facing FACE is what was placed on the frontage and reflection would take twelve documented buildings a full depth behind their own frontage. The cause is the committed `south_water` centreline, deliberately shifted 4.3–8.8 m south of the control the placements were offset from. **What to do about it is the owner's, and T-0009 is blocked on him** |
@@ -1180,7 +1180,7 @@ silhouette is the record's `height_m` and half-width. **Before holding a quantit
 archetype, ask which side of that line it is on.** The same trap is live in every other plate-based
 archetype here — the tree canopy, the near tuft, the forb head.
 
-### K59 — the last 4.4 points of the shrub's shell, and whether a frame can afford them · **UNCLAIMED · SEEN · opened 2026-08-17 by K57 · Effort: S**
+### K59 — the last 4.4 points of the shrub's shell, and whether a frame can afford them · **DONE 2026-08-23 (T-0020) — the frame was read and the points are spent: 64 sprays ship, for +3.0 % of a frame on desktop and +2.1 % on mobile against a 0.2 % A/B/A control**
 
 K57 shipped 48 sprays at the knee and left 64 measured and unspent: **cover 46.9 % → 51.3 %, worst
 bearing 43.0 % → 47.3 %, stem cover 51.3 % → 54.2 %, for 104 → 136 triangles a shrub** and 17,368 →
@@ -1196,6 +1196,48 @@ is exactly what K57 refused.
 
 **Files:** `renderers/web/js/shrub-grain.js` (`SHRUB_GRAIN.fill`) · `tools/measure_spray_grain.mjs`
 · `docs/LIBERTIES.md` · `docs/STATUS.md`.
+
+**THE ANSWER, 2026-08-23 (T-0020). The parcel's own condition was met before anything moved:
+`tools/measure_shrub_frame_cost.mjs` is the frame-time instrument this box refused to be claimed
+without.** It stands the walker in `z06_dense_forest` — 158 shrubs drawn in one ring, the densest
+of the ten communities — sweeps eight bearings and fixes the camera at the most expensive of them
+(1,343,341 triangles at 135°), holds the clock, drives frames one at a time rather than letting the
+browser pace them, and fences each frame with a one-pixel readback.
+
+| | 48 sprays | 64 sprays | |
+|---|---|---|---|
+| desktop 1280×800 | 4282.30 ms | 4410.30 ms | **+3.0 %** |
+| mobile 390×780 | 2739.60 ms | 2795.80 ms | **+2.1 %** |
+| desktop, shipped grain measured AGAIN | **4292.90 ms** | | **+0.2 %** — the control |
+
+**Finding 1 — three points of a frame for 4.4 points of shell, and the control is what makes that
+readable.** The A/B/A third row is the identical scene measured after the candidate: the runner's
+own drift is two tenths of a point, so the candidate's three are fifteen times it. Cover 46.9 % →
+51.3 %, worst bearing 43.0 % → 47.3 %, stem cover 51.3 % → 54.2 %, reach unmoved at 0.997, 17,368 →
+22,712 triangles in the ring of a 1,000,000 ceiling. **64 ships** (L175).
+
+**Finding 2, and it is the durable one — `gl.finish()` IS NOT A FENCE HERE, and a measurement built
+on it was wrong by a factor of a thousand.** The first cut of this instrument timed `step()` +
+`gl.finish()` and reported **2.90 ms** a frame while the process spent about **four seconds** of
+wall clock on each one. ANGLE's SwiftShader backend rasterises in another process, so a finish
+returns having synchronised nothing a caller can observe; what was being timed was how fast three.js
+can TALK, which is the one quantity that does not move when a shrub grows 32 triangles. It even
+produced a plausible-looking answer — **+31 %**, which would have refused this parcel. A one-pixel
+`readPixels` is a real fence, because the caller cannot be handed a pixel that has not been drawn,
+and it is what the renderer's own `capture()` has always used. **Read this before timing anything in
+a browser here, and prefer a readback to a finish.**
+
+**Finding 3 — a Playwright route handler is not free.** The grain was first injected by intercepting
+`shrub-grain.js` with `page.route`. Registering ANY route turns network interception on for EVERY
+request in that context, and this page pulls several hundred GLB and JSON files through it: one page
+load went from about eight seconds to over four minutes. The instrument patches the byte at the
+static server it already runs instead.
+
+**What this parcel does NOT settle.** Every figure above is a headless software rasteriser on a
+shared CI machine — the absolute milliseconds are that machine's, and a frame there is four seconds.
+The ratio is the answer, and it argues in the safe direction: a software rasteriser is the most
+fill-sensitive renderer available, so it is the harshest witness for the one risk here (overdraw
+1.33 → 1.56). The reading L121, L156 and L174 all still want — a real low-end machine — is not this.
 
 ### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **UNCLAIMED · SEEN · opened 2026-08-17 by K55 · Effort: M**
 

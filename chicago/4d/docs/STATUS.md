@@ -102,6 +102,86 @@ Desktop stage 4 first came back as a harness error rather than a result — the 
 when run alone. Recorded because a killed run and a failed run print differently and only one of
 them is a smoke result.
 
+## Shipped 2026-08-23 — T-0020: the shrub's last 4.4 points of shell, bought for three per cent of a frame
+
+**ROADMAP K59**, opened by K57 on 2026-08-17 and deliberately left unclaimable: *"Take this parcel
+only with a frame-time measurement in hand, in the wet woods where 167 of them stand; without one it
+is a preference wearing a table, which is exactly what K57 refused."* K57 had shipped 48 leaf sprays
+a shrub at the knee of a coverage curve and banked 64 as measured and unspent — 104 → 136 triangles
+for cover **46.9 % → 51.3 %** — justifying the stop on a triangle count and a draw-call count, and
+saying in as many words that neither is a frame.
+
+**The shrub batch does not split.** One instanced set, one draw call, at either grain, K56 and K57
+both — so the cost of a finer grain is fill and vertex work, and no frame-time figure had ever been
+taken anywhere in this archetype's history.
+
+### The instrument, and the two ways it was wrong first
+
+`tools/measure_shrub_frame_cost.mjs` stands the walker in `z06_dense_forest` — 158 shrubs drawn in
+one ring, the densest of the ten communities — sweeps eight bearings and fixes the camera at the
+most expensive of them (1,343,341 triangles at 135°), holds the clock so the wind cannot blow
+between two readings, drives frames one at a time rather than letting the browser pace them, and
+fences each frame with a one-pixel readback. The candidate grain is injected by rewriting one
+integer of `shrub-grain.js` as the tool's own static server hands it over, and the page is asked to
+read `SHRUB_GRAIN.fill` back before anything is timed.
+
+**`gl.finish()` is not a fence here, and it produced a confident wrong answer.** The first cut timed
+`step()` + `gl.finish()` and reported **2.90 ms** a frame while the process spent about **four
+seconds** of wall clock on each. ANGLE's SwiftShader backend rasterises in another process, so the
+finish synchronises nothing the caller can observe; what was timed was how fast three.js can talk,
+which is the one quantity that does not move when a shrub grows 32 triangles. Its verdict was
+**+31 %**, and +31 % would have refused this parcel.
+
+**And a Playwright route handler is not free.** Injecting the grain with `page.route` turned network
+interception on for every request in the context — several hundred GLB and JSON files — and took one
+page load from about eight seconds to over four minutes.
+
+### The reading
+
+| | 48 sprays | 64 sprays | |
+|---|---|---|---|
+| desktop 1280×800 | 4282.30 ms | 4410.30 ms | **+3.0 %** |
+| mobile 390×780 | 2739.60 ms | 2795.80 ms | **+2.1 %** |
+| desktop, the shipped grain measured AGAIN | **4292.90 ms** | | **+0.2 %** — the control |
+
+The third row is the A/B/A: the identical scene, measured after the candidate. The runner's own
+drift between two readings is two tenths of a point, so the candidate's three points are fifteen
+times it rather than inside it.
+
+**These milliseconds are a headless software rasteriser on a shared CI machine and nobody's phone.**
+The tool prints the renderer string with every reading for that reason. The ratio is the answer, and
+it argues in the safe direction: a software rasteriser is the most fill-sensitive renderer there is,
+so it is the harshest available witness for the one risk in this parcel — 33 % more transparent
+plate over the same silhouette, overdraw **1.33 → 1.56**.
+
+### What shipped
+
+| | before | after |
+|---|---|---|
+| leaf sprays per shrub | 48 | **64** |
+| foliage cover of the bush's outline | 46.9 % | **51.3 %** |
+| worst bearing of 24 | 43.0 % | **47.3 %** |
+| stem cover — dark wood with foliage in front of it | 51.3 % | **54.2 %** |
+| reach, against the recorded half-width | 0.998 | **0.997** |
+| plate long side on a 2.25 m hazel | 35.0 cm | **34.6 cm**, 3.5× a 10 cm leaf |
+| triangles per shrub | 104 | **136** — 17,368 → 22,712 in the ring, of 1,000,000 |
+
+`node tools/measure_spray_grain.mjs --gate` — **GATE: PASS** on the new grain, unchanged bars (reach
+≥ 0.95, a spray ≥ 2× a leaf, cover above 40 % at every bearing). The census is identical plant for
+plant: no shrub moved, appeared or vanished. Recorded as **L175**.
+
+### Skipped, with the reason, because the queue's rule asks for one
+
+**T-0018** (K49(e), the spatial-filter question) and **T-0019** (K58, six forb layers over the
+lattice ceiling) sit above this in QUEUE.md and were both passed over. T-0018 is a measurement whose
+own ROADMAP box says *"re-scope it before claiming it"* — K49(f) refuted the explanation it was
+opened on and halved the population it has to explain. T-0019's `fits` branch was checked before it
+was skipped rather than after: measured today, the six communities ask the forb lattice for **1.25 to
+44.5 plants/m² against its ceiling of 0.346**, so nothing tuning can do makes any of them fit and the
+ticket resolves as a declared shortfall. Both outcomes are invisible runs, and AGENTS.md's cap — at
+most one invisible run in any four — was already at two of the last four (v251, v248). Neither
+ticket was reordered in QUEUE.md.
+
 ## Re-shot 2026-08-23 — T-0017: the `south_water` baseline row measures a stand that no longer exists
 
 **T-V2 (#135) moved the `south_water` anchor on 2026-08-15**, from local `(260, -95)` — 101 m south
