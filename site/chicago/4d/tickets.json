@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 11:57 AM",
+  "generated_ct": "Aug 23, 2026, 12:35 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -293,16 +293,17 @@
     {
       "id": "T-0017",
       "title": "Re-shoot the south_water critic baseline from the new stand",
-      "state": "open",
+      "state": "claimed",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
       "effort": "XS",
       "legacy_id": "T-V2c",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 12:17:00 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
