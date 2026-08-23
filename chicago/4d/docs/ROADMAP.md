@@ -8794,7 +8794,40 @@ terrain, which would break the drape assertion that already passes and is correc
 
 **Runner:** lane 1. It touches no data and no generator, so it may run beside any town parcel.
 
-### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
+### T-BUG2 — 79 ground vertices face downward · **DONE 2026-08-23 (T-0014) — the classifier had no threshold in it**
+
+**Closed by `generators/terrain_gen.py` § `_face_the_sky()`, and the count is 0.** The
+defect decomposed exactly on the shipped master, with nothing left over: **33 triangles
+wound backwards** (plan area −3.125 to −25.0 m², ordinary full-size ground faces whose
+winding the n-gon triangulation reversed) and **197 standing edge-on** (plan area exactly
+0.0 — slivers in a plane of constant E, constant N, or three points collinear in plan;
+the necks of keyholes the planar dissolve leaves in its n-gons, and the source of the
+mesh's 15 one-triangle vertices). The generator now re-winds the first set and deletes
+the second, then refuses to export if either survives.
+
+**What makes it a repair and not a mask: the classifier is the invariant, and it has no
+tuned number in it.** Both surfaces this module emits are single-valued functions of
+(E, N), so seen from above every triangle must cover positive plan area and wind
+counter-clockwise. The 2.5 m lattice quantises plan area to multiples of half a cell, so
+the histogram has a clean gap either side of nothing: 197 faces at exactly 0.0 m², then
+the smallest honest triangle at 3.125 m². No third population, no judgement call.
+Deleting an edge-on face cannot open a hole for the same reason it is deleted — it covers
+no plan area — and `mesh_vs_field()` says so out loud: **0 misses of 28,890 rays, max
+6 mm, before and after.**
+
+**The obvious fix was tried first and is worse.** `ngon_method="CLIP"` (ear clipping,
+robust on concave n-gons where BEAUTY is not) gives **42** backwards faces instead of 33
+and **9,483** sub-mm² slivers instead of 188, measured on this same mesh. The
+triangulation Blender picks is not the thing to argue with.
+
+Master: 249,826 → 249,629 triangles, 125,180 → 125,174 vertices, −2,532 bytes; the six
+lost vertices are keyhole tips and every surviving vertex keeps its `_CONFIDENCE` value
+to the bit. Worst shipped ground normal now points **0.737** up, against a gate at 0.1.
+`tools/smoke_renderer.mjs` assertion (b) is `=== 0` and must stay there.
+
+---
+
+**The original box, as it stood:**
 
 Found 2026-08-14 while gating the black-wedge fix. **79 of the terrain's 742,581 vertices
 (0.011 %) come out of the generator with normals facing DOWN** — scattered isolated points

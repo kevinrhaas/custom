@@ -916,7 +916,89 @@ def _emit(name, verts, faces, confs, material, extras, decimate_deg):
     tri = ob.modifiers.new("tri", "TRIANGULATE")
     tri.min_vertices = 4
     bpy.ops.object.modifier_apply(modifier=tri.name)
+    _face_the_sky(name, ob)
     return ob
+
+
+# THE GROUND IS A HEIGHTFIELD, AND THAT IS A TESTABLE STATEMENT ABOUT EVERY FACE.
+#
+# Both surfaces this module emits are single-valued functions of (E, N): one
+# height per plan position, by construction, with no overhangs and no vertical
+# walls anywhere in the grid or the skirt. Seen from directly above, therefore,
+# **every triangle must cover positive plan area and be wound counter-clockwise.**
+# A face that covers zero plan area is standing on edge; a face wound the other
+# way is facing the ground it is made of. Neither is terrain.
+#
+# The dissolve-plus-triangulate pass above produces a few of each, and it has
+# since the decimation was added — T-0014 (was ROADMAP T-BUG2), banked as "79
+# ground vertices face downward" and pinned by tools/smoke_renderer.mjs so the
+# number could only fall. Measured on the shipped master 2026-08-23, the defect
+# decomposes exactly, with nothing left over:
+#
+#   • 33 triangles wound BACKWARDS — plan area -3.125 to -25.0 m², ordinary
+#     full-size ground triangles whose winding the n-gon triangulation reversed.
+#     A vertex with only these as neighbours gets a normal pointing straight
+#     down; one that also touches good faces gets a normal dragged toward the
+#     horizon.
+#   • 197 triangles standing EDGE-ON — plan area exactly 0.0: slivers in a
+#     plane of constant E (91) or constant N (90), or three points collinear in
+#     plan (16). They are the necks of keyholes the planar dissolve leaves in
+#     its n-gons, which is also where the mesh's 15 one-triangle vertices come
+#     from. They draw nothing from any direction that matters and they carry a
+#     horizontal normal into whatever they touch.
+#
+# The classifier is not a tuned threshold, which is what makes this a repair
+# rather than a mask: the grid puts every vertex on a 2.5 m lattice, so plan
+# areas are multiples of half a cell, and the histogram has a clean gap either
+# side of nothing — 197 faces at exactly 0.0 m², then the smallest honest
+# triangle at 3.125 m². There is no third population and no judgement call.
+#
+# Deleting an edge-on face cannot open a hole in the ground, for the same reason
+# it is being deleted: it covers no plan area, so the surface's vertical
+# projection is unchanged. `mesh_vs_field()` is the instrument that says so out
+# loud — it ray-casts the result against the heightfield from above and reports
+# its misses, and it reports 0 of 28,890 after this pass as it did before.
+#
+# NOT FIXED BY CHANGING THE TRIANGULATOR, which was tried first and is the
+# obvious move: `ngon_method="CLIP"` (ear clipping, robust on concave n-gons
+# where BEAUTY is not) makes it WORSE — 42 backwards faces instead of 33 and
+# 9,483 sub-mm² slivers instead of 188, measured on this same mesh. The
+# triangulation Blender picks is not the thing to argue with; the invariant is.
+def _face_the_sky(name, ob):
+    """Delete edge-on faces and re-wind backwards ones. Returns nothing; refuses."""
+    import bmesh  # noqa: PLC0415
+
+    def plan_area(face):
+        # Shoelace in Blender's own (x=E, y=N). Positive is counter-clockwise
+        # from above, which is the winding the grid quads are authored with.
+        co = [v.co for v in face.verts]
+        return 0.5 * sum(a.x * b.y - b.x * a.y
+                         for a, b in zip(co, co[1:] + co[:1]))
+
+    bm = bmesh.new()
+    bm.from_mesh(ob.data)
+    edge_on = [f for f in bm.faces if plan_area(f) == 0.0]
+    backwards = [f for f in bm.faces if plan_area(f) < 0.0]
+    for f in backwards:
+        f.normal_flip()
+    if edge_on:
+        bmesh.ops.delete(bm, geom=edge_on, context="FACES")
+    loose = [v for v in bm.verts if not v.link_faces]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context="VERTS")
+    left = [f for f in bm.faces if plan_area(f) <= 0.0]
+    if left:
+        bm.free()
+        raise SystemExit(
+            f"REFUSING: {name} still has {len(left)} face(s) covering no plan area "
+            f"after the heightfield repair. The surface is not single-valued and "
+            f"something upstream of the triangulator changed.")
+    bm.to_mesh(ob.data)
+    bm.free()
+    ob.data.update()
+    print(f"{name}: faced the sky — re-wound {len(backwards)} backwards face(s), "
+          f"dropped {len(edge_on)} edge-on face(s) and {len(loose)} vertex(es) "
+          f"left loose by them")
 
 
 def mesh_vs_field(ob, h_m, spec, stride=3):
