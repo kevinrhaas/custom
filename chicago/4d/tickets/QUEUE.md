@@ -1,7 +1,7 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0012 — Ship the 16-bit ground the script already computes
-T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
+T-0013 — The interior flicker: 624 px where structures and trees fight themselves
 T-0014 — 79 ground vertices face downward
 T-0015 — Does the AO bake earn its nightly
 T-0016 — Report any road band that moves against its own bank
