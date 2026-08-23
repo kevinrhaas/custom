@@ -45,6 +45,69 @@ import { mountLiberties } from './liberties.js';
 const VERSION = '0.1.0';
 
 /**
+ * T-0150 — HOW FAR DOWN A STREET THE DERIVED FURNITURE IS DRAWN AT `light`, IN
+ * METRES, AND THE MEASUREMENT THAT SET IT.
+ *
+ * T-0149's first piece. T-0135 walked five named stands instead of one and found
+ * the town far over every ceiling at the two AXIAL views — Lake Street east from
+ * Canal, and the forks from Wolf Point — because a long open sightline is where
+ * the 2026-08-21 chunking cannot help: nothing is behind the camera, so no chunk
+ * is culled and every one of them is a draw call the sightline has to pay. The
+ * owner raised the ceilings to carry it ("raise it, I think") and opened T-0149
+ * to win the floor back by TRIMMING the axial view rather than by carrying it,
+ * naming a furniture distance cull as the first thing to try.
+ *
+ * MEASURED BEFORE IT WAS SET, at the whole stand set and at both release
+ * viewports, with `tools/measure_furniture_reach.mjs` — which drives the shipped
+ * cull rather than a model of it, holds the clock so the wind is not measured as
+ * a change, and reports a residual of the baseline against itself (0 everywhere)
+ * so the deltas below are known to be signal. Source tree, `light`:
+ *
+ *   desktop 1280x800        drawn whole      at 350 m       saved   frame 48^2
+ *   Lake at Canal, east   998,073 / 177   745,933 /  70   252,140 / 107   0.01 / 4
+ *   the forks             990,772 / 156   782,316 /  71   208,456 /  85   0.00 / 0
+ *   Lake and Market       733,530 /  99   682,216 /  77    51,314 /  22   0.00 / 0
+ *   the open aerial       617,538 /  83   588,198 /  66    29,340 /  17   0.03 / 6
+ *   the Sauganash at 26 m 590,322 /  68   582,882 /  62     7,440 /   6   0.00 / 0
+ *
+ *   mobile 390x780
+ *   Lake at Canal, east   966,541 / 167   717,793 /  65   248,748 / 102   0.00 / 2
+ *   the forks             933,656 / 138   743,432 /  63   190,224 /  75   0.00 / 0
+ *   Lake and Market       565,060 /  78   555,970 /  70     9,090 /   8   0.00 / 0
+ *   the open aerial       511,561 /  65   506,891 /  59     4,670 /   6   0.00 / 3
+ *   the Sauganash at 26 m 542,696 /  59   541,424 /  57     1,272 /   2   0.00 / 0
+ *
+ * So the worst stand at `light` goes from 998,073 triangles and 177 draw calls
+ * to 745,933 and 70 — a quarter of the geometry and SIXTY PER CENT OF THE CALLS,
+ * for a frame that moves by a worst cell of 4 counts out of 255 where the gates
+ * that prove a whole layer is visible need 6 and a mean of 0.30.
+ *
+ * WHY 350 AND NOT 300, WHICH IS THE FIGURE T-0149 NAMES. Both were measured. At
+ * 300 m the worst stand gives another 5,954 triangles and 3 calls — and the OPEN
+ * AERIAL, the only stand in the table whose picture changes at all, doubles from
+ * mean 0.03 / worst 6 to mean 0.06 / worst 13, and then runs away to 0.18 / 23 at
+ * 250 m. That stand is a camera 175 m up, so its slant range reaches the whole
+ * town at once and the cull arrives everywhere in the frame together; it is the
+ * one view where furniture leaving is something you could see. 350 m is the knee:
+ * it keeps 252,140 of the 258,094 triangles and 107 of the 110 calls that 300 m
+ * would win, and halves the only cost the instrument can find.
+ *
+ * WHY NOT 400, WHICH COSTS THE AERIAL NOTHING AT ALL (0.01 / 6). It leaves 28,904
+ * triangles and 37 calls on the table at the worst stand for a reading the aerial
+ * already matches at 350. The trade was taken toward the tier's own purpose,
+ * which is the machine that needs the floor.
+ *
+ * THE PIXEL ARGUMENT, for the record and not as the bar. This camera is 62
+ * degrees over 800 CSS pixels, so a 1.2 m fence pale subtends 739 · 1.2 / d
+ * pixels: 2.5 at 350 m, 2.2 at 400 m, 3.0 at 300 m. That is the intuition — a
+ * pale at this range is a couple of pixels of a line — but the number above was
+ * set from the frame measurement, because "how many pixels tall is a pale" and
+ * "does the picture change when the fence goes" are different questions and only
+ * the second one is the one being answered.
+ */
+const FURNITURE_REACH_LIGHT_M = 350;
+
+/**
  * Scene detail: how much geometry the visitor asks for.
  *
  * 600 000 triangles used to be a single hard ceiling written into the release
@@ -142,9 +205,87 @@ const VERSION = '0.1.0';
  * (T-0115's FIRST finding, chunking the town-wide fence mesh so the frustum can
  * cull it, is not a tier at all — it costs a visitor nothing at any level and is
  * simply how `enclosures.js` builds now.)
+ *
+ * ---------------------------------------------------------------------------
+ * T-0135, 2026-08-22 — THE CEILINGS RE-ARGUED AGAINST THE WORST STAND, AND
+ * DELIBERATELY NOT MOVED.
+ *
+ * Every figure above, and every figure in `BUDGET` below, was read at ONE
+ * camera: `frame('sauganash_hotel', 26)`. The release gate now walks a named set
+ * of five stands and holds each tier to its ceiling at the worst of them
+ * (`tools/smoke_renderer.mjs` `STANDS`, where each stand's reason is written).
+ * This is the first reading of that set — source tree, 1280x800, desktop:
+ *
+ *                              full        balanced      light      light calls
+ *   Lake at Canal, east    1,320,377     1,144,787     992,617          177
+ *   the forks, Wolf Point  1,318,202     1,137,646     984,612          156
+ *   Lake and Market        1,112,086       943,776     729,844           99
+ *   the open aerial          971,455       808,920     615,266           83
+ *   the Sauganash at 26 m    960,515       815,021     587,798           68
+ *   ---------------------------------------------------------------------
+ *   ceiling                1,000,000       900,000     600,000       80 (floor)
+ *
+ * Worst draw calls, `full`: 200 at Lake at Canal against a budget of 140.
+ *
+ * SO THE TOWN IS 32 % OVER AT `full`, 27 % OVER AT `balanced` AND 65 % OVER AT
+ * `light` at the stands a visitor can walk to — and it was over before this
+ * ticket, and before any of the four parcels that raised the ceiling on
+ * 2026-08-21. Nothing regressed here. What changed is that something finally
+ * looked.
+ *
+ * THE NUMBERS ARE NOT MOVED, and that is a decision rather than an oversight.
+ * AGENTS.md's own ruling has two halves and this run can only honour one of
+ * them. "Just raise it" is the first half; "`light` is the floor and stays the
+ * floor" is the second, and raising `light` to carry 992,617 would put the
+ * bottom rung ABOVE the ceiling `full` carries today. That is not a re-budget,
+ * it is the ladder ceasing to exist — and the tier a weak machine boots into is
+ * the one promise in this table that is made to a person rather than to a
+ * number. Raising `full` and `balanced` while `light` sat 65 % over would be
+ * worse still: a ceiling moved to fit the camera that flatters it, which is the
+ * exact defect T-0135 was opened to end.
+ *
+ * The ladder itself still works — 25 % from `full` to `light` at Lake at Canal
+ * against 39 % at the reference stand — so the honest reading is that the
+ * ceilings were authored as REFERENCE-STAND numbers and the scene has outgrown
+ * the shape of the question, not merely its answer. The two routes T-0135 names
+ * are both open (raise, or trim the axial view to fit), and choosing between
+ * them is the owner's: it trades a promise about weak machines against a
+ * rendering programme. Recorded here, at the definition site, per the ruling's
+ * third half — MEASURE, THEN MOVE. This is the measure. The move is his.
  */
 const DETAIL = {
-  full:     { triangles: 1000000, shadowReachM: 240, furnitureCastsShadow: true },
+  // RAISED 2026-08-22 TO CARRY THE WORST STAND, ON THE OWNER'S RULING ("raise
+  // it, I think"), and this is the entry that says what it cost. T-0135 built
+  // the instrument that walks five named stands instead of one and found the
+  // town 32% over at `full`, 27% at `balanced` and 65% at `light` — at
+  // viewpoints the Go-to menu already offers. Nothing had regressed; the
+  // ceilings were authored as reference-stand numbers and only the reference
+  // stand was ever measured.
+  //
+  // WHAT WAS GIVEN UP, SAID PLAINLY: `light` now carries 1,050,000, which is
+  // MORE than `full` promised the day before this commit. The bottom rung is
+  // heavier than the old top rung, so `light` is no longer a floor a weak
+  // machine can be promised — it is merely the cheapest of three expensive
+  // tiers. That was the trade the owner took knowingly, and T-0149 exists to
+  // win the floor back by trimming the axial view (distance culling or an LOD
+  // down a long street) rather than by pretending the number is small.
+  //
+  // These are worst-stand numbers now, not reference-stand numbers, with about
+  // 6% of headroom over the measured worst. The next parcel that breaches them
+  // is breaching a bar that means something.
+  //
+  // T-0150, 2026-08-23 — AND THE FIRST INSTALMENT ON THAT DEBT IS PAID, THOUGH
+  // NOT THE CEILINGS THEMSELVES. `furnitureReachM` below distance-culls the
+  // derived furniture at `light` only, and the worst stand now reads 745,933
+  // triangles and 70 draw calls where it read 998,073 and 177 — so the bottom
+  // rung has stopped being the heaviest thing this project ever shipped, and
+  // `light` sits 29% under its own ceiling instead of 5%. The NUMBERS in this
+  // table are deliberately untouched all the same: re-lowering them is T-0147,
+  // and it is a separate ticket precisely so that the trim has to be measured
+  // before the ceiling is allowed to follow it down. A ceiling lowered in the
+  // same breath as the trim that justified it is a ceiling nobody checked.
+  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
+              furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
   // Four parcels landed the same day - the street edge, the lot-line fences,
@@ -154,8 +295,10 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
-  balanced: { triangles: 900000,  shadowReachM: 240, furnitureCastsShadow: true },
-  light:    { triangles: 600000,  shadowReachM: 120, furnitureCastsShadow: false },
+  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+              furnitureReachM: null },
+  light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
+              furnitureReachM: FURNITURE_REACH_LIGHT_M },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
 /**
@@ -213,7 +356,22 @@ const DETAIL_ORDER = ['full', 'balanced', 'light'];
 // - it trades a draw call for the frustum's right to skip geometry - so the
 // number climbs as layers learn to cull. 140 carries the measured 121 with room
 // rather than the single call that would have to be re-argued tomorrow.
-const BUDGET = { drawCalls: 140, triangles: DETAIL.full.triangles };
+//
+// T-0135, 2026-08-22 — AND 140 IS NOT MOVED EITHER, FOR THE REASON THE TABLE IN
+// `DETAIL` ABOVE GIVES. Read at the release gate's new stand set rather than at
+// the Sauganash alone, the worst frame is 200 calls at `full` down Lake Street
+// from Canal, and 177 at `light` against a floor of 80 that has stood since
+// before any layer was chunked. Every raise this ceiling has taken — 80 to 120
+// to 140, all on 2026-08-21 — was argued against a camera that reads 121, so
+// the honest thing to say is not "140 is too low by 60" but "nobody has ever
+// budgeted this scene; they budgeted one view of it." Moving the number today
+// would be the fourth raise in two days and the first one aimed at a reading
+// taken specifically to show that raising to fit the reading is the bug. The
+// gate is red at the worst stand on purpose. See T-0135.
+// 140 -> 215 on the same ruling and the same measurement: the worst stand draws
+// 200 calls at `full` where the reference stand drew 121. Chunking is what
+// spends calls down a long street, and T-0149 is where that gets traded back.
+const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
 
 /**
  * THE DERIVED FURNITURE — which layers `furnitureCastsShadow` governs, by the
@@ -612,6 +770,112 @@ async function boot() {
   applyShadowTier(detailLevel);
 
   /**
+   * T-0150 — THE FURNITURE'S REACH: how far down a long street the derived
+   * furniture is drawn at all.
+   *
+   * The second half of what a scene-detail level does to the furniture, and the
+   * first half that is about DISTANCE rather than about the sun. T-0135 walked
+   * five named stands instead of one and found the town far over every ceiling
+   * at the two axial views — Lake Street east from Canal, and the forks from
+   * Wolf Point — because a long open sightline is exactly where the 2026-08-21
+   * chunking cannot help: nothing is behind the camera, so no chunk is skipped
+   * and every one of them is a draw call. The owner raised the ceilings to
+   * carry it and opened T-0149 to win the floor back by TRIMMING that view; this
+   * is the first of its three pieces.
+   *
+   * WHAT IS TRIMMED, AND WHY IT IS THE FURNITURE. `FURNITURE_LAYERS` is already
+   * the set this project has argued is small timber standing ON the town rather
+   * than being the town — the same set whose shadows `light` gives up. A fence
+   * pale is 1.2 m of silhouette, and this camera is 62 degrees over 800 CSS
+   * pixels, so it subtends 739 · 1.2 / d pixels: about 9 at 100 m, 4.4 at 200 m
+   * and 3.0 at 300 m. Beyond the reach set below it is drawn at a scale where
+   * the geometry has nothing left to say and the draw call is the whole cost.
+   *
+   * WHAT IS NOT TRIMMED, and each for its own reason. `structures`, `terrain`,
+   * `streets` and the woody layer are the reconstruction itself and are never
+   * distance-culled here. `signage` is out for the reason it is out of the
+   * shadow policy — a board exists to be read — and it is a rounding error in
+   * this frame besides. `flora` already has its own falloff. And the reach is
+   * `null` at `full` and `balanced`: this is the bottom rung buying its floor
+   * back, not a cheapening of the tier a visitor chose deliberately.
+   *
+   * IT IS A RENDERING DECISION AND NOT A CLAIM, which is the test everything in
+   * this block has to pass. Nothing is moved, nothing is re-graded, nothing is
+   * un-built: every fence stands exactly where its record puts it, is drawn
+   * exactly as it is drawn the moment you walk toward it, and the confidence
+   * view, the census and the cards all read the layer whole. What changes is
+   * only whether a mesh whose members are three pixels tall is submitted.
+   *
+   * The cull is per CHUNK, which is what makes it worth having: the layers were
+   * chunked in August 2026 so the frustum could skip what is behind you, and a
+   * chunk is therefore already the unit that can be dropped without splitting a
+   * fence run in half. A chunk is kept while any part of its bounding sphere is
+   * inside the reach, so the boundary falls beyond the far edge of what is drawn
+   * rather than through it.
+   */
+  const furniture = { reachM: null, spheres: [], drawn: 0, culled: 0 };
+  /** Re-read the furniture meshes and bank each one's WORLD bounding sphere.
+   *  Called wherever a furniture layer may have been rebuilt — the fence layer
+   *  rebuilds its meshes in place when the level changes (T-0067), and a stale
+   *  list would cull spheres belonging to geometry that no longer exists. */
+  function collectFurniture() {
+    furniture.spheres.length = 0;
+    for (const name of FURNITURE_LAYERS) {
+      const group = scene3d.getObjectByName(name);
+      if (!group) continue;
+      group.updateWorldMatrix(true, true);
+      group.traverse((o) => {
+        if (!o.isMesh || !o.geometry) return;
+        if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
+        const sph = o.geometry.boundingSphere?.clone();
+        if (!sph) return;
+        sph.applyMatrix4(o.matrixWorld);
+        furniture.spheres.push({ mesh: o, c: sph.center, r: sph.radius });
+      });
+    }
+  }
+  /** The reach in force, from the level — and every mesh made visible again on
+   *  the way back up the ladder, so switching down and up returns the frame the
+   *  visitor had rather than a permanently thinner one. */
+  function applyFurnitureReach(level) {
+    const want = DETAIL[level] ?? DETAIL.full;
+    collectFurniture();
+    furniture.reachM = typeof want.furnitureReachM === 'number'
+      ? want.furnitureReachM : null;
+    updateFurnitureReach();
+    return furniture.reachM;
+  }
+  /** Per frame, before the render: hide what is out of reach. Cheap by
+   *  construction — one distance against a banked sphere per chunk, no matrix
+   *  work and no allocation, over the couple of hundred meshes the five layers
+   *  come to. */
+  function updateFurnitureReach() {
+    const reach = furniture.reachM;
+    let drawn = 0;
+    let culled = 0;
+    // `eye` and `sph` rather than `p` and `s`: `tools/validate.py`'s sidecar
+    // contract follows the local names a sidecar block is bound to, and a `p`
+    // or an `s` here is read as `placement` and `sidecar` and reported missing.
+    // The scanner says as much where it is defined; this is the one-minute
+    // rename it asks for.
+    const eye = camera.position;
+    for (const sph of furniture.spheres) {
+      let far = false;
+      if (reach !== null) {
+        const dx = sph.c.x - eye.x;
+        const dy = sph.c.y - eye.y;
+        const dz = sph.c.z - eye.z;
+        far = Math.sqrt(dx * dx + dy * dy + dz * dz) - sph.r > reach;
+      }
+      sph.mesh.visible = !far;
+      if (far) culled++; else drawn++;
+    }
+    furniture.drawn = drawn;
+    furniture.culled = culled;
+  }
+  applyFurnitureReach(detailLevel);
+
+  /**
    * WHERE THE SWARD MAY NOT GROW (T-0067), composed rather than replacing the
    * street's own answer. Two things block a prairie plant now: the travelled
    * track it would grow through, and a FENCE it would grow inside — the wagon
@@ -669,6 +933,10 @@ async function boot() {
     // setting down on a machine that is struggling should get the cheap half of
     // the answer immediately instead of behind two layer rebuilds.
     applyShadowTier(level);
+    // And the reach, for the same reason and in the same breath: the fence layer
+    // has just rebuilt its meshes, so the banked spheres are re-read here rather
+    // than left pointing at geometry that has been disposed (T-0150).
+    applyFurnitureReach(level);
     // Serialise: a visitor clicking through the options faster than the rebuild
     // would otherwise interleave two plantings into one scene.
     const run = (detailPending ?? Promise.resolve()).then(async () => {
@@ -1176,6 +1444,10 @@ async function boot() {
     // the eye ended up this frame (R-BUG1, and the NEAR block above).
     setNearFor(walker.state.altitude);
     world.follow(camera.position);
+    // After the camera has finished moving and before anything is submitted:
+    // what the furniture's reach hides is a function of where the eye ended up
+    // this frame (T-0150).
+    updateFurnitureReach();
     flora.update(dt, camera);
     trees.update(dt, camera);
 
@@ -1314,6 +1586,17 @@ async function boot() {
         }, 10000);
       });
     },
+    /** T-0150, HARNESS ONLY and never a visitor setting: drive the furniture's
+     *  reach directly, so `tools/measure_furniture_reach.mjs` can sweep candidate
+     *  reaches at one page load and a gate can prove the cull is the thing doing
+     *  the saving. `null` restores "draw it all". The live reading is
+     *  `furnitureReach` below, defined with the other getters for the reason the
+     *  K24 note gives. */
+    setFurnitureReach(m) {
+      furniture.reachM = typeof m === 'number' && Number.isFinite(m) ? m : null;
+      updateFurnitureReach();
+      return furniture.reachM;
+    },
     /** Force one frame — for tests that must not race the animation loop. */
     step() { tick(); },
     /** Keep rendering, advance nothing — for tests comparing two frames of the
@@ -1367,6 +1650,33 @@ async function boot() {
           });
         }
         return { layers: FURNITURE_LAYERS.slice(), meshes, casting };
+      },
+      enumerable: true,
+    },
+    /**
+     * T-0150. What the level's REACH half did to the scene, read off the meshes
+     * for the same reason `furnitureShadows` is: the failure worth catching is a
+     * reach that reaches `DETAIL` and not the frame. `hidden` counts the
+     * furniture meshes the reach is holding back at this instant, so it is a
+     * function of WHERE THE VISITOR STANDS as well as of the level — 0 at every
+     * level with a null reach, and 0 at `light` too if the whole town happens to
+     * be inside it.
+     */
+    furnitureReach: {
+      get: () => {
+        let meshes = 0;
+        let hidden = 0;
+        for (const name of FURNITURE_LAYERS) {
+          const group = scene3d.getObjectByName(name);
+          if (!group) continue;
+          group.traverse((o) => {
+            if (!o.isMesh) return;
+            meshes += 1;
+            if (!o.visible) hidden += 1;
+          });
+        }
+        return { reachM: furniture.reachM, layers: FURNITURE_LAYERS.slice(),
+                 meshes, hidden, banked: furniture.spheres.length };
       },
       enumerable: true,
     },

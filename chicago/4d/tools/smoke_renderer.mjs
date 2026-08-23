@@ -105,6 +105,10 @@ async function loadPlaywright() {
   return ns.chromium ? ns : ns.default;
 }
 const { chromium } = await loadPlaywright();
+// T-0016 — the per-band movement report. Pure functions in their own file so
+// the comparison is testable without a browser; see its --self-test.
+import { collect as collectRoadBands, compare as compareRoadBands, render as renderRoadBands }
+  from './road_band_movement.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.SMOKE_PORT || 4187);
@@ -196,6 +200,30 @@ const TYPES = {
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
+
+/**
+ * T-0016 (R-M1d) — THE BANDS ARE ALSO REPORTED AGAINST THEIR OWN BANK.
+ *
+ * The three bars above gate PER STATION; the measurement is PER BAND. A band
+ * can therefore collapse 55 points (71 % → 16 % perceptible) without crossing
+ * ROAD_MIN_PERCEPTIBLE, and the suite prints "229/2 before, 229/2 after" while
+ * it happens. `road_band_movement.mjs` banks each gated band and says out loud
+ * when one moves — in either direction.
+ *
+ * It is a REPORT and not a bar, deliberately. The thresholds above are the
+ * owner's provisional baseline (T-0033 / R-M1b) and R-W1 is the standing proof
+ * that tightening them punishes legitimate work. Nothing below can fail a run.
+ *
+ * Re-bank with `--update-road-bands` in the commit that moved the numbers on
+ * purpose, the same way the far-timber census is re-banked.
+ */
+const ROAD_BAND_BASELINE = path.join(HERE, 'road_band_baseline.json');
+const UPDATE_ROAD_BANDS = process.argv.includes('--update-road-bands');
+const ROAD_BAND_BANKED = (() => {
+  try { return JSON.parse(fs.readFileSync(ROAD_BAND_BASELINE, 'utf8')).bands || {}; }
+  catch { return {}; }
+})();
+const ROAD_BAND_OBSERVED = {};
 
 /**
  * ROADMAP R-BUG5 — the bodies of far timber whose authored polyline crosses
@@ -322,6 +350,112 @@ const shadowRigFor = (level, touch) => {
   const mapSize = (touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL) * (reachM / SHADOW_REACH_M);
   return { reachM, mapSize, texelM: (2 * reachM) / mapSize };
 };
+/**
+ * THE STAND SET — the cameras the frame budget is gated at (T-0135).
+ *
+ * Until 2026-08-22 everything this project believed about its own frame cost
+ * came from ONE camera: `frame('sauganash_hotel', 26)`, the last move before the
+ * scene-detail block. It is a courtyard view of a single hotel with the town
+ * mostly behind the camera, and it is not the worst frame a visitor can reach —
+ * it is close to the best.
+ *
+ * That mattered because the number the gate read was getting BETTER as the
+ * number a visitor can hit got worse. Three layers were chunked in the week
+ * before this ticket (frontage T-0119, enclosures T-0067, yard T-0064) so the
+ * frustum can skip what is behind you. At an ordinary stand that is a large win.
+ * Down a long street it is a loss: the whole town is in frustum at once, nothing
+ * culls, and every chunk that bought the win becomes its own draw call. A guard
+ * rail that improves when the thing it guards gets worse is the worst possible
+ * shape for a guard rail, and it is why the draw-call ceiling could be raised
+ * twice in one afternoon (80 -> 120 -> 140) with every raise honestly argued
+ * against a reading now known to be optimistic.
+ *
+ * So the budget is read at a NAMED SET and gated on the WORST of it. Each stand
+ * is here for a stated reason — a way this scene gets expensive that the others
+ * do not cover — so the set can be argued with rather than trusted, and so a
+ * stand can be added when somebody finds a worse one.
+ *
+ * MEASURED 2026-08-22 on the source tree at 1280x800, `full`, for the record and
+ * for whoever wants to argue with the membership:
+ *
+ *   Lake at Canal, east      200 calls   1,320,377 tris   <- worst on both axes
+ *   the forks, from Wolf Pt  181 calls   1,318,202 tris
+ *   South Water at Wells     183 calls   1,267,605 tris
+ *   Lake and Market          149 calls   1,112,086 tris
+ *   the open aerial          119 calls     971,455 tris
+ *   the Sauganash at 26 m    121 calls     960,515 tris   <- the old sole stand
+ *   Newberry & Dole's wharf   94 calls     812,603 tris
+ *
+ * South Water is NOT in the set: it is inside the set's worst on both axes and
+ * its shape — an axial street down built frontage — is already carried by Lake
+ * at Canal, so it would cost the gate a stand's worth of time and buy no
+ * coverage. Newberry & Dole's and the two Sauganash anchors are cheaper still.
+ * Both readings are kept here so that judgement is checkable rather than
+ * asserted.
+ *
+ * THE COST, measured on the same day, because a gate nobody can run is not a
+ * gate either. Stage 2 of the DESKTOP pass ran **9 m 32 s** without this sweep,
+ * against the ten-minute ceiling a steward run's single foreground command has;
+ * fifteen more rendered frames of a 1.3-million-triangle scene on CI's software
+ * renderer put it over, and the run is killed mid-section. The MOBILE pass runs
+ * the whole sweep in 3 m 52 s and is unaffected. That is T-0121 — the four-way
+ * stage split has outgrown its sections — and the answer to it is to re-cut the
+ * stages, NOT to measure fewer stands: measuring one friendly stand is the
+ * defect this set exists to close. Until T-0121 lands, run the desktop pass's
+ * stage 2 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=2`, no
+ * timeout) or read the mobile pass, which finds the same worst stand.
+ *
+ * `kind` is how the harness gets there: `frame` stands a distance off a
+ * structure, `anchor` teleports to one of `data/scenes/1835.json`'s authored
+ * viewpoints — the same viewpoints the Go-to menu offers a visitor, which is
+ * the point. Nothing here is a camera invented for the test.
+ */
+const STANDS = [
+  {
+    id: 'sauganash_26', kind: 'frame', target: 'sauganash_hotel', distance: 26,
+    label: 'the Sauganash at 26 m',
+    // Kept, and kept FIRST, so every figure this project has ever recorded stays
+    // comparable with the new reading. It is also the only stand that is not an
+    // authored viewpoint, which is why it cannot be the only one.
+    why: 'the stand every earlier budget was measured at, kept for continuity',
+  },
+  {
+    id: 'lake_at_canal', kind: 'anchor', target: 'green_tree',
+    label: 'Lake Street at Canal, east down the axis',
+    // The known worst, and the reason this ticket exists: standing at the west
+    // end of Lake Street looking east puts the whole platted town inside one
+    // frustum, so every chunked layer pays for all of its chunks and the sun
+    // pays for them again.
+    why: 'the long axial street — nothing culls, so chunking costs instead of saves',
+  },
+  {
+    id: 'the_forks', kind: 'anchor', target: 'forks',
+    label: 'the forks, from Wolf Point',
+    // A different expensive shape from an axial street: across open water there
+    // is no building to occlude another, so the far bank draws in full. It is
+    // within two triangles per thousand of Lake at Canal and it gets there by an
+    // unrelated route, which is what makes it worth its place.
+    why: 'across open water — no occluders at all, and the far bank draws whole',
+  },
+  {
+    id: 'from_above', kind: 'anchor', target: 'from_above',
+    label: 'the open aerial',
+    // The ceiling on what the scene can cost AT ALL: everything is in front of
+    // the camera by construction. It reads cheaper than the axial views because
+    // distance culling and the flora density falloff both bite from 175 m up —
+    // which is itself worth gating, because a change that breaks the falloff
+    // shows here first.
+    why: 'everything in frustum by construction — the whole-scene upper bound',
+  },
+  {
+    id: 'lake_and_market', kind: 'anchor', target: 'lake_market',
+    label: 'Lake and Market, the corner itself',
+    // Standing IN the densest built corner rather than looking at it: near
+    // geometry at full detail, the tier the flora and fence LODs are least able
+    // to help with.
+    why: 'the densest built corner, stood in rather than looked at',
+  },
+];
 /**
  * R-W5a2 — the whole untextured town is ONE batch, and it must stay one.
  *
@@ -2329,6 +2463,24 @@ for (const [label, viewport, touch] of [
         spans: spans.length,
         signs: signs.length,
         named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
+        // T-0130: the board and the card have to agree about WHO, over the whole
+        // set and not only at the Tremont. Punctuation is dropped because the
+        // board keeps the advertisement's own spelling ("Steam-Boat Hotel") and
+        // the card carries this project's ("Steamboat Hotel").
+        identityMismatch: signs.filter((sg) => {
+          const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+          const id = norm(sg.sign_identity);
+          return !id || !norm(sg.sign_text).includes(id) || !norm(sg.name).includes(id);
+        }).map((sg) => sg.structure_id),
+        // And no board has gone back to carrying this project's own way of
+        // describing a BUILDING. "Log" is the tell T-0130 was raised over.
+        labelled: signs.filter((sg) => /\blog\b/i.test(sg.sign_text || ''))
+          .map((sg) => sg.structure_id),
+        // Every board names a trade as well as a proprietor — the register the
+        // advertisements use, and the thing a descriptive label never carried.
+        withTrade: signs.filter((sg) => (sg.sign_lines || [])
+          .some((l) => l.role === 'trade')).length,
+        devices: signs.filter((sg) => sg.sign_device).map((sg) => sg.structure_id),
         distinctArt: new Set(uvRects.values()).size,
         mountings: new Set(signs.map((sg) => sg.mounting)).size,
         grounds: new Set(signs.map((sg) => sg.style?.ground)).size,
@@ -2439,10 +2591,9 @@ for (const [label, viewport, touch] of [
 
     // A sign is a thing you read and then walk into, so aiming at the board has
     // to open the business behind it and not the wall past it — AND THE CARD IT
-    // OPENS HAS TO SAY WHAT THE BOARD SAYS (T-0066). A visitor who reads a name
-    // off a plank and then taps the plank must not be shown a different
-    // business; the record carries `sign_text` for exactly that agreement, and
-    // this is where the two are put side by side.
+    // OPENS HAS TO BE THE SAME BUSINESS (T-0066, corrected by T-0130). The
+    // record carries `sign_identity` for exactly that agreement, and this is
+    // where the board and the card are put side by side.
     const boardPick = await page.evaluate(() => {
       const hits = [];
       let card = null;
@@ -2458,22 +2609,62 @@ for (const [label, viewport, touch] of [
       }
       const sign = (window.__chicago4d.signage.signs ?? [])
         .find((s) => s.structure_id === 'tremont_house_1') ?? null;
-      return { hits, card, painted: sign?.sign_text ?? null };
+      return {
+        hits, card, painted: sign?.sign_text ?? null,
+        identity: sign?.sign_identity ?? null,
+      };
     });
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
     check(`${label}: aiming at a signboard opens the business behind it`,
       boardPick.hits.includes('tremont_house_1'),
       `25 aims returned [${[...new Set(boardPick.hits)].join(', ') || 'nothing'}]`);
-    // The card's name may carry a trailing parenthetical the board does not —
-    // "Tremont House (the first)" is this project telling itself which Tremont
-    // it means — so the agreement asked for is that the painted name IS the
-    // card's name, up to that one documented reduction and to capitals.
-    const cardName = (boardPick.card ?? '').replace(/\s*\([^)]*\)\s*$/, '').trim();
-    check(`${label}: the name painted on the board is the name on its card`,
-      !!boardPick.painted && !!cardName
-      && boardPick.painted.toUpperCase() === cardName.toUpperCase(),
+    // THIS ASSERTION IS CORRECTED BY T-0130, NOT RELAXED BY IT, and the
+    // difference is worth being explicit about because a check that gets weaker
+    // usually got weaker to go green.
+    //
+    // T-0066 asserted STRING EQUALITY: the painted name IS the card's name, up
+    // to a trailing parenthetical. That was enforcing the wrong invariant,
+    // because it took two different objects to be one. A record's `name` is OUR
+    // LABEL FOR A BUILDING — "Philo Carpenter's Log Drug Store", "Hogan's Store"
+    // — written so a modern reader knows which structure is meant. A SIGNBOARD
+    // carries what the trade lettered: the proprietor or firm and his trade, in
+    // the register a signwriter worked in. Held to equality, the board could
+    // only ever be the museum caption, which is the defect T-0130 was raised
+    // over. The two are now allowed to differ.
+    //
+    // What must NOT differ is WHO. A visitor who reads a name off a plank and
+    // then taps the plank must not be shown a different business, so the record
+    // declares a `sign_identity` — the proprietor, the firm or the house — and
+    // it has to appear in the board AND in the card. That is asserted here at
+    // the Tremont's own board against the CARD THE PICK ACTUALLY OPENED, and
+    // over every sign in the town in the check below, which is more than
+    // equality ever covered: equality was only ever tested at this one board.
+    const cardName = (boardPick.card ?? '').trim();
+    const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const who = norm(boardPick.identity);
+    check(`${label}: the board and the card agree about whose business this is`,
+      !!boardPick.painted && !!cardName && !!who
+      && norm(boardPick.painted).includes(who) && norm(cardName).includes(who),
       `board reads "${boardPick.painted ?? 'nothing'}", card says `
-      + `"${boardPick.card ?? 'nothing'}"`);
+      + `"${boardPick.card ?? 'nothing'}", both must carry `
+      + `"${boardPick.identity ?? 'no declared identity'}"`);
+    check(`${label}: every board names its proprietor and its trade, not our label`,
+      boards.identityMismatch?.length === 0 && boards.labelled?.length === 0
+        && boards.withTrade === boards.signs,
+      `${boards.identityMismatch?.length} board(s) disagree with their card `
+      + `[${(boards.identityMismatch ?? []).join(', ')}], `
+      + `${boards.labelled?.length} carry a building label `
+      + `[${(boards.labelled ?? []).join(', ')}], `
+      + `${boards.withTrade}/${boards.signs} letter a trade`);
+    // ONE PAINTED DEVICE IN THE TOWN, and it is the one a Chicago tradesman
+    // described himself: Carpenter's golden mortar, from his own 1835 notice
+    // "AT THE SIGN OF THE GOLDEN MORTAR". A device must not spread to trades
+    // whose advertisements name none — that would be this layer generalising an
+    // invention — so the count is pinned exactly rather than bounded below.
+    check(`${label}: the golden mortar is on Carpenter's board and on no other`,
+      boards.devices?.length === 1
+        && boards.devices[0] === 'carpenter_south_water_store',
+      `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //
@@ -2506,6 +2697,19 @@ for (const [label, viewport, touch] of [
             b: ((it.bearing_deg ?? 0) * Math.PI) / 180 });
         }
       }
+      // T-0057. The building material on the one lot this town can say was going
+      // up. A pile is measured by its OWN bound and against its OWN lot, exactly
+      // as the wagon, the bench and the shed already are: a 0.75 m bar written
+      // for a barrel would fail on a 3.66 m stick that is exactly right.
+      const lots = y?.lots ?? [];
+      const piles = [];
+      for (const lot of lots) {
+        for (const it of lot.items ?? []) {
+          piles.push({ kind: it.kind, e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
+            b: ((it.bearing_deg ?? 0) * Math.PI) / 180,
+            quad: lot.ground_quad_local_enu_m ?? [] });
+        }
+      }
       let ungraded = 0;
       let notReconstructed = 0;
       let worstStray = 0;      // furthest a vertex sits from its own object's anchor
@@ -2522,6 +2726,9 @@ for (const [label, viewport, touch] of [
       // through the inn's wall, out past its eaves or up through its roof. So it
       // is measured in the shed's own frame and it is measured FIRST, because the
       // wagon under it shares its centre and would otherwise absorb the roof.
+      let pileVerts = 0;
+      let pileStray = 0;       // furthest a vertex sits from its own pile's anchor
+      let pileInLot = 0;       // vertices standing inside the building's own footprint
       let shedVerts = 0;
       let shedOut = -Infinity;    // furthest out from the wall, along its normal
       let shedIn = Infinity;      // deepest toward the wall (negative is behind it)
@@ -2563,6 +2770,34 @@ for (const [label, viewport, touch] of [
         }
         return null;
       };
+      // The piles are nine objects on one lot 130 m from the nearest wagon and
+      // further still from the nearest cask, so a plain radius claims them with
+      // nothing to collide with. The radius is the widest pile's own reach — a
+      // timber stick 3.66 m long lying across its pile — plus a margin.
+      // It returns the NEAREST pile and not the first one inside the radius: the
+      // brick stacks stand 3.2 m apart, so a vertex at the near end of one falls
+      // inside its neighbour's radius too, and taking the first match measured
+      // it against the wrong anchor and reported 2.49 m of stray on geometry
+      // that is exactly where the record puts it.
+      const pileNear = (e, n) => {
+        let best = null;
+        let bestD = 2.6;
+        for (const pl of piles) {
+          const d = Math.hypot(e - pl.e, n - pl.n);
+          if (d <= bestD) { bestD = d; best = pl; }
+        }
+        return best;
+      };
+      const inQuad = (e, n, quad) => {
+        let inside = false;
+        for (let i = 0, j = quad.length - 1; i < quad.length; j = i, i += 1) {
+          const [xi, yi] = quad[i];
+          const [xj, yj] = quad[j];
+          if ((yi > n) !== (yj > n)
+            && e < xi + ((n - yi) * (xj - xi)) / ((yj - yi) || 1e-12)) inside = !inside;
+        }
+        return inside;
+      };
       for (const geo of (items.length ? geos : [])) {
         const pos = geo.getAttribute('position');
         for (let i = 0; i < pos.count; i++) {
@@ -2592,6 +2827,17 @@ for (const [label, viewport, touch] of [
             break;
           }
           if (inBay) continue;
+          // T-0057's piles, claimed before the wagons: a pile is measured for how
+          // far it reaches from its own anchor and for the one thing that would
+          // make it wrong, which is a stack of brick standing inside the building
+          // it was delivered for.
+          const pl = pileNear(e, n);
+          if (pl) {
+            pileVerts++;
+            pileStray = Math.max(pileStray, Math.hypot(e - pl.e, n - pl.n));
+            if (inQuad(e, n, pl.quad)) pileInLot++;
+            continue;
+          }
           // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
           // own bound rather than lumped in with the casks.
           const w = wagonNear(e, n);
@@ -2633,6 +2879,25 @@ for (const [label, viewport, touch] of [
         // And every chunk has to carry its own bounding sphere, or the frustum
         // has nothing to test and the split bought nothing at all.
         bounded: geos.every((geo) => !!geo.boundingSphere),
+        // T-0065. The marks ride on the ONE material as a canvas atlas, so what
+        // has to hold is that the material carries a map at all, that every
+        // chunk carries the uv to read it with, and that no uv leaves the sheet
+        // — a uv off the atlas is a mark painted on nothing, silently.
+        mapped: meshes.every((m) => !!m.material?.map?.image),
+        hasUV: geos.length > 0 && geos.every((geo) => !!geo.getAttribute('uv')),
+        uvOut: (() => {
+          let bad = 0;
+          for (const geo of geos) {
+            const uv = geo.getAttribute('uv');
+            if (!uv) { bad += 1; continue; }
+            for (let i = 0; i < uv.count; i += 1) {
+              const u = uv.getX(i);
+              const v = uv.getY(i);
+              if (!(u >= 0 && u <= 1 && v >= 0 && v <= 1)) bad += 1;
+            }
+          }
+          return bad;
+        })(),
         verts,
         tris: verts / 3,
         hasConfidence,
@@ -2645,6 +2910,11 @@ for (const [label, viewport, touch] of [
         benchStray,
         benchInside,
         benches,
+        pileVerts,
+        pileStray,
+        pileInLot,
+        lots,
+        piles: piles.length,
         shedVerts,
         shedOut,
         shedIn,
@@ -2652,7 +2922,10 @@ for (const [label, viewport, touch] of [
         shed: sheds[0] ?? null,
         sheds: sheds.length,
         // One material and the tilt still reads as canvas: the colour is per
-        // vertex, so the whole layer must carry exactly two of them.
+        // vertex, so the whole layer must carry exactly its OWN tones and no
+        // more. It was two — timber and duck — until T-0057 put brick and stone
+        // on a building lot, and four is now the number a second material would
+        // have been needed for.
         tones: (() => {
           const seen = new Set();
           for (const geo of geos) {
@@ -2706,6 +2979,23 @@ for (const [label, viewport, touch] of [
         && goods.bounded,
       `${goods.meshes} chunk mesh(es), ${goods.materials} material(s), `
       + `bounding spheres ${goods.bounded ? 'on every chunk' : 'MISSING on one'}`);
+    // T-0065. Every cask and every case carries a mark the record dealt it — a
+    // stencilled commodity, the house's brand, or a shipping mark — and the
+    // census counts what was actually PAINTED rather than what the record asked
+    // for, so an atlas that silently refused a cell reads as a shortfall here.
+    check(`${label}: every cask and case carries the mark its record deals it`,
+      goods.census?.marked === goods.items && goods.census?.markCells >= 40,
+      `${goods.census?.marked} of ${goods.items} object(s) marked, out of `
+      + `${goods.census?.markCells} atlas cell(s)`);
+    // And the marks cost the layer nothing it did not already spend: they are
+    // painted on the SAME single material as a texture, so every chunk carries
+    // a uv and every uv lands on the sheet. Everything unmarked reads the white
+    // cell, which multiplies to the timber it was before there was an atlas.
+    check(`${label}: the marks ride on the layer's own material, on the sheet`,
+      goods.mapped && goods.hasUV && goods.uvOut === 0,
+      `map ${goods.mapped ? 'present' : 'MISSING'}, uv `
+      + `${goods.hasUV ? 'on every chunk' : 'MISSING on one'}, ${goods.uvOut} `
+      + 'coordinate(s) off the atlas');
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That goods
     // stood at these doors on this day is invented (L131) and a single vertex
     // claiming to be inferred or attested would be this layer overstating the
@@ -2784,11 +3074,42 @@ for (const [label, viewport, touch] of [
       `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
       + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
       + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
+    // ---- T-0057: the other half of Ordinance 9 ---------------------------- //
+    //
+    // The ordinance names timber, stone, brick, boxes and barrels; T-0040 drew
+    // the boxes and barrels and refused the rest, because building material
+    // belongs to a building that is GOING UP and the goods record cannot say
+    // which lot was. Exactly one structure in this scene states a construction
+    // state in its own attributes — `lake_house_construction`, attested — so
+    // what has to hold is that the material is on that lot, in all three
+    // materials, and reaches the screen as geometry rather than as a record.
+    check(`${label}: the building material stands on the lot that was going up`,
+      goods.census?.lots === 1 && goods.census?.piles >= 6 && goods.pileVerts > 0
+        && goods.lots?.[0]?.structure_id === 'lake_house_construction'
+        && (goods.census?.byMaterial?.brick ?? 0) > 0
+        && (goods.census?.byMaterial?.timber ?? 0) > 0
+        && (goods.census?.byMaterial?.stone ?? 0) > 0,
+      `${goods.census?.piles} pile(s) on ${goods.census?.lots} lot(s) `
+      + `(${JSON.stringify(goods.census?.byMaterial ?? {})}), ${goods.pileVerts} `
+      + `vertices, lot ${goods.lots?.[0]?.structure_id ?? 'MISSING'}`);
+    // And it stands where a builder's material stands: round the shell, not
+    // inside it. The widest pile is a 3.66 m stick lying across its own pile, so
+    // 1.90 m is the furthest any vertex may sit from its anchor and 2.1 m is the
+    // bar; a transposed axis would be metres out, not centimetres. The second
+    // half is the one that would be visible from the street — the generator
+    // turned its outward normal the wrong way on its first run and put every
+    // one of the nine piles inside the building, which clause 5 caught then and
+    // this catches now.
+    check(`${label}: no pile of material stands inside the building it is for`,
+      goods.pileStray > 0 && goods.pileStray <= 2.1 && goods.pileInLot === 0,
+      `furthest vertex ${goods.pileStray?.toFixed(2)} m from its own pile's anchor, `
+      + `${goods.pileInLot} vertex/vertices inside the lot's own footprint`);
+
     // The canvas is canvas. The tilt arrived without a second material, which is
     // only possible because the colour moved onto the geometry — so the whole
     // layer, chunks and all, has to carry exactly two tones: timber and duck.
     check(`${label}: the tilt is drawn in canvas on the layer's one material`,
-      goods.tones === 2 && goods.materials === 1,
+      goods.tones === 4 && goods.materials === 1,
       `${goods.tones} vertex tone(s) across ${goods.meshes} chunk(s) on `
       + `${goods.materials} material(s)`);
 
@@ -3902,16 +4223,19 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Nine boats since T-0063 — three schooners in the reach below the
-    // drawbridge, four rowboats at the South Water bank, two canoes at the
+    // Thirteen boats since T-0140 — three schooners in the reach below the
+    // drawbridge and TWO AT THE WOLF POINT LANDINGS, four rowboats at the South
+    // Water bank and two more at the west bank at the forks, two canoes at the
     // fort landing — and ZERO refused: every authored position was chosen
     // against the committed heightfield, so a refusal appearing here means the
-    // terrain moved under the record and the record was not re-read.
+    // terrain moved under the record and the record was not re-read. FIVE
+    // planting keep-outs, one per BEACHED hull (the two South Water skiffs, the
+    // Wolf Point skiff and the two fort canoes); an afloat hull needs none.
     check(`${label}: every authored boat is on the water`,
-      flotilla.census?.boats === 9 && flotilla.census?.refused === 0
-        && flotilla.census?.schooners === 3 && flotilla.census?.rowboats === 4
+      flotilla.census?.boats === 13 && flotilla.census?.refused === 0
+        && flotilla.census?.schooners === 5 && flotilla.census?.rowboats === 6
         && flotilla.census?.canoes === 2 && flotilla.verts > 0
-        && flotilla.keepOut === 4,
+        && flotilla.keepOut === 5,
       `${flotilla.census?.boats} boat(s) (${flotilla.census?.schooners} schooner(s), `
       + `${flotilla.census?.rowboats} rowboat(s), ${flotilla.census?.canoes} canoe(s)), `
       + `${flotilla.census?.refused} refused, ${flotilla.verts} vertices, `
@@ -4123,17 +4447,29 @@ for (const [label, viewport, touch] of [
       `${groundNormals.tiles} tiles, worst ${groundNormals.worstTile?.name}: `
       + `${groundNormals.worstTile?.down}/${groundNormals.worstTile?.verts} down `
       + `(${((groundNormals.worstTile?.share ?? 0) * 100).toFixed(2)}%)`);
-    // (b) THE SCATTERED ONES CANNOT GROW. 79 of 742,581 vertices — 0.011 % —
-    //     come out of the terrain generator facing down, in isolated points
-    //     inside the town rather than in any contiguous patch, which is why they
-    //     produce no visible artefact. They are a real defect (ROADMAP T-BUG2)
-    //     and they are NOT this gate's bug, so this pins the measured number
-    //     rather than pretending it is zero or quietly allowing any figure.
-    //     Fixing them lowers this constant; nothing else may raise it.
-    check(`${label}: no new downward ground normals beyond the known 79`,
-      groundNormals.downward <= 79,
+    // (b) AND THE SCATTERED ONES ARE GONE — the cap is 0, and it is 0 because
+    //     the generator now proves the invariant instead of this gate banking
+    //     the breaches. This assertion was written with a cap of 79 (ROADMAP
+    //     T-BUG2): isolated vertices, inside the town rather than in any
+    //     contiguous patch, that came out of the terrain generator facing down
+    //     and produced no visible artefact — a real defect the gate could pin
+    //     but not fix, so it pinned the measured number and let it only fall.
+    //
+    //     T-0014 fixed it at the source. `generators/terrain_gen.py`
+    //     § _face_the_sky() re-winds the 33 backwards faces the n-gon
+    //     triangulation produced and deletes the 197 that stand edge-on, on a
+    //     classifier with no threshold in it — the plan-projected signed area,
+    //     which on this 2.5 m lattice is either exactly 0.0 or at least
+    //     3.125 m² and never in between. The shipped master's worst ground
+    //     normal now points 0.737 up, so this is not a number sitting near its
+    //     bar: nothing quantisation does to it can reach 0.1.
+    //
+    //     KEEP IT AT 0. A cap that can be raised is a defect that can be
+    //     re-banked, and this one already was, for nine days.
+    check(`${label}: no ground vertex faces downward`,
+      groundNormals.downward === 0,
       `${groundNormals.downward} of ${groundNormals.verts} vertices face down `
-      + `(baseline 79 — see ROADMAP T-BUG2)`);
+      + `(the bar is 0 — see T-0014, was ROADMAP T-BUG2)`);
 
     // And the renderer's OWN account of it, which is the part that was ignored:
     // it pushed the fallback to `problems` every single load and nothing read it.
@@ -4179,7 +4515,7 @@ for (const [label, viewport, touch] of [
         for (let i = 0; i < p.count; i += 1) {
           const e = p.getX(i);
           const n = -p.getZ(i);
-          // The skirt reaches 1.5 km past the modelled box, where there is no
+          // The skirt reaches 1.55 km past the modelled box, where there is no
           // field to be right or wrong about. Scoring it would measure the
           // sampler's fallback rather than the ground.
           if (e < eMin || e > eMax || n < nMin || n > nMax) continue;
@@ -4314,6 +4650,92 @@ for (const [label, viewport, touch] of [
       naming.planted[0] !== null && naming.planted[1] !== null
       && naming.planted[2] === null,
       `planted verdicts: ${JSON.stringify(naming.planted)}`);
+
+    // --- and the title may not be a part number at all (T-0076) -------------
+    //
+    // Owner-reported from the same card: "this name is not great Reconstructed D3
+    // one-room frame cottage #03 … give the locations useful names not technical D3 #03
+    // names, you can have that somewhere on the card for reference identity purposes but
+    // dont make it the title." The rule is `js/display-name.js`; this asserts the three
+    // things that rule owes a visitor, on the shipped module rather than on a copy of it.
+    //
+    // Whole-registry again, for the naming gate's reason: the titles are composed by one
+    // function over one dataset, so a regression arrives 222 at a time. The card check
+    // underneath is what makes it about the CARD — a title composed correctly and never
+    // rendered would satisfy a registry scan and satisfy nobody standing in the town.
+    const titles = await page.evaluate(async () => {
+      const mod = await import(new URL('js/display-name.js', location.href).href);
+      const registry = window.__chicago4d.registry;
+      const specShaped = [];
+      let anonymous = 0;
+      let empty = 0;
+      for (const [id, record] of registry) {
+        const s = record?.sidecar;
+        if (!s) continue;
+        const { title, spec } = mod.displayName(s, id);
+        if (!title) empty += 1;
+        if (s.reconstruction?.status === 'inferred_anonymous') {
+          anonymous += 1;
+          if (/#\s*\d+\s*$/.test(title) || /^Reconstructed\b/.test(title)) {
+            specShaped.push(`${id}: "${title}"`);
+          }
+          // The other half of the owner's sentence: the production identity is kept.
+          if (spec !== s.name) specShaped.push(`${id}: reference line lost "${s.name}"`);
+        }
+      }
+      // A scan of a clean tree is indistinguishable from a scan of nothing, so the rule
+      // is also run against records made up here — one occupied, one empty, one named.
+      const anon = (extra) => ({
+        name: 'Reconstructed D3 one-room frame cottage #03',
+        reconstruction: { status: 'inferred_anonymous', family: 'D3' }, ...extra });
+      const planted = {
+        occupied: mod.displayName(anon({ residents: [{ name: 'The Tuttle household — a '
+          + 'reconstructed carpenter (south division)', relation: 'lived here',
+          persons: [{ name: 'Amos Tuttle', relationship: 'head' }] }] }), 'x').title,
+        vacant: mod.displayName(anon({}), 'x').title,
+        named: mod.displayName({ name: 'Green Tree Tavern' }, 'green_tree_tavern').title,
+      };
+      // And the search has to answer to BOTH names, which is the whole argument for
+      // keeping the production identity anywhere.
+      const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
+        ?.reconstruction?.status === 'inferred_anonymous'
+        && (registry.get(id)?.sidecar?.residents ?? []).length);
+      const sidecar = registry.get(anonId)?.sidecar ?? {};
+      const terms = mod.searchTerms(sidecar, anonId);
+      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
+      // The card itself: opened on that record, reading what a visitor reads.
+      window.__chicago4d.popup.show(registry.get(anonId));
+      const card = {
+        id: anonId,
+        heading: document.querySelector('#popup h2')?.textContent?.trim() ?? '',
+        reference: document.querySelector('#popup .pop-spec')?.textContent ?? '',
+        expected: mod.displayName(sidecar, anonId).title,
+        spec: sidecar.name,
+      };
+      window.__chicago4d.popup.close();
+      return { specShaped, anonymous, empty, planted, card,
+               searchable: {
+                 bySpec: terms.includes(sidecar.name ?? '\u0000'),
+                 byHousehold: !!surname && terms.includes(surname[1]),
+               } };
+    });
+    check(`${label}: no building titles itself by its part number`,
+      titles.anonymous > 100 && titles.empty === 0 && titles.specShaped.length === 0,
+      `${titles.anonymous} anonymous roofs, ${titles.empty} untitled, `
+      + `${titles.specShaped.length} still spec-titled — ${titles.specShaped.slice(0, 3).join(' | ')}`);
+    check(`${label}: the naming rule titles a house for its people and an empty one plainly`,
+      titles.planted.occupied === 'The Tuttle house'
+      && titles.planted.vacant === 'A vacant one-room frame cottage'
+      && titles.planted.named === 'Green Tree Tavern',
+      `planted: ${JSON.stringify(titles.planted)}`);
+    check(`${label}: the card shows that title and keeps the reference below it`,
+      titles.card.heading === titles.card.expected
+      && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
+      `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
+      + `over reference "${titles.card.reference.trim()}"`);
+    check(`${label}: search still finds it by its part number and by its household`,
+      titles.searchable.bySpec && titles.searchable.byHousehold,
+      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //
@@ -5371,27 +5793,35 @@ for (const [label, viewport, touch] of [
 
     // --- budgets ------------------------------------------------------------
     //
-    // THE DRAW-CALL CEILING IS 120 SINCE 2026-08-21, RAISED FROM 80 — a conscious
-    // re-budget on the owner's ruling (*"or just raise the budget?"*), argued in
-    // full where the number is set, `main.js` BUDGET. The short of it: 80 was set
-    // when every derived layer was one town-spanning mesh, and T-0067, T-0119 and
-    // T-0069 have since chunked those layers so the frustum can cull them, which
-    // trades triangles for draw calls on purpose — and the sun's pass draws every
-    // chunk in its box a second time. Measured at this stand: 65 calls before the
-    // street edge and 78 after it. The bar is still read from `stats.budget`
-    // rather than written here, so this check follows the definition site and
-    // cannot drift from it; what is asserted is unchanged, and the per-tier check
-    // below holds every level to the same number.
+    // THE BUDGET IS NO LONGER GATED HERE. It is gated at a NAMED SET of stands
+    // and on the WORST of them, in the scene-detail block below, which is the
+    // one place the whole set can be walked at every tier for the price of
+    // walking it once (T-0135; `STANDS` at the top of this file is the set, with
+    // each stand's reason written beside it).
+    //
+    // What stays here is the reference reading — the Sauganash at 26 m, the
+    // single camera this project measured itself at until 2026-08-22 — kept so
+    // every figure ever recorded in `main.js`, LIBERTIES and the roadmap boxes
+    // stays comparable, and kept LABELLED as a reference rather than as a gate so
+    // nobody reads it as one again. The two assertions below are still hard: a
+    // scene that regressed at the friendly stand has regressed everywhere.
+    //
+    // THE DRAW-CALL CEILING IS 140 SINCE 2026-08-21, raised from 80 in three
+    // steps that afternoon — a conscious re-budget on the owner's ruling (*"or
+    // just raise the budget?"*), argued in full where the number is set,
+    // `main.js` BUDGET. The short of it: 80 was set when every derived layer was
+    // one town-spanning mesh, and T-0067, T-0119 and T-0069 have since chunked
+    // those layers so the frustum can cull them, which trades triangles for draw
+    // calls on purpose — and the sun's pass draws every chunk in its box a second
+    // time. The bar is still READ from `stats.budget` rather than written here, so
+    // this check follows the definition site and cannot drift from it.
     const stats = await page.evaluate(() => window.__chicago4d.stats());
     // THE CALL CEILING IS PINNED HERE AS WELL AS READ (T-0068). This check used
     // to compare the frame against whatever number `main.js` happened to be
     // carrying, so a scene that had outgrown its budget could be made green by
     // editing the budget — the exact move T-0115's ledger exists to make
-    // impossible to do quietly. 96 is the number this gate was written against:
-    // raised from 80 on the owner's ruling of 2026-08-21, because a chunked
-    // layer spends draw calls to buy culling and 80 was a guard on the batching
-    // strategy rather than a measurement. Moving it has to move this line too,
-    // in the same commit, with the measurement that justified it.
+    // impossible to do quietly. Moving the number has to move this line too, in
+    // the same commit, with the measurement that justified it.
     //
     // Only the CALL ceiling is pinned here, and deliberately: the triangle
     // budget follows the detail tier the visitor is on (`BUDGET.triangles` is
@@ -5399,17 +5829,16 @@ for (const [label, viewport, touch] of [
     // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
     // check further down, which is where a re-budget of those would show.
     check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
-      stats.budget.drawCalls === 140,
+      stats.budget.drawCalls === 215,
       `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
-    check(`${label}: draw calls under budget`, stats.drawCalls <= stats.budget.drawCalls,
-      `${stats.drawCalls} calls (budget ${stats.budget.drawCalls})`);
-    // AND THE SAFE FLOOR IS STILL INSIDE THE OLD 80. `light` is the tier for a
-    // machine that cannot afford the other two, and T-0064's raise was taken at
-    // `full` and `balanced` only. This is the assertion that keeps that promise
-    // honest — it is checked against the scene-detail sweep further down, which
-    // reports every tier's own call count.
-    check(`${label}: triangles under budget`, stats.triangles <= stats.budget.triangles,
-      `${stats.triangles} tris (budget ${stats.budget.triangles})`);
+    check(`${label}: draw calls under budget at the reference stand`,
+      stats.drawCalls <= stats.budget.drawCalls,
+      `${stats.drawCalls} calls (budget ${stats.budget.drawCalls}) — `
+      + `the gate is the worst-stand check below`);
+    check(`${label}: triangles under budget at the reference stand`,
+      stats.triangles <= stats.budget.triangles,
+      `${stats.triangles} tris (budget ${stats.budget.triangles}) — `
+      + `the gate is the worst-stand check below`);
     console.log(`        ${stats.drawCalls} draw calls · ${stats.triangles} tris · `
       + `${stats.batches} batch(es) · ${stats.structures} structure(s) · `
       + `${(stats.bytes / 1024).toFixed(0)} KB of GLB · ${stats.fps} fps`);
@@ -5595,43 +6024,152 @@ for (const [label, viewport, touch] of [
     // the scene rather than what its table asked for: `light` must cast none of
     // that furniture and the other two must cast all of it, which is a claim
     // that fails loudly if a new furniture layer is mounted outside the policy.
-    const detail = await page.evaluate(async () => {
+    //
+    // T-0135 added the fourth, and it is the one that makes the first mean
+    // anything: every level is now walked at the WHOLE STAND SET and held to its
+    // ceiling at the worst of them. A tier ceiling checked at one friendly camera
+    // is a spot reading, and a spot reading is what let the ladder go on being
+    // described as a 40 % step while the bottom rung was, at an axial view, doing
+    // 25 %. The per-level rows below print the worst stand by name, so a level
+    // that fails says WHERE.
+    const detail = await page.evaluate(async (stands) => {
       const a = window.__chicago4d;
+      const settle = () => new Promise((r) => requestAnimationFrame(
+        () => requestAnimationFrame(r)));
       const started = a.detail;
       const seen = [];
+      // The reference stand is walked LAST, and that is a cost decision with a
+      // number behind it: a frame at this scene costs about three seconds on the
+      // software renderer CI uses, and finishing the sweep where the rest of the
+      // suite expects the visitor to be saves one per level rather than teleport
+      // back afterwards. `restoredAt` below asserts the order actually did that,
+      // so the saving cannot quietly become a camera left up in the air.
+      const order = [...stands.filter((s) => s.kind !== 'frame'),
+        ...stands.filter((s) => s.kind === 'frame')];
       for (const level of a.detailOrder) {
         await a.setDetail(level);
-        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+        await settle();
+        const atStands = [];
+        for (const st of order) {
+          // `goTo` on the aerial anchor turns flight ON; every `frame` stand
+          // turns it off again, which is why one has to be last.
+          if (st.kind === 'frame') { a.setFly(false); a.frame(st.target, st.distance); }
+          else a.goTo(st.target);
+          await settle();
+          const r = a.stats();
+          const row = { id: st.id, label: st.label, tris: r.triangles, calls: r.drawCalls,
+                        hidden: a.furnitureReach.hidden };
+          // T-0150 — WHAT THE FURNITURE'S REACH IS ACTUALLY WORTH, measured by
+          // turning it off and back on at the stand it exists for, rather than
+          // by reading the table that asked for it. Taken at the axial stand
+          // ONLY, and that is a cost decision: a frame is about three seconds on
+          // the software renderer CI uses, and this stage is already the longest
+          // in the suite (T-0121). Lake at Canal is the stand the trim was
+          // designed against and the one whose reading it has to keep earning.
+          if (st.id === 'lake_at_canal' && a.furnitureReach.reachM !== null) {
+            const on = a.furnitureReach.reachM;
+            a.setFurnitureReach(null);
+            await settle();
+            const off = a.stats();
+            a.setFurnitureReach(on);
+            await settle();
+            row.trimTris = off.triangles - r.triangles;
+            row.trimCalls = off.drawCalls - r.drawCalls;
+          }
+          atStands.push(row);
+        }
+        // The furniture and shadow-rig readings are properties of the LEVEL, not
+        // of where the camera is standing, so they are taken once — and taken
+        // with the visitor back at the reference stand, which is both where the
+        // rest of the suite expects them and what keeps `tris`/`calls` below the
+        // same reference figures this line has always reported.
         const s = a.stats();
         const f = a.furnitureShadows;
         seen.push({ level, tris: s.triangles, calls: s.drawCalls,
           ceiling: a.detailLevels[level].triangles,
+          furnitureReachM: a.furnitureReach.reachM,
+          furnitureMeshesReach: a.furnitureReach.meshes,
+          bankedSpheres: a.furnitureReach.banked,
+          atStands,
+          worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
+          worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
           reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
           furnitureMeshes: f.meshes, furnitureCasting: f.casting });
       }
       await a.setDetail(started);
-      return { seen, restored: a.detail === started };
-    });
+      return { seen, restored: a.detail === started, flying: a.flying,
+        restoredAt: order[order.length - 1].id };
+    }, STANDS);
     for (const s of detail.seen) {
-      check(`${label}: scene detail '${s.level}' stays inside its own ceiling`,
-        s.tris <= s.ceiling && s.calls <= stats.budget.drawCalls,
-        `${s.tris} tris of ${s.ceiling}, ${s.calls} calls`);
+      check(`${label}: scene detail '${s.level}' stays inside its own ceiling at the WORST stand`,
+        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= stats.budget.drawCalls,
+        `${s.worstTris.tris.toLocaleString('en-US')} tris of `
+        + `${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}, `
+        + `${s.worstCalls.calls} calls of ${stats.budget.drawCalls} at ${s.worstCalls.label} `
+        + `— spread: ${s.atStands.slice().sort((a, b) => b.tris - a.tris)
+          .map((x) => `${x.label} ${x.tris.toLocaleString('en-US')}/${x.calls}c`).join(' · ')}`);
     }
     const [full, balanced, light] = detail.seen;
-    check(`${label}: turning scene detail down actually draws less`,
-      full.tris > balanced.tris && balanced.tris > light.tris,
-      detail.seen.map((s) => `${s.level} ${s.tris}`).join(' > '));
-    // T-0064 raised the draw-call budget from 80 to 110 (argued in main.js) and
-    // took the raise at `full` and `balanced` ONLY. `light` is the tier for a
-    // machine that cannot afford the other two, and the promise made with that
-    // raise was that the safe floor stays inside the ceiling this project has
-    // had all along. This is that promise, asserted rather than remembered.
-    check(`${label}: the light tier still draws inside the OLD 80-call budget`,
-      light.calls <= 80,
-      `${light.calls} calls at light against the pre-T-0064 budget of 80 `
-      + `(full ${full.calls}, balanced ${balanced.calls} of ${stats.budget.drawCalls})`);
-    check(`${label}: the level the visitor started on is restored`, detail.restored,
-      JSON.stringify(detail));
+    // THE DRAW-CALL GATE, and the whole of it (T-0135). The budget block above
+    // reads the reference stand for continuity; this is the assertion. It takes
+    // the maximum over every stand at every tier — a draw call is not a tier's
+    // property the way its triangle ceiling is, so the number a visitor can
+    // reach is the worst frame anywhere in the set, whatever level they chose.
+    const townWorstCalls = detail.seen
+      .flatMap((lv) => lv.atStands.map((x) => ({ ...x, level: lv.level })))
+      .reduce((a, b) => (b.calls > a.calls ? b : a));
+    check(`${label}: draw calls under budget at the town's WORST frame`,
+      townWorstCalls.calls <= stats.budget.drawCalls,
+      `${townWorstCalls.calls} calls at ${townWorstCalls.label}, '${townWorstCalls.level}' `
+      + `(budget ${stats.budget.drawCalls}) — spread by level: `
+      + detail.seen.map((lv) => `${lv.level} ${lv.worstCalls.calls} at ${lv.worstCalls.label}`)
+        .join(' · '));
+    // Asserted PER STAND rather than on one reading, because "turning it down
+    // draws less" is a claim about the control and not about a camera: a level
+    // that cut the near flora and nothing else would hold at the reference stand
+    // and fail down the street, which is the shape of the defect T-0115 found.
+    const ladderBroken = STANDS.map((s) => {
+      const at = (lv) => lv.atStands.find((x) => x.id === s.id);
+      return { label: s.label, f: at(full).tris, b: at(balanced).tris, l: at(light).tris };
+    }).filter((r) => !(r.f > r.b && r.b > r.l));
+    check(`${label}: turning scene detail down actually draws less, at every stand`,
+      ladderBroken.length === 0,
+      ladderBroken.length
+        ? ladderBroken.map((r) => `${r.label} ${r.f} > ${r.b} > ${r.l}`).join('; ')
+        : STANDS.map((s) => {
+          const r = detail.seen.map((lv) => lv.atStands.find((x) => x.id === s.id).tris);
+          return `${s.label} ${((1 - r[2] / r[0]) * 100).toFixed(0)} %`;
+        }).join(' · '));
+    // THIS ASSERTION WAS WEAKENED ON 2026-08-22, AND CALLING IT ANYTHING ELSE
+    // WOULD BE A LIE. It used to hold that `light` draws inside the 80 calls
+    // this project budgeted before any of the 2026-08 content landed — the
+    // promise that the tier a weak machine boots into stays affordable. T-0135
+    // measured it at the WORST stand for the first time and found 167 calls
+    // down Lake Street. The owner ruled to raise the ceilings rather than trim
+    // the view ("raise it, I think", 2026-08-22), which surrenders that promise
+    // knowingly: `light` now carries 1,050,000 triangles, more than `full`
+    // promised the day before.
+    //
+    // So the absolute floor is gone and this check no longer guards it. What it
+    // guards instead is the one thing still true and still worth something: the
+    // ladder must keep WORKING — `light` has to be materially cheaper than
+    // `full` at the worst stand, or the setting is decoration. The bar is a
+    // ratio, not a count, and it is deliberately not tuned to sit just under
+    // today's reading.
+    //
+    // T-0147 restores the absolute bar after T-0150 and T-0146 trim the axial
+    // view. When it does, this check should go back to being a count — and a
+    // count is what a promise to a person looks like.
+    check(`${label}: the light tier stays materially cheaper than full at the worst stand`,
+      light.worstCalls.calls <= full.worstCalls.calls * 0.9,
+      `${light.worstCalls.calls} calls at light against ${full.worstCalls.calls} at full, `
+      + `worst stand ${light.worstCalls.label} — the pre-2026-08 floor of 80 calls was `
+      + `surrendered by the owner's raise-or-trim ruling; T-0147 wins it back`);
+    check(`${label}: the level the visitor started on is restored`,
+      detail.restored && !detail.flying && detail.restoredAt === STANDS[0].id,
+      `${detail.restored ? 'level restored' : 'level NOT restored'}, `
+      + `${detail.flying ? 'left flying' : 'back on foot'}, `
+      + `sweep ended at ${detail.restoredAt} (want ${STANDS[0].id})`);
     // The trim, asserted on the meshes rather than on the table that asked for
     // it: a policy that reaches `DETAIL` and not the scene passes every check
     // above unchanged, which is the failure this one exists to catch.
@@ -5640,6 +6178,60 @@ for (const [label, viewport, touch] of [
       && full.furnitureCasting === full.furnitureMeshes
       && balanced.furnitureCasting === balanced.furnitureMeshes,
       detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes}`).join(', '));
+    /**
+     * T-0150 — THE FURNITURE'S REACH, asserted as three separate claims because
+     * three separate things can break it.
+     *
+     * FIRST, that only the bottom rung holds anything back. A reach that leaked
+     * into `full` or `balanced` would be a tier a visitor chose deliberately
+     * being quietly cheapened, which is the opposite of what the control is for.
+     * Read off the MESHES (`hidden`, counted at every stand) as well as off the
+     * level, for the reason `furnitureShadows` is: a policy that reaches `DETAIL`
+     * and not the scene passes every ceiling check unchanged.
+     */
+    const hiddenAbove = detail.seen.filter((lv) => lv.level !== 'light')
+      .flatMap((lv) => lv.atStands.map((x) => ({ level: lv.level, ...x })))
+      .filter((x) => x.hidden > 0);
+    check(`${label}: only the light tier holds any furniture back for distance`,
+      light.furnitureReachM !== null && full.furnitureReachM === null
+      && balanced.furnitureReachM === null
+      && hiddenAbove.length === 0 && light.bankedSpheres > 0,
+      hiddenAbove.length
+        ? `${hiddenAbove[0].level} hid ${hiddenAbove[0].hidden} at ${hiddenAbove[0].label}`
+        : detail.seen.map((lv) => `${lv.level} reach ${lv.furnitureReachM ?? 'none'}`).join(', ')
+          + ` — ${light.bankedSpheres} furniture chunk(s) banked`);
+    /**
+     * SECOND, that at `light` it reaches the frame at the stand it was built for.
+     * A reach set to a number larger than the town would satisfy the first check
+     * and do nothing at all.
+     */
+    const axial = light.atStands.find((x) => x.id === 'lake_at_canal');
+    check(`${label}: the light tier holds furniture back down the axial street`,
+      !!axial && axial.hidden > 0,
+      axial ? `${axial.hidden} of ${light.furnitureMeshesReach} furniture chunk(s) `
+        + `beyond ${light.furnitureReachM} m at ${axial.label}`
+        : 'the axial stand was not walked');
+    /**
+     * THIRD, AND IT IS THE ONE WITH THE NUMBER IN IT: the reach is what is doing
+     * the saving. Measured in the gate by turning the cull off at that stand and
+     * reading the same frame twice, so this cannot be satisfied by some unrelated
+     * layer getting cheaper — the difference is attributable by construction.
+     *
+     * The bars are set at roughly half the measurement that chose the reach
+     * (`main.js` FURNITURE_REACH_LIGHT_M: 252,140 triangles and 107 calls at
+     * 1280x800, 248,748 and 102 at 390x780), which is the same order of margin
+     * the ceilings carry. Half rather than just-under, because this is a ratchet
+     * on a MECHANISM and not a budget: a change that halves what the trim is
+     * worth has broken it, and one that trims a little less because the town got
+     * denser inside 350 m has not.
+     */
+    check(`${label}: the furniture reach is what makes the light tier cheaper down that street`,
+      !!axial && axial.trimTris >= 120000 && axial.trimCalls >= 50,
+      axial?.trimTris === undefined
+        ? 'the trim was not measured at the axial stand'
+        : `turning the reach off adds ${axial.trimTris.toLocaleString('en-US')} triangles `
+          + `and ${axial.trimCalls} draw calls at ${axial.label} `
+          + `(need 120,000 and 50)`);
     check(`${label}: the light tier's shorter shadow reach costs no texel`,
       light.reachM < full.reachM && Math.abs(light.texelM - full.texelM) < 1e-6,
       detail.seen.map((s) => `${s.level} ±${s.reachM} m at `
@@ -5647,6 +6239,11 @@ for (const [label, viewport, touch] of [
     console.log(`        detail  ${detail.seen.map((s) =>
       `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls, ±${s.reachM} m, `
       + `${s.furnitureCasting}/${s.furnitureMeshes} furniture casting)`).join('  ·  ')}`);
+    for (const s of detail.seen) {
+      console.log(`        ${s.level.padEnd(9)} worst ${s.worstTris.tris.toLocaleString('en-US').padStart(11)} tris `
+        + `of ${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}  ·  `
+        + `worst ${String(s.worstCalls.calls).padStart(4)} calls at ${s.worstCalls.label}`);
+    }
 
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
@@ -5840,8 +6437,10 @@ for (const [label, viewport, touch] of [
     // out, which is indistinguishable from a band with no road in it.
     // R-M1c finished that argument one level down: the band's SCORE divided by
     // `seen` too, so an occluder raised it. It divides by `nBare` now.
+    const roadRuns = [];   // T-0016: what each station's bands read this run
     for (const station of ROAD_STATIONS) {
       const road = await roadContrast(page, { id: station.id, kind: station.kind });
+      roadRuns.push({ id: station.id, bands: road.bands });
       const bands = road.bands.filter((b) => b.gated);
       const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
         || b.perceptible < ROAD_MIN_PERCEPTIBLE);
@@ -5860,6 +6459,29 @@ for (const [label, viewport, touch] of [
       check(`${label}: the roads reach the screen ${station.what}`,
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
+    }
+
+    // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
+    //
+    // Printed, never gated. Every check above has already run and its verdict
+    // stands whatever this says; the point is only that a band which collapses
+    // inside a passing station stops being invisible. A filtered run banks
+    // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
+    // cannot silently retire desktop's half of the baseline.
+    const vp = label.split(' ')[0];
+    const observed = collectRoadBands(vp, roadRuns, {
+      failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
+    });
+    Object.assign(ROAD_BAND_OBSERVED, observed);
+    const bankedHere = Object.fromEntries(
+      Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    if (!Object.keys(bankedHere).length) {
+      console.log(`        road bands: nothing banked for ${vp} yet`
+        + ' — re-run with --update-road-bands to bank this run (T-0016)');
+    } else {
+      for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
+        console.log(`        ${line}`);
+      }
     }
 
     // --- R-A1, the road-legibility aid, and the three things it owes --------
@@ -8953,6 +9575,45 @@ for (const [label, viewport, touch] of [
   await browser.close();
 }
 server.close();
+
+// T-0016 — re-bank, in the commit that moved the numbers on purpose.
+//
+// MERGES rather than overwrites, and that is not a convenience. The road bands
+// are measured in stage 3 only, and a full unfiltered pass does not fit the
+// ten-minute foreground command ceiling this repo actually works under (T-0121,
+// still open) — so the only way anyone banks these in practice is one filtered
+// run per viewport. Overwriting would let `SMOKE_VIEWPORT=mobile … --update`
+// silently retire every desktop band, which is the same class of fault as the
+// one this report exists to catch: a number quietly leaving the record.
+// Merging keeps what this run did not measure and says what it left alone.
+if (UPDATE_ROAD_BANDS) {
+  {
+    // Deliberately NOT refused on a red run. A bank is a record of what the
+    // bands read, not a certificate that they read well, and the band everyone
+    // is worried about is exactly the one that is failing — refusing to bank it
+    // would leave T-0114's two reds as the only bands nobody can watch for
+    // further collapse. Bands below their bar are marked `failingGateWhenBanked`
+    // instead, which is what stops the file being read as a pass.
+    const merged = { ...ROAD_BAND_BANKED, ...ROAD_BAND_OBSERVED };
+    const untouched = Object.keys(ROAD_BAND_BANKED).filter((k) => !(k in ROAD_BAND_OBSERVED));
+    fs.writeFileSync(ROAD_BAND_BASELINE, `${JSON.stringify({
+      note: 'T-0016 — what each GATED road band read, so movement against it can be '
+          + 'reported in either direction. A record, NOT a bar: the gate is '
+          + 'ROAD_MIN_DELTA_L / ROAD_MIN_PERCEPTIBLE / ROAD_MIN_PROBES in '
+          + 'smoke_renderer.mjs and nothing here changes it. A band below its bar is '
+          + 'still banked, marked failingGateWhenBanked, so it can be watched for '
+          + 'further collapse. Re-bank with `--update-road-bands`, which MERGES: a '
+          + 'run banks the bands it measured and leaves the rest alone, because the '
+          + 'road bands live in stage 3 and a full unfiltered pass does not fit the '
+          + 'ten-minute command ceiling (T-0121).',
+      bands: Object.fromEntries(Object.entries(merged).sort()),
+    }, null, 2)}\n`);
+    console.log(`\nre-banked ${Object.keys(ROAD_BAND_OBSERVED).length} road band(s)`
+      + ` → ${path.relative(process.cwd(), ROAD_BAND_BASELINE)}`
+      + (untouched.length ? `; left ${untouched.length} band(s) this run did not measure `
+        + `untouched (${[...new Set(untouched.map((k) => k.split('/')[0]))].join(', ')})` : ''));
+  }
+}
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the

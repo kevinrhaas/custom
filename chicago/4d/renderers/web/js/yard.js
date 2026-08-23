@@ -19,11 +19,17 @@
  *    samples `terrain.surfaceHeight` at its own point — which is the opposite
  *    of `signage.js`, where a board must hang off the same datum as the wall it
  *    is bolted to or it floats. Two layers, two right answers.
- *  * It draws no mark, brand, stencil or label. Not on any barrel or case,
- *    ever. L25 decided that for the one documented sign in this town, L130
- *    generalised it to two dozen boards, and it generalises again with force:
- *    nothing this project holds says what was in any barrel in Chicago on this
- *    date, still less whose it was.
+ *  * IT MARKS THE GOODS (T-0065). This bullet used to say the opposite — no
+ *    mark, no brand, no stencil, no label, not on any barrel or case, ever —
+ *    and the owner overruled it on 2026-08-18: *"you can add period correct
+ *    names and brands and labels to things."* So every cask carries a
+ *    stencilled commodity word or the house's own brand burned into its head,
+ *    and every case carries a shipping mark. WHAT a mark may say is fenced in
+ *    `tools/generate_yard_goods.py` and bounded in docs/LIBERTIES.md L166; this
+ *    file only paints what the record says, on ONE CANVAS ATLAS, so a mark
+ *    costs no triangles and the layer keeps its one material and its chunked
+ *    draw calls. Every vertex that carries no mark samples a white cell, which
+ *    multiplies to exactly the timber it was before.
  *  * It carries ONE MATERIAL and draws in CULLING-SIZED CHUNKS (T-0064). It was
  *    one draw call for the whole layer for as long as the layer was a hundred
  *    and fifty barrels on twenty-six frontages and four wagons — and it kept
@@ -46,6 +52,17 @@
  *  * It answers a pick. A barrel belongs to the business whose door it stands
  *    at, so clicking it opens that business's card — the same contract the
  *    signboards keep.
+ *  * IT DRAWS THE OTHER HALF OF THE ORDINANCE (T-0057), and it is a second record
+ *    rather than a second column on the first. Ordinance 9 names *timber, stone,
+ *    brick, boxes and barrels*; the boxes and barrels are a merchant's stock on his
+ *    own frontage, and the three building materials are stock of a completely
+ *    different kind — they belong to a building that is GOING UP. Only one structure
+ *    in this scene says it was: `lake_house_construction`, a roofless brick shell
+ *    whose `function` is `hotel_under_construction`, attested. So brick, squared
+ *    timber and footing stone stand on that lot and on no other, `data/yard/
+ *    lot_building_material.json` argues which face each gets, and this file only
+ *    draws them. They are the only things on the layer that are not timber or
+ *    canvas: brick is the town's own chimney brick and stone is a bounded grey.
  *  * It draws A ROOF, once: the open-sided wagon shed at the Green Tree's yard
  *    end (T-0081), posts and plates and a lean-to over a covered wagon. It is
  *    still not a structure record and still not baked — it is derived from that
@@ -156,6 +173,42 @@ const CANVAS_COLOUR = 0xbfb49b;
 const TILT_SEGS = 8;
 
 /**
+ * THE TWO TONES THE BUILDING MATERIAL BRINGS (T-0057), and only one of them is new.
+ *
+ * BRICK IS NOT NEW. It is this town's ONE brick — `generators/common/materials.py`'s
+ * `CHIMNEY_BRICK`, off the Petford watercolour's brick chimneys, and the same brick
+ * every framed house in the scene carries on its stack. It is written here as the
+ * sheet's own LINEAR triple rather than as an sRGB hex, which is why this constant is
+ * a `setRGB` and its neighbours are `setHex`: a glTF base colour factor is linear by
+ * definition and `THREE.Color.setRGB` defaults to the working colour space, so the two
+ * agree by construction instead of by a conversion somebody did once.
+ *
+ * STONE IS NEW, and the material sheet has no row for it — its `stone` substrate
+ * carries a roughness and no colour, because the one record that uses it says bare
+ * masonry is unattested here. So the tone is RECONSTRUCTED and bounded by two values
+ * this project already ships. It is paler and greyer than the layer's own timber
+ * (0x8a7a5f), or a heap of footing stone stops reading as stone beside the sticks
+ * piled next to it; and it is darker than the chinking clay the log walls are daubed
+ * with (linear 0.700/0.670/0.590), which is the same mineral sitting sheltered under
+ * an eave while a heap in a yard takes the weather. docs/LIBERTIES.md L173.
+ */
+const BRICK_LINEAR = [0.45, 0.23, 0.17];
+const STONE_COLOUR = 0xa8a49b;
+
+/**
+ * The stone heap's own yaw and stagger, which are the RENDERER's the way the barrel's
+ * stave count is: the record says nine blocks in two tiers, and how each one happens
+ * to be lying is not a claim anybody can make about a heap of rubble. Fixed numbers,
+ * not a random deal — a load that changed shape between two loads of the same page
+ * would be a lottery, and this layer has never had one.
+ */
+const STONE_YAW_DEG = [0, 34, -21, 12, -47, 63, -8, 27, -35];
+const STONE_JITTER = [
+  [-0.62, -0.20], [0.08, -0.26], [0.70, -0.14], [-0.30, 0.24], [0.42, 0.20],
+  [-0.72, 0.16], [0.00, 0.02], [0.58, 0.30], [-0.16, -0.02],
+];
+
+/**
  * THE CART'S SHAFTS AND THE YOKE'S BOWS (T-0064) — sections only, as everywhere
  * else on this layer. How long a shaft is and how wide a yoke's beam are the
  * record's claims (`cart_m`, `ox_yoke_m`); how thick the stick is drawn is the
@@ -181,6 +234,226 @@ const CHUNK_M = 100;
 const DECK_T_M = 0.04;
 
 /* -------------------------------------------------------------------------- */
+/* the marks (T-0065)                                                          */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * ONE CELL PER DISTINCT MARK, and the size is arithmetic rather than taste. A
+ * barrel head is 0.45 m across and a case face 1.05 m; a visitor reads either
+ * from about a metre and a half, where the head fills roughly a third of a
+ * 1280-wide viewport. 192 px across a head is a shade over 2 px per millimetre
+ * of stave, which puts a 40 px capital on the head — more is texture nobody
+ * resolves and less is a smudge. The town deals about seventy distinct marks,
+ * so eight columns is nine rows and the whole atlas is 1536 x 1728.
+ */
+const MARK_TILE = 192;
+const MARK_COLS = 8;
+const MARK_PAD = 8;
+
+/**
+ * THE THREE LETTERFORMS, and they are the signboards' faces one layer down
+ * (`signage.js` FACES, T-0066) rather than a second invention. A browser has no
+ * 1830s specimen book in it, so each is a family, a weight, a horizontal scale
+ * and a tracking:
+ *
+ *  * STENCIL — a commodity word cut through a plate. Condensed, heavy, widely
+ *    tracked, and drawn with the BRIDGES a stencil plate has to leave, which is
+ *    the one thing that makes a stencil read as a stencil rather than as type.
+ *  * BRAND — the house's own mark, burned into the head with a hot iron. A
+ *    roman with weight, tighter, and in a browner ink than the stencil's black,
+ *    because a brand is scorched wood and not paint.
+ *  * SHIPPING — the consignee's mark on a case, brush-written by whoever crated
+ *    it. Plain, upright, unbridged.
+ *
+ * The letterform is invented exactly as the boards' is (docs/LIBERTIES.md L159,
+ * and L166 for this layer), and what it has to do is be legible from the footway
+ * and not read as modern type.
+ */
+const MARK_FACES = {
+  stencil: {
+    family: 'Helvetica, Arial, "Liberation Sans", sans-serif',
+    weight: 800, scaleX: 0.86, track: 0.14, ink: '#3a3125', bridges: true,
+  },
+  brand: {
+    family: 'Georgia, "Times New Roman", Times, serif',
+    weight: 700, scaleX: 0.98, track: 0.06, ink: '#4a3a24', bridges: false,
+  },
+  shipping: {
+    family: 'Georgia, "Times New Roman", Times, serif',
+    weight: 600, scaleX: 0.94, track: 0.09, ink: '#37301f', bridges: false,
+  },
+};
+
+/** How much of a cell the lettering is allowed, by what it is painted on. */
+const MARK_BOX = {
+  // A head is a disc inscribed in its cell, so a block wider than this would run
+  // off the chine: at 0.78 x 0.46 the corners sit at 0.90 of the radius.
+  head: [0.78, 0.46],
+  case: [0.88, 0.68],
+  // A bilge is a band around the belly of a standing cask, so the lettering runs
+  // the full width of the arc and takes a third of its height — which is where a
+  // stencil goes on a barrel, and is the only face of one a visitor reads from
+  // the footway without looking down into it.
+  bilge: [0.92, 0.34],
+};
+
+/**
+ * How much of a cask's circumference the bilge mark is painted across, in
+ * STAVES. Three of the ten is 108 degrees, which is the widest arc that still
+ * turns its whole face toward one reader: at four the outer stave is 72 degrees
+ * off and reads as a smear.
+ */
+const BILGE_STAVES = 3;
+
+/** The key two marks share iff they can share a cell. */
+function markKey(mark, shape) {
+  return `${shape}|${mark.letterform}|${mark.lines.join('|')}`;
+}
+
+/** The width one line takes, tracking and horizontal scale included. */
+function markLineWidth(ctx, str, size, face) {
+  ctx.font = `${face.weight} ${size}px ${face.family}`;
+  let w = 0;
+  for (const ch of str) w += ctx.measureText(ch).width;
+  if (str.length > 1) w += face.track * size * (str.length - 1);
+  return w * face.scaleX;
+}
+
+/** One line, centred, letter by letter so the tracking is real. */
+function markDrawLine(ctx, str, cx, cy, size, face) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(face.scaleX, 1);
+  ctx.font = `${face.weight} ${size}px ${face.family}`;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+  const tr = face.track * size;
+  let w = 0;
+  for (const ch of str) w += ctx.measureText(ch).width;
+  if (str.length > 1) w += tr * (str.length - 1);
+  let x = -w / 2;
+  for (const ch of str) {
+    ctx.fillText(ch, x, 0);
+    x += ctx.measureText(ch).width + tr;
+  }
+  ctx.restore();
+}
+
+/**
+ * One mark's cell: white everywhere the paint is not, because the map MULTIPLIES
+ * the timber tone the vertices already carry. A ground of anything but white
+ * would repaint the whole barrel, and a mark is paint on wood, not a new wood.
+ *
+ * Returns the sub-rectangle, in canvas pixels, that the marked face samples —
+ * square for a barrel head, the case's own aspect for a case face — so the
+ * letters are not stretched when the quad reads them.
+ */
+function paintMark(ctx, x, y, mark, shape, aspect) {
+  const face = MARK_FACES[mark.letterform] || MARK_FACES.stencil;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(x, y, MARK_TILE, MARK_TILE);
+  const inner = MARK_TILE - 2 * MARK_PAD;
+  let rw = inner;
+  let rh = inner / (aspect || 1);
+  if (rh > inner) { rh = inner; rw = inner * (aspect || 1); }
+  const rx = x + MARK_PAD + (inner - rw) / 2;
+  const ry = y + MARK_PAD + (inner - rh) / 2;
+
+  const [boxW, boxH] = MARK_BOX[shape];
+  const maxW = rw * boxW;
+  const maxH = rh * boxH;
+  const lines = mark.lines.filter(Boolean);
+  if (!lines.length) return { rx, ry, rw, rh };
+  // The type is what gives way: the words are a given and the head is a size.
+  let lo = 4;
+  let hi = Math.ceil(rh);
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi + 1) / 2);
+    const fits = lines.length * mid * 1.22 <= maxH
+      && lines.every((l) => markLineWidth(ctx, l, mid, face) <= maxW);
+    if (fits) lo = mid; else hi = mid - 1;
+  }
+  const size = lo;
+  if (size < 5) return { rx, ry, rw, rh };
+  const lh = size * 1.22;
+  const top = ry + rh / 2 - ((lines.length - 1) * lh) / 2;
+  ctx.fillStyle = face.ink;
+  for (let i = 0; i < lines.length; i += 1) {
+    markDrawLine(ctx, lines[i], rx + rw / 2, top + i * lh, size, face);
+  }
+  // THE BRIDGES, and they are what a stencil IS. A plate cannot cut a closed
+  // counter loose, so every stencil letterform of the period carries ties
+  // across its strokes; two thin ones through the cap height read as a stencil
+  // at any distance a visitor can be, and cost two rectangles.
+  if (face.bridges) {
+    ctx.fillStyle = '#ffffff';
+    const t = Math.max(1, size * 0.075);
+    for (let i = 0; i < lines.length; i += 1) {
+      const cy = top + i * lh;
+      for (const at of [-0.20, 0.22]) {
+        ctx.fillRect(rx + rw / 2 - maxW / 2, cy + size * at - t / 2, maxW, t);
+      }
+    }
+  }
+  return { rx, ry, rw, rh };
+}
+
+/**
+ * Lay every distinct mark in the town on one canvas and hand back the texture
+ * plus, per mark, the uv rectangle its face samples.
+ *
+ * Cell 0 is left BLANK — pure white — and everything on this layer that carries
+ * no mark samples a single point inside it. That is what lets a textured
+ * material draw a barrel, a wagon and a wagon shed exactly as they were drawn
+ * before this file had a texture at all: white multiplies to nothing.
+ *
+ * `null` when there is no document to draw on (a headless parse of this module,
+ * or a browser that refuses a 2d context) — the caller then draws untextured
+ * timber, which is the layer as T-0040 shipped it and is a degradation rather
+ * than a failure.
+ */
+function buildMarkAtlas(wanted) {
+  if (typeof document === 'undefined') return null;
+  const keys = [...wanted.keys()].sort();
+  const cells = keys.length + 1;                    // + the blank
+  const rows = Math.max(1, Math.ceil(cells / MARK_COLS));
+  const canvas = document.createElement('canvas');
+  canvas.width = MARK_COLS * MARK_TILE;
+  canvas.height = rows * MARK_TILE;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const W = canvas.width;
+  const H = canvas.height;
+  const rects = new Map();
+  keys.forEach((key, i) => {
+    const cell = i + 1;
+    const x = (cell % MARK_COLS) * MARK_TILE;
+    const y = Math.floor(cell / MARK_COLS) * MARK_TILE;
+    const { mark, shape, aspect } = wanted.get(key);
+    const r = paintMark(ctx, x, y, mark, shape, aspect);
+    // Canvas y runs down and uv v runs up, so the rect's top edge is v1.
+    rects.set(key, {
+      u0: r.rx / W, u1: (r.rx + r.rw) / W,
+      v0: 1 - (r.ry + r.rh) / H, v1: 1 - r.ry / H,
+    });
+  });
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  texture.needsUpdate = true;
+  return {
+    texture,
+    rects,
+    // dead centre of the blank cell, far from any painted neighbour
+    blank: [(MARK_TILE / 2) / W, 1 - (MARK_TILE / 2) / H],
+    cells,
+    size: [W, H],
+  };
+}
+
+/* -------------------------------------------------------------------------- */
 /* primitives                                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -190,7 +463,8 @@ const DECK_T_M = 0.04;
  * Deliberately the same helper shape as the enclosure and signage layers' —
  * three layers drawing small timber the same way is one thing to reason about.
  */
-function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
+function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level,
+  markRect = null) {
   const vx = -uz;
   const vz = ux;
   const P = (a, b, c) => [
@@ -210,20 +484,43 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
     [[4, 7, 6], [4, 6, 5], [0, 1, 0]],
     [[0, 1, 2], [0, 2, 3], [0, -1, 0]],
   ];
-  for (const [t1, t2, n] of faces) {
-    for (const tri of [t1, t2]) {
-      for (const i of tri) {
+  /**
+   * THE MARKED FACE IS FACE 3, and which one that is falls out of the frame
+   * rather than out of a preference. `u` is along the wall and `v` is `u`
+   * turned left, so the face whose normal is `-v` is the one looking AWAY from
+   * the wall the goods stand at — the street side, the only side of a packing
+   * case anybody reads. Its four corners are p0, p4, p5, p1, at (a, c) of
+   * (-1,-1), (-1,1), (1,1) and (1,-1); the vertical of the mark runs with `c`
+   * and its horizontal runs with `-a`, because screen-right for a viewer
+   * standing off `-v` with world up is `forward x up` = `v x y` = `-u`. The
+   * sign is not a taste and it is not guessable: with `+a` the whole town's
+   * cases came out mirror-written, which is what caught it.
+   */
+  const CORNER = { 0: [1, 0], 4: [1, 1], 5: [0, 1], 1: [0, 0] };
+  const uvAt = (i) => {
+    const [sx2, ty] = CORNER[i];
+    return [markRect.u0 + sx2 * (markRect.u1 - markRect.u0),
+      markRect.v0 + ty * (markRect.v1 - markRect.v0)];
+  };
+  faces.forEach(([t1, t2, n], fi) => {
+    const marked = markRect && fi === 3;
+    for (const t of [t1, t2]) {
+      for (const i of t) {
         buf.pos.push(p[i][0], p[i][1], p[i][2]);
         buf.nrm.push(n[0], n[1], n[2]);
         buf.conf.push(level);
         buf.col.push(buf.tint[0], buf.tint[1], buf.tint[2]);
+        const uv = marked ? uvAt(i) : buf.blank;
+        buf.uv.push(uv[0], uv[1]);
       }
     }
-  }
+  });
 }
 
-function tri(buf, a, b, c, n, level) {
-  for (const p of [a, b, c]) {
+function tri(buf, a, b, c, n, level, uvs = null) {
+  const P = [a, b, c];
+  for (let i = 0; i < 3; i += 1) {
+    const p = P[i];
     buf.pos.push(p[0], p[1], p[2]);
     buf.nrm.push(n[0], n[1], n[2]);
     buf.conf.push(level);
@@ -231,6 +528,11 @@ function tri(buf, a, b, c, n, level) {
     // renderer's working colour space. Every primitive on this layer goes
     // through here or through `pushBox`, so nothing can be emitted untinted.
     buf.col.push(buf.tint[0], buf.tint[1], buf.tint[2]);
+    // And `buf.blank` is the white cell of the mark atlas (T-0065). Everything
+    // that is not a marked face samples it, which multiplies to exactly the
+    // timber the layer drew before it had a texture at all.
+    const uv = uvs ? uvs[i] : buf.blank;
+    buf.uv.push(uv[0], uv[1]);
   }
 }
 
@@ -288,7 +590,7 @@ function pushBoxV(buf, c, ea, eb, ec0, level) {
  * and does not need a cask's roundness (T-0064).
  */
 function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level,
-  sides = BARREL_SIDES) {
+  sides = BARREL_SIDES, headMark = null, sideMark = null) {
   const [ax, ay, az] = axis;
   const [rx, ry, rz] = right;
   // the third axis of the frame, right × axis
@@ -318,17 +620,99 @@ function pushBarrel(buf, cx, cy, cz, axis, right, len, bellyR, headR, level,
     const L = Math.hypot(dx, dy, dz) || 1;
     return [dx / L, dy / L, dz / L];
   };
+  /**
+   * THE BILGE MARK (T-0065), and it is painted across `BILGE_STAVES` of the
+   * cask's staves rather than around the whole of it, because a stencil is a
+   * plate laid against one face and not a wrapper.
+   *
+   * WHICH staves is `sideMark.center` — the angle, in the cask's own frame,
+   * that has to face the reader. Upright, that is the outward normal of the
+   * frontage; the nearest whole stave to it is taken with one either side, so
+   * the painted arc is symmetric about a stave rather than about a joint.
+   *
+   * `u` runs BACKWARDS around the arc, and the sign is the same one the cases
+   * needed: a reader standing off the cask with world up sees screen-right at
+   * `forward x up`, which for a point `d` round from the centre works out as
+   * `-sin d`. `v` runs up the cask, 0 at the lower chine and 1 at the upper,
+   * with the belly ring at the half — so the lettering bows out with the
+   * staves, exactly as paint on a real cask does.
+   */
+  const step = (Math.PI * 2) / sides;
+  let q0 = 0;
+  if (sideMark) {
+    // the stave whose own middle is nearest the direction that must face out
+    q0 = Math.round(sideMark.center / step - 0.5);
+  }
+  const first = q0 - (BILGE_STAVES - 1) / 2;
+  /** The uv of ring point `i` at height `t` (0 lower chine, 1 upper), or null. */
+  const sideUV = (i, t) => {
+    if (!sideMark) return null;
+    // `i` counted forward from the arc's first stave, wrapped into one turn —
+    // which is what lets the caller hand this `i + 1` on the last stave and get
+    // the arc's own far edge rather than a jump back to its near one.
+    let n2 = (i - first) % sides;
+    if (n2 < 0) n2 += sides;
+    if (n2 > BILGE_STAVES) return null;
+    const u = 1 - n2 / BILGE_STAVES;
+    return [
+      sideMark.rect.u0 + u * (sideMark.rect.u1 - sideMark.rect.u0),
+      sideMark.rect.v0 + t * (sideMark.rect.v1 - sideMark.rect.v0),
+    ];
+  };
   for (let i = 0; i < sides; i += 1) {
     const j = (i + 1) % sides;
-    for (const [a, b] of [[lo, mid], [mid, hi]]) {
-      tri(buf, a[i], b[i], b[j], nOf(b[i], 0), level);
-      tri(buf, a[i], b[j], a[j], nOf(a[i], 0), level);
+    for (const [a, b, t0, t1] of [[lo, mid, 0, 0.5], [mid, hi, 0.5, 1]]) {
+      const ai = sideUV(i, t0);
+      const bi = sideUV(i, t1);
+      const bj = sideUV(i + 1, t1);
+      const aj = sideUV(i + 1, t0);
+      const on = ai && bi && bj && aj;
+      tri(buf, a[i], b[i], b[j], nOf(b[i], 0), level, on ? [ai, bi, bj] : null);
+      tri(buf, a[i], b[j], a[j], nOf(a[i], 0), level, on ? [ai, bj, aj] : null);
     }
   }
+  /**
+   * A HEAD MARK GOES ON THE `hi` HEAD (T-0065) — for the empties laid along a
+   * wall, whose bilge is turned up at the sky and whose head is the one face of
+   * them a visitor reads the right way up. A standing cask is marked on its
+   * BILGE instead, below. A ring point at angle k stands at `cos k` along
+   * `right` and `sin k` along the frame's third axis, so the disc maps onto the
+   * cell by exactly that, up to which way round the reader is.
+   *
+   * `rot` turns the lettering a quarter for the laid cask, and neither mapping
+   * is a taste — both are `right = forward x up` worked through.
+   *
+   * UPRIGHT: a reader stands on the street and looks in at the head, so the
+   * page's up is the frame's third axis (the inward normal, `sin k`) and its
+   * rightward direction is MINUS `right` (`-cos k`), because
+   * `third x y = -right`.
+   *
+   * LAID: the cask lies along the wall, so its head faces down the footway and
+   * the reader is at the far end of it. The page's up is world up, which for a
+   * laid cask IS `right` (`cos k`), and its rightward direction is the third
+   * axis (`sin k`).
+   *
+   * Getting either sign wrong writes the mark mirrored, which is exactly what
+   * the first build of this did to every case in the town.
+   */
+  const markUV = (k) => {
+    const c = Math.cos(k);
+    const sn = Math.sin(k);
+    const [mx, my] = headMark.rot ? [sn, c] : [-c, sn];
+    return [
+      headMark.rect.u0 + (0.5 + 0.5 * mx) * (headMark.rect.u1 - headMark.rect.u0),
+      headMark.rect.v0 + (0.5 + 0.5 * my) * (headMark.rect.v1 - headMark.rect.v0),
+    ];
+  };
+  const ang = (i) => (i / sides) * Math.PI * 2;
   for (const [ringPts, sign] of [[lo, -1], [hi, 1]]) {
     const n = [ax * sign, ay * sign, az * sign];
+    const marked = headMark && sign > 0;
     for (let i = 1; i < sides - 1; i += 1) {
-      if (sign > 0) tri(buf, ringPts[0], ringPts[i], ringPts[i + 1], n, level);
+      const uvs = marked
+        ? [markUV(ang(0)), markUV(ang(i)), markUV(ang(i + 1))]
+        : null;
+      if (sign > 0) tri(buf, ringPts[0], ringPts[i], ringPts[i + 1], n, level, uvs);
       else tri(buf, ringPts[0], ringPts[i + 1], ringPts[i], n, level);
     }
   }
@@ -516,7 +900,7 @@ function groundAt(terrain, e, n) {
   return Number.isFinite(y) ? y : null;
 }
 
-function buildItem(buf, item, form, terrain, level, problems, who) {
+function buildItem(buf, item, form, terrain, level, problems, who, marks = null) {
   const at = item.at_local_enu_m;
   if (!Array.isArray(at) || at.length !== 2) return false;
   const base = groundAt(terrain, at[0], at[1]);
@@ -536,12 +920,28 @@ function buildItem(buf, item, form, terrain, level, problems, who) {
     const h = form.barrelHeight;
     const belly = form.barrelBelly / 2;
     const head = form.barrelHead / 2;
+    /**
+     * T-0065, AND WHERE THE MARK GOES DEPENDS ON WHICH WAY THE CASK IS LYING.
+     * A cask STANDING on its head is read from the footway, so its stencil is
+     * across the BILGE — three staves of the belly, turned to the street. A
+     * cask LAID on its side has its bilge turned up at the sky and its HEAD
+     * turned down the footway, which is then the only face of it a visitor can
+     * read the right way up; so the empties are marked on the head. Both are
+     * where the period put them, and both are chosen by what can be read.
+     */
     if (item.pose === 'laid') {
       // an empty put back out, lying ALONG the wall and out of the way rather
       // than across the footway: the axis is the along-wall direction.
-      pushBarrel(buf, x, base + belly, z, [wx, 0, wz], [0, 1, 0], h, belly, head, level);
+      const rect = item.mark && marks ? marks(item.mark, 'head') : null;
+      pushBarrel(buf, x, base + belly, z, [wx, 0, wz], [0, 1, 0], h, belly, head, level,
+        BARREL_SIDES, rect ? { rect, rot: 1 } : null);
     } else {
-      pushBarrel(buf, x, base + h / 2, z, [0, 1, 0], [wx, 0, wz], h, belly, head, level);
+      // Upright, `right` is along the wall and the frame's third axis is the
+      // INWARD normal, so the direction that has to face the street is the one
+      // at three quarters of a turn: cos = 0, sin = -1, which is -third.
+      const rect = item.mark && marks ? marks(item.mark, 'bilge') : null;
+      pushBarrel(buf, x, base + h / 2, z, [0, 1, 0], [wx, 0, wz], h, belly, head, level,
+        BARREL_SIDES, null, rect ? { rect, center: (3 * Math.PI) / 2 } : null);
     }
     return true;
   }
@@ -566,7 +966,11 @@ function buildItem(buf, item, form, terrain, level, problems, who) {
     const tier = item.tier || 0;
     const s = tier === 0 ? 1 : form.crate2Scale;
     const y = base + (tier === 0 ? hh / 2 : hh + (hh * s) / 2);
-    pushBox(buf, x, y, z, wx, wz, (l * s) / 2, (w * s) / 2, (hh * s) / 2, level);
+    // The shipping mark goes on the face that looks at the street, which is the
+    // one `pushBox` calls face 3. A case stacked on another is the same aspect
+    // — it is the same case scaled — so both tiers share the atlas cell.
+    pushBox(buf, x, y, z, wx, wz, (l * s) / 2, (w * s) / 2, (hh * s) / 2, level,
+      item.mark && marks ? marks(item.mark, 'case') : null);
     return true;
   }
   return false;
@@ -927,6 +1331,107 @@ async function getJSON(url) {
 }
 
 /** The record's `form` block, read once so no draw reaches into the JSON. */
+/**
+ * ONE PILE OF BUILDING MATERIAL on a lot that was going up — T-0057, and the other
+ * half of Ordinance 9. The ordinance names *timber, stone, brick, boxes and barrels*;
+ * T-0040 drew the boxes and barrels at the trading frontages and left these three,
+ * because they are a different claim about a different kind of ground — building
+ * material belongs to a building that is being BUILT, and only one record in this
+ * scene says any building was.
+ *
+ * THE FRAME IS THE LAYER'S OWN, unchanged: the record's `bearing_deg` is the compass
+ * bearing of the face the pile stands off, so along that face is (cos b, sin b) in
+ * world XZ and out of it is (sin b, -cos b) — the same two lines every barrel and
+ * every signboard in this town is placed by. The pile stands on the TERRAIN at its own
+ * point, like everything else on this layer and unlike the boards one layer over.
+ *
+ * EVERY SIZE IS THE RECORD'S. How many courses a timber pile is, how many blocks a
+ * heap holds and how the two brick tiers step are all in `form`, graded and noted
+ * there. What is this file's is what a triangle is made of: which way a block of
+ * rubble happens to be lying, which is not a claim anybody can make about a heap.
+ */
+function buildStack(buf, item, form, terrain, level, problems, who) {
+  const at = item.at_local_enu_m;
+  if (!Array.isArray(at) || at.length !== 2) return false;
+  const base = groundAt(terrain, at[0], at[1]);
+  if (base === null) {
+    problems.push(`yard: ${who} has no ground under its ${item.kind} — it is not drawn`);
+    return false;
+  }
+  const b = ((item.bearing_deg ?? 0) * Math.PI) / 180;
+  const wx = Math.cos(b);
+  const wz = Math.sin(b);
+  // `pushBox`'s own across-axis, so an offset written here lands where the box's
+  // width does.
+  const vx = -wz;
+  const vz = wx;
+  const x = at[0];
+  const z = -at[1];
+
+  if (item.kind === 'brick') {
+    const [L, W, H] = form.brickStack;
+    const [inset, split] = form.brickTier;
+    const low = H * split;
+    buf.tint = buf.brick;
+    pushBox(buf, x, base + low / 2, z, wx, wz, L / 2, W / 2, low / 2, level);
+    const up = H - low;
+    if (up > 0) {
+      pushBox(buf, x, base + low + up / 2, z, wx, wz,
+        Math.max(L / 2 - inset, 0.05), Math.max(W / 2 - inset, 0.05), up / 2, level);
+    }
+    buf.tint = buf.timber;
+    return true;
+  }
+
+  if (item.kind === 'timber') {
+    const [len, sq] = form.timberStick;
+    const [per, , short] = form.timberPile;
+    const courses = item.courses ?? 4;
+    for (let c = 0; c < courses; c += 1) {
+      // The top course is short, and it is short at ONE END rather than at both:
+      // a pile being worked off loses its sticks from the side the barrow is on,
+      // and a symmetrically shortened top reads as a design.
+      const top = c === courses - 1 && courses > 1;
+      const count = Math.max(1, top ? per - short : per);
+      const shift = top ? (short * sq) / 2 : 0;
+      for (let i = 0; i < count; i += 1) {
+        const acr = (i - (per - 1) / 2) * sq + shift;
+        pushBox(buf, x + vx * acr, base + sq / 2 + c * sq, z + vz * acr,
+          wx, wz, len / 2, sq / 2, sq / 2, level);
+      }
+    }
+    return true;
+  }
+
+  if (item.kind === 'stone') {
+    const [bl, bw, bh] = form.stoneBlock;
+    const [blocks, tiers] = form.stoneHeap;
+    const n = Math.max(1, Math.min(item.blocks ?? blocks, STONE_YAW_DEG.length));
+    // The upper tier is the tail of the deal and is drawn pulled toward the middle,
+    // which is what makes a tipped load read as a heap and not as two layers.
+    const upper = tiers > 1 ? Math.max(1, Math.round(n / 3)) : 0;
+    buf.tint = buf.stone;
+    for (let i = 0; i < n; i += 1) {
+      const high = i >= n - upper;
+      const pull = high ? 0.5 : 1.0;
+      const [ja, jc] = STONE_JITTER[i];
+      const along = ja * 1.0 * pull;
+      const acr = jc * 1.2 * pull;
+      const yaw = b + (STONE_YAW_DEG[i] * Math.PI) / 180;
+      const ux = Math.cos(yaw);
+      const uz = Math.sin(yaw);
+      pushBox(buf,
+        x + wx * along + vx * acr,
+        base + (high ? bh * 1.4 : bh / 2),
+        z + wz * along + vz * acr,
+        ux, uz, bl / 2, bw / 2, bh / 2, level);
+    }
+    buf.tint = buf.timber;
+    return true;
+  }
+  return false;
+}
+
 function readForm(record) {
   const f = record?.form ?? {};
   const v = (k, fallback) => (f[k]?.value ?? fallback);
@@ -953,6 +1458,15 @@ function readForm(record) {
     cart: v('cart_m', [1.98, 1.07, 0.5, 1.42, 0.86, 2.44]),
     yoke: v('ox_yoke_m', [1.42, 0.12, 0.34, 0.05]),
     yokeOffset: 1.35,
+    // T-0057's building material. Same contract again: every size is the record's
+    // claim, graded and noted there, and the fallbacks are only what keeps a record
+    // written before this parcel from throwing.
+    brickStack: v('brick_stack_m', [2.2, 1.1, 1.05]),
+    brickTier: v('brick_tier_m', [0.18, 0.62]),
+    timberStick: v('timber_stick_m', [3.66, 0.2, 0.2]),
+    timberPile: v('timber_pile', [5, [5, 4], 2]),
+    stoneBlock: v('stone_block_m', [0.7, 0.45, 0.35]),
+    stoneHeap: v('stone_heap', [9, 2]),
   };
 }
 
@@ -970,11 +1484,13 @@ export async function createYardGoods({
     group,
     records: [],
     frontages: [],
+    lots: [],
     wagons: [],
     benches: [],
     sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
-      byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0 },
+      byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0,
+      marked: 0, markCells: 0, lots: 0, piles: 0, byMaterial: {} },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -1001,6 +1517,56 @@ export async function createYardGoods({
   }));
 
   /**
+   * THE MARKS ARE COLLECTED BEFORE ANYTHING IS DRAWN (T-0065), because a
+   * vertex cannot be given a uv into a cell that does not exist yet. Two casks
+   * stencilled FLOUR at opposite ends of the town share one cell — the key is
+   * the wording, the letterform and the shape it is painted on, and nothing
+   * else — which is what keeps seventy-odd marks in one atlas instead of a
+   * hundred and forty-eight.
+   */
+  const markCells = new Map();
+  for (const [, record] of loaded) {
+    if (!record) continue;
+    const f = readForm(record);
+    // A case's face is as wide as the case and as tall; a cask's bilge band is
+    // as wide as the arc it is painted on — the developed length of
+    // `BILGE_STAVES` of the belly, not its chord, because paint follows the
+    // stave — and as tall as the cask. A head is a disc, so it is square.
+    const shapes = {
+      case: (f.crate[0] || 1) / (f.crate[2] || 1),
+      bilge: ((f.barrelBelly / 2) * BILGE_STAVES * ((Math.PI * 2) / BARREL_SIDES))
+        / (f.barrelHeight || 1),
+      head: 1,
+    };
+    for (const frontage of record.frontages ?? []) {
+      for (const item of frontage.items ?? []) {
+        const mark = item.mark;
+        if (!mark || !Array.isArray(mark.lines) || !mark.lines.length) continue;
+        let shape = 'bilge';
+        if (item.kind === 'crate') shape = 'case';
+        else if (item.pose === 'laid') shape = 'head';
+        const key = markKey(mark, shape);
+        if (!markCells.has(key)) {
+          markCells.set(key, { mark, shape, aspect: shapes[shape] });
+        }
+      }
+    }
+  }
+  const atlas = markCells.size ? buildMarkAtlas(markCells) : null;
+  if (markCells.size && !atlas) {
+    // No document, or a context refused: the goods stand exactly as T-0040
+    // shipped them, unmarked. A degradation with a name, not a silent one.
+    problems.push('yard: no canvas to paint the goods\u2019 marks on — the barrels and '
+      + 'cases are drawn unmarked');
+  }
+  /** The cell a mark is painted in, or null when there is no atlas. */
+  const markRect = (mark, shape) => {
+    if (!atlas) return null;
+    return atlas.rects.get(markKey(mark, shape)) ?? null;
+  };
+  out.census.markCells = atlas ? atlas.cells : 0;
+
+  /**
    * THE TINT IS PART OF THE BUFFER, not of the material. One material, one draw
    * call, and a per-vertex colour is what lets the tilt's canvas be canvas
    * without a second mesh — `buf.tint` is whatever the current primitive is
@@ -1010,9 +1576,15 @@ export async function createYardGoods({
    */
   const timber = new THREE.Color(GOODS_COLOUR);
   const canvasTone = new THREE.Color(CANVAS_COLOUR);
+  // Brick goes in as the material sheet's own LINEAR triple; `setRGB` defaults to the
+  // working colour space, so no conversion happens and none can go wrong.
+  const brickTone = new THREE.Color().setRGB(...BRICK_LINEAR);
+  const stoneTone = new THREE.Color(STONE_COLOUR);
   const tones = {
     timber: [timber.r, timber.g, timber.b],
     canvas: [canvasTone.r, canvasTone.g, canvasTone.b],
+    brick: [brickTone.r, brickTone.g, brickTone.b],
+    stone: [stoneTone.r, stoneTone.g, stoneTone.b],
   };
   /**
    * THE CHUNKS, and what decides which one a thing goes in: WHERE IT STANDS.
@@ -1036,7 +1608,8 @@ export async function createYardGoods({
     if (!chunk) {
       chunk = {
         key,
-        buf: { pos: [], nrm: [], conf: [], col: [], ...tones, tint: tones.timber },
+        buf: { pos: [], nrm: [], conf: [], col: [], uv: [], ...tones,
+          tint: tones.timber, blank: atlas ? atlas.blank : [0, 0] },
         spans: [],
       };
       chunks.set(key, chunk);
@@ -1076,17 +1649,46 @@ export async function createYardGoods({
       const from = chunk.buf.pos.length / 9;
       for (const item of frontage.items ?? []) {
         if (!buildItem(chunk.buf, item, form, terrain,
-          LEVEL[frontage.confidence] ?? level, problems, frontage.structure_id)) continue;
+          LEVEL[frontage.confidence] ?? level, problems, frontage.structure_id,
+          markRect)) continue;
         drew += 1;
         out.census.objects += 1;
         if (item.kind === 'barrel') out.census.barrels += 1;
         if (item.kind === 'crate') out.census.crates += 1;
+        if (item.mark && atlas) out.census.marked += 1;
       }
       if (!drew) continue;
       chunk.spans.push({ id: frontage.structure_id, from,
         to: chunk.buf.pos.length / 9 });
       out.frontages.push(frontage);
       out.census.frontages += 1;
+    }
+    /**
+     * THE LOTS THAT WERE GOING UP (T-0057). Same shape as a frontage and for the same
+     * reason: a lot's piles are one pick target — aim at a stack of brick and the
+     * Lake House's card opens — so they go in one chunk and bank one span, exactly as
+     * a shop's barrels do.
+     */
+    for (const lot of record.lots ?? []) {
+      const anchor = anchorOf(lot.items ?? []);
+      if (!anchor) continue;
+      const chunk = chunkAt(anchor[0], anchor[1]);
+      let drew = 0;
+      const from = chunk.buf.pos.length / 9;
+      for (const item of lot.items ?? []) {
+        if (!buildStack(chunk.buf, item, form, terrain,
+          LEVEL[lot.confidence] ?? level, problems, lot.structure_id)) continue;
+        drew += 1;
+        out.census.piles += 1;
+        out.census.objects += 1;
+        out.census.byMaterial[item.kind] =
+          (out.census.byMaterial[item.kind] ?? 0) + 1;
+      }
+      if (!drew) continue;
+      chunk.spans.push({ id: lot.structure_id, from,
+        to: chunk.buf.pos.length / 9 });
+      out.lots.push(lot);
+      out.census.lots += 1;
     }
     for (const wagon of record.wagons ?? []) {
       const at = wagon.at_local_enu_m;
@@ -1155,6 +1757,15 @@ export async function createYardGoods({
   const mat = new THREE.MeshStandardMaterial({
     color: 0xffffff, vertexColors: true, roughness: 0.88, metalness: 0.0,
   });
+  /**
+   * AND THE MARKS RIDE ON THE SAME MATERIAL (T-0065). `<map_fragment>` runs
+   * before `<color_fragment>`, so the atlas multiplies first and the vertex
+   * tone second: a stencil on a cask is paint on that cask's own timber, and a
+   * mark on the canvas tilt would be paint on canvas — which is exactly right,
+   * and is why the marks did not need a material of their own. Everything
+   * unmarked samples the atlas's white cell and is unchanged to the bit.
+   */
+  if (atlas) mat.map = atlas.texture;
   mat.name = 'yard-goods-timber';
   confidence?.patch(mat);
   /**
@@ -1177,6 +1788,7 @@ export async function createYardGoods({
     geo.setAttribute('_confidence',
       new THREE.Float32BufferAttribute(chunk.buf.conf, 1));
     geo.setAttribute('color', new THREE.Float32BufferAttribute(chunk.buf.col, 3));
+    if (atlas) geo.setAttribute('uv', new THREE.Float32BufferAttribute(chunk.buf.uv, 2));
     // The whole point of the chunk: its own bounding sphere, around its own
     // block of the town, so the frustum can leave it out.
     geo.computeBoundingSphere();
@@ -1211,6 +1823,7 @@ export async function createYardGoods({
 
   out.dispose = () => {
     for (const m of meshes) m.geometry.dispose();
+    atlas?.texture?.dispose();
     mat.dispose();
   };
   return out;

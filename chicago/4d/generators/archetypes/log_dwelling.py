@@ -71,6 +71,12 @@ from archetypes.log_dwelling_params import LogDwellingParams  # noqa: E402
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_LOG, M_CHINK, M_ROOF, M_FRAME, M_DARK, M_SIGN, M_PAINT = 0, 1, 2, 3, 4, 5, 6
+# The stack (T-0008). Appended LAST, after the conditional M_PAINT, so every
+# index above it is fixed and a building with no painted device keeps the shorter
+# list — the same discipline M_PAINT itself is held to at the mats list below,
+# and for the same reason: an unreferenced slot still reaches the glTF and would
+# rewrite masters for a colour they do not use.
+M_CHIMNEY_AFTER_SIGN, M_CHIMNEY_AFTER_PAINT = 6, 7
 
 CLAPBOARD_COURSE_M = 0.14   # exposed face of a period clapboard, ~5.5 in
 # A weathered board, left deliberately neutral. What colour the Wolf Point signboard
@@ -141,8 +147,11 @@ def build(params: LogDwellingParams, name: str):
 
     addition_ridge_z = _frame_addition(b, params) if params.frame_addition else None
 
+    painted = bool(params.sign and params.sign_device)
     _chimneys(b, params, cx0, cy0, cx1, cy1, ridge_z, addition_ridge_z,
-              params.conf("chimneys", "reconstructed"))
+              params.conf("chimneys", "reconstructed"),
+              (M_CHIMNEY_AFTER_PAINT if painted else M_CHIMNEY_AFTER_SIGN)
+              if params.chimneys > 0 else M_ROOF)
 
     if params.sign:
         # The BOARD's confidence is the confidence that a sign hung there. Its size
@@ -189,6 +198,16 @@ def build(params: LogDwellingParams, name: str):
     # banked passthrough set — for a colour none of them uses.
     if params.sign and params.sign_device:
         mats.append(simple_material("paint", PAINT_RGBA, roughness=0.72))
+    # THE STACK IS NOT THE ROOF (T-0008), and on a log cabin it is not brick either.
+    # `_stack` below has always argued the disposition — built against the gable so it
+    # can be pulled away from the building when it catches fire — and that is a
+    # stick-and-clay or fieldstone stack, not the masonry a framed house carries up
+    # inside its wall. `common/materials.py` § the chimney stack holds the tone and
+    # docs/RESEARCH/chimneys.md the argument; docs/LIBERTIES.md L168 records that the
+    # fabric is invented, as L26 already records that the position is.
+    if params.chimneys > 0:
+        stack = materials.chimney_finish("exterior_gable")
+        mats.append(simple_material("chimney", stack.rgba, roughness=stack.roughness))
     return b.to_object(mats)
 
 
@@ -454,7 +473,8 @@ def _clapboard(b: MeshBuilder, x0, y0, x1, y1, wall_z: float, conf: float) -> No
 # ------------------------------------------------------------ chimney and sign
 
 def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
-              ridge_z: float, add_ridge_z: float | None, conf: float) -> None:
+              ridge_z: float, add_ridge_z: float | None, conf: float,
+              mat: int) -> None:
     """As many stacks as the record counts, placed by the archetype.
 
     The count is the record's; every other property of a stack here is invented, so
@@ -477,17 +497,17 @@ def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
     """
     if p.chimneys <= 0:
         return
-    _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, at_min_x=True)
+    _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min_x=True)
     if p.chimneys < 2:
         return
     if p.frame_addition and add_ridge_z is not None:
         ax0, ay0, ax1, ay1 = _addition_extent(p)
-        _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, at_min_x=False)
+        _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, mat, at_min_x=False)
     else:
-        _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, at_min_x=False)
+        _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min_x=False)
 
 
-def _stack(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float,
+def _stack(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float, mat: int,
            at_min_x: bool) -> None:
     """One exterior stack against a gable end — the -x end, or mirrored to +x.
 
@@ -509,11 +529,11 @@ def _stack(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float,
 
     sx0, sx1 = span(0.08, 0.72)
     b.add_box(sx0, yc - half, 0.0, sx1, yc + half, ridge_z + 0.55,
-              conf, M_ROOF, skip=("bottom",))
+              conf, mat, skip=("bottom",))
     # a slight corbel at the head, so it reads as a chimney rather than a post
     hx0, hx1 = span(0.12, 0.82)
     b.add_box(hx0, yc - half - 0.08, ridge_z + 0.55,
-              hx1, yc + half + 0.08, ridge_z + 0.72, conf, M_ROOF,
+              hx1, yc + half + 0.08, ridge_z + 0.72, conf, mat,
               skip=("bottom",))
 
 

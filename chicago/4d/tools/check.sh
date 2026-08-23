@@ -109,6 +109,16 @@ step "the business signboards re-derive from the rule that chose their frontages
 step "the yard goods re-derive from the rule that chose their frontages" \
   python3 tools/generate_yard_goods.py --check
 
+# And the OTHER HALF of that ordinance, which the goods record refused in writing:
+# timber, stone and brick are building material on a lot that is going up, not a
+# trader's stock on his own frontage. The rule's load-bearing clause is that the
+# structure record has to STATE the construction state itself — a date test would read
+# a first-attestation year as a groundbreaking and deal stacks of brick to buildings
+# that had stood for a year — so exactly one lot in this scene qualifies, and this
+# re-derives which one and where the piles stand (T-0057).
+step "the building material re-derives from the rule that chose the lots" \
+  python3 tools/generate_lot_building_material.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
@@ -214,6 +224,18 @@ step "the anonymous massings that claim a sampled band have one" \
 # moved, fails. The fault may shrink and may not grow.
 step "no reconstructed value is newly outside the band its own note cites" \
   python3 tools/measure_band_claims.py --gate --quiet
+
+# The value NO record states and every visitor sees: the RIDGE the sampled pitch and
+# the sampled footprint make together (T-0145). The crosswalk authors a `ridge_ft` band
+# beside every eave band and nothing had ever read that column, so a parcel could repair
+# its pitches into their band and push its roofs out of theirs — the fault moved one
+# field over. This models the ridge from the archetype's own roof arithmetic, checks
+# that model against the ridge the committed GLB actually carries, and ratchets the
+# residual the same way the band-claims gate does. The residual is real and mostly
+# structural: for several families no pitch inside the authored pitch band reaches the
+# authored ridge band at the footprint the family authors.
+step "no reconstructed roof's ridge is newly outside its family band" \
+  python3 tools/measure_ridge_band.py
 
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
 # from Chicago is August 1835, inside this project's first target year — and gives it
@@ -357,6 +379,17 @@ step "renderer modules parse" check_js
 step "the ground mesh still meets the heightfield the walker samples" \
   node tools/measure_terrain_fit.mjs --gate
 
+# The OTHER two axes, which conformGroundToField() cannot repair — it reads a
+# height back off the field at a vertex's shipped (E, N), so a vertex the
+# quantiser moved in plan holds the right height for the wrong place, and on the
+# east banks' 60-90 % slopes that cost 77 mm where the road ribbon has 22.
+# generators/terrain_gen.py now derives the skirt margin so the publish step's
+# POSITION rung divides the terrain grid exactly, which puts every ground vertex
+# on a rung and takes the displacement to zero. This asserts the zero on the
+# bytes rather than the arithmetic on the generator's side of the bake (T-0152).
+step "the shipped ground stands where the master does, and inside the road lift" \
+  node tools/measure_terrain_horizontal.mjs --gate
+
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
 # spray stays a mass of leaves rather than shrinking towards a single leaf it
@@ -424,6 +457,17 @@ if [ -d ../../site/chicago/4d ]; then
     node tools/check_published.mjs
 fi
 
+# …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
+# already run. `ticket.mjs done` needs the PR number that only exists once the PR
+# is open, which is after the publish, so the documented order left the gate above
+# red every single time and a remembered extra publish.sh was what actually held
+# it together (T-0154; it broke on T-0153/PR #318). ticket.mjs now carries the file
+# to the mirror itself. This asserts BOTH halves in a sandbox — that closing a
+# ticket ends green, AND that a mirror somebody else made stale still fails, which
+# is the half a fix like this one could quietly destroy.
+step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
+  node tools/test_ticket_mirror.mjs
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A
@@ -478,6 +522,22 @@ step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
 step "data JSON parses" check_json
+
+# Almost every Playwright tool here is a MEASURING instrument, and the rule is
+# that a change is measured before it is claimed. Twelve of the sixteen could
+# not be pointed at a browser, so on a runner without Playwright's own build
+# they died before their first frame — which turns "measured" into "asserted"
+# without anyone deciding to (T-0153).
+step "every browser-launching tool honours PW_EXECUTABLE" \
+  node tools/check_tool_browser.mjs
+
+# The road-legibility gate fires once per STATION while the measurement is per
+# BAND, so a band could collapse 55 points inside a passing station and the
+# suite would print the same totals before and after. The movement report is
+# what makes that visible; this is the report's own self-test, which replays
+# R-W1's merge and requires it to name south_water 250-600 m unprompted (T-0016).
+step "the road-band movement report names a band that moved" \
+  node tools/road_band_movement.mjs --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

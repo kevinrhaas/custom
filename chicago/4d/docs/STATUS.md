@@ -1,5 +1,622 @@
 # STATUS
 
+## Shipped 2026-08-23 — T-0057: Ordinance 9's other half, on the one lot this town can say was building
+
+**Visible run.** The three tickets above this one in the queue — T-0015, T-0016, T-0017 — are all
+measurement parcels, and the last four merged entries run visible / invisible / invisible / visible.
+AGENTS.md's visible-progress rule says that when the top of the queue is all invisible, the run's
+job is to pull a visible parcel up and say in the PR why it was buried. T-0057 is the topmost
+ticket that puts something in the town, and QUEUE.md was not reordered.
+
+**The ask.** Ordinance 9 of 7 November 1833 names *timber, stone, brick, boxes and barrels* stacked
+in the streets. T-0040 shipped the boxes and barrels (L131, `data/yard/town_trade_goods.json`) and
+refused the other three in writing, because building material belongs to a lot that is GOING UP and
+the goods record has no way to say which lot was.
+
+**The census, which is the parcel.** 343 structures stand on the scene date: 256 anonymous infill,
+87 named. **Exactly one carries a construction state in its own attributes** —
+`lake_house_construction`, `function: hotel_under_construction`, graded **attested** off Andreas,
+with `roof_type: none` for the same reason and J. D. Bonnell walking past 'the Lake House in course
+of construction' on 25 August 1835. So `tools/generate_lot_building_material.py` writes nine piles
+on one lot: 4 stacks of brick on the frontage, 3 piles of squared timber down the east flank, 2
+heaps of footing stone at the rear. `tools/check.sh` re-derives the file byte for byte.
+
+**The clause that is NOT in the rule, and refusing to write it is the finding.** No date test.
+`documented_range.from` inside 1835 is a FIRST-ATTESTATION date for the named records — a
+newspaper's first issue on 8 June 1835, a directory line, a deed — and a PROGRAMME date for the
+anonymous ones (L126). Fourteen named records carry an 1835 opening and every one is refused by
+name with that reason in the record's `refused` block, including the north and south piers, which
+really were under documented extension that summer and are refused anyway: harbour works in the
+lake are not a lot in the corporation whose ordinance is the whole evidence.
+
+**Which materials is dealt from the record, not from the ordinance's list in order.** Brick because
+`construction` is brick and attested; stone because the same sentence gives the building a
+basement; timber because a three-storey brick house is floored, joisted and roofed in it and laid
+from timber scaffolding. Brick is the town's own `CHIMNEY_BRICK`, taken as the material sheet's
+linear triple; stone is the one new colour and is bounded between the layer's timber and the
+chinking clay. `docs/LIBERTIES.md` **L173**.
+
+**Not drawn, and said so.** No individual brick and no course — the material sheet records that no
+source here gives a brick or a course dimension. And nothing in the street, which is the nuisance
+the ordinance actually legislated against: this site's own position note carries ~20 m of working
+uncertainty and the traced centreline of Michigan Street runs some 30 m north of where the same
+georeference puts the frontage.
+
+**Verification.** `./tools/check.sh` green. `tools/smoke_renderer.mjs --published`, both release
+viewports, all four stages: mobile 141/112/40/152, desktop 141/109/41/152, **zero page errors**,
+draw calls 42 of 215 and 618k triangles of 1.4 M at the site. Two new checks measure the piles in
+their own frame — furthest vertex 1.90 m from its own anchor, **0 vertices inside the building's
+own footprint**, which is the fault the generator actually made on its first run when it turned the
+outward normal the wrong way. The two `roads reach the screen` reds in stage 3 are **T-0114 and
+pre-existing**: a clean `origin/dev` worktree fails the identical checks with the identical counts.
+
+## Shipped 2026-08-23 — T-0013: the interior flicker is the town's own edges, and none of it is a fight
+
+**Nothing a visitor can see changed, and that is the third such run in four.** It is recorded
+here rather than smoothed over: the visible-progress rule's cap is one invisible run in four,
+the queue's topmost ticket asked for a diagnosis as its first demonstration, and the diagnosis
+came back saying there is nothing to repair. The next run must land something visible.
+
+T-0013 was re-aimed by the owner on 2026-08-23 at the **interior** share of the 2 mm-nudge
+flicker — 370 px on `structures`, 257 on `trees` — where a layer was believed to be fighting
+ITSELF, as opposed to its silhouette against the rest of the scene. It asked for the mechanism
+to be NAMED per layer with evidence before anything was repaired.
+
+`tools/diagnose_interior_flicker.mjs` names it, and it is the same mechanism for both layers:
+**those pixels sit on edges internal to the layer, and an edge is not a defect.** Photographing
+a packed-depth pass at both poses classifies every one of them — 349 of 370 on structures and
+252 of 257 on trees sit on a depth BREAK inside the layer's own footprint; **0 are a depth
+reorder and 0 are shading**. Supersampling heals 83–93 % of them, which is what a coverage-bound
+edge does; going matte across 18 materials changes 164,572 px of the picture and heals none.
+The handful that read no depth at all are the same finding again — a packed depth blended by
+MSAA cannot be decoded, and only a pixel with more than one surface in it gets blended.
+
+**What is now known to be unverified**: the discriminator's name. `interiorOf` knows a layer's
+outline against everything else and cannot see the boundary between two surfaces OF that layer,
+so 94–98 % of what it reports as "interior" is silhouette by any honest reading. The instrument
+was not changed in this run — closing a ticket by rewriting the instrument that measured it is
+the one move this project does not allow — so the number stands and its correction is a ticket.
+
+Measured at `from_above`, 1280×800, published mirror, shadow map off by R-BUG6(a)'s repaired
+control, with the run's own control and return-to-pose both 0 px. Deep box: ROADMAP § R-BUG6(c2).
+
+## Shipped 2026-08-23 — T-0154: closing a ticket stops leaving the published mirror stale
+
+**The ask.** `site/chicago/4d/tickets.json` is a verbatim copy of `tickets/tickets.json` and
+`tools/check_published.mjs` compares the two byte for byte — the gate that generalises #145, where a
+published artefact quietly differing from its source hid the terrain quantiser for three parcels.
+`tools/ticket.mjs done` rewrites the source. So the order AGENTS.md states could not be obeyed:
+
+1. do the work, run `tools/publish.sh` — "PUBLISH IN THE SAME COMMIT";
+2. push, open the PR — **the PR number does not exist until this moment**;
+3. `ticket.mjs done T-NNNN --pr N` — "close it in the merging PR";
+4. the mirror is now stale and the gate fails on the next push.
+
+Step 3 needs a number only step 2 can produce, so no ordering of the documented steps ends green. It
+went red on T-0153/PR #318 at 05:11Z. What actually held it together was a REMEMBERED extra
+`publish.sh` after the close — the unwritten step that goes wrong at 3am.
+
+**What was built.** The writer of the file maintains its mirror: `ticket.mjs`'s `generateBoard`
+carries `tickets.json` to the one published path `publish.sh` copies it to. Deliberately narrow, and
+the narrowness is the whole design:
+
+- **only on a real rewrite.** The acceptance clause forbids fixing this by making the gate weaker,
+  and a blanket refresh on every invocation would do exactly that — a mirror somebody else made
+  stale (a hand edit, a half-run publish, a bad merge) would be silently laundered by the next
+  `ticket.mjs check`, and the gate would be reporting on the tool's own last act instead of on what
+  the site ships. `settle()` now returns whether it wrote; the mirror moves only then.
+- **it never creates the mirror directory.** An unpublished checkout stays unpublished; `publish.sh`
+  is what decides the mirror exists.
+- **the copy is pinned.** `ticket.mjs` hard-codes where `publish.sh` puts the file, which is two
+  copies of one fact — this project's recurring fault. `ticket.mjs check` (which `check.sh` runs)
+  asserts publish.sh still contains that exact `cp` line, and names the reconciliation if it does not.
+
+**Demonstrated, both halves, in `tools/test_ticket_mirror.mjs`** — a new `check.sh` step. It builds a
+sandbox of the shape the tools expect (`<tmp>/chicago/4d/…` beside `<tmp>/site/chicago/4d/`), copies
+the three tools and the real ticket files in, and asserts: a freshly published sandbox is green; a
+`done` with a PR number leaves it green **with no second publish**; the mirror really is the closed
+board; a hand-staled mirror **still fails**; a no-op regeneration **does not launder it**; and moving
+publish.sh's copy line is refused by `ticket.mjs check`. Nothing outside the sandbox is written — an
+earlier draft mutated the real `tickets.json` and restored it, which is a working tree nobody can
+explain if it crashes halfway.
+
+**What is NOT fixed, and it is filed rather than folded in.** `renderers/web/js/changelog.js` is
+mirrored to two published paths and `tools/stamp-changelog.mjs` rewrites it, so a run that stamps
+after publishing hits the identical trap. It has not bitten because nothing forces that order —
+unlike the close, which cannot be ordered correctly at all. **T-0155**, XS.
+
+## Shipped 2026-08-23 — T-0152: the drawn ground stands exactly where the field says, because the quantiser's rung now divides the grid
+
+**The ask.** The drawn ground stood **77.1 mm** off the field on the east slopes, with **56** of the
+field's 259,689 sample points past the 22 mm road lift — one of them 0.1 m from the centreline of
+North Water Street, 25.0 mm BELOW the ground it carries. Acceptance: zero samples past the lift, on
+the bytes that ship.
+
+**The mechanism, and it was never the bit depth.** `renderers/web/js/terrain.js` reads every ground
+height back off `heightfield.bin` at load, so Y is exact to the micron. It reads that height at the
+vertex's SHIPPED (E, N) — and `tools/web_derivatives.sh` moves those. `gltf-transform` quantises
+POSITION under one uniform node scale set by the mesh's widest axis, which is the 2 020 m box plus
+two skirt margins, so the rung was `5 020 / 2 / 32767` = **76.6 mm** and 2.5 m of terrain grid was
+**32.64** of them. Vertices therefore landed between rungs, up to 51.9 mm out in plan, and a vertex
+conformed at a displaced position holds the field's answer for the wrong place. The cost is
+(slope × displacement) and nothing else, which is why R-W6 could write "flat platted prairie cannot
+show this artefact at any bit depth" and be right, and why the east extension — bank faces at a
+median 62 % slope, worst 87 % — made it visible without this step changing at all.
+
+**Neither easy answer existed.** 16 bits is the format's maximum, and it already ships at 16.
+Passing the master through uncompressed is +5.8 MB against a 22.32 MB payload and a 25 MB budget.
+
+**What was built — the third answer, and it abolishes the displacement rather than shrinking it.**
+The quantiser was measured rather than argued about: on the bytes that shipped, scale = half the
+widest extent, translation = the mesh's own centre, rung = scale / 32767, and **378,581 of 378,582
+axis values reproduce `round((p − centre) / rung)` to the bit** (the one exception is a half-rung
+tie). So it is a ladder, and the only question is whether the generator's vertices stand on its
+rungs. `generators/terrain_gen.py` now DERIVES the skirt margin so that they do:
+
+    rung   = (e_span + 2 · margin) / 2 / 32767
+    margin = 32767 · cell / k − e_span / 2          for rung = cell / k
+
+taking the largest power-of-two `k` whose apron still reaches the haze distance — **k = 32, rung
+78.125 mm, margin 1 549.921875 m**. A power of two on purpose: `gltf-transform` stores a bit depth
+in the container above it, so asking for fewer bits multiplies the rung by a power of two and
+leaves it commensurate. The generator and the shell script are not coupled through a number.
+
+**Measured on the bytes that ship, before → after:**
+
+| | before | after |
+|---|---|---|
+| plan movement, master → shipped | 51.9 mm max | **0.0 mm** |
+| drawn surface vs the field, after conforming | 1.5 rms / 3.9 p99 / **77.1 max** | 1.3 / 3.7 / **6.7** |
+| samples past the 22 mm road lift | **56** (20 on dry ground) | **0** |
+| shipped derivative | 704,004 B | 699,096 B |
+
+6.7 mm IS the master's own decimation error, to the tenth of a millimetre: the compressor now
+contributes nothing at all to the surface a visitor stands on.
+
+**Two gates, on both sides of the bake.** The generator REFUSES to export a ground whose vertices
+do not stand on the rung, and `tools/measure_terrain_horizontal.mjs --gate` — new, in
+`tools/check.sh`, 0.8 s — asserts the same thing on the shipped BYTES, plus the consequence: no
+sample point past the road lift. It was demonstrated firing on the old committed derivative
+("the publish step displaced the ground in plan by 51.9 mm", exit 1) before it was wired in. That
+file had reported for a week without asserting anything, because until now no setting made the
+number pass and a gate on it would only have said that a compressor is a compressor.
+
+**No contract amendment was needed after all.** T-0152 anticipated one, because the fix R-W6 left on
+the table was the SKIRT SPLIT — put the apron in its own mesh so the ground's own box sets the scale
+— and that changes what a terrain GLB contains, which is bilateral. It also only buys a factor of
+2.49 (the ground's box is still 2 020 m wide), which lands at about 31 mm and would have failed the
+acceptance clause. The derived margin needs no structural change: one mesh, one primitive, same
+node, same everything the renderer reads. `docs/GLB-CONTRACT.md` gains a paragraph recording the
+invariant, and gives nothing up.
+
+**What a visitor sees.** On flat ground, nothing — the conforming pass has hidden this since
+R-BUG3c. On the east bank faces and at the North Water Street reach, the roadway, the grass tufts
+and the rooted plants now sit on the ground rather than in it. L17 is revised: the apron is
+1 549.921875 m per side and 18.35 km², up from 1 500 m and 17.46, and still 2 256 vertices.
+
+## Shipped 2026-08-23 — T-0151: the shipped ground's bit depth is asserted, and its ticket was describing a state the tree had left
+
+**The ask.** T-0012, at number two in the queue: *"the 16-bit ground exists in the bake script and
+not in the file a visitor loads — the committed derivative still quantises POSITION to 14 bits."*
+
+**Its first sentence was no longer true.** Measured with R-W6's own control — regenerate the
+committed master and compare md5s — `terrain__e1834_harbor_cut.glb` at **16** bits reproduces the
+committed derivative exactly (`5b8446876a425fceace5c7dd7c59688a`, 704,004 bytes) and at 14 bits
+does not (`4b9fb0765a9b5669dd547b32ef156825`, 702,896). The 16-bit ground reached the site in a
+nightly bake that rebuilt the terrain. The water mesh reproduces at both depths
+(`61b38d4bc36964db450b59ac7b646b77`) — R-W6 predicted that in writing: four vertices at y = 0 land
+on the lattice at every depth.
+
+**So the fault was never only "the file is 14-bit". It was that nothing could tell you which it
+was**, in either direction. R-W6(b) diagnosed the mechanism and the diagnosis was right the whole
+time: the derivative gate compares master to derivative on material identity, triangle count, node
+identity and a bounding box within four rungs, and **a bit-depth change moves none of them**.
+`tools/measure_terrain_fit.mjs` printed the lattice in a report column and asserted nothing. So a
+14-bit ground shipped for days with every gate green, then a 16-bit one arrived and every gate was
+equally green, and a ticket sat near the top of the queue for a week asking for something that had
+already happened.
+
+**What was built.** `tools/measure_terrain_fit.mjs` recovers the shipped POSITION bit depth from
+the mesh's own bytes — `gltf-transform` quantises under one uniform node scale set by the widest
+axis, so the rung is `extent / (2**bits − 1)` and inverting it gives the depth as an integer — and
+`--gate` FAILS when it is coarser than `tools/web_derivatives.sh` asks for. The ask is read out of
+the shell rather than restated here, so there is one copy of the number. Demonstrated firing on the
+14-bit file this ticket was written about: *"the shipped ground carries 14-bit POSITION where
+tools/web_derivatives.sh asks for 16"*, exit 1. `tools/check_published.mjs`'s derivative entry says
+so too — it used to say the derivative was only reported.
+
+**What is NOT closed, and it is the honest half of this run — T-0152.** The bit depth is right and
+the surface is worse than R-W6 measured it. On the ground that ships today,
+`tools/measure_terrain_horizontal.mjs` reports the drawn surface, after conforming, at **1.5 rms /
+3.9 p99 / 77.1 max mm** with **56** of the field's 259,689 samples past the 22 mm road lift, 20 of
+them on dry ground. R-W6's 16-bit row was 1.4 / 3.8 / **12.9** and **0** past the lift. The depth
+did not move; **the ground did** — extended east to the harbour mouth, into bank faces at a median
+**62 %** slope (worst sample 87 %), and R-W6 named that mechanism itself: the cost is
+(slope × displacement), and flat platted prairie cannot show the artefact at any bit depth. 16 bits
+is the format's maximum and the uncompressed master is +5.8 MB against a 22.32 MB payload and a
+25 MB budget, so neither of the two easy answers is available. R-W6 wrote down the third and named
+its trigger — *"reopen [the skirt split] if a future epoch's box grows"* — and the box grew. That
+is a generator change, a `docs/GLB-CONTRACT.md` proposal and a terrain bake: its own ticket, at
+T-0012's own place in the queue rather than at the bottom.
+
+**Nothing a visitor can see changed.** The ground under the town is unmoved — the renderer has read
+its heights back off the heightfield since R-BUG3c, so the lattice never reached the eye in the
+first place. What changed is that the town can now tell what it shipped.
+
+## Shipped 2026-08-22 — T-0105: three roofs on one lot at Randolph and State, and the first block dealt twice
+
+**The ask.** The succession T-0079 owes: carry the core density standard to the next core block
+standing below the bar. T-0079 raised the ceiling from one principal roof per platted lot to
+**three party-line units per lot** — measured at the smallest committed lot, 23.56 m of frontage
+less the plat module's two 1.5 m margins, against the eighteen committed party-line units' mean
+6.072 m — and demonstrated it once, on `blk_lake_clark`.
+
+**What was in the way, and it is the recipe's shape rather than the ground.** Every block that
+carries a free lot on its measured business face had already been dealt once, and
+`data/reconstruction/1835_platted_block_parcels.json` assumed a block is dealt once, built once
+and finished: one entry per block, records numbered from one. Rewriting `blk_randolph_dearborn`'s
+August entry to cover both deals would restate an August schedule under numbers that were not
+true in August. **So a block may now be dealt twice, as a second entry with its own `seq_start`**
+— the record id carries the sequence, and two entries numbering from one would collide on the
+first slot that shared a family. The lot accounting learned one new class with it, *built on by
+another deal on this block*, which it needs in both directions: before the second deal's records
+exist the lot reads as one nobody accounted for, and after they exist calling it "already
+carrying a roof" would say a stranger built it. Nothing else had to move — occupancy, separation
+and the roadway are all measured against the committed dataset rather than against one entry's
+own slots.
+
+**Which block, and it is a fact about the schedule rather than a preference.** Seven platted
+blocks stand `open`. Four of them (`blk_south_water_franklin`, `_lasalle`, `_clark`, `_dearborn`)
+front the reach whose committed street line is the open question in **T-0009**, `blocked-owner`
+since this morning and worth 4.3–8.8 m — standing a tightened row against a line that may move is
+the mistake T-0009 refused to make. `blk_lake_franklin` has the town's strongest business face and
+a deal it cannot carry: D3, A1, an **F3** large *river* warehouse on a block that touches no water,
+and an **I3** the generator refuses by name. `blk_randolph_market`'s two free lots are both on its
+back face. **`blk_randolph_dearborn` is what is left**, and it is one of the two blocks with the
+most headroom in the schedule: 9 roofs standing, 8 of headroom, three free lots — 1 and 5 on
+Washington, **4 on Randolph**.
+
+**The face rule is a command now (T-A14) and this parcel quotes it rather than remembering it:**
+`tools/measure_street_frontage.py randolph washington market franklin` reports Randolph carrying
+**7 documented records and 7 inferred households against Washington's 1 and 0**. Randolph is this
+block's business face by the town's own record, so its one free lot on that face takes the row and
+both free lots on Washington stay open. **The end rule is T-A11's:** this is the easternmost block
+the plat module reaches on the Randolph tier, so the town-centre end of the frontage is the WEST
+one, toward Dearborn Street and the only crossing of the main stem in July 1835 — and the row is
+graded that way.
+
+**What stands.** Three principal roofs on lot 4, on one line, at one 1.5 m setback, on two shared
+party walls: `recon_1835_blk_randolph_dearborn_d6_10`, a one-and-a-half-storey cottage anchored
+1.5 m off the lot's west side line, then `_d3_11`, a one-room frame cottage, then `_d1_12`, an
+older log cabin. The run occupies **17.23 m of the lot's 23.00 m of buildable frontage**, and the
+metres left over are at the east end where the run stops. The fourth roof is the standard's second
+clause — an improved lot carries its outbuildings — so `_a4_13`, a woodshed, stands in lot 4's own
+yard at the alley. Before and after from the same stand in Randolph Street, at local E 797,
+N −257, looking WSW: `docs/RESEARCH/randolph_dearborn_row_{before,after}_2026-08-22.png`.
+
+**The parcel took four of the block's eight roofs and says so.** Nothing is deferred: the other
+four are not refused, they are the next run's, and the two free lots on Washington are the ground
+they will stand on. The block stays `open` in the schedule, which is where **T-0143**, the
+successor, reads it. No roof was added to the town — the four come out of
+`south_plat_beyond_committed_control` and the programme still reconciles at 334 standing, 331
+remaining, 665.
+
+**Two roofs the schedule dealt this block could not be built, and the gates said so rather than
+this parcel deciding it.** H2, the merchant's house, asks at this sequence for a two-storey wall of
+**6.234 m** and `frame_dwelling` refuses anything over **6.2 m**, because the one attested ceiling
+height in this dataset is the Green Tree's seven and a half feet. H1 is dealt the generator's flat
+**44.0 deg** pitch for a storey and a half, which is inside D6's cited 9:12–12:12 and outside H1's
+own 8:12–11:12; `measure_band_claims.py --gate` refuses it by name. Three families are dealt a
+pitch their own crosswalk entry forbids (H1, H2, H3) and nine records of them already stand, so
+the repair moves committed geometry and needs their bake: **T-0142**, filed rather than dodged by
+re-ordering slots until the sampler dealt a shorter house.
+
+**That a log cabin may stand on a commercial frontage is still open (T-0022)** and this parcel does
+not settle it; what stands behind the deal is what T-0079 recorded, the owner's own reference for a
+party-line row drawing log and frame buildings shoulder to shoulder, and this is one more recorded
+instance rather than a ruling.
+
+**Gates.** `./tools/check.sh` green in the foreground after `./tools/publish.sh`;
+`node tools/smoke_renderer.mjs` — see the PR for which halves ran inside the ten-minute command
+ceiling (T-0060/T-0121, unchanged) and how *zero page errors* was answered at both viewports.
+
+## Shipped 2026-08-22 — T-0140: masts at Wolf Point, and the half of the plate that cannot be drawn
+
+**Four craft join the boat layer at the forks** — `data/boats/era_boats.json` goes from nine hulls
+to thirteen. Two two-masted lake schooners: one in the branch reach above Wolf Point at local
+E −77.0, N +14.0, one in the South Branch reach below the forks at E −9.0, N −68.0 abreast Robert
+A. Kinzie's store. A skiff afloat off the west bank at E −86.0, N +4.0 and one hauled out on the
+bank below the Wolf Point cabins at E −83.0, N −20.0. Every hull `reconstructed`, unmanned,
+unnamed; L146 extended rather than a new liberty opened, because it is the same invention at a
+second address.
+
+**The berths are derived, not chosen, and that is the only part of a boat's position this project
+can defend.** Each afloat hull lies at close to the westernmost line on its own reach where the
+committed heightfield gives it its draft plus the layer's 0.3 m under the keel along the whole
+keel — 2.07 m of water under the upper schooner, 1.81 m under the lower one against the 1.80 m the
+layer demands, 1.23 m under the skiff. The reach's own shoaling decides how near the bank a hull
+may lie; nothing was nudged, and `boats.js` would have refused any of them outright.
+
+**Why the forks needed them.** Plate "11" of the 2026-08-11 reference set
+(`prefire_views_kevin_2026_08/p6_0.png`) and the Braunhold/Trowbridge views of the same quarter
+hang ship masts over the Wolf Point roofs. Until today the only masted vessels in the scene were
+the three moored 900 m east below the Dearborn drawbridge, and the forks — the busiest water in
+the town — held nothing.
+
+**T-0122 was split, because half its acceptance is not the loop's to meet.** It asked for a mast
+reading above the GREEN TREE's own roofline from that inn's visitor stand. It cannot: the
+`green_tree` anchor stands 24 m west of the inn, whose ridge subtends about 10°, and a 14.5 m mast
+subtends 10° only inside ~83 m — while the nearest water on that bearing is ~157 m out. The cause
+is the placement question the record already carries in its own `position_note`: DRLOIH gives the
+corner as "Lake and West Water", West Water ran along the bank, and *"if the tavern actually stood
+on the riverbank street rather than on Canal, it belongs about 145 m east of where this record
+puts it."* Moving a documented building is the owner's call. **T-0140** is this shipped piece;
+**T-0141** carries the arithmetic and the question, blocked on him.
+
+**Verified:** `tools/check.sh` green · `node tools/smoke_renderer.mjs` green at 390×780 and
+1280×800, zero pageerrors · `node tools/shoot.mjs site/chicago/4d /walk/` at the `forks` and
+`green_tree` anchors, 114 draw calls of a 140 budget at the shoot's own stand, no page errors, and
+the schooner's masts standing over the west-bank roofs in the frame.
+
+## Shipped 2026-08-22 — T-0009: the deep corridor cluster is the street moving, not the buildings
+
+**THE TICKET'S PREMISE IS REFUTED AND NOTHING WAS MOVED.** T-0009 (= ROADMAP K30(c)) asked for the
+repair K30(b) had prescribed: redraw the bodies of the buildings drawn standing in the roadway onto
+the correct side of their own frontage. Running it would have moved **twelve documented buildings a
+full footprint depth behind the frontages their own committed control was offset to**. The
+refutation is arithmetic, it is a command, and it is banked as **K30(d)**.
+
+**The flag K30(b) read cannot tell two opposite drawings apart.** `body_toward_street` is true
+both when the anchor sits on the KERB and the body grows across the frontage into the road, and
+when the anchor sits at the BACK corner — set back by the footprint's own depth — so that the body
+grows forward and its street-facing FACE lands on the frontage. The first is a fault; the second is
+correct.
+
+**`tools/measure_corridor_intrusion.py --anchors` separates them,** by measuring which of the
+footprint's two faces the anchor coincides with along the street normal. **It is the back corner on
+all 17 records in the deep mode and the kerb face on none of them.** The only three records whose
+point IS the kerb face are `tremont_house_1`, `exchange_coffee_house` and `western_hotel` — exactly
+the three K30(b) finding 3 named as already drawn correctly and ruined by reflection. Both
+conventions are in the dataset; K30(b) had them the wrong way round.
+
+**The dataset already said so where it is machine-checked.** `position.derivation` constrains a
+FACE to a kerb, never the anchor — `sauganash_hotel`'s block reads *"the depth is in the polygon,
+so the constraint is on the face"* — and `check_position_derivations` recomputes five placements
+from `data/traces/street_control.json` on every commit. The twelve records' prose sums reproduce to
+the centimetre: `peck_store`'s origin is its intersection centre less 12.2 m less its own width and
+depth, and its north face lands on the derived kerb exactly; the four whose notes only quote the
+kerb line have their face on the interpolated kerb to **0.01 m**; `log_jail`'s north face IS the
+public square's NW inside corner.
+
+**What is actually in the road is the road.** `data/streets/1835.json` says of `south_water` that
+east of Franklin the line *"is shifted into the dry half of the platted riverfront corridor"* —
+`plat_corridors` offsets that drawn line to make the legal corridor, so shifting the line re-plats
+the street. Measured against the intersection centres the placements were derived from, the
+committed line stands **4.3–8.8 m south** of them (Franklin −8.56, Wells −8.80, LaSalle −4.30,
+Clark −4.90, Dearborn −6.20), which is the whole of the 4.51–8.17 m the ten South Water records lap.
+And the shift is not a mistake either: `chicago_american_office`'s own note records the traced 1834
+south bank running 18.7 m north of its north face, so a corridor centred on the modern control puts
+its northern half in the river.
+
+**T-0009 is `blocked-owner`,** because all three ways out change something with a source behind it:
+move the ten buildings south with the street; derive the platted corridor from the survey control
+rather than from the drawn line; or accept that this reach of South Water had water where its north
+half is drawn. No structure record, coordinate, footprint, confidence or baseline was touched and
+`docs/LIBERTIES.md` gains no entry.
+
+## Shipped 2026-08-22 — T-0008: the chimney stops being painted the colour of the roof
+
+**The defect, opened by R-W2a's own measurement of the shipped GLBs (finding 1) and carried as
+ROADMAP R-W2c since 2026-08-16.** `frame_dwelling`, `frame_storefront` and `log_dwelling` built
+every chimney stack with the ROOF material, so a stack came out wearing whatever weathering
+condition its own roof was dealt — a chimney that disappears into the roof it passes through, from
+the footway, on most of the town.
+
+**It was not a palette fix, and R-W2c said so before this run started.** The two stacks this town
+has are two different objects, and both archetypes had already argued which in committed prose:
+`frame_dwelling._chimneys` says its stack rises *inside* the wall and breaks the roof at the ridge;
+`log_dwelling._stack` says its stack is built *against* the gable so it can be pulled away when it
+catches fire. Two dispositions, two materials, and the renderer was painting both of them roof.
+
+**What shipped.** `docs/RESEARCH/chimneys.md` — the fabric question answered from what this
+repository holds — plus two rows on the material sheet and a conditional `M_CHIMNEY` in four
+archetypes. **157 stacks on 143 buildings** now carry a masonry material of their own:
+
+- **Brick on the 112 framed buildings**, `inferred`. The one coloured witness here to any Chicago
+  chimney is the Petford watercolour of the Sauganash, and the owner's brief reads **"brick
+  chimneys"** off it. Blodgett's brick-yard opened on the North Side in the spring of 1833
+  (`brickyard_north_side`, Andreas p. 1161); the Lake House went up in brick in 1835. And an
+  interior flue through a timber roof has to be masonry. The VALUE is `frame_tavern`'s committed
+  `BRICK_RGBA`, wired to the Sauganash by T-0092, moved into `common/materials.py` verbatim — the
+  same convergence T-0007 made for the hewn log — so the Sauganash's own masters come out
+  byte-for-byte unchanged.
+- **Cat-and-clay on the 31 log cabins**, `reconstructed` and bounded rather than picked: no paler
+  than the CHINKING it is daubed with (0.700/0.670/0.590), no darker than the palest ROOF
+  CONDITION (0.424/0.384/0.345) or it stops reading as masonry, and at the midpoint of the two to
+  three decimals — **0.562/0.527/0.468** — because nothing states where between them it sits.
+  Fieldstone is the other half of `log_dwelling`'s own sentence and is deliberately not built.
+  **docs/LIBERTIES.md L168** records the invention; L26 keeps every stack's position, untouched.
+
+**It cost no draw call, and that is a fact worth keeping.** `buildings.js::materialKey` batches on
+type, emissive, metalness, the four maps, side, transparency and flat-shading — never on base
+colour and never on roughness, both of which have ridden per vertex since R-W5a2. So two new
+colours merge into buckets that already exist: **113 draw calls before and 113 after**, measured at
+`south_water`, 1280×800. Adding a COLOUR to this town is free; adding a MAP would not be.
+
+**Where R-W2a's count does not reproduce, stated rather than quietly restated.** R-W2c says *219
+stacks on 199 buildings*. The resolved parameters of the committed masters give **157 on 143**
+(frame_dwelling 71/69, frame_storefront 33/33, log_dwelling 34/31, frame_tavern 19/10). The
+2026-08-16 figure is not re-derivable from anything committed and is left as written; this run's
+number is the one measured here, on this tree.
+
+**What is NOT fixed, in writing.** The fort's ten garrison buildings keep roof-coloured stacks —
+1816, seventeen years before the brick-yard, federal ground, and `construction` running log, brick,
+earth and stone across the records, so neither answer above reaches them without inventing a third
+(**T-0137**). The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in
+linear red from the archetypes' (**T-0138**); converging it rewrites 90 masters and the banked
+passthrough set. Nothing here says what any roof was COVERED with — R-W2a finding 2 stands.
+And a trap surfaced on the way: `generators/build.py` cannot build
+`cook_county_courthouse_1835` at all, because its only phase runs October to December 1835 and the
+only scene targets 1 July — so every `generators/common/` edit stales a committed asset that the
+bake has no committed route to heal (**T-0139**). This run got past it with a throwaway
+script; that is the thing the ticket exists to stop needing.
+
+**Verification.** 245 generated masters rebuilt on the runner's own Blender, web derivatives
+regenerated, `tools/publish.sh` in the same commit. `tools/check.sh` green, including the
+staleness gate that is the whole reason the bake had to come with the change.
+`node tools/smoke_renderer.mjs` green at 390×780 and 1280×800 with zero page errors. Before/after
+at `south_water`: `docs/evidence/t-0008-{before,after}.png`.
+
+## Shipped 2026-08-22 — T-0076: buildings are named for their people, not their spec codes
+
+**The ask (owner, 2026-08-18), verbatim:** *"this name is not great Reconstructed D3 one-room frame
+cottage #03, i would like when you put people in the houses to give it the name of their house or
+call it a vacant one room frame cottage or use a term like for let or current for the era that it
+is available. you should have the marker that it is reconstructed so that should be sufficient.
+give the locations useful names not technical D3 #03 names, you can have that somewhere on the card
+for reference identity purposes but dont make it the title."*
+
+**What shipped.** `renderers/web/js/display-name.js` composes the title for the 222 anonymous
+reconstructed roofs, from data the record and the residents layer already carry: **"The Pratt
+house"** where a household lives there (104 roofs are adopted by the inferred-household programme),
+**"The Dufresne boarding house"** where the household lives in the premises it keeps, **"Newell's
+stable"** where one only works there, **"A privy"** for an outbuilding, **"A vacant one-room frame
+cottage"** where nobody is placed, and **"A narrow two-story store, to let"** for premises a town
+would have advertised. The card, the Go-to list and the liberties panel all take the same title
+from the same function, so the three surfaces cannot drift.
+
+**The production identity is kept, which was the other half of the ask.** `sidecar.name` is
+untouched — it is what the parcel recipes re-derive byte for byte, what the GLBs are named for, and
+what the release gate's own naming assertion reads — and it is printed under the title as a small
+reference line. The Go-to search takes both, plus the household name: "D3 #017" and "Pratt" find
+the same roof.
+
+**What is honest about "vacant", and L167 is the entry.** No source says any of these roofs stood
+empty. The residents layer places the households this town's trades demand and reaches 104 of the
+222; the other 118 are **unmodelled, not attested empty**. The title says the building plainly, as
+the owner asked, and the card carries that qualification directly under it in the same block as the
+RECONSTRUCTED flag. Nothing in `data/` moved: this is a display layer over records that are
+unchanged to the byte.
+
+**Verification.** `tools/check.sh` green. `tools/smoke_renderer.mjs --published` green on mobile
+390×780 stages 1, 2 and 4 and desktop 1280×800 stages 1 and 2, with four new gates in stage 2 — no
+building titles itself by its part number (222 anonymous roofs scanned, and the rule re-run against
+planted records so a scan of nothing cannot pass), the card shows that title with the reference
+line under it, and search still answers to both names. **One knowingly red and two knowingly
+unrun:** mobile stage 3 carries the two road-legibility failures of **T-0114**, unchanged by this
+parcel to the decimal (walker 100–250 m ΔL* 1.8 of 3.2, weber 0.0795; aerial 250–600 m ΔL* 2.0 of
+4.6, weber 0.0922), and desktop stages 3 and 4 do not fit the ten-minute foreground ceiling on this
+runner (**T-0121**, open).
+
+**What was deliberately not done.** A workplace title names the household and not the trade —
+"McCarthy's shop", not "McCarthy's blacksmith shop" — because the trade words in the descriptions
+are hedged ("carpenter or joiner shop", "small shop or office") and collapsing them would invent a
+specificity the record does not carry. The trade is on the card, in the residents section, and in
+the reference line.
+
+## Shipped 2026-08-22 — T-0065: the goods say what is in them
+
+**The ask (owner, 2026-08-18), verbatim:** *"you can add period correct names and brands and labels
+to things."* It is the third of that day's overrides of the same restraint — the wagons (T-0064) and
+the signboards (T-0066) were the other two — and this one lands on the layer that had the restraint
+written into its own file header: *"It draws no mark, brand, stencil or label. Not on any barrel or
+case, ever."*
+
+**What shipped.** All 148 objects on `data/yard/town_trade_goods.json` — 102 casks and 46 packing
+cases at 26 named trading frontages — carry a mark, dealt by `tools/generate_yard_goods.py` and
+re-derived byte for byte by `check.sh`. A standing cask is stencilled with a commodity word across
+three staves of its BILGE, which is the face a visitor reads from the footway; every third one
+carries the house's own brand there instead. An empty laid on its side is marked on its HEAD, which
+is the only face of a lying cask that reads the right way up. A case carries a shipping mark — the
+consignee over CHICAGO, and the forwarding houses' cases add FROM BUFFALO. Seventy distinct marks,
+in three invented letterforms, on one canvas atlas.
+
+**What bounds it, and L166 is the entry.** Three things may go on a barrel: the house's own name
+(already in the dataset, already on the board over its door), a commodity word out of the trade's
+own attested advertisement (Peck's *"dry goods, hardware and groceries"*, Jones's *"grocery and
+provision store"*), and a destination with the one port this project has in writing (Buffalo, from
+the schooner arrivals in the dossier). Nothing else — no trademark, no price, no date, no maker this
+town is not recorded as dealing with. Everything is `reconstructed`, on every vertex, so hiding that
+tier still takes the whole layer away, marks and all. L131's "no marks" clause is superseded and
+keeps its reasoning verbatim.
+
+**It costs nothing.** The marks are a texture atlas on the layer's existing single material, so the
+town has the same triangles, the same materials and the same draw calls it had before. Everything
+unmarked samples a white cell, which multiplies to the timber it already was.
+
+**Verification.** `tools/check.sh` green. `tools/smoke_renderer.mjs --published` green on mobile
+390×780 stages 1, 2 and 4 and on desktop 1280×800 stages 1 and 2, with two new gates in the yard
+section — every cask and case marked, and every uv on the sheet. **Two knowingly unrun and one
+knowingly red:** desktop stages 3 and 4 do not fit the ten-minute foreground ceiling on this runner
+(**T-0121**, open), and mobile stage 3 carries the two road-legibility failures of **T-0114**, whose
+numbers are unchanged by this parcel to the decimal (walker 100–250 m ΔL* 1.8 of 3.2, weber 0.0795;
+aerial 250–600 m ΔL* 2.0 of 4.6, weber 0.0922). The marks were also read off the render at the
+Tremont House and Peck's store frontages — which is how the first build was caught writing every
+case in the town mirrored.
+## Shipped 2026-08-22 — T-0130: the signs read as the trade wrote them
+
+**The ask (owner, 2026-08-21), of the Philo Carpenter board T-0066 had shipped:** *"philo would
+not have referred to his own place as log drug store, it would be philo carpenter, drugs and
+medicines, or druggist or whatever he would have referred to himself as on the sign, that may be
+different than the name of the building for us, the sign may read differently historically."* Of
+the next one: *"same with hogan's store."* Widened the same day: *"i guess do a pass on all those
+signs and make sure they feel right for the era."* He then supplied **seven pages of 1833-35
+Chicago newspaper advertising** in which the town's businesses write their own copy.
+
+**The defect, in one sentence.** `_sign_text()` painted the structure record's own `name` and its
+docstring defended that — *"the card a visitor opens by tapping the board has to say what the
+board says"* — which collapsed two different objects. A record's `name` is OUR label for a
+BUILDING; a signboard carries what the TRADE lettered. Thirty-three boards were carrying museum
+captions.
+
+**What shipped.** The wording is now its own field and may differ from the `name`. All 33 boards
+are re-lettered from `SIGN_WORDING` in `tools/generate_business_signboards.py`, in the
+advertisements' own register — proprietor or firm first and largest, the trade beneath, the place
+last and smallest — carried per line with a role (`sign_lines`) and lettered in that hierarchy by
+`renderers/web/js/signage.js`. **14 are `inferred`** on a firm's own advertised line, **19 are
+`reconstructed`** from the trade vocabulary those pages evidence, and **0 are `attested`**. The
+identity correction the owner named is made: "Hogan's Store" reads **BREWSTER, HOGAN & CO. /
+Forwarding & Commission**, which the building's own `aka` already knew.
+
+**Nothing is `attested`, and that is the owner's own ruling rather than caution.** The seven pages
+were supplied as images in conversation and are **not committed** to `data/sources/assets/`; a
+transcription is not a citation. His instruction, verbatim: *"I will give you all those data
+sources later in a more comprehensive form proceed where you can and label reconstruction or
+inferred with a note as you like."* So every newspaper-derived note quotes its advertisement, names
+its date, says where the transcription came from, and says the value is to be **upgraded to
+`attested`** when the pages land. **The four-step upgrade recipe is written into the T-0130
+ticket** so it survives the run that wrote it. Goss & Cobb's page is committed already and is the
+first to revisit.
+
+**The golden mortar.** Carpenter's 1835 notice heads itself *"AT THE SIGN OF THE GOLDEN MORTAR"* —
+a Chicago signboard described in print by the man who owned it, in the scene year — so a gilt
+mortar and pestle is **painted** on his South Water board rather than the phrase being lettered.
+**L25 is untouched**: it withholds an image nobody described, which is the opposite case. The
+device does not generalise — one belongs to a shop only where its own advertisement names one —
+and the smoke pins the count at exactly one rather than bounding it below.
+
+**The check is CORRECTED, not relaxed.** T-0066 asserted string equality between board and card at
+one board, which was the wrong invariant once the two fields separated. What replaces it is
+`sign_identity` — the proprietor, firm or house, which must appear in both — asserted at the
+Tremont's own board, over every sign in the town, and beside two new absolute assertions: no board
+carries the word "log", and every board letters a trade as well as a proprietor. The generator
+refuses to build if any of them fails.
+
+**Cost: zero.** Measured on the published mirror, the signage layer draws **1,106 triangles in one
+mesh before and after**, on the same 4096 × 1536 atlas — the lettering lives in the atlas every
+triangle already samples, and the painted device is canvas too. Recorded in T-0115's ledger.
+
+**Findings raised rather than buried**, in the record's own `findings` array: J. S. C. Hogan's
+separate South Water dry-goods store, which the pages distinguish and the model does not carry;
+Pierce & Abbott against this project's Asahel Pierce; P. Pryne & Co. against Pruyne & Kimball;
+three advertisements that locate themselves by a neighbour and can be checked against this model's
+placements; and a list of firms the pages name that the town lacks — none of which has been given
+an invented building.
+
+**Verification.** `tools/check.sh` green; smoke green at 390×780 (stages 1-4) and 1280×800 (stages
+1-2), zero page errors, with only the known pre-existing T-0114 road-legibility reds in stage 3.
+`docs/LIBERTIES.md` **L166**.
+
 ## Shipped 2026-08-21 — T-0072: the Wolf Tavern's sign flies from a pole, and the wolf is on it
 
 **The ask (owner, 2026-08-18), of the sign close-up in image 4 of his brief:** *"its almost like a
@@ -1714,6 +2331,20 @@ nightly bake. Under the sizing rule that landed on `dev` the same day, T-0002 is
 run's half is **T-0048** (done) and the board half is **T-0049** (`needs_bake`). The measured
 tail — a tenth of neighbour pairs still differ by only ~2.4 % of value, because the deal is blind
 to position — is **T-0047**.
+
+**T-0047 closed that tail on 2026-08-22, and the bound did not move.** The deal is no longer
+blind: `facades.js` now deals the whole town at once, offering every building **32** candidates
+out of the interval L126 already fences and taking the one that stands furthest clear of the
+neighbours already dealt — a floor of 0.14 of applied value for two buildings on one spot,
+falling linearly to nothing at 60 m. Candidate 0 is the plain `id|phase` hash, so a building with
+nothing inside 60 m keeps the exact tone it had, and 158 of 339 structures take a different deal.
+Measured on the published mirror with the same instrument: the tenth percentile of applied value
+between nearest neighbours goes **2.4 % → 7.7 %** and the median **10.3 % → 13.3 %**, so the tail
+now reaches **0.58** of the middle where the acceptance asks for 0.5. 338 distinct tones across
+338 structures, **0 identical pairs**, the two attested-paint records untouched and bit-exact.
+**The rejected alternative is recorded because it measured worse:** a two-sided cost, one that
+also pulled a well-separated pair back toward the target, collapsed the median to 4.9 % and the
+ratio to 0.31 — repulsion only pushes, and that is why it is the right shape.
 
 
 

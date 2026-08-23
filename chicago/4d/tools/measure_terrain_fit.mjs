@@ -11,7 +11,7 @@
  * The mesh it measures is the MASTER at `assets/gltf/`. What the browser loads
  * is the derivative at `assets/web/`, written afterwards by the
  * `gltf-transform optimize` step in `tools/bake.sh`, which quantises POSITION to
- * int16 under a single uniform node scale. On a surface 5 km wide and 8.6 m tall
+ * int16 under a single uniform node scale. On a surface 5 km wide and 9 m tall
  * that scale is set by the width, so the vertical lattice it lands on is coarse
  * — and no gate in this project looked at the file that ships.
  *
@@ -46,6 +46,60 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
  * past it.
  */
 export const SHIPPED_FIT_TOLERANCE_M = 0.03;
+
+/**
+ * THE BIT DEPTH THE PUBLISH STEP ASKS FOR, READ OUT OF THE STEP ITSELF.
+ *
+ * `tools/web_derivatives.sh` is the only thing that sets it, so this reads the
+ * shell rather than restating the number — a second copy of `16` in this file
+ * would be a figure that agrees with the step until the day somebody moves one
+ * of them. Falls back to null when the line cannot be found, and a null is
+ * REPORTED rather than silently passing: a gate that cannot read what it is
+ * gating has to say so.
+ */
+export async function epochQuantBits(root = ROOT) {
+  const src = await readFile(path.join(root, 'tools/web_derivatives.sh'), 'utf8');
+  const m = src.match(/EPOCH_QUANT_BITS=\"\$\{EPOCH_QUANT_BITS:-(\d+)\}\"/);
+  return m ? Number(m[1]) : null;
+}
+
+/**
+ * The POSITION bit depth a quantised mesh actually SHIPS at, recovered from its
+ * own bytes.
+ *
+ * `gltf-transform` quantises under ONE uniform node scale set by the mesh's own
+ * widest axis, so the rung spacing is `extent / (2**bits - 1)` and nothing else.
+ * Invert it. The rung is measured (`verticalStep`), the extent is measured, and
+ * the answer comes back as an integer because a bit depth is one — a file that
+ * lands between two rungs is a file this reader does not understand and it
+ * returns null rather than rounding towards the answer somebody wanted.
+ *
+ * WHY THIS EXISTS AT ALL, and it is R-W6(b)'s own diagnosis: the derivative gate
+ * compares master to derivative on material identity, triangle count, node
+ * identity and a bounding box within four rungs, and A BIT-DEPTH CHANGE MOVES
+ * NONE OF THEM. So the 14-bit ground shipped for weeks with every gate green,
+ * and when the 16-bit one finally arrived in a nightly bake nothing could say
+ * that either. Both directions of that silence close here.
+ */
+export function shippedBits(xyz, step) {
+  if (!step || !Number.isFinite(step)) return null;
+  let extent = 0;
+  for (let axis = 0; axis < 3; axis += 1) {
+    let lo = Infinity;
+    let hi = -Infinity;
+    for (let i = axis; i < xyz.length; i += 3) {
+      if (xyz[i] < lo) lo = xyz[i];
+      if (xyz[i] > hi) hi = xyz[i];
+    }
+    extent = Math.max(extent, hi - lo);
+  }
+  if (!(extent > 0)) return null;
+  const bits = Math.log2(extent / step + 1);
+  // A quarter of a bit either way. The depths this step can ask for are whole
+  // numbers an octave apart in rung spacing, so the tolerance is generous and
+  // still cannot confuse 15 with 16.
+  return Math.abs(bits - Math.round(bits)) < 0.25 ? Math.round(bits) : null;
+}
 
 // --- glTF container ------------------------------------------------------ //
 
@@ -256,17 +310,19 @@ export async function measureMesh(file, hf, decoder) {
     const e = xyz[i * 3];
     const y = xyz[i * 3 + 1];
     const n = -xyz[i * 3 + 2];
-    // The skirt carries boundary heights 1.5 km past the modelled box, where
+    // The skirt carries boundary heights 1.55 km past the modelled box, where
     // there is no field to compare against and the sampler clamps. Scoring it
     // would measure the clamp, not the mesh.
     if (!hf.inside(e, n)) continue;
     errors.push(y - hf.height(e, n));
   }
+  const step = verticalStep(node, accessor, xyz);
   return {
     vertices: count,
     compared: errors.length,
     quantised: !!accessor.normalized,
-    vertical_step_m: verticalStep(node, accessor, xyz),
+    vertical_step_m: step,
+    position_bits: accessor.normalized ? shippedBits(xyz, step) : null,
     ...summarise(errors),
   };
 }
@@ -289,7 +345,42 @@ export async function measureTerrainFit({ epoch, root = ROOT } = {}) {
     out.meshes[which] = { file: rel, ...await measureMesh(path.join(root, rel), hf, decoder) };
   }
   out.pass = out.meshes.shipped.max_abs_m <= SHIPPED_FIT_TOLERANCE_M;
+  // T-0012. What the publish step asks for, what arrived, and whether they agree.
+  // `null` on either side is NOT agreement — see `quantisationVerdict`.
+  out.position_bits = {
+    asked: await epochQuantBits(root),
+    shipped: out.meshes.shipped.position_bits,
+  };
   return out;
+}
+
+/**
+ * The one sentence the bit depth reduces to, and whether it is a failure.
+ *
+ * Shipping FINER than the step asks for is not a fault — a master small enough
+ * to land its own rungs above the ask would read that way, and so would a step
+ * whose default was lowered without regenerating. Shipping COARSER is the fault
+ * this closes: it is the file R-W6 measured burying the road, and it reached the
+ * site with every other assertion green.
+ */
+export function quantisationVerdict(bits) {
+  const { asked, shipped } = bits ?? {};
+  if (asked === null || asked === undefined) {
+    return { ok: false, why: 'tools/web_derivatives.sh no longer states EPOCH_QUANT_BITS '
+      + 'in the shape this gate reads it — the ask cannot be checked, which is a broken '
+      + 'gate and not a pass' };
+  }
+  if (shipped === null || shipped === undefined) {
+    return { ok: false, why: 'the shipped ground does not land on a bit depth this reader '
+      + 'can recover from its own rungs — it may not be quantised by the publish step at all' };
+  }
+  if (shipped < asked) {
+    return { ok: false, why: `the shipped ground carries ${shipped}-bit POSITION where `
+      + `tools/web_derivatives.sh asks for ${asked}. Regenerate it in this commit: `
+      + 'tools/web_derivatives.sh --only terrain__<epoch>.glb' };
+  }
+  return { ok: true, why: `${shipped}-bit POSITION, which is what tools/web_derivatives.sh `
+    + `asks for (${asked})` };
 }
 
 async function main() {
@@ -320,19 +411,40 @@ async function main() {
   // master afterwards. A hand-edited or half-restored GLB would sail through
   // every other check in this repo. This closes that.
   //
-  // The SHIPPED derivative is REPORTED and not asserted, because it cannot pass:
-  // `gltf-transform optimize` quantises POSITION to 14 bits under one uniform
-  // node scale, which on a mesh 5,020 m wide and 8.6 m tall is a 306 mm vertical
-  // lattice, and 16 bits — the format's maximum — still lands on 77 mm. There is
-  // no setting that meets 30 mm. `renderers/web/js/terrain.js` reads the heights
-  // back off the field at load instead, and it is `tools/smoke_renderer.mjs`
-  // that asserts the surface actually DRAWN matches the sampler, because that is
-  // where the repair happens. Asserting it here would only ever say that a
-  // compressor is a compressor.
+  // The SHIPPED derivative's FIT is REPORTED and not asserted, because it cannot
+  // pass: `gltf-transform optimize` quantises POSITION under one uniform node
+  // scale, which on a mesh 5,120 m wide and 9.0 m tall is a 306 mm vertical
+  // lattice at 14 bits, and 16 — the format's maximum — still lands on 78 mm.
+  // There is no setting that meets 30 mm. `renderers/web/js/terrain.js` reads the
+  // heights back off the field at load instead, and it is
+  // `tools/smoke_renderer.mjs` that asserts the surface actually DRAWN matches
+  // the sampler, because that is where the repair happens. Asserting the fit here
+  // would only ever say that a compressor is a compressor.
+  //
+  // THE OTHER TWO AXES ARE ASSERTED, and elsewhere — T-0152. Reading a height
+  // back at a vertex's shipped (E, N) repairs nothing if the quantiser moved the
+  // (E, N), so `generators/terrain_gen.py` derives the skirt margin to make the
+  // POSITION rung an exact submultiple of the terrain grid and the displacement
+  // is zero rather than small. `tools/measure_terrain_horizontal.mjs --gate`
+  // holds that, on these same bytes, in `tools/check.sh`.
+  //
+  // ITS BIT DEPTH IS A DIFFERENT QUESTION AND IS ASSERTED — T-0012. The depth is
+  // not a property of the compressor, it is an instruction this repository gives
+  // it, and until now nothing checked that the instruction arrived. R-W6 raised
+  // `EPOCH_QUANT_BITS` from 14 to 16 on 2026-08-16 and marked itself DONE; the
+  // file a visitor downloaded stayed 14-bit for days, because the derivative gate
+  // compares material identity, triangle count, node identity and a bounding box
+  // within four rungs and a bit-depth change moves NONE of them. The 16-bit
+  // ground did arrive eventually, in a nightly bake, and nothing could say that
+  // either — which is how its ticket sat near the top of the queue describing a
+  // state the tree had already left. Both silences end here: this reads the depth
+  // off the shipped bytes and fails if it is coarser than the step asks for.
+  const quant = quantisationVerdict(result.position_bits);
   if (!argv.includes('--gate')) {
     console.log(`\n   tolerance ${tol} — the generator's own MESH_FIT_TOLERANCE_M`);
     console.log(`   the shipped derivative is off by up to ${mm(result.meshes.shipped.max_abs_m)}`
       + ' — see R-BUG3c, and js/terrain.js conformGroundToField()');
+    console.log(`   the shipped derivative carries ${quant.why}`);
     return;
   }
   const master = result.meshes.master;
@@ -340,6 +452,12 @@ async function main() {
     + `${master.max_abs_m <= result.tolerance_m ? 'yes' : 'NO'} `
     + `(${mm(master.max_abs_m)}); shipped derivative ${mm(result.meshes.shipped.max_abs_m)} off `
     + 'on a quantised lattice, conformed at load — see R-BUG3c');
+  console.log(`   shipped POSITION: ${quant.ok ? quant.why : `NO — ${quant.why}`}`
+    + ` (lattice ${mm(result.meshes.shipped.vertical_step_m)})`);
+  if (!quant.ok) {
+    console.error(`   ${quant.why}`);
+    process.exit(1);
+  }
   if (master.max_abs_m > result.tolerance_m) {
     console.error(`   the committed MASTER ground mesh departs from the heightfield by `
       + `${mm(master.max_abs_m)}, over the ${tol} generators/terrain_gen.py refuses to `

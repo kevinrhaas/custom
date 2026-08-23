@@ -331,6 +331,61 @@ HEAVY_TIMBER = Finish(
          "materials 3.2x apart in linear red, of which only this one ships.")
 
 
+# ------------------------------------------------------------- the chimney stack
+#
+# R-W2a finding 1, discharged by T-0008: `frame_dwelling`, `frame_storefront` and
+# `log_dwelling` built their stacks with the ROOF material, so every stack in the town
+# was painted the colour of the roof it passes through — wrong in a way a visitor sees
+# from the street. Measured off the resolved parameters of the committed masters, that
+# is **157 stacks on 143 buildings** counting `frame_tavern`, which took the same fix;
+# R-W2a's own "219 on 199" does not reproduce on this tree and is left as it was
+# written rather than quietly restated. The fabric question the finding left open is
+# answered in `docs/RESEARCH/chimneys.md`, and its answer is TWO materials rather than
+# one, because the two stacks are two different objects:
+#
+# * A FRAMED house's stack rises inside the building and breaks the roof at the ridge.
+#   It has to be masonry to do that, and the masonry Chicago had is brick: Blodgett's
+#   brick-yard opened on the North Side in the spring of 1833 (`brickyard_north_side`,
+#   Andreas), the Lake House went up in brick in 1835, and the one coloured witness to
+#   any Chicago stack — the Petford watercolour of the Sauganash, image 8 of the
+#   owner's 2026-08-18 brief — paints **brick chimneys** on a framed clapboard block.
+#   INFERRED, and the colour is not a new one: it is `frame_tavern`'s committed
+#   `BRICK_RGBA`, wired to the Sauganash by T-0092, which now lives here so the town
+#   has ONE brick instead of an archetype-local copy per archetype (§2.3's complaint).
+# * A LOG cabin's stack stands OUTSIDE the gable, and `log_dwelling._stack` has always
+#   said why in as many words: a stick-and-clay or fieldstone stack built against the
+#   wall can be pulled away from the building when it catches fire. Nothing in this
+#   repository attests any log house's stack, so this is RECONSTRUCTED — the daub the
+#   sticks are laid up in, BOUNDED between the chinking it is made of and the palest
+#   roof it stands beside, and sitting at the midpoint because nothing says where else
+#   it sits. `docs/LIBERTIES.md` L26 owns every stack's POSITION; L168 owns its fabric.
+#
+# Neither row claims a stack for a building whose record does not count one, and
+# neither is a covering claim about the roof it passes through.
+
+CHIMNEY_BRICK = Finish(
+    key="chimney_brick", rgba=(0.45, 0.23, 0.17, 1.0), roughness=0.85, tier="inferred",
+    note="Unpainted soft-mud brick. Verbatim `frame_tavern.BRICK_RGBA` (T-0092), off "
+         "the Petford watercolour's brick chimneys, so the Sauganash's own stacks do "
+         "not change colour when the rest of the town's stop being roof-coloured. "
+         "docs/RESEARCH/chimneys.md §2.")
+CHIMNEY_STICK_CLAY = Finish(
+    key="chimney_stick_clay", rgba=(0.562, 0.527, 0.468, 1.0), roughness=0.95,
+    tier="reconstructed",
+    note="A cat-and-clay stack: split sticks laid up in courses and daubed inside and "
+         "out with the same clay the wall below it is chinked with. Nothing attests any "
+         "Chicago log house's stack, so the tone is BOUNDED rather than read, and both "
+         "bounds are values this project already ships: it cannot be as pale as the "
+         "CHINKING (0.700/0.670/0.590), which is the same clay sitting sheltered under "
+         "an eave while a stack takes weather and smoke on every face; and it cannot be "
+         "as dark as the palest ROOF CONDITION (weathered, 0.424/0.384/0.345), or it "
+         "stops reading as masonry against the roof it stands beside — which is the "
+         "whole defect T-0008 exists to fix. Nothing states where between the two it "
+         "sits, so it sits at the midpoint of the two, to three decimals. Roughness "
+         "is the sheet's `earth` substrate, because the surface is daub. "
+         "docs/LIBERTIES.md L168, docs/RESEARCH/chimneys.md §3.")
+
+
 # ------------------------------------------------------------------- selection
 #
 # The half materials.md §2 calls "selected by". Until T-0007 the answer for most
@@ -415,6 +470,24 @@ def roof_finish(roof_condition: str | None = None) -> Finish:
     if roof_condition and roof_condition in ROOF_CONDITIONS:
         return ROOF_CONDITIONS[roof_condition]
     return ROOF_DEFAULT
+
+
+def chimney_finish(stack: str) -> Finish:
+    """What a stack is built of, given WHERE IT STANDS — `interior` or `exterior_gable`.
+
+    The selector is the disposition and not the record, because no record in this
+    dataset states a chimney fabric except the Sauganash's (`chimney_material`,
+    T-0092, which `frame_tavern` still reads and folds into its confidence). What the
+    two rows above argue is a rule about the two kinds of stack this town has, and
+    each archetype already knows which kind it builds — `frame_dwelling` says its
+    stack rises inside the wall and breaks the roof at the ridge, `log_dwelling` says
+    its stack is built against the gable so it can be pulled away when it fires. Those
+    two sentences were already committed; this turns them into two materials.
+
+    Anything else takes brick: an interior stack is the town's majority and the
+    better-evidenced of the two. `docs/RESEARCH/chimneys.md` is the whole argument.
+    """
+    return CHIMNEY_STICK_CLAY if stack == "exterior_gable" else CHIMNEY_BRICK
 
 
 def resolve(substrate: Substrate, finish: Finish) -> tuple[tuple, float]:

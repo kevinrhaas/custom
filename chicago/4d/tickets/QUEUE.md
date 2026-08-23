@@ -1,17 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
-T-0065 — Period names, brands and labels on the goods
-T-0075 — Hold the 2026-08-18 owner brief as source records
-T-0076 — Buildings are named for their people, not their spec codes
-T-0008 — 199 chimneys are painted roof-colour
-T-0009 — Redraw 29 building bodies out of the roadway
-T-0010 — Finish the heightfield east
-T-0011 — The sixty North Division records get their sampled bands
-T-0012 — Ship the 16-bit ground the script already computes
-T-0013 — Coplanar surfaces tie at depth on 3.5 percent of the aerial frame
-T-0014 — 79 ground vertices face downward
 T-0015 — Does the AO bake earn its nightly
-T-0016 — Report any road band that moves against its own bank
 T-0017 — Re-shoot the south_water critic baseline from the new stand
 T-0018 — Does a spatial filter eat the sward stratification
 T-0019 — Six forb layers ask for more plants than the lattice holds
@@ -30,12 +19,10 @@ T-0031 — Where did the South Water timber belt stand
 T-0032 — The six-roof civic target counts three that were never built
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
-T-0047 — Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
-T-0057 — Ordinance 9's other half: timber, stone and brick stacked on the lots that were building
 T-0058 — A visitor can walk out along a wharf deck
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
@@ -49,7 +36,6 @@ T-0099 — The bank track from the fort's north gate down to the water
 T-0100 — A street's geometry confidence never reaches the picture
 T-0103 — Every platted-block roof faces away from the street it fronts
 T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
-T-0105 — Apply the core density standard to the next core block below the bar
 T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
@@ -59,9 +45,20 @@ T-0113 — The nightly bake refuses its own publish: 30 masters now compress sma
 T-0114 — The road-legibility gate is red from mid-distance, and no run had reached it since it turned
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
-T-0122 — Masts behind the Green Tree: moored craft at the Wolf Point landings
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0127 — South Water Street and the rest of the town get the street edge
-T-0130 — The signs should read as the trade wrote them, not as we label the building
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
+T-0146 — Merge far chunks back into single draws
+T-0147 — Re-lower the ceilings once the trims land
+T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
+T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
+T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
+T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale
+T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
+T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
+T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
+T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
+T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
+T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
+T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black

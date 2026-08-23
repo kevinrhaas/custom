@@ -599,7 +599,7 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
 
 
 def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict],
-                datum: dict) -> list[dict]:
+                datum: dict, sibling_lots: frozenset[int] = frozenset()) -> list[dict]:
     grid = lots_by_id.get(block["block_id"])
     if grid is None:
         raise SystemExit(f"{block['block_id']} is not a block of the committed plat grid")
@@ -610,8 +610,21 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
     face = face_frame(grid, frontage["face"]) if frontage else None
     strip = frontage_strip(block, grid, face) if frontage else None
 
+    # T-0105. A BLOCK MAY BE DEALT TWICE, and the second deal is a second entry.
+    # Until the core density standard raised the ceiling (T-0079) a block was dealt
+    # once, built once and finished, so a recipe entry could number its records from
+    # one and never meet another entry's. The standard retired that: a block built to
+    # the old ceiling now stands BELOW the new one, and the roofs it is dealt next
+    # arrive years of commits after the ones already standing on it. Rewriting the
+    # first entry to cover both deals would restate a schedule that was true in
+    # August under numbers that were not, so the second deal is its own entry against
+    # its own headroom — and `seq_start` is the one thing that has to move with it,
+    # because the record id carries the sequence and two entries numbering from one
+    # would collide on the first slot that shared a family. Everything else already
+    # works across entries: occupancy, separation and the roadway are all measured
+    # against the committed dataset rather than against this entry's own slots.
     records = []
-    for seq, slot in enumerate(block["slots"], start=1):
+    for seq, slot in enumerate(block["slots"], start=int(block.get("seq_start", 1))):
         on_frontage = slot["stands_on"] == "frontage"
         if on_frontage and frontage is None:
             raise SystemExit(f"{block['block_id']}: a slot stands on the frontage, but "
@@ -633,7 +646,7 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
             family, datum, seq, face))
     if frontage:
         place_frontage(block, face, strip, records, datum)
-    check_block(block, grid, frames, records, datum, face, strip)
+    check_block(block, grid, frames, records, datum, face, strip, sibling_lots)
     return records
 
 
@@ -857,7 +870,8 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
 
 def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict],
                 datum: dict, face: dict | None = None,
-                strip: dict | None = None) -> None:
+                strip: dict | None = None,
+                sibling_lots: frozenset[int] = frozenset()) -> None:
     from plat_corridors import corridors, intrusion  # noqa: PLC0415
     from heightfield import Heightfield  # noqa: PLC0415
 
@@ -1028,8 +1042,15 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
                              f"without saying why. Which lot is arbitrary, and an "
                              f"arbitrary choice nobody wrote down is indistinguishable "
                              f"from a slot that went missing")
+    # A lot another DEAL on this same block builds on is its own class, and it has to
+    # be, in both directions. Before that deal's records exist on disk it is occupied by
+    # nothing and would read as a lot nobody accounted for; after they exist it is
+    # occupied by a roof this recipe wrote, and calling it "already carrying a roof"
+    # would say a stranger built it. The lots are read from the recipe rather than from
+    # the ground, which is what makes the answer the same on both sides of a generate.
     classes = {"built on by this parcel": set(used),
-               "already carrying a roof": set(occupied),
+               "built on by another deal on this block": set(sibling_lots),
+               "already carrying a roof": set(occupied) - set(sibling_lots),
                "named open in the recipe": set(named_open)}
     for name, indices in classes.items():
         for other_name, other_indices in classes.items():
@@ -1160,6 +1181,19 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
 
 # --------------------------------------------------------------------------
 
+def claimed_lots(block: dict) -> set[int]:
+    """Every lot of the grid a recipe entry stands a roof on, run or not."""
+    lots = {int(slot["lot"]) for slot in block["slots"] if "lot" in slot}
+    return lots | {int(index) for index in (block.get("frontage") or {}).get("lots", [])}
+
+
+def siblings(blocks: list[dict], block: dict) -> frozenset[int]:
+    """The lots the OTHER deals on this block build on (T-0105)."""
+    return frozenset().union(*[claimed_lots(other) for other in blocks
+                               if other is not block
+                               and other["block_id"] == block["block_id"]] or [set()])
+
+
 def records_from_inputs() -> list[dict]:
     recipe = load(RECIPE_PATH)
     table = families()
@@ -1181,7 +1215,8 @@ def records_from_inputs() -> list[dict]:
                 "entry here, and withdraw the reservation with its evidence rather than "
                 "working around it."
             )
-        records += build_block(block, table, lots_by_id, datum)
+        records += build_block(block, table, lots_by_id, datum,
+                               siblings(recipe["blocks"], block))
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):
         raise SystemExit("two block slots produced the same record id")

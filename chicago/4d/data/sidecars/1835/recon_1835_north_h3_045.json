@@ -16,8 +16,8 @@
   },
   "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": 940.123,
-    "local_n": 357.685,
+    "local_e": 940.093,
+    "local_n": 357.835,
     "rotation_deg": 0.0,
     "position_confidence": "reconstructed",
     "position_sources": [],
@@ -35,21 +35,21 @@
         0
       ],
       [
-        9.754,
+        9.815,
         0
       ],
       [
-        9.754,
-        14.63
+        9.815,
+        14.33
       ],
       [
         0,
-        14.63
+        14.33
       ]
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "A 32 × 48 ft rectangle assigned by the reconstruction recipe within the H3 family band; no individual dimensions are documented."
+    "note": "A 9.81 × 14.33 m rectangle sampled deterministically inside the H3 family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
@@ -61,7 +61,7 @@
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the H3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
     },
     "wall_height_m": {
-      "value": 5.2,
+      "value": 5.759,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -77,7 +77,7 @@
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the H3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
     },
     "roof_pitch_deg": {
-      "value": 38.0,
+      "value": 30.3,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"

@@ -1,7 +1,7 @@
 ---
 id: T-0047
 title: Some neighbouring buildings still differ only slightly, because the facade tone is a random deal
-state: open
+state: done
 epic: RENDERING
 requested_by: loop
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-22
+pr: 310
+claimed_by: run 8/22/2026, 9:36:34 AM CT
 blocked_on: null
 needs_bake: false
 ---

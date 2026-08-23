@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -33,6 +34,11 @@ CROSSWALK_PATH = ROOT / "data" / "reconstruction" / "1835_family_archetype_cross
 
 FOOTPRINT_RE = re.compile(r"^\s*(\d+)x(\d+)\s*-\s*(\d+)x(\d+)")
 RANGE_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$")
+# The rise:run pair a family's roof line names — "side or front gable, 7:12-10:12".
+# Same expression `tools/band_notes.py` and `tools/measure_band_claims.py` already use
+# to decide whether a pitch may cite the band at all; kept identical on purpose, so a
+# family this module samples for is exactly a family the gate tests.
+PITCH_RE = re.compile(r"(\d+):12\s*-\s*(\d+):12")
 
 
 def stable_fraction(key: str, slot: int) -> float:
@@ -50,6 +56,8 @@ def families() -> dict[str, dict]:
             "archetype": fam.get("current_placeholder_archetype"),
             "levels": geom.get("levels"),
             "eave_ft": geom.get("eave_ft"),
+            "roof": geom.get("roof"),
+            "ridge_ft": geom.get("ridge_ft"),
             "band_ft": None,
         }
         m = FOOTPRINT_RE.match(str(geom.get("footprint_ft") or ""))
@@ -78,11 +86,28 @@ def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, floa
     return round(width, 3), round(depth, 3)
 
 
-def storeys(levels: str) -> tuple[float, bool]:
-    """(storeys, has a loft) from the crosswalk's `levels` string."""
+def storeys(levels: str, key: str | None = None) -> tuple[float, bool]:
+    """(storeys, has a loft) from the crosswalk's `levels` string.
+
+    Three of the crosswalk's families author `levels` as a BAND rather than a value —
+    T1 is `1.5-2`, W2 is `1-1.5` — for the same reason the footprint and eave columns
+    are bands: the typology covers a range and no source narrows it. Those are sampled
+    on the half-storey step the vocabulary uses, from the same stable key as every
+    other dimension, so a family that stands more than once does not stand at one
+    height. A band asked for without a key still fails loudly: collapsing it to its
+    low end silently is the retyping this module exists to stop.
+    """
     text = str(levels or "1").strip()
     loft = "loft" in text
     head = text.split("+")[0].strip()
+    band = RANGE_RE.match(head)
+    if band:
+        lo, hi = float(band.group(1)), float(band.group(2))
+        if key is None:
+            raise SystemExit(f"levels '{levels}' is a band, not a value; pass a key to "
+                             f"sample it rather than collapsing it")
+        steps = [lo + .5 * i for i in range(int(round((hi - lo) / .5)) + 1)]
+        return steps[min(int(stable_fraction(key, 9) * len(steps)), len(steps) - 1)], loft
     try:
         return float(head), loft
     except ValueError:
@@ -135,3 +160,101 @@ def eave_floor(family: str, door: str = "man") -> float:
 # The stock over a door's clear opening, as the outbuilding archetype's own validator
 # measures it: a wall must stand more than this above the door head.
 DOOR_HEADER_M = 0.08
+
+
+# ---------------------------------------------------------------------------
+# THE ROOF: a pitch sampled from the family's own band, and gated on the ridge
+# it produces (T-0145).
+#
+# T-0144 moved footprint, storeys and eave off retyped constants and onto the
+# authored bands. Pitch was deliberately left alone, and the ticket said why:
+# sampling a pitch without looking at what it does to the RIDGE moves the fault
+# one field over. The crosswalk authors both — `roof` carries a rise:run band and
+# `ridge_ft` carries the height the ridge is supposed to reach — and the two are
+# not independent, because the ridge is what the pitch and the footprint make
+# together. So the sampler here is CONSTRAINED: it samples inside the pitch band,
+# but where part of that band would put the ridge outside the family's own
+# `ridge_ft`, it samples from the part that does not.
+#
+# WHAT IT WILL NOT DO. It will not leave the pitch band to reach a ridge band, in
+# either direction. The pitch band is a claim about the roofs of a building type
+# and the ridge band is another; where the archetype's own geometry cannot satisfy
+# both — a narrow-fronted outbuilding whose ridge runs across its short axis
+# cannot reach a ridge band written for a house's span at ANY pitch the family
+# allows — the sampler stays inside the pitch band and the residual is reported by
+# `tools/measure_ridge_band.py` rather than hidden by a pitch nobody claims. A
+# gate that can be satisfied by disobeying the other band is not a gate.
+# ---------------------------------------------------------------------------
+
+def pitch_band_deg(roof: str | None) -> tuple[float, float] | None:
+    """The family's authored pitch band in degrees, or None if it authors none.
+
+    Eight of the thirty-five families write a roof line with no pitch in it at all
+    ("gable or shed", "gabled composite"). Those return None and keep whatever type
+    default the generator holds — which is what `tools/band_notes.py` already makes
+    their note say, and the two agree by construction because they read the same
+    expression off the same string.
+    """
+    m = PITCH_RE.search(str(roof or ""))
+    if not m:
+        return None
+    return (math.degrees(math.atan(int(m.group(1)) / 12)),
+            math.degrees(math.atan(int(m.group(2)) / 12)))
+
+
+def ridge_band_m(ridge_ft: str | None) -> tuple[float, float] | None:
+    """The family's authored ridge band in metres, or None ('custom' on T3 and M1)."""
+    m = RANGE_RE.match(str(ridge_ft or ""))
+    if not m:
+        return None
+    return (float(m.group(1)) * .3048, float(m.group(2)) * .3048)
+
+
+def ridge_m(eave_m: float, run_m: float, pitch_deg_value: float) -> float:
+    """The ridge a pitch reaches over a given run, from the eave it springs from.
+
+    One line, and it is the line every roof builder in `generators/archetypes/`
+    computes: the rise is the run times the tangent. What differs between archetypes
+    is WHICH horizontal distance the run is — half the span for a gable, the whole
+    span for a shed, and which of width and depth the span is — and that belongs to
+    the archetype, so it is asked of `tools/ridge_model.py` and passed in here.
+    """
+    return eave_m + run_m * math.tan(math.radians(pitch_deg_value))
+
+
+def pitch_deg(family: str, roof: str | None, key: str, default: float,
+              eave_m: float | None = None, run_m: float | None = None,
+              ridge_ft: str | None = None) -> float:
+    """A pitch sampled inside the family's band, constrained by its ridge band.
+
+    `default` is the generator's own type value and is returned unchanged for a
+    family whose roof line names no pitch — the sampler adds variety inside a claim
+    the specification makes and invents no claim where it makes none.
+
+    The constraint is applied by SHRINKING the sampling interval, not by rejecting
+    a sample: the reachable sub-band is computed in closed form from the ridge band
+    (the ridge rises monotonically with the pitch over a fixed run, so the sub-band
+    is an interval), and the same stable fraction is then taken across whatever
+    interval survives. That keeps the sample deterministic and re-derivable without
+    a search, which is what `tools/check.sh` needs — it re-derives these records
+    byte for byte on a runner with no Blender on it.
+    """
+    band = pitch_band_deg(roof)
+    if band is None:
+        return default
+    lo, hi = band
+    ridge = ridge_band_m(ridge_ft)
+    if ridge is not None and eave_m is not None and run_m and run_m > 1e-6:
+        r_lo, r_hi = ridge
+        # tan is increasing on (0, 90), so the pitches that land the ridge inside
+        # the band are themselves an interval, and it is this one.
+        def pitch_for(target: float) -> float:
+            return math.degrees(math.atan(max(0.0, target - eave_m) / run_m))
+        want_lo, want_hi = pitch_for(r_lo), pitch_for(r_hi)
+        sub_lo, sub_hi = max(lo, want_lo), min(hi, want_hi)
+        if sub_hi - sub_lo > 1e-9:
+            lo, hi = sub_lo, sub_hi
+        # else: the two bands do not overlap for this instance's own run. The pitch
+        # band wins (see the module note above) and the residual is the gate's to
+        # report.
+    return round(lo + (hi - lo) * stable_fraction(key, 7), 1)

@@ -19,6 +19,8 @@
  * document it is quoting.
  */
 
+import { displayName } from './display-name.js';
+
 /** Escape first, then re-admit exactly two markdown inflections. */
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -175,7 +177,11 @@ export function libertiesFor(liberties, subjectId) {
 export async function mountLiberties({ mount, noteMount = null, dataBase,
                                        registry = new Map(), problems = [] }) {
   const names = new Map();
-  for (const [id, record] of registry) names.set(id, record?.sidecar?.name || id);
+  // The card's own title for the building, so a liberty's subject reads as the
+  // building a visitor just clicked on rather than as its parcel number (T-0076).
+  for (const [id, record] of registry) {
+    names.set(id, displayName(record?.sidecar ?? {}, id).title || id);
+  }
 
   let doc = null;
   try {

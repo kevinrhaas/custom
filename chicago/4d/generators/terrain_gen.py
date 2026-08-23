@@ -81,13 +81,133 @@ CONF_DOCUMENTED, CONF_INFERRED, CONF_CONJECTURAL = 0.0, 0.5, 1.0
 # It is an apron on the box's four sides rather than a radial scaling, because
 # the box stopped being square when the ground was extended east: scaling a
 # 2020 x 800 m rectangle radially would push the east edge out by a quarter of
-# what it pushes the north edge, which is backwards. The margin is the distance
-# at which renderers/web/js/world.js's haze is total, so the skirt's own outer
-# edge can never be seen from anywhere inside the box.
-SKIRT_MARGIN_M = 1500.0
+# what it pushes the north edge, which is backwards. The margin is AT LEAST the
+# distance at which renderers/web/js/world.js's haze is total, so the skirt's own
+# outer edge can never be seen from anywhere inside the box.
+SKIRT_MARGIN_MIN_M = 1500.0
+
+# The signed container `gltf-transform` quantises POSITION into. It is 32767 and
+# not 32768: a normalized int16 is `raw / 32767` by the glTF specification, which
+# is what makes the ladder below symmetric about the mesh's own centre.
+INT16_FULL_SCALE = 32767
+
+
+def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
+    """The apron's width, DERIVED so the publish step's lattice divides the grid.
+
+    THE ARTEFACT THIS ENDS (T-0152). `tools/web_derivatives.sh` quantises the
+    published ground's POSITION under ONE UNIFORM node scale, and that scale is
+    set by the mesh's widest axis — the box plus two skirt margins. Measured on
+    the bytes that shipped on 2026-08-23: scale 2510 m, translation at the mesh's
+    own centre, rung `scale / 32767` = 76.6 mm, and every shipped vertex exactly
+    `round((p - centre) / rung)` rungs from that centre (378,581 of 378,582 axis
+    values reproduced to the bit; the one exception is a half-rung tie). So the
+    quantiser is not approximate and it is not opaque: it is a ladder, and the
+    only question is whether the generator's vertices stand on its rungs.
+
+    They did not. 2.5 m of grid was 32.64 rungs, so a ground vertex was displaced
+    in plan by up to half a rung, conformed at the displaced position by
+    `renderers/web/js/terrain.js`, and therefore held the field's height for the
+    WRONG PLACE. R-W6 named the cost — (slope x displacement) — and reasoned that
+    "flat platted prairie cannot show this artefact at any bit depth". The east
+    extension brought in bank faces at 60-90 %, which can: 56 of the field's
+    259,689 sample points stood past the 22 mm road lift, worst 77.1 mm, one of
+    them 0.1 m from the centreline of North Water Street.
+
+    16 bits is the format's maximum and the master is 5.8 MB too big to ship
+    uncompressed, so neither of the two obvious answers was available. This is
+    the third: make the rung an exact submultiple of the grid, and the
+    displacement is not reduced but ABOLISHED — every vertex the generator writes
+    is already on a rung, so the quantiser rounds it to itself.
+
+    The margin is what buys that, because the margin is what sets the scale:
+
+        rung   = (e_span + 2 * margin) / 2 / 32767
+        margin = 32767 * cell / k - e_span / 2      for rung = cell / k
+
+    `k` is a POWER OF TWO, which is one more constraint than commensurability
+    needs and is worth the metre or two it costs. `gltf-transform` quantises to a
+    bit depth and stores the result in the container above it, so asking for
+    fewer bits multiplies the rung by a power of two — under a power-of-two `k`
+    the lattice stays commensurate at every depth from 11 bits up, and the
+    generator is not silently coupled to a number that lives in a shell script.
+    The largest such `k` is taken, since a finer ladder costs nothing here and
+    the coarsest the search will accept is the one whose apron still reaches the
+    haze distance.
+
+    Returns the margin and the `k` it was derived from; the caller ASSERTS the
+    result on the vertices themselves rather than trusting this arithmetic.
+    """
+    half = 0.5 * e_span_m
+    k = 1
+    while INT16_FULL_SCALE * cell_m / (k * 2) >= half + SKIRT_MARGIN_MIN_M:
+        k *= 2
+    return INT16_FULL_SCALE * cell_m / k - half, k
+
+
 # The water plane has to reach past the skirt or the ground would run out over
 # open water at the horizon.
-WATER_MARGIN_M = SKIRT_MARGIN_M + 200.0
+WATER_MARGIN_EXTRA_M = 200.0
+
+
+# How far a vertex may stand off the publish step's POSITION ladder before the
+# generator refuses to export. A micron: the arithmetic in skirt_margin_m() is
+# exact in binary and lands within 1e-9 of a rung, so this is four orders of
+# magnitude of slack over the residual and four orders under the 22 mm road lift
+# the whole exercise is protecting.
+LATTICE_RESIDUAL_TOLERANCE_M = 1e-6
+
+
+def check_quantisation_lattice(verts, e0, e1, n0, n1, margin_m, cell_m, k):
+    """REFUSE to export a ground whose vertices do not stand on the publish rung.
+
+    skirt_margin_m() is arithmetic, and arithmetic about a third-party tool is a
+    belief until something checks it against the vertices that will actually be
+    written. This is that check, and it is a refusal rather than a report for the
+    same reason MESH_FIT_TOLERANCE_M is: a ground that quietly stops being
+    commensurate is a ground that quietly goes back to holding the field's height
+    for the wrong place, and nothing downstream of the bake would say so until
+    somebody re-ran tools/measure_terrain_horizontal.mjs.
+
+    The model it asserts is the one recovered from the shipped bytes: uniform
+    node scale = half the widest extent, translation = the mesh's own centre,
+    rung = scale / 32767.
+
+    Returns the rung, in metres.
+    """
+    es = [v[0] for v in verts]
+    ns = [v[1] for v in verts]
+    ys = [v[2] for v in verts]
+    spans = (max(es) - min(es), max(ns) - min(ns), max(ys) - min(ys))
+    if spans[0] != max(spans):
+        raise SystemExit(
+            f"REFUSING: the ground's widest axis is no longer east-west "
+            f"({spans[0]:.3f} x {spans[1]:.3f} x {spans[2]:.3f} m). The quantiser takes its "
+            f"uniform scale from the widest axis, so skirt_margin_m() would be deriving the "
+            f"apron against an axis that no longer sets the rung. See T-0152.")
+    rung = 0.5 * spans[0] / INT16_FULL_SCALE
+    centre = (0.5 * (min(es) + max(es)), 0.5 * (min(ns) + max(ns)))
+    worst, worst_at = 0.0, None
+    for e, n, _y in verts:
+        for axis, coord in enumerate((e, n)):
+            q = (coord - centre[axis]) / rung
+            off = abs(q - round(q)) * rung
+            if off > worst:
+                worst, worst_at = off, (e, n)
+    if worst > LATTICE_RESIDUAL_TOLERANCE_M:
+        raise SystemExit(
+            f"REFUSING: a ground vertex stands {worst * 1000:.3f} mm off the POSITION ladder "
+            f"tools/web_derivatives.sh will quantise it onto (rung {rung * 1000:.4f} mm, "
+            f"grid cell / {cell_m / rung:.4f}), worst at E {worst_at[0]:.1f} N {worst_at[1]:.1f}. "
+            f"The publish step would displace it in plan, terrain.js would then conform it to "
+            f"the field's height for the wrong place, and the drawn ground would leave the road "
+            f"lift on the steep east banks. Expected the rung to be the grid cell / {k}. "
+            f"See T-0152 and skirt_margin_m().")
+    # Stated as a fraction of the grid because that is the property, and the
+    # margin is only how it was bought.
+    assert abs(cell_m / rung - k) < 1e-6, (
+        f"the rung is the grid cell / {cell_m / rung:.6f}, not / {k}")
+    return rung
 
 # How far the decimated ground mesh may depart from the heightfield the walker
 # samples. 30 mm is well under the resolution of anything a person notices on
@@ -708,8 +828,9 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
             faces.append((i, i + 1, i + 1 + cols, i + cols))
 
     # skirt: carry each boundary vertex outward to a larger rectangle, keeping
-    # its own height, so the channel continues past the box instead of stopping
-    m = SKIRT_MARGIN_M
+    # its own height, so the channel continues past the box instead of stopping.
+    # The width is DERIVED rather than round — see skirt_margin_m(), T-0152.
+    m, lattice_k = skirt_margin_m(e1 - e0, cell)
     # Clockwise seen from above, each corner listed exactly once — a repeated
     # index here produces a degenerate quad, which from_pydata accepts and the
     # decimate modifier then segfaults on.
@@ -733,6 +854,10 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
     for a, b in zip(ring_idx, ring_idx[1:] + ring_idx[:1]):
         faces.append((a, b, outer[b], outer[a]))
 
+    rung = check_quantisation_lattice(verts, e0, e1, n0, n1, m, cell, lattice_k)
+    print(f"skirt margin {m:.6f} m (grid cell / {lattice_k}); the publish step's "
+          f"POSITION rung is {rung * 1000:.4f} mm and every ground vertex stands on one")
+
     ground = _emit(f"terrain__{epoch}", verts, faces, confs,
                    simple_material("terrain_ground", (0.36, 0.35, 0.22, 1.0), 1.0),
                    {"terrain_epoch": epoch, "layer": "ground"}, decimate_deg)
@@ -752,7 +877,7 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
 
     # ---- water ------------------------------------------------------------
     reset_scene()
-    w = WATER_MARGIN_M
+    w = m + WATER_MARGIN_EXTRA_M
     wv = [(e0 - w, n0 - w, 0.0), (e1 + w, n0 - w, 0.0),
           (e1 + w, n1 + w, 0.0), (e0 - w, n1 + w, 0.0)]
     water = _emit(f"water__{epoch}", wv, [(0, 1, 2, 3)], [CONF_DOCUMENTED] * 4,
@@ -791,7 +916,89 @@ def _emit(name, verts, faces, confs, material, extras, decimate_deg):
     tri = ob.modifiers.new("tri", "TRIANGULATE")
     tri.min_vertices = 4
     bpy.ops.object.modifier_apply(modifier=tri.name)
+    _face_the_sky(name, ob)
     return ob
+
+
+# THE GROUND IS A HEIGHTFIELD, AND THAT IS A TESTABLE STATEMENT ABOUT EVERY FACE.
+#
+# Both surfaces this module emits are single-valued functions of (E, N): one
+# height per plan position, by construction, with no overhangs and no vertical
+# walls anywhere in the grid or the skirt. Seen from directly above, therefore,
+# **every triangle must cover positive plan area and be wound counter-clockwise.**
+# A face that covers zero plan area is standing on edge; a face wound the other
+# way is facing the ground it is made of. Neither is terrain.
+#
+# The dissolve-plus-triangulate pass above produces a few of each, and it has
+# since the decimation was added — T-0014 (was ROADMAP T-BUG2), banked as "79
+# ground vertices face downward" and pinned by tools/smoke_renderer.mjs so the
+# number could only fall. Measured on the shipped master 2026-08-23, the defect
+# decomposes exactly, with nothing left over:
+#
+#   • 33 triangles wound BACKWARDS — plan area -3.125 to -25.0 m², ordinary
+#     full-size ground triangles whose winding the n-gon triangulation reversed.
+#     A vertex with only these as neighbours gets a normal pointing straight
+#     down; one that also touches good faces gets a normal dragged toward the
+#     horizon.
+#   • 197 triangles standing EDGE-ON — plan area exactly 0.0: slivers in a
+#     plane of constant E (91) or constant N (90), or three points collinear in
+#     plan (16). They are the necks of keyholes the planar dissolve leaves in
+#     its n-gons, which is also where the mesh's 15 one-triangle vertices come
+#     from. They draw nothing from any direction that matters and they carry a
+#     horizontal normal into whatever they touch.
+#
+# The classifier is not a tuned threshold, which is what makes this a repair
+# rather than a mask: the grid puts every vertex on a 2.5 m lattice, so plan
+# areas are multiples of half a cell, and the histogram has a clean gap either
+# side of nothing — 197 faces at exactly 0.0 m², then the smallest honest
+# triangle at 3.125 m². There is no third population and no judgement call.
+#
+# Deleting an edge-on face cannot open a hole in the ground, for the same reason
+# it is being deleted: it covers no plan area, so the surface's vertical
+# projection is unchanged. `mesh_vs_field()` is the instrument that says so out
+# loud — it ray-casts the result against the heightfield from above and reports
+# its misses, and it reports 0 of 28,890 after this pass as it did before.
+#
+# NOT FIXED BY CHANGING THE TRIANGULATOR, which was tried first and is the
+# obvious move: `ngon_method="CLIP"` (ear clipping, robust on concave n-gons
+# where BEAUTY is not) makes it WORSE — 42 backwards faces instead of 33 and
+# 9,483 sub-mm² slivers instead of 188, measured on this same mesh. The
+# triangulation Blender picks is not the thing to argue with; the invariant is.
+def _face_the_sky(name, ob):
+    """Delete edge-on faces and re-wind backwards ones. Returns nothing; refuses."""
+    import bmesh  # noqa: PLC0415
+
+    def plan_area(face):
+        # Shoelace in Blender's own (x=E, y=N). Positive is counter-clockwise
+        # from above, which is the winding the grid quads are authored with.
+        co = [v.co for v in face.verts]
+        return 0.5 * sum(a.x * b.y - b.x * a.y
+                         for a, b in zip(co, co[1:] + co[:1]))
+
+    bm = bmesh.new()
+    bm.from_mesh(ob.data)
+    edge_on = [f for f in bm.faces if plan_area(f) == 0.0]
+    backwards = [f for f in bm.faces if plan_area(f) < 0.0]
+    for f in backwards:
+        f.normal_flip()
+    if edge_on:
+        bmesh.ops.delete(bm, geom=edge_on, context="FACES")
+    loose = [v for v in bm.verts if not v.link_faces]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context="VERTS")
+    left = [f for f in bm.faces if plan_area(f) <= 0.0]
+    if left:
+        bm.free()
+        raise SystemExit(
+            f"REFUSING: {name} still has {len(left)} face(s) covering no plan area "
+            f"after the heightfield repair. The surface is not single-valued and "
+            f"something upstream of the triangulator changed.")
+    bm.to_mesh(ob.data)
+    bm.free()
+    ob.data.update()
+    print(f"{name}: faced the sky — re-wound {len(backwards)} backwards face(s), "
+          f"dropped {len(edge_on)} edge-on face(s) and {len(loose)} vertex(es) "
+          f"left loose by them")
 
 
 def mesh_vs_field(ob, h_m, spec, stride=3):

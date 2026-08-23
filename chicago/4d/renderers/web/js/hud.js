@@ -12,6 +12,7 @@
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
 import { isTyping } from './controls/pointerlock.js';
 import { formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
+import { displayName, searchTerms } from './display-name.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
@@ -456,17 +457,20 @@ export function createHud({
   }
   for (const [id, record] of registry?.entries?.() ?? []) {
     const structureSidecar = record.sidecar ?? {};
+    // The name a visitor would use, not the one the parcel numbers a roof by (T-0076).
+    // The menu takes the card's own title from the shared rule so the two surfaces
+    // cannot drift, and the search below still takes the production identity, because
+    // the whole point of keeping it is that somebody reading the dataset can find the
+    // building it names.
     jumpTargets.push({
-      kind: 'structure', id, label: structureSidecar.name || id,
+      kind: 'structure', id, label: displayName(structureSidecar, id).title,
       // How well the POSITION is attested, straight off the record the popup
       // reads when the visitor arrives.  Not a summary of the building: most
       // of this town is documented in character and placed by argument, and a
       // menu that hid that difference would be the more flattering of the two
       // available lies.
       confidence: structureSidecar.placement?.position_confidence || null,
-      search: [id, structureSidecar.name, ...(structureSidecar.aka ?? []),
-        structureSidecar.placement?.symbolic_location]
-        .filter(Boolean).join(' '),
+      search: searchTerms(structureSidecar, id),
     });
   }
   const KIND_ORDER = { anchor: 0, intersection: 1, structure: 2 };

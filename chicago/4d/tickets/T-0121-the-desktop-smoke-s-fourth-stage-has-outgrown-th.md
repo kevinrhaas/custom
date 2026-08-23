@@ -40,3 +40,21 @@ no longer verify the desktop half at all past stage 2, which is half the gate th
 was made to preserve. Whatever the repair is — a further cut, or a cheaper section — it
 has to be sized against the desktop body rather than the mobile one.
 
+**Re-measured again by T-0154, 2026-08-23, and it has moved another stage down.** On this
+runner `SMOKE_VIEWPORT=desktop SMOKE_STAGE=2` AND `=3` both ran past the ten-minute
+foreground ceiling and were killed (exit 143); desktop stage 1 finished in **7 m 47 s**,
+which is inside the ceiling by two minutes and no more. Mobile is still comfortable —
+stage 1 in **2 m 48 s**, and all four stages complete. So the desktop half a steward run
+can actually reach is now stage 1 alone, and stage 1's own margin is the next to go. The
+erosion is monotonic across three measurements (T-0070: stages 3-4 lost; this: 2-4), which
+says the repair has to be a re-cut of the desktop body rather than one more stage boundary
+nudged along.
+
+**Re-measured 2026-08-23 by T-0014 (PR #323), and it is no longer the fourth stage
+alone.** On this runner, against the published mirror, `SMOKE_STAGE` at
+1280x800: stage 1 finished; **stage 2 overran the ten-minute foreground ceiling
+and had to be read back after the fact**; **stages 3 and 4 were both killed at
+10:00 (exit 143)** and produced no reading at all. Mobile still fits at every
+stage (2m34s for stage 1). So three of the desktop quarters are now outside the
+ceiling, not one, and a steward run can currently take only half the desktop
+gate in the foreground.

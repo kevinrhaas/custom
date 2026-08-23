@@ -183,10 +183,6 @@
       "arrangement_note": "The easternmost block the plat module covers on the Randolph tier, bounded by Randolph, State, Washington and Dearborn, and empty in this dataset before this parcel. The schedule dealt it ten roofs and no house or commercial family at all — five dwellings across the rough end of the range, four yard buildings and the civic roof this parcel defers. Five principal roofs on eight lots leaves three lots open. What is argued here and not found: the three better-built dwellings (the deep-plan and two-room cottages and the one-room cottage) take the Randolph face because Randolph is the through street of the pair in the module's own street hierarchy, which is the same frontage-value typology the Randolph and Wells block recorded, and the log cabin and the plank shanty take Washington. The four yard buildings each stand behind a principal roof on its own lot, because a rear yard belongs to a lot and a lot belongs to a house. The barn or carriage shed takes the eastern end lot, where the block backs onto ground the plat module does not reach and the town gives out; that is a typology of where a town keeps a large animal shelter, not evidence about this block.",
       "open_lots": [
         {
-          "lot": 4,
-          "why": "A north-tier interior lot on the Randolph face, left open. Which lot is arbitrary within the tier; that a block this far east of the river is not a completed terrace is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
-        },
-        {
           "lot": 1,
           "why": "A south-tier lot the schedule left nothing to stand on once the civic roof was deferred. It is open because the parcel refused a slot, and the record of why is in `deferred` rather than in an argument about vacancy."
         },
@@ -1498,6 +1494,96 @@
           "fronts": "lake",
           "setback_m": 5.0,
           "lateral_m": 4.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_randolph_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_randolph_dearborn_second_deal",
+      "claimed": "2026-08-22",
+      "seq_start": 10,
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 9,
+        "free_lots": 3,
+        "headroom": 8,
+        "dealt_roofs": 4,
+        "dealt_principal": 3,
+        "dealt_ancillary": 1,
+        "principal": 3,
+        "ancillary": 1
+      },
+      "families": {
+        "D1": 1,
+        "D3": 1,
+        "D6": 1,
+        "A4": 1
+      },
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "A south-tier lot on the Washington face. It was left open by the first deal because the civic roof that would have stood on it was deferred, and it stays open here for the same reason and one more: this parcel's four roofs are the block's business face, and the back face is the successor's to deal."
+        },
+        {
+          "lot": 5,
+          "why": "A south-tier interior lot, open on the programme's own alternating-vacancy assumption since the first deal and untouched by this one. The schedule's capacity is a ceiling rather than a target, and a block whose every lot is built is a claim nobody made."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "randolph",
+        "setback_m": 1.5,
+        "lots": [
+          4
+        ],
+        "why": "T-0105, the succession T-0079 owes: the core density standard applied to the next core block standing below the bar. THE FACE IS MEASURED RATHER THAN ASSUMED, by the command T-A14 made of it — tools/measure_street_frontage.py randolph washington market franklin — and on the committed dataset Randolph carries 7 documented records and 7 inferred households against Washington's 1 and 0. Randolph is this block's business face by the town's own record, so the block's one free lot on that face takes the row and both free lots on Washington stay open. THE END RULE IS T-A11'S, READ ON THIS BLOCK: this is the easternmost block the plat module reaches on the Randolph tier, so the town-centre end of its frontage is the WEST one, toward Dearborn Street and the only crossing of the main stem in July 1835 — and the row is graded that way, a storey and a half at the west end, a one-room frame cottage in the middle, and an older log cabin at the east. NO COORDINATE IS AUTHORED: the line, its bearing, the lot's own stretch of it and the end the run packs away from are all read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage. Lot 4 is an interior lot and not a corner one, so the standard's third clause — a corner lot builds to the corner — has nothing to bind here; the run stands off both of its own side lines by that same margin.",
+        "runs": "One run of three on lot 4, packed EAST from the lot's west margin. The one-and-a-half-storey cottage anchors on the west end of the run's own frontage and the other two abut east of it in turn, on two shared party walls. It occupies 17.23 m of the lot's 23.00 m of buildable frontage: the ceiling the standard measures is three units to a lot and this run spends all three, which is the count the standard bounds — the metres left over are at the east end where the run stops, and the run stands off both of its own side lines by the plat module's margin."
+      },
+      "arrangement_note": "THE SECOND DEAL ON THIS BLOCK, and the first time any block in this project has taken one. The first deal (2026-08-14, the entry above) built nine roofs against a ceiling of ten under the rule that allowed one principal roof per platted lot. T-0079 retired that ceiling — three party-line units per lot, measured at the smallest lot on the committed grid — and this block has stood below the new one ever since, with eight roofs of headroom and three free lots. Rewriting the first entry to cover both deals would restate an August schedule under numbers that were not true in August, so the second deal is its own entry against its own headroom, numbered from `seq_start` so the two cannot collide on a record id. WHAT IS BUILT: three principal roofs shoulder to shoulder on lot 4, the block's one free lot on its measured business face, and the woodshed that belongs to the lot they stand on. A one-and-a-half-storey cottage takes the west end nearest the Dearborn crossing, a one-room frame cottage stands next to it, and an older log cabin closes the run at the east end — the end rule's grading, better roofs nearer the only crossing of the main stem in July 1835. THAT A LOG CABIN MAY STAND ON A COMMERCIAL FRONTAGE IS STILL AN OPEN QUESTION (T-0022) and this parcel does not settle it; what stands behind the deal here is the same thing T-0079 recorded, the owner's own reference for a party-line row drawing log and frame buildings shoulder to shoulder, and this is one more recorded instance rather than a ruling. THE SCHEDULE ALSO DEALT THIS BLOCK TWO HOUSES OF THE H FAMILIES AND NEITHER IS IN THIS RUN, for reasons that are gates rather than preferences and are filed as their own ticket rather than dodged: at the size the band deals it here H2, the merchant's house, asks for a two-storey wall of 6.234 m and frame_dwelling refuses anything over 6.2 m, because the one attested ceiling height in this dataset is the Green Tree's seven and a half feet and a house was not built taller than the hotel; and H1, the larger one-and-a-half-storey house, is dealt this generator's flat 44.0 deg pitch for a storey and a half, which stands outside the 8:12-11:12 its own crosswalk entry cites and the band gate refuses it. Both are conflicts between the crosswalk's H bands and what the generator and the archetype will build, and both were found by running the gates rather than argued around them. THE PARCEL TAKES FOUR OF THE BLOCK'S EIGHT ROOFS OF HEADROOM AND SAYS SO. Nothing is deferred here: the other four are not refused, they are the next run's, and the two free lots on Washington are the ground they will stand on. The block stays `open` in the schedule, which is where the successor reads it. NO ROOF IS ADDED TO THE TOWN — the four come out of south_plat_beyond_committed_control, the south district's balance waiting on street control past State and Washington, and every marginal still sums to 665. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS: that any building stood on this ground, that there were three of them, that they stood shoulder to shoulder, and that the westernmost was the best of them are all inventions of this programme. The side lot lines the row crosses between its own units are conjectural in every record this generator has ever written; the block face it stands on is committed geometry derived from the street centrelines, which is the unit the standard counts in.",
+      "slots": [
+        {
+          "family": "D6",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "randolph",
+          "anchor": {
+            "corner": "west",
+            "clear_m": 1.5
+          }
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "randolph",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_randolph_dearborn_d6_10"
+          }
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "randolph",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_randolph_dearborn_d3_11"
+          }
+        },
+        {
+          "family": "A4",
+          "inventory_class": "ancillary",
+          "lot": 4,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": -4.0
         }
       ]
     }

@@ -603,12 +603,13 @@ async function loadGlbMesh(url) {
  * past 30 mm, because "the walker's eye is pinned to the heightfield, so it would
  * visibly float or sink" — and the master it exports honours that to **2.5 mm**.
  * The file a browser loads is the derivative written afterwards by
- * `gltf-transform optimize` in `tools/bake.sh`, which quantises POSITION to 14
- * bits under ONE UNIFORM node scale. That scale is set by the widest axis, and
- * this mesh is 5,020 m wide (a 2,020 m box plus 1.5 km of skirt) and 8.6 m tall,
- * so the vertical lattice it lands on is **306 mm**. Measured on the shipped
- * bytes by `tools/measure_terrain_fit.mjs`: rms 85 mm, max 228 mm. No setting
- * fixes it — 16 bits is the maximum the format offers and still lands on 77 mm.
+ * `gltf-transform optimize` in `tools/bake.sh`, which quantises POSITION under
+ * ONE UNIFORM node scale. That scale is set by the widest axis, and this mesh is
+ * 5,120 m wide (a 2,020 m box plus 1.55 km of skirt) and 9.0 m tall, so at the
+ * 14 bits it once shipped at the vertical lattice was **306 mm**. Measured on
+ * those bytes by `tools/measure_terrain_fit.mjs`: rms 85 mm, max 228 mm. No
+ * setting fixed it — 16 bits, which it ships at now, is the maximum the format
+ * offers and still lands on 78 mm.
  *
  * That is the whole of R-BUG3c. The road is drawn 22 mm above the sampler
  * (`LIFT_M`) onto ground the compressor lifted by up to 228 mm, so near the
@@ -627,15 +628,26 @@ async function loadGlbMesh(url) {
  *
  * The skirt is carried, not flattened. It lies outside the modelled box, where
  * `sample()` returns its fallback rather than clamping, and snapping it to that
- * would drop 1.5 km of apron onto the water plane. Sampling at the clamped
+ * would drop 1.55 km of apron onto the water plane. Sampling at the clamped
  * position instead reproduces the generator's own rule for it — "carry each
  * boundary vertex outward, keeping its own height" — so the seam at the box edge
  * closes exactly.
  *
- * What this does NOT repair: the same quantiser moves E and N by up to 153 mm,
- * which is invisible on a decimated prairie and is why only Y is read back.
- * Whether the terrain should ship quantised at all is a separate question; this
- * makes the answer stop mattering for the ground a visitor stands on.
+ * WHY READING BACK ONLY Y IS ENOUGH, WHICH IT WAS NOT UNTIL 2026-08-23. A height
+ * is read at the vertex's SHIPPED (E, N), so a vertex the quantiser moved in
+ * plan gets the field's answer for the wrong place — and the cost of that is
+ * (slope × displacement), which is nothing on decimated prairie and was 77 mm on
+ * the 60-90 % bank faces the east extension brought in, against the 22 mm the
+ * road ribbon is lifted by. The repair is on the generator's side of the bake and
+ * it removes the displacement rather than correcting it: `terrain_gen.py`
+ * DERIVES the skirt margin so the quantiser's uniform scale makes its POSITION
+ * rung an exact submultiple of the 2.5 m terrain grid (78.125 mm, the grid cell
+ * over 32), which puts every ground vertex on a rung, so quantising rounds each
+ * one to itself. Measured on the shipped bytes by
+ * `tools/measure_terrain_horizontal.mjs --gate`, which `tools/check.sh` runs:
+ * plan movement **0.0 mm**, and the drawn surface within 6.7 mm of the field at
+ * all 259,689 of its sample points — the master's own decimation error, with the
+ * compressor contributing nothing. See T-0152.
  *
  * @returns {{vertices: number, moved: number, correction_max_m: number,
  *            residual_max_m: number}|null} null when there is no field to conform to

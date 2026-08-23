@@ -1,5 +1,5 @@
 {
-  "_doc": "The watercraft on the water at the scene date — three schooners moored in the reach below the Dearborn drawbridge, rowboats on the water and drawn up at the South Water bank, and two bark canoes at the fort landing. Every boat is unmanned: L1 stands, no crews and no figures. AUTHORED, not generated — no rule can derive where a boat lay, so each position is an invention stated in its own note and claimed at docs/LIBERTIES.md L146. Drawn at load by renderers/web/js/boats.js, which refuses a boat its own water cannot carry.",
+  "_doc": "The watercraft on the water at the scene date — three schooners moored in the reach below the Dearborn drawbridge and TWO MORE AT THE WOLF POINT LANDINGS (T-0122), rowboats on the water and drawn up at the South Water and the Wolf Point banks, and two bark canoes at the fort landing. Every boat is unmanned: L1 stands, no crews and no figures. AUTHORED, not generated — no rule can derive where a boat lay, so each position is an invention stated in its own note and claimed at docs/LIBERTIES.md L146. Drawn at load by renderers/web/js/boats.js, which refuses a boat its own water cannot carry.",
   "id": "era_boats",
   "name": "The boats on the river",
   "kind": "boats",
@@ -7,16 +7,16 @@
   "target_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin. The water surface is Z = 0 by construction (data/datum.json § vertical); heading_deg is measured from local east, counter-clockwise.",
   "counts": {
-    "boats": 9,
-    "schooners": 3,
-    "rowboats": 4,
+    "boats": 13,
+    "schooners": 5,
+    "rowboats": 6,
     "canoes": 2
   },
   "existence": {
     "value": true,
     "confidence": "reconstructed",
     "sources": [],
-    "note": "THAT BOATS WERE ON THIS RIVER IS AS CLOSE TO CERTAIN AS ANYTHING THIS LAYER TOUCHES, AND EVERY INDIVIDUAL HULL IS INVENTED. What is held: the 2026-08-18 owner brief (data/sources/assets/owner_brief_2026_08_18/README.md) — images 2 and 3, the two Dearborn drawbridge engravings, show schooner-rigged vessels moored close by the bridge and masts crowding the reach below it, and image 11, the South Water 1834 view, shows rowboats on the water and at the bank; the 2026-08-11 fort views (data/sources/assets/prefire_views_kevin_2026_08/README.md) put bark canoes on the fort reach; and Andreas records the schooner Illinois, the first vessel through the new cut, cheered at Newberry & Dole's wharf on 12 July 1834 — schooners were lake carriers in this harbour a year before the scene date. What is NOT held, anywhere this project has reached: the name, position, heading or rig of any particular vessel in the river on 1835-07-01. So no hull here claims to be a recorded boat — the Illinois herself is deliberately NOT drawn or named, because putting a named vessel at a berth on a date is a claim no source makes — and every boat is graded reconstructed, placed under the owner's ruling of 2026-08-18, verbatim: 'you can add boats correct for the era! they would exist.' Claimed at docs/LIBERTIES.md L146.",
+    "note": "THAT BOATS WERE ON THIS RIVER IS AS CLOSE TO CERTAIN AS ANYTHING THIS LAYER TOUCHES, AND EVERY INDIVIDUAL HULL IS INVENTED. What is held: the 2026-08-18 owner brief (data/sources/assets/owner_brief_2026_08_18/README.md) — images 2 and 3, the two Dearborn drawbridge engravings, show schooner-rigged vessels moored close by the bridge and masts crowding the reach below it, and image 11, the South Water 1834 view, shows rowboats on the water and at the bank; the 2026-08-11 fort views (data/sources/assets/prefire_views_kevin_2026_08/README.md) put bark canoes on the fort reach, and plate \"11\" of that same set (prefire_views_kevin_2026_08/p6_0.png) hangs SHIP MASTS behind the Green Tree Tavern's roofline at Wolf Point, as the Braunhold/Trowbridge views of the same quarter do — which is the whole warrant for the two schooners now moored at the Wolf Point landings (T-0122); and Andreas records the schooner Illinois, the first vessel through the new cut, cheered at Newberry & Dole's wharf on 12 July 1834 — schooners were lake carriers in this harbour a year before the scene date. What is NOT held, anywhere this project has reached: the name, position, heading or rig of any particular vessel in the river on 1835-07-01. So no hull here claims to be a recorded boat — the Illinois herself is deliberately NOT drawn or named, because putting a named vessel at a berth on a date is a claim no source makes — and every boat is graded reconstructed, placed under the owner's ruling of 2026-08-18, verbatim: 'you can add boats correct for the era! they would exist.' Claimed at docs/LIBERTIES.md L146.",
     "standing_constraint_note": "The two bark canoes are watercraft of the fur trade, drawn unmanned from the committed fort plates that show them at this reach. They are equipment, not people: AGENTS.md's standing constraint on depicting Native presence stands in full — no figures, no encampment, no staging — and any depiction of the Potawatomi themselves remains out of scope pending consultation."
   },
   "clearances": {
@@ -145,6 +145,34 @@
       "note": "INVENTED POSITION. The easternmost of the three, toward the bend at the fort reach. 2.9-3.1 m of water along the keel."
     },
     {
+      "id": "boat_schooner_wolf_point_1",
+      "type": "schooner",
+      "name": "A lake schooner, moored",
+      "state": "moored",
+      "symbolic_location": "In the branch reach above the forks, moored off the west bank at Wolf Point",
+      "position_local_enu_m": [
+        -77.0,
+        14.0
+      ],
+      "heading_deg": 100,
+      "confidence": "reconstructed",
+      "note": "INVENTED POSITION, AND THE BERTH IS DERIVED RATHER THAN CHOSEN. She lies head up the branch, 14.5 m off the west bank as the committed heightfield draws it, abreast the Wolf Point frontages the town already stands there — the Walker Meeting House and the Robinson and Caldwell cabins. The offset is not a taste: it is close to the westernmost line on this reach where the heightfield gives a light-laden 1.5 m schooner her draft plus the layer's 0.3 m under the keel along the whole hull, which comes out at 2.07-2.11 m of water. Any nearer the bank and the layer refuses her. WHAT SHE IS FOR: plate 11 of the 2026-08-11 prefire views and the Braunhold view both hang ship masts over the Wolf Point roofs, and until now the forks held nothing while the only masts in the scene stood 900 m east."
+    },
+    {
+      "id": "boat_schooner_wolf_point_2",
+      "type": "schooner",
+      "name": "A lake schooner, moored",
+      "state": "moored",
+      "symbolic_location": "In the South Branch reach below the forks, off the west bank abreast Robert Kinzie's store",
+      "position_local_enu_m": [
+        -9.0,
+        -68.0
+      ],
+      "heading_deg": 20,
+      "confidence": "reconstructed",
+      "note": "INVENTED POSITION, DERIVED THE SAME WAY. She lies with the reach below the forks, 36 m off the west bank abreast Robert A. Kinzie's store — the landing T-0107 is open on — at close to the westernmost line the heightfield floats her: 1.81 m of water at her shallowest keel sample against the 1.80 m the layer demands. This reach is the one open water on the Green Tree Tavern's own eastward sight line, which is why a second hull stands here rather than beside the first."
+    },
+    {
       "id": "boat_rowboat_water_1",
       "type": "rowboat",
       "name": "A rowboat on the water",
@@ -199,6 +227,34 @@
       "heading_deg": 85,
       "confidence": "reconstructed",
       "note": "INVENTED POSITION. Beside her neighbour, a little higher up the bank on ground just proud of the water — two skiffs hauled out side by side read as a working bank, one alone reads as an accident."
+    },
+    {
+      "id": "boat_rowboat_wolf_point_1",
+      "type": "rowboat",
+      "name": "A rowboat on the water",
+      "state": "moored",
+      "symbolic_location": "Off the west bank at Wolf Point, inside the schooners' berths",
+      "position_local_enu_m": [
+        -86.0,
+        4.0
+      ],
+      "heading_deg": 115,
+      "confidence": "reconstructed",
+      "note": "INVENTED POSITION. A skiff lying 8 m off the west bank inside the schooner's berth, where the heightfield gives 1.2 m of water — deep for a 0.2 m draft and shoal for anything else, which is the whole reason a landing on this bank worked by boat. Nothing attests this skiff; the type is the one image 11 of the 2026-08-18 brief draws on the water at South Water Street."
+    },
+    {
+      "id": "boat_rowboat_wolf_point_2",
+      "type": "rowboat",
+      "name": "A rowboat drawn up at the bank",
+      "state": "beached",
+      "symbolic_location": "At the water's edge of the west bank at Wolf Point, below the log cabins",
+      "position_local_enu_m": [
+        -83.0,
+        -20.0
+      ],
+      "heading_deg": 70,
+      "confidence": "reconstructed",
+      "note": "INVENTED POSITION. Hauled out on the west bank below the Wolf Point cabins, on committed ground 0.42 m above the water surface with the waterline four metres off her stern. The hull rides the terrain's own surface, sampled at load; no height is authored beside it."
     },
     {
       "id": "boat_canoe_fort_1",

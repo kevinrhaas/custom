@@ -39,9 +39,26 @@ sys.path.insert(0, str(ROOT / "tools"))
 # data, not a hand edit: this generator still re-derives every record byte for byte,
 # and the occupancy block arrives from the household programme's ledger.
 from band_notes import split_notes  # noqa: E402
+# The one sampling rule, shared with the block parcel. This generator used to retype
+# one width, one depth and one eave per family into Python, so its sixty roofs were
+# twenty-four buildings stamped sixty times and seventeen of them stood outside the
+# eave band their own note cited (ROADMAP T-V1). The band is now used as the range it
+# was authored as.
+from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
+                          pitch_deg, storeys, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 
 OCCUPANCY = occupancy()
+FAMILIES = families()
+
+
+def spec_for(family: str) -> dict:
+    spec = FAMILIES.get(family)
+    if spec is None or not spec.get("band_ft"):
+        raise SystemExit(f"the crosswalk authors no footprint band for family {family}; "
+                         f"the North recipe cannot sample it")
+    return spec
 
 
 def load(path: Path):
@@ -116,7 +133,20 @@ def band_note(family: str) -> str:
             "specification; it is not evidence for this anonymous North Division instance.")
 
 
-def form_for(family: str, seq: int, paint: str) -> dict:
+def door_kind(family: str) -> str:
+    """Which door the family's building carries — asked before the eave is sampled.
+
+    The eave floor depends on it: a wagon door needs a metre more wall than a man
+    door, and asking for the floor without naming the door is how a band gets sampled
+    below what the archetype can build.
+    """
+    if family in ("W1", "W2", "W5", "F1", "A2"):
+        return "wagon"
+    return "stable" if family == "A1" else "man"
+
+
+def form_for(family: str, spec: dict, key: str, seq: int, paint: str,
+             archetype: str, width: float, depth: float) -> dict:
     """The family's form values, with the band citation restricted to what it can cite.
 
     `_form_body` authors every value exactly as it always has, with the citation
@@ -124,33 +154,57 @@ def form_for(family: str, seq: int, paint: str) -> dict:
     the values whose family authors nothing for it to point at, and says instead what
     the value actually is — the reconstruction generator's type default.
     """
-    return split_notes(_form_body(family, seq, paint), family, band_note(family))
+    return split_notes(_form_body(family, spec, key, seq, paint, archetype, width, depth),
+                       family, band_note(family))
 
 
-def _form_body(family: str, seq: int, paint: str) -> dict:
+def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
+               archetype: str, width: float, depth: float) -> dict:
     why = band_note(family)
     frame = "balloon_frame" if seq % 2 else "braced_frame"
+    # The eave is drawn from the family's authored band, on the same stable key as the
+    # footprint, instead of the single retyped figure that used to stand for the whole
+    # family — which is what put seventeen of these sixty roofs outside the band their
+    # own note cites. Sampling adds variety, not knowledge: every value still grades at
+    # the bottom tier, and the note still says the band is a typology and not evidence
+    # about this building.
+    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door_kind(family)))
+
+    # THE PITCH, T-0145. The eave moved onto its band in the pass before this one and
+    # the pitch was deliberately left behind, because a pitch is not a dimension that
+    # stands on its own: it and the footprint together make the RIDGE, and the crosswalk
+    # authors a band for that too. So the sampler is asked for a pitch inside the
+    # family's `N:12-M:12` band that also lands the ridge inside the family's `ridge_ft`
+    # — which needs the run the roof climbs, and that is the archetype's, not the
+    # family's, so `ridge_model` is asked for it. A family whose roof line names no
+    # pitch keeps the type default it always had, and `band_notes` already makes its
+    # note say that is what it is.
+    def pitch(default: float, roof_type: str = "gable",
+              gable_front: bool | None = None) -> float:
+        run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
+        return pitch_deg(family, spec.get("roof"), key, default,
+                         eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
-            "stories": inferred(1, why), "wall_height_m": inferred(2.5, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(35.0, why),
+            "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(35.0), why),
             "construction": inferred("log", why), "loft": inferred(True, why),
             "chimneys": inferred(1, why),
         }
 
     if family.startswith("D") and family != "D2" or family == "H1":
         if family in ("D6", "H1"):
-            stories, wall, pitch = 1.5, 3.6, 42.0
+            stories, pitch_default = 1.5, 42.0
         elif family in ("D7", "H2", "H3"):
-            stories, wall, pitch = 2, 5.05, 38.0
+            stories, pitch_default = 2, 38.0
         else:
-            stories, wall, pitch = 1, 2.78, 38.0
+            stories, pitch_default = 1, 38.0
         plan = "centre_passage" if family in ("D7", "H2", "H3") else (
             "single_pen" if family == "D3" else "hall_parlour")
         return {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(pitch_default), why),
             "construction": inferred(frame, why), "plan": inferred(plan, why),
             "bays": inferred(5 if family in ("D7", "H2", "H3") else 3, why),
             "chimneys": inferred(2 if family.startswith("H") else 1, why),
@@ -159,8 +213,9 @@ def _form_body(family: str, seq: int, paint: str) -> dict:
 
     if family.startswith("C"):
         return {
-            "stories": inferred(1, why), "wall_height_m": inferred(3.25, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(33.0, why),
+            "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why),
+            "roof_pitch_deg": inferred(pitch(33.0, gable_front=True), why),
             "gable_front": inferred(True, why), "construction": inferred(frame, why),
             "cladding": inferred("clapboard", why), "paint": inferred(paint, why),
             "loft": inferred(family == "C2", why), "chimneys": inferred(1, why),
@@ -173,23 +228,26 @@ def _form_body(family: str, seq: int, paint: str) -> dict:
         # institutional archetype exists; the function and research note stay I2.
         return {
             "stories": inferred(1 if family == "I2" else 2, why),
-            "wall_height_m": inferred(3.3 if family == "I2" else 5.2, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(38.0, why),
+            "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(38.0), why),
             "construction": inferred("braced_frame", why), "paint": inferred(paint, why),
             "gallery": inferred(False, why), "chimneys": inferred(1 if family == "I2" else 2, why),
         }
 
-    door = "wagon" if family in ("W1", "W2", "W5", "F1", "A2") else (
-        "stable" if family == "A1" else "man")
+    door = door_kind(family)
     roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
-    wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
     construction = "light_frame" if family in ("W2", "A1", "A2") else "plank"
     return {
         "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),
-        "roof_pitch_deg": inferred(18.0 if roof == "shed" else 32.0, why),
+        "roof_pitch_deg": inferred(pitch(18.0 if roof == "shed" else 32.0, roof), why),
         "construction": inferred(construction, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
-        "loft": inferred(family in ("W2", "W5", "A1", "A2"), why),
+        # THE LOFT IS THE FAMILY'S TO AUTHOR, not this file's (T-0145). A retyped
+        # tuple gave W5 a loft its `levels` never mentions — "1", flat — which is the
+        # same retyping fault as the eave, one field over, and the band-claims gate
+        # named it on `recon_1835_north_w5_040`. `family_bands.storeys` already reads
+        # a loft out of the levels string for every other parcel; it reads it here now.
+        "loft": inferred(storeys(spec["levels"], key)[1], why),
         "board_gap_m": inferred(.012, why), "paint": inferred(paint, why),
     }
 
@@ -213,9 +271,16 @@ TERRAIN_ADJUSTMENTS = {41: (-5.0, 5.0)}
 def make_record(row: list, datum: dict) -> dict:
     seq, suffix, center_e, center_n, family, inventory_class, width_ft, depth_ft, bearing, cluster, yard_group = row
     sid = f"{PREFIX}{suffix}"
+    spec = spec_for(family)
     de, dn = TERRAIN_ADJUSTMENTS.get(seq, (0.0, 0.0))
     center_e, center_n = float(center_e) + de, float(center_n) + dn
-    width, depth = round(float(width_ft) * .3048, 3), round(float(depth_ft) * .3048, 3)
+    # The recipe's `width_ft`/`depth_ft` columns hold ONE rectangle per family — a
+    # production-layout figure, not a per-building one — so the parcel stood as
+    # twenty-four massings dealt sixty times. The rectangle is now drawn inside the
+    # family's authored footprint band on a stable per-record key, by the same rule the
+    # block parcel uses. The recipe columns stay as the layout control they always
+    # were: `placement_constraints` measures its spacing against them.
+    width, depth = dimensions_m(family, spec["band_ft"], sid)
     local_e, local_n = footprint_origin(center_e, center_n, width, depth, float(bearing))
     finish_key, paint = finish_for(seq)
     function = FUNCTIONS[family]
@@ -259,9 +324,10 @@ def make_record(row: list, datum: dict) -> dict:
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
                 "confidence": "reconstructed",
-                "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
+                "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band in the reconstruction specification; no individual dimensions are documented."
             },
-            "form": form_for(family, int(seq), paint),
+            "form": form_for(family, spec, sid, int(seq), paint,
+                             archetype_for(family), width, depth),
             "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": inferred(function, f"Assigned from the {family} family to satisfy the aggregate North Division mix; no occupant or individual use is known."),

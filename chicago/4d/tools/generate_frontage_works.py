@@ -314,6 +314,7 @@ BUILDINGS = [
             "tools/check.sh, because 'where a walk may lie' is a rule and a rule has "
             "to be auditable."
         ),
+        "existence_sources": ["trowbridge_green_tree_1902"],
         "existence_note": (
             "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT A WALK, A CROSSING OR "
             "A POST STOOD ON THIS GROUND ON 1 JULY 1835. What is held is two "
@@ -322,17 +323,23 @@ BUILDINGS = [
             "Braunhold engraving of 1838, gives 'post-mounted hanging signboard at "
             "the corner; plank sidewalks with board crossings', and image 7, the "
             "Trowbridge drawing, gives 'the hanging \"GREEN TREE\" sign on its "
-            "post'. Both are tier-5 pictorial and retrospective, and the plates "
-            "themselves are not yet held as source records — T-0075 owns that — so "
-            "`sources` is deliberately empty and the citation is a committed path. "
-            "That is a reconstruction in this project's third tier and it is graded "
-            "and claimed as one: docs/LIBERTIES.md L135."
+            "post'. Both are tier-5 pictorial and retrospective. ONE OF THE TWO IS "
+            "NOW A SOURCE RECORD: T-0075 identified image 7 as W. E. S. Trowbridge's "
+            "drawing 'The Green Tree Tavern in 1835', signed and dated 1902, and it "
+            "is cited here as `trowbridge_green_tree_1902`. Image 6, the Braunhold "
+            "engraving, is stated to be an Andreas 1884 plate and is not reproduced "
+            "on any page this project holds, so it stays a committed path and the "
+            "README's identification table says what was searched. A citation does "
+            "not promote the claim: a tier-5 retrospective may drive setting and may "
+            "never drive a coordinate, so this is still a reconstruction in this "
+            "project's third tier, graded and claimed as one: docs/LIBERTIES.md L135."
         ),
         "claim_key": "lettering",
         "claim_block": {
             "value": "GREEN TREE",
             "confidence": "inferred",
             "geometry": "drawn",
+            "sources": ["trowbridge_green_tree_1902"],
             "note": (
                 "THE FIRST LETTERING THIS PROJECT HAS EVER DRAWN, and the decision is "
                 "argued rather than assumed. docs/LIBERTIES.md L25 leaves the Wolf "
@@ -366,11 +373,12 @@ BUILDINGS = [
             "image 7 says what is on it."
         ),
         "sign_text_note": (
-            "data/sources/assets/owner_brief_2026_08_18/README.md, image 7 — "
-            "the Trowbridge drawing of this inn, described there as 'the "
-            "hanging \"GREEN TREE\" sign on its post'. The plate is not held "
-            "as a source record yet; T-0075 owns making one, and until it does "
-            "the citation is a committed path rather than a source_id."
+            "`trowbridge_green_tree_1902` — W. E. S. Trowbridge's drawing 'The "
+            "Green Tree Tavern in 1835', signed 1902, image 7 of the owner's brief "
+            "of 2026-08-18 and identified under T-0075 on 2026-08-22. The plate was "
+            "retrieved and read: the board hangs from a post at the street edge and "
+            "is lettered GREEN TREE. The wording is the plate's; the letterform is "
+            "ours (docs/LIBERTIES.md L135)."
         ),
         "treatment_mid": (
             f"Post {POST_H_M} m tall and {POST_SQ_M} m square, a {ARM_M} m cross-arm "
@@ -386,10 +394,14 @@ BUILDINGS = [
             "sidewalks — the corporation legislated wooden walks within a few years of "
             "1835 and an order of the right date would give a width and a material at "
             "a stroke; a tax, insurance or sale description naming a walk in front of a "
-            "lot; or holding the Braunhold and Trowbridge plates as proper source "
-            "records with their institutions and dates (T-0075), which would turn the "
-            "committed path in `existence.note` into a source_id and the lettering's "
-            "warrant into a citation."
+            "lot; or holding the Braunhold plate as a proper source record with its "
+            "institution and date. The Trowbridge plate IS one now "
+            "(`trowbridge_green_tree_1902`, T-0075, 2026-08-22), which is what turned "
+            "the lettering's warrant from a committed path into a citation; the "
+            "Braunhold engraving of 1838 is still cited by path and the next attempt "
+            "at it should go to Andreas volume I at page-image level. Neither "
+            "citation moves this layer off reconstruction — a plate may say a walk "
+            "was the treatment and can never say one stood on THIS ground."
         ),
     },
     {
@@ -424,12 +436,19 @@ BUILDINGS = [
             "image 9, the Braunhold engraving, gives 'plank walks on both frontages, "
             "hitching posts'; image 10, the Trowbridge drawing, stands a saddled horse "
             "at one of those posts — reference for use only, and never depicted, which "
-            "is the L1 constraint. All three are tier-5 pictorial and retrospective, "
-            "and the plates themselves are not yet held as source records — T-0075 "
-            "owns that — so `sources` is deliberately empty and the citation is a "
-            "committed path. That is a reconstruction in this project's third tier and "
-            "it is graded and claimed as one: docs/LIBERTIES.md L136."
+            "is the L1 constraint. All three are tier-5 pictorial and retrospective. "
+            "ONE OF THE THREE IS NOW A SOURCE RECORD: T-0075 identified image 10 as "
+            "W. E. S. Trowbridge's drawing of the Sauganash, and it is cited here as "
+            "`trowbridge_sauganash_hotel` — the plate that stands the posts at the "
+            "road edge and the board fence behind. The Petford watercolour is a "
+            "museum object needing an accession number and the Braunhold engraving is "
+            "an Andreas plate not reproduced on any page this project holds, so both "
+            "stay committed paths; the README's identification table says what was "
+            "searched. A citation does not promote the claim: this is still a "
+            "reconstruction in this project's third tier, graded and claimed as one: "
+            "docs/LIBERTIES.md L136."
         ),
+        "existence_sources": ["trowbridge_sauganash_hotel"],
         "claim_key": "board_on_a_post",
         "claim_block": {
             "value": False,
@@ -480,10 +499,12 @@ BUILDINGS = [
             "sidewalks — the corporation legislated wooden walks within a few years of "
             "1835 and an order of the right date would give a width and a material at "
             "a stroke; a tax, insurance or sale description naming a walk in front of "
-            "this lot; or holding the Petford, Braunhold and Trowbridge plates as "
-            "proper source records with their institutions and dates (T-0075), which "
-            "would turn the committed path in `existence.note` into a source_id. What "
-            "would NOT move: the two posts' own dimensions, which no order and no plate "
+            "this lot; or holding the Petford and Braunhold plates as proper source "
+            "records with their institutions and dates. The Trowbridge plate IS one "
+            "now (`trowbridge_sauganash_hotel`, T-0075, 2026-08-22) and `existence` "
+            "cites it; the Petford needs a Chicago History Museum accession number "
+            "and the Braunhold needs Andreas volume I at page-image level. What would "
+            "NOT move: the two posts' own dimensions, which no order and no plate "
             "will ever give."
         ),
     },
@@ -868,7 +889,7 @@ def record(cfg: dict, walks: list, posts: list, refused: list) -> dict:
         "existence": {
             "value": True,
             "confidence": "reconstructed",
-            "sources": [],
+            "sources": list(cfg.get("existence_sources", ())),
             "note": cfg["existence_note"],
         },
     }

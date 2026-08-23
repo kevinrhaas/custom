@@ -90,7 +90,10 @@
     "shutter_type": {
       "value": "louvred",
       "confidence": "inferred",
-      "note": "THE WEAKEST OF THE THREE VIEWS' CLAIMS, AND CARDED AS SUCH — IMAGE 10 ONLY. The Trowbridge drawing (image 10 of data/sources/assets/owner_brief_2026_08_18/README.md) is the one view that resolves the leaves at all, and it draws 'louvred shutters on the sash'; the Petford watercolour and the Braunhold engraving read at no such grain and can neither agree nor disagree, and Wau-Bun's sentence gives only the colour. One tier-5 retrospective drawing may still drive a fenestration detail as inferred — the same rule that admitted the Green Tree's plate-read chimney placement — but nothing corroborates this one, so the slats carry this attribute's confidence in the mesh rather than the attested colour's, and the brief's binaries being uncommitted, the citation is the README until T-0075 lands identifications. Slat count and pitch are the archetype's numbers: docs/LIBERTIES.md L154."
+      "sources": [
+        "trowbridge_sauganash_hotel"
+      ],
+      "note": "THE WEAKEST OF THE THREE VIEWS' CLAIMS, AND CARDED AS SUCH — IMAGE 10 ONLY. The Trowbridge drawing (image 10 of data/sources/assets/owner_brief_2026_08_18/README.md) is the one view that resolves the leaves at all, and it draws 'louvred shutters on the sash'; the Petford watercolour and the Braunhold engraving read at no such grain and can neither agree nor disagree, and Wau-Bun's sentence gives only the colour. One tier-5 retrospective drawing may still drive a fenestration detail as inferred — the same rule that admitted the Green Tree's plate-read chimney placement — but nothing corroborates this one, so the slats carry this attribute's confidence in the mesh rather than the attested colour's. T-0075 LANDED THE IDENTIFICATION ON 2026-08-22: image 10 is W. E. S. Trowbridge's drawing of the Sauganash, held as `trowbridge_sauganash_hotel`, and this row cites it instead of a README path. The plate was retrieved and read to confirm the louvres before the record was written. The citation changes nothing about the grade — a tier-5 retrospective still may not drive a coordinate, and this one is still uncorroborated by the other two views. Slat count and pitch are the archetype's numbers: docs/LIBERTIES.md L154."
     },
     "construction": {
       "value": "balloon_frame",
@@ -265,6 +268,27 @@
       "archived_url": "",
       "tier": 5,
       "tier_label": "modern retrospective illustration/reconstruction"
+    },
+    {
+      "source_id": "trowbridge_sauganash_hotel",
+      "citation": "W. E. S. Trowbridge. Drawing of the Sauganash Hotel, Mark Beaubien's tavern on Lake Street near Market Street — signed \"W. E. S. Trowbridge\" at the lower left. Reproduced on Chicagology, \"Lake Street\", captioned \"A drawing by W. E. S. Trowbridge of Mark Beaubien's Sauganash hotel on Lake st. near Market st. It was built in 1831. It burned down in 1851.\"",
+      "url": "https://chicagology.com/chicagostreets/lakestreet/",
+      "archived_url": "http://web.archive.org/web/20260611044628/https://chicagology.com/chicagostreets/lakestreet/",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "louvred shutters flanking the sash of the clapboard block",
+        "a tall vertical-board fence enclosing the ground behind and to the right of the building",
+        "hitching or corner posts standing at the road edge in front of the frontage",
+        "the log wing attached at the left, single-storey, under its own shingled roof, its door opening direct to grade",
+        "the clapboard block's two brick chimneys and its entrance without a veranda or gallery"
+      ],
+      "what_it_does_not_supply": [
+        "any coordinate, footprint outline or dimension",
+        "its own date — the plate as reproduced does not give a legible year",
+        "independent corroboration of the Braunhold engraving: it belongs to the same retrospective descent",
+        "the state of the building on 1 July 1835 as against any other year of its 1831-1851 life"
+      ]
     },
     {
       "source_id": "wright_1834",

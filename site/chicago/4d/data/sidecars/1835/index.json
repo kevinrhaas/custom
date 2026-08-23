@@ -2625,10 +2625,22 @@
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_a4_13",
+      "name": "Reconstructed A4 woodshed or storage shed #13",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a4_13.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a4_13__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_d1_04",
       "name": "Reconstructed D1 older log dwelling #04",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d1_04.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d1_12",
+      "name": "Reconstructed D1 older log dwelling #12",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d1_12.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_12__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d2_05",
@@ -2643,6 +2655,12 @@
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_d3_11",
+      "name": "Reconstructed D3 one-room frame cottage #11",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d3_11.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_11__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_d4_03",
       "name": "Reconstructed D4 two-room frame cottage #03",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d4_03.json",
@@ -2653,6 +2671,12 @@
       "name": "Reconstructed D5 deep-plan frame cottage #02",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d5_02.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d6_10",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #10",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d6_10.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d6_10__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_franklin_a1_07",

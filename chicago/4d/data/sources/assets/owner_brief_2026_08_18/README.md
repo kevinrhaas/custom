@@ -87,3 +87,78 @@ where attested, wagons only at attested yards), the override is the rule.
 Plus: **the owner's screenshot of the current render** at Dearborn & Lake (the Tremont
 House card open) — the corner that image 5 depicts, rendered today as a lone building on
 open grass. That gap is T-0077's whole brief.
+
+## Identifications — T-0075, 2026-08-22
+
+Each image below was searched for at the reproductions this project can actually reach, and
+where a plate was found it was **retrieved and looked at** before anything was written down.
+Four resolve to source records. Eight do not yet, and each says what was searched so the next
+attempt does not repeat it.
+
+The rule for all twelve is unchanged and is not softened by having a record: **tier 5,
+pictorial, retrospective — form, materials, massing and setting as `inferred`, never a
+coordinate and never a footprint.**
+
+| # | subject | identification | source record | rights |
+|---|---|---|---|---|
+| 1 | first Cook County jail | **unidentified-pending** | — | — |
+| 2 | Dearborn drawbridge, view one | **unidentified-pending** | — | — |
+| 3 | Dearborn drawbridge, view two | *"Old Dearborn Street (Old Point) Bridge"*, wood engraving signed BAKER–CO, captioned by Chicagology "First Dearborn Street bridge in 1834" | `dearborn_street_bridge_1834_engraving` | `check_required` |
+| 4 | Wolf Tavern | **unidentified-pending** | — | — |
+| 5 | Tremont House street scene | wash drawing signed **N. Roswell Gifford**, captioned "Tremont House No. 1" | `gifford_tremont_house_no_1` | `check_required` |
+| 6 | Green Tree Inn — 1838 (Braunhold) | **unidentified-pending** | — | — |
+| 7 | Green Tree Inn (Trowbridge) | *"The Green Tree Tavern in 1835"*, signed **W. E. S. Trowbridge ’02** | `trowbridge_green_tree_1902` | `check_required` |
+| 8 | "Sauganash Hotel. 1831" (Petford) | **unidentified-pending** | — | — |
+| 9 | "The Sauganash Hotel" (Braunhold) | **unidentified-pending** | — | — |
+| 10 | The Sauganash (Trowbridge) | undated drawing signed **W. E. S. Trowbridge**, captioned by Chicagology as Trowbridge's drawing of "Mark Beaubien's Sauganash hotel on Lake st. near Market st." | `trowbridge_sauganash_hotel` | `check_required` |
+| 11 | "South Water Street in 1834" | **unidentified-pending** | — | — |
+| 12 | Chicago circa 1833, looking east | **unidentified-pending** | — | — |
+
+### What each identification rests on
+
+**3 — the drawbridge.** The plate at `chicagology.com/harbor/riverbridges/dearbornstreetbridges/`
+carries the three things the brief gives image 3 and not image 2: masts crowding the reach
+below the bridge, a tapering light structure on the far shore near the mouth, and low
+warehouses along the bank. It also draws the bridge as image 2 describes it — twin gallows
+frames, chains to the leaves, a railed deck. **Image 2 is a different plate and is not
+claimed by this record.**
+
+**5 — the Tremont row.** The signature was read off the plate at 5× (`N. Roswell Gifford`);
+the row, the party lines, the lettered boards and the board walk are all on it. **Awnings are
+not**, at the resolution published, and the record says so rather than nodding the brief
+through.
+
+**7 — the Green Tree.** Every feature the brief lists is on the plate: the GREEN TREE board
+on its post, the bench of sitters, the attached wagon shed with a covered wagon under it, the
+farm wagons, the grass verges, the brush at the fence lines. Signed and dated by the artist.
+
+**10 — the Sauganash.** Louvred shutters, the tall board fence behind, the saddled horse at a
+post, the log wing's door direct to grade — all four, plus the road-edge posts. The signature
+carries a two-digit year that is **not legible** at this resolution, so the record dates it
+"undated" and says the Green Tree companion is signed 1902.
+
+### What was searched for the other eight, and where to look next
+
+- **1 (jail), 4 (Wolf Tavern), 11 (South Water 1834), 12 (Chicago c. 1833).** Chicagology's own
+  search was run for each subject; it returned topic pages (`prefire439` Cook County Jail,
+  `prefire273` Wolf's Point, the South Water Street street page) and **none of those pages
+  carries the plate described.** The jail page in particular reproduces no engraving at all.
+- **6 and 9 (the two Braunhold engravings).** Both are stated in the brief to be Andreas 1884
+  plates, and `docs/RESEARCH/sauganash_hotel.md` § 4 already reads image 9 as such. Neither is
+  reproduced on the Chicagology pages this project holds records for. **The next attempt should
+  go to Andreas volume I at page-image level** (the same fetch `docs/LIBERTIES.md` names as the
+  resolution for several open liberties) rather than to another aggregator: a plate cited to a
+  page of the volume is worth more than the same plate cited to a blog, and it settles the
+  rights question at the same time.
+- **8 (the Petford watercolour).** Attributed in the brief to the Chicago History Museum
+  family. A museum object needs its accession number, and that is a catalogue lookup rather
+  than a web search; `chm_green_tree_1859` (ICHi-040230) is the shape of the record it should
+  become.
+- **11 (the CHS postcard).** Carries a © line in the brief's own description, so it is
+  `check_required` at best and quite possibly `restricted`. It should not be given a record
+  until the rights line is read off the object.
+
+**None of the eight blocks anything.** Every claim they support is already committed as
+`inferred` or `reconstructed` with the brief's path in its note, which is exactly what a
+citation-by-path is for. What the four new records change is that the claims resting on
+*them* now cite a plate with an artist, a locator and an archived copy behind it.

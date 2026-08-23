@@ -31,7 +31,8 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py                the full table
     tools/measure_corridor_intrusion.py --by-street    the distribution only
     tools/measure_corridor_intrusion.py --recentre     K30(a)'s refuted counterfactual
-    tools/measure_corridor_intrusion.py --reflect      K30(b)'s CONFIRMED cause
+    tools/measure_corridor_intrusion.py --reflect      K30(b)'s cause, REFUTED by --anchors
+    tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
@@ -325,7 +326,17 @@ def recentre() -> str:
 
 
 def reflect() -> str:
-    """K30(b)'s CONFIRMED cause, kept as a command for the reason K30(a) gives.
+    """K30(b)'s cause — REFUTED 2026-08-22 by `--anchors`. Read that first.
+
+    THIS COMMAND IS NOW A COUNTERFACTUAL LIKE `--recentre`, NOT A DIAGNOSIS. The paragraph
+    below is K30(b)'s reasoning, left standing because the command is its evidence and a
+    refuted claim is kept, not deleted. What it gets wrong is stated once, here: it reads
+    "the body is drawn toward the street from the anchor" as proof that the ANCHOR is on the
+    frontage. It is not. `--anchors` measures which face the anchor is, and on all 17 records
+    in the deep mode it is the BACK corner — the point is set back by the footprint's own
+    depth so that the street-facing FACE lands on the frontage, which is the same convention
+    the dataset's machine-checked derivation blocks state. Reflection therefore takes a
+    correctly drawn body a full depth BEHIND its own frontage. See ROADMAP K30(d).
 
     K30(a) refuted the anchor convention by RECENTRING — moving each footprint half its own
     depth. That was the wrong counterfactual for the right suspect. The convention it was
@@ -445,6 +456,86 @@ def reflect() -> str:
     return "\n".join(lines)
 
 
+def anchors() -> str:
+    """K30(d) — WHERE IN ITS OWN BODY DOES THE RECORD'S POINT SIT? The test K30(b) lacked.
+
+    K30(b) read one flag — is the body drawn toward the street from the anchor? — and
+    concluded that the anchor stands on the frontage and the body is drawn across it. That
+    flag cannot tell the two arrangements apart, because BOTH make it true:
+
+    * **anchor at the KERB.** The point is on the frontage and the body grows across it into
+      the roadway by its own full depth. This is the fault K30(b) described.
+    * **anchor at the BACK.** The point is set back from the frontage by the footprint's own
+      depth, so the body grows FORWARD and its street-facing FACE lands on the frontage.
+      This is a correct drawing, and the body is still "toward the street" from the point.
+
+    The two are separated by one measurement nobody had made: how far the anchor stands from
+    the corridor centreline, against how far the body's two faces stand from it. If the
+    anchor is the NEAR face the point is at the kerb; if it is the FAR face the point is the
+    back corner and the face is what was placed.
+
+    It is the far face on every record in the deep mode. The dataset's own derivation model
+    says the same thing in words — `sauganash_hotel`'s machine-checked block reads *"the
+    depth is in the polygon, so the constraint is on the FACE"* — and `tools/validate.py`
+    recomputes five placements from it on every commit.
+
+    So reflecting a body about its own anchor does not put it back on its frontage; it takes
+    it a full depth BEHIND the frontage its control was offset to. See ROADMAP K30(d).
+    """
+    datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
+    origin_e = float(datum["origin_utm_e"])
+    origin_n = float(datum["origin_utm_n"])
+    lanes = corridors()
+
+    rows = []
+    for structure_id, _phase_id, phase, polygon, category in placed_phases():
+        street, depth = intrusion(polygon, lanes)
+        if street is None:
+            continue
+        position = phase["position"]
+        anchor = (float(position["utm_e"]) - origin_e, float(position["utm_n"]) - origin_n)
+        _, axis, foot = centreline_frame(lanes[street]["points"], *anchor)
+        normal = (-axis[1], axis[0])
+
+        def across(point: tuple) -> float:
+            return (point[0] - foot[0]) * normal[0] + (point[1] - foot[1]) * normal[1]
+
+        # Measured on the anchor's own side of the centreline, so "near" is always the face
+        # closer to the middle of the street whichever side of it the record stands on.
+        side = 1.0 if across(anchor) >= 0 else -1.0
+        offsets = [across(p) * side for p in polygon]
+        near, far = min(offsets), max(offsets)
+        at = abs(across(anchor))
+        # Which face the anchor IS, to the centimetre the rest of this module quotes in.
+        seat = ("kerb" if abs(at - near) <= abs(at - far) else "back")
+        rows.append((structure_id, street, round(depth, PLACES), round(at, PLACES),
+                     round(near, PLACES), round(far, PLACES), seat, category))
+
+    buildings = [r for r in rows if r[7] != "furniture"]
+    deep = [r for r in buildings if r[2] >= DEEP_MODE_M]
+    at_kerb = [r for r in deep if r[6] == "kerb"]
+
+    lines = [f"{'structure':<44}{'street':<14}{'depth':>7}{'anchor':>8}{'near face':>10}"
+             f"{'far face':>9}  {'anchor is'}"]
+    for structure_id, street, depth, at, near, far, seat, _c in sorted(rows,
+                                                                      key=lambda r: -r[2]):
+        lines.append(f"{structure_id:<44}{street:<14}{depth:>7.2f}{at:>8.2f}{near:>10.2f}"
+                     f"{far:>9.2f}  {'THE KERB FACE' if seat == 'kerb' else 'the back corner'}")
+    lines += [
+        "",
+        "Distances are metres from the corridor's committed centreline, on the anchor's own "
+        f"side of it; the platted half-width is {HALF_WIDTH_M:.3f} m.",
+        f"{len(at_kerb)} of the {len(deep)} buildings in the DEEP mode (>= {DEEP_MODE_M} m) "
+        f"have their point ON the kerb face, which is the arrangement K30(b) attributed the "
+        f"whole cluster to: {', '.join(r[0] for r in at_kerb) or '—'}.",
+        "The rest carry the point at the BACK corner, a full footprint depth behind the "
+        "street-facing face — so the face is what was placed on the frontage and the drawing "
+        "is correct. Reflection moves those bodies a depth BEHIND their own frontage, and "
+        "K30(c)'s repair is the wrong operation on them (ROADMAP K30(d)).",
+    ]
+    return "\n".join(lines)
+
+
 def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
@@ -512,6 +603,8 @@ def main() -> int:
                         help="K30(a)'s refuted counterfactual, kept so it stays refuted")
     parser.add_argument("--reflect", action="store_true",
                         help="K30(b)'s confirmed cause — a diagnosis, not a proposal")
+    parser.add_argument("--anchors", action="store_true",
+                        help="K30(d)'s test — is the point the kerb face or the back corner")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
@@ -528,6 +621,10 @@ def main() -> int:
 
     if args.reflect:
         print(reflect())
+        return 0
+
+    if args.anchors:
+        print(anchors())
         return 0
 
     result = measure()

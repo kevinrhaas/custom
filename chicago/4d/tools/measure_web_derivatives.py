@@ -77,9 +77,12 @@ and comparing material tables costs about a second for all 334 assets.
     compress 9.3 % *smaller*. `tools/web_derivatives.sh` now keeps whichever file is
     smaller, per asset, and this says what arrived. **The two epoch meshes are
     excluded by name**: their bit depth is a geometric decision (R-W6, and the ground
-    and waterline are what R-BUG3c, R-BUG4 and R-M1a measure against), R-W6(b) is
-    holding both files, and `water__` is +744 bytes under this rule — recorded, not
-    silently applied.
+    and waterline are what R-BUG3c, R-BUG4 and R-M1a measure against), and `water__` is
+    +744 bytes under this rule — recorded, not silently applied. That depth is asserted
+    on the shipped bytes by `tools/measure_terrain_fit.mjs --gate` (T-0151), not here:
+    this gate compares triangles, node identity, materials and a bounding box within four
+    rungs, and **a bit-depth change moves none of them** — which is how a 14-bit ground
+    shipped, and later a 16-bit one arrived, with every assertion on this page green.
 
 7.  **Material identity** (RATCHET, `tools/web_derivative_baseline.json`). The shipped
     file should resolve to the same material NAMES and base COLOURS as its master and
@@ -182,8 +185,10 @@ CONTRACT_ATTRIBUTES = ("POSITION", "NORMAL", "_CONFIDENCE")
 # The two epoch-scale meshes, excluded from assertion 6 by name rather than by a
 # size threshold — a threshold would be a second unmeasured rule. Their derivative's
 # bit depth is set independently (EPOCH_QUANT_BITS) because it is a geometric
-# decision about the surface the ground gates measure against, and R-W6(b) holds
-# both files. See the docstring.
+# decision about the surface the ground gates measure against. That depth is
+# asserted on the shipped bytes by tools/measure_terrain_fit.mjs --gate (T-0151),
+# which is the assertion whose absence let a 14-bit ground ship with every gate
+# here green. See the docstring.
 EPOCH_PREFIXES = ("terrain__", "water__")
 
 # glTF component types that carry a normalised integer, and their divisor.
@@ -539,7 +544,8 @@ def print_census(result: dict) -> None:
     excluded = [r for r in rows
                 if r["name"].startswith(EPOCH_PREFIXES) and r["bytes"][1] > r["bytes"][0]]
     print(f"  derivative bigger than its master: {len(grew)} (bound: 0) "
-          f"+ {len(excluded)} epoch mesh(es) excluded by name, R-W6(b)")
+          f"+ {len(excluded)} epoch mesh(es) excluded by name, R-W6 "
+          f"(their bit depth is asserted by tools/measure_terrain_fit.mjs --gate, T-0151)")
     for r in excluded:
         print(f"    excluded  {r['name']}  {r['bytes'][0]:,} -> {r['bytes'][1]:,} bytes "
               f"({r['bytes'][1] - r['bytes'][0]:+,})")
@@ -650,7 +656,7 @@ def self_test() -> int:
     else:
         fired = assertions(broken, baseline)
         print(f"  {'held' if not fired else 'LEAKED'}  the epoch exclusion: {grown} "
-              f"grown past its master fires nothing (R-W6(b) holds that file)")
+              f"grown past its master fires nothing (R-W6 owns that file's bit depth)")
         ok &= not fired
     ok &= mutate("a new asset loses its material names",
                  lambda r: _break_materials(r))
