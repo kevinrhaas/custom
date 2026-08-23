@@ -1,5 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
+T-0154 — Closing a ticket after publish.sh always leaves the published mirror stale
 T-0152 — The drawn ground stands 77 mm off the field on the new east slopes
 T-0013 — The interior flicker: 624 px where structures and trees fight themselves
 T-0014 — 79 ground vertices face downward
@@ -63,4 +64,3 @@ T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edi
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
-T-0154 — Closing a ticket after publish.sh always leaves the published mirror stale
