@@ -1,8 +1,8 @@
-# Stay Finder (`site/stay/`)
+# Stay Finder (`stay/`)
 
 A ranked, mapped shortlist of **6–8 bedroom houses for December 19–27, 2026**
-across the Tampa Bay region — published at
-`https://kevinrhaas.github.io/custom/stay/`.
+across the Tampa Bay region. The app is in [`site/stay/`](../site/stay/) and
+publishes to `https://kevinrhaas.github.io/custom/stay/`.
 
 The brief: somewhere for a multi-generational group of 12–18 to be under one
 roof at Christmas, six to eight bedrooms, **king beds in as many of them as
@@ -21,28 +21,44 @@ parallel:
 | Crystal Springs, Dade City, Lakeland, Ocala | 17 | Acreage, ranches and space per dollar |
 | Estates, inn buyouts and compounds | 13 | The unusual: whole-inn buyouts, island inns, historic mansions |
 
-## Files
+## Layout
+
+Source, research and tooling live here in `stay/`; only the published app is
+under `site/`, the same split `porchfest/` uses.
 
 ```
-index.html          The app (static, no build step, no dependencies)
-css/app.css         Gulf Coast skin (aurora backdrop, light/dark, sticky map column)
-js/data.js          FACTS ONLY — the 88 listings (auto-generated)
-js/geo.js           Map geometry: coastline, bays, lakes, rivers (auto-generated)
-js/app.js           Rendering + fit scoring + filters + the map
-raw-<region>.json   Raw research output, one file per area (compiler input)
-build_data.mjs      Compiler: validate, dedupe, attach local photos, write js/data.js
-tools/build_geo.py  Map geometry builder — clips and simplifies US Census TIGERweb
-tools/fetch_photos.py  Saves one hero photo per listing into photos/
-photos/<id>.jpg     Local listing photos, downscaled (53 of 87 had a usable image URL)
+stay/
+  README.md              This file
+  raw-<region>.json      Raw research output, one file per area (compiler input)
+  build-data.mjs         Validate, dedupe, attach photos -> site/stay/js/data.js
+  build-geo.py           Download + clip US Census TIGERweb -> site/stay/js/geo.js
+  fetch-photos.py        Save one hero photo per listing -> site/stay/photos/
+  build-artifact.py      Bundle the app into one self-contained page
+  geo-cache/             Cached TIGERweb downloads (gitignored, ~20 MB)
+
+site/stay/               The published app — static, no build step, no dependencies
+  index.html
+  css/app.css            Gulf Coast skin (aurora backdrop, light/dark, sticky map column)
+  js/data.js             FACTS ONLY — the 87 listings (generated)
+  js/geo.js              Map geometry: coastline, bays, lakes, rivers (generated)
+  js/app.js              Rendering + fit scoring + filters + the map
+  photos/<id>.jpg        Local listing photos, downscaled (53 of 87 had a usable image URL)
 ```
 
 ## Regenerating
 
+Every generated file is reproducible from what's in this folder:
+
 ```
-node build_data.mjs          # raw-*.json  -> js/data.js
-python3 tools/fetch_photos.py   # refresh photos/ from the listing image URLs
-python3 tools/build_geo.py      # only if the map frame changes (needs the TIGERweb downloads)
+node build-data.mjs        # raw-*.json           -> site/stay/js/data.js
+python3 build-geo.py       # TIGERweb (cached)    -> site/stay/js/geo.js
+python3 fetch-photos.py    # listing image URLs   -> site/stay/photos/
+python3 build-artifact.py  # the app              -> site/stay/artifact.html
 ```
+
+`build-geo.py` downloads about 20 MB from TIGERweb on first run and caches it in
+`geo-cache/`; delete that folder to force a refetch. It reproduces `geo.js`
+byte-for-byte.
 
 ## The map
 
@@ -72,7 +88,8 @@ boat-only islands is honest enough.
 
 ## Ranking
 
-`js/data.js` holds facts only; every judgement lives in `js/app.js`. The fit
+`site/stay/js/data.js` holds facts only; every judgement lives in
+`site/stay/js/app.js`. The fit
 score weights bedroom count in the 6–8 band first, then the **king ratio**
 (kings ÷ bedrooms), then sleeping capacity, a *heated* pool (an unheated one is
 decor in December), water frontage, an elevator (multi-generational groups and

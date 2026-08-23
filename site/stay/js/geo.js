@@ -1,4 +1,4 @@
-/* Map geometry for the Gulf Coast frame — built by tools/build_geo.py from
+/* Map geometry for the Gulf Coast frame — built by stay/build-geo.py from
    US Census TIGERweb (USLandmass shoreline-clipped land; Hydro areal water
    and named lakes; Hydro linear named rivers), clipped to the search box and
    Douglas-Peucker simplified. Paint order matters: the frame fills with

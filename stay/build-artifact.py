@@ -10,7 +10,7 @@ from PIL import Image
 
 ARTW = 620          # cards render ~310 CSS px; 620 is already retina
 
-HERE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+HERE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'site', 'stay')  # the app
 rd = lambda *p: open(os.path.join(HERE, *p), encoding='utf-8').read()
 
 html = rd('index.html')

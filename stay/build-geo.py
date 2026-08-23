@@ -1,6 +1,62 @@
-import json, math
+#!/usr/bin/env python3
+"""Build the Stay Finder map geometry: site/stay/js/geo.js.
+
+Downloads four layers from US Census TIGERweb (public domain), clips them to
+the map frame, simplifies with Douglas-Peucker and writes the app's geo.js.
+The downloads are ~20 MB and are cached in geo-cache/, which is gitignored —
+delete it to force a refetch. Nothing here is a judgement call, so the output
+is regenerable from scratch:
+
+    python3 build-geo.py
+
+Why these four and not a coastline layer: TIGER has no coastline product. The
+land polygon (USLandmass) is shoreline-clipped but generalised, and the areal
+water layer is detailed but stops at the 3-mile county limit. Neither alone is
+a map. Together, painted water -> land -> water, they are: see the paint-order
+note in the generated header.
+"""
+import json, math, os, subprocess, sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CACHE = os.path.join(HERE, 'geo-cache')
+OUT = os.path.join(HERE, '..', 'site', 'stay', 'js', 'geo.js')
 
 W,E,S,N = -83.85, -81.10, 26.50, 29.95   # map frame
+
+TIGER = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb'
+ENVELOPE = f'{W},{S},{E},{N}'
+SOURCES = {
+    # shoreline-clipped state land polygon
+    'landmass.json': (f'{TIGER}/USLandmass/MapServer/0/query',
+                      [('where', "NAME='Florida'")]),
+    # bays, sounds and coastal water — the detailed shoreline
+    'water.json':    (f'{TIGER}/Hydro/MapServer/1/query',
+                      [('where', "MTFCC IN ('H2051','H2053')")]),
+    'lakes.json':    (f'{TIGER}/Hydro/MapServer/1/query',
+                      [('where', "MTFCC IN ('H2030','H2040') AND NAME IS NOT NULL")]),
+    'rivers.json':   (f'{TIGER}/Hydro/MapServer/0/query',
+                      [('where', "MTFCC='H3010' AND NAME IS NOT NULL")]),
+}
+
+def fetch(name):
+    """Download one TIGERweb layer as GeoJSON, cached on disk."""
+    path = os.path.join(CACHE, name)
+    if os.path.exists(path) and os.path.getsize(path) > 1000:
+        return path
+    os.makedirs(CACHE, exist_ok=True)
+    url, extra = SOURCES[name]
+    args = ['curl', '-sS', '--max-time', '300', '-o', path, '-G', url]
+    params = extra + [('outFields', 'NAME,MTFCC'), ('returnGeometry', 'true'),
+                      ('f', 'geojson'), ('geometryPrecision', '5')]
+    if name != 'landmass.json':                 # the state polygon needs no envelope
+        params += [('geometry', ENVELOPE), ('geometryType', 'esriGeometryEnvelope'),
+                   ('inSR', '4326'), ('spatialRel', 'esriSpatialRelIntersects')]
+    for k, v in params:
+        args += ['--data-urlencode', f'{k}={v}']
+    print(f'  fetching {name} ...', flush=True)
+    if subprocess.run(args).returncode != 0 or not os.path.exists(path):
+        sys.exit(f'could not download {name} from TIGERweb')
+    return path
 
 # ---------- Sutherland-Hodgman clip of a ring against the frame ----------
 def clip_poly(ring):
@@ -128,12 +184,12 @@ def poly_features(path, eps, min_area, want_names=False):
 # Paint order: frame filled with water, LAND on top, then bays/passes carved back.
 # TIGER coastal water stops at the 3-mile county limit, so the open Gulf must
 # come from the frame fill, not from a water polygon.
-land  = poly_features('landmass_fl.json', 0.0003, 1e-5)
-water = poly_features('hydro2_bay.json',   0.0022, 1.2e-5)
-lakes = poly_features('hydro2_lakes.json', 0.0030, 2.0e-4, want_names=True)
+land  = poly_features(fetch('landmass.json'), 0.0003, 1e-5)
+water = poly_features(fetch('water.json'),   0.0022, 1.2e-5)
+lakes = poly_features(fetch('lakes.json'), 0.0030, 2.0e-4, want_names=True)
 
 rivers=[]
-for f in json.load(open('hydro2_rivers.json'))['features']:
+for f in json.load(open(fetch('rivers.json')))['features']:
     g=f['geometry']; nm=(f['properties'].get('NAME') or '')
     major = any(m in nm for m in MAJOR)
     parts=[g['coordinates']] if g['type']=='LineString' else g['coordinates']
@@ -150,6 +206,21 @@ print(f'land   feats {len(land):4d} pts {cnt(land):6d}')
 print(f'water  feats {len(water):4d} pts {cnt(water):6d}')
 print(f'lakes  feats {len(lakes):4d} pts {cnt(lakes):6d}')
 print(f'rivers runs  {len(rivers):4d} pts {sum(len(r["l"]) for r in rivers):6d}')
-json.dump({'bbox':[W,S,E,N],'land':land,'water':water,'lakes':lakes,'rivers':rivers},
-          open('geo.json','w'), separators=(',',':'))
-print('geo.json KB', round(len(open('geo.json').read())/1024,1))
+
+HEADER = """/* Map geometry for the Gulf Coast frame — built by stay/build-geo.py from
+   US Census TIGERweb (USLandmass shoreline-clipped land; Hydro areal water
+   and named lakes; Hydro linear named rivers), clipped to the search box and
+   Douglas-Peucker simplified. Paint order matters: the frame fills with
+   water, land paints on top, then bays and passes carve back out — TIGER
+   coastal water stops at the 3-mile county limit, so the open Gulf can only
+   come from the frame fill. Rings are grouped per feature and each paints as
+   its own even-odd path, so islands survive as holes and neighbouring county
+   polygons can never cancel each other into phantom land. Islands under
+   roughly a square kilometre (Cabbage Key, Useppa) are below this source's
+   resolution and are not drawn — their pins sit on the sound.
+   Public domain (US Census Bureau). */
+"""
+geo = {'bbox':[W,S,E,N],'land':land,'water':water,'lakes':lakes,'rivers':rivers}
+with open(OUT, 'w') as fh:
+    fh.write(HEADER + 'window.STAY_GEO = ' + json.dumps(geo, separators=(',',':')) + ';\n')
+print('wrote site/stay/js/geo.js —', round(os.path.getsize(OUT)/1024, 1), 'KB')

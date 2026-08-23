@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Save one hero photo per property into photos/<id>.jpg.
+"""Save one hero photo per property into site/stay/photos/<id>.jpg.
 
 Listing photos are the first thing that rots: hosts swap galleries, PM sites
 move paths, and CDN links go dead the day a house is delisted. Cards fall back
@@ -9,7 +9,8 @@ these around 310 CSS px, so 760 wide is already retina."""
 import json, glob, io, os, subprocess, concurrent.futures as cf
 from PIL import Image
 
-OUT = os.path.join(os.path.dirname(__file__), '..', 'photos')
+HERE = os.path.dirname(os.path.abspath(__file__))          # stay/
+OUT = os.path.join(HERE, '..', 'site', 'stay', 'photos')   # the app's photo folder
 UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/126.0 Safari/537.36')
 MAXW, QUALITY = 760, 78
@@ -42,8 +43,7 @@ def grab(prop):
 def main():
     os.makedirs(OUT, exist_ok=True)
     props = []
-    here = os.path.join(os.path.dirname(__file__), '..')
-    for f in sorted(glob.glob(os.path.join(here, 'raw-*.json'))):
+    for f in sorted(glob.glob(os.path.join(HERE, 'raw-*.json'))):
         props += json.load(open(f))['properties']
     ok = bytes_ = 0
     with cf.ThreadPoolExecutor(max_workers=8) as ex:
