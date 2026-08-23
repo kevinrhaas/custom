@@ -1,16 +1,17 @@
 ---
 id: T-0020
 title: The last 4.4 points of the shrub shell
-state: open
+state: claimed
 epic: FLORA
 requested_by: loop
 seen: true
 effort: M
 legacy_id: K59
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 2:45:43 PM CT
 blocked_on: null
 needs_bake: false
 ---
