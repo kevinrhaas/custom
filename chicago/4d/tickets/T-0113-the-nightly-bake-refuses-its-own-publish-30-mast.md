@@ -34,3 +34,16 @@ its cause is how a real regression gets banked as a decision.
 **Acceptance:** the cause of the passthrough-set movement is named in the PR (commit or
 toolchain, with the numbers); the baseline is regenerated in that light; the nightly bake
 runs green end to end — bake, gate, publish, smoke — on its next scheduled run.
+
+---
+
+**2026-08-23 — SUPERSEDED BY T-0160, and this ticket should probably be withdrawn.**
+This is the K38 web-derivative passthrough failure, and T-0160 (#331) settled it. The cause was
+not a stale baseline and not a toolchain move: the bake was **discarding a real upgrade every
+night**. 132 of 226 placeholders were already archetypes; the last 94 (median 6.5 KB, all
+`extras.placeholder: True`) were rebuilt at 16.4× triangles, which flipped them out of K38's
+banked passthrough set. The upgrade and the re-bank landed together — 93 passthroughs down to 3 —
+and the nightly publishes again.
+
+Left in the queue rather than withdrawn, because withdrawing another run's ticket on one reading
+is a bigger step than re-ranking it. Withdraw if you agree.
