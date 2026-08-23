@@ -5849,6 +5849,67 @@ standing that lets it drive setting and never a coordinate.
 own record (the travelled way that arrives across this band).
 **Recorded:** 2026-08-23.
 
+### L175 — Sixty-four leaf sprays, because the frame was finally measured and it cost three per cent
+
+**Decision:** the shrub archetype (**L122**, **L124**, **L125**) now carries **sixty-four** leaf
+sprays where it carried forty-eight, at the same plate size again — 0.26–0.42 of the recorded clump
+radius. Foliage cover over the bush's own outline goes **46.9 % → 51.3 %**, worst bearing **43.0 %
+→ 47.3 %**, the fraction of the dark woody stems with foliage in front of them **51.3 % → 54.2 %**,
+for **104 → 136 triangles** a shrub. ROADMAP **K59**, ticket **T-0020**.
+
+**This is L125's own reserved 4.4 points, spent — and what it took was the measurement L125 could
+not make.** K57 justified stopping at 48 on a triangle count and a draw-call count, and said in as
+many words that neither is a frame. The shrub batch does not split — one instanced set, one draw
+call, at either grain — so the real cost of a finer grain is fill and vertex work, and no
+frame-time figure had ever been taken anywhere in this archetype's history. K59 therefore refused
+to be claimed without one.
+
+**What was measured.** `tools/measure_shrub_frame_cost.mjs`, new here, stands the walker in the wet
+woods where 158 shrubs are drawn in one ring — the densest shrub community of the ten — sweeps
+eight bearings and fixes the camera at the most expensive of them, holds the clock so the wind
+cannot blow between two readings, drives frames one at a time instead of letting the browser pace
+them, and fences each frame with a one-pixel readback:
+
+| | 48 sprays | 64 sprays | |
+|---|---|---|---|
+| desktop 1280×800 | 4282.30 ms | 4410.30 ms | **+3.0 %** |
+| mobile 390×780 | 2739.60 ms | 2795.80 ms | **+2.1 %** |
+| desktop, the shipped grain measured AGAIN | 4292.90 ms | | **+0.2 %** against its own first reading |
+
+That last row is the control, and it is why the 3.0 can be believed: the runner's own drift between
+two readings of the identical scene is two tenths of a point, so the candidate's three points are
+fifteen times it rather than inside it.
+
+**What the figure is NOT.** These milliseconds are a fact about a headless software rasteriser
+(ANGLE over SwiftShader) on a shared CI machine, and not about anyone's phone — a frame there is
+four seconds. The tool prints the renderer string with every reading so no number can be quoted
+without it. The RATIO is the answer, and it is an argument in the safe direction: a software
+rasteriser is the most fill-sensitive renderer there is, so it is the harshest available witness
+for the one risk here — 33 % more transparent plate over the same silhouette (overdraw 1.33 → 1.56).
+A grain that costs three per cent there is not going to cost more on hardware.
+
+**What is NOT claimed, and it is the same disclaimer L125 made.** No source in this repository
+states a leaf-mass count for any of the twenty-one `shrub_low` records; the count is invented, as
+it was at 16, at 32 and at 48, and this is the same invention at a finer setting. What is not
+invented: the silhouette, which still reaches **0.997** of the recorded half-width and never leaves
+the recorded height; the plate, which stays at 3.5× a 10 cm leaf so the mass abstraction does not
+quietly become a claim to draw a leaf; and the census, which is identical plant for plant — no
+shrub moved, appeared or vanished.
+
+**Cost:** 104 triangles per shrub becomes 136, which in the ring measured here is **17,368 →
+22,712**, 2.3 % of the 1,000,000 the `full` tier budgets. The gate in `tools/measure_spray_grain.mjs
+--gate` — reach ≥ 0.95 of the recorded half-width, a spray ≥ 2× a leaf, coverage above 40 % at every
+bearing — is unchanged and green on the new grain.
+
+**How to resolve:** nothing to resolve — it is a rendering decision, reversible by one integer. What
+would retire the whole line of them is the instrument L121, L156 and L174's tier work all ask for: a
+frame-time reading on a real low-end machine rather than on a CI rasteriser.
+
+Related: **L122** (the archetype), **L124** (a spray is a leaf mass, not a leaf), **L125** (the 48
+this refines and the 4.4 points it reserved), **L123** (why the layer is drawn at two fifths of its
+recorded cover), and ROADMAP **K57**, **K59**.
+**Recorded:** 2026-08-23.
+
 
 ## Resolved
 

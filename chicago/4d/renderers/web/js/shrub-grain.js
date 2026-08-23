@@ -40,9 +40,25 @@
  * `plate` 1.0 the count alone gives 32 → 48 → 64 sprays a foliage cover of
  * **36.9 % → 46.9 % → 51.3 %** for 72 → 104 → 136 triangles, with reach unmoved at
  * 0.990–0.998. Ten of the fourteen available points arrive in the first 32
- * triangles and four in the second, so **48 is the knee and is what ships**; the
- * remaining 4.4 points are measured, recorded and unspent, and the run that wants
- * them can read what they cost.
+ * triangles and four in the second, so K57 shipped **48 at the knee** and left the
+ * last 4.4 points measured and unspent.
+ *
+ * **K59 SPENT THEM, and only because the frame was finally read (T-0020).** K57
+ * justified 48 on a triangle count and a draw-call count, which is not a frame:
+ * the shrub batch does not split, so the cost of a finer grain is fill and vertex
+ * work, and neither had ever been measured anywhere in this archetype's history.
+ * `tools/measure_shrub_frame_cost.mjs` measures it, in the wet woods where 158
+ * stand in one ring, at the most expensive of eight bearings, with the clock held
+ * and a one-pixel readback fencing every frame:
+ *
+ *   desktop 1280×800   4282.30 ms → 4410.30 ms   **+3.0 %**
+ *   mobile  390×780    2739.60 ms → 2795.80 ms   **+2.1 %**
+ *
+ * and the A/B/A control — the shipped grain measured again after the candidate —
+ * came back **+0.2 %**, so the 3.0 is fifteen times the runner's own drift rather
+ * than inside it. 4.4 points of shell cover and 2.9 of stem cover for three per
+ * cent of a frame, on a SOFTWARE rasteriser, which is the most fill-sensitive
+ * witness this parcel could have been given. So **64 is what ships.**
  *
  * `fill` and `plate` move TOGETHER or not at all: shrinking a plate without adding
  * plates is the fault K56 diagnosed — an isolated plate with sky on both sides of
@@ -53,7 +69,7 @@
  */
 export const SHRUB_GRAIN = {
   stems: 4,
-  fill: 40,
+  fill: 56,
   /** Linear scale on a spray's length and half-width. 1.0 is K56's plate, and
    *  K57 measured that it is the recorded clump width and must not shrink. */
   plate: 1.00,

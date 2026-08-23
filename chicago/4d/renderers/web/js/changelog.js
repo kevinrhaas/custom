@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 252, title: 'The bushes fill out', kind: 'feature', ts: '2026-08-23T20:39:32.712Z', date: 'Aug 23, 2026, 3:39 PM CT',
+    items: [
+      'Every bush in the town — the hazel and dogwood thickets along the river, the sixty-odd standing in the wet woods north of it — is drawn as a handful of leaf masses hung on four bare stems. There were forty-eight of those masses. There are sixty-four now, and the difference is that you can see less sky through a bush and less black stick behind one.',
+      'Measured on the bush itself from twenty-four directions: the leaves cover 46.9 per cent of the plant\u2019s outline where they covered 43, and from the worst angle 47.3 where it was 43.0. The dark woody stems, which read as black sticks wherever nothing hides them, are covered 54.2 per cent of the time instead of 51.3. The bush is no bigger and no taller: it still reaches 0.997 of the width its record states.',
+      'These sixteen extra masses have been sitting measured and unspent since the seventeenth. The run that added the last batch stopped where it did on a triangle count, and wrote down plainly that a triangle count is not a frame \u2014 the whole bush layer is drawn in one go, so what more leaves really cost is the work of filling pixels, and nobody had ever timed it.',
+      'So it was timed. Standing in the thickest part of the wet woods, facing the most expensive direction of eight, with the wind held still: a frame went from 4282 to 4410 milliseconds, three per cent. Then the old bush was timed a second time, after the new one, and came back within two tenths of a per cent of its first reading \u2014 which is what says the three per cent is the leaves and not the machine having a bad minute.',
+      'Those are seconds, not milliseconds you would ever feel, because the machine doing the measuring paints every pixel on its processor with no graphics card at all. That makes it the harshest possible judge of a change that adds see-through leaves, and the honest reading is the ratio rather than the clock.',
+      'No plant moved, appeared or vanished. The same bushes stand in the same places, with more leaves on them.',
+    ] },
   { v: 251, title: 'The rebuild can now reach every building it is blamed for', kind: 'chore', ts: '2026-08-23T17:02:00.123Z', date: 'Aug 23, 2026, 12:02 PM CT',
     items: [
       'Nothing a visitor can see changed. This is about the rebuild \u2014 the slow job that regenerates the town\u2019s 344 building models from the records \u2014 and one model it could never regenerate.',
