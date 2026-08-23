@@ -187,6 +187,19 @@ const measured = await page.evaluate(() => {
         // GATE is on the scene, so it needs each species' draw summed over every
         // station that reads the list.
         each: d.species.map((s) => ({ id: s.id, drawn: s.drawn, expected: s.expected })),
+        // ROADMAP K49(e) / T-0018 — THE SAME ROW ONE STEP EARLIER IN THE DEAL.
+        // `drawn` is what survived `station()` and `crowdsTheWalker()`; `dealt`
+        // is what the deal handed a species to before either was asked. The
+        // question this parcel exists to settle is whether the difference
+        // between the two is a biased set of ranks or merely a smaller one, and
+        // it cannot be asked of the drawn population alone.
+        dealt: d.dealt,
+        rejStation: d.rejStation,
+        rejWalker: d.rejWalker,
+        deal: d.species.map((s) => ({
+          id: s.id, dealt: s.dealt, expectedDealt: s.expectedDealt,
+          drawn: s.drawn, expected: s.expected, width: s.width,
+        })),
       });
     }
   }
@@ -275,6 +288,144 @@ for (const m of ab.mixed) {
       ? " — slot count off cover.matrix_fraction, not this sum (lottery only)"
       : ` — slot count off '${m.basis}'`));
 }
+
+/* -------------------------------------------------------------------------- */
+/* ROADMAP K49(e) / T-0018 — DOES A SPATIAL FILTER EAT THE STRATIFICATION?     */
+/* -------------------------------------------------------------------------- */
+/**
+ * K49(d) finding 3 claimed that because the block permutation makes rank a
+ * deterministic function of position, any filter applied AFTER the deal that is
+ * itself a spatial rule selects a BIASED SET of ranks — so the surviving slots
+ * no longer carry the stratification the deal built, and `deviation` reads
+ * worse. K49(f) refuted it for the row it was mostly measured on (the fixed
+ * grid's own bias explained 23.66 of `z10_settled_town`'s 24.87). What was left
+ * for this parcel is the riverbank's residual and the general question.
+ *
+ * THE INSTRUMENT, and why it is this one. `deviation` is a functional of the
+ * SURVIVORS' ranks alone, so the claim can be put exactly rather than
+ * correlated: count each species' slots at the moment of the deal (`dealt`) as
+ * well as after the filters (`drawn`), and split the survivors' disagreement
+ * with the deal into two terms.
+ *
+ *   dealtDev  Σ|dealt_i − share_i·N|   the discrepancy the DEAL itself has,
+ *                                      before any filter — the stratification
+ *                                      the parcel is asking about
+ *   B         Σ|drawn_i − q·dealt_i|   how far the survivors are from the filter
+ *                                      having taken the SAME fraction q = m/N of
+ *                                      every species. This is the selection term
+ *                                      and it is zero for a perfectly even filter
+ *
+ * A filter that is blind to rank still moves B, because it is a subsample: it
+ * moves it by sampling noise and no more. Under rank-neutral survivorship
+ * drawn_i is hypergeometric, so
+ *
+ *   Bnull = Σ √(2/π) · √( m·p_i(1−p_i)·(N−m)/(N−1) ),   p_i = dealt_i/N
+ *
+ * is what B reads when the mechanism is ABSENT. **B/Bnull ≈ 1 refutes the
+ * mechanism for that row; B/Bnull ≫ 1 proves it, and by how much.**
+ *
+ * Both controls are run below on the real dealt vectors, because an instrument
+ * that has not been shown reading red is not evidence: the GREEN control draws
+ * a genuinely uniform subsample of the same size, the RED control draws one of
+ * the same size that rejects wide clumps preferentially — which is the rule
+ * `crowdsTheWalker()` actually applies.
+ */
+const TRIALS = 200;
+const mad = (v) => Math.sqrt(2 / Math.PI) * Math.sqrt(Math.max(0, v));
+function mulberry32(a) {
+  return function rnd() {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+/** B for a vector of survivor counts against the proportional-filter baseline. */
+const selection = (counts, deal, q) => deal
+  .reduce((t, s, i) => t + Math.abs(counts[i] - q * s.dealt), 0);
+/** The analytic B of a filter that is blind to rank. */
+function nullSelection(deal, N, m) {
+  if (N < 2 || m <= 0) return 0;
+  const fpc = (N - m) / (N - 1);
+  return deal.reduce((t, s) => {
+    const p = s.dealt / N;
+    return t + mad(m * p * (1 - p) * fpc);
+  }, 0);
+}
+/** One subsample of size m. `bias` 0 = uniform; >0 favours narrow clumps, the
+ *  way the walker clearance does — key = −ln(U)/w, smallest m kept. */
+function subsample(deal, N, m, rnd, bias) {
+  const keys = [];
+  for (let i = 0; i < deal.length; i++) {
+    // The clump radius the walker rule reads. A record with no `width_m` gets
+    // the 0.10 m stand-in stated in the PR rather than a silent zero.
+    const w = deal[i].width ?? 0.10;
+    const weight = bias ? 1 / (0.05 + w * bias) : 1;
+    for (let k = 0; k < deal[i].dealt; k++) keys.push([-Math.log(rnd() || 1e-12) / weight, i]);
+  }
+  keys.sort((a, b) => a[0] - b[0]);
+  const counts = new Array(deal.length).fill(0);
+  for (let k = 0; k < m && k < keys.length; k++) counts[keys[k][1]]++;
+  return counts;
+}
+function controlRatio(deal, N, m, bias, seed) {
+  const bnull = nullSelection(deal, N, m);
+  if (!(bnull > 0)) return null;
+  const rnd = mulberry32(seed);
+  let t = 0;
+  for (let i = 0; i < TRIALS; i++) {
+    t += selection(subsample(deal, N, m, rnd, bias), deal, m / N);
+  }
+  return t / TRIALS / bnull;
+}
+
+const filtered = measured.rows.filter((r) => r.dealt > 0 && r.drawn > 0 && r.deal.length > 1);
+console.log('\nK49(e)/T-0018 — the filters\' own selection, per row. `rej` is the share of '
+  + 'DEALT\nslots refused; `B/Bnull` is how far the survivors depart from the filter having '
+  + 'taken\nthe same fraction of every species, in units of what a rank-BLIND filter of the '
+  + 'same\nsize departs by. 1.0 means the filter did not touch the stratification.');
+const analysed = [];
+for (const r of filtered) {
+  const N = r.dealt;
+  const m = r.drawn;
+  const q = m / N;
+  const dealtDev = r.deal.reduce((t, s) => t + Math.abs(s.dealt - s.expectedDealt), 0);
+  const B = selection(r.deal.map((s) => s.drawn), r.deal, q);
+  const bnull = nullSelection(r.deal, N, m);
+  const ratio = bnull > 0 ? B / bnull : null;
+  analysed.push({ r, N, m, q, dealtDev, B, bnull, ratio });
+  console.log(`  ${r.at.padEnd(20)} ${r.community.padEnd(20)} ${r.list.padEnd(6)} `
+    + `dealt ${String(N).padStart(5)} → drawn ${String(m).padStart(5)}  `
+    + `rej ${(100 * (1 - q)).toFixed(1).padStart(5)}%`
+    + ` (station ${(100 * r.rejStation / N).toFixed(1)}%, walker ${(100 * r.rejWalker / N).toFixed(1)}%)  `
+    + `dev/100 dealt ${(dealtDev / N * 100).toFixed(2)} → drawn ${(r.deviation / m * 100).toFixed(2)}  `
+    + `B ${B.toFixed(2)} / Bnull ${bnull.toFixed(2)} = ${ratio === null ? '  —' : ratio.toFixed(2)}`);
+}
+const wR = analysed.filter((a) => a.ratio !== null);
+const pooled = wR.reduce((t, a) => t + a.B, 0) / (wR.reduce((t, a) => t + a.bnull, 0) || 1);
+const dealtSlots = analysed.reduce((t, a) => t + a.N, 0);
+const drawnSlots = analysed.reduce((t, a) => t + a.m, 0);
+console.log(`\n  ${analysed.length} row(s): ${dealtSlots} slot(s) dealt, ${drawnSlots} drawn `
+  + `(${(100 * (1 - drawnSlots / dealtSlots)).toFixed(1)}% refused by the two filters). `
+  + `Pooled B/Bnull ${pooled.toFixed(2)}`);
+console.log(`  worst row ${Math.max(...wR.map((a) => a.ratio)).toFixed(2)} · median `
+  + `${wR.map((a) => a.ratio).sort((a, b) => a - b)[wR.length >> 1].toFixed(2)}`);
+
+// The controls, on the three largest dealt populations in the scene — an
+// instrument that has not been shown reading red is not evidence.
+const biggest = [...analysed].sort((a, b) => b.N - a.N).slice(0, 3);
+console.log('\n  CONTROLS on the real dealt vectors — a rank-BLIND filter of the same size '
+  + 'must\n  read about 1.0, and a width-selective one (the walker clearance\'s own rule) '
+  + 'must not:');
+for (const a of biggest) {
+  const green = controlRatio(a.r.deal, a.N, a.m, 0, 0x1835c4 + a.N);
+  const red = controlRatio(a.r.deal, a.N, a.m, 8, 0x1835c4 + a.N);
+  console.log(`    ${a.r.community.padEnd(20)} ${a.r.list.padEnd(6)} ${String(a.N).padStart(5)} `
+    + `dealt → ${String(a.m).padStart(5)} drawn   uniform ${green === null ? '—' : green.toFixed(2)}`
+    + `   width-selective ${red === null ? '—' : red.toFixed(2)}`
+    + `   MEASURED ${a.ratio.toFixed(2)}`);
+}
+
 if (errors.length) console.log(`\npage errors: ${errors.length}\n  ${errors.join('\n  ')}`);
 
 await browser.close();

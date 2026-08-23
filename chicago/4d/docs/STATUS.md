@@ -102,6 +102,72 @@ Desktop stage 4 first came back as a harness error rather than a result — the 
 when run alone. Recorded because a killed run and a failed run print differently and only one of
 them is a smoke result.
 
+## Corroborated 2026-08-23 — T-0018 in the REAL scene: the placer's own filters, measured where they run
+
+**Read the entry above first: it is the refutation, and this is the second half of its evidence.**
+The two runs took T-0018 in parallel and neither's `inflight` check could see the other. The entry
+above settles the mechanism *in principle* — 400 synthetic layer keys, three modelled filter shapes,
+χ² against uniform, and a rank-reading arm that goes red by four orders of magnitude. This one asks
+the same question of the real thing: not a `halfplane` standing for a waterline but `station()`
+itself, over the actual town, the actual river and the actual building footprints, at ten stations.
+**Two instruments, two constructions, one answer** — and the second closes the one gap a synthetic
+model leaves, which is whether the filters the placer really runs behave like the shapes that stand
+for them.
+
+**They do, and the answer is no — the other way round.** Over **7,844 slots dealt in 29 rows, of which
+the two filters refuse 23.4 %**, the survivors are spread across their species lists **more** evenly
+than a rank-blind subsample of the same size: pooled 0.65 of the rank-blind figure, median row 0.65,
+worst row in the scene 1.11. And the riverbank row the parcel was left on refuses **0.0 %** of its
+slots — 44 dealt, 44 drawn — so no filter can be carrying any part of its residual. That residual is
+the deal's own discrepancy at a 44-slot population, which is the alternative the parcel was required
+to name.
+
+### The instrument, which is a decomposition rather than a correlation
+
+The box asked for a correlation column: reject fraction against the change in deviation, across
+sixteen rows. `deviation` is a functional of the survivors' ranks alone, so it can be put exactly
+instead. `flora.js` now counts each species' slots at the moment of the deal as well as after the
+filters — the same census one step earlier — and the tool reports
+
+* `dealtDev` — the discrepancy the deal has **before** any filter;
+* `B = Σ|drawn_i − q·dealt_i|` — how far the survivors are from the filter having taken the same
+  fraction `q` of every species, which is zero for a perfectly even filter;
+* `Bnull` — what `B` reads when the mechanism is absent, the hypergeometric mean absolute deviation
+  of a rank-blind filter of that size.
+
+`B/Bnull ≈ 1` refutes the mechanism for a row; `≫ 1` proves it. Nothing in the scene is above 1.11.
+
+**It was shown red before it was believed.** Two controls run on the real dealt vectors, 200 trials
+each: a genuinely uniform subsample of the same size reads **0.96–1.03**, so `Bnull` is calibrated;
+one that rejects wide clumps preferentially — `crowdsTheWalker()`'s own rule — reads **3.92–5.00**.
+The instrument can see the mechanism. It is not there.
+
+**Why the reading is below 1, stated as reasoning and not as measurement.** `station()` refuses
+ground in contiguous patches, and a contiguous patch is close to whole blocks. A whole block is a
+complete stratum — one slot of every rank — so removing complete strata leaves the remainder exactly
+stratified. The permutation K49(d) finding 3 called the danger is what makes the filtering safe.
+
+**What this licenses.** `stratum` may be used in a heavily filtered layer. Filtering costs a layer
+its SIZE, and a smaller population has a larger per-slot discrepancy for that reason alone
+(`z09_sand_prairie` reading the mesic list: 51.8 % refused, `dev/100` 1.08 → 2.63, still below what
+rank-blind filtering of that size predicts). It does not cost the layer its stratification. A census
+row that got worse behind a filter should be blamed on the deal or on the row's size, and the tool
+now prints both columns to say which.
+
+**And the row that opened the ticket is not a draw either — nothing is filtered there at all.**
+The entry above shows 5.24 sitting below the mean deviation of three simulated filters at that
+sample size. In the scene the row deals **44 slots and draws 44**, refusing none: `dev/100` is 11.91
+before the filters and 11.91 after. There is no filter to explain, at any strength.
+
+**Nothing a visitor can see changed**, and the parcel carries K49(e)'s written exemption: a
+gate-shaped measurement blocking a named parcel — every future use of `stratum` in a filtered layer.
+
+**Verification.** `tools/check.sh` green · `node tools/measure_sward_draw.mjs` on the source tree and
+on the published mirror, both viewports · `tools/smoke_renderer.mjs` staged over both viewports. One
+finding filed on the way: `SWARD_VIEWPORT=mobile` changes the browser page size but not `lowSpec`,
+so the two viewports deal identical censuses where the tool's own header says the viewport decides
+the ring sizes.
+
 ## Shipped 2026-08-23 — T-0020: the shrub's last 4.4 points of shell, bought for three per cent of a frame
 
 **ROADMAP K59**, opened by K57 on 2026-08-17 and deliberately left unclaimable: *"Take this parcel

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 253, title: 'A suspected fault in how the prairie is dealt is not there', kind: 'chore', ts: '2026-08-23T21:43:52.649Z', date: 'Aug 23, 2026, 4:43 PM CT',
+    items: [
+      'Nothing you can see changed. This is about how the grass and flowers underfoot are chosen \u2014 and about a suspicion, written down a week ago, that the town getting in their way was quietly spoiling the mix.',
+      'Every patch of ground is dealt a plant the way cards are dealt, so each species gets the share its record asks for. Some of those are then refused: one that would stand inside a building, one out in the river, one close enough that you would be walking through it. The worry was that the refusals are not scattered, so what survives them is a skewed hand.',
+      'Measured at ten viewpoints across 7,844 plants dealt, of which about a quarter are refused: what is left is CLOSER to the recorded mix than removing a random quarter would leave it, not further. The suspicion is not merely unproven, it points the wrong way.',
+      'The reason looks like this. Refusals come in patches \u2014 a building, a stretch of bank \u2014 and a patch is close to a whole block of the deal, and a whole block holds one of every card. Take whole blocks away and the rest is still dealt exactly as it was.',
+      'The measurement was shown both answers before it was believed: given a genuinely fair removal it reads about one, given a deliberately unfair one it reads four to five, and the real thing reads well under one.',
+      'And the one place this was opened to explain has nothing refused at all \u2014 forty-four dealt, forty-four drawn \u2014 so whatever is off there was never the town\u2019s doing.',
+    ] },
   { v: 252, title: 'The bushes fill out', kind: 'feature', ts: '2026-08-23T20:39:32.712Z', date: 'Aug 23, 2026, 3:39 PM CT',
     items: [
       'Every bush in the town — the hazel and dogwood thickets along the river, the sixty-odd standing in the wet woods north of it — is drawn as a handful of leaf masses hung on four bare stems. There were forty-eight of those masses. There are sixty-four now, and the difference is that you can see less sky through a bush and less black stick behind one.',

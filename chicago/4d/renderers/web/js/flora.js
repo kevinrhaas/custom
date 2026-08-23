@@ -604,8 +604,18 @@ export async function createFlora({
       if (!items.length) continue;
       const row = {
         community: z.id, list, drawn: 0, drySlots: 0, wetSlots: 0,
+        /** ROADMAP K49(e) / T-0018 — THE SAME CENSUS ONE STEP EARLIER.
+         *  `drawn` counts the slots that survived `station()` and
+         *  `crowdsTheWalker()`; `dealt` counts the slots the deal handed a
+         *  species to before either filter got a vote, and the two rejection
+         *  counters say which filter took the difference. Nothing here changes
+         *  what is drawn — it is the population `deviation` is measured over,
+         *  which until now could only be seen after the filtering. */
+        dealt: 0, dryDealt: 0, wetDealt: 0, rejStation: 0, rejWalker: 0,
         species: items.map((s) => ({
           id: s.id, unit: s.unit, share: s.weight, stems: s.stems, expected: 0, drawn: 0,
+          /** ROADMAP K49(e) / T-0018 — this species' half of the same pair. */
+          dealt: 0, expectedDealt: 0,
           /** ROADMAP K54. The clump this species' record gives, and the ground
            *  cover that density implies — `stems × π(width/2)²`, which for a
            *  cover-recorded species is its own recorded `cover_fraction` back
@@ -625,11 +635,25 @@ export async function createFlora({
         wet: z.wet[key].items.includes(s) && z.wet[key].total > 0 ? s.weight / z.wet[key].total : 0,
       }));
       censusIndex.set(`${z.id}:${list}`, { row, byId, shares });
+      // The placer reaches the census row THROUGH THE ZONE it already has in
+      // hand. The lookup used to rebuild `${z.id}:${list}` and hit the Map once
+      // per drawn slot; T-0018 asks the same question of every DEALT slot,
+      // which is a bigger population, and paying a string allocation for each
+      // of them in the rebuild loop is not a measurement, it is a cost.
+      (z.census ??= {})[list] = censusIndex.get(`${z.id}:${list}`);
       stats.draws.push(row);
     }
   }
-  const countDraw = (zone, list, sp, wet) => {
-    const c = censusIndex.get(`${zone.id}:${list}`);
+  /** A slot the deal handed a species to, counted before `station()` and
+   *  `crowdsTheWalker()` are asked. ROADMAP K49(e) / T-0018. */
+  const countDealt = (c, sp, wet) => {
+    if (!c) return;
+    c.row.dealt++;
+    if (wet) c.row.wetDealt++; else c.row.dryDealt++;
+    const s = c.byId.get(sp.id);
+    if (s) s.dealt++;
+  };
+  const countDraw = (c, sp, wet) => {
     if (!c) return;
     c.row.drawn++;
     if (wet) c.row.wetSlots++; else c.row.drySlots++;
@@ -641,12 +665,23 @@ export async function createFlora({
       row.drawn = 0;
       row.drySlots = 0;
       row.wetSlots = 0;
-      for (const s of row.species) { s.drawn = 0; s.expected = 0; }
+      row.dealt = 0;
+      row.dryDealt = 0;
+      row.wetDealt = 0;
+      row.rejStation = 0;
+      row.rejWalker = 0;
+      for (const s of row.species) { s.drawn = 0; s.expected = 0; s.dealt = 0; s.expectedDealt = 0; }
     }
   };
   const closeCensus = () => {
     for (const { row, shares } of censusIndex.values()) {
-      for (const s of shares) s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+      for (const s of shares) {
+        s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+        // The same share against the DEALT population: what the layer's
+        // disagreement with its own target would have been had nothing been
+        // filtered out. ROADMAP K49(e) / T-0018.
+        s.row.expectedDealt = s.dry * row.dryDealt + s.wet * row.wetDealt;
+      }
     }
   };
 
@@ -817,15 +852,17 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
           zone.matrixShare, u);
         if (!sp) return;
+        const c = zone.census?.matrix;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
         // The head is placed off the height the PLANT was actually given, and
         // only if the plant was actually drawn. Round 1 drew the two from
         // independent draws of the same range, so a 2.0 m cordgrass spike
         // could stand over a 1.25 m tuft — which is the pair of flower heads
         // the critic found floating unattached in the open sky.
-        countDraw(zone, 'matrix', sp, wet);
+        countDraw(c, sp, wet);
         const h = placeGraminoid(nearSet, sp, e, y, n, rng);
         if (h > 0 && r <= near.head[0] + step) {
           maybeHead(heads, sp, e, y, n, rng, h, near.head);
@@ -856,9 +893,11 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
           zone.matrixShare, u);
         if (!sp) return;
+        const c = zone.census?.matrix;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        countDraw(zone, 'matrix', sp, wet);
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        countDraw(c, sp, wet);
         midSet.ring(ringAt(mid.fade, off, _ring));
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
@@ -889,10 +928,12 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.forbs : zone.dry.forbs,
           wet ? zone.forbShareWet : zone.forbShare, u);
         if (!sp) return;
+        const c = zone.census?.forb;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
-        countDraw(zone, 'forb', sp, wet);
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
+        countDraw(c, sp, wet);
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
         const h = placeForb(set, sp, e, y, n, rng);
@@ -923,10 +964,12 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.shrubs : zone.dry.shrubs,
           wet ? zone.shrubShareWet : zone.shrubShare, u);
         if (!sp) return;
+        const c = zone.census?.shrub;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
-        countDraw(zone, 'shrub', sp, wet);
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
+        countDraw(c, sp, wet);
         shrubSet.ring(ringAt(f.fade, off, _ring));
         const h = placeShrub(shrubSet, sp, e, y, n, rng);
         if (h > 0 && r <= f.head[0] + off + step) {
