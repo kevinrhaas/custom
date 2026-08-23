@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 12:27 AM",
+  "generated_ct": "Aug 23, 2026, 12:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -203,19 +203,20 @@
     {
       "id": "T-0012",
       "title": "Ship the 16-bit ground the script already computes",
-      "state": "open",
+      "state": "split",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": true,
       "effort": "M",
       "legacy_id": "R-W6(b)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
+      "closed": "2026-08-22",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/22/2026, 10:17:39 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0013",
@@ -2659,6 +2660,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0151",
+      "title": "The shipped ground's POSITION bit depth is asserted, not assumed",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": "R-W6(b)",
+      "parent": "T-0012",
+      "opened": "2026-08-22",
+      "closed": "2026-08-22",
+      "pr": "317",
+      "claimed_by": "run 8/22/2026, 10:27:07 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0152",
+      "title": "The drawn ground stands 77 mm off the field on the new east slopes",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": "R-W6(b)",
+      "parent": "T-0012",
+      "opened": "2026-08-22",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 0
     },
     {
       "id": "T-0153",

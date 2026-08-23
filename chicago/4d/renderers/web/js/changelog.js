@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 240, title: 'The instruments that check this town can be run again', kind: 'fix', ts: '2026-08-23T04:59:50.893Z', date: 'Aug 22, 2026, 11:59 PM CT',
+  { v: 241, title: 'The instruments that check this town can be run again', kind: 'fix', ts: '2026-08-23T05:32:51.368Z', date: 'Aug 23, 2026, 12:32 AM CT',
     items: [
       'Nothing a visitor can see changed here. This is about the measuring tools the project checks itself with — and twelve of the sixteen of them could not be started at all on the machine that does the work.',
       'They each open a real browser, photograph the town and count what is in the picture. Only four of them could be told WHICH browser to use; the other twelve could use one particular copy and nothing else, so on a machine without that exact copy they stopped before taking a single frame. All sixteen can now be pointed at whatever browser is present, the same way the release gate always could.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'The proof is what happened the moment one of them ran. A standing task said that three and a half per cent of the view from above was two surfaces fighting over the same depth, and asked for the town to be rebuilt to separate them. Run for the first time, the instrument reads the flicker at a fifth of a per cent of the frame — already five times better than the target that task set — and finds the exactly-overlapping surfaces it was opened for to be twenty-five pixels. The rebuild would have been spent on almost nothing, and two thirds of what does shimmer is simply where one thing ends and another begins — a roofline against the sky, a tree against the ground — which is what any edge does when a camera moves.',
       'The task has been re-aimed rather than closed, at the thing the instrument can actually see: the six hundred-odd pixels where a layer fights ITSELF rather than its neighbour, two thirds of them in the buildings and the rest in the trees. Why that happens is genuinely not known yet, and the re-aimed task says so instead of guessing — naming the cause, with evidence, is the first thing it asks for.',
       'And a check now refuses any future tool that cannot be pointed at a browser, because this is the second time the habit lapsed.',
+    ] },
+  { v: 240, title: 'The ground already shipped at the finer lattice; nothing could say so', kind: 'chore', ts: '2026-08-23T04:51:57.517Z', date: 'Aug 22, 2026, 11:51 PM CT',
+    items: [
+      'Nothing you can see changed today. The ground under the town is exactly where it was, and it has been since the walker started reading its heights straight off the survey field rather than off the compressed model.',
+      'The queue\u2019s second job was to ship a finer ground: the model a visitor downloads is squeezed onto a ladder of fixed heights, and it was supposed to have been moved from a 306 mm ladder to a 77 mm one a week ago. It HAD been \u2014 quietly, by a nightly rebuild \u2014 and nothing in the project could tell you either way.',
+      'That is the real fault, and it runs both directions. The checks that compare the downloaded model against the master compare triangles, names, materials and the box the building sits in, and the ladder spacing changes none of them. So the coarse ground shipped for days with every check green, and the fine one arrived to exactly the same silence.',
+      'It is checked now, on the bytes the site serves: the spacing is read back out of the model, compared with what the publishing step asks for, and refused if it is coarser. It was demonstrated refusing the old coarse file before it was trusted.',
+      'And the measurement it was hiding is worse than the last one taken. The drawn ground now stands up to 77 mm off the survey field at 56 of 260,000 test points \u2014 not because the ladder moved, but because the ground did: the town\u2019s modelled land was extended east to the harbour mouth, onto slopes steep enough to show the artefact. That has its own ticket and it keeps this one\u2019s place in the queue.',
     ] },
   { v: 239, title: 'The town runs lighter on a weak machine', kind: 'fix', ts: '2026-08-23T04:32:53.943Z', date: 'Aug 22, 2026, 11:32 PM CT',
     items: [
