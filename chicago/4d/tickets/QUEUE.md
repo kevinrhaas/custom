@@ -1,7 +1,6 @@
 # QUEUE — top is next. THE OWNER ORDERS THIS FILE; agents only append and remove.
 # Reorder by moving lines. Everything after the ticket id on a line is a label, not data.
 T-0139 — The bake cannot reach cook_county_courthouse_1835, so any common/ edit leaves it stale
-T-0160 — The nightly content bake has been failing since 2026-08-22: the passthrough baseline no longer matches what a fresh bake compresses
 T-0017 — Re-shoot the south_water critic baseline from the new stand
 T-0018 — Does a spatial filter eat the sward stratification
 T-0019 — Six forb layers ask for more plants than the lattice holds
