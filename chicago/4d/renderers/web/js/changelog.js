@@ -1,10 +1,20 @@
 export const CHANGELOG = [ // newest first
-  { v: 248, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T13:50:50.710Z', date: 'Aug 23, 2026, 8:50 AM CT',
+  { v: 249, title: 'The ground outside the fort is bare and trodden', kind: 'fix', ts: '2026-08-23T15:19:00.921Z', date: 'Aug 23, 2026, 10:19 AM CT',
     items: [
       'Prairie grass grew to the foot of the fort\u2019s pickets. Both of the old Fort Dearborn views draw that ground bare \u2014 pale, trodden earth from the wall foot out over the crest of the bank, with the track from the gate crossing it \u2014 and ground a garrison works every day does not carry waist-high bluestem.',
       'So the sward now stops twelve metres short of the walls, on all four sides, and bare trodden earth is laid in its place. Stand on the north bank where the old view was drawn and the fort sits on its own worn ground again.',
       'The band is a rule, not a shape somebody drew. It is measured off the stockade\u2019s own recorded outline, so it follows the fort if the fort ever moves, and it is re-checked on every change \u2014 including that it leaves the parade inside the walls alone, which no old view shows.',
       'The twelve metres are invented and marked as such: no source states a foot of it. Turn reconstructed detail off and the prairie comes back.',
+    ] },
+  { v: 248, title: 'A shading step nobody was running, and could not have run', kind: 'chore', ts: '2026-08-23T14:25:42.360Z', date: 'Aug 23, 2026, 9:25 AM CT',
+    items: [
+      'Nothing a visitor can see changed. A standing question asked whether the nightly rebuild should keep spending time on baked shading — the soft contact shadows in the corners of a building, where a wall meets a roof — or drop it. The answer turned out to be that the nightly has never done it.',
+      'The step exists, but it has always been something you have to ask for by name, and nothing in the project ever asks. Every one of the 345 building models that ships carries no baked shading at all, and the build’s own records agree: not one of them claims otherwise.',
+      'Asked for by hand, it works out at about two extra seconds and four per cent more file size per building — roughly eleven minutes added to a nightly rebuild if it were switched on for the whole town.',
+      'And in the years it has sat unused it has quietly broken, in a way worth being precise about, because the two halves are different. The shading itself is still computed correctly. What comes out the other end of the export is a completely blank sheet — and blank, in this file format, does not mean "no shading", it means "in total darkness". So switching the step on today would not have given anyone the too-heavy shading it was long suspected of; it would have put every building it touched into shadow, while the build’s records asserted the shading was good.',
+      'Nothing was deleted. The step is the beginning of a better idea that is written down and still worth doing, and throwing it away to tidy up would have thrown that away too. What ships today is the finding itself, written down where the next person will meet it, and a separate task for the export fault with the dead ends already ruled out.',
+      'A guard against the blank sheet was written, and demonstrated stopping the real build — and then deliberately left out of this change. Editing the file it belongs in re-stamps every building in the town as needing a rebuild, and one of those buildings is one the rebuild cannot reach: a courthouse dated to the October after the day being modelled, which the builder skips and the checker still holds it responsible for. That is a known trap with its own task, and the last run to hit it got past with a throwaway patch that the task says should not be needed twice. So it waits for that to be fixed rather than being forced through.',
+      'One comment in the build script that said the opposite of what is true — that this shading was on by default — now says what it does. That file is not one the rebuild depends on.',
     ] },
   { v: 247, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:05:23.410Z', date: 'Aug 23, 2026, 8:05 AM CT',
     items: [

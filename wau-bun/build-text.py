@@ -25,12 +25,16 @@ prints the match score for every boundary so a bad one cannot pass silently.
 The Part 2 and 3 ranges were proposed by a monotonic alignment of each scene's
 own summary against its chapter's paragraphs, then corrected by hand.
 """
-import json, re, sys, zipfile
+import io, json, os, re, sys, zipfile
 from html.parser import HTMLParser
 
 SRC = (sys.argv[1] if len(sys.argv) > 1 else 'wau-bun/sources').rstrip('/') + '/'
 OUT = 'site/wau-bun/js/data-text-part%d.js'
 RETOLD = 'wau-bun/modern/'   # hand-written retellings, one <scene-id>.txt per scene
+DARK   = 'wau-bun/dark/'     # the tauter retelling, same shape
+DUMP   = 'wau-bun/source-scenes/'   # per-scene source text, for writing against
+OUTDARK = 'site/wau-bun/js/data-dark-part%d.js'
+REUSE_MAX = 0.10   # a dark passage may echo at most this much source narration
 
 # ---------- modern text ----------
 mod = open(SRC + 'waubun.txt').read().split('\n')
@@ -113,6 +117,14 @@ PART3 = [
 
 PARTS = [(1, PART1), (2, PART2), (3, PART3)]
 
+TITLES = {}
+for _n in (1, 2, 3):
+    _src = io.open('site/wau-bun/js/data-part%d.js' % _n, encoding='utf-8').read()
+    for _block in _src.split('\n    {\n')[1:]:
+        _i = re.search(r"id: '([a-z0-9]+)'", _block)
+        _t = re.search(r"\n      title: '((?:[^'\\]|\\.)*)'", _block)
+        if _i and _t: TITLES.setdefault(_i.group(1), _t.group(1).replace("\\'", "'"))
+
 STRAY = 'The Project Gutenberg eBook of Wau-Bun'
 SEP = re.compile(r'^[\*\s\u2022]+$')
 SPEAKER = re.compile(r'^(?:[A-Z][A-Z\-\u00c9 ]{2,}\.|CHORUS|BOURGEOIS)')
@@ -177,16 +189,21 @@ def score(a, b):
     if not A or not B: return 0.0
     return len(A & B) / len(A | B)
 
-def retold(sid):
-    """A hand-written contemporary retelling of this scene, if one exists:
-    wau-bun/modern/<sid>.txt, paragraphs separated by blank lines. These take
-    the place of the light .docx modernization as the 'modern' text."""
+def handwritten(folder, sid):
+    """A hand-written retelling of this scene, if one exists: <folder>/<sid>.txt,
+    paragraphs separated by blank lines."""
     try:
-        raw = open(RETOLD + sid + '.txt').read()
+        raw = io.open(folder + sid + '.txt', encoding='utf-8').read()
     except IOError:
         return None
-    paras = [' '.join(b.split()) for b in re.split(r'\n\s*\n', raw) if b.strip()]
+    # a leading '#' line is the brief the passage was written against, not prose
+    body = '\n'.join(l for l in raw.split('\n') if not l.startswith('#'))
+    paras = [' '.join(b.split()) for b in re.split(r'\n\s*\n', body) if b.strip()]
     return paras or None
+
+def retold(sid):
+    """Takes the place of the light .docx modernization as the 'modern' text."""
+    return handwritten(RETOLD, sid)
 
 CHAP = {}
 for _i, _l in enumerate(mod):
@@ -245,6 +262,7 @@ def build(ranges):
             if sc > best_s: best_i, best_s = i, sc
         rt = retold(sid)
         out[sid] = {'roman': roman, 'modern': rt or mp, 'retold': bool(rt),
+                    'source': mp, 'dark': handwritten(DARK, sid),
                     '_ostart': best_i, '_oscore': round(best_s, 3)}
         report.append((sid, roman, len(out[sid]['modern']), best_i, round(best_s, 3), bool(rt)))
 
@@ -263,6 +281,47 @@ def build(ranges):
     return out, report
 
 def words(paras): return len(' '.join(paras).split())
+
+QUOTE = re.compile(r'"[^"]*"')
+OPEN_RUN = re.compile(r'"[^"]*$')
+def _narration(paras):
+    """Dialogue has to keep its wording, so it would inflate any similarity
+    measure. Strip quoted speech and look only at the narration.
+
+    Paragraph by paragraph, because a multi-paragraph quotation in this book
+    opens a quote on EVERY paragraph and closes only on the last. Matching
+    pairs across the whole passage therefore pairs the wrong marks and leaves
+    half the dialogue counted as narration — which scored some scenes as
+    unfixable however well they were re-voiced.
+
+    Known limit: speech nested in single quotes (the source uses them inside a
+    quoted testimony) is not stripped, so those few scenes read a little high."""
+    out = []
+    for para in paras:
+        p = QUOTE.sub(' ', para)     # closed pairs first
+        p = OPEN_RUN.sub(' ', p)     # then a quote that runs to the paragraph end
+        out.append(p)
+    return re.sub(r'[^a-z0-9 ]', ' ', ' '.join(out).lower()).split()
+
+def reuse(dark_paras, src_paras, n=8):
+    """Fraction of the source's narration n-grams that survive verbatim in the
+    retelling. A genuinely re-voiced passage sits near zero; a passage that was
+    edited sentence-by-sentence instead of rewritten sits high."""
+    S = set(zip(*[_narration(src_paras)[i:] for i in range(n)]))
+    D = set(zip(*[_narration(dark_paras)[i:] for i in range(n)]))
+    return (len(S & D) / len(S)) if S else 0.0
+
+def dump_sources(number, out, ids, titles):
+    """Write one plain file per scene holding the passage a retelling has to
+    cover, with the brief on top. Not committed — regenerate with the script."""
+    if not os.path.isdir(DUMP): os.makedirs(DUMP)
+    for sid in ids:
+        rec, src = out[sid], out[sid]['source']
+        io.open(DUMP + sid + '.txt', 'w', encoding='utf-8').write(
+            '# %s — part %d, chapter %s — %s\n'
+            '# %d paragraphs, %d words. Match the paragraph breaks and the length.\n\n'
+            % (sid, number, rec['roman'], titles.get(sid, ''), len(src), words(src))
+            + '\n\n'.join(src) + '\n')
 
 fail = False
 for number, ranges in PARTS:
@@ -314,7 +373,42 @@ for number, ranges in PARTS:
         js.append('    original: %s' % json.dumps(rec['original'], ensure_ascii=False))
         js.append('  },')
     js.append('};')
-    open(OUT % number, 'w').write('\n'.join(js) + '\n')
+    io.open(OUT % number, 'w', encoding='utf-8').write('\n'.join(js) + '\n')
     print('  wrote ' + OUT % number)
+
+    # ---- the horror-suspense retelling, in its own file so it is only
+    # fetched by a reader who actually opens that mode
+    have = [sid for sid in ids if out[sid]['dark']]
+    if have:
+        dk = ['/* Wau-Bun — Part %d, the same scenes retold in a tauter, more' % number,
+              '   immediate voice: the events, people, places and turns of the 1856 text,',
+              '   in present-day English, with nothing added. Original prose written for',
+              '   this app — nothing is quoted from any other book.',
+              '   Generated — do not hand-edit; the passages live in wau-bun/dark/<scene>.txt.',
+              '   Loaded only when a reader opens this mode. */',
+              'var WAUBUN_DARK_PART%d = {' % number]
+        for sid in have:
+            dk.append('  %s: %s,' % (sid, json.dumps(out[sid]['dark'], ensure_ascii=False)))
+        dk.append('};')
+        io.open(OUTDARK % number, 'w', encoding='utf-8').write('\n'.join(dk) + '\n')
+        thin_dark, echo = [], []
+        for sid in have:
+            wd, ws = words(out[sid]['dark']), words(out[sid]['source'])
+            if ws and 100 * wd / ws < 90: thin_dark.append((sid, round(100 * wd / ws)))
+            r = reuse(out[sid]['dark'], out[sid]['source'])
+            if r > REUSE_MAX: echo.append((sid, round(100 * r)))
+        print('  wrote %s — %d of %d scenes, %s words'
+              % (OUTDARK % number, len(have), len(ids),
+                 format(words([p for sid in have for p in out[sid]['dark']]), ',')))
+        if thin_dark:
+            print('  DARK PASSAGES THAT LOST LENGTH (fix these):',
+                  ', '.join('%s at %d%%' % t for t in thin_dark))
+            fail = True
+        if echo:
+            print('  DARK PASSAGES TOO CLOSE TO THE SOURCE (rewrite these — they were'
+                  ' edited, not re-voiced):')
+            print('    ' + ', '.join('%s %d%%' % t for t in echo))
+            fail = True
+    dump_sources(number, out, ids, TITLES)
 
 if fail: sys.exit(1)

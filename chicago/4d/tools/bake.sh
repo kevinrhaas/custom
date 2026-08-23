@@ -4,7 +4,11 @@
 #
 #   tools/bake.sh                 build everything
 #   tools/bake.sh --only <id>     build one structure
-#   tools/bake.sh --no-bake       skip AO baking (fast iteration)
+#   tools/bake.sh --no-bake       skip the UV unwrap (fast iteration)
+#
+# AO is NOT baked here and never has been in the nightly: `--ao` is opt-in on
+# generators/build.py and nothing passes it (T-0015). This line used to say
+# `--no-bake` skips "AO baking", which read as though AO were on by default.
 #
 # Blender is pinned by exact version + sha256 in generators/blender.pin. Version
 # pinning is what buys back determinism from a stateful tool; determinism itself

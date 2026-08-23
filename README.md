@@ -26,7 +26,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [peachtree-city-bowl](peachtree-city-bowl/) | Parametric wavy-rim decorative bowl designed in OpenSCAD |
 | [porchfest](porchfest/) | Uptown Porchfest 2026 walking-route planner — 91 bands rated across ten dimensions, an orienteering solver over the real street grid, self-contained map, and shareable plans. Builds `site/porchfest/app/` |
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
-| [wau-bun](site/wau-bun/) | Juliette Kinzie's 1856 frontier memoir as an interactive telling — a character-presence chart of every person against every scene, a scene-by-scene reader carrying the summary, the modernized text and the original 1856 text, and the full cast. All three parts are complete — 158 scenes across chapters I–XXXVIII, 225 people |
+| [wau-bun](site/wau-bun/) | Juliette Kinzie's 1856 frontier memoir as an interactive telling — a character-presence chart of every person against every scene, a scene-by-scene reader carrying four readings of every scene — summary, modernized text, a modern horror-suspense retelling, and the original 1856 text — and the full cast. All three parts are complete — 158 scenes across chapters I–XXXVIII, 225 people |
 
 ## File Formats
 
