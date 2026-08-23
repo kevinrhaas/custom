@@ -5729,6 +5729,79 @@ the owner's call about the specification and not a repair an agent should make; 
 **Recorded:** 2026-08-22.
 
 
+### L173 — Nine piles of brick, timber and stone on the one lot this town can say was building
+**Decision:** the Lake House site — `lake_house_construction`, a roofless brick shell on the north
+side — now has **building material stacked round it**: four stacks of brick along the frontage it
+faces Michigan Street with, three piles of squared timber down its east flank, and two heaps of
+footing stone behind it. Nine piles, on one lot, on `data/yard/lot_building_material.json`, dealt by
+`tools/generate_lot_building_material.py`, re-derived byte for byte by `tools/check.sh`, and drawn
+by `renderers/web/js/yard.js` on the yard layer's own material and in its own `CHUNK_M` buckets.
+**Why:** because **Ordinance 9 names five things and this project had drawn two of them.** The
+village corporation of 7 November 1833 legislated about *timber, stone, brick, boxes and barrels*
+stacked in the streets (`data/sources/chicago_democrat_1833_11_26.json`, tier 1), and a corporation
+does not legislate against a thing nobody does. T-0040 drew the boxes and the barrels — a
+merchant's stock on his own frontage, L131 — and refused the other three in writing, because they
+are a different claim about a different kind of ground: building material belongs to a building
+that is going UP, and the goods record has no way to say which lot was.
+**What decides which lot, and it is the whole parcel.** The record has to SAY it. Of 343 structures
+standing on the scene date, 256 are anonymous infill and 87 are named; exactly one carries a
+construction state in its own attributes — `lake_house_construction`, whose `function` is
+`hotel_under_construction` and whose grade on that attribute is **attested**, off Andreas ('the
+hotel was completed and thrown open to the public in the autumn of 1836') and corroborated by
+J. D. Bonnell, who walked past 'the Lake House IN COURSE OF CONSTRUCTION' on 25 August 1835. Its
+`roof_type` is `none` for the same reason. **No date test is used and refusing to write one is
+half the finding**: a `documented_range.from` inside 1835 is a FIRST ATTESTATION for the named
+records — a newspaper's first issue, a directory line, a deed — and a PROGRAMME date for the
+anonymous ones, which L126 states in as many words. Fourteen named records carry an 1835 opening
+and every one is refused by name, with that reason, in the record's `refused` block.
+**What is invented, plainly.** That any material stood on that lot on 1 July 1835; how much;
+where each pile stood; the stack of brick at 2.20 × 1.10 × 1.05 m; the 12 ft × 8 in squared stick,
+five to a course and four or five courses high with the top course short; the nine-block heap of
+rough footing stone; and the working strip itself — 1.60 m off the wall, 1.00 m clear of each
+corner, one material to a face beginning at the face the record fronts. Not one of those numbers
+is attested for Chicago or for this site.
+**What bounds it.** WHICH materials is not free: brick because the record's `construction` is brick
+and `attested` in Andreas's own words ('this hotel, which was built of brick, was three stories and
+a basement in height'), and Blodgett's brickyard had been running on the North Side since the
+spring of 1833; stone because the same sentence gives the building a basement, and a basement is
+masonry footing before it is anything else; timber because a three-storey brick building of the
+period is floored, joisted and roofed in it and is laid from timber scaffolding — Martineau, in
+the unfinished building in June 1836, sat on 'planks laid on trestles'. The pile SIZES are bounded
+by what the material is for: a stick that spans a room of a building 15 m deep, a stone a
+two-man lift can carry, a stack of brick a barrow can be worked round.
+**Two things it deliberately does not draw.** **No individual brick and no course**:
+`generators/common/materials.py` records that no source in this repository gives a brick or a
+course dimension, so a course rhythm here would be a modern brick module wearing an 1835 date, and
+the stack is drawn as stepped block instead. **Nothing in the street**, which is the nuisance the
+ordinance actually legislated against: this site's own position note carries about 20 m of working
+uncertainty and says which side of Rush Street it stands on is undocumented, while the traced
+centreline of Michigan Street runs some 30 m north of where the same georeference puts the
+frontage. Two numbers that disagree by more than the object is wide cannot place a stack of brick
+in a roadway, so the material stands on the lot and the street half of Ordinance 9 stays undrawn.
+**The colours.** Brick is **not a new colour**: it is `generators/common/materials.py`'s
+`CHIMNEY_BRICK`, the town's one brick, off the Petford watercolour, and it goes into the renderer
+as the sheet's own linear triple rather than through a hand conversion. Stone **is** new and is
+reconstructed, because the material sheet's `stone` substrate carries a roughness and no colour at
+all; it is bounded by two values this project already ships — paler and greyer than the yard
+layer's own timber (`0x8a7a5f`), or a heap of footing stone stops reading as stone beside the
+sticks piled next to it, and darker than the chinking clay (linear 0.700/0.670/0.590), which is
+the same mineral sitting sheltered under an eave.
+**Consequence:** the one building site in this town now looks like one — a roofless shell with its
+material on the ground round it, instead of a walled rectangle standing on swept prairie. The whole
+layer is graded `reconstructed` at the vertex, so a visitor who hides `reconstructed` gets the bare
+site back, and aiming at any pile opens the Lake House's card. No new draw call: the piles ride the
+yard layer's single material and its existing chunks.
+**How to resolve:** a second building site — any record that states a construction state on
+1835-07-01 gets material by the same rule the day it is written; a dated groundbreaking for the
+Lake House, which today rests on two unfootnoted compilations the record disputes at length; a
+measured Chicago brick of the 1830s, which would let a stack be drawn in courses; or a quarry for
+north-side footing stone, which would give the heap a colour instead of a bound.
+**Ticket:** T-0057, opened by T-0040. Related: **L131** (the boxes-and-barrels half of the same
+ordinance), **L166** (the marks on those goods), **L126** (why an anonymous record's date is a
+programme date), **L168** (the brick this borrows).
+**Recorded:** 2026-08-23.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

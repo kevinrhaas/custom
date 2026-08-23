@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 247, title: 'A shading step nobody was running, and could not have run', kind: 'chore', ts: '2026-08-23T13:31:44.176Z', date: 'Aug 23, 2026, 8:31 AM CT',
+  { v: 248, title: 'A shading step nobody was running, and could not have run', kind: 'chore', ts: '2026-08-23T14:25:42.360Z', date: 'Aug 23, 2026, 9:25 AM CT',
     items: [
       'Nothing a visitor can see changed. A standing question asked whether the nightly rebuild should keep spending time on baked shading — the soft contact shadows in the corners of a building, where a wall meets a roof — or drop it. The answer turned out to be that the nightly has never done it.',
       'The step exists, but it has always been something you have to ask for by name, and nothing in the project ever asks. Every one of the 345 building models that ships carries no baked shading at all, and the build’s own records agree: not one of them claims otherwise.',
@@ -8,6 +8,15 @@ export const CHANGELOG = [ // newest first
       'Nothing was deleted. The step is the beginning of a better idea that is written down and still worth doing, and throwing it away to tidy up would have thrown that away too. What ships today is the finding itself, written down where the next person will meet it, and a separate task for the export fault with the dead ends already ruled out.',
       'A guard against the blank sheet was written, and demonstrated stopping the real build — and then deliberately left out of this change. Editing the file it belongs in re-stamps every building in the town as needing a rebuild, and one of those buildings is one the rebuild cannot reach: a courthouse dated to the October after the day being modelled, which the builder skips and the checker still holds it responsible for. That is a known trap with its own task, and the last run to hit it got past with a throwaway patch that the task says should not be needed twice. So it waits for that to be fixed rather than being forced through.',
       'One comment in the build script that said the opposite of what is true — that this shading was on by default — now says what it does. That file is not one the rebuild depends on.',
+    ] },
+  { v: 247, title: 'The building site gets its brick, timber and stone', kind: 'feature', ts: '2026-08-23T13:05:23.410Z', date: 'Aug 23, 2026, 8:05 AM CT',
+    items: [
+      'One building in this town was not finished on 1 July 1835. The Lake House, a hotel going up on the north side, stands as a roofless brick shell — and its ground was swept bare. It is a building site now: four stacks of brick along the front it faces the street with, three piles of squared timber down its east flank, and two heaps of footing stone behind it.',
+      'The town legislated about exactly this. A village ordinance of November 1833 regulated timber, stone, brick, boxes and barrels stacked in the streets, and the boxes and barrels have stood at the shop doors for a fortnight. The other three had never been drawn, because they belong to a building that is going UP, and nothing here could say which building was.',
+      'So the question was put to the records rather than guessed at. Of 343 buildings standing that summer, exactly one says in its own file that it was under construction, and it says so on good authority: a man who walked past it eight weeks later described the Lake House in course of construction, and it did not open until the autumn of the following year.',
+      'What the piles are made OF is not a free choice either. The same account that dates the hotel says it was built of brick and had a basement, so brick and footing stone follow from the record; a three-storey house of that size is floored, joisted and roofed in timber, and its bricklayers worked off timber scaffolding.',
+      'Fourteen other buildings whose records open in 1835 were looked at and set aside, each with its reason written down. An 1835 date is usually the first time somebody wrote a building down — a newspaper\u2019s first issue, a deed — and not the day it was begun.',
+      'Nothing says any of this stood on that spot on that day, so all of it is marked reconstructed and vanishes when you turn reconstructed detail off. Aim at any pile and the Lake House\u2019s own card opens.',
     ] },
   { v: 246, title: 'A road that gets harder to see now says so', kind: 'fix', ts: '2026-08-23T11:57:25.246Z', date: 'Aug 23, 2026, 6:57 AM CT',
     items: [
