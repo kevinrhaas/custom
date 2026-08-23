@@ -1,5 +1,107 @@
 # STATUS
 
+## Refuted 2026-08-23 — T-0018: a spatial filter cannot bias the sward's rank deal, and the standing instruction that said it could is struck
+
+**K49(d) left a sentence in `flora.js` that has been telling every later parcel what not to
+do.** In `stratum`'s doc block, on the two census rows that got worse:
+
+> Rank is a deterministic function of position inside the block, so a filter that runs AFTER the
+> deal on a spatial rule of its own — `station()` refusing a building footprint or the far side
+> of a waterline — selects a **BIASED** set of ranks … That is the leading explanation and it is
+> not proven; K49(e) measures it. **Do not reach for `stratum` in a heavily filtered layer until
+> it has.**
+
+K49(f) refuted the settled-town half the same day by fixing something else entirely — the fixed
+grid — and left the riverbank's residual as all K49(e) had to explain. **The mechanism itself was
+never tested, and the prohibition has stood for a week on an unproven sentence.** That is the part
+worth settling: the number is one row of a census that has moved many times since, and the sentence
+is an instruction.
+
+### The mechanism is refuted, and it could not have been true
+
+`tools/measure_rank_bias.mjs` — new, 0.4 s, no browser. Position → rank is
+`feistel(idx, half, blockHash)`, and **`blockHash` is `hash3(bc, br, salt ^ STRAT_SALT)` — re-keyed
+in every block.** A spatial rule does not know that key, so the ranks it accepts are an arbitrary
+subset, independently re-drawn block by block. Pooled over blocks they are uniform. Bias would
+require the filter to correlate with a hash of the block's own coordinates.
+
+Measured over **400 independent layer keys**, χ² on 15 df against uniform:
+
+| arm | slots kept | rank χ² | mix dev /100 | p95 |
+|---|---|---|---|---|
+| `none` | 100.0 % | 0.0 | 0.83 | 1.25 |
+| `halfplane` — a waterline | 61.6 % | **2.0** | 3.33 | 6.76 |
+| `disc` — a building footprint | 58.8 % | **4.1** | 5.01 | 8.69 |
+| `stripe` — a street corridor | 72.1 % | **2.3** | 3.22 | 5.91 |
+| `blind` — rank-blind control, same rate | 64.9 % | 4.7 | 4.54 | 7.78 |
+| **`rank_low` — a filter that READS the rank** | 56.3 % | **100,800** | 60.46 | 80.42 |
+| `independent` — the pre-K49(d) draw | 100.0 % | 0.0 | 5.83 | 9.90 |
+
+The critical value at p = 0.001 is **37.7**. The three real shapes sit at 2.0, 4.1 and 2.3 —
+indistinguishable from the rank-blind control. **The instrument goes red by four orders of
+magnitude when there is something to catch**, which is what makes the green readings a measurement
+rather than a gate that cannot fail.
+
+### The alternative, named: a filter costs precision, not accuracy
+
+The stratification's whole benefit is that a block's `u` are equally spaced, so a CDF band takes its
+exact count rather than a Poisson one. **A filter keeping m of n slots keeps an arbitrary m-subset,
+which is not equally spaced** — so the deal slides back towards an independent draw at about the
+rate it thins. Unfiltered **0.83** per 100 planted slots; thinned to ~60 %, **3.2–5.0**; an
+independent draw, **5.83**.
+
+**So the rule is the opposite of the one that was written.** Reach for `stratum` in a filtered
+layer — filtered, it still beats an independent draw. Expect precision to degrade with filtering;
+do not expect a lean. The doc block in `flora.js` now says that, with these numbers.
+
+### And the row that opened the ticket is a draw, not a fault
+
+`z05_riverbank_timber` reading the wet prairie draws **44 slots** today and deviates **5.24**. Asked
+what a deviation that size looks like when nothing is wrong — one block thinned to about that
+count, over 400 keys:
+
+| filter | slots drawn | mean deviation | p95 |
+|---|---|---|---|
+| `halfplane` | ~40 | **7.17** slots | 27.57 |
+| `disc` | ~38 | **6.10** slots | 11.81 |
+| `blind` | ~42 | **5.89** slots | 10.26 |
+
+**5.24 is below the mean of all three.** The riverbank row is not merely explicable — at that sample
+size it is better than an unbiased, correctly-working filtered deal typically manages. There is
+nothing left to explain, and K49(e)'s residual is closed rather than carried.
+
+### It measures the shipped code, and refuses to measure a copy of it
+
+Every primitive — `hash3`, `frac`, `feistel`, `stratum`, `blockPhase`, `morton`, `spread16`, `vdc`,
+`stratumHalf`, `pick`, `dealt` — is **extracted from `renderers/web/js/flora.js` at run time by
+slicing its source**, not retyped in the tool. `scatter`'s index arithmetic is inline and cannot be
+sliced by name, so the six expressions the tool reproduces are asserted to appear verbatim before
+anything is dealt. **Both guards were demonstrated firing, `rc=2` and named:** renaming `stratum`
+gives *"function stratum … is not a top-level declaration any more"*, and changing `nSlots`'
+expression gives *"scatter's deal has changed and this tool still reproduces the old one"*. The
+tree restores to `rc=0`. What the second guard does **not** catch is a new step *added* between
+those lines; that is written down in the tool rather than left to be found.
+
+**The self-test is now in `tools/check.sh`** — the control pair runs on every gate, so the day
+someone makes the deal rank-correlated the claim stops being refuted there, not in a census six
+weeks later. The first version of `sliceFunction` looked for `}` in the first column and was wrong
+on the first file it read: `frac` is a one-liner, so the slice ran on for 112 lines and swallowed
+`const STRAT_SALT`. It failed loudly as a duplicate declaration rather than quietly; it now balances
+braces, skipping strings and comments.
+
+**Nothing in the renderer's behaviour changed** — the only edit to `flora.js` is the doc block, and
+renderer files are outside `mesh_inputs.py`'s staleness hash, so no asset is stale and no bake is
+owed. No threshold moved, no data record changed.
+
+**Gates.** `tools/check.sh` green, now carrying the new self-test. Published smoke, all four stages
+at both viewports: **888 passed, 3 failed** — the same road-contrast bands R-W1, R-W2 and R-M1c own,
+and **the same 888 / 3, digit for digit, as the run on the commit before this one.** That identity
+is the control: a doc-block edit to a renderer file should move nothing, and it moved nothing.
+Desktop stage 4 first came back as a harness error rather than a result — the 800 s per-command
+`timeout` killed it while four stages ran back to back on a contended runner — and passes 152 / 0
+when run alone. Recorded because a killed run and a failed run print differently and only one of
+them is a smoke result.
+
 ## Re-shot 2026-08-23 — T-0017: the `south_water` baseline row measures a stand that no longer exists
 
 **T-V2 (#135) moved the `south_water` anchor on 2026-08-15**, from local `(260, -95)` — 101 m south

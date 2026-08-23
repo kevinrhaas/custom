@@ -548,6 +548,18 @@ step "every browser-launching tool honours PW_EXECUTABLE" \
 step "the road-band movement report names a band that moved" \
   node tools/road_band_movement.mjs --self-test
 
+# K49(d) warned for a week that a spatial filter running after the stratified
+# deal selects a BIASED set of ranks, and told every later parcel not to use
+# `stratum` in a filtered layer on the strength of it. T-0018 refuted that: the
+# position-to-rank map is re-keyed per block, so a rule that reads only position
+# cannot lean. This runs the refutation's own control pair every time — a filter
+# written to read the rank must be caught, a rank-blind one at the same rate must
+# not — so the day someone makes the deal rank-correlated, the claim stops being
+# refuted here rather than in a census six weeks later. It reads the deal out of
+# flora.js rather than keeping a copy, so it fails by name if that file moves.
+step "a spatial filter still cannot bias the sward's rank deal" \
+  node tools/measure_rank_bias.mjs --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

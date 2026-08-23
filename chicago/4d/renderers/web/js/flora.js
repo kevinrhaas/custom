@@ -2083,17 +2083,35 @@ function frac(x) { return x - Math.floor(x); }
  * the block's phase, and it also recovers most of the regression the paragraph
  * below blames on a filter.
  *
- * ...and it has a SECOND face that cost two rows of the census. Rank is a
- * deterministic function of position inside the block, so a filter that runs
+ * ...and it was thought to have a SECOND face that cost two rows of the census.
+ * IT DOES NOT, AND THE PARAGRAPH THAT SAID SO IS STRUCK. What it said was: rank
+ * is a deterministic function of position inside the block, so a filter running
  * AFTER the deal on a spatial rule of its own — `station()` refusing a building
- * footprint or the far side of a waterline — selects a BIASED set of ranks,
- * where an independent draw would have been filtered without bias. The two rows
- * that got worse are the two most heavily filtered, the settled town and the
- * riverbank. That is the leading explanation and it is not proven; K49(e)
- * measures it. Do not reach for `stratum` in a heavily filtered layer until it
- * has. (K49(f), same day: **refuted for the settled town**, which recovers
- * 39.18 → 15.52 on the phase alone, against a pre-K49(d) 14.31. The riverbank
- * keeps a residual 1.30 and that is all K49(e) has left to explain.)
+ * footprint or the far side of a waterline — selects a BIASED set of ranks; and
+ * therefore, do not reach for `stratum` in a heavily filtered layer. K49(f)
+ * refuted the settled-town half the same day, by fixing the fixed grid instead.
+ * **T-0018 / K49(e) refutes the mechanism itself** —
+ * `tools/measure_rank_bias.mjs`, which runs the deal out of THIS file:
+ *
+ *   position → rank is `feistel(idx, half, blockHash)`, and `blockHash` is
+ *   `hash3(bc, br, salt ^ STRAT_SALT)` — RE-KEYED IN EVERY BLOCK. A spatial rule
+ *   does not know that key, so the ranks it accepts are an arbitrary subset,
+ *   independently re-drawn block by block. Pooled, they are uniform.
+ *
+ * Measured over 400 independent layer keys, chi-square on 15 df against uniform:
+ * a waterline half-plane **2.0**, a footprint disc **4.1**, a street stripe
+ * **2.3** — against a rank-blind control at **4.7** and a critical value of 37.7
+ * at p = 0.001. A filter deliberately written to read the rank scores
+ * **100,800**, so the instrument goes red by four orders of magnitude when there
+ * is something to catch.
+ *
+ * SO THE RULE IS THE OPPOSITE OF THE ONE THAT WAS WRITTEN HERE. Reach for
+ * `stratum` in a filtered layer: filtered, it still beats an independent draw
+ * (mix deviation per 100 planted slots — unfiltered **0.83**, thinned to ~60 %
+ * **3.2–5.0**, independent **5.83**). What a filter costs is the STRATIFICATION,
+ * not the accuracy: the surviving `u` are no longer equally spaced, so the deal
+ * slides back towards Poisson at about the rate it thins. Expect precision to
+ * degrade with filtering; do not expect a lean.
  */
 const STRAT_SALT = 0x7f4a7c15;
 /**
