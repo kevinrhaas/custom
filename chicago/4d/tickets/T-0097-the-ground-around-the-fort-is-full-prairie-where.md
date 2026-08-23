@@ -1,7 +1,7 @@
 ---
 id: T-0097
 title: The ground around the fort is full prairie, where both plates show it bare and trodden
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 8:36:41 AM CT
 blocked_on: null
 needs_bake: false
 ---
