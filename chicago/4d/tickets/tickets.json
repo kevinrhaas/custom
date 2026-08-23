@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 3:13 AM",
+  "generated_ct": "Aug 23, 2026, 3:39 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2751,6 +2751,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 62
+    },
+    {
+      "id": "T-0156",
+      "title": "The interior/silhouette discriminator counts edges internal to a layer as interior",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
+    },
+    {
+      "id": "T-0157",
+      "title": "A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
     }
   ]
 }

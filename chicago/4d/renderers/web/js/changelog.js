@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 244, title: 'The shimmer from above is the town\u2019s own edges, not a fault', kind: 'chore', ts: '2026-08-23T08:40:07.560Z', date: 'Aug 23, 2026, 3:40 AM CT',
+    items: [
+      'Nothing you can see changed today, and this is the third such day in four \u2014 which is over this project\u2019s own limit, and the next round of work has to put something in the town.',
+      'Move the camera two millimetres above the town and about two thousand pixels change. Most of that is simply where one thing ends and another begins, which is what any edge does when a camera moves. Six hundred of them were different: a measurement said those sat INSIDE the buildings and the trees, where nothing should be changing at all, and nobody had asked why.',
+      'Now something has. Alongside the picture, the town is photographed a second time as a map of DISTANCE \u2014 how far away each pixel is \u2014 at both camera positions. That says what is really at each of those six hundred pixels, rather than what the earlier measurement assumed.',
+      'They are all edges too. Every single one lies where the distance jumps: one tree crown in front of another, a chimney against its own roof, a house against the house behind it. Not one is two surfaces fighting over which is in front, and not one is a trick of the light.',
+      'Two checks confirm it from the other side. Draw the same frame with four times as many samples and nine in ten of them settle down \u2014 which is what an edge does. Strip the sheen off every material in the town, which changes a sixth of the picture, and not one of them settles \u2014 which rules out the lighting.',
+      'So the town is not being rebuilt to chase this, and a rebuild had been asked for. What is left is a measurement whose NAME is wrong: it calls these pixels interior when they are edges, and correcting it is now its own job in the queue.',
+    ] },
   { v: 243, title: 'Closing a job stops leaving the site out of date', kind: 'fix', ts: '2026-08-23T07:03:07.172Z', date: 'Aug 23, 2026, 2:03 AM CT',
     items: [
       'Nothing a visitor can see changed here. This is housekeeping about how this project records its own work — and about a check that was going red on every single job that finished.',

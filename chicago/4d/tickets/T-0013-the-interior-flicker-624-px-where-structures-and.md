@@ -68,6 +68,52 @@ the diagnosis itself does not need a bake.
 
 ---
 
+## ANSWERED 2026-08-23 — the mechanism is named, and it is not a defect in either layer
+
+`tools/diagnose_interior_flicker.mjs`, at `from_above`, 1280×800, published mirror, shadow map
+off by R-BUG6(a)'s repaired control, control 0 px and return 0 px:
+
+```
+layer        interior   internal edge   depth reorder   same surface   no depth
+structures      370      349  (94%)        0   (0%)       0   (0%)         21
+trees           257      252  (98%)        0   (0%)       0   (0%)          3
+ground           78       75  (96%)        0   (0%)       0   (0%)          3
+```
+
+**The mechanism, both layers: an edge internal to the layer.** A packed-depth pass photographed
+at the base pose and at the nudged pose classifies each interior-flickering pixel by what the
+depth field does there — a BREAK (second difference, so a grazing plane cannot be mistaken for
+one), a REORDER (locally smooth depth, front-most surface 0.3 m nearer or further after a 2 mm
+nudge), or neither, which is where shading and a near-coplanar z-fight both have to appear.
+Everything is a break. Nothing is a reorder. Nothing is shading.
+
+Two controlled toggles, each reverted with the frame asserted back to base:
+
+- **supersample** (device pixel ratio 1 → 2 — four times the samples, same geometry, same
+  shading): 370 → 63 and 257 → 18. A coverage-bound edge heals; a depth reorder cannot, because
+  every extra sample gets the same wrong answer.
+- **matte** (18 materials at roughness 1, metalness 0 — the specular lobe gone, every vertex
+  where it was): the picture moves on 164,572 px and the interior counts do not move at all
+  (370 → 370, 257 → 256).
+
+The `no depth` pixels are the same finding once more: a packed depth read through MSAA is a
+blend of its samples' bytes and cannot be decoded, and only a pixel containing more than one
+surface gets blended.
+
+**Acceptance, item by item.** (1) named per layer, with evidence — above. (2) no layer was
+repaired, because none of the 627 pixels is the defect this asked about; the halving clause is
+conditional on a repair and does not bind. (3) silhouette stayed out of scope: nothing was
+smoothed. (4) nothing in the renderer changed, and the release smoke is green at both
+viewports with zero page errors. (5) **this is that outcome** — irreducible, recorded with the
+measurement that shows it. Nothing was weakened to reach it; the instrument is new and the old
+one is untouched.
+
+**What this leaves behind.** `interiorOf` knows a layer's outline against the rest of the scene
+and cannot see the boundary between two surfaces OF that layer, so "interior" names something
+narrower than what it counts. Correcting it is its own ticket rather than a closing move here.
+
+---
+
 ## The original ticket, and the measurement that retired it
 
 > After R-BUG6(a)/(b), 3.5 % of the aerial frame is still two surfaces at one depth —

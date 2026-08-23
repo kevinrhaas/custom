@@ -9253,6 +9253,56 @@ that currently wins the one the record intends? Start by attributing those pixel
 `measure_tie_class.mjs` attributes flicker, then look at the generator that emits the pair.
 **Needs a bake if the answer is to move a face**, which is why it is not folded into (b).
 
+### R-BUG6(c2) — what fights INSIDE a layer · **ANSWERED 2026-08-23 by T-0013 · nothing there is a defect**
+
+`measure_tie_class.mjs` splits each layer's flicker into a SILHOUETTE share (the boundary
+against everything else, which any camera resamples) and an INTERIOR share, where the layer's
+own footprint surrounds the moving pixel on all eight sides. The interior share was read as *a
+layer fighting itself* and T-0013 was re-aimed at it: 370 px on `structures`, 257 on `trees`.
+
+`tools/diagnose_interior_flicker.mjs` asks what the DEPTH FIELD does at each of those pixels,
+by photographing a packed-depth pass at the base pose and at the nudged pose. Three answers are
+possible and they are told apart without any per-surface threshold:
+
+- an **internal edge** — a depth BREAK inside the layer's own footprint. A break is a second
+  difference (`|d(-1) + d(+1) - 2·d(0)|`), which is ~0 on any plane however steeply it is seen
+  and large where the surface changes, so a grazing roof cannot be mistaken for an edge.
+- a **depth reorder** — locally smooth depth, and the front-most surface 0.3 m nearer or further
+  after a 2 mm nudge. Two surfaces swapped. This is the fight the parcel was opened for.
+- **neither** — same distance, same shape, a different colour: shading, not geometry. A
+  near-coplanar z-fight also lands here, because a pair 1 mm apart swaps without moving the
+  depth, so this class is where such a fight would have to appear.
+
+Read at `from_above`, 1280×800, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired control,
+control 0 px and return 0 px:
+
+```
+layer        interior   internal edge   depth reorder   same surface   no depth
+structures      370      349  (94%)        0   (0%)       0   (0%)         21
+trees           257      252  (98%)        0   (0%)       0   (0%)          5
+ground           78       75  (96%)        0   (0%)       0   (0%)          3
+```
+
+**Not one pixel in either layer is a depth reorder, and not one is shading.** Two controlled
+toggles confirm it from the other side. Supersampling (device pixel ratio 1 → 2: four times the
+samples, the same geometry and the same shading) leaves 63 of 370 structures px and 18 of 257
+trees px moving — 83–93 % healed, which is what a coverage-bound edge does and what a depth
+reorder cannot do, since every extra sample gets the same wrong answer. Going matte (18
+materials at roughness 1, metalness 0 — the specular lobe gone, every vertex where it was)
+changes 164,572 px of the picture and heals **nothing**: 370 → 370 and 257 → 256.
+
+The `no depth` column is the same finding again rather than a gap in it. Those pixels read the
+far plane where their layer is drawn, because a packed depth photographed through MSAA is a
+BLEND of the samples' bytes, and the packing is not linear across its four channels. A pixel
+whose depth cannot be decoded is a pixel with more than one surface in it.
+
+**So the interior/silhouette discriminator does not mean what its name says.** `interiorOf`
+knows one layer's outline against the rest of the scene; it cannot see the boundary between two
+surfaces OF that layer — one crown behind another, a chimney against its own roof, a house
+against the house behind it. Those are silhouettes too, and 94–98 % of the "interior" count is
+made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
+self-fight (here), and the rest is the town's own edges being resampled.
+
 ### R-BUG6(b) — the parcel as written, kept for the record
 
 **The suspect list is one shorter and the remainder is measured**: with the shadow map switched
