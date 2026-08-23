@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 246, title: 'A road that gets harder to see now says so', kind: 'fix', ts: '2026-08-23T11:57:25.246Z', date: 'Aug 23, 2026, 6:57 AM CT',
+    items: [
+      'Nothing a visitor can see changed here. This is about the release check that asks whether the roads are actually visible against the ground — and about a way it could go quiet while the answer got worse.',
+      'The check walks three viewpoints and measures each one in five distance bands: the road at arm’s length, at a block, at a few blocks, and so on. But it only PASSED or FAILED once per viewpoint. So a single band could lose more than half its readability — from seven probes in ten showing a visible road down to fewer than two in ten — and as long as it stayed the right side of the bar, the viewpoint still passed and the run still printed the same totals it printed the day before. The collapse left no trace anywhere.',
+      'All twenty bands are now written down with what they read, and every run reports any band that has moved away from its recorded figure. In both directions: a band that recovers is as much a thing someone should know about as a band that decays, and a report that only ever complains stops being read.',
+      'It reports and does not judge. The bars themselves were not touched and not one of them moved — they are a provisional baseline the owner ruled on, and the last time this project tightened them it punished a change that had made the picture better and merely darker. Recording what a band reads is a different act from deciding what it ought to read.',
+      'The three bands that are currently below their bar are recorded too, and marked as such. Refusing to write those down would have left the one part of the picture everyone is already worried about as the only part nobody could watch for getting worse.',
+      'It was demonstrated finding a real collapse before it was trusted: told that a band used to read seven in ten, and shown today’s frame where it reads three in ten, it names that band, that viewpoint and that distance without being pointed at any of them.',
+    ] },
   { v: 245, title: 'The dark patches on the prairie are gone', kind: 'fix', ts: '2026-08-23T09:30:29.741Z', date: 'Aug 23, 2026, 4:30 AM CT',
     items: [
       'Scattered across the town, on open ground, sat two dozen dark blotches a few metres wide \u2014 grass that fell into shadow with nothing above it to cast one. Stand over any of them and the ground simply went grey. They are gone.',
