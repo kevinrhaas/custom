@@ -38,3 +38,18 @@ a clean tree after a `common/` edit.
 
 **Links:** T-0008 (the run that hit it) · `generators/build.py::main` · `generators/mesh_inputs.py`
 · `tools/validate.py::run_stale_check`.
+
+---
+
+**Second hit, 2026-08-23 (T-0015).** This blocked another run. T-0015 edited two
+comments in `generators/build.py` — a docstring correcting a claim its own
+measurement had disproved, plus a guard against a demonstrated export fault. That
+staled all 343 assets (`mesh_inputs.py` hashes build.py's bytes), the full rebake
+was run and healed 342 of them, and `cook_county_courthouse_1835__wood_1835.glb`
+stayed stale because the bake still cannot reach it.
+
+That run chose NOT to monkey-patch `resolve_phase` a second time — this ticket
+says that shape of thing should not be needed twice — and reverted its build.py
+changes instead. So the cost is now concrete rather than hypothetical: **this
+ticket blocks any edit to `generators/build.py`, including a one-line comment**,
+and it has cost two runs their intended work.
