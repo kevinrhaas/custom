@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 238, title: 'Neighbouring houses stop wearing one paint', kind: 'fix', ts: '2026-08-23T03:18:50.867Z', date: 'Aug 22, 2026, 10:18 PM CT',
+    items: [
+      'Walk a street of small houses and the two standing side by side read as two buildings. About a tenth of the town\u2019s nearest-neighbour pairs were close enough in tone to pass for one paint; the closest pair you can now find differs by three times what it did.',
+      'Nothing got brighter or drabber, and no wall reaches a shade it could not reach yesterday. Every colour is still dealt from the same range \u2014 what changed is that a building now picks its shade knowing what stands within sixty metres of it, instead of dealing blind and sometimes landing on its neighbour\u2019s.',
+      'The two buildings a source actually describes \u2014 the Sauganash\u2019s white and the one record that says unpainted \u2014 are untouched to the bit, as they always are, and the town repaints itself the same way on every load.',
+      'It costs nothing to draw: same triangles, same draw calls.',
+    ] },
   { v: 237, title: 'The North roofs get their own pitches, and their ridges checked', kind: 'fix', ts: '2026-08-22T22:18:17.941Z', date: 'Aug 22, 2026, 5:18 PM CT',
     items: [
       'Yesterday the sixty buildings north of the river got their own widths, depths and eave lines. Their ROOF SLOPES were left alone on purpose, and this is the other half: all sixty are drawn at a pitch taken from the range the reconstruction specification gives their family, rather than at one slope typed in once and dealt to every building of that type.',
