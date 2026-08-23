@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 5:29 PM",
+  "generated_ct": "Aug 23, 2026, 5:50 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -483,7 +483,7 @@
     {
       "id": "T-0028",
       "title": "Build out the NEXT anonymous block (one per run)",
-      "state": "claimed",
+      "state": "open",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": true,
@@ -493,7 +493,7 @@
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/23/2026, 5:23:07 PM CT",
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 10
@@ -2528,7 +2528,7 @@
     {
       "id": "T-0143",
       "title": "Apply the core density standard to the next core block below the bar (successor to T-0105)",
-      "state": "claimed",
+      "state": "open",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2538,7 +2538,7 @@
       "opened": "2026-08-22",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/23/2026, 5:25:17 PM CT",
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 8
