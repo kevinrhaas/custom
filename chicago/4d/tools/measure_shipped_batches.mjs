@@ -92,7 +92,7 @@ if (PUBLISHED && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
 await new Promise((r) => server.listen(PORT, r));
 const base = `http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 page.setDefaultTimeout(180_000);
 const errors = [];

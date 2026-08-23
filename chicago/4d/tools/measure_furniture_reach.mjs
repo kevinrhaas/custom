@@ -118,7 +118,7 @@ const VIEWPORTS = [
   { label: 'desktop 1280x800', width: 1280, height: 800 },
   { label: 'mobile 390x780', width: 390, height: 780 },
 ].filter((v) => !ONLY || v.label.startsWith(ONLY));
-const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined, args: ['--enable-unsafe-swiftshader'] });
 const errors = [];
 const passes = [];
 for (const vp of VIEWPORTS) {

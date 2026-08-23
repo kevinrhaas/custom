@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
 await new Promise((r) => server.listen(PORT, r));
 
 const { chromium } = await import('playwright');
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const pageErrors = [];
 page.on('pageerror', (e) => pageErrors.push(String(e)));

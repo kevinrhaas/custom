@@ -95,7 +95,7 @@ if (!wantSource && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
 }
 console.log(`serving ${ROOT} — ${wantSource ? 'source tree' : 'PUBLISHED mirror'}\n`);
 
-const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined, args: ['--enable-unsafe-swiftshader'] });
 // The viewport decides the ring sizes and therefore how many slots a station
 // deals, so the census has to be answerable at both. `SWARD_VIEWPORT=mobile`
 // stands it at the smoke's phone size (ROADMAP K49(f)).

@@ -137,7 +137,7 @@ console.log(`serving ${ROOT} — ${wantSource ? 'source tree' : 'PUBLISHED mirro
   + `at ${VIEWPORT.width}x${VIEWPORT.height}\n`);
 if (shotDir) fs.mkdirSync(shotDir, { recursive: true });
 
-const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
+const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABLE || undefined, args: ['--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: VIEWPORT });
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
