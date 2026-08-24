@@ -49,7 +49,6 @@ T-0023 — The end rule is exhausted on the Randolph-Washington row
 T-0032 — The six-roof civic target counts three that were never built
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0093 — The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0031 — Where did the South Water timber belt stand
@@ -86,5 +85,6 @@ T-0179 — Three families offer a shed roof their own ridge band cannot carry: C
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
-T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
+T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
+T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
