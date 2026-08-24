@@ -1,16 +1,17 @@
 ---
 id: T-0027
 title: How much of the public square was wet
-state: open
+state: claimed
 epic: GROUND
 requested_by: loop
 seen: false
 effort: M
 legacy_id: T-E5(b)
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 1:56:55 PM CT
 blocked_on: null
 needs_bake: true
 ---

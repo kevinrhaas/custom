@@ -6206,6 +6206,59 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L182 — The wet ground on the public square stops exactly at the platted block line
+
+**Decision:** the whole of the platted public square — `blk_randolph_lasalle`, Randolph to
+Washington, Clark to LaSalle — is planted as `z03_sedge_meadow`, the flora dossier's ZONE 3, by an
+`include_polygons` ring in that zone's extent rather than by the elevation band the rest of the zone
+uses. The ring is the committed plat's block boundary, vertex for vertex;
+`tools/measure_public_square.py` fails if it drifts by a centimetre. **No water is drawn**, and that
+is asserted at absolute zero by the same tool.
+
+**Why:** because the square is zone 3 *by name in the document that authors zone 3*.
+`docs/research/02-flora.md` heads the section "ZONE 3 — SLOUGH & SEDGE MEADOW (**Public Square** →
+Tremont House site → river at State St; river-shore strip)", and its § 1.2 calls the slough running
+from "the Public Square area (Randolph/Clark/LaSalle/Washington)" the single most important
+vegetation feature *inside* the platted grid. The committed extent could never reach it — an
+elevation band of +0.6 to +2.2 ft cannot find a block the terrain draws at the South Division plain's
++2.9 ft — and it could not because dossier zone 15, the pond basin, is deferred and unmodelled. So
+the square was being planted by the same rule that plants anonymous prairie 800 m west of it, and the
+one block in this town that three sources describe as water reached the flora layer nowhere at all.
+Lowering the band to reach one address would have moved this community everywhere else in the box.
+
+**What is invented, plainly.** That the wet ground ended at the surveyor's line. A prairie basin does
+not stop at a street; the sedge would have thinned across Randolph and Washington and run on down the
+drain, and this draws a rectangle because the block boundary is the only edge any source gives —
+"~1 city block" (`docs/research/01-terrain-hydrology.md` row 15) and a quotation that names the
+square. Invented too: that the community is uniform across the block, when the drain's head is off
+the east kerb and the west corners are the two the county built on first.
+
+**What is NOT invented, and it is why the boundary was taken whole rather than drawn.** Not the
+community, which is the dossier's. Not the place, which is the dossier's. Not the ring, which is
+`data/traces/vectors/thompson_lots.json`'s. And **not a shape fitted around the buildings** — the
+warning T-E5(b) was opened with was that "a partial pond fitted to clear the buildings is a number
+chosen to look right", and the answer to it is that nothing here was fitted: the estray pen, the log
+jail and the court-house stand *on* this sward, which is what a dried seasonal bed carries and open
+water does not.
+
+**What this deliberately does NOT claim.** Water. The zone's own `cover.standing_water_fraction` of
+0.10 describes the community in its trough and is not asserted here: measured at 0.5 m over the
+block, **0 of 43,885 samples** stand at or below the water surface, the block's entire relief is
+1.49 in — inside the terrain spec's own ±0.10 ft of micro-relief "texture, not a claim" — and the
+dossier's own bed for zone 15, +1.0 to +2.0 ft, sits 0.84 to 1.96 ft *below* the committed ground.
+The pond's date remains `not_established` (`data/terrain/1835_intown_water_dating.json` zone 15) and
+its geometry remains deferred. What is drawn is the July sward of ground the sources call seasonally
+ponded, on a scene dated 1 July, above a basin nobody has cut.
+
+**How to resolve:** a source that states the wet ground's edge, or a levelling that gives the block a
+basin. Either would replace the rectangle; until then the rectangle is the block, and the tool says
+so on every commit.
+
+Related: **L149** (the slough's invented depth and width) · **L107** (the reservation of the square)
+· `docs/RESEARCH/public_square_pond.md` (where one document argues both ways) · tickets **T-0027**,
+**T-0005**, **T-0118**.
+**Recorded:** 2026-08-24.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
