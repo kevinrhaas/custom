@@ -58,6 +58,11 @@ sys.path.insert(0, str(ROOT / "tools"))
 from band_notes import split_notes  # noqa: E402
 from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
 from measure_no_build_ground import reservation_ring  # noqa: E402
+# T-0112. The clapboard stock is dealt at the end of the parcel — over all fourteen
+# blocks at once, because a roof on one block's alley face stands within 60 m of the
+# next block's — since it is the one form value that depends on where a building's
+# neighbours stand. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 
 def no_build_rings() -> dict[str, list[tuple[float, float]]]:
@@ -1397,6 +1402,7 @@ def records_from_inputs() -> list[dict]:
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):
         raise SystemExit("two block slots produced the same record id")
+    deal_siding(records)
 
     # The adoption gate, in both directions. A household may name a roof this generator
     # owns, but only a PRINCIPAL one: an A-family roof is a stable, a privy or a woodshed

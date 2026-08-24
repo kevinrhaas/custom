@@ -61,6 +61,16 @@ step "inferred households, adoptions and their buildings match the programme" \
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 
+# The clapboard stock, both halves of it. The named deal re-derives its own 24 records
+# (T-0049) — that half was never gated, so a hand-edited board width would have sat in
+# the tree looking exactly like a dealt one. The recipes deal the other 131 and their
+# own --check above holds those values byte for byte, but a recipe that stopped dealing
+# ALTOGETHER would pass every one of those checks: a record with no siding_exposure_m is
+# a perfectly well-formed record. It just puts 131 walls back on one course, invisibly,
+# which is the defect T-0112 closed. So this asks the town-wide question instead.
+step "every clapboard wall's stock re-derives from its deal" \
+  python3 tools/deal_siding_stock.py --check
+
 # The platted block and lot grid is generated from the Thompson module and the
 # committed street lines, never traced off the 1834 sheets. Re-deriving it here is
 # what keeps it a derivation: a hand-nudged block face would otherwise sit in the

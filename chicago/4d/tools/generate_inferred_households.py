@@ -56,6 +56,11 @@ sys.path.insert(0, str(ROOT / "tools"))
 from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import label  # noqa: E402
 from measure_adoption_tests import floor_evidence  # noqa: E402
+# T-0112. The clapboard stock is dealt at the end of the parcel, because it is the one
+# form value that depends on where a building's neighbours stand. The four DOCUMENTED
+# frame buildings this parcel regenerates are neighbours here and never subjects — see
+# tools/siding_stock.is_invented.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 
 def load(path: Path):
@@ -813,6 +818,7 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
 
     records = [structure_record(b, datum, prose, hh_by_building)
                for b in programme["buildings"]]
+    deal_siding(records)
     households = [household_record(h, census, buildings) for h in programme["households"]]
     validate(records, programme["households"], programme, datum)
 

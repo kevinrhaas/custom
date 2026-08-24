@@ -6025,6 +6025,60 @@ Related: **L141** (the row whose line this adopts), **L144** (the run that moves
 **T-0104** (this), **T-0077**, **T-0079**.
 **Recorded:** 2026-08-24.
 
+### L179 — The anonymous roofs get their own siding stocks, dealt in their recipes and not by season
+
+**Decision:** the 131 invented clapboard frame roofs — the anonymous `recon_*` count-units of
+the platted blocks and the South, West and North parcels, the `inf_*` roofs raised for
+reconstructed households, and `physicians_office` — each carry a `siding_exposure_m` of their
+own, from the same four period mill sidings L148 invented (4.5, 5, 5.5 or 6 in to the weather).
+It is dealt inside each building's own parcel recipe by `tools/siding_stock.py`: the base stock
+is **drawn from the set on the record's stable key**, then advanced until no roof of the same
+parcel standing within 60 m hangs the same course. **This supersedes the sentence in L148 that
+says derived records "stay on the archetypes' 0.14 m default, counted by the deal as fixed
+neighbours"** — they no longer do, and the named deal now reads what each recipe dealt instead
+of assuming 0.140 m.
+
+**Why it could not simply be L148's rule again.** L148 keys a building's base stock to its
+phase's construction season, and the supply argument behind that key is real: a town sided from
+separate shipments of St Joseph sawn lumber did not hang every wall from one pile. But every one
+of these 131 records carries `documented_range.from = 1835-01-01`, which is not a construction
+season — it is the programme's count-unit convention, the same literal on every anonymous roof
+in the town. Keyed to it, all 131 would be dealt ONE stock: the archetypes' single 0.14 m course
+put back a step over, a range collapsed to a point, which is the fault this dataset has now
+found three times (T-V1's sixty identical North roofs, T-0142's pitch, this). So the key is the
+record's own, exactly as `tools/family_bands.py` draws a footprint, an eave and a pitch from the
+bands the crosswalk authors as ranges. **The draw is not a claim about which mill supplied which
+house.** Nothing here is. What is claimed is only that the town's walls were not all one board.
+
+**What the separation reaches, and what it does not.** A recipe deals its own parcel and no
+other, because a recipe that read the other parcels' committed records would make moving one
+North roof re-deal the platted blocks and restale their meshes — every future building would
+cost a town-wide rebake. So no two roofs of one parcel within 60 m share a stock, and the named
+deal (which does see the whole town, and runs last) separates its 24 from all of them. **A pair
+straddling two parcels may share, and 16 of the 186 anonymous pairs standing within 60 m of each
+other do.** Some sharing is unavoidable in any case: four stocks cannot separate a roof that has
+nine neighbours, and the densest stands here have nine. Measured over the whole town, the share
+of clapboard pairs within 60 m wearing the same stock falls from **72.2 % (192 of 266) to 7.9 %
+(21 of 266)**, and the number of anonymous roofs whose NEAREST neighbour hangs a different
+course from **0 of 131 to 120 of 131**.
+
+**Consequence:** a visitor walking any anonymous street — the Randolph and South Water blocks,
+the North Division cluster, the West approaches — sees the houses either side of them hang
+visibly different board courses, roughly 19 to 25 courses on the same wall height, and cannot
+tell from the mesh that the difference was dealt rather than found. The Evidence panel's
+`reconstructed` grade and the note on every one of the 131 values say so, and say which key was
+used and why it was not the season.
+
+**How to resolve:** the same thing that would resolve L148 — any survivor's account, bill of
+lading, mill advertisement or measured photograph stating a board width. Nothing will resolve it
+for an individual anonymous roof, because no such roof is a building any document could be about;
+a document on the town's lumber stock would replace the whole set's bounds at once.
+
+Related: **L148** (the named half, and the set), **L91** (every form value on these roofs is
+invented), **L22** (the uniformity this began as), tickets **T-0112** (this), **T-0049**.
+**Recorded:** 2026-08-24.
+**Covers:** `recon_*.*.form.siding_exposure_m`, `inf_*.*.form.siding_exposure_m`, `physicians_office.inferred_1835.form.siding_exposure_m`.
+
 
 ## Resolved
 

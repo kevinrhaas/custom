@@ -1,7 +1,7 @@
 ---
 id: T-0112
 title: Deal the anonymous roofs their own siding stocks, in their recipes
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 9:54:57 AM CT
 blocked_on: null
 needs_bake: true
 ---
