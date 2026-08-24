@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0098: the wood at the fort, and the plate says WEST
+
+**Visible run.** T-0044's image-accuracy pass listed eight gaps against the two committed Fort
+Dearborn plates; number 8 was *"No trees at the fort."* Forty relict black willows now stand on the
+ground outside the palisade's **west** wall. Before and after from `p4_0`'s own stand (`1145, 300`,
+yaw 180°): `docs/evidence/t-0098-before.png`, `-after.png`.
+
+**THE TICKET'S COMPASS WORD WAS WRONG, AND THAT IS THE FINDING.** T-0044's row 8 and T-0098's own
+title both say the mass stands **east** of the walls. Both were read by eye.
+`tools/measure_fort_trees_plate.py` measures the plate instead — foliage segmented as
+greener-than-red and darker than the sky, a 7×7 majority filter over the stipple, split at the two
+ends of the drawn stockade:
+
+| | foliage px | largest connected component |
+|---|---|---|
+| frame-LEFT of the stockade | 2 322 | **924 px**, x 27–87, y 534–557 — bank grass on the viewer's own side of the river, below the waterline |
+| frame-RIGHT of the stockade | 35 714 | **33 334 px**, x 1189–1537, y 293–490 — a canopy, running off the right edge of the plate |
+
+**And frame-right is WEST**, argued off the stand rather than off the picture: `p4_0`'s viewpoint is
+the north bank looking SOUTH (HUD compass S 180° in `fort_from_the_north_bank_2026-08-19.png`), and
+the committed `chicago_lighthouse_1832` — E 1105.2 against the fort's centre at E 1152.0, **46.8 m
+west** — draws to the frame-right of the fort in that same shot. Two independent readings agree.
+Written up in `docs/RESEARCH/fort_dearborn_image_accuracy.md` § "Row 8's east is west"; the acceptance
+clause asked for trees *where the plate puts them* and that clause is met exactly, unweakened.
+
+**It is a rule, not a list.** `tools/generate_fort_trees.py` deals a 7.5 m grid in the fort's OWN
+footprint frame, west of the wall, beyond the apron — the inner edge read out of
+`fort_dearborn_apron.json`'s own `apron_width_m` rather than retyped — and every candidate is put to
+the renderer's own refusals with a working margin. **30 of 70 points are refused, 20 of them for
+standing in the river's own bend north-west of the fort**, which is what cuts the wood back to the
+falling ground between wall and water — the ground the plate draws the mass on. `tools/check.sh`
+re-derives the record byte for byte.
+
+**The species is the measurement's, not a preference.** The plate's crowns stand 127 px above the
+wall foot: **8.8 m** on the fort's committed 53 m footprint (apparent width 59.86 m at 8° off the
+grid), **10.9 m** on its committed 3.7 m picket height. The two scales differ by 24 % and are printed
+side by side, never averaged — that spread is the ±20 % the palisade's placement note already carries.
+Plus the 0.70 m the bank falls under the wood, derived from the heightfield. Of `z10_settled_town`'s
+three recorded trees only the relict **black willow** (9–14 m) is banded low enough to carry it; the
+relict elm (16–24 m) and cottonwood (18–26 m) are refused in the record's own prose, and `trees.js`
+would refuse the stem anyway. Every height is dealt inside the OVERLAP — 9.5–11.6 m — so it satisfies
+the renderer's band check and the picture at once.
+
+**What is invented** (L179): how far west the wood reaches — the plate cannot bound it, the mass
+leaves the right edge of the picture — how far it wraps past the wall's ends, how close the stems
+stand, and every coordinate and height inside those bounds. **What is deliberately NOT built:** the
+two-storey frame house with the double gallery that stands inside the mass in `p4_0`. That is a
+structure record, no source this project holds identifies it, and a building invented to fill a
+lithograph is a far larger liberty than a tree.
+
+**Cost, measured rather than assumed.** In the browser at `p4_0`'s stand, detail `full`, the same
+scene with and without the record: **870 334 → 883 134 triangles, +12 800 for forty stems — 320 a
+stem** — and **114 draw calls either way**, because a planted stem goes into the timber layer's
+existing chunk buffers and opens nothing new. The tier ceilings are held at the worst of the whole
+stand set by the release smoke, and were re-read there rather than inferred from this figure (see
+the gate results in the PR). Note for whoever spends the next of that headroom: a PLACED stem is not
+thinned by the detail level's `keep` fraction the way a dealt one is, so these forty cost the same
+at `light` as at `full`. `tools/planting_reach_baseline.json` gains one line —
+`salix_nigra` is newly placed from `z10_settled_town` — re-banked with `--update` in this commit,
+which is the remedy that file's own message names.
+
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
 
 **The defect, measured before anything was changed.** `renderers/web/js/streets.js` draws its ribbon

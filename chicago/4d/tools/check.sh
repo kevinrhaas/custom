@@ -128,6 +128,16 @@ step "the building material re-derives from the rule that chose the lots" \
 step "the fort apron re-derives from the palisade it is measured off" \
   python3 tools/generate_fort_apron.py --check
 
+# And the layer above that ground: the wood p4_0 draws outside the same walls (T-0098). Same
+# shape again — the plate attests a tree mass and places nothing, so which ground carries a
+# stem is a rule off the palisade's own footprint and its apron's own width, re-derived here.
+# The rule also picks the SPECIES rather than a preference: of the zone's three recorded
+# trees only one is banded low enough to carry the crown height measured off the plate, and
+# a re-banded zone record must therefore fail this gate rather than quietly plant a
+# cottonwood that would tower over the fort the plate draws it level with.
+step "the fort wood re-derives from the palisade and the apron it stands off" \
+  python3 tools/generate_fort_trees.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two

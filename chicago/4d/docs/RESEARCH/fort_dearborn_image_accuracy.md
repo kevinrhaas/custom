@@ -44,7 +44,7 @@ notice it:
 | 5 | No gate is drawn in either documented wall; the plate shows a log-faced work over the gate. | geometry — needs the bake |
 | 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
-| 8 | No trees at the fort; `p4_0` puts a tree mass east of the walls and `p4_1` trees round the buildings on both banks. | no bake |
+| 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — 40 relict black willows west of the palisade (`data/flora/plantings/fort_dearborn_wood.json`, L179); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
 ## The flagstaff is a documented trap, and this pass refuses it
 
@@ -82,3 +82,47 @@ Reservation by the 1833 order and nothing reached draws what carried on.
 
 Rows 2–8 above became tickets at the bottom of `tickets/QUEUE.md`, where the owner can rank
 them. Rows 3–5 are one bake apart; rows 6–8 are not.
+
+## Row 8's "east" is west — measured 2026-08-24 (T-0098)
+
+This pass wrote row 8 by eye, and the compass word in it is wrong. The correction matters more
+than the word does. Every row of the table above was written the same way — looked at, not
+measured — and row 3's own reading of the pickets is under measurement on its own ticket
+(T-0094) at the time of writing. **An impression of a lithograph standing in for a reading of one
+is the fault this section exists to name**, and it is worth assuming the rest of the table
+carries it until each row has been measured too.
+
+`tools/measure_fort_trees_plate.py` measures it. Segmented for foliage — greener than red and
+darker than the sky, then a 7×7 majority filter to kill the stipple — and split at the two ends
+of the drawn stockade, `p4_0` carries:
+
+| | foliage px | largest connected component |
+|---|---|---|
+| frame-LEFT of the stockade | 2 322 | **924 px** at x 27–87, y 534–557 — bank grass on the viewer's own side of the river, below the waterline |
+| frame-RIGHT of the stockade | 35 714 | **33 334 px** at x 1189–1537, y 293–490 — a canopy, running clean off the right edge of the plate |
+
+There is no mass on the frame-left at all.
+
+**And frame-right is WEST.** That is settled off the stand rather than off the picture. This
+document already fixes `p4_0`'s viewpoint as the north bank at local `1145, 300` looking south,
+and `fort_from_the_north_bank_2026-08-19.png` is the render from it with the HUD compass reading
+**S 180°**. A stand facing south has east on its LEFT. The witness is the committed
+`chicago_lighthouse_1832`: it stands at local E 1105.2 against the fort's centre at E 1152.0 —
+**46.8 m WEST** — and in that very shot it draws to the **frame-right** of the fort. Two
+independent readings, the same answer.
+
+Two other numbers the same measurement fixes, and they bound what T-0098 built:
+
+* **the crown height.** The canopy tops stand 127 px above the wall foot — **8.8 m** scaled on
+  the fort's committed 53 m footprint (whose apparent width from due north is 59.86 m, the walls
+  being 8° off the grid) and **10.9 m** scaled on its committed 3.7 m picket height. The two
+  scales differ by 24 %, which is the ±20 % the palisade's own placement note already carries on
+  every dimension derived from the Harrison plate; both are printed and neither is averaged into
+  the other. The crowns reach the fort's own range ridgeline, and the trees stand on ground that
+  falls away from the wall, so the true crown is the higher of the two readings plus that fall.
+* **the west end — which the plate does not give.** The mass reaches column 1537 of 1538: it is
+  cut off by the frame. How far the wood runs is therefore this project's invention and is
+  recorded as one (L179), not a reading of the picture.
+
+The evidence overlay — the segmentation tinted over the plate, with the stockade's two ends, the
+picket band and the measured mass drawn on it — is `docs/evidence/t-0098-plate-measured.png`.

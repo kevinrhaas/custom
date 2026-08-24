@@ -780,6 +780,11 @@
       "id": "town_dooryard_plantings",
       "file": "plantings/town_dooryard_plantings.json",
       "note": "The dooryard pass (T-0074): trees and currant bushes kept or planted around the town's dwellings, dealt by the rule in tools/generate_dooryard_plantings.py and re-derived on every commit. Same contract as the record above: stems STATED, species bound to the zone records, read by renderers/web/js/trees.js through this manifest and never probed."
+    },
+    {
+      "id": "fort_dearborn_wood",
+      "file": "plantings/fort_dearborn_wood.json",
+      "note": "The wood p4_0 draws outside Fort Dearborn's walls (T-0098), dealt by the rule in tools/generate_fort_trees.py off the palisade's own committed footprint and its apron, and re-derived on every commit. The plate settles the SIDE and the crown height and nothing else: tools/measure_fort_trees_plate.py measures the mass on the frame-RIGHT of the drawn stockade, which from p4_0's own stand is WEST — the ticket and T-0044's row 8 both said east, by eye."
     }
   ],
   "palettes": [
