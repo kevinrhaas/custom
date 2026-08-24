@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 176,
+  "count": 179,
   "liberties": [
     {
       "id": "L1",
@@ -11096,6 +11096,79 @@
       ]
     },
     {
+      "id": "L179",
+      "title": "The point on a Fort Dearborn picket is ours, and the plate that was said to draw it rules a flat top",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_palisade"
+      ],
+      "covers": [],
+      "recorded": "2026-08-24",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every picket of the fort's stockade is **sharpened over its top 0.312 m** — 8.4 % of the 3.7 m height, cut out of that height rather than added to it — and **no source says a word about the head of a Fort Dearborn picket.** The head is a reconstruction, and until now it was declared nowhere: it lives in a derived property of `generators/archetypes/palisade_params.py` (`picket_point_m = min(width × 1.3, height × 0.18)`), whose own docstring admits *\"no source describes the head of a Fort Dearborn picket\"*, and neither the record nor this file had ever repeated that where a reader would find it. **L47** covers the fabric of this wall in general terms — \"every dimension of the fabric is ours\" — and names the height, the width, the spacing, the gate and the bastions one by one. It does not name the head, and the head is the most conspicuous thing about the wall at eye level. **Why the head is built at all, and why it is not evidence.** A flat-topped post reads as a fence rail and a pointed one reads as a stockade; the sawtooth is what makes a visitor at the north wall see a fort rather than a paddock. That is a drawing argument, not a claim about 1816. Kinzie gives \"high pickets\" and nothing else; Andreas gives \"a square stockade\"; the 1830 Harrison plan is a plan and has no third dimension. The head is therefore **reconstructed** in this project's exact sense — invented within bounds because the scene needs it — and the bound is one picket width, which is the proportion a splitting axe leaves. **And the plate does not settle it, which is the half this entry exists to record (T-0094).** The ticket, and row 3 of `docs/RESEARCH/fort_dearborn_image_accuracy.md` before it, said the model's pickets were flat-topped and the plate's pointed. **Both halves are wrong.** The committed master `assets/gltf/fort_dearborn_palisade__picket_1816.glb` has carried 768 four-triangle heads since the archetype was written — 3,072 apex vertices at 3.700 m over 12,288 shoulders at 3.388 m — and `data/sources/assets/prefire_views_kevin_2026_08/p4_0.png` rules the curtain's top as a **straight line**: 0.45 px rms over 138 resolved columns, while the same plate resolves individual pickets at a 10 px pitch and stands the curtain 43 px tall, so a head of this proportion would have serrated it by 3.6 px — eight times the residual. `p4_1` rules the same flat cap. **The draughtsman had the resolution to draw a point and drew none.** That is not evidence that the pickets were flat: a lithographer ruling the top of a distant stockade is what a lithographer does, and these are tier-5 retrospective plates. It is evidence that the plate cannot be cited FOR the point."
+        },
+        {
+          "label": "Consequence",
+          "text": "the silhouette of the most recognisable structure in the town is ours, top to bottom — L47 already said so of its height and its posts, and this says so of their heads. The confidence view dithers the whole wall, which is the only thing standing between a visitor and that fact."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same evidence L47 asks for — a quartermaster return, a repair estimate or an engineer's report for the post between 1816 and 1836. A specification for pickets would settle the head, the height and the spacing in one sentence."
+        },
+        {
+          "label": "Held by",
+          "text": "`tools/measure_picket_plate.py --gate`, in `tools/check.sh`, which refuses a stockade whose apexes have gone flat, been capped, worn under 4 % of the picket, or been stacked on top of a full-height post. The plate half of that file reports and does not gate: a tier-5 lithograph may refute a claim made about itself and may not hold a build red. **No `Covers:` field, deliberately.** The head has no attribute of its own to claim — it is a proportion the archetype derives, not a value the record states — and claiming `form.construction` would put this entry's name on the word \"log\", which really is inferred and is not the invention being confessed. The honest form is an entry that claims nothing in the machine-readable field and says in prose exactly what was made up. The day a `picket_head` attribute exists on the record, this entry claims it."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0094, opened by T-0044, closed as refuted."
+        },
+        {
+          "label": "Related",
+          "text": "**L47** (the fabric of this wall), **L42** (the fort's buildings), **L174** (the ground outside its walls)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-24."
+        }
+      ]
+    },
+    {
+      "id": "L177",
+      "title": "The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it",
+      "section": "per_subject",
+      "subjects": [
+        "inf_bakery_lake",
+        "inf_butcher_market",
+        "recon_1835_blk_lake_clark_d1_01",
+        "recon_1835_south_d3_013"
+      ],
+      "covers": [],
+      "recorded": "2026-08-24",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the three roofs of the `blk_lake_clark` frontage run — `recon_1835_blk_lake_clark_d1_01`, `_d3_02` and `_d5_03` — move 0.70 m toward Lake Street and now stand with their front walls **0.80 m off the block face**, on the line the four roofs of L141's row already stood on. `tools/generate_block_infill.py` previously refused any setback below the plat module's 1.5 m `LOT_MARGIN_M`; it now accepts one on the **street line specifically**, and only where the block recipe names the committed records whose line it adopts. The number is not authored: `adopts_face_line` lists the records and the generator measures their front walls, so a recipe stating any other setback fails. The side lot lines keep the full 1.5 m."
+        },
+        {
+          "label": "Why",
+          "text": "T-0104. One block face carried two street lines. L141's row stands 0.80 m off the Lake face and L144's run stood 1.50 m off it, 10.58 m apart along the face — no wall stepped between them, which was luck and not design, and the next parcel to close that gap would have put a 0.70 m jog in a street wall this project describes everywhere as one line. The ticket set out three routes and this is (b): stand closer than the lot margin on the street line, with the exemption stated as narrowly as L141's party-wall one. **Why not route (a), which was the obvious one.** Moving L141's four roofs OUT to 1.50 m would have broken the party wall `recon_1835_south_d3_013` declares with `inf_butcher_market` — a shared wall that `check_frontage` gates as a shared wall — and so would have created the very jog the ticket exists to prevent, on the one join in the row where it would be gated as a defect. Route (a) also rests on a reading the measurement does not support: 1.50 m is a rule about standing clear of a LOT line, and a party-line row already crosses its own side lot lines by construction. **What the measurement found that the ticket did not know.** The face carried worse than two lines. `inf_bakery_lake` and `inf_butcher_market` — the two inferred-household buildings whose alignment L141's row cites as its reason for 0.80 m — stand at **0.804 m and 0.784 m**, at bearing 0 where this face runs at 0.465. They are not on the face's line and they are not parallel to it; they stand where a hand-authored `center_local_enu_m` in the household programme put them. So the 0.80 m L141 adopted was a reading of two free-ground placements rather than a rule, and the 16 mm party wall between `recon_1835_south_d3_013` and `inf_butcher_market` does not close. That residual is banked BY NAME and BY SIZE in `tools/measure_street_line.py` — it may shrink and it may not grow — and putting the household layer on the committed face is its own ticket. **WHAT IS INVENTED, and it is the same thing it always was.** That any building stood on this frontage; which buildings; that they stood shoulder to shoulder. **Neither 0.80 m nor 1.50 m is a measurement of 1835** and no note here claims either is. The only thing chosen is that the face carries ONE of them, because a street wall is one wall. No roof is added, removed, renamed, re-familied or re-dimensioned; every id, band and baked mesh is the one it was, the 665-roof totals do not move, and the meshes do not go stale — a position is not one of the inputs a GLB is hashed over. **What now asserts it.** `tools/measure_street_line.py --gate`, in `tools/check.sh`: it takes the face line out of the committed plat, projects every front wall onto it, and refuses a face carrying more than one — absolutely, with no ratchet, because the number is now zero. It also closes party walls from BOTH sides, which is the case neither generator's own frontage gate can reach when the other half of the wall belongs to another generator."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period document placing a named occupant on a numbered lot on this face — an advertisement giving an address, a tax or insurance description, an itemised loss list — would replace an invented roof with a named one and, with it, give the face a line that is a reading rather than a convention. Related: **L141** (the row whose line this adopts), **L144** (the run that moves), tickets **T-0104** (this), **T-0077**, **T-0079**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-24."
+        }
+      ]
+    },
+    {
       "id": "L46",
       "title": "The fort stands on a bank the model has no cut or fill for",
       "section": "resolved",
@@ -12316,7 +12389,11 @@
         },
         {
           "label": "No coordinate is\nauthored",
-          "text": "the line, its bearing and the end the run packs away from are read from the committed block boundary in `data/traces/vectors/thompson_lots.json`. **A second street line on one face, and it is not hidden.** T-0077's row on this same Lake face stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps between them, but one face carrying two street lines is a defect rather than a design, and it is filed as its own ticket rather than normalised away inside this parcel. **A log dwelling on a business frontage is an open question, and it was answered by the reference rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial frontage and is unresolved. What decided it here is that the owner's other reference for a party-line row — *\"South Water Street in 1834\"* — draws the row as *log and frame buildings shoulder to shoulder*, so a log unit in a row is the thing the picture shows rather than an awkward deal. The question stays open for the schedule; this parcel is one instance, recorded."
+          "text": "the line, its bearing and the end the run packs away from are read from the committed block boundary in `data/traces/vectors/thompson_lots.json`. **A second street line on one face, and it is not hidden.** T-0077's row on this same Lake face stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps between them, but one face carrying two street lines is a defect rather than a design, and it is filed as its own ticket rather than normalised away inside this parcel."
+        },
+        {
+          "label": "CLOSED by L177 (T-0104)",
+          "text": "this run's three roofs moved 0.70 m out onto T-0077's line, so the face carries one street line and `tools/measure_street_line.py` now asserts that of every block face in the town. **A log dwelling on a business frontage is an open question, and it was answered by the reference rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial frontage and is unresolved. What decided it here is that the owner's other reference for a party-line row — *\"South Water Street in 1834\"* — draws the row as *log and frame buildings shoulder to shoulder*, so a log unit in a row is the thing the picture shows rather than an awkward deal. The question stays open for the schedule; this parcel is one instance, recorded."
         },
         {
           "label": "How to resolve",
@@ -12603,6 +12680,37 @@
         {
           "label": "Recorded",
           "text": "2026-08-23."
+        }
+      ]
+    },
+    {
+      "id": "L178",
+      "title": "Dearborn's worn track leaves the platted line at the corner and swings onto the causeway",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-24",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Dearborn Street now commits TWO lines instead of one. `path_local_enu_m` is the platted line and is unchanged — `[[696.4, -400], [699, 18]]`, the analytic extension of the street module that L79 describes. Beside it sits a new optional field, `drawn_track_local_enu_m`, which is the worn wheel line the renderer paints: it leaves the platted line where South Water Street crosses it (local N 7.0) and runs one straight 13.8 m chord to `[697.65, 20.70]`, the south edge of the Dearborn Street drawbridge's causeway. Nothing else in the project reads the second line — the plat module, the corridor gate, the lot schedule, the street readout and the flora clearing all still read the first."
+        },
+        {
+          "label": "Why",
+          "text": "the platted line stops 2.70 m short of the boards, on the crest of the approach fill T-0046 graded, and the ribbon stopped exactly where the record did. Measured on the shipped build before the change: every station up the fill to N 18 landed on drawn roadway and every station past it landed on none. A visitor climbing from South Water crossed a band of bare crest to reach the bridge — the last unfinished corner of the owner's own report that started T-0110. **Why not simply extend the platted line, which is the obvious fix.** Because it was measured and it fails, twice. `tools/generate_plat_lots.py --check` re-derives every block face by offsetting the WHOLE street polyline, so a three-metre bend appended to Dearborn's plat reports PLAT GRID DRIFT and moves platted lot lines the length of the street; and `tools/measure_corridor_intrusion.py --gate` re-scores the corridors against the same field and goes from the committed 29 laps to 30, the drawbridge itself newly lapping Dearborn by 0.66 m. Both readings were taken with the bend appended, before this field existed. **The plat line and the wheel line are different claims and one field was carrying both.** **What is invented, exactly.** Two numbers and no more. (1) That the swing is ONE chord: the ribbon's panels are drawn square to their own chord and are not mitred at their joints, so each turn opens a wedge of prairie on the outside of it, `3.5 tan(turn/2)` wide at the ribbon's edge and nothing at its centre. One 5.7-degree joint is the fewest and smallest a swing can be cut into — a 0.61 m² sector, 0.17 m at its widest, inside the 0.84 m across which the road texture's own edge already fades out — and because that joint stands at the crossing, South Water Street's 10.5 m roadway is drawn over half of it, leaving **0.30 m² that a 2 cm plan probe finds uncovered by any street**. An eight-chord easement was measured first and was seven times worse (2.18 m²), because eight joints turn eight times. (2) That the swing takes 13.8 m, which is to say that it starts at the corner rather than at a station somebody picked. **What is NOT invented, and this is the part that bounds it.** The far end is the deck: `[697.65, 20.70]` is the south edge midpoint of the drawbridge's own committed footprint and is also `line[0]` of the `dearborn_south` approach in `terrain_spec.json`, so the track ends where two existing records already agree the boards begin. The near end is the platted line itself at the South Water crossing. And the reason to swing at all is a measurement rather than a preference: held on the platted line the track's east edge stands 4.87 m off the fill's axis, 0.87 m outside the 4.0 m half-width the earthwork is level across, so the last stride onto the causeway would be taken on a side slope; swung onto the axis, every metre of the 7 m width ends on the level crest."
+        },
+        {
+          "label": "Consequence",
+          "text": "from South Water the worn track now runs continuously up the fill and butts the deck, and the drawn ribbon over the last 13.8 m of Dearborn is up to 1.37 m west of the street's platted centre — a ninth of the 80 ft corridor, and inside it by construction: the compiler refuses a drawn track that leaves its own platted corridor or overhangs the platted line's ends by more than 4 m. A visitor reading the street readout, a lot line, a block face or a corridor-intrusion figure is still reading the platted line and gets exactly the answer they got before. What a visitor cannot do is treat the last chord as survey geometry; L79 already says that of every travelled strip in this town and it says it of this one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "nothing about 1835 would resolve it — no source states a wheel line. What would retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would close this wedge and the considerably larger ones South Water Street's own authored bends already open; that is filed rather than done here, because it moves geometry on every bent street in the town and this parcel is 2.7 m of Dearborn. Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this), **T-0046** (the fills)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-24."
         }
       ]
     }

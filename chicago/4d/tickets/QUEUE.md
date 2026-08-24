@@ -16,15 +16,11 @@
 # --- BLOCKERS — small, and each one gates visible work below
 
 # --- RED NOW — visible, and a gate is failing on it today
-T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
-T-0100 — A street's geometry confidence never reaches the picture
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
-T-0163 — South Water's committed centreline stops 878 m short, and it is the only thing left blocking a new platted block
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0127 — South Water Street and the rest of the town get the street edge
-T-0111 — Dearborn's worn track stops 2.7 m short of its causeway deck
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0026 — The southern buildable ground and its schedule
@@ -38,7 +34,6 @@ T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small
-T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
 T-0095 — The fort's corner works and its two documented gates, as the plate draws them
 T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
@@ -87,4 +82,9 @@ T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin o
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
-T-0184 — At light detail the mid and forb rings' outer ramps dither inside the verge
+T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
+T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
+T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
+T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
+T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
+T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie

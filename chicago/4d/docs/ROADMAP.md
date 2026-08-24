@@ -10016,7 +10016,23 @@ render the model's building from the plate's viewpoint, compare, improve, repeat
 roof, fenestration rhythm, chimneys and signboard match. Tier-5 pictorial rule holds: views
 drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** (plate 11 —
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
-ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
+ell), then the fort group (palisade on rising ground), then Sauganash/Wolf Point.
+
+**Two cautions this parcel has now paid for, both from the fort pass (T-0044 → T-0094).**
+
+1. **"Whitewashed palisade" is the reference set's README talking, not a source.** The plate paints
+   the fort's one continuous north curtain across a **1.85×** range of tone in a single view —
+   luminance 191 east of the gate work, 103 west of it — with the surface this project ships
+   (`hewn_log`, luminance 143) sitting between the two. Fergus's white-washed board fence is the
+   enclosure of **1850**, after the pickets came down. Neither licenses a tone.
+2. **This loop compares two pictures BY EYE, and that is how it produced a wrong ticket.** T-0044's
+   row 3 said the model's pickets were flat-topped and the plate's pointed; the model has carried
+   0.312 m of sharpened head on all 768 posts since the archetype was written, and the plate rules
+   its cap straight to 0.45 px rms while resolving pickets at a 10 px pitch. Both readings were
+   available to anyone who measured, and nobody had. **Where a row of this pass asserts a shape or a
+   tone, measure it before it becomes a ticket** — `tools/measure_picket_plate.py` is the shape of
+   instrument that costs a minute and settles it. T-0094 is the write-up; **T-0184** is the one
+   finding of that measurement that survived.
 
 ### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
 Grass and flowers "appear out of the ground as you walk towards them."
