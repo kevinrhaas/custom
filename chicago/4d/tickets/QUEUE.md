@@ -88,3 +88,4 @@ T-0156 — The interior/silhouette discriminator counts edges internal to a laye
 T-0030 — A queue card in Manager reading tickets.json
 
 # --- SUPERSEDED BY T-0160 — candidates for withdrawal, owner's call
+T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
