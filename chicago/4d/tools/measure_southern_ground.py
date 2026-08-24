@@ -281,10 +281,8 @@ def tier_blocks(field, paths, slope, corner, half_width) -> dict:
 
     # Carry the columns south to a little past Madison's far corridor edge, and give
     # Madison a straight centreline across the same span.
-    span_e = (min(p[0] for p in paths[c]) for c in TIER_COLUMNS)
     e_lo = min(min(p[0] for p in paths[c]) for c in TIER_COLUMNS) - 2 * half_width
     e_hi = max(max(p[0] for p in paths[c]) for c in TIER_COLUMNS) + 2 * half_width
-    del span_e
     reach_n = min(madison(e_lo), madison(e_hi)) - 2 * half_width
     for column in TIER_COLUMNS:
         path = paths[column]
@@ -488,10 +486,13 @@ def self_test() -> int:
     return 0 if ok else 1
 
 
+KNOWN_ARGS = {"--gate", "--self-test", "--quiet"}
+
+
 def main() -> int:
     args = set(sys.argv[1:])
-    if args - {"--gate", "--self-test", "--quiet"}:
-        die(f"unknown argument(s): {' '.join(sorted(args - {'--gate', '--self-test'}))}")
+    if args - KNOWN_ARGS:
+        die(f"unknown argument(s): {' '.join(sorted(args - KNOWN_ARGS))}")
     if "--self-test" in args:
         return self_test()
     m = measure()
