@@ -154,6 +154,17 @@ step "the frontage works re-derive from the rule that chose their walls" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# T-0163. The plat grid is the cartesian product of its east-west rows and north-south
+# columns, so it proposes blocks that never existed, and it reports every refusal the same
+# way — as a distance. A distance cannot tell "the centreline has not been carried there
+# yet" from "these two streets never met", and both were being scheduled as headroom
+# waiting on the same owed trace. This carries each refused block's named street toward it
+# and samples the run against the committed heightfield: a run that crosses water is two
+# banks, not a gap. It is what keeps the classification in the programme honest, so a block
+# cannot quietly go back to promising roofs that no street control can deliver.
+step "a refused block is short of control, or was never a block" \
+  python3 tools/measure_block_gating.py --check
+
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
 # possible place to carry a stale number is the panel a visitor sees before anything
