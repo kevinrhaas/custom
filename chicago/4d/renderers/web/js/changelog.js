@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 256, title: 'Six roofs that could not reach their own described height', kind: 'fix', ts: '2026-08-24T08:45:21.765Z', date: 'Aug 24, 2026, 3:45 AM CT',
+  { v: 257, title: 'Six roofs that could not reach their own described height', kind: 'fix', ts: '2026-08-24T12:13:26.574Z', date: 'Aug 24, 2026, 7:13 AM CT',
     items: [
       'Five stables and a woodshed, scattered across the North Division and two of the platted blocks, stood lower than the description this town is reconstructed from says a building of their kind stands. They stand at the right height now \u2014 four of them between a hand\u2019s width and half a metre taller, one slightly shorter. Walk past a stable and it reads as a building you could get a horse into.',
       'The interesting part is why, because the answer had been thought to be that the description contradicts itself. Every kind of building here is given four things as RANGES rather than numbers: its floor size, its eave height, its roof pitch, and the height of the ridge over it. Those four are not independent \u2014 the last is what the first three make together \u2014 and the note filed against it said that for several kinds no pitch in the allowed range could ever reach the allowed ridge. If that were true, one of the four would have had to be overruled, which is not a thing to do lightly to a source.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'So nothing in the description gives way, and the fix was to the drawing rather than the source: where the eave height a building is dealt cannot reach its ridge at any pitch it is allowed, it is now redrawn from the part of its own range that can. Six buildings moved. The other two hundred and fifty-one are unchanged to the digit, which is how you can tell this repaired what was wrong rather than reshuffling what was right.',
       'Fifty-eight roofs are still outside their ridge range, and none of those is a contradiction either. Every one comes from the three groups of anonymous buildings that were never moved onto the ranges at all, and that repair is already written down as its own job.',
       'The sweep now runs on every change, so a future edit to the description asking for a building nobody could build is caught there rather than later.',
+    ] },
+  { v: 256, title: 'Seventy-eight buildings turn round to face the street they front', kind: 'fix', ts: '2026-08-24T10:01:37.158Z', date: 'Aug 24, 2026, 5:01 AM CT',
+    items: [
+      'Walk down Randolph, or Lake, or South Water, and look at the houses standing on the platted blocks behind the frontage. Their doors and windows were on the far side, facing the middle of their own block, and the street got a blank wall. Seventy-eight of them have turned round. The fronts are now where a front belongs.',
+      'It was one line of arithmetic, and it had been wrong since the first of these blocks was built. Every record stores which way its front looks; the generator that stands these roofs on their lots read that angle off the direction pointing INTO the lot rather than out of it, so every roof it placed came out exactly half a turn round.',
+      'The shoulder-to-shoulder rows on the river frontage were always right, because they take their bearing from the block face itself. That is why the fault could stand beside them and not look odd: on a plain gable roof, half a turn changes nothing you can see from above, only where the door is.',
+      'Nothing moved. Each building stands on the same ground, on the same footprint, at the same distance back from the same street. Only the face changed, and with it the chimney, which sits on the front slope.',
+      'The check that should have caught this now exists. Every roof on a platted block is held against the outward bearing of the block face it fronts, with five degrees of the plat\u2019s own skew allowed, and a yard building is held against the alley behind it. Put the old line back and it names the first wrong roof by name.',
     ] },
   { v: 255, title: 'The town\u2019s roofs stop being cut to the same two angles', kind: 'fix', ts: '2026-08-24T04:28:44.489Z', date: 'Aug 23, 2026, 11:28 PM CT',
     items: [

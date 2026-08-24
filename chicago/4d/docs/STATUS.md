@@ -1,5 +1,47 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0103: seventy-eight roofs stop fronting the middle of their own block
+
+`docs/GLB-CONTRACT.md` pins `rotation_deg` as **the facade bearing, 0 = facing north** — the way
+the front looks. `tools/generate_block_infill.py`'s `place()` derived it from `inward`, the vector
+running from the lot's street edge INTO the lot, so every roof it stood was exactly 180 degrees out
+and presented its blank rear wall to the street. **78 records across all fourteen platted blocks**,
+every one of them since the first block was dealt.
+
+```
+-    bearing = math.degrees(math.atan2(inward[0], inward[1])) % 360.0
++    bearing = math.degrees(math.atan2(-inward[0], -inward[1])) % 360.0
+```
+
+**Nothing moved.** `place()` derives the footprint's (0, 0) anchor from the same bearing, so a flip
+rotates the rectangle about its own centre: measured across all 98 block records, the largest
+centroid shift is **1.4 mm**, which is the millimetre rounding on `utm_e`/`utm_n` and nothing else.
+The corridor-intrusion, reserved-ground, refused-ground, separation and occupancy gates are all
+green unmoved, because none of them measures which way a building looks. The 20 frontage-row
+records are untouched: `place_frontage` has always taken `face["bearing"]` off `tools/block_faces.py`,
+which reads the block face's OUTWARD normal — which is exactly why the fault could stand beside the
+South Water row (L142) for a week without looking wrong.
+
+**What it looks like.** `tools/shoot.mjs ../../site/chicago/4d /walk/ --at 390,-255,180` — standing
+in Randolph Street looking south at the north tier of `blk_randolph_wells` — before: two blank
+clapboard walls with the openings of the far tier showing past them. After: four and five bays of
+door and window across both street walls, and both chimneys moved to the front slope.
+
+**The gate that should have caught it now exists.** Every gate this generator carries measured
+WHERE a building stands; none measured which way it looks. `check_block` now holds every record
+against `face_frame(grid, <the face it fronts>)["bearing"]` — a derivation from the block boundary,
+independent of the lot polygon `place()` reads — with the alley cases held against that bearing
+plus 180. The tolerance is 5 degrees, which covers the committed plat's own skew (up to 2.6 degrees
+on the West Division blocks) and cannot admit a flip. **Proved red:** restoring the old line makes
+`generate_block_infill.py --check` fail on `recon_1835_blk_randolph_wells_h2_01`, *"179.9deg off the
+0.47deg its face looks"*.
+
+**Derivations regenerated in the same commit:** sidecars (`compile_scene.py --all`), the dooryard
+pickets, the lot-line yard fences and the dooryard plantings — each of which reads the sidecars.
+The signboards, yard goods, frontage works, building-material and placeholder-GLB derivations
+re-verified unchanged; `validate.py --stale` is green, so **no bake is owed** — a 180-degree turn is
+placement, not mesh.
+
 ## Shipped 2026-08-24 — T-0165: the bake's smoke is its own job, and the nightly fits its ceiling again
 
 **Run #261 was cancelled at 43m51s of a 45-minute job, inside the desktop half of the published
