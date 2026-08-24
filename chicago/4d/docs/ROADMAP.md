@@ -10016,7 +10016,23 @@ render the model's building from the plate's viewpoint, compare, improve, repeat
 roof, fenestration rhythm, chimneys and signboard match. Tier-5 pictorial rule holds: views
 drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** (plate 11 —
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
-ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
+ell), then the fort group (palisade on rising ground), then Sauganash/Wolf Point.
+
+**Two cautions this parcel has now paid for, both from the fort pass (T-0044 → T-0094).**
+
+1. **"Whitewashed palisade" is the reference set's README talking, not a source.** The plate paints
+   the fort's one continuous north curtain across a **1.85×** range of tone in a single view —
+   luminance 191 east of the gate work, 103 west of it — with the surface this project ships
+   (`hewn_log`, luminance 143) sitting between the two. Fergus's white-washed board fence is the
+   enclosure of **1850**, after the pickets came down. Neither licenses a tone.
+2. **This loop compares two pictures BY EYE, and that is how it produced a wrong ticket.** T-0044's
+   row 3 said the model's pickets were flat-topped and the plate's pointed; the model has carried
+   0.312 m of sharpened head on all 768 posts since the archetype was written, and the plate rules
+   its cap straight to 0.45 px rms while resolving pickets at a 10 px pitch. Both readings were
+   available to anyone who measured, and nobody had. **Where a row of this pass asserts a shape or a
+   tone, measure it before it becomes a ticket** — `tools/measure_picket_plate.py` is the shape of
+   instrument that costs a minute and settles it. T-0094 is the write-up; **T-0184** is the one
+   finding of that measurement that survived.
 
 ### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
 Grass and flowers "appear out of the ground as you walk towards them."
@@ -10254,6 +10270,21 @@ to `"simplified"`, which is the half of **L66** this discharges — the bank eac
 is untouched and still open. What (e) still owes: a deck a visitor can walk out along (its own
 ticket); anything lying at either wharf, which no source here describes; and the GENERATOR half, so
 a baked town carries its own docks.
+
+**(e) grew a third shore on 2026-08-24, and the reason the first two were the only two is worth
+recording. T-0062** stated five reconstructed docks on the owner's *"you can add more docks!"* — and
+it stated them on **South Water merchants**, so the town's other shores were never asked. The North
+Division shore had a landing only because Kinzie & Hunter's dock is attested; the west bank at Wolf
+Point, five buildings all fronting the water, had none. **T-0107** asks the trade test of every river
+frontage in the town, and on the west bank it selects exactly one record: **Robert A. Kinzie's
+storehouse**, "dealing in groceries and Indian goods", whose committed position note of 2026-08-11
+had already reasoned that *"a storehouse trading goods off canoes has a positive reason to face the
+landing"*. Five landings now stand where four did (L179). The row's other four state no dock and get
+none — lodging, dwelling and worship take nothing off a canoe. It also shipped **clause 6**: the
+deck is one standard rectangle set on the bank's own tangent, **the bank bends at Wolf Point**, and
+a face that would stand on dry ground (PR #258 measured −0.34 m at Hogan's store) is refused with
+the measured rise on the record rather than given a bespoke outline. The clause refuses nothing in
+the town as it stands and is proved by `generate_river_wharves.py --selftest`, which `--check` runs.
 
 **(a) is shipped in three pieces, all on the enclosure layer** (`data/enclosures/`,
 `renderers/web/js/enclosures.js`) — the renderer-side half of the archetype this box asked for,
@@ -11480,6 +11511,49 @@ in the **mid** field.
      nominal ring how faded an arriving plant was, and the nominal ring answers *zero* — a free
      pass — for exactly the plants the fringe pushes furthest out. It reads each instance's own
      `aChiRing` now. Same bound, same measured 0.0 % arrival height.
+3b. **The NEAR/MID handover is a density handover.** · **DONE 2026-08-24, T-0093.** The sibling of
+   item 3: that one was about where the sward STOPS, this one is about where its two
+   representations swap over. Read this box before quoting a near-ring band or before assuming a
+   ring named in a ticket is the ring drawing the artefact.
+   - **The instrument first**, because there was none: `tools/measure_near_verge.mjs` classes every
+     flora instance the way the fragment shader's own guard does — `whole` (coverage 1, the Bayer
+     branch is skipped), `partial` (0 < coverage < 1, **every fragment thresholded — the dots**),
+     `absent` — off the `aChiRing` that went to the GPU, then projects each drawn plant's recorded
+     height and spread to screen and sums the footprints. Instance counts are the wrong unit: a
+     hundred plants at forty metres are four pixels. Mobile runs at `deviceScaleFactor: 1.5`, not
+     the smoke's 2, so one measured pixel is one drawing-buffer pixel — the screen door is locked
+     to `gl_FragCoord` and a 4/3 resample smears the grain.
+   - **THE TICKET'S PRIME SUSPECT IS HALF THE AUTHOR, AND AT ITS OWN TWO STANDS IT IS NONE OF IT.**
+     T-0086's two stands are in a roadway and `station()` clears the travel track — 10.5 m on South
+     Water, 7 m on Wells — so at *South Water approaching Wells* the near ring places **0 tufts at
+     `light`, 1 at `full`**. At *Wells approaching Lake* on a phone the near set is empty and the
+     whole screen-doored verge (1.729 % of the frame) is written by the **mid ring's inner ramp
+     fading IN across 4.5–7.5 m**. Only in open prairie does the near ring dominate: 5.90 % against
+     the mid's 3.65 % exposed at `light`. So both boundaries were converted, not the named one.
+   - **The band is not where the ticket says either.** `ringsFor` insets every fade ring inside its
+     lattice by the 0.6 m rebuild step, so the ramp runs **4.80–7.00 m** at `full` (measured as the
+     `d` range of the partial instances), not 5.4–7.6; and at `light` the ring is 4.6 m, so the ramp
+     is **1.80–4.00 m** — under the walker's feet, which is why the phone frame is the dramatic one
+     (53.654 % of it screen-doored in open prairie, against 45.173 % on the desktop).
+   - **The fix is T-0086's answer on a ring that still has an edge in it.** `TUNE`
+     `near.spreadOuter` / `mid.spreadInner` move the band out of the ramp and into a per-slot
+     spread of the boundary: `fade[0] − band × handoverRank(e, n)`, world-anchored and quantised to
+     ⅛ m as `farRank` is, with the shader's ring left as a step (`HARD`). The fraction of slots
+     drawn at `d` is `clamp((fade[0] − d) / band)` — **the same number the alpha used to write** —
+     so expected cover is unchanged to the arithmetic and no tuning figure means anything new.
+   - **Placement is untouched on purpose.** The mid ring's `return` for slots the fringe pushes out
+     of reach is deliberately NOT copied to the near pass: every slot is still dealt a species and
+     still counted, so no community's population or cover figure moves. It costs nothing — the
+     vertex program already collapsed an out-of-ring plant to a point — and it saves fill, because
+     half the band's fragments are no longer rasterised only to be discarded.
+   - **Two knock-ons.** Heads ride their PLANT's ring now, not the layer's: on a spread boundary the
+     layer's ring answers for no particular tuft, and a head hung on it is R-BUG7 from the other
+     end. And `flora.fadeAt`/`heightAt` take all four ring numbers, because a reader carrying only
+     the outer radius would be told every mid card past 4.5 m is drawn.
+   - **The residue, held rather than closed.** The mid and forb rings' own OUTER ramps are still
+     coverage ramps, and at `light` they reach in to **5.4 m** and **7.4 m** — inside the verge on a
+     phone. That is the mid→far handover, which T-0086 answered by standing the far band over it;
+     the gate holds it against `tools/near_verge_baseline.json` so it cannot grow, and it is filed.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.
