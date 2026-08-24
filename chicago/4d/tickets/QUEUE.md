@@ -19,7 +19,6 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0190 — The South Water placements stand out past the committed plat, and the walk breaks on them
 T-0191 — Randolph and Washington get the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
@@ -92,3 +91,5 @@ T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branc
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
+T-0195 — Three South Water corner stores lap the cross street's corridor by 0.10-0.31 m, which the plat reconciliation could not reach
+T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault T-0190 repaired on South Water

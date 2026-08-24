@@ -85,7 +85,7 @@
         "wright_1834"
       ],
       "bank_foot_local_enu_m": [
-        353.27,
+        353.25,
         42.73
       ],
       "bank_tangent": [
@@ -98,27 +98,27 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          362.37,
+          362.35,
           40.76
         ],
         [
-          344.18,
-          40.71
+          344.16,
+          40.7
         ],
         [
-          344.16,
+          344.13,
           48.7
         ],
         [
-          362.35,
+          362.32,
           48.76
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 39.61,
-      "clearance_to_wall_m": 37.71,
+      "wall_to_bank_m": 47.79,
+      "clearance_to_wall_m": 45.87,
       "depth_at_face_m": [
         1.61,
         1.63,
@@ -140,8 +140,8 @@
         "wright_1834"
       ],
       "bank_foot_local_enu_m": [
-        255.33,
-        31.33
+        253.62,
+        30.88
       ],
       "bank_tangent": [
         -0.9663,
@@ -153,33 +153,33 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          264.63,
-          31.74
+          262.92,
+          31.28
         ],
         [
-          247.05,
-          27.06
+          245.34,
+          26.6
         ],
         [
-          244.99,
-          34.79
+          243.28,
+          34.34
         ],
         [
-          262.57,
-          39.47
+          260.86,
+          39.02
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 31.37,
-      "clearance_to_wall_m": 27.98,
+      "wall_to_bank_m": 38.02,
+      "clearance_to_wall_m": 34.6,
       "depth_at_face_m": [
-        1.53,
-        1.49,
-        1.46
+        1.51,
+        1.48,
+        1.45
       ],
-      "least_depth_at_face_m": 1.46,
+      "least_depth_at_face_m": 1.45,
       "face_stations": 19,
       "facade_bearing_deg": 0.0
     },
