@@ -261,6 +261,19 @@ step "no reconstructed value is newly outside the band its own note cites" \
 step "no reconstructed roof's ridge is newly outside its family band" \
   python3 tools/measure_ridge_band.py
 
+# ...and the same question asked of the SPECIFICATION rather than of a roof (T-0148).
+# The gate above holds the eave a record happens to carry fixed, which made its residual
+# read as a conflict between two committed bands — "no pitch reaches the ridge band at
+# the footprint the family authors". The eave is not fixed: it is the second value the
+# crosswalk authors as a band and the samplers draw from, so a ridge band is reachable
+# from a (footprint, eave) PAIR. Swept that way, every family's four claims — footprint,
+# eave, pitch, ridge — are satisfiable at every footprint in its own band, so nothing in
+# the specification has to give way and the residual above is all repair. This holds that
+# true: a crosswalk edit that authors a family which cannot be built to its own ridge band
+# fails here, at the specification, instead of four runs later as a roof nobody can raise.
+step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
+  python3 tools/measure_ridge_reach.py --quiet
+
 # And the question the two gates above cannot ask, because they read what LANDED: is
 # every family the 665-roof schedule may deal to a platted block buildable at every
 # size its own band allows? A family comes up rarely — there are two H1s and two H2s in
@@ -574,6 +587,17 @@ step "every browser-launching tool honours PW_EXECUTABLE" \
 # R-W1's merge and requires it to name south_water 250-600 m unprompted (T-0016).
 step "the road-band movement report names a band that moved" \
   node tools/road_band_movement.mjs --self-test
+
+# T-0100. The street layer graded a ribbon by its surface and its wear and never
+# by `geometry_confidence`, so an INVENTED ROUTE under an attested surface would
+# have drawn at full confidence. It is degenerate in today's data — every street
+# is pinned at `reconstructed` wear already — which is exactly why it needed a
+# test rather than an eyeball: nothing on screen can show it either way. The
+# test slices the expression out of streets.js instead of copying it, so the
+# shipped grade and the tested grade cannot drift apart, and it carries a
+# tripwire that fires the day the data makes the fix matter.
+step "a street's invented line reaches the picture" \
+  node tools/test_street_confidence.mjs
 
 # K49(d) warned for a week that a spatial filter running after the stratified
 # deal selects a BIASED set of ranks, and told every later parcel not to use

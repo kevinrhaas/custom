@@ -52,5 +52,5 @@ residual in `tools/measure_street_line.py` is removed in the same commit, not re
 is added, removed, renamed, re-familied or re-dimensioned, and the household programme's totals
 do not move.
 
-**Links:** T-0104 · L141 · L176 · `tools/measure_street_line.py` § `BANKED_PARTY_WALLS` ·
+**Links:** T-0104 · L141 · L177 · `tools/measure_street_line.py` § `BANKED_PARTY_WALLS` ·
 `tools/generate_inferred_households.py`.

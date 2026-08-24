@@ -44,8 +44,8 @@ from band_notes import split_notes  # noqa: E402
 # twenty-four buildings stamped sixty times and seventeen of them stood outside the
 # eave band their own note cited (ROADMAP T-V1). The band is now used as the range it
 # was authored as.
-from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
-                          pitch_deg, storeys, wall_height_m)
+from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E402
+                          families, pitch_deg, storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 
@@ -158,6 +158,29 @@ def form_for(family: str, spec: dict, key: str, seq: int, paint: str,
                        family, band_note(family))
 
 
+# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
+# once, because both the eave and the pitch now need them (T-0148). These two answers
+# used to sit inline in each form branch, which is the same rule written five times;
+# `_form_body` below reads them instead of restating them, so a family cannot get one
+# roof for the purpose of choosing its eave and another for the purpose of building it.
+def _roof_kind(family: str) -> tuple[str, bool | None]:
+    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
+    return roof, (True if family.startswith("C") else None)
+
+
+def _pitch_default(family: str) -> float:
+    """The generator's own type value, which is what a family authoring no band gets."""
+    if family == "D1":
+        return 35.0
+    if family.startswith("D") and family != "D2" or family == "H1":
+        return 42.0 if family in ("D6", "H1") else 38.0
+    if family.startswith("C"):
+        return 33.0
+    if family.startswith("T") or family.startswith("I") or family in ("H2", "H3"):
+        return 38.0
+    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+
+
 def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
                archetype: str, width: float, depth: float) -> dict:
     why = band_note(family)
@@ -168,7 +191,19 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
     # own note cites. Sampling adds variety, not knowledge: every value still grades at
     # the bottom tier, and the note still says the band is a typology and not evidence
     # about this building.
-    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door_kind(family)))
+    #
+    # ...and it is then HELD inside the part of that band the family's ridge band can
+    # actually be reached from (T-0148). Drawing the eave free and asking the pitch
+    # alone to land the ridge is what left three A1 stables and an A4 shed here outside
+    # a ridge band that is reachable at an eave their own family also authors — the
+    # sampler was constraining one of its two free claims and making the other carry
+    # the choice.
+    roof_type, gable_front = _roof_kind(family)
+    run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
+    floor = eave_floor(family, door_kind(family))
+    wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor),
+                          family, spec["eave_ft"], spec.get("roof"),
+                          spec.get("ridge_ft"), run, _pitch_default(family), key, floor)
 
     # THE PITCH, T-0145. The eave moved onto its band in the pass before this one and
     # the pitch was deliberately left behind, because a pitch is not a dimension that
@@ -179,32 +214,26 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
     # family's, so `ridge_model` is asked for it. A family whose roof line names no
     # pitch keeps the type default it always had, and `band_notes` already makes its
     # note say that is what it is.
-    def pitch(default: float, roof_type: str = "gable",
-              gable_front: bool | None = None) -> float:
-        run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
-        return pitch_deg(family, spec.get("roof"), key, default,
+    def pitch() -> float:
+        return pitch_deg(family, spec.get("roof"), key, _pitch_default(family),
                          eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
             "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(35.0), why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred("log", why), "loft": inferred(True, why),
             "chimneys": inferred(1, why),
         }
 
     if family.startswith("D") and family != "D2" or family == "H1":
-        if family in ("D6", "H1"):
-            stories, pitch_default = 1.5, 42.0
-        elif family in ("D7", "H2", "H3"):
-            stories, pitch_default = 2, 38.0
-        else:
-            stories, pitch_default = 1, 38.0
+        stories = 1.5 if family in ("D6", "H1") else (
+            2 if family in ("D7", "H2", "H3") else 1)
         plan = "centre_passage" if family in ("D7", "H2", "H3") else (
             "single_pen" if family == "D3" else "hall_parlour")
         return {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(pitch_default), why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred(frame, why), "plan": inferred(plan, why),
             "bays": inferred(5 if family in ("D7", "H2", "H3") else 3, why),
             "chimneys": inferred(2 if family.startswith("H") else 1, why),
@@ -215,7 +244,7 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
         return {
             "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
             "roof_type": inferred("gable", why),
-            "roof_pitch_deg": inferred(pitch(33.0, gable_front=True), why),
+            "roof_pitch_deg": inferred(pitch(), why),
             "gable_front": inferred(True, why), "construction": inferred(frame, why),
             "cladding": inferred("clapboard", why), "paint": inferred(paint, why),
             "loft": inferred(family == "C2", why), "chimneys": inferred(1, why),
@@ -229,17 +258,16 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
         return {
             "stories": inferred(1 if family == "I2" else 2, why),
             "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(38.0), why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred("braced_frame", why), "paint": inferred(paint, why),
             "gallery": inferred(False, why), "chimneys": inferred(1 if family == "I2" else 2, why),
         }
 
     door = door_kind(family)
-    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
     construction = "light_frame" if family in ("W2", "A1", "A2") else "plank"
     return {
-        "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),
-        "roof_pitch_deg": inferred(pitch(18.0 if roof == "shed" else 32.0, roof), why),
+        "wall_height_m": inferred(wall, why), "roof_type": inferred(roof_type, why),
+        "roof_pitch_deg": inferred(pitch(), why),
         "construction": inferred(construction, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
         # THE LOFT IS THE FAMILY'S TO AUTHOR, not this file's (T-0145). A retyped

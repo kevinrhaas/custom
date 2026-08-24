@@ -5729,6 +5729,66 @@ the owner's call about the specification and not a repair an agent should make; 
 **Recorded:** 2026-08-22.
 
 
+### L176 — Six anonymous roofs take a taller eave from their own band, because their ridge band could not be reached from the one they were dealt
+
+**Decision:** the two anonymous parcels that draw their dimensions from the family bands —
+`tools/generate_north_infill.py` and `tools/generate_block_infill.py` — now draw the EAVE
+under the same constraint they already drew the pitch under. Where the eave a stable key
+lands on cannot reach the family's authored `ridge_ft` band at any pitch the family also
+authors, the eave is redrawn from the part of its OWN band that can, and the pitch then
+falls where the existing sampler puts it. Five A1 stables and one A4 shed moved: eaves from
+2.750-2.874 m to 2.840-3.413 m, and one down from 2.405 m to 2.336 m, with pitches following
+to between 39.2 and 39.8 degrees on the five stables. Every value is still inside the band
+its own note cites, still grades `reconstructed`, and still says the band is a typology
+rather than evidence about that building. Nothing else in the town moved: the other 251
+reconstructed roofs re-derive byte for byte.
+
+**Why, and this is the part that is a finding rather than a repair.** T-0145 built the ridge
+instrument and banked 104 roofs outside their ridge band, and read the residual as
+structural — "for several families no pitch inside the authored pitch band can reach the
+authored ridge band at the footprint the family authors". L171 recorded that as an open
+question for the owner: which of the four claims gives way, the footprint band, the pitch
+band, the ridge band, or the archetype's ridge orientation.
+
+**None of them does.** `tools/measure_ridge_reach.py` sweeps every family's whole authored
+footprint band and asks whether ANY eave inside the eave band and ANY pitch inside the pitch
+band lands the ridge inside the ridge band. At every footprint of every family that authors
+a pitch band, the answer is yes. The four claims are jointly satisfiable everywhere, and the
+sentence T-0145 wrote was true only because it held the eave at whatever the record happened
+to carry. The eave is not a fixed thing — it is the second of two values the crosswalk
+authors as a band and the samplers draw from — so a ridge band is reachable or not from a
+(footprint, eave) PAIR, and constraining only the pitch made the second free claim carry the
+first one's choice. The A1 stable, the case L171 named as the clearest, reaches its 17-24 ft
+ridge band comfortably at an eave in the top half of the 9-12 ft its own family authors.
+
+**What is still outside its band, said plainly.** Fifty-eight roofs, down from sixty-four,
+and all fifty-eight are in the three parcels that do not sample at all: `west_infill`,
+`inferred_infill` and `inferred_households` still carry the per-family constants T-0144 and
+T-0145 took out of the North parcel, and a ridge is downstream of an eave that was typed
+rather than drawn. That is T-0172's, named there before this ran, and the report in
+`tools/measure_ridge_reach.py` prints the split by parcel so it cannot be mistaken for a
+specification fault again. The two parcels that DO sample now carry none.
+
+**Consequence:** five stables and a shed stand between 5 and 55 cm taller, which is visible
+from beside them and nowhere else, and the ridge gate's residual is now entirely a list of
+records waiting for a generator to be repaired rather than a mixture of that and an argument
+about the specification. The five stables also cluster at the steep end of A1's pitch band,
+40 degrees against the 30-40 the family allows, and that is the arithmetic being honest: a
+small stable whose ridge runs down its long axis needs its family's steepest roof to reach
+its family's lowest ridge.
+
+**How to resolve:** nothing to resolve in the specification — the sweep is now a gate, so a
+future crosswalk edit that authors a family which cannot be built to its own ridge band fails
+at the specification instead of arriving as a roof nobody can raise. What remains open is
+T-0172 for the three retyped parcels, and the three families whose roof line offers a SHED
+their ridge band cannot carry at most footprints (C1, F1, F4) — filed, and not built as a
+shed by any generator today.
+
+Related: **L171** (the pitch, and the question this answers) · **L170** (the eave first moving
+onto its band) · tickets **T-0148**, **T-0145**, **T-0172**.
+**Recorded:** 2026-08-24.
+
+
 ### L173 — Nine piles of brick, timber and stone on the one lot this town can say was building
 **Decision:** the Lake House site — `lake_house_construction`, a roofless brick shell on the north
 side — now has **building material stacked round it**: four stacks of brick along the frontage it
@@ -5911,7 +5971,7 @@ recorded cover), and ROADMAP **K57**, **K59**.
 **Recorded:** 2026-08-23.
 
 
-### L176 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
+### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
 **Decision:** the three roofs of the `blk_lake_clark` frontage run —
 `recon_1835_blk_lake_clark_d1_01`, `_d3_02` and `_d5_03` — move 0.70 m toward Lake Street and
 now stand with their front walls **0.80 m off the block face**, on the line the four roofs of
@@ -7041,7 +7101,7 @@ block boundary in `data/traces/vectors/thompson_lots.json`.
 stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so
 the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps
 between them, but one face carrying two street lines is a defect rather than a design, and it is
-filed as its own ticket rather than normalised away inside this parcel. **CLOSED by L176 (T-0104):** this run's
+filed as its own ticket rather than normalised away inside this parcel. **CLOSED by L177 (T-0104):** this run's
 three roofs moved 0.70 m out onto T-0077's line, so the face carries one street line and
 `tools/measure_street_line.py` now asserts that of every block face in the town.
 **A log dwelling on a business frontage is an open question, and it was answered by the reference
