@@ -1,7 +1,7 @@
 ---
 id: T-0058
 title: A visitor can walk out along a wharf deck
-state: open
+state: split
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
+closed: 2026-08-24
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 3:19:55 PM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -30,11 +30,21 @@
  *    `terrain.surfaceHeight` at its own point, so the crib meets the channel
  *    floor the heightfield draws rather than a flat guess — which is the only
  *    reason a structure standing in water can be drawn honestly at all.
- *  * IT IS NOT A WALK SURFACE, and does not pretend to be. `walkHeight()` puts
- *    a wading barrier over open water and the deck does not override it, so a
- *    visitor sees the wharf from the bank and cannot walk out along it. Making
- *    a deck walkable is the bridge's `placement.walk_surface_m` route and it
- *    belongs to a structure record; this layer has none.
+ *  * IT IS A WALK SURFACE SINCE T-0058, and it is this layer that says so. Until
+ *    then `walkHeight()`'s wading barrier stood over every deck and a visitor
+ *    saw the wharf from the bank without being able to step out along it. The
+ *    bridges' route — `placement.walk_surface_m` on a sidecar — is closed here,
+ *    because a wharf has no structure record to carry it and inventing one to
+ *    hold a height would be a second opinion about a number this file already
+ *    knows. So `createWharves` publishes `decks` in `walker.js`'s own shape,
+ *    each at the `deck_top_m` the slab was drawn at, and `main.js` hands them
+ *    to the walker beside the bridges'. WHAT THAT DOES NOT BUY IS BOARDING:
+ *    the deck holds a 0.90 m freeboard floor over a bank the terrain puts at
+ *    0.19–0.58 m, so six of the seven landward edges are a 0.38–0.71 m riser
+ *    against the walker's 0.35 m step-up rule and only Kinzie & Hunter's can
+ *    be walked onto from the ground. That is the same edge T-0001 hit at the
+ *    bridge abutments, it is answered the same way — by grading the bank in
+ *    `terrain_spec.json`, which needs a bake — and it is T-0205, not this.
  *  * NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY, NO NAME. The record says so and
  *    this file keeps it: the schooner cheered at one of these two wharves in
  *    1834 is not drawn, because a hull would be a larger invention than the
@@ -312,6 +322,27 @@ export async function createWharves({
      * polygon under the same id would answer for the building.
      */
     keepOut: [],
+    /**
+     * The same decks as WALKABLE SURFACES, in `decksFrom()`'s own shape —
+     * `{ id, y, pts }` — for `walker.js` (T-0058).
+     *
+     * A wharf has no structure record, so it cannot carry the sidecar's
+     * `placement.walk_surface_m` the bridges take their deck height from. The
+     * second route into the walker is this one, and it is deliberately the
+     * LAYER that publishes it rather than the record: the height here is
+     * `_drawn.deck_top_m`, the identical number `buildWharf` just drew the
+     * slab at, so the plank a visitor's boot is on and the plank the mesh
+     * draws are one value. A `walk_surface_m` authored beside the outline
+     * would be a second definition of the same thing — the exact fault
+     * T-0001 found 1.8 m over the North Branch planks, and the reason the
+     * freeboard figure in this record is a FLOOR rather than a height.
+     *
+     * Kept as its own array rather than added to `keepOut`, which the planters
+     * hold: the two happen to be the same polygons today and are answers to
+     * different questions, and a deck that ever stopped being plantable ground
+     * would still be a floor.
+     */
+    decks: [],
     census: { records: 0, wharves: 0, bents: 0, refused: 0 },
     pickAt: () => null,
     dispose: () => {},
@@ -361,6 +392,14 @@ export async function createWharves({
       }
       spans.push({ id: w.structure_id, from, to: buf.pos.length / 9 });
       out.keepOut.push({ id: `${w.structure_id}__wharf`, pts: w.deck_quad_local_enu_m });
+      // The floor, at the height this run just drew it. `buildWharf` writes
+      // `_drawn.deck_top_m` from the same `deckY` it built the slab on, so
+      // there is one number and not two that agree until they do not.
+      out.decks.push({
+        id: `${w.structure_id}__wharf`,
+        y: w._drawn.deck_top_m,
+        pts: w.deck_quad_local_enu_m,
+      });
       out.wharves.push(w);
       out.census.wharves += 1;
       out.census.bents += w._drawn?.bents ?? 0;

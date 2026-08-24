@@ -127,9 +127,10 @@ export function footprintsFrom(registry) {
 }
 
 /**
- * The surfaces a visitor may stand ON TOP OF, as opposed to the ground.
+ * The surfaces a visitor may stand ON TOP OF, as opposed to the ground, that the
+ * STRUCTURE REGISTRY carries.
  *
- * Today that means bridge decks and nothing else, and the dataset says so: the
+ * That means bridge decks and nothing else, and the dataset says so: the
  * sidecar carries `placement.walk_surface_m` — the height of the deck above the
  * structure's own anchor — and it is `null` on all 327 structures that are not a
  * crossing. The number is the generator's `deck_height_m`, carried through by
@@ -148,6 +149,14 @@ export function footprintsFrom(registry) {
  * job and not a calculation to keep a second copy of. Nothing in the dataset needs
  * it, and skipping is visible — the deck simply is not walkable — where guessing
  * would put a floating surface in the air.
+ *
+ * IT IS NOT THE ONLY SOURCE OF DECKS ANY MORE (T-0204). A wharf stands over the
+ * water and has no structure record at all, so it can carry neither a sidecar
+ * nor a `walk_surface_m`; `renderers/web/js/wharves.js` publishes its own decks
+ * in this same shape, each at the height that layer drew the slab, and `main.js`
+ * puts both lots in the one array `createWalker` is handed. What this function
+ * owns is the REGISTRY'S half of it, and the return shape below is the contract
+ * between the two.
  *
  * @param {Map} registry the loaded structure registry
  * @returns {Array<{id:string, y:number, pts:number[][]}>}
@@ -209,6 +218,11 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
    * free-fly — goes through it, because a walker that agreed with itself only on
    * some of them is how you end up standing on a bridge and falling through it
    * when you stop moving.
+   *
+   * `decks` carries the bridges the registry declares (`decksFrom`) and, since
+   * T-0204, the wharf decks their own layer publishes at the height it drew
+   * them. Nothing here cares which is which: a deck is an id, a height and a
+   * plan outline, and both routes hand over exactly that.
    *
    * `terrain.walkHeight()` is the answer wherever no deck covers the point, wading
    * barrier and all. Where a deck does:

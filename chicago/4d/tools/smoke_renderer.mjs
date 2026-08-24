@@ -60,7 +60,10 @@
  *   the river wharves ........... the first derived layer that stands over water:
  *                                 its deck ties into the bank it was derived
  *                                 from, its crib reaches the bed, and neither is
- *                                 answerable from the dataset alone
+ *                                 answerable from the dataset alone — and since
+ *                                 T-0204 the deck is a FLOOR: a visitor walks off
+ *                                 the bank and out over the river on it, and what
+ *                                 boarding costs at all seven is measured here
  *   the boats on the river ...... the first layer that RIDES the water: every
  *                                 afloat hull floats in its own depth, beached
  *                                 hulls sit at the bank, the drawbridge's
@@ -4310,6 +4313,169 @@ for (const [label, viewport, touch] of [
       docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
         + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
       + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // --- and you can WALK OUT ALONG ONE (T-0204) ---------------------------
+    //
+    // The layer drew a floor over the river for a year and the walker could not
+    // use it: `walkHeight()` reports a 4.0 m wading barrier over open water, and
+    // a wharf has no structure record, so it could not take the bridges' route
+    // into `surfaceAt()` (a sidecar's `placement.walk_surface_m`). It publishes
+    // its own decks now, at the height it drew them.
+    //
+    // The height assertion is an EXACT equality for the same reason the bridge
+    // decks' is: `_drawn.deck_top_m` and the slab's `deckY` are one number, and
+    // a tolerance would pass a renderer that had quietly grown a second
+    // definition of where the planks are.
+    const wharfWalk = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const published = a.wharves?.decks ?? [];
+      const drawn = a.wharves?.wharves ?? [];
+      // Every drawn dock, published at the height its own mesh was drawn at, and
+      // reaching the walker's own array rather than merely being returned.
+      const inWalker = new Set((a.decks ?? []).map((d) => d.id));
+      let unpublished = 0;
+      let mismatched = 0;
+      let unreachable = 0;
+      for (const w of drawn) {
+        const deck = published.find((d) => d.id === `${w.structure_id}__wharf`);
+        if (!deck) { unpublished += 1; continue; }
+        if (deck.y !== w._drawn?.deck_top_m) mismatched += 1;
+        if (!inWalker.has(deck.id)) unreachable += 1;
+      }
+
+      // WHAT IT COSTS TO GET ON, at every one of them, from the terrain the
+      // browser loaded. The three heel stations are the same three the layer
+      // samples to decide the deck top, so the highest of them is the best
+      // ground a visitor can board from; the riser is what the 0.35 m step-up
+      // rule is asked to swallow there.
+      const risers = drawn.map((w) => {
+        const [heelL, heelR] = w.deck_quad_local_enu_m;
+        const heelMid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+        const bank = Math.max(...[heelL, heelMid, heelR]
+          .map((p) => a.terrain.surfaceHeight(p[0], p[1])));
+        return { id: w.structure_id, bank, riser: (w._drawn?.deck_top_m ?? 0) - bank };
+      });
+
+      // AND THE WALK ITSELF, at Kinzie & Hunter's — the one dock in the town
+      // whose existence is stated rather than reconstructed, and the only one
+      // whose bank is high enough to step off. Start 3 m inland of the heel on
+      // open ground, face straight down the deck's own waterward normal, and
+      // walk. No teleport onto the planks: if the step-up rule ever refuses the
+      // heel the walker simply stops short and this fails.
+      const kh = drawn.find((w) => w.structure_id === 'kinzie_hunter_warehouse');
+      const deck = published.find((d) => d.id === 'kinzie_hunter_warehouse__wharf');
+      if (!kh || !deck) {
+        return {
+          published: published.length,
+          drawn: drawn.length,
+          mismatched,
+          unpublished,
+          unreachable,
+          risers,
+          stepUp: a.walkBudget.stepUp,
+          missing: true,
+        };
+      }
+      const [heelL, heelR, , faceL] = kh.deck_quad_local_enu_m;
+      const heelMid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+      const width = Math.hypot(faceL[0] - heelL[0], faceL[1] - heelL[1]);
+      const oe = (faceL[0] - heelL[0]) / width;
+      const on = (faceL[1] - heelL[1]) / width;
+      const bearing = ((Math.atan2(oe, on) * 180) / Math.PI + 360) % 360;
+      const on_ = (e, n) => {
+        let hit = false;
+        const pts = deck.pts;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+      a.walker.teleport({
+        local_e: heelMid[0] - oe * 3, local_n: heelMid[1] - on * 3, yaw_deg: bearing,
+      });
+      const startedOn = on_(a.walker.state.e, a.walker.state.n);
+      const startedAt = a.walker.state.groundY;
+      let boarded = false;
+      let offDeck = 0;
+      let clearance = 0;
+      let reach = 0;                 // how far out along the normal they got
+      let overWater = 0;             // samples on the deck with river underneath
+      a.intent.forward = 1;
+      for (let i = 0; i < 400; i += 1) {
+        a.walker.update(0.05, a.intent);
+        const s = a.walker.state;
+        if (!on_(s.e, s.n)) continue;
+        boarded = true;
+        if (s.groundY !== deck.y) offDeck += 1;
+        if (a.terrain.isWater(s.e, s.n)) overWater += 1;
+        clearance = Math.max(clearance, Math.abs(s.eyeY - s.groundY - a.walkBudget.eyeHeight));
+        reach = Math.max(reach, (s.e - heelMid[0]) * oe + (s.n - heelMid[1]) * on);
+      }
+      a.intent.forward = 0;
+      const end = a.walker.state;
+      return {
+        published: published.length,
+        drawn: drawn.length,
+        unpublished,
+        mismatched,
+        unreachable,
+        risers,
+        stepUp: a.walkBudget.stepUp,
+        deckY: deck.y,
+        width,
+        startedOn,
+        startedAt,
+        boarded,
+        offDeck,
+        overWater,
+        clearance,
+        reach,
+        endGroundY: end.groundY,
+        // What the terrain alone would have said out at the face: the barrier
+        // this replaces. If it ever stops being well above the deck, the
+        // assertion below has stopped proving anything.
+        barrier: a.terrain.walkHeight(heelMid[0] + oe * (width - 0.5),
+          heelMid[1] + on * (width - 0.5)),
+      };
+    });
+    check(`${label}: every drawn wharf publishes a deck at the height it was drawn`,
+      wharfWalk.published === 7 && wharfWalk.drawn === 7 && wharfWalk.unpublished === 0
+        && wharfWalk.mismatched === 0 && wharfWalk.unreachable === 0,
+      `${wharfWalk.published} deck(s) for ${wharfWalk.drawn} dock(s); `
+      + `${wharfWalk.unpublished} unpublished, ${wharfWalk.mismatched} at a height the `
+      + `mesh was not drawn at, ${wharfWalk.unreachable} never reaching the walker`);
+    // The unglamorous half of the ticket, and the half that stops the next run
+    // guessing: what boarding COSTS at each of the seven, from the ground, in
+    // the walker's own units. Exactly one of them is inside the step-up rule
+    // today and it is the attested dock; the other six are T-0205, whose answer
+    // is terrain and needs a bake. A seventh becoming boardable — or the first
+    // one ceasing to be — is a change to the shore that has to be noticed here.
+    check(`${label}: one wharf of seven can be boarded from its own bank, and it is `
+      + `the attested one`,
+      wharfWalk.risers?.length === 7
+        && wharfWalk.risers.filter((r) => r.riser <= wharfWalk.stepUp).length === 1
+        && wharfWalk.risers.find((r) => r.riser <= wharfWalk.stepUp)?.id
+          === 'kinzie_hunter_warehouse',
+      (wharfWalk.risers ?? []).slice().sort((x, y) => x.riser - y.riser)
+        .map((r) => `${r.id} +${r.riser.toFixed(2)} m off a bank at ${r.bank.toFixed(2)} m`)
+        .join('; ') + `; step-up rule ${wharfWalk.stepUp} m`);
+    check(`${label}: a visitor walks off the bank and out along Kinzie & Hunter's deck`,
+      !wharfWalk.missing && wharfWalk.startedOn === false && wharfWalk.boarded
+        && wharfWalk.offDeck === 0 && wharfWalk.clearance < 1e-9
+        && wharfWalk.reach >= wharfWalk.width - 1.5,
+      `started ${wharfWalk.startedOn ? 'ON the deck' : `on ground at ${wharfWalk.startedAt?.toFixed(2)} m`}, `
+      + `reached ${wharfWalk.reach?.toFixed(1)} m of a ${wharfWalk.width?.toFixed(1)} m deck, `
+      + `${wharfWalk.offDeck} sample(s) not at deck height, worst standing clearance error `
+      + `${wharfWalk.clearance?.toExponential(1)} m`);
+    check(`${label}: the planks, not the wading barrier, carry them over the river`,
+      !wharfWalk.missing && wharfWalk.overWater > 0
+        && wharfWalk.barrier > wharfWalk.deckY + 1
+        && wharfWalk.endGroundY === wharfWalk.deckY,
+      `${wharfWalk.overWater} sample(s) stood over open water; barrier `
+      + `${wharfWalk.barrier?.toFixed(2)} m vs deck ${wharfWalk.deckY} m; ended standing `
+      + `on ${wharfWalk.endGroundY?.toFixed(2)} m`);
 
     // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
     // at the wharf anchor — on the ground outside Newberry & Dole's river wall,
