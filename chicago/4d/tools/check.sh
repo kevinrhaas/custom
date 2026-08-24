@@ -246,6 +246,19 @@ step "no reconstructed value is newly outside the band its own note cites" \
 step "no reconstructed roof's ridge is newly outside its family band" \
   python3 tools/measure_ridge_band.py
 
+# ...and the same question asked of the SPECIFICATION rather than of a roof (T-0148).
+# The gate above holds the eave a record happens to carry fixed, which made its residual
+# read as a conflict between two committed bands — "no pitch reaches the ridge band at
+# the footprint the family authors". The eave is not fixed: it is the second value the
+# crosswalk authors as a band and the samplers draw from, so a ridge band is reachable
+# from a (footprint, eave) PAIR. Swept that way, every family's four claims — footprint,
+# eave, pitch, ridge — are satisfiable at every footprint in its own band, so nothing in
+# the specification has to give way and the residual above is all repair. This holds that
+# true: a crosswalk edit that authors a family which cannot be built to its own ridge band
+# fails here, at the specification, instead of four runs later as a roof nobody can raise.
+step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
+  python3 tools/measure_ridge_reach.py --quiet
+
 # And the question the two gates above cannot ask, because they read what LANDED: is
 # every family the 665-roof schedule may deal to a platted block buildable at every
 # size its own band allows? A family comes up rarely — there are two H1s and two H2s in

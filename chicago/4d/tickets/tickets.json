@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 1:07 AM",
+  "generated_ct": "Aug 24, 2026, 3:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2619,7 +2619,7 @@
     {
       "id": "T-0148",
       "title": "The A1 stable cannot reach its ridge band at any pitch its family allows",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -2629,7 +2629,7 @@
       "opened": "2026-08-22",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 3:11:57 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -3047,6 +3047,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 56
+    },
+    {
+      "id": "T-0179",
+      "title": "Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }

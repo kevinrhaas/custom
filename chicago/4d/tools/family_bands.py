@@ -324,3 +324,99 @@ def pitch_deg(family: str, roof: str | None, key: str, default: float,
     # written at.
     return min(max(value, math.ceil(band[0] * 10) / 10),
                math.floor(band[1] * 10) / 10)
+
+
+# ---------------------------------------------------------------------------
+# THE OTHER HALF OF THE SAME COUPLING: the EAVE a ridge band can be reached from
+# (T-0148).
+#
+# `pitch_deg` above constrains the pitch by the ridge band, given the eave and the
+# run it is handed. That is one of the two free claims, and constraining only one of
+# them is why the ridge gate still had a residual on the parcels that DO sample:
+# `wall_height_m` draws the eave first and draws it free, and once a low eave is
+# drawn there may be no pitch inside the family's band that reaches the family's
+# ridge band at all. The gate then reports a roof outside its ridge band and the
+# fault reads as a conflict between two committed claims, when what actually
+# happened is that the sampler asked the second claim to carry the first one's
+# choice.
+#
+# It is not a conflict. `tools/measure_ridge_reach.py` sweeps every family's
+# authored footprint band and asks whether ANY (eave in band, pitch in band) reaches
+# the ridge band: for every family the crosswalk authors a pitch band for, at every
+# footprint in its band, the answer is yes. The four claims — footprint, eave, pitch,
+# ridge — are jointly satisfiable everywhere, so nothing in the specification has to
+# give way. What gives way is the sampler's ORDER, and only where it has to.
+#
+# WHAT THIS DOES, and what it deliberately does not do. The eave is sampled exactly
+# as before, from the part of the authored band the archetype can build. Where the
+# value drawn cannot reach the ridge band at any pitch the family allows, it is HELD
+# at the nearest eave inside its own authored band that can — the same reading
+# `eave_floor` and `eave_limits` already take at the two ends of the band, and the
+# same discipline `pitch_deg` takes on the pitch: shrink to the part of the band that
+# satisfies the other committed claim, never leave the band to satisfy it. A held
+# value is still inside the band its note cites, so the note stays true and
+# `tools/measure_band_claims.py` keeps passing it. Where no eave in the band can
+# reach the ridge band either, nothing is held and the residual is the gate's to
+# report, exactly as `pitch_deg` leaves it.
+#
+# A sample that already reaches its ridge band is returned untouched, to the bit.
+# That is what keeps this a repair of the roofs that are wrong rather than a reshuffle
+# of every roof that is right.
+# ---------------------------------------------------------------------------
+
+def eave_window_for_ridge(run_m: float, pitch_lo_deg: float, pitch_hi_deg: float,
+                          ridge_band: tuple[float, float]) -> tuple[float, float]:
+    """The eaves from which the ridge band is reachable at some pitch in the band.
+
+    `ridge = eave + run x tan(pitch)` rises with both, so the ridge band is reachable
+    from an eave exactly when the steepest allowed pitch clears the band's floor and
+    the shallowest does not overshoot its ceiling. Closed form, no search — which is
+    what `tools/check.sh` needs, because it re-derives these records byte for byte.
+    """
+    r_lo, r_hi = ridge_band
+    return (r_lo - run_m * math.tan(math.radians(pitch_hi_deg)),
+            r_hi - run_m * math.tan(math.radians(pitch_lo_deg)))
+
+
+def eave_for_ridge(eave_m: float, family: str, eave_ft: str | None, roof: str | None,
+                   ridge_ft: str | None, run_m: float | None, default_pitch_deg: float,
+                   key: str, floor: float = 0.0, ceiling: float | None = None) -> float:
+    """A sampled eave redrawn inside the part of its own band the ridge band can be met from.
+
+    `default_pitch_deg` is the generator's own type value and is what a family whose
+    roof line names no pitch actually gets — A4 authors "shed or gable" and no rise:run
+    at all, so its ridge is a function of the eave and that default alone. Passing it
+    means the hold works for those families too, instead of only for the families that
+    happen to author a pitch band.
+
+    A value already inside the window is returned UNTOUCHED, to the bit; only a value
+    outside it is redrawn, and it is redrawn by taking the SAME stable fraction across
+    the surviving interval that `wall_height_m` took across the whole band. That is the
+    shape `pitch_deg` already uses — shrink the interval, do not reject the sample — and
+    it matters here for a reason beyond consistency: the nearest EDGE of the window is
+    the eave at which exactly one pitch works, so an eave held there leaves `pitch_deg`
+    a degenerate interval and it falls back to the whole pitch band. Inside the window,
+    both samplers have room.
+    """
+    ridge = ridge_band_m(ridge_ft)
+    if ridge is None or not run_m or run_m <= 1e-6:
+        return eave_m
+    band = RANGE_RE.match(str(eave_ft or ""))
+    if not band:
+        return eave_m
+    lo, hi = float(band.group(1)) * .3048, float(band.group(2)) * .3048
+    lo = max(lo, floor)
+    if ceiling is not None:
+        hi = min(hi, ceiling)
+    if hi < lo:
+        return eave_m
+    pitch = pitch_band_deg(roof) or (default_pitch_deg, default_pitch_deg)
+    want_lo, want_hi = eave_window_for_ridge(run_m, pitch[0], pitch[1], ridge)
+    sub_lo, sub_hi = max(lo, want_lo), min(hi, want_hi)
+    if sub_hi - sub_lo < 1e-9:
+        # No eave in the authored band reaches the ridge band at this run. The eave
+        # band wins, same as the pitch band does above, and the gate reports it.
+        return eave_m
+    if sub_lo - 1e-9 <= eave_m <= sub_hi + 1e-9:
+        return eave_m
+    return round(sub_lo + (sub_hi - sub_lo) * stable_fraction(key, 8), 3)
