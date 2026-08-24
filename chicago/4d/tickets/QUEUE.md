@@ -19,7 +19,11 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0127 — South Water Street and the rest of the town get the street edge
+T-0190 — The South Water placements stand out past the committed plat, and the walk breaks on them
+T-0191 — Randolph and Washington get the street edge
+T-0192 — The cross streets' own frontages get the street edge
+T-0193 — blk_lake_clinton, the West Division block T-0069 refused
+T-0194 — Hitching posts at the commercial frontages
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0026 — The southern buildable ground and its schedule
