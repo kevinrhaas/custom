@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 7:41 PM",
+  "generated_ct": "Aug 23, 2026, 7:47 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2925,7 +2925,7 @@
     {
       "id": "T-0165",
       "title": "The bake cannot finish inside its 45-minute ceiling, because bake.sh runs the full two-viewport smoke as its last step",
-      "state": "open",
+      "state": "claimed",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
@@ -2935,7 +2935,7 @@
       "opened": "2026-08-23",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 7:47:55 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1

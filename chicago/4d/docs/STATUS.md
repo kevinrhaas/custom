@@ -1,5 +1,65 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0165: the bake's smoke is its own job, and the nightly fits its ceiling again
+
+**Run #261 was cancelled at 43m51s of a 45-minute job, inside the desktop half of the published
+smoke.** It was the first bake since 2026-08-22 to get past `check.sh` — and getting there is what
+exposed the fault, because `tools/bake.sh` runs the full two-viewport smoke, **unstaged**, as its
+last step. ~12 minutes of generate-and-bake plus ~13 a viewport is ~38 before setup, against 45, on
+a shared runner. It fitted only when nothing else contended.
+
+| run | bake step | reached | outcome |
+|---|---|---|---|
+| #258 | 11m41s | `check.sh` | FAILED — `estray_pen` (T-0161) |
+| #261 | **43m51s** | **desktop smoke** | **CANCELLED — the ceiling** |
+
+**Nobody had seen it because two earlier faults never let a run get that far.** K38 (T-0160) and
+`estray_pen` (T-0161) each killed the bake before the smoke. *"The bake is broken"* was **three
+faults wearing one symptom**, and this was the last.
+
+### What shipped: three jobs where there was one
+
+```
+bake     generate, derive, publish, gate     SKIP_SMOKE=1   ~15 min
+smoke    the published mirror, per viewport  matrix         ~15 min each, PARALLEL
+open-pr  the PR — only once smoke is green
+```
+
+**The gate is still both viewports and nothing less**, which is `smoke_renderer.mjs`'s own rule.
+Each matrix leg prints *"NOT THE FULL GATE"* because alone it is not one; the two legs together are,
+and `needs: smoke` fails if either fails. **The workflow reconstitutes the gate the suite refuses to
+let a single filtered run claim.**
+
+### The two cheap fixes were refused, and the ticket said so before the work started
+
+Raising `timeout-minutes` or setting `SKIP_SMOKE=1` for good would have made the nightly green
+tonight and stopped it testing the bytes it publishes — the exact property `bake.sh`'s own comment
+was written to protect, after a bug that collapsed every building to a two-metre box shipped past a
+fully green gate **twice**. `SKIP_SMOKE=1` IS set in CI now, so **`bake.sh`'s comment is corrected in
+the same commit** to say where the property went, rather than leaving the next reader to conclude
+the nightly stopped testing itself.
+
+### Three details that are the difference between this working and looking like it works
+
+- **The mirror travels as an artifact.** The smoke job serves the bytes THIS bake published, not
+  whatever is committed on dev. Without it, any run that produced changes would silently smoke the
+  wrong bytes — the one property the split must not lose.
+- **The committed mirror is deleted before the artifact is unpacked.** `checkout` restores it as
+  committed and `download-artifact` *overlays* rather than replaces, so a file the bake deleted
+  would survive and the smoke would test a tree that never existed.
+- **The branch is pushed before the smoke, the PR opened after.** A red smoke costs a review, not
+  twenty minutes of Blender output — the salvage argument from polecat-platform #140 — while a bake
+  whose mirror fails is never advertised as ready to merge.
+
+**And one liability removed rather than added:** the first draft pinned `NODE_PATH` to
+`/usr/local/lib/node_modules` in the smoke job. `smoke_renderer.mjs::loadPlaywright()` already falls
+back to `npm root -g`, so the pin bought nothing and would break the day the runner image moved it.
+
+**Demonstrated before pushing:** the suite driven against a detached copy of the mirror at
+`SMOKE_ROOT`, exactly as the job will — *"serving …/mirror — PUBLISHED mirror (compressed assets,
+visitor layout)"*, **141 passed, 0 failed**. That is the artifact hand-off proven, not assumed.
+Playwright is also dropped from the `bake` job, which no longer launches a browser.
+
 ## Refuted 2026-08-23 — T-0018: a spatial filter cannot bias the sward's rank deal, and the standing instruction that said it could is struck
 
 **K49(d) left a sentence in `flora.js` that has been telling every later parcel what not to
