@@ -5971,6 +5971,61 @@ recorded cover), and ROADMAP **K57**, **K59**.
 **Recorded:** 2026-08-23.
 
 
+### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
+**Decision:** the three roofs of the `blk_lake_clark` frontage run —
+`recon_1835_blk_lake_clark_d1_01`, `_d3_02` and `_d5_03` — move 0.70 m toward Lake Street and
+now stand with their front walls **0.80 m off the block face**, on the line the four roofs of
+L141's row already stood on. `tools/generate_block_infill.py` previously refused any setback
+below the plat module's 1.5 m `LOT_MARGIN_M`; it now accepts one on the **street line
+specifically**, and only where the block recipe names the committed records whose line it
+adopts. The number is not authored: `adopts_face_line` lists the records and the generator
+measures their front walls, so a recipe stating any other setback fails. The side lot lines keep
+the full 1.5 m.
+**Why:** T-0104. One block face carried two street lines. L141's row stands 0.80 m off the Lake
+face and L144's run stood 1.50 m off it, 10.58 m apart along the face — no wall stepped between
+them, which was luck and not design, and the next parcel to close that gap would have put a
+0.70 m jog in a street wall this project describes everywhere as one line. The ticket set out
+three routes and this is (b): stand closer than the lot margin on the street line, with the
+exemption stated as narrowly as L141's party-wall one.
+**Why not route (a), which was the obvious one.** Moving L141's four roofs OUT to 1.50 m would
+have broken the party wall `recon_1835_south_d3_013` declares with `inf_butcher_market` — a
+shared wall that `check_frontage` gates as a shared wall — and so would have created the very
+jog the ticket exists to prevent, on the one join in the row where it would be gated as a
+defect. Route (a) also rests on a reading the measurement does not support: 1.50 m is a rule
+about standing clear of a LOT line, and a party-line row already crosses its own side lot lines
+by construction.
+**What the measurement found that the ticket did not know.** The face carried worse than two
+lines. `inf_bakery_lake` and `inf_butcher_market` — the two inferred-household buildings whose
+alignment L141's row cites as its reason for 0.80 m — stand at **0.804 m and 0.784 m**, at
+bearing 0 where this face runs at 0.465. They are not on the face's line and they are not
+parallel to it; they stand where a hand-authored `center_local_enu_m` in the household programme
+put them. So the 0.80 m L141 adopted was a reading of two free-ground placements rather than a
+rule, and the 16 mm party wall between `recon_1835_south_d3_013` and `inf_butcher_market` does
+not close. That residual is banked BY NAME and BY SIZE in `tools/measure_street_line.py` — it
+may shrink and it may not grow — and putting the household layer on the committed face is its
+own ticket.
+**WHAT IS INVENTED, and it is the same thing it always was.** That any building stood on this
+frontage; which buildings; that they stood shoulder to shoulder. **Neither 0.80 m nor 1.50 m is
+a measurement of 1835** and no note here claims either is. The only thing chosen is that the
+face carries ONE of them, because a street wall is one wall. No roof is added, removed, renamed,
+re-familied or re-dimensioned; every id, band and baked mesh is the one it was, the 665-roof
+totals do not move, and the meshes do not go stale — a position is not one of the inputs a GLB
+is hashed over.
+**What now asserts it.** `tools/measure_street_line.py --gate`, in `tools/check.sh`: it takes
+the face line out of the committed plat, projects every front wall onto it, and refuses a face
+carrying more than one — absolutely, with no ratchet, because the number is now zero. It also
+closes party walls from BOTH sides, which is the case neither generator's own frontage gate can
+reach when the other half of the wall belongs to another generator.
+**How to resolve:** any period document placing a named occupant on a numbered lot on this face
+— an advertisement giving an address, a tax or insurance description, an itemised loss list —
+would replace an invented roof with a named one and, with it, give the face a line that is a
+reading rather than a convention.
+
+Related: **L141** (the row whose line this adopts), **L144** (the run that moves), tickets
+**T-0104** (this), **T-0077**, **T-0079**.
+**Recorded:** 2026-08-24.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
@@ -7046,7 +7101,9 @@ block boundary in `data/traces/vectors/thompson_lots.json`.
 stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so
 the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps
 between them, but one face carrying two street lines is a defect rather than a design, and it is
-filed as its own ticket rather than normalised away inside this parcel.
+filed as its own ticket rather than normalised away inside this parcel. **CLOSED by L177 (T-0104):** this run's
+three roofs moved 0.70 m out onto T-0077's line, so the face carries one street line and
+`tools/measure_street_line.py` now asserts that of every block face in the town.
 **A log dwelling on a business frontage is an open question, and it was answered by the reference
 rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial
 frontage and is unresolved. What decided it here is that the owner's other reference for a
