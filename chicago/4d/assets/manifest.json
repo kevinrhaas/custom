@@ -675,6 +675,15 @@
       "phase_id": "shell_1835",
       "structure_id": "lake_house_construction"
     },
+    "lasalle_slough_crossing__crossing_1835.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 57968,
+      "inputs_sha256": "cb8a8d8c1089c065e1ebc524e3a7901284bf43fc8847e12b6ea5b91ad1bf17bc",
+      "kind": "generated",
+      "phase_id": "crossing_1835",
+      "structure_id": "lasalle_slough_crossing"
+    },
     "log_jail__log_1833.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -3026,19 +3035,19 @@
     },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
-      "bytes": 6501732,
+      "bytes": 6522568,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "c14b084a78aedd405bcfadf558ed6f58164dc5d7586c21c4f3e6ef14a2c69eb3",
+      "inputs_sha256": "d8983557448813c30b15c218c27a6819b181de06e1f59dc113c23af795930db4",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
-        "max_m": 0.0055,
+        "max_m": 0.0029,
         "misses": 0,
         "rms_m": 0.00025,
         "samples": 28890
       },
       "terrain_epoch": "e1834_harbor_cut",
-      "triangles": 249629
+      "triangles": 250425
     },
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
@@ -3071,7 +3080,7 @@
       "baked_ao": false,
       "bytes": 1380,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "c14b084a78aedd405bcfadf558ed6f58164dc5d7586c21c4f3e6ef14a2c69eb3",
+      "inputs_sha256": "d8983557448813c30b15c218c27a6819b181de06e1f59dc113c23af795930db4",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",

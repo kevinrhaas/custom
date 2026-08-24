@@ -6206,6 +6206,63 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L181 — The La Salle slough crossing: a whole structure committed on a ruling, and the two earthworks that get a wagon onto it
+**Decision:** `data/structures/lasalle_slough_crossing.json` puts a timber street crossing
+over the La Salle drain where South Water Street meets it — a 12 m span, 4.27 m wide, on one
+log bent at mid-span, its puncheon deck 0.84 m over the water — and
+`terrain_spec.json` grades the street up to each end of it as two `fill` approaches
+(`lasalle_crossing_west`, `lasalle_crossing_east`) at 1 in 12. **Every attribute of the
+structure is `reconstructed`, including whether it existed at all**, and the record says so on
+its face rather than in a footnote.
+**Why:** the owner ruled on 2026-08-21 (T-0129) that the drain should run unbroken into the
+river "and have plank crossings for both the road and the sidewalk". Carrying the water
+through the street corridor — L150's amendment — takes the ground out from under South Water
+Street, and a graded public street that meets six metres of water either crosses it or stops.
+The town trustees ordered South Water pitched and graded from the United States Reservation to
+Randolph in August 1833, so it did not stop. The sibling crossing four hundred metres east IS
+attested — "where Water Street crossed it a log bridge was needed until after 1840" — and this
+record borrows its whole argument, one attribute at a time, saying at each which figure is
+being borrowed from a crossing that is not this one.
+**What is invented, and what bounded each invention.** The EXISTENCE, first and worst: nothing
+records a crossing here. The POSITION is derived rather than authored — the drain's committed
+centreline crossed with the street's committed path — but the decision to lay the deck in the
+track's SOUTHERN half is this entry's, and it was measured: the river's traced re-entrant opens
+northward across this longitude, so the water under the corridor is 6.10 m wide at N +3 and
+12.90 m at N +11, and a deck on the platted centreline would have to span sixteen metres of a
+river mouth. The SPAN is sized off the stream exactly as the sibling's 8 m is, and comes out at
+the same proportion (12 m over 5.55 m of water on its own centre line, dry abutment seats 3.10 and 3.35 m,
+against 8 m over 3.30 m and 2.35 m). The WIDTH, 4.27 m, is the one figure that exceeds the sibling and
+it is the owner's ask made dimensional: eight feet of wagon way and a six-foot plank footway
+beside it, the walk width this project lays everywhere else. Cleaver's documented ten feet
+belongs to the BRANCH bridges and is a yardstick here, not a measurement. The CLEARANCE is the
+sibling's 0.5 m on the sibling's reasoning, and the measured 0.44 m of water under the deck is
+what makes it read the same here. The BENT COUNT is the span's: the sibling argues zero for
+8 m and the same carpentry cannot be claimed for 12, so one bent halves it into two 6 m runs —
+against the archetype's fallback spacing, which would have put two supports in a six-metre
+stream. CONSTRUCTION, DECK KIND, STRINGER and PLANK are local practice from the 1883
+old-settlers statement and the sibling record, none of them attested here. The two APPROACHES
+are fills where every other approach in this dataset is a cut, because this deck stands over
+its banks where the others sit below theirs; their form is invented at the house 1 in 12, and
+their one departure from the house pattern is `end_overhang_m` 1.0 against 3.0 — three metres
+of fill past each deck end would take two thirds of the channel this ticket opened and put the
+owner's bulge back at a smaller scale.
+**Consequence:** from the owner's stand the drain runs unbroken into the river and a timber
+crossing carries South Water Street over it, walkable end to end — onto the graded fill, across
+the deck, off the other side, with water running under the whole span. Every vertex of the
+crossing carries `reconstructed` in the confidence channel, so a visitor who hides that tier
+loses the crossing and is left looking at the water it spans, which is the honest picture of
+what is known here. Aiming at it opens its own card. `tools/measure_slough_crossing.py` takes
+the readings on every commit — the drain unbroken from its inland reach to the river, open
+water under the deck, dry seats at both abutments — so the deck and the stream cannot drift
+apart the way the sibling's did for two months before T-0109 caught it.
+**How to resolve:** any period document that crosses this ground — a bridge or culvert order
+for South Water Street west of Clark, a grading record, a lot survey, or any view of the
+street at La Salle. A source that says the street crossed on FILL would refute the structure
+and hand the ground back to L150's superseded reading; that is the shape of the evidence this
+entry is waiting for, and it would be welcome.
+**Covers:** `lasalle_slough_crossing.function`, `lasalle_slough_crossing.crossing_1835.footprint`, `lasalle_slough_crossing.crossing_1835.position`, `lasalle_slough_crossing.crossing_1835.documented_range`, `lasalle_slough_crossing.crossing_1835.form.construction`, `lasalle_slough_crossing.crossing_1835.form.width_m`, `lasalle_slough_crossing.crossing_1835.form.clearance_m`, `lasalle_slough_crossing.crossing_1835.form.pier_count`, `lasalle_slough_crossing.crossing_1835.form.pier_kind`, `lasalle_slough_crossing.crossing_1835.form.deck_kind`, `lasalle_slough_crossing.crossing_1835.form.stringer_d_m`, `lasalle_slough_crossing.crossing_1835.form.plank_t_m`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_west`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_east`.
+**Recorded:** 2026-08-24.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
@@ -7379,9 +7436,9 @@ never a traced boundary. The terminus is a position from a 1933 pictorial recons
 north-side slough's measured 7.1 m band), both depths, the meander's exact swings (bent
 between the fixed readings, threading the committed roofs — old_bank_building cleared by
 2.4 m at the nearest pass) and the depth grading are invented outright, and the channel
-starts one cell south of the South Water corridor because Wright draws the stream stopping
-at the street line — the street's crossing (fill or culvert) is attested by that drawing and
-described by nothing. THE SILL WAS RESOLVED BY GRADING, NOT BY DEEPENING: the dossier's own
+RAN OUT one cell short of the South Water corridor until 2026-08-24, because Wright draws
+the stream stopping at the street line and the street's crossing was read as fill or a
+culvert attested by that drawing and described by nothing. THE SILL WAS RESOLVED BY GRADING, NOT BY DEEPENING: the dossier's own
 thalweg for these inland courses sits ABOVE datum ("wet mouths, damp inland courses" was
 chosen deliberately), so the join was not cut below water; the depth profile instead shallows
 the bed continuously from the wet reach (−0.5 m at the mouth) up through the join (+0.15 m)
@@ -7397,8 +7454,27 @@ carried at the grade that admits it.
 **How to resolve:** any period document locating the stream — a lot survey, a grading record,
 a bridge or culvert order for South Water Street west of Clark; see
 docs/RESEARCH/main_branch_sloughs_1833.md.
+**AMENDED 2026-08-24 (T-0129) — THE DRAIN NOW REACHES THE RIVER, AND FIFTEEN METRES OF IT
+ARE RECONSTRUCTED.** The owner, from South Water Street looking west at 277°: *"this slough
+has kind of a bulge of land and i would think that it would not have that and be a continous
+water drain into the river and have plank crossings for both the road and the sidewalk."*
+What he was looking at is what the unbroken corridor built — some ten metres of ground standing
++0.37 m over datum between the drain's head and the river's traced re-entrant, so the
+watercourse read as two pools with a causeway between them. `lasalle_slough_lower` gains a head vertex at
+(466, +10), inside that re-entrant, its junction vertex moves 2.5 m east and 1 m north to
+(469.5, −6) so the deepened reach clears the platted block's north-west corner — measured at
++0.32 m over datum afterwards, against the +0.14 m it held before this ticket — and its depth
+profile is restated in the longer arc length; the cut carried through is the SAME 3.2 ft and the SAME 4.0 m half-width
+as the rest of the reach, so no new depth and no new width is claimed — 16.4 m more of the
+same channel. Measured on the committed field afterwards: not one sample on the centreline
+from the head to N −30 stands above datum, and the water under the new crossing's deck runs
+5.55 m along its centre line, 0.17 m deep there and 0.38 m under its edges. WHAT IT COSTS: Wright's trace
+still stops at the street line, so those fifteen metres are reconstruction and not tracing.
+The fill-or-culvert reading they replace was never refuted by a source — it was superseded by
+a ruling — and what the ruling requires in exchange is a crossing no source places either,
+which is L181.
 **Covers:** `terrain.e1834_harbor_cut.swales.lasalle_slough_lower`, `terrain.e1834_harbor_cut.swales.lasalle_slough_upper`.
-**Recorded:** 2026-08-20. **Amended:** 2026-08-20 (T-0118).
+**Recorded:** 2026-08-20. **Amended:** 2026-08-20 (T-0118), 2026-08-24 (T-0129).
 
 ### L151 — Dooryard trees and bushes at 61 houses, every stem of them dealt
 **Decision:** `data/flora/plantings/town_dooryard_plantings.json` states 66 dooryard trees

@@ -20,7 +20,7 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 348,
+  "structure_records": 349,
   "physical_roofs": {
    "min": 338,
    "max": 339,
@@ -94,6 +94,7 @@
    "fort_dearborn_palisade",
    "fort_dearborn_parade",
    "lake_house_construction",
+   "lasalle_slough_crossing",
    "north_branch_bridge",
    "north_pier",
    "slough_log_bridge",
