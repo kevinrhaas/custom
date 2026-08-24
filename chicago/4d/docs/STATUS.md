@@ -1,5 +1,75 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0107: a landing on the west bank at Wolf Point, and a face that has to be afloat
+
+**The gap, and it was a scope gap rather than a finding.** T-0062 shipped five reconstructed docks
+on the owner's *"you can add more docks!"* and stated them on **South Water merchants**. That
+phrasing is the whole reason the west bank had no landing: the rule was never asked of it. The
+North Division shore carried a wharf only because Kinzie & Hunter's dock happens to be attested,
+and the west bank at Wolf Point — five buildings, all of them fronting the water — carried none.
+Neither T-0062 nor the branch it superseded (#258) had measured that shore and refused it.
+
+**What shipped.** Robert A. Kinzie's storehouse now STATES a dock at `confidence: reconstructed,
+geometry: simplified`, and the wharf layer draws it: a **13.0 m** deck on a timber crib, heel
+2 m into the traced 1834 west bank, face 6 m out, abreast the store's own east-facing river wall.
+**Five landings now stand where four did.** The trade test is written into the rule rather than
+into four hand edits, and it is now asked of every river frontage in the town: on the west bank it
+selects exactly one record and refuses the other four by their own trades — Wentworth's tavern,
+James Kinzie's residence, the Robinson and Caldwell cabins and Father Walker's meeting house state
+no dock and get none, which is the Temple Building's exclusion carried across the river. The
+invention is claimed at LIBERTIES **L180**.
+
+**What the sources actually carry, and where they stop.** The trade is attested twice —
+chicagology's "storehouse dealing in groceries and Indian goods" and Andreas's *"Indian Traders —
+Robert A. Kinzie, near Wentworth's tavern"* (scan p. 235). **NO SOURCE STATES A DOCK, WHARF OR
+LANDING ANYWHERE AT WOLF POINT**, which is why the statement is `reconstructed` and not `inferred`.
+What made this the strong candidate is that the record argued the case itself before any wharf
+layer existed: its committed position note of 2026-08-11 reads *"a storehouse trading goods off
+canoes has a positive reason to face the landing"* and set the facade due east on that reading. The
+placement's own uncertainty is unchanged and inherited whole — about **40 m along the bank** from
+the tavern (L7) and about 20 m across it from the georeference — so the landing is as well located
+as the store, and no better. The West Water / Canal ambiguity that puts the Green Tree and the
+saddlery within ~145 m of doubt does not reach this row: these five records are set by setback from
+the modern west-bank line, not off a named street corner.
+
+**The measurement that let it be drawn at all.** The traced 1834 bank runs **11.17 m** off the
+store's river wall; a standard-form deck at that foot stands in **1.06 m** of water for the whole
+13.0 m of its face on the committed heightfield, heel about 0.5 m clear on dry bank, clearance to
+the wall **7.81 m**. The boat layer independently floats a schooner in this same reach abreast this
+store (L146 / T-0140), so the modelled bed already carries a hull here.
+
+**A new refusal clause, and it is measured rather than asserted.** The deck outline is a rectangle
+set on the bank's own tangent — one standard form, so the dimensions are invented once (L132)
+rather than once per site — and **the bank bends at Wolf Point**. A rectangle run against a curve
+can put the far end of its face behind the bank, on dry ground: PR #258 measured exactly that at
+Hogan's store, whose face runs from 1.10 m of water at one end to **−0.34 m** at the other, and
+refused it rather than invent a bespoke outline for one frontage. That refusal is now **clause 6**:
+the face is sampled at ~1 m and a deck whose face would stand on dry ground is refused with the
+measured rise on the record, the way the trace-reach refusals already carry theirs. The record also
+now reports `least_depth_at_face_m` and `face_stations`, so the margin a drawn landing passes by is
+on the record rather than in the generator's head.
+
+**THE CLAUSE REFUSES NOTHING IN THE TOWN AS IT STANDS, AND IT IS PROVED ANYWAY.** Every drawn face
+is afloat by more than a metre (the least is Robert Kinzie's 1.06 m), so on the committed data the
+clause is indistinguishable from no clause. `--selftest` fires the whole clause table on constructed
+frontages — a straight bank, a flat bed, one thing wrong at a time — and it runs inside `--check`,
+which `tools/check.sh` already invokes, so no new gate step was added. **Negative control run:**
+with `if least <= 0.0` replaced by `if False`, the self-test goes red on 2 cases and exits 1. One of
+the two cases is a dry patch that falls BETWEEN the three points the record reports, which is why
+the run is sampled at 1 m instead of at the reported ends and middle.
+
+**The staleness half.** `log_dwelling_params.from_phase` now excludes `dock` from its confidence
+sweep, the same exclusion `frame_storefront_params` made for T-0062. Verified rather than assumed:
+`structure_inputs_sha(robert_kinzie_store)` is `e15168f3…` **before and after** the dock statement,
+while an unexcluded attribute added as a control does move it. Without this the statement would have
+marked the store's committed GLB stale on a runner with no Blender, when not one of its vertices can
+move.
+
+**Verification.** `tools/check.sh` **CHECK PASS** (validator, wharf re-derivation + the clause
+self-test, liberties compile, changelog contract, published mirror).
+`tools/smoke_renderer.mjs --published` — the west-bank leg, mobile 390×780; the wharf census
+assertion moved 4 → 5 drawn / 5 keep-outs / 3 refused with it, and `stands.length` with it.
+
 ## Shipped 2026-08-24 — T-0093: the verge stops fading through a screen of dots, and the ticket's own two stands say it was only half the near ring's doing
 
 **T-0093, the residue T-0086 wrote down and left.** The far-sward run closed the OUTER edge of the
