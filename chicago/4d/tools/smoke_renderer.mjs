@@ -3652,10 +3652,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 28
-        && frontage.census?.crossings === 12
+      frontage.census?.records === 4 && frontage.census?.walks === 26
+        && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 59
+        && frontage.census?.refused === 53
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
@@ -3701,10 +3701,12 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
-    // T-0188's six reconciled South Water placements welded two runs into one)
+    // chunks (T-0119), the town street edge's EIGHTEEN (T-0069 laid twenty-one;
+    // T-0188's six reconciled South Water placements welded two runs into one,
+    // and T-0199's last five welded two more — a chunk is one run of sidewalk,
+    // so a repair that closes a gap in the street wall costs a draw call)
     // and the TWO street-fence meshes T-0188 split off — one per covered street
     // that carries a fence — so the boards could leave the shadow map while the
     // fences stayed in it, all on ONE material, and the painted name on its own
@@ -3715,7 +3717,7 @@ for (const [label, viewport, touch] of [
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 39,
+        && frontage.meshes === 37,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4007,7 +4009,17 @@ for (const [label, viewport, touch] of [
       // them; both were re-derived against this project's own committed street
       // line and the face is now one unbroken run — the first whole block face
       // of sidewalk this street has ever had.
-      const southWater = marchChain(['blk_south_water_franklin_north_walk_1']);
+      // T-0199 lengthened this chain from one face to TWO faces and the crossing
+      // between them. The five stores T-0188 had to refuse are on the plat, so
+      // blk_south_water_wells's north face is one 97.6 m run where it was two
+      // stumps of 20.6 m and 41.1 m, and a board crossing now spans Wells Street
+      // between it and the Franklin face. 218.5 m of continuous street edge on
+      // the town's business front, where this street has never carried more than
+      // one block face at a time.
+      const southWater = marchChain([
+        'blk_south_water_franklin_north_walk_1',
+        'blk_south_water_franklin_north_crossing_blk_south_water_wells_north',
+        'blk_south_water_wells_north_walk_1']);
 
       // ---- AND WALKED, not teleported, over the crossing at the corner.
       // Start on the planks a few metres short of the crossing, point along it,
@@ -4141,13 +4153,15 @@ for (const [label, viewport, touch] of [
     // South Water's frontages came out in pieces because eleven documented
     // buildings on that side were placed against the modern kerb and stood up to
     // 8.17 m out in the platted roadway. Six were reconciled against this
-    // project's own committed street line; this is the face where that closed a
-    // whole block. Asserted on the RUN as well as on the samples, because a
-    // shorter run with the same lift would pass a sample-only bar.
-    check(`${label}: South Water's reconciled block face is one walk, end to end`,
-      edge.southWater.missing === 0 && edge.southWater.samples > 45
+    // project's own committed street line; that closed a whole block face.
+    // T-0199 reconciled the last five and the chain reaches a second face and
+    // the crossing between them — 218.5 m. Asserted on the RUN as well as on the
+    // samples, because a shorter run with the same lift would pass a
+    // sample-only bar.
+    check(`${label}: South Water's reconciled block faces are one walk, end to end`,
+      edge.southWater.missing === 0 && edge.southWater.samples > 105
         && edge.southWater.onPlanks === edge.southWater.samples
-        && edge.southWater.gaps === 0 && edge.southWater.run > 95,
+        && edge.southWater.gaps === 0 && edge.southWater.run > 215,
       `${edge.southWater.onPlanks} of ${edge.southWater.samples} sample(s) stood on `
       + `planks over ${edge.southWater.run?.toFixed(0)} m, `
       + `${edge.southWater.gaps} gap(s), least lift `
