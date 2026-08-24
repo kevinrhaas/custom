@@ -11068,6 +11068,30 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
   because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
 
+**The gates were open, and `p4_0` never drew the corner works it was said to (T-0095,
+2026-08-24).** Two findings, one measured off the sheet and one off the shipped mesh —
+`docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`, held by
+`tools/measure_fort_works_plate.py` and `tools/measure_fort_gates.py`.
+
+- **The plate raises no work at either angle it draws.** It raises exactly two roofed,
+  lanterned, log-faced works and both stand over the MIDDLE of the wall, at **0.435 and
+  0.521** of the drawn run; a corner work stands at 0.000 or 1.000. The one angle it shows
+  unoccluded is the north-east and it is drawn plain — which is what the record says of that
+  angle. The north-west angle, the one the record does put a work at, is behind the tree
+  outside the walls. **Nothing was massed at the angles**, and the log-faced work over the
+  gate was not built either: the sheet already carries a certified FIRST-fort feature (the
+  flagstaff, `data/exclusions.json`) and two roofed lanterned log towers is that fort's own
+  signature in everything but position. Same failure as T-0094, one day apart, on the same
+  sheet: the plate read by eye.
+- **Both documented gates stood a quarter open.** One leaf of each pair was placed from a
+  midpoint that collapsed onto its own jamb, so **0.90 m of the 3.6 m gateway was daylight
+  straight through the wall** and 0.90 m of leaf lay across the pickets outside the frame —
+  in the committed GLB, so in the bytes a visitor downloaded. Four lines in `palisade.py`,
+  one asset rebaked (`fort_dearborn_palisade__picket_1816`). The gate that holds it reads the
+  shipped mesh rather than re-deriving the placement, because the derivation was the fault.
+- **The south-west blockhouse already read above the curtain** and now has a number: 9.48 m
+  of building over a 3.80 m curtain, from its own instance bounds in the scene.
+
 **Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
 plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,
 Well, Shop, Out Buildings, U.S. Factor's House, Cultivated Field, the Ferry — the Fort Cemetery

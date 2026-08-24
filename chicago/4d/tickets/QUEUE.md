@@ -31,7 +31,6 @@ T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small
-T-0095 — The fort's corner works and its two documented gates, as the plate draws them
 T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
@@ -87,3 +86,4 @@ T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branc
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
+T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
