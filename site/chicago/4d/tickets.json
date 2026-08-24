@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 7:13 AM",
+  "generated_ct": "Aug 24, 2026, 8:45 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1647,7 +1647,7 @@
     {
       "id": "T-0094",
       "title": "The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1657,7 +1657,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 7:57:06 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 16
@@ -3101,6 +3101,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 56
+    },
+    {
+      "id": "T-0184",
+      "title": "The plate draws the fort's pickets three times coarser than the model builds them",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 58
     }
   ]
 }

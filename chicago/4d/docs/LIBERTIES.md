@@ -5970,6 +5970,64 @@ this refines and the 4.4 points it reserved), **L123** (why the layer is drawn a
 recorded cover), and ROADMAP **K57**, **K59**.
 **Recorded:** 2026-08-23.
 
+### L177 — The point on a Fort Dearborn picket is ours, and the plate that was said to draw it rules a flat top
+
+**Decision:** every picket of the fort's stockade is **sharpened over its top 0.312 m** — 8.4 % of
+the 3.7 m height, cut out of that height rather than added to it — and **no source says a word
+about the head of a Fort Dearborn picket.** The head is a reconstruction, and until now it was
+declared nowhere: it lives in a derived property of `generators/archetypes/palisade_params.py`
+(`picket_point_m = min(width × 1.3, height × 0.18)`), whose own docstring admits *"no source
+describes the head of a Fort Dearborn picket"*, and neither the record nor this file had ever
+repeated that where a reader would find it. **L47** covers the fabric of this wall in general terms
+— "every dimension of the fabric is ours" — and names the height, the width, the spacing, the gate
+and the bastions one by one. It does not name the head, and the head is the most conspicuous thing
+about the wall at eye level.
+
+**Why the head is built at all, and why it is not evidence.** A flat-topped post reads as a fence
+rail and a pointed one reads as a stockade; the sawtooth is what makes a visitor at the north wall
+see a fort rather than a paddock. That is a drawing argument, not a claim about 1816. Kinzie gives
+"high pickets" and nothing else; Andreas gives "a square stockade"; the 1830 Harrison plan is a
+plan and has no third dimension. The head is therefore **reconstructed** in this project's exact
+sense — invented within bounds because the scene needs it — and the bound is one picket width,
+which is the proportion a splitting axe leaves.
+
+**And the plate does not settle it, which is the half this entry exists to record (T-0094).** The
+ticket, and row 3 of `docs/RESEARCH/fort_dearborn_image_accuracy.md` before it, said the model's
+pickets were flat-topped and the plate's pointed. **Both halves are wrong.** The committed master
+`assets/gltf/fort_dearborn_palisade__picket_1816.glb` has carried 768 four-triangle heads since the
+archetype was written — 3,072 apex vertices at 3.700 m over 12,288 shoulders at 3.388 m — and
+`data/sources/assets/prefire_views_kevin_2026_08/p4_0.png` rules the curtain's top as a **straight
+line**: 0.45 px rms over 138 resolved columns, while the same plate resolves individual pickets at
+a 10 px pitch and stands the curtain 43 px tall, so a head of this proportion would have serrated
+it by 3.6 px — eight times the residual. `p4_1` rules the same flat cap. **The draughtsman had the
+resolution to draw a point and drew none.** That is not evidence that the pickets were flat: a
+lithographer ruling the top of a distant stockade is what a lithographer does, and these are
+tier-5 retrospective plates. It is evidence that the plate cannot be cited FOR the point.
+
+**Consequence:** the silhouette of the most recognisable structure in the town is ours, top to
+bottom — L47 already said so of its height and its posts, and this says so of their heads. The
+confidence view dithers the whole wall, which is the only thing standing between a visitor and
+that fact.
+
+**How to resolve:** the same evidence L47 asks for — a quartermaster return, a repair estimate or
+an engineer's report for the post between 1816 and 1836. A specification for pickets would settle
+the head, the height and the spacing in one sentence.
+
+**Held by:** `tools/measure_picket_plate.py --gate`, in `tools/check.sh`, which refuses a stockade
+whose apexes have gone flat, been capped, worn under 4 % of the picket, or been stacked on top of a
+full-height post. The plate half of that file reports and does not gate: a tier-5 lithograph may
+refute a claim made about itself and may not hold a build red.
+
+**No `Covers:` field, deliberately.** The head has no attribute of its own to claim — it is a
+proportion the archetype derives, not a value the record states — and claiming
+`form.construction` would put this entry's name on the word "log", which really is inferred and is
+not the invention being confessed. The honest form is an entry that claims nothing in the
+machine-readable field and says in prose exactly what was made up. The day a `picket_head`
+attribute exists on the record, this entry claims it.
+**Ticket:** T-0094, opened by T-0044, closed as refuted. **Related:** **L47** (the fabric of this
+wall), **L42** (the fort's buildings), **L174** (the ground outside its walls).
+**Recorded:** 2026-08-24.
+
 
 ## Resolved
 
