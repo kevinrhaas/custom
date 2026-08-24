@@ -15,6 +15,7 @@
 
 # --- BLOCKERS — small, and each one gates visible work below
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
+T-0165 — The bake cannot finish inside its 45-minute ceiling, because bake.sh runs the full two-viewport smoke as its last step
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 
@@ -85,7 +86,5 @@ T-0055 — Hold the Kinzie-view plate as a source record
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
-T-0030 — A queue card in Manager reading tickets.json
-
-# --- SUPERSEDED BY T-0160 — candidates for withdrawal, owner's call
 T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
+T-0030 — A queue card in Manager reading tickets.json
