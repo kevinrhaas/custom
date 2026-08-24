@@ -498,6 +498,39 @@ const ARCHETYPE_BY_ZONE = {
       dark: 0x58743e, light: 0x8a9c66, bark: 0x5d5748,
     },
   },
+  z10_settled_town: {
+    // THE LOMBARDY POPLAR (T-0117), and it is here rather than in `SPECIES` for
+    // the reason this table exists: no community mix may ever select it. It is
+    // a European cultivar that reaches this town as nursery stock, its zone
+    // record carries a density of ZERO per hectare to say so, and every stem of
+    // it in the scene is stated by `data/flora/plantings/town_planted_rows.json`.
+    // Held per zone, it is reachable by the planting pass — which reads
+    // `byZone[rec.zone]` — and by nothing else.
+    //
+    // `boleK` 0.12 is the LOWEST clear bole in this file and it is the species'
+    // signature: an 'Italica' is foliated nearly to the ground, which is what
+    // every committed plate of the Kinzie row draws — the spires stand in the
+    // fence line as columns of leaf, not as trunks under crowns. `dbh` is a
+    // slender stem for the height, because the tree runs to a single leader.
+    // The bark is the grey-brown of the balsam poplar above rather than the
+    // aspen's pale bole: no record states one, and this is not the tree a
+    // visitor could name from its wood.
+    //
+    // `puffs` 14 is the highest count in this file and it is a consequence of
+    // the record rather than a preference: the crown is 1.4-2.4 m on a 12-18 m
+    // stem, so the columnar ladder below has about 14 m of leader to fill and
+    // the masses have to be close enough together to touch. Ten was shot first
+    // and the notches between the rungs were visible from thirty metres. The
+    // cost is 412 triangles a tree — a five-sided bole in two segments, then a
+    // limb and an icosahedral mass per rung.
+    //
+    // Every number here is invented, as every number in `SPECIES` is; the
+    // record still wins on height, crown and foliage. docs/LIBERTIES.md L119.
+    populus_nigra_italica: { common: 'Lombardy poplar', dossier: 'ZONE 10',
+      form: 'columnar', h: [12, 18], dbh: [0.24, 0.42], spreadK: 0.14, boleK: 0.12, puffs: 14,
+      dark: 0x426036, light: 0x7a9260, bark: 0x5f5849,
+    },
+  },
 };
 
 /**
@@ -1682,8 +1715,33 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
   }
 
   // Where the foliage masses sit. `open` spreads them wide and low, `gallery`
-  // stacks them, `lean` throws them out over the water.
+  // stacks them, `lean` throws them out over the water, `columnar` files them up
+  // the leader.
+  //
+  // THE COLUMNAR LADDER IS NEW WITH T-0117 AND IT REDRAWS THREE SPECIES, not
+  // one. `columnar` was carried by `FORM_OF` and by the dune's aspen and balsam
+  // poplar from the day this file learned the dune, and it drew through the
+  // `else` branch above — a SCATTER: `hy` anywhere in 0.14–0.98, the offset up
+  // to 0.36 of the crown. On a crown as wide as it is tall that reads as a tree.
+  // On a Lombardy poplar it cannot: the record's own crown is 1.4–2.4 m on a
+  // 12–18 m stem, an aspect near 8:1, and masses thrown at random heights up
+  // fourteen metres of leader are separate blobs on a stick with daylight
+  // between them — the same "you can see straight through the stand" failure
+  // the limbs above were added to fix, one tree in. Shot rather than argued:
+  // even on the even ladder, at ten masses the notches showed from thirty
+  // metres, which is why the archetype above asks for fourteen.
+  //
+  // So a columnar crown is built the way the tree grows: the masses are FILED
+  // EVENLY from the base of the crown to the tip, close to the axis, and each
+  // one is drawn at half the crown's width so consecutive masses touch. The
+  // even ladder is what makes a spire rather than a stack, and it is right for
+  // all three species that declare the form — an aspen and a balsam poplar
+  // carry their foliage up a narrow leader too; they were being drawn as small
+  // round trees because nothing had ever asked the form to mean anything.
+  // Triangle cost is UNCHANGED: same puff count, same primitives, different
+  // positions and radii.
   const puffs = spec.puffs;
+  const columnar = spec.form === 'columnar';
   const centres = [];
   for (let i = 0; i < puffs; i++) {
     const a = (i / puffs) * Math.PI * 2 + rnd() * 1.4;
@@ -1692,6 +1750,15 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
     if (spec.form === 'open') {
       rad = (i === 0 ? 0.14 : 0.30 + rnd() * 0.24) * spread;
       hy = i === 0 ? 0.62 : 0.18 + rnd() * 0.62;
+    } else if (columnar) {
+      // Off-axis by a tenth of the crown at most: the jitter is there so the
+      // silhouette is not a cylinder, not so the masses wander off the leader.
+      rad = (0.04 + rnd() * 0.10) * spread;
+      // The ladder. `i/(puffs-1)` spans base to tip exactly; the jitter is a
+      // third of one rung, so the file stays a file. The last mass is pulled in
+      // to 0.97 so the tip closes over it rather than sitting proud of it.
+      const rung = puffs > 1 ? i / (puffs - 1) : 0.5;
+      hy = clamp01(rung * 0.97 + (rnd() - 0.5) * (0.66 / Math.max(1, puffs - 1)));
     } else {
       rad = (i === 0 ? 0.10 : 0.14 + rnd() * 0.22) * spread;
       hy = i === 0 ? 0.34 : 0.14 + rnd() * 0.84;
@@ -1741,9 +1808,19 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
     // scatter they read as a loose cloud of separate blobs with daylight
     // between them, which at town-edge range is the same "you can see straight
     // through the stand" failure the bare trunks were.
-    const rad = spread * (spec.form === 'open' ? 0.255 : 0.245)
+    //
+    // A COLUMNAR MASS IS DRAWN AT HALF THE CROWN'S WIDTH, not a quarter, and
+    // taller than it is wide. The quarter-width figure is calibrated for a
+    // crown carrying five masses scattered through a volume as wide as it is
+    // deep, where four of them overlap any line of sight. A file of masses up a
+    // single leader has no such redundancy: each one is on its own, so it has to
+    // reach the crown's own edge or the record's stated width is not what gets
+    // drawn. `squash` above 1 is the same argument on the other axis — a mass on
+    // a spire is an ellipsoid standing up, and the flattened dome that suits a
+    // spreading crown leaves gaps between the rungs of the ladder. T-0117.
+    const rad = spread * (spec.form === 'open' ? 0.255 : columnar ? 0.50 : 0.245)
       * (0.72 + rnd() * 0.58);
-    const squash = spec.form === 'open' ? 0.58 : 0.78;
+    const squash = spec.form === 'open' ? 0.58 : columnar ? 1.06 : 0.78;
     const flexBase = 0.42 + 0.44 * c[3];
     addPuff(buf, c[0], c[1], c[2], rad, squash, d2, l2, c[3], flexBase, rnd, conf);
   }

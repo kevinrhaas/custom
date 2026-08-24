@@ -1,5 +1,100 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
+
+**The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`
+§ 3.3 credits Juliette Kinzie with "Lombardy poplars shading a broad green between house and river"
+and tags the line `[DOC]`; the flora dossier does not mention the species at all, and
+`town_dooryard_plantings.json` left it out with a note saying no zone record described it. This run
+fetched the chapter from the URL the committed source record already names
+(`kinzie_waubun_1856` → authorama, ch. XVII "Chicago in 1831") and read it:
+
+> "On the northern bank of the river, directly facing the fort, was the family mansion of my
+> husband. It was a long, low building, with a piazza extending along its front, a range of four or
+> five rooms. **A broad green space was inclosed between it and the river, and shaded by a row of
+> Lombardy poplars.** Two immense cottonwood-trees stood in the rear of the building, one of which
+> still remains as an ancient landmark."
+
+Species, row, fenced green, side of the house, and the cottonwoods behind — all stated, by a
+near-contemporary who lived there. This is the only ornamental planting in the whole project that a
+text attests.
+
+**THE PLATES WERE MEASURED, NOT REMEMBERED.** Seven committed images draw that row. Each was opened
+and its skyline taken — for every column of the plate, the topmost dark pixel; the apexes are the
+local minima of that curve:
+
+| plate | spires | gaps (px) | gap ÷ height |
+|---|---|---|---|
+| `prefire_views_kevin_2026_08/p6_1.png`, plate "12" | 4 | 27, 22, 23 | 0.195 |
+| `chicago_kinzie_house_1833.png` (Chicago Magazine, Mar 1857) | 4 | 53, 59, 42 | 0.192 |
+| `chicago_kinzie_house_fort_dearborn_1812.jpg` (Lossing 1869) | 4 | 33, 34, 33 | 0.186 |
+| `chicago_kinzie_mansion_1832_and_1845_view.jpg` | 4 | 25, 20, 38 | 0.213 |
+| `prefire_views_kevin_2026_08/p3_0.png` | 4 | 7, 8, 6 | 0.190 |
+| `prefire_views_kevin_2026_08/p4_1.png` | 4–5 | 34, 35, 25, 21 | coarse |
+| `chicago_kinzie_house_1804.jpg` (Curt Teich postcard) | 5 | 59, 28, 20, 34 | a painting |
+
+**Five independently drawn plates agree on four stems and a gap of 0.195 of their own height,
+sd 0.010.** That is the count and the rhythm the rows are laid to. The two loosest are a
+low-resolution far view and a painting. Crown width comes from the one plate whose scan resolves an
+isolated spire against clear sky (the 1857 engraving: 24–27 px across on a 224 px stem, w/h
+0.107–0.121). No metre was taken off a perspective lithograph.
+
+**AND THE PLATES REFUSE THE OBVIOUS EXTENSION, which is the finding.** All seven draw the row at the
+SAME place — the Kinzie group on the north bank facing the fort. Not one shows a Lombardy poplar at
+the fort (`p4_0`, plate "1"; `p3_1`, plate "5"), on South Water Street, or in any town view.
+`docs/LIBERTIES.md` L151 had already named the missing evidence — *"a source describing the Lombardy
+poplars' spread into the town would additionally unlock the species"* — and it was not found. **And
+the house the row is attested at is excluded from this scene** (`kinzie_house`: gone by 1835). So the
+evidence carries a treatment and one unavailable location, which is L129's garden-picket shape
+exactly, and it is answered the same way.
+
+**What shipped.** `populus_nigra_italica` is held in `z10_settled_town` at **zero stems per hectare**
+— the zero is the claim that nothing grows this tree here, so no community mix may ever deal one —
+with a 12–18 m band whose ceiling is the *floor* of the eastern cottonwood's band in the same record,
+because every plate that draws both draws the cottonwoods above the poplars. `tools/generate_planted_rows.py`
+holds the rule and `check.sh` re-derives the record byte for byte. `trees.js` gains the archetype and
+a `columnar` branch in `addTree` that files the foliage masses evenly up the leader — the form value
+existed and had never meant anything, so the dune's quaking aspen and balsam poplar were being drawn
+as small round trees; they are spires now, at no change in triangle cost (same puff count, same
+primitives — only positions and radii move).
+
+**The rule, and what it refuses.** A dwelling by archetype and function; datable back at least five
+growing seasons; with 12 m or more of open ground between its own footprint and the water and nothing
+standing in between; and four stems 3.5 m apart on a line parallel to the local waterline, all clear
+of every committed footprint, track, fence and neighbouring stem, or the row is refused whole. **133
+of 137 dwellings fail the age clause** — and it is a clause about the DATASET, not about the houses:
+131 carry `from: 1835-01-01` because their own records say *"no evidence establishes that this
+particular building existed"*, which is ignorance rather than a claim of newness. Either way a grown
+ornamental at a house of unknown age is an invention on an invention. Of the four that pass, **James
+Kinzie's at Wolf Point is refused with its number** — 7.7 m of ground to the water is a strip, not a
+green.
+
+**Where they stand:** the Indian Agency House ("Cobweb Castle") on the north-bank green facing Fort
+Dearborn, 15.6 m out, four stems at 15.5 m; J. B. Beaubien's homestead west of the fort, 24 m out,
+18.0 m; the Clybourne cabins on the North Branch, 22.2 m out, 12.0 m.
+
+**The triangle cost was measured, not estimated** — the same stand shot twice, with and without the
+record in the published manifest (`shoot.mjs --at 855,150,225`):
+
+| | triangles | draw calls |
+|---|---|---|
+| with the rows | 876,858 | 114 |
+| without them | 868,618 | 114 |
+| **delta** | **+8,240** | **0** |
+
+That is **412 triangles per tree drawn** — a five-sided bole in two segments (20), fourteen limbs
+(112) and fourteen icosahedral foliage masses (280) — with eight of the twelve inside the sun's
+±240 m shadow box and therefore drawn twice: 8 × 824 + 4 × 412 = 8,240 exactly. **0.59 % of `full`'s
+1,400,000 ceiling**, and 10 % of the 79,623 of headroom the worst committed stand (Lake at Canal,
+1,320,377) carries — and none of the three rows is at that stand. No ceiling moved and no draw call
+was spent: the stems join the existing per-quadrant timber buffers. Recorded as **L179**.
+
+**What would change it:** any notice, diary, view, plat annotation or nurseryman's list placing a
+Lombardy poplar at a second Chicago address. **What is deliberately not here:** Dr. Harmon's nursery
+rows south of the fort, which `docs/research/02-flora.md` documents as young ornamental and fruit
+trees 2–5 m tall *"staked, in rows"* — a different treatment at a different scale, on ground about
+1.2 km east of the modelled box.
+
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
 
 **The defect, measured before anything was changed.** `renderers/web/js/streets.js` draws its ribbon

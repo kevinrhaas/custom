@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T16:21:32.588Z', date: 'Aug 24, 2026, 11:21 AM CT',
+    items: [
+      'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',
+      'They are Lombardy poplars, and this is the one piece of gardening in this project that a source states outright. Juliette Kinzie, writing of the Chicago she lived in, on her husband\u2019s house on the north bank: \u201cA broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars.\u201d',
+      'Seven old views of that house were opened and measured rather than remembered. Five of them, drawn by different hands, agree: four trees in the row, evenly spaced, each gap about a fifth of the trees\u2019 own height. That is the count and the rhythm these three rows are laid to.',
+      'What the pictures would not carry is a second address. Every one of them draws the poplars at that same house \u2014 and that house was derelict by 1832 and reported gone before this scene, so it is not in the town. Nowhere else in any view of Chicago this project holds is there a poplar at all.',
+      'So which greens get a row is settled by a rule rather than by taste. A house qualifies only if the project can date it back at least five growing seasons, and only if it has real open ground between itself and the water. Four houses out of a hundred and thirty-seven pass, and the fourth \u2014 James Kinzie\u2019s at Wolf Point \u2014 is turned down with its number: seven and a half metres of ground to the river is a strip, not a green.',
+      'Nobody attests a poplar at these three addresses, and the record says so on every tree. Borrowed from the source: the species, the row, the fenced green, and which side of the house it stands on. Ours: which houses, where exactly, and how tall.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',
