@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 6:00 AM",
+  "generated_ct": "Aug 24, 2026, 6:05 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3047,6 +3047,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 55
+    },
+    {
+      "id": "T-0180",
+      "title": "The bake opens a content PR on every run, because the build stamp it writes is always dirty",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0181",
+      "title": "The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }
