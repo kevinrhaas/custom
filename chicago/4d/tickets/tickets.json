@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 11:33 AM",
+  "generated_ct": "Aug 24, 2026, 11:50 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3245,6 +3245,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 56
+    },
+    {
+      "id": "T-0197",
+      "title": "Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }
