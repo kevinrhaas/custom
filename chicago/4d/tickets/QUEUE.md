@@ -87,3 +87,5 @@ T-0180 — The bake opens a content PR on every run, because the build stamp it 
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
+T-0184 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0185 — A house on Washington is told it is 'one unit of the party-line river row'
