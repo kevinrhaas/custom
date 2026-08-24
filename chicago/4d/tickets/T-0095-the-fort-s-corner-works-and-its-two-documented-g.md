@@ -1,7 +1,7 @@
 ---
 id: T-0095
 title: The fort's corner works and its two documented gates, as the plate draws them
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 369
 claimed_by: run 8/24/2026, 9:55:23 AM CT
 blocked_on: null
 needs_bake: true

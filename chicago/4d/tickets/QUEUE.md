@@ -35,7 +35,6 @@ T-0134 — The south bank at the Dearborn reach has no ground outside the platte
 
 # --- THE FORT — visible, mostly small
 T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
-T-0095 — The fort's corner works and its two documented gates, as the plate draws them
 T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
