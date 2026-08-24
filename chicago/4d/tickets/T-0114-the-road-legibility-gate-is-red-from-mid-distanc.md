@@ -130,3 +130,60 @@ Since T-0165 split the smoke into its own job, the nightly bake finally reaches 
 — and `bake.sh` runs under `set -euo pipefail`, so **these two failures now fail the nightly.** They
 have been red since 2026-08-20 and cost nothing, because no bake ever got far enough to run them.
 **T-0114 is now the last thing between the pipeline and a green end-to-end run.**
+
+---
+
+## FIXED 2026-08-24 — the middle of the road gets a remedy of its own
+
+`streets.js` gains a **mid-distance term** beside the two that already existed, on the one quantity
+that is neither a pixel count nor a near-field ramp — distance from the eye, sustained across the
+gap and released where the thin-pixel floor takes over:
+
+```glsl
+float near = 1.0 - smoothstep(15.0, 40.0, eyeM);
+float mid  = 1.0 - smoothstep(40.0, 700.0, eyeM);     // MID_GAIN 1.7
+float gain = max(mix(1.0, 2.4, near), mix(1.0, 1.7, mid));
+```
+
+**`max()`, not a product**, and that is load-bearing: the ramps overlap between 15 and 40 m and
+multiplying would stack to **4.1×** there, re-breaking the near field R-BUG3 tuned. Taking the
+larger leaves every metre under 40 m reading exactly what it read before.
+
+`MID_GAIN` is 1.7 against `NEAR_GAIN`'s 2.4 on purpose — the middle was never invisible, only under
+its bar. This lifts a band; it does not repaint the town.
+
+### Measured, mobile, published mirror
+
+| station · band | before | after |
+|---|---|---|
+| walker 2–40 m | 3.8 of 4.5, 90 % | 4.0 of 4.5, 90 % |
+| walker 40–100 m | 3.1 of 5.4, 87 % | 4.9 of 5.4, **100 %** |
+| **walker 100–250 m** | 1.8 of 3.2, **33 %** ✗ | 2.6 of 3.2, **98 %** ✓ |
+| walker 250–600 m | 7.0 of 4.5, 97 % | 9.2 of 4.5, 98 % |
+| aerial 100–250 m | 2.6 of 7.9, 85 % | 4.0 of 7.9, **95 %** |
+| **aerial 250–600 m** | 2.0 of 4.6, **54 %** ✗ | 2.9 of 4.6, **69 %** ✓ |
+| crossing 2–40 m | 2.5 of 2.5, 70 % | 2.5 of 2.5, **70 %** |
+
+**Both viewports: 28 passed, 0 failed.** All three road checks green at 390×780 and 1280×800.
+
+**The near field did not move**, which is the point of the `max()`: 2–40 m reads 90 % before and
+after, and the crossing station — the one R-BUG3 added because neither gated station stood on a road
+— reads 2.5 of 2.5 opaque at 70 % both times, identical.
+
+**No bar was touched.** `ROAD_MIN_DELTA_L`, `ROAD_MIN_PERCEPTIBLE` and `ROAD_MIN_PROBES` are
+unchanged; `git diff` on `smoke_renderer.mjs` is empty. The bands cleared the bars that were already
+there.
+
+### Why the aerial needed this and not the other lever
+
+The rejected experiment — `NEAR_FADE_M` 40 → 260 — lifted the walker's band to 67 % and left the
+aerial **completely unmoved at 54 %**, because from the air every probe is beyond any near-fade
+distance. A ramp that reaches 700 m catches both: the aerial's 250–600 m band sits inside it once
+camera altitude is counted into `eyeM`. One term, both checks, rather than a near-field constant
+stretched six-fold to cover a fault it was never shaped for.
+
+### What a visitor sees
+
+Down an open street, the road no longer fades out between about forty metres and the middle
+distance and then reappear further off. It runs continuously to where it should. From the air the
+street grid reads across the town instead of dissolving in the 250–600 m ring.

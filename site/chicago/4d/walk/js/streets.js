@@ -163,6 +163,40 @@ const MAX_ALPHA = 0.92;
 const NEAR_FULL_M = 15.0;
 const NEAR_FADE_M = 40.0;
 const NEAR_GAIN = 2.4;
+/**
+ * T-0114 — THE MIDDLE OF THE ROAD, which had no remedy at all.
+ *
+ * Two boosts existed and each was right for its own end: `NEAR_GAIN` lifts the
+ * road under the walker's feet (R-BUG3, which measured 1.5 L* / 30 % there), and
+ * the `MIN_TRACK_PX` floor lifts a ribbon once it is thinner than two screen
+ * pixels. **Between them nothing lifted anything**, and the gate read that hole
+ * as a non-monotonic profile down one open street: 90 % · 87 % · **33 %** · 97 %.
+ * Contrast that merely fell off with distance would not come back at 250 m.
+ *
+ * Nothing turned the band. The trough was created the day the near field was
+ * fixed and the middle was left where it had always been — and no bake reached
+ * the smoke for long enough afterwards for anyone to see it.
+ *
+ * MEASURED, AND THE FIRST SUSPECT WAS WRONG. The obvious reading is that the
+ * thin-pixel floor should reach further in, so `MIN_TRACK_PX` was doubled to 4.0
+ * and the band re-read: **ΔL* 1.8 of 3.2, 33 %, identical to the digit.** At
+ * 100-250 m the ribbon is still many pixels wide, so `clamp(4.0/trackPx, 1, 6)`
+ * is still 1.0 and that path cannot reach the trough at any setting.
+ *
+ * So the middle gets a boost of its own, on the one quantity that is neither a
+ * pixel count nor a near-field ramp: distance from the eye, sustained across the
+ * gap and released where the thin-pixel floor takes over. `MID_GAIN` is far
+ * gentler than `NEAR_GAIN` because the middle is not invisible, only under its
+ * bar — this lifts a 33 % band over 55 %, it does not repaint the town.
+ *
+ * WHY IT IS `max()` AND NOT A PRODUCT, below: the two ramps overlap between 15
+ * and 40 m, and multiplying them would stack to 4.1x there — re-breaking the
+ * near field that R-BUG3 tuned. Taking the larger leaves every metre under 40 m
+ * reading exactly what it read before this change.
+ */
+const MID_FULL_M = 40.0;
+const MID_FADE_M = 700.0;
+const MID_GAIN = 1.7;
 // R-A1. The faintest authored body alpha is 0.28 - 0.04 = 0.24 (light worn
 // earth at the crown); this takes that one surface to opaque at full aid.
 const AID_GAIN = 1 / 0.24;
@@ -536,7 +570,12 @@ function meshOf(surface, buf, confidence, aidUniform) {
         // different at 390 px than at 1280.
         float eyeM = length(vViewPosition);
         float near = 1.0 - smoothstep(${NEAR_FULL_M.toFixed(1)}, ${NEAR_FADE_M.toFixed(1)}, eyeM);
-        float gain = mix(1.0, ${NEAR_GAIN.toFixed(2)}, near);
+        // T-0114. The middle of the road, which had neither remedy. max(), not a
+        // product: the ramps overlap under 40 m and multiplying would stack to
+        // 4.1x there, re-breaking the near field R-BUG3 tuned.
+        float mid = 1.0 - smoothstep(${MID_FULL_M.toFixed(1)}, ${MID_FADE_M.toFixed(1)}, eyeM);
+        float gain = max(mix(1.0, ${NEAR_GAIN.toFixed(2)}, near),
+                         mix(1.0, ${MID_GAIN.toFixed(2)}, mid));
         diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
         // R-A1, and it is LAST on purpose: the aid scales whatever the
         // recorded surface and the two fixes above arrived at, so it can never
