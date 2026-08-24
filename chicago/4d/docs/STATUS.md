@@ -1,293 +1,87 @@
 # STATUS
 
-## Shipped 2026-08-24 — T-0098: the wood at the fort, and the plate says WEST
+## Shipped 2026-08-24 — T-0098: a stand at the fort, on the side the plate actually draws it
 
 **Visible run.** T-0044's image-accuracy pass listed eight gaps against the two committed Fort
-Dearborn plates; number 8 was *"No trees at the fort."* Forty relict black willows now stand on the
-ground outside the palisade's **west** wall. Before and after from `p4_0`'s own stand (`1145, 300`,
-yaw 180°): `docs/evidence/t-0098-before.png`, `-after.png`.
+Dearborn plates; number 8 was *"No trees at the fort."* Twelve relict black willows now stand on
+the ground outside the palisade's **west** wall. Before and after from `p4_0`'s own stand
+(`1145, 300`, yaw 180°): `docs/evidence/t-0098-before.png`, `-after.png`.
 
-**THE TICKET'S COMPASS WORD WAS WRONG, AND THAT IS THE FINDING.** T-0044's row 8 and T-0098's own
-title both say the mass stands **east** of the walls. Both were read by eye.
+**THE TICKET'S COMPASS WORD WAS WRONG, AND THAT IS THE FIRST FINDING.** T-0044's row 8 and
+T-0098's own title both say the mass stands **east** of the walls. Both were read by eye.
 `tools/measure_fort_trees_plate.py` measures the plate instead — foliage segmented as
-greener-than-red and darker than the sky, a 7×7 majority filter over the stipple, split at the two
-ends of the drawn stockade:
+greener-than-red and darker than the sky, a 7×7 majority filter over the stipple, split at the
+two ends of the drawn stockade:
 
 | | foliage px | largest connected component |
 |---|---|---|
 | frame-LEFT of the stockade | 2 322 | **924 px**, x 27–87, y 534–557 — bank grass on the viewer's own side of the river, below the waterline |
 | frame-RIGHT of the stockade | 35 714 | **33 334 px**, x 1189–1537, y 293–490 — a canopy, running off the right edge of the plate |
 
-**And frame-right is WEST**, argued off the stand rather than off the picture: `p4_0`'s viewpoint is
-the north bank looking SOUTH (HUD compass S 180° in `fort_from_the_north_bank_2026-08-19.png`), and
-the committed `chicago_lighthouse_1832` — E 1105.2 against the fort's centre at E 1152.0, **46.8 m
-west** — draws to the frame-right of the fort in that same shot. Two independent readings agree.
-Written up in `docs/RESEARCH/fort_dearborn_image_accuracy.md` § "Row 8's east is west"; the acceptance
-clause asked for trees *where the plate puts them* and that clause is met exactly, unweakened.
+**And frame-right is WEST**, argued off the stand rather than off the picture: `p4_0`'s viewpoint
+is the north bank looking SOUTH (HUD compass S 180° in `fort_from_the_north_bank_2026-08-19.png`),
+and the committed `chicago_lighthouse_1832` — E 1105.2 against the fort's centre at E 1152.0,
+**46.8 m west** — draws to the frame-right of the fort in that same shot. Two independent readings
+agree. Written up in `docs/RESEARCH/fort_dearborn_image_accuracy.md` § "Row 8's east is west"; the
+acceptance clause asked for trees *where the plate puts them* and that clause is met exactly,
+unweakened.
 
-**It is a rule, not a list.** `tools/generate_fort_trees.py` deals a 7.5 m grid in the fort's OWN
+**AND THE PLATE CANNOT DATE ITS OWN TREES — the second finding, and it changed the tier.** T-0197
+landed while this parcel was in flight. `data/exclusions.json` already assigns `p4_0`'s flagstaff
+to Whistler's **FIRST fort of 1803**, and T-0095 measured the plate's two roofed lanterned works
+at 0.435 and 0.521 of the wall — over the gate, not at the angles — and reads two such works as
+first-fort signature. Everything struck so far is the fort's FABRIC and both forts stood on the
+same ground, **but a draughtsman working decades later off first-fort descriptions was drawing a
+SCENE, and there is no reason his trees are better dated than his blockhouses.** Nor does the
+dataset help: `docs/research/02-flora.md`, on Andreas, ends the South Division's river timber belt
+**east at Wells Street**, 900 m west of this reservation, and `trees.js` enforces that limit — a
+BELT here would contradict the dataset. A few relict boles on used ground east of a belt's end
+would not, which is what `z10_settled_town` records its black willow as: *"Left along the bank
+where the landing was cut."* **So existence is `reconstructed` with EMPTY sources**, downgraded
+from `inferred` before merge, and the record says why in its own note.
+
+**It is a rule, not a list.** `tools/generate_fort_trees.py` deals a 12.5 m grid in the fort's OWN
 footprint frame, west of the wall, beyond the apron — the inner edge read out of
-`fort_dearborn_apron.json`'s own `apron_width_m` rather than retyped — and every candidate is put to
-the renderer's own refusals with a working margin. **30 of 70 points are refused, 20 of them for
-standing in the river's own bend north-west of the fort**, which is what cuts the wood back to the
-falling ground between wall and water — the ground the plate draws the mass on. `tools/check.sh`
-re-derives the record byte for byte.
+`fort_dearborn_apron.json`'s own `apron_width_m` rather than retyped — and every candidate is put
+to the renderer's own refusals with a working margin. **12 of 24 points are refused** — 6 in the
+river's own bend north-west of the fort, 4 on the fort's trodden apron, 2 inside a committed
+footprint's clearance — which cuts the stand back to the falling ground between wall and water,
+the ground the plate draws its mass on. `tools/check.sh` re-derives the record byte for byte, and
+the gate was proved to fire three ways.
 
 **The species is the measurement's, not a preference.** The plate's crowns stand 127 px above the
 wall foot: **8.8 m** on the fort's committed 53 m footprint (apparent width 59.86 m at 8° off the
-grid), **10.9 m** on its committed 3.7 m picket height. The two scales differ by 24 % and are printed
-side by side, never averaged — that spread is the ±20 % the palisade's placement note already carries.
-Plus the 0.70 m the bank falls under the wood, derived from the heightfield. Of `z10_settled_town`'s
-three recorded trees only the relict **black willow** (9–14 m) is banded low enough to carry it; the
-relict elm (16–24 m) and cottonwood (18–26 m) are refused in the record's own prose, and `trees.js`
-would refuse the stem anyway. Every height is dealt inside the OVERLAP — 9.5–11.6 m — so it satisfies
-the renderer's band check and the picture at once.
+grid), **10.9 m** on its committed 3.7 m picket height. The two differ by 24 % and are printed side
+by side, never averaged — that spread is the ±20 % the palisade's placement note already carries.
+Plus the 0.54 m the bank falls under the stand, derived from the heightfield. Of
+`z10_settled_town`'s three recorded trees only the relict **black willow** (9–14 m) is banded low
+enough to carry it; the relict elm (16–24 m) and cottonwood (18–26 m) are refused in the record's
+own prose, and `trees.js` would refuse the stem anyway. Every height is dealt inside the OVERLAP —
+**9.3–11.4 m**.
 
-**What is invented** (L179): how far west the wood reaches — the plate cannot bound it, the mass
-leaves the right edge of the picture — how far it wraps past the wall's ends, how close the stems
-stand, and every coordinate and height inside those bounds. **What is deliberately NOT built:** the
-two-storey frame house with the double gallery that stands inside the mass in `p4_0`. That is a
-structure record, no source this project holds identifies it, and a building invented to fill a
-lithograph is a far larger liberty than a tree.
+**THE TRIANGLE CEILING, AND THIS PARCEL OWNED THE BREACH.** The record was first written as **40
+stems**. Measured in the browser, the same scene with and without it: **+12 800 triangles for forty
+stems, 320 a stem, and no new draw call** — a placed stem goes into the timber layer's existing chunk buffers, and it is
+**never culled by distance and never thinned by a detail level's `keep` fraction the way a dealt
+stem is**, so it costs the same at `light`, at `balanced` and 1.3 km away as it does at the fort.
+The desktop part-4 leg then read `balanced` at **1 218 562 of 1 210 000** — over by 8 562 — with
+`full` at 1 391 784 of 1 400 000 behind it. **The parcel's whole-scene cost is larger than the
+overage**, so a forty-stem version is big enough to own that breach outright; how much of it fell
+inside that particular frustum is not established by a whole-scene reading, and the honest test is
+the re-run below rather than the subtraction. **Twelve stems cost 3 520 measured.** Reducing an invented extent is not weakening an assertion — the
+ceiling is untouched, and the cut is written at the two constants it changed, with both reasons.
 
-**Cost, measured rather than assumed.** In the browser at `p4_0`'s stand, detail `full`, the same
-scene with and without the record: **870 334 → 883 134 triangles, +12 800 for forty stems — 320 a
-stem** — and **114 draw calls either way**, because a planted stem goes into the timber layer's
-existing chunk buffers and opens nothing new. The tier ceilings are held at the worst of the whole
-stand set by the release smoke, and were re-read there rather than inferred from this figure (see
-the gate results in the PR). Note for whoever spends the next of that headroom: a PLACED stem is not
-thinned by the detail level's `keep` fraction the way a dealt one is, so these forty cost the same
-at `light` as at `full`. `tools/planting_reach_baseline.json` gains one line —
-`salix_nigra` is newly placed from `z10_settled_town` — re-banked with `--update` in this commit,
-which is the remedy that file's own message names.
+**What is deliberately NOT built:** the two-storey frame house with the double gallery that stands
+inside the mass in `p4_0`. That is a structure record, no source this project holds identifies it,
+and a building invented to fill a lithograph is a far larger liberty than a tree. Recorded as
+**L181**.
 
-## Shipped 2026-08-24 — T-0107: a landing on the west bank at Wolf Point, and a face that has to be afloat
+**What the next run should know.** `balanced` has of the order of **400 triangles** of headroom
+left at Lake Street at Canal with this parcel in, and `full` about **8 200**. The next visible
+parcel of any size will breach one of them, and the two honest routes are the ones T-0115 names —
+reduce the cost, or consciously re-budget at the definition. **T-0147** (re-lower the ceilings once
+the trims land) and **T-0089** are where that number lives.
 
-**The gap, and it was a scope gap rather than a finding.** T-0062 shipped five reconstructed docks
-on the owner's *"you can add more docks!"* and stated them on **South Water merchants**. That
-phrasing is the whole reason the west bank had no landing: the rule was never asked of it. The
-North Division shore carried a wharf only because Kinzie & Hunter's dock happens to be attested,
-and the west bank at Wolf Point — five buildings, all of them fronting the water — carried none.
-Neither T-0062 nor the branch it superseded (#258) had measured that shore and refused it.
-
-**What shipped.** Robert A. Kinzie's storehouse now STATES a dock at `confidence: reconstructed,
-geometry: simplified`, and the wharf layer draws it: a **13.0 m** deck on a timber crib, heel
-2 m into the traced 1834 west bank, face 6 m out, abreast the store's own east-facing river wall.
-**Five landings now stand where four did.** The trade test is written into the rule rather than
-into four hand edits, and it is now asked of every river frontage in the town: on the west bank it
-selects exactly one record and refuses the other four by their own trades — Wentworth's tavern,
-James Kinzie's residence, the Robinson and Caldwell cabins and Father Walker's meeting house state
-no dock and get none, which is the Temple Building's exclusion carried across the river. The
-invention is claimed at LIBERTIES **L180**.
-
-**What the sources actually carry, and where they stop.** The trade is attested twice —
-chicagology's "storehouse dealing in groceries and Indian goods" and Andreas's *"Indian Traders —
-Robert A. Kinzie, near Wentworth's tavern"* (scan p. 235). **NO SOURCE STATES A DOCK, WHARF OR
-LANDING ANYWHERE AT WOLF POINT**, which is why the statement is `reconstructed` and not `inferred`.
-What made this the strong candidate is that the record argued the case itself before any wharf
-layer existed: its committed position note of 2026-08-11 reads *"a storehouse trading goods off
-canoes has a positive reason to face the landing"* and set the facade due east on that reading. The
-placement's own uncertainty is unchanged and inherited whole — about **40 m along the bank** from
-the tavern (L7) and about 20 m across it from the georeference — so the landing is as well located
-as the store, and no better. The West Water / Canal ambiguity that puts the Green Tree and the
-saddlery within ~145 m of doubt does not reach this row: these five records are set by setback from
-the modern west-bank line, not off a named street corner.
-
-**The measurement that let it be drawn at all.** The traced 1834 bank runs **11.17 m** off the
-store's river wall; a standard-form deck at that foot stands in **1.06 m** of water for the whole
-13.0 m of its face on the committed heightfield, heel about 0.5 m clear on dry bank, clearance to
-the wall **7.81 m**. The boat layer independently floats a schooner in this same reach abreast this
-store (L146 / T-0140), so the modelled bed already carries a hull here.
-
-**A new refusal clause, and it is measured rather than asserted.** The deck outline is a rectangle
-set on the bank's own tangent — one standard form, so the dimensions are invented once (L132)
-rather than once per site — and **the bank bends at Wolf Point**. A rectangle run against a curve
-can put the far end of its face behind the bank, on dry ground: PR #258 measured exactly that at
-Hogan's store, whose face runs from 1.10 m of water at one end to **−0.34 m** at the other, and
-refused it rather than invent a bespoke outline for one frontage. That refusal is now **clause 6**:
-the face is sampled at ~1 m and a deck whose face would stand on dry ground is refused with the
-measured rise on the record, the way the trace-reach refusals already carry theirs. The record also
-now reports `least_depth_at_face_m` and `face_stations`, so the margin a drawn landing passes by is
-on the record rather than in the generator's head.
-
-**THE CLAUSE REFUSES NOTHING IN THE TOWN AS IT STANDS, AND IT IS PROVED ANYWAY.** Every drawn face
-is afloat by more than a metre (the least is Robert Kinzie's 1.06 m), so on the committed data the
-clause is indistinguishable from no clause. `--selftest` fires the whole clause table on constructed
-frontages — a straight bank, a flat bed, one thing wrong at a time — and it runs inside `--check`,
-which `tools/check.sh` already invokes, so no new gate step was added. **Negative control run:**
-with `if least <= 0.0` replaced by `if False`, the self-test goes red on 2 cases and exits 1. One of
-the two cases is a dry patch that falls BETWEEN the three points the record reports, which is why
-the run is sampled at 1 m instead of at the reported ends and middle.
-
-**The staleness half.** `log_dwelling_params.from_phase` now excludes `dock` from its confidence
-sweep, the same exclusion `frame_storefront_params` made for T-0062. Verified rather than assumed:
-`structure_inputs_sha(robert_kinzie_store)` is `e15168f3…` **before and after** the dock statement,
-while an unexcluded attribute added as a control does move it. Without this the statement would have
-marked the store's committed GLB stale on a runner with no Blender, when not one of its vertices can
-move.
-
-**Verification.** `tools/check.sh` **CHECK PASS** (validator, wharf re-derivation + the clause
-self-test, liberties compile, changelog contract, published mirror).
-`tools/smoke_renderer.mjs --published` — the west-bank leg, mobile 390×780; the wharf census
-assertion moved 4 → 5 drawn / 5 keep-outs / 3 refused with it, and `stands.length` with it.
-
-## Shipped 2026-08-24 — T-0093: the verge stops fading through a screen of dots, and the ticket's own two stands say it was only half the near ring's doing
-
-**T-0093, the residue T-0086 wrote down and left.** The far-sward run closed the OUTER edge of the
-meadow by replacing a coverage ramp with a density handover, and said in the same STATUS entry that
-it had not touched *"the near ring's own outer dither at 5–7.6 m, which is still a screen-door ramp
-and is still what a close look at the verge shows"*. This is that run.
-
-**What a visitor sees.** Stand anywhere in open prairie on a phone and the grass from about two
-paces out to about four was drawn as a mesh of dots — every tuft in the middle of the frame carved
-into dotted vertical columns by an ordered 4×4 screen door. It is written solid now. On a desktop
-the same band sits at 4.8–7.0 m and the effect is subtler but present; it is gone there too.
-
-**The measurement, and the instrument, because there was none.** `tools/measure_near_verge.mjs`
-reads every flora instance's own `aChiRing` back off the buffer that went to the GPU and applies the
-vertex program's own expression, so a plant is classed exactly as the shader classes it: `whole`
-(coverage 1, written solid, the fragment guard skips the Bayer branch), `partial` (0 < coverage < 1,
-every fragment thresholded — *these and only these are the dots*), `absent`. It then projects each
-drawn plant's own recorded height and spread to screen and sums the footprints, because a hundred
-plants at forty metres are four pixels and the complaint is about SCREEN. Mobile runs at
-`deviceScaleFactor: 1.5` rather than the smoke's 2, so one measured pixel is one drawing-buffer
-pixel — the screen door is locked to `gl_FragCoord` and a 4/3 resample smears the grain being
-measured.
-
-Screen-doored share of the frame inside 9 m, published mirror, before → after. The bracketed
-figure is the same union less the footprints of the solid plants standing in front of it, so the
-pair is a ceiling and a floor on the same thing:
-
-| stand | mobile `light` | desktop `full` |
-|---|---|---|
-| South Water approaching Wells | 0.000 → 0.000 % (0.000 → 0.000) | 0.000 → 0.000 % (0.000 → 0.000) |
-| the same, from the verge | 20.788 → **2.081** % (5.073 → **0.058**) | 11.973 → **0.000** % (0.398 → **0.000**) |
-| Wells approaching Lake | 1.729 → 1.729 % (0.937 → 0.937) | 14.843 → **0.000** % (5.178 → **0.000**) |
-| open prairie | 53.654 → **15.395** % (6.198 → **0.136**) | 45.173 → **0.000** % (0.264 → **0.000**) |
-
-**`flora-near` carries no partially-covered instance at any of the eight readings**, against 198 and
-174 at the open-prairie stand alone before; and **no plant at any stand is caught mid-ramp on either
-converted boundary** — 0 of 0, which is the gate. At `full` the verge is clean everywhere. What is
-left on a phone is the mid and forb rings' own OUTER ramps, which at `light` reach in to 5.4 m and
-7.4 m — see *What this run did NOT do*. At **Wells approaching Lake on a phone the reading does not
-move at all, to the pixel**: at `light` there is no near ring in frame there and the mid ring's
-inner ramp had only four cards in it, so everything screen-doored at that stand is the outer ramp
-this run does not touch. That is the honest reading and it is banked as such.
-
-**And the sward is exactly as thick as it was.** Counting green-dominant pixels in the same frame
-before and after, open prairie at 390×780: the middle band (rows 50–72 %) **54.17 % → 54.52 %**, the
-foreground (rows 72–100 %) **79.61 % → 79.99 %**. Half a plant drawn everywhere and a whole plant
-drawn half the time come to the same cover, which is the arithmetic in `slotRing` read back off the
-picture.
-
-**THE PRIME SUSPECT IS ONLY HALF THE AUTHOR, and at the ticket's own two stands it is none of it.**
-T-0086's two stands are both in a roadway, and `station()` clears every plant off the travel track —
-10.5 m wide on South Water, 7 m on Wells. So at *South Water approaching Wells* the near ring places
-**0 tufts at `light` and 1 at `full`**: there is no near ring there to dither. At *Wells approaching
-Lake* on a phone the near set is empty again and **every screen-doored pixel of the verge is written
-by the mid ring's inner ramp fading IN across 4.5–7.5 m** — the other side of the same handover,
-which the ticket names as existing and does not name as an author. Only in open prairie and on the
-verge proper does the near ring dominate (5.90 % against the mid ring's 3.65 % exposed, mobile).
-So the fix takes **both** sides: the near ring's outer edge and the mid ring's inner edge.
-
-**And the band is not where the ticket says.** `ringsFor` insets every fade ring inside its own
-lattice by the 0.6 m rebuild step, so the near ring's ramp runs **4.80–7.00 m** at `full`, not
-5.4–7.6 — measured, as the `d` range of the partial instances. At `light` the ring is 4.6 m and the
-ramp is **1.80–4.00 m**, which is under the walker's feet rather than ahead of them, and is why the
-phone frame is the dramatic one.
-
-**The fix is T-0086's own answer, applied to a ring that still has an edge in it.** Two flags in
-`TUNE` — `near.spreadOuter` and `mid.spreadInner` — move the band out of the ring the shader ramps
-and into a per-slot SPREAD of the boundary itself: a slot's own outer radius is
-`fade[0] − band × handoverRank(e, n)`, world-anchored and quantised to ⅛ m exactly as `farRank` is,
-and the ring the shader reads is a step (`HARD = 1e-4`). The fraction of slots drawn at distance `d`
-is then `clamp((fade[0] − d) / band)` — *the same number the alpha ramp used to write* — so the
-expected ground cover across the band is unchanged to the arithmetic and every tuning figure still
-means what it meant. What is gone is the stipple: a plant is drawn whole or not at all, and a
-stochastic density ramp has no edge in it to dither.
-
-**What did NOT change, and it is most of the file.** Placement is untouched — every lattice slot is
-still dealt a species and still counted by the drawn census, so no community's population or cover
-figure moves. The mid ring's *outer* fringe, which is what keeps the sward's boundary off a constant
-screen row (§ S6a item 3), is untouched. Heights are untouched (T-0035: the ramp has never been a
-height since). The near ring pays *less* fill than before, not more: a plant outside its own ring
-collapses to a point in the vertex program instead of rasterising and discarding half its fragments.
-
-**The gate, and it fires.** `--gate` asserts one thing strictly: **no plant is caught mid-ramp on
-either converted boundary**, zero rather than small, because a boundary handed over by density
-cannot produce a coverage strictly between 0 and 1. Proved red by putting the pre-T-0093
-`flora.js` back into the published mirror and re-running: *"253 plant(s) caught mid-ramp on the
-near/mid handover, covering 53.277 % of the frame"* — 198 near tufts on the outer ramp and 55 mid
-cards on the inner one — plus the banked-residue check, *"screen-doored verge grew 15.395 % →
-53.654 %"*. Republished, the same command prints **GATE PASS** and reproduces 105 373 px to the
-pixel. The residue that T-0093 does not close is banked in `tools/near_verge_baseline.json` and
-held against regression rather than against a constant.
-
-**`HARD` is a micron, and that is a measured figure.** The step the shader is left holding has to
-be narrower than the old 1e-4 floor in `fadeOf` and in the GLSL: simulated over 40 000 slots, a
-0.1 mm band still catches one to three of them mid-ramp — a plant whose own boundary happens to
-fall within a tenth of a millimetre of the camera as it passes. Invisible, but not zero, and zero
-is the assertion worth being able to make. So the division floor moved to 1e-6, where world
-positions are float32 at 800 m and already spaced ~60 microns apart, so the difference the shader
-computes cannot land inside it at all. `FAR_RING` keeps its own 1e-4 — an outer radius of 1e9 is
-never within a millimetre of anything.
-
-**Two things follow that are worth stating.** The flower heads ride their PLANT's ring now rather
-than the layer's — on a spread boundary the layer's ring answers for no particular tuft, and a head
-hung on it would be drawn out to 7 m over a plant whose own handover had already taken it away at
-five, which is R-BUG7 rebuilt from the other end. And `flora.fadeAt`/`heightAt` take the whole
-four-number ring now, not just the outer radius: with the mid ring's inner boundary spread per slot,
-a reader carrying only the outer one would be told every mid card past 4.5 m is drawn. The pop-in
-gate and the boundary gate in `tools/smoke_renderer.mjs` were updated to pass all four, which makes
-them read the drawing more exactly, not less.
-
-**What this run did NOT do.** The mid and forb rings' own OUTER coverage ramps are still screen-door
-ramps, and at `light` detail they reach in as far as **5.4 m** and **7.4 m** — inside the verge on a
-phone. That is a different edge from the one T-0093 names (it is the mid→far handover, which T-0086
-answered by standing the far band over it rather than by converting it) and it is the residue this
-run's gate holds against regression rather than closes. It is filed as its own ticket.
-## Shipped 2026-08-24 — T-0094: the fort's pickets were never flat-topped, and the plate never drew them pointed
-
-**Nothing in the scene moved, and that is the finding.** T-0094 said *"the fort's pickets are
-flat-topped and dark, where the plate draws them pointed and pale."* It came off row 3 of
-`docs/RESEARCH/fort_dearborn_image_accuracy.md`, which read the plate by eye and the model by eye.
-**Both halves are wrong, and `tools/measure_picket_plate.py` now holds the numbers.**
-
-- **The model.** `generators/archetypes/palisade.py::_picket` has built a four-triangle sharpened
-  head on every post since the archetype was written. The committed master agrees without being
-  asked: 21,504 picket positions on three heights — 6,144 feet at 0.000 m, 12,288 shoulders at
-  3.388 m, **3,072 apexes at 3.700 m**, four per post over 768 posts. **0.312 m of head, 8.4 % of
-  the picket.** It reads at the wall and it still reads from `p4_0`'s own stand.
-- **The plate.** `p4_0` rules the curtain's top **flat** — 0.45 px rms over 138 resolved columns,
-  peak-to-peak 2.0 — while resolving individual pickets at a **10 px pitch** on a **43 px** wall, so
-  a head of the model's proportion would have serrated it by 3.6 px, eight times the residual.
-  `p4_1` rules the same cap. The draughtsman had the resolution and drew none.
-- **The tone.** The plate paints this one continuous wall across **1.85×** of tone in a single
-  view — lum 191 east of the gate work, 103 west of it — and `hewn_log`, the surface shipped, is
-  **lum 143, between them**. A plate that draws half a stockade darker than the model and half
-  paler warrants moving it in neither direction. The whitewash stays refused: Fergus's board fence
-  is the enclosure of 1850.
-
-**What the run changed, honestly:** the card. A visitor who opens the stockade now reads that the
-point on every picket is ours, what the plate does and does not show, and why the tone was not taken
-from it — none of which the record said before. **L179** records the head as the invention it is;
-L47 had covered "the fabric" in general and never named the most conspicuous part of it.
-
-**Held so it cannot be re-filed off a screenshot:** `tools/measure_picket_plate.py --gate` in
-`check.sh` refuses a stockade whose apexes have gone flat, been capped, worn under 4 % of the
-picket, or been stacked on top of a full-height post. Proved red end to end against a real GLB with
-its 3,072 apexes rewritten to the shoulder. The plate half of the same file **reports and does not
-gate** — a tier-5 retrospective lithograph may refute a claim made about itself and may not hold a
-build red.
-
-**Not done, and stated rather than skipped.** The acceptance also asked the record to carry the head
-as a **form value**. It cannot without a bake: `generators/mesh_inputs.py` hashes the resolved
-parameters, and any new key under `form` restales the GLB — verified, not assumed — and there is no
-Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate, and
-the form attribute is left for the run that has a bake. What the plate DOES say about the pickets —
-its rhythm is nearly three times coarser than the model's — is **T-0185**.
-
-Evidence: `docs/evidence/t-0094-plate-vs-model.png`, `docs/evidence/t-0094-p4_0-stand.png`.
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
 
 **The defect, measured before anything was changed.** `renderers/web/js/streets.js` draws its ribbon

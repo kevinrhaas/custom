@@ -47,7 +47,7 @@ notice it:
 | 5 | No gate is drawn in either documented wall; the plate shows a log-faced work over the gate. | geometry — needs the bake |
 | 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
-| 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — 40 relict black willows west of the palisade (`data/flora/plantings/fort_dearborn_wood.json`, L179); before/after at `docs/evidence/t-0098-{before,after}.png` |
+| 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L181); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
 ## Row 3 was wrong, and the correction is the interesting part (T-0094, 2026-08-24)
 
@@ -178,3 +178,27 @@ Two other numbers the same measurement fixes, and they bound what T-0098 built:
 
 The evidence overlay — the segmentation tinted over the plate, with the stockade's two ends, the
 picket band and the measured mass drawn on it — is `docs/evidence/t-0098-plate-measured.png`.
+
+### …and it cannot date them (T-0098, the same run)
+
+Measuring which SIDE the mass is on does not establish WHEN it stood, and this row's other half
+had never been asked. `data/exclusions.json` assigns `p4_0`'s flagstaff to **Whistler's first fort
+of 1803**; T-0095 measured the plate's two roofed, lanterned works at 0.435 and 0.521 of the wall —
+over the gate, not at the angles — and reads two such works as first-fort signature. Everything
+struck so far is the fort's FABRIC, and both forts stood on the same ground. **But a draughtsman
+working decades later off first-fort descriptions was drawing a scene, and there is no reason his
+trees are better dated than his blockhouses.**
+
+The dataset does not rescue it either. `docs/research/02-flora.md`, on Andreas, ends the South
+Division's river timber belt **east at Wells Street** — some 900 m west of this reservation — and
+`renderers/web/js/trees.js` enforces that limit in `timberEastLimits`, so the dealt timber layer
+stops far short of the fort for a documented reason. **A belt at the fort would contradict the
+dataset.** A few relict boles on ground people had used east of a belt's end would not, and that
+is precisely what `z10_settled_town` records its black willow as: *"Left along the bank where the
+landing was cut."*
+
+So T-0098 built at the `reconstructed` tier with EMPTY sources, and built a **twelve-stem open
+stand rather than the plate's closed canopy** — the record states the difference rather than
+letting a visitor infer that the plate's mass was reproduced. For T-0197's audit: **row 8's
+compass word is struck, and row 8's implicit date is struck with it.** What is left standing of
+the row is that a draughtsman drawing this fort put trees outside its walls, on the west side.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the wood `p4_0` draws outside Fort Dearborn's walls (T-0098).
+"""Generate the relict stand outside Fort Dearborn's west wall (T-0098).
 
 WHAT THIS IS. T-0044's image-accuracy pass listed eight gaps between the render and the two
 committed Fort Dearborn plates. Number 8: *"No trees at the fort; `p4_0` puts a tree mass
@@ -62,23 +62,57 @@ in that record reads *"Left along the bank where the landing was cut."* The reli
 recorded: a 20 m cottonwood here would tower over a fort the plate draws it level with, and
 `trees.js` would refuse the stem anyway if a height outside the band were stated.
 
+HOW MUCH OF `p4_0` IS EVEN THE 1835 FORT — the question that decides this record's TIER, and
+it was put to this parcel by T-0197 while the parcel was in flight. Three of the eight rows
+of the table this ticket descends from were struck in two days, and a pattern showed under
+them: `data/exclusions.json` assigns `p4_0`'s flagstaff to **Whistler's FIRST fort of 1803**,
+and T-0095 measured its two roofed, lanterned works at 0.435 and 0.521 of the wall — over the
+GATE, not at the angles — and reads two such works as first-fort signature besides (the 1803
+fort had two blockhouses; the 1816 fort had one). **A growing share of this plate is a fort
+that burned in 1812.**
+
+What follows for the trees, and what does not:
+
+  * Everything struck so far is the fort's FABRIC. Nothing measured bears on the landscape,
+    and both forts stood on the same ground.
+  * **But a draughtsman working decades later off first-fort descriptions was drawing a
+    SCENE, and there is no reason his trees are better dated than his blockhouses. So the
+    plate cannot date this stand.** It carries that somebody drawing this fort put trees
+    outside its walls. It does not carry that trees stood there on 1 July 1835.
+  * And this project's own committed research points the other way. `docs/research/
+    02-flora.md`, on Andreas, ends the South Division's river timber belt **east at Wells
+    Street** — some 900 m west of this reservation — and `renderers/web/js/trees.js` enforces
+    that limit in `timberEastLimits`, so the DEALT timber layer stops far short of the fort
+    for a documented reason. **A belt at the fort would contradict the dataset.** A few
+    relict boles on used ground east of a belt's end would not, which is exactly what
+    `z10_settled_town`'s black willow is recorded as: *"Left along the bank where the landing
+    was cut."*
+
+**So the existence claim here is `reconstructed` and its `sources` are EMPTY.** It was
+authored as `inferred` on 2026-08-24 and downgraded the same day, before merge, when T-0197
+landed. Nothing about the geometry changed with the grade; what changed is what the record
+says it knows.
+
 WHAT IS INVENTED, plainly, and claimed in `docs/LIBERTIES.md`:
 
-  * **How far west the wood reaches.** The plate does not bound it — the mass runs out of
-    the right edge of the picture — so `REACH_M` is this project's number and nothing else's.
-  * **How far it wraps past the wall's two ends** (`FLANK_M`), and how close its stems stand
-    (`STEP_M`, dealt at the crown width the zone records for the species, so the canopy
-    closes the way the plate's does).
+  * **That any tree stood here in 1835 at all** — see above. The plate attests a draughtsman's
+    trees, not 1835's.
+  * **How far west the stand reaches.** The plate does not bound it — the mass runs out of the
+    right edge of the picture — so `REACH_M` is this project's number and nothing else's.
+  * **How far it wraps past the wall's two ends** (`FLANK_M`), and how far apart its stems
+    stand (`STEP_M`, deliberately WIDER than the recorded crown, so the canopy does not
+    close — see the constant's own note).
   * **Every coordinate and every height**, inside the bounds above.
 
-WHAT IS NOT INVENTED. That trees stood at this fort, on this side of it, at about this
-height: that is what the plate draws and what the measurement above reads off it. And no
-position here is plate-derived — `p4_0` is TIER 5 PICTORIAL and may never drive a
-coordinate; it drives the SIDE, the crown height and nothing else.
+WHAT IS NOT INVENTED. The SIDE, which is measured and is the correction this parcel exists
+for; the crown height, which the two committed scales bracket; and the species, which the
+crown height picks out of the zone's own three. No position here is plate-derived — `p4_0`
+is TIER 5 PICTORIAL and may never drive a coordinate.
 
 WHAT WOULD MOVE IT OFF RECONSTRUCTION: an 1830s survey of the United States Reservation
 showing timber; a garrison return or quartermaster's account of wood on the reservation; or
-an identification of either plate against a dated original that would raise it above tier 5.
+an identification of either plate against a dated original — which would settle its date and
+its fort at once, and is the single thing that would do the most for this record.
 
     python3 tools/generate_fort_trees.py            write the record
     python3 tools/generate_fort_trees.py --check    re-derive and diff
@@ -111,31 +145,41 @@ OUT = DATA / "flora" / "plantings" / "fort_dearborn_wood.json"
 
 ZONE_ID = "z10_settled_town"
 
-# THE THREE INVENTED NUMBERS, and they are the whole of the invention.
+# THE THREE INVENTED NUMBERS, and they are the whole of the invention. All three were CUT
+# on 2026-08-24, for two independent reasons that happened to point the same way, and the
+# cut is recorded rather than quietly applied:
 #
-# REACH_M — how far west of the apron the wood runs. The plate CANNOT bound this: the mass
+#   1. THE EVIDENCE WAS DOWNGRADED. See "HOW MUCH OF p4_0 IS EVEN THE 1835 FORT" below: the
+#      plate cannot date its own trees, and this project's own committed research ends the
+#      South Division's river timber belt EAST AT WELLS STREET, some 900 m west of this
+#      reservation. A closed canopy off that evidence is a claim the evidence will not
+#      carry; a small OPEN relict stand is.
+#   2. THE SCENE HAD NO ROOM FOR THE LARGER ONE, measured rather than assumed. A 40-stem
+#      version cost 12,800 triangles measured in the browser, and the release smoke's
+#      `balanced` tier then read 1,218,562 of 1,210,000 at its worst stand - over by 8,562,
+#      with a parcel whose whole-scene cost is larger than the overage. Twelve stems cost
+#      3,520 measured. Reducing an invented extent is not weakening an assertion; the
+#      ceiling is untouched.
+#
+# REACH_M — how far west of the apron the stand runs. The plate CANNOT bound this: the mass
 # leaves the right edge of the picture (measured: it reaches column 1537 of 1538), so the
-# number is this project's. 45 m is chosen as the distance at which the refusals below,
-# not this constant, decide the wood's outline — the river's own bend cuts the band off
-# before it is spent on three of its four rows, which is checked and printed by build().
-REACH_M = 45.0
-# FLANK_M — how far the wood wraps past the wall's two ends. The plate shows the mass
-# beginning AT the stockade's west end in bearing (measured: 15 px past it, about a metre
-# at the fort's own depth), which is a statement about bearing and not about plan, so a
-# modest wrap is the honest reading of it and 8 m is that wrap.
-FLANK_M = 8.0
-# STEP_M — the grid the stems are dealt on. Not free: the zone records the species' crown
-# at 6-10 m wide, and a canopy that CLOSES — which is what the plate draws, one connected
-# mass with no sky through it — wants its stems inside a crown width of each other. 7.5 m
-# is the middle of that band, and the jitter keeps the grid from reading as a plantation.
-STEP_M = 7.5
+# number is this project's. What 40 m buys is that the REFUSALS, not this constant, decide
+# the outline — the river's own bend cuts the band off well before it is spent, which
+# build() prints.
+REACH_M = 40.0
+# FLANK_M — how far the stand wraps past the wall's two ends. The plate shows the mass
+# beginning AT the stockade's west end in bearing (measured: 15 px past it, about a metre at
+# the fort's own depth), which is a statement about bearing and not about plan.
+FLANK_M = 6.0
+# STEP_M — the grid the stems are dealt on, and the number that carries the downgrade. The
+# zone records this species' crown at 6-10 m wide, so a 12.5 m grid stands the boles FURTHER
+# APART THAN THEIR CROWNS ARE WIDE: an open stand whose canopy does NOT close. That is
+# deliberate and it is the difference between what this record claims and what the plate
+# draws. p4_0's mass is one connected canopy with no sky through it; this is a scatter of
+# relict boles on the bank, which is what a tier-5 plate of contested date can carry.
+STEP_M = 12.5
 JITTER_M = 1.6
 
-# The measured crown height, straight off tools/measure_fort_trees_plate.py: 127 px above
-# the wall foot, on the two scales that file prints rather than averages — the fort's
-# committed 53 m footprint (14.37 px/m) and its committed picket height (11.62 px/m). The
-# fall of the bank under the trees is ADDED to both by build(), derived from the committed
-# heightfield rather than stated here.
 MEASURED_CROWN_M = (8.8, 10.9)
 
 # The renderer's own refusals, each with a working margin on top (the same margins
@@ -404,7 +448,7 @@ def record(b):
             "tools/check.sh."
         ),
         "id": "fort_dearborn_wood",
-        "name": "The wood outside Fort Dearborn's west wall",
+        "name": "The relict stand outside Fort Dearborn's west wall",
         "kind": "planting",
         "scene": "1835",
         "target_date": "1835-07-01",
@@ -424,63 +468,95 @@ def record(b):
         "zone": ZONE_ID,
         "existence": {
             "value": True,
-            "confidence": "inferred",
-            "sources": ["chicagology_prefire273"],
+            "confidence": "reconstructed",
+            "sources": [],
+            "sources_note": (
+                "EMPTY, AND THAT IS THE FINDING — the same finding "
+                "data/enclosures/fort_dearborn_apron.json records of the same plate. The "
+                "two Fort Dearborn views reach this repository as owner-supplied reference "
+                "images with a README and nothing stronger; no source record holds them "
+                "(T-0055, T-0075). And see the existence note: the plate cannot date its "
+                "own trees, so it could not have carried this claim even if it were held "
+                "as a record."
+            ),
             "note": (
-                "THE TREATMENT AND THE SIDE ARE THE PLATE'S; THE SPECIES ARE THE ZONE'S; "
-                "EVERY COORDINATE IS THIS PROJECT'S. p4_0 — the coloured Fort Dearborn "
-                "view in data/sources/assets/prefire_views_kevin_2026_08/, the plate this "
-                "project shoots the fort against — draws a substantial tree mass outside "
-                "the walls, and p4_1 draws trees round the buildings on both banks. "
-                "Measured with tools/measure_fort_trees_plate.py, that mass is 33 334 "
-                "connected pixels of canopy on the FRAME-RIGHT of the drawn stockade, "
-                "against a largest frame-left patch of 924 px which is bank grass on the "
-                "viewer's own side of the river. Frame-right is WEST: p4_0's stand is the "
-                "north bank looking south, and the committed chicago_lighthouse_1832, 46.8 "
-                "m west of the fort's centre, draws to the frame-right of the fort in the "
-                "render from that same stand. The plates are tier-5 retrospective and are "
-                "not source records here yet (T-0055, T-0075), so they carry the FACT and "
-                "no coordinate — the same reading T-0091 and T-0074 record. The cited "
-                "source_id carries the other half: chicagology_prefire273 stands behind "
-                "data/flora/zones/z10_settled_town.json, whose relict black willow — 'Left "
-                "along the bank where the landing was cut' — is the species every stem "
-                "here names."
+                "THE SIDE IS MEASURED; THE DATE IS NOT EVIDENCED; EVERY COORDINATE IS THIS "
+                "PROJECT'S. p4_0 - the coloured Fort Dearborn view in "
+                "data/sources/assets/prefire_views_kevin_2026_08/, the plate this project "
+                "shoots the fort against - draws a substantial tree mass outside the walls, "
+                "and p4_1 draws trees round the buildings on both banks. Measured with "
+                "tools/measure_fort_trees_plate.py, that mass is 33334 connected pixels of "
+                "canopy on the FRAME-RIGHT of the drawn stockade, against a largest "
+                "frame-left patch of 924 px which is bank grass on the viewer's own side of "
+                "the river. Frame-right is WEST: p4_0's stand is the north bank looking "
+                "south, and the committed chicago_lighthouse_1832, 46.8 m west of the "
+                "fort's centre, draws to the frame-right of the fort in the render from "
+                "that same stand. T-0044's row 8 and ticket T-0098's own title both said "
+                "east; both were read by eye. "
+                "WHY THIS IS reconstructed AND NOT inferred, WHICH IS THE HARDER HALF. "
+                "data/exclusions.json assigns this plate's flagstaff to Whistler's FIRST "
+                "fort of 1803, and T-0095 measured its two roofed lanterned works at 0.435 "
+                "and 0.521 of the wall - over the gate, not at the angles - and reads two "
+                "such works as first-fort signature. A draughtsman working decades later "
+                "off first-fort descriptions was drawing a SCENE, and there is no reason "
+                "his trees are better dated than his blockhouses: the plate cannot date "
+                "this stand. Nor does the dataset help it. docs/research/02-flora.md, on "
+                "Andreas, ends the South Division's river timber belt EAST AT WELLS STREET, "
+                "some 900 m west of this reservation, and renderers/web/js/trees.js "
+                "enforces that limit - so a BELT here would contradict the dataset. A few "
+                "relict boles on used ground east of a belt's end would not, and that is "
+                "what z10_settled_town's black willow is recorded as: 'Left along the bank "
+                "where the landing was cut.' The species is still the zone's; nothing new "
+                "is claimed to have grown here."
             ),
         },
         "stems": b["stems"],
         "refused": b["refused"],
         "research_note": (
-            f"{len(b['stems'])} STEMS OF {len(b['stems']) and b['species'].upper()} WEST OF "
-            f"THE FORT'S WEST WALL, EVERY ONE DEALT BY THE RULE IN "
-            "tools/generate_fort_trees.py AND RE-DERIVED ON EVERY COMMIT. "
+            f"{len(b['stems'])} RELICT BLACK WILLOWS ON THE BANK OUTSIDE THE FORT'S WEST "
+            "WALL, EVERY ONE DEALT BY THE RULE IN tools/generate_fort_trees.py AND "
+            "RE-DERIVED ON EVERY COMMIT. "
             "THE SIDE IS A CORRECTION, and it is the point of this record: T-0044's "
             "image-accuracy row 8 and ticket T-0098's own title both say the mass is EAST "
             "of the walls, both were read by eye, and the measurement says west. The "
-            f"reading is in tools/measure_fort_trees_plate.py and the write-up in "
+            "reading is in tools/measure_fort_trees_plate.py and the write-up in "
             "docs/RESEARCH/fort_dearborn_image_accuracy.md. "
             f"THE SPECIES IS THE MEASUREMENT'S, NOT A PREFERENCE: p4_0's crowns stand 127 "
             f"px above the wall foot, which is 8.8 m on the fort's committed 53 m "
             f"footprint and 10.9 m on its committed picket height, plus the "
-            f"{b['fall']:.2f} m the bank falls under the wood — a "
+            f"{b['fall']:.2f} m the bank falls under the stand - a "
             f"{b['crown'][0]:.1f}-{b['crown'][1]:.1f} m crown. Of "
             f"{ZONE_ID}'s three recorded trees only the relict black willow is banded low "
             f"enough to carry it; " + "; ".join(b["species_refused"]) + ". Every stem's "
             f"height is dealt inside {b['height_range'][0]:.1f}-{b['height_range'][1]:.1f} "
             "m, which is the overlap of the species' recorded band and the measured crown "
-            "— so a stem is inside the band trees.js checks AND inside what the plate "
+            "- so a stem is inside the band trees.js checks AND inside what the plate "
             "shows. "
+            "THIS IS A STAND AND NOT THE PLATE'S MASS, DELIBERATELY, AND THE RECORD WILL "
+            "NOT PRETEND OTHERWISE. p4_0 draws ONE CONNECTED CANOPY with no sky through "
+            "it; the stems here stand 12.5 m apart against a recorded 6-10 m crown, so "
+            "this canopy does not close. Two independent reasons, both recorded at the "
+            "constants: the plate cannot date its own trees (its flagstaff is excluded as "
+            "FIRST-fort and T-0095 reads its two tall works the same way), and Andreas "
+            "ends the South Division timber belt east at Wells Street, 900 m west of this "
+            "reservation - so a belt here would contradict the dataset; and the release "
+            "smoke's `balanced` tier read 1,218,562 of 1,210,000 at its worst stand with "
+            "the 40-stem version this record was first written as in the scene - over by "
+            "8,562, against a measured whole-scene cost of 12,800 for those stems. Twelve "
+            "stems cost 3,520 measured. "
             f"THE OUTLINE IS THE REFUSALS' AND NOT THIS FILE'S: {b['dealt']} grid points "
             f"were dealt and {len(b['refused'])} refused, most of them for standing in the "
-            "river's own bend north-west of the fort, which is what cuts the wood back to "
-            "the falling ground between the wall and the water — the ground the plate "
-            "draws the mass on. WHAT IS INVENTED: how far west the wood reaches (the plate "
-            "cannot bound it — the mass leaves the right edge of the picture), how far it "
-            "wraps past the wall's ends, how close the stems stand, and every coordinate "
-            "and height inside those bounds. Claimed in docs/LIBERTIES.md. WHAT IS "
+            "river's own bend north-west of the fort, which is what cuts the stand back to "
+            "the falling ground between the wall and the water - the ground the plate "
+            "draws its mass on. WHAT IS INVENTED: that any tree stood here in 1835 at all, "
+            "how far west the stand reaches (the plate cannot bound it - the mass leaves "
+            "the right edge of the picture), how far it wraps past the wall's ends, how "
+            "far apart the stems stand, and every coordinate and height inside those "
+            "bounds. Claimed in docs/LIBERTIES.md. WHAT IS "
             "DELIBERATELY NOT HERE: the two-storey frame house the plate draws inside this "
             "mass, which is a STRUCTURE record and not a flora one, and which no source "
-            "this project holds identifies; and any claim about the ground under the wood, "
-            "which the sward layer still draws as it drew it."
+            "this project holds identifies; and any claim about the ground under the "
+            "stand, which the sward layer still draws as it drew it."
         ),
     }
 
