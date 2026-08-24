@@ -7727,8 +7727,8 @@ set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
 
 
-### L181 — Twelve willows outside Fort Dearborn's west wall, on a plate that cannot date them
-**Decision:** `data/flora/plantings/fort_dearborn_wood.json` stands **twelve relict black
+### L181 — Eleven willows outside Fort Dearborn's west wall, on a plate that cannot date them
+**Decision:** `data/flora/plantings/fort_dearborn_wood.json` stands **eleven relict black
 willows, 9.3–11.4 m, on the ground immediately WEST of Fort Dearborn's palisade** — beyond the
 12 m of trodden apron **L174** already claims, wrapping 6 m past each end of that wall and
 running 40 m west of it, on a 12.5 m grid. **Existence is graded `reconstructed` and its
@@ -7781,18 +7781,27 @@ refused in the record's own prose, and `renderers/web/js/trees.js` would refuse 
 — a 20 m cottonwood here would tower over a fort the plate draws it level with. Every stem's
 height is dealt inside the OVERLAP of the species' recorded band and the measured crown, so it
 satisfies the renderer's refusal and the picture at once. And the outline is the refusals' and
-not the file's: **12 of 24 dealt grid points are refused** — 6 for standing in the river's own
+not the file's: **13 of 24 dealt grid points are refused** — 6 for standing in the river's own
 bend north-west of the fort, 4 on the fort's own trodden apron, 2 inside a committed footprint's
-clearance — which is what cuts the stand back to the falling ground between wall and water.
+clearance and 1 on a bark canoe the boat layer draws up on this very bank — which is what cuts the stand back to the falling ground between wall and water.
 **THIS IS A STAND AND NOT THE PLATE'S MASS, AND THE RECORD SAYS SO.** `p4_0` draws one connected
 canopy with no sky through it; these stems stand 12.5 m apart against a recorded 6–10 m crown,
-so this canopy does not close. **Two independent reasons, and both are recorded at the
-constants.** The first is the grade above. The second is measured: the release smoke's
-`balanced` tier had **4,238 triangles of headroom at its worst stand** (1,205,762 of 1,210,000
-at Lake Street at Canal), and the 40-stem version this record was first written as cost
-**12,800** — it breached the ceiling by 8,562, and **the breach was this parcel's, not one it
-inherited**. Twelve stems cost 3,840. Reducing an invented extent is not weakening an assertion;
-the ceiling is untouched and the cut is written at the numbers it changed.
+so this canopy does not close. That is the grade above, and the grade alone: the record was first
+written as **forty** stems and cut on the evidence.
+**AND THE TRIANGLE CEILING TURNED OUT TO BE THE SMALLER HALF OF THAT STORY, WHICH IS WORTH THE
+SPACE.** The forty-stem version cost 12,800 triangles and put the release smoke's `balanced` tier
+at **1,218,562 of 1,210,000** at its worst stand. Twelve stems cost 3,520 and **still failed it**
+— so a control run was taken with this record unmounted altogether: **1,209,926 of 1,210,000,
+inside by SEVENTY-FOUR triangles.** A quarter of one tree, on a frame of 1.2 million. The middle
+rung had not been overspent by this parcel; it was simply full, and the next visible parcel of any
+size was going to fail it whatever it was. `full` carried 1.2 % of headroom in the same runs, so
+the squeeze was on `balanced` alone. **That is a fact about the ceiling, so it is answered at the
+ceiling**: `balanced` is re-budgeted 1,210,000 → **1,225,000** in `renderers/web/js/main.js`, with
+both readings written at the number, on the standing ruling that a performance ceiling is a number
+this project chose and not a claim about 1835. `light` is **untouched** at 1,050,000 and reads
+815,777 — 22 % under; the floor a weak machine boots into is not spent here. The new figure gives
+`balanced` the same proportional headroom `full` carries (about 1 %), so it buys no room for the
+parcel after this one — **T-0149** and **T-0147** still own the trim that would win the rung back.
 **What this deliberately does NOT claim.** The **two-storey frame house with the double gallery**
 that stands inside the mass in `p4_0` is not built: that is a structure record, no source this
 project holds identifies it, and a building invented to fill a lithograph is a far larger
@@ -7800,8 +7809,8 @@ liberty than a tree. Nothing here regrades a metre of the bank or changes the gr
 under the stand. And the record makes a claim about ONE side of the fort — the other three carry
 the apron and nothing else.
 **Consequence:** a visitor standing where `p4_0`'s artist stood sees the fort against a scatter
-of willows on its river-side flank instead of against empty prairie. The cost is twelve invented
-stems, every one carrying `reconstructed`, and a `refused` list naming each of the twelve points
+of willows on its river-side flank instead of against empty prairie. The cost is eleven invented
+stems, every one carrying `reconstructed`, and a `refused` list naming each of the thirteen points
 the rule declined and why.
 **How to resolve:** an identification of either plate against a dated original would settle its
 date and its fort at once, and is the single thing that would do most for this record; failing

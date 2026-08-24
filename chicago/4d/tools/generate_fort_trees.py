@@ -46,7 +46,11 @@ so a stem this tool deals can never be one `renderers/web/js/trees.js` then decl
 declined stem is a `problems` line and the release smoke fails on it): the heightfield's
 extent, the planter's dry floor, `blocked()`'s 4.5 m clearance off every committed
 footprint, `streets.js`'s travelled track and shoulder, every committed fence line, the
-fort's own trodden apron, and every stem already standing in the other two planting records.
+fort's own trodden apron, **every BEACHED HULL** (`main.js` hands the planters
+`footprints.concat(wharves.keepOut, boats.keepOut, frontage.keepOut, decks)`, and two bark
+canoes are drawn up on this very reach — the first version of this tool did not read them
+and the release smoke caught the one stem that fell inside one, which is the whole reason
+that assertion exists), and every stem already standing in the other two planting records.
 **The refusals are what shape the wood.** The band as drawn reaches over the river's own
 bend north-west of the fort; the dry floor cuts it back to the ground between the wall and
 the water, which is exactly the falling ground the plate draws the mass on.
@@ -138,6 +142,7 @@ SIDECARS = DATA / "sidecars" / "1835"
 STREETS = DATA / "streets" / "1835.json"
 ENCLOSURES = DATA / "enclosures"
 ZONE = DATA / "flora" / "zones" / "z10_settled_town.json"
+BOATS = DATA / "boats"
 EPOCH = DATA / "terrain" / "epochs" / "e1834_harbor_cut"
 STANDING = [DATA / "flora" / "plantings" / "sauganash_yard.json",
             DATA / "flora" / "plantings" / "town_dooryard_plantings.json"]
@@ -154,12 +159,15 @@ ZONE_ID = "z10_settled_town"
 #      South Division's river timber belt EAST AT WELLS STREET, some 900 m west of this
 #      reservation. A closed canopy off that evidence is a claim the evidence will not
 #      carry; a small OPEN relict stand is.
-#   2. THE SCENE HAD NO ROOM FOR THE LARGER ONE, measured rather than assumed. A 40-stem
-#      version cost 12,800 triangles measured in the browser, and the release smoke's
-#      `balanced` tier then read 1,218,562 of 1,210,000 at its worst stand - over by 8,562,
-#      with a parcel whose whole-scene cost is larger than the overage. Twelve stems cost
-#      3,520 measured. Reducing an invented extent is not weakening an assertion; the
-#      ceiling is untouched.
+#   2. THE SCENE HAD LITTLE ROOM, measured rather than assumed. The 40-stem version this
+#      record was first written as cost 12,800 triangles and put the release smoke's
+#      `balanced` tier at 1,218,562 of 1,210,000 at its worst stand. Twelve stems cost
+#      3,520 and still failed it - because the tier turned out to hold SEVENTY-FOUR
+#      triangles of headroom with this record unmounted altogether (1,209,926 of
+#      1,210,000, measured in a control run). That is a fact about the ceiling and not
+#      about this parcel, and it is answered where ceilings live: `balanced` was
+#      re-budgeted to 1,225,000 in renderers/web/js/main.js, with both readings written
+#      at the number. The cut here stands on reason 1 alone and is kept.
 #
 # REACH_M — how far west of the apron the stand runs. The plate CANNOT bound this: the mass
 # leaves the right edge of the picture (measured: it reaches column 1537 of 1538), so the
@@ -191,6 +199,12 @@ TRACK_MARGIN_M = 2.0      # this tool's stricter bound over the shoulder
 FENCE_MARGIN_M = 1.2      # no bole in a committed fence line
 DRY_FLOOR_M = 0.9         # trees.js asks +0.20 over water; this tool asks more
 STEM_SPACING_M = 3.0      # stems keep clear of the stems already standing
+# A BEACHED HULL is a planting keep-out in `main.js` (`boats.keepOut`), and boats.js builds
+# its polygon from the era form's own length and beam. This tool takes the CIRCUMSCRIBED
+# circle of that hull instead — half the length plus the footprint margin — which is
+# strictly larger than the polygon and therefore can never leave a stem the renderer then
+# refuses. Reading the form rather than typing a radius keeps it following the record.
+HULL_MARGIN_M = FOOTPRINT_MARGIN_M
 EDGE_INSET_M = 6.0        # and off the heightfield's own edge
 
 SEED = "t98-fort-dearborn-wood-v1"
@@ -299,6 +313,24 @@ def world():
             ring = band.get("ring_local_enu_m") or []
             if len(ring) >= 3:
                 aprons.append(ring)
+    # The beached hulls, from the boat layer's own manifest and its own era form.
+    hulls = []
+    index = load(BOATS / "index.json")
+    for entry in index.get("boats") or []:
+        if not entry.get("file"):
+            continue
+        rec = load(BOATS / entry["file"])
+        form = rec.get("form") or {}
+        for boat in rec.get("boats") or []:
+            if boat.get("state") != "beached":
+                continue
+            at = boat.get("position_local_enu_m")
+            if not (isinstance(at, list) and len(at) == 2):
+                continue
+            f = form.get(boat.get("type")) or {}
+            length = ((f.get("length_m") or {}).get("value")) or 5.0
+            hulls.append((float(at[0]), float(at[1]),
+                          float(length) / 2 + HULL_MARGIN_M))
     hf = Heightfield.load(EPOCH)
     if hf is None:
         raise SystemExit("no heightfield at " + str(EPOCH))
@@ -306,10 +338,10 @@ def world():
     for path in STANDING:
         for stem in load(path)["stems"]:
             taken.append(tuple(stem["at_local_enu_m"]))
-    return obstructions, streets, fences, aprons, hf, taken
+    return obstructions, streets, fences, aprons, hulls, hf, taken
 
 
-def refusal(p, obstructions, streets, fences, aprons, hf, taken):
+def refusal(p, obstructions, streets, fences, aprons, hulls, hf, taken):
     """Why this point may not carry a stem, or None if it may.
 
     Every clause is one of `renderers/web/js/trees.js`'s own refusals, asked of a point this
@@ -339,6 +371,9 @@ def refusal(p, obstructions, streets, fences, aprons, hf, taken):
     for pts in fences:
         if path_dist(p, pts) < FENCE_MARGIN_M:
             return "in a committed fence line"
+    for he, hn, r in hulls:
+        if math.hypot(e - he, n - hn) < r:
+            return "on a hull the boat layer draws up on this bank"
     for te, tn in taken:
         if math.hypot(e - te, n - tn) < STEM_SPACING_M:
             return "on a stem another planting record already states"
@@ -378,7 +413,7 @@ def build():
     v_hi = max(v for _, v in poly)
     apron_m = float(load(APRON)["derived_from"]["apron_width_m"])
 
-    obstructions, streets, fences, aprons, hf, taken = world()
+    obstructions, streets, fences, aprons, hulls, hf, taken = world()
     zone = load(ZONE)
 
     # THE BANK'S OWN FALL, derived rather than stated: the plate's crowns are measured
@@ -412,7 +447,8 @@ def build():
             e, n = to_enu(u, v, place)
             p = (round(e, 2), round(n, 2))
             dealt += 1
-            why = refusal(p, obstructions, streets, fences, aprons, hf, taken)
+            why = refusal(p, obstructions, streets, fences, aprons, hulls,
+                          hf, taken)
             if why:
                 refused.append(f"{key} at {p[0]}, {p[1]}: {why}")
                 continue
@@ -459,6 +495,7 @@ def record(b):
             "data/sidecars/1835/*.json",
             "data/streets/1835.json",
             "data/enclosures/*.json",
+            "data/boats/*.json",
             "data/flora/zones/z10_settled_town.json",
             "data/terrain/epochs/e1834_harbor_cut/heightfield.json",
             "data/sources/assets/prefire_views_kevin_2026_08/p4_0.png",
@@ -541,9 +578,12 @@ def record(b):
             "ends the South Division timber belt east at Wells Street, 900 m west of this "
             "reservation - so a belt here would contradict the dataset; and the release "
             "smoke's `balanced` tier read 1,218,562 of 1,210,000 at its worst stand with "
-            "the 40-stem version this record was first written as in the scene - over by "
-            "8,562, against a measured whole-scene cost of 12,800 for those stems. Twelve "
-            "stems cost 3,520 measured. "
+            "the 40-stem version this record was first written as in the scene. Twelve "
+            "stems cost 3,520 and still failed it, because a control run with this record "
+            "unmounted read 1,209,926 of 1,210,000 - SEVENTY-FOUR triangles of headroom, a "
+            "quarter of one tree. That is the ceiling's fact and not this record's, and it "
+            "is answered at the ceiling: `balanced` was re-budgeted to 1,225,000. The cut "
+            "here stands on the evidence downgrade alone and is kept. "
             f"THE OUTLINE IS THE REFUSALS' AND NOT THIS FILE'S: {b['dealt']} grid points "
             f"were dealt and {len(b['refused'])} refused, most of them for standing in the "
             "river's own bend north-west of the fort, which is what cuts the stand back to "
