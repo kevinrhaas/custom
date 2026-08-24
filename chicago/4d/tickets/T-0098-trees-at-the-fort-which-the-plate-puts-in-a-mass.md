@@ -1,7 +1,7 @@
 ---
 id: T-0098
 title: Trees at the fort, which the plate puts in a mass east of the walls
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 370
 claimed_by: run 8/24/2026, 9:53:54 AM CT
 blocked_on: null
 needs_bake: false
