@@ -86,4 +86,5 @@ T-0055 — Hold the Kinzie-view plate as a source record
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
+T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
 T-0030 — A queue card in Manager reading tickets.json
