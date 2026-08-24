@@ -1,7 +1,7 @@
 ---
 id: T-0129
 title: The La Salle slough is dammed by a tongue of land where the street crosses it
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-21
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 1:09:24 PM CT
 blocked_on: null
 needs_bake: true
 ---
