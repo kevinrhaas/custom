@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 269, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T17:38:27.146Z', date: 'Aug 24, 2026, 12:38 PM CT',
+    items: [
+      'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',
+      'They are Lombardy poplars, and this is the one piece of gardening in this project that a source states outright. Juliette Kinzie, writing of the Chicago she lived in, on her husband\u2019s house on the north bank: \u201cA broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars.\u201d',
+      'Seven old views of that house were opened and measured rather than remembered. Five of them, drawn by different hands, agree: four trees in the row, evenly spaced, each gap about a fifth of the trees\u2019 own height. That is the count and the rhythm these three rows are laid to.',
+      'What the pictures would not carry is a second address. Every one of them draws the poplars at that same house \u2014 and that house was derelict by 1832 and reported gone before this scene, so it is not in the town. Nowhere else in any view of Chicago this project holds is there a poplar at all.',
+      'So which greens get a row is settled by a rule rather than by taste. A house qualifies only if the project can date it back at least five growing seasons, and only if it has real open ground between itself and the water. Four houses out of a hundred and thirty-seven pass, and the fourth \u2014 James Kinzie\u2019s at Wolf Point \u2014 is turned down with its number: seven and a half metres of ground to the river is a strip, not a green.',
+      'Nobody attests a poplar at these three addresses, and the record says so on every tree. Borrowed from the source: the species, the row, the fenced green, and which side of the house it stands on. Ours: which houses, where exactly, and how tall.',
+    ] },
   { v: 268, title: 'Two more landings on the river toward the drawbridge', kind: 'fix', ts: '2026-08-24T16:57:36.094Z', date: 'Aug 24, 2026, 11:57 AM CT',
     items: [
       'Walk the south bank of the river east from the forks toward the drawbridge. Two more timber landings stand on the water there now — Philo Carpenter\u2019s, and P. F. W. Peck\u2019s a little further east. Both are plank decks on stepped cribs standing in about a metre and a half of water, and aiming at either one opens the store it belongs to. Seven landings stand on the river in all.',
