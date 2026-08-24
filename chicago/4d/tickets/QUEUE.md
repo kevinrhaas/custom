@@ -87,3 +87,4 @@ T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branc
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
+T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
