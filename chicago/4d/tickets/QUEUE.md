@@ -15,7 +15,6 @@
 
 # --- BLOCKERS — small, and each one gates visible work below
 T-0121 — The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
-T-0165 — The bake cannot finish inside its 45-minute ceiling, because bake.sh runs the full two-viewport smoke as its last step
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 

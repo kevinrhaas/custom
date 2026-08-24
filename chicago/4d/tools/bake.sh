@@ -79,6 +79,20 @@ tools/check.sh
 # every building to a two-metre box shipped past a fully green gate — twice.
 # Whatever else is true, the bytes a visitor downloads have to be the bytes
 # something tested.
+#
+# T-0165 — AND IN CI THAT PROPERTY IS NOW KEPT SOMEWHERE ELSE, so read the next
+# paragraph before concluding the nightly stopped testing itself.
+# `chicago-4d-bake.yml` sets SKIP_SMOKE=1 and runs the smoke as its own JOB,
+# which takes the published mirror from this run as an ARTIFACT and drives it at
+# both viewports in parallel. The reason is a ceiling, not a change of mind: run
+# #261 was cancelled at 43m51s of a 45-minute job, inside the desktop half, and
+# ~12 minutes of baking plus ~13 a viewport never fitted. Splitting it gives each
+# part its own budget and still refuses to open a bake PR until both viewports
+# are green. The bytes a visitor downloads are still the bytes something tested —
+# tested one job later, by a job that cannot run unless this one succeeded.
+#
+# Run WITHOUT SKIP_SMOKE (the default, below) and the smoke happens here, inline,
+# which is what you want locally: there is no artifact to hand anything to.
 if [ "${SKIP_SMOKE:-0}" = "1" ]; then
   echo
   echo "== smoke (skipped: SKIP_SMOKE=1)"
