@@ -93,6 +93,17 @@ step "the lot-line yard fences re-derive from the rule that chose their lots and
 step "the dooryard plantings re-derive from the rule that dealt their stems" \
   python3 tools/generate_dooryard_plantings.py --check
 
+# And the planted rows are the same shape again, on the one flora treatment this project
+# has in WORDS rather than in pictures: Wau-Bun states "a broad green space was inclosed
+# between it and the river, and shaded by a row of Lombardy poplars", at a house that is
+# excluded from this scene. Seven committed plates draw that row and five agree on four
+# stems at 0.195 of their own height apart; not one of them shows a poplar anywhere else
+# in Chicago. So the treatment is the source's, the count and the rhythm are measured,
+# and WHICH GROUND GETS ONE is a rule over the committed dwellings — re-derived here so
+# the twelve stems and the refusal beside them stay auditable (T-0117).
+step "the planted poplar rows re-derive from the rule that chose their greens" \
+  python3 tools/generate_planted_rows.py --check
+
 # The business signboards are the same shape of claim one layer over: exactly one record
 # in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
 # reconstruction chosen by a rule about trades rather than a list of shops somebody liked.

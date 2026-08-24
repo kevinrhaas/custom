@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 269, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T17:48:59.380Z', date: 'Aug 24, 2026, 12:48 PM CT',
+  { v: 270, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T18:49:53.486Z', date: 'Aug 24, 2026, 1:49 PM CT',
     items: [
       'Walk east along South Water Street. The plank sidewalk on the south side came out in stumps \u2014 nine short pieces, the longest 47 m \u2014 and the reason was never the sidewalk. Eleven documented buildings on that side stood four and a half to eight metres out in the roadway.',
       'They were positioned by measuring off the kerb of modern Wacker Drive, which is not where the 1835 street ran. Each record says as much in its own notes, and several already warned that the two are not the same line. Nobody had measured the gap.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'The block between Franklin and Wells now carries one unbroken 96.5 m walk where it carried two stumps of 25 and 46 m \u2014 the first whole block face of sidewalk this street has ever had. Along South Water the walk goes from 237 m in nine pieces to 304 m in eight, and the longest stretch has more than doubled.',
       'The other five are named, one by one, in the record you can open from the walk, with the exact distance each would have to move and why it has not moved yet: on the surveyed plat each would then stand on a lot the town\u2019s building schedule has already promised to another roof, and untangling that is a separate job rather than something to do quietly here.',
       'Under the surface, the plank walks stopped being drawn a second time for the sun. A walk lies eleven centimetres proud of the ground and its shadow at noon is about four centimetres wide \u2014 nothing anyone can see \u2014 and every board was being redrawn to cast it. The fences behind them are 1.37 m tall, throw real shade, and still cast. Nothing else moved.',
+    ] },
+  { v: 269, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T17:38:27.146Z', date: 'Aug 24, 2026, 12:38 PM CT',
+    items: [
+      'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',
+      'They are Lombardy poplars, and this is the one piece of gardening in this project that a source states outright. Juliette Kinzie, writing of the Chicago she lived in, on her husband\u2019s house on the north bank: \u201cA broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars.\u201d',
+      'Seven old views of that house were opened and measured rather than remembered. Five of them, drawn by different hands, agree: four trees in the row, evenly spaced, each gap about a fifth of the trees\u2019 own height. That is the count and the rhythm these three rows are laid to.',
+      'What the pictures would not carry is a second address. Every one of them draws the poplars at that same house \u2014 and that house was derelict by 1832 and reported gone before this scene, so it is not in the town. Nowhere else in any view of Chicago this project holds is there a poplar at all.',
+      'So which greens get a row is settled by a rule rather than by taste. A house qualifies only if the project can date it back at least five growing seasons, and only if it has real open ground between itself and the water. Four houses out of a hundred and thirty-seven pass, and the fourth \u2014 James Kinzie\u2019s at Wolf Point \u2014 is turned down with its number: seven and a half metres of ground to the river is a strip, not a green.',
+      'Nobody attests a poplar at these three addresses, and the record says so on every tree. Borrowed from the source: the species, the row, the fenced green, and which side of the house it stands on. Ours: which houses, where exactly, and how tall.',
     ] },
   { v: 268, title: 'Two more landings on the river toward the drawbridge', kind: 'fix', ts: '2026-08-24T16:57:36.094Z', date: 'Aug 24, 2026, 11:57 AM CT',
     items: [
