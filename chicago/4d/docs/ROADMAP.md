@@ -10237,6 +10237,21 @@ is untouched and still open. What (e) still owes: a deck a visitor can walk out 
 ticket); anything lying at either wharf, which no source here describes; and the GENERATOR half, so
 a baked town carries its own docks.
 
+**(e) grew a third shore on 2026-08-24, and the reason the first two were the only two is worth
+recording. T-0062** stated five reconstructed docks on the owner's *"you can add more docks!"* — and
+it stated them on **South Water merchants**, so the town's other shores were never asked. The North
+Division shore had a landing only because Kinzie & Hunter's dock is attested; the west bank at Wolf
+Point, five buildings all fronting the water, had none. **T-0107** asks the trade test of every river
+frontage in the town, and on the west bank it selects exactly one record: **Robert A. Kinzie's
+storehouse**, "dealing in groceries and Indian goods", whose committed position note of 2026-08-11
+had already reasoned that *"a storehouse trading goods off canoes has a positive reason to face the
+landing"*. Five landings now stand where four did (L179). The row's other four state no dock and get
+none — lodging, dwelling and worship take nothing off a canoe. It also shipped **clause 6**: the
+deck is one standard rectangle set on the bank's own tangent, **the bank bends at Wolf Point**, and
+a face that would stand on dry ground (PR #258 measured −0.34 m at Hogan's store) is refused with
+the measured rise on the record rather than given a bespoke outline. The clause refuses nothing in
+the town as it stands and is proved by `generate_river_wharves.py --selftest`, which `--check` runs.
+
 **(a) is shipped in three pieces, all on the enclosure layer** (`data/enclosures/`,
 `renderers/web/js/enclosures.js`) — the renderer-side half of the archetype this box asked for,
 which needs no bake. **T-0050** built the layer and the Western Hotel's wagon yard (L127);

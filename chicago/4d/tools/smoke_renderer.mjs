@@ -4215,15 +4215,17 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Four docks since T-0062: the two warehouses whose dock the dossier
-    // states, plus the two South Water landings (J. H. Kinzie's, Jones's) the
-    // owner's 2026-08-18 ruling reconstructed. The refused count is asserted
-    // too: three more landings are STATED and not drawn because the traced
-    // 1834 bank ends at local E 390 (T-0106) — a fourth-wharf appearing or a
-    // refusal disappearing without this line moving is a rule change nobody
-    // reviewed.
+    // Five docks since T-0107: the two warehouses whose dock the dossier
+    // states, the two South Water landings (J. H. Kinzie's, Jones's) the
+    // owner's 2026-08-18 ruling reconstructed (T-0062), and Robert A. Kinzie's
+    // storehouse on the WEST bank at Wolf Point — the first landing this layer
+    // has put on that shore, which T-0062's South-Water-only pass had left with
+    // no candidate at all. The refused count is asserted too: three more
+    // landings are STATED and not drawn because the traced 1834 bank ends at
+    // local E 390 (T-0106) — a sixth wharf appearing or a refusal disappearing
+    // without this line moving is a rule change nobody reviewed.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 4 && docks.verts > 0 && docks.keepOut === 4
+      docks.census?.wharves === 5 && docks.verts > 0 && docks.keepOut === 5
         && docks.census?.refused === 3
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
@@ -4247,7 +4249,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 4 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 5 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
@@ -4296,6 +4298,40 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a wharf opens the warehouse it serves`,
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
+
+    // AND THE SAME, ON THE OTHER SHORE (T-0107). The capture above stands on the
+    // SOUTH bank, so it proves the layer reads from one bank and says nothing
+    // about the west one — which is exactly the shape of the gap T-0107 closed
+    // in the data, and there is no reason to leave it open in the gate. Stand on
+    // the west bank outside Robert Kinzie's own river wall, 7 m back along the
+    // deck's waterward normal (bearing 45.3, the same geometry the Newberry
+    // stand uses), and hold the clock so the river cannot supply the difference.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -58.3, local_n: -62.0, yaw_deg: 45.3, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const westWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
+    const westWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
+    const westPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dWest = signatureDistance(westWith, westWithout);
+    check(`${label}: the west bank's landing reaches the screen from Wolf Point`,
+      dWest.worst >= 6 && dWest.mean >= 0.3,
+      `cell delta mean ${dWest.mean?.toFixed(2)}, worst ${dWest.worst} (need worst>=6)`);
+    check(`${label}: aiming at the west bank's landing opens Robert Kinzie's store`,
+      westPick.includes('robert_kinzie_store'),
+      `25 aims returned [${[...new Set(westPick)].join(', ') || 'nothing'}]`);
 
     // Nothing grows through a plank floor (T-0124; T-0085 was the first
     // sighting). The placer is asked directly, at the centre of every deck

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'A landing for the storehouse on the west bank at Wolf Point', kind: 'feature', ts: '2026-08-24T15:16:26.010Z', date: 'Aug 24, 2026, 10:16 AM CT',
+    items: [
+      'Cross to the west bank at Wolf Point, where the two branches meet, and look at the storehouse that faces the water. It has a landing now \u2014 thirteen metres of plank deck on a timber crib, running out over the river in front of its door. Five docks stand on this river where four did.',
+      'It was missing for a reason worth admitting: nobody had asked. When more docks went in a week ago, the rule was written around the merchants of South Water Street, so the west bank was left out by the wording rather than by any judgement about the place. The rule now asks the same question of every frontage on the river, whichever bank it stands on.',
+      'What is known: this was Robert Kinzie\u2019s storehouse, dealing in groceries and Indian goods, and it was already turned to face the water because a store working cargo off canoes has a reason to. What is not known, and it matters: no source anywhere says there was a dock at Wolf Point. The landing is our reconstruction and is labelled as one \u2014 switch the reconstructed tier off and it goes, leaving the bare bank the sources leave.',
+      'Its four neighbours in that row get nothing. A tavern, a house, two cabins and a meeting house take nothing off a canoe, and the rule refuses them by their own trades rather than by taste.',
+      'The deck could be drawn here because the water was measured rather than assumed: the river is a little over a metre deep along the whole face of it. That is now a condition instead of a happy result. Every deck is the same plain rectangle set along the bank, and the bank bends at Wolf Point \u2014 run a rectangle against a curve and one end can finish behind the bank, on dry land. A landing whose face would stand on dry ground is refused, with the measurement written on the record, rather than given a bespoke shape of its own.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',

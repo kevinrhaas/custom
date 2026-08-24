@@ -6026,6 +6026,63 @@ Related: **L141** (the row whose line this adopts), **L144** (the run that moves
 **Recorded:** 2026-08-24.
 
 
+### L179 — A landing on the WEST bank at Wolf Point, and no source states a dock anywhere on that shore
+
+**Decision:** Robert A. Kinzie's storehouse at Wolf Point now STATES a dock — `value: true,
+confidence: reconstructed, geometry: simplified` — and the wharf layer draws it in the standard
+form: a 13.0 m plank deck on a timber crib, its heel tied 2 m into the traced 1834 west bank and
+its face 6 m out over the water, abreast the store's own east-facing river wall. It is the FIRST
+landing this project has put on the west bank. The wharf rule that selected it is unchanged in
+shape — a record whose own `dock` attribute is true — but it is now asked of every river frontage
+in the town rather than of South Water Street's merchants only.
+
+**Why:** T-0062 stated five reconstructed docks on the owner's ruling of 2026-08-18, verbatim
+*"you can add more docks!"*, and it stated them on South Water merchants. That left the town's
+other two shores unasked: the North Division shore carried a landing only because Kinzie &
+Hunter's dock happens to be attested, and the west bank at Wolf Point carried none at all. **That
+was a fact about which records had been edited, not a finding about Wolf Point** — the west bank
+was never measured and refused, it was out of scope by construction. The standing ruling in
+AGENTS.md § RECONSTRUCTED IS A TIER is that the rationing instinct is the bug; this entry is the
+honest cost of removing it on one more shore.
+
+**What bounds the invention:** THE TRADE, and here it is this record's own. chicagology's Wolf
+Point narrative gives a storehouse "dealing in groceries and Indian goods"; Andreas's trader list
+(scan p. 235) gives "Indian Traders — Robert A. Kinzie, near Wentworth's tavern". The record's
+committed position note, written 2026-08-11 and long before any wharf layer existed, already
+reasoned from it in as many words — *"a storehouse trading goods off canoes has a positive reason
+to face the landing"* — and set the facade due east onto the water on that reading. THE WATER,
+measured rather than assumed: the traced 1834 bank runs 11.17 m off the building's river wall, and
+a standard-form deck at that foot stands in 1.06 m of water along the whole 13.0 m of its face on
+the committed heightfield, with its heel about 0.5 m clear on dry bank; the boat layer
+independently floats a schooner in this same reach abreast this store (L146, T-0140), so the bed
+this project has already modelled carries a hull here. THE FORM: every dimension of the deck is
+the wharf layer's standard one, invented once and claimed at **L132** — this entry claims only the
+statement that a landing was there at all, which is exactly what **L145** claims for the five
+South Water landings.
+
+**What it does NOT claim.** That any source states a dock, wharf or landing anywhere at Wolf
+Point — none does, which is why this is `reconstructed` and not `inferred`. That the trade was
+still running on 1835-07-01: the 1833 Treaty of Chicago ceded the land and the removal ran through
+the summer of 1835, so the "Indian goods" half of this business was ending as the scene opens, and
+the record models a standing store and a standing landing without claiming what crossed either.
+And it does not reach the rest of the row: Wentworth's tavern, James Kinzie's residence, the
+Robinson and Caldwell cabins and Father Walker's log meeting house state no dock and get none,
+because lodging, dwelling and worship take nothing off a canoe — the Temple Building's exclusion
+carried across the river.
+
+**What would replace it:** the Chicago Democrat's advertising columns; the harbour engineers'
+reports of 1833–1836, which might carry a private wharf line on the branches; or either
+retrospective Wolf Point view examined at plate level for works along the west bank. The same
+instruments L132 and L145 wait on.
+
+Related: **L132** (the wharf form, invented once) · **L145** (the five South Water landings) ·
+**L146** (the hulls in this reach) · **L7** (the ~40 m along-bank uncertainty this row inherits
+whole from the tavern) · ticket **T-0107**; the refused-face clause it also shipped is a rule, not
+a liberty, and lives in `tools/generate_river_wharves.py` clause 6.
+**Covers:** `robert_kinzie_store.store_1830.form.dock`
+**Recorded:** 2026-08-24.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
