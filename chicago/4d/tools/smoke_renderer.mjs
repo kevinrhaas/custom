@@ -10,22 +10,27 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `8` runs one eighth of each viewport's body (T-0060, re-cut
- * by T-0121), and `SMOKE_STAGE=1-2` runs a contiguous run of them. The cuts sit
- * at section boundaries measured for zero crossing bindings. It exists because
- * a steward run's single foreground command is capped at ten minutes and by
- * 2026-08-18 neither viewport's full pass fit inside it, so the run was killed
- * mid-suite and the page-error assertion — the LAST line of each viewport — was
- * never taken. T-0060 cut four; by 2026-08-23 the town had grown until three of
- * the four DESKTOP quarters ran past the ceiling too, so each quarter is now
- * halved. Part 2k-1 plus part 2k is exactly T-0060's stage k, which is why the
- * cheap viewport can still be taken in four commands.
+ * `SMOKE_STAGE=1` … `9` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121 and T-0167), and `SMOKE_STAGE=1-2` runs a contiguous run of them.
+ * The cuts sit at section boundaries measured for zero crossing bindings. It
+ * exists because a steward run's single foreground command is capped at ten
+ * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
+ * run was killed mid-suite and the page-error assertion — the LAST line of each
+ * viewport — was never taken. T-0060 cut four; by 2026-08-23 the town had grown
+ * until three of the four DESKTOP quarters ran past the ceiling too, so each
+ * quarter was halved; T-0167 measured the desktop profile that eight-way cut
+ * had never been sized from and halved part 8, the thinnest margin on it.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-4 5-6 7-8; do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8;  do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-4 5-6 7-9;   do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *
+ * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
+ * default; turn it on to profile a part, because a part that BREACHES the
+ * ceiling is killed before it prints its wall clock, and the parts worth
+ * cutting are exactly the ones a plain run therefore reports nothing about.
  *
  * (each command above fits the ten-minute ceiling, measured — every invocation
  * prints its own wall clock on its last line so the next margin to go is
@@ -35,7 +40,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the eight parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the nine parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -408,10 +413,13 @@ const shadowRigFor = (level, touch) => {
  * stage split has outgrown its sections — and the answer to it is to re-cut the
  * stages, NOT to measure fewer stands: measuring one friendly stand is the
  * defect this set exists to close. T-0166 re-cut the four stages into eight, so
- * this sweep is now inside PART 4 rather than a whole quarter; until T-0167 has
- * sized the desktop parts from a measured desktop profile, run the desktop
- * pass's part 4 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=4`, no
- * timeout) or read the mobile pass, which finds the same worst stand.
+ * this sweep is now inside PART 4 rather than a whole quarter, and T-0167 then
+ * measured that part at DESKTOP: **7 m 07 s**, inside the ceiling with 2 m 53 s
+ * to spare, so the instruction that used to stand here — run part 4 outside the
+ * ceiling, or read the mobile pass instead — is withdrawn. It is a reading and
+ * not a constant: these desktop numbers move by minutes between runs on a
+ * software renderer, which is why the margin is what this sweep is judged on
+ * and why `SMOKE_TIMING=1` exists to re-take it.
  *
  * `kind` is how the harness gets there: `frame` stands a distance off a
  * structure, `anchor` teleports to one of `data/scenes/1835.json`'s authored
@@ -890,10 +898,24 @@ const passes = [];
 // pass: staged section counts sum, scaffolding counts match.
 let inStageWork = false;
 let stageWorkChecks = 0;
+// T-0167: `SMOKE_TIMING=1` stamps every check line with the elapsed clock.
+// A part that overruns the ten-minute ceiling is KILLED, and the wall clock it
+// prints at the end is the one reading it never gets to give — so before this,
+// the most expensive parts, the ones that actually need cutting, were the only
+// ones a profile run learned nothing about. With the stamp on, a killed run's
+// output is still a profile of everything it reached, which is what places the
+// next cut. Off by default: the gate's output stays byte-comparable between
+// runs, and a profile is something you ask for.
+const TIMING = !!process.env.SMOKE_TIMING;
+const stamp = () => {
+  const secs = Math.round((Date.now() - startedAt) / 1000);
+  return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
+};
 function check(name, cond, detail = '') {
   if (inStageWork) stageWorkChecks += 1;
-  if (cond) { passes.push(name); console.log(`  pass  ${name}`); }
-  else { failures.push(name); console.log(`  FAIL  ${name}${detail ? ` — ${detail}` : ''}`); }
+  const t = TIMING ? stamp() : '';
+  if (cond) { passes.push(name); console.log(`  pass  ${t}${name}`); }
+  else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
 }
 
 const server = http.createServer((req, res) => {
@@ -960,9 +982,15 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // was stage 1 alone. The erosion is monotonic — the town keeps growing — so the
 // answer was a re-cut with margin rather than one more boundary nudged along.
 // Each of T-0060's four stages was halved at a section boundary re-verified for
-// crossing bindings, so PART 2k-1 + PART 2k is exactly T-0060's stage k and the
+// crossing bindings, so PART 2k-1 + PART 2k was exactly T-0060's stage k and the
 // mobile pass can still be taken in four commands with the range syntax below.
-const PARTS = 8;
+// T-0167 measured the DESKTOP profile the eight-way cut had never been sized
+// from — see ROADMAP § THE RUN BUDGET for the eight readings — and halved the
+// one part the profile put inside a minute and a quarter of the ceiling. Part 8
+// was the tail, so the ninth part is APPENDED and parts 1-7 keep their numbers:
+// the pairing rule survives as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
+// last command widens from `7-8` to `7-9`.
+const PARTS = 9;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -8324,9 +8352,9 @@ for (const [label, viewport, touch] of [
 
     inStageWork = false;
     } // end PART 7 (T-0060 stage 4a, cut by T-0121)
-    // PART 8 — eye height through inspecting from the air: the settings, the
-    // Go-to tab, What's-new, the whole Evidence panel and free-fly. The rest of
-    // T-0060's stage 4, and the most check-dense part of the suite.
+    // PART 8 — eye height through What's-new: the settings, the Go-to tab and
+    // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
+    // panel and free-fly off its tail into part 9.
     //
     // It drives the panel chrome from its first line, so it enters the town on
     // its own account. It takes no pose of its own on purpose: the checks below
@@ -8688,6 +8716,30 @@ for (const [label, viewport, touch] of [
     check(`${label}: a returning visitor sees only what shipped since last time`,
       ret.flagged.length === ret.total - 3 && ret.flagged.length > 0,
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
+
+    inStageWork = false;
+    } // end PART 8 (T-0060 stage 4b-i, cut by T-0121, halved again by T-0167)
+    // PART 9 — the Evidence panel through inspecting from the air: the
+    // liberties, the people, the wildlife, what is not here, what the ground
+    // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
+    //
+    // T-0167 cut it off part 8 because part 8 was the thinnest margin on the
+    // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
+    // 107 staged checks, more than any other part — and the desktop readings
+    // move by minutes between runs on a software renderer, so a 74-second
+    // margin is not one. The boundary is this one because the desktop profile
+    // put 6 m 05 s of part 8's cost above it and 2 m 41 s below, and because
+    // nothing declared above it is read below it: the scope-aware scan found
+    // `eye`, `toggles` and `typed` reaching across and all three are prose or a
+    // different local (`typedE.typed`).
+    //
+    // Its prologue is `enterTown()` alone: the liberties reading below already
+    // carries its own guarded panel-open and clicks the Evidence tab itself, so
+    // unlike part 8 this part needs no panel guard bolted on. It takes no pose
+    // — free-fly is entered from wherever the visitor stands.
+    if (stageOn(9)) {
+    inStageWork = true;
+    await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
     // The claim this project makes is that a visitor can tell which parts we
     // made up. The confidence view covers attributes; these are the decisions
@@ -9686,7 +9738,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 8 (T-0060 stage 4b, cut by T-0121)
+    } // end PART 9 (T-0060 stage 4b-ii, cut by T-0167)
     } catch (e) {
       inStageWork = false;
       thrown = e;

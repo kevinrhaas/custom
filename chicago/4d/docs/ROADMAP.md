@@ -145,15 +145,80 @@ cut's.
 possible early warning: this ceiling has been breached three times and each breach cost a run a
 hand measurement to discover.
 
-**THE DESKTOP FIT IS NOT CLAIMED HERE, AND T-0167 IS WHY.** `SMOKE_VIEWPORT=desktop
-SMOKE_STAGE=7` was still killed at 10 m 00 s after the re-cut, against 3 m 48 s for the same
-part at mobile, while part 6 costs 0 m 44 s at mobile and 1 m 53 s at desktop. So the desktop
-cost of a part is NOT a fixed multiple of its mobile cost — the camera-heavy parts scale several
-times harder than the DOM-heavy ones — and an eight-way cut sized on the mobile profile leaves
-parts over the ceiling. Sizing the desktop parts needs a profile measured at 1280x800, and that
-measurement is a run of its own: ~50 minutes of desktop body plus ~1 m 45 s of boot per part is
-55-70 minutes of foreground commands, which does not fit beside the re-cut it exists to size.
-That is T-0167.
+**THE DESKTOP FIT WAS NOT CLAIMED BY T-0166, AND T-0167 IS WHERE IT IS.** The reason it was
+deferred stands: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=7` was killed at 10 m 00 s on T-0166's
+runner against 3 m 48 s for the same part at mobile, while part 6 cost 0 m 44 s at mobile and
+1 m 53 s at desktop — so the desktop cost of a part is NOT a fixed multiple of its mobile cost,
+the camera-heavy parts scale several times harder than the DOM-heavy ones, and an eight-way cut
+sized on the mobile profile could not be assumed to fit.
+
+**THE DESKTOP PROFILE, MEASURED 2026-08-24 by T-0167** — eight foreground commands at 1280x800
+on the improve runner against the published mirror, one part each, `SMOKE_TIMING=1`:
+
+| part | desktop | margin | staged checks | mobile (T-0166) |
+|---|---|---|---|---|
+| 1 | **3 m 31 s** | 6 m 29 s | 66 | 1 m 41 s |
+| 2 | **2 m 37 s** | 7 m 23 s | 66 | 1 m 17 s |
+| 3 | **1 m 40 s** | 8 m 20 s | 65 | 0 m 52 s |
+| 4 | **7 m 07 s** | 2 m 53 s | 35 | 3 m 17 s |
+| 5 | **6 m 40 s** | 3 m 20 s | 19 | 2 m 52 s |
+| 6 | **1 m 24 s** | 8 m 36 s | 14 | 0 m 44 s |
+| 7 | **7 m 43 s** | 2 m 17 s | 36 | 3 m 48 s |
+| 8 | **8 m 46 s** | 1 m 14 s | 107 | 4 m 19 s |
+
+408 staged checks plus the 9 always-on ones every invocation takes, and **39 m 28 s** of wall
+clock for eight boots. (Mobile's 411 is these 408 plus the three checks part 4 takes only at
+mobile.)
+
+**The table above was taken at `ac1abb80`**, and T-0166's mobile column at the same commit.
+T-0114 merged into `dev` while this run was measuring and changed `streets.js`, so the parts
+that read the roads — 5 and 7 — will have moved a little since, and part 5's reading was taken
+with T-0114's road-legibility check still failing. The re-cut readings below, and the audit,
+were re-taken on top of T-0114.
+
+**NOTHING OVERRAN, AND THAT IS NOT THE SAME AS FITTING.** Two readings have to be held together:
+part 7 measured 7 m 43 s here and was KILLED at 10 m 00 s on T-0166's runner three days earlier,
+on a body that had not grown in between. **These desktop numbers move by minutes between runs**
+— SwiftShader is a software renderer and its cost tracks whatever else the machine is doing — so
+a part is not sized by whether one reading cleared the ceiling but by how much margin it has when
+it does. A 74-second margin is not a margin.
+
+**RE-CUT 2026-08-24 by T-0167 (piece 2 of T-0121): part 8 is halved and there are NINE parts.**
+Part 8 was both the thinnest margin on the profile and the most check-dense part of the suite by
+a factor of three, which is the combination worth cutting. It is also the TAIL, so the new part
+is APPENDED and parts 1-7 keep their numbers: the pairing rule survives as 1+2, 3+4, 5+6, **7+8+9**,
+and the mobile recipe's last command widens from `7-8` to `7-9` — still four commands. The
+boundary is the Evidence panel: the profile put 6 m 05 s of the old part 8 above it and 2 m 41 s
+below, and the scope-aware scan found three names crossing it (`eye`, `toggles`, `typed`) of which
+all three are prose or a different local (`typedE.typed`), so nothing crosses in fact. Part 9's
+prologue is `enterTown()` alone — the liberties reading already carries its own guarded panel-open
+and clicks its own tab, so unlike part 8 it needs no panel guard bolted on.
+
+**Measured after the cut, at desktop: part 8 — 6 m 10 s, 28 staged · part 9 — 3 m 09 s, 79
+staged.** 28 + 79 = 107, exactly the old part 8's count, which is how "never dropping a check" is
+demonstrated rather than asserted. Both were taken twice, once at `ac1abb80` (6 m 08 s / 3 m 08 s)
+and again on top of T-0114 — the same counts and within two seconds either way, which is also a
+reading on how much of the desktop variance is the scene and how much is the machine. The worst
+desktop margin is now **part 7 at 2 m 17 s**, and it is the next one to go — T-0170, which also
+records why it was not taken in the same run: part 7 has no section headers to cut at, it holds
+one half of the `anyStage(5, 7)` street-layer reading, and it is not the tail, so cutting it
+renumbers everything after it. The audit was taken at mobile too: old `SMOKE_STAGE=7-8` gives 143
+staged / 9 always-on / 152 passed and new `7-9` gives **143 / 9 / 152**, in 5 m 53 s against
+5 m 49 s.
+
+**AND THE HEADING OF THIS SECTION IS OUT OF DATE BY A FACTOR OF TWO.** "The smoke costs 26 of
+them" was measured on 2026-08-14. T-0167's profile puts the staged gate at **39 m 58 s of desktop
+across nine commands plus 13 m 26 s of mobile across four** — call it **53 minutes**, better than a
+third of the 150-minute run budget, and that is before a part is re-run after a fix. The two-full-
+passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
+parcel whose acceptance needs the whole gate twice has already outgrown a run.
+
+**`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
+the profile could not have been taken without it. A part that BREACHES the ceiling is killed
+*before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain
+run reported nothing about — T-0166's part 7 reading is literally ">10 m", and nothing else. With
+the stamp on, a killed run is still a profile of everything it reached, which is what places the
+next cut. It is off by default so the gate's own output stays comparable between runs.
 
 ### NEXT UP — every row says whether a visitor can SEE it
 

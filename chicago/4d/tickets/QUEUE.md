@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0167 — Size the desktop parts from a measured desktop profile, and re-cut whatever still overruns
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 
@@ -86,3 +85,4 @@ T-0155 — The changelog stamper has the same after-publish trap the ticket tool
 T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
 T-0030 — A queue card in Manager reading tickets.json
+T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
