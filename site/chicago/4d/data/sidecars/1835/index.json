@@ -2613,6 +2613,12 @@
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a2_08__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_a2_17",
+      "name": "Reconstructed A2 barn or carriage shed #17",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a2_17.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a2_17__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_a3_09",
       "name": "Reconstructed A3 privy #09",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a3_09.json",
@@ -2643,6 +2649,12 @@
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_12__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_d1_16",
+      "name": "Reconstructed D1 older log dwelling #16",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d1_16.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_16__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_d2_05",
       "name": "Reconstructed D2 rough plank dwelling or shanty #05",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d2_05.json",
@@ -2661,6 +2673,12 @@
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_11__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_d3_15",
+      "name": "Reconstructed D3 one-room frame cottage #15",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d3_15.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_15__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_d4_03",
       "name": "Reconstructed D4 two-room frame cottage #03",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d4_03.json",
@@ -2677,6 +2695,12 @@
       "name": "Reconstructed D6 one-and-a-half-story frame cottage #10",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d6_10.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d6_10__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_h1_14",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #14",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_h1_14.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_h1_14__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_franklin_a1_07",
