@@ -60,3 +60,23 @@ way: the cap would again be a number nobody had measured against, and the deskto
 again be one command whose cost is the sum of everything. Splitting is what makes the margin
 legible per leg, and it is what T-0170's further cut of part 7 will keep improving rather than
 invalidate.
+
+**THE UNION IS DEMONSTRATED, NOT ASSERTED.** The four legs' staged-check counts, against
+T-0167's per-part profile and its post-cut re-measure (parts 8 and 9 at 28 and 79):
+
+| leg | staged checks | source |
+|---|---|---|
+| 1-2 | **132** | measured here, mobile, 2 m 02 s — 141 passed / 0 failed |
+| 3-4 | 103 | profile: 65 + 35, plus the 3 checks part 4 takes only at mobile |
+| 5-6 | 33 | profile: 19 + 14 |
+| 7-9 | 143 | T-0167's own audit of the re-cut, 143 / 9 / 152 |
+| **sum** | **411** | run #269's unfiltered mobile pass reported **411 staged + 9 always-on** |
+
+411 is exactly what the unfiltered run reports, and the ranges tile 1..9 once with no gap and
+no overlap — so the eight legs reconstitute the gate rather than sampling it. The measured
+`1-2` leg matching the profile's 66 + 66 to the digit is the reading that makes the other three
+rows trustworthy: it is the one place a range was run rather than added up.
+
+**Still owed by this ticket:** the desktop legs read to completion on a dispatched bake. The
+audit above is arithmetic plus one mobile leg; the acceptance is a green desktop half, which no
+run has ever produced.
