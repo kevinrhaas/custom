@@ -1209,8 +1209,8 @@
     "recon_1835_blk_randolph_dearborn_d3_15__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 26748,
-      "inputs_sha256": "dc8cd0fe39acaffab53b4b859d68412757890fac8394a8637e9fdc172df47407",
+      "bytes": 27688,
+      "inputs_sha256": "a8044202276605a650676c1e9ac7a27d5380133a9d9e903070baac226c3fd1c0",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_d3_15"
@@ -1246,7 +1246,7 @@
       "archetype": "frame_dwelling",
       "baked_ao": false,
       "bytes": 33012,
-      "inputs_sha256": "711d821365f80892bc5d30d303eb308db966630d9274d84a5db31768770148f5",
+      "inputs_sha256": "322cffe79f0e2543fb8c00288f03656364a0ab88fa977524b5681db7e7d2c86c",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_h1_14"

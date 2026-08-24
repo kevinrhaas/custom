@@ -10162,7 +10162,7 @@ advanced by the same 60 m separation. Clapboard pairs within 60 m wearing the sa
 131 anonymous roofs now differ from their nearest neighbour, where none did. The residual is
 stated rather than rounded: a recipe deals its own parcel only (a town-wide deal was measured at
 9/186 and refused, because it would make moving one roof restale every other parcel's meshes),
-and four stocks cannot separate a roof with nine neighbours. **L179.**
+and four stocks cannot separate a roof with nine neighbours. **L181.**
 
 ### K5 — The town's furniture: fences, yards, wagons, signs, porches, docks
 The scene is buildings on bare ground; a working town has STUFF. In order: (a) the

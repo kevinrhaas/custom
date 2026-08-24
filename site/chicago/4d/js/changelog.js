@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 266, title: 'A street of houses stops hanging the same clapboard', kind: 'feature', ts: '2026-08-24T16:35:46.834Z', date: 'Aug 24, 2026, 11:35 AM CT',
+    items: [
+      'Walk any street of anonymous houses \u2014 the Randolph and South Water blocks, the North Division cluster, the West approaches \u2014 and look along the row. Until now every one of them wore the same board: the same width of clapboard showing to the weather, the same rhythm of lines up every wall, a hundred and thirty-one houses deep. They hang four different boards now, and the two houses either side of you are almost never the same.',
+      'The four are period mill sidings \u2014 four and a half, five, five and a half and six inches left showing once the board above laps it. On the same wall that is about nineteen courses at the widest and twenty-five at the narrowest, which reads from across a street.',
+      'The town\u2019s two dozen named frame buildings were dealt from that same set of four earlier this month. The anonymous ones could not be: each is rebuilt from scratch from its recipe every time the data is checked, so a board width typed into the record would be wiped out on the next run. The deal now happens inside the recipe, which is why it survives.',
+      'Which board a house gets is not a fact about that house. No source states the board width of any building in Chicago, and none ever will for a house nobody wrote down. What is recorded is the invention and its bound: one of four, drawn from the house\u2019s own record, then moved along until no neighbour of its parcel within sixty metres hangs the same one. The evidence panel says so on every value.',
+      'Counted over the whole town, pairs of clapboard walls standing within sixty metres of each other and wearing the same board fall from 192 of 266 to 21 of 266. Of the hundred and thirty-one anonymous roofs, 120 now differ from their nearest neighbour. Before this, none did.',
+      'Nothing was added, moved or resized \u2014 same buildings, same ground, same sizes. A hundred and eighteen walls were rebuilt with their new rhythm and everything else came out exactly as it was.',
+    ] },
   { v: 265, title: 'A landing for the storehouse on the west bank at Wolf Point', kind: 'feature', ts: '2026-08-24T15:55:28.339Z', date: 'Aug 24, 2026, 10:55 AM CT',
     items: [
       'Cross to the west bank at Wolf Point, where the two branches meet, and look at the storehouse that faces the water. It has a landing now \u2014 thirteen metres of plank deck on a timber crib, running out over the river in front of its door. Five docks stand on this river where four did.',

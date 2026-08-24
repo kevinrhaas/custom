@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A street of houses stops hanging the same clapboard', kind: 'feature', ts: '', date: '',
+  { v: 266, title: 'A street of houses stops hanging the same clapboard', kind: 'feature', ts: '2026-08-24T16:35:46.834Z', date: 'Aug 24, 2026, 11:35 AM CT',
     items: [
       'Walk any street of anonymous houses \u2014 the Randolph and South Water blocks, the North Division cluster, the West approaches \u2014 and look along the row. Until now every one of them wore the same board: the same width of clapboard showing to the weather, the same rhythm of lines up every wall, a hundred and thirty-one houses deep. They hang four different boards now, and the two houses either side of you are almost never the same.',
       'The four are period mill sidings \u2014 four and a half, five, five and a half and six inches left showing once the board above laps it. On the same wall that is about nineteen courses at the widest and twenty-five at the narrowest, which reads from across a street.',

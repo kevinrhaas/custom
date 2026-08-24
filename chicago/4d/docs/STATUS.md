@@ -74,7 +74,7 @@ stopped dealing ALTOGETHER — a record with no `siding_exposure_m` is a perfect
 record; it just puts 131 walls back on one course, invisibly. Run against the tree before the
 recipes were wired, the new step names all 131 by id and exits 1.
 
-docs/LIBERTIES.md **L179** owns the invention and supersedes L148's sentence saying derived
+docs/LIBERTIES.md **L181** owns the invention and supersedes L148's sentence saying derived
 records stay on the default.
 
 ## Shipped 2026-08-24 — T-0107: a landing on the west bank at Wolf Point, and a face that has to be afloat
