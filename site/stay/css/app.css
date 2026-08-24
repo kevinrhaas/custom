@@ -206,6 +206,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gulf); outline-
 .kb.hero { background: color-mix(in srgb, var(--gulf) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--gulf) 35%, var(--border)); color: var(--text); }
 .kb.king { background: color-mix(in srgb, var(--coral) 13%, var(--surface-2)); border-color: color-mix(in srgb, var(--coral) 34%, var(--border)); }
 .kb.muted { color: var(--text-3); font-weight: 600; }
+.kb.over { background: color-mix(in srgb, var(--warn) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--warn) 34%, var(--border)); }
+.kb.under { background: color-mix(in srgb, var(--bad) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--bad) 34%, var(--border)); }
 .kb svg { width: 13px; height: 13px; opacity: .8; }
 
 .beds-line { font-size: 12.5px; color: var(--text-2); }

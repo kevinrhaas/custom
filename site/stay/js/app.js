@@ -31,21 +31,36 @@ function bedInfo(p) {
 }
 
 /* ---- fit score + tier -------------------------------------------------- */
+/* The party: three couples — the parents, a brother and his partner, the host
+   couple — plus three adult children in their twenties. Nine people, five or
+   six rooms, and exactly THREE kings, one per couple. A fourth king earns
+   nothing: the twenty-somethings want a decent queen, not another master. And
+   a house built for eighteen is the wrong house even when the bedroom count
+   fits, so capacity well past the group is a penalty, not a feature. */
+const GROUP = 9, KINGS_WANTED = 3;
+
 function evaluate(p) {
   const bi = bedInfo(p);
-  const inRange = p.bedrooms >= 6 && p.bedrooms <= 8;
+  const inRange = p.bedrooms >= 5 && p.bedrooms <= 6;
   let score = 0;
 
-  score += inRange ? 40 : (p.bedrooms === 5 || p.bedrooms === 9) ? 12 : 4;
+  score += inRange ? 40 : (p.bedrooms === 4 || p.bedrooms === 7) ? 15 : 4;
 
-  if (bi.ratio != null) {
-    score += bi.ratio >= 0.85 ? 30 : bi.ratio >= 0.6 ? 23 : bi.ratio >= 0.4 ? 15 : bi.king > 0 ? 8 : 2;
+  // Kings score toward three and then stop. Nothing above KINGS_WANTED counts.
+  if (bi.king != null) {
+    const got = Math.min(bi.king, KINGS_WANTED);
+    score += got === 3 ? 26 : got === 2 ? 18 : got === 1 ? 10 : 3;
   } else {
-    score += 7;                                     // unstated — mildly penalised, not zeroed
+    score += 8;                                     // unstated — mildly penalised, not zeroed
   }
 
   const sl = p.sleeps || 0;
-  score += sl >= 18 ? 11 : sl >= 16 ? 9 : sl >= 14 ? 7 : sl >= 12 ? 4 : 0;
+  if (sl === 0) score += 0;                         // capacity not published
+  else if (sl < GROUP) score -= 14;                 // cannot fit everyone
+  else if (sl <= 12) score += 12;                   // right-sized for nine
+  else if (sl <= 15) score += 4;
+  else score -= 8;                                  // built for a much bigger group
+  if (p.bedrooms >= 8) score -= 6;                  // more house than this trip needs
 
   const am = (p.amenities || []).join(' ').toLowerCase();
   const tg = (p.tags || []).join(' ').toLowerCase();
@@ -53,12 +68,14 @@ function evaluate(p) {
   const pool = /pool/.test(am) || /pool/.test(tg);
   score += heated ? 11 : pool ? 8 : 0;              // December in Florida: an unheated pool is decor
   if (/hot tub|spa/.test(am)) score += 3;
+  if (/fireplace/.test(am + ' ' + tg)) score += 4;  // Christmas week, and inland nights get cool
   if (/waterfront|beachfront|gulf front|bayfront|riverfront|dock|lakefront/.test(am + ' ' + tg)) score += 7;
-  if (/elevator/.test(am)) score += 3;              // multi-gen: grandparents and stairs
-  if (/game room|pool table|arcade/.test(am)) score += 2;
+  if (/elevator/.test(am)) score += 3;              // the parents, and eight days of stairs
+  if (/bunk/.test(am + ' ' + tg) || (bi.b && bi.b.bunk > 0)) score -= 4;   // nine adults, no children
 
-  score += p.availability === 'confirmed_open' ? 12 : p.availability === 'search_listed' ? 6 : 0;
-  if ((p.images || []).length) score += 3;
+  score += p.availability === 'confirmed_open' ? 12
+         : p.availability === 'search_listed' ? (p.total_est != null ? 10 : 6) : 0;
+  if ((p.images || []).length || p.photo) score += 3;
   if (p.nightly_est != null || p.total_est != null) score += 2;
   if (p.compound) score -= 5;                       // several keys, several contracts
 
@@ -66,14 +83,14 @@ function evaluate(p) {
   if (d != null) score += Math.max(0, 7 - d / 22);
 
   let tier;
-  const kingStrong = bi.ratio != null && bi.ratio >= 0.6;
-  const kingSome = bi.ratio != null && bi.king > 0;
-  if (inRange && kingStrong) tier = 'exact';
-  else if (inRange && (kingSome || !bi.known)) tier = 'strong';
+  const kings = bi.king;
+  if (inRange && kings >= KINGS_WANTED) tier = 'exact';
+  else if (inRange && (kings > 0 || kings == null)) tier = 'strong';
   else if (inRange) tier = 'backup';
   else tier = 'stretch';
 
-  return { ...p, _bi: bi, _score: score, _tier: tier, _dist: d };
+  return { ...p, _bi: bi, _score: score, _tier: tier, _dist: d,
+           _oversized: sl >= 16 || p.bedrooms >= 8 };
 }
 
 /* ---- distance to TPA --------------------------------------------------- */
@@ -375,11 +392,19 @@ const ICON = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h4l2 5-2.5 1.5a12 12 0 006 6L16 13l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>'
 };
 const TIER_LABEL = { exact: 'Best fit', strong: 'Strong', backup: 'Worth a look', stretch: 'Stretch' };
-const AVAIL = {
-  confirmed_open: ['confirmed', '✓', 'Dec 19–27 showed open'],
-  search_listed: ['listed', '◐', 'Came back in a Dec 19–27 search'],
-  unknown: ['unknown', '?', 'Dates not checkable — ask the host']
-};
+/* A dated search that came back with a priced eight-night total is much
+   stronger evidence than merely appearing in a list: the platform's own engine
+   costed Dec 19-27 for that house. Say so, rather than flattening it into the
+   same "listed" bucket as a listing we only glimpsed. */
+function availInfo(p) {
+  if (p.availability === 'confirmed_open') return ['confirmed', '✓', 'Dec 19–27 showed open'];
+  if (p.availability === 'search_listed') {
+    return p.total_est != null
+      ? ['confirmed', '✓', 'Priced for Dec 19–27 — all 8 nights quoted']
+      : ['listed', '◐', 'Came back in a Dec 19–27 search'];
+  }
+  return ['unknown', '?', 'Dates not checkable — ask the host'];
+}
 
 function bedsLine(p) {
   const bi = p._bi, b = bi.b;
@@ -406,14 +431,19 @@ function card(p) {
      thing to rot, and some hosts refuse hotlinks outright. Remote is the
      fallback, and a drawn placeholder is the fallback to that. */
   const img = p.photo || (p.images || [])[0];
-  const av = AVAIL[p.availability] || AVAIL.unknown;
+  const av = availInfo(p);
   const link = datedUrl(p);
   const kbs = [];
   kbs.push(`<span class="kb hero">${ICON.bed} ${p.bedrooms} bedrooms</span>`);
-  if (bi.king) kbs.push(`<span class="kb king">👑 ${bi.king} king${bi.king > 1 ? 's' : ''}</span>`);
+  /* Three kings is the target, so highlight it only when the house hits it.
+     Above three the count is reported plainly — extra masters are not a win,
+     and colouring them like one is how the last version misled us. */
+  if (bi.king >= KINGS_WANTED) kbs.push(`<span class="kb king">👑 ${bi.king} king${bi.king > 1 ? 's' : ''}${bi.king > KINGS_WANTED ? ' <span style="opacity:.6;font-weight:600">· 3 is all we need</span>' : ''}</span>`);
+  else if (bi.king > 0) kbs.push(`<span class="kb">👑 ${bi.king} king${bi.king > 1 ? 's' : ''} <span style="opacity:.6;font-weight:600">· short of 3</span></span>`);
   else if (!bi.known) kbs.push(`<span class="kb muted">👑 kings unconfirmed</span>`);
+  else kbs.push(`<span class="kb muted">👑 no kings listed</span>`);
   if (p.bathrooms) kbs.push(`<span class="kb">${ICON.bath} ${p.bathrooms} bath</span>`);
-  if (p.sleeps) kbs.push(`<span class="kb">${ICON.people} sleeps ${p.sleeps}</span>`);
+  if (p.sleeps) kbs.push(`<span class="kb${p.sleeps < GROUP ? ' under' : p._oversized ? ' over' : ''}">${ICON.people} sleeps ${p.sleeps}${p.sleeps < GROUP ? ' — too few for nine' : p._oversized ? ' — bigger than we need' : ''}</span>`);
   if (p.compound) kbs.push(`<span class="kb">🏘 books as ${p.compound_note ? 'one' : 'a compound'}</span>`);
 
   return `
@@ -449,16 +479,20 @@ function card(p) {
 
 /* ====================== state, filters, render ========================== */
 let ALL = [], BY_ID = {}, shownList = [], selected = null;
-const state = { q: '', region: 'all', king: false, pool: false, water: false, strict: true, sleeps: 0, sort: 'match' };
+const state = { q: '', region: 'all', king: false, pool: false, water: false, strict: true, sleeps: 'fits', sort: 'match' };
 
 function matches(p) {
-  if (state.strict && !(p.bedrooms >= 6 && p.bedrooms <= 8)) return false;
+  if (state.strict && !(p.bedrooms >= 5 && p.bedrooms <= 6)) return false;
   if (state.region !== 'all' && p.region !== state.region) return false;
-  if (state.king && !(p._bi.king > 0)) return false;
+  if (state.king && !(p._bi.king >= KINGS_WANTED)) return false;
   const am = ((p.amenities || []).join(' ') + ' ' + (p.tags || []).join(' ')).toLowerCase();
   if (state.pool && !/pool/.test(am)) return false;
   if (state.water && !/waterfront|beachfront|gulf front|gulffront|bayfront|riverfront|lakefront|dock|canal|water/.test(am)) return false;
-  if (state.sleeps && !(p.sleeps >= state.sleeps)) return false;
+  /* 'fits' drops only houses we KNOW are too small — an unpublished capacity is
+     not evidence against a house. 'right' is the deliberate tight band, so it
+     does require a stated number. */
+  if (state.sleeps === 'fits' && p.sleeps != null && p.sleeps < GROUP) return false;
+  if (state.sleeps === 'right' && !(p.sleeps >= GROUP && p.sleeps <= 12)) return false;
   if (state.q) {
     const hay = [p.name, p.city, p.neighborhood, p.source, p.why, p.cons, (p.amenities || []).join(' '), (p.tags || []).join(' ')].join(' ').toLowerCase();
     if (!state.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false;
@@ -468,14 +502,16 @@ function matches(p) {
 
 const SORTS = {
   match: (a, b) => b._score - a._score,
-  kings: (a, b) => (b._bi.king || -1) - (a._bi.king || -1) || b._score - a._score,
+  // toward three kings, not away from it — a seven-king house is not "better"
+  kings: (a, b) => Math.abs((a._bi.king ?? 99) - KINGS_WANTED) - Math.abs((b._bi.king ?? 99) - KINGS_WANTED) || b._score - a._score,
+  near: (a, b) => (a._dist ?? 9e9) - (b._dist ?? 9e9) || b._score - a._score,
   price: (a, b) => {
     const av = a.nightly_est ?? a.total_est / 8 ?? null, bv = b.nightly_est ?? b.total_est / 8 ?? null;
     if (av == null && bv == null) return b._score - a._score;
     if (av == null) return 1; if (bv == null) return -1;
     return av - bv;
   },
-  beds: (a, b) => b.bedrooms - a.bedrooms || b._score - a._score
+  small: (a, b) => (a.sleeps || 99) - (b.sleeps || 99) || b._score - a._score
 };
 
 function apply(refit) {
@@ -485,7 +521,7 @@ function apply(refit) {
 
   $('#list').innerHTML = shownList.length
     ? shownList.map(card).join('')
-    : `<div class="empty">Nothing matches those filters. Try turning off “6–8 bedrooms only” — a few of the best places up the Nature Coast only reach six by combining a house and a cottage.</div>`;
+    : `<div class="empty">Nothing matches those filters. Try turning off “5–6 bedrooms only” — Cedar Key in particular tops out at four bedrooms, and a good four-bedroom there would mean two of the three kids sharing.</div>`;
   $('#count').textContent = shownList.length;
   const hidden = ALL.length - shownList.length;
   $('#hiddenNote').textContent = hidden ? ` · ${hidden} hidden by filters` : '';
@@ -497,11 +533,12 @@ function apply(refit) {
 }
 
 function stats() {
-  const inR = ALL.filter(p => p.bedrooms >= 6 && p.bedrooms <= 8);
   $('#s-total').textContent = ALL.length;
   $('#s-exact').textContent = ALL.filter(p => p._tier === 'exact').length;
   $('#s-strong').textContent = ALL.filter(p => p._tier === 'strong').length;
-  $('#s-king').textContent = ALL.filter(p => (p._bi.king || 0) >= 4).length;
+  // right-sized: in the bedroom band AND built for roughly this group, not double it
+  $('#s-king').textContent = ALL.filter(p =>
+    p.bedrooms >= 5 && p.bedrooms <= 6 && p.sleeps >= GROUP && p.sleeps <= 12).length;
   $('#s-regions').textContent = new Set(ALL.map(p => p.region)).size;
 }
 
@@ -510,11 +547,29 @@ function paintSelection() {
   $$('.card').forEach(c => c.classList.toggle('sel', c.dataset.id === selected));
   $$('#map .pin').forEach(p => p.classList.toggle('sel', p.dataset.id === selected));
 }
+/* Pins for filtered-out houses stay on the map, dimmed, so you can still see
+   what you have ruled out — but clicking one used to select a card that wasn't
+   rendered, which read as the map being broken. Say what happened instead. */
+let hintTimer = null;
+function flashHint(msg) {
+  const el = $('#mapHint'); if (!el) return;
+  if (!el.dataset.base) el.dataset.base = el.textContent;
+  el.textContent = msg;
+  el.style.color = 'var(--warn)';
+  clearTimeout(hintTimer);
+  hintTimer = setTimeout(() => { el.textContent = el.dataset.base; el.style.color = ''; }, 4000);
+}
+
 function selectCard(id, fromMap) {
   selected = id;
   paintSelection();
   const el = $('#card-' + CSS.escape(id));
-  if (el && fromMap) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (!el) {
+    const p = BY_ID[id];
+    flashHint(p ? `${p.name} is hidden by your filters — clear them to see it.` : 'That one is hidden by your filters.');
+    return;
+  }
+  if (fromMap) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   if (!fromMap) {
     const p = BY_ID[id];
     if (p && mapReady && typeof p.lat === 'number') {
@@ -592,7 +647,7 @@ function wire() {
     apply(false);
   });
   $$('[data-sleeps-btn]').forEach(b => b.onclick = () => {
-    state.sleeps = +b.dataset.sleepsBtn;
+    state.sleeps = b.dataset.sleepsBtn;
     $$('[data-sleeps-btn]').forEach(x => x.classList.toggle('on', x === b));
     apply();
   });

@@ -25,6 +25,10 @@ def grab(prop):
     imgs = prop.get('images') or []
     if not imgs: return (prop['id'], None, 'no image url')
     dest = os.path.join(OUT, prop['id'] + '.jpg')
+    # idempotent: keep what we already have so re-runs only fetch what is new.
+    # Delete a file (or the folder) to force it to be pulled again.
+    if os.path.exists(dest) and os.path.getsize(dest) > 4000:
+        return (prop['id'], os.path.getsize(dest), 'cached')
     for url in imgs[:3]:                       # first that actually works
         try:
             r = subprocess.run(['curl', '-sS', '-L', '--max-time', '25', '-A', UA, variant(url)],

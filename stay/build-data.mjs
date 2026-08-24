@@ -18,7 +18,7 @@ const APP = join(HERE, '..', 'site', 'stay');              // site/stay/ — the
 /* The trip. Dec 19 2026 is a Saturday, which matters more than it looks: the
  * beach PMs run Saturday-to-Saturday turnover in peak weeks and Anna Maria has
  * a 7-night minimum by ordinance, so an 8-night Sat->Sun stay clears both. */
-const DATES = { checkin: '2026-12-19', checkout: '2026-12-27', nights: 8, guests: 16 };
+const DATES = { checkin: '2026-12-19', checkout: '2026-12-27', nights: 8, guests: 9 };
 
 const REGIONS = [
   { id: 'tampa-metro',  short: 'Tampa Bay',   label: 'Tampa / St. Pete / Clearwater metro' },
@@ -144,25 +144,29 @@ const DATA = {
   dates: DATES,
   regions: REGIONS,
   tiers: {
-    exact:   'Best fit — 6–8 bedrooms with kings in most of them',
-    strong:  'Strong — right size, kings partly or not yet confirmed',
-    backup:  'Worth a look — right size, but the beds are not kings',
-    stretch: 'Stretch — outside 6–8 bedrooms, or several keys'
+    exact:   'Best fit — 5–6 bedrooms with three kings, one per couple',
+    strong:  'Strong — right size, kings partial or not yet confirmed',
+    backup:  'Worth a look — right size, but no kings listed',
+    stretch: 'Stretch — outside 5–6 bedrooms, or several keys'
   },
   spec_chips: [
-    { dot: '#0e7c8a', text: '<b>1.</b>&nbsp;6–8 bedrooms' },
-    { dot: '#d4614a', text: '<b>2.</b>&nbsp;King beds in most of them' },
+    { dot: '#0e7c8a', text: '<b>1.</b>&nbsp;5–6 bedrooms' },
+    { dot: '#d4614a', text: '<b>2.</b>&nbsp;3 kings — one per couple' },
     { text: '<b>3.</b>&nbsp;Dec 19–27, 2026 · 8 nights' },
-    { text: '<b>4.</b>&nbsp;Room for 12–18' },
+    { text: '<b>4.</b>&nbsp;Nine of us · sleeps 9–12' },
     { text: '<b>5.</b>&nbsp;Pool, water or real character' }
   ],
   disclaimer:
     'Nothing here is a booking, and no listing calendar could be read directly — every rental platform blocks automated checks. ' +
-    'Availability is reported as exactly what was seen: “Dec 19–27 showed open” only where a dated search returned the house, ' +
-    '“came back in a Dec 19–27 search” where it appeared in dated results, and “unknown” for everything else, which is most of them. ' +
+    'Availability is reported as exactly what was seen. “Priced for Dec 19–27” means the platform’s own engine returned that house with a costed eight-night total for these exact dates — ' +
+    'strong evidence, though still not a booking, since anyone can take it tomorrow. “Unknown” means the house was found and read but its calendar was not reachable. ' +
     'Confirm dates, the bed layout and the real holiday rate with the host or manager before counting on any of it. ' +
     'Prices are whatever the source published — often a shoulder-season nightly rate or a range, not a Christmas-week quote, which will usually be higher. ' +
     'Bed counts are the listing’s own; where a host never published a layout the card says so rather than guessing. ' +
+    'A house missing from a dated search is not proof it is booked: a holiday minimum-stay rule can exclude a place from an eight-night December search while it sits empty, ' +
+    'and several Cedar Key houses that appear in a November search but not a December one are exactly this ambiguous — worth a phone call, not a write-off. ' +
+    'Ranking is built for this group specifically — nine people, five or six rooms, three kings and no more. ' +
+    'Houses outside that shape are kept but ranked down rather than deleted, so a bigger place is still one filter away. ' +
     'Pins sit at each listing’s stated area, not its street address. Fit ranking is our own opinion, not the platforms’.',
   properties
 };
@@ -180,5 +184,5 @@ const photos = properties.filter(p => p.photo).length;
 console.log(`wrote site/stay/js/data.js — ${properties.length} properties`);
 for (const r of REGIONS) console.log(`  ${String(byRegion[r.id] || 0).padStart(3)}  ${r.label}`);
 console.log(`  ${kings} with a published king count · ${photos} with a local photo`);
-console.log(`  ${properties.filter(p => p.bedrooms >= 6 && p.bedrooms <= 8).length} inside the 6–8 bedroom brief`);
+console.log(`  ${properties.filter(p => p.bedrooms >= 5 && p.bedrooms <= 6).length} inside the 5–6 bedroom brief · ${properties.filter(p => p.bedrooms >= 5 && p.bedrooms <= 6 && p.sleeps >= 9 && p.sleeps <= 12).length} of those right-sized for nine`);
 if (problems.length) { console.log('\nnotes:'); problems.forEach(p => console.log('  - ' + p)); }
