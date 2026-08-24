@@ -3652,9 +3652,9 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 29
-        && frontage.census?.crossings === 12
-        && frontage.census?.posts === 3 && frontage.census?.fences === 12
+      frontage.census?.records === 4 && frontage.census?.walks === 26
+        && frontage.census?.crossings === 14
+        && frontage.census?.posts === 3 && frontage.census?.fences === 11
         && frontage.census?.refused === 53
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
@@ -3701,18 +3701,20 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-eight
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-five
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119) and the town street edge's twenty-one (T-0069, one per run
-    // of sidewalk), all on ONE material, and the painted name on
-    // its own mesh, the only thing here that may carry a texture.
+    // chunks (T-0119) and the town street edge's eighteen (T-0069, one per run
+    // of sidewalk — twenty-one until T-0190 put the South Water frontages back on
+    // the committed plat and the walk stopped breaking on them), all on ONE
+    // material, and the painted name on its own mesh, the only thing here that
+    // may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 38,
+        && frontage.meshes === 35,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);

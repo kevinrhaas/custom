@@ -159,3 +159,23 @@ run: nothing here is shipping yet.
 corridor by 0.10–0.31 m at their corners — moving south cannot reach that and moving along
 the street would move the axis the sources argue) and **T-0196** (four buildings still stand
 on LAKE Street's walk, the same OSM-kerb fault, and downstream of this same fork).
+
+## Verification actually run, in the foreground
+
+- `./tools/check.sh` — every step green **except** `generate_block_infill.py --check` (the fork
+  above) and `check_published.mjs` (only because `publish.sh` was deliberately not run — the
+  failure names exactly the eleven sidecars and the frontage record, and nothing else).
+- `tools/smoke_renderer.mjs` at **390x780, all nine stages: 208 + 80 + 152 = 440 checks, 0 failed.**
+  The frontage layer's pinned census in the smoke moved with the walk and was updated with it —
+  walks 29→26, crossings 12→14, fence runs 12→11, meshes 38→35 (the town street edge's culling
+  chunks are one per run of sidewalk, so twenty-one became eighteen). Those are the layer's shape,
+  not a threshold, and no gate was loosened.
+- `tools/smoke_renderer.mjs` at **1280x800, stages 1-3: 208 checks, 0 failed**; **stage 4: one
+  failure, and it is not this branch's.** `scene detail 'balanced' stays inside its own ceiling at
+  the WORST stand` reports 1,235,088 tris of 1,210,000 at Lake Street at Canal — and `origin/dev`
+  with these eleven records unmoved reports **the identical figure, to the triangle**. The stand it
+  fails at is at the far west end of the town and the walk this ticket lengthened is on South Water
+  in the east, so the layer contributes nothing there. Pre-existing, and T-0089 / T-0147's to carry.
+- Desktop stages 5-9 not run: each leg costs about seven minutes against a ten-minute per-command
+  ceiling, and with the branch already red on the block-parcel gate there is nothing for them to
+  clear. They run before this merges.
