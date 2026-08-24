@@ -183,10 +183,6 @@
       "arrangement_note": "The easternmost block the plat module covers on the Randolph tier, bounded by Randolph, State, Washington and Dearborn, and empty in this dataset before this parcel. The schedule dealt it ten roofs and no house or commercial family at all — five dwellings across the rough end of the range, four yard buildings and the civic roof this parcel defers. Five principal roofs on eight lots leaves three lots open. What is argued here and not found: the three better-built dwellings (the deep-plan and two-room cottages and the one-room cottage) take the Randolph face because Randolph is the through street of the pair in the module's own street hierarchy, which is the same frontage-value typology the Randolph and Wells block recorded, and the log cabin and the plank shanty take Washington. The four yard buildings each stand behind a principal roof on its own lot, because a rear yard belongs to a lot and a lot belongs to a house. The barn or carriage shed takes the eastern end lot, where the block backs onto ground the plat module does not reach and the town gives out; that is a typology of where a town keeps a large animal shelter, not evidence about this block.",
       "open_lots": [
         {
-          "lot": 1,
-          "why": "A south-tier lot the schedule left nothing to stand on once the civic roof was deferred. It is open because the parcel refused a slot, and the record of why is in `deferred` rather than in an argument about vacancy."
-        },
-        {
           "lot": 5,
           "why": "A south-tier interior lot, left open on the same alternating-vacancy assumption as lot 4."
         }
@@ -1448,13 +1444,20 @@
       "frontage": {
         "face": "north",
         "fronts": "lake",
-        "setback_m": 1.5,
+        "setback_m": 0.8,
+        "adopts_face_line": [
+          "recon_1835_south_d3_013",
+          "recon_1835_south_d4_014",
+          "recon_1835_south_d5_016",
+          "recon_1835_south_c3_015"
+        ],
+        "adopts_face_line_why": "T-0104. THIS FACE WAS ALREADY BUILT WHEN THIS RUN ARRIVED, and it was built to a different line. T-0077 stood four anonymous roofs on this same Lake frontage with their front walls 0.80 m off it; this run stood three more 1.50 m off it, because 1.50 m is the plat module's own lot margin and no rule had ever asked what the face was already carrying. Ten metres of open frontage between the two runs is the only reason the face did not read as a step, and the next parcel to close that gap would have put a 0.70 m jog in a street wall this project describes everywhere as one line. Measured, the face carried worse than two lines: inf_bakery_lake and inf_butcher_market, the two inferred-household buildings T-0077 aligned ITS row to, stand at 0.804 m and 0.784 m at bearing 0 where this face runs at 0.465 - so they are not on any line at all, and the 0.80 m T-0077 adopted was a reading of them rather than a rule. Of the three routes T-0104 set out this is (b): the run stands closer than the lot margin on the STREET line specifically. It is taken because (a) - moving T-0077's row out to 1.50 m - would have broken the party wall recon_1835_south_d3_013 declares with inf_butcher_market and CREATED the jog the ticket exists to prevent, on the one wall in the row that is gated as a shared wall. The exemption is as narrow as L141's: it reaches the street line only, the side lot lines keep the full 1.50 m margin, and the number is not authored here - `adopts_face_line` names the committed records and tools/generate_block_infill.py measures their front walls, so a recipe that states any other setback fails. What no line here claims is a measurement of 1835: both numbers are inventions, and the only thing being chosen is that the face carries one of them.",
         "lots": [
           0
         ],
         "why": "T-0079, the third and last piece of the owner's flagged-important ask of 2026-08-18: \"there should be more and denser buildings. this is important.\" THIS RUN IS THE DEMONSTRATION OF THE CORE DENSITY STANDARD and it is the first row in this project to stand three roofs on one lot. The old gate made a run carry exactly one roof per lot it was dealt, so this block's single free Lake lot could take a single cottage set back in the middle of it — which is the shape the owner's Tremont Street reference (data/sources/assets/owner_brief_2026_08_18/README.md, image 5) is a picture of the town NOT having. The standard's ceiling is three units per lot, measured at the smallest lot on the committed grid, and this run spends all three. IT BUILDS TO THE CORNER, which is the clause of the standard no run could satisfy before it: anchored on the WEST end of its own frontage, the log dwelling's west wall stands 1.5 m from the Clark side line — the closest line the plat module's own margin allows — and the other two chain east off its wall in turn. WITHIN THE RUN THE END RULE ORDERS THEM, unchanged from every block of this row: better roofs nearer the town-centre end, which here is east toward Dearborn and the only crossing of the main stem in July 1835. So the log dwelling takes the Clark corner, the one-room cottage stands next to it and the deep-plan cottage closes the run at the east end, 10.58 m short of the bakery that already stands on the next lot. THIS RUN EXTENDS T-0077'S ROW ON THE SAME FACE: recon_1835_south_d3_013, inf_butcher_market, recon_1835_south_d4_014, recon_1835_south_d5_016 and recon_1835_south_c3_015 already stand shoulder to shoulder from 63.56 m to 97.57 m along this face, and inf_bakery_lake at 28.93 m to 34.49 m; the new run occupies 1.50 m to 18.36 m, so the Lake face of this block now carries built frontage at its west corner, its middle and its east end. NO COORDINATE IS AUTHORED HERE: the line, its bearing and the end the run packs away from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage.",
         "runs": "One run of three on lot 0, packed EAST from the Clark corner. The corner unit anchors on the west end of the run's own frontage and the other two abut east of it in turn — the same party line the South Water rows read from the other side.",
-        "setback_step_known": "T-0077's row on this same face stands 0.80 m off the face line and this generator's floor is the plat module's 1.5 m lot margin, so the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps between them, but one face carrying two street lines is a defect rather than a design and it is filed as its own ticket rather than normalised away here."
+        "setback_step_known": "CLOSED by T-0104, and kept here because the defect it records is what the `adopts_face_line` rule above exists to prevent. This run's floor used to be the plat module's 1.5 m lot margin while T-0077's row on the same face stood 0.80 m off it, so one face carried two street lines 0.70 m apart. They were 10.58 m apart along the face and no wall stepped between them, which was luck rather than design. The face now carries ONE line, measured off the records T-0077 placed, and tools/measure_street_line.py asserts that of every block face in the town rather than of this recipe alone."
       },
       "arrangement_note": "The Lake-and-Clark block — bounded by Lake, Dearborn, Randolph and Clark — and the first block built under the core density standard T-0079 raises. IT IS ALSO ONE OF THE FIVE BLOCKS THAT REFUTED THE OLD ONE: twelve roofs already stand here against a ceiling of ten, put there by the reviewed phase-one parcel and by the inferred trades, so the rule this parcel replaces was not bounding this block — it was only refusing the next roof on it. Six of the eight lots arrive taken and all six are seated by tools/plat_occupancy.py rather than authored here: lot 1 by recon_1835_south_d4_030, lot 2 by inf_bakery_lake, lot 3 by recon_1835_south_d6_031, lot 4 by inf_butcher_market, lot 6 by recon_1835_south_a5_044 and lot 7 by inf_harness_shop. The two free lots are 0, the Lake-and-Clark corner, and 5, on Randolph. THE FACE RULE IS T-A13'S, RE-MEASURED ON THIS BLOCK RATHER THAN ASSERTED: counting every committed structure that is not an anonymous count-unit and stands within 25 m of a street's committed centreline, Lake carries 21 against Randolph's 13, and 15 against 6 if only the documented records are counted. Lake is this block's business face by the town's own record, so the free Lake lot takes the row and the free Randolph lot is the one left open. THE END RULE IS T-A11'S, UNCHANGED: lot 0's frontage midpoint stands 177.9 m from the foot of the Dearborn Street drawbridge and lot 5's 215.8 m, so the open lot is again the farther of the two from the only crossing of the main stem in July 1835, and inside the run the better roof stands at the east end nearer it. WHAT IS NEW IS THE DENSITY AND NOTHING ELSE. Three principal roofs stand on one lot where the old gate allowed one; they occupy 16.86 m of the lot's 21.75 m of buildable frontage, on one line, at one setback, on two shared party walls, and the 4.89 m that remains is at the east end where the run stops rather than at the corner, because the run is west-anchored and builds to the corner. THE FOURTH ROOF IS THE STANDARD'S SECOND CLAUSE — an improved lot carries its outbuildings — so the privy stands in lot 0's own yard at the alley end, behind the row this parcel built, which is the only lot on this block whose yard belongs to a roof this parcel owns. NO ROOF IS ADDED TO THE TOWN: the four come out of south_plat_beyond_committed_control, the district balance waiting on street control past State and Washington, which fell from 175 roofs to 120 when the ceiling rose. None of it is evidence about this block, no lot is numbered, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
       "slots": [
@@ -1528,10 +1531,6 @@
       },
       "open_lots": [
         {
-          "lot": 1,
-          "why": "A south-tier lot on the Washington face. It was left open by the first deal because the civic roof that would have stood on it was deferred, and it stays open here for the same reason and one more: this parcel's four roofs are the block's business face, and the back face is the successor's to deal."
-        },
-        {
           "lot": 5,
           "why": "A south-tier interior lot, open on the programme's own alternating-vacancy assumption since the first deal and untouched by this one. The schedule's capacity is a ceiling rather than a target, and a block whose every lot is built is a claim nobody made."
         }
@@ -1582,6 +1581,92 @@
           "lot": 4,
           "stands_on": "alley",
           "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": -4.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_randolph_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_randolph_dearborn_third_deal",
+      "claimed": "2026-08-24",
+      "seq_start": 14,
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 13,
+        "free_lots": 2,
+        "headroom": 4,
+        "dealt_roofs": 4,
+        "dealt_principal": 3,
+        "dealt_ancillary": 1,
+        "principal": 3,
+        "ancillary": 1
+      },
+      "families": {
+        "H1": 1,
+        "D3": 1,
+        "D1": 1,
+        "A2": 1
+      },
+      "open_lots": [
+        {
+          "lot": 5,
+          "why": "A south-tier interior lot, open on the programme's own alternating-vacancy assumption since the first deal and untouched by the two deals since. It is the lot this block keeps open, and the standard is explicit that capacity is a ceiling rather than a target."
+        }
+      ],
+      "frontage": {
+        "face": "south",
+        "fronts": "washington",
+        "setback_m": 1.5,
+        "lots": [
+          1
+        ],
+        "why": "T-0143, the succession T-0105 owes. THE BLOCK'S BUSINESS FACE IS FULL, so the clause of the core density standard that tightens a commercial frontage has nothing left to bind here: the first deal and T-0105 between them took every free lot on Randolph, and the two lots this block has left are both on the Washington tier. WHAT DOES BIND IS THE STANDARD'S THIRD CLAUSE, and this is the first parcel in the project able to demonstrate it — T-0105 recorded in writing that lot 4 was an interior lot and the corner clause had nothing to bind on. Lot 1 is the block's one free CORNER lot, the south-west one, and it fronts Washington along its long edge and Dearborn Street along its short one. THE FACE IS MEASURED RATHER THAN ASSUMED, by the command T-A14 made of it — tools/measure_street_frontage.py randolph washington dearborn state — and on the committed dataset Washington carries 1 documented record and no inferred household while DEARBORN carries 6 and 1. So the ground this row is built to is not valuable because of the street it fronts; it is valuable because of the street it stands at the end of, and Dearborn in July 1835 is the only crossing of the main stem. The row is packed WEST to that corner rather than east away from it, which is exactly what `corner: west` is for, and it is graded on T-A11's end rule read the same way T-0105 read it: the best roof nearest the crossing. NO COORDINATE IS AUTHORED: the line, its bearing, the lot's own stretch of it and the end the run packs toward are all read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage. The Washington face carries no committed street wall for the run to adopt — the two roofs already standing on that tier are one-per-lot placements set back inside their own lots — so this run is the first line on the face and states the margin rather than adopting one.",
+        "runs": "One run of three on lot 1, packed EAST from the lot's west margin, which is the Washington-and-Dearborn corner. The one-and-a-half-storey house anchors 1.5 m clear of that corner and the other two abut east of it in turn, on two shared party walls. It occupies 19.30 m of the lot's 22.90 m of buildable frontage: the ceiling the standard measures is three units to a lot and this run spends all three, and the metres left over are at the EAST end, away from the corner — which is the difference between a run built to the corner and a run that merely stands on the corner lot."
+      },
+      "arrangement_note": "THE THIRD DEAL ON THIS BLOCK, and the first parcel in the project to demonstrate the core density standard's corner clause. The first deal (2026-08-14) built nine roofs under the one-principal-roof-per-lot ceiling; T-0105 (2026-08-22) retired that ceiling on this block with a party-line run of three on lot 4 and said in as many words that the back face was the successor's to deal. This is that successor, and it takes the block's last four roofs of headroom. WHAT IS BUILT: three principal roofs shoulder to shoulder on lot 1, the block's one free corner lot, and the barn that belongs to the lot they stand on. A larger one-and-a-half-storey house takes the corner itself, a one-room frame cottage stands next to it, and an older log cabin closes the run at the east end. THE CORNER CLAUSE IS THE POINT OF THE PARCEL: an east-anchored run packs back toward the middle of the face and stops wherever its roofs run out, so the corner is the one piece of frontage a row can never reach, and the standard says a corner lot BUILDS TO THE CORNER. This one does, 1.5 m clear of the side line, that margin being the plat module's and not a measurement. THE H FAMILY IS BUILT HERE AND WAS NOT LAST TIME: T-0105 had to refuse both H slots the schedule dealt it — H1 was dealt a flat 44 deg pitch outside the 8:12-11:12 its own crosswalk entry cites — and T-0142 made the H families buildable at every size the schedule may deal them. H1 is the first H roof this generator has stood, and it is the largest of the three in this run, which is what puts it on the corner under the end rule. THE TWO EARLIER ENTRIES NO LONGER NAME LOT 1 OPEN, because it is not: it moves to the class T-0105 built for exactly this, `built on by another deal on this block`. Their stated reason for leaving it open — a civic roof the first deal deferred, and a back face the second deal was not dealing — is answered rather than overturned, and the lot-accounting gate refuses a lot that is called open and built on at once. LOT 5 STAYS OPEN and the block is not built out: capacity is a ceiling rather than a target, and a block whose every lot is built is a claim nobody made. NO ROOF IS ADDED TO THE TOWN — the four come out of south_plat_beyond_committed_control, the south district's balance waiting on street control past State and Washington, and every marginal still sums to 665. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS: that any building stood on this ground, that there were three of them, that they stood shoulder to shoulder, and that the largest of them took the corner are all inventions of this programme. The side lot lines the row crosses between its own units are conjectural in every record this generator has ever written; the block face it stands on is committed geometry derived from the street centrelines, which is the unit the standard counts in.",
+      "slots": [
+        {
+          "family": "H1",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "washington",
+          "anchor": {
+            "corner": "west",
+            "clear_m": 1.5
+          }
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "washington",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_randolph_dearborn_h1_14"
+          }
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "washington",
+          "anchor": {
+            "abut_east_of": "recon_1835_blk_randolph_dearborn_d3_15"
+          }
+        },
+        {
+          "family": "A2",
+          "inventory_class": "ancillary",
+          "lot": 1,
+          "stands_on": "alley",
+          "fronts": "washington",
           "setback_m": 5.0,
           "lateral_m": -4.0
         }

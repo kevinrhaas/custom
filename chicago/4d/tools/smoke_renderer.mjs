@@ -10,27 +10,38 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `4` runs one quarter of each viewport's body (T-0060). The
- * cuts sit at section boundaries measured for zero crossing bindings and
- * placed near the time quartiles — two halves were tried first and the second
- * half alone still overran the ceiling. It exists because a steward run's
- * single foreground command is capped at ten minutes and by 2026-08-18 neither
- * viewport's full pass fit inside it, so the run was killed mid-suite and the
- * page-error assertion — the LAST line of each viewport — was never taken. A
- * staged run is not the gate either, and says so; the gate is both viewports,
- * all four stages, e.g.:
+ * `SMOKE_STAGE=1` … `9` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121 and T-0167), and `SMOKE_STAGE=1-2` runs a contiguous run of them.
+ * The cuts sit at section boundaries measured for zero crossing bindings. It
+ * exists because a steward run's single foreground command is capped at ten
+ * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
+ * run was killed mid-suite and the page-error assertion — the LAST line of each
+ * viewport — was never taken. T-0060 cut four; by 2026-08-23 the town had grown
+ * until three of the four DESKTOP quarters ran past the ceiling too, so each
+ * quarter was halved; T-0167 measured the desktop profile that eight-way cut
+ * had never been sized from and halved part 8, the thinnest margin on it.
  *
- *   for s in 1 2 3 4; do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ * A staged run is not the gate either, and says so; the gate is both viewports,
+ * every part, e.g.:
  *
- * (each SMOKE_STAGE invocation fits a ten-minute command on its own; the
- * unfiltered single-process pass lives in .github/workflows/chicago-4d-smoke.yml)
+ *   for s in 1-2 3-4 5-6 7-9;   do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *
+ * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
+ * default; turn it on to profile a part, because a part that BREACHES the
+ * ceiling is killed before it prints its wall clock, and the parts worth
+ * cutting are exactly the ones a plain run therefore reports nothing about.
+ *
+ * (each command above fits the ten-minute ceiling, measured — every invocation
+ * prints its own wall clock on its last line so the next margin to go is
+ * visible without anyone re-measuring by hand. The unfiltered single-process
+ * pass lives in .github/workflows/chicago-4d-smoke.yml, which has no ceiling.)
  *
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
- * from those always-on checks so the halves can be audited to add up to an
- * unfiltered pass — staged1 + staged2 section checks equal an unfiltered run's
- * section checks, and the always-on count is identical in all three.
+ * from those always-on checks so the parts can be audited to add up to an
+ * unfiltered pass — the nine parts' section counts SUM to an unfiltered run's
+ * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
  *
@@ -401,9 +412,14 @@ const shadowRigFor = (level, touch) => {
  * the whole sweep in 3 m 52 s and is unaffected. That is T-0121 — the four-way
  * stage split has outgrown its sections — and the answer to it is to re-cut the
  * stages, NOT to measure fewer stands: measuring one friendly stand is the
- * defect this set exists to close. Until T-0121 lands, run the desktop pass's
- * stage 2 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=2`, no
- * timeout) or read the mobile pass, which finds the same worst stand.
+ * defect this set exists to close. T-0166 re-cut the four stages into eight, so
+ * this sweep is now inside PART 4 rather than a whole quarter, and T-0167 then
+ * measured that part at DESKTOP: **7 m 07 s**, inside the ceiling with 2 m 53 s
+ * to spare, so the instruction that used to stand here — run part 4 outside the
+ * ceiling, or read the mobile pass instead — is withdrawn. It is a reading and
+ * not a constant: these desktop numbers move by minutes between runs on a
+ * software renderer, which is why the margin is what this sweep is judged on
+ * and why `SMOKE_TIMING=1` exists to re-take it.
  *
  * `kind` is how the harness gets there: `frame` stands a distance off a
  * structure, `anchor` teleports to one of `data/scenes/1835.json`'s authored
@@ -882,10 +898,24 @@ const passes = [];
 // pass: staged section counts sum, scaffolding counts match.
 let inStageWork = false;
 let stageWorkChecks = 0;
+// T-0167: `SMOKE_TIMING=1` stamps every check line with the elapsed clock.
+// A part that overruns the ten-minute ceiling is KILLED, and the wall clock it
+// prints at the end is the one reading it never gets to give — so before this,
+// the most expensive parts, the ones that actually need cutting, were the only
+// ones a profile run learned nothing about. With the stamp on, a killed run's
+// output is still a profile of everything it reached, which is what places the
+// next cut. Off by default: the gate's output stays byte-comparable between
+// runs, and a profile is something you ask for.
+const TIMING = !!process.env.SMOKE_TIMING;
+const stamp = () => {
+  const secs = Math.round((Date.now() - startedAt) / 1000);
+  return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
+};
 function check(name, cond, detail = '') {
   if (inStageWork) stageWorkChecks += 1;
-  if (cond) { passes.push(name); console.log(`  pass  ${name}`); }
-  else { failures.push(name); console.log(`  FAIL  ${name}${detail ? ` — ${detail}` : ''}`); }
+  const t = TIMING ? stamp() : '';
+  if (cond) { passes.push(name); console.log(`  pass  ${t}${name}`); }
+  else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
 }
 
 const server = http.createServer((req, res) => {
@@ -946,13 +976,49 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // boundaries verified for crossing bindings, so each part fits a command —
 // while boot, the page-error check and the vendor checks stay in every
 // invocation.
+// T-0121 re-cut the four into EIGHT, because the four had eroded: by
+// 2026-08-23 three of the desktop quarters ran past the ten-minute ceiling and
+// the fourth cleared it by two minutes, so the desktop half a run could reach
+// was stage 1 alone. The erosion is monotonic — the town keeps growing — so the
+// answer was a re-cut with margin rather than one more boundary nudged along.
+// Each of T-0060's four stages was halved at a section boundary re-verified for
+// crossing bindings, so PART 2k-1 + PART 2k was exactly T-0060's stage k and the
+// mobile pass can still be taken in four commands with the range syntax below.
+// T-0167 measured the DESKTOP profile the eight-way cut had never been sized
+// from — see ROADMAP § THE RUN BUDGET for the eight readings — and halved the
+// one part the profile put inside a minute and a quarter of the ceiling. Part 8
+// was the tail, so the ninth part is APPENDED and parts 1-7 keep their numbers:
+// the pairing rule survives as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
+// last command widens from `7-8` to `7-9`.
+const PARTS = 9;
 const STAGE = process.env.SMOKE_STAGE || '';
-if (STAGE && !['1', '2', '3', '4'].includes(STAGE)) {
-  console.error(`SMOKE_STAGE must be 1, 2, 3 or 4, got "${STAGE}"`);
+// `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
+// range form exists so the cheap viewport does not pay eight boots to run a
+// body that fits in two commands.
+const wantedParts = (() => {
+  if (!STAGE) return null;
+  const want = new Set();
+  for (const tok of STAGE.split(',').map((t) => t.trim()).filter(Boolean)) {
+    const m = /^(\d+)(?:-(\d+))?$/.exec(tok);
+    if (!m) return tok;
+    const lo = Number(m[1]);
+    const hi = m[2] === undefined ? lo : Number(m[2]);
+    if (lo < 1 || hi > PARTS || lo > hi) return tok;
+    for (let n = lo; n <= hi; n++) want.add(n);
+  }
+  return want.size ? want : null;
+})();
+if (typeof wantedParts === 'string') {
+  console.error(`SMOKE_STAGE must be a part 1..${PARTS}, a range like 3-4, or a `
+    + `comma-separated set of those; got "${wantedParts}" in "${STAGE}"`);
   process.exit(2);
 }
-if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of 4\n`);
-const stageOn = (n) => !STAGE || STAGE === String(n);
+if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
+const stageOn = (n) => !wantedParts || wantedParts.has(n);
+// Readability at the guard on a reading shared by several parts: `anyStage(5, 7)`
+// says which parts need it, and adding a part to that list is the whole edit.
+const anyStage = (...ns) => ns.some(stageOn);
+const startedAt = Date.now();
 
 for (const [label, viewport, touch] of [
   ['mobile 390x780', { width: 390, height: 780 }, true],
@@ -987,6 +1053,28 @@ for (const [label, viewport, touch] of [
   // for a broken control: a click that never lands still fails, three times
   // slower.
   page.setDefaultTimeout(90_000);
+
+  // A fresh boot stands at the GATE SCREEN, and the part that enters the town
+  // is part 4's "the gate and the chrome" section. Every part after it that
+  // measures a page.screenshot frame (those include DOM overlays; the
+  // GL-capture checks do not) or clicks the panel chrome (which has no layout
+  // at all while the gate stands, so a click waits ninety seconds for a
+  // zero-size button and dies) has to stand where the full run stands: gate
+  // entered, pointer free, guide down. Idempotent by construction — in a full
+  // run every branch below is a no-op — which is what lets it be called at the
+  // head of four different parts. T-0060 wrote it inline twice; T-0121 needed
+  // it twice more and made it one function instead of four copies.
+  const enterTown = () => page.evaluate(async () => {
+    if (!document.getElementById('gate').hasAttribute('hidden')) {
+      document.getElementById('gate-btn')?.click();
+      await new Promise((r) => setTimeout(r, 150));
+      document.exitPointerLock?.();
+    }
+    const help = document.getElementById('control-help');
+    if (help && !help.hasAttribute('hidden')) {
+      document.getElementById('control-help-gotit')?.click();
+    }
+  });
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1092,14 +1180,20 @@ for (const [label, viewport, touch] of [
                terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
 
-    // Read once, shared by stages 3 and 4 (T-0060): the street layer, the
-    // flora rooted around it, the building anchors and the two readouts. Its
-    // checks span both of those stages, so the reading is taken before the
-    // split — and skipped when neither stage runs, because it is the most
+    // Read once, shared by parts 5 and 7 (T-0060, re-cut by T-0121): the street
+    // layer, the flora rooted around it, the building anchors and the two
+    // readouts. Its checks span both of those parts, so the reading is taken
+    // before the split — and skipped when neither runs, because it is the most
     // expensive single evaluate in the file. It teleports to its own
     // viewpoints, so it does not care what ran before it.
+    //
+    // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
+    // actually read it: parts 6 and 8 hold no reference to `streetLayer`, and
+    // under the old guard each of them would have paid for it anyway — four
+    // times over the desktop pass instead of twice, on the very reading this
+    // gate can least afford.
     let streetLayer = null;
-    if (stageOn(3) || stageOn(4)) {
+    if (anyStage(5, 7)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -1239,12 +1333,18 @@ for (const [label, viewport, touch] of [
         let dryCentrelinePanels = 0;
         let clippedPanels = 0;
         let slivers = 0;
+        // T-0111. Re-derived from the line the module DRAWS from — the worn
+        // wheel line where a street commits one, the platted line everywhere
+        // else (`drawn` is `path` unless `drawn_track_local_enu_m` is
+        // authored). Re-deriving from the plat would count panels the module
+        // never emitted and turn an authored track into a false failure here.
         for (const rec of a.streets.records) {
           const half = (rec.track_width_m ?? 10.5) * 0.5;
+          const line = rec.drawn ?? rec.path;
           const pts = [];
-          for (let i = 1; i < rec.path.length; i++) {
-            const A = rec.path[i - 1];
-            const B = rec.path[i];
+          for (let i = 1; i < line.length; i++) {
+            const A = line[i - 1];
+            const B = line[i];
             const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
             const c = Math.max(1, Math.ceil(d / STEP));
             for (let j = 0; j < c; j++) {
@@ -1325,10 +1425,19 @@ for (const [label, viewport, touch] of [
         // T-0110, the join itself: the worn track must run onto each bridge
         // approach and meet the deck. Stations march the street's own centreline
         // up both North Branch approaches (deck ends e −117.5 / −45.67, T-0046's
-        // terrain approaches) and up the Dearborn drawbridge fill to the street
-        // record's own end (n 18 — the record stops 2.7 m short of the deck,
-        // which is T-0111's subject, not a drawing defect this gate can see).
+        // terrain approaches) and up the Dearborn drawbridge fill.
         // Each station must land inside a drawn road triangle in plan.
+        //
+        // T-0111 CARRIED THE DEARBORN STATIONS THE LAST 2.7 M. They used to
+        // stop at n 17.5 because the street record itself stopped at n 18, and
+        // the comment here said so: the bare crest between the ribbon's end and
+        // the causeway was outside what this gate could see. The worn track is
+        // now drawn from `drawn_track_local_enu_m` onto the deck's own south
+        // edge at [697.65, 20.70], so the stations run to n 20.5 — half a metre
+        // short of the boards, which is the last ground that is ground — and
+        // they are taken on the line the ribbon is drawn from, since a station
+        // on the plat line past n 18 is asking about a place the plat does not
+        // reach.
         const covered = (e, n) => {
           let hit = false;
           a.streets.group.traverse((o) => {
@@ -1351,8 +1460,9 @@ for (const [label, viewport, touch] of [
         const centreAt = (id, axis, value) => {
           const rec = a.streets.records.find((r) => r.id === id);
           const k = axis === 'e' ? 0 : 1;
-          for (let i = 1; i < rec.path.length; i++) {
-            const [A, B] = [rec.path[i - 1], rec.path[i]];
+          const line = rec.drawn ?? rec.path;
+          for (let i = 1; i < line.length; i++) {
+            const [A, B] = [line[i - 1], line[i]];
             const lo = Math.min(A[k], B[k]);
             const hi = Math.max(A[k], B[k]);
             if (value < lo || value > hi) continue;
@@ -1370,7 +1480,7 @@ for (const [label, viewport, touch] of [
           const p = centreAt('kinzie', 'e', e);
           if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
         }
-        for (let n = 8; n <= 17.5; n += 1) {
+        for (let n = 8; n <= 20.5; n += 0.5) {
           const p = centreAt('dearborn', 'n', n);
           if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
         }
@@ -1412,7 +1522,9 @@ for (const [label, viewport, touch] of [
     }
 
     try {
-    // STAGE 1 — "the gate counts the town" through "the traced river loaded".
+    // PART 1 — "the gate counts the town" through the fort stockade and the
+    // business signs: the enclosure and signage layers, all read off the scene
+    // graph rather than off the screen.
     if (stageOn(1)) {
     inStageWork = true;
 
@@ -2709,6 +2821,17 @@ for (const [label, viewport, touch] of [
       boards.devices?.length === 1
         && boards.devices[0] === 'carpenter_south_water_store',
       `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
+
+    inStageWork = false;
+    } // end PART 1 (T-0060 stage 1a, cut by T-0121)
+    // PART 2 — the goods at the trading frontages through the confidence
+    // machinery's inert state: the rest of T-0060's stage 1. The cut is a
+    // section boundary with no crossing binding (checked scope-aware, the way
+    // T-0060's three were) and no page state to inherit — everything below
+    // reads the scene graph or takes its own capture, and the gate screen it
+    // boots behind is exactly what an unfiltered run is standing at here.
+    if (stageOn(2)) {
+    inStageWork = true;
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //
@@ -4092,16 +4215,31 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Four docks since T-0062: the two warehouses whose dock the dossier
-    // states, plus the two South Water landings (J. H. Kinzie's, Jones's) the
-    // owner's 2026-08-18 ruling reconstructed. The refused count is asserted
-    // too: three more landings are STATED and not drawn because the traced
-    // 1834 bank ends at local E 390 (T-0106) — a fourth-wharf appearing or a
-    // refusal disappearing without this line moving is a rule change nobody
+    // SEVEN docks, and the count is the sum of two runs that landed together.
+    // The two warehouses whose dock the dossier states; the four South Water
+    // landings the owner's 2026-08-18 ruling reconstructed that are drawable
+    // (J. H. Kinzie's, Jones's, and — since T-0106 — Carpenter's and Peck's);
+    // and Robert A. Kinzie's storehouse on the WEST bank at Wolf Point, the
+    // first landing this layer put on that shore (T-0107), which T-0062's
+    // South-Water-only pass had left with no candidate at all.
+    //
+    // T-0106 moved the count because the BANK moved, not the rule. The layer
+    // used to read only the forks tracing window, which closes at local E 390,
+    // and refused three frontages east of it for standing off untraced bank.
+    // They were never untraced — tools/trace_shoreline.py has carried the same
+    // waterline off the same 1834 sheet past the drawbridge since 2026-08-10,
+    // and the generator now composes both windows the way terrain_gen.py did.
+    //
+    // ONE refusal remains and it is a different kind from the three it replaces:
+    // Harmon & Loomis's frontage IS reached by the trace, and the modelled
+    // channel gives only 0.48 m under its deck face against the 0.50 m floor
+    // asserted just below. It is refused by a SOUNDING, in writing, on the
+    // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
+    // a refusal disappearing without this line moving is a rule change nobody
     // reviewed.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 4 && docks.verts > 0 && docks.keepOut === 4
-        && docks.census?.refused === 3
+      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
+        && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
@@ -4124,7 +4262,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 4 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 7 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
@@ -4173,6 +4311,40 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a wharf opens the warehouse it serves`,
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
+
+    // AND THE SAME, ON THE OTHER SHORE (T-0107). The capture above stands on the
+    // SOUTH bank, so it proves the layer reads from one bank and says nothing
+    // about the west one — which is exactly the shape of the gap T-0107 closed
+    // in the data, and there is no reason to leave it open in the gate. Stand on
+    // the west bank outside Robert Kinzie's own river wall, 7 m back along the
+    // deck's waterward normal (bearing 45.3, the same geometry the Newberry
+    // stand uses), and hold the clock so the river cannot supply the difference.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -58.3, local_n: -62.0, yaw_deg: 45.3, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const westWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
+    const westWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
+    const westPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dWest = signatureDistance(westWith, westWithout);
+    check(`${label}: the west bank's landing reaches the screen from Wolf Point`,
+      dWest.worst >= 6 && dWest.mean >= 0.3,
+      `cell delta mean ${dWest.mean?.toFixed(2)}, worst ${dWest.worst} (need worst>=6)`);
+    check(`${label}: aiming at the west bank's landing opens Robert Kinzie's store`,
+      westPick.includes('robert_kinzie_store'),
+      `25 aims returned [${[...new Set(westPick)].join(', ') || 'nothing'}]`);
 
     // Nothing grows through a plank floor (T-0124; T-0085 was the first
     // sighting). The placer is asked directly, at the centre of every deck
@@ -4430,14 +4602,15 @@ for (const [label, viewport, touch] of [
         : 'no water mesh in the scene at all');
 
     inStageWork = false;
-    } // end STAGE 1 (T-0060)
-    // STAGE 2 — "the ground faces the sky" through the confidence machinery.
+    } // end PART 2 (T-0060 stage 1b, cut by T-0121)
+    // PART 3 — "the ground faces the sky" through the confidence card: the
+    // ground, the invented residents, and every graded claim the card makes.
     // Every boundary sits where the crossing bindings were measured at zero
     // (scope-aware, brace-depth-anchored — the indent-anchored scans missed
     // `terrainLoad` at column 0); the two that did cross, `terrainLoad` and
     // `streetLayer`, are read above the split, so any single stage boots into
     // exactly the state its first line expects.
-    if (stageOn(2)) {
+    if (stageOn(3)) {
     inStageWork = true;
 
     // --- the ground faces the sky ------------------------------------------
@@ -5543,6 +5716,22 @@ for (const [label, viewport, touch] of [
       accountOpen.before === false && accountOpen.after === true,
       `${accountOpen.before} -> ${accountOpen.after}`);
 
+    inStageWork = false;
+    } // end PART 3 (T-0060 stage 2a, cut by T-0121)
+    // PART 4 — the raycast pick through the confidence menu's own clicks:
+    // walking, the bridge deck, the budgets, life size, scene detail and the
+    // chrome. The rest of T-0060's stage 2.
+    //
+    // The one thing this cut inherits is a POSE. Everything above it framed the
+    // Sauganash to open its card, and the first check below picks whatever is
+    // down the crosshair and requires it to be that building. So the frame is
+    // re-taken here rather than assumed: in an unfiltered run it is the pose the
+    // camera is already in, and in a part-4 run it is the difference between
+    // measuring the Sauganash and measuring the prairie.
+    if (stageOn(4)) {
+    inStageWork = true;
+    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
+
     // --- a raycast pick down the crosshair, not just by id ----------------
     const rayPick = await page.evaluate(() => {
       const hit = window.__chicago4d.pick();
@@ -6359,10 +6548,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(cmRestored));
 
     inStageWork = false;
-    } // end STAGE 2 (T-0060)
-    // STAGE 3 — navigation through the K24 brightness aid: the road-contrast
-    // captures live here, the most camera-heavy stretch of the suite.
-    if (stageOn(3)) {
+    } // end PART 4 (T-0060 stage 2b, cut by T-0121)
+    // PART 5 — navigation through the batch merge: the readouts, the
+    // road-legibility aid and the merge the reach below stands on.
+    if (stageOn(5)) {
     inStageWork = true;
 
     // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
@@ -6373,17 +6562,7 @@ for (const [label, viewport, touch] of [
     // GL-capture checks do not) — so a staged run must stand where the full
     // run stands: gate entered, pointer free, guide down. In a full run every
     // branch below is a no-op.
-    await page.evaluate(async () => {
-      if (!document.getElementById('gate').hasAttribute('hidden')) {
-        document.getElementById('gate-btn')?.click();
-        await new Promise((r) => setTimeout(r, 150));
-        document.exitPointerLock?.();
-      }
-      const help = document.getElementById('control-help');
-      if (help && !help.hasAttribute('hidden')) {
-        document.getElementById('control-help-gotit')?.click();
-      }
-    });
+    await enterTown();
 
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
@@ -6651,6 +6830,17 @@ for (const [label, viewport, touch] of [
       + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
       + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
       + `${dRoughBack.worst}`);
+
+    inStageWork = false;
+    } // end PART 5 (T-0060 stage 3a, cut by T-0121)
+    // PART 6 — the facade tones, the shadow reach, the shadow box and the K24
+    // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
+    // check in it measures a page.screenshot frame. So it enters the town on
+    // its own account, and it holds no reference to the shared street reading —
+    // which is why that reading is now gated on parts 5 and 7 alone.
+    if (stageOn(6)) {
+    inStageWork = true;
+    await enterTown();
 
     // --- T-0002, the facade tones ------------------------------------------
     //
@@ -6968,28 +7158,20 @@ for (const [label, viewport, touch] of [
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     inStageWork = false;
-    } // end STAGE 3 (T-0060)
-    // STAGE 4 — the flora census through free-fly. Every binding it shares
-    // with earlier stages (`streetLayer`) is read above the split; the
-    // teleport below re-establishes the camera pose it expects on its own.
-    if (stageOn(4)) {
+    } // end PART 6 (T-0060 stage 3b, cut by T-0121)
+    // PART 7 — the flora census through the streets a visitor reads: the drawn
+    // population, the sward, the horizon timber and the street names. Every
+    // binding it shares with earlier parts (`streetLayer`) is read above the
+    // split; the teleport below re-establishes the camera pose it expects on
+    // its own.
+    if (stageOn(7)) {
     inStageWork = true;
 
     // Same fresh-boot accommodation as stage 3: this stage drives the panel
     // chrome (`#btn-help` first), and while the gate screen stands the chrome
     // has no layout at all — the click waits ninety seconds for a zero-size
     // button and dies. In a full run every branch below is a no-op.
-    await page.evaluate(async () => {
-      if (!document.getElementById('gate').hasAttribute('hidden')) {
-        document.getElementById('gate-btn')?.click();
-        await new Promise((r) => setTimeout(r, 150));
-        document.exitPointerLock?.();
-      }
-      const help = document.getElementById('control-help');
-      if (help && !help.hasAttribute('hidden')) {
-        document.getElementById('control-help-gotit')?.click();
-      }
-    });
+    await enterTown();
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
@@ -7640,17 +7822,26 @@ for (const [label, viewport, touch] of [
           const mesh = a.flora.group.getObjectByName(name);
           const m = mesh?.instanceMatrix?.array;
           if (!m) continue;
-          // Each instance's OWN outer radius, off the attribute the shader
-          // reads. The layer's nominal ring answers for no particular plant
-          // once the boundary is fringed, and it answers zero — a free pass —
-          // for exactly the plants the fringe pushed furthest out.
+          // Each instance's OWN ring, off the attribute the shader reads. The
+          // layer's nominal ring answers for no particular plant once the
+          // boundary is fringed, and it answers zero — a free pass — for
+          // exactly the plants the fringe pushed furthest out.
+          //
+          // ALL FOUR NUMBERS, not just the outer radius: since T-0093 the mid
+          // ring's INNER boundary is spread per slot too, so a reading that
+          // carried only the outer one would ask `fadeAt` about the layer's
+          // nominal inner edge and be told every mid card past 4.5 m is drawn —
+          // including the ones whose own handover has not reached them yet.
+          // `flora.fadeAt` takes the whole ring for this reason.
           const ring = mesh.geometry.getAttribute('aChiRing')?.array;
           for (let i = 0; i < mesh.count; i++) {
             const o = i * 16;
             const e = m[o + 12];
             const n = -m[o + 14];
             seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`,
-              { name, e, n, outer: ring ? ring[i * 4] : undefined });
+              { name, e, n, outer: ring
+                ? [ring[i * 4], ring[i * 4 + 1], ring[i * 4 + 2], ring[i * 4 + 3]]
+                : undefined });
           }
         }
         return { seen, e: p.x, n: -p.z, fe: f.x / fl, fn: -f.z / fl };
@@ -7965,7 +8156,12 @@ for (const [label, viewport, touch] of [
           // faded to nothing is not a boundary, and asking the attribute alone
           // would report a ragged edge in a direction carrying no sward at all.
           const d = Math.hypot(e - cam.x, n + cam.z);
-          if (a.flora.fadeAt(name, d, ring[i * 4]) <= 0.02) continue;
+          // The whole ring, for the reason `snap()` above carries all four: the
+          // mid ring's inner boundary is spread per slot since T-0093, and the
+          // outer radius alone would have `fadeAt` answer off the layer's
+          // nominal inner edge.
+          if (a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
+            ring[i * 4 + 2], ring[i * 4 + 3]]) <= 0.02) continue;
           const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
           if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
         }
@@ -8232,6 +8428,31 @@ for (const [label, viewport, touch] of [
       && unitChoice.mile === '1.0 mi' && unitChoice.kilometre === '1.0 km'
       && unitChoice.stored === 'imperial',
       JSON.stringify(unitChoice));
+
+    inStageWork = false;
+    } // end PART 7 (T-0060 stage 4a, cut by T-0121)
+    // PART 8 — eye height through What's-new: the settings, the Go-to tab and
+    // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
+    // panel and free-fly off its tail into part 9.
+    //
+    // It drives the panel chrome from its first line, so it enters the town on
+    // its own account. It takes no pose of its own on purpose: the checks below
+    // read eye height against the ground the visitor is standing on, and a
+    // teleport here would be this part measuring somewhere the unfiltered run
+    // never stands.
+    if (stageOn(8)) {
+    inStageWork = true;
+    await enterTown();
+    // …and the PANEL, which part 7 leaves open at its last line and this part
+    // reaches straight into: its first statement clicks a tab inside it, and a
+    // click on a tab that has no layout waits ninety seconds and dies. Guarded
+    // on the panel's own hidden state rather than toggling, for the same reason
+    // enterTown() is guarded: in an unfiltered run this must do nothing at all.
+    await page.evaluate(() => {
+      if (document.getElementById('panel').hasAttribute('hidden')) {
+        document.getElementById('btn-help').click();
+      }
+    });
 
     // --- eye height ---------------------------------------------------------
     //
@@ -8574,6 +8795,30 @@ for (const [label, viewport, touch] of [
     check(`${label}: a returning visitor sees only what shipped since last time`,
       ret.flagged.length === ret.total - 3 && ret.flagged.length > 0,
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
+
+    inStageWork = false;
+    } // end PART 8 (T-0060 stage 4b-i, cut by T-0121, halved again by T-0167)
+    // PART 9 — the Evidence panel through inspecting from the air: the
+    // liberties, the people, the wildlife, what is not here, what the ground
+    // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
+    //
+    // T-0167 cut it off part 8 because part 8 was the thinnest margin on the
+    // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
+    // 107 staged checks, more than any other part — and the desktop readings
+    // move by minutes between runs on a software renderer, so a 74-second
+    // margin is not one. The boundary is this one because the desktop profile
+    // put 6 m 05 s of part 8's cost above it and 2 m 41 s below, and because
+    // nothing declared above it is read below it: the scope-aware scan found
+    // `eye`, `toggles` and `typed` reaching across and all three are prose or a
+    // different local (`typedE.typed`).
+    //
+    // Its prologue is `enterTown()` alone: the liberties reading below already
+    // carries its own guarded panel-open and clicks the Evidence tab itself, so
+    // unlike part 8 this part needs no panel guard bolted on. It takes no pose
+    // — free-fly is entered from wherever the visitor stands.
+    if (stageOn(9)) {
+    inStageWork = true;
+    await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
     // The claim this project makes is that a visitor can tell which parts we
     // made up. The confidence view covers attributes; these are the decisions
@@ -9572,7 +9817,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end STAGE 4 (T-0060)
+    } // end PART 9 (T-0060 stage 4b-ii, cut by T-0167)
     } catch (e) {
       inStageWork = false;
       thrown = e;
@@ -9661,12 +9906,24 @@ if (UPDATE_ROAD_BANDS) {
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
-// sum of what SMOKE_STAGE=1 and SMOKE_STAGE=2 each report, and the always-on
-// count is identical in all three — that arithmetic is how two halves are
+// sum of what SMOKE_STAGE=1 … 8 each report, and the always-on count is
+// identical in every one of them — that arithmetic is how the parts are
 // demonstrated to add up to the whole.
 console.log(`${stageWorkChecks} staged-section check(s)`
-  + `${STAGE ? ` (stage ${STAGE} of 4)` : ' (all stages)'}, `
+  + `${STAGE ? ` (stage ${STAGE} of ${PARTS})` : ' (all stages)'}, `
   + `${passes.length + failures.length - stageWorkChecks} always-on check(s)`);
+// T-0121: every invocation records its own fit. The stage split exists to hold
+// each command under a ten-minute ceiling, and three separate runs had to
+// re-measure it by hand before anyone knew it had been breached; a run that
+// prints its own wall clock is the cheapest possible early warning that the
+// town has grown into the next margin.
+{
+  const secs = Math.round((Date.now() - startedAt) / 1000);
+  console.log(`${Math.floor(secs / 60)} m ${String(secs % 60).padStart(2, '0')} s`
+    + `${STAGE ? ` for stage ${STAGE}` : ' unfiltered'}`
+    + `${ONLY ? ` at ${ONLY}` : ''} — the ceiling on a steward run's single `
+    + 'foreground command is 10 m 00 s');
+}
 if (failures.length) {
   console.log(`FAILURES:\n - ${failures.join('\n - ')}`);
   process.exit(1);

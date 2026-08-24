@@ -35,22 +35,84 @@ on:
 # earns an immediate rebake. A change to data is picked up by the nightly, which
 # is what the nightly is for. Dispatch covers the impatient case.
 #
-# One at a time, and the newest wins. A bake superseded by a later push has
-# nothing to offer: its output is measured against a dev that has already moved,
-# so finishing it costs twenty minutes of runner time to produce a PR that is
-# stale on arrival. Cancelling is the correct outcome, not a lost result.
+# One at a time PER REF, and the newest wins. A bake superseded by a later push
+# TO THE SAME REF has nothing to offer: its output is measured against a tree
+# that has already moved, so finishing it costs twenty minutes of runner time to
+# produce a PR that is stale on arrival. Cancelling is the correct outcome, not a
+# lost result.
+#
+# THE REF IN THE GROUP KEY IS T-0165's, AND IT IS A NARROWING, NOT A REVERSAL.
+# The paragraph above is about a bake being overtaken on its own branch, and it
+# still holds. Without the ref it said something much stronger and never intended:
+# that ANY bake anywhere cancels every other. On 2026-08-24 that misfired for the
+# first time — dev's run #264 was cancelled 70 seconds into both smoke legs by
+# run #265, a push to `steward/t-0121-stage-recut`, because that branch carried
+# this workflow file and this file is one of its own push triggers. A branch bake
+# is not a substitute for dev's: they measure different trees, so the branch one's
+# output cannot be the reason to throw dev's away.
+#
+# It was harmless while bakes were rare. It stopped being harmless the moment two
+# agents worked the smoke budget at once — T-0121/T-0166 from the SMOKE_STAGE
+# side and T-0165 from the workflow side — each push cancelling the other's
+# evidence.
 concurrency:
-  group: chicago-4d-bake
+  group: chicago-4d-bake-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: write
   pull-requests: write
 
+# THREE JOBS, NOT ONE, AND THE REASON IS MEASURED (T-0165).
+#
+# This was one job that ran `tools/bake.sh` end to end, and bake.sh's last step is
+# the published smoke — UNSTAGED, both viewports, one process. Run #261 on
+# 2026-08-23 was the first bake since 2026-08-22 to get PAST `check.sh`, and it
+# was cancelled by `timeout-minutes: 45` at 43m51s, inside the desktop half:
+#
+#   #258   11m41s   reached check.sh       FAILED — estray_pen (T-0161)
+#   #261   43m51s   reached desktop smoke  CANCELLED — the 45-minute ceiling
+#
+# ~12 minutes of generate-and-bake plus ~13 a viewport is ~38 before setup, and
+# it only ever fit when nothing else contended for the runner. Nobody had seen it
+# because two earlier faults killed every run before it reached the smoke at all.
+#
+# THE TWO CHEAP FIXES ARE BOTH REFUSED. Raising the ceiling or setting
+# SKIP_SMOKE=1 for good would make the nightly green and stop it testing the
+# bytes it publishes — see bake.sh's own comment on the building that collapsed
+# to a two-metre box and shipped past a fully green gate, twice.
+#
+# So the work is split and each part gets its own budget:
+#
+#   bake     generate, derive, publish, gate    SKIP_SMOKE=1, ~15 min
+#   smoke    the published mirror, viewport × stage  8 legs, ~18 min worst, PARALLEL
+#   open-pr  the PR, only once smoke is green
+#
+# THE SMOKE ROW ABOVE READ "per viewport, ~15 min each" UNTIL T-0171, and that
+# was the mobile figure standing in for both. Run #269 read the desktop one:
+# cancelled at 29 m 05 s with 285 passed / 0 failed, against T-0167's measured
+# 39 m 58 s for the desktop body. A viewport is now several legs under
+# SMOKE_STAGE — see the `smoke` job's own comment for the cut and its margins.
+#
+# THE GATE IS STILL BOTH VIEWPORTS AND NOTHING LESS, which is smoke_renderer.mjs's
+# own rule. Each matrix leg prints "NOT THE FULL GATE" because on its own it is
+# not one; all eight legs together are, and `needs: smoke` fails if ANY fails.
+# The workflow reconstitutes the gate the suite refuses to let one run claim —
+# which holds only while the stage ranges tile 1..9 with no gap and no overlap.
+#
+# WHY THE BRANCH IS PUSHED BEFORE THE SMOKE RUNS, and the PR only after. The push
+# is in `bake` so a red smoke never destroys twenty minutes of Blender output —
+# the same argument as polecat-platform's salvage step. The PR waits for green, so
+# a bake whose mirror fails the smoke leaves its work recoverable on a branch
+# without ever advertising it as ready to merge.
 jobs:
   bake:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
+    outputs:
+      branch: ${{ steps.push.outputs.branch }}
+      changed: ${{ steps.push.outputs.changed }}
+      sha: ${{ steps.baseref.outputs.sha }}
     steps:
       # Bake from dev when it exists: the PR's base is dev, so branching off
       # main would put every commit already promoted-past into the diff.
@@ -58,6 +120,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Bake from dev when the pipeline is active
+        id: baseref
         run: |
           if git ls-remote --exit-code --heads origin dev >/dev/null 2>&1; then
             git checkout -B dev origin/dev
@@ -65,6 +128,11 @@ jobs:
           else
             echo "no dev ref — baking from the default branch"
           fi
+          # The exact commit the mirror was baked from. The smoke and open-pr jobs
+          # check this out rather than the workflow ref, so all three jobs read the
+          # same tools/ and the same tree — a bake that started before dev moved is
+          # still smoke-tested against what it actually built.
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-python@v5
         with:
@@ -95,11 +163,10 @@ jobs:
       # in the fleet. The browser install is pinned to the same version as the
       # library so the two cannot drift, and to chromium alone — the smoke drives
       # nothing else, and the other engines are ~300 MB of download per run.
-      - name: Install Playwright (the bake smoke-tests the mirror it publishes)
-        run: |
-          set -e
-          npm install -g playwright@1.56.1
-          node "$(npm root -g)/playwright/cli.js" install --with-deps chromium
+      # Playwright is NOT installed here any more (T-0165). It was here because
+      # bake.sh's last step ran the smoke; that step is now the `smoke` job, which
+      # installs it. Leaving it would cost ~25 s and a chromium download on every
+      # bake for a browser this job never launches.
 
       # KTX-Software, so gltf-transform can actually compress textures.
       # APPROVED BY THE OWNER 2026-08-14 (docs/RENDERING.md §8, W2).
@@ -142,8 +209,14 @@ jobs:
           path: /opt/blender-dl
           key: blender-${{ steps.pin.outputs.version }}
 
+      # SKIP_SMOKE=1 because the smoke is the next job, not the tail of this one.
+      # bake.sh still runs check.sh as ITS last step, so a bake whose own gate is
+      # red fails here and the smoke never runs against a tree that already
+      # disagrees with itself.
       - name: Bake
         working-directory: chicago/4d
+        env:
+          SKIP_SMOKE: '1'
         run: |
           if [ -n "${{ inputs.only }}" ]; then
             ./tools/bake.sh --only "${{ inputs.only }}"
@@ -151,10 +224,15 @@ jobs:
             ./tools/bake.sh
           fi
 
-      - name: Push a bake branch and open a PR if permitted
+      # PUSHED, NOT PR'd. The branch exists the moment the bake succeeds, so a red
+      # smoke costs a review rather than twenty minutes of Blender output. The PR
+      # is `open-pr`, which waits for the smoke.
+      - name: Push a bake branch
+        id: push
         run: |
           if [ -z "$(git status --porcelain)" ]; then
-            echo "bake produced no changes — nothing to do"
+            echo "bake produced no changes — nothing to push"
+            echo "changed=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           BRANCH="steward/bake-${GITHUB_RUN_ID}"
@@ -164,12 +242,122 @@ jobs:
           git add -A chicago/4d site/chicago/4d
           git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
           git push -u origin "$BRANCH"
+          echo "changed=1" >> "$GITHUB_OUTPUT"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      # The mirror the smoke must test — the bytes this bake just published, not
+      # whatever is committed on dev. Without this the smoke job would re-serve
+      # the tree as it stands and silently test the WRONG bytes on any run that
+      # produced changes, which is the one property this split must not lose.
+      - name: Keep the published mirror for the smoke
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-mirror
+          path: site/chicago/4d
+          retention-days: 3
+          if-no-files-found: error
+
+  # Both viewports, in parallel, each cut into stage legs. `fail-fast: false` so a
+  # mobile failure still lets desktop report — several diagnoses per run instead
+  # of one. ANY leg failing fails the job, so `needs: smoke` below still means
+  # "every part of both viewports passed".
+  #
+  # T-0171 — WHY THE STAGE DIMENSION IS HERE AND NOT JUST A BIGGER TIMEOUT.
+  # This job used to run each viewport UNSPLIT: one command, `SMOKE_VIEWPORT`
+  # only, under `timeout-minutes: 30`. T-0167's measured desktop profile
+  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the nine parts, so the
+  # desktop leg could not fit that cap and never could. Run #269 on dev is the
+  # observation: mobile passed unfiltered (420 passed / 0 failed, 15 m 50 s) and
+  # desktop was CANCELLED at 29 m 05 s having reached 285 passed / 0 failed — a
+  # wall, not a failure — so `open-pr` never ran on a bake whose content was
+  # sound. Every earlier nightly died before this ceiling could be the thing in
+  # the way (T-0160, T-0161, T-0165, and T-0114's two road bands), which is why
+  # the desktop half had never once been read to completion.
+  #
+  # Raising the cap alone would work today and rot the same way — the number
+  # would again be one nobody had measured against, and desktop would again be a
+  # single command costing the sum of everything. Splitting is what makes the
+  # margin legible PER LEG, and it is what T-0170's further cut of part 7
+  # improves rather than invalidates.
+  #
+  # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
+  # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
+  # 17 m 02 s — less in practice, because a pair boots ONCE where the profile
+  # paid a boot per part. Worst leg keeps better than ten minutes of margin
+  # under the 30-minute cap, and the smoke phase's wall clock drops from over
+  # 40 minutes (fatal) to under 20.
+  #
+  # THE RANGES MUST COVER 1..9 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # because on its own it is not one; the UNION of the eight legs is, and that
+  # holds only while these four ranges tile the parts with no gap and no overlap.
+  # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
+  # unfiltered run's — is what makes the union checkable rather than asserted.
+  # If a part is ever added or renumbered (T-0170 renumbers everything after 7),
+  # THIS LIST IS PART OF THAT EDIT.
+  smoke:
+    needs: bake
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        viewport: [mobile, desktop]
+        stage: ['1-2', '3-4', '5-6', '7-9']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.bake.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          set -e
+          npm install -g playwright@1.56.1
+          node "$(npm root -g)/playwright/cli.js" install --with-deps chromium
+      # Emptied first, deliberately. `checkout` restores the mirror as COMMITTED,
+      # and download-artifact overlays rather than replaces — so a file the bake
+      # deleted would survive from the checkout and the smoke would test a tree
+      # that never existed. Clearing it means what runs below is exactly the bytes
+      # the bake published, which is the whole point of the artifact.
+      - name: Clear the committed mirror
+        run: rm -rf site/chicago/4d && mkdir -p site/chicago/4d
+      - name: Take the mirror the bake published
+        uses: actions/download-artifact@v4
+        with:
+          name: published-mirror
+          path: site/chicago/4d
+      # No NODE_PATH here: smoke_renderer.mjs's loadPlaywright() already falls
+      # back to `npm root -g` when the bare import misses, so pinning the global
+      # root would only break the day the runner image moves it.
+      # SMOKE_TIMING=1 stamps each check line with the elapsed clock (T-0167). A
+      # leg killed at the cap dies BEFORE it prints its wall clock, so without
+      # the stamp a breach reports nothing about where the time went — which is
+      # exactly how #269's desktop cost had to be reconstructed by hand.
+      - name: Smoke the published mirror
+        working-directory: chicago/4d
+        env:
+          SMOKE_VIEWPORT: ${{ matrix.viewport }}
+          SMOKE_STAGE: ${{ matrix.stage }}
+          SMOKE_TIMING: '1'
+        run: node tools/smoke_renderer.mjs --published
+
+  # Only now. A bake whose mirror fails the smoke keeps its branch and gets no PR.
+  open-pr:
+    needs: [bake, smoke]
+    if: needs.bake.outputs.changed == '1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Open the PR
+        run: |
+          BRANCH="${{ needs.bake.outputs.branch }}"
           # BASE IS dev, NOT main (chicago/4d/docs/PIPELINE.md). Overnight output
           # lands on the integration branch and reaches production only when the
           # owner dispatches chicago-4d-promote-to-prod.yml.
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --base dev \
-            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake. Targets \`dev\`: merging this publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
+            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`dev\`: merging this publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
             --head "$BRANCH" 2>&1); then
             # GitHub reports this org/repo policy failure as a GraphQL error string.
             # Match it exactly so other gh failures still stop the workflow.

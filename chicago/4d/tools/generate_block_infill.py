@@ -92,8 +92,10 @@ from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
 # used to live in this file; the North Division parcel needed the same arithmetic and
 # had a retyped constant instead, so the rule moved to one module both import
 # (ROADMAP T-V1).
-from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
-                          stable_fraction, storeys, wall_height_m)
+from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E402
+                          eave_limits, families, pitch_deg, stable_fraction,
+                          storeys, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -129,8 +131,7 @@ FRONTAGE_NOTE = (
     "{block}, the town's river business front, whose line and bearing are read from the "
     "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
     "geometry the lot grid and the corridor gate are derived from. Its front wall is "
-    "{setback} m back from that lot line, which is the closest line the plat module's own "
-    "margin allows and is not a measurement of this frontage, and its east wall is fixed "
+    "{setback} m back from that lot line, {line_why}, and its east wall is fixed "
     "by {anchor}. The bearing is the face's own, so the front looks at {street} Street and "
     "the river beyond it, as every documented store on this face does. The run carries no "
     "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
@@ -141,6 +142,20 @@ FRONTAGE_NOTE = (
     "is what this placement takes from it. Standing on a derived block face is not standing "
     "on a recovered lot, and the side lot lines this row crosses were always conjectural."
 )
+
+
+# Where the run's line came from, in the record's own note. A frontage that opens a
+# face takes the closest line the plat module's margin allows; a frontage that joins a
+# face already built takes the line those buildings stand on, because a street wall is
+# one wall (T-0104). Neither is a measurement of 1835 and the note says so either way.
+LINE_WHY_MARGIN = ("which is the closest line the plat module's own margin allows and is "
+                   "not a measurement of this frontage")
+LINE_WHY_ADOPTED = ("which is NOT a measurement of this frontage either: it is the line "
+                    "the buildings already standing on this face were built to, adopted "
+                    "so that the face carries one street wall rather than two (T-0104). "
+                    "The plat module's lot margin still fixes the side lines this run "
+                    "stands clear of; what it does not fix is a street line that other "
+                    "records had already set")
 
 
 def invented(value, reason: str) -> dict:
@@ -255,32 +270,96 @@ def band_note(family: str) -> str:
             "specification; it is not evidence for this anonymous instance.")
 
 
-def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
-    """Form values, with the storey count and eave height read off the crosswalk.
+def form_for(family: str, spec: dict, key: str, width: float, depth: float,
+             paint: str) -> dict:
+    """Form values, with the storey count, eave height and pitch read off the crosswalk.
 
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
     the value actually is — the reconstruction generator's type default.
     """
-    return split_notes(_form_body(family, spec, key, width, paint), family,
+    return split_notes(_form_body(family, spec, key, width, depth, paint), family,
                        band_note(family))
 
 
-def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
+# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
+# once, because both the eave and the pitch need them (T-0148). Each used to sit
+# inline in the form branch that returned it, which is the same rule written four
+# times; a family cannot now get one roof for the purpose of choosing its eave and
+# another for the purpose of building it.
+def _roof_kind(family: str) -> tuple[str, bool | None]:
+    if family.startswith(("C", "F")) and family != "F1":
+        return "gable", family.startswith("C")
+    if family in ("D2", "A3", "A4"):
+        return "shed", None
+    return "gable", None
+
+
+def _pitch_default(family: str, levels: float) -> float:
+    """The generator's own type value, which is what a family authoring no band gets."""
+    if family == "D1":
+        return 38.0
+    if family.startswith(("C", "F")) and family != "F1":
+        return 34.0
+    if family.startswith(("D", "H")) and family != "D2":
+        return 44.0 if levels == 1.5 else 38.0
+    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+
+
+def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
+               paint: str) -> dict:
     why = band_note(family)
-    levels, loft = storeys(spec["levels"])
+    # The key is what lets a family whose crosswalk `levels` is a BAND — W2 is 1-1.5 —
+    # be sampled rather than refused. Without it this generator died on the day the
+    # schedule dealt it one, which nothing in the repo said until the family sweep
+    # dealt every family it is allowed to (T-0142).
+    levels, loft = storeys(spec["levels"], key)
     construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
     # The door is chosen before the eave because the eave floor depends on it: a wagon
     # door needs a metre more wall than a man door, and asking for the floor without
     # naming the door is how a band gets sampled below what the archetype can build.
     door = door_kind(family)
-    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door))
+    # ...and the ARCHETYPE bounds the band at BOTH ends (T-0142). H2's authored eave
+    # runs to 21 ft and `frame_dwelling` will not carry a two-storey wall over 6.2 m,
+    # so a uniform sample dealt this block a merchant house the generator refused to
+    # build; D6's runs down to 10 ft and the same archetype will not carry a half
+    # storey under 3.05 m. Both limits are asked of the archetype, never retyped here.
+    arch_lo, arch_hi = eave_limits(spec.get("archetype"), levels)
+    floor, ceiling = max(eave_floor(family, door), arch_lo), arch_hi
+    # ...and the family's own RIDGE band bounds it once more (T-0148). The pitch below
+    # is already constrained by that band; the eave was not, so a low draw could leave
+    # no pitch inside the family's band able to reach it, and the gate then reported a
+    # ridge outside a band that is reachable at an eave the family also authors. Two
+    # A1 stables on these blocks stood outside their ridge band for exactly that. The
+    # eave is held to the nearest value in its OWN band that the ridge band can be met
+    # from; a draw that already meets it is returned untouched.
+    roof_type, gable_front = _roof_kind(family)
+    run = ridge_run_m(spec.get("archetype"), roof_type, width, depth, gable_front)
+    wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
+                          family, spec["eave_ft"], spec.get("roof"),
+                          spec.get("ridge_ft"), run, _pitch_default(family, levels),
+                          key, floor, ceiling)
+
+    # THE PITCH, T-0142, and it is T-0145's repair arriving in the parcel that needed it
+    # next. This generator dealt a retyped constant — 44 deg to every 1.5-storey D or H
+    # family, 38 to the rest — and a constant is a claim of uniformity no source makes.
+    # Worse, three of the families it deals are refused by their OWN crosswalk entry at
+    # that constant: H1 cites 8:12-11:12 and was dealt 44.0, H2 and H3 cite 6:12-9:12 and
+    # were dealt 38.0. So the pitch comes from the family's band, constrained by the
+    # ridge band the same entry authors, which needs the run the roof climbs — and that
+    # is the archetype's, so `ridge_model` is asked for it. A family whose roof line
+    # names no pitch keeps the type default it always had.
+    def pitch() -> float:
+        return pitch_deg(family, spec.get("roof"), key,
+                         _pitch_default(family, levels), eave_m=wall, run_m=run,
+                         ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
             "stories": invented(1, why), "wall_height_m": invented(wall, why),
-            "roof_type": invented("gable", why), "roof_pitch_deg": invented(38.0, why),
+            "roof_type": invented("gable", why),
+            "roof_pitch_deg": invented(pitch(), why),
             "construction": invented("log", why), "loft": invented(True, why),
             "chimneys": invented(1, why),
         }
@@ -291,20 +370,23 @@ def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> d
         result = {
             "stories": invented(levels, why), "wall_height_m": invented(wall, why),
             "roof_type": invented("gable", why),
-            "roof_pitch_deg": invented(44.0 if levels == 1.5 else 38.0, why),
+            "roof_pitch_deg": invented(pitch(), why),
             "construction": invented(construction, why), "plan": invented(plan, why),
             "bays": invented(5 if big else (3 if width >= 5.4 else 2), why),
             "chimneys": invented(2 if big else 1, why),
             "paint": invented(paint, why),
         }
-        if stable_fraction(key, 7) < .58:
+        # Slot 10, not slot 7: `family_bands.pitch_deg` draws on 7, and two decisions
+        # sharing a slot would make a house's porch a function of its roof pitch.
+        if stable_fraction(key, 10) < .58:
             result["porch"] = invented("stoop", why)
         return result
 
     if family.startswith(("C", "F")) and family != "F1":
         return {
             "stories": invented(levels, why), "wall_height_m": invented(wall, why),
-            "roof_type": invented("gable", why), "roof_pitch_deg": invented(34.0, why),
+            "roof_type": invented("gable", why),
+            "roof_pitch_deg": invented(pitch(), why),
             "gable_front": invented(family.startswith("C"), why),
             "construction": invented(construction, why),
             "cladding": invented("clapboard" if family != "F2" else "vertical_board", why),
@@ -318,15 +400,14 @@ def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> d
         raise SystemExit(f"{family} has no form rule in this generator; add one before "
                          f"a recipe uses it")
 
-    roof = "shed" if family in ("D2", "A3", "A4") else "gable"
     material = "plank"
     if family == "A1":
         material = "log"
     elif family in ("A2", "W2"):
         material = "light_frame"
     return {
-        "wall_height_m": invented(wall, why), "roof_type": invented(roof, why),
-        "roof_pitch_deg": invented(18.0 if roof == "shed" else 32.0, why),
+        "wall_height_m": invented(wall, why), "roof_type": invented(roof_type, why),
+        "roof_pitch_deg": invented(pitch(), why),
         "construction": invented(material, why), "door": invented(door, why),
         "door_side": invented("front", why), "loft": invented(loft, why),
         "board_gap_m": invented(.012, why), "paint": invented(paint, why),
@@ -397,9 +478,21 @@ def place(edge_mid: tuple[float, float], inward: tuple[float, float],
     `inward` points from the edge into the lot, so the facade faces out of it — the
     street for a frontage building, the alley for a yard one. The returned coordinate
     is the footprint's (0, 0) corner, which is what the GLB contract anchors on.
+
+    T-0103: the bearing is therefore taken from the OUTWARD normal, `-inward`.
+    `rotation_deg` is pinned by `docs/GLB-CONTRACT.md` as the facade bearing —
+    the way the front looks, 0 = north — and this function read it off `inward`
+    for twelve blocks, so every roof it stood turned its face into the middle of
+    its own block. `tools/block_faces.py` has always taken the same angle off the
+    face's outward normal, which is why the frontage rows on the same faces are
+    right and these were not.
     """
-    bearing = math.degrees(math.atan2(inward[0], inward[1])) % 360.0
-    # local +x, the frontage axis: `inward` turned 90 degrees clockwise.
+    bearing = math.degrees(math.atan2(-inward[0], -inward[1])) % 360.0
+    # The lateral axis along the edge: `inward` turned 90 degrees clockwise. It is
+    # the ground direction a slot's `lateral_m` slides the building in, and it is
+    # deliberately NOT re-derived from the corrected bearing — a lot's slot offsets
+    # describe where the building stands, so turning the roof around must not also
+    # move it to the other end of its lot.
     axis = (inward[1], -inward[0])
     cx = edge_mid[0] + inward[0] * (setback + depth / 2.0) + axis[0] * lateral
     cy = edge_mid[1] + inward[1] * (setback + depth / 2.0) + axis[1] * lateral
@@ -524,6 +617,8 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
     position_note = FRONTAGE_NOTE.format(
         face=block["frontage"]["face"], block=block["block_id"],
         setback=f"{setback:.2f}", anchor=described,
+        line_why=(LINE_WHY_ADOPTED if block["frontage"].get("adopts_face_line")
+                  else LINE_WHY_MARGIN),
         street=slot["fronts"].replace("_", " ").title()) if on_frontage else (
         "Interpretive placement on a GENERATED lot, not a recovered parcel. The lot "
         "geometry is the K7 plat module's — this project has never read Thompson's "
@@ -583,7 +678,7 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
                 "confidence": "reconstructed",
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
-            "form": form_for(family, spec, sid, width, paint),
+            "form": form_for(family, spec, sid, width, depth, paint),
             "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
@@ -783,16 +878,32 @@ def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
             # The footprint's (0, 0) corner, which is what the GLB contract anchors on:
             # walk back from the east wall along the face, then in from the face line by
             # the setback and the building's own depth.
-            base = (face["origin"][0] + face["along"][0] * (east - width)
-                    + face["outward"][0] * (-setback - depth),
-                    face["origin"][1] + face["along"][1] * (east - width)
-                    + face["outward"][1] * (-setback - depth))
-            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            #
+            # WHICH WAY "BACK" IS DEPENDS ON THE FACE, and it did not have to until this
+            # run (T-0143). `rotation_deg` is the facade bearing, so the footprint's own
+            # +u axis is the outward normal turned a quarter turn — and that runs WITH
+            # the face's `along` on a north or west face and AGAINST it on a south or
+            # east one. Twelve blocks of frontage runs stand on north faces, where the
+            # two agree, so placing the corner at `east - width` was right on every row
+            # this generator had ever built. The first run on a south face put each unit
+            # a whole width west of the party wall it declared, which `check_frontage`
+            # refused: the assertion is a measurement of the geometry, which is why it
+            # could catch a defect in the placement that wrote it.
             position = phase["position"]
-            position["utm_e"] = round(float(datum["origin_utm_e"]) + local_e, 3)
-            position["utm_n"] = round(float(datum["origin_utm_n"]) + local_n, 3)
             theta = math.radians(float(position["rotation_deg"]))
             cos, sin = math.cos(theta), math.sin(theta)
+            u_along = cos * face["along"][0] - sin * face["along"][1]
+            if abs(u_along) < .99:
+                raise SystemExit(f"{sid}: the facade bearing is {position['rotation_deg']} "
+                                 f"deg, which does not lie along the face it fronts")
+            along_0 = east - width if u_along > 0 else east
+            base = (face["origin"][0] + face["along"][0] * along_0
+                    + face["outward"][0] * (-setback - depth),
+                    face["origin"][1] + face["along"][1] * along_0
+                    + face["outward"][1] * (-setback - depth))
+            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            position["utm_e"] = round(float(datum["origin_utm_e"]) + local_e, 3)
+            position["utm_n"] = round(float(datum["origin_utm_n"]) + local_n, 3)
             resolved[sid] = [(local_e + u * cos + v * sin, local_n - u * sin + v * cos)
                              for u, v in polygon]
             del pending[sid]
@@ -802,6 +913,36 @@ def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
 
     for record in records:
         record.pop("_frontage", None)
+
+
+def adopted_line(block: dict, face: dict, adopts: list[str], records: list[dict],
+                 datum: dict) -> float:
+    """The line a face's committed frontage already stands on, measured (T-0104).
+
+    Nothing here is authored: the caller names records this parcel did not write, and
+    the answer is their front walls projected onto the face this run stands on. Naming
+    them rather than sweeping the face is deliberate — the sweep is what
+    `tools/measure_street_line.py` does over the whole town, and a generator that
+    silently adopted whatever happened to be near its face could be moved by a
+    building nobody meant to put on the line.
+    """
+    mine = {r["id"] for r in records}
+    committed = dict(footprints(datum, exclude=mine))
+    walls = {}
+    for name in adopts:
+        polygon = committed.get(name)
+        if polygon is None:
+            raise SystemExit(f"{block['block_id']}: the run adopts the line of {name}, "
+                             f"which is not a committed building this parcel can see")
+        walls[name] = -max(face_project(face, p)[1] for p in polygon)
+    if not walls:
+        raise SystemExit(f"{block['block_id']}: `adopts_face_line` names no records, so "
+                         f"there is no line to adopt")
+    if max(walls.values()) - min(walls.values()) > 0.005:
+        raise SystemExit(f"{block['block_id']}: the records the run adopts do not stand "
+                         f"on one line — " + ", ".join(f"{k} at {v:.3f} m"
+                                                       for k, v in sorted(walls.items())))
+    return round(sum(walls.values()) / len(walls), 3)
 
 
 def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
@@ -824,11 +965,29 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
         raise SystemExit(f"{block['block_id']}: the {frontage['face']} frontage is set "
                          f"back by {sorted(setback)} m — a street wall is one line")
     stated = float(next(iter(setback)))
-    if stated < LOT_MARGIN_M - 1e-6:
+    adopts = frontage.get("adopts_face_line")
+    if adopts:
+        # T-0104. A FACE THAT IS ALREADY BUILT HAS A STREET LINE, and it outranks the
+        # margin: a street wall is one wall, and a run that stands 0.70 m behind the
+        # buildings it joins puts a jog in it. So a recipe may name the committed
+        # records whose line it adopts, and then the setback is not authored at all —
+        # it is MEASURED off them here, and a recipe that states any other number
+        # fails. The exemption is as narrow as L141's party-wall one: it reaches the
+        # STREET line only, it needs records to point at, and the side lines below
+        # keep the full margin.
+        line = adopted_line(block, face, adopts, records, datum)
+        if abs(line - stated) > 0.005:
+            raise SystemExit(f"{block['block_id']}: the run states a {stated} m setback "
+                             f"and adopts the line of {', '.join(sorted(adopts))}, whose "
+                             f"front walls stand {line:.3f} m off the "
+                             f"{frontage['face']} face")
+    elif stated < LOT_MARGIN_M - 1e-6:
         raise SystemExit(f"{block['block_id']}: a run set back {stated} m stands inside "
                          f"the {LOT_MARGIN_M} m margin the plat module keeps off a lot "
                          f"line. The row crosses the side lines between its own units, "
-                         f"which are conjectural; it does not cross the street line")
+                         f"which are conjectural; it does not cross the street line. A "
+                         f"face that is already built may state `adopts_face_line` and "
+                         f"take the line of the records named there instead")
     spans = {}
     for record in row:
         world = world_polygon(record, datum)
@@ -863,7 +1022,10 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
                                  f"frontage on {block['block_id']}, inside the "
                                  f"{LOT_MARGIN_M} m margin of a side line the run does "
                                  f"not stand across")
-            if not (strip["off_min"] + LOT_MARGIN_M - .005 <= off <= -LOT_MARGIN_M + .005):
+            # The street-side bound is the run's OWN line rather than the lot margin:
+            # where the run adopts a built face (T-0104) that line is the margin's
+            # replacement, and where it does not the two are the same number.
+            if not (strip["off_min"] + LOT_MARGIN_M - .005 <= off <= -stated + .005):
                 raise SystemExit(f"{record['id']} stands {off:.2f} m off the "
                                  f"{frontage['face']} face, outside the run's own ground")
 
@@ -928,6 +1090,37 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # per unit — it stands across its own stretch of the face — so it counts against the
     # lots the recipe named for it, and the count is gated: a run may not carry more
     # roofs than the lots it was dealt, which is the same ceiling stated the same way.
+    # T-0103. EVERY ROOF LOOKS AT THE THING IT FRONTS, and the block's own faces are
+    # asked rather than the lot's. `place()` derived the facade bearing from the lot
+    # frame for twelve blocks and derived it backwards, so 78 roofs stood with their
+    # doors and windows turned into the middle of their own block — and nothing here
+    # noticed, because every gate this generator carries measures WHERE a building
+    # stands and none of them measured which way it looks. This one does, off
+    # `block_faces.py`'s outward normal, which is a different derivation from the lot
+    # polygon that `place()` reads: a 180-degree error cannot be right in both.
+    # The tolerance is the plat's own skew — a lot's front edge is not exactly
+    # parallel to its block face, and the committed grid runs up to 2.6 degrees out
+    # on the West Division blocks — so five degrees is loose enough for the ground
+    # and nowhere near loose enough to admit a flip.
+    for record in records:
+        recon = record["reconstruction"]
+        street = recon["fronts"]
+        compass = [k for k, v in grid["bounded_by"].items() if v == street]
+        if len(compass) != 1:
+            raise SystemExit(f"{record['id']} fronts {street!r}, which is not exactly "
+                             f"one face of {block['block_id']}")
+        want = face_frame(grid, compass[0])["bearing"]
+        if recon["stands_on"] == "alley":
+            want = (want + 180.0) % 360.0   # a yard building looks at the alley behind it
+        got = float(record["phases"][0]["position"]["rotation_deg"])
+        off = abs((got - want + 180.0) % 360.0 - 180.0)
+        if off > 5.0:
+            raise SystemExit(f"{record['id']} stands on the {street} face and looks "
+                             f"{got:.2f}deg, {off:.1f}deg off the {want:.2f}deg its "
+                             f"face looks. rotation_deg is the FACADE bearing "
+                             f"(docs/GLB-CONTRACT.md), so this roof fronts the wrong "
+                             f"way")
+
     frontage = block.get("frontage")
     row = [r for r in records if r["reconstruction"].get("frontage")]
     if frontage and not row:

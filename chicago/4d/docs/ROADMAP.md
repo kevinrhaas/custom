@@ -110,6 +110,116 @@ the "runner without the per-command ceiling" this section asked for. Desktop sta
 not yet measured; stage 4 is the one to watch (its mobile 7 m 30 s includes the shared
 street-layer reading), and if it overruns on desktop the fifth cut goes in then, the same way.
 
+**RE-CUT 2026-08-24 by T-0166 (piece 1 of T-0121): the four stages are EIGHT parts, and
+`SMOKE_STAGE` takes a range.** The four had eroded exactly as the paragraph above feared, and
+faster: by 2026-08-23 three of the four DESKTOP quarters ran past the ten-minute ceiling and the
+fourth cleared it by two minutes, so the desktop half a steward run could reach was stage 1
+alone. Each quarter is now halved at a section boundary re-verified for crossing bindings, so
+**part 2k-1 plus part 2k is exactly T-0060's stage k** — the cheap viewport is still four
+commands (`SMOKE_STAGE=1-2`, `3-4`, `5-6`, `7-8`) and nothing about the audit changes.
+
+Three of the four new second halves inherited page state rather than a binding, which the
+scope-aware scan cannot see and only a part run alone from a fresh boot will show: part 6 and
+part 8 boot at the GATE SCREEN (`enterTown()`, T-0060's inline accommodation, now one function
+called at the head of four parts), part 8 also needs the PANEL open because its first statement
+clicks a tab inside it, and part 4 needs the Sauganash framed because its first check picks
+whatever is down the crosshair. All three prologues are guarded on the state they establish, so
+an unfiltered run runs them as no-ops.
+
+**The mobile fit, measured on the improve runner against the published mirror** — part 1
+**1 m 41 s**, 66 staged checks · part 2 **1 m 17 s**, 66 · part 3 **0 m 52 s**, 65 · part 4
+**3 m 17 s**, 38 · part 5 **2 m 52 s**, 19 · part 6 **0 m 44 s**, 14 · part 7 **3 m 48 s**, 36 ·
+part 8 **4 m 19 s**, 107 — 411 staged checks plus the 9 always-on ones every invocation takes,
+and 18 m 50 s of wall clock for eight boots. Every part is inside the ceiling by at least five
+minutes. (Part 5 carries T-0114's two road-legibility failures, which are red on `dev` today and
+are that ticket's, not this cut's.)
+
+**The audit was taken against the old code rather than asserted.** Running `origin/dev`'s own
+`smoke_renderer.mjs` beside the re-cut one, at mobile on the published mirror: old stage 1 gives
+**132 staged / 9 always-on / 141 passed**, and new `SMOKE_STAGE=1-2` gives **132 / 9 / 141**. Old
+stage 3 gives 33 staged with T-0114's two failures; new parts 5 and 6 give 19 + 14 = 33 with the
+same two failures, which is also where those failures are demonstrated to be `dev`'s and not this
+cut's.
+
+**Every invocation now prints its own wall clock on its last line**, which is the cheapest
+possible early warning: this ceiling has been breached three times and each breach cost a run a
+hand measurement to discover.
+
+**THE DESKTOP FIT WAS NOT CLAIMED BY T-0166, AND T-0167 IS WHERE IT IS.** The reason it was
+deferred stands: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=7` was killed at 10 m 00 s on T-0166's
+runner against 3 m 48 s for the same part at mobile, while part 6 cost 0 m 44 s at mobile and
+1 m 53 s at desktop — so the desktop cost of a part is NOT a fixed multiple of its mobile cost,
+the camera-heavy parts scale several times harder than the DOM-heavy ones, and an eight-way cut
+sized on the mobile profile could not be assumed to fit.
+
+**THE DESKTOP PROFILE, MEASURED 2026-08-24 by T-0167** — eight foreground commands at 1280x800
+on the improve runner against the published mirror, one part each, `SMOKE_TIMING=1`:
+
+| part | desktop | margin | staged checks | mobile (T-0166) |
+|---|---|---|---|---|
+| 1 | **3 m 31 s** | 6 m 29 s | 66 | 1 m 41 s |
+| 2 | **2 m 37 s** | 7 m 23 s | 66 | 1 m 17 s |
+| 3 | **1 m 40 s** | 8 m 20 s | 65 | 0 m 52 s |
+| 4 | **7 m 07 s** | 2 m 53 s | 35 | 3 m 17 s |
+| 5 | **6 m 40 s** | 3 m 20 s | 19 | 2 m 52 s |
+| 6 | **1 m 24 s** | 8 m 36 s | 14 | 0 m 44 s |
+| 7 | **7 m 43 s** | 2 m 17 s | 36 | 3 m 48 s |
+| 8 | **8 m 46 s** | 1 m 14 s | 107 | 4 m 19 s |
+
+408 staged checks plus the 9 always-on ones every invocation takes, and **39 m 28 s** of wall
+clock for eight boots. (Mobile's 411 is these 408 plus the three checks part 4 takes only at
+mobile.)
+
+**The table above was taken at `ac1abb80`**, and T-0166's mobile column at the same commit.
+T-0114 merged into `dev` while this run was measuring and changed `streets.js`, so the parts
+that read the roads — 5 and 7 — will have moved a little since, and part 5's reading was taken
+with T-0114's road-legibility check still failing. The re-cut readings below, and the audit,
+were re-taken on top of T-0114.
+
+**NOTHING OVERRAN, AND THAT IS NOT THE SAME AS FITTING.** Two readings have to be held together:
+part 7 measured 7 m 43 s here and was KILLED at 10 m 00 s on T-0166's runner three days earlier,
+on a body that had not grown in between. **These desktop numbers move by minutes between runs**
+— SwiftShader is a software renderer and its cost tracks whatever else the machine is doing — so
+a part is not sized by whether one reading cleared the ceiling but by how much margin it has when
+it does. A 74-second margin is not a margin.
+
+**RE-CUT 2026-08-24 by T-0167 (piece 2 of T-0121): part 8 is halved and there are NINE parts.**
+Part 8 was both the thinnest margin on the profile and the most check-dense part of the suite by
+a factor of three, which is the combination worth cutting. It is also the TAIL, so the new part
+is APPENDED and parts 1-7 keep their numbers: the pairing rule survives as 1+2, 3+4, 5+6, **7+8+9**,
+and the mobile recipe's last command widens from `7-8` to `7-9` — still four commands. The
+boundary is the Evidence panel: the profile put 6 m 05 s of the old part 8 above it and 2 m 41 s
+below, and the scope-aware scan found three names crossing it (`eye`, `toggles`, `typed`) of which
+all three are prose or a different local (`typedE.typed`), so nothing crosses in fact. Part 9's
+prologue is `enterTown()` alone — the liberties reading already carries its own guarded panel-open
+and clicks its own tab, so unlike part 8 it needs no panel guard bolted on.
+
+**Measured after the cut, at desktop: part 8 — 6 m 10 s, 28 staged · part 9 — 3 m 09 s, 79
+staged.** 28 + 79 = 107, exactly the old part 8's count, which is how "never dropping a check" is
+demonstrated rather than asserted. Both were taken twice, once at `ac1abb80` (6 m 08 s / 3 m 08 s)
+and again on top of T-0114 — the same counts and within two seconds either way, which is also a
+reading on how much of the desktop variance is the scene and how much is the machine. The worst
+desktop margin is now **part 7 at 2 m 17 s**, and it is the next one to go — T-0170, which also
+records why it was not taken in the same run: part 7 has no section headers to cut at, it holds
+one half of the `anyStage(5, 7)` street-layer reading, and it is not the tail, so cutting it
+renumbers everything after it. The audit was taken at mobile too: old `SMOKE_STAGE=7-8` gives 143
+staged / 9 always-on / 152 passed and new `7-9` gives **143 / 9 / 152**, in 5 m 53 s against
+5 m 49 s.
+
+**AND THE HEADING OF THIS SECTION IS OUT OF DATE BY A FACTOR OF TWO.** "The smoke costs 26 of
+them" was measured on 2026-08-14. T-0167's profile puts the staged gate at **39 m 58 s of desktop
+across nine commands plus 13 m 26 s of mobile across four** — call it **53 minutes**, better than a
+third of the 150-minute run budget, and that is before a part is re-run after a fix. The two-full-
+passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
+parcel whose acceptance needs the whole gate twice has already outgrown a run.
+
+**`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
+the profile could not have been taken without it. A part that BREACHES the ceiling is killed
+*before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain
+run reported nothing about — T-0166's part 7 reading is literally ">10 m", and nothing else. With
+the stamp on, a killed run is still a profile of everything it reached, which is what places the
+next cut. It is off by default so the gate's own output stays comparable between runs.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
@@ -183,7 +293,7 @@ rationed.**
 | — | RENDERING | ~~K53~~ | **SEEN** | **DONE 2026-08-17 — twenty-one shrub records were drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width.** Shrubs 0 → **14** drawn over 32 poses, clump width **0.40 m clamped → 1.80 m median**, and the census is identical plant for plant (2,201 forb-layer plants before, 2,187 + 14 after, every zone conserved). Its finding is the reason the number is 14 and not 140 — **the forb lottery deals by HEAD COUNT, so a hazel covering 7 m² competes as one plant against 40 wild leeks per m²**, and the wet woods' attested dominant shrub gets 0.2 % of the slots. Opened as **K54**. Read its box before quoting a shrub count |
 | — | RENDERING | ~~K54~~ | **SEEN** | **DONE 2026-08-17 — the two strata were sharing one lattice, and where the herb layer saturates it the deal is a subsample by head count. 4 bushes standing over the eight stations → 181.** The shrubs are dealt from their own pass at their own recorded clump density: `z06_dense_forest` **2 → 156** drawn and **40.1 %** of its recorded 94.9 % cover, the riverbank dogwood belt **20.1 % against a recorded 19.5 %**, matrix deviation unmoved to the second decimal and **0 of 98** pairs drawn nowhere. Two findings: **the slot count still mixed units** and planted the riverbank understory **8.8×** too thickly (K55), and **the instrument this parcel named cannot answer its question** — "deviation from the recorded cover" has measured the lattice against its own target since K49(c2). Read its box before quoting 89.11 or any deviation sum across two builds |
 | — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
-| — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**. Read its box before shrinking any archetype plate |
+| — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**, which is now DONE and spent the 4.4 points: read K59's box before timing anything in a browser here. Read this one before shrinking any archetype plate |
 | — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
 | **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
 | — | TOWN | ~~K30(c)~~ | **SEEN** | **REFUTED 2026-08-22 (T-0009, K30(d)) — DO NOT RUN THIS REPAIR.** The 29 buildings are still drawn standing in the roadway, but not for this reason: `--anchors` finds the record's point at the BACK corner on **all 17** of the deep records and on the kerb face on **none** of them, so the street-facing FACE is what was placed on the frontage and reflection would take twelve documented buildings a full depth behind their own frontage. The cause is the committed `south_water` centreline, deliberately shifted 4.3–8.8 m south of the control the placements were offset from. **What to do about it is the owner's, and T-0009 is blocked on him** |
@@ -204,7 +314,7 @@ rationed.**
 | — | RENDERING | ~~K48~~ | **SEEN** | **DONE 2026-08-16 — and it refuted its own premise. 0 sycamores became 2.** Both repairs it named are impossible: rescaling to the bands is an unsolvable system in two of four communities (`wet_woods` floors sum to 100/ha under a stand ceiling of 84), and deriving `perHa` from the mix sum contradicts the same dossier's own canopy sentence. The share is not the defect; the **draw** was. Read its box before proposing a change to any weight, density or band |
 | — | RENDERING | ~~K49(d)~~ | **SEEN** | **DONE 2026-08-16 — the block permutation works and `prairie_west` does not stripe: matrix deviation 368.80 → 282.89, and the 31.47-slot row is now 3.67.** Its finding is not the repair: **the stratum size is a U-curve**, and K49(b) finding 3's rule is only its left half — a block also has a CEILING, because exactness over the block is read through a sub-window. Measured at five sizes, and the smallest is 7.4× WORSE than doing nothing. Read its box before setting a stratum size anywhere |
 | — | RENDERING | ~~R-BUG1~~ | **SEEN** | **DONE 2026-08-16 — the owner's flickering river edge was the NEAR PLANE, and 15.6 % of the drawn bank line is now 3.3 %.** A fixed 0.1 m near against a 3,000 m far leaves two surfaces 350 m away needing 10 cm of separation before the depth buffer can order them, and the waterline is co-planar BY DESIGN. The instrument is the finding: **move the camera 2 mm and photograph the same view twice** — the control is 0 px, so anything that changes is a tie. **Most of what flickers is not the bank (R-BUG6), and its suspect is UNTESTED because the flag written to test it changes nothing.** Read its box before biasing any surface to settle a tie |
-| **1** | RENDERING | **K49(e)** | UNSEEN | **opened 2026-08-16 by K49(d), and it carries the written exemption** (a gate-shaped measurement blocking a named SEEN parcel — K49(c) is one). Two census rows got WORSE, and the explanation on offer — a spatial filter running after the deal selects a biased set of ranks — is stated and **not proven**. It is a column on a tool that already stands the placer in every community |
+| — | RENDERING | ~~K49(e)~~ | UNSEEN | **DONE 2026-08-23 (T-0018) — REFUTED, and in the opposite direction.** The filters do not eat the stratification: over 7,844 dealt slots the survivors sit at **0.65** of what a rank-BLIND filter of the same size departs by, and the riverbank row the parcel was left on refuses **0.0 %** of its slots. The instrument was shown red before it was believed — a width-selective control on the same vectors reads 3.9–5.0. Read its box before blaming a filter for a census row |
 | — | RENDERING | ~~K49(b)~~ | **SEEN** | **DONE 2026-08-16 — all six species are standing, 6 absent → 0 over 6,795 slots.** And the screenshot the parcel asked for vetoed half its own repair: on the dense matrix layers the same construction rows the prairie. Read its box before proposing a low-discrepancy draw anywhere else — the answer is layer-dependent, and the census would have merged the striped version |
 | — | RENDERING | ~~K49(c1)~~ | — | **DONE 2026-08-16 — the 25 footprints are in, `unconvertible` 25 → 0, and the conversion is measured and NOT shipped.** It moves the shares by up to 3× (June grass 8.1 % → 24.0 %, wood nettle 1.1 % → 6.3 %) and improves both deviations (matrix 219.19 → 197.46, forb 107.18 → 89.11), and it puts *Scirpus atrovirens* at **1.10 slots owed, 0 drawn** — K49(f)'s absolute gate. Read its box before dealing a sward slot off any number |
 | — | RENDERING | ~~K49(c2)~~ | **SEEN** | **DONE 2026-08-16 — the conversion is SHIPPED and the tail gate is green on the mirror: matrix deviation 219.19 → 154.19, forb 107.18 → 89.11, worst shortfall 15.21 → 8.50.** Route 1 was built and is **refuted at frame scale** (the sweep alone leaves *S. cyperinus* drawn nowhere at 1.11 owed, because a frame does not hold whole blocks — K49(e)'s question); route 3, which K49(c1) said was "not a route to green", **is** what got there. Read its box before proposing a construction to fix a tail |
@@ -1180,7 +1290,7 @@ silhouette is the record's `height_m` and half-width. **Before holding a quantit
 archetype, ask which side of that line it is on.** The same trap is live in every other plate-based
 archetype here — the tree canopy, the near tuft, the forb head.
 
-### K59 — the last 4.4 points of the shrub's shell, and whether a frame can afford them · **UNCLAIMED · SEEN · opened 2026-08-17 by K57 · Effort: S**
+### K59 — the last 4.4 points of the shrub's shell, and whether a frame can afford them · **DONE 2026-08-23 (T-0020) — the frame was read and the points are spent: 64 sprays ship, for +3.0 % of a frame on desktop and +2.1 % on mobile against a 0.2 % A/B/A control**
 
 K57 shipped 48 sprays at the knee and left 64 measured and unspent: **cover 46.9 % → 51.3 %, worst
 bearing 43.0 % → 47.3 %, stem cover 51.3 % → 54.2 %, for 104 → 136 triangles a shrub** and 17,368 →
@@ -1196,6 +1306,48 @@ is exactly what K57 refused.
 
 **Files:** `renderers/web/js/shrub-grain.js` (`SHRUB_GRAIN.fill`) · `tools/measure_spray_grain.mjs`
 · `docs/LIBERTIES.md` · `docs/STATUS.md`.
+
+**THE ANSWER, 2026-08-23 (T-0020). The parcel's own condition was met before anything moved:
+`tools/measure_shrub_frame_cost.mjs` is the frame-time instrument this box refused to be claimed
+without.** It stands the walker in `z06_dense_forest` — 158 shrubs drawn in one ring, the densest
+of the ten communities — sweeps eight bearings and fixes the camera at the most expensive of them
+(1,343,341 triangles at 135°), holds the clock, drives frames one at a time rather than letting the
+browser pace them, and fences each frame with a one-pixel readback.
+
+| | 48 sprays | 64 sprays | |
+|---|---|---|---|
+| desktop 1280×800 | 4282.30 ms | 4410.30 ms | **+3.0 %** |
+| mobile 390×780 | 2739.60 ms | 2795.80 ms | **+2.1 %** |
+| desktop, shipped grain measured AGAIN | **4292.90 ms** | | **+0.2 %** — the control |
+
+**Finding 1 — three points of a frame for 4.4 points of shell, and the control is what makes that
+readable.** The A/B/A third row is the identical scene measured after the candidate: the runner's
+own drift is two tenths of a point, so the candidate's three are fifteen times it. Cover 46.9 % →
+51.3 %, worst bearing 43.0 % → 47.3 %, stem cover 51.3 % → 54.2 %, reach unmoved at 0.997, 17,368 →
+22,712 triangles in the ring of a 1,000,000 ceiling. **64 ships** (L175).
+
+**Finding 2, and it is the durable one — `gl.finish()` IS NOT A FENCE HERE, and a measurement built
+on it was wrong by a factor of a thousand.** The first cut of this instrument timed `step()` +
+`gl.finish()` and reported **2.90 ms** a frame while the process spent about **four seconds** of
+wall clock on each one. ANGLE's SwiftShader backend rasterises in another process, so a finish
+returns having synchronised nothing a caller can observe; what was being timed was how fast three.js
+can TALK, which is the one quantity that does not move when a shrub grows 32 triangles. It even
+produced a plausible-looking answer — **+31 %**, which would have refused this parcel. A one-pixel
+`readPixels` is a real fence, because the caller cannot be handed a pixel that has not been drawn,
+and it is what the renderer's own `capture()` has always used. **Read this before timing anything in
+a browser here, and prefer a readback to a finish.**
+
+**Finding 3 — a Playwright route handler is not free.** The grain was first injected by intercepting
+`shrub-grain.js` with `page.route`. Registering ANY route turns network interception on for EVERY
+request in that context, and this page pulls several hundred GLB and JSON files through it: one page
+load went from about eight seconds to over four minutes. The instrument patches the byte at the
+static server it already runs instead.
+
+**What this parcel does NOT settle.** Every figure above is a headless software rasteriser on a
+shared CI machine — the absolute milliseconds are that machine's, and a frame there is four seconds.
+The ratio is the answer, and it argues in the safe direction: a software rasteriser is the most
+fill-sensitive renderer available, so it is the harshest witness for the one risk here (overdraw
+1.33 → 1.56). The reading L121, L156 and L174 all still want — a real low-end machine — is not this.
 
 ### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **UNCLAIMED · SEEN · opened 2026-08-17 by K55 · Effort: M**
 
@@ -4835,6 +4987,14 @@ Giving the block's grid a phase — a change that touches no filter — takes `z
 to **7.67**. The town's regression was the fixed grid's own bias, not `station()`. What is left for
 K49(e) is the riverbank's residual 1.30. Do not quote the paragraph above without this one.
 
+**AND FULLY REFUTED 2026-08-23 by K49(e)/T-0018, which is what that parcel was opened to settle:
+the mechanism is not merely unproven, it runs the OTHER WAY.** Measured over 7,844 dealt slots in
+29 rows, the survivors of `station()` and `crowdsTheWalker()` are **less** unevenly spread across
+species than a rank-blind subsample of the same size — pooled 0.65 of the rank-blind figure, worst
+row 1.11 — and the riverbank row this paragraph is about has **0.0 % of its slots refused**, so no
+filter can be carrying any part of its residual. Finding 3 above is wrong in its direction and is
+kept only as the reasoning it was. Do not quote either paragraph without K49(e)'s box.
+
 **The screenshot, which is the acceptance test K49(b) set.** `prairie_west` desktop, published
 mirror, before and after: **no rows, no diagonal banding, 74 draw calls both ways.** The mix in
 frame changes visibly — the under-drawn grass now has its recorded share — which is the point.
@@ -4857,7 +5017,7 @@ mirror, five block sizes, table above · `tools/critic_shots.mjs --published --v
 --stations prairie_west` before and after. **The desktop half of the smoke was not run and is not
 claimed** — ~13 minutes against this runner's 10-minute per-command ceiling.
 
-### K49(e) — does a spatial filter eat the stratification? · **UNCLAIMED · UNSEEN · opened 2026-08-16 by K49(d) · Effort: S · EVIDENCE ADDED 2026-08-16 by K49(c2)**
+### K49(e) — does a spatial filter eat the stratification? · **DONE 2026-08-23 (T-0018, TWO PARALLEL RUNS, TWO INSTRUMENTS, ONE ANSWER — NO, AND IT IS THE OTHER WAY ROUND). PR #337 refuted the mechanism in principle on 400 synthetic layer keys and banked its control pair into `tools/check.sh`; PR #338 measured the placer's own filters where they actually run — pooled 0.65 of the rank-blind figure, worst row 1.11, and the riverbank residual this parcel was left on has 0.0 % of its slots filtered**
 
 **K49(c2) found a second symptom of the same suspect, and it is a stronger one than the census rows
 this parcel was opened on.** Its route-1 sweep makes the union of the blocks in a frame an exact
@@ -4895,6 +5055,87 @@ explanation K49(d) finding 3 offered is refuted for the row it was mostly measur
 survives is the riverbank's residual **1.30**, which is what this parcel is now for: a small term,
 possibly the filter, possibly nothing. **Re-scope it before claiming it** — the correlation column
 is still the right instrument and the population it has to explain is now half the size.
+
+**THE ANSWER — 2026-08-23, T-0018, and it was answered TWICE, by two runs that took the ticket in
+parallel and could not see each other.** Read both; they are different constructions and the pair is
+stronger than either. **PR #337** attacks it analytically: the position→rank map is `feistel(idx,
+half, blockHash)` and `blockHash` is re-keyed per block, so a rule that reads only position cannot
+lean — demonstrated over 400 synthetic layer keys with χ² against uniform, three modelled filter
+shapes indistinguishable from a rank-blind control, and a rank-reading arm four orders of magnitude
+red; its control pair now runs in `tools/check.sh`. **PR #338 — this section — measures the real
+thing**: not a `halfplane` standing for a waterline but `station()` and `crowdsTheWalker()`
+themselves, over the actual town, at ten stations, in the census the project already keeps. What
+follows is that half.
+
+**The instrument, and why it is not the correlation column this box asked for.** `deviation` is a
+functional of the SURVIVORS' ranks alone, so the claim can be put exactly instead of correlated
+across sixteen noisy rows. `flora.js` now counts each species' slots at the moment of the deal
+(`dealt`) as well as after the filters (`drawn`) — the same census one step earlier — and
+`tools/measure_sward_draw.mjs` splits the survivors' disagreement with the deal in two:
+
+| term | what it is |
+|---|---|
+| `dealtDev` | `Σ|dealt_i − share_i·N|` — the discrepancy the DEAL has before any filter |
+| `B` | `Σ|drawn_i − q·dealt_i|`, `q = m/N` — how far the survivors are from the filter having taken the same fraction of every species. Zero for a perfectly even filter |
+| `Bnull` | what `B` reads when the mechanism is ABSENT: `Σ √(2/π)·√(m·p_i(1−p_i)·(N−m)/(N−1))`, the mean absolute deviation of the hypergeometric a rank-blind filter would produce |
+
+**`B/Bnull ≈ 1` refutes the mechanism for a row; `B/Bnull ≫ 1` proves it, and by how much.** The
+figure `deviation` moves on is `dealtDev` scaled by `q` plus `B`, so this is a decomposition and
+not a proxy.
+
+**Finding 1 — the mechanism is refuted, and refuted in the opposite direction.** Over **7,844
+slots dealt in 29 rows, of which the two filters refuse 23.4 %**, the pooled `B/Bnull` is
+**0.65**; the median row is 0.65 and the worst row in the scene is **1.11**. Not one row is
+meaningfully above the rank-blind figure. A filter that selected a biased set of ranks would sit
+ABOVE 1; these sit below it, which says the survivors are spread across the species list MORE
+evenly than an independent subsample of the same size would be. The stratification is not eaten by
+the filter. It partly survives it.
+
+**Finding 2 — the riverbank residual this parcel was left on cannot be the filter at all, because
+nothing is filtered there.** `z05_riverbank_timber` standing in its own community reading the
+wet-prairie matrix list: **44 slots dealt, 44 drawn, 0.0 % refused**, `dev/100` identical before
+and after the filters at 11.91. The residual K49(f) left to this parcel is entirely the DEAL's own
+discrepancy at a 44-slot population — the stratification's granularity, not `station()`. That is
+the alternative this box was required to name if the correlation was not there.
+
+**Finding 3 — the explanation for the sub-1 reading, stated as reasoning and not measured here.**
+`station()` refuses ground in contiguous patches — a building footprint, the far side of a
+waterline, a road — and the block permutation that finding 3 of K49(d) called the danger is what
+makes that safe: a contiguous patch is close to whole blocks, and a whole block is a COMPLETE
+stratum, one slot of every rank. Removing complete strata leaves the remainder exactly stratified,
+which is why `B` lands below the i.i.d. null rather than on it. **The negative is what is proven;
+this paragraph is the reading of it.**
+
+**Finding 4 — the instrument was shown red before it was believed.** Both controls run on the real
+dealt vectors, in `tools/measure_sward_draw.mjs`, 200 trials each: a genuinely uniform subsample of
+the same size reads **0.96–1.03** (so `Bnull` is calibrated, not merely plausible), and one of the
+same size that rejects wide clumps preferentially — which is the rule `crowdsTheWalker()` actually
+applies — reads **3.92–5.00**. The instrument can see the mechanism. It is not there.
+
+**What this licenses, which is the reason the parcel carried the exemption.** `stratum` may be used
+in a heavily filtered layer: the filtering costs the layer its SIZE, and a smaller population has a
+larger per-slot discrepancy for that reason alone (`z09_sand_prairie` reading the mesic list, 51.8 %
+refused, `dev/100` 1.08 → 2.63 — below what rank-blind filtering of that size predicts). It does not
+cost the layer its stratification. A census row that got worse behind a filter should be blamed on
+the deal or on the row's size, and this tool now prints both columns to say which.
+
+**What #337 left, and this closes.** A synthetic model answers whether a filter of a given SHAPE can
+bias the deal; it cannot answer whether the filters the placer really runs are those shapes. They
+are: measured in place, every real row sits at or below the rank-blind figure, and the row the
+parcel was left on turns out to refuse nothing at all — which is a stronger statement than #337's
+"5.24 is below the mean deviation at that sample size", because there is no filter there to be
+below anything.
+
+**Files:** `renderers/web/js/flora.js` (`countDealt`, `countDraw` reached through the zone rather
+than a rebuilt Map key, the `rejStation`/`rejWalker` counters on the four censused emits,
+`closeCensus`) · `tools/measure_sward_draw.mjs` · this box · STATUS + the changelog + the mirror.
+No `data/` change, no bake, nothing drawn moves.
+
+**Verified:** `tools/check.sh` **CHECK PASS** · `node tools/measure_sward_draw.mjs` on the source
+tree and on the published mirror · both viewports, which read identically — and that is itself a
+finding, filed as its own ticket: `SWARD_VIEWPORT=mobile` changes the browser page size but not
+`lowSpec`, so the ring sizes the tool's own header says the viewport decides are in fact the same
+at both.
 
 ### K49(f) — the same 64 numbers in every block · **DONE 2026-08-16 — 2 species absent → 0, matrix deviation 282.90 → 219.19**
 
@@ -7594,6 +7835,16 @@ over open prairie. That is not an argument for cutting a conjectural channel —
 still unsourced and parcel (c) still owns them — it is the proof that the four were never on one
 footing, which one shared phrase implied they were.
 
+**Since, 2026-08-24 (T-0109).** Zone 14 came off the deferral list: **T-0005** carved it on
+2026-08-20 and **T-0118** ran its last reach square under the crossing the same day, at the
+reconstructed tier with depth and width declared invented in **L149**. So the bridge over nothing is
+gone, and the reading is now taken rather than argued — `tools/measure_slough_crossing.py`, on the
+committed heightfield: **3.30 m of open water in an 8.00 m span, 0.53 m deep, 2.35 m of dry abutment
+seat at each end, the reach to the river unbroken, nothing else rooted in the cut.** The other three
+zones stand exactly as this box left them, and the correspondence gate above still holds them: 15,
+16 and 17 remain deferred and dated, and zone 14 no longer appears in the dating record because the
+spec no longer defers it.
+
 **On the pond itself the answer is `not_established`, and deliberately not "it was not there".**
 One document, `chicagology_prefire273`, carries both sides. FOR: its slough sentence has the stream
 draining *"the pond and the marsh extending up Wells Street"* as a live feature of a drainage
@@ -9775,7 +10026,23 @@ render the model's building from the plate's viewpoint, compare, improve, repeat
 roof, fenestration rhythm, chimneys and signboard match. Tier-5 pictorial rule holds: views
 drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** (plate 11 —
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
-ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
+ell), then the fort group (palisade on rising ground), then Sauganash/Wolf Point.
+
+**Two cautions this parcel has now paid for, both from the fort pass (T-0044 → T-0094).**
+
+1. **"Whitewashed palisade" is the reference set's README talking, not a source.** The plate paints
+   the fort's one continuous north curtain across a **1.85×** range of tone in a single view —
+   luminance 191 east of the gate work, 103 west of it — with the surface this project ships
+   (`hewn_log`, luminance 143) sitting between the two. Fergus's white-washed board fence is the
+   enclosure of **1850**, after the pickets came down. Neither licenses a tone.
+2. **This loop compares two pictures BY EYE, and that is how it produced a wrong ticket.** T-0044's
+   row 3 said the model's pickets were flat-topped and the plate's pointed; the model has carried
+   0.312 m of sharpened head on all 768 posts since the archetype was written, and the plate rules
+   its cap straight to 0.45 px rms while resolving pickets at a 10 px pitch. Both readings were
+   available to anyone who measured, and nobody had. **Where a row of this pass asserts a shape or a
+   tone, measure it before it becomes a ticket** — `tools/measure_picket_plate.py` is the shape of
+   instrument that costs a minute and settles it. T-0094 is the write-up; **T-0184** is the one
+   finding of that measurement that survived.
 
 ### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
 Grass and flowers "appear out of the ground as you walk towards them."
@@ -9995,6 +10262,21 @@ to `"simplified"`, which is the half of **L66** this discharges — the bank eac
 is untouched and still open. What (e) still owes: a deck a visitor can walk out along (its own
 ticket); anything lying at either wharf, which no source here describes; and the GENERATOR half, so
 a baked town carries its own docks.
+
+**(e) grew a third shore on 2026-08-24, and the reason the first two were the only two is worth
+recording. T-0062** stated five reconstructed docks on the owner's *"you can add more docks!"* — and
+it stated them on **South Water merchants**, so the town's other shores were never asked. The North
+Division shore had a landing only because Kinzie & Hunter's dock is attested; the west bank at Wolf
+Point, five buildings all fronting the water, had none. **T-0107** asks the trade test of every river
+frontage in the town, and on the west bank it selects exactly one record: **Robert A. Kinzie's
+storehouse**, "dealing in groceries and Indian goods", whose committed position note of 2026-08-11
+had already reasoned that *"a storehouse trading goods off canoes has a positive reason to face the
+landing"*. Five landings now stand where four did (L179). The row's other four state no dock and get
+none — lodging, dwelling and worship take nothing off a canoe. It also shipped **clause 6**: the
+deck is one standard rectangle set on the bank's own tangent, **the bank bends at Wolf Point**, and
+a face that would stand on dry ground (PR #258 measured −0.34 m at Hogan's store) is refused with
+the measured rise on the record rather than given a bespoke outline. The clause refuses nothing in
+the town as it stands and is proved by `generate_river_wharves.py --selftest`, which `--check` runs.
 
 **(a) is shipped in three pieces, all on the enclosure layer** (`data/enclosures/`,
 `renderers/web/js/enclosures.js`) — the renderer-side half of the archetype this box asked for,
@@ -10786,6 +11068,30 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
   because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
 
+**The gates were open, and `p4_0` never drew the corner works it was said to (T-0095,
+2026-08-24).** Two findings, one measured off the sheet and one off the shipped mesh —
+`docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`, held by
+`tools/measure_fort_works_plate.py` and `tools/measure_fort_gates.py`.
+
+- **The plate raises no work at either angle it draws.** It raises exactly two roofed,
+  lanterned, log-faced works and both stand over the MIDDLE of the wall, at **0.435 and
+  0.521** of the drawn run; a corner work stands at 0.000 or 1.000. The one angle it shows
+  unoccluded is the north-east and it is drawn plain — which is what the record says of that
+  angle. The north-west angle, the one the record does put a work at, is behind the tree
+  outside the walls. **Nothing was massed at the angles**, and the log-faced work over the
+  gate was not built either: the sheet already carries a certified FIRST-fort feature (the
+  flagstaff, `data/exclusions.json`) and two roofed lanterned log towers is that fort's own
+  signature in everything but position. Same failure as T-0094, one day apart, on the same
+  sheet: the plate read by eye.
+- **Both documented gates stood a quarter open.** One leaf of each pair was placed from a
+  midpoint that collapsed onto its own jamb, so **0.90 m of the 3.6 m gateway was daylight
+  straight through the wall** and 0.90 m of leaf lay across the pickets outside the frame —
+  in the committed GLB, so in the bytes a visitor downloaded. Four lines in `palisade.py`,
+  one asset rebaked (`fort_dearborn_palisade__picket_1816`). The gate that holds it reads the
+  shipped mesh rather than re-deriving the placement, because the derivation was the fault.
+- **The south-west blockhouse already read above the curtain** and now has a number: 9.48 m
+  of building over a 3.80 m curtain, from its own instance bounds in the scene.
+
 **Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
 plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,
 Well, Shop, Out Buildings, U.S. Factor's House, Cultivated Field, the Ferry — the Fort Cemetery
@@ -11221,6 +11527,49 @@ in the **mid** field.
      nominal ring how faded an arriving plant was, and the nominal ring answers *zero* — a free
      pass — for exactly the plants the fringe pushes furthest out. It reads each instance's own
      `aChiRing` now. Same bound, same measured 0.0 % arrival height.
+3b. **The NEAR/MID handover is a density handover.** · **DONE 2026-08-24, T-0093.** The sibling of
+   item 3: that one was about where the sward STOPS, this one is about where its two
+   representations swap over. Read this box before quoting a near-ring band or before assuming a
+   ring named in a ticket is the ring drawing the artefact.
+   - **The instrument first**, because there was none: `tools/measure_near_verge.mjs` classes every
+     flora instance the way the fragment shader's own guard does — `whole` (coverage 1, the Bayer
+     branch is skipped), `partial` (0 < coverage < 1, **every fragment thresholded — the dots**),
+     `absent` — off the `aChiRing` that went to the GPU, then projects each drawn plant's recorded
+     height and spread to screen and sums the footprints. Instance counts are the wrong unit: a
+     hundred plants at forty metres are four pixels. Mobile runs at `deviceScaleFactor: 1.5`, not
+     the smoke's 2, so one measured pixel is one drawing-buffer pixel — the screen door is locked
+     to `gl_FragCoord` and a 4/3 resample smears the grain.
+   - **THE TICKET'S PRIME SUSPECT IS HALF THE AUTHOR, AND AT ITS OWN TWO STANDS IT IS NONE OF IT.**
+     T-0086's two stands are in a roadway and `station()` clears the travel track — 10.5 m on South
+     Water, 7 m on Wells — so at *South Water approaching Wells* the near ring places **0 tufts at
+     `light`, 1 at `full`**. At *Wells approaching Lake* on a phone the near set is empty and the
+     whole screen-doored verge (1.729 % of the frame) is written by the **mid ring's inner ramp
+     fading IN across 4.5–7.5 m**. Only in open prairie does the near ring dominate: 5.90 % against
+     the mid's 3.65 % exposed at `light`. So both boundaries were converted, not the named one.
+   - **The band is not where the ticket says either.** `ringsFor` insets every fade ring inside its
+     lattice by the 0.6 m rebuild step, so the ramp runs **4.80–7.00 m** at `full` (measured as the
+     `d` range of the partial instances), not 5.4–7.6; and at `light` the ring is 4.6 m, so the ramp
+     is **1.80–4.00 m** — under the walker's feet, which is why the phone frame is the dramatic one
+     (53.654 % of it screen-doored in open prairie, against 45.173 % on the desktop).
+   - **The fix is T-0086's answer on a ring that still has an edge in it.** `TUNE`
+     `near.spreadOuter` / `mid.spreadInner` move the band out of the ramp and into a per-slot
+     spread of the boundary: `fade[0] − band × handoverRank(e, n)`, world-anchored and quantised to
+     ⅛ m as `farRank` is, with the shader's ring left as a step (`HARD`). The fraction of slots
+     drawn at `d` is `clamp((fade[0] − d) / band)` — **the same number the alpha used to write** —
+     so expected cover is unchanged to the arithmetic and no tuning figure means anything new.
+   - **Placement is untouched on purpose.** The mid ring's `return` for slots the fringe pushes out
+     of reach is deliberately NOT copied to the near pass: every slot is still dealt a species and
+     still counted, so no community's population or cover figure moves. It costs nothing — the
+     vertex program already collapsed an out-of-ring plant to a point — and it saves fill, because
+     half the band's fragments are no longer rasterised only to be discarded.
+   - **Two knock-ons.** Heads ride their PLANT's ring now, not the layer's: on a spread boundary the
+     layer's ring answers for no particular tuft, and a head hung on it is R-BUG7 from the other
+     end. And `flora.fadeAt`/`heightAt` take all four ring numbers, because a reader carrying only
+     the outer radius would be told every mid card past 4.5 m is drawn.
+   - **The residue, held rather than closed.** The mid and forb rings' own OUTER ramps are still
+     coverage ramps, and at `light` they reach in to **5.4 m** and **7.4 m** — inside the verge on a
+     phone. That is the mid→far handover, which T-0086 answered by standing the far band over it;
+     the gate holds it against `tools/near_verge_baseline.json` so it cannot grow, and it is filed.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.

@@ -196,6 +196,17 @@ export const CENSUS = () => {
   // `mirrorAlsoOnRoad` is reported as a diagnostic and gates nothing; what
   // catches a mirrored ribbon is `stray`, because a reflected road runs where
   // no centreline is recorded.
+  //
+  // T-0111. THE CENTRELINE A DRAWN VERTEX OWES IS THE ONE IT WAS DRAWN FROM.
+  // A street may now commit two lines — `path_local_enu_m`, the plat, and
+  // `drawn_track_local_enu_m`, the worn wheel line the ribbon is actually
+  // painted on — so the test reads `drawn`, which IS `path` for every street
+  // that authors no separate track. The assertion is unchanged in kind and in
+  // strictness: a vertex still owes a COMMITTED centreline within its own
+  // street's half-width, and a mirrored ribbon still runs where neither line
+  // is recorded. Measuring the drawn ribbon against a line it was never drawn
+  // from would report a stray for authored data and miss the mirroring this
+  // exists to catch, which is the R-BUG3c trap in the other direction.
   const S = { meshes: 0, verts: 0, stray: 0, worst: 0, worstAt: null, beyondBounds: 0,
               mirrorAlsoOnRoad: 0, records: (a.streets.records ?? []).length };
   const pointSeg = (e, n, A, C) => {
@@ -211,8 +222,9 @@ export const CENSUS = () => {
       const half = (rec.track_width_m ?? 6) * 0.5;
       const b = rec.bounds;
       if (b && (e < b.e0 || e > b.e1 || n < b.n0 || n > b.n1)) continue;
-      for (let i = 1; i < rec.path.length; i++) {
-        const d = pointSeg(e, n, rec.path[i - 1], rec.path[i]) - half;
+      const line = rec.drawn ?? rec.path;
+      for (let i = 1; i < line.length; i++) {
+        const d = pointSeg(e, n, line[i - 1], line[i]) - half;
         if (d < best) best = d;
       }
     }

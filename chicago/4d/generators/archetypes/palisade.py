@@ -235,14 +235,22 @@ def _gate(b: MeshBuilder, p: PalisadeParams, side: str, conf: float) -> None:
     _beam(b, (cx - ux * (half + jamb * 2), cy - uy * (half + jamb * 2)),
           (cx + ux * (half + jamb * 2), cy + uy * (half + jamb * 2)),
           nx, ny, 0.14, head, head + 0.26, conf, M_TIMBER)
-    # two leaves, shut
+    # Two leaves, shut: each one runs from the meeting stile at the centre of the
+    # gateway out to its own jamb, so the pair covers the opening exactly and
+    # neither reaches past the frame.
+    #
+    # This used to derive each leaf from a midpoint — `a` an end, `z` the other
+    # end, then half a gate width either side of `(a + z) / 2`. For the left leaf
+    # `a` was the centre and it came out right; for the right leaf the selector
+    # made `a` the jamb as well, so `a` and `z` were the same point, the midpoint
+    # landed ON the jamb, and the leaf was built centred there. On Fort Dearborn's
+    # 3.6 m gateway that left 0.90 m of it standing open with daylight through the
+    # wall, and put 0.90 m of leaf out past the opening across the pickets — in
+    # both documented gates, in the committed GLB. Held now by
+    # tools/measure_fort_gates.py, which reads the shipped mesh rather than
+    # re-deriving these two lines, because the derivation was the fault.
     for s in (-1.0, 1.0):
-        a = (cx + ux * (half * (0.0 if s < 0 else 1.0)) * 1.0,
-             cy + uy * (half * (0.0 if s < 0 else 1.0)) * 1.0)
-        z = (cx + ux * half * s, cy + uy * half * s)
-        mid = ((a[0] + z[0]) / 2.0, (a[1] + z[1]) / 2.0)
-        _beam(b, (mid[0] - ux * half / 2.0, mid[1] - uy * half / 2.0),
-              (mid[0] + ux * half / 2.0, mid[1] + uy * half / 2.0),
+        _beam(b, (cx, cy), (cx + ux * half * s, cy + uy * half * s),
               nx, ny, 0.055, 0.02, head - 0.05, conf, M_DARK)
 
 

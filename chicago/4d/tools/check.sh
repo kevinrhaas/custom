@@ -93,6 +93,17 @@ step "the lot-line yard fences re-derive from the rule that chose their lots and
 step "the dooryard plantings re-derive from the rule that dealt their stems" \
   python3 tools/generate_dooryard_plantings.py --check
 
+# And the planted rows are the same shape again, on the one flora treatment this project
+# has in WORDS rather than in pictures: Wau-Bun states "a broad green space was inclosed
+# between it and the river, and shaded by a row of Lombardy poplars", at a house that is
+# excluded from this scene. Seven committed plates draw that row and five agree on four
+# stems at 0.195 of their own height apart; not one of them shows a poplar anywhere else
+# in Chicago. So the treatment is the source's, the count and the rhythm are measured,
+# and WHICH GROUND GETS ONE is a rule over the committed dwellings — re-derived here so
+# the twelve stems and the refusal beside them stay auditable (T-0117).
+step "the planted poplar rows re-derive from the rule that chose their greens" \
+  python3 tools/generate_planted_rows.py --check
+
 # The business signboards are the same shape of claim one layer over: exactly one record
 # in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
 # reconstruction chosen by a rule about trades rather than a list of shops somebody liked.
@@ -154,6 +165,17 @@ step "the frontage works re-derive from the rule that chose their walls" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# T-0163. The plat grid is the cartesian product of its east-west rows and north-south
+# columns, so it proposes blocks that never existed, and it reports every refusal the same
+# way — as a distance. A distance cannot tell "the centreline has not been carried there
+# yet" from "these two streets never met", and both were being scheduled as headroom
+# waiting on the same owed trace. This carries each refused block's named street toward it
+# and samples the run against the committed heightfield: a run that crosses water is two
+# banks, not a gap. It is what keeps the classification in the programme honest, so a block
+# cannot quietly go back to promising roofs that no street control can deliver.
+step "a refused block is short of control, or was never a block" \
+  python3 tools/measure_block_gating.py --check
+
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
 # possible place to carry a stale number is the panel a visitor sees before anything
@@ -192,6 +214,16 @@ step "nothing unpermitted stands on refused ground, and the refusal still reache
 step "every deferred in-town water feature is dated against the scene" \
   python3 tools/measure_intown_water.py --gate
 
+# The fifth of those features is no longer deferred, and the thing that most obviously
+# depends on it had nobody watching it. The Slough Log Bridge is the only built thing in
+# this dataset that exists to answer the terrain, and for two months it stood over dry
+# prairie because zone 14 was not carved (T-0109). T-0005 carved it and T-0118 put its
+# last reach square under this deck — both aimed elsewhere, neither gated here, and a
+# swale line nudged a metre west would put the crossing back over solid ground with every
+# other check still green. This joins the bridge's placement to the ground beneath it.
+step "the slough crossing spans open water, and nothing else stands in the cut" \
+  python3 tools/measure_slough_crossing.py --gate
+
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
 # a PERSON placed, so the answer arrived as anecdotes — three buildings in T-A9, two more
@@ -201,6 +233,21 @@ step "every deferred in-town water feature is dated against the scene" \
 # placement gate already guarantees and which is therefore enforceable at zero.
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
+
+# Two generators build party-line rows onto the committed block faces and each asserts
+# that ITS OWN run stands on one line; neither could see the other. The Lake face of
+# blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
+# along the face and so not yet reading as a step (T-0104). This is the gate beside the
+# two: it takes the face line out of the committed plat, projects every front wall onto
+# it, and refuses a face carrying more than one — absolutely, with no ratchet, because
+# after T-0104 the number is zero. It also closes party walls from BOTH sides, which is
+# the case neither run-local gate can reach when the other half belongs to another
+# generator.
+step "a block face carries one street line, across every generator that builds on it" \
+  python3 tools/measure_street_line.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_street_line.py --self-test
 
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
@@ -245,6 +292,31 @@ step "no reconstructed value is newly outside the band its own note cites" \
 # authored ridge band at the footprint the family authors.
 step "no reconstructed roof's ridge is newly outside its family band" \
   python3 tools/measure_ridge_band.py
+
+# ...and the same question asked of the SPECIFICATION rather than of a roof (T-0148).
+# The gate above holds the eave a record happens to carry fixed, which made its residual
+# read as a conflict between two committed bands — "no pitch reaches the ridge band at
+# the footprint the family authors". The eave is not fixed: it is the second value the
+# crosswalk authors as a band and the samplers draw from, so a ridge band is reachable
+# from a (footprint, eave) PAIR. Swept that way, every family's four claims — footprint,
+# eave, pitch, ridge — are satisfiable at every footprint in its own band, so nothing in
+# the specification has to give way and the residual above is all repair. This holds that
+# true: a crosswalk edit that authors a family which cannot be built to its own ridge band
+# fails here, at the specification, instead of four runs later as a roof nobody can raise.
+step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
+  python3 tools/measure_ridge_reach.py --quiet
+
+# And the question the two gates above cannot ask, because they read what LANDED: is
+# every family the 665-roof schedule may deal to a platted block buildable at every
+# size its own band allows? A family comes up rarely — there are two H1s and two H2s in
+# the whole parcel — so a band whose tail the archetype refuses looks fine until the
+# schedule deals into the tail and the run dies. This deals each family four hundred
+# instances through the generator's own sampling and asks the archetype to build each
+# one. It found H2 unbuildable over the top third of its authored eave band, D6 over
+# the bottom of its own, a rounding step that put a pitch outside the band it was drawn
+# from, and W2 fatal to the generator on the day it is first dealt (T-0142).
+step "every family the block schedule may deal builds at every size its band allows" \
+  python3 tools/measure_family_deal.py --gate
 
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
 # from Chicago is August 1835, inside this project's first target year — and gives it
@@ -335,6 +407,62 @@ step "no body of far timber stands in the river" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
+
+# T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
+# have not been since the archetype was written: the committed master carries
+# 0.312 m of sharpened head on every one of its 768 posts, 8.4 % of the picket,
+# and a visitor at the north wall sees the sawtooth. The claim had never been
+# measured, which is how it reached a ticket. This holds the property so it cannot
+# be re-filed off a screenshot, and so a flattened archetype or a decimation pass
+# that ate the apexes would be named here rather than found by eye.
+#
+# THE PLATE HALF OF THAT FILE DOES NOT GATE, deliberately. p4_0 is a tier-5
+# retrospective lithograph; it may inform a value and it may refute a claim made
+# about itself, and it may not hold a build red. Run the file without --gate for
+# the plate reading, which also needs Pillow and skips without it.
+step "the fort's stockade is still pointed" \
+  python3 tools/measure_picket_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_picket_plate.py --self-test
+
+# NOTE ON THE TWO FORT STEPS THAT FOLLOW, because they look inconsistent and are
+# not. T-0094's plate half deliberately does NOT gate: it asks whether a tier-5
+# retrospective lithograph supports a claim about the MODEL, and a lithograph may
+# not hold a build red. T-0095's does gate, and its live assertion is a different
+# question — the third one, which reads the RECORD and fires the day someone gives
+# a corner work a height, a roof or a lantern on that plate's authority. Its other
+# two assertions read a committed image that cannot change, so the only thing they
+# can catch is the detector moving under them, which is what its baseline is for.
+# One asks the plate about the town; the other asks the town about the plate.
+
+# Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
+# fort with its gates standing open makes a claim about the hour of the day, and
+# the garrison is attested for the scene date. Both of them stood a quarter open.
+# One leaf of each pair was placed from a midpoint that collapsed onto its own
+# jamb, so 0.90 m of a 3.6 m gateway was daylight straight through the wall and
+# 0.90 m of leaf lay across the pickets outside the frame — in the committed GLB,
+# so in the bytes a visitor downloaded. This reads the shipped mesh rather than
+# re-deriving the placement, because the derivation was the fault (T-0095).
+step "Fort Dearborn's documented gates are shut" \
+  python3 tools/measure_fort_gates.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_gates.py --self-test
+
+# T-0095 was filed saying p4_0 "draws the corner works RISING ABOVE the curtain
+# with their own pyramidal roofs and small lanterns". It does not. It raises two
+# such works and both stand over the MIDDLE of the wall, at 0.435 and 0.521 of the
+# drawn run; the one angle the plate shows unoccluded is drawn plain, and the other
+# is behind a tree. This is the second Fort Dearborn parcel in two days seeded by a
+# plate read with the eye (T-0094 was the first), so the refutation is held by a
+# measurement rather than by a paragraph — and its third assertion fires the day
+# the record is built to the misreading anyway.
+step "p4_0 raises no work at either angle of the fort it draws" \
+  python3 tools/measure_fort_works_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_works_plate.py --self-test
 
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
@@ -547,6 +675,29 @@ step "every browser-launching tool honours PW_EXECUTABLE" \
 # R-W1's merge and requires it to name south_water 250-600 m unprompted (T-0016).
 step "the road-band movement report names a band that moved" \
   node tools/road_band_movement.mjs --self-test
+
+# T-0100. The street layer graded a ribbon by its surface and its wear and never
+# by `geometry_confidence`, so an INVENTED ROUTE under an attested surface would
+# have drawn at full confidence. It is degenerate in today's data — every street
+# is pinned at `reconstructed` wear already — which is exactly why it needed a
+# test rather than an eyeball: nothing on screen can show it either way. The
+# test slices the expression out of streets.js instead of copying it, so the
+# shipped grade and the tested grade cannot drift apart, and it carries a
+# tripwire that fires the day the data makes the fix matter.
+step "a street's invented line reaches the picture" \
+  node tools/test_street_confidence.mjs
+
+# K49(d) warned for a week that a spatial filter running after the stratified
+# deal selects a BIASED set of ranks, and told every later parcel not to use
+# `stratum` in a filtered layer on the strength of it. T-0018 refuted that: the
+# position-to-rank map is re-keyed per block, so a rule that reads only position
+# cannot lean. This runs the refutation's own control pair every time — a filter
+# written to read the rank must be caught, a rank-blind one at the same rate must
+# not — so the day someone makes the deal rank-correlated, the claim stops being
+# refuted here rather than in a census six weeks later. It reads the deal out of
+# flora.js rather than keeping a copy, so it fails by name if that file moves.
+step "a spatial filter still cannot bias the sward's rank deal" \
+  node tools/measure_rank_bias.mjs --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

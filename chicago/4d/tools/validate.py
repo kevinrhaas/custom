@@ -34,6 +34,16 @@ from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+# T-0161. `drawn_by` — "this phase builds no mesh" — had four readers and four
+# copies of the test, and the one that mattered most (generators/build.py, the
+# program the sentence is addressed to) did not have it at all, so every full
+# bake rebuilt the retired estray pen and this file then failed it. The rule is
+# imported from the generators now so the builder and the validator cannot drift
+# apart again; `generators/common/phases.py` imports nothing, so `check.sh` stays
+# the sub-second dependency-free gate it is.
+sys.path.insert(0, str(ROOT / "generators"))
+from common.phases import drawn_by_another_layer  # noqa: E402
+
 # A documented_range spanning more than this earns a warning. Chicago between
 # 1833 and 1837 changed faster than almost any settlement in American history;
 # a wide range is usually a research gap wearing a disguise.
@@ -1558,7 +1568,7 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             # No mesh, no ground contact to measure: this phase's geometry is
             # drawn by another layer, which drapes on the heightfield at every
             # post rather than standing a footprint on it.
-            if ph.get("drawn_by"):
+            if drawn_by_another_layer(ph):
                 continue
             pos = ph.get("position") or {}
             poly = (ph.get("footprint") or {}).get("polygon")
@@ -1959,7 +1969,7 @@ def check_drawn_by(structures: dict, rep: Report) -> None:
         sid = st.get("id", name)
         for ph in st.get("phases", []):
             decl = ph.get("drawn_by")
-            if not decl:
+            if not drawn_by_another_layer(ph):
                 continue
             pid = ph.get("id", "?")
             where = f"structure {sid}/{pid}"
@@ -4929,6 +4939,7 @@ def main() -> int:
         run_license_check(sources, rep)
     if args.stale:
         run_stale_check(structures, rep)
+        run_bake_reach_check(structures, scenes, rep)
     if args.site:
         run_site_check(rep)
 
@@ -4986,7 +4997,7 @@ def run_param_check(structures: dict, scenes: dict, rep: Report) -> None:
                 # retired is asking a generator about a mesh nobody bakes; what
                 # holds that phase together instead is check_drawn_by(), which
                 # asserts the layer record exists and that no GLB survives it.
-                if ph.get("drawn_by"):
+                if drawn_by_another_layer(ph):
                     continue
                 if arch not in resolvers:
                     no_gen.add(arch)
@@ -5154,6 +5165,92 @@ def run_stale_check(structures: dict, rep: Report) -> None:
              + (f", {unchecked} not input-tracked" if unchecked else "")
              + f"; schemes {scheme} / {manifest.get('terrain_inputs_scheme')}, "
              + f"manifest blender {manifest.get('blender', '?')}")
+
+
+def run_bake_reach_check(structures: dict, scenes: dict, rep: Report) -> None:
+    """Can the bake rebuild everything the staleness gate holds it responsible for?
+
+    The staleness gate above hashes `generators/build.py` into every asset, so a
+    one-line comment in that file restales all 343 buildings and the remedy is a
+    full rebake. That remedy has to be able to reach every asset it is asked to
+    heal — and for one of them it could not.
+
+    `build.py` walks `data/structures/` and resolves each record's phase against the
+    SCENE's target date; a record no phase covers is skipped, printed as
+    *"skip: no phase covers ..."*, and built by nothing. The first Cook County
+    court-house is such a record: Andreas dates it to the fall of 1835 and the only
+    scene targets 1 July, so `build.py --only cook_county_courthouse_1835` builds
+    nothing — while its GLB was committed, was in the manifest, and WAS hashed by
+    the staleness gate like every other asset. Editing `build.py` therefore staled
+    an asset that the rebake could not then refresh, and the tree could not be made
+    green by any committed route. It cost two runs their intended change (T-0008
+    monkey-patched `resolve_phase` from a throwaway script; T-0015 reverted a
+    demonstrated export guard rather than do that twice) before it was written down
+    as T-0139.
+
+    So the rule this asserts is the one that was being assumed: **a committed,
+    input-tracked asset must be reachable by the bake.** Reachable means some scene
+    in `data/scenes/` resolves that structure's phase — the same rule `build.py` and
+    `validate_scene` apply, restated on the asset side.
+
+    It is deliberately the mirror image of `check_drawn_by`'s "no GLB survives the
+    move": that one catches geometry that outlived its build instructions, this one
+    catches geometry no build instruction reaches. Both say a committed mesh must
+    have a live route back to the data.
+
+    Three ways to satisfy it, and the choice is the author's: give the scene set a
+    date that covers the phase, teach `build.py` to take a phase explicitly, or stop
+    committing the asset. T-0139 took the third for the court-house, because the
+    scene already reports it as *"1 excluded by date"* and nothing loads it.
+    """
+    manifest_path = ROOT / "assets" / "manifest.json"
+    if not manifest_path.exists():
+        return
+    assets = json.loads(manifest_path.read_text()).get("assets", {})
+
+    targets = [(sid, parse_date(sc.get("target_date", "")))
+               for sid, sc in sorted(scenes.items())]
+    targets = [(sid, d) for sid, d in targets if d]
+    if not targets:
+        rep.note("bake-reach check: no scene carries a target_date, so nothing to resolve against")
+        return
+
+    by_id = {st.get("id"): st for st in structures.values() if isinstance(st, dict)}
+    reachable, unreachable = 0, 0
+
+    for name, entry in sorted(assets.items()):
+        sid, pid = entry.get("structure_id"), entry.get("phase_id")
+        if not sid or not pid:
+            continue                      # terrain and other non-structure assets
+        st = by_id.get(sid)
+        if st is None:
+            continue                      # run_stale_check already reports this
+        hits = []
+        for scene_id, target in targets:
+            covering = []
+            for ph in st.get("phases", []):
+                rng = ph.get("documented_range", {})
+                frm, to = parse_date(rng.get("from", "")), parse_date(rng.get("to", ""))
+                if frm and to and frm <= target <= to:
+                    covering.append(ph.get("id"))
+            # exactly one, and it is this phase — the scene rule build.py applies
+            if len(covering) == 1 and covering[0] == pid:
+                hits.append(scene_id)
+        if hits:
+            reachable += 1
+        else:
+            unreachable += 1
+            rep.error("bake-reach",
+                      f"assets/gltf/{name} is committed and input-tracked, but no scene in "
+                      f"data/scenes/ resolves {sid}'s phase '{pid}' — generators/build.py "
+                      f"skips the record ('no phase covers <target>') and builds nothing, so "
+                      f"the rebake that heals the rest of the town after any generators/ edit "
+                      f"CANNOT heal this asset and the tree cannot be made green. Fix it by "
+                      f"one of: a scene whose target_date the phase covers, an explicit-phase "
+                      f"route in build.py, or not committing an asset nothing loads (T-0139)")
+
+    rep.note(f"bake-reach check: {reachable} committed asset(s) a scene can rebuild"
+             + (f", {unreachable} the bake cannot reach" if unreachable else ""))
 
 
 def run_site_check(rep: Report) -> None:

@@ -133,8 +133,29 @@ const SUN_FALLBACK = {
  * height the ground is invisible. LIBERTIES L32.
  */
 const TUNE = {
-  near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2 },
-  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0, fringe: 3.0 },
+  /**
+   * `spreadOuter` / `spreadInner` — T-0093. THE NEAR/MID HANDOVER IS A DENSITY
+   * RAMP, NOT A COVERAGE ONE, and these two flags are the whole of the change.
+   *
+   * A layer whose boundary carries one of these hands its ground over the way
+   * `far` does: the band stops being an alpha the screen door resolves and
+   * becomes a per-slot SPREAD of the boundary itself, so a plant is drawn whole
+   * or not at all and what changes across the band is HOW MANY. See
+   * `ringsFor` and `slotRing` for the arithmetic, and `handoverRank` for the
+   * world-anchored draw that decides where in the band a given slot crosses.
+   *
+   * The expected ground cover across the band is UNCHANGED — the fraction of
+   * slots drawn at `d` is exactly the alpha the ramp used to write, so the
+   * tuning below still means what it meant. What is gone is the stipple.
+   *
+   * `mid.band` is deliberately NOT spread: that is the mid ring's OUTER edge at
+   * 18–27 m, where the far band already stands over it (T-0086) and where a
+   * dithered ramp is a handful of pixels rather than the verge.
+   */
+  near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
+    spreadOuter: true },
+  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0, fringe: 3.0,
+    spreadInner: true },
   forb: { radius: 26.0, cell: 3.4, perCell: 4, band: 5.0, fringe: 3.0 },
   /**
    * THE FAR BAND — T-0086, and the ONE rule it is built around.
@@ -186,10 +207,13 @@ const TUNE = {
   /**
    * Rebuild the lattice when the camera has moved this far. It is also the
    * margin the fade ring is inset by (`ringsFor`), so it is the width of the
-   * annulus of already-placed, wholly-dithered-away plants that stands between
-   * the lattice edge and the first plant with any coverage in it. 1.2 m was the
+   * annulus of already-placed, wholly-undrawn plants that stands between the
+   * lattice edge and the first plant with any coverage in it. 1.2 m was the
    * figure while the fade was frozen between rebuilds; halved now that the
    * inset is what it buys, because a metre of the near ring is a lot of it.
+   * (Since T-0093 the annulus is wider than the step on a spread boundary: a
+   * near slot's own outer radius can sit a whole band inside the nominal one,
+   * and that only ever adds margin.)
    */
   step: { near: 0.6, mid: 3.0, forb: 3.0 },
 };
@@ -230,14 +254,69 @@ const TUNE = {
 function ringsFor(layer, step) {
   const inner = layer.inner ?? 0;
   const fringe = layer.fringe ?? 0;
+  const innerBand = layer.innerBand ?? 0;
+  // T-0093. A boundary marked `spreadOuter`/`spreadInner` in TUNE is handed
+  // over by DENSITY: the band moves out of the ring the shader ramps and into
+  // `spread`, where `slotRing` deals it to the slots one at a time. What the
+  // shader is left holding is a STEP — `HARD` is small enough that `chiFade`
+  // lands on 0 or 1 for every plant on the layer, so the fragment program's own
+  // guard (`vChiFade < 1.0`) never enters the Bayer branch and there is no
+  // screen door to see. It is `FAR_RING`'s trick, on a ring that still has an
+  // edge in it.
+  const spread = {
+    outer: layer.spreadOuter ? layer.band : 0,
+    inner: layer.spreadInner ? innerBand : 0,
+  };
   return {
     // The lattice has to reach the furthest a slot's own boundary can stand,
     // plus the step, or the outermost slots of the fringe would be placed for
     // the first time already carrying height.
     lattice: { outer: layer.radius + fringe, inner: Math.max(0, inner - step) },
-    fade: [layer.radius - step, layer.band, inner, layer.innerBand ?? 0],
+    // The NOMINAL ring: the outer radius no slot's own boundary stands beyond
+    // (a spread only ever moves it IN) and the inner radius none stands within
+    // (a spread only ever moves it OUT). Both bounds are what keeps the lattice
+    // inset — the gate reads them, and a spread that pushed the other way would
+    // put a plant outside its own lattice.
+    fade: [layer.radius - step, spread.outer ? HARD : layer.band,
+      inner, spread.inner ? HARD : innerBand],
+    spread,
     fringe,
   };
+}
+
+/**
+ * A band narrow enough that the ramp across it is a STEP, so `chiFade` is 0 or
+ * 1 and the dither branch is skipped.
+ *
+ * A micron, and the figure is measured rather than picked. At 0.1 mm — the old
+ * floor in `fadeOf` and in the GLSL, and what `FAR_RING` still carries because
+ * an outer radius of 1e9 is never within a millimetre of anything — a slot
+ * whose own boundary happens to fall inside the band as the camera passes it
+ * IS drawn at a partial coverage, for one frame, once in about fifty stands:
+ * `partial = slots x HARD / band`, simulated at 40 000 slots and confirmed at
+ * 1-3. That plant is invisible either way; what it is not is ZERO, and the
+ * assertion T-0093 wants to be able to make is that no plant on this boundary
+ * is EVER caught mid-ramp. A micron buys that with two orders of magnitude to
+ * spare — and world positions are float32 out at 800 m, where the spacing is
+ * already ~60 microns, so the difference the shader computes cannot land inside
+ * it at all.
+ */
+const HARD = 1e-6;
+
+/**
+ * Where in a handover this slot crosses, in `[0, 1)`, from where it stands and
+ * nothing else — `farRank`'s rule and `farRank`'s quantisation, on its own
+ * salts. Two consequences, and both are the point: a plant crosses the boundary
+ * at ITS OWN radius rather than the whole band crossing together, and it makes
+ * the same decision from every camera, so nothing swims as the walker turns.
+ *
+ * Quantised to 1/8 m, which is finer than any lattice this module scatters on
+ * — the near ring's is 0.37 m between slots — so one slot keeps one rank across
+ * every rebuild.
+ */
+const HANDOVER_SALT = [0x3d5a9e77, 0x6f2c5b13];
+function handoverRank(e, n, which) {
+  return unitHash(Math.round(e * 8), Math.round(n * 8), HANDOVER_SALT[which]);
 }
 
 /** The world grid the ragged boundary lobes on, in metres. At 27 m in a
@@ -285,14 +364,30 @@ function fringeOf(e, n, amp) {
   return amp * (2 * (0.7 * lobe + 0.3 * dither) - 1);
 }
 
-/** Heads used to be gated at 35% of their plant's fade — a step in the middle
- *  of a ramp, and the most conspicuous pop in the field, because a flower is
- *  the brightest thing in it. Their own ring reaches zero exactly where the
- *  plant's ramp passes 0.35, so the same heads are drawn as before and the
- *  cap sees the same pressure; only the step is gone. */
+/**
+ * Heads used to be gated at 35% of their plant's fade — a step in the middle of
+ * a ramp, and the most conspicuous pop in the field, because a flower is the
+ * brightest thing in it. Their own ring reaches zero exactly where the plant's
+ * ramp passes 0.35, so the same heads are drawn as before and the cap sees the
+ * same pressure; only the step is gone.
+ *
+ * On a SPREAD boundary (T-0093) the band is `HARD` and this collapses to "the
+ * head's ring is its plant's ring, a hair inside it" — which is the invariant
+ * R-BUG7 wants stated rather than a coincidence: a head can only be drawn where
+ * its own plant is, because its ring is derived from that plant's. The forb
+ * ring is still a coverage ramp and still gets the 35% the comment above
+ * describes.
+ */
 const HEAD_FADE_AT = 0.35;
+function headRingAt(fade, out) {
+  out[0] = fade[0] - HEAD_FADE_AT * fade[1];
+  out[1] = (1 - HEAD_FADE_AT) * fade[1];
+  out[2] = fade[2];
+  out[3] = fade[3];
+  return out;
+}
 function headRingOf(fade) {
-  return [fade[0] - HEAD_FADE_AT * fade[1], (1 - HEAD_FADE_AT) * fade[1], fade[2], fade[3]];
+  return headRingAt(fade, [0, 0, 0, 0]);
 }
 
 /** A layer ring with this slot's own fringe on its outer radius, written into a
@@ -307,15 +402,57 @@ function ringAt(base, off, out) {
   return out;
 }
 
+/**
+ * THIS SLOT'S OWN RING — T-0093. `ringAt` plus the handover: where the layer
+ * spreads a boundary rather than ramping across it (`ringsFor`), the slot's own
+ * boundary is moved off the nominal one by its world-anchored share of the band.
+ *
+ * The outer spread moves the boundary IN and the inner spread moves it OUT, both
+ * by at most the band, so a slot's ring is always inside the layer's nominal one
+ * and the lattice inset the pop-in gate measures still holds for every plant on
+ * it. `off` is the fringe, already computed by the caller because the caller
+ * needs it for its own reach test.
+ */
+function slotRing(ring, e, n, off, out) {
+  out[0] = ring.fade[0] + off
+    - (ring.spread.outer ? ring.spread.outer * handoverRank(e, n, 0) : 0);
+  out[1] = ring.fade[1];
+  out[2] = ring.fade[2]
+    + (ring.spread.inner ? ring.spread.inner * handoverRank(e, n, 1) : 0);
+  out[3] = ring.fade[3];
+  return out;
+}
+
 /** The ramp the vertex shader applies, in JS, so the two cannot disagree about
  *  where a plant starts to be drawn. Kept identical to the GLSL in
  *  `plantMaterial`. Since T-0035 the ramp is COVERAGE, not height: it is the
  *  alpha the screen-door dither resolves, and `heightOf` below is the whole of
- *  what it does to the geometry. */
+ *  what it does to the geometry. Since T-0093 the near ring's outer boundary
+ *  and the mid ring's inner one are spread per slot instead, so on those two
+ *  edges this function only ever returns 0 or 1 and nothing is dithered at all;
+ *  the arithmetic is unchanged because a step is a ramp with a `HARD` band. */
 function fadeOf(ring, d) {
-  const outer = clamp01((ring[0] - d) / Math.max(ring[1], 1e-4));
+  // The floor is `HARD` and not 1e-4, so a hard ring really is a step here as
+  // well as in the GLSL — see `HARD`. It only ever guards the division.
+  const outer = clamp01((ring[0] - d) / Math.max(ring[1], HARD));
   const inner = ring[3] > 0 ? clamp01((d - ring[2]) / ring[3]) : 1;
   return outer * inner;
+}
+
+/**
+ * The ring a reader is asking about: the layer's own, or THIS INSTANCE'S.
+ *
+ * Since T-0093 both boundaries can be spread per slot, so a caller that knows
+ * only the outer radius can no longer be answered exactly about a layer whose
+ * INNER edge is the spread one. It may pass the whole four-number `aChiRing` it
+ * read off the instance and get the drawing back; a bare number is still read as
+ * an outer radius, which is what every caller before this passed and is exact
+ * for every layer whose inner edge is not spread.
+ */
+function slotOf(ring, outer) {
+  if (outer === undefined) return ring.fade;
+  if (Array.isArray(outer) || ArrayBuffer.isView(outer)) return outer;
+  return [outer, ring.fade[1], ring.fade[2], ring.fade[3]];
 }
 
 /**
@@ -604,8 +741,18 @@ export async function createFlora({
       if (!items.length) continue;
       const row = {
         community: z.id, list, drawn: 0, drySlots: 0, wetSlots: 0,
+        /** ROADMAP K49(e) / T-0018 — THE SAME CENSUS ONE STEP EARLIER.
+         *  `drawn` counts the slots that survived `station()` and
+         *  `crowdsTheWalker()`; `dealt` counts the slots the deal handed a
+         *  species to before either filter got a vote, and the two rejection
+         *  counters say which filter took the difference. Nothing here changes
+         *  what is drawn — it is the population `deviation` is measured over,
+         *  which until now could only be seen after the filtering. */
+        dealt: 0, dryDealt: 0, wetDealt: 0, rejStation: 0, rejWalker: 0,
         species: items.map((s) => ({
           id: s.id, unit: s.unit, share: s.weight, stems: s.stems, expected: 0, drawn: 0,
+          /** ROADMAP K49(e) / T-0018 — this species' half of the same pair. */
+          dealt: 0, expectedDealt: 0,
           /** ROADMAP K54. The clump this species' record gives, and the ground
            *  cover that density implies — `stems × π(width/2)²`, which for a
            *  cover-recorded species is its own recorded `cover_fraction` back
@@ -625,11 +772,25 @@ export async function createFlora({
         wet: z.wet[key].items.includes(s) && z.wet[key].total > 0 ? s.weight / z.wet[key].total : 0,
       }));
       censusIndex.set(`${z.id}:${list}`, { row, byId, shares });
+      // The placer reaches the census row THROUGH THE ZONE it already has in
+      // hand. The lookup used to rebuild `${z.id}:${list}` and hit the Map once
+      // per drawn slot; T-0018 asks the same question of every DEALT slot,
+      // which is a bigger population, and paying a string allocation for each
+      // of them in the rebuild loop is not a measurement, it is a cost.
+      (z.census ??= {})[list] = censusIndex.get(`${z.id}:${list}`);
       stats.draws.push(row);
     }
   }
-  const countDraw = (zone, list, sp, wet) => {
-    const c = censusIndex.get(`${zone.id}:${list}`);
+  /** A slot the deal handed a species to, counted before `station()` and
+   *  `crowdsTheWalker()` are asked. ROADMAP K49(e) / T-0018. */
+  const countDealt = (c, sp, wet) => {
+    if (!c) return;
+    c.row.dealt++;
+    if (wet) c.row.wetDealt++; else c.row.dryDealt++;
+    const s = c.byId.get(sp.id);
+    if (s) s.dealt++;
+  };
+  const countDraw = (c, sp, wet) => {
     if (!c) return;
     c.row.drawn++;
     if (wet) c.row.wetSlots++; else c.row.drySlots++;
@@ -641,12 +802,23 @@ export async function createFlora({
       row.drawn = 0;
       row.drySlots = 0;
       row.wetSlots = 0;
-      for (const s of row.species) { s.drawn = 0; s.expected = 0; }
+      row.dealt = 0;
+      row.dryDealt = 0;
+      row.wetDealt = 0;
+      row.rejStation = 0;
+      row.rejWalker = 0;
+      for (const s of row.species) { s.drawn = 0; s.expected = 0; s.dealt = 0; s.expectedDealt = 0; }
     }
   };
   const closeCensus = () => {
     for (const { row, shares } of censusIndex.values()) {
-      for (const s of shares) s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+      for (const s of shares) {
+        s.row.expected = s.dry * row.drySlots + s.wet * row.wetSlots;
+        // The same share against the DEALT population: what the layer's
+        // disagreement with its own target would have been had nothing been
+        // filtered out. ROADMAP K49(e) / T-0018.
+        s.row.expectedDealt = s.dry * row.dryDealt + s.wet * row.wetDealt;
+      }
     }
   };
 
@@ -801,10 +973,29 @@ export async function createFlora({
     const near = rings.near;
     const mid = rings.mid;
     // NEAR: individual tufts, dense enough to close the ground.
-    nearSet.ring(near.fade);
+    //
+    // T-0093 — the ring is PER SLOT here now, where it used to be one ring for
+    // the whole set. The outer edge is a density handover (`slotRing`), so each
+    // tuft carries its own outer radius drawn from the band and is written
+    // solid up to it. The set-wide call is gone rather than left as a default:
+    // a slot that missed its own `ring()` would be drawn on the nominal one and
+    // would be the only stippled plant in the field.
     scatter(camE, camN, tune.near.cell, tune.near.perCell,
       near.lattice.outer, near.lattice.inner, 0x51ed27, 'strata', cone,
       (e, n, r, rng, _cellSeed, u) => {
+        // This slot's own outer boundary. The near ring carries no fringe (its
+        // edge is never the one a visitor reads as a line — the mid ring's is),
+        // so the offset is zero and the whole of the move is the handover.
+        //
+        // A slot the handover has already carried past is PLACED ANYWAY, at
+        // coverage zero, and the mid ring's matching `return` is not copied
+        // here on purpose: every slot inside the lattice is still dealt a
+        // species and still counted by the drawn census, exactly as before, so
+        // this run moves no community's population and no cover figure. The
+        // vertex program collapses a plant outside its ring to a point, which
+        // is what it already did for the annulus between the fade and the
+        // lattice, so the frame pays nothing for them either.
+        const ring = slotRing(near, e, n, 0, _ring);
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // The community's own recorded matrix cover decides whether this slot
@@ -817,18 +1008,27 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
           zone.matrixShare, u);
         if (!sp) return;
+        const c = zone.census?.matrix;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
         // The head is placed off the height the PLANT was actually given, and
         // only if the plant was actually drawn. Round 1 drew the two from
         // independent draws of the same range, so a 2.0 m cordgrass spike
         // could stand over a 1.25 m tuft — which is the pair of flower heads
         // the critic found floating unattached in the open sky.
-        countDraw(zone, 'matrix', sp, wet);
+        countDraw(c, sp, wet);
+        nearSet.ring(ring);
         const h = placeGraminoid(nearSet, sp, e, y, n, rng);
-        if (h > 0 && r <= near.head[0] + step) {
-          maybeHead(heads, sp, e, y, n, rng, h, near.head);
+        // The head rides its PLANT'S ring now, not the layer's. On a spread
+        // boundary the layer's ring answers for no particular tuft, and a head
+        // hung on it would go on being drawn out to 7 m over a plant whose own
+        // handover had already taken it away at five — a flower in the sky with
+        // nothing under it, which is R-BUG7 rebuilt from the other end.
+        const headRing = headRingAt(ring, _headRing);
+        if (h > 0 && r <= headRing[0] + step) {
+          maybeHead(heads, sp, e, y, n, rng, h, headRing);
         }
       });
 
@@ -856,10 +1056,20 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
           zone.matrixShare, u);
         if (!sp) return;
+        const c = zone.census?.matrix;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        countDraw(zone, 'matrix', sp, wet);
-        midSet.ring(ringAt(mid.fade, off, _ring));
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        countDraw(c, sp, wet);
+        // T-0093 — the INNER edge is a density handover too, and it is the half
+        // of the near/mid crossover the ticket's own two stands turned out to
+        // rest on: standing in a roadway the travel track carries no near tufts
+        // at all, so every screen-doored pixel of the verge there was written by
+        // this ramp fading IN. Each card carries its own inner radius across
+        // 4.5-7.5 m and is drawn whole beyond it. The OUTER edge is untouched:
+        // it is 18-27 m, the far band already stands over it, and its fringe is
+        // what keeps the boundary off a constant screen row.
+        midSet.ring(slotRing(mid, e, n, off, _ring));
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
     stats.rebuilds++;
@@ -889,10 +1099,12 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.forbs : zone.dry.forbs,
           wet ? zone.forbShareWet : zone.forbShare, u);
         if (!sp) return;
+        const c = zone.census?.forb;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
-        countDraw(zone, 'forb', sp, wet);
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
+        countDraw(c, sp, wet);
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
         set.ring(ringAt(f.fade, off, _ring));
         const h = placeForb(set, sp, e, y, n, rng);
@@ -923,10 +1135,12 @@ export async function createFlora({
         const sp = dealt(wet ? zone.wet.shrubs : zone.dry.shrubs,
           wet ? zone.shrubShareWet : zone.shrubShare, u);
         if (!sp) return;
+        const c = zone.census?.shrub;
+        countDealt(c, sp, wet);
         const y = station(e, n, zone, sp, wet);
-        if (y === null) return;
-        if (crowdsTheWalker(sp, r)) return;
-        countDraw(zone, 'shrub', sp, wet);
+        if (y === null) { if (c) c.row.rejStation++; return; }
+        if (crowdsTheWalker(sp, r)) { if (c) c.row.rejWalker++; return; }
+        countDraw(c, sp, wet);
         shrubSet.ring(ringAt(f.fade, off, _ring));
         const h = placeShrub(shrubSet, sp, e, y, n, rng);
         if (h > 0 && r <= f.head[0] + off + step) {
@@ -1069,8 +1283,7 @@ export async function createFlora({
     fadeAt(setName, d, outer) {
       const ring = ringOfSet[setName];
       if (!ring) return null;
-      return fadeOf(outer === undefined ? ring.fade
-        : [outer, ring.fade[1], ring.fade[2], ring.fade[3]], d);
+      return fadeOf(slotOf(ring, outer), d);
     },
     /** What fraction of its recorded height this plant is drawn at — `heightOf`,
      *  reached the same way `fadeAt` reaches `fadeOf`. Since T-0035 a drawn
@@ -1078,8 +1291,7 @@ export async function createFlora({
     heightAt(setName, d, outer) {
       const ring = ringOfSet[setName];
       if (!ring) return null;
-      return heightOf(outer === undefined ? ring.fade
-        : [outer, ring.fade[1], ring.fade[2], ring.fade[3]], d);
+      return heightOf(slotOf(ring, outer), d);
     },
     /** Where this ground's own boundary stands relative to its layer's nominal
      *  one, in metres. The gate asks the placer rather than re-deriving the
@@ -2083,17 +2295,35 @@ function frac(x) { return x - Math.floor(x); }
  * the block's phase, and it also recovers most of the regression the paragraph
  * below blames on a filter.
  *
- * ...and it has a SECOND face that cost two rows of the census. Rank is a
- * deterministic function of position inside the block, so a filter that runs
+ * ...and it was thought to have a SECOND face that cost two rows of the census.
+ * IT DOES NOT, AND THE PARAGRAPH THAT SAID SO IS STRUCK. What it said was: rank
+ * is a deterministic function of position inside the block, so a filter running
  * AFTER the deal on a spatial rule of its own — `station()` refusing a building
- * footprint or the far side of a waterline — selects a BIASED set of ranks,
- * where an independent draw would have been filtered without bias. The two rows
- * that got worse are the two most heavily filtered, the settled town and the
- * riverbank. That is the leading explanation and it is not proven; K49(e)
- * measures it. Do not reach for `stratum` in a heavily filtered layer until it
- * has. (K49(f), same day: **refuted for the settled town**, which recovers
- * 39.18 → 15.52 on the phase alone, against a pre-K49(d) 14.31. The riverbank
- * keeps a residual 1.30 and that is all K49(e) has left to explain.)
+ * footprint or the far side of a waterline — selects a BIASED set of ranks; and
+ * therefore, do not reach for `stratum` in a heavily filtered layer. K49(f)
+ * refuted the settled-town half the same day, by fixing the fixed grid instead.
+ * **T-0018 / K49(e) refutes the mechanism itself** —
+ * `tools/measure_rank_bias.mjs`, which runs the deal out of THIS file:
+ *
+ *   position → rank is `feistel(idx, half, blockHash)`, and `blockHash` is
+ *   `hash3(bc, br, salt ^ STRAT_SALT)` — RE-KEYED IN EVERY BLOCK. A spatial rule
+ *   does not know that key, so the ranks it accepts are an arbitrary subset,
+ *   independently re-drawn block by block. Pooled, they are uniform.
+ *
+ * Measured over 400 independent layer keys, chi-square on 15 df against uniform:
+ * a waterline half-plane **2.0**, a footprint disc **4.1**, a street stripe
+ * **2.3** — against a rank-blind control at **4.7** and a critical value of 37.7
+ * at p = 0.001. A filter deliberately written to read the rank scores
+ * **100,800**, so the instrument goes red by four orders of magnitude when there
+ * is something to catch.
+ *
+ * SO THE RULE IS THE OPPOSITE OF THE ONE THAT WAS WRITTEN HERE. Reach for
+ * `stratum` in a filtered layer: filtered, it still beats an independent draw
+ * (mix deviation per 100 planted slots — unfiltered **0.83**, thinned to ~60 %
+ * **3.2–5.0**, independent **5.83**). What a filter costs is the STRATIFICATION,
+ * not the accuracy: the surviving `u` are no longer equally spaced, so the deal
+ * slides back towards Poisson at about the rate it thins. Expect precision to
+ * degrade with filtering; do not expect a lean.
  */
 const STRAT_SALT = 0x7f4a7c15;
 /**
@@ -3502,7 +3732,11 @@ varying float vChiDither;   // this plant's own phase on the ordered dither
   // next. Here it is continuous, and the lattice is inset from it by the
   // rebuild step (see \`ringsFor\`) so nothing is ever drawn before it is placed.
   float chiD = distance(cameraPosition.xz, chiInst.xz);
-  float chiFade = clamp((aChiRing.x - chiD) / max(aChiRing.y, 1e-4), 0.0, 1.0);
+  // The floor is a MICRON, not a tenth of a millimetre, and it is only there to
+  // guard the division: a spread boundary hands its ring over as a step of
+  // width \`HARD\`, and a floor wider than the step would put the step back into
+  // a ramp a plant could be caught halfway up. See \`HARD\` in flora.js.
+  float chiFade = clamp((aChiRing.x - chiD) / max(aChiRing.y, ${f(HARD)}), 0.0, 1.0);
   if (aChiRing.w > 0.0) chiFade *= clamp((chiD - aChiRing.z) / aChiRing.w, 0.0, 1.0);
   // **THE RAMP IS AN ALPHA, NOT A HEIGHT** (T-0035). The owner, twice: plants
   // "grow up out of the ground" as you walk at them rather than fading in. Both
@@ -3633,6 +3867,15 @@ float chiBayer4(vec2 fragXY) {
 }
 ` + shader.fragmentShader.replace('#include <clipping_planes_fragment>', /* glsl */`
 #include <clipping_planes_fragment>
+// T-0093. WHICH RINGS STILL REACH THIS LINE, because it is no longer all of
+// them: the near ring's outer edge and the mid ring's inner edge hand their
+// ground over by DENSITY now (TUNE \`spreadOuter\`/\`spreadInner\`), so every plant
+// on either of those boundaries arrives with \`vChiFade\` at 0 or 1 and the guard
+// below sends it straight past. What is left dithering is the mid and forb
+// rings' OUTER edges at 18–27 m, where a plant is a few pixels wide and the far
+// band stands over the same ground — the verge, which is what a walker looks
+// at, is written solid.
+//
 // T-0035. Coverage first, before a single lighting instruction is spent on a
 // fragment that is about to be thrown away — and guarded, so a plant that is
 // wholly inside its ring reaches the shader that existed before this: the

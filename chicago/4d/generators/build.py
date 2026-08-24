@@ -29,6 +29,7 @@ import bpy  # noqa: E402
 import mesh_inputs  # noqa: E402
 
 from common.mesh import reset_scene  # noqa: E402
+from common.phases import drawn_by_another_layer  # noqa: E402
 from archetypes import (  # noqa: E402
     bridge_timber, fort_structure, frame_dwelling, frame_storefront, frame_tavern,
     log_dwelling, outbuilding, palisade, pier_crib,
@@ -226,6 +227,15 @@ def main() -> int:
         phase = resolve_phase(st, target)
         if phase is None:
             print(f"skip {st['id']}: no phase covers {target}")
+            continue
+        # T-0161. The phase says its geometry is built at load by another layer,
+        # so baking one here puts a mesh in the tree that `tools/validate.py`
+        # then refuses — which is what made every full bake need a hand-deletion
+        # to pass its own gate. The test is imported rather than restated: see
+        # generators/common/phases.py for why a fourth copy was the problem.
+        if drawn_by_another_layer(phase):
+            layer = (phase.get("drawn_by") or {}).get("layer", "another layer")
+            print(f"skip {st['id']}: phase '{phase.get('id', '?')}' is drawn by {layer}")
             continue
         arch = st["archetype"]
         if arch not in ARCHETYPES:

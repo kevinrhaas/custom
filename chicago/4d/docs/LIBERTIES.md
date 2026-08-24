@@ -5729,6 +5729,66 @@ the owner's call about the specification and not a repair an agent should make; 
 **Recorded:** 2026-08-22.
 
 
+### L176 — Six anonymous roofs take a taller eave from their own band, because their ridge band could not be reached from the one they were dealt
+
+**Decision:** the two anonymous parcels that draw their dimensions from the family bands —
+`tools/generate_north_infill.py` and `tools/generate_block_infill.py` — now draw the EAVE
+under the same constraint they already drew the pitch under. Where the eave a stable key
+lands on cannot reach the family's authored `ridge_ft` band at any pitch the family also
+authors, the eave is redrawn from the part of its OWN band that can, and the pitch then
+falls where the existing sampler puts it. Five A1 stables and one A4 shed moved: eaves from
+2.750-2.874 m to 2.840-3.413 m, and one down from 2.405 m to 2.336 m, with pitches following
+to between 39.2 and 39.8 degrees on the five stables. Every value is still inside the band
+its own note cites, still grades `reconstructed`, and still says the band is a typology
+rather than evidence about that building. Nothing else in the town moved: the other 251
+reconstructed roofs re-derive byte for byte.
+
+**Why, and this is the part that is a finding rather than a repair.** T-0145 built the ridge
+instrument and banked 104 roofs outside their ridge band, and read the residual as
+structural — "for several families no pitch inside the authored pitch band can reach the
+authored ridge band at the footprint the family authors". L171 recorded that as an open
+question for the owner: which of the four claims gives way, the footprint band, the pitch
+band, the ridge band, or the archetype's ridge orientation.
+
+**None of them does.** `tools/measure_ridge_reach.py` sweeps every family's whole authored
+footprint band and asks whether ANY eave inside the eave band and ANY pitch inside the pitch
+band lands the ridge inside the ridge band. At every footprint of every family that authors
+a pitch band, the answer is yes. The four claims are jointly satisfiable everywhere, and the
+sentence T-0145 wrote was true only because it held the eave at whatever the record happened
+to carry. The eave is not a fixed thing — it is the second of two values the crosswalk
+authors as a band and the samplers draw from — so a ridge band is reachable or not from a
+(footprint, eave) PAIR, and constraining only the pitch made the second free claim carry the
+first one's choice. The A1 stable, the case L171 named as the clearest, reaches its 17-24 ft
+ridge band comfortably at an eave in the top half of the 9-12 ft its own family authors.
+
+**What is still outside its band, said plainly.** Fifty-eight roofs, down from sixty-four,
+and all fifty-eight are in the three parcels that do not sample at all: `west_infill`,
+`inferred_infill` and `inferred_households` still carry the per-family constants T-0144 and
+T-0145 took out of the North parcel, and a ridge is downstream of an eave that was typed
+rather than drawn. That is T-0172's, named there before this ran, and the report in
+`tools/measure_ridge_reach.py` prints the split by parcel so it cannot be mistaken for a
+specification fault again. The two parcels that DO sample now carry none.
+
+**Consequence:** five stables and a shed stand between 5 and 55 cm taller, which is visible
+from beside them and nowhere else, and the ridge gate's residual is now entirely a list of
+records waiting for a generator to be repaired rather than a mixture of that and an argument
+about the specification. The five stables also cluster at the steep end of A1's pitch band,
+40 degrees against the 30-40 the family allows, and that is the arithmetic being honest: a
+small stable whose ridge runs down its long axis needs its family's steepest roof to reach
+its family's lowest ridge.
+
+**How to resolve:** nothing to resolve in the specification — the sweep is now a gate, so a
+future crosswalk edit that authors a family which cannot be built to its own ridge band fails
+at the specification instead of arriving as a roof nobody can raise. What remains open is
+T-0172 for the three retyped parcels, and the three families whose roof line offers a SHED
+their ridge band cannot carry at most footprints (C1, F1, F4) — filed, and not built as a
+shed by any generator today.
+
+Related: **L171** (the pitch, and the question this answers) · **L170** (the eave first moving
+onto its band) · tickets **T-0148**, **T-0145**, **T-0172**.
+**Recorded:** 2026-08-24.
+
+
 ### L173 — Nine piles of brick, timber and stone on the one lot this town can say was building
 **Decision:** the Lake House site — `lake_house_construction`, a roofless brick shell on the north
 side — now has **building material stacked round it**: four stacks of brick along the frontage it
@@ -5849,6 +5909,302 @@ standing that lets it drive setting and never a coordinate.
 own record (the travelled way that arrives across this band).
 **Recorded:** 2026-08-23.
 
+### L175 — Sixty-four leaf sprays, because the frame was finally measured and it cost three per cent
+
+**Decision:** the shrub archetype (**L122**, **L124**, **L125**) now carries **sixty-four** leaf
+sprays where it carried forty-eight, at the same plate size again — 0.26–0.42 of the recorded clump
+radius. Foliage cover over the bush's own outline goes **46.9 % → 51.3 %**, worst bearing **43.0 %
+→ 47.3 %**, the fraction of the dark woody stems with foliage in front of them **51.3 % → 54.2 %**,
+for **104 → 136 triangles** a shrub. ROADMAP **K59**, ticket **T-0020**.
+
+**This is L125's own reserved 4.4 points, spent — and what it took was the measurement L125 could
+not make.** K57 justified stopping at 48 on a triangle count and a draw-call count, and said in as
+many words that neither is a frame. The shrub batch does not split — one instanced set, one draw
+call, at either grain — so the real cost of a finer grain is fill and vertex work, and no
+frame-time figure had ever been taken anywhere in this archetype's history. K59 therefore refused
+to be claimed without one.
+
+**What was measured.** `tools/measure_shrub_frame_cost.mjs`, new here, stands the walker in the wet
+woods where 158 shrubs are drawn in one ring — the densest shrub community of the ten — sweeps
+eight bearings and fixes the camera at the most expensive of them, holds the clock so the wind
+cannot blow between two readings, drives frames one at a time instead of letting the browser pace
+them, and fences each frame with a one-pixel readback:
+
+| | 48 sprays | 64 sprays | |
+|---|---|---|---|
+| desktop 1280×800 | 4282.30 ms | 4410.30 ms | **+3.0 %** |
+| mobile 390×780 | 2739.60 ms | 2795.80 ms | **+2.1 %** |
+| desktop, the shipped grain measured AGAIN | 4292.90 ms | | **+0.2 %** against its own first reading |
+
+That last row is the control, and it is why the 3.0 can be believed: the runner's own drift between
+two readings of the identical scene is two tenths of a point, so the candidate's three points are
+fifteen times it rather than inside it.
+
+**What the figure is NOT.** These milliseconds are a fact about a headless software rasteriser
+(ANGLE over SwiftShader) on a shared CI machine, and not about anyone's phone — a frame there is
+four seconds. The tool prints the renderer string with every reading so no number can be quoted
+without it. The RATIO is the answer, and it is an argument in the safe direction: a software
+rasteriser is the most fill-sensitive renderer there is, so it is the harshest available witness
+for the one risk here — 33 % more transparent plate over the same silhouette (overdraw 1.33 → 1.56).
+A grain that costs three per cent there is not going to cost more on hardware.
+
+**What is NOT claimed, and it is the same disclaimer L125 made.** No source in this repository
+states a leaf-mass count for any of the twenty-one `shrub_low` records; the count is invented, as
+it was at 16, at 32 and at 48, and this is the same invention at a finer setting. What is not
+invented: the silhouette, which still reaches **0.997** of the recorded half-width and never leaves
+the recorded height; the plate, which stays at 3.5× a 10 cm leaf so the mass abstraction does not
+quietly become a claim to draw a leaf; and the census, which is identical plant for plant — no
+shrub moved, appeared or vanished.
+
+**Cost:** 104 triangles per shrub becomes 136, which in the ring measured here is **17,368 →
+22,712**, 2.3 % of the 1,000,000 the `full` tier budgets. The gate in `tools/measure_spray_grain.mjs
+--gate` — reach ≥ 0.95 of the recorded half-width, a spray ≥ 2× a leaf, coverage above 40 % at every
+bearing — is unchanged and green on the new grain.
+
+**How to resolve:** nothing to resolve — it is a rendering decision, reversible by one integer. What
+would retire the whole line of them is the instrument L121, L156 and L174's tier work all ask for: a
+frame-time reading on a real low-end machine rather than on a CI rasteriser.
+
+Related: **L122** (the archetype), **L124** (a spray is a leaf mass, not a leaf), **L125** (the 48
+this refines and the 4.4 points it reserved), **L123** (why the layer is drawn at two fifths of its
+recorded cover), and ROADMAP **K57**, **K59**.
+**Recorded:** 2026-08-23.
+
+### L179 — The point on a Fort Dearborn picket is ours, and the plate that was said to draw it rules a flat top
+
+**Decision:** every picket of the fort's stockade is **sharpened over its top 0.312 m** — 8.4 % of
+the 3.7 m height, cut out of that height rather than added to it — and **no source says a word
+about the head of a Fort Dearborn picket.** The head is a reconstruction, and until now it was
+declared nowhere: it lives in a derived property of `generators/archetypes/palisade_params.py`
+(`picket_point_m = min(width × 1.3, height × 0.18)`), whose own docstring admits *"no source
+describes the head of a Fort Dearborn picket"*, and neither the record nor this file had ever
+repeated that where a reader would find it. **L47** covers the fabric of this wall in general terms
+— "every dimension of the fabric is ours" — and names the height, the width, the spacing, the gate
+and the bastions one by one. It does not name the head, and the head is the most conspicuous thing
+about the wall at eye level.
+
+**Why the head is built at all, and why it is not evidence.** A flat-topped post reads as a fence
+rail and a pointed one reads as a stockade; the sawtooth is what makes a visitor at the north wall
+see a fort rather than a paddock. That is a drawing argument, not a claim about 1816. Kinzie gives
+"high pickets" and nothing else; Andreas gives "a square stockade"; the 1830 Harrison plan is a
+plan and has no third dimension. The head is therefore **reconstructed** in this project's exact
+sense — invented within bounds because the scene needs it — and the bound is one picket width,
+which is the proportion a splitting axe leaves.
+
+**And the plate does not settle it, which is the half this entry exists to record (T-0094).** The
+ticket, and row 3 of `docs/RESEARCH/fort_dearborn_image_accuracy.md` before it, said the model's
+pickets were flat-topped and the plate's pointed. **Both halves are wrong.** The committed master
+`assets/gltf/fort_dearborn_palisade__picket_1816.glb` has carried 768 four-triangle heads since the
+archetype was written — 3,072 apex vertices at 3.700 m over 12,288 shoulders at 3.388 m — and
+`data/sources/assets/prefire_views_kevin_2026_08/p4_0.png` rules the curtain's top as a **straight
+line**: 0.45 px rms over 138 resolved columns, while the same plate resolves individual pickets at
+a 10 px pitch and stands the curtain 43 px tall, so a head of this proportion would have serrated
+it by 3.6 px — eight times the residual. `p4_1` rules the same flat cap. **The draughtsman had the
+resolution to draw a point and drew none.** That is not evidence that the pickets were flat: a
+lithographer ruling the top of a distant stockade is what a lithographer does, and these are
+tier-5 retrospective plates. It is evidence that the plate cannot be cited FOR the point.
+
+**Consequence:** the silhouette of the most recognisable structure in the town is ours, top to
+bottom — L47 already said so of its height and its posts, and this says so of their heads. The
+confidence view dithers the whole wall, which is the only thing standing between a visitor and
+that fact.
+
+**How to resolve:** the same evidence L47 asks for — a quartermaster return, a repair estimate or
+an engineer's report for the post between 1816 and 1836. A specification for pickets would settle
+the head, the height and the spacing in one sentence.
+
+**Held by:** `tools/measure_picket_plate.py --gate`, in `tools/check.sh`, which refuses a stockade
+whose apexes have gone flat, been capped, worn under 4 % of the picket, or been stacked on top of a
+full-height post. The plate half of that file reports and does not gate: a tier-5 lithograph may
+refute a claim made about itself and may not hold a build red.
+
+**No `Covers:` field, deliberately.** The head has no attribute of its own to claim — it is a
+proportion the archetype derives, not a value the record states — and claiming
+`form.construction` would put this entry's name on the word "log", which really is inferred and is
+not the invention being confessed. The honest form is an entry that claims nothing in the
+machine-readable field and says in prose exactly what was made up. The day a `picket_head`
+attribute exists on the record, this entry claims it.
+**Ticket:** T-0094, opened by T-0044, closed as refuted. **Related:** **L47** (the fabric of this
+wall), **L42** (the fort's buildings), **L174** (the ground outside its walls).
+**Recorded:** 2026-08-24.
+
+
+### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
+**Decision:** the three roofs of the `blk_lake_clark` frontage run —
+`recon_1835_blk_lake_clark_d1_01`, `_d3_02` and `_d5_03` — move 0.70 m toward Lake Street and
+now stand with their front walls **0.80 m off the block face**, on the line the four roofs of
+L141's row already stood on. `tools/generate_block_infill.py` previously refused any setback
+below the plat module's 1.5 m `LOT_MARGIN_M`; it now accepts one on the **street line
+specifically**, and only where the block recipe names the committed records whose line it
+adopts. The number is not authored: `adopts_face_line` lists the records and the generator
+measures their front walls, so a recipe stating any other setback fails. The side lot lines keep
+the full 1.5 m.
+**Why:** T-0104. One block face carried two street lines. L141's row stands 0.80 m off the Lake
+face and L144's run stood 1.50 m off it, 10.58 m apart along the face — no wall stepped between
+them, which was luck and not design, and the next parcel to close that gap would have put a
+0.70 m jog in a street wall this project describes everywhere as one line. The ticket set out
+three routes and this is (b): stand closer than the lot margin on the street line, with the
+exemption stated as narrowly as L141's party-wall one.
+**Why not route (a), which was the obvious one.** Moving L141's four roofs OUT to 1.50 m would
+have broken the party wall `recon_1835_south_d3_013` declares with `inf_butcher_market` — a
+shared wall that `check_frontage` gates as a shared wall — and so would have created the very
+jog the ticket exists to prevent, on the one join in the row where it would be gated as a
+defect. Route (a) also rests on a reading the measurement does not support: 1.50 m is a rule
+about standing clear of a LOT line, and a party-line row already crosses its own side lot lines
+by construction.
+**What the measurement found that the ticket did not know.** The face carried worse than two
+lines. `inf_bakery_lake` and `inf_butcher_market` — the two inferred-household buildings whose
+alignment L141's row cites as its reason for 0.80 m — stand at **0.804 m and 0.784 m**, at
+bearing 0 where this face runs at 0.465. They are not on the face's line and they are not
+parallel to it; they stand where a hand-authored `center_local_enu_m` in the household programme
+put them. So the 0.80 m L141 adopted was a reading of two free-ground placements rather than a
+rule, and the 16 mm party wall between `recon_1835_south_d3_013` and `inf_butcher_market` does
+not close. That residual is banked BY NAME and BY SIZE in `tools/measure_street_line.py` — it
+may shrink and it may not grow — and putting the household layer on the committed face is its
+own ticket.
+**WHAT IS INVENTED, and it is the same thing it always was.** That any building stood on this
+frontage; which buildings; that they stood shoulder to shoulder. **Neither 0.80 m nor 1.50 m is
+a measurement of 1835** and no note here claims either is. The only thing chosen is that the
+face carries ONE of them, because a street wall is one wall. No roof is added, removed, renamed,
+re-familied or re-dimensioned; every id, band and baked mesh is the one it was, the 665-roof
+totals do not move, and the meshes do not go stale — a position is not one of the inputs a GLB
+is hashed over.
+**What now asserts it.** `tools/measure_street_line.py --gate`, in `tools/check.sh`: it takes
+the face line out of the committed plat, projects every front wall onto it, and refuses a face
+carrying more than one — absolutely, with no ratchet, because the number is now zero. It also
+closes party walls from BOTH sides, which is the case neither generator's own frontage gate can
+reach when the other half of the wall belongs to another generator.
+**How to resolve:** any period document placing a named occupant on a numbered lot on this face
+— an advertisement giving an address, a tax or insurance description, an itemised loss list —
+would replace an invented roof with a named one and, with it, give the face a line that is a
+reading rather than a convention.
+
+Related: **L141** (the row whose line this adopts), **L144** (the run that moves), tickets
+**T-0104** (this), **T-0077**, **T-0079**.
+**Recorded:** 2026-08-24.
+
+
+### L180 — A landing on the WEST bank at Wolf Point, and no source states a dock anywhere on that shore
+
+**Decision:** Robert A. Kinzie's storehouse at Wolf Point now STATES a dock — `value: true,
+confidence: reconstructed, geometry: simplified` — and the wharf layer draws it in the standard
+form: a 13.0 m plank deck on a timber crib, its heel tied 2 m into the traced 1834 west bank and
+its face 6 m out over the water, abreast the store's own east-facing river wall. It is the FIRST
+landing this project has put on the west bank. The wharf rule that selected it is unchanged in
+shape — a record whose own `dock` attribute is true — but it is now asked of every river frontage
+in the town rather than of South Water Street's merchants only.
+
+**Why:** T-0062 stated five reconstructed docks on the owner's ruling of 2026-08-18, verbatim
+*"you can add more docks!"*, and it stated them on South Water merchants. That left the town's
+other two shores unasked: the North Division shore carried a landing only because Kinzie &
+Hunter's dock happens to be attested, and the west bank at Wolf Point carried none at all. **That
+was a fact about which records had been edited, not a finding about Wolf Point** — the west bank
+was never measured and refused, it was out of scope by construction. The standing ruling in
+AGENTS.md § RECONSTRUCTED IS A TIER is that the rationing instinct is the bug; this entry is the
+honest cost of removing it on one more shore.
+
+**What bounds the invention:** THE TRADE, and here it is this record's own. chicagology's Wolf
+Point narrative gives a storehouse "dealing in groceries and Indian goods"; Andreas's trader list
+(scan p. 235) gives "Indian Traders — Robert A. Kinzie, near Wentworth's tavern". The record's
+committed position note, written 2026-08-11 and long before any wharf layer existed, already
+reasoned from it in as many words — *"a storehouse trading goods off canoes has a positive reason
+to face the landing"* — and set the facade due east onto the water on that reading. THE WATER,
+measured rather than assumed: the traced 1834 bank runs 11.17 m off the building's river wall, and
+a standard-form deck at that foot stands in 1.06 m of water along the whole 13.0 m of its face on
+the committed heightfield, with its heel about 0.5 m clear on dry bank; the boat layer
+independently floats a schooner in this same reach abreast this store (L146, T-0140), so the bed
+this project has already modelled carries a hull here. THE FORM: every dimension of the deck is
+the wharf layer's standard one, invented once and claimed at **L132** — this entry claims only the
+statement that a landing was there at all, which is exactly what **L145** claims for the five
+South Water landings.
+
+**What it does NOT claim.** That any source states a dock, wharf or landing anywhere at Wolf
+Point — none does, which is why this is `reconstructed` and not `inferred`. That the trade was
+still running on 1835-07-01: the 1833 Treaty of Chicago ceded the land and the removal ran through
+the summer of 1835, so the "Indian goods" half of this business was ending as the scene opens, and
+the record models a standing store and a standing landing without claiming what crossed either.
+And it does not reach the rest of the row: Wentworth's tavern, James Kinzie's residence, the
+Robinson and Caldwell cabins and Father Walker's log meeting house state no dock and get none,
+because lodging, dwelling and worship take nothing off a canoe — the Temple Building's exclusion
+carried across the river.
+
+**What would replace it:** the Chicago Democrat's advertising columns; the harbour engineers'
+reports of 1833–1836, which might carry a private wharf line on the branches; or either
+retrospective Wolf Point view examined at plate level for works along the west bank. The same
+instruments L132 and L145 wait on.
+
+Related: **L132** (the wharf form, invented once) · **L145** (the five South Water landings) ·
+**L146** (the hulls in this reach) · **L7** (the ~40 m along-bank uncertainty this row inherits
+whole from the tavern) · ticket **T-0107**; the refused-face clause it also shipped is a rule, not
+a liberty, and lives in `tools/generate_river_wharves.py` clause 6.
+**Covers:** `robert_kinzie_store.store_1830.form.dock`
+**Recorded:** 2026-08-24.
+
+
+### L178 — Dearborn's worn track leaves the platted line at the corner and swings onto the causeway
+**Decision:** Dearborn Street now commits TWO lines instead of one. `path_local_enu_m` is the
+platted line and is unchanged — `[[696.4, -400], [699, 18]]`, the analytic extension of the street
+module that L79 describes. Beside it sits a new optional field, `drawn_track_local_enu_m`, which is
+the worn wheel line the renderer paints: it leaves the platted line where South Water Street crosses
+it (local N 7.0) and runs one straight 13.8 m chord to `[697.65, 20.70]`, the south edge of the
+Dearborn Street drawbridge's causeway. Nothing else in the project reads the second line — the plat
+module, the corridor gate, the lot schedule, the street readout and the flora clearing all still
+read the first.
+
+**Why:** the platted line stops 2.70 m short of the boards, on the crest of the approach fill T-0046
+graded, and the ribbon stopped exactly where the record did. Measured on the shipped build before the
+change: every station up the fill to N 18 landed on drawn roadway and every station past it landed on
+none. A visitor climbing from South Water crossed a band of bare crest to reach the bridge — the last
+unfinished corner of the owner's own report that started T-0110.
+
+**Why not simply extend the platted line, which is the obvious fix.** Because it was measured and it
+fails, twice. `tools/generate_plat_lots.py --check` re-derives every block face by offsetting the
+WHOLE street polyline, so a three-metre bend appended to Dearborn's plat reports PLAT GRID DRIFT and
+moves platted lot lines the length of the street; and `tools/measure_corridor_intrusion.py --gate`
+re-scores the corridors against the same field and goes from the committed 29 laps to 30, the
+drawbridge itself newly lapping Dearborn by 0.66 m. Both readings were taken with the bend appended,
+before this field existed. **The plat line and the wheel line are different claims and one field was
+carrying both.**
+
+**What is invented, exactly.** Two numbers and no more. (1) That the swing is ONE chord: the ribbon's
+panels are drawn square to their own chord and are not mitred at their joints, so each turn opens a
+wedge of prairie on the outside of it, `3.5 tan(turn/2)` wide at the ribbon's edge and nothing at its
+centre. One 5.7-degree joint is the fewest and smallest a swing can be cut into — a 0.61 m² sector,
+0.17 m at its widest, inside the 0.84 m across which the road texture's own edge already fades out —
+and because that joint stands at the crossing, South Water Street's 10.5 m roadway is drawn over half
+of it, leaving **0.30 m² that a 2 cm plan probe finds uncovered by any street**. An eight-chord
+easement was measured first and was seven times worse (2.18 m²), because eight joints turn eight
+times. (2) That the swing takes 13.8 m, which is to say that it starts at the corner rather than at a
+station somebody picked.
+
+**What is NOT invented, and this is the part that bounds it.** The far end is the deck: `[697.65,
+20.70]` is the south edge midpoint of the drawbridge's own committed footprint and is also `line[0]`
+of the `dearborn_south` approach in `terrain_spec.json`, so the track ends where two existing records
+already agree the boards begin. The near end is the platted line itself at the South Water crossing.
+And the reason to swing at all is a measurement rather than a preference: held on the platted line the
+track's east edge stands 4.87 m off the fill's axis, 0.87 m outside the 4.0 m half-width the earthwork
+is level across, so the last stride onto the causeway would be taken on a side slope; swung onto the
+axis, every metre of the 7 m width ends on the level crest.
+
+**Consequence:** from South Water the worn track now runs continuously up the fill and butts the deck,
+and the drawn ribbon over the last 13.8 m of Dearborn is up to 1.37 m west of the street's platted
+centre — a ninth of the 80 ft corridor, and inside it by construction: the compiler refuses a drawn
+track that leaves its own platted corridor or overhangs the platted line's ends by more than 4 m. A
+visitor reading the street readout, a lot line, a block face or a corridor-intrusion figure is still
+reading the platted line and gets exactly the answer they got before. What a visitor cannot do is
+treat the last chord as survey geometry; L79 already says that of every travelled strip in this town
+and it says it of this one.
+
+**How to resolve:** nothing about 1835 would resolve it — no source states a wheel line. What would
+retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would
+close this wedge and the considerably larger ones South Water Street's own authored bends already
+open; that is filed rather than done here, because it moves geometry on every bent street in the town
+and this parcel is 2.7 m of Dearborn.
+
+Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the
+approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this),
+**T-0046** (the fills).
+**Recorded:** 2026-08-24.
 
 ## Resolved
 
@@ -6001,6 +6357,18 @@ banks down to the deck at both ends (a cut — L147), so the `outside_modelled_g
 this entry's last sentence asked for — the South Division slough cut into the terrain epoch, so
 the bridge spans water rather than solid ground — is still not done, and is re-filed as ticket
 T-0109 rather than left implied here.
+**Evidence since, 2026-08-24:** **the last sentence above is answered and this entry is closed
+out for good.** T-0005 carved dossier zone 14 — the South Division's drain — into
+`e1834_harbor_cut` on 2026-08-20, and T-0118 straightened its last reach to run square beneath
+this deck the same day. Neither was aimed at this entry or at T-0109; both are why it can be
+retired. Measured on the committed heightfield by `tools/measure_slough_crossing.py`: **3.30 m
+of open water in the deck's 8.00 m span** (41 %), **0.53 m deep**, **2.35 m of dry abutment seat
+at each end**, and the channel unbroken from the planks to the river. The one clause above that
+did NOT come true is the diagnosis about levels — this entry expected the archetype to anchor
+the deck to a river surface 0.15–0.45 m below the slough's own, and the drain as built backs up
+into the river as one pool at one surface, so the offset never arose. What is still invented is
+what it always was: the depth and the width of a watercourse whose route is documented and whose
+section nobody recorded. That invention lives in **L149** with the swales, not here.
 
 
 ### L40 — Two thirds of the town stands on ground that has not been built
@@ -6925,7 +7293,9 @@ block boundary in `data/traces/vectors/thompson_lots.json`.
 stands 0.80 m off the face line; this generator's floor is the plat module's 1.5 m lot margin, so
 the two runs sit 0.70 m apart in setback. They are 10.58 m apart along the face and no wall steps
 between them, but one face carrying two street lines is a defect rather than a design, and it is
-filed as its own ticket rather than normalised away inside this parcel.
+filed as its own ticket rather than normalised away inside this parcel. **CLOSED by L177 (T-0104):** this run's
+three roofs moved 0.70 m out onto T-0077's line, so the face carries one street line and
+`tools/measure_street_line.py` now asserts that of every block face in the town.
 **A log dwelling on a business frontage is an open question, and it was answered by the reference
 rather than by the schedule.** T-0022 asks whether the schedule may deal log cabins to commercial
 frontage and is unresolved. What decided it here is that the owner's other reference for a
@@ -7367,3 +7737,79 @@ Related: **L156**, the same tier giving up the sun's second pass over the same l
 same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), **T-0135** (the stand
 set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
+
+<<<<<<< HEAD
+### L181 — Three poplar rows on the greens of the town's oldest houses, from a treatment attested at a fourth that is not in this scene
+**Decision:** `data/flora/plantings/town_planted_rows.json` stands twelve Lombardy poplars —
+four to a row, 3.5 m apart, in a straight file parallel to the waterline — on the river greens
+of `jb_beaubien_homestead` (18.0 m), `cobweb_castle` (15.5 m) and `clybourn_cabins` (12.0 m).
+Every coordinate, every height and the extension of the treatment to these three addresses are
+`reconstructed`, dealt by the rule in `tools/generate_planted_rows.py` and re-derived byte for
+byte on every commit. The species is newly held in `data/flora/zones/z10_settled_town.json` at
+a density of **zero per hectare**, and the zero is a claim: nothing grows this tree here, so no
+density over the settled town may ever deal one and every stem in the scene is stated by that
+record. `renderers/web/js/trees.js` gains the archetype it is drawn with — bole diameter, fork
+height, puff count, bark — invented within that file's own range like every number in its
+`SPECIES` table, and a `columnar` branch in `addTree` that files the foliage masses evenly up
+the leader instead of scattering them, which redraws the dune's quaking aspen and balsam poplar
+as well at no change in triangle cost.
+
+**What is ATTESTED, and it is the whole reason this is not a reconstruction from nothing.**
+Juliette Kinzie, *Wau-Bun*, ch. XVII "Chicago in 1831", of the mansion on the north bank facing
+the fort: *"A broad green space was inclosed between it and the river, and shaded by a row of
+Lombardy poplars."* Species, row, fenced green and side of the house, from somebody who lived
+there. Seven committed plates draw that row, and five independently drawn ones agree on **four
+stems at 0.195 of their own height apart, sd 0.010** — measured column by column off the plates'
+own skylines, not remembered. The count and the rhythm in this record are that measurement.
+
+**What is NOT attested, measured and stated:** a second address. Every one of the seven plates
+draws the poplars at the same place, the Kinzie group on the north bank; not one shows a
+Lombardy poplar at the fort, on South Water Street, or in any town view, and no text reached
+places one elsewhere. **And the house the row is attested at is excluded from this scene**
+(`data/exclusions.json` → `kinzie_house`, gone by 1835; its cottonwoods stay). So the source
+carries a TREATMENT and one location, and the location is unavailable — the same shape as L129's
+garden pickets, and answered the same way: the treatment is the source's, and a RULE says which
+ground gets it.
+
+**What bounds the invention.** The rule's load-bearing clause is age *as the dataset can
+evidence it*: a dwelling qualifies only if its own `documented_range.from` predates 1830, five
+growing seasons before the scene date. That refuses 133 of the town's 137 houses. It is
+deliberately NOT read as "those houses were new" — 131 of them carry a 1835 date because their
+records say *"no evidence establishes that this particular building existed"*, which is an
+admission of ignorance — but the consequence is the same either way, and it is the point: a
+grown ornamental at a house of unknown age is an invention resting on an invention. The fourth
+house that passes, James Kinzie's at Wolf Point, is refused **with its number** — 7.7 m of open
+ground to the water, under the 12 m this rule asks of a green — because a strip is not a green.
+Every other clause is derived from committed geometry: the green is measured from the waterline
+back to the house's own footprint edge; the row's direction is the local waterline's, read off
+the committed heightfield over an 8 m span, so a row is parallel to the water and not to a
+compass point; and every stem must clear each committed footprint, street track, fence line and
+neighbouring stem by the margins `generate_dooryard_plantings.py` asks of a dooryard tree. A row
+that cannot lay all four stems is refused whole, because a row of two is not the treatment.
+
+**What is invented outright:** the three addresses; that the row stands on the river side of the
+green (0.60 of the way over, capped at 24 m from the house, so a row stays a house's row); the
+metre a growing season that turns a house's documented age into a height; and the species' 12–18 m
+band, whose ceiling is the *floor* of the eastern cottonwood's band in the same record because
+every plate that draws both draws the cottonwoods standing above the poplars — which is Wau-Bun's
+reading too, since the cottonwoods are the "immense" ones.
+
+**Consequence:** three of the oldest houses in the town now carry the one ornamental planting
+this project can quote a source for, and the Agency House's row stands on the north-bank green
+facing Fort Dearborn — a few hundred metres east of the green Wau-Bun describes, which is as
+close as a scene without the Kinzie mansion can come. The cost is twelve trees nobody attests at
+those addresses, and the confidence channel says so on every stem.
+
+**How to resolve:** any sale notice, diary, view, plat annotation or nurseryman's list that
+places a Lombardy poplar at a second Chicago address would move these rows from `reconstructed`
+toward `inferred`; **T-0055**'s source record for the Kinzie-view plate would let the record cite
+a plate rather than a committed path; and a photograph-era survivor's girth would replace the
+height band.
+
+Related: **L129** (the garden pickets — a treatment from a plate, a rule for the ground) ·
+**L151** (the dooryard stems, which named this deal's absence in its own `research_note`) ·
+**L119** (every number in the tree archetypes is invented within the file's range) · tickets
+**T-0117**, **T-0074**, **T-0052**, **T-0055**.
+**Recorded:** 2026-08-24.
+=======
+>>>>>>> origin/dev

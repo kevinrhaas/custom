@@ -163,6 +163,40 @@ const MAX_ALPHA = 0.92;
 const NEAR_FULL_M = 15.0;
 const NEAR_FADE_M = 40.0;
 const NEAR_GAIN = 2.4;
+/**
+ * T-0114 — THE MIDDLE OF THE ROAD, which had no remedy at all.
+ *
+ * Two boosts existed and each was right for its own end: `NEAR_GAIN` lifts the
+ * road under the walker's feet (R-BUG3, which measured 1.5 L* / 30 % there), and
+ * the `MIN_TRACK_PX` floor lifts a ribbon once it is thinner than two screen
+ * pixels. **Between them nothing lifted anything**, and the gate read that hole
+ * as a non-monotonic profile down one open street: 90 % · 87 % · **33 %** · 97 %.
+ * Contrast that merely fell off with distance would not come back at 250 m.
+ *
+ * Nothing turned the band. The trough was created the day the near field was
+ * fixed and the middle was left where it had always been — and no bake reached
+ * the smoke for long enough afterwards for anyone to see it.
+ *
+ * MEASURED, AND THE FIRST SUSPECT WAS WRONG. The obvious reading is that the
+ * thin-pixel floor should reach further in, so `MIN_TRACK_PX` was doubled to 4.0
+ * and the band re-read: **ΔL* 1.8 of 3.2, 33 %, identical to the digit.** At
+ * 100-250 m the ribbon is still many pixels wide, so `clamp(4.0/trackPx, 1, 6)`
+ * is still 1.0 and that path cannot reach the trough at any setting.
+ *
+ * So the middle gets a boost of its own, on the one quantity that is neither a
+ * pixel count nor a near-field ramp: distance from the eye, sustained across the
+ * gap and released where the thin-pixel floor takes over. `MID_GAIN` is far
+ * gentler than `NEAR_GAIN` because the middle is not invisible, only under its
+ * bar — this lifts a 33 % band over 55 %, it does not repaint the town.
+ *
+ * WHY IT IS `max()` AND NOT A PRODUCT, below: the two ramps overlap between 15
+ * and 40 m, and multiplying them would stack to 4.1x there — re-breaking the
+ * near field that R-BUG3 tuned. Taking the larger leaves every metre under 40 m
+ * reading exactly what it read before this change.
+ */
+const MID_FULL_M = 40.0;
+const MID_FADE_M = 700.0;
+const MID_GAIN = 1.7;
 // R-A1. The faintest authored body alpha is 0.28 - 0.04 = 0.24 (light worn
 // earth at the crown); this takes that one surface to opaque at full aid.
 const AID_GAIN = 1 / 0.24;
@@ -177,14 +211,52 @@ function pointSegment(e, n, a, b) {
   return { distance: Math.hypot(e - pe, n - pn), e: pe, n: pn, t };
 }
 
+/**
+ * T-0111 — THE PLATTED LINE AND THE WHEEL LINE ARE TWO CLAIMS, AND ONE FIELD
+ * WAS CARRYING BOTH.
+ *
+ * The widths were already split — `corridor_width_m` answers "which street am I
+ * standing in?" and `track_width_m` is the worn earth drawn inside it — but the
+ * LINE was not, and it turned out to matter at exactly one place in the town.
+ * Dearborn's platted line stops at [699, 18], on the crest of the drawbridge
+ * approach fill; the causeway deck's south edge is at [697.65, 20.70]. Measured
+ * on the shipped build, every station up the fill to n 18 lands on drawn
+ * roadway and every station past it lands on none: the ribbon ends exactly
+ * where the record does, 2.70 m short of the boards, and a visitor climbing
+ * from South Water crossed a band of bare crest to reach the bridge.
+ *
+ * THE ONE-LINE FIX IS THE WRONG FIX, AND IT WAS MEASURED RATHER THAN ARGUED.
+ * Appending the bend to `path_local_enu_m` fails two gates, because that field
+ * is the PLAT: `tools/generate_plat_lots.py --check` re-derives every block
+ * face by offsetting the whole polyline (PLAT GRID DRIFT the length of
+ * Dearborn) and `tools/measure_corridor_intrusion.py --gate` re-scores the
+ * corridor against it (30 laps against a committed 29 — the drawbridge itself
+ * newly lapping by 0.66 m). Both were run with the appended path before this
+ * split existed.
+ *
+ * So a street may now carry `drawn_track_local_enu_m`, the wagon-worn wheel
+ * line, and THIS MODULE IS THE ONLY THING THAT PREFERS IT. `hitsAt`, `status`
+ * and `blocksGrowth` keep reading `path`, because "which street is this",
+ * "what is ahead" and "where is the corridor cleared" are all questions about
+ * the plat; the compiler bounds the drawn line inside that same corridor and
+ * lets it overhang the platted ends by at most four metres, so it can meet an
+ * abutment and cannot become a second plat. `bounds` covers both lines, since
+ * a box that excluded the drawn one would answer "not near this street" for
+ * ground the street is drawn on.
+ */
 function prepare(raw) {
   const path = (raw.path_local_enu_m ?? []).map(([e, n]) => [Number(e), Number(n)]);
+  const authored = raw.drawn_track_local_enu_m;
+  const drawn = Array.isArray(authored) && authored.length >= 2
+    ? authored.map(([e, n]) => [Number(e), Number(n)])
+    : path;
   const pad = Math.max(raw.corridor_width_m ?? 24.384, raw.track_width_m ?? 6) * 0.5;
-  const es = path.map((p) => p[0]);
-  const ns = path.map((p) => p[1]);
+  const es = [...path, ...drawn].map((p) => p[0]);
+  const ns = [...path, ...drawn].map((p) => p[1]);
   return {
     ...raw,
     path,
+    drawn,
     corridor_width_m: raw.corridor_width_m ?? 24.384,
     track_width_m: raw.track_width_m ?? 6,
     bounds: {
@@ -337,9 +409,29 @@ function addRecord(buffers, record, terrain, stats) {
   const key = record.surface;
   const buf = buffers.get(key) ?? { pos: [], uv: [], conf: [], idx: [] };
   buffers.set(key, buf);
-  const pts = sampled(record.path);
+  // T-0111. The ribbon is painted on the WHEEL line; every other question this
+  // module answers is asked of the platted one. `drawn` is `path` for all but
+  // the one street that authors a separate track, so this is the same call it
+  // has always been everywhere else.
+  const pts = sampled(record.drawn);
   let along = 0;
+  // The weakest grade on anything that decides what this ribbon is OR WHERE IT
+  // RUNS. `geometry_confidence` grades the line itself — traced, inferred or
+  // invented — and it belongs beside the two surface grades, because where a
+  // street ran is a larger claim than what it was paved with: a route nobody
+  // attested puts the visitor in an invented place, not merely on an invented
+  // surface. T-0100.
+  //
+  // It is degenerate in the present dataset, and that is a coincidence of the
+  // data rather than a property of the layer. All 18 street records carry
+  // `wear_confidence: reconstructed`, so the max is already pinned at 1 and this
+  // third term moves no pixel today (16 records grade their geometry `inferred`,
+  // 2 `reconstructed`). It is here so that the day a street's surface and wear
+  // are attested and its route is not, the ribbon dithers out with the rest of
+  // the invented town instead of drawing at full confidence — and so that
+  // turning `reconstructed` off cannot leave an invented line standing.
   const confidence = Math.max(
+    LEVEL[record.geometry_confidence] ?? 1,
     LEVEL[record.surface_confidence] ?? 1,
     LEVEL[record.wear_confidence] ?? 1,
   );
@@ -536,7 +628,12 @@ function meshOf(surface, buf, confidence, aidUniform) {
         // different at 390 px than at 1280.
         float eyeM = length(vViewPosition);
         float near = 1.0 - smoothstep(${NEAR_FULL_M.toFixed(1)}, ${NEAR_FADE_M.toFixed(1)}, eyeM);
-        float gain = mix(1.0, ${NEAR_GAIN.toFixed(2)}, near);
+        // T-0114. The middle of the road, which had neither remedy. max(), not a
+        // product: the ramps overlap under 40 m and multiplying would stack to
+        // 4.1x there, re-breaking the near field R-BUG3 tuned.
+        float mid = 1.0 - smoothstep(${MID_FULL_M.toFixed(1)}, ${MID_FADE_M.toFixed(1)}, eyeM);
+        float gain = max(mix(1.0, ${NEAR_GAIN.toFixed(2)}, near),
+                         mix(1.0, ${MID_GAIN.toFixed(2)}, mid));
         diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
         // R-A1, and it is LAST on purpose: the aid scales whatever the
         // recorded surface and the two fixes above arrived at, so it can never
