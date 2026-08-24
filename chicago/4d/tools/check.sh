@@ -573,6 +573,17 @@ step "every browser-launching tool honours PW_EXECUTABLE" \
 step "the road-band movement report names a band that moved" \
   node tools/road_band_movement.mjs --self-test
 
+# T-0100. The street layer graded a ribbon by its surface and its wear and never
+# by `geometry_confidence`, so an INVENTED ROUTE under an attested surface would
+# have drawn at full confidence. It is degenerate in today's data — every street
+# is pinned at `reconstructed` wear already — which is exactly why it needed a
+# test rather than an eyeball: nothing on screen can show it either way. The
+# test slices the expression out of streets.js instead of copying it, so the
+# shipped grade and the tested grade cannot drift apart, and it carries a
+# tripwire that fires the day the data makes the fix matter.
+step "a street's invented line reaches the picture" \
+  node tools/test_street_confidence.mjs
+
 # K49(d) warned for a week that a spatial filter running after the stratified
 # deal selects a BIASED set of ranks, and told every later parcel not to use
 # `stratum` in a filtered layer on the strength of it. T-0018 refuted that: the

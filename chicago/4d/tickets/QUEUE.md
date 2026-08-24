@@ -17,7 +17,6 @@
 
 # --- RED NOW — visible, and a gate is failing on it today
 T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
-T-0100 — A street's geometry confidence never reaches the picture
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
