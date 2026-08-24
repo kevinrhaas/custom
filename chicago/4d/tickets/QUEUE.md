@@ -86,4 +86,3 @@ T-0156 — The interior/silhouette discriminator counts edges internal to a laye
 T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
 T-0030 — A queue card in Manager reading tickets.json
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
-T-0171 — The bake's smoke job runs each viewport unsplit in one command, and the desktop half needs forty minutes against its thirty-minute cap

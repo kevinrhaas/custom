@@ -1,7 +1,7 @@
 ---
 id: T-0171
 title: The bake's smoke job runs each viewport unsplit in one command, and the desktop half needs forty minutes against its thirty-minute cap
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 348
 claimed_by: run 8/23/2026, 11:00:22 PM CT
 blocked_on: null
 needs_bake: false
