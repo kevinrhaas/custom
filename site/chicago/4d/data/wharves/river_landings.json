@@ -137,44 +137,44 @@
         "wright_1834"
       ],
       "bank_foot_local_enu_m": [
-        255.33,
-        31.33
+        227.34,
+        23.71
       ],
       "bank_tangent": [
-        -0.9663,
-        -0.2573
+        -0.9363,
+        -0.3513
       ],
       "waterward_normal": [
-        -0.2573,
-        0.9663
+        -0.3513,
+        0.9363
       ],
       "deck_quad_local_enu_m": [
         [
-          264.63,
-          31.74
+          236.56,
+          25.03
         ],
         [
-          247.05,
-          27.06
+          219.53,
+          18.64
         ],
         [
-          244.99,
-          34.79
+          216.71,
+          26.13
         ],
         [
-          262.57,
-          39.47
+          233.75,
+          32.52
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 31.37,
-      "clearance_to_wall_m": 27.98,
+      "wall_to_bank_m": 33.42,
+      "clearance_to_wall_m": 29.47,
       "depth_at_face_m": [
-        1.53,
-        1.49,
-        1.46
+        1.54,
+        1.38,
+        1.35
       ],
       "facade_bearing_deg": 0.0
     },

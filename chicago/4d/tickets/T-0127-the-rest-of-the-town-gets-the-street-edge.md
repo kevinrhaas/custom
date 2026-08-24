@@ -1,7 +1,7 @@
 ---
 id: T-0127
 title: The rest of the town gets the street edge
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-21
-closed: null
+closed: 2026-08-24
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 9:51:00 AM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T15:43:36.370Z', date: 'Aug 24, 2026, 10:43 AM CT',
+    items: [
+      'Walk east along South Water Street. The plank sidewalk on the south side came out in stumps \u2014 nine short pieces, the longest 47 m \u2014 and the reason was never the sidewalk. Eleven documented buildings on that side stood four and a half to eight metres out in the roadway.',
+      'They were positioned by measuring off the kerb of modern Wacker Drive, which is not where the 1835 street ran. Each record says as much in its own notes, and several already warned that the two are not the same line. Nobody had measured the gap.',
+      'Six have been moved back onto the line their own records always said they stood on \u2014 the newspaper office at Clark, the store at the LaSalle corner, Beaubien\u2019s house at Dearborn, the Baptist meeting house at Franklin, Kinzie\u2019s forwarding store and Harmon and Loomis\u2019s store. Nothing about them changed but where they sit across the street: not the block, not the corner, not how well any of it is evidenced.',
+      'The block between Franklin and Wells now carries one unbroken 96.5 m walk where it carried two stumps of 25 and 46 m \u2014 the first whole block face of sidewalk this street has ever had. Along South Water the walk goes from 237 m in nine pieces to 304 m in eight, and the longest stretch has more than doubled.',
+      'The other five are named, one by one, in the record you can open from the walk, with the exact distance each would have to move and why it has not moved yet: on the surveyed plat each would then stand on a lot the town\u2019s building schedule has already promised to another roof, and untangling that is a separate job rather than something to do quietly here.',
+      'Under the surface, the plank walks stopped being drawn a second time for the sun. A walk lies eleven centimetres proud of the ground and its shadow at noon is about four centimetres wide \u2014 nothing anyone can see \u2014 and every board was being redrawn to cast it. The fences behind them are 1.37 m tall, throw real shade, and still cast. Nothing else moved.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',

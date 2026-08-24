@@ -9,15 +9,15 @@
   "counts": {
     "frontages": 26,
     "objects": 148,
-    "wagons": 68,
+    "wagons": 67,
     "wagons_by_kind": {
       "farm_box": 29,
-      "covered": 24,
+      "covered": 23,
       "cart": 15
     },
-    "wagons_at_street_verges": 62,
+    "wagons_at_street_verges": 61,
     "wagons_in_yards": 3,
-    "wagon_stands_refused": 35,
+    "wagon_stands_refused": 34,
     "benches": 1,
     "sheds": 1,
     "marked_objects": 148,
@@ -571,20 +571,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          551.4,
-          -5.9
+          551.45,
+          -12.51
         ],
         [
-          563.59,
-          -5.9
+          563.64,
+          -12.51
         ],
         [
-          563.59,
-          1.72
+          563.64,
+          -4.89
         ],
         [
-          551.4,
-          1.72
+          551.45,
+          -4.89
         ]
       ],
       "items": [
@@ -592,8 +592,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            552.21,
-            2.27
+            552.26,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -608,8 +608,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            552.83,
-            2.27
+            552.88,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -624,8 +624,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            553.45,
-            2.27
+            553.5,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -640,8 +640,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            554.07,
-            2.27
+            554.12,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -656,8 +656,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            555.37,
-            2.27
+            555.42,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -673,8 +673,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            555.37,
-            2.27
+            555.42,
+            -4.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1087,20 +1087,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          588.0,
-          -5.9
+          587.89,
+          -12.71
         ],
         [
-          600.19,
-          -5.9
+          600.08,
+          -12.71
         ],
         [
-          600.19,
-          1.72
+          600.08,
+          -5.08
         ],
         [
-          588.0,
-          1.72
+          587.89,
+          -5.08
         ]
       ],
       "items": [
@@ -1108,8 +1108,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            588.81,
-            2.27
+            588.7,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1124,8 +1124,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            589.43,
-            2.27
+            589.32,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1140,8 +1140,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            590.05,
-            2.27
+            589.94,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1156,8 +1156,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            590.67,
-            2.27
+            590.56,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1172,8 +1172,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            591.97,
-            2.27
+            591.86,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1189,8 +1189,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            591.97,
-            2.27
+            591.86,
+            -4.54
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1474,20 +1474,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          257.3,
-          -6.6
+          232.98,
+          -15.2
         ],
         [
-          269.49,
-          -6.6
+          245.18,
+          -15.2
         ],
         [
-          269.49,
-          1.02
+          245.18,
+          -7.58
         ],
         [
-          257.3,
-          1.02
+          232.98,
+          -7.58
         ]
       ],
       "items": [
@@ -1495,8 +1495,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            258.11,
-            1.57
+            233.79,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1511,8 +1511,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            258.73,
-            1.57
+            234.41,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1527,8 +1527,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            259.35,
-            1.57
+            235.03,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1543,8 +1543,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            259.97,
-            1.57
+            235.65,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1559,8 +1559,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            261.26,
-            1.57
+            236.95,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1577,8 +1577,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            261.26,
-            1.57
+            236.95,
+            -7.03
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1734,20 +1734,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          677.8,
-          -4.5
+          677.68,
+          -11.98
         ],
         [
-          686.94,
-          -4.5
+          686.82,
+          -11.98
         ],
         [
-          686.94,
-          0.99
+          686.82,
+          -6.49
         ],
         [
-          677.8,
-          0.99
+          677.68,
+          -6.49
         ]
       ],
       "items": [
@@ -1755,8 +1755,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            678.61,
-            1.54
+            678.49,
+            -5.94
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1771,8 +1771,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            679.23,
-            1.54
+            679.11,
+            -5.94
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1787,8 +1787,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            679.85,
-            1.54
+            679.73,
+            -5.94
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1803,8 +1803,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            681.14,
-            1.54
+            681.02,
+            -5.94
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1820,8 +1820,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            681.14,
-            1.54
+            681.02,
+            -5.94
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2235,20 +2235,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          428.1,
-          -7.5
+          428.15,
+          -13.51
         ],
         [
-          440.29,
-          -7.5
+          440.34,
+          -13.51
         ],
         [
-          440.29,
-          0.12
+          440.34,
+          -5.89
         ],
         [
-          428.1,
-          0.12
+          428.15,
+          -5.89
         ]
       ],
       "items": [
@@ -2256,8 +2256,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            428.91,
-            0.67
+            428.96,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2272,8 +2272,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            429.53,
-            0.67
+            429.58,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2288,8 +2288,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            430.15,
-            0.67
+            430.2,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2304,8 +2304,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            430.77,
-            0.67
+            430.82,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2320,8 +2320,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            432.06,
-            0.67
+            432.11,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -2337,8 +2337,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            432.06,
-            0.67
+            432.11,
+            -5.34
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -4270,23 +4270,6 @@
       "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
-      "id": "town_wagon_south_water_12",
-      "kind": "covered",
-      "stands_on": "south_water",
-      "belongs_to": null,
-      "tilt": true,
-      "yoke": true,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        280.41,
-        -0.5
-      ],
-      "bearing_deg": 269.5,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
       "id": "town_wagon_south_water_13",
       "kind": "covered",
       "stands_on": "south_water",
@@ -4761,14 +4744,9 @@
       "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
-      "stand": "south_water 11",
-      "street": "South Water Street",
-      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, it stands within 1.00 m of jh_kinzie_forwarding_store's committed footprint — a wagon drawn through a wall."
-    },
-    {
       "stand": "south_water 20",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 25",
@@ -4778,7 +4756,7 @@
     {
       "stand": "south_water 26",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 27",
@@ -4788,7 +4766,7 @@
     {
       "stand": "south_water 28",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 29",
@@ -4808,7 +4786,7 @@
     {
       "stand": "south_water 32",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 33",
@@ -4832,7 +4810,7 @@
     },
     {
       "stand": "*",
-      "why": "177 offered stand(s) fell more than 16 m from every committed footprint in the town and are not enumerated one by one. Past that the street is running out into the prairie: a wagon parked in the grass two blocks beyond the last house would be this record inventing a reason for it to be there, and the reason is the whole of what an invented object has to have."
+      "why": "185 offered stand(s) fell more than 16 m from every committed footprint in the town and are not enumerated one by one. Past that the street is running out into the prairie: a wagon parked in the grass two blocks beyond the last house would be this record inventing a reason for it to be there, and the reason is the whole of what an invented object has to have."
     }
   ],
   "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: the missing fourth page of the Democrat's first issue, which would carry more of the ordinances and may carry Ordinance 9's own text and its penalty; any later Chicago corporation order about obstructions, which would say what was being obstructed with; an insurance or tax description of a South Water Street lot; a traveller's account of walking the street; or the pre-fire photographs of surviving 1830s frontages actually opened at their holding institutions. WHAT THIS RECORD IS STILL SHORT OF, stated rather than left to be noticed: Ordinance 9's timber, stone and brick are not drawn at all; and nothing stands in a roadway though the ordinance is about roadways. WHAT IS NO LONGER SHORT, and it is worth being exact about what changed: this note used to end 'the wagons in this town still stand at two addresses out of hundreds', and T-0064 answered it on the owner's instruction rather than on a source. The town's wagons are spread now, and NOT ONE OF THEM IS BETTER EVIDENCED THAN IT WAS — the two the evidence reaches are still the wagon-yard's and the Green Tree's, everything else is `reconstructed` on a rule, and the rule is on this record under `town_wagon_rule` so it can be argued with. WHAT WOULD MOVE THE REST: a teamster's or a forwarding house's day-book naming what stood in the street; a Chicago corporation order about vehicles left standing, which would put a number on the thing Ordinance 9 only implies; or any dated view of a Chicago street before 1840. THE SHED IS THE FIRST ROOF THIS LAYER HAS EVER DRAWN, and it is worth saying what that does not mean: it is not a structure record, it has no archetype and it is not baked, because it is derived from a committed footprint the way a fence and a signboard are. If a second yard building is ever wanted the question to ask first is whether it belongs here or in data/structures/."
