@@ -46,4 +46,4 @@ row of Lombardy poplars."* The plates give the count (four) and the rhythm (a ga
 0.195 of the row's own height, sd 0.010 over five independently drawn views). **The
 plates REFUSE a second location** — all seven draw the row at the one house, and that
 house is excluded from this scene — so the addresses are the rule's, at the
-`reconstructed` tier, and L179 says so.
+`reconstructed` tier, and L181 says so.

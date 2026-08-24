@@ -325,10 +325,20 @@ def from_phase(phase: dict, record: dict | None = None) -> LogDwellingParams:
     ys = [p[1] for p in poly]
     width, depth = max(xs) - min(xs), max(ys) - min(ys)
 
+    # `dock` is excluded from the sweep because this builder never reads it, the same
+    # exclusion `frame_storefront_params` makes and for the same reason: a dock
+    # statement selects a deck on the RENDERER's wharf layer
+    # (tools/generate_river_wharves.py), not a metre of this mesh, and
+    # generators/mesh_inputs.py hashes exactly what the builder can see — "only a
+    # value the generator reads counts". Without it, stating the landing at Robert
+    # Kinzie's store (T-0107) would have marked that GLB stale on the day the
+    # statement was authored, on a runner with no Blender, when not one of its
+    # vertices could move. The storefront archetype learned this on the five South
+    # Water stores (T-0062); this is the log archetype carrying the same lesson.
     # `reconstruction` is the 665-roof programme's own block: it is present on every
     # anonymous or household roof it dealt and absent from every named building.
     recon = (record or {}).get("reconstruction") or {}
-    confidences = {a: conf(a) for a in form}
+    confidences = {a: conf(a) for a in form if a != "dock"}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
     stories = int(val("stories", 1))
