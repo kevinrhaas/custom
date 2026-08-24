@@ -28,7 +28,6 @@ T-0027 — How much of the public square was wet
 # --- THE RIVER AND ITS WHARVES — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0058 — A visitor can walk out along a wharf deck
-T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small

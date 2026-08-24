@@ -4215,25 +4215,30 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // SIX docks since T-0106, up from four: the two warehouses whose dock the
-    // dossier states, plus four of the five South Water landings the owner's
-    // 2026-08-18 ruling reconstructed (J. H. Kinzie's and Jones's, and now
-    // Carpenter's and Peck's). The count moved because the BANK moved, not the
-    // rule: the wharf layer used to read only the forks tracing window, which
-    // closes at local E 390, and so refused three frontages east of it for
-    // standing off untraced bank. They were never untraced — tools/
-    // trace_shoreline.py has carried the same waterline off the same 1834 sheet
-    // past the drawbridge since 2026-08-10, and the generator now composes both
-    // windows the way generators/terrain_gen.py already did.
+    // SEVEN docks, and the count is the sum of two runs that landed together.
+    // The two warehouses whose dock the dossier states; the four South Water
+    // landings the owner's 2026-08-18 ruling reconstructed that are drawable
+    // (J. H. Kinzie's, Jones's, and — since T-0106 — Carpenter's and Peck's);
+    // and Robert A. Kinzie's storehouse on the WEST bank at Wolf Point, the
+    // first landing this layer put on that shore (T-0107), which T-0062's
+    // South-Water-only pass had left with no candidate at all.
     //
-    // ONE refusal remains and it is a different kind: Harmon & Loomis's frontage
-    // IS reached by the trace, and the modelled channel gives only 0.48 m of
-    // water at its deck face against the 0.50 m floor asserted just below. It is
-    // refused by a SOUNDING, in writing, on the record (clause 5b) rather than
-    // by a gap in the trace. A wharf appearing or a refusal disappearing without
-    // this line moving is a rule change nobody reviewed.
+    // T-0106 moved the count because the BANK moved, not the rule. The layer
+    // used to read only the forks tracing window, which closes at local E 390,
+    // and refused three frontages east of it for standing off untraced bank.
+    // They were never untraced — tools/trace_shoreline.py has carried the same
+    // waterline off the same 1834 sheet past the drawbridge since 2026-08-10,
+    // and the generator now composes both windows the way terrain_gen.py did.
+    //
+    // ONE refusal remains and it is a different kind from the three it replaces:
+    // Harmon & Loomis's frontage IS reached by the trace, and the modelled
+    // channel gives only 0.48 m under its deck face against the 0.50 m floor
+    // asserted just below. It is refused by a SOUNDING, in writing, on the
+    // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
+    // a refusal disappearing without this line moving is a rule change nobody
+    // reviewed.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 6 && docks.verts > 0 && docks.keepOut === 6
+      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
         && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
@@ -4257,7 +4262,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 6 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 7 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
@@ -4306,6 +4311,40 @@ for (const [label, viewport, touch] of [
     check(`${label}: aiming at a wharf opens the warehouse it serves`,
       dockPick.includes('newberry_dole_warehouse'),
       `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
+
+    // AND THE SAME, ON THE OTHER SHORE (T-0107). The capture above stands on the
+    // SOUTH bank, so it proves the layer reads from one bank and says nothing
+    // about the west one — which is exactly the shape of the gap T-0107 closed
+    // in the data, and there is no reason to leave it open in the gate. Stand on
+    // the west bank outside Robert Kinzie's own river wall, 7 m back along the
+    // deck's waterward normal (bearing 45.3, the same geometry the Newberry
+    // stand uses), and hold the clock so the river cannot supply the difference.
+    await page.evaluate(() => window.__chicago4d.walker.teleport(
+      { local_e: -58.3, local_n: -62.0, yaw_deg: 45.3, pitch_deg: -6 }));
+    await page.waitForTimeout(350);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const westWith = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
+    const westWithout = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
+    const westPick = await page.evaluate(() => {
+      const hits = [];
+      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
+        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
+          const hit = window.__chicago4d.pick({ x, y });
+          if (hit?.id) hits.push(hit.id);
+        }
+      }
+      return hits;
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const dWest = signatureDistance(westWith, westWithout);
+    check(`${label}: the west bank's landing reaches the screen from Wolf Point`,
+      dWest.worst >= 6 && dWest.mean >= 0.3,
+      `cell delta mean ${dWest.mean?.toFixed(2)}, worst ${dWest.worst} (need worst>=6)`);
+    check(`${label}: aiming at the west bank's landing opens Robert Kinzie's store`,
+      westPick.includes('robert_kinzie_store'),
+      `25 aims returned [${[...new Set(westPick)].join(', ') || 'nothing'}]`);
 
     // Nothing grows through a plank floor (T-0124; T-0085 was the first
     // sighting). The placer is asked directly, at the centre of every deck

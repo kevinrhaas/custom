@@ -53,12 +53,32 @@ ledger was never given the same protection.
 A conflict is SAFE, because it stops you. A clean merge of two appends to a numbered
 ledger is silent, and only a human reading the file catches it.
 
-## Not hypothetical, and not the only instance
+## Corrected: there are no standing duplicates, and the reason matters
 
-L4, L31 and L36 are ALREADY duplicated on dev today — verified on `origin/dev`, so they
-predate this run and were not introduced by it. Nobody has noticed, which is the point: a
-liberty is a declared invention a visitor can read, and two of them answering to one number
-means a citation like "docs/LIBERTIES.md L36" resolves to two different claims.
+An earlier draft of this ticket claimed L4, L31 and L36 were already duplicated on dev.
+**That was wrong, and the mistake is instructive enough to keep.** It came from counting
+with `grep -oE "^### L[0-9]+"`, which truncates the ledger's LETTERED SUB-ENTRIES — L4a,
+L31a through L31g, L36a — down to their parent number and reports them as repeats. Nine
+such sub-entries exist. Counted correctly, with `^### L[0-9]+[a-z]*`, **dev has no
+duplicate liberty numbers at all** once today's two were resolved.
+
+So a duplicate checker has to know that `L31` and `L31a` are different entries, and that
+a sub-entry is deliberate rather than a collision. A naive numeric check will cry wolf
+nine times on the current file — which is worse than no check, because a gate that is
+always red gets switched off.
+
+## The instances that ARE real, all from one afternoon
+
+- **L177** — the fort's picket head and T-0104's Lake-face street line, both appended, file
+  auto-merged clean, duplicate committed.
+- **L179** — the fort's picket head (after renumbering) and T-0107's west-bank landing, the
+  same way, hours later.
+- **L178** — not a duplicate but the same class of silence: Dearborn's worn track, appended
+  at end of file, landed under the trailing `## Resolved` heading, which the liberties gate
+  EXEMPTS from its still-an-invention check. A live invention filed as discharged.
+
+All three were found by a human reading the file. `tools/check.sh` was green across every
+one of them.
 
 ## The fix, roughly
 
@@ -78,7 +98,10 @@ Whichever is chosen, the three standing duplicates are the acceptance test.
 
 - `tools/check.sh` fails on a duplicate liberty number, and is demonstrated failing by
   introducing one deliberately and removing it again.
-- L4, L31 and L36 are resolved — either renumbered with every citation carried, or
-  explained in place if they turn out to be intentional.
+- The check distinguishes a lettered sub-entry (L31a) from a duplicate of its parent
+  (a second L31), and is demonstrated staying green on the nine sub-entries the file
+  already carries.
+- The `## Resolved` exemption is closed, so an entry appended at end of file cannot land
+  in it silently — L178 got there that way and was moved by hand.
 - If a merge driver or a stamp step is adopted, the reason is written next to it the way
   the changelog contract's is.

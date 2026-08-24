@@ -34,6 +34,31 @@ data: a record with no dock statement — the Temple Building's meeting house on
 the same frontage, the lumber landing, the ferry — still gets no wharf, and
 "why this frontage" is still answered by a record rather than by this file.
 
+THE WEST BANK WAS OUT OF THAT PASS BY CONSTRUCTION, NOT BY MEASUREMENT (T-0107).
+T-0062 stated its five docks on *South Water merchants*, so the town's other two
+shores were never asked the question — the North Division shore only carried a
+wharf because Kinzie & Hunter's dock happens to be attested, and the west bank at
+Wolf Point carried none at all. That is a fact about which records were edited on
+2026-08-19, not a finding about Wolf Point. So the trade test now runs on every
+river frontage in the town, whichever bank it stands on, and on the west bank it
+selects exactly ONE record: Robert A. Kinzie's storehouse, "dealing in groceries
+and Indian goods", whose own position note had already reasoned that "a storehouse
+trading goods off canoes has a positive reason to face the landing" and set its
+facade due east onto the water on that reading. The other four buildings in that
+row — Wentworth's tavern, James Kinzie's residence, the Robinson and Caldwell
+cabins, Father Walker's log meeting house — state no dock and get none: lodging,
+dwelling and worship take nothing off a canoe, which is the Temple Building's
+exclusion carried across the river.
+
+AND THE BANK BENDS AT WOLF POINT, which is what clause 6 is for. This layer's
+deck is a RECTANGLE set on the bank's own tangent — one standard form, so its
+dimensions are invented once (L132) rather than once per site — and a rectangle
+run against a curve can put the far end of its face behind the bank, on dry
+ground. PR #258 measured that at Hogan's store, whose face runs from 1.10 m of
+water at one end to −0.34 m at the other, and refused it rather than invent a
+bespoke outline for one frontage. That refusal is now a clause with the measured
+figure on the record, the same way the trace-reach refusals carry theirs.
+
 WHAT IS DERIVED AND WHAT IS INVENTED — the division this file exists to keep
 auditable:
 
@@ -42,12 +67,14 @@ auditable:
       committed facade bearing, through `docs/GLB-CONTRACT.md`'s frame — the same
       three lines `tools/generate_business_signboards.py` composes.
     * WHERE the wharf stands: the traced 1834 bank line, nearest point to the
-      middle of that wall. The deck runs ALONG the bank's own tangent, not square
-      to the building — a wharf follows the river, and the two differ by 20° here.
-      That bank is TWO TRACING WINDOWS of the Wright 1834 sheet joined at a seam
-      they agree on to under a metre — `river.geojson` at the forks and
-      `shoreline.geojson` through the harbour reach — which is the composition
-      `terrain_spec.json` declares in `shore_runs`. See `bank_lines()`.
+      part of it IN FRONT OF that wall (clause 3b). The deck runs ALONG the
+      bank's own tangent, not square to the building — a wharf follows the
+      river, and the two differ by 20° here. That bank is TWO TRACING WINDOWS of
+      the Wright 1834 sheet joined at a seam they agree on to under a metre —
+      `river.geojson` at the forks and `shoreline.geojson` through the harbour
+      reach — which is the composition `terrain_spec.json` declares in
+      `shore_runs` and `terrain_gen.py` already measures a shore with (T-0106).
+      See `bank_lines()`.
     * how deep the water is at its face, and how far it stands clear of the
       building it serves: sampled from the committed heightfield, reported rather
       than assumed, so what the invented outline implies is on the record.
@@ -114,39 +141,6 @@ CRIB_W_M = 1.20         # the crib wall under the deck's outer face and its ends
 MIN_DEPTH_M = 0.50
 
 
-def _load(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _round(x: float, places: int = 2) -> float:
-    """Round toward a stable decimal so `--check` diffs bytes, not float noise."""
-    return round(x + 0.0, places) + 0.0
-
-
-def _to_enu(u: float, v: float, place: dict) -> tuple[float, float]:
-    """A footprint coordinate to local ENU metres.
-
-    `docs/GLB-CONTRACT.md`: polygon `u` → +X, polygon `v` → −Z, ENU `local_e` → +X
-    and `local_n` → −Z, and the node's yaw is `-rotation_deg` about +Y. Identical
-    to `tools/generate_business_signboards.py::_to_enu`, deliberately: two layers
-    reading the same frame two ways is how a building grows two front walls.
-    """
-    th = math.radians(-(place.get("rotation_deg") or 0.0))
-    x, z = u, -v
-    xr = x * math.cos(th) + z * math.sin(th)
-    zr = -x * math.sin(th) + z * math.cos(th)
-    return (place.get("local_e") or 0.0) + xr, (place.get("local_n") or 0.0) - zr
-
-
-def _front_edge(polygon: list) -> tuple[float, float, float]:
-    """The wall the record faces out of: the footprint's max-`v` edge."""
-    vmax = max(p[1] for p in polygon)
-    on = [p[0] for p in polygon if abs(p[1] - vmax) < 1e-6]
-    if len(on) < 2:
-        return 0.0, 0.0, vmax
-    return min(on), max(on), vmax
-
-
 # Weakest first. A run composed of two traced windows carries the weaker of the
 # two grades, never the better one: a line is only as good as its worst stretch.
 CONF_ORDER = ("conjectural", "reconstructed", "inferred", "documented", "attested")
@@ -186,9 +180,56 @@ def _seam(run: list, p: tuple) -> tuple[float, int, float]:
     return best
 
 
+def _traced_in(bank: dict, foot_s: float) -> str | None:
+    """Which of a composed run's tracing windows the foot at `foot_s` lies in.
+
+    `None` for a bank that is not composed — including the ones `selftest()`
+    builds by hand, which have no window at all.
+    """
+    members = bank.get("members") or []
+    if len(members) < 2:
+        return members[0]["id"] if members else None
+    s0 = bank.get("base_s0", 0.0)
+    return (members[0]["id"] if s0 <= foot_s <= s0 + bank.get("base_len", 0.0)
+            else members[1]["id"])
+
+
 def _run_length(points: list) -> float:
     return sum(math.hypot(b[0] - a[0], b[1] - a[1])
                for a, b in zip(points, points[1:]))
+
+
+def _load(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _round(x: float, places: int = 2) -> float:
+    """Round toward a stable decimal so `--check` diffs bytes, not float noise."""
+    return round(x + 0.0, places) + 0.0
+
+
+def _to_enu(u: float, v: float, place: dict) -> tuple[float, float]:
+    """A footprint coordinate to local ENU metres.
+
+    `docs/GLB-CONTRACT.md`: polygon `u` → +X, polygon `v` → −Z, ENU `local_e` → +X
+    and `local_n` → −Z, and the node's yaw is `-rotation_deg` about +Y. Identical
+    to `tools/generate_business_signboards.py::_to_enu`, deliberately: two layers
+    reading the same frame two ways is how a building grows two front walls.
+    """
+    th = math.radians(-(place.get("rotation_deg") or 0.0))
+    x, z = u, -v
+    xr = x * math.cos(th) + z * math.sin(th)
+    zr = -x * math.sin(th) + z * math.cos(th)
+    return (place.get("local_e") or 0.0) + xr, (place.get("local_n") or 0.0) - zr
+
+
+def _front_edge(polygon: list) -> tuple[float, float, float]:
+    """The wall the record faces out of: the footprint's max-`v` edge."""
+    vmax = max(p[1] for p in polygon)
+    on = [p[0] for p in polygon if abs(p[1] - vmax) < 1e-6]
+    if len(on) < 2:
+        return 0.0, 0.0, vmax
+    return min(on), max(on), vmax
 
 
 def bank_lines() -> list[dict]:
@@ -401,6 +442,219 @@ def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple, float, floa
     return best
 
 
+def _face_stations(face: tuple, tangent: tuple, half: float) -> list[tuple]:
+    """Where the depth under the deck's face is sampled, at about 1 m intervals.
+
+    THREE POINTS WERE NOT ENOUGH AND THE BEND AT WOLF POINT IS WHY (T-0107). The
+    record has always reported the depth at the face's two ends and its middle,
+    and that is what it still reports; but a deck outline is a RECTANGLE run
+    against a bank that curves, so the shallowest metre of a face is not obliged
+    to be one of those three. Sampling the run is what lets clause 6 answer "is
+    this deck afloat" about the whole face instead of about three points of it.
+    """
+    n = max(3, int(round(2.0 * half)) + 1)
+    return [(face[0] + tangent[0] * t, face[1] + tangent[1] * t)
+            for t in (-half + 2.0 * half * i / (n - 1) for i in range(n))]
+
+
+def derive_one(sid: str, sc: dict, banks: list, field) -> tuple[str | None, dict | None]:
+    """One candidate through the clause table: ('wharf'|'refused'|None, row).
+
+    Split out of `build_record` by T-0107 so the clauses can be fired on
+    constructed frontages by `selftest()` as well as on the committed sidecars. A
+    refusal clause that never fires on the dataset is a clause nobody has seen
+    work, and clause 6 refuses nothing in the town as it stands — every drawn
+    face is afloat by a metre. So it is proved on a stand built for it instead of
+    being taken on trust.
+    """
+    dock = (sc.get("attributes") or {}).get("dock")
+    if not isinstance(dock, dict) or not dock.get("value"):
+        return None, None                                        # clause 1
+    grade = dock.get("confidence")
+    if grade not in DOCK_GRADES:
+        return "refused", {"structure_id": sid, "why": (
+            f"its dock is graded {grade!r}, which is not a grade this "
+            "project's confidence model has. A statement this layer cannot "
+            "classify is a statement it does not draw.")}         # clause 2
+
+    place = sc.get("placement") or {}
+    poly = (sc.get("footprint") or {}).get("polygon") or []
+    if len(poly) < 3:
+        return "refused", {"structure_id": sid,
+                           "why": "no footprint polygon — no wall to serve."}
+    u0, u1, vmax = _front_edge(poly)                              # clause 3
+    wall_a = _to_enu(u0, vmax, place)
+    wall_b = _to_enu(u1, vmax, place)
+    mid = ((wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0)
+    frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
+
+    half = frontage / 2.0 + APRON_M
+
+    # CLAUSE 3b (T-0106): the foot is the nearest bank IN FRONT OF the wall, not
+    # the nearest bank anywhere. See `in_front_of` for the re-entrant that made
+    # the difference. The choice is made on the clipped stretches; the tangent
+    # and the two arclengths are then read off the FULL run, so clause 4b still
+    # measures the deck against the whole traced bank.
+    candidates = [(nearest_on(run, mid), b)
+                  for b in banks
+                  for run in in_front_of(b["points"], wall_a, wall_b, half)]
+    if not candidates:
+        return "refused", {"structure_id": sid, "why": (
+            "no traced bank stands in front of its river wall — nothing within "
+            "the deck's own run of the wall's line — so there is no frontage "
+            "here for a landing to be derived from.")}            # clause 3b
+    (_d, chosen, _t, _s, _l), bank = min(candidates, key=lambda r: r[0][0])
+    _d, foot, tangent, foot_s, bank_len = nearest_on(bank["points"], chosen)
+    dist = math.hypot(mid[0] - foot[0], mid[1] - foot[1])
+    # Outward is across the bank, away from the building it serves. Deriving
+    # it from the building rather than from the polygon's winding is what
+    # keeps a wharf on the water when a bank line is re-traced the other way.
+    nx, ny = -tangent[1], tangent[0]
+    if (foot[0] - mid[0]) * nx + (foot[1] - mid[1]) * ny < 0:
+        nx, ny = -nx, -ny
+
+    # CLAUSE 4b (T-0062): every metre of the deck must stand off a traced
+    # metre of bank. The 1834 bank polylines end at local E 390 and three
+    # stated South Water landings lie east of that; without this clause all
+    # three snapped to the trace's terminal vertex and stacked on one point
+    # — a modelling error wearing three wharves' clothes. A landing refused
+    # here is STATED AND NOT DRAWN until the trace reaches it (T-0106),
+    # because a deck derived from a bank that is not there is derived from
+    # nothing.
+    if foot_s - half < 0.0 or foot_s + half > bank_len:
+        return "refused", {"structure_id": sid, "why": (
+            "its frontage lies beyond the traced 1834 bank line, so part of "
+            "its deck would stand off bank nobody traced. The dock "
+            "statement stands; the landing is drawn when the trace reaches "
+            "this reach (T-0106).")}                              # clause 4b
+
+    heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
+    face = (foot[0] + nx * FACE_OUT_M, foot[1] + ny * FACE_OUT_M)
+    corners = [                       # heel-left, heel-right, face-right, face-left
+        (heel[0] - tangent[0] * half, heel[1] - tangent[1] * half),
+        (heel[0] + tangent[0] * half, heel[1] + tangent[1] * half),
+        (face[0] + tangent[0] * half, face[1] + tangent[1] * half),
+        (face[0] - tangent[0] * half, face[1] - tangent[1] * half),
+    ]
+
+    # The deck may not reach the building it serves: a wharf that laps a wall
+    # is a modelling error wearing a wharf's clothes, and the two placements
+    # were authored with exactly this strip left clear ("about 8 m back from
+    # the traced bank to leave the dock its ground"; "about 14 m back ... so
+    # the strip between it and the water can carry the dock").
+    clearance = min(nearest_on([wall_a, wall_b], c)[0] for c in corners[:2])
+    if clearance < 1.0:
+        return "refused", {"structure_id": sid, "why": (
+            f"its heel would come within {clearance:.2f} m of the building's "
+            "own river wall. A wharf that laps the wall it serves is a "
+            "modelling error, and this record refuses to draw one.")}  # clause 4
+
+    # What the invented outline implies, measured on the committed bed rather
+    # than assumed: how much water a vessel lying at this face would have. The
+    # three the record reports are the face's ends and its middle; the run at
+    # 1 m is what clauses 5 and 6 are decided on.
+    stations = _face_stations(face, tangent, half)
+    run = [-field.height(e, n) if field and field.covers(e, n) else None
+           for e, n in stations]
+    depths = [run[0], run[len(run) // 2], run[-1]]
+    if any(d is None for d in run):
+        off = next(i for i, d in enumerate(run) if d is None)
+        where = -half + 2.0 * half * off / (len(run) - 1)
+        return "refused", {"structure_id": sid, "why": (
+            "its face falls outside the modelled ground "
+            f"{abs(where):.1f} m from its centre, so the depth at it "
+            "cannot be measured and the wharf is not drawn.")}    # clause 5
+
+    # CLAUSE 6 (T-0107): THE FACE HAS TO BE AFLOAT ALONG ITS WHOLE RUN. The deck
+    # outline is a rectangle set on the bank's own tangent, and THE BANK BENDS —
+    # at Wolf Point and again in the wedge where Lake Street runs out at the
+    # South Branch. Where it bends away from the deck, the far end of a face
+    # standing 6 m off the tangent lands BEHIND the bank, on dry ground: PR #258
+    # measured exactly that at Hogan's store, whose face runs from 1.10 m of
+    # water at one end to −0.34 m at the other, and refused it rather than invent
+    # a bespoke outline for one frontage. That refusal is the rule now. A deck
+    # whose face is not in water is not a landing; the alternative — a bespoke
+    # outline per bend — would make every wharf's shape a judgement instead of a
+    # derivation, and the standard form is the whole reason this layer can claim
+    # its dimensions are invented ONCE (L132) rather than once per site.
+    least = min(run)
+    if least <= 0.0:
+        off = min(range(len(run)), key=lambda i: run[i])
+        where = -half + 2.0 * half * off / (len(run) - 1)
+        return "refused", {"structure_id": sid, "why": (
+            f"its deck's face would stand on dry ground: the bed rises to "
+            f"{-least:.2f} m ABOVE the water plane {abs(where):.1f} m from the "
+            "face's centre, because the bank bends away from the standard "
+            "rectangular outline here. The dock statement stands; a landing is "
+            "drawn when a deck of the standard form is afloat along its whole "
+            "face, and this project will not invent a bespoke outline for one "
+            "frontage.")}                                          # clause 6
+
+    # CLAUSE 5b (T-0106): AFLOAT IS NOT THE SAME AS WORKING. Clause 6 asks
+    # whether the face is in water at all; this asks whether there is enough of
+    # it to lie at. `tools/smoke_renderer.mjs` has required more than 0.50 m at
+    # every drawn face since T-0041 and the generator never read the number
+    # back — until T-0106 the two could not disagree, because the only bank this
+    # layer could see was the forks window, where the channel gives 1.5-1.7 m
+    # six metres out. THE DRAWBRIDGE REACH IS SHALLOWER: the committed terrain
+    # gives 0.76-0.88 m six metres off the south bank between E +560 and E +700,
+    # and where the traced bank also carries a step across a frontage, one corner
+    # of a straight deck ends up nearer the bank than its foot is and shallower
+    # still. Harmon & Loomis's face reads 0.48 m and is refused here.
+    #
+    # THIS CLAUSE AND CLAUSE 6 OVERLAP, AND THIS IS THE STRICTER OF THE TWO —
+    # 0.50 m against 0.0 m, on the same 1 m stations. Both are kept, in this
+    # order, because they diagnose different things and clause 6 names the worse
+    # one: a face on DRY GROUND is a bent outline and says so, while a face
+    # afloat in too little water is a frontage the river does not serve. Merging
+    # them into one clause would either lose clause 6's reading or slacken this
+    # one to 0.0 m, and neither is a trade this layer should make.
+    if least < MIN_DEPTH_M:
+        off = min(range(len(run)), key=lambda i: run[i])
+        where = -half + 2.0 * half * off / (len(run) - 1)
+        return "refused", {"structure_id": sid, "why": (
+            f"the modelled channel gives only {least:.2f} m of water under its "
+            f"face {abs(where):.1f} m from the centre, under the "
+            f"{MIN_DEPTH_M:.2f} m this layer requires of a working landing. Its "
+            "frontage IS reached by the traced bank; what refuses it is a "
+            "sounding and not a gap in the trace. The dock statement stands and "
+            "the landing is not drawn.")}                          # clause 5b
+
+    return "wharf", {
+        "structure_id": sid,
+        "name": sc.get("name"),
+        "dock_confidence": grade,
+        "dock_sources": dock.get("sources") or [],
+        "confidence": "reconstructed",
+        "bank": bank["name"],
+        "bank_confidence": bank["confidence"],
+        "bank_sources": bank["sources"],
+        # WHICH TRACING WINDOW this particular deck stands on (T-0106). The bank
+        # is two windows of one sheet joined at a seam they agree on to under a
+        # metre, and a reader should not have to work out from an easting which
+        # of the two carried any given landing. `.get` because `selftest()`
+        # builds a bank by hand, and a constructed stand has no window.
+        "bank_traced_in": _traced_in(bank, foot_s),
+        "bank_foot_local_enu_m": [_round(foot[0]), _round(foot[1])],
+        "bank_tangent": [_round(tangent[0], 4), _round(tangent[1], 4)],
+        "waterward_normal": [_round(nx, 4), _round(ny, 4)],
+        "deck_quad_local_enu_m": [[_round(c[0]), _round(c[1])] for c in corners],
+        "deck_length_m": _round(2 * half),
+        "deck_width_m": _round(FACE_OUT_M + HEEL_IN_M),
+        "frontage_served_m": _round(frontage),
+        "wall_to_bank_m": _round(dist),
+        "clearance_to_wall_m": _round(clearance),
+        "depth_at_face_m": [_round(d) for d in depths],
+        # The shallowest of the 1 m stations, which is the figure clause 6 is
+        # decided on. Reported so the margin a drawn landing passes by is on the
+        # record rather than in the generator's head — the same reason
+        # depth_at_face_m is reported rather than assumed.
+        "least_depth_at_face_m": _round(min(run)),
+        "face_stations": len(run),
+        "facade_bearing_deg": _round(place.get("rotation_deg") or 0.0, 1),
+    }
+
+
 def build_record() -> tuple[list, list, list]:
     index = _load(SIDECARS / "index.json")
     banks = bank_lines()
@@ -413,164 +667,11 @@ def build_record() -> tuple[list, list, list]:
         path = SIDECARS / f"{sid}.json"
         if not sid or not path.exists():
             continue
-        sc = _load(path)
-        dock = (sc.get("attributes") or {}).get("dock")
-        if not isinstance(dock, dict) or not dock.get("value"):
-            continue                                             # clause 1
-        grade = dock.get("confidence")
-        if grade not in DOCK_GRADES:
-            refused.append({"structure_id": sid, "why": (
-                f"its dock is graded {grade!r}, which is not a grade this "
-                "project's confidence model has. A statement this layer cannot "
-                "classify is a statement it does not draw.")})
-            continue                                             # clause 2
-
-        place = sc.get("placement") or {}
-        poly = (sc.get("footprint") or {}).get("polygon") or []
-        if len(poly) < 3:
-            refused.append({"structure_id": sid,
-                            "why": "no footprint polygon — no wall to serve."})
-            continue                                             # clause 3
-        u0, u1, vmax = _front_edge(poly)
-        wall_a = _to_enu(u0, vmax, place)
-        wall_b = _to_enu(u1, vmax, place)
-        mid = ((wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0)
-        frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
-
-        half = frontage / 2.0 + APRON_M
-
-        # CLAUSE 3b (T-0106): the foot is the nearest bank IN FRONT OF the wall,
-        # not the nearest bank anywhere. See `in_front_of` for the re-entrant
-        # that made the difference. The choice is made on the clipped stretches;
-        # the tangent and the two arclengths are then read off the FULL run, so
-        # clause 4b still measures the deck against the whole traced bank.
-        candidates = [(nearest_on(run, mid), b)
-                      for b in banks
-                      for run in in_front_of(b["points"], wall_a, wall_b, half)]
-        if not candidates:
-            refused.append({"structure_id": sid, "why": (
-                "no traced bank stands in front of its river wall — nothing "
-                "within the deck's own run of the wall's line — so there is no "
-                "frontage here for a landing to be derived from.")})
-            continue                                             # clause 3b
-        (dist, chosen, _t, _s, _l), bank = min(candidates, key=lambda r: r[0][0])
-        dist, foot, tangent, foot_s, bank_len = nearest_on(bank["points"], chosen)
-        dist = math.hypot(mid[0] - foot[0], mid[1] - foot[1])
-        # Outward is across the bank, away from the building it serves. Deriving
-        # it from the building rather than from the polygon's winding is what
-        # keeps a wharf on the water when a bank line is re-traced the other way.
-        nx, ny = -tangent[1], tangent[0]
-        if (foot[0] - mid[0]) * nx + (foot[1] - mid[1]) * ny < 0:
-            nx, ny = -nx, -ny
-
-        # CLAUSE 4b (T-0062): every metre of the deck must stand off a traced
-        # metre of bank. The clause is UNCHANGED and still refuses; what changed
-        # under T-0106 is the bank it measures against. It used to see only the
-        # forks tracing window, which closes at local E +390, so three stated
-        # South Water landings east of that all snapped to the window's terminal
-        # vertex and stacked on one point — a modelling error wearing three
-        # wharves' clothes. `bank_lines()` now composes the same waterline
-        # `terrain_gen.py` uses, so the trace HAS reached this reach and those
-        # three draw. A deck derived from a bank that is not there is still
-        # derived from nothing, and is still refused here.
-        if foot_s - half < 0.0 or foot_s + half > bank_len:
-            refused.append({"structure_id": sid, "why": (
-                "its frontage lies beyond the traced 1834 bank line, so part of "
-                "its deck would stand off bank nobody traced. The dock "
-                "statement stands; the landing is drawn when the trace reaches "
-                "this reach.")})
-            continue                                             # clause 4b
-
-        heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
-        face = (foot[0] + nx * FACE_OUT_M, foot[1] + ny * FACE_OUT_M)
-        corners = [                       # heel-left, heel-right, face-right, face-left
-            (heel[0] - tangent[0] * half, heel[1] - tangent[1] * half),
-            (heel[0] + tangent[0] * half, heel[1] + tangent[1] * half),
-            (face[0] + tangent[0] * half, face[1] + tangent[1] * half),
-            (face[0] - tangent[0] * half, face[1] - tangent[1] * half),
-        ]
-
-        # The deck may not reach the building it serves: a wharf that laps a wall
-        # is a modelling error wearing a wharf's clothes, and the two placements
-        # were authored with exactly this strip left clear ("about 8 m back from
-        # the traced bank to leave the dock its ground"; "about 14 m back ... so
-        # the strip between it and the water can carry the dock").
-        clearance = min(nearest_on([wall_a, wall_b], c)[0] for c in corners[:2])
-        if clearance < 1.0:
-            refused.append({"structure_id": sid, "why": (
-                f"its heel would come within {clearance:.2f} m of the building's "
-                "own river wall. A wharf that laps the wall it serves is a "
-                "modelling error, and this record refuses to draw one.")})
-            continue                                             # clause 4
-
-        # What the invented outline implies, measured on the committed bed rather
-        # than assumed: how much water a vessel lying at this face would have.
-        depths = []
-        for t in (-half, 0.0, half):
-            e = face[0] + tangent[0] * t
-            n = face[1] + tangent[1] * t
-            depths.append(-field.height(e, n) if field and field.covers(e, n) else None)
-        if any(d is None for d in depths):
-            refused.append({"structure_id": sid, "why": (
-                "its face falls outside the modelled ground, so the depth at it "
-                "cannot be measured and the wharf is not drawn.")})
-            continue                                             # clause 5
-
-        # CLAUSE 5b (T-0106): AND THE SOUNDING HAS TO BE A WORKING ONE. Clause 5
-        # only asks whether the depth could be measured; this one reads it. A
-        # deck whose face stands in less water than MIN_DEPTH_M is a deck on the
-        # beach — nothing can lie at it — and `tools/smoke_renderer.mjs` has
-        # asserted exactly that floor on every drawn wharf since T-0041. Until
-        # T-0106 the two instruments could not disagree, because the only bank
-        # this layer could see was the forks window, where the channel gives
-        # 1.5-1.7 m at six metres out. THE DRAWBRIDGE REACH IS SHALLOWER: the
-        # committed terrain gives 0.76-0.88 m six metres off the south bank
-        # between E +560 and E +700, and where the traced bank also carries a
-        # step across a frontage, one corner of a straight 18 m deck ends up
-        # nearer the bank than its foot is and shallower still. Refusing here,
-        # with the sounding in the reason, puts that on the record in writing
-        # instead of leaving a browser assertion to fail after the fact. THE
-        # DEPTH FIELD ITSELF IS NOT THIS LAYER'S TO CHANGE and is untouched by
-        # this run: it comes out of generators/terrain_gen.py from the reach
-        # beds and channel profile in terrain_spec.json.
-        if min(depths) < MIN_DEPTH_M:
-            refused.append({"structure_id": sid, "why": (
-                f"the modelled channel gives only {min(depths):.2f} m of water at "
-                f"its face, under the {MIN_DEPTH_M:.2f} m this layer requires of a "
-                "working landing. Its frontage IS reached by the traced bank; what "
-                "refuses it is a sounding and not a gap in the trace. The dock "
-                "statement stands and the landing is not drawn.")})
-            continue                                             # clause 5b
-
-        wharves.append({
-            "structure_id": sid,
-            "name": sc.get("name"),
-            "dock_confidence": grade,
-            "dock_sources": dock.get("sources") or [],
-            "confidence": "reconstructed",
-            "bank": bank["name"],
-            "bank_confidence": bank["confidence"],
-            "bank_sources": bank["sources"],
-            # WHICH TRACING WINDOW this particular deck stands on. The bank is
-            # two windows of one sheet joined at a seam they agree on to under a
-            # metre, and a reader should not have to work out from an easting
-            # which of the two carried any given landing.
-            "bank_traced_in": (bank["members"][0]["id"]
-                               if len(bank["members"]) == 1
-                               or bank["base_s0"] <= foot_s <= bank["base_s0"] + bank["base_len"]
-                               else bank["members"][1]["id"]),
-            "bank_foot_local_enu_m": [_round(foot[0]), _round(foot[1])],
-            "bank_tangent": [_round(tangent[0], 4), _round(tangent[1], 4)],
-            "waterward_normal": [_round(nx, 4), _round(ny, 4)],
-            "deck_quad_local_enu_m": [[_round(c[0]), _round(c[1])] for c in corners],
-            "deck_length_m": _round(2 * half),
-            "deck_width_m": _round(FACE_OUT_M + HEEL_IN_M),
-            "frontage_served_m": _round(frontage),
-            "wall_to_bank_m": _round(dist),
-            "clearance_to_wall_m": _round(clearance),
-            "depth_at_face_m": [_round(d) for d in depths],
-            "facade_bearing_deg": _round(place.get("rotation_deg") or 0.0, 1),
-        })
+        kind, row = derive_one(sid, _load(path), banks, field)
+        if kind == "wharf":
+            wharves.append(row)
+        elif kind == "refused":
+            refused.append(row)
 
     wharves.sort(key=lambda w: w["structure_id"])
     refused.sort(key=lambda r: r["structure_id"])
@@ -582,9 +683,11 @@ def record(wharves: list, refused: list, banks: list) -> dict:
         "_doc": (
             "The town's river wharves and landings — a plank deck on timber "
             "cribs at each frontage whose own record states a dock: the two "
-            "forwarding warehouses whose dock the dossier states (T-0041), and "
+            "forwarding warehouses whose dock the dossier states (T-0041), "
             "the five South Water merchant landings reconstructed under the "
-            "owner's ruling of 2026-08-18 (T-0062). NOT structure "
+            "owner's ruling of 2026-08-18 (T-0062), and Robert A. Kinzie's "
+            "storehouse on the WEST bank at Wolf Point, the first landing this "
+            "layer has put on that shore (T-0107). NOT structure "
             "records and NOT geometry that comes out of Blender: a deck on cribs "
             "is a box on boxes standing on ground and water this project already "
             "draws, so it is derived from the committed footprint, the traced "
@@ -670,7 +773,18 @@ def record(wharves: list, refused: list, banks: list) -> dict:
                 "frontage in each record's own dock note — the trade that takes "
                 "goods off the water, the working reach the 2026-08-18 brief "
                 "shows crowded with masts, and the wharfing-out practice of the "
-                "south bank. Claimed at docs/LIBERTIES.md L145. Each wharf row "
+                "south bank. Claimed at docs/LIBERTIES.md L145. THE WEST BANK'S "
+                "ONE LANDING (T-0107) STANDS ON THE SAME FOOTING AND IS BOUNDED "
+                "BY ITS OWN RECORD'S TRADE: Robert A. Kinzie's storehouse at "
+                "Wolf Point dealt in 'groceries and Indian goods' (chicagology) "
+                "and its keeper is Andreas's 'Indian Traders — Robert A. "
+                "Kinzie, near Wentworth's tavern' (scan p. 235); the record's "
+                "committed position note had already reasoned that 'a "
+                "storehouse trading goods off canoes has a positive reason to "
+                "face the landing', which is why its facade was set due east "
+                "onto the water before any wharf layer existed. NO SOURCE "
+                "STATES A DOCK, WHARF OR LANDING ANYWHERE AT WOLF POINT. Each "
+                "wharf row "
                 "below reports its own dock_confidence, which is the honest "
                 "division between the stated docks and the invented ones."
             ),
@@ -686,10 +800,42 @@ def record(wharves: list, refused: list, banks: list) -> dict:
                 "rule draws them too. The selection still lives in the data: a "
                 "record with no dock statement — the Temple Building's meeting "
                 "house on the same frontage, the lumber landing, the ferry — "
-                "still gets no wharf. Read the clauses and their reasons in "
+                "still gets no wharf. SINCE T-0107 THE TEST RUNS ON EVERY RIVER "
+                "FRONTAGE IN THE TOWN, WHICHEVER BANK IT STANDS ON. T-0062 "
+                "stated its docks on South Water merchants, so the other two "
+                "shores were never asked: the North Division shore carried a "
+                "wharf only because Kinzie & Hunter's dock is attested, and the "
+                "WEST bank at Wolf Point carried none at all — which was a fact "
+                "about which records had been edited, not a finding about Wolf "
+                "Point. On the west bank the trade test selects exactly one "
+                "record, Robert A. Kinzie's storehouse; the row's other four — "
+                "Wentworth's tavern, James Kinzie's residence, the Robinson and "
+                "Caldwell cabins and Father Walker's log meeting house — state "
+                "no dock and get none, because lodging, dwelling and worship "
+                "take nothing off a canoe. Read the clauses and their reasons in "
                 "tools/generate_river_wharves.py."
             ),
             "dock_grades": list(DOCK_GRADES),
+            "afloat_clause": (
+                "CLAUSE 6, ADDED BY T-0107: the deck's face must stand in water "
+                "along its whole run, sampled at about 1 m on the committed "
+                "heightfield, and a face that would stand on dry ground is "
+                "refused with the measured rise on the record. The deck outline "
+                "is a rectangle set on the bank's own tangent — one standard "
+                "form, so its dimensions are invented once (L132) rather than "
+                "once per site — and THE BANK BENDS, at Wolf Point and again in "
+                "the wedge where Lake Street runs out at the South Branch, so a "
+                "rectangle run against the curve can put the far end of its face "
+                "behind the bank. PR #258 measured that at Hogan's store (1.10 m "
+                "of water at one end of the face, −0.34 m at the other) and "
+                "refused it rather than invent a bespoke outline for one "
+                "frontage; this clause is that refusal made a rule. It refuses "
+                "nothing in the town as it stands — every drawn face is afloat "
+                "by more than a metre, the least of them 1.06 m at Robert "
+                "Kinzie's — so it is proved on constructed frontages instead: "
+                "`python3 tools/generate_river_wharves.py --selftest`, which "
+                "`--check` runs, and which tools/check.sh already invokes."
+            ),
         },
         "form": {
             "face_out_m": {
@@ -699,15 +845,15 @@ def record(wharves: list, refused: list, banks: list) -> dict:
                     "INVENTED. The deck's face stands 6.0 m beyond the traced 1834 "
                     "bank line. No source gives the reach of any of these docks. "
                     "What bounds it is the bed this project has already modelled: "
-                    f"at 6 m out the channel gives {_depth_span(wharves)}, so a "
-                    "lighter or a scow lies at the face and a loaded lake schooner "
-                    "does not — the restrained reading, chosen because a longer "
-                    "deck would be a claim about the river trade's tonnage as well "
-                    "as about the dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED "
-                    "so that what the invented reach implies is on the record and "
-                    "not in somebody's head, and the span is recomputed from the "
-                    "committed heightfield every time this record is derived so it "
-                    "cannot go stale behind a new landing."
+                    f"at 6 m out the channel gives {_depth_span(wharves)}, so a lighter or a "
+                    "scow lies at the face and a loaded lake schooner does not — "
+                    "the restrained reading, chosen because a longer deck would be "
+                    "a claim about the river trade's tonnage as well as about the "
+                    "dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED so that what "
+                    "the invented reach implies is on the record and not in "
+                    "somebody's head, and the span is recomputed from the "
+                    "committed heightfield every time this record is derived "
+                    "so it cannot go stale behind a new landing."
                 ),
             },
             "heel_in_m": {
@@ -830,11 +976,119 @@ def record(wharves: list, refused: list, banks: list) -> dict:
     }
 
 
+# --- proving the clauses fire ---------------------------------------------- #
+#
+# CLAUSE 6 REFUSES NOTHING IN THE TOWN AS IT STANDS. Every drawn face is afloat
+# by more than a metre, so on the committed data the new clause is indistinguishable
+# from no clause at all — and a refusal nobody has ever seen work is a refusal this
+# project has only been told about. So the clause table is fired here on frontages
+# built for it: a straight bank, a flat bed, and one thing wrong at a time. It runs
+# inside `--check`, which `tools/check.sh` already invokes, so it costs no new gate
+# and cannot rot unnoticed.
+
+
+class _StubBed:
+    """A constructed bed: flat water, optionally dry or unmodelled past a line."""
+
+    def __init__(self, depth=1.2, dry_from_n=None, dry_to_n=None, rise=0.35,
+                 uncovered_from_n=None):
+        self.depth, self.rise = depth, rise
+        self.dry_from_n, self.dry_to_n = dry_from_n, dry_to_n
+        self.uncovered_from_n = uncovered_from_n
+
+    def covers(self, e, n):
+        return self.uncovered_from_n is None or n < self.uncovered_from_n
+
+    def height(self, e, n):
+        if self.dry_from_n is not None and n >= self.dry_from_n and (
+                self.dry_to_n is None or n <= self.dry_to_n):
+            return self.rise                 # ground standing above the water plane
+        return -self.depth
+
+
+_TEST_BANK = [{
+    "name": "self-test bank", "confidence": "reconstructed", "sources": [],
+    "points": [(0.0, -100.0), (0.0, 100.0)],
+}]
+
+# A bank that is TRACED and real but runs nowhere near the frontage — every
+# metre of it lies past the end of the wall's own line. Clause 3b is what tells
+# it apart from the bank in front of the wall; without that clause the nearest
+# point on this line is still "the nearest bank" and a deck gets built off it.
+_TEST_BANK_ASIDE = [{
+    "name": "self-test bank, off to one side", "confidence": "reconstructed",
+    "sources": [], "points": [(0.0, 60.0), (0.0, 160.0)],
+}]
+
+
+def _stand(local_n=0.0, frontage=7.0, grade="reconstructed", dock=True):
+    """A frontage whose river wall stands 12 m west of the self-test bank."""
+    sc = {"name": "self-test frontage", "attributes": {},
+          "placement": {"local_e": -18.0, "local_n": local_n, "rotation_deg": 90.0},
+          "footprint": {"polygon": [[0, 0], [frontage, 0], [frontage, 6], [0, 6]]}}
+    if dock:
+        sc["attributes"]["dock"] = {"value": True, "confidence": grade, "sources": []}
+    return sc
+
+
+def selftest() -> int:
+    cases = [
+        # (label, sidecar, bed, expected kind, a phrase the reason must carry,
+        #  and the bank to run it against)
+        ("a frontage in open water is drawn",
+         _stand(), _StubBed(), "wharf", None, _TEST_BANK),
+        ("CLAUSE 6: a face that runs onto dry ground at its end is refused",
+         _stand(), _StubBed(dry_from_n=2.0), "refused", "dry ground", _TEST_BANK),
+        ("CLAUSE 6: and a dry patch BETWEEN the reported three is refused too",
+         _stand(), _StubBed(dry_from_n=0.5, dry_to_n=1.5), "refused", "dry ground", _TEST_BANK),
+        ("CLAUSE 5: a face off the modelled ground is refused",
+         _stand(), _StubBed(uncovered_from_n=2.0), "refused", "modelled ground", _TEST_BANK),
+        ("CLAUSE 4b: a deck running past the trace's end is refused",
+         _stand(local_n=99.0), _StubBed(), "refused", "traced 1834 bank", _TEST_BANK),
+        ("CLAUSE 2: a dock graded outside the confidence model is refused",
+         _stand(grade="probably"), _StubBed(), "refused", "not a grade", _TEST_BANK),
+        ("CLAUSE 1: a record that states no dock is not a candidate",
+         _stand(dock=False), _StubBed(), None, None, _TEST_BANK),
+        # T-0106's two. Neither refuses anything in the town as it stands —
+        # clause 3b MOVES a foot rather than refusing one, and clause 5b refuses
+        # exactly one frontage — so both are fired here for the same reason
+        # T-0107 gave: a refusal nobody has watched work is one taken on trust.
+        ("CLAUSE 3b: a bank that runs nowhere near the wall is not its frontage",
+         _stand(), _StubBed(), "refused", "in front of", _TEST_BANK_ASIDE),
+        ("CLAUSE 5b: a face afloat but under the working depth is refused",
+         _stand(), _StubBed(depth=0.30), "refused", "working landing", _TEST_BANK),
+    ]
+    bad = 0
+    for label, sc, bed, want, phrase, bank in cases:
+        kind, row = derive_one("selftest_frontage", sc, bank, bed)
+        ok = kind == want and (phrase is None or phrase in (row or {}).get("why", ""))
+        detail = (row or {}).get("why", "") if kind == "refused" else (
+            f"least {row['least_depth_at_face_m']} m over {row['face_stations']} "
+            f"station(s)" if kind == "wharf" else "not a candidate")
+        print(f"  {'ok  ' if ok else 'FAIL'}  {label}\n          {detail[:150]}")
+        if not ok:
+            bad += 1
+    # The density itself is the claim in case 3: with the three points the record
+    # reports — the face's ends and its middle — that bed reads as open water.
+    bed = _StubBed(dry_from_n=0.5, dry_to_n=1.5)
+    three_look_wet = all(bed.height(6.0, n) < 0 for n in (-10.0, -3.5, 3.0))
+    print(f"  {'ok  ' if three_look_wet else 'FAIL'}  and the three reported points "
+          f"read that bed as open water, which is why the run is sampled at 1 m")
+    if not three_look_wet:
+        bad += 1
+    print("WHARF CLAUSES PASS" if not bad else f"WHARF CLAUSES FAIL — {bad} case(s)")
+    return 1 if bad else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
+    ap.add_argument("--selftest", action="store_true",
+                    help="fire the refusal clauses on constructed frontages")
     args = ap.parse_args()
+    if args.selftest:
+        return selftest()
     wharves, refused, banks = build_record()
     text = json.dumps(record(wharves, refused, banks), indent=2, ensure_ascii=False) + "\n"
     if args.check:
@@ -847,7 +1101,7 @@ def main() -> int:
             return 1
         print(f"verified {len(wharves)} river wharf/wharves "
               f"({len(refused)} frontage(s) refused with a reason)")
-        return 0
+        return selftest()
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)} — {len(wharves)} river wharf/wharves "
