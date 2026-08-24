@@ -131,6 +131,55 @@ ELL_SIDES = ("west", "east")
 # whose height the sources themselves dispute.
 STORIES = (1.0, 1.5, 2.0)
 
+# The eave band each storey count may stand in, in metres. Built up from the one
+# attested ceiling in this dataset: the Green Tree's seven and a half feet, 2.29 m,
+# which its own source calls low for a hotel. Floor structure and a plate add roughly a
+# third of a metre per storey, so a storey is about 2.6 m and the one-storey floor of
+# 2.35 m is already under the lowest room anybody in this town wrote down sleeping in —
+# and is the shortest wall that can still take the door this archetype hangs in it.
+#
+# NAMED HERE rather than written inline in `validate()` (T-0142) because the
+# reconstruction sampler has to draw an eave this archetype can actually carry, and it
+# could not ask. `tools/family_bands.eave_ceiling` reads this table the same way
+# `eave_floor` already reads `outbuilding_params.DOOR_SIZE_M` — asking the archetype is
+# the rule; retyping its limit into tools/ is the fault `family_bands` exists to end.
+WALL_HEIGHT_M = {1.0: (2.35, 3.4), 1.5: (2.9, 4.6), 2.0: (4.0, 6.2)}
+
+# The standing height a half storey needs under its ridge and behind its knee wall, and
+# the knee wall a record that says nothing about one gets. Both were written as bare
+# numbers inside validate(); they are named because `wall_height_band_m` reads them.
+HALF_STOREY_HEADROOM_M = 2.1
+KNEE_WALL_DEFAULT_M = 0.95
+KNEE_WALL_M = (0.3, 1.8)
+
+
+def wall_height_band_m(stories: float,
+                       knee_wall_m: float = KNEE_WALL_DEFAULT_M) -> tuple[float, float]:
+    """The eave band this archetype will actually BUILD at a storey count (T-0142).
+
+    `WALL_HEIGHT_M` is the coarse claim about storey heights; at 1.5 storeys it is not
+    the binding one. A half storey is a knee wall on top of a full storey, and
+    `validate()` refuses an eave that leaves under 2.1 m below the knee wall — so with
+    the default knee wall the real floor is 3.05 m, not 2.9. The two rules live in the
+    same validator and disagreed in silence: `tools/measure_family_deal.py` deals D6 at
+    the very bottom of its authored 10-12 ft band and the archetype refused three
+    houses in four hundred.
+
+    A record that carries its own knee wall gets its own floor; nothing here changes
+    what validate() accepts. This is the question a GENERATOR has to ask before it
+    samples — which part of a family's authored band this archetype can carry — and it
+    is answered here rather than retyped in tools/, for the same reason
+    `outbuilding_params.DOOR_SIZE_M` is asked for and not copied.
+    """
+    lo, hi = WALL_HEIGHT_M[float(stories)]
+    if float(stories) == 1.5:
+        # Plus one millimetre, which is the resolution every dimension in data/ is
+        # authored at. A floor sitting exactly ON the limit does not survive the
+        # subtraction validate() makes of it: 3.05 - 0.95 is 2.0999999999999996 in
+        # binary and the strict comparison refuses it.
+        lo = max(lo, round(knee_wall_m + HALF_STOREY_HEADROOM_M, 3) + 0.001)
+    return lo, hi
+
 # The frame module, in metres, by construction. 16 in is balloon framing's spacing;
 # 24 in is the wider spacing a braced frame uses between its heavy posts. These are the
 # numbers that make `construction` move a vertex rather than sit in the sidecar as an
@@ -219,7 +268,7 @@ class FrameDwellingParams:
     # The wall standing above the upper floor before the roof takes over — about three
     # feet. It is what makes a half storey habitable and what a gable-end window sits
     # above; with `stories` 1 or 2 it is unused.
-    knee_wall_m: float = 0.95
+    knee_wall_m: float = KNEE_WALL_DEFAULT_M
     roof_type: str = "gable"
     # Steeper than frame_tavern's 38, because the chambers are in the roof and a
     # shallow pitch puts the ridge too low to stand under. validate() checks the
@@ -393,13 +442,7 @@ class FrameDwellingParams:
                 f"is a log_dwelling and a brick one did not exist here yet — the first "
                 f"brick dwelling in Chicago is 1837 — so this is refused rather than "
                 f"quietly built as frame")
-        # Storey heights are built up from the one attested ceiling in this dataset: the
-        # Green Tree's seven and a half feet, 2.29 m, which its own source calls low for
-        # a hotel. Floor structure and a plate add roughly a third of a metre per storey,
-        # so a storey is about 2.6 m and the one-storey floor of 2.35 m is already under
-        # the lowest room anybody in this town wrote down sleeping in — and is the
-        # shortest wall that can still take the door this archetype hangs in it.
-        lo, hi = {1.0: (2.35, 3.4), 1.5: (2.9, 4.6), 2.0: (4.0, 6.2)}[self.stories]
+        lo, hi = WALL_HEIGHT_M[self.stories]
         if not lo <= self.wall_height_m <= hi:
             raise ParamError(
                 f"wall_height_m {self.wall_height_m} outside {lo}-{hi} m for "
@@ -407,11 +450,11 @@ class FrameDwellingParams:
                 f"dataset is the Green Tree's 7 1/2 ft; a house was not built taller "
                 f"than the hotel. Set the storey count or the height, not neither")
         if self.half_story:
-            if not 0.3 <= self.knee_wall_m <= 1.8:
+            if not KNEE_WALL_M[0] <= self.knee_wall_m <= KNEE_WALL_M[1]:
                 raise ParamError(f"knee_wall_m {self.knee_wall_m} outside 0.3-1.8 m; "
                                  f"below a foot it is not a knee wall and above six feet "
                                  f"it is a second storey")
-            if self.wall_height_m - self.knee_wall_m < 2.1:
+            if self.wall_height_m - self.knee_wall_m < HALF_STOREY_HEADROOM_M:
                 raise ParamError(
                     f"a {self.knee_wall_m} m knee wall under a {self.wall_height_m} m "
                     f"eave leaves {self.wall_height_m - self.knee_wall_m:.2f} m for the "
@@ -435,7 +478,7 @@ class FrameDwellingParams:
             # A half storey nobody can stand up in is an attic, and an attic is not a
             # storey. This is the proportion check the pitch exists to pass, done on the
             # consequence rather than on the number.
-            if self.head_room_m < 2.1:
+            if self.head_room_m < HALF_STOREY_HEADROOM_M:
                 raise ParamError(
                     f"a {self.knee_wall_m} m knee wall and a {self.roof_pitch_deg} deg "
                     f"pitch over a {self.main_depth_m:.2f} m range give "

@@ -92,8 +92,10 @@ from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
 # used to live in this file; the North Division parcel needed the same arithmetic and
 # had a retyped constant instead, so the rule moved to one module both import
 # (ROADMAP T-V1).
-from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
-                          stable_fraction, storeys, wall_height_m)
+from family_bands import (dimensions_m, eave_floor, eave_limits,  # noqa: E402
+                          families, pitch_deg, stable_fraction, storeys,
+                          wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -255,32 +257,63 @@ def band_note(family: str) -> str:
             "specification; it is not evidence for this anonymous instance.")
 
 
-def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
-    """Form values, with the storey count and eave height read off the crosswalk.
+def form_for(family: str, spec: dict, key: str, width: float, depth: float,
+             paint: str) -> dict:
+    """Form values, with the storey count, eave height and pitch read off the crosswalk.
 
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
     the value actually is — the reconstruction generator's type default.
     """
-    return split_notes(_form_body(family, spec, key, width, paint), family,
+    return split_notes(_form_body(family, spec, key, width, depth, paint), family,
                        band_note(family))
 
 
-def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
+def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
+               paint: str) -> dict:
     why = band_note(family)
-    levels, loft = storeys(spec["levels"])
+    # The key is what lets a family whose crosswalk `levels` is a BAND — W2 is 1-1.5 —
+    # be sampled rather than refused. Without it this generator died on the day the
+    # schedule dealt it one, which nothing in the repo said until the family sweep
+    # dealt every family it is allowed to (T-0142).
+    levels, loft = storeys(spec["levels"], key)
     construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
     # The door is chosen before the eave because the eave floor depends on it: a wagon
     # door needs a metre more wall than a man door, and asking for the floor without
     # naming the door is how a band gets sampled below what the archetype can build.
     door = door_kind(family)
-    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door))
+    # ...and the ARCHETYPE bounds the band at BOTH ends (T-0142). H2's authored eave
+    # runs to 21 ft and `frame_dwelling` will not carry a two-storey wall over 6.2 m,
+    # so a uniform sample dealt this block a merchant house the generator refused to
+    # build; D6's runs down to 10 ft and the same archetype will not carry a half
+    # storey under 3.05 m. Both limits are asked of the archetype, never retyped here.
+    arch_lo, arch_hi = eave_limits(spec.get("archetype"), levels)
+    wall = wall_height_m(family, spec["eave_ft"], key,
+                         max(eave_floor(family, door), arch_lo), arch_hi)
+
+    # THE PITCH, T-0142, and it is T-0145's repair arriving in the parcel that needed it
+    # next. This generator dealt a retyped constant — 44 deg to every 1.5-storey D or H
+    # family, 38 to the rest — and a constant is a claim of uniformity no source makes.
+    # Worse, three of the families it deals are refused by their OWN crosswalk entry at
+    # that constant: H1 cites 8:12-11:12 and was dealt 44.0, H2 and H3 cite 6:12-9:12 and
+    # were dealt 38.0. So the pitch comes from the family's band, constrained by the
+    # ridge band the same entry authors, which needs the run the roof climbs — and that
+    # is the archetype's, so `ridge_model` is asked for it. A family whose roof line
+    # names no pitch keeps the type default it always had.
+    def pitch(default: float, roof_type: str = "gable",
+              gable_front: bool | None = None) -> float:
+        return pitch_deg(family, spec.get("roof"), key, default,
+                         eave_m=wall,
+                         run_m=ridge_run_m(spec.get("archetype"), roof_type,
+                                           width, depth, gable_front),
+                         ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
             "stories": invented(1, why), "wall_height_m": invented(wall, why),
-            "roof_type": invented("gable", why), "roof_pitch_deg": invented(38.0, why),
+            "roof_type": invented("gable", why),
+            "roof_pitch_deg": invented(pitch(38.0), why),
             "construction": invented("log", why), "loft": invented(True, why),
             "chimneys": invented(1, why),
         }
@@ -291,20 +324,23 @@ def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> d
         result = {
             "stories": invented(levels, why), "wall_height_m": invented(wall, why),
             "roof_type": invented("gable", why),
-            "roof_pitch_deg": invented(44.0 if levels == 1.5 else 38.0, why),
+            "roof_pitch_deg": invented(pitch(44.0 if levels == 1.5 else 38.0), why),
             "construction": invented(construction, why), "plan": invented(plan, why),
             "bays": invented(5 if big else (3 if width >= 5.4 else 2), why),
             "chimneys": invented(2 if big else 1, why),
             "paint": invented(paint, why),
         }
-        if stable_fraction(key, 7) < .58:
+        # Slot 10, not slot 7: `family_bands.pitch_deg` draws on 7, and two decisions
+        # sharing a slot would make a house's porch a function of its roof pitch.
+        if stable_fraction(key, 10) < .58:
             result["porch"] = invented("stoop", why)
         return result
 
     if family.startswith(("C", "F")) and family != "F1":
         return {
             "stories": invented(levels, why), "wall_height_m": invented(wall, why),
-            "roof_type": invented("gable", why), "roof_pitch_deg": invented(34.0, why),
+            "roof_type": invented("gable", why),
+            "roof_pitch_deg": invented(pitch(34.0, gable_front=family.startswith("C")), why),
             "gable_front": invented(family.startswith("C"), why),
             "construction": invented(construction, why),
             "cladding": invented("clapboard" if family != "F2" else "vertical_board", why),
@@ -326,7 +362,7 @@ def _form_body(family: str, spec: dict, key: str, width: float, paint: str) -> d
         material = "light_frame"
     return {
         "wall_height_m": invented(wall, why), "roof_type": invented(roof, why),
-        "roof_pitch_deg": invented(18.0 if roof == "shed" else 32.0, why),
+        "roof_pitch_deg": invented(pitch(18.0 if roof == "shed" else 32.0, roof), why),
         "construction": invented(material, why), "door": invented(door, why),
         "door_side": invented("front", why), "loft": invented(loft, why),
         "board_gap_m": invented(.012, why), "paint": invented(paint, why),
@@ -583,7 +619,7 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
                 "confidence": "reconstructed",
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
-            "form": form_for(family, spec, sid, width, paint),
+            "form": form_for(family, spec, sid, width, depth, paint),
             "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
