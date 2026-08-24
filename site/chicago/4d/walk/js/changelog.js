@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 256, title: 'Seventy-eight buildings turn round to face the street they front', kind: 'fix', ts: '2026-08-24T10:01:37.158Z', date: 'Aug 24, 2026, 5:01 AM CT',
+    items: [
+      'Walk down Randolph, or Lake, or South Water, and look at the houses standing on the platted blocks behind the frontage. Their doors and windows were on the far side, facing the middle of their own block, and the street got a blank wall. Seventy-eight of them have turned round. The fronts are now where a front belongs.',
+      'It was one line of arithmetic, and it had been wrong since the first of these blocks was built. Every record stores which way its front looks; the generator that stands these roofs on their lots read that angle off the direction pointing INTO the lot rather than out of it, so every roof it placed came out exactly half a turn round.',
+      'The shoulder-to-shoulder rows on the river frontage were always right, because they take their bearing from the block face itself. That is why the fault could stand beside them and not look odd: on a plain gable roof, half a turn changes nothing you can see from above, only where the door is.',
+      'Nothing moved. Each building stands on the same ground, on the same footprint, at the same distance back from the same street. Only the face changed, and with it the chimney, which sits on the front slope.',
+      'The check that should have caught this now exists. Every roof on a platted block is held against the outward bearing of the block face it fronts, with five degrees of the plat\u2019s own skew allowed, and a yard building is held against the alley behind it. Put the old line back and it names the first wrong roof by name.',
+    ] },
   { v: 255, title: 'The town\u2019s roofs stop being cut to the same two angles', kind: 'fix', ts: '2026-08-24T04:28:44.489Z', date: 'Aug 23, 2026, 11:28 PM CT',
     items: [
       'Walk any of the fourteen platted blocks and look along a row of roofs. Every one of the ninety-eight anonymous buildings standing on them was pitched at one of exactly two angles \u2014 a steep 44 degrees where there were rooms up in the roof, 38 where there were not. They now range from about 18 to 45, each roof drawn from the range its own kind of building is described at, so a street reads as separate buildings rather than one building repeated.',

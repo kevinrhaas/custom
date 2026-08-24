@@ -433,9 +433,21 @@ def place(edge_mid: tuple[float, float], inward: tuple[float, float],
     `inward` points from the edge into the lot, so the facade faces out of it — the
     street for a frontage building, the alley for a yard one. The returned coordinate
     is the footprint's (0, 0) corner, which is what the GLB contract anchors on.
+
+    T-0103: the bearing is therefore taken from the OUTWARD normal, `-inward`.
+    `rotation_deg` is pinned by `docs/GLB-CONTRACT.md` as the facade bearing —
+    the way the front looks, 0 = north — and this function read it off `inward`
+    for twelve blocks, so every roof it stood turned its face into the middle of
+    its own block. `tools/block_faces.py` has always taken the same angle off the
+    face's outward normal, which is why the frontage rows on the same faces are
+    right and these were not.
     """
-    bearing = math.degrees(math.atan2(inward[0], inward[1])) % 360.0
-    # local +x, the frontage axis: `inward` turned 90 degrees clockwise.
+    bearing = math.degrees(math.atan2(-inward[0], -inward[1])) % 360.0
+    # The lateral axis along the edge: `inward` turned 90 degrees clockwise. It is
+    # the ground direction a slot's `lateral_m` slides the building in, and it is
+    # deliberately NOT re-derived from the corrected bearing — a lot's slot offsets
+    # describe where the building stands, so turning the roof around must not also
+    # move it to the other end of its lot.
     axis = (inward[1], -inward[0])
     cx = edge_mid[0] + inward[0] * (setback + depth / 2.0) + axis[0] * lateral
     cy = edge_mid[1] + inward[1] * (setback + depth / 2.0) + axis[1] * lateral
@@ -964,6 +976,37 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # per unit — it stands across its own stretch of the face — so it counts against the
     # lots the recipe named for it, and the count is gated: a run may not carry more
     # roofs than the lots it was dealt, which is the same ceiling stated the same way.
+    # T-0103. EVERY ROOF LOOKS AT THE THING IT FRONTS, and the block's own faces are
+    # asked rather than the lot's. `place()` derived the facade bearing from the lot
+    # frame for twelve blocks and derived it backwards, so 78 roofs stood with their
+    # doors and windows turned into the middle of their own block — and nothing here
+    # noticed, because every gate this generator carries measures WHERE a building
+    # stands and none of them measured which way it looks. This one does, off
+    # `block_faces.py`'s outward normal, which is a different derivation from the lot
+    # polygon that `place()` reads: a 180-degree error cannot be right in both.
+    # The tolerance is the plat's own skew — a lot's front edge is not exactly
+    # parallel to its block face, and the committed grid runs up to 2.6 degrees out
+    # on the West Division blocks — so five degrees is loose enough for the ground
+    # and nowhere near loose enough to admit a flip.
+    for record in records:
+        recon = record["reconstruction"]
+        street = recon["fronts"]
+        compass = [k for k, v in grid["bounded_by"].items() if v == street]
+        if len(compass) != 1:
+            raise SystemExit(f"{record['id']} fronts {street!r}, which is not exactly "
+                             f"one face of {block['block_id']}")
+        want = face_frame(grid, compass[0])["bearing"]
+        if recon["stands_on"] == "alley":
+            want = (want + 180.0) % 360.0   # a yard building looks at the alley behind it
+        got = float(record["phases"][0]["position"]["rotation_deg"])
+        off = abs((got - want + 180.0) % 360.0 - 180.0)
+        if off > 5.0:
+            raise SystemExit(f"{record['id']} stands on the {street} face and looks "
+                             f"{got:.2f}deg, {off:.1f}deg off the {want:.2f}deg its "
+                             f"face looks. rotation_deg is the FACADE bearing "
+                             f"(docs/GLB-CONTRACT.md), so this roof fronts the wrong "
+                             f"way")
+
     frontage = block.get("frontage")
     row = [r for r in records if r["reconstruction"].get("frontage")]
     if frontage and not row:
