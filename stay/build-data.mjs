@@ -158,8 +158,8 @@ const DATA = {
   ],
   disclaimer:
     'Nothing here is a booking, and no listing calendar could be read directly — every rental platform blocks automated checks. ' +
-    'Availability is reported as exactly what was seen: “Dec 19–27 showed open” only where a dated search returned the house, ' +
-    '“came back in a Dec 19–27 search” where it appeared in dated results, and “unknown” for everything else, which is most of them. ' +
+    'Availability is reported as exactly what was seen. “Priced for Dec 19–27” means the platform’s own engine returned that house with a costed eight-night total for these exact dates — ' +
+    'strong evidence, though still not a booking, since anyone can take it tomorrow. “Unknown” means the house was found and read but its calendar was not reachable. ' +
     'Confirm dates, the bed layout and the real holiday rate with the host or manager before counting on any of it. ' +
     'Prices are whatever the source published — often a shoulder-season nightly rate or a range, not a Christmas-week quote, which will usually be higher. ' +
     'Bed counts are the listing’s own; where a host never published a layout the card says so rather than guessing. ' +

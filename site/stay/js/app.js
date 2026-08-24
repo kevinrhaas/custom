@@ -73,7 +73,8 @@ function evaluate(p) {
   if (/elevator/.test(am)) score += 3;              // the parents, and eight days of stairs
   if (/bunk/.test(am + ' ' + tg) || (bi.b && bi.b.bunk > 0)) score -= 4;   // nine adults, no children
 
-  score += p.availability === 'confirmed_open' ? 12 : p.availability === 'search_listed' ? 6 : 0;
+  score += p.availability === 'confirmed_open' ? 12
+         : p.availability === 'search_listed' ? (p.total_est != null ? 10 : 6) : 0;
   if ((p.images || []).length || p.photo) score += 3;
   if (p.nightly_est != null || p.total_est != null) score += 2;
   if (p.compound) score -= 5;                       // several keys, several contracts
@@ -391,11 +392,19 @@ const ICON = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h4l2 5-2.5 1.5a12 12 0 006 6L16 13l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>'
 };
 const TIER_LABEL = { exact: 'Best fit', strong: 'Strong', backup: 'Worth a look', stretch: 'Stretch' };
-const AVAIL = {
-  confirmed_open: ['confirmed', '✓', 'Dec 19–27 showed open'],
-  search_listed: ['listed', '◐', 'Came back in a Dec 19–27 search'],
-  unknown: ['unknown', '?', 'Dates not checkable — ask the host']
-};
+/* A dated search that came back with a priced eight-night total is much
+   stronger evidence than merely appearing in a list: the platform's own engine
+   costed Dec 19-27 for that house. Say so, rather than flattening it into the
+   same "listed" bucket as a listing we only glimpsed. */
+function availInfo(p) {
+  if (p.availability === 'confirmed_open') return ['confirmed', '✓', 'Dec 19–27 showed open'];
+  if (p.availability === 'search_listed') {
+    return p.total_est != null
+      ? ['confirmed', '✓', 'Priced for Dec 19–27 — all 8 nights quoted']
+      : ['listed', '◐', 'Came back in a Dec 19–27 search'];
+  }
+  return ['unknown', '?', 'Dates not checkable — ask the host'];
+}
 
 function bedsLine(p) {
   const bi = p._bi, b = bi.b;
@@ -422,7 +431,7 @@ function card(p) {
      thing to rot, and some hosts refuse hotlinks outright. Remote is the
      fallback, and a drawn placeholder is the fallback to that. */
   const img = p.photo || (p.images || [])[0];
-  const av = AVAIL[p.availability] || AVAIL.unknown;
+  const av = availInfo(p);
   const link = datedUrl(p);
   const kbs = [];
   kbs.push(`<span class="kb hero">${ICON.bed} ${p.bedrooms} bedrooms</span>`);
