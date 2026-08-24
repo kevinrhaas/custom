@@ -1,5 +1,121 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0093: the verge stops fading through a screen of dots, and the ticket's own two stands say it was only half the near ring's doing
+
+**T-0093, the residue T-0086 wrote down and left.** The far-sward run closed the OUTER edge of the
+meadow by replacing a coverage ramp with a density handover, and said in the same STATUS entry that
+it had not touched *"the near ring's own outer dither at 5–7.6 m, which is still a screen-door ramp
+and is still what a close look at the verge shows"*. This is that run.
+
+**What a visitor sees.** Stand anywhere in open prairie on a phone and the grass from about two
+paces out to about four was drawn as a mesh of dots — every tuft in the middle of the frame carved
+into dotted vertical columns by an ordered 4×4 screen door. It is written solid now. On a desktop
+the same band sits at 4.8–7.0 m and the effect is subtler but present; it is gone there too.
+
+**The measurement, and the instrument, because there was none.** `tools/measure_near_verge.mjs`
+reads every flora instance's own `aChiRing` back off the buffer that went to the GPU and applies the
+vertex program's own expression, so a plant is classed exactly as the shader classes it: `whole`
+(coverage 1, written solid, the fragment guard skips the Bayer branch), `partial` (0 < coverage < 1,
+every fragment thresholded — *these and only these are the dots*), `absent`. It then projects each
+drawn plant's own recorded height and spread to screen and sums the footprints, because a hundred
+plants at forty metres are four pixels and the complaint is about SCREEN. Mobile runs at
+`deviceScaleFactor: 1.5` rather than the smoke's 2, so one measured pixel is one drawing-buffer
+pixel — the screen door is locked to `gl_FragCoord` and a 4/3 resample smears the grain being
+measured.
+
+Screen-doored share of the frame inside 9 m, published mirror, before → after. The bracketed
+figure is the same union less the footprints of the solid plants standing in front of it, so the
+pair is a ceiling and a floor on the same thing:
+
+| stand | mobile `light` | desktop `full` |
+|---|---|---|
+| South Water approaching Wells | 0.000 → 0.000 % (0.000 → 0.000) | 0.000 → 0.000 % (0.000 → 0.000) |
+| the same, from the verge | 20.788 → **2.081** % (5.073 → **0.058**) | 11.973 → **0.000** % (0.398 → **0.000**) |
+| Wells approaching Lake | 1.729 → 1.729 % (0.937 → 0.937) | 14.843 → **0.000** % (5.178 → **0.000**) |
+| open prairie | 53.654 → **15.395** % (6.198 → **0.136**) | 45.173 → **0.000** % (0.264 → **0.000**) |
+
+**`flora-near` carries no partially-covered instance at any of the eight readings**, against 198 and
+174 at the open-prairie stand alone before; and **no plant at any stand is caught mid-ramp on either
+converted boundary** — 0 of 0, which is the gate. At `full` the verge is clean everywhere. What is
+left on a phone is the mid and forb rings' own OUTER ramps, which at `light` reach in to 5.4 m and
+7.4 m — see *What this run did NOT do*. At **Wells approaching Lake on a phone the reading does not
+move at all, to the pixel**: at `light` there is no near ring in frame there and the mid ring's
+inner ramp had only four cards in it, so everything screen-doored at that stand is the outer ramp
+this run does not touch. That is the honest reading and it is banked as such.
+
+**And the sward is exactly as thick as it was.** Counting green-dominant pixels in the same frame
+before and after, open prairie at 390×780: the middle band (rows 50–72 %) **54.17 % → 54.52 %**, the
+foreground (rows 72–100 %) **79.61 % → 79.99 %**. Half a plant drawn everywhere and a whole plant
+drawn half the time come to the same cover, which is the arithmetic in `slotRing` read back off the
+picture.
+
+**THE PRIME SUSPECT IS ONLY HALF THE AUTHOR, and at the ticket's own two stands it is none of it.**
+T-0086's two stands are both in a roadway, and `station()` clears every plant off the travel track —
+10.5 m wide on South Water, 7 m on Wells. So at *South Water approaching Wells* the near ring places
+**0 tufts at `light` and 1 at `full`**: there is no near ring there to dither. At *Wells approaching
+Lake* on a phone the near set is empty again and **every screen-doored pixel of the verge is written
+by the mid ring's inner ramp fading IN across 4.5–7.5 m** — the other side of the same handover,
+which the ticket names as existing and does not name as an author. Only in open prairie and on the
+verge proper does the near ring dominate (5.90 % against the mid ring's 3.65 % exposed, mobile).
+So the fix takes **both** sides: the near ring's outer edge and the mid ring's inner edge.
+
+**And the band is not where the ticket says.** `ringsFor` insets every fade ring inside its own
+lattice by the 0.6 m rebuild step, so the near ring's ramp runs **4.80–7.00 m** at `full`, not
+5.4–7.6 — measured, as the `d` range of the partial instances. At `light` the ring is 4.6 m and the
+ramp is **1.80–4.00 m**, which is under the walker's feet rather than ahead of them, and is why the
+phone frame is the dramatic one.
+
+**The fix is T-0086's own answer, applied to a ring that still has an edge in it.** Two flags in
+`TUNE` — `near.spreadOuter` and `mid.spreadInner` — move the band out of the ring the shader ramps
+and into a per-slot SPREAD of the boundary itself: a slot's own outer radius is
+`fade[0] − band × handoverRank(e, n)`, world-anchored and quantised to ⅛ m exactly as `farRank` is,
+and the ring the shader reads is a step (`HARD = 1e-4`). The fraction of slots drawn at distance `d`
+is then `clamp((fade[0] − d) / band)` — *the same number the alpha ramp used to write* — so the
+expected ground cover across the band is unchanged to the arithmetic and every tuning figure still
+means what it meant. What is gone is the stipple: a plant is drawn whole or not at all, and a
+stochastic density ramp has no edge in it to dither.
+
+**What did NOT change, and it is most of the file.** Placement is untouched — every lattice slot is
+still dealt a species and still counted by the drawn census, so no community's population or cover
+figure moves. The mid ring's *outer* fringe, which is what keeps the sward's boundary off a constant
+screen row (§ S6a item 3), is untouched. Heights are untouched (T-0035: the ramp has never been a
+height since). The near ring pays *less* fill than before, not more: a plant outside its own ring
+collapses to a point in the vertex program instead of rasterising and discarding half its fragments.
+
+**The gate, and it fires.** `--gate` asserts one thing strictly: **no plant is caught mid-ramp on
+either converted boundary**, zero rather than small, because a boundary handed over by density
+cannot produce a coverage strictly between 0 and 1. Proved red by putting the pre-T-0093
+`flora.js` back into the published mirror and re-running: *"253 plant(s) caught mid-ramp on the
+near/mid handover, covering 53.277 % of the frame"* — 198 near tufts on the outer ramp and 55 mid
+cards on the inner one — plus the banked-residue check, *"screen-doored verge grew 15.395 % →
+53.654 %"*. Republished, the same command prints **GATE PASS** and reproduces 105 373 px to the
+pixel. The residue that T-0093 does not close is banked in `tools/near_verge_baseline.json` and
+held against regression rather than against a constant.
+
+**`HARD` is a micron, and that is a measured figure.** The step the shader is left holding has to
+be narrower than the old 1e-4 floor in `fadeOf` and in the GLSL: simulated over 40 000 slots, a
+0.1 mm band still catches one to three of them mid-ramp — a plant whose own boundary happens to
+fall within a tenth of a millimetre of the camera as it passes. Invisible, but not zero, and zero
+is the assertion worth being able to make. So the division floor moved to 1e-6, where world
+positions are float32 at 800 m and already spaced ~60 microns apart, so the difference the shader
+computes cannot land inside it at all. `FAR_RING` keeps its own 1e-4 — an outer radius of 1e9 is
+never within a millimetre of anything.
+
+**Two things follow that are worth stating.** The flower heads ride their PLANT's ring now rather
+than the layer's — on a spread boundary the layer's ring answers for no particular tuft, and a head
+hung on it would be drawn out to 7 m over a plant whose own handover had already taken it away at
+five, which is R-BUG7 rebuilt from the other end. And `flora.fadeAt`/`heightAt` take the whole
+four-number ring now, not just the outer radius: with the mid ring's inner boundary spread per slot,
+a reader carrying only the outer one would be told every mid card past 4.5 m is drawn. The pop-in
+gate and the boundary gate in `tools/smoke_renderer.mjs` were updated to pass all four, which makes
+them read the drawing more exactly, not less.
+
+**What this run did NOT do.** The mid and forb rings' own OUTER coverage ramps are still screen-door
+ramps, and at `light` detail they reach in as far as **5.4 m** and **7.4 m** — inside the verge on a
+phone. That is a different edge from the one T-0093 names (it is the mid→far handover, which T-0086
+answered by standing the far band over it rather than by converting it) and it is the residue this
+run's gate holds against regression rather than closes. It is filed as its own ticket.
+
 ## Shipped 2026-08-24 — T-0103: seventy-eight roofs stop fronting the middle of their own block
 
 `docs/GLB-CONTRACT.md` pins `rotation_deg` as **the facade bearing, 0 = facing north** — the way

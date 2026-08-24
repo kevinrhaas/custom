@@ -1,7 +1,7 @@
 ---
 id: T-0093
 title: The near ring's own outer edge still fades through a screen of dots at 5-7.6 m
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 7:57:44 AM CT
 blocked_on: null
 needs_bake: false
 ---

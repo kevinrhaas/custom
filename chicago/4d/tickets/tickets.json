@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 7:13 AM",
+  "generated_ct": "Aug 24, 2026, 8:34 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1629,7 +1629,7 @@
     {
       "id": "T-0093",
       "title": "The near ring's own outer edge still fades through a screen of dots at 5-7.6 m",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -1639,7 +1639,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 7:57:44 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 28
@@ -3101,6 +3101,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 56
+    },
+    {
+      "id": "T-0184",
+      "title": "At light detail the mid and forb rings' outer ramps dither inside the verge",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 58
     }
   ]
 }

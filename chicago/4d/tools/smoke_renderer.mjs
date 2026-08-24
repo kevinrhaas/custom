@@ -7757,17 +7757,26 @@ for (const [label, viewport, touch] of [
           const mesh = a.flora.group.getObjectByName(name);
           const m = mesh?.instanceMatrix?.array;
           if (!m) continue;
-          // Each instance's OWN outer radius, off the attribute the shader
-          // reads. The layer's nominal ring answers for no particular plant
-          // once the boundary is fringed, and it answers zero — a free pass —
-          // for exactly the plants the fringe pushed furthest out.
+          // Each instance's OWN ring, off the attribute the shader reads. The
+          // layer's nominal ring answers for no particular plant once the
+          // boundary is fringed, and it answers zero — a free pass — for
+          // exactly the plants the fringe pushed furthest out.
+          //
+          // ALL FOUR NUMBERS, not just the outer radius: since T-0093 the mid
+          // ring's INNER boundary is spread per slot too, so a reading that
+          // carried only the outer one would ask `fadeAt` about the layer's
+          // nominal inner edge and be told every mid card past 4.5 m is drawn —
+          // including the ones whose own handover has not reached them yet.
+          // `flora.fadeAt` takes the whole ring for this reason.
           const ring = mesh.geometry.getAttribute('aChiRing')?.array;
           for (let i = 0; i < mesh.count; i++) {
             const o = i * 16;
             const e = m[o + 12];
             const n = -m[o + 14];
             seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`,
-              { name, e, n, outer: ring ? ring[i * 4] : undefined });
+              { name, e, n, outer: ring
+                ? [ring[i * 4], ring[i * 4 + 1], ring[i * 4 + 2], ring[i * 4 + 3]]
+                : undefined });
           }
         }
         return { seen, e: p.x, n: -p.z, fe: f.x / fl, fn: -f.z / fl };
@@ -8082,7 +8091,12 @@ for (const [label, viewport, touch] of [
           // faded to nothing is not a boundary, and asking the attribute alone
           // would report a ragged edge in a direction carrying no sward at all.
           const d = Math.hypot(e - cam.x, n + cam.z);
-          if (a.flora.fadeAt(name, d, ring[i * 4]) <= 0.02) continue;
+          // The whole ring, for the reason `snap()` above carries all four: the
+          // mid ring's inner boundary is spread per slot since T-0093, and the
+          // outer radius alone would have `fadeAt` answer off the layer's
+          // nominal inner edge.
+          if (a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
+            ring[i * 4 + 2], ring[i * 4 + 3]]) <= 0.02) continue;
           const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
           if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
         }

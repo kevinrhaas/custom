@@ -1,0 +1,40 @@
+{
+  "note": "T-0093 — how much of the frame is written through the plant shader's 4x4 Bayer screen door in the verge (inside 9 m), per stand, on the PUBLISHED mirror. A RECORD OF THE RESIDUE, not the gate: the gate is `handoverShare == 0` in tools/measure_near_verge.mjs and nothing here changes it. What is banked is what T-0093 does NOT close — the mid and forb rings' own OUTER coverage ramps, which at `light` detail reach in to 5.4 m and 7.4 m and so land inside the verge on a phone (T-0184). `ditheredShare` is the union of the drawn footprints of every partially-covered plant inside 9 m as a share of the frame; `exposedShare` is that less the footprints of the solid plants in front of them, so the pair is a ceiling and a floor on the same thing. Re-bank in the SAME commit as any change that legitimately moves them, and say which way. Measured 2026-08-24 on build 826ae080, Chromium/SwiftShader, mobile at deviceScaleFactor 1.5 (one measured pixel = one drawing-buffer pixel; see the tool's header for why not 2).",
+  "before": {
+    "note": "The same eight readings taken before T-0093, kept so the change is quotable from the file rather than only from the PR. `flora-near` carried 198 partially-covered instances at the open-prairie stand on a phone and 174 on the desktop; it carries none at any stand now.",
+    "mobile/south-water-at-wells": { "ditheredShare": 0, "exposedShare": 0 },
+    "mobile/south-water-verge": { "ditheredShare": 0.20788, "exposedShare": 0.05073 },
+    "mobile/wells-at-lake": { "ditheredShare": 0.01729, "exposedShare": 0.00937 },
+    "mobile/open-prairie": { "ditheredShare": 0.53654, "exposedShare": 0.06198 },
+    "desktop/south-water-at-wells": { "ditheredShare": 0, "exposedShare": 0 },
+    "desktop/south-water-verge": { "ditheredShare": 0.11973, "exposedShare": 0.00398 },
+    "desktop/wells-at-lake": { "ditheredShare": 0.14843, "exposedShare": 0.05178 },
+    "desktop/open-prairie": { "ditheredShare": 0.45173, "exposedShare": 0.00264 }
+  },
+  "stands": {
+    "mobile/south-water-at-wells": {
+      "ditheredShare": 0,
+      "exposedShare": 0,
+      "residue": "none — the walker stands in the middle of a 10.5 m travel track and no plant is placed inside the whole near ring"
+    },
+    "mobile/south-water-verge": {
+      "ditheredShare": 0.02081,
+      "exposedShare": 0.00058,
+      "residue": "the mid ring's outer ramp, 6.21-12.35 m"
+    },
+    "mobile/wells-at-lake": {
+      "ditheredShare": 0.01729,
+      "exposedShare": 0.00937,
+      "residue": "the mid ring's outer ramp, 5.87-12.57 m — unmoved to the pixel by T-0093, because at this stand on a phone nothing of the handover was ever in frame"
+    },
+    "mobile/open-prairie": {
+      "ditheredShare": 0.15395,
+      "exposedShare": 0.00136,
+      "residue": "the mid ring's outer ramp 5.19-13.04 m and the forb ring's 6.64-13.3 m"
+    },
+    "desktop/south-water-at-wells": { "ditheredShare": 0, "exposedShare": 0, "residue": "none" },
+    "desktop/south-water-verge": { "ditheredShare": 0, "exposedShare": 0, "residue": "none — at `full` the mid and forb outer ramps stand at 18-27 m, outside the verge entirely" },
+    "desktop/wells-at-lake": { "ditheredShare": 0, "exposedShare": 0, "residue": "none" },
+    "desktop/open-prairie": { "ditheredShare": 0, "exposedShare": 0, "residue": "none" }
+  }
+}
