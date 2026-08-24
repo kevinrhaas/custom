@@ -1,4 +1,5 @@
 export const CHANGELOG = [ // newest first
+<<<<<<< HEAD
   { v: 266, title: 'Two more landings on the river toward the drawbridge', kind: 'fix', ts: '2026-08-24T16:33:19.304Z', date: 'Aug 24, 2026, 11:33 AM CT',
     items: [
       'Walk the south bank of the river east from the forks toward the drawbridge. Two more timber landings stand on the water there now — Philo Carpenter\u2019s, and P. F. W. Peck\u2019s a little further east. Both are plank decks on stepped cribs standing in about a metre and a half of water, and aiming at either one opens the store it belongs to. Seven landings stand on the river in all.',
@@ -7,6 +8,15 @@ export const CHANGELOG = [ // newest first
       'Peck\u2019s dock took some finding. The bank east of the forks has a narrow slot cut thirty metres into it, and the first attempt laid an eighteen-metre deck straight across the head of that slot, thirty metres east of Peck\u2019s own store, with a third of it sitting on dry ground. A dock is now only built on the stretch of bank in front of the wall it serves. That also nudged the new Wolf Point landing a couple of metres along its own bank, so it no longer runs past the storehouse it belongs to.',
       'Harmon & Loomis\u2019s landing is still not drawn, and the reason has changed. The bank does reach it. What refuses it is the water: this stretch is shallow — under a metre six paces out, against a metre and a half up at the forks — and one corner of the deck would have stood in forty-eight centimetres, under the fifty this project asks of a working dock. It is turned down by a sounding now instead of by a missing bank, with the depth written down.',
       'What did not change: every dock already standing kept its outline, and the one that shifted kept its depth, its heading and its clearance exactly. No ground, no water, no street and no building moved.',
+=======
+  { v: 266, title: 'Fort Dearborn\u2019s gates are shut', kind: 'fix', ts: '2026-08-24T16:31:43.067Z', date: 'Aug 24, 2026, 11:31 AM CT',
+    items: [
+      'Stand on the north bank of the river and look across at the fort. Its north gate is shut. Until now there was a slot of daylight straight through it, a quarter of the gateway wide, and you could see the grass of the parade and a building beyond it through a gate that is meant to be barred. Both gates were like it, north and south.',
+      'The fort is modelled with a garrison inside it, which is why the gates are built closed at all \u2014 a fort standing open makes a claim about the hour of the day. One leaf of each pair had been put half a leaf too far to one side, so it missed its partner and hung out over the pickets beyond its own post instead.',
+      'It survived this long because only one of the two leaves was wrong. A gate with one good leaf still looks like a gate until you are close enough to see the ground through it.',
+      'A new check now measures the finished gate rather than the arithmetic that draws it, and refuses any gap wider than a centimetre or any leaf lying outside its frame. It named the fault on the old fort before the repair went in.',
+      'Nothing else about the fort moved. The corner works and the wall are exactly as they were \u2014 and a note about why is worth reading: the old picture this job came from, painted long after the fort was gone, turns out to put its two little towers over the MIDDLE of the wall rather than at the corners, and it mixes in features of the earlier fort that burned in 1812. So nothing new was built from it.',
+>>>>>>> origin/dev
     ] },
   { v: 265, title: 'A landing for the storehouse on the west bank at Wolf Point', kind: 'feature', ts: '2026-08-24T15:55:28.339Z', date: 'Aug 24, 2026, 10:55 AM CT',
     items: [

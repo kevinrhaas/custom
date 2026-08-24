@@ -86,6 +86,69 @@ is a refusal taken on trust. `tools/smoke_renderer.mjs --published`, stages 1–
 that loads the terrain, the wharf layer and the drawbridge reach. The wharf census assertions moved
 with the work and are stated in the same commit: 5 drawn + 3 refused on dev → **7 drawn + 1 refused**,
 keep-outs 5 → 7, and `stands.length` 5 → 7. **No assertion was weakened**; two were added.
+## Shipped 2026-08-24 — T-0095: the fort's gates were open, and `p4_0` never drew the corner works
+
+Two findings. One is a defect in the scene and is fixed; the other refutes the ticket that asked
+for the work. Full working in `docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`.
+
+**BOTH OF FORT DEARBORN'S DOCUMENTED GATES STOOD A QUARTER OPEN, AND NOBODY HAD CLAIMED IT.**
+`palisade.py` says of the gate it builds, in terms, that *"the leaves are hung shut … a fort with
+its gates standing open makes a claim about the hour of the day"*. Each leaf was placed by taking
+two endpoints, halving to a midpoint and spanning half a gate width either side. For the left leaf
+the first endpoint is the gate CENTRE and it came out right; for the right leaf the selector made
+both endpoints the same jamb, so the midpoint landed **on** the jamb:
+
+| | placed | belongs |
+|---|---|---|
+| opening | 24.70 – 28.30 m | |
+| left leaf | 24.70 – 26.50 | 24.70 – 26.50 ✓ |
+| right leaf | **27.40 – 29.20** | 26.50 – 28.30 |
+
+**0.90 m of a 3.6 m gateway open — daylight straight through the wall — and 0.90 m of leaf lying
+across the pickets outside the frame. Both gates, and in the committed GLB.** From `p4_0`'s own
+stand on the north bank you could see the grass of the parade and a building beyond it through it.
+It survived because the two halves failed differently: one good leaf makes a gate look like a gate
+until you are close enough to see ground through it. Four lines in `palisade.py`; both
+palisade-archetype assets rebaked (the stockade changed, the garrison garden's worm fence only
+re-stamped its hash — the staleness recipe hashes the archetype's bytes into every asset built
+from it). Before and after at `docs/evidence/t-0095-{before,after}.png`, and the gate itself at
+5x in `t-0095-close-{before,after}.png`.
+
+**`p4_0` RAISES NO WORK AT EITHER ANGLE IT DRAWS.** T-0095 was filed saying the plate *"draws the
+corner works RISING ABOVE the curtain with their own pyramidal roofs and small lanterns"*. It
+raises exactly two such works and **both stand over the middle of the wall**, at **0.435 and
+0.521** of the 862 px of drawn run — over the gate, which is where the ticket's own next clause
+put one of them. A corner work stands at 0.000 or 1.000; the nearer of the two is three of this
+record's own bastion lengths from the nearest angle. The one angle the plate shows unoccluded is
+the **north-east** and it is drawn **plain** — the picket crest is the skyline from column 319,
+rising 0.04 curtain heights over its first twenty columns — which is exactly what the record says
+of that angle. The **north-west** angle, the one the record does put a work at, is behind the tree
+outside the walls: the crest is last legible at column 1181 and the material past it is green by
+12.1 against 8.0 over the fort. **No height was read out of leaves.**
+
+**And the plate could not have settled it anyway.** `data/exclusions.json` already assigns one
+feature of this sheet to the FIRST fort — the flagstaff, refused by T-0044 on the same ground —
+and that entry's own list of first-fort features opens with **two blockhouses**. Two roofed
+lanterned log towers is that signature in everything but position. The sheet matches neither
+fort's documented arrangement. So nothing was massed at the angles **and nothing was massed over
+the gate either**; no form value was added, because none is supported.
+
+**This is the second Fort Dearborn parcel in two days seeded by a plate read with the eye** (T-0094
+was the first, on row 3 of the same table). Both refutations are now held by measurements that run
+in `tools/check.sh` rather than by paragraphs. `measure_fort_works_plate.py`'s third assertion is
+pointed at the record rather than the sheet: it fires the day someone gives a corner work a height,
+a roof or a lantern, or puts a work at the north-east angle.
+
+**The acceptance, honestly.** Gates drawn in both documented walls — met, and they are now shut,
+which they were not. South-west blockhouse reading above the curtain — already met, 9.48 m of
+building over a 3.80 m curtain, measured from its instance bounds. **Corner works reading above the
+curtain — NOT BUILT: the premise is refuted and the clause has no warrant left.** Before/after from
+`p4_0`'s stand — committed.
+
+**Gates.** `tools/check.sh` **CHECK PASS**, with four new steps (two assertions plus two
+self-tests) proved red first: `measure_fort_gates.py --gate` named the 0.900 m slot in both walls
+on the committed mesh before the fix. `node tools/smoke_renderer.mjs --published` at 390×780,
+stage 1 — the leg that carries the stockade checks — zero page errors.
 
 ## Shipped 2026-08-24 — T-0107: a landing on the west bank at Wolf Point, and a face that has to be afloat
 
