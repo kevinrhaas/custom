@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 2:51 PM",
+  "generated_ct": "Aug 24, 2026, 2:54 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3300,6 +3300,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 55
+    },
+    {
+      "id": "T-0202",
+      "title": "SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }

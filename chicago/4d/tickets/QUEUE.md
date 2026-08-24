@@ -86,3 +86,4 @@ T-0189 — A house on Washington is told it is 'one unit of the party-line river
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0200 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0201 — docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them
+T-0202 — SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch
