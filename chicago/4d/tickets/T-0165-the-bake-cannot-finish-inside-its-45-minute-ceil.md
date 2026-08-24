@@ -1,7 +1,7 @@
 ---
 id: T-0165
 title: The bake cannot finish inside its 45-minute ceiling, because bake.sh runs the full two-viewport smoke as its last step
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 343
 claimed_by: run 8/23/2026, 7:47:55 PM CT
 blocked_on: null
 needs_bake: false
