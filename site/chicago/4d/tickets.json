@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 6:47 PM",
+  "generated_ct": "Aug 23, 2026, 7:02 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2903,6 +2903,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 8
+    },
+    {
+      "id": "T-0164",
+      "title": "The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-23",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }
