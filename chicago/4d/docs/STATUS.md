@@ -215,6 +215,78 @@ a ribbon against a line it was never drawn from would report a stray for authore
 mirroring the census exists to catch. The smoke's T-0110 approach stations now run **n 8 → 20.5 at
 0.5 m** (was 8 → 17.5 at 1 m) on the drawn line — the comment that used to say the last 2.7 m were
 outside what the gate could see is gone with the gap.
+## Shipped 2026-08-24 — T-0143: the corner clause, demonstrated at Washington and Dearborn
+
+**The succession T-0105 owes.** T-0079 raised the core density standard and demonstrated it on
+`blk_lake_clark`; T-0105 carried it to `blk_randolph_dearborn` lot 4 and wrote in as many words
+that the back face was the successor's to deal. This is that successor, and it takes the block's
+last **four roofs of headroom**: three principal roofs in a party-line run on lot 1 and the barn
+that belongs to the lot they stand on. `blk_randolph_dearborn` now stands at 17 roofs and one free
+lot, and it stays `open` in the schedule.
+
+**THE CORNER CLAUSE IS THE POINT, and this is the first parcel able to demonstrate it.** The
+standard has three clauses; T-0105 could apply two and recorded that lot 4 was an interior lot, so
+*a corner lot builds to the corner* had nothing to bind on. Lot 1 is this block's one free corner
+lot. The run is anchored `corner: west` — packed EAST from the Washington-and-Dearborn corner,
+1.5 m clear of the side line, that margin being the plat module's own and not a measurement — so
+it occupies 19.30 m of the lot's 22.90 m of buildable frontage and the spare metres are at the far
+end, away from the corner. An east-anchored run would have left the corner itself empty, which is
+the shape of frontage the standard exists to reach.
+
+**Clause one does not bind here, and the parcel says so rather than pretending.** `tools/
+measure_street_frontage.py randolph washington dearborn state` reads, on the committed dataset:
+Randolph 7 documented / 7 inferred, **Washington 1 / 0**, **Dearborn 6 / 1**, State 3 / 0. Randolph
+is this block's business face and the first two deals took every free lot on it. So the ground this
+row is built to is not valuable for the street it fronts; it is valuable for the street it stands
+at the end of — Dearborn, the only crossing of the main stem in July 1835 — and the row is graded
+on T-A11's end rule the same way T-0105 read it: the largest roof nearest the crossing (H1), a
+one-room frame cottage next (D3), an older log cabin closing the run at the east end (D1).
+
+**H1 is the first H-family roof this generator has ever stood.** T-0105 was dealt two H slots and
+had to refuse both — H1 at this generator's flat 44.0 deg pitch stands outside the 8:12–11:12 its
+own crosswalk entry cites — and T-0142 made the H families buildable at every size the schedule may
+deal them. This is that repair carrying its first building.
+
+**A REAL PLACEMENT FAULT, FOUND BY BUILDING ON A FACE THAT IS NOT THE NORTH ONE.**
+`place_frontage` walked back from a unit's east wall by placing the footprint's (0, 0) corner at
+`east - width`. That is right exactly when the footprint's own +u axis runs WITH the face's
+`along` — true on a north or west face, false on a south or east one, because `rotation_deg` is the
+facade bearing and the u axis is the outward normal turned a quarter turn. Every frontage run this
+project has ever built stood on a north face, so the arithmetic was right on all twenty committed
+units and wrong the first time it met a south face: each unit landed a **full width** west of the
+party wall it declared. `check_frontage` refused it —
+*"recon_1835_blk_randolph_dearborn_d3_15 stands 5.202 m from the party line it shares with
+recon_1835_blk_randolph_dearborn_h1_14"* — which is the assertion earning its keep, because it
+measures the geometry rather than reading back the recipe that produced it. The fix derives the
+sign from the bearing and the face, and refuses a bearing that does not lie along the face at all.
+**No committed record moves:** `u_along` is +1 on every north face, so `along_0` is `east - width`
+exactly as before, and the twenty South Water and Randolph units re-derive byte-identical.
+
+**Lot 1 leaves the two earlier entries' `open_lots`.** The lot-accounting gate refuses a lot that
+is both *named open in the recipe* and *built on by another deal on this block*, and lot 1 is now
+the second. Their stated reason for leaving it open — a civic roof the first deal deferred, and a
+back face the second deal was not dealing — is answered rather than overturned, and it is quoted in
+the third entry's `arrangement_note`. **Lot 5 stays open:** capacity is a ceiling and not a target.
+
+**The 665 total does not move.** The four roofs come out of `south_plat_beyond_committed_control`;
+`tools/reconcile_665.py` re-derives 338 standing / 327 remaining and every marginal still sums to
+665. The town census reads 338 buildings standing, 142 people housed.
+
+**Before and after, from one stand** — `tools/shoot.mjs . /renderers/web/ --at 700,-400,40`, in
+Washington Street looking north-east at the corner:
+`docs/RESEARCH/washington_dearborn_corner_before_2026-08-24.png` (empty grass to the block's
+interior) and `…_after_2026-08-24.png` (the three-unit row built to the corner, its barn behind).
+
+**Derivations regenerated in the same commit:** the four records and their Blender bakes, the web
+derivatives, the sidecars (`compile_scene.py --all`), the dooryard pickets, the lot-line yard
+fences, the dooryard plantings, the business signboards, the yard goods, the lot building material,
+the frontage works, the 665 programme, the town census, and the published mirror.
+
+**What is unverified is everything that matters:** that any building stood on this ground, that
+there were three of them, that they stood shoulder to shoulder, and that the largest took the
+corner are all inventions of this programme. The side lot lines the row crosses between its own
+units are conjectural; the block face it stands on is committed geometry derived from the street
+centrelines, which is the unit the standard counts in.
 
 ## Shipped 2026-08-24 — T-0103: seventy-eight roofs stop fronting the middle of their own block
 
