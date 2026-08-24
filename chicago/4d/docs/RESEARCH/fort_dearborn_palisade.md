@@ -23,7 +23,7 @@ projection. **L47** owns all of it. The posterns are documented and unbuilt.
 **0.312 m** — 8.4 % of the 3.7 m height, cut out of that height rather than added to it — and no
 source describes the head of a Fort Dearborn picket. It is built because a flat-topped post reads
 as a fence rail and a pointed one reads as a stockade, which is a drawing argument and not
-evidence. **L177** records it; the record's own `construction` note now says it where a visitor
+evidence. **L179** records it; the record's own `construction` note now says it where a visitor
 reading the card will find it.
 
 ## The two plates, measured (T-0094, 2026-08-24)

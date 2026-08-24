@@ -3253,7 +3253,7 @@
     {
       "structure_id": "blk_lake_clark_lot0",
       "wall": "blk_lake_clark north face, lot 0",
-      "why": "recon_1835_blk_lake_clark_a3_04 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_lake_clark_a3_04 stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_clark_lot2",

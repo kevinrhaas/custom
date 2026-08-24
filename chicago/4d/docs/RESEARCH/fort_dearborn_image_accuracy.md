@@ -75,7 +75,7 @@ same flat cap. The draughtsman had the resolution and drew no point.
 
 That does not make the model's head wrong — a lithographer rules the top of a distant stockade, and
 these are tier-5 retrospective plates. It makes the head **unattested and ours**, which is now
-recorded in the record's own `construction` note and in **L177**, where it had never been written
+recorded in the record's own `construction` note and in **L179**, where it had never been written
 down at all.
 
 **"Pale" is a reading of half of one wall.** The plate paints this single continuous curtain across

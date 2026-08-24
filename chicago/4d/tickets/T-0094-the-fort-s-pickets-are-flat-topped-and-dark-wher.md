@@ -59,7 +59,7 @@ drew none. That does not make the head wrong; it makes the plate uncitable for i
 
 **Clause 2 — "the record carries the new form value" — is HALF DONE, and the half is named.** The
 head is now declared where a reader meets it: in the record's own `construction` note, which the
-card shows, and in **L177**, which records it as the invention L47 covered in general and never
+card shows, and in **L179**, which records it as the invention L47 covered in general and never
 named. It is NOT a `form` attribute, and cannot be in this run: `generators/mesh_inputs.py` hashes
 the resolved archetype parameters, so **any new key under `form` restales the GLB** — verified by
 recomputing the hash, not assumed — and there is no Blender on this runner. **What needs baking, if
@@ -83,6 +83,6 @@ the scene moved: `docs/evidence/t-0094-p4_0-stand.png` is the stand, and
 in one strip.
 
 **What the plate DOES say about the pickets** — its drawn rhythm is nearly three times coarser than
-the model's — is **T-0184**, at the queue bottom. Row 3 of
+the model's — is **T-0185**, at the queue bottom. Row 3 of
 `docs/RESEARCH/fort_dearborn_image_accuracy.md`, which seeded this ticket, is struck and corrected
 in place so the same claim cannot be re-filed off the same sentence.

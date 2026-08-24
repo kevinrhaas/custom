@@ -1,7 +1,7 @@
 ---
 id: T-0163
 title: South Water's committed centreline stops 878 m short, and it is the only thing left blocking a new platted block
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 358
 claimed_by: null
 blocked_on: null
 needs_bake: false
