@@ -25,6 +25,7 @@
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
     <a href="wau-bun/">Wau-Bun</a>
+    <a href="stay/">Stay Finder</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
     <a href="#about">About</a>
@@ -115,6 +116,7 @@
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
     <a href="wau-bun/">Wau-Bun</a>
+    <a href="stay/">Stay Finder</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
   </div>
@@ -185,7 +187,15 @@
     'in full, and the whole cast \u2014 who enters the story, ' +
     'who leaves it, and who shares each scene. All three parts \u2014 158 scenes, chapters I\u2013XXXVIII \u2014 are complete.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the telling \u2197</div></a>';
-  grid.innerHTML = chicagoCard + waubunCard + vehicleCard + porchfestCard + projects.map(function (p) {
+  var stayCard = '<a class="app-card reveal" href="stay/" style="--c:#0e7c8a">' +
+    '<div class="app-top"><span class="app-glyph">\uD83C\uDFD6\uFE0F</span>' +
+    '<div><div class="app-name">Stay Finder</div><div class="app-sub">stay \u00b7 6\u20138 bedroom houses, Tampa area</div></div></div>' +
+    '<p class="app-tagline">A hundred and sixty-eight houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast '  +
+    'around Cedar Key and Crystal River, and the ranch country near Crystal Springs \u2014 ranked for nine people who want five or six '  +
+    'rooms and three king beds, not a house built for twenty. Eighty-nine carry a real eight-night price quoted for Dec 19\u201327. '  +
+    'Mapped on a real coastline, and linked straight to the original listing with the dates already filled in.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the search \u2197</div></a>';
+  grid.innerHTML = chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
