@@ -67,7 +67,11 @@ def build(params: PalisadeParams, name: str):
         simple_material("log", HEWN_RGBA,
                         roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("roof", GATE_RGBA, roughness=0.88),
-        simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
+        # ONE DARK (T-0126) — the sheet's `DARK` row. Here it is the two shut gate
+        # leaves, drawn dark so the gate reads as closed rather than as a gap; the
+        # row's note records that use alongside the openings it is named for.
+        simple_material("dark", materials.DARK.rgba,
+                        roughness=materials.DARK.roughness),
     ]
     return b.to_object(mats)
 

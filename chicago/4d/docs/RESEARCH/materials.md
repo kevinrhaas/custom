@@ -185,6 +185,12 @@ name, in the shipped bytes.
 |---|---|---|
 | `glass` | 0.25 | the only sub-0.5 surface on a building. Muntins, sash and reveal are geometry and belong to **R-W3c**, not to this atlas |
 | `dark` (openings, interiors seen through) | 0.35 / 0.40 / 0.60 / 0.70 | **four different values for one idea across four generators.** Not a texture; a convergence job for R-W2b |
+
+**CORRECTED 2026-08-24 (T-0126) — the row above says four and three ship.** The fourth,
+`placeholder_opening_dark` at 0.70, belongs to a generator that now paints no committed asset,
+so it was never a surface anyone could see. Both rows are converged and wired in **§7**, which
+re-measures the whole family before choosing: one `dark` row at `0.072, 0.068, 0.060` / 0.60,
+and `glass` brought onto the sheet at exactly the value it already shipped.
 | `trim`, `sign` | 0.80–0.85 | trim is derived from the wall paint and needs no sheet of its own; `sign` is one board and L25 governs what may be on it |
 | `deck`, `fill` | 0.95 / 0.98 | bridge and crib; `fill` is river stone and gravel and is the roughest surface in the town |
 | `terrain_ground`, `terrain_water` | 1.00 / 0.15 | out of scope, §1.2 |
@@ -302,6 +308,8 @@ building in the scene, and the station `sauganash` stands in front of it.
 defensible and are not the same thing. Only the outbuilding's ships — no record turns
 `framing_exposed` on — so this is latent rather than visible, and it will surface the first
 time a storefront exposes its framing beside a shed. R-W2b should give them two names.
+**DISCHARGED 2026-08-24 by T-0126 — §7.4.** Two rows, `heavy_timber` and `sawn_framing`, and
+both material slots renamed so the name in the shipped GLB says which one it is. No value moved.
 
 **4 — The data speaks a finish vocabulary that no archetype reads.**
 `roof_condition` is stated on **218 records** and `finish_key` drives six wall finishes, and
@@ -420,3 +428,186 @@ that number either way would be choosing a covering nobody wrote down.
 
 The shingle exposure, the brick course and the stone course are all still open, all still §5's,
 and all still unresolvable from what this project holds.
+
+---
+
+## 7. WIRED IN — T-0126, 2026-08-24: the openings-and-glazing half
+
+**§§1–5 are R-W2a's document and stay as written; §6 is T-0007's.** This section is the
+parcel that closed the family T-0007 deliberately left — §2.3's dark openings and the
+glazing beside them — and **finding 3**, the one name over two timbers.
+
+### 7.1 THE COUNT WAS RE-MEASURED FIRST, AND §2.3'S "FOUR VALUES" IS NOW THREE
+
+§2.3 was written on 2026-08-16 against four values on four generators. Re-measured over
+`assets/gltf/**/*.glb` on 2026-08-24, before anything was chosen, **three** ship:
+
+| shipped material | base colour | roughness | slots | emitted by |
+|---|---|---|---|---|
+| `dark` | `0.070, 0.080, 0.090` | **0.35** | 112 | `frame_dwelling` |
+| `dark` | `0.070, 0.080, 0.090` | **0.40** | 58 | `log_dwelling`, `fort_structure`, `palisade` |
+| `interior` | `0.072, 0.068, 0.060` | **0.60** | 117 | `outbuilding` |
+| `glass` | `0.09, 0.11, 0.13` | 0.25 | 48 | `frame_storefront`, `frame_tavern` |
+
+**The fourth value ships on nothing.** `placeholder_opening_dark` (`#2D3D33` at 0.70) belongs
+to `generators/inferred_placeholder.py`, and that generator now paints no committed asset:
+`--check` reports *"verified 0 flagged placeholder GLBs; 226 superseded by a canonical bake"*.
+The 90 pure-Python massings §1.1 and finding 5 are written about have been replaced by real
+archetype bakes, so the greenish opening colour — the one value of the four that nothing in
+this repository argues for, and the only one that is not a near-black — was **dead code, not a
+surface a visitor could see.** §1's whole census is stale in the same direction and by the same
+cause: **334 assets have become 344 and 1,353 material slots have become 1,628**, `roof`'s 234
+slots have become **334**, the 32 distinct material names have become **22**, and there is no
+`placeholder_*` material left in the tree at all. **§1 is not rewritten** — it is a dated
+measurement and this project does not restate history — but no parcel should quote its counts
+again without re-measuring, which is the correction R-W2a's own preamble asks for.
+
+Two further readings fell out of the same measurement and both are recorded rather than acted
+on, because acting on either adds a material and the count is the constraint (§7.4):
+
+- **`dark` is not only openings.** It also paints the fort's sun-dial plate and the 1832
+  lighthouse's lantern drum, `log_dwelling`'s iron sign-hinge straps, and the stockade gate's
+  two shut leaves. All are dark and small; none is an opening. They ride on the row and its
+  note says so.
+- **A glazed sash and an open bay are the same material on 112 buildings.** Every window
+  `frame_dwelling` builds is sized off the Green Tree's attested 6 × 8 in lights, so those
+  panels stand for glazing — but the archetype paints its doors from the same slot, and
+  `frame_storefront` meanwhile paints its windows from `glass`. Splitting a dwelling's windows
+  onto `glass` is a real parcel and it costs one material on 112 assets. It is not this one.
+
+### 7.2 WHAT THE SOURCES SAY ABOUT GLASS, MEASURED
+
+**The word "glass" appears in no source this repository holds.** Two records reach the glazing
+at all, and both are `inferred`:
+
+- **`green_tree_tavern.form.fenestration = small_paned_sash`**, sourced to
+  `chicagology_prefire127` — Edwin O. Gale on a guest chamber *"about 12x12, with two windows
+  6x8"*. That is the **one attested pane size in the dataset**, and it is the number
+  `frame_dwelling` sizes every window in the town from (`WIN_W_M`, four lights across and three
+  high per sash).
+- **`sauganash_hotel`**, `trowbridge_sauganash_hotel` — the plate carries *louvred shutters
+  flanking every window of the clapboard block*, i.e. shutters **on the sash**.
+
+So *that* the town was glazed in small lights is inferred and reasonably held. **What colour a
+pane reads at fifty metres is stated nowhere**, and `glass` is graded `reconstructed` on the
+sheet accordingly. The value itself is untouched: both its generators already agreed on
+`0.09, 0.11, 0.13` at 0.25 across all 48 slots, so this parcel **brings it onto the sheet
+rather than re-arguing it** — §2.3 asked for it to be carried across, not rewritten.
+
+### 7.3 ONE `DARK` — the colour read, and the roughness bounded
+
+**Colour: the warm near-black wins, and the reason is that the cool one is a claim about sky.**
+The two shipped colours are 0.030 apart at their widest (blue) and 0.002 at their narrowest
+(red), so this is a convergence and not a repaint. The sheet takes `0.072, 0.068, 0.060` — the
+117 slots that already carried it — and retires `0.070, 0.080, 0.090` from the other 170.
+Light that reaches an unlit room in this town has bounced off timber and lime, so it comes back
+warm; a cool cast in an opening is **sky reflected in a pane**, and sky in an opening is what
+`glass` is for. Keeping both hues on one idea kept the only real distinction in the family
+pointing at nothing. Near-black rather than black, as the row has always said: an interior in
+daylight is dark, not a hole in the world.
+
+**Roughness: 0.60, and it is BOUNDED between two values this project already ships.** This is
+the half a visitor sees, because roughness decides whether a surface catches the sun — and a
+doorway on a frame dwelling glinted while the identical doorway on the shed beside it did not.
+
+- It **cannot sit at `glass`'s 0.25**, because **every one of the 287 slots** carries surfaces
+  that are certainly not glazed — doorways, gaps between boards, open bays, loopholes, gable
+  vents, the stockade's two shut gate leaves. At a glazing gloss an open bay takes the same sun
+  glint a shop window does, which is the defect, not the fix.
+- It **cannot sit at the bare fabrics behind it** — `heavy_timber` 0.90, `hewn_log` 0.92,
+  `sawn_board` 0.94 — because **156 of the 287 also carry windows** (112 frame dwellings, 44 log
+  cabins), and on the frame dwellings every window is sized off the Green Tree's attested 6 × 8
+  in lights, so those panels stand for glazed sash. A sash with no specular at all reads as a
+  hole knocked in the wall.
+
+- **Nothing states where between the two it sits**, so it sits at **the midpoint, 0.575**, taken
+  to **0.60** — the value the town already speaks, on 117 slots — rather than to a newly invented
+  0.575 that would mean the same thing 0.025 away. `renderers/web/js/buildings.js` records that
+  nothing in this dataset uses two roughness values closer than 0.01, and adding a second number
+  for one idea is the fault this parcel exists to remove.
+
+The bounds are stated by SLOT and by what the slot actually paints, rather than as a clean
+percentage, because **no slot in this family is purely one or the other**: `frame_dwelling`
+paints its doors and its windows from one slot, and `log_dwelling` paints a door, its windows
+and a gable vent from one. The exact census, by archetype — `outbuilding` 117, `frame_dwelling`
+112, `log_dwelling` 44, `fort_structure` 13, `palisade` 1, and no other asset carries the slot
+(the garrison garden's fence is a `palisade` build with no gate, so it has none). The slots
+carrying nothing that could be glazed are the outbuildings' 117, the stockade's 1, and 12 of the
+fort's 13 — the thirteenth is the 1832 lighthouse, whose lantern drum is a glazed surface riding
+on this row. What the two bounds establish is that the value belongs strictly between them.
+
+Graded **`reconstructed`**, which is a DOWNGRADE from the `inferred` the old `interior_dark` row
+carried, and deliberate: no source states any of it, and a row that is reasoned from physics
+rather than from evidence about these particular buildings is not an inference about them.
+`docs/LIBERTIES.md` **L179** owns it.
+
+### 7.4 FINDING 3 DISCHARGED — `timber` becomes two names
+
+`outbuilding.py`'s `0.208, 0.172, 0.128` (weathered heavy squared stock, roughness 0.90) and
+`frame_storefront.py`'s `0.66, 0.56, 0.40` (fresh sawn mill framing, roughness 0.92) are two
+materials **3.2× apart in linear red** that shared one name. Re-measured: the outbuilding's
+ships on **117** slots and the storefront's on **zero**, exactly as the finding said — no record
+in this dataset turns `framing_exposed` on, so the collision was latent and would have surfaced
+the first time a storefront exposed its frame beside a shed.
+
+Two rows, `HEAVY_TIMBER` and `SAWN_FRAMING`, and **the material slots are renamed to match** so
+the name in the shipped GLB says which of the two it is: `outbuilding`'s `timber` → `heavy_timber`,
+`frame_storefront`'s `timber` → `sawn_framing`, and `outbuilding`'s `interior` → `dark`. **No
+value moves in either row.** `SAWN_FRAMING` is regraded `reconstructed` from the shared row's
+`inferred`, because a value that has never been rendered has no building it is an inference about.
+
+### 7.5 THE COUNT DID NOT MOVE, AND THAT WAS THE CONSTRAINT
+
+ROADMAP K36(a) is why every choice above is a rename or a value and never an addition: a palette
+pass folds an asset at five materials and leaves four alone, and the town sits on that line.
+Measured before and after over all 344 masters, each file against its own committed blob:
+
+| | before | after |
+|---|---|---|
+| material-count histogram | 1×2, 2×3, 3×6, 4×125, 5×148, 6×59, 8×1 | **identical** |
+| material slots | 1,628 | **1,628** |
+| triangles | 484,903 | **484,903** |
+| assets whose material count moved | — | **0** |
+| assets whose triangle count moved | — | **0** |
+
+### 7.6 WHICH ASSETS MOVED, AND WHY EACH ONE DID
+
+**287 of the 344 masters changed and 57 re-derived BYTE FOR BYTE**, and the split is not a
+guess — every changed file was diffed against its own committed blob and its difference named:
+
+| assets | what actually differs | |
+|---|---|---|
+| **117** | material RENAMED `interior` → `dark` and `timber` → `heavy_timber` | `outbuilding` — **no value moves at all** |
+| **112** | `dark`: `0.07, 0.08, 0.09` → `0.072, 0.068, 0.060`, roughness **0.35 → 0.60** | `frame_dwelling` |
+| **58** | `dark`: `0.07, 0.08, 0.09` → `0.072, 0.068, 0.060`, roughness **0.40 → 0.60** | `log_dwelling` 44, `fort_structure` 13, `palisade` 1 |
+| **0** | *bytes moved with no nameable material difference* | — |
+| **0** | *triangle count moved* | — |
+
+**287 is exactly the number of assets carrying the `dark` slot**, measured before anything was
+chosen (§7.1), so the blast radius is the family and not a hash wave. The determinism promise is
+what proves it: **the 57 that re-derive byte for byte** are `frame_storefront` 38 (its
+`timber` → `sawn_framing` rename touches a slot that is UNREFERENCED and dropped at export, so
+the shipped bytes cannot move), `frame_tavern` 10 (its `glass` came onto the sheet at exactly
+the value it already had), `bridge_timber` 4, `pier_crib` 2, the 2 terrain meshes, and **1
+`palisade`** — the garrison garden fence, a palisade build with no gate and therefore no `dark`
+slot at all. That last one is the control: a windowless, doorless, gateless object in the family's
+own archetype, and its bytes did not move.
+
+Stated the other way, for the reader checking for a leak: **no asset without a `dark` slot
+changed, and no asset with one failed to.**
+
+And the family itself, by slot: `dark` 0.070/0.080/0.090 at 0.35 (112) and at 0.40 (58) and
+`interior` 0.072/0.068/0.060 at 0.60 (117) → **one `dark` at 0.072/0.068/0.060 / 0.60, 287
+slots**; `timber` (117) → `heavy_timber` (117) with `sawn_framing` still at 0; `glass` 48,
+untouched. Renaming a slot is free. Adding one tips the whole town at once, and nothing here
+adds one.
+
+**What the town DOES lose is two roughness values, and the gate that watches for that is named
+here rather than left to be discovered.** `tools/smoke_renderer.mjs` holds the merged building
+batch to `ROUGHNESS_VALUES_MIN = 12` distinct per-vertex roughness values — the assertion that
+catches a merge which buys draw calls by throwing the town's finishes away. Converging 0.35 and
+0.40 onto 0.60 takes the batch from **17 distinct values to 15**. The measured run reports
+`batches: 1 · roughness 15 values 0.25–0.98`, so the margin over the floor narrows from five to
+three. **The floor was not touched** — it is a real assertion about a real risk and weakening it
+to make room would be the exact move this project refuses. It is recorded because the next parcel
+that converges two roughnesses should know the margin it is spending.

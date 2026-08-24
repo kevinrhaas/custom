@@ -1,5 +1,103 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0126: one dark behind every opening, and `timber` stops naming two woods
+
+**The ticket's own count was wrong, and measuring it first is what set the parcel's shape.**
+materials.md §2.3 recorded FOUR values for "what you see through an opening", across four
+generators. Re-measured over `assets/gltf/**/*.glb` before anything was chosen, **three** ship:
+
+| shipped | colour | roughness | slots | emitted by |
+|---|---|---|---|---|
+| `dark` | `0.070, 0.080, 0.090` | **0.35** | 112 | `frame_dwelling` |
+| `dark` | `0.070, 0.080, 0.090` | **0.40** | 58 | `log_dwelling`, `fort_structure`, `palisade` |
+| `interior` | `0.072, 0.068, 0.060` | **0.60** | 117 | `outbuilding` |
+
+The fourth — `placeholder_opening_dark`, `#2D3D33` at 0.70, the only green of the four and the
+only one that is not a near-black — belongs to `generators/inferred_placeholder.py`, and that
+generator paints **no committed asset**: `--check` says *"verified 0 flagged placeholder GLBs;
+226 superseded by a canonical bake."* It was dead code, not a surface anyone could see. The same
+cause has staled §1's whole census (334 assets are now 344, and no `placeholder_*` material
+remains in the tree); §1 is a dated measurement and is **not** rewritten, but the correction is
+recorded at materials.md §7.1 so no parcel quotes those counts again without re-measuring.
+
+**The visible half is the ROUGHNESS, not the colour.** The two colours are 0.030 apart at their
+widest — a convergence, not a repaint. The gloss is what decides whether a surface catches the
+sun, and the town rendered one idea at three glosses: a doorway on a frame dwelling glinted at
+0.35 and the identical doorway on the shed behind it did not at 0.60. **None of the three values
+carried a word of argument in the file that set it.**
+
+**What was chosen, and how it is bounded.** One row, `0.072, 0.068, 0.060` at **0.60**, graded
+`reconstructed` — a deliberate DOWNGRADE from the `inferred` the old `interior_dark` row carried,
+because no source states any of it and reasoning from physics is not an inference about these
+buildings. The colour is the warm near-black over the cool: light reaching an unlit room here has
+bounced off timber and lime, and a cool cast is SKY — sky in an opening is `glass`'s job, and
+keeping both hues on one idea left the family's only real distinction pointing at nothing. The
+roughness is **bounded between two values already shipping and placed at their midpoint**: not
+`glass`'s 0.25, because **every one of the 287 slots** carries surfaces that are certainly not
+glazed — doorways, board gaps, open bays, loopholes, gable vents, the stockade's shut gate leaves;
+not the bare fabrics behind it (0.90–0.94), because **156 of the 287 also carry windows**, and on
+the 112 frame dwellings among them every window is sized off the Green Tree's attested 6 × 8 in
+lights, so those panels stand for glazed sash. No slot in this family is purely one or the
+other — `frame_dwelling` paints doors and windows from one slot — so the bounds are stated by
+what a slot paints rather than as a percentage. The
+midpoint is 0.575, taken to the **0.60** the town already speaks rather than to a new number
+0.025 away that would mean the same thing. **L179.**
+
+**What the sources actually carry about glazing, measured.** The word *glass* appears in **no
+source this repository holds.** Two records reach the glazing and both are `inferred`: the Green
+Tree's `fenestration: small_paned_sash` off Gale's *"about 12x12, with two windows 6x8"*
+(`chicagology_prefire127`) — the one attested pane size in the dataset, and the number
+`frame_dwelling` sizes every window in town from — and the Sauganash's Trowbridge plate, louvred
+shutters **on the sash**. So *that* the town was glazed in small lights is held; what colour a
+pane reads at fifty metres is stated nowhere. `glass` therefore comes onto the sheet graded
+`reconstructed` and **at exactly the value its 48 slots already shipped** — carried across, as
+§2.3 asked, not re-argued.
+
+**Finding 3 discharged.** `outbuilding`'s `0.208, 0.172, 0.128` and `frame_storefront`'s
+`0.66, 0.56, 0.40` are two materials 3.2× apart in linear red that shared the name `timber`.
+Re-measured: 117 slots and **zero** — no record turns `framing_exposed` on, so the collision was
+latent exactly as the finding said. Two rows and two slot names now: `heavy_timber` and
+`sawn_framing`. No value moved; `SAWN_FRAMING` is regraded `reconstructed`, because a value that
+has never been rendered has no building it is an inference about.
+
+**The count did not move, which was the constraint (K36(a)).** Measured file-by-file against each
+asset's own committed blob, all 344: material-count histogram identical (1×2, 2×3, 3×6, 4×125,
+5×148, 6×59, 8×1), 1,628 slots before and after, **484,903 triangles before and after**, zero
+assets whose material or triangle count changed.
+
+**Which assets moved, and why each one did.** 287 of the 344 masters changed and **57
+re-derived BYTE FOR BYTE**. Every changed file was diffed against its own committed blob and its
+difference named: **117** `outbuilding` assets carry a material RENAME only (`interior` → `dark`,
+`timber` → `heavy_timber`, no value moved); **112** `frame_dwelling` move `dark` from
+`0.07, 0.08, 0.09` at 0.35 to `0.072, 0.068, 0.060` at 0.60; **58** (`log_dwelling` 44,
+`fort_structure` 13, `palisade` 1) move the same colour from roughness 0.40. **Zero** assets had
+bytes move without a nameable material difference, and **zero** moved a triangle. 287 is exactly
+the count of assets carrying the `dark` slot, measured before anything was chosen — the blast
+radius is the family, not a hash wave. The 57 unchanged are `frame_storefront` 38 (its
+`timber` → `sawn_framing` rename touches an UNREFERENCED slot dropped at export), `frame_tavern`
+10 (`glass` came onto the sheet at the value it already had), `bridge_timber` 4, `pier_crib` 2,
+2 terrain, and **1 `palisade`** — the garrison garden fence, a palisade build with no gate and so
+no `dark` slot. That is the control: a windowless, gateless object in the family's own archetype,
+and its bytes did not move. No asset without a `dark` slot changed; no asset with one failed to.
+
+**The bake, and a correction to the record.** Blender 4.5.3 LTS IS on the steward runner
+(`/opt/blender-dl/blender-4.5.3-linux-x64`), and its tarball sha256 verifies against
+`generators/blender.pin` — so this `needs_bake` ticket was baked rather than half-shipped. 342
+structure masters in one Blender invocation; the 2 terrain GLBs re-stamped separately, and they
+came out **byte-identical** because `terrain_gen.py` imports nothing from `generators/common/` —
+only their `inputs_sha256` moved. One trap worth recording: `mesh_inputs.py` hashes every byte of
+`generators/common/`, **comments included**, so editing a docstring after a bake re-stales all
+342. It happened here and cost a second Blender pass; the masters came back byte-identical, which
+is the determinism promise doing its job.
+
+**Left standing, in writing.** `dark` is not only openings — it also paints the fort's sun-dial
+plate and the 1832 lighthouse's lantern drum, `log_dwelling`'s iron sign-hinge straps and the
+stockade gate's two shut leaves. And a glazed sash and an open bay are still one material on 112
+frame dwellings, because `frame_dwelling` paints its doors and its windows from the same slot
+while `frame_storefront` paints its windows from `glass`. Splitting either costs a material on
+assets that sit on K36(a)'s threshold, which T-0126's acceptance forbids. Both are recorded at
+materials.md §7.1 rather than quietly carried.
+
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
 
 **The defect, measured before anything was changed.** `renderers/web/js/streets.js` draws its ribbon

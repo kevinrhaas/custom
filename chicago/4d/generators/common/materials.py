@@ -175,9 +175,11 @@ SUBSTRATES: dict[str, Substrate] = {
         key="heavy_timber", roughness=0.90, tier="inferred",
         tile_m=4.00, module_m=None, texel_px_per_m=256.0,
         note="Posts, plates, jambs, headers and battens. Heavy stock holds moisture "
-             "and weathers darker than siding. materials.md §4 finding 3 records that "
-             "TWO different materials share this name in the source and only this one "
-             "ships; splitting them is a follow-up, not this parcel."),
+             "and weathers darker than siding. materials.md §4 finding 3 recorded that "
+             "TWO different materials shared this name and only this one shipped; "
+             "T-0126 splits them, and this substrate is the WEATHERED one — the "
+             "`HEAVY_TIMBER` finish. Fresh mill stock on an exposed storefront frame "
+             "is the `SAWN_FRAMING` finish and carries its own 0.92."),
     "brick": Substrate(
         key="brick", roughness=0.90, tier="inferred",
         tile_m=None, module_m=None, texel_px_per_m=None,
@@ -305,7 +307,8 @@ ROOF_DEFAULT = Finish(
 # ------------------------------------------------------------------- other rows
 #
 # §1 and §2.3. These ship today at these values and are held here so one file
-# answers "what is this surface" for every generator. Values are unchanged.
+# answers "what is this surface" for every generator. Values are unchanged, with
+# the openings-and-glazing family below as T-0126's exception — that one converges.
 
 HEWN_LOG = Finish(
     key="hewn_log", rgba=(0.340, 0.266, 0.188, 1.0), tier="inferred",
@@ -319,16 +322,120 @@ CHINKING = Finish(
     key="chinking", rgba=(0.700, 0.670, 0.590, 1.0), tier="inferred",
     note="Clay and lime, pale where the logs are dark, standing proud so it catches "
          "light. §1, 50 shipped slots.")
-INTERIOR_DARK = Finish(
-    key="interior_dark", rgba=(0.072, 0.068, 0.060, 1.0), tier="inferred",
-    note="What is seen through a gap between boards or into an open bay. Near-black "
-         "rather than black: an interior in daylight is dark, not a hole in the "
-         "world. §2.3 records that FOUR values across four generators express this "
-         "one idea; converging them is a follow-up, not this parcel.")
+
+
+# ------------------------------------------------- openings and glazing (T-0126)
+#
+# materials.md §2.3's other half, and the family T-0007 deliberately left. Two rows,
+# and the reason there are two rather than one is the only distinction the evidence
+# actually supports: a pane reflects the sky and a hole does not.
+#
+# WHAT WAS MEASURED FIRST, because the ticket's own count no longer holds. §2.3 was
+# written against FOUR values on four generators; re-measured over `assets/gltf/`
+# on 2026-08-24 there are THREE, on 287 slots, because the pure-Python placeholder
+# path that carried the fourth ships nothing any more — `inferred_placeholder.py
+# --check` reports "0 flagged placeholder GLBs; 226 superseded by a canonical bake",
+# so `placeholder_opening_dark` (#2D3D33 at 0.70, a green nothing in this repository
+# argues for) is dead code and not a shipped surface. What ships is:
+#
+#   dark      0.070/0.080/0.090  r 0.35  112 slots  frame_dwelling
+#   dark      0.070/0.080/0.090  r 0.40   58 slots  log_dwelling, fort_structure, palisade
+#   interior  0.072/0.068/0.060  r 0.60  117 slots  outbuilding
+#
+# Two colours 0.03 apart at their widest and three roughnesses spread over 0.25 —
+# which is the half a visitor sees, because roughness is what decides whether a
+# surface catches the sun. A doorway on a frame dwelling glinted and the identical
+# doorway on the shed beside it did not.
+
+DARK = Finish(
+    key="dark", rgba=(0.072, 0.068, 0.060, 1.0), roughness=0.60,
+    tier="reconstructed",
+    note="ONE ROW for every dark recess in the town: a window or door panel on a "
+         "frame dwelling, a log cabin's door, window and gable vent, the fort's "
+         "loopholes and its root-house door, and the outbuilding's interior seen "
+         "through a board gap, a vent or an open bay. 'Surfaces, not holes' — "
+         "frame_dwelling._opening says it in terms: at this level of detail these "
+         "are flat panels standing in for an interior, and interiors are out of "
+         "scope. THE COLOUR is the warm near-black this sheet already carried (117 "
+         "of the 287 slots ship it); the cool 0.070/0.080/0.090 the other 170 wore "
+         "is retired, because a cool cast is SKY, and sky in an opening is the "
+         "`GLASS` row's business. Light that reaches an unlit room here has bounced "
+         "off timber and lime, so it comes back warm. Near-black rather than black: "
+         "an interior in daylight is dark, not a hole in the world. THE ROUGHNESS "
+         "is bounded rather than read, and both bounds are values this project "
+         "already ships. It cannot sit at `GLASS`'s 0.25, because EVERY ONE of the "
+         "287 slots carries surfaces that are certainly not glazed — doorways, gaps "
+         "between boards, open bays, loopholes, gable vents, the stockade's shut "
+         "gate leaves — and at a glazing gloss an open bay takes the same sun glint "
+         "a shop window does. It cannot sit at the bare fabrics behind it either "
+         "(heavy_timber 0.90, hewn_log 0.92, sawn_board 0.94), because 156 of the "
+         "287 ALSO carry windows, and on the 112 frame dwellings among them every "
+         "window is sized off the Green Tree's attested 6x8 lights — so those panels "
+         "stand for glazed sash, and a sash with no specular reads as a hole knocked "
+         "in the wall. Nothing states where between the two it sits, so it sits at "
+         "the midpoint, 0.575, taken to the 0.60 the town already speaks rather "
+         "than to a newly invented 0.575 that would mean the same thing 0.025 away "
+         "(buildings.js: nothing in the dataset uses two roughness values closer "
+         "than 0.01). §2.3; docs/LIBERTIES.md L179. NOT EVERY USE IS AN OPENING and "
+         "this row does not pretend otherwise: the fort's sun-dial plate and its "
+         "lighthouse lantern drum, the log dwelling's iron hinge straps and the "
+         "stockade's two shut gate leaves ride on the same slot. All are dark and "
+         "small; separating them would add a material to an asset, which T-0126's "
+         "acceptance forbids and K36(a) is the reason for.")
+GLASS = Finish(
+    key="glass", rgba=(0.09, 0.11, 0.13, 1.0), roughness=0.25,
+    tier="reconstructed",
+    note="Small-paned sash, seen from the street: mostly the sky reflected in the "
+         "pane and a little of the dark room behind it. §2.3 calls it 'the only "
+         "sub-0.5 surface on a building'. Already consistent across its two "
+         "generators (frame_storefront, frame_tavern — 48 slots at one value), so "
+         "T-0126 brings it onto the sheet UNCHANGED rather than re-arguing it. WHAT "
+         "THE SOURCES CARRY, measured across data/sources/ on 2026-08-24: the word "
+         "'glass' appears in NO source this repository holds. Two records reach the "
+         "glazing at all — the Green Tree's `fenestration: small_paned_sash`, "
+         "`inferred` off Gale's guest chamber 'about 12x12, with two windows 6x8' "
+         "(chicagology_prefire127), which is the one attested pane size in the "
+         "dataset and the number frame_dwelling sizes every window from; and the "
+         "Sauganash's Trowbridge plate, which shows louvred shutters ON THE SASH "
+         "(trowbridge_sauganash_hotel). So THAT the town was glazed in small lights "
+         "is inferred and reasonably held; what colour a pane reads at fifty metres "
+         "is stated nowhere, and this value is RECONSTRUCTED. Muntins, sash and "
+         "reveal are geometry and belong to R-W3c, not here.")
+
+# -------------------------------------------------- heavy timber, split (T-0126)
+#
+# materials.md §4 finding 3, discharged: `timber` was ONE NAME over TWO materials
+# 3.2x apart in linear red, and both are defensible because they are not the same
+# thing. Re-measured 2026-08-24: `outbuilding`'s ships on 117 slots and
+# `frame_storefront`'s ships on ZERO, exactly as the finding said — no record in
+# this dataset turns `framing_exposed` on, so the paler value has never been
+# rendered and the collision is LATENT. It would have surfaced the first time a
+# storefront exposed its framing beside a shed, as two different materials wearing
+# one name. Two rows, two names, and the archetypes' material slots renamed to
+# match, so the name in the shipped GLB says which of the two it is.
 HEAVY_TIMBER = Finish(
-    key="heavy_timber", rgba=(0.208, 0.172, 0.128, 1.0), tier="inferred",
-    note="The outbuilding's heavy squared stock. §4 finding 3: one name over two "
-         "materials 3.2x apart in linear red, of which only this one ships.")
+    key="heavy_timber", rgba=(0.208, 0.172, 0.128, 1.0), roughness=0.90,
+    tier="inferred",
+    note="The outbuilding's heavy squared stock: posts, plates, jambs, headers and "
+         "battens. Heavy stock holds moisture and weathers darker than thin sawn "
+         "siding, and a post darkens from the foot up — outbuilding.py chose it "
+         "against a render in which the door frame came out warmer and no darker "
+         "than the siding around it. Roughness is the `heavy_timber` substrate's, "
+         "restated on the row so the two timbers can be read side by side. Shipped "
+         "as the material `heavy_timber`, renamed from `timber` by T-0126.")
+SAWN_FRAMING = Finish(
+    key="sawn_framing", rgba=(0.66, 0.56, 0.40, 1.0), roughness=0.92,
+    tier="reconstructed",
+    note="Fresh sawn framing on a storefront that exposes it — paler than the wall "
+         "it stands in, not darker, because this is new mill stock and not a shed's "
+         "weathered heavy timber. Lumber came into Chicago sawn, from St Joseph by "
+         "scow. GRADED DOWN from the `inferred` its shared row carried: no record "
+         "in this dataset turns `framing_exposed` on, so there is no building this "
+         "value is an inference ABOUT, and a value that has never been rendered "
+         "cannot have been reasoned from anything it renders. Shipped as the "
+         "material `sawn_framing`, renamed from `timber` by T-0126; it still "
+         "reaches no GLB, and now it cannot be mistaken for the row above when it "
+         "does.")
 
 
 # ------------------------------------------------------------- the chimney stack

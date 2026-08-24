@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'Windows and doorways stop catching a sheen the sheds never did', kind: 'fix', ts: '2026-08-24T15:18:25.633Z', date: 'Aug 24, 2026, 10:18 AM CT',
+    items: [
+      'Walk any street and look into a window or an open doorway. On the frame houses, the log cabins, the fort’s buildings and the stockade gate, the dark rectangle inside the frame caught a faint sheen, as though it were slightly wet. On the sheds standing behind those same houses it never did. All of them read the same way now, as a recess with a room behind it.',
+      'There was no reason for the difference. The colour and the gloss of that dark panel had been typed separately into five generators over as many months, and they said three different things. Not one of the three carried a word of argument in the file that set it.',
+      'One of the two colours is now the whole town’s. Both were near-blacks and the difference between them was in the blue; the warmer won, because the light that reaches an unlit room here has bounced off timber and lime before you see it. A cool cast is sky, and sky in a window is a reflection off glass, which this town paints as its own thing.',
+      'The gloss is the part you can see, and it is a number this project chose rather than found. It is pinned between two values already in use. It cannot be as glossy as glass, because most of these openings are not glazed at all — loopholes, gable vents, open bays, gaps between boards. It cannot be as flat as bare timber either, because the rest are windows, and every window in the town is sized from the one window pane any source here records. It sits midway between the two.',
+      'Two different timbers had also been sharing one name: the heavy weathered stock of a shed’s door frame, and the pale fresh-sawn framing a shop would show if it exposed its frame. Neither changed colour. They have a name each now, so the day a shop does expose its frame the two will not read as one material.',
+      'Nothing was added and nothing was removed. Every building in town carries exactly the materials and exactly the triangles it carried yesterday.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',

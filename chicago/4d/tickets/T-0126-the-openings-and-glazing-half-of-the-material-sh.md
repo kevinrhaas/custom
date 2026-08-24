@@ -1,7 +1,7 @@
 ---
 id: T-0126
 title: The openings-and-glazing half of the material sheet: one dark, one timber
-state: open
+state: claimed
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 9:54:30 AM CT
 blocked_on: null
 needs_bake: true
 ---
