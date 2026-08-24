@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0166 — Cut the smoke's body into eight parts, and measure the mobile fit
 T-0167 — Size the desktop parts from a measured desktop profile, and re-cut whatever still overruns
 T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows

@@ -134,6 +134,13 @@ and 18 m 50 s of wall clock for eight boots. Every part is inside the ceiling by
 minutes. (Part 5 carries T-0114's two road-legibility failures, which are red on `dev` today and
 are that ticket's, not this cut's.)
 
+**The audit was taken against the old code rather than asserted.** Running `origin/dev`'s own
+`smoke_renderer.mjs` beside the re-cut one, at mobile on the published mirror: old stage 1 gives
+**132 staged / 9 always-on / 141 passed**, and new `SMOKE_STAGE=1-2` gives **132 / 9 / 141**. Old
+stage 3 gives 33 staged with T-0114's two failures; new parts 5 and 6 give 19 + 14 = 33 with the
+same two failures, which is also where those failures are demonstrated to be `dev`'s and not this
+cut's.
+
 **Every invocation now prints its own wall clock on its last line**, which is the cheapest
 possible early warning: this ceiling has been breached three times and each breach cost a run a
 hand measurement to discover.

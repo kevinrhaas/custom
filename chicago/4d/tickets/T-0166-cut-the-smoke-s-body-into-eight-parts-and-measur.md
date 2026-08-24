@@ -1,7 +1,7 @@
 ---
 id: T-0166
 title: Cut the smoke's body into eight parts, and measure the mobile fit
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0121
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-23
+pr: 344
 claimed_by: run 8/23/2026, 8:07:49 PM CT
 blocked_on: null
 needs_bake: false
