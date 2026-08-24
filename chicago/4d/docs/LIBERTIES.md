@@ -7759,7 +7759,6 @@ same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), *
 set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
 
-<<<<<<< HEAD
 ### L181 — Three poplar rows on the greens of the town's oldest houses, from a treatment attested at a fourth that is not in this scene
 **Decision:** `data/flora/plantings/town_planted_rows.json` stands twelve Lombardy poplars —
 four to a row, 3.5 m apart, in a straight file parallel to the waterline — on the river greens
@@ -7832,5 +7831,3 @@ Related: **L129** (the garden pickets — a treatment from a plate, a rule for t
 **L119** (every number in the tree archetypes is invented within the file's range) · tickets
 **T-0117**, **T-0074**, **T-0052**, **T-0055**.
 **Recorded:** 2026-08-24.
-=======
->>>>>>> origin/dev
