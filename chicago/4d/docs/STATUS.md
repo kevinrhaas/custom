@@ -35,7 +35,7 @@ south edge midpoint of the drawbridge's committed footprint AND `line[0]` of the
 approach — two existing records that already agree where the boards begin. **Why swing at all,
 measured:** held on the platted line the track's east edge stands 4.87 m off the fill's axis, 0.87 m
 outside the 4.0 m half-width the earthwork is level across; swung onto the axis, all 7 m of width
-ends on the level crest. Recorded as **L177**.
+ends on the level crest. Recorded as **L178**.
 
 **The artefact it admits to, and the number.** Ribbon panels are drawn square to their own chord and
 are not mitred, so a turn opens a wedge on its outside. A 2 cm plan probe of drawn triangles inside

@@ -415,7 +415,23 @@ function addRecord(buffers, record, terrain, stats) {
   // has always been everywhere else.
   const pts = sampled(record.drawn);
   let along = 0;
+  // The weakest grade on anything that decides what this ribbon is OR WHERE IT
+  // RUNS. `geometry_confidence` grades the line itself — traced, inferred or
+  // invented — and it belongs beside the two surface grades, because where a
+  // street ran is a larger claim than what it was paved with: a route nobody
+  // attested puts the visitor in an invented place, not merely on an invented
+  // surface. T-0100.
+  //
+  // It is degenerate in the present dataset, and that is a coincidence of the
+  // data rather than a property of the layer. All 18 street records carry
+  // `wear_confidence: reconstructed`, so the max is already pinned at 1 and this
+  // third term moves no pixel today (16 records grade their geometry `inferred`,
+  // 2 `reconstructed`). It is here so that the day a street's surface and wear
+  // are attested and its route is not, the ribbon dithers out with the rest of
+  // the invented town instead of drawing at full confidence — and so that
+  // turning `reconstructed` off cannot leave an invented line standing.
   const confidence = Math.max(
+    LEVEL[record.geometry_confidence] ?? 1,
     LEVEL[record.surface_confidence] ?? 1,
     LEVEL[record.wear_confidence] ?? 1,
   );

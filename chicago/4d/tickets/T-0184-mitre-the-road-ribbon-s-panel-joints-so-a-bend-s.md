@@ -28,7 +28,7 @@ ribbon's edge — and the inside carries a matching overlap.
 **Measured on the shipped build (T-0111, 2 cm plan probe of drawn triangles inside the nominal
 ribbon).** Dearborn's new 5.7-degree joint at the South Water corner: a 0.61 m2 sector, of which
 South Water's own roadway covers half, leaving 0.30 m2 uncovered — small enough to ship, and
-recorded in docs/LIBERTIES.md L177 as an admitted artefact. **South Water Street's own west
+recorded in docs/LIBERTIES.md L178 as an admitted artefact. **South Water Street's own west
 approach is the real prize:** its authored line turns 17.9 degrees at [140, -35] on a 10.5 m
 track, which is a sector of about 4.3 m2 at a single joint, and it has been there since the
 street layer shipped. Lake, North Water and the fort road each have bends of their own.
@@ -50,6 +50,6 @@ explicitly, before and after); no street's ribbon leaves its own `track_width_m`
 fails a mirrored build; the smoke's panel accounting, drape and approach-coverage checks stay green
 at both viewports; and a screenshot from the South Water west approach shows the join closed.
 
-**Links:** T-0111 (which measured this and admitted it) - docs/LIBERTIES.md L177 -
+**Links:** T-0111 (which measured this and admitted it) - docs/LIBERTIES.md L178 -
 `renderers/web/js/streets.js` (`addRecord`, `refinedPanel`) - T-0110 (the drape refinement that
 shares this code path).
