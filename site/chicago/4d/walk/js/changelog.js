@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 269, title: 'Windows and doorways stop catching a sheen the sheds never did', kind: 'fix', ts: '2026-08-24T17:21:31.620Z', date: 'Aug 24, 2026, 12:21 PM CT',
+  { v: 270, title: 'Windows and doorways stop catching a sheen the sheds never did', kind: 'fix', ts: '2026-08-24T18:14:32.850Z', date: 'Aug 24, 2026, 1:14 PM CT',
     items: [
       'Walk any street and look into a window or an open doorway. On the frame houses, the log cabins, the fort’s buildings and the stockade gate, the dark rectangle inside the frame caught a faint sheen, as though it were slightly wet. On the sheds standing behind those same houses it never did. All of them read the same way now, as a recess with a room behind it.',
       'There was no reason for the difference. The colour and the gloss of that dark panel had been typed separately into five generators over as many months, and they said three different things. Not one of the three carried a word of argument in the file that set it.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'The gloss is the part you can see, and it is a number this project chose rather than found. It is pinned between two values already in use. It cannot be as glossy as glass, because most of these openings are not glazed at all — loopholes, gable vents, open bays, gaps between boards. It cannot be as flat as bare timber either, because the rest are windows, and every window in the town is sized from the one window pane any source here records. It sits midway between the two.',
       'Two different timbers had also been sharing one name: the heavy weathered stock of a shed’s door frame, and the pale fresh-sawn framing a shop would show if it exposed its frame. Neither changed colour. They have a name each now, so the day a shop does expose its frame the two will not read as one material.',
       'Nothing was added and nothing was removed. Every building in town carries exactly the materials and exactly the triangles it carried yesterday.',
+    ] },
+  { v: 269, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T17:38:27.146Z', date: 'Aug 24, 2026, 12:38 PM CT',
+    items: [
+      'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',
+      'They are Lombardy poplars, and this is the one piece of gardening in this project that a source states outright. Juliette Kinzie, writing of the Chicago she lived in, on her husband\u2019s house on the north bank: \u201cA broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars.\u201d',
+      'Seven old views of that house were opened and measured rather than remembered. Five of them, drawn by different hands, agree: four trees in the row, evenly spaced, each gap about a fifth of the trees\u2019 own height. That is the count and the rhythm these three rows are laid to.',
+      'What the pictures would not carry is a second address. Every one of them draws the poplars at that same house \u2014 and that house was derelict by 1832 and reported gone before this scene, so it is not in the town. Nowhere else in any view of Chicago this project holds is there a poplar at all.',
+      'So which greens get a row is settled by a rule rather than by taste. A house qualifies only if the project can date it back at least five growing seasons, and only if it has real open ground between itself and the water. Four houses out of a hundred and thirty-seven pass, and the fourth \u2014 James Kinzie\u2019s at Wolf Point \u2014 is turned down with its number: seven and a half metres of ground to the river is a strip, not a green.',
+      'Nobody attests a poplar at these three addresses, and the record says so on every tree. Borrowed from the source: the species, the row, the fenced green, and which side of the house it stands on. Ours: which houses, where exactly, and how tall.',
     ] },
   { v: 268, title: 'Two more landings on the river toward the drawbridge', kind: 'fix', ts: '2026-08-24T16:57:36.094Z', date: 'Aug 24, 2026, 11:57 AM CT',
     items: [

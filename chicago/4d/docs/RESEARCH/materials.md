@@ -539,7 +539,7 @@ on this row. What the two bounds establish is that the value belongs strictly be
 Graded **`reconstructed`**, which is a DOWNGRADE from the `inferred` the old `interior_dark` row
 carried, and deliberate: no source states any of it, and a row that is reasoned from physics
 rather than from evidence about these particular buildings is not an inference about them.
-`docs/LIBERTIES.md` **L181** owns it.
+`docs/LIBERTIES.md` **L182** owns it.
 
 ### 7.4 FINDING 3 DISCHARGED — `timber` becomes two names
 
