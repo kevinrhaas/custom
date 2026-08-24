@@ -1,5 +1,64 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
+
+**The defect, measured before anything was changed.** `renderers/web/js/streets.js` draws its ribbon
+from `path_local_enu_m`, and Dearborn's ends at `[699, 18]` — on the crest of the `dearborn_south`
+approach fill, **2.70 m south of the deck**. Probed on the shipped build at 0.5 m stations up the
+street's own centreline: **covered through n 18.0, uncovered from n 18.5**, with the ground dry and
+above 1.97 m the whole way. The ribbon was not being clipped, refused or under-refined — T-0110 had
+already fixed all three. It ended where the record ended, and the visitor climbing from South Water
+crossed a band of bare crest to reach the bridge.
+
+**THE ONE-LINE FIX IS THE WRONG FIX, AND IT WAS RUN RATHER THAN ARGUED.** With `[697.65, 20.7]`
+appended to `path_local_enu_m`:
+
+| gate | committed | with the bend appended |
+|---|---|---|
+| `generate_plat_lots.py --check` | 19 blocks, 144 lots verified | **PLAT GRID DRIFT** — `thompson_lots.json` no longer what the module re-derives |
+| `measure_corridor_intrusion.py --gate` | 29 laps (29 committed) | **30** — `dearborn_street_drawbridge:draw_1834` newly laps dearborn by **0.66 m** |
+
+Both re-verified green after the revert. T-0110's PR had reported the same thing; this run
+re-measured it rather than inheriting it.
+
+**The fix: a second line, and only the renderer reads it.** `drawn_track_local_enu_m` is optional,
+per street, and carries the worn wheel line; `path_local_enu_m` stays the plat and stays what
+`generate_plat_lots.py`, `plat_corridors`, the lot schedule, `hitsAt`/`status` (the street readout)
+and `blocksGrowth` (the flora clearing) read. `prepare()` in `streets.js` exposes both as `path` and
+`drawn` — `drawn` IS `path` for the seventeen streets that author no track — and only `addRecord()`
+prefers `drawn`. `bounds` covers both, since a box that excluded the drawn line would answer "not
+near this street" for ground the street is drawn on.
+
+**Dearborn's track:** `[[696.4, -400], [698.932, 7.0], [697.65, 20.7]]`. It leaves the platted line
+where South Water crosses it and runs one straight 13.76 m chord to the deck. The end point is the
+south edge midpoint of the drawbridge's committed footprint AND `line[0]` of the `dearborn_south`
+approach — two existing records that already agree where the boards begin. **Why swing at all,
+measured:** held on the platted line the track's east edge stands 4.87 m off the fill's axis, 0.87 m
+outside the 4.0 m half-width the earthwork is level across; swung onto the axis, all 7 m of width
+ends on the level crest. Recorded as **L178**.
+
+**The artefact it admits to, and the number.** Ribbon panels are drawn square to their own chord and
+are not mitred, so a turn opens a wedge on its outside. A 2 cm plan probe of drawn triangles inside
+the nominal ribbon: **0.30 m² uncovered** at the one joint (a 0.61 m² sector, half of it painted over
+by South Water's own 10.5 m roadway), 0.17 m at its widest, inside the 0.84 m the road texture's edge
+already fades across. **An eight-chord easement was measured first and was seven times worse
+(2.18 m²)** — eight joints turn eight times — which is why the swing is one chord. Mitred joints are
+filed as **T-0184**, which also names South Water's own 17.9-degree bend at `[140, -35]` (a ~4.3 m²
+sector on a 10.5 m track, standing since the street layer shipped).
+
+**Bounded rather than trusted.** `compile_scene.py` refuses a drawn track that leaves its own platted
+corridor, that overhangs the platted line's ends by more than `DRAWN_TRACK_OVERHANG_MAX_M` (4.0 m;
+Dearborn uses 2.69), or that carries no `drawn_track_note`. **All three proved red** by breaking them
+one at a time and restoring.
+
+**Two instruments were taught the second line, and neither was weakened.** The smoke's panel
+accounting re-derives the module's arithmetic, and `drawn_placement_census.mjs` asserts every drawn
+vertex owes a committed centreline within its own half-width; both now read `drawn ?? path`. Measuring
+a ribbon against a line it was never drawn from would report a stray for authored data and miss the
+mirroring the census exists to catch. The smoke's T-0110 approach stations now run **n 8 → 20.5 at
+0.5 m** (was 8 → 17.5 at 1 m) on the drawn line — the comment that used to say the last 2.7 m were
+outside what the gate could see is gone with the gap.
+
 ## Shipped 2026-08-24 — T-0103: seventy-eight roofs stop fronting the middle of their own block
 
 `docs/GLB-CONTRACT.md` pins `rotation_deg` as **the facade bearing, 0 = facing north** — the way

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
+    items: [
+      'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',
+      'It stopped there because the street\u2019s recorded line does. Every point up the ramp as far as the record reaches was painted road; every point past it was painted nothing. The road ended exactly where the record ended, two and seven tenths of a metre short.',
+      'Lengthening that line \u2014 the obvious repair \u2014 was tried first and measured, and it breaks two other things. The same line is what this town\u2019s block and lot boundaries are derived from, so a three metre bend on the end of it moved property lines the length of Dearborn, and it pushed the bridge itself into the street it crosses. A surveyed street and a worn wheel rut are two different claims and one line was carrying both.',
+      'So Dearborn keeps two lines now. The surveyed one is untouched, and it is still what every boundary, every lot and the street readout are measured from. The second is the wheel line, and it is only what gets painted: it leaves the surveyed line at the South Water corner and runs straight for the causeway, easing about a metre and a third west so the full width of the track finishes on the level top of the ramp instead of hanging over its side slope. It ends on the bridge\u2019s own recorded edge, so nothing here invents where the boards begin.',
+      'That last stretch is a reconstruction and is written down as one. So is the one blemish it leaves: where the wheel line turns at the corner, about a third of a square metre of grass shows through at the outermost edge of the track, where the road already fades into the prairie. Closing that properly means changing how every bend in every street is drawn, which is filed as its own job.',
+      'Nothing else moved. The bridge, the earth ramp, the two North Branch crossings and every other street are exactly as they were.',
+    ] },
   { v: 260, title: 'A block the town never had stops promising twenty-seven buildings', kind: 'chore', ts: '2026-08-24T13:22:52.442Z', date: 'Aug 24, 2026, 8:22 AM CT',
     items: [
       'Nothing you can see changed. This is about the ledger that decides where the next buildings go, and a block on it that cannot ever be built because it was never there.',

@@ -715,6 +715,46 @@ def compile_intersections(datum: dict) -> list[dict]:
     return out
 
 
+# T-0111.  How far a drawn track may run past the end of its own platted line.
+# The measured need is one bridge abutment: Dearborn's causeway deck ends 2.70 m
+# north of where the platted line stops, and a track that cannot reach it stops
+# on bare crest.  Four metres carries that and nothing like a block, so an
+# overrun that would amount to an unplatted street fails here rather than
+# arriving quietly in the picture.
+DRAWN_TRACK_OVERHANG_MAX_M = 4.0
+
+
+def _plat_offsets(plat: list[tuple[float, float]],
+                  point: tuple[float, float]) -> tuple[float, float]:
+    """(lateral offset from the platted line, overhang past its ends), metres.
+
+    The terminal segments are read as LINES rather than as segments, so a point
+    beyond the end reports the offset it actually has from the street's own
+    bearing plus the distance it runs past the end — two separate numbers,
+    because they are two separate ways of ceasing to be that street.  Interior
+    segments are clamped as usual.
+    """
+    e, n = point
+    lateral = float("inf")
+    overhang = 0.0
+    last = len(plat) - 2
+    for i in range(len(plat) - 1):
+        (ae, an), (be, bn) = plat[i], plat[i + 1]
+        de, dn = be - ae, bn - an
+        length = math.hypot(de, dn) or 1e-9
+        ux, uy = de / length, dn / length
+        t = (e - ae) * ux + (n - an) * uy
+        lo = -math.inf if i == 0 else 0.0
+        hi = math.inf if i == last else length
+        held = min(max(t, lo), hi)
+        lateral = min(lateral, math.hypot(e - (ae + ux * held), n - (an + uy * held)))
+        if i == 0:
+            overhang = max(overhang, -t)
+        if i == last:
+            overhang = max(overhang, t - length)
+    return lateral, max(overhang, 0.0)
+
+
 def compile_streets(scene_id: str, target_date: str,
                     sources: dict) -> tuple[str, list[dict]]:
     """The dated street surface and name layer consumed by the renderer.
@@ -728,6 +768,24 @@ def compile_streets(scene_id: str, target_date: str,
     80-foot legal right-of-way and the wagon-worn earth inside it are different
     claims.  Both widths travel so the readout can identify the street across
     the corridor while flora is cleared only from the narrower travelled part.
+
+    T-0111 SPLIT THE LINE THE SAME WAY THE WIDTHS WERE ALREADY SPLIT, and the
+    reason is a measurement rather than a preference.  ``path_local_enu_m`` is
+    the PLATTED line, and it is read by ``generate_plat_lots.py`` — which
+    re-derives every block face by offsetting the whole polyline — and by
+    ``plat_corridors``, which the corridor-intrusion gate scores against.  So a
+    three-metre bend appended to it to carry Dearborn's worn track onto its
+    causeway moved platted lot lines the length of the street (PLAT GRID DRIFT)
+    and pushed the drawbridge itself into a corridor it had not been in
+    (30 laps against a committed 29, the deck newly lapping by 0.66 m).  Both
+    were measured on the appended path before this field existed.
+
+    ``drawn_track_local_enu_m`` is the optional second line: the wagon-worn
+    wheel line the renderer paints, which the plat, corridor and lot
+    derivations never read.  It is bounded here rather than trusted — every
+    point stays inside the street's own platted corridor and may run past the
+    platted line's ends by at most ``DRAWN_TRACK_OVERHANG_MAX_M`` — so the
+    field can reach a bridge abutment and cannot quietly become a second plat.
     """
     path = DATA / "streets" / f"{scene_id}.json"
     if not path.exists():
@@ -758,6 +816,33 @@ def compile_streets(scene_id: str, target_date: str,
         if not isinstance(corridor, (int, float)) or not isinstance(track, (int, float)) \
                 or not 0 < track < corridor:
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
+        drawn = raw.get("drawn_track_local_enu_m")
+        if drawn is not None:
+            if (not isinstance(drawn, list) or len(drawn) < 2
+                    or any(not isinstance(p, list) or len(p) != 2
+                           or any(not isinstance(v, (int, float)) or not math.isfinite(v)
+                                  for v in p)
+                           for p in drawn)):
+                raise SystemExit(f"{path.relative_to(ROOT)}: {sid}.drawn_track_local_enu_m "
+                                 "needs two or more finite [e,n] points")
+            if not str(raw.get("drawn_track_note", "")).strip():
+                raise SystemExit(f"{path.relative_to(ROOT)}: {sid} draws a track off its "
+                                 "platted line and says nothing about why — "
+                                 "drawn_track_note must state what bounds the invention")
+            plat = [(float(e), float(n)) for e, n in points]
+            for pe, pn in drawn:
+                lateral, overhang = _plat_offsets(plat, (float(pe), float(pn)))
+                if lateral > corridor / 2.0:
+                    raise SystemExit(
+                        f"{path.relative_to(ROOT)}: {sid} draws its track {lateral:.2f} m "
+                        f"off the platted line at [{pe}, {pn}] — outside its own "
+                        f"{corridor:.3f} m corridor, which makes it a different street")
+                if overhang > DRAWN_TRACK_OVERHANG_MAX_M:
+                    raise SystemExit(
+                        f"{path.relative_to(ROOT)}: {sid} draws its track {overhang:.2f} m "
+                        f"past the end of the platted line at [{pe}, {pn}] — the limit is "
+                        f"{DRAWN_TRACK_OVERHANG_MAX_M:.1f} m, enough to meet a bridge "
+                        "abutment and not enough to be an unplatted street")
         for key in ("geometry_confidence", "surface_confidence", "wear_confidence"):
             if raw.get(key, "reconstructed") not in ("attested", "inferred", "reconstructed"):
                 raise SystemExit(f"{path.relative_to(ROOT)}: {sid}.{key} is not a confidence grade")
@@ -771,6 +856,10 @@ def compile_streets(scene_id: str, target_date: str,
             "name_2026": raw["name_2026"],
             "name_changed": bool(raw.get("name_changed", False)),
             "path_local_enu_m": points,
+            # Only where one is authored, so every street without a drawn track
+            # compiles to exactly the entry it always did.
+            **({"drawn_track_local_enu_m": drawn,
+                "drawn_track_note": raw["drawn_track_note"]} if drawn is not None else {}),
             "corridor_width_m": corridor,
             "track_width_m": track,
             "surface": raw["surface"],

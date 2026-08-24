@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 177,
+  "count": 178,
   "liberties": [
     {
       "id": "L1",
@@ -12639,6 +12639,37 @@
         {
           "label": "Recorded",
           "text": "2026-08-23."
+        }
+      ]
+    },
+    {
+      "id": "L178",
+      "title": "Dearborn's worn track leaves the platted line at the corner and swings onto the causeway",
+      "section": "resolved",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-24",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Dearborn Street now commits TWO lines instead of one. `path_local_enu_m` is the platted line and is unchanged — `[[696.4, -400], [699, 18]]`, the analytic extension of the street module that L79 describes. Beside it sits a new optional field, `drawn_track_local_enu_m`, which is the worn wheel line the renderer paints: it leaves the platted line where South Water Street crosses it (local N 7.0) and runs one straight 13.8 m chord to `[697.65, 20.70]`, the south edge of the Dearborn Street drawbridge's causeway. Nothing else in the project reads the second line — the plat module, the corridor gate, the lot schedule, the street readout and the flora clearing all still read the first."
+        },
+        {
+          "label": "Why",
+          "text": "the platted line stops 2.70 m short of the boards, on the crest of the approach fill T-0046 graded, and the ribbon stopped exactly where the record did. Measured on the shipped build before the change: every station up the fill to N 18 landed on drawn roadway and every station past it landed on none. A visitor climbing from South Water crossed a band of bare crest to reach the bridge — the last unfinished corner of the owner's own report that started T-0110. **Why not simply extend the platted line, which is the obvious fix.** Because it was measured and it fails, twice. `tools/generate_plat_lots.py --check` re-derives every block face by offsetting the WHOLE street polyline, so a three-metre bend appended to Dearborn's plat reports PLAT GRID DRIFT and moves platted lot lines the length of the street; and `tools/measure_corridor_intrusion.py --gate` re-scores the corridors against the same field and goes from the committed 29 laps to 30, the drawbridge itself newly lapping Dearborn by 0.66 m. Both readings were taken with the bend appended, before this field existed. **The plat line and the wheel line are different claims and one field was carrying both.** **What is invented, exactly.** Two numbers and no more. (1) That the swing is ONE chord: the ribbon's panels are drawn square to their own chord and are not mitred at their joints, so each turn opens a wedge of prairie on the outside of it, `3.5 tan(turn/2)` wide at the ribbon's edge and nothing at its centre. One 5.7-degree joint is the fewest and smallest a swing can be cut into — a 0.61 m² sector, 0.17 m at its widest, inside the 0.84 m across which the road texture's own edge already fades out — and because that joint stands at the crossing, South Water Street's 10.5 m roadway is drawn over half of it, leaving **0.30 m² that a 2 cm plan probe finds uncovered by any street**. An eight-chord easement was measured first and was seven times worse (2.18 m²), because eight joints turn eight times. (2) That the swing takes 13.8 m, which is to say that it starts at the corner rather than at a station somebody picked. **What is NOT invented, and this is the part that bounds it.** The far end is the deck: `[697.65, 20.70]` is the south edge midpoint of the drawbridge's own committed footprint and is also `line[0]` of the `dearborn_south` approach in `terrain_spec.json`, so the track ends where two existing records already agree the boards begin. The near end is the platted line itself at the South Water crossing. And the reason to swing at all is a measurement rather than a preference: held on the platted line the track's east edge stands 4.87 m off the fill's axis, 0.87 m outside the 4.0 m half-width the earthwork is level across, so the last stride onto the causeway would be taken on a side slope; swung onto the axis, every metre of the 7 m width ends on the level crest."
+        },
+        {
+          "label": "Consequence",
+          "text": "from South Water the worn track now runs continuously up the fill and butts the deck, and the drawn ribbon over the last 13.8 m of Dearborn is up to 1.37 m west of the street's platted centre — a ninth of the 80 ft corridor, and inside it by construction: the compiler refuses a drawn track that leaves its own platted corridor or overhangs the platted line's ends by more than 4 m. A visitor reading the street readout, a lot line, a block face or a corridor-intrusion figure is still reading the platted line and gets exactly the answer they got before. What a visitor cannot do is treat the last chord as survey geometry; L79 already says that of every travelled strip in this town and it says it of this one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "nothing about 1835 would resolve it — no source states a wheel line. What would retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would close this wedge and the considerably larger ones South Water Street's own authored bends already open; that is filed rather than done here, because it moves geometry on every bent street in the town and this parcel is 2.7 m of Dearborn. Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this), **T-0046** (the fills)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-24."
         }
       ]
     }
