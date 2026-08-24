@@ -7871,6 +7871,16 @@ over open prairie. That is not an argument for cutting a conjectural channel —
 still unsourced and parcel (c) still owns them — it is the proof that the four were never on one
 footing, which one shared phrase implied they were.
 
+**Since, 2026-08-24 (T-0109).** Zone 14 came off the deferral list: **T-0005** carved it on
+2026-08-20 and **T-0118** ran its last reach square under the crossing the same day, at the
+reconstructed tier with depth and width declared invented in **L149**. So the bridge over nothing is
+gone, and the reading is now taken rather than argued — `tools/measure_slough_crossing.py`, on the
+committed heightfield: **3.30 m of open water in an 8.00 m span, 0.53 m deep, 2.35 m of dry abutment
+seat at each end, the reach to the river unbroken, nothing else rooted in the cut.** The other three
+zones stand exactly as this box left them, and the correspondence gate above still holds them: 15,
+16 and 17 remain deferred and dated, and zone 14 no longer appears in the dating record because the
+spec no longer defers it.
+
 **On the pond itself the answer is `not_established`, and deliberately not "it was not there".**
 One document, `chicagology_prefire273`, carries both sides. FOR: its slough sentence has the stream
 draining *"the pond and the marsh extending up Wells Street"* as a live feature of a drainage
@@ -10052,7 +10062,23 @@ render the model's building from the plate's viewpoint, compare, improve, repeat
 roof, fenestration rhythm, chimneys and signboard match. Tier-5 pictorial rule holds: views
 drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** (plate 11 —
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
-ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
+ell), then the fort group (palisade on rising ground), then Sauganash/Wolf Point.
+
+**Two cautions this parcel has now paid for, both from the fort pass (T-0044 → T-0094).**
+
+1. **"Whitewashed palisade" is the reference set's README talking, not a source.** The plate paints
+   the fort's one continuous north curtain across a **1.85×** range of tone in a single view —
+   luminance 191 east of the gate work, 103 west of it — with the surface this project ships
+   (`hewn_log`, luminance 143) sitting between the two. Fergus's white-washed board fence is the
+   enclosure of **1850**, after the pickets came down. Neither licenses a tone.
+2. **This loop compares two pictures BY EYE, and that is how it produced a wrong ticket.** T-0044's
+   row 3 said the model's pickets were flat-topped and the plate's pointed; the model has carried
+   0.312 m of sharpened head on all 768 posts since the archetype was written, and the plate rules
+   its cap straight to 0.45 px rms while resolving pickets at a 10 px pitch. Both readings were
+   available to anyone who measured, and nobody had. **Where a row of this pass asserts a shape or a
+   tone, measure it before it becomes a ticket** — `tools/measure_picket_plate.py` is the shape of
+   instrument that costs a minute and settles it. T-0094 is the write-up; **T-0184** is the one
+   finding of that measurement that survived.
 
 ### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
 Grass and flowers "appear out of the ground as you walk towards them."
@@ -10272,6 +10298,21 @@ to `"simplified"`, which is the half of **L66** this discharges — the bank eac
 is untouched and still open. What (e) still owes: a deck a visitor can walk out along (its own
 ticket); anything lying at either wharf, which no source here describes; and the GENERATOR half, so
 a baked town carries its own docks.
+
+**(e) grew a third shore on 2026-08-24, and the reason the first two were the only two is worth
+recording. T-0062** stated five reconstructed docks on the owner's *"you can add more docks!"* — and
+it stated them on **South Water merchants**, so the town's other shores were never asked. The North
+Division shore had a landing only because Kinzie & Hunter's dock is attested; the west bank at Wolf
+Point, five buildings all fronting the water, had none. **T-0107** asks the trade test of every river
+frontage in the town, and on the west bank it selects exactly one record: **Robert A. Kinzie's
+storehouse**, "dealing in groceries and Indian goods", whose committed position note of 2026-08-11
+had already reasoned that *"a storehouse trading goods off canoes has a positive reason to face the
+landing"*. Five landings now stand where four did (L179). The row's other four state no dock and get
+none — lodging, dwelling and worship take nothing off a canoe. It also shipped **clause 6**: the
+deck is one standard rectangle set on the bank's own tangent, **the bank bends at Wolf Point**, and
+a face that would stand on dry ground (PR #258 measured −0.34 m at Hogan's store) is refused with
+the measured rise on the record rather than given a bespoke outline. The clause refuses nothing in
+the town as it stands and is proved by `generate_river_wharves.py --selftest`, which `--check` runs.
 
 **(a) is shipped in three pieces, all on the enclosure layer** (`data/enclosures/`,
 `renderers/web/js/enclosures.js`) — the renderer-side half of the archetype this box asked for,
@@ -11063,6 +11104,30 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
   because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
 
+**The gates were open, and `p4_0` never drew the corner works it was said to (T-0095,
+2026-08-24).** Two findings, one measured off the sheet and one off the shipped mesh —
+`docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`, held by
+`tools/measure_fort_works_plate.py` and `tools/measure_fort_gates.py`.
+
+- **The plate raises no work at either angle it draws.** It raises exactly two roofed,
+  lanterned, log-faced works and both stand over the MIDDLE of the wall, at **0.435 and
+  0.521** of the drawn run; a corner work stands at 0.000 or 1.000. The one angle it shows
+  unoccluded is the north-east and it is drawn plain — which is what the record says of that
+  angle. The north-west angle, the one the record does put a work at, is behind the tree
+  outside the walls. **Nothing was massed at the angles**, and the log-faced work over the
+  gate was not built either: the sheet already carries a certified FIRST-fort feature (the
+  flagstaff, `data/exclusions.json`) and two roofed lanterned log towers is that fort's own
+  signature in everything but position. Same failure as T-0094, one day apart, on the same
+  sheet: the plate read by eye.
+- **Both documented gates stood a quarter open.** One leaf of each pair was placed from a
+  midpoint that collapsed onto its own jamb, so **0.90 m of the 3.6 m gateway was daylight
+  straight through the wall** and 0.90 m of leaf lay across the pickets outside the frame —
+  in the committed GLB, so in the bytes a visitor downloaded. Four lines in `palisade.py`,
+  one asset rebaked (`fort_dearborn_palisade__picket_1816`). The gate that holds it reads the
+  shipped mesh rather than re-deriving the placement, because the derivation was the fault.
+- **The south-west blockhouse already read above the curtain** and now has a number: 9.48 m
+  of building over a 3.80 m curtain, from its own instance bounds in the scene.
+
 **Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
 plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,
 Well, Shop, Out Buildings, U.S. Factor's House, Cultivated Field, the Ferry — the Fort Cemetery
@@ -11498,6 +11563,49 @@ in the **mid** field.
      nominal ring how faded an arriving plant was, and the nominal ring answers *zero* — a free
      pass — for exactly the plants the fringe pushes furthest out. It reads each instance's own
      `aChiRing` now. Same bound, same measured 0.0 % arrival height.
+3b. **The NEAR/MID handover is a density handover.** · **DONE 2026-08-24, T-0093.** The sibling of
+   item 3: that one was about where the sward STOPS, this one is about where its two
+   representations swap over. Read this box before quoting a near-ring band or before assuming a
+   ring named in a ticket is the ring drawing the artefact.
+   - **The instrument first**, because there was none: `tools/measure_near_verge.mjs` classes every
+     flora instance the way the fragment shader's own guard does — `whole` (coverage 1, the Bayer
+     branch is skipped), `partial` (0 < coverage < 1, **every fragment thresholded — the dots**),
+     `absent` — off the `aChiRing` that went to the GPU, then projects each drawn plant's recorded
+     height and spread to screen and sums the footprints. Instance counts are the wrong unit: a
+     hundred plants at forty metres are four pixels. Mobile runs at `deviceScaleFactor: 1.5`, not
+     the smoke's 2, so one measured pixel is one drawing-buffer pixel — the screen door is locked
+     to `gl_FragCoord` and a 4/3 resample smears the grain.
+   - **THE TICKET'S PRIME SUSPECT IS HALF THE AUTHOR, AND AT ITS OWN TWO STANDS IT IS NONE OF IT.**
+     T-0086's two stands are in a roadway and `station()` clears the travel track — 10.5 m on South
+     Water, 7 m on Wells — so at *South Water approaching Wells* the near ring places **0 tufts at
+     `light`, 1 at `full`**. At *Wells approaching Lake* on a phone the near set is empty and the
+     whole screen-doored verge (1.729 % of the frame) is written by the **mid ring's inner ramp
+     fading IN across 4.5–7.5 m**. Only in open prairie does the near ring dominate: 5.90 % against
+     the mid's 3.65 % exposed at `light`. So both boundaries were converted, not the named one.
+   - **The band is not where the ticket says either.** `ringsFor` insets every fade ring inside its
+     lattice by the 0.6 m rebuild step, so the ramp runs **4.80–7.00 m** at `full` (measured as the
+     `d` range of the partial instances), not 5.4–7.6; and at `light` the ring is 4.6 m, so the ramp
+     is **1.80–4.00 m** — under the walker's feet, which is why the phone frame is the dramatic one
+     (53.654 % of it screen-doored in open prairie, against 45.173 % on the desktop).
+   - **The fix is T-0086's answer on a ring that still has an edge in it.** `TUNE`
+     `near.spreadOuter` / `mid.spreadInner` move the band out of the ramp and into a per-slot
+     spread of the boundary: `fade[0] − band × handoverRank(e, n)`, world-anchored and quantised to
+     ⅛ m as `farRank` is, with the shader's ring left as a step (`HARD`). The fraction of slots
+     drawn at `d` is `clamp((fade[0] − d) / band)` — **the same number the alpha used to write** —
+     so expected cover is unchanged to the arithmetic and no tuning figure means anything new.
+   - **Placement is untouched on purpose.** The mid ring's `return` for slots the fringe pushes out
+     of reach is deliberately NOT copied to the near pass: every slot is still dealt a species and
+     still counted, so no community's population or cover figure moves. It costs nothing — the
+     vertex program already collapsed an out-of-ring plant to a point — and it saves fill, because
+     half the band's fragments are no longer rasterised only to be discarded.
+   - **Two knock-ons.** Heads ride their PLANT's ring now, not the layer's: on a spread boundary the
+     layer's ring answers for no particular tuft, and a head hung on it is R-BUG7 from the other
+     end. And `flora.fadeAt`/`heightAt` take all four ring numbers, because a reader carrying only
+     the outer radius would be told every mid card past 4.5 m is drawn.
+   - **The residue, held rather than closed.** The mid and forb rings' own OUTER ramps are still
+     coverage ramps, and at `light` they reach in to **5.4 m** and **7.4 m** — inside the verge on a
+     phone. That is the mid→far handover, which T-0086 answered by standing the far band over it;
+     the gate holds it against `tools/near_verge_baseline.json` so it cannot grow, and it is filed.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.
