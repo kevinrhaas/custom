@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 
 # --- RED NOW — visible, and a gate is failing on it today
 T-0103 — Every platted-block roof faces away from the street it fronts
