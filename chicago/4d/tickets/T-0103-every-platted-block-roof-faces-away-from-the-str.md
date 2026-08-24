@@ -1,7 +1,7 @@
 ---
 id: T-0103
 title: Every platted-block roof faces away from the street it fronts
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 4:51:09 AM CT
 blocked_on: null
 needs_bake: false
 ---

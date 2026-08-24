@@ -283,8 +283,8 @@
       "id": "recon_1835_blk_randolph_clinton_d4_02_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        -176.26,
-        -279.72
+        -190.48,
+        -265.49
       ],
       "height_m": 1.32,
       "confidence": "reconstructed",
@@ -294,8 +294,8 @@
       "id": "recon_1835_blk_randolph_clinton_d4_02_bush_2",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        -190.48,
-        -265.49
+        -176.26,
+        -279.72
       ],
       "height_m": 1.44,
       "confidence": "reconstructed",
@@ -404,7 +404,7 @@
       "id": "recon_1835_blk_randolph_wells_d1_06_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        376.09,
+        376.08,
         -351.82
       ],
       "height_m": 19.5,
@@ -415,7 +415,7 @@
       "id": "recon_1835_blk_randolph_wells_d1_06_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        380.38,
+        380.37,
         -352.39
       ],
       "height_m": 20.0,
@@ -547,7 +547,7 @@
       "id": "recon_1835_blk_south_water_dearborn_d1_05_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        787.59,
+        787.58,
         -103.02
       ],
       "height_m": 1.43,
