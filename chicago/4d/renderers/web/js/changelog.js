@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'The fort’s pickets were always pointed', kind: 'chore', ts: '2026-08-24T14:35:06.861Z', date: 'Aug 24, 2026, 9:35 AM CT',
+    items: [
+      'Nothing you can see changed at Fort Dearborn, and that is this one’s finding. A note filed against the town said the fort’s pickets stand flat-topped and dark where the old coloured view of the fort draws them pointed and pale. Both halves are wrong.',
+      'Walk up to the stockade and look along the top of the wall. Every one of its 768 posts is sharpened to a point, and every one always has been — 31 centimetres of point cut out of a twelve-foot picket, about a twelfth of its height, and still plain from the north bank across the river.',
+      'The old view was measured too, in its own pixels. It rules the top of the stockade as a straight line — straight to within half a pixel right across the reach east of the gate — while drawing the separate posts clearly enough that a point of this size would have shown as a notch eight times bigger than any wobble in that line. Whoever drew it could have drawn points and drew none. That does not make the point wrong. It makes it ours, which is a different thing and is now written down.',
+      'The wall’s colour is not taken from that view either, because the view cannot give one: it paints the same unbroken wall nearly twice as bright on one side of the gate as on the other, and the colour the town already uses sits between the two. The whitewashed fence people remember at this fort belongs to the 1850s, after the pickets had come down.',
+      'What did change is the card. Click the stockade and it now tells you the point on every picket is a reconstruction, that nobody wrote down what a Fort Dearborn picket’s head looked like, and why the colour was left alone — none of which the record admitted, though the wall has been built that way since the day it was built.',
+      'A check now guards it, so a stockade that ever goes flat-topped is named by the build rather than noticed in a screenshot.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',

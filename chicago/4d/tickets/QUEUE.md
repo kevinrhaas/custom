@@ -34,7 +34,6 @@ T-0107 — Landings on the west bank at Wolf Point: Robert Kinzie's store
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small
-T-0094 — The fort's pickets are flat-topped and dark, where the plate draws them pointed and pale
 T-0095 — The fort's corner works and its two documented gates, as the plate draws them
 T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
@@ -86,4 +85,6 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
+T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
+T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
