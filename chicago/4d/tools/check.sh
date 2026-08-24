@@ -387,6 +387,34 @@ step "no body of far timber stands in the river" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
 
+# T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
+# have not been since the archetype was written: the committed master carries
+# 0.312 m of sharpened head on every one of its 768 posts, 8.4 % of the picket,
+# and a visitor at the north wall sees the sawtooth. The claim had never been
+# measured, which is how it reached a ticket. This holds the property so it cannot
+# be re-filed off a screenshot, and so a flattened archetype or a decimation pass
+# that ate the apexes would be named here rather than found by eye.
+#
+# THE PLATE HALF OF THAT FILE DOES NOT GATE, deliberately. p4_0 is a tier-5
+# retrospective lithograph; it may inform a value and it may refute a claim made
+# about itself, and it may not hold a build red. Run the file without --gate for
+# the plate reading, which also needs Pillow and skips without it.
+step "the fort's stockade is still pointed" \
+  python3 tools/measure_picket_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_picket_plate.py --self-test
+
+# NOTE ON THE TWO FORT STEPS THAT FOLLOW, because they look inconsistent and are
+# not. T-0094's plate half deliberately does NOT gate: it asks whether a tier-5
+# retrospective lithograph supports a claim about the MODEL, and a lithograph may
+# not hold a build red. T-0095's does gate, and its live assertion is a different
+# question — the third one, which reads the RECORD and fires the day someone gives
+# a corner work a height, a roof or a lantern on that plate's authority. Its other
+# two assertions read a committed image that cannot change, so the only thing they
+# can catch is the detector moving under them, which is what its baseline is for.
+# One asks the plate about the town; the other asks the town about the plate.
+
 # Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
 # fort with its gates standing open makes a claim about the hour of the day, and
 # the garrison is attested for the scene date. Both of them stood a quarter open.
