@@ -85,13 +85,20 @@ permissions:
 # So the work is split and each part gets its own budget:
 #
 #   bake     generate, derive, publish, gate    SKIP_SMOKE=1, ~15 min
-#   smoke    the published mirror, per viewport  matrix, ~15 min each, in PARALLEL
+#   smoke    the published mirror, viewport × stage  8 legs, ~18 min worst, PARALLEL
 #   open-pr  the PR, only once smoke is green
+#
+# THE SMOKE ROW ABOVE READ "per viewport, ~15 min each" UNTIL T-0171, and that
+# was the mobile figure standing in for both. Run #269 read the desktop one:
+# cancelled at 29 m 05 s with 285 passed / 0 failed, against T-0167's measured
+# 39 m 58 s for the desktop body. A viewport is now several legs under
+# SMOKE_STAGE — see the `smoke` job's own comment for the cut and its margins.
 #
 # THE GATE IS STILL BOTH VIEWPORTS AND NOTHING LESS, which is smoke_renderer.mjs's
 # own rule. Each matrix leg prints "NOT THE FULL GATE" because on its own it is
-# not one; the two legs together are, and `needs: smoke` fails if either fails.
-# The workflow reconstitutes the gate the suite refuses to let one run claim.
+# not one; all eight legs together are, and `needs: smoke` fails if ANY fails.
+# The workflow reconstitutes the gate the suite refuses to let one run claim —
+# which holds only while the stage ranges tile 1..9 with no gap and no overlap.
 #
 # WHY THE BRANCH IS PUSHED BEFORE THE SMOKE RUNS, and the PR only after. The push
 # is in `bake` so a red smoke never destroys twenty minutes of Blender output —
@@ -250,10 +257,43 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
-  # Both viewports, in parallel, each with its own budget. `fail-fast: false` so a
-  # mobile failure still lets desktop report — two diagnoses per run instead of
-  # one. Either leg failing fails the job, so `needs: smoke` below still means
-  # "both viewports passed".
+  # Both viewports, in parallel, each cut into stage legs. `fail-fast: false` so a
+  # mobile failure still lets desktop report — several diagnoses per run instead
+  # of one. ANY leg failing fails the job, so `needs: smoke` below still means
+  # "every part of both viewports passed".
+  #
+  # T-0171 — WHY THE STAGE DIMENSION IS HERE AND NOT JUST A BIGGER TIMEOUT.
+  # This job used to run each viewport UNSPLIT: one command, `SMOKE_VIEWPORT`
+  # only, under `timeout-minutes: 30`. T-0167's measured desktop profile
+  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the nine parts, so the
+  # desktop leg could not fit that cap and never could. Run #269 on dev is the
+  # observation: mobile passed unfiltered (420 passed / 0 failed, 15 m 50 s) and
+  # desktop was CANCELLED at 29 m 05 s having reached 285 passed / 0 failed — a
+  # wall, not a failure — so `open-pr` never ran on a bake whose content was
+  # sound. Every earlier nightly died before this ceiling could be the thing in
+  # the way (T-0160, T-0161, T-0165, and T-0114's two road bands), which is why
+  # the desktop half had never once been read to completion.
+  #
+  # Raising the cap alone would work today and rot the same way — the number
+  # would again be one nobody had measured against, and desktop would again be a
+  # single command costing the sum of everything. Splitting is what makes the
+  # margin legible PER LEG, and it is what T-0170's further cut of part 7
+  # improves rather than invalidates.
+  #
+  # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
+  # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
+  # 17 m 02 s — less in practice, because a pair boots ONCE where the profile
+  # paid a boot per part. Worst leg keeps better than ten minutes of margin
+  # under the 30-minute cap, and the smoke phase's wall clock drops from over
+  # 40 minutes (fatal) to under 20.
+  #
+  # THE RANGES MUST COVER 1..9 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # because on its own it is not one; the UNION of the eight legs is, and that
+  # holds only while these four ranges tile the parts with no gap and no overlap.
+  # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
+  # unfiltered run's — is what makes the union checkable rather than asserted.
+  # If a part is ever added or renumbered (T-0170 renumbers everything after 7),
+  # THIS LIST IS PART OF THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -262,6 +302,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
+        stage: ['1-2', '3-4', '5-6', '7-9']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -289,10 +330,16 @@ jobs:
       # No NODE_PATH here: smoke_renderer.mjs's loadPlaywright() already falls
       # back to `npm root -g` when the bare import misses, so pinning the global
       # root would only break the day the runner image moves it.
+      # SMOKE_TIMING=1 stamps each check line with the elapsed clock (T-0167). A
+      # leg killed at the cap dies BEFORE it prints its wall clock, so without
+      # the stamp a breach reports nothing about where the time went — which is
+      # exactly how #269's desktop cost had to be reconstructed by hand.
       - name: Smoke the published mirror
         working-directory: chicago/4d
         env:
           SMOKE_VIEWPORT: ${{ matrix.viewport }}
+          SMOKE_STAGE: ${{ matrix.stage }}
+          SMOKE_TIMING: '1'
         run: node tools/smoke_renderer.mjs --published
 
   # Only now. A bake whose mirror fails the smoke keeps its branch and gets no PR.
