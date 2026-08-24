@@ -6377,6 +6377,54 @@ blocker. They are refused **in writing, per store**, in their own `position.note
 `blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
 cluster, and whoever picks it up should read this heading first.
 
+#### …AND FOR THE OTHER FIVE — 2026-08-24, T-0199. THE BLOCKER WAS A RETIRED CEILING
+
+**All eleven now stand on the plat.** The five above were refused because, reconciled, each seats on
+a platted lot the 665-roof schedule had dealt to that block's anonymous frontage run, and the
+placement gate refused to deal a roof to a lot already carrying one — *"the schedule's headroom is
+the block's, not the lot's"*. The untangling was a measurement, not a concession.
+
+**`tools/measure_frontage_entitlement.py` asked whether a run stands on the lots it was dealt. It
+does not.** Across the town's eight party-line runs: **20 lots dealt, 12 stood on**. Eight platted
+lots were entitled to a run that has never had a roof on them, because a run PACKS from one end of
+its own strip and `ROW_UNITS_PER_LOT` = 3 of its units fit inside one lot of this grid. Four of the
+five refusals were exactly those lots — `wells` 0, `clark` 2, `dearborn` 0 and 2.
+
+**That gap is what T-0079 built.** Before the core density standard a run carried exactly one roof
+per lot it was dealt, so "dealt" and "stood on" were one list. T-0079 made a row a claim about the
+FACE — bounded by its metres of frontage, not by the conjectural side lines it crosses — and the two
+lists came apart the moment it landed. Nothing had measured them apart, so the frontage refusal in
+`generate_block_infill.py` went on enforcing the ceiling T-0079 had retired.
+
+**The rule now counts instead of vetoing:** a run's frontage carries `ROW_UNITS_PER_LOT` units per
+lot it was dealt, and every roof already standing on those lots counts against that ceiling. It is
+NOT a weakened assertion — `blk_lake_clark` and both `blk_randolph_dearborn` deals sit at exactly
+3 of 3, so a documented roof on their lot still fails; the three-metre separation gate, the strip
+containment in `check_frontage` and the corridor test still decide the physical question. The
+counting function is authored in the module that measured it and imported by the gate, as
+`ROW_UNITS_PER_LOT` already is from `reconcile_665.py`; `plat_occupancy.seated_lots` is the same
+occupancy map without the one-name discard.
+
+**The fifth store had to be argued rather than counted.** `carpenter_south_water_store` really does
+share `blk_south_water_wells` lot 2 with the run's third unit, and both fit — 25.04 m of frontage
+against a measured ceiling of three units. What did not fit was a clearance: the recipe anchors
+`..._wells_d4_03` *"clear west of"* that store at 2.4 m along the face, which passed the 3.0 m
+separation gate only while the store stood 6.62 m out in the roadway and the plan distance ran on
+the diagonal. On one line it is **2.40 m against a 3.00 m gate**, so the anchor is re-derived at
+3.0 m and the unit steps **0.60 m west**. No anonymous roof left the town.
+
+**What it cost, and it is stated rather than absorbed.** Five more documented roofs now seat on
+platted lots, so three South Water blocks lose their last free lot and go `at_capacity`, and the
+programme's `schedulable_on_committed_ground` falls **28 → 20**. The 665 total does not move; those
+eight roofs return to the balance gated on coverage. The headroom existed only because eleven
+documented buildings were standing in the roadway and occupying no lot at all.
+
+**What a visitor sees:** South Water's south side goes from 303.9 m of plank walk in eight pieces to
+**440.6 m**, `blk_south_water_wells` gets its whole 97.6 m face in one run and `blk_south_water_dearborn`
+a 67.6 m run where it had two stumps, two new corner crossings appear (Wells, Dearborn), and the
+town's street edge reaches **1,563.7 m over 96 walking decks**. Phases lapping a platted corridor:
+**21**, from 29 two days ago.
+
 
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)

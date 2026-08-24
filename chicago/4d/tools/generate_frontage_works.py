@@ -316,26 +316,36 @@ EDGE_FENCE_COURSES = 2
 # the platted frontage, in the roadway, and the march below refused the sidewalk
 # around every one of them.
 #
-# SIX WERE RECONCILED and their walls now stand 1.50 m back from the committed
-# frontage line, the same margin `tools/generate_block_infill.py` gives every
-# reconstructed unit on these faces. FIVE COULD NOT BE, and the reason is a
-# finding rather than a shrug: reconciled onto the plat a building SEATS on a
-# platted lot, and for these five that lot is one the 665-roof schedule has
-# already dealt to the anonymous South Water frontage run, which
-# `generate_block_infill.py` refuses. Naming them per store is the ticket's own
-# second acceptance route, and the number beside each is what it would take.
+# SIX WERE RECONCILED UNDER T-0188 and their walls now stand 1.50 m back from the
+# committed frontage line, the same margin `tools/generate_block_infill.py` gives
+# every reconstructed unit on these faces. THE OTHER FIVE COULD NOT BE, and the
+# reason was a finding rather than a shrug: reconciled onto the plat a building
+# SEATS on a platted lot, and for those five that lot was one the 665-roof
+# schedule had dealt to the anonymous South Water frontage run, which the
+# placement gate refused to deal a second roof.
+#
+# T-0199 UNTANGLED IT AND ALL ELEVEN NOW STAND ON THE PLAT. The measurement that
+# decided it is `tools/measure_frontage_entitlement.py`: the town's eight
+# party-line runs were dealt 20 lots of frontage and STAND ON 12, because a run
+# packs from one end of its strip and three of its units fit inside one lot of
+# this grid. Eight platted lots were entitled to a run that has never had a roof
+# on them, and four of the five refusals were those lots. The fifth, Philo
+# Carpenter's store, shares lot 2 of `blk_south_water_wells` with the run's third
+# unit — 25.04 m of frontage against T-0079's measured ceiling of three units —
+# and the only thing that had to give was a clearance: the recipe stood that unit
+# 2.4 m along the face from a store that was 6.62 m out in the roadway, so the
+# plan gap was legal on the diagonal and became 2.40 m against a 3.00 m gate the
+# moment both walls stood on one line. The unit steps 0.60 m west. No roof left
+# the town.
 EDGE_RECONCILED = {
     "harmon_loomis_store": 6.81, "madore_beaubien_house": 7.48,
     "peck_store": 6.01, "chicago_democrat_office": 6.61,
     "temple_building": 6.90, "jh_kinzie_forwarding_store": 8.38,
+    "h_jones_store": 9.67, "carpenter_south_water_store": 8.12,
+    "pruyne_kimball_drugstore": 7.05, "chicago_american_office": 8.41,
+    "frederick_thomas_shop": 7.75,
 }
-EDGE_UNRECONCILED = {
-    "h_jones_store": (8.17, "blk_south_water_wells", 0, 9.67),
-    "carpenter_south_water_store": (6.62, "blk_south_water_wells", 2, 8.12),
-    "pruyne_kimball_drugstore": (5.55, "blk_south_water_clark", 2, 7.05),
-    "chicago_american_office": (6.91, "blk_south_water_dearborn", 0, 8.41),
-    "frederick_thomas_shop": (6.25, "blk_south_water_dearborn", 2, 7.75),
-}
+EDGE_UNRECONCILED: dict[str, tuple[float, str, int, float]] = {}
 
 # The record's own id, and the liberty that claims every invented metre in it.
 STREET_EDGE_ID = "town_street_edge"
@@ -2169,13 +2179,16 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
         "stretch carries a walk where the ground is dry committed ground, flat enough "
         "for one walking deck, clear of the travelled track and clear of anything "
         "already standing on it — and `refused` says which clause refused every "
-        "stretch that does not. THE SOUTH WATER FRONTAGES STILL COME OUT IN PIECES, "
-        "and the reason is a finding rather than a fault of this rule: eleven "
+        "stretch that does not. THE SOUTH WATER FRONTAGES USED TO COME OUT IN PIECES, "
+        "and the reason was a finding rather than a fault of this rule: eleven "
         "documented buildings on that side were placed against the MODERN kerb rather "
         "than against this project's own platted line and stood 4.5 to 8.2 m out past "
-        "it. Six were reconciled with the plat and their stretch of walk closed; the "
-        "other five are named one by one in `refused`, with the metres each would have "
-        "to move and the reason the roof schedule cannot yet absorb the move. "
+        "it, so the march refused the boards around every one of them. All eleven now "
+        "stand on the plat — six reconciled under T-0188, the last five under T-0199, "
+        "each translated along its own block face's inward normal until its north wall "
+        "stood 1.50 m back from the committed frontage line, and no along-street "
+        "position moved. What still refuses a stretch of this street is its own ground "
+        "and the buildings that ARE the street wall, both named in `refused`. "
         "Randolph Street, Washington Street, the cross streets' own frontages and the "
         "West Division across the South Branch are the same rule on more faces. Every "
         "one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — "
@@ -2359,16 +2372,20 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
             "sidewalks or on lawful fences of the right date; a tax, insurance or sale "
             "description naming a walk or a fence in front of a named lot; or holding "
             "the four reference plates as proper source records with their institutions "
-            "and dates (T-0075). AND ONE THING THAT CHANGES THE SHAPE OF THE RUN "
-            "WITHOUT CHANGING ITS EVIDENCE, half done here: eleven documented South "
+            "and dates (T-0075). AND ONE THING THAT CHANGED THE SHAPE OF THE RUN "
+            "WITHOUT CHANGING ITS EVIDENCE, finished here: eleven documented South "
             "Water Street buildings were placed against the modern kerb rather than "
             "against this project's own platted line and stood 4.5 to 8.2 m out past "
-            "it, which is why the walk on that side broke around them. T-0127 "
-            "reconciled six of them — the same derivation each record already "
-            "describes, run against this project's committed street line instead of a "
-            "modern one — and the five it could not are named store by store in the "
-            "refusals below, each with the metres it would move and the platted lot "
-            "the roof schedule has already dealt out from under it."
+            "it, which is why the walk on that side broke around them. T-0188 "
+            "reconciled six — the same derivation each record already describes, run "
+            "against this project's committed street line instead of a modern one — "
+            "and T-0199 the last five, which had been refused because each seated on a "
+            "platted lot the 665-roof schedule had dealt to that block's anonymous "
+            "frontage run. What answered that refusal was a measurement rather than a "
+            "concession: the town's eight party-line runs were dealt 20 lots of "
+            "frontage and stand on 12, so four of the five stores were being kept out "
+            "of the town by an entitlement no roof was using, and the fifth shares its "
+            "lot with a run that had room for it. No anonymous roof left the street."
         ),
     }
 

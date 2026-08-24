@@ -1,5 +1,98 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0199 (of T-0127): the last five South Water stores come onto the plat
+
+**The five T-0188 refused are reconciled, no anonymous roof left the town, and the thing that had
+refused them turns out to be a ceiling this project retired in July and never took off the gate.**
+
+### The measurement that decided it
+
+`tools/measure_frontage_entitlement.py` (new) asks one question of every party-line run in the town:
+**does it stand on the lots it was dealt?**
+
+| block | face | dealt | stands on | units | ceiling |
+|---|---|---|---|---:|---:|
+| `blk_south_water_franklin` | north | 2, 4, 6 | **6** | 3 | 9 |
+| `blk_south_water_wells` | north | 0, 2, 4 | **2, 4** | 3 | 9 |
+| `blk_south_water_lasalle` | north | 0, 2, 4 | **4** | 3 | 9 |
+| `blk_south_water_clark` | north | 2, 4 | **4** | 2 | 6 |
+| `blk_south_water_dearborn` | north | 0, 2, 4 | **4** | 3 | 9 |
+| `blk_lake_clark` | north | 0 | 0 | 3 | 3 |
+| `blk_randolph_dearborn` | north / south | 4 / 1 | 4 / 1 | 3 / 3 | 3 / 3 |
+
+**Eight runs, twenty dealt lots, twelve stood on. EIGHT platted lots were entitled to a run that has
+never had a roof on them** — and five of the eight were the lots that refused five documented
+stores. That gap is not a defect in the recipes: it is what T-0079 built. Before the core density
+standard a run carried exactly one roof per lot it was dealt, so "dealt" and "stood on" were the
+same list; T-0079 made a row a claim about the FACE, bounded by its metres of frontage rather than
+by the conjectural side lines it crosses, and the two lists came apart the moment it landed.
+Nothing measured them apart until a documented building wanted the difference.
+
+### What changed at the gate
+
+`generate_block_infill.py`'s frontage refusal — *"lot N already carries X, so the frontage run
+cannot be dealt its roof"* — was the PRE-T-0079 ceiling still standing. It now **counts instead of
+vetoing**: a run's frontage carries `ROW_UNITS_PER_LOT` units per lot it was dealt, and every roof
+already standing on those lots counts against that ceiling. **This is not a weakened assertion.**
+`blk_lake_clark` and both `blk_randolph_dearborn` deals sit at exactly 3 of 3, so a documented roof
+seating on their lot still fails; what is let through is the block that was refused for want of an
+entitlement it was not using — three units against nine. The rule is authored in the module that
+measured it and imported by the gate, the arrangement `ROW_UNITS_PER_LOT` already has with
+`reconcile_665.py`. `plat_occupancy.seated_lots` is the same occupancy map without the discard
+(`occupied_lots` kept the first structure per lot, which cannot answer "how many").
+
+### The five, and the one that had to be argued rather than counted
+
+| store | moved | onto | why it is now placeable |
+|---|---:|---|---|
+| `h_jones_store` | 9.67 m | `wells` lot 0 | the run stands on lots 2 and 4, never on 0 |
+| `pruyne_kimball_drugstore` | 7.05 m | `clark` lot 2 | both of the run's roofs are on lot 4 |
+| `chicago_american_office` | 8.41 m | `dearborn` lot 0 | all three of the run's roofs are on lot 4 |
+| `frederick_thomas_shop` | 7.75 m | `dearborn` lot 2 | all three of the run's roofs are on lot 4 |
+| `carpenter_south_water_store` | 8.12 m | `wells` lot 2 | **shares the lot** — see below |
+
+Carpenter's store is the one of the five whose lot the run really does stand on, and the only thing
+that had to give was a clearance. `..._wells_d4_03` is anchored *"clear west of"* that store at
+**2.4 m along the face** — a figure that cleared the parcel's 3.0 m separation gate only because the
+store stood 6.62 m out in the roadway, where the plan distance ran on the diagonal. Reconciled, both
+north walls stand on one line and the gap is the whole **2.40 m against a 3.00 m gate**. The anchor
+is re-derived against the corrected wall at 3.0 m and the unit steps **0.60 m west**. Lot 2 then
+carries both: 25.04 m of frontage against T-0079's measured ceiling of three units on it. **No roof
+left the town.** Wells' and Dearborn's A3 yard buildings moved from lot 0 to lot 4 for the yard
+rule's own reason — an ancillary roof stands in the yard of a roof THIS parcel built, and lot 0's
+street frontage is now a documented store.
+
+### What it bought
+
+| | origin/dev | after T-0188 | after T-0199 |
+|---|---:|---:|---:|
+| town street edge | 1,360.2 m | 1,427.0 m | **1,563.7 m** |
+| walking decks | 86 | 89 | **96** |
+| walks / crossings | 21 / 9 | 20 / 9 | **18 / 11** |
+| South Water's south side | 237.1 m in 9 pieces | 303.9 m in 8 | **440.6 m in 8** |
+| longest single run there | 47.0 m | 96.5 m | **97.6 m** |
+| `blk_south_water_wells` north | 20.6 + 41.1 m | 20.6 + 41.1 m | **one 97.6 m run** |
+| `blk_south_water_dearborn` north | 15.6 + 20.8 m | 15.6 + 20.8 m | **one 67.6 m run** |
+| phases lapping a platted corridor | 29 | 26 | **21** |
+| street-edge refusals | 48 | 54 | **48** |
+
+A walker now crosses Wells Street on boards and keeps going: **96.5 m + a 24.4 m crossing + 97.6 m =
+218.5 m of continuous street edge** from Franklin to LaSalle, where this street has never carried
+more than one block face at a time.
+
+### The cost, stated
+
+Three blocks leave the schedule's `open` state. `blk_south_water_clark` and `blk_south_water_dearborn`
+go to `at_capacity` and `blk_south_water_wells` stays there, because a documented roof seating on a
+lot is a lot that is no longer free and a block keeps one lot open. `schedulable_on_committed_ground`
+falls **28 → 20**; the 665 total does not move and the eight roofs go back into the balance gated on
+coverage. That headroom was only ever there because eleven documented buildings were standing in the
+road and occupying no lot at all.
+
+**No liberty entry**: nothing was invented. The moves are each record's own stated method re-run
+against this project's own committed line, the yard buildings' lots were always an invention the
+parcel already declares, and a placement gate's unit is not a claim about 1835.
+
 ## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
 
 **T-0127 was SPLIT rather than closed, and the split is the honest part of this run.** Its first

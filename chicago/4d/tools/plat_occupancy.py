@@ -217,26 +217,29 @@ def inset(convex_poly: list[tuple[float, float]], metres: float
     return out if len(out) >= 3 else []
 
 
-def occupied_lots(grid: dict, datum: dict,
-                  exclude: set[str] | frozenset[str] = frozenset()
-                  ) -> dict[str, dict[int, str]]:
-    """{block_id: {lot_index: the structure standing on it}} across the whole grid.
+def seated_lots(grid: dict, datum: dict,
+                exclude: set[str] | frozenset[str] = frozenset()
+                ) -> dict[str, dict[int, list[str]]]:
+    """{block_id: {lot_index: EVERY structure seated on it}} across the whole grid.
 
     Both tests, in order: a building's lot is the one it has the greatest area on, and
     it occupies that lot only if it reaches inside the lot's buildable inset. See the
     module docstring for why each is there and what each was measured against.
 
-    Where two structures hold one lot the first by id is named. The map's job is to say
-    the lot is taken and by something nameable, not to arbitrate between them — that
-    two roofs share a lot is the separation gate's question, and this one's answer is
-    the same either way.
+    The list, rather than one name, is T-0199. `occupied_lots` below has always kept the
+    first structure by id and thrown the rest away, because until now the only question
+    asked of it was "is this lot free", which one name answers. The core density
+    standard (T-0079) made a second question askable: a lot of a party-line business
+    frontage carries up to `ROW_UNITS_PER_LOT` roofs, so HOW MANY stand on it is the
+    count that binds, and a map that names one of three cannot supply it. Both callers
+    read the same map; the one that needs a name still takes the first.
     """
     frames = [(block["id"], index, [tuple(p) for p in lot["polygon"]])
               for block in grid["blocks"] for index, lot in enumerate(block["lots"])]
     buildable = {(bid, index): inset(polygon, LOT_MARGIN_M)
                  for bid, index, polygon in frames}
 
-    taken: dict[str, dict[int, str]] = {}
+    taken: dict[str, dict[int, list[str]]] = {}
     for structure_id, world in footprints(datum, exclude):
         seat, best = None, SLIVER_M2
         for bid, index, polygon in frames:
@@ -248,8 +251,26 @@ def occupied_lots(grid: dict, datum: dict,
         room = buildable[seat]
         if not room or overlap_area(world, room) <= SLIVER_M2:
             continue
-        taken.setdefault(seat[0], {}).setdefault(seat[1], structure_id)
+        # A structure whose phases were rebuilt on one lot is one roof there, not two.
+        here_ids = taken.setdefault(seat[0], {}).setdefault(seat[1], [])
+        if structure_id not in here_ids:
+            here_ids.append(structure_id)
     return taken
+
+
+def occupied_lots(grid: dict, datum: dict,
+                  exclude: set[str] | frozenset[str] = frozenset()
+                  ) -> dict[str, dict[int, str]]:
+    """{block_id: {lot_index: the structure standing on it}} across the whole grid.
+
+    Where two structures hold one lot the first by id is named. The map's job is to say
+    the lot is taken and by something nameable, not to arbitrate between them — that
+    two roofs share a lot is the separation gate's question, and this one's answer is
+    the same either way. `seated_lots` above is the same measurement without the
+    discard, for the caller that needs the count rather than a name.
+    """
+    return {block: {index: ids[0] for index, ids in sorted(lots.items())}
+            for block, lots in seated_lots(grid, datum, exclude).items()}
 
 
 def block_of_structure(taken: dict[str, dict[int, str]]) -> dict[str, str]:

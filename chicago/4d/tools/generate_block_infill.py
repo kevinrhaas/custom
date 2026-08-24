@@ -73,7 +73,13 @@ from inferred_occupancy import occupancy  # noqa: E402
 
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
-from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+from plat_occupancy import LOT_MARGIN_M, footprints, seated_lots  # noqa: E402
+
+# How many roofs a run's own frontage carries, and what already stands on it (T-0199).
+# Authored in the module that MEASURED it, beside the survey that found eight dealt
+# lots carrying none of their run's roofs, and imported here rather than retyped — the
+# same arrangement `ROW_UNITS_PER_LOT` already has with tools/reconcile_665.py.
+from measure_frontage_entitlement import frontage_load  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
 # its fronts look, and where along it a wall lands. Authored once, in the module the
@@ -1188,14 +1194,39 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # frontage: its centroid is then in the roadway and its walls are on the lot. Three
     # documented buildings on this grid do it, and the block this parcel shape met them
     # on read every one of its lots as free.
-    occupied = occupied_lots({"blocks": [grid]}, datum,
-                             exclude=mine_ids).get(block["block_id"], {})
-    for index in (frontage["lots"] if frontage else []):
-        holder = occupied.get(index)
-        if holder is not None:
-            raise SystemExit(f"{block['block_id']}: lot {index} already carries {holder}, "
-                             f"so the frontage run cannot be dealt its roof. The "
-                             f"schedule's headroom is the block's, not the lot's")
+    seated = seated_lots({"blocks": [grid]}, datum,
+                         exclude=mine_ids).get(block["block_id"], {})
+    occupied = {index: ids[0] for index, ids in sorted(seated.items())}
+    # T-0199. A LOT A RUN WAS DEALT AND ALREADY CARRIES A ROOF IS COUNTED, NOT VETOED.
+    # This used to refuse outright — "the schedule's headroom is the block's, not the
+    # lot's" — which is the right answer for the per-lot placements below and the
+    # PRE-T-0079 answer here. The core density standard retired one-roof-per-lot for a
+    # run: a row is a claim about the FACE, bounded by the metres of frontage it stands
+    # on and not by the conjectural side lines it crosses, and `ROW_UNITS_PER_LOT` of
+    # its units fit inside one lot of this grid. Measured on the committed dataset
+    # (tools/measure_frontage_entitlement.py), the town's eight runs were dealt 20 lots
+    # and stand on 12: EIGHT platted lots were entitled to a run that has never had a
+    # roof on them, five of them on South Water. Those five refused five documented
+    # stores — the veto read an entitlement nobody was using as ground nobody could
+    # have. So the protection stays and changes unit: the run's frontage carries
+    # ROW_UNITS_PER_LOT units per lot it was dealt, and every roof already standing on
+    # those lots counts against that ceiling. Nothing that was refused for want of
+    # GROUND is let through — blk_lake_clark and both blk_randolph_dearborn deals sit
+    # at exactly 3 of 3 and a documented roof on their lot still fails here — and the
+    # three-metre separation gate, the strip containment in `check_frontage` and the
+    # corridor test below are what keep the answer physical rather than arithmetical.
+    if frontage:
+        carried, ceiling, standing = frontage_load(frontage["lots"], len(row), seated)
+        if carried > ceiling:
+            already = ", ".join(f"lot {index}: {', '.join(ids)}"
+                                for index, ids in sorted(standing.items()))
+            raise SystemExit(
+                f"{block['block_id']}: the run carries {len(row)} roof(s) and "
+                f"{carried - len(row)} already stand on the {len(frontage['lots'])} "
+                f"lot(s) it was dealt ({already}) — {carried} against the {ceiling} units "
+                f"{len(frontage['lots'])} lot(s) of this frontage hold at the row's own "
+                f"measured spacing. The schedule's headroom is the block's, not the "
+                f"lot's, and the frontage's headroom is its metres, not its lot count")
     for record in records:
         recon = record["reconstruction"]
         if "lot_index" not in recon:
@@ -1241,9 +1272,22 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # occupied by a roof this recipe wrote, and calling it "already carrying a roof"
     # would say a stranger built it. The lots are read from the recipe rather than from
     # the ground, which is what makes the answer the same on both sides of a generate.
-    classes = {"built on by this parcel": set(used),
+    #
+    # T-0199 adds the fifth class, and it is the one the four above could not express:
+    # a lot of a run's own frontage that ALSO carries a documented roof. The partition
+    # assumed one roof to a lot, so such a lot was both "built on by this parcel" and
+    # "already carrying a roof" and the pairwise test refused it — the same pre-T-0079
+    # ceiling the occupancy gate above carried, in the bookkeeping instead of the rule.
+    # It is its own class rather than either of theirs because both statements are
+    # true, and because saying so is what makes the arithmetic above legible in the
+    # file that documents the town: the frontage is shared, and the run's ceiling is
+    # counting the roof it shares it with.
+    dealt_frontage = set((frontage or {}).get("lots", ()))
+    shared = dealt_frontage & (set(occupied) - set(sibling_lots))
+    classes = {"built on by this parcel": set(used) - shared,
                "built on by another deal on this block": set(sibling_lots),
-               "already carrying a roof": set(occupied) - set(sibling_lots),
+               "already carrying a roof": set(occupied) - set(sibling_lots) - shared,
+               "shared: this parcel's frontage run and a roof already standing": shared,
                "named open in the recipe": set(named_open)}
     for name, indices in classes.items():
         for other_name, other_indices in classes.items():

@@ -1,7 +1,7 @@
 ---
 id: T-0199
 title: The five South Water stores standing on a lot the roof schedule already dealt
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0127
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 1:58:28 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -57,6 +57,33 @@ NEW reason (the roof-schedule collision having been resolved or shown unresolvab
 Street's walk then runs unbroken except where its own ground refuses it, asserted by standing the
 walker on it end to end; no standing roof leaves the town without that removal being argued and
 counted; and all three detail tiers stay inside their ceilings. Never by weakening a gate.
+
+**RESOLVED 2026-08-24 — ALL FIVE ARE ON THE PLAT AND NO ANONYMOUS ROOF LEFT THE TOWN.** Neither of
+the two routes above was taken, because a measurement made a third one available. `tools/measure_frontage_entitlement.py`
+(new) asks whether a party-line run stands on the lots it was dealt: across the town's eight runs,
+**20 lots dealt, 12 stood on**. A run packs from one end of its own strip and three of its units fit
+inside one lot of this grid, so eight platted lots were entitled to a run that has never had a roof
+on them — and four of the five refusals were those lots (`wells` 0, `clark` 2, `dearborn` 0 and 2).
+The refusal was the PRE-T-0079 ceiling: the core density standard had already made a row a claim
+about the FACE rather than about the lot grid, so "dealt" and "stood on" stopped being one list and
+nothing had measured them apart. The gate now COUNTS instead of vetoing — three units per dealt lot,
+with every roof already standing on those lots counted against it — and `blk_lake_clark` and both
+`blk_randolph_dearborn` deals still sit at exactly 3 of 3, so nothing refused for want of ground is
+let through.
+
+The fifth store, `carpenter_south_water_store`, does share `blk_south_water_wells` lot 2 with the
+run's third unit, and both fit (25.04 m of frontage against a ceiling of three). What did not fit
+was a clearance: the recipe stood `..._wells_d4_03` 2.4 m along the face from a store that was
+6.62 m out in the roadway, so the plan gap ran on the diagonal. On one line it is **2.40 m against
+the parcel's 3.00 m separation gate**, proved by reverting the anchor. The anchor is re-derived at
+3.0 m and the unit steps 0.60 m west.
+
+South Water's south side: **303.9 m of walk in 8 pieces → 440.6 m**, `blk_south_water_wells` its
+whole 97.6 m face in one run, `blk_south_water_dearborn` 67.6 m where it had two stumps, two new
+corner crossings. Town street edge 1,427.0 → **1,563.7 m** over **96** walking decks; phases lapping
+a platted corridor 26 → **21**. Cost, stated: three blocks go `at_capacity` and the programme's
+`schedulable_on_committed_ground` falls 28 → 20 — headroom that existed only while eleven documented
+buildings stood in the road occupying no lot.
 
 **Links:** T-0127 (parent) · T-0188 (piece 1, which measured all of the above) · T-0115 (the tier
 ledger) · `data/frontage/town_street_edge.json` `refused`, where all five are already named.
