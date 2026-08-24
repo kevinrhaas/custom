@@ -25,7 +25,6 @@ T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
 
 # --- THE RIVER AND ITS WHARVES — visible
-T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor

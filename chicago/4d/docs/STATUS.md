@@ -1,5 +1,91 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0106: two more landings toward the drawbridge, and the bank that was never missing
+
+**T-0106 asked for the traced river bank to be EXTENDED east from local E 390 to the Dearborn
+drawbridge at E 699, because three stated South Water landings — Carpenter's, Peck's and Harmon &
+Loomis's — stood refused for lying beyond it. The premise is refuted. Nothing needed tracing, and
+nothing was extended by eye.**
+
+**What a visitor sees.** Walk the south bank east from the forks toward the drawbridge and there
+are now **seven timber landings on the river** where this branch found four — Philo Carpenter's, at
+the foot of the frontage where the forks tracing window used to stop, and P. F. W. Peck's 45 m
+further east. Both are plank decks on stepped cribs, pickable through to the store each serves,
+standing in 1.3–1.7 m of water. (The seventh is Robert A. Kinzie's on the west bank at Wolf Point,
+which **T-0107** landed in parallel; this entry adds two to its five.) The four wharves this branch
+started from keep their committed outlines **byte for byte**, the ground and the water are
+untouched, and no terrain input was edited.
+
+**Why there was nothing to trace.** The bank in `river.geojson` stops at E +390 because
+`tools/trace_river.py` works a 1120 px window of the Wright 1834 sheet centred on the forks — that
+is where the WINDOW closed, not where the bank did. `tools/trace_shoreline.py` picked the same
+waterline up off the SAME sheet at E +314 and carried it east past the drawbridge to the lake, and
+`shoreline.geojson` has held that trace since 2026-08-10. `terrain_spec.json` already declares both
+as one waterline per division in `shore_runs`, and `generators/terrain_gen.py::build_field` already
+measures a division's shore across both files. **Only the wharf layer read one of the two**, so it
+believed the south bank ended 309 m short of the drawbridge and refused three frontages for standing
+off bank that had been traced for a fortnight. `tools/generate_river_wharves.py` now composes the
+runs the way the terrain generator does.
+
+**The join, and the number that licenses it.** The forks run is taken WHOLE — no committed vertex
+dropped, moved or resampled — and only the harbour-reach vertices beyond its terminal foot are
+appended. The two windows overlap between E +314 and E +390, and where they meet they **disagree by
+0.77 m on the south bank and 0.15 m on the north**, against the sheet's own ±20 m. That agreement is
+what makes them one line rather than two claims, and it is recorded per run in
+`data/wharves/river_landings.json § bank_runs` with both tools, both files and the seam named.
+**No liberty is owed and none was added**: nothing here is invented, and L145 already covers the
+five dock statements themselves.
+
+**Two rules got stricter, neither got looser.** The composed bank is not the smooth curve the forks
+window was, and it exposed two latent weaknesses — both caught by measuring, not by eye:
+
+- **Clause 3b, the foot is the nearest bank IN FRONT OF the wall.** The harbour-reach trace carries a
+  10 m-wide slot cutting 32 m into the south bank at E +463. Peck's store fronts the river 29 m west
+  of it, and the slot's tip is 30.3 m from its river wall against 41.2 m for the bank the wall
+  actually faces — so a nearest-point rule laid an 18 m deck ACROSS THE HEAD OF THE SLOT with a third
+  of its face standing 0.37 m above the water on dry ground. The foot is now chosen only from bank
+  within the deck's own run of the wall's line. Peck's deck moved to (436.8, 41.1), square to its own
+  frontage in 1.46–1.55 m of water. It also caught a mild case on the west bank: **Robert Kinzie's
+  foot sat 1.35 m outside its own frontage band** (offset −7.85 m against a 6.50 m half-run), so part
+  of that deck ran past the wall it serves; the clause slid it 1.90 m along the same bank to the band
+  edge. Its tangent, its waterward normal and its soundings are unchanged (least depth 1.06 m either
+  way) and its clearance to the wall is 7.03 m. **No other wharf's foot moved.**
+- **Clause 5b, the sounding has to be a working one.** `tools/smoke_renderer.mjs` has required more
+  than 0.50 m of water at every drawn deck face since T-0041; the generator never read the number
+  back, and until now the two could not disagree, because the forks window is the only bank it could
+  see and that reach gives 1.5–1.7 m six metres out. The generator now refuses below the same floor,
+  in writing, with the sounding in the reason.
+
+**Clause 5b and T-0107's clause 6 overlap, and both are kept — the stricter one is not merged away.**
+Clause 6 asks whether the face is in water AT ALL (`least <= 0`); clause 5b asks whether there is
+enough of it to lie at (`least < 0.50 m`). On T-0107's own 1 m stations, 5b is the stricter test and
+subsumes 6 arithmetically. They are kept as two clauses, in that order, because they diagnose
+different things and clause 6 names the worse one: a face on DRY GROUND is a bent outline and says
+so, while a face afloat in too little water is a frontage the river does not serve. Collapsing them
+would either lose clause 6's reading or slacken 5b to 0.0 m. **Clause 5b is also now decided on the
+whole 1 m run rather than the three reported points, which is stricter than it shipped as.**
+
+**HARMON & LOOMIS'S LANDING IS STILL NOT DRAWN, AND THE REASON IS NOW A MEASUREMENT RATHER THAN A
+GAP.** Its frontage IS reached by the trace. What refuses it is the water: **the committed terrain
+gives 0.76–0.88 m six metres off the south bank between E +560 and E +700**, against 1.5–1.7 m in the
+forks reach, and the traced bank also carries a 4 m step across this particular frontage, so one
+corner of a straight 18.2 m deck ends up nearer the bank than its foot is and shallower still —
+**0.48 m, against the layer's own 0.50 m floor**. Mid-channel is normal there (9.4–11.7 ft), so this
+is the near-bank profile and not a bad bed. **That depth field is not this layer's to change and was
+not touched by this run** — it comes out of `generators/terrain_gen.py` from the reach beds and
+channel profile in `terrain_spec.json`, and editing any of those restales the committed ground and
+water GLBs, which needs a bake. Recorded here rather than repaired here.
+
+**A note that had gone quietly false.** The record's `face_out_m` note read *"at 6 m out the channel
+gives about 1.2 m of water at both sites"* — true of the two wharves that existed when it was typed
+and wrong of every one added since. It is now derived from the drawn faces on every run.
+
+**Verification.** `tools/check.sh` CHECK PASS. The wharf clause self-test T-0107 introduced now runs
+**nine** cases, not seven: clause 3b and clause 5b are fired on constructed frontages too, so neither
+is a refusal taken on trust. `tools/smoke_renderer.mjs --published`, stages 1–2 at 390×780 — the leg
+that loads the terrain, the wharf layer and the drawbridge reach. The wharf census assertions moved
+with the work and are stated in the same commit: 5 drawn + 3 refused on dev → **7 drawn + 1 refused**,
+keep-outs 5 → 7, and `stands.length` 5 → 7. **No assertion was weakened**; two were added.
 ## Shipped 2026-08-24 — T-0109: the slough crossing spans water, and its card finally says so
 
 **The acceptance, stated before working, because the ticket carried none.** *Standing at the Water
@@ -2034,7 +2120,11 @@ local **E 390**, and Carpenter's, Peck's and Harmon & Loomis's frontages lie eas
 this run the generator snapped all three to the trace's terminal vertex — three decks stacked on
 one point, silently. It now refuses a deck any metre of which would stand off untraced bank
 (clause 4b), with the reason on the record; **T-0106** owns extending the trace to the drawbridge
-reach, and the three refused landings draw themselves when it lands. The staleness gate also
+reach, and the three refused landings draw themselves when it lands. *[Corrected 2026-08-24 by
+T-0106: there was nothing to extend. The bank east of E 390 had been traced off the same 1834 sheet
+into `shoreline.geojson` since 2026-08-10; this layer was reading only one of the two tracing
+windows. Carpenter's and Peck's now draw; Harmon & Loomis's is refused by a sounding instead —
+0.48 m at its face against a 0.50 m floor. See the entry at the top of this file.]* The staleness gate also
 stopped sweeping `dock` into the frame_storefront mesh hash — a statement the builder never reads
 was marking five stores stale when not one of their vertices could move.
 

@@ -4215,18 +4215,31 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Five docks since T-0107: the two warehouses whose dock the dossier
-    // states, the two South Water landings (J. H. Kinzie's, Jones's) the
-    // owner's 2026-08-18 ruling reconstructed (T-0062), and Robert A. Kinzie's
-    // storehouse on the WEST bank at Wolf Point — the first landing this layer
-    // has put on that shore, which T-0062's South-Water-only pass had left with
-    // no candidate at all. The refused count is asserted too: three more
-    // landings are STATED and not drawn because the traced 1834 bank ends at
-    // local E 390 (T-0106) — a sixth wharf appearing or a refusal disappearing
-    // without this line moving is a rule change nobody reviewed.
+    // SEVEN docks, and the count is the sum of two runs that landed together.
+    // The two warehouses whose dock the dossier states; the four South Water
+    // landings the owner's 2026-08-18 ruling reconstructed that are drawable
+    // (J. H. Kinzie's, Jones's, and — since T-0106 — Carpenter's and Peck's);
+    // and Robert A. Kinzie's storehouse on the WEST bank at Wolf Point, the
+    // first landing this layer put on that shore (T-0107), which T-0062's
+    // South-Water-only pass had left with no candidate at all.
+    //
+    // T-0106 moved the count because the BANK moved, not the rule. The layer
+    // used to read only the forks tracing window, which closes at local E 390,
+    // and refused three frontages east of it for standing off untraced bank.
+    // They were never untraced — tools/trace_shoreline.py has carried the same
+    // waterline off the same 1834 sheet past the drawbridge since 2026-08-10,
+    // and the generator now composes both windows the way terrain_gen.py did.
+    //
+    // ONE refusal remains and it is a different kind from the three it replaces:
+    // Harmon & Loomis's frontage IS reached by the trace, and the modelled
+    // channel gives only 0.48 m under its deck face against the 0.50 m floor
+    // asserted just below. It is refused by a SOUNDING, in writing, on the
+    // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
+    // a refusal disappearing without this line moving is a rule change nobody
+    // reviewed.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 5 && docks.verts > 0 && docks.keepOut === 5
-        && docks.census?.refused === 3
+      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
+        && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
@@ -4249,7 +4262,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 5 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 7 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
