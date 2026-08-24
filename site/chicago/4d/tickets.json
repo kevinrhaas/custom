@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 9:26 AM",
+  "generated_ct": "Aug 24, 2026, 9:55 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1665,7 +1665,7 @@
     {
       "id": "T-0095",
       "title": "The fort's corner works and its two documented gates, as the plate draws them",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1675,7 +1675,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 9:55:23 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 13

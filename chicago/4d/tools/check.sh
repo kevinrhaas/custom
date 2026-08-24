@@ -387,6 +387,34 @@ step "no body of far timber stands in the river" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
 
+# Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
+# fort with its gates standing open makes a claim about the hour of the day, and
+# the garrison is attested for the scene date. Both of them stood a quarter open.
+# One leaf of each pair was placed from a midpoint that collapsed onto its own
+# jamb, so 0.90 m of a 3.6 m gateway was daylight straight through the wall and
+# 0.90 m of leaf lay across the pickets outside the frame — in the committed GLB,
+# so in the bytes a visitor downloaded. This reads the shipped mesh rather than
+# re-deriving the placement, because the derivation was the fault (T-0095).
+step "Fort Dearborn's documented gates are shut" \
+  python3 tools/measure_fort_gates.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_gates.py --self-test
+
+# T-0095 was filed saying p4_0 "draws the corner works RISING ABOVE the curtain
+# with their own pyramidal roofs and small lanterns". It does not. It raises two
+# such works and both stand over the MIDDLE of the wall, at 0.435 and 0.521 of the
+# drawn run; the one angle the plate shows unoccluded is drawn plain, and the other
+# is behind a tree. This is the second Fort Dearborn parcel in two days seeded by a
+# plate read with the eye (T-0094 was the first), so the refutation is held by a
+# measurement rather than by a paragraph — and its third assertion fires the day
+# the record is built to the misreading anyway.
+step "p4_0 raises no work at either angle of the fort it draws" \
+  python3 tools/measure_fort_works_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_works_plate.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

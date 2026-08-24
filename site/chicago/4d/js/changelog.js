@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'Fort Dearborn\u2019s gates are shut', kind: 'fix', ts: '2026-08-24T16:04:19.830Z', date: 'Aug 24, 2026, 11:04 AM CT',
+    items: [
+      'Stand on the north bank of the river and look across at the fort. Its north gate is shut. Until now there was a slot of daylight straight through it, a quarter of the gateway wide, and you could see the grass of the parade and a building beyond it through a gate that is meant to be barred. Both gates were like it, north and south.',
+      'The fort is modelled with a garrison inside it, which is why the gates are built closed at all \u2014 a fort standing open makes a claim about the hour of the day. One leaf of each pair had been put half a leaf too far to one side, so it missed its partner and hung out over the pickets beyond its own post instead.',
+      'It survived this long because only one of the two leaves was wrong. A gate with one good leaf still looks like a gate until you are close enough to see the ground through it.',
+      'A new check now measures the finished gate rather than the arithmetic that draws it, and refuses any gap wider than a centimetre or any leaf lying outside its frame. It named the fault on the old fort before the repair went in.',
+      'Nothing else about the fort moved. The corner works and the wall are exactly as they were \u2014 and a note about why is worth reading: the old picture this job came from, painted long after the fort was gone, turns out to put its two little towers over the MIDDLE of the wall rather than at the corners, and it mixes in features of the earlier fort that burned in 1812. So nothing new was built from it.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',
