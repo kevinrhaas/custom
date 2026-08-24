@@ -93,8 +93,8 @@ from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
 # had a retyped constant instead, so the rule moved to one module both import
 # (ROADMAP T-V1).
 from family_bands import (dimensions_m, eave_floor, eave_limits,  # noqa: E402
-                          families, pitch_deg, stable_fraction, storeys,
-                          wall_height_m)
+                          eave_window_m, families, pitch_deg, stable_fraction,
+                          storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
 
 OCCUPANCY = occupancy()
@@ -289,8 +289,18 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
     # build; D6's runs down to 10 ft and the same archetype will not carry a half
     # storey under 3.05 m. Both limits are asked of the archetype, never retyped here.
     arch_lo, arch_hi = eave_limits(spec.get("archetype"), levels)
+    # The roof line is decided BEFORE the eave now (T-0148), because the eave band is
+    # bounded by the ridge band and that bound needs the run the roof climbs. Both are
+    # pure functions of the family here — the tail below reads these same two names
+    # rather than recomputing them, so the run the eave was chosen against cannot drift
+    # from the roof the record ships.
+    roof = "shed" if family in ("D2", "A3", "A4") else "gable"
+    gable_front = family.startswith("C")
+    run_m = ridge_run_m(spec.get("archetype"), roof, width, depth, gable_front)
     wall = wall_height_m(family, spec["eave_ft"], key,
-                         max(eave_floor(family, door), arch_lo), arch_hi)
+                         max(eave_floor(family, door), arch_lo), arch_hi,
+                         window=eave_window_m(spec.get("roof"), spec.get("ridge_ft"),
+                                              run_m))
 
     # THE PITCH, T-0142, and it is T-0145's repair arriving in the parcel that needed it
     # next. This generator dealt a retyped constant — 44 deg to every 1.5-storey D or H
@@ -340,8 +350,8 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
         return {
             "stories": invented(levels, why), "wall_height_m": invented(wall, why),
             "roof_type": invented("gable", why),
-            "roof_pitch_deg": invented(pitch(34.0, gable_front=family.startswith("C")), why),
-            "gable_front": invented(family.startswith("C"), why),
+            "roof_pitch_deg": invented(pitch(34.0, gable_front=gable_front), why),
+            "gable_front": invented(gable_front, why),
             "construction": invented(construction, why),
             "cladding": invented("clapboard" if family != "F2" else "vertical_board", why),
             "paint": invented(paint, why), "loft": invented(family == "C2", why),
@@ -354,7 +364,6 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
         raise SystemExit(f"{family} has no form rule in this generator; add one before "
                          f"a recipe uses it")
 
-    roof = "shed" if family in ("D2", "A3", "A4") else "gable"
     material = "plank"
     if family == "A1":
         material = "log"

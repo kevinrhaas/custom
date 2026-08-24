@@ -1,5 +1,49 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0174: the eave and the pitch are chosen together, and A1's stables reach their ridge
+
+**The A1 stable could not reach its ridge band at any pitch its family allows (T-0148), and the
+reason was not in the specification.** `ridge = eave + run x tan(pitch)` rises with the eave as
+well as with the pitch, so a family's `ridge_ft` band rules out part of its own `eave_ft` band at
+a given run. T-0145 constrained the pitch by the ridge band and left the eave alone; the eave was
+therefore sampled uniformly across its whole authored range, and every A1 standing had landed at
+9.0-9.4 ft of a 9-12 ft band — the part of it where no pitch between 7:12 and 10:12 can lift a
+gable running down the long axis of a stable to 17 ft. At 11-12 ft, the same authored band, it can.
+
+**So nothing gave way.** `family_bands.eave_window_m` solves the same inequality for the eave and
+`wall_height_m` samples inside the intersection; where the window and the authored band do not
+overlap at all the authored band still wins and the residual stays `measure_ridge_band.py`'s to
+report, which is the doctrine the pitch sampler already carried. Sixteen records re-derived and
+were rebaked: five baselined A1 offenders are inside their band, eleven other roofs moved within
+theirs, and no roof left its band. The ratchet went 64 -> 59.
+
+### What the parent ticket turned out to be, measured rather than assumed
+
+T-0148 asked for a per-family decision about which of four committed claims gives way. Dealing every
+family through its own sampler and classifying all 64 offenders answered it, and the answer is that
+for most of them **no claim gives way, because no claim was ever consulted**:
+
+| cause | offenders | piece |
+|---|---|---|
+| the eave sampled outside the ridge-feasible part of its band | 5, now healed | T-0174 (this one) |
+| the phase-one South Division parcel's retyped eave and pitch | 28 | T-0175 |
+| the inferred-household layer's retyped eave and pitch | 12 | T-0177 |
+| the West Division parcel's retyped eave and pitch | 11 | T-0176 |
+| a family authoring a ridge band and no pitch band (A4, W4, W5) | 8 | T-0178 |
+
+(the last four rows are the 59 that remain; the first is the five this run closed)
+
+Three of the five reconstruction generators never import `family_bands` for the eave or the pitch:
+they deal one typed-in wall height and one typed-in roof angle per family — 2.78 m and 38 deg for
+every D3, whose authored eave band tops out at 9 ft (2.74 m). T-0144 and T-0145 moved footprint,
+eave and pitch onto the authored bands for the block and North parcels and never reached the other
+three. That is why records can cite a band their own value sits outside — 23 of the 64 carried an eave outside their family's authored eave band, and 13 a pitch outside its pitch band.
+
+**Only T-0178's eight are a real conflict**, and they are the group where a claim may genuinely have
+to give way: those three families author a ridge band and no pitch band at all, so the sampler
+returns the generator's type default by design and nothing steers it toward the ridge. That is
+stated in its ticket rather than settled here.
+
 ## Shipped 2026-08-24 — T-0165: the bake's smoke is its own job, and the nightly fits its ceiling again
 
 **Run #261 was cancelled at 43m51s of a 45-minute job, inside the desktop half of the published

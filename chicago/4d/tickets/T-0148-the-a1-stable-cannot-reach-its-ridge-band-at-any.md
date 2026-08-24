@@ -1,7 +1,7 @@
 ---
 id: T-0148
 title: The A1 stable cannot reach its ridge band at any pitch its family allows
-state: open
+state: split
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-22
-closed: null
+closed: 2026-08-24
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 1:53:24 AM CT
 blocked_on: null
 needs_bake: false
 ---

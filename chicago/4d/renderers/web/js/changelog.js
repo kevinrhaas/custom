@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 256, title: 'The stables stand up to their own specification', kind: 'fix', ts: '2026-08-24T07:43:51.508Z', date: 'Aug 24, 2026, 2:43 AM CT',
+    items: [
+      'Sixteen buildings changed shape today and twelve of them are stables. A stable here is built to a written specification \u2014 the size of its footprint, the height of its wall, the angle of its roof and the height of its ridge all come out of one entry \u2014 and the ridge kept coming out wrong. A stable dealt a nine-foot wall cannot reach the seventeen-foot ridge the same entry asks for, at any roof angle that entry allows.',
+      'Nothing in the specification is wrong. Its four numbers only agree over part of their range: low down the wall range the roof cannot climb far enough, higher up it can. The wall was being chosen first and the roof afterwards, so nothing ever noticed that the pair have to be chosen together.',
+      'The wall is now drawn only from the part of its own range a workable roof can stand on. Five stables that stood below their specified ridge reach it now; eleven more buildings moved within it, most by a couple of inches, two store-residences on South Water by rather more.',
+      'Nothing was loosened to get there. Where the two ranges genuinely cannot both be met, the written range still wins and the shortfall is still measured and reported \u2014 fifty-nine roofs in the town are still outside their ridge range, five short of yesterday.',
+      'What those fifty-nine are is now known rather than guessed at. Fifty-one of the fifty-nine are roofs raised by three older parts of the builder that never ask the specification at all: they stand at one typed-in wall height and one typed-in roof angle, several of which sit outside the ranges the building\u2019s own card cites. That is written down as its own work.',
+      'Every wall and every roof angle still cites the specification it always cited, and every one is still marked as invented within it.',
+    ] },
   { v: 255, title: 'The town\u2019s roofs stop being cut to the same two angles', kind: 'fix', ts: '2026-08-24T04:28:44.489Z', date: 'Aug 23, 2026, 11:28 PM CT',
     items: [
       'Walk any of the fourteen platted blocks and look along a row of roofs. Every one of the ninety-eight anonymous buildings standing on them was pitched at one of exactly two angles \u2014 a steep 44 degrees where there were rooms up in the roof, 38 where there were not. They now range from about 18 to 45, each roof drawn from the range its own kind of building is described at, so a street reads as separate buildings rather than one building repeated.',

@@ -14,7 +14,11 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
+T-0174 — Sample the eave from the part of its band the ridge band can be reached from
+T-0175 — The phase-one South Division parcel deals a retyped eave and pitch, not the family's bands
+T-0176 — The West Division parcel deals a retyped eave and pitch, not the family's bands
+T-0177 — The inferred-household layer deals a retyped eave and pitch, not the family's bands
+T-0178 — A4, W4 and W5 author a ridge band and no pitch band, so nothing can choose a pitch that reaches it
 
 # --- RED NOW — visible, and a gate is failing on it today
 T-0103 — Every platted-block roof faces away from the street it fronts

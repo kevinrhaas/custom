@@ -44,8 +44,8 @@ from band_notes import split_notes  # noqa: E402
 # twenty-four buildings stamped sixty times and seventeen of them stood outside the
 # eave band their own note cited (ROADMAP T-V1). The band is now used as the range it
 # was authored as.
-from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
-                          pitch_deg, storeys, wall_height_m)
+from family_bands import (dimensions_m, eave_floor, eave_window_m,  # noqa: E402
+                          families, pitch_deg, storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 
@@ -168,7 +168,17 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
     # own note cites. Sampling adds variety, not knowledge: every value still grades at
     # the bottom tier, and the note still says the band is a typology and not evidence
     # about this building.
-    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door_kind(family)))
+    # The roof line is decided BEFORE the eave now (T-0148), because the family's ridge
+    # band bounds its own eave band once the run is known, and the run is the roof's.
+    # Both are pure functions of the family here — the tail below reads these same two
+    # names rather than recomputing them, so the run the eave was chosen against cannot
+    # drift from the roof the record ships.
+    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
+    gable_front = family.startswith("C")
+    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door_kind(family)),
+                         window=eave_window_m(
+                             spec.get("roof"), spec.get("ridge_ft"),
+                             ridge_run_m(archetype, roof, width, depth, gable_front)))
 
     # THE PITCH, T-0145. The eave moved onto its band in the pass before this one and
     # the pitch was deliberately left behind, because a pitch is not a dimension that
@@ -215,7 +225,7 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
         return {
             "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
             "roof_type": inferred("gable", why),
-            "roof_pitch_deg": inferred(pitch(33.0, gable_front=True), why),
+            "roof_pitch_deg": inferred(pitch(33.0, gable_front=gable_front), why),
             "gable_front": inferred(True, why), "construction": inferred(frame, why),
             "cladding": inferred("clapboard", why), "paint": inferred(paint, why),
             "loft": inferred(family == "C2", why), "chimneys": inferred(1, why),
@@ -235,7 +245,6 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
         }
 
     door = door_kind(family)
-    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
     construction = "light_frame" if family in ("W2", "A1", "A2") else "plank"
     return {
         "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),

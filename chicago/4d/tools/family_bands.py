@@ -127,7 +127,8 @@ DOOR_HEADROOM_M = 2.05
 
 
 def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0,
-                  ceiling: float | None = None) -> float:
+                  ceiling: float | None = None,
+                  window: tuple[float, float] | None = None) -> float:
     m = RANGE_RE.match(str(eave_ft or ""))
     if not m:
         raise SystemExit(f"{family}: eave height '{eave_ft}' is not a numeric band")
@@ -145,6 +146,18 @@ def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0,
                              f"buildable, so the band and the archetype disagree about "
                              f"the family and one of them has to be settled")
         hi = min(hi, ceiling)
+    # ...AND THE RIDGE BAND REACHES BACK DOWN INTO THE EAVE BAND (T-0148). The eave is
+    # not free either: it is the height the pitch springs FROM, so the family's own
+    # `ridge_ft` rules out part of its own `eave_ft` at a given run. `eave_window_m`
+    # computes which part; the same reading as the floor and the ceiling above, and the
+    # same one `pitch_deg` already takes at the other end of the pair. Where the window
+    # and the authored band do not overlap at all the authored band WINS and the
+    # residual is `tools/measure_ridge_band.py`'s to report — a sampler that left a
+    # band to satisfy a gate would be the thing that gate exists to catch.
+    if window is not None:
+        w_lo, w_hi = max(lo, window[0]), min(hi, window[1])
+        if w_hi - w_lo > 1e-9:
+            lo, hi = w_lo, w_hi
     return round(lo + (hi - lo) * stable_fraction(key, 8), 3)
 
 
@@ -276,6 +289,41 @@ def ridge_m(eave_m: float, run_m: float, pitch_deg_value: float) -> float:
     the archetype, so it is asked of `tools/ridge_model.py` and passed in here.
     """
     return eave_m + run_m * math.tan(math.radians(pitch_deg_value))
+
+
+def eave_window_m(roof: str | None, ridge_ft: str | None,
+                  run_m: float | None) -> tuple[float, float] | None:
+    """The eaves from which SOME pitch inside the family's band lands the ridge inside
+    its band, over this instance's run — or None where the family authors no pitch band,
+    no ridge band, or the archetype's run is unknown.
+
+    T-0148, and it is the other half of the constraint `pitch_deg` below already applies.
+    That one holds the eave fixed and shrinks the pitch; this one is the same inequality
+    solved for the eave, because the two bands can conflict at a low eave and agree at a
+    high one and the sampler had no way to know that. The A1 stable is the case that
+    forced it: the family authors 9-12 ft eaves, 7:12-10:12 pitches and a 17-24 ft ridge,
+    `outbuilding` runs its gable down the LONG axis so the roof climbs half the SHORT
+    one, and a stable dealt a 9 ft eave tops out around 15 ft at the steepest pitch A1
+    allows. Nothing in the specification is wrong and nothing has to give way: the four
+    claims are satisfiable together only in the upper part of the eave band, and every
+    A1 standing was sampled below it.
+
+    THE ARITHMETIC. `ridge = eave + run x tan(pitch)` is increasing in both terms, so
+    over a pitch band [p_lo, p_hi] the reachable ridges are the interval
+    [eave + run x tan(p_lo), eave + run x tan(p_hi)]. That interval meets the ridge band
+    [R_lo, R_hi] exactly when
+
+        eave <= R_hi - run x tan(p_lo)   and   eave >= R_lo - run x tan(p_hi)
+
+    which is the window returned here. Closed form, no search, so `tools/check.sh`
+    re-derives every record byte for byte on a runner with no Blender on it.
+    """
+    band = pitch_band_deg(roof)
+    ridge = ridge_band_m(ridge_ft)
+    if band is None or ridge is None or not run_m or run_m <= 1e-6:
+        return None
+    return (ridge[0] - run_m * math.tan(math.radians(band[1])),
+            ridge[1] - run_m * math.tan(math.radians(band[0])))
 
 
 def pitch_deg(family: str, roof: str | None, key: str, default: float,
