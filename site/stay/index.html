@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stay Finder — 6–8 bedroom houses, Tampa area, Dec 19–27</title>
-<meta name="description" content="A ranked shortlist of 6-to-8 bedroom houses and unusual stays across the Tampa Bay area, the Gulf beaches, the Nature Coast around Cedar Key and Crystal River, and the inland ranch country near Crystal Springs — for December 19–27, 2026. Map, bed counts, prices, and a link straight to every original listing.">
+<title>Stay Finder — 5–6 bedroom houses for nine, Tampa area, Dec 19–27</title>
+<meta name="description" content="A ranked shortlist of 5-to-6 bedroom houses and unusual stays for nine people across the Tampa Bay area, the Gulf beaches, the Nature Coast around Cedar Key and Crystal River, and the inland ranch country near Crystal Springs — for December 19–27, 2026. Map, bed counts, prices, and a link straight to every original listing.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
-<meta property="og:title" content="Stay Finder — 6–8 bedroom houses, Tampa area, Dec 19–27">
-<meta property="og:description" content="Ranked 6–8 bedroom houses across Tampa Bay, the Gulf beaches, Cedar Key and Crystal River, and inland ranch country — mapped, with bed counts, prices and links to every original listing.">
+<meta property="og:title" content="Stay Finder — 5–6 bedroom houses for nine, Tampa area, Dec 19–27">
+<meta property="og:description" content="Ranked 5–6 bedroom houses for nine people across Tampa Bay, the Gulf beaches, Cedar Key and Crystal River, and inland ranch country — mapped, with bed counts, prices and links to every original listing.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/app.css">
 <script>try{var m=localStorage.getItem('stay.theme');if(m)document.documentElement.setAttribute('data-theme',m);}catch(e){}</script>
@@ -27,18 +27,18 @@
 </nav>
 
 <header class="hero wrap">
-  <div class="kicker" id="kicker">Tampa Bay · the Gulf beaches · the Nature Coast · inland ranch country</div>
-  <h1>Somewhere for <span class="grad">all of us</span>, Dec 19–27</h1>
-  <p id="heroSub">Six to eight bedrooms, king beds wherever we can get them, and room for everyone to be in the same house at Christmas. Every card links straight to the original listing with the dates already filled in — availability still has to be confirmed with the host.</p>
+  <div class="kicker" id="kicker">Nine of us · five or six rooms · three kings · Dec 19–27</div>
+  <h1>Somewhere for <span class="grad">the nine of us</span>, Dec 19–27</h1>
+  <p id="heroSub">Nine of us — the parents, my brother and Chava, Lee and me, and Maura, Delaney and Oscar. Five or six bedrooms, three kings so each couple has one, and a house that fits us without being built for twenty. Every card links straight to the original listing with the dates already filled in; availability still has to be confirmed with the host.</p>
   <div class="spec-strip" id="specStrip"></div>
 </header>
 
 <main class="wrap">
   <div class="stats">
     <div class="stat"><div class="n" id="s-total">0</div><div class="l">places found</div></div>
-    <div class="stat exact"><div class="n" id="s-exact">0</div><div class="l">best fits<br>6–8 BR, kings, room to gather</div></div>
+    <div class="stat exact"><div class="n" id="s-exact">0</div><div class="l">best fits<br>5–6 BR with 3 kings</div></div>
     <div class="stat strong"><div class="n" id="s-strong">0</div><div class="l">strong options</div></div>
-    <div class="stat king"><div class="n" id="s-king">0</div><div class="l">with 4+ king beds<br>confirmed in the listing</div></div>
+    <div class="stat king"><div class="n" id="s-king">0</div><div class="l">right-sized<br>5–6 BR, sleeps 9–12</div></div>
     <div class="stat"><div class="n" id="s-regions">0</div><div class="l">areas covered</div></div>
   </div>
 
@@ -55,24 +55,25 @@
       <span class="sort-label">Sort</span>
       <div class="seg" role="group" aria-label="Sort order">
         <button data-sort-btn="match" class="on">Best fit</button>
-        <button data-sort-btn="kings">Most kings</button>
+        <button data-sort-btn="kings">Closest to 3 kings</button>
         <button data-sort-btn="price">Lowest price</button>
-        <button data-sort-btn="beds">Most bedrooms</button>
+        <button data-sort-btn="small">Smallest that fits</button>
+        <button data-sort-btn="near">Nearest TPA</button>
       </div>
     </div>
   </div>
   <div class="controls">
-    <label><input type="checkbox" id="fKing"> King beds confirmed</label>
+    <label><input type="checkbox" id="fKing"> 3+ kings confirmed</label>
     <label><input type="checkbox" id="fPool"> Private pool</label>
     <label><input type="checkbox" id="fWater"> On the water</label>
-    <label><input type="checkbox" id="fStrict" checked> 6–8 bedrooms only</label>
+    <label><input type="checkbox" id="fStrict" checked> 5–6 bedrooms only</label>
     <span class="grow"></span>
     <div class="ctlgrp">
-      <span class="sort-label">Sleeps</span>
-      <div class="seg" role="group" aria-label="Minimum sleeps">
-        <button data-sleeps-btn="0" class="on">Any</button>
-        <button data-sleeps-btn="12">12+</button>
-        <button data-sleeps-btn="16">16+</button>
+      <span class="sort-label">Size</span>
+      <div class="seg" role="group" aria-label="Sleeping capacity">
+        <button data-sleeps-btn="fits" class="on">Fits 9</button>
+        <button data-sleeps-btn="right">Sleeps 9–12</button>
+        <button data-sleeps-btn="any">Any</button>
       </div>
     </div>
   </div>

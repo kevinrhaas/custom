@@ -7,7 +7,7 @@ window.STAY_DATA = {
   "checkin": "2026-12-19",
   "checkout": "2026-12-27",
   "nights": 8,
-  "guests": 16
+  "guests": 9
  },
  "regions": [
   {
@@ -37,31 +37,31 @@ window.STAY_DATA = {
   }
  ],
  "tiers": {
-  "exact": "Best fit — 6–8 bedrooms with kings in most of them",
-  "strong": "Strong — right size, kings partly or not yet confirmed",
-  "backup": "Worth a look — right size, but the beds are not kings",
-  "stretch": "Stretch — outside 6–8 bedrooms, or several keys"
+  "exact": "Best fit — 5–6 bedrooms with three kings, one per couple",
+  "strong": "Strong — right size, kings partial or not yet confirmed",
+  "backup": "Worth a look — right size, but no kings listed",
+  "stretch": "Stretch — outside 5–6 bedrooms, or several keys"
  },
  "spec_chips": [
   {
    "dot": "#0e7c8a",
-   "text": "<b>1.</b>&nbsp;6–8 bedrooms"
+   "text": "<b>1.</b>&nbsp;5–6 bedrooms"
   },
   {
    "dot": "#d4614a",
-   "text": "<b>2.</b>&nbsp;King beds in most of them"
+   "text": "<b>2.</b>&nbsp;3 kings — one per couple"
   },
   {
    "text": "<b>3.</b>&nbsp;Dec 19–27, 2026 · 8 nights"
   },
   {
-   "text": "<b>4.</b>&nbsp;Room for 12–18"
+   "text": "<b>4.</b>&nbsp;Nine of us · sleeps 9–12"
   },
   {
    "text": "<b>5.</b>&nbsp;Pool, water or real character"
   }
  ],
- "disclaimer": "Nothing here is a booking, and no listing calendar could be read directly — every rental platform blocks automated checks. Availability is reported as exactly what was seen: “Dec 19–27 showed open” only where a dated search returned the house, “came back in a Dec 19–27 search” where it appeared in dated results, and “unknown” for everything else, which is most of them. Confirm dates, the bed layout and the real holiday rate with the host or manager before counting on any of it. Prices are whatever the source published — often a shoulder-season nightly rate or a range, not a Christmas-week quote, which will usually be higher. Bed counts are the listing’s own; where a host never published a layout the card says so rather than guessing. Pins sit at each listing’s stated area, not its street address. Fit ranking is our own opinion, not the platforms’.",
+ "disclaimer": "Nothing here is a booking, and no listing calendar could be read directly — every rental platform blocks automated checks. Availability is reported as exactly what was seen: “Dec 19–27 showed open” only where a dated search returned the house, “came back in a Dec 19–27 search” where it appeared in dated results, and “unknown” for everything else, which is most of them. Confirm dates, the bed layout and the real holiday rate with the host or manager before counting on any of it. Prices are whatever the source published — often a shoulder-season nightly rate or a range, not a Christmas-week quote, which will usually be higher. Bed counts are the listing’s own; where a host never published a layout the card says so rather than guessing. Ranking is built for this group specifically — nine people, five or six rooms, three kings and no more. Houses outside that shape are kept but ranked down rather than deleted, so a bigger place is still one filter away. Pins sit at each listing’s stated area, not its street address. Fit ranking is our own opinion, not the platforms’.",
  "properties": [
   {
    "id": "big-nauti-bradenton-beach",
