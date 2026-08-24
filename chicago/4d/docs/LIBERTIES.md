@@ -5970,6 +5970,64 @@ this refines and the 4.4 points it reserved), **L123** (why the layer is drawn a
 recorded cover), and ROADMAP **K57**, **K59**.
 **Recorded:** 2026-08-23.
 
+### L179 — The point on a Fort Dearborn picket is ours, and the plate that was said to draw it rules a flat top
+
+**Decision:** every picket of the fort's stockade is **sharpened over its top 0.312 m** — 8.4 % of
+the 3.7 m height, cut out of that height rather than added to it — and **no source says a word
+about the head of a Fort Dearborn picket.** The head is a reconstruction, and until now it was
+declared nowhere: it lives in a derived property of `generators/archetypes/palisade_params.py`
+(`picket_point_m = min(width × 1.3, height × 0.18)`), whose own docstring admits *"no source
+describes the head of a Fort Dearborn picket"*, and neither the record nor this file had ever
+repeated that where a reader would find it. **L47** covers the fabric of this wall in general terms
+— "every dimension of the fabric is ours" — and names the height, the width, the spacing, the gate
+and the bastions one by one. It does not name the head, and the head is the most conspicuous thing
+about the wall at eye level.
+
+**Why the head is built at all, and why it is not evidence.** A flat-topped post reads as a fence
+rail and a pointed one reads as a stockade; the sawtooth is what makes a visitor at the north wall
+see a fort rather than a paddock. That is a drawing argument, not a claim about 1816. Kinzie gives
+"high pickets" and nothing else; Andreas gives "a square stockade"; the 1830 Harrison plan is a
+plan and has no third dimension. The head is therefore **reconstructed** in this project's exact
+sense — invented within bounds because the scene needs it — and the bound is one picket width,
+which is the proportion a splitting axe leaves.
+
+**And the plate does not settle it, which is the half this entry exists to record (T-0094).** The
+ticket, and row 3 of `docs/RESEARCH/fort_dearborn_image_accuracy.md` before it, said the model's
+pickets were flat-topped and the plate's pointed. **Both halves are wrong.** The committed master
+`assets/gltf/fort_dearborn_palisade__picket_1816.glb` has carried 768 four-triangle heads since the
+archetype was written — 3,072 apex vertices at 3.700 m over 12,288 shoulders at 3.388 m — and
+`data/sources/assets/prefire_views_kevin_2026_08/p4_0.png` rules the curtain's top as a **straight
+line**: 0.45 px rms over 138 resolved columns, while the same plate resolves individual pickets at
+a 10 px pitch and stands the curtain 43 px tall, so a head of this proportion would have serrated
+it by 3.6 px — eight times the residual. `p4_1` rules the same flat cap. **The draughtsman had the
+resolution to draw a point and drew none.** That is not evidence that the pickets were flat: a
+lithographer ruling the top of a distant stockade is what a lithographer does, and these are
+tier-5 retrospective plates. It is evidence that the plate cannot be cited FOR the point.
+
+**Consequence:** the silhouette of the most recognisable structure in the town is ours, top to
+bottom — L47 already said so of its height and its posts, and this says so of their heads. The
+confidence view dithers the whole wall, which is the only thing standing between a visitor and
+that fact.
+
+**How to resolve:** the same evidence L47 asks for — a quartermaster return, a repair estimate or
+an engineer's report for the post between 1816 and 1836. A specification for pickets would settle
+the head, the height and the spacing in one sentence.
+
+**Held by:** `tools/measure_picket_plate.py --gate`, in `tools/check.sh`, which refuses a stockade
+whose apexes have gone flat, been capped, worn under 4 % of the picket, or been stacked on top of a
+full-height post. The plate half of that file reports and does not gate: a tier-5 lithograph may
+refute a claim made about itself and may not hold a build red.
+
+**No `Covers:` field, deliberately.** The head has no attribute of its own to claim — it is a
+proportion the archetype derives, not a value the record states — and claiming
+`form.construction` would put this entry's name on the word "log", which really is inferred and is
+not the invention being confessed. The honest form is an entry that claims nothing in the
+machine-readable field and says in prose exactly what was made up. The day a `picket_head`
+attribute exists on the record, this entry claims it.
+**Ticket:** T-0094, opened by T-0044, closed as refuted. **Related:** **L47** (the fabric of this
+wall), **L42** (the fort's buildings), **L174** (the ground outside its walls).
+**Recorded:** 2026-08-24.
+
 
 ### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
 **Decision:** the three roofs of the `blk_lake_clark` frontage run —
@@ -6025,6 +6083,128 @@ Related: **L141** (the row whose line this adopts), **L144** (the run that moves
 **T-0104** (this), **T-0077**, **T-0079**.
 **Recorded:** 2026-08-24.
 
+
+### L180 — A landing on the WEST bank at Wolf Point, and no source states a dock anywhere on that shore
+
+**Decision:** Robert A. Kinzie's storehouse at Wolf Point now STATES a dock — `value: true,
+confidence: reconstructed, geometry: simplified` — and the wharf layer draws it in the standard
+form: a 13.0 m plank deck on a timber crib, its heel tied 2 m into the traced 1834 west bank and
+its face 6 m out over the water, abreast the store's own east-facing river wall. It is the FIRST
+landing this project has put on the west bank. The wharf rule that selected it is unchanged in
+shape — a record whose own `dock` attribute is true — but it is now asked of every river frontage
+in the town rather than of South Water Street's merchants only.
+
+**Why:** T-0062 stated five reconstructed docks on the owner's ruling of 2026-08-18, verbatim
+*"you can add more docks!"*, and it stated them on South Water merchants. That left the town's
+other two shores unasked: the North Division shore carried a landing only because Kinzie &
+Hunter's dock happens to be attested, and the west bank at Wolf Point carried none at all. **That
+was a fact about which records had been edited, not a finding about Wolf Point** — the west bank
+was never measured and refused, it was out of scope by construction. The standing ruling in
+AGENTS.md § RECONSTRUCTED IS A TIER is that the rationing instinct is the bug; this entry is the
+honest cost of removing it on one more shore.
+
+**What bounds the invention:** THE TRADE, and here it is this record's own. chicagology's Wolf
+Point narrative gives a storehouse "dealing in groceries and Indian goods"; Andreas's trader list
+(scan p. 235) gives "Indian Traders — Robert A. Kinzie, near Wentworth's tavern". The record's
+committed position note, written 2026-08-11 and long before any wharf layer existed, already
+reasoned from it in as many words — *"a storehouse trading goods off canoes has a positive reason
+to face the landing"* — and set the facade due east onto the water on that reading. THE WATER,
+measured rather than assumed: the traced 1834 bank runs 11.17 m off the building's river wall, and
+a standard-form deck at that foot stands in 1.06 m of water along the whole 13.0 m of its face on
+the committed heightfield, with its heel about 0.5 m clear on dry bank; the boat layer
+independently floats a schooner in this same reach abreast this store (L146, T-0140), so the bed
+this project has already modelled carries a hull here. THE FORM: every dimension of the deck is
+the wharf layer's standard one, invented once and claimed at **L132** — this entry claims only the
+statement that a landing was there at all, which is exactly what **L145** claims for the five
+South Water landings.
+
+**What it does NOT claim.** That any source states a dock, wharf or landing anywhere at Wolf
+Point — none does, which is why this is `reconstructed` and not `inferred`. That the trade was
+still running on 1835-07-01: the 1833 Treaty of Chicago ceded the land and the removal ran through
+the summer of 1835, so the "Indian goods" half of this business was ending as the scene opens, and
+the record models a standing store and a standing landing without claiming what crossed either.
+And it does not reach the rest of the row: Wentworth's tavern, James Kinzie's residence, the
+Robinson and Caldwell cabins and Father Walker's log meeting house state no dock and get none,
+because lodging, dwelling and worship take nothing off a canoe — the Temple Building's exclusion
+carried across the river.
+
+**What would replace it:** the Chicago Democrat's advertising columns; the harbour engineers'
+reports of 1833–1836, which might carry a private wharf line on the branches; or either
+retrospective Wolf Point view examined at plate level for works along the west bank. The same
+instruments L132 and L145 wait on.
+
+Related: **L132** (the wharf form, invented once) · **L145** (the five South Water landings) ·
+**L146** (the hulls in this reach) · **L7** (the ~40 m along-bank uncertainty this row inherits
+whole from the tavern) · ticket **T-0107**; the refused-face clause it also shipped is a rule, not
+a liberty, and lives in `tools/generate_river_wharves.py` clause 6.
+**Covers:** `robert_kinzie_store.store_1830.form.dock`
+**Recorded:** 2026-08-24.
+
+
+### L178 — Dearborn's worn track leaves the platted line at the corner and swings onto the causeway
+**Decision:** Dearborn Street now commits TWO lines instead of one. `path_local_enu_m` is the
+platted line and is unchanged — `[[696.4, -400], [699, 18]]`, the analytic extension of the street
+module that L79 describes. Beside it sits a new optional field, `drawn_track_local_enu_m`, which is
+the worn wheel line the renderer paints: it leaves the platted line where South Water Street crosses
+it (local N 7.0) and runs one straight 13.8 m chord to `[697.65, 20.70]`, the south edge of the
+Dearborn Street drawbridge's causeway. Nothing else in the project reads the second line — the plat
+module, the corridor gate, the lot schedule, the street readout and the flora clearing all still
+read the first.
+
+**Why:** the platted line stops 2.70 m short of the boards, on the crest of the approach fill T-0046
+graded, and the ribbon stopped exactly where the record did. Measured on the shipped build before the
+change: every station up the fill to N 18 landed on drawn roadway and every station past it landed on
+none. A visitor climbing from South Water crossed a band of bare crest to reach the bridge — the last
+unfinished corner of the owner's own report that started T-0110.
+
+**Why not simply extend the platted line, which is the obvious fix.** Because it was measured and it
+fails, twice. `tools/generate_plat_lots.py --check` re-derives every block face by offsetting the
+WHOLE street polyline, so a three-metre bend appended to Dearborn's plat reports PLAT GRID DRIFT and
+moves platted lot lines the length of the street; and `tools/measure_corridor_intrusion.py --gate`
+re-scores the corridors against the same field and goes from the committed 29 laps to 30, the
+drawbridge itself newly lapping Dearborn by 0.66 m. Both readings were taken with the bend appended,
+before this field existed. **The plat line and the wheel line are different claims and one field was
+carrying both.**
+
+**What is invented, exactly.** Two numbers and no more. (1) That the swing is ONE chord: the ribbon's
+panels are drawn square to their own chord and are not mitred at their joints, so each turn opens a
+wedge of prairie on the outside of it, `3.5 tan(turn/2)` wide at the ribbon's edge and nothing at its
+centre. One 5.7-degree joint is the fewest and smallest a swing can be cut into — a 0.61 m² sector,
+0.17 m at its widest, inside the 0.84 m across which the road texture's own edge already fades out —
+and because that joint stands at the crossing, South Water Street's 10.5 m roadway is drawn over half
+of it, leaving **0.30 m² that a 2 cm plan probe finds uncovered by any street**. An eight-chord
+easement was measured first and was seven times worse (2.18 m²), because eight joints turn eight
+times. (2) That the swing takes 13.8 m, which is to say that it starts at the corner rather than at a
+station somebody picked.
+
+**What is NOT invented, and this is the part that bounds it.** The far end is the deck: `[697.65,
+20.70]` is the south edge midpoint of the drawbridge's own committed footprint and is also `line[0]`
+of the `dearborn_south` approach in `terrain_spec.json`, so the track ends where two existing records
+already agree the boards begin. The near end is the platted line itself at the South Water crossing.
+And the reason to swing at all is a measurement rather than a preference: held on the platted line the
+track's east edge stands 4.87 m off the fill's axis, 0.87 m outside the 4.0 m half-width the earthwork
+is level across, so the last stride onto the causeway would be taken on a side slope; swung onto the
+axis, every metre of the 7 m width ends on the level crest.
+
+**Consequence:** from South Water the worn track now runs continuously up the fill and butts the deck,
+and the drawn ribbon over the last 13.8 m of Dearborn is up to 1.37 m west of the street's platted
+centre — a ninth of the 80 ft corridor, and inside it by construction: the compiler refuses a drawn
+track that leaves its own platted corridor or overhangs the platted line's ends by more than 4 m. A
+visitor reading the street readout, a lot line, a block face or a corridor-intrusion figure is still
+reading the platted line and gets exactly the answer they got before. What a visitor cannot do is
+treat the last chord as survey geometry; L79 already says that of every travelled strip in this town
+and it says it of this one.
+
+**How to resolve:** nothing about 1835 would resolve it — no source states a wheel line. What would
+retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would
+close this wedge and the considerably larger ones South Water Street's own authored bends already
+open; that is filed rather than done here, because it moves geometry on every bent street in the town
+and this parcel is 2.7 m of Dearborn.
+
+Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the
+approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this),
+**T-0046** (the fills).
+**Recorded:** 2026-08-24.
 
 ## Resolved
 
@@ -7546,72 +7726,8 @@ same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), *
 set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
 
-### L178 — Dearborn's worn track leaves the platted line at the corner and swings onto the causeway
-**Decision:** Dearborn Street now commits TWO lines instead of one. `path_local_enu_m` is the
-platted line and is unchanged — `[[696.4, -400], [699, 18]]`, the analytic extension of the street
-module that L79 describes. Beside it sits a new optional field, `drawn_track_local_enu_m`, which is
-the worn wheel line the renderer paints: it leaves the platted line where South Water Street crosses
-it (local N 7.0) and runs one straight 13.8 m chord to `[697.65, 20.70]`, the south edge of the
-Dearborn Street drawbridge's causeway. Nothing else in the project reads the second line — the plat
-module, the corridor gate, the lot schedule, the street readout and the flora clearing all still
-read the first.
 
-**Why:** the platted line stops 2.70 m short of the boards, on the crest of the approach fill T-0046
-graded, and the ribbon stopped exactly where the record did. Measured on the shipped build before the
-change: every station up the fill to N 18 landed on drawn roadway and every station past it landed on
-none. A visitor climbing from South Water crossed a band of bare crest to reach the bridge — the last
-unfinished corner of the owner's own report that started T-0110.
-
-**Why not simply extend the platted line, which is the obvious fix.** Because it was measured and it
-fails, twice. `tools/generate_plat_lots.py --check` re-derives every block face by offsetting the
-WHOLE street polyline, so a three-metre bend appended to Dearborn's plat reports PLAT GRID DRIFT and
-moves platted lot lines the length of the street; and `tools/measure_corridor_intrusion.py --gate`
-re-scores the corridors against the same field and goes from the committed 29 laps to 30, the
-drawbridge itself newly lapping Dearborn by 0.66 m. Both readings were taken with the bend appended,
-before this field existed. **The plat line and the wheel line are different claims and one field was
-carrying both.**
-
-**What is invented, exactly.** Two numbers and no more. (1) That the swing is ONE chord: the ribbon's
-panels are drawn square to their own chord and are not mitred at their joints, so each turn opens a
-wedge of prairie on the outside of it, `3.5 tan(turn/2)` wide at the ribbon's edge and nothing at its
-centre. One 5.7-degree joint is the fewest and smallest a swing can be cut into — a 0.61 m² sector,
-0.17 m at its widest, inside the 0.84 m across which the road texture's own edge already fades out —
-and because that joint stands at the crossing, South Water Street's 10.5 m roadway is drawn over half
-of it, leaving **0.30 m² that a 2 cm plan probe finds uncovered by any street**. An eight-chord
-easement was measured first and was seven times worse (2.18 m²), because eight joints turn eight
-times. (2) That the swing takes 13.8 m, which is to say that it starts at the corner rather than at a
-station somebody picked.
-
-**What is NOT invented, and this is the part that bounds it.** The far end is the deck: `[697.65,
-20.70]` is the south edge midpoint of the drawbridge's own committed footprint and is also `line[0]`
-of the `dearborn_south` approach in `terrain_spec.json`, so the track ends where two existing records
-already agree the boards begin. The near end is the platted line itself at the South Water crossing.
-And the reason to swing at all is a measurement rather than a preference: held on the platted line the
-track's east edge stands 4.87 m off the fill's axis, 0.87 m outside the 4.0 m half-width the earthwork
-is level across, so the last stride onto the causeway would be taken on a side slope; swung onto the
-axis, every metre of the 7 m width ends on the level crest.
-
-**Consequence:** from South Water the worn track now runs continuously up the fill and butts the deck,
-and the drawn ribbon over the last 13.8 m of Dearborn is up to 1.37 m west of the street's platted
-centre — a ninth of the 80 ft corridor, and inside it by construction: the compiler refuses a drawn
-track that leaves its own platted corridor or overhangs the platted line's ends by more than 4 m. A
-visitor reading the street readout, a lot line, a block face or a corridor-intrusion figure is still
-reading the platted line and gets exactly the answer they got before. What a visitor cannot do is
-treat the last chord as survey geometry; L79 already says that of every travelled strip in this town
-and it says it of this one.
-
-**How to resolve:** nothing about 1835 would resolve it — no source states a wheel line. What would
-retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would
-close this wedge and the considerably larger ones South Water Street's own authored bends already
-open; that is filed rather than done here, because it moves geometry on every bent street in the town
-and this parcel is 2.7 m of Dearborn.
-
-Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the
-approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this),
-**T-0046** (the fills).
-**Recorded:** 2026-08-24.
-
-### L179 — Forty willows outside Fort Dearborn's west wall — and the plate's mass is west, not east
+### L181 — Forty willows outside Fort Dearborn's west wall — and the plate's mass is west, not east
 **Decision:** `data/flora/plantings/fort_dearborn_wood.json` stands **forty relict black willows,
 9.5–11.6 m, on the ground immediately WEST of Fort Dearborn's palisade** — beyond the 12 m of
 trodden apron **L174** already claims, wrapping 8 m past each end of that wall and running 45 m
@@ -7675,6 +7791,6 @@ return or quartermaster's account of wood cut on the reservation; T-0055's and T
 records for the plates; or an identification of either plate against a dated original, which would
 raise it above the tier-5 standing that lets it drive setting and never a coordinate.
 **Ticket:** T-0098, opened by T-0044. Related: **L174** (the trodden apron this wood stands off),
-**L151** (the dooryard stems, the rule this one is shaped after), **L140** (the fort road that
+**L179** (the picket point, the sibling refutation on this same plate), **L151** (the dooryard stems, the rule this one is shaped after), **L140** (the fort road that
 crosses the same reservation).
 **Recorded:** 2026-08-24.

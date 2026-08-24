@@ -878,16 +878,32 @@ def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
             # The footprint's (0, 0) corner, which is what the GLB contract anchors on:
             # walk back from the east wall along the face, then in from the face line by
             # the setback and the building's own depth.
-            base = (face["origin"][0] + face["along"][0] * (east - width)
-                    + face["outward"][0] * (-setback - depth),
-                    face["origin"][1] + face["along"][1] * (east - width)
-                    + face["outward"][1] * (-setback - depth))
-            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            #
+            # WHICH WAY "BACK" IS DEPENDS ON THE FACE, and it did not have to until this
+            # run (T-0143). `rotation_deg` is the facade bearing, so the footprint's own
+            # +u axis is the outward normal turned a quarter turn — and that runs WITH
+            # the face's `along` on a north or west face and AGAINST it on a south or
+            # east one. Twelve blocks of frontage runs stand on north faces, where the
+            # two agree, so placing the corner at `east - width` was right on every row
+            # this generator had ever built. The first run on a south face put each unit
+            # a whole width west of the party wall it declared, which `check_frontage`
+            # refused: the assertion is a measurement of the geometry, which is why it
+            # could catch a defect in the placement that wrote it.
             position = phase["position"]
-            position["utm_e"] = round(float(datum["origin_utm_e"]) + local_e, 3)
-            position["utm_n"] = round(float(datum["origin_utm_n"]) + local_n, 3)
             theta = math.radians(float(position["rotation_deg"]))
             cos, sin = math.cos(theta), math.sin(theta)
+            u_along = cos * face["along"][0] - sin * face["along"][1]
+            if abs(u_along) < .99:
+                raise SystemExit(f"{sid}: the facade bearing is {position['rotation_deg']} "
+                                 f"deg, which does not lie along the face it fronts")
+            along_0 = east - width if u_along > 0 else east
+            base = (face["origin"][0] + face["along"][0] * along_0
+                    + face["outward"][0] * (-setback - depth),
+                    face["origin"][1] + face["along"][1] * along_0
+                    + face["outward"][1] * (-setback - depth))
+            local_e, local_n = round(base[0], 3), round(base[1], 3)
+            position["utm_e"] = round(float(datum["origin_utm_e"]) + local_e, 3)
+            position["utm_n"] = round(float(datum["origin_utm_n"]) + local_n, 3)
             resolved[sid] = [(local_e + u * cos + v * sin, local_n - u * sin + v * cos)
                              for u, v in polygon]
             del pending[sid]
