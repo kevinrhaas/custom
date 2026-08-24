@@ -54,7 +54,6 @@ T-0093 — The near ring's own outer edge still fades through a screen of dots a
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0031 — Where did the South Water timber belt stand
-T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
 
 # --- THE TRIANGLE BUDGET — invisible, but it governs how much can be added
