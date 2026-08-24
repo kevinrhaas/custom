@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 23, 2026, 7:02 PM",
+  "generated_ct": "Aug 23, 2026, 7:22 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2133,7 +2133,7 @@
     {
       "id": "T-0121",
       "title": "The desktop smoke's fourth stage has outgrown the ten-minute command ceiling",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2143,7 +2143,7 @@
       "opened": "2026-08-20",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/23/2026, 7:22:17 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0

@@ -1,7 +1,7 @@
 ---
 id: T-0121
 title: The desktop smoke's fourth stage has outgrown the ten-minute command ceiling
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 7:22:17 PM CT
 blocked_on: null
 needs_bake: false
 ---
