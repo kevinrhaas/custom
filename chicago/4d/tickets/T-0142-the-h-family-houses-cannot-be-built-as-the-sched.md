@@ -1,7 +1,7 @@
 ---
 id: T-0142
 title: The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-22
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/23/2026, 11:03:40 PM CT
 blocked_on: null
 needs_bake: false
 ---
