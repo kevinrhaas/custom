@@ -22,6 +22,7 @@ authored as instead of being collapsed to a point.
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 import math
 import re
@@ -125,7 +126,8 @@ def storeys(levels: str, key: str | None = None) -> tuple[float, bool]:
 DOOR_HEADROOM_M = 2.05
 
 
-def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0) -> float:
+def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0,
+                  ceiling: float | None = None) -> float:
     m = RANGE_RE.match(str(eave_ft or ""))
     if not m:
         raise SystemExit(f"{family}: eave height '{eave_ft}' is not a numeric band")
@@ -135,6 +137,14 @@ def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0) -> fl
                          f"{hi:.2f} m, below the {floor:.2f} m its archetype needs to "
                          f"carry a door")
     lo = max(lo, floor)
+    if ceiling is not None:
+        if ceiling < lo:
+            raise SystemExit(f"{family}: the authored eave band {eave_ft} ft starts at "
+                             f"{lo:.2f} m, above the {ceiling:.2f} m its archetype will "
+                             f"carry at this storey count — no part of the band is "
+                             f"buildable, so the band and the archetype disagree about "
+                             f"the family and one of them has to be settled")
+        hi = min(hi, ceiling)
     return round(lo + (hi - lo) * stable_fraction(key, 8), 3)
 
 
@@ -160,6 +170,52 @@ def eave_floor(family: str, door: str = "man") -> float:
 # The stock over a door's clear opening, as the outbuilding archetype's own validator
 # measures it: a wall must stand more than this above the door head.
 DOOR_HEADER_M = 0.08
+
+
+# THE OTHER END OF THE SAME BAND (T-0142). `eave_floor` exists because part of a
+# family's authored eave band is below what its archetype can build; H2 is the mirror
+# image — the merchant house's band runs 18-21 ft, and `frame_dwelling` refuses a
+# two-storey wall over 6.2 m because the one attested ceiling height in this dataset is
+# the Green Tree's seven and a half feet and a house was not built taller than the
+# hotel. So roughly the top third of H2's band cannot be built at all, and a uniform
+# sample lands in it about a third of the time: the schedule dealt `blk_randolph_dearborn`
+# an H2 at 6.234 m and the generator refused to build it.
+#
+# The band is not wrong and the archetype is not wrong. Uniform sampling across the
+# whole of the band is what is wrong, which is exactly the reading `eave_floor` already
+# took at the bottom: the sample is drawn from the part of the authored band the
+# archetype can actually build, and a family NONE of whose band is buildable fails
+# loudly rather than being quietly shortened out of its own typology. A clamped value is
+# still inside the band it cites, so the note it carries stays true and
+# `tools/measure_band_claims.py` keeps passing it.
+#
+# The limit is ASKED OF THE ARCHETYPE, never retyped here — an archetype that publishes
+# no `WALL_HEIGHT_M` table names no storey-dependent limit and gets no ceiling. Only
+# frame_dwelling publishes one today; frame_tavern, log_dwelling, frame_storefront and
+# outbuilding carry flat limits far above any eave band the crosswalk authors.
+def eave_limits(archetype: str | None,
+                stories: float | None) -> tuple[float, float | None]:
+    """(floor, ceiling) the archetype will carry at this storey count.
+
+    `(0.0, None)` for an archetype that publishes no `wall_height_band_m` — it names no
+    storey-dependent limit and gets none imposed. Only frame_dwelling publishes one
+    today; frame_tavern, log_dwelling, frame_storefront and outbuilding carry flat
+    limits far outside any eave band the crosswalk authors.
+    """
+    if not archetype or stories is None:
+        return 0.0, None
+    try:
+        module = importlib.import_module(f"archetypes.{archetype}_params")
+    except ModuleNotFoundError:
+        return 0.0, None
+    band_of = getattr(module, "wall_height_band_m", None)
+    if band_of is None:
+        return 0.0, None
+    try:
+        lo, hi = band_of(float(stories))
+    except (KeyError, ValueError):
+        return 0.0, None
+    return lo, hi
 
 
 # ---------------------------------------------------------------------------
@@ -257,4 +313,14 @@ def pitch_deg(family: str, roof: str | None, key: str, default: float,
         # else: the two bands do not overlap for this instance's own run. The pitch
         # band wins (see the module note above) and the residual is the gate's to
         # report.
-    return round(lo + (hi - lo) * stable_fraction(key, 7), 1)
+    value = round(lo + (hi - lo) * stable_fraction(key, 7), 1)
+    # ROUNDING MUST NOT LEAVE THE BAND (T-0142). Pitches are authored to a tenth of a
+    # degree, and a family's band edge is a rise:run pair that almost never lands on
+    # one: 9:12 is 36.87 deg, so a sample in the top three hundredths of C1, C3, F1 or
+    # H2's band rounds UP to 36.9 and the record ships citing a band it sits outside.
+    # Found by `tools/measure_family_deal.py` — ten deals in four thousand, which is
+    # exactly the rate that never shows up in the handful of records standing. So the
+    # rounded value is held inside the band at the same tenth-degree resolution it is
+    # written at.
+    return min(max(value, math.ceil(band[0] * 10) / 10),
+               math.floor(band[1] * 10) / 10)

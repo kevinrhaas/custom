@@ -4,7 +4,7 @@
     "eave": 37,
     "footprint": 2,
     "levels": 3,
-    "pitch": 28
+    "pitch": 12
   },
   "measured": "2026-08-15",
   "offenders": {
@@ -176,124 +176,12 @@
       "marginal": true,
       "value": "32.0 deg (= 7.50:12)"
     },
-    "recon_1835_blk_lake_market_d2_04:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
     "recon_1835_blk_randolph_clark_c2_01:levels": {
       "band": "'1.5' (=> 1.5-1.5)",
       "detail": "+0.5 levels outside",
       "family": "C2",
       "marginal": true,
       "value": "1.5 storey + loft = 2"
-    },
-    "recon_1835_blk_randolph_clark_d2_05:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_randolph_clark_h1_03:pitch": {
-      "band": "33.7-42.5 deg (8:12-11:12)",
-      "detail": "+1.5 deg / +0.59 of a 1:12 step outside",
-      "family": "H1",
-      "marginal": true,
-      "value": "44.0 deg (= 11.59:12)"
-    },
-    "recon_1835_blk_randolph_clark_h2_02:pitch": {
-      "band": "26.6-36.9 deg (6:12-9:12)",
-      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
-      "family": "H2",
-      "marginal": true,
-      "value": "38.0 deg (= 9.38:12)"
-    },
-    "recon_1835_blk_randolph_clinton_a2_05:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_blk_randolph_dearborn_a2_08:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_blk_randolph_dearborn_d2_05:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_randolph_franklin_d2_05:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_randolph_market_a2_08:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_blk_randolph_wells_d2_07:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_randolph_wells_h1_02:pitch": {
-      "band": "33.7-42.5 deg (8:12-11:12)",
-      "detail": "+1.5 deg / +0.59 of a 1:12 step outside",
-      "family": "H1",
-      "marginal": true,
-      "value": "44.0 deg (= 11.59:12)"
-    },
-    "recon_1835_blk_randolph_wells_h2_01:pitch": {
-      "band": "26.6-36.9 deg (6:12-9:12)",
-      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
-      "family": "H2",
-      "marginal": true,
-      "value": "38.0 deg (= 9.38:12)"
-    },
-    "recon_1835_blk_south_water_dearborn_d2_04:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_south_water_franklin_d2_05:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_south_water_lasalle_d2_05:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_blk_south_water_wells_d2_06:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
     },
     "recon_1835_south_a2_047:pitch": {
       "band": "33.7-45.0 deg (8:12-12:12)",

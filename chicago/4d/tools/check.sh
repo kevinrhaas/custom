@@ -246,6 +246,18 @@ step "no reconstructed value is newly outside the band its own note cites" \
 step "no reconstructed roof's ridge is newly outside its family band" \
   python3 tools/measure_ridge_band.py
 
+# And the question the two gates above cannot ask, because they read what LANDED: is
+# every family the 665-roof schedule may deal to a platted block buildable at every
+# size its own band allows? A family comes up rarely — there are two H1s and two H2s in
+# the whole parcel — so a band whose tail the archetype refuses looks fine until the
+# schedule deals into the tail and the run dies. This deals each family four hundred
+# instances through the generator's own sampling and asks the archetype to build each
+# one. It found H2 unbuildable over the top third of its authored eave band, D6 over
+# the bottom of its own, a rounding step that put a pitch outside the band it was drawn
+# from, and W2 fatal to the generator on the day it is first dealt (T-0142).
+step "every family the block schedule may deal builds at every size its band allows" \
+  python3 tools/measure_family_deal.py --gate
+
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
 # from Chicago is August 1835, inside this project's first target year — and gives it
 # one mechanism: review_required on any record blocks a scene from being marked

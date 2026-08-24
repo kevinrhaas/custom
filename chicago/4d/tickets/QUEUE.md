@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0142 — The H-family houses cannot be built as the schedule deals them: the crosswalk's eave and roof bands fall outside what frame_dwelling and the band gate allow
 T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 
 # --- RED NOW — visible, and a gate is failing on it today
@@ -86,3 +85,5 @@ T-0156 — The interior/silhouette discriminator counts edges internal to a laye
 T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
 T-0030 — A queue card in Manager reading tickets.json
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
+T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
+T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
