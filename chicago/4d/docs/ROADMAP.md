@@ -110,6 +110,44 @@ the "runner without the per-command ceiling" this section asked for. Desktop sta
 not yet measured; stage 4 is the one to watch (its mobile 7 m 30 s includes the shared
 street-layer reading), and if it overruns on desktop the fifth cut goes in then, the same way.
 
+**RE-CUT 2026-08-24 by T-0166 (piece 1 of T-0121): the four stages are EIGHT parts, and
+`SMOKE_STAGE` takes a range.** The four had eroded exactly as the paragraph above feared, and
+faster: by 2026-08-23 three of the four DESKTOP quarters ran past the ten-minute ceiling and the
+fourth cleared it by two minutes, so the desktop half a steward run could reach was stage 1
+alone. Each quarter is now halved at a section boundary re-verified for crossing bindings, so
+**part 2k-1 plus part 2k is exactly T-0060's stage k** — the cheap viewport is still four
+commands (`SMOKE_STAGE=1-2`, `3-4`, `5-6`, `7-8`) and nothing about the audit changes.
+
+Three of the four new second halves inherited page state rather than a binding, which the
+scope-aware scan cannot see and only a part run alone from a fresh boot will show: part 6 and
+part 8 boot at the GATE SCREEN (`enterTown()`, T-0060's inline accommodation, now one function
+called at the head of four parts), part 8 also needs the PANEL open because its first statement
+clicks a tab inside it, and part 4 needs the Sauganash framed because its first check picks
+whatever is down the crosshair. All three prologues are guarded on the state they establish, so
+an unfiltered run runs them as no-ops.
+
+**The mobile fit, measured on the improve runner against the published mirror** — part 1
+**1 m 41 s**, 66 staged checks · part 2 **1 m 17 s**, 66 · part 3 **0 m 52 s**, 65 · part 4
+**3 m 17 s**, 38 · part 5 **2 m 52 s**, 19 · part 6 **0 m 44 s**, 14 · part 7 **3 m 48 s**, 36 ·
+part 8 **4 m 19 s**, 107 — 411 staged checks plus the 9 always-on ones every invocation takes,
+and 18 m 50 s of wall clock for eight boots. Every part is inside the ceiling by at least five
+minutes. (Part 5 carries T-0114's two road-legibility failures, which are red on `dev` today and
+are that ticket's, not this cut's.)
+
+**Every invocation now prints its own wall clock on its last line**, which is the cheapest
+possible early warning: this ceiling has been breached three times and each breach cost a run a
+hand measurement to discover.
+
+**THE DESKTOP FIT IS NOT CLAIMED HERE, AND T-0167 IS WHY.** `SMOKE_VIEWPORT=desktop
+SMOKE_STAGE=7` was still killed at 10 m 00 s after the re-cut, against 3 m 48 s for the same
+part at mobile, while part 6 costs 0 m 44 s at mobile and 1 m 53 s at desktop. So the desktop
+cost of a part is NOT a fixed multiple of its mobile cost — the camera-heavy parts scale several
+times harder than the DOM-heavy ones — and an eight-way cut sized on the mobile profile leaves
+parts over the ceiling. Sizing the desktop parts needs a profile measured at 1280x800, and that
+measurement is a run of its own: ~50 minutes of desktop body plus ~1 m 45 s of boot per part is
+55-70 minutes of foreground commands, which does not fit beside the re-cut it exists to size.
+That is T-0167.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather

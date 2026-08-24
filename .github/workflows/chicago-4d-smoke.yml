@@ -4,7 +4,7 @@ name: Chicago 4D — full smoke
 #
 # ROADMAP § THE RUN BUDGET, and T-0060: a steward run's single foreground
 # command is capped at ten minutes, and by 2026-08-18 neither viewport's full
-# unfiltered pass fit inside it. Steward runs verify with SMOKE_STAGE halves
+# unfiltered pass fit inside it. Steward runs verify with SMOKE_STAGE parts
 # (each fits a command); THIS workflow is where an unfiltered pass lives — the
 # reference measurement the halves are audited against, and the only place the
 # whole gate runs as one process. Dispatch it on any ref, e.g.:
@@ -30,7 +30,7 @@ on:
         required: false
         default: ''
       stage:
-        description: 'SMOKE_STAGE — empty for the full body, or 1 / 2'
+        description: 'SMOKE_STAGE — empty for the full body, or a part 1..8 / a range like 3-4'
         required: false
         default: ''
 

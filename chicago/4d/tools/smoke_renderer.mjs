@@ -10,27 +10,33 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `4` runs one quarter of each viewport's body (T-0060). The
- * cuts sit at section boundaries measured for zero crossing bindings and
- * placed near the time quartiles — two halves were tried first and the second
- * half alone still overran the ceiling. It exists because a steward run's
- * single foreground command is capped at ten minutes and by 2026-08-18 neither
- * viewport's full pass fit inside it, so the run was killed mid-suite and the
- * page-error assertion — the LAST line of each viewport — was never taken. A
- * staged run is not the gate either, and says so; the gate is both viewports,
- * all four stages, e.g.:
+ * `SMOKE_STAGE=1` … `8` runs one eighth of each viewport's body (T-0060, re-cut
+ * by T-0121), and `SMOKE_STAGE=1-2` runs a contiguous run of them. The cuts sit
+ * at section boundaries measured for zero crossing bindings. It exists because
+ * a steward run's single foreground command is capped at ten minutes and by
+ * 2026-08-18 neither viewport's full pass fit inside it, so the run was killed
+ * mid-suite and the page-error assertion — the LAST line of each viewport — was
+ * never taken. T-0060 cut four; by 2026-08-23 the town had grown until three of
+ * the four DESKTOP quarters ran past the ceiling too, so each quarter is now
+ * halved. Part 2k-1 plus part 2k is exactly T-0060's stage k, which is why the
+ * cheap viewport can still be taken in four commands.
  *
- *   for s in 1 2 3 4; do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ * A staged run is not the gate either, and says so; the gate is both viewports,
+ * every part, e.g.:
  *
- * (each SMOKE_STAGE invocation fits a ten-minute command on its own; the
- * unfiltered single-process pass lives in .github/workflows/chicago-4d-smoke.yml)
+ *   for s in 1-2 3-4 5-6 7-8; do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8;  do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *
+ * (each command above fits the ten-minute ceiling, measured — every invocation
+ * prints its own wall clock on its last line so the next margin to go is
+ * visible without anyone re-measuring by hand. The unfiltered single-process
+ * pass lives in .github/workflows/chicago-4d-smoke.yml, which has no ceiling.)
  *
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
- * from those always-on checks so the halves can be audited to add up to an
- * unfiltered pass — staged1 + staged2 section checks equal an unfiltered run's
- * section checks, and the always-on count is identical in all three.
+ * from those always-on checks so the parts can be audited to add up to an
+ * unfiltered pass — the eight parts' section counts SUM to an unfiltered run's
+ * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
  *
@@ -401,8 +407,10 @@ const shadowRigFor = (level, touch) => {
  * the whole sweep in 3 m 52 s and is unaffected. That is T-0121 — the four-way
  * stage split has outgrown its sections — and the answer to it is to re-cut the
  * stages, NOT to measure fewer stands: measuring one friendly stand is the
- * defect this set exists to close. Until T-0121 lands, run the desktop pass's
- * stage 2 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=2`, no
+ * defect this set exists to close. T-0166 re-cut the four stages into eight, so
+ * this sweep is now inside PART 4 rather than a whole quarter; until T-0167 has
+ * sized the desktop parts from a measured desktop profile, run the desktop
+ * pass's part 4 outside the ceiling (`SMOKE_VIEWPORT=desktop SMOKE_STAGE=4`, no
  * timeout) or read the mobile pass, which finds the same worst stand.
  *
  * `kind` is how the harness gets there: `frame` stands a distance off a
@@ -946,13 +954,43 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // boundaries verified for crossing bindings, so each part fits a command —
 // while boot, the page-error check and the vendor checks stay in every
 // invocation.
+// T-0121 re-cut the four into EIGHT, because the four had eroded: by
+// 2026-08-23 three of the desktop quarters ran past the ten-minute ceiling and
+// the fourth cleared it by two minutes, so the desktop half a run could reach
+// was stage 1 alone. The erosion is monotonic — the town keeps growing — so the
+// answer was a re-cut with margin rather than one more boundary nudged along.
+// Each of T-0060's four stages was halved at a section boundary re-verified for
+// crossing bindings, so PART 2k-1 + PART 2k is exactly T-0060's stage k and the
+// mobile pass can still be taken in four commands with the range syntax below.
+const PARTS = 8;
 const STAGE = process.env.SMOKE_STAGE || '';
-if (STAGE && !['1', '2', '3', '4'].includes(STAGE)) {
-  console.error(`SMOKE_STAGE must be 1, 2, 3 or 4, got "${STAGE}"`);
+// `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
+// range form exists so the cheap viewport does not pay eight boots to run a
+// body that fits in two commands.
+const wantedParts = (() => {
+  if (!STAGE) return null;
+  const want = new Set();
+  for (const tok of STAGE.split(',').map((t) => t.trim()).filter(Boolean)) {
+    const m = /^(\d+)(?:-(\d+))?$/.exec(tok);
+    if (!m) return tok;
+    const lo = Number(m[1]);
+    const hi = m[2] === undefined ? lo : Number(m[2]);
+    if (lo < 1 || hi > PARTS || lo > hi) return tok;
+    for (let n = lo; n <= hi; n++) want.add(n);
+  }
+  return want.size ? want : null;
+})();
+if (typeof wantedParts === 'string') {
+  console.error(`SMOKE_STAGE must be a part 1..${PARTS}, a range like 3-4, or a `
+    + `comma-separated set of those; got "${wantedParts}" in "${STAGE}"`);
   process.exit(2);
 }
-if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of 4\n`);
-const stageOn = (n) => !STAGE || STAGE === String(n);
+if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
+const stageOn = (n) => !wantedParts || wantedParts.has(n);
+// Readability at the guard on a reading shared by several parts: `anyStage(5, 7)`
+// says which parts need it, and adding a part to that list is the whole edit.
+const anyStage = (...ns) => ns.some(stageOn);
+const startedAt = Date.now();
 
 for (const [label, viewport, touch] of [
   ['mobile 390x780', { width: 390, height: 780 }, true],
@@ -987,6 +1025,28 @@ for (const [label, viewport, touch] of [
   // for a broken control: a click that never lands still fails, three times
   // slower.
   page.setDefaultTimeout(90_000);
+
+  // A fresh boot stands at the GATE SCREEN, and the part that enters the town
+  // is part 4's "the gate and the chrome" section. Every part after it that
+  // measures a page.screenshot frame (those include DOM overlays; the
+  // GL-capture checks do not) or clicks the panel chrome (which has no layout
+  // at all while the gate stands, so a click waits ninety seconds for a
+  // zero-size button and dies) has to stand where the full run stands: gate
+  // entered, pointer free, guide down. Idempotent by construction — in a full
+  // run every branch below is a no-op — which is what lets it be called at the
+  // head of four different parts. T-0060 wrote it inline twice; T-0121 needed
+  // it twice more and made it one function instead of four copies.
+  const enterTown = () => page.evaluate(async () => {
+    if (!document.getElementById('gate').hasAttribute('hidden')) {
+      document.getElementById('gate-btn')?.click();
+      await new Promise((r) => setTimeout(r, 150));
+      document.exitPointerLock?.();
+    }
+    const help = document.getElementById('control-help');
+    if (help && !help.hasAttribute('hidden')) {
+      document.getElementById('control-help-gotit')?.click();
+    }
+  });
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1092,14 +1152,20 @@ for (const [label, viewport, touch] of [
                terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
 
-    // Read once, shared by stages 3 and 4 (T-0060): the street layer, the
-    // flora rooted around it, the building anchors and the two readouts. Its
-    // checks span both of those stages, so the reading is taken before the
-    // split — and skipped when neither stage runs, because it is the most
+    // Read once, shared by parts 5 and 7 (T-0060, re-cut by T-0121): the street
+    // layer, the flora rooted around it, the building anchors and the two
+    // readouts. Its checks span both of those parts, so the reading is taken
+    // before the split — and skipped when neither runs, because it is the most
     // expensive single evaluate in the file. It teleports to its own
     // viewpoints, so it does not care what ran before it.
+    //
+    // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
+    // actually read it: parts 6 and 8 hold no reference to `streetLayer`, and
+    // under the old guard each of them would have paid for it anyway — four
+    // times over the desktop pass instead of twice, on the very reading this
+    // gate can least afford.
     let streetLayer = null;
-    if (stageOn(3) || stageOn(4)) {
+    if (anyStage(5, 7)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -1412,7 +1478,9 @@ for (const [label, viewport, touch] of [
     }
 
     try {
-    // STAGE 1 — "the gate counts the town" through "the traced river loaded".
+    // PART 1 — "the gate counts the town" through the fort stockade and the
+    // business signs: the enclosure and signage layers, all read off the scene
+    // graph rather than off the screen.
     if (stageOn(1)) {
     inStageWork = true;
 
@@ -2709,6 +2777,17 @@ for (const [label, viewport, touch] of [
       boards.devices?.length === 1
         && boards.devices[0] === 'carpenter_south_water_store',
       `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
+
+    inStageWork = false;
+    } // end PART 1 (T-0060 stage 1a, cut by T-0121)
+    // PART 2 — the goods at the trading frontages through the confidence
+    // machinery's inert state: the rest of T-0060's stage 1. The cut is a
+    // section boundary with no crossing binding (checked scope-aware, the way
+    // T-0060's three were) and no page state to inherit — everything below
+    // reads the scene graph or takes its own capture, and the gate screen it
+    // boots behind is exactly what an unfiltered run is standing at here.
+    if (stageOn(2)) {
+    inStageWork = true;
 
     // --- the goods at the trading frontages (T-0040) -------------------------
     //
@@ -4430,14 +4509,15 @@ for (const [label, viewport, touch] of [
         : 'no water mesh in the scene at all');
 
     inStageWork = false;
-    } // end STAGE 1 (T-0060)
-    // STAGE 2 — "the ground faces the sky" through the confidence machinery.
+    } // end PART 2 (T-0060 stage 1b, cut by T-0121)
+    // PART 3 — "the ground faces the sky" through the confidence card: the
+    // ground, the invented residents, and every graded claim the card makes.
     // Every boundary sits where the crossing bindings were measured at zero
     // (scope-aware, brace-depth-anchored — the indent-anchored scans missed
     // `terrainLoad` at column 0); the two that did cross, `terrainLoad` and
     // `streetLayer`, are read above the split, so any single stage boots into
     // exactly the state its first line expects.
-    if (stageOn(2)) {
+    if (stageOn(3)) {
     inStageWork = true;
 
     // --- the ground faces the sky ------------------------------------------
@@ -5543,6 +5623,22 @@ for (const [label, viewport, touch] of [
       accountOpen.before === false && accountOpen.after === true,
       `${accountOpen.before} -> ${accountOpen.after}`);
 
+    inStageWork = false;
+    } // end PART 3 (T-0060 stage 2a, cut by T-0121)
+    // PART 4 — the raycast pick through the confidence menu's own clicks:
+    // walking, the bridge deck, the budgets, life size, scene detail and the
+    // chrome. The rest of T-0060's stage 2.
+    //
+    // The one thing this cut inherits is a POSE. Everything above it framed the
+    // Sauganash to open its card, and the first check below picks whatever is
+    // down the crosshair and requires it to be that building. So the frame is
+    // re-taken here rather than assumed: in an unfiltered run it is the pose the
+    // camera is already in, and in a part-4 run it is the difference between
+    // measuring the Sauganash and measuring the prairie.
+    if (stageOn(4)) {
+    inStageWork = true;
+    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
+
     // --- a raycast pick down the crosshair, not just by id ----------------
     const rayPick = await page.evaluate(() => {
       const hit = window.__chicago4d.pick();
@@ -6359,10 +6455,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(cmRestored));
 
     inStageWork = false;
-    } // end STAGE 2 (T-0060)
-    // STAGE 3 — navigation through the K24 brightness aid: the road-contrast
-    // captures live here, the most camera-heavy stretch of the suite.
-    if (stageOn(3)) {
+    } // end PART 4 (T-0060 stage 2b, cut by T-0121)
+    // PART 5 — navigation through the batch merge: the readouts, the
+    // road-legibility aid and the merge the reach below stands on.
+    if (stageOn(5)) {
     inStageWork = true;
 
     // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
@@ -6373,17 +6469,7 @@ for (const [label, viewport, touch] of [
     // GL-capture checks do not) — so a staged run must stand where the full
     // run stands: gate entered, pointer free, guide down. In a full run every
     // branch below is a no-op.
-    await page.evaluate(async () => {
-      if (!document.getElementById('gate').hasAttribute('hidden')) {
-        document.getElementById('gate-btn')?.click();
-        await new Promise((r) => setTimeout(r, 150));
-        document.exitPointerLock?.();
-      }
-      const help = document.getElementById('control-help');
-      if (help && !help.hasAttribute('hidden')) {
-        document.getElementById('control-help-gotit')?.click();
-      }
-    });
+    await enterTown();
 
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
@@ -6651,6 +6737,17 @@ for (const [label, viewport, touch] of [
       + `${batchCensus.values} values ${batchCensus.min}–${batchCensus.max} · flattening moves `
       + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
       + `${dRoughBack.worst}`);
+
+    inStageWork = false;
+    } // end PART 5 (T-0060 stage 3a, cut by T-0121)
+    // PART 6 — the facade tones, the shadow reach, the shadow box and the K24
+    // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
+    // check in it measures a page.screenshot frame. So it enters the town on
+    // its own account, and it holds no reference to the shared street reading —
+    // which is why that reading is now gated on parts 5 and 7 alone.
+    if (stageOn(6)) {
+    inStageWork = true;
+    await enterTown();
 
     // --- T-0002, the facade tones ------------------------------------------
     //
@@ -6968,28 +7065,20 @@ for (const [label, viewport, touch] of [
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     inStageWork = false;
-    } // end STAGE 3 (T-0060)
-    // STAGE 4 — the flora census through free-fly. Every binding it shares
-    // with earlier stages (`streetLayer`) is read above the split; the
-    // teleport below re-establishes the camera pose it expects on its own.
-    if (stageOn(4)) {
+    } // end PART 6 (T-0060 stage 3b, cut by T-0121)
+    // PART 7 — the flora census through the streets a visitor reads: the drawn
+    // population, the sward, the horizon timber and the street names. Every
+    // binding it shares with earlier parts (`streetLayer`) is read above the
+    // split; the teleport below re-establishes the camera pose it expects on
+    // its own.
+    if (stageOn(7)) {
     inStageWork = true;
 
     // Same fresh-boot accommodation as stage 3: this stage drives the panel
     // chrome (`#btn-help` first), and while the gate screen stands the chrome
     // has no layout at all — the click waits ninety seconds for a zero-size
     // button and dies. In a full run every branch below is a no-op.
-    await page.evaluate(async () => {
-      if (!document.getElementById('gate').hasAttribute('hidden')) {
-        document.getElementById('gate-btn')?.click();
-        await new Promise((r) => setTimeout(r, 150));
-        document.exitPointerLock?.();
-      }
-      const help = document.getElementById('control-help');
-      if (help && !help.hasAttribute('hidden')) {
-        document.getElementById('control-help-gotit')?.click();
-      }
-    });
+    await enterTown();
 
     // Put the visitor back where the street checks left them. `from_above` is
     // an AERIAL anchor, and the horizon-timber check further down reads the
@@ -8232,6 +8321,31 @@ for (const [label, viewport, touch] of [
       && unitChoice.mile === '1.0 mi' && unitChoice.kilometre === '1.0 km'
       && unitChoice.stored === 'imperial',
       JSON.stringify(unitChoice));
+
+    inStageWork = false;
+    } // end PART 7 (T-0060 stage 4a, cut by T-0121)
+    // PART 8 — eye height through inspecting from the air: the settings, the
+    // Go-to tab, What's-new, the whole Evidence panel and free-fly. The rest of
+    // T-0060's stage 4, and the most check-dense part of the suite.
+    //
+    // It drives the panel chrome from its first line, so it enters the town on
+    // its own account. It takes no pose of its own on purpose: the checks below
+    // read eye height against the ground the visitor is standing on, and a
+    // teleport here would be this part measuring somewhere the unfiltered run
+    // never stands.
+    if (stageOn(8)) {
+    inStageWork = true;
+    await enterTown();
+    // …and the PANEL, which part 7 leaves open at its last line and this part
+    // reaches straight into: its first statement clicks a tab inside it, and a
+    // click on a tab that has no layout waits ninety seconds and dies. Guarded
+    // on the panel's own hidden state rather than toggling, for the same reason
+    // enterTown() is guarded: in an unfiltered run this must do nothing at all.
+    await page.evaluate(() => {
+      if (document.getElementById('panel').hasAttribute('hidden')) {
+        document.getElementById('btn-help').click();
+      }
+    });
 
     // --- eye height ---------------------------------------------------------
     //
@@ -9572,7 +9686,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end STAGE 4 (T-0060)
+    } // end PART 8 (T-0060 stage 4b, cut by T-0121)
     } catch (e) {
       inStageWork = false;
       thrown = e;
@@ -9661,12 +9775,24 @@ if (UPDATE_ROAD_BANDS) {
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
-// sum of what SMOKE_STAGE=1 and SMOKE_STAGE=2 each report, and the always-on
-// count is identical in all three — that arithmetic is how two halves are
+// sum of what SMOKE_STAGE=1 … 8 each report, and the always-on count is
+// identical in every one of them — that arithmetic is how the parts are
 // demonstrated to add up to the whole.
 console.log(`${stageWorkChecks} staged-section check(s)`
-  + `${STAGE ? ` (stage ${STAGE} of 4)` : ' (all stages)'}, `
+  + `${STAGE ? ` (stage ${STAGE} of ${PARTS})` : ' (all stages)'}, `
   + `${passes.length + failures.length - stageWorkChecks} always-on check(s)`);
+// T-0121: every invocation records its own fit. The stage split exists to hold
+// each command under a ten-minute ceiling, and three separate runs had to
+// re-measure it by hand before anyone knew it had been breached; a run that
+// prints its own wall clock is the cheapest possible early warning that the
+// town has grown into the next margin.
+{
+  const secs = Math.round((Date.now() - startedAt) / 1000);
+  console.log(`${Math.floor(secs / 60)} m ${String(secs % 60).padStart(2, '0')} s`
+    + `${STAGE ? ` for stage ${STAGE}` : ' unfiltered'}`
+    + `${ONLY ? ` at ${ONLY}` : ''} — the ceiling on a steward run's single `
+    + 'foreground command is 10 m 00 s');
+}
 if (failures.length) {
   console.log(`FAILURES:\n - ${failures.join('\n - ')}`);
   process.exit(1);
