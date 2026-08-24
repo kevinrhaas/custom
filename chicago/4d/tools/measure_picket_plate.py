@@ -12,8 +12,12 @@ the second unsupported by the source it cites.**
 
 `generators/archetypes/palisade.py::_picket` builds every post as a rectangular
 shaft plus a four-triangle sharpened head, and `PalisadeParams.picket_point_m`
-sizes that head at `min(width x 1.3, height x 0.18)`. It has done so since the
-archetype was written. The committed master says the same thing without being
+sizes that head. It has done so since the archetype was written. Since T-0200 the
+size is the record's own `form.picket_head_m` — 0.312 m on this stockade,
+`reconstructed` — and `min(width x 1.3, height x 0.18)` is the fallback for a
+palisade record that states no head; declaring it moved no vertex, because the
+value written is the one that expression already produced. The committed master
+says the same thing without being
 asked to agree — `assets/gltf/fort_dearborn_palisade__picket_1816.glb` carries the
 picket material's 21,504 positions at exactly three heights:
 
@@ -55,8 +59,10 @@ proportion is taken off it.
 This does not make the head wrong. A lithographer ruling the top of a distant
 stockade is exactly what a lithographer does, and Kinzie's "high pickets" says
 nothing about their heads. It makes the head **unattested and ours** — which is
-what `docs/LIBERTIES.md` L192 now records — and it makes "the plate draws them
-pointed" a reading the plate does not carry.
+what `docs/LIBERTIES.md` **L179** now records, claiming `form.picket_head_m` in
+its `Covers:` field — and it makes "the plate draws them pointed" a reading the
+plate does not carry. (This line said L192 until T-0200; there is no L192, and a
+pointer to a liberty that does not exist is worse than none.)
 
 ## 3. "Pale" is a reading of half of one wall
 
