@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 270, title: 'The ground\u2019s card now says where the town stops', kind: 'chore', ts: '2026-08-24T19:23:56.325Z', date: 'Aug 24, 2026, 2:23 PM CT',
+    items: [
+      'Open the Evidence panel and read the ground\u2019s own claims. It now tells you where this reconstruction ends on the south, and the edge is nearer than it looks: the modelled land stops inside Washington Street\u2019s own eighty-foot width. A third of a hectare of that street\u2019s south side \u2014 nearly nine hundred metres of it \u2014 is off the map already.',
+      'Nothing in the town moved. No building, no street, no ground and no water changed by a millimetre. What changed is a card and the ledger behind it.',
+      'The ledger is why this was worth doing. Six hundred and sixty-five buildings are owed to this town, and a hundred and twenty of them are booked against ground south of Washington Street. The ledger said they were waiting on surveying. They are not \u2014 they are waiting on ground. Every north\u2013south street down there has its recorded line cut at exactly the edge of the modelled land, so the surveying stops where the ground stops, not the other way round.',
+      'Madison Street was the town\u2019s southern boundary in 1835, and it lies a hundred and twenty-five metres past that edge. The whole last row of blocks between the two \u2014 six blocks, forty-eight lots, six and a quarter hectares \u2014 is not modelled at all. Not one corner of it stands on drawn ground.',
+      'The figures on the card and in the ledger are taken off the ground itself every time the project is built, so neither can go stale the day the land is extended. A new check refuses any town block standing where there is no land under it: put one out there and it is named at once instead of found later.',
+      'What would change this is one piece of tracing. The map stops in the south because the river\u2019s south branch was only followed so far; the lake shore and the sand bar are already drawn well past Madison. Carry the river\u2019s two banks another hundred and twenty-six metres and the ground can follow them.',
+    ] },
   { v: 269, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T17:38:27.146Z', date: 'Aug 24, 2026, 12:38 PM CT',
     items: [
       'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',

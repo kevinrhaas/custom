@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 181,
+  "count": 182,
   "liberties": [
     {
       "id": "L1",
@@ -11237,6 +11237,33 @@
         {
           "label": "How to resolve",
           "text": "nothing about 1835 would resolve it — no source states a wheel line. What would retire the artefact it admits to is mitred ribbon joints in `renderers/web/js/streets.js`, which would close this wedge and the considerably larger ones South Water Street's own authored bends already open; that is filed rather than done here, because it moves geometry on every bent street in the town and this parcel is 2.7 m of Dearborn. Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L147** (the approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the revert that named this), **T-0046** (the fills)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-24."
+        }
+      ]
+    },
+    {
+      "id": "L182",
+      "title": "Madison Street's line, and seven street lines carried past their drawn ends, so the missing southern tier could be measured at all",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-24",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`tools/measure_southern_ground.py` measures how much buildable ground this reconstruction has south of the town, and to say how large the MISSING piece is it needs two lines that are not committed geometry. **Madison Street's centreline** is constructed from the PLSS section corner at State & Madison — `G1` in `data/traces/gcp/wright_1834_gcps.json`, whose own note calls it *the town plat's SE corner* — carried on the plat's east-west bearing that Lake, Randolph and Washington agree on to the sixth decimal. **The plat's seven north-south columns** (Market, Franklin, Wells, LaSalle, Clark, Dearborn, State) are carried south of their drawn ends on their own terminal bearings. Neither is traced; both are constructions of this project. **What that buys, and what it does not.** It buys three figures a visitor now reads on the ground card and a scheduler reads in `1835_665_roof_programme.json` — Madison is **125.2 m** south of the modelled field's edge at State, the plat's last tier is **6 blocks / 48 lots / 6.28 ha**, and **0 of 24** of that tier's block-boundary points stand on modelled ground. **It commits no vertex.** No block, lot, corridor, road, structure or terrain sample is derived from either construction; the six tier blocks exist only inside the measuring command, are rebuilt from scratch on every run, and are written to no file. The figures that DO reach the dataset are distances and areas, and each is a statement about ground this scene does not contain. **What bounds the invention.** Madison's line is the same construction, from the same control point and the same bearing, that **L108** already declared for the United States Reservation's south boundary — Madison's line continued east of State is that boundary — so nothing new is being asserted about where Madison ran, and the grade stays `inferred` there too. `G1` carries a **13.9 m** residual, which is the honest error on the 125.2 m; the working horizontal uncertainty of anything traced off the 1834 sheets is about **20 m** (`data/datum.json`), so neither figure is quoted to better than the metre it is printed at. The columns' extrapolation is used only over **~130 m**, on straight two-point lines whose full drawn length already spans 400 m or more."
+        },
+        {
+          "label": "Consequence",
+          "text": "the ground card tells a visitor where this reconstruction stops on the south and how much of the 1835 plat lies past that line, instead of leaving them to notice the edge from the air. The cost is that both numbers rest on a modern section corner and a bearing rather than on an 1835 survey, and the card says so in its own words: *\"fixed here from the section corner at State and Madison\"*."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a traced Madison from Wright 1834 or the Thompson plat sheet would replace the construction outright; **T-0200**, the southern heightfield extension, would make the columns' extrapolation unnecessary by giving them ground to be drawn onto. Related: **L108** (the reservation's boundary, from this same corner and bearing) · **L79** (the platted corridor is measured, the travelled earth is not) · tickets **T-0026**, **T-0200**."
         },
         {
           "label": "Recorded",

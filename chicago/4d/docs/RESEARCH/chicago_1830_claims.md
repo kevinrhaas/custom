@@ -96,6 +96,21 @@ This is the table already in `docs/ROADMAP.md` lane 3, restated with the evidenc
 Harrison plate — already held, already public domain — draws the bar, the "Sand and Gravel"
 ground and the old southward channel in plan. Check it before going looking.
 
+**Note for T-E4, added 2026-08-24 (T-0026), because this table is where the next reader will
+come looking for southern ground.** The plate's Canal Land / School Section reading is real
+and it is the thing this sheet is good for — and **it has no route into the scene, at any
+confidence, until the terrain reaches Madison Street.** Measured by
+`tools/measure_southern_ground.py`: the committed heightfield ends at local **N -400 m**,
+which falls inside Washington Street's own platted corridor; Madison — the plat's south
+boundary, and the line this plate divides the Canal Land and School Section along — is
+**125.2 m further south**; and the plat's last tier between them (six blocks, 48 lots,
+6.28 ha, Market to State) has **0 of 24** block-boundary points on modelled ground. So
+reading a subdivision distinction off this sheet cannot license a roof: the eligible-ground
+rule needs the ground first. The successor parcel is the southern heightfield extension,
+**T-0200**, and what it needs from the traces is narrow — the South Branch's two banks
+carried from N -405 to about N -531. The lake shore (N -589.2) and the bar (N -436) already
+reach past Madison.
+
 ---
 
 ## Named structures the plate draws

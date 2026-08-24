@@ -1,5 +1,53 @@
 # STATUS
 
+## Refuted 2026-08-24 — T-0026: there is no southern buildable ground, and the schedule was naming the wrong blocker
+
+**T-E4 was opened on "south is where the room is" and told the next run to widen the eligible ground
+southward.** Measured against the committed heightfield, there is nothing there to widen onto. The
+modelled box ends at **local N -400 m**, and that line falls **inside Washington Street's own 80 ft
+platted corridor** — so the town's southernmost committed street is the last thing on the field.
+
+| | measured by `tools/measure_southern_ground.py` |
+|---|---|
+| land above the water surface south of Washington's platted corridor | **0.0819 ha** (131 cells of 135) |
+| ...of it in the South Division | **0.0000 ha** — every cell lies west of local E -10, on the West Division bank across the South Branch |
+| Washington's own corridor lying off the field | **0.33 ha**, over **899 m** of its length, up to **7.29 m** deep |
+| Madison Street below the field's south edge | **125.2 m** at State, **119.2 m** at Market |
+| the plat's last tier — Washington to Madison, Market to State | **6 blocks, 48 lots, 6.28 ha, 0 of 24 boundary points on modelled ground** |
+
+**The finding that matters is not the acreage, it is what the programme was telling the next run to
+do.** `south_plat_beyond_committed_control` holds **120 roofs**, the largest of the three gated
+balances, and it said they were waiting on **street control**: *"no block east of State or south of
+Washington has four committed centrelines (ROADMAP S9)"*. That is true and it is downstream. Every
+north-south column of the south plat — Market, Franklin, Wells, LaSalle, Clark, Dearborn, State —
+has its committed centreline cut at **exactly N -400**, the field's own south edge, not at a street.
+Street control stops where the ground does, and the modern control that would carry it further is
+already committed: `G1`, the PLSS corner at State & Madison, is an OpenStreetMap node with an id and
+a 13.9 m residual. A run that had believed the stated blocker would have carried the lines south,
+emitted six blocks, and watched `tools/generate_block_infill.py` refuse every placement on them for
+*standing outside the modelled terrain*. **Ground east of State was never available either — T-E2
+settled that it is the United States Reservation.**
+
+**What the terrain parcel actually needs, measured so it is not re-argued.** The box's south cap is
+evidence-bound rather than a cost decision, and the evidence is about **one river**: the spec says a
+box reaching further south *"would show open prairie where the river actually continues"*, and the
+river in question is the South Branch, whose traced water ends at **N -405.2**. Everything else is
+already in hand — the harbour-reach shoreline reaches **N -589.2** and the sand bar **N -436**, both
+south of Madison. So the extension needs the South Branch's two banks carried from N -405 to about
+**N -531, 126 m per bank**, off a sheet this project holds, and then a bake. The tier itself is dry:
+at N -400 the branch occupies local E -8 to +35 and the tier runs E +88 to +826. Filed as **T-0200**.
+
+**What shipped, and what did not.** `tools/measure_southern_ground.py` is new — the report, two
+assertions and a self-test, wired into `tools/check.sh`. The first assertion is absolute and is the
+one worth having: **no committed platted block stands off the modelled ground** (19 of 19 today), so
+the day a centreline is carried south without the terrain following, the failure arrives at the
+commit naming the block instead of inside a parcel run as a cryptic per-placement refusal. The
+second holds the programme's stated southern coverage to the measured one. `tools/reconcile_665.py`
+now **composes** the South balance's `waiting_on` from that measurement rather than authoring it,
+and carries the figures in `coverage.southern_ground`. `tools/compile_scene.py` puts the measured
+southern edge on the ground card. **No structure record moved, no roof was added or removed, the 665
+total is unchanged, and nothing was baked.**
+
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
 **The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`

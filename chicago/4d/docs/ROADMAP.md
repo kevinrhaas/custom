@@ -275,6 +275,7 @@ not at the top of the queue.
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
+| — | GROUND | ~~T-E4~~ | **REFUTED 2026-08-24 (T-0026)** — there is no southern buildable ground to widen onto. The modelled box ends at local **N -400 m**, INSIDE Washington Street's own platted corridor; of the 0.0819 ha of land south of that corridor, **0.0000 ha** is in the South Division. Madison — the plat's south boundary — is **125.2 m** further south, and the plat's last tier (6 blocks, 48 lots, 6.28 ha) has **0 of 24** boundary points on modelled ground. The South's 120 roofs were gated on street control; the blocker is **terrain**, and street control stops where the ground does. Read its box before quoting any southern-ground figure |
 
 **Every row is tagged. `SEEN` means a screenshot from the same spot looks different when it
 merges. `UNSEEN` means it does not — those are real work and this project needs them, but they are
@@ -7793,7 +7794,65 @@ blocks, where the evidence does not support 2.5 m detail anyway.
 New geometry arrives via `chicago-4d-bake.yml` as a PR into `dev`. The data half ships here and
 says so.
 
-### T-E4 — the southern buildable ground, and the re-apportioned schedule · **UNCLAIMED · after T-E2**
+### T-E4 — the southern buildable ground, and the re-apportioned schedule · **REFUTED 2026-08-24 (T-0026)**
+
+**There is no southern buildable ground to widen onto, and the parcel's own acceptance is what
+refutes it.** T-E4 said a roof may stand only where the ground is *covered by the heightfield AND
+historically plausible*, and told the next run to widen the eligible ground south. Measured against
+the committed heightfield by `tools/measure_southern_ground.py`, the first condition is already
+unsatisfiable everywhere south of the town: **the modelled box ends at local N -400 m, and that line
+falls INSIDE Washington Street's own 80 ft platted corridor.**
+
+| | measured |
+|---|---|
+| land above the water surface south of Washington's platted corridor | **0.0819 ha** (131 cells) |
+| ...of it in the South Division | **0.0000 ha** — every cell is west of local E -10, the West Division bank across the South Branch |
+| Washington's own corridor lying off the field | **0.33 ha**, over **899 m** of its length, up to **7.29 m** deep |
+| Madison Street — the plat's south boundary — below the field's south edge | **125.2 m** at State, 119.2 m at Market |
+| the plat's last tier, Washington to Madison, Market to State | **6 blocks, 48 lots, 6.28 ha, 0 of 24 boundary points on modelled ground** |
+
+**The blocker the 665-roof programme named for the South was the wrong one, and it was pointing the
+next run at the wrong work.** `south_plat_beyond_committed_control` — 120 roofs, the largest of the
+three gated balances — said *"no block east of State or south of Washington has four committed
+centrelines (ROADMAP S9)"*. True, and downstream: **every north-south column of the south plat has
+its committed centreline cut at exactly N -400, the field's own south edge.** Market, Franklin,
+Wells, LaSalle, Clark, Dearborn and State all end on that line and not at a street. Street control
+stops where the ground does, and the control that would carry it further is already committed —
+`G1`, the PLSS corner at State & Madison, is an OpenStreetMap node with an id and a 13.9 m residual.
+Carry the lines south without the terrain and the plat module emits six blocks whose every placement
+`tools/generate_block_infill.py` refuses for *standing outside the modelled terrain*. **The southern
+unlock is a TERRAIN parcel, not a rule the programme can relax.**
+
+**What the terrain parcel needs, so it is not re-derived: one trace, and it is bounded.** The
+box's `n_min` is capped by evidence rather than by cost — *"the South Branch's traced water ends at
+N -404.5, where the forks tracing window closes, so a box reaching further south would show open
+prairie where the river actually continues"*. That is a statement about the **South Branch only**.
+The harbour-reach shoreline already reaches **N -589.2** and the sand bar **N -436**, both south of
+Madison; the old southward channel is traced through the whole of the new depth. So extending the
+box to Madison's corridor needs the South Branch's two banks carried from **N -405 to about N -531 —
+126 m per bank** — off a sheet this project already holds, and then a bake. Everything east of the
+river in that tier is dry ground with no water in it: at N -400 the branch occupies local E -8 to
++35 and the tier runs E +88 (Market) to +826 (State).
+
+**Nothing about the ground east of State changes and nothing was hoped for there.** T-E2 settled it:
+that is the United States Reservation, 22.57 ha, refused at any date. So the South balance is gated
+on exactly one thing now, and the programme says which.
+
+**What shipped.** `tools/measure_southern_ground.py` (new; the report, two assertions and a
+self-test, wired into `tools/check.sh`) · `tools/reconcile_665.py` composes the South balance's
+`waiting_on` from that measurement instead of authoring it, and carries the figures in
+`coverage.southern_ground` so a scheduler reads them without running a command ·
+`tools/compile_scene.py` puts the measured southern edge on the ground card a visitor opens. **No
+structure record moved, no roof was added or removed, the 665 total is unchanged, and no geometry
+was baked.**
+
+**The successor is `T-0200`**, filed at the QUEUE bottom: finish the heightfield SOUTH to Madison,
+the mirror of T-E3 / T-0010's eastern extension. It is the largest single unlock left in the
+programme and it is the only route to any of the South's **120** roofs — six blocks at the
+schedule's own 31-roof block capacity is 186 roofs of ground, so the tier would absorb the whole
+southern balance and still have room, against T-0163's 54-roof South Water unlock.
+
+### T-E4 (spec) — the original parcel definition
 
 The owner is right that south is where the room is: the sheet shows the town's platted blocks,
 then Canal Land and the School Section below Madison, with named claims scattered through. That
