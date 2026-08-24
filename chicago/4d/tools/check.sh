@@ -202,6 +202,21 @@ step "every deferred in-town water feature is dated against the scene" \
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# Two generators build party-line rows onto the committed block faces and each asserts
+# that ITS OWN run stands on one line; neither could see the other. The Lake face of
+# blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
+# along the face and so not yet reading as a step (T-0104). This is the gate beside the
+# two: it takes the face line out of the committed plat, projects every front wall onto
+# it, and refuses a face carrying more than one — absolutely, with no ratchet, because
+# after T-0104 the number is zero. It also closes party walls from BOTH sides, which is
+# the case neither run-local gate can reach when the other half belongs to another
+# generator.
+step "a block face carries one street line, across every generator that builds on it" \
+  python3 tools/measure_street_line.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_street_line.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a

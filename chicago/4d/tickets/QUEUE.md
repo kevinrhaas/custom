@@ -16,7 +16,6 @@
 # --- BLOCKERS — small, and each one gates visible work below
 
 # --- RED NOW — visible, and a gate is failing on it today
-T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
@@ -87,3 +86,4 @@ T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin o
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
+T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front

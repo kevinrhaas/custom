@@ -89,3 +89,23 @@ has to be written next to it.
   used.
 - T-0171's merge-commit claim is corrected in the ROADMAP entry, so the record does not
   keep saying "better than ten minutes of margin".
+
+**Re-measured 2026-08-24 by T-0104's run (PR pending), against the published mirror on a
+steward runner, one PART per foreground command.** Every part that completed passed with
+zero page errors; the wall clocks are the point:
+
+| viewport | parts | wall clock |
+|---|---|---|
+| mobile | 1-2 · 3-4 · 5-6 · 7-9 | 2 m 46 s · 3 m 58 s · 3 m 29 s · 7 m 54 s — all four fit |
+| desktop | 1 · 2 · 3 | 4 m 27 s · 3 m 25 s · 2 m 14 s |
+| desktop | 4 | **9 m 38 s** — inside the ten-minute command ceiling by 22 s |
+| desktop | 5 | **9 m 15 s** — inside it by 45 s |
+| desktop | 6 | 1 m 54 s |
+| desktop | 7 | **KILLED at 9 m 45 s (exit 143)** — a single PART now breaches the ceiling |
+
+So the erosion T-0121 tracked across four measurements has reached T-0167's nine-way cut:
+part 7 alone no longer fits a steward run's foreground command, and parts 4 and 5 have
+under a minute of margin each. Parts 8 and 9 have no reading today because part 7 could
+not be got past. That is one more reason this ticket's leg margins have to be measured
+per leg rather than summed from parts — three of the nine parts are now at or past the
+per-command ceiling the parts were cut to fit.
