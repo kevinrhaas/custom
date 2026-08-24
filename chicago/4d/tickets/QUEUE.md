@@ -14,7 +14,6 @@
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 
 # --- BLOCKERS — small, and each one gates visible work below
-T-0148 — The A1 stable cannot reach its ridge band at any pitch its family allows
 
 # --- RED NOW — visible, and a gate is failing on it today
 T-0104 — Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
@@ -88,3 +87,4 @@ T-0172 — The other three anonymous parcels still deal a retyped roof pitch, an
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
+T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4

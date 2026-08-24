@@ -1,7 +1,7 @@
 {
   "$note": "T-0145. Every reconstructed roof whose MODELLED ridge sits outside the ridge_ft band its family authors. A RATCHET, not an allowance: tools/check.sh fails on any offender not here and on any listed offender whose ridge has moved. Regenerate with tools/measure_ridge_band.py --write-baseline, and only ever to record a repair.",
   "counts": {
-    "outside": 64,
+    "outside": 58,
     "tested": 257
   },
   "offenders": {
@@ -116,48 +116,6 @@
       "family": "W3",
       "outside_ft": 1.53,
       "ridge_ft": 17.47
-    },
-    "recon_1835_blk_randolph_dearborn_a1_07": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 2.05,
-      "ridge_ft": 14.95
-    },
-    "recon_1835_blk_south_water_lasalle_a1_06": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 1.03,
-      "ridge_ft": 15.97
-    },
-    "recon_1835_north_a1_008": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 3.08,
-      "ridge_ft": 13.92
-    },
-    "recon_1835_north_a1_032": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 1.22,
-      "ridge_ft": 15.78
-    },
-    "recon_1835_north_a1_036": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 2.08,
-      "ridge_ft": 14.92
-    },
-    "recon_1835_north_a4_010": {
-      "band": "9-13",
-      "direction": "high",
-      "family": "A4",
-      "outside_ft": 0.14,
-      "ridge_ft": 13.14
     },
     "recon_1835_south_a1_046": {
       "band": "17-24",
