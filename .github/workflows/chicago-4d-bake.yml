@@ -35,12 +35,28 @@ on:
 # earns an immediate rebake. A change to data is picked up by the nightly, which
 # is what the nightly is for. Dispatch covers the impatient case.
 #
-# One at a time, and the newest wins. A bake superseded by a later push has
-# nothing to offer: its output is measured against a dev that has already moved,
-# so finishing it costs twenty minutes of runner time to produce a PR that is
-# stale on arrival. Cancelling is the correct outcome, not a lost result.
+# One at a time PER REF, and the newest wins. A bake superseded by a later push
+# TO THE SAME REF has nothing to offer: its output is measured against a tree
+# that has already moved, so finishing it costs twenty minutes of runner time to
+# produce a PR that is stale on arrival. Cancelling is the correct outcome, not a
+# lost result.
+#
+# THE REF IN THE GROUP KEY IS T-0165's, AND IT IS A NARROWING, NOT A REVERSAL.
+# The paragraph above is about a bake being overtaken on its own branch, and it
+# still holds. Without the ref it said something much stronger and never intended:
+# that ANY bake anywhere cancels every other. On 2026-08-24 that misfired for the
+# first time — dev's run #264 was cancelled 70 seconds into both smoke legs by
+# run #265, a push to `steward/t-0121-stage-recut`, because that branch carried
+# this workflow file and this file is one of its own push triggers. A branch bake
+# is not a substitute for dev's: they measure different trees, so the branch one's
+# output cannot be the reason to throw dev's away.
+#
+# It was harmless while bakes were rare. It stopped being harmless the moment two
+# agents worked the smoke budget at once — T-0121/T-0166 from the SMOKE_STAGE
+# side and T-0165 from the workflow side — each push cancelling the other's
+# evidence.
 concurrency:
-  group: chicago-4d-bake
+  group: chicago-4d-bake-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
