@@ -1,7 +1,7 @@
 ---
 id: T-0107
 title: Landings on the west bank at Wolf Point: Robert Kinzie's store
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-19
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 365
 claimed_by: run 8/24/2026, 9:52:37 AM CT
 blocked_on: null
 needs_bake: false
