@@ -1,7 +1,7 @@
 ---
 id: T-0200
 title: The picket head is a form value on the record, and the reason it was deferred was false
-state: claimed
+state: done
 epic: TOWN
 requested_by: steward
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 379
 claimed_by: run 8/24/2026, 2:06:24 PM CT
 blocked_on: null
 needs_bake: true
