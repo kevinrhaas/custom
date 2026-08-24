@@ -131,8 +131,7 @@ FRONTAGE_NOTE = (
     "{block}, the town's river business front, whose line and bearing are read from the "
     "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
     "geometry the lot grid and the corridor gate are derived from. Its front wall is "
-    "{setback} m back from that lot line, which is the closest line the plat module's own "
-    "margin allows and is not a measurement of this frontage, and its east wall is fixed "
+    "{setback} m back from that lot line, {line_why}, and its east wall is fixed "
     "by {anchor}. The bearing is the face's own, so the front looks at {street} Street and "
     "the river beyond it, as every documented store on this face does. The run carries no "
     "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
@@ -143,6 +142,20 @@ FRONTAGE_NOTE = (
     "is what this placement takes from it. Standing on a derived block face is not standing "
     "on a recovered lot, and the side lot lines this row crosses were always conjectural."
 )
+
+
+# Where the run's line came from, in the record's own note. A frontage that opens a
+# face takes the closest line the plat module's margin allows; a frontage that joins a
+# face already built takes the line those buildings stand on, because a street wall is
+# one wall (T-0104). Neither is a measurement of 1835 and the note says so either way.
+LINE_WHY_MARGIN = ("which is the closest line the plat module's own margin allows and is "
+                   "not a measurement of this frontage")
+LINE_WHY_ADOPTED = ("which is NOT a measurement of this frontage either: it is the line "
+                    "the buildings already standing on this face were built to, adopted "
+                    "so that the face carries one street wall rather than two (T-0104). "
+                    "The plat module's lot margin still fixes the side lines this run "
+                    "stands clear of; what it does not fix is a street line that other "
+                    "records had already set")
 
 
 def invented(value, reason: str) -> dict:
@@ -572,6 +585,8 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
     position_note = FRONTAGE_NOTE.format(
         face=block["frontage"]["face"], block=block["block_id"],
         setback=f"{setback:.2f}", anchor=described,
+        line_why=(LINE_WHY_ADOPTED if block["frontage"].get("adopts_face_line")
+                  else LINE_WHY_MARGIN),
         street=slot["fronts"].replace("_", " ").title()) if on_frontage else (
         "Interpretive placement on a GENERATED lot, not a recovered parcel. The lot "
         "geometry is the K7 plat module's — this project has never read Thompson's "
@@ -852,6 +867,36 @@ def place_frontage(block: dict, face: dict, strip: dict, records: list[dict],
         record.pop("_frontage", None)
 
 
+def adopted_line(block: dict, face: dict, adopts: list[str], records: list[dict],
+                 datum: dict) -> float:
+    """The line a face's committed frontage already stands on, measured (T-0104).
+
+    Nothing here is authored: the caller names records this parcel did not write, and
+    the answer is their front walls projected onto the face this run stands on. Naming
+    them rather than sweeping the face is deliberate — the sweep is what
+    `tools/measure_street_line.py` does over the whole town, and a generator that
+    silently adopted whatever happened to be near its face could be moved by a
+    building nobody meant to put on the line.
+    """
+    mine = {r["id"] for r in records}
+    committed = dict(footprints(datum, exclude=mine))
+    walls = {}
+    for name in adopts:
+        polygon = committed.get(name)
+        if polygon is None:
+            raise SystemExit(f"{block['block_id']}: the run adopts the line of {name}, "
+                             f"which is not a committed building this parcel can see")
+        walls[name] = -max(face_project(face, p)[1] for p in polygon)
+    if not walls:
+        raise SystemExit(f"{block['block_id']}: `adopts_face_line` names no records, so "
+                         f"there is no line to adopt")
+    if max(walls.values()) - min(walls.values()) > 0.005:
+        raise SystemExit(f"{block['block_id']}: the records the run adopts do not stand "
+                         f"on one line — " + ", ".join(f"{k} at {v:.3f} m"
+                                                       for k, v in sorted(walls.items())))
+    return round(sum(walls.values()) / len(walls), 3)
+
+
 def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
                    datum: dict) -> None:
     """A row is a row: on one line, in order, and touching.
@@ -872,11 +917,29 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
         raise SystemExit(f"{block['block_id']}: the {frontage['face']} frontage is set "
                          f"back by {sorted(setback)} m — a street wall is one line")
     stated = float(next(iter(setback)))
-    if stated < LOT_MARGIN_M - 1e-6:
+    adopts = frontage.get("adopts_face_line")
+    if adopts:
+        # T-0104. A FACE THAT IS ALREADY BUILT HAS A STREET LINE, and it outranks the
+        # margin: a street wall is one wall, and a run that stands 0.70 m behind the
+        # buildings it joins puts a jog in it. So a recipe may name the committed
+        # records whose line it adopts, and then the setback is not authored at all —
+        # it is MEASURED off them here, and a recipe that states any other number
+        # fails. The exemption is as narrow as L141's party-wall one: it reaches the
+        # STREET line only, it needs records to point at, and the side lines below
+        # keep the full margin.
+        line = adopted_line(block, face, adopts, records, datum)
+        if abs(line - stated) > 0.005:
+            raise SystemExit(f"{block['block_id']}: the run states a {stated} m setback "
+                             f"and adopts the line of {', '.join(sorted(adopts))}, whose "
+                             f"front walls stand {line:.3f} m off the "
+                             f"{frontage['face']} face")
+    elif stated < LOT_MARGIN_M - 1e-6:
         raise SystemExit(f"{block['block_id']}: a run set back {stated} m stands inside "
                          f"the {LOT_MARGIN_M} m margin the plat module keeps off a lot "
                          f"line. The row crosses the side lines between its own units, "
-                         f"which are conjectural; it does not cross the street line")
+                         f"which are conjectural; it does not cross the street line. A "
+                         f"face that is already built may state `adopts_face_line` and "
+                         f"take the line of the records named there instead")
     spans = {}
     for record in row:
         world = world_polygon(record, datum)
@@ -911,7 +974,10 @@ def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],
                                  f"frontage on {block['block_id']}, inside the "
                                  f"{LOT_MARGIN_M} m margin of a side line the run does "
                                  f"not stand across")
-            if not (strip["off_min"] + LOT_MARGIN_M - .005 <= off <= -LOT_MARGIN_M + .005):
+            # The street-side bound is the run's OWN line rather than the lot margin:
+            # where the run adopts a built face (T-0104) that line is the margin's
+            # replacement, and where it does not the two are the same number.
+            if not (strip["off_min"] + LOT_MARGIN_M - .005 <= off <= -stated + .005):
                 raise SystemExit(f"{record['id']} stands {off:.2f} m off the "
                                  f"{frontage['face']} face, outside the run's own ground")
 
