@@ -20,7 +20,6 @@
 # --- THE TOWN AND ITS STREETS — visible
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0188 — Randolph Street carries the street edge, and six South Water placements are reconciled
 T-0189 — The five South Water stores standing on a lot the roof schedule already dealt
 T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it

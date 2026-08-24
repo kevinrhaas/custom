@@ -1,7 +1,7 @@
 ---
 id: T-0188
 title: Six South Water placements come off the modern kerb and onto the committed plat
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0127
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 373
 claimed_by: run 8/24/2026, 10:47:01 AM CT
 blocked_on: null
 needs_bake: false
