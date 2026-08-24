@@ -358,6 +358,16 @@ step "every flora and fauna figure is declared read or banked unread" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_layer_reads.py --self-test
 
+# T-0059's finding, kept live rather than remembered. NINE data layers are drawn
+# at load out of committed JSON and none of them has a generator, and the reason
+# no run has paid that debt is a number: wiring a tenth archetype into
+# generators/build.py re-stales 346 of the 348 committed meshes, because build.py
+# is in every structure's input hash. Both readings are what ticket T-0200 is
+# built on, so both are held here — a decision resting on a figure nobody
+# recomputes is a decision resting on a memory.
+step "the generator half's cost and its reach are still what T-0200 was decided on" \
+  python3 tools/measure_generator_half.py --gate --quiet
+
 # The same question one level in, and it is a different question: the read-set
 # above says a FIGURE is read if any renderer source reads it, and no reader in
 # this project receives every record. flora.js takes five roles and fifteen

@@ -1,5 +1,78 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0058: the wharf decks carry a visitor, and T-0059's generator half is withdrawn on a measurement
+
+**The visible half.** The seven river landings are surfaces a visitor stands on. Before this they
+were scenery: `terrain.walkHeight()` answers open water with a 4 m wading barrier, the decks did
+not override it, and you stopped at the bank.
+
+**The design question the ticket asked had already been answered and nobody had noticed.** T-0058
+offered two routes — "a record of its own, or a second route into `walker.js`'s `surfaceAt()`" —
+and the second route has existed since **T-0119**: a layer publishes `{ id, y, pts }`, `main.js`
+appends it to the same `decks` array `decksFrom()` fills from the registry, and the walker holds
+that array by reference. `frontage.js` uses it for the river footway over the State slough mouth
+and for every street-edge walk, and says in its own comment that it is *"the one mechanism in this
+project for 'the visitor is standing on something that is not the heightfield'"*. So the wharf
+layer needed no structure record, no `placement.walk_surface_m` and no second mechanism. It
+publishes the deck it drew, carrying the height FUNCTION the slab was built from — which is
+T-0001's finding kept rather than restated: one number, not two that agree until they do not.
+
+**THE LANDWARD EDGE WAS THE REAL WORK, AND THE TICKET UNDERSTATED IT BY FOUR SITES.** The ticket
+said the rule "refuses at least one of them". Measured on the committed heightfield at the three
+landward samples `wharves.js` itself takes:
+
+| landing | bank at the heel | deck top | riser | boardable at 0.35 m? |
+|---|---|---|---|---|
+| `h_jones_store` | 0.19 m | 0.90 m | **0.71 m** | no |
+| `peck_store` | 0.20 | 0.90 | **0.70** | no |
+| `jh_kinzie_forwarding_store` | 0.21 | 0.90 | **0.69** | no |
+| `newberry_dole_warehouse` | 0.21 | 0.90 | **0.69** | no |
+| `carpenter_south_water_store` | 0.27 | 0.90 | **0.63** | no |
+| `robert_kinzie_store` | 0.52 | 0.90 | 0.38 | yes, from the lip |
+| `kinzie_hunter_warehouse` | 0.58 | 0.90 | 0.32 | yes |
+
+**Five of seven, not one.** And the reason is structural rather than sited: the deck top is the
+record's 0.90 m freeboard FLOOR at all seven, because the traced 1834 bank is under 0.60 m at every
+one of them. The two that cleared the rule did so on the bank being higher there, not on anything
+about the dock. The same arithmetic is visible from outside — the landward end of each deck hung
+over the bank with daylight under it.
+
+**The fix invents no number.** The record already ties the deck `heel_in_m` = 2.0 m back into the
+bank (L132); that band is drawn as an inclined apron instead of a level slab, running from the
+lowest of the three ground samples up to the platform at the bank foot, with the crib under it
+stepped down to follow. The run is the record's, the rise is the terrain's, and the slopes fall out
+— 10.8° at Robert Kinzie's, 16.2° at Kinzie & Hunter, 19.2–20.1° at the other five, and the step
+from the ground beside a deck onto its lip is negative at all seven (at most 0.03 m DOWN), so
+nothing is stepped up onto anywhere. What is claimed
+is that the approach RAMPS rather than steps, and that is L182. A stair would have invented treads,
+risers and a count.
+
+**T-0059 — the generator half — is WITHDRAWN, and the numbers are why.**
+`tools/measure_generator_half.py` (new, `--gate`) takes two readings.
+
+*One.* Every route into the bake re-stales committed meshes, because `generators/mesh_inputs.py`
+hashes the builder, `build.py` and `common/*.py` into every asset, and `_params_doc` hashes every
+field and property of the resolved params. Over the 348 committed input-tracked assets:
+`common/*.py` → **348**; `build.py`, where the archetype table lives → **346**;
+`archetypes/pier_crib.py` → **2**; a new field on `PierCribParams` → **2**. So adding the mode the
+ticket names cannot be made green on a runner with no Blender, and adding any NEW archetype costs
+a full rebake of the town before it has built a triangle. That is not a defect —
+`generators/common/phases.py` argues the hash should be that wide, and T-0161 paid it knowingly —
+but it decides who can do this work.
+
+*Two.* **Nine layers are drawn at load from committed JSON and none of them has a generator**:
+boats, enclosures, fauna, flora, frontage, residents, signage, wharves, yard. `docs/ROADMAP.md` K5
+asks for "the generator half" of three of them in almost the same words. Building one of the nine
+by a route that re-stales the town would leave eight unbuilt and the real question unasked —
+*is "derived at load from committed data" the ANSWER for these layers, or a debt?* Refiled whole as
+**T-0200**, with the three honest answers written out.
+
+**Also repaired here, found while editing the file:** `docs/LIBERTIES.md` on `dev` carried three
+committed git conflict markers (`<<<<<<< HEAD` / `=======` / `>>>>>>> origin/dev`) around L181,
+from the T-0117 merge. `tools/check.sh` was green across them — `compile_liberties.py` swallowed
+them into an entry's prose. That is a fourth instance of the class **T-0186** already describes, and
+it is recorded there.
+
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
 **The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`

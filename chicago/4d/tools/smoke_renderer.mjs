@@ -3502,10 +3502,26 @@ for (const [label, viewport, touch] of [
       // board to tie into itself and read the whole walk as sunk by its own rise.
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
+      //
+      // A WHARF DECK IS NOT SUCH A DECK EITHER (T-0058), and this is the second
+      // time the same distinction has had to be drawn. The wharf layer publishes
+      // its decks so the WALKER can stand on them; no board this layer lays is
+      // ever laid on one — `frontage.js` takes every plank height from the
+      // terrain or from its own record's `deck_m`, and has never read the wharf
+      // record. Counting one as a base measures a board against a surface it was
+      // not built against, and it fires: the riverside walk's last reach is
+      // BOUNDED by Jones's landing on purpose — its own note says *"that wharf is
+      // where the town's own riverfront walking surface begins"* — so its outer
+      // boards run up to 1.30 m into the landward strip of Jones's and
+      // Carpenter's decks, and were suddenly read as 0.5 m sunk under a platform
+      // they simply pass beside. The junction itself is a real and separate
+      // question — the apron there stands between 0.18 m below and 0.37 m above
+      // the boards, so the two surfaces cross — and it is filed as its own ticket
+      // rather than smuggled into this one's arithmetic.
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
-          if (/__footway_\d+$/.test(d.id)) continue;
+          if (/__footway_\d+$/.test(d.id) || /__wharf$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -4275,6 +4291,142 @@ for (const [label, viewport, touch] of [
       docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
         + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
       + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // --- AND A VISITOR CAN WALK OUT ALONG ONE (T-0058) --------------------
+    //
+    // Until this landed the docks were scenery: `walkHeight()` answers the open
+    // river with a 4 m wading barrier, the deck did not override it, and the
+    // step from the bank to a platform holding its 0.90 m freeboard floor was
+    // 0.62-0.71 m at six of the seven landings against a 0.35 m step-up rule.
+    // So there are two things to prove and they fail differently — that the
+    // deck IS a surface the walker knows about, and that a visitor standing on
+    // the bank can get onto it.
+    //
+    // The boarding step is asked of the drawn geometry rather than of the
+    // record: `heightAt` is the same function the slab was built from, so what
+    // is measured here is the plank, not a number authored beside it.
+    const board = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const step = a.walkBudget.stepUp;
+      const rows = (a.wharves?.wharves ?? []).map((w) => {
+        const deck = (a.decks ?? []).find((d) => d.id === `${w.structure_id}__wharf`);
+        const [heelL, heelR] = w.deck_quad_local_enu_m;
+        const [ox, oy] = w.waterward_normal;
+        const mid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+        // One walker radius landward of the deck's own edge: the ground a
+        // visitor is standing on at the moment they try to step aboard.
+        const off = [mid[0] - ox * 0.4, mid[1] - oy * 0.4];
+        const lip = [mid[0] + ox * 0.05, mid[1] + oy * 0.05];
+        return {
+          id: w.structure_id,
+          hasDeck: !!deck,
+          sloped: typeof deck?.heightAt === 'function',
+          bank: a.terrain.walkHeight(off[0], off[1]),
+          lip: deck?.heightAt ? deck.heightAt(lip[0], lip[1]) : (deck?.y ?? null),
+          platform: deck?.y ?? null,
+          apron: w._drawn?.apron ?? null,
+        };
+      });
+      for (const r of rows) r.rise = r.lip === null ? null : r.lip - r.bank;
+      return { step, rows };
+    });
+    check(`${label}: every wharf deck is a surface the walker knows about`,
+      board.rows.length === 7 && board.rows.every((r) => r.hasDeck && r.sloped),
+      `${board.rows.filter((r) => r.hasDeck).length} of ${board.rows.length} deck(s) `
+      + `published, ${board.rows.filter((r) => r.sloped).length} carrying a height function`);
+    // The step ONTO the planks, at every landing, against the walker's own
+    // rule read out of the app rather than restated here. Six of the seven
+    // measured 0.62-0.71 m before the apron; a regression that put the level
+    // slab back would show up as exactly those numbers again.
+    check(`${label}: a visitor can step onto every wharf from the bank`,
+      board.rows.length === 7 && board.rows.every((r) => r.rise !== null
+        && r.rise <= board.step + 1e-9),
+      `step-up limit ${board.step} m; worst boarding rise `
+      + `${Math.max(...board.rows.map((r) => r.rise ?? Infinity)).toFixed(2)} m — `
+      + board.rows.map((r) => `${r.id} ${r.rise?.toFixed(2)}`).join('; '));
+
+    // AND THE WALK ITSELF, driven rather than reasoned about. Newberry & Dole's
+    // is the landing Andreas names, so it is the one a visitor is most likely to
+    // try: start on the bank behind it, walk down its own waterward normal, and
+    // assert the boot is on the DRAWN deck the whole way out — the same exact
+    // equality the bridge crossing asserts, because `heightAt` is the function
+    // the planks were built from and a tolerance would pass a second definition.
+    const walkOut = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const w = (a.wharves?.wharves ?? []).find((x) => x.structure_id === 'newberry_dole_warehouse');
+      const deck = (a.decks ?? []).find((d) => d.id === 'newberry_dole_warehouse__wharf');
+      if (!w || !deck) return { missing: true };
+      const [heelL, heelR] = w.deck_quad_local_enu_m;
+      const [ox, oy] = w.waterward_normal;
+      const mid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+      const across = (e, n) => (e - heelL[0]) * ox + (n - heelL[1]) * oy;
+      const on = (e, n) => {
+        let hit = false;
+        const pts = deck.pts;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+      // Two metres back on the bank, facing straight out over the water.
+      a.walker.teleport({
+        local_e: mid[0] - ox * 2.0,
+        local_n: mid[1] - oy * 2.0,
+        yaw_deg: (Math.atan2(ox, oy) * 180 / Math.PI + 360) % 360,
+      });
+      const startedAt = a.walker.state.groundY;
+      let offDeck = 0;
+      let reached = -Infinity;
+      let maxJump = 0;
+      let last = a.walker.state.groundY;
+      a.intent.forward = 1;
+      for (let i = 0; i < 400; i += 1) {
+        a.walker.update(0.05, a.intent);
+        const s = a.walker.state;
+        maxJump = Math.max(maxJump, Math.abs(s.groundY - last));
+        last = s.groundY;
+        if (!on(s.e, s.n)) continue;
+        reached = Math.max(reached, across(s.e, s.n));
+        // Over LAND the ground may legitimately win (`surfaceAt` takes the
+        // higher of the two); over water only the deck can carry a visitor.
+        const want = a.terrain.isWater(s.e, s.n)
+          ? deck.heightAt(s.e, s.n)
+          : Math.max(deck.heightAt(s.e, s.n), a.terrain.surfaceHeight(s.e, s.n));
+        if (Math.abs(s.groundY - want) > 1e-9) offDeck += 1;
+      }
+      a.intent.forward = 0;
+      const end = { ...a.walker.state };
+      return {
+        startedAt,
+        deckY: deck.y,
+        width: across(w.deck_quad_local_enu_m[3][0], w.deck_quad_local_enu_m[3][1]),
+        reached: Number.isFinite(reached) ? reached : null,
+        offDeck,
+        maxJump,
+        endGroundY: end.groundY,
+        endOverWater: a.terrain.isWater(end.e, end.n),
+        endOnDeck: on(end.e, end.n),
+        // What the terrain alone says where the visitor ends up — the barrier
+        // the deck now answers. If this stops being far above the deck, the
+        // assertion has stopped proving anything.
+        barrier: a.terrain.walkHeight(end.e, end.n),
+      };
+    });
+    check(`${label}: a visitor walks off the bank and out over the water`,
+      !walkOut.missing && walkOut.endOnDeck && walkOut.endOverWater
+        && walkOut.reached >= walkOut.width - 0.8
+        && Math.abs(walkOut.endGroundY - walkOut.deckY) < 1e-9
+        && walkOut.offDeck === 0 && walkOut.maxJump <= board.step + 1e-9
+        && walkOut.barrier > walkOut.deckY + 2,
+      walkOut.missing ? 'no deck published for newberry_dole_warehouse'
+        : `started on the bank at ${walkOut.startedAt?.toFixed(2)} m, reached `
+          + `${walkOut.reached?.toFixed(2)} m of a ${walkOut.width?.toFixed(2)} m deck, `
+          + `ended at ${walkOut.endGroundY?.toFixed(2)} m over ${walkOut.endOverWater
+            ? 'water' : 'LAND'} where the terrain alone says `
+          + `${walkOut.barrier?.toFixed(2)} m; ${walkOut.offDeck} sample(s) off the drawn `
+          + `deck, biggest single rise ${walkOut.maxJump?.toFixed(3)} m`);
 
     // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
     // at the wharf anchor — on the ground outside Newberry & Dole's river wall,

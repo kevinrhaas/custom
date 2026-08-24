@@ -80,6 +80,18 @@ always red gets switched off.
 All three were found by a human reading the file. `tools/check.sh` was green across every
 one of them.
 
+- **A FOURTH, and it is the loudest failure mode wearing the same silence (found 2026-08-24 by
+  T-0058's run, and repaired in that PR).** `dev` at `e2056e97` carried three **git conflict
+  markers committed into `docs/LIBERTIES.md`** — `<<<<<<< HEAD` at the head of L181, then
+  `=======` and `>>>>>>> origin/dev` at end of file with nothing between them. So the merge
+  DID conflict this time, loudly, exactly as this ticket wants it to; the markers were then
+  committed unresolved. **`tools/check.sh` was green across it again**, because
+  `compile_liberties.py` reads a marker line as prose inside whatever entry it falls in and
+  compiled 181 liberties happily. That closes off the hope that a merge driver alone is enough:
+  the conflict is necessary and not sufficient, and the cheap half of the fix — a check —
+  should also refuse a conflict marker anywhere in the file, which is one regex and would have
+  caught this the moment it landed.
+
 ## The fix, roughly
 
 Pick from what the changelog already proves works, rather than inventing something new:
@@ -98,6 +110,8 @@ Whichever is chosen, the three standing duplicates are the acceptance test.
 
 - `tools/check.sh` fails on a duplicate liberty number, and is demonstrated failing by
   introducing one deliberately and removing it again.
+- `tools/check.sh` fails on a git conflict marker anywhere in the file — the fourth instance
+  above shipped one to `dev` and was compiled into an entry's prose without complaint.
 - The check distinguishes a lettered sub-entry (L31a) from a duplicate of its parent
   (a second L31), and is demonstrated staying green on the nine sub-entries the file
   already carries.

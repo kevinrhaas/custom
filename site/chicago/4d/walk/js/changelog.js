@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 270, title: 'You can walk out along the river landings', kind: 'feature', ts: '2026-08-24T19:37:17.000Z', date: 'Aug 24, 2026, 2:37 PM CT',
+    items: [
+      'Go down to the river behind Newberry & Dole\u2019s warehouse and step onto the dock. Until today you stopped at the bank: the planks were something to look at, and the water in front of them was a wall you could not pass. All seven landings on the river can be walked out along now, out over open water to the mooring posts at the end.',
+      'What kept you off them was arithmetic. A deck stands three feet above the river, and the bank at these landings is between seven inches and two feet \u2014 so the step onto the planks was up to two feet four inches. A person on foot in this town steps up fourteen inches without thinking and stops at anything higher, which is what a plank walk stands above the mud. Five of the seven refused to be boarded at all.',
+      'So the landward two metres of every deck \u2014 the strip that already ties back into the bank \u2014 is a ramp now instead of a shelf. Nothing was measured or invented to do it: the ramp is as long as that strip already was, and how steep it runs falls out of whatever the bank leaves under it, between eleven and twenty degrees across the seven.',
+      'It closes something you could see, too. The landward end of each deck used to hang over the bank with daylight underneath it. It comes down to meet the ground now, carried on the same crib timber as the rest of the deck.',
+      'Nothing else moved. No deck changed its place, its size or its height above the water, no crib or mooring post is anywhere new, and the docks still disappear the moment you switch the reconstructed tier off \u2014 because every metre of their size is still ours and no source describes any of it.',
+    ] },
   { v: 269, title: 'Rows of poplars on three of the town\u2019s oldest greens', kind: 'feature', ts: '2026-08-24T17:38:27.146Z', date: 'Aug 24, 2026, 12:38 PM CT',
     items: [
       'On the north bank facing Fort Dearborn, four tall dark spires now stand in a line on the green in front of the Indian Agency House. Two more rows like it: at Beaubien\u2019s homestead west of the fort, and at the Clybourne cabins up the North Branch. Twelve trees, and they are the tallest planted things in the town.',

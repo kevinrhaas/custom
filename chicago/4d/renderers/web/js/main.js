@@ -679,6 +679,8 @@ async function boot() {
   // authored beside the mesh instead of taken from it. Mounted after the yard
   // for reading order; the two never touch, because the goods stand on the
   // town's trading frontages and the docks are out on the bank.
+  // Since T-0058 the decks are also a surface a visitor STANDS on — see the
+  // append below the planting composition, which is where they reach the walker.
   const wharves = await createWharves({
     dataBase: bases.dataBase, terrain, confidence, problems,
   });
@@ -719,6 +721,16 @@ async function boot() {
     // planks of a bridge deck either.
     decks,
   );
+  /**
+   * AND THE WHARF DECKS BECOME WALK SURFACES (T-0058). Appended AFTER `planting`
+   * is composed, and the placement is the whole reason for this comment: the
+   * planters already hold these same rectangles through `wharves.keepOut` two
+   * lines above, so appending them before the concat would hand every planter
+   * the same polygon twice. The walker holds `decks` BY REFERENCE, so a push
+   * after the fact still reaches it — which is exactly how the frontage layer's
+   * footways got there, one screen up.
+   */
+  for (const d of wharves.decks ?? []) decks.push(d);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //

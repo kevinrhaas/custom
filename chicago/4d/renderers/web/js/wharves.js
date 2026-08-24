@@ -30,11 +30,21 @@
  *    `terrain.surfaceHeight` at its own point, so the crib meets the channel
  *    floor the heightfield draws rather than a flat guess — which is the only
  *    reason a structure standing in water can be drawn honestly at all.
- *  * IT IS NOT A WALK SURFACE, and does not pretend to be. `walkHeight()` puts
- *    a wading barrier over open water and the deck does not override it, so a
- *    visitor sees the wharf from the bank and cannot walk out along it. Making
- *    a deck walkable is the bridge's `placement.walk_surface_m` route and it
- *    belongs to a structure record; this layer has none.
+ *  * IT IS A WALK SURFACE (T-0058), and the route is the one the plank walks
+ *    already take. `walkHeight()` puts a wading barrier over open water, so
+ *    until now a visitor saw the wharf from the bank and could not step onto
+ *    it. A deck does not need a structure record to be stood on — since T-0119
+ *    a layer publishes `{ id, y, pts }` and `main.js` appends it to the same
+ *    registry the bridges use, which is the one mechanism in this project for
+ *    "the visitor is standing on something that is not the heightfield".
+ *  * AND THE LANDWARD BAND IS AN APRON, not a slab hanging over the bank. The
+ *    record already ties the deck `heel_in_m` back into the bank; what was
+ *    drawn there was a level platform, so its landward edge stood 0.32-0.71 m
+ *    clear of the ground with daylight under it, and the walker's 0.35 m
+ *    step-up rule refused to board FIVE of the seven. That band now ramps from
+ *    the bank up to the platform. It invents NO new number — the run is the
+ *    record's own `heel_in_m` and the rise is whatever the terrain leaves under
+ *    it — and it is the same crib timber below. docs/LIBERTIES.md L182.
  *  * NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY, NO NAME. The record says so and
  *    this file keeps it: the schooner cheered at one of these two wharves in
  *    1834 is not drawn, because a hull would be a larger invention than the
@@ -126,6 +136,58 @@ function pushBox(buf, cx, cy, cz, ux, uz, halfLen, halfW, halfH, level) {
   }
 }
 
+/**
+ * One triangle with the normal its own three vertices imply.
+ *
+ * `pushBox` above can take a face normal as a constant because every box it
+ * draws is axis-true in its own frame. The deck is not: its landward band is
+ * inclined by whatever the terrain leaves under it, so a constant normal would
+ * light the apron as though it were flat. Points are world `[x, y, z]`.
+ */
+function pushTri(buf, a, b, c, level) {
+  const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2];
+  const vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+  let nx = uy * vz - uz * vy;
+  let ny = uz * vx - ux * vz;
+  let nz = ux * vy - uy * vx;
+  const len = Math.hypot(nx, ny, nz) || 1;
+  nx /= len; ny /= len; nz /= len;
+  for (const p of [a, b, c]) {
+    buf.pos.push(p[0], p[1], p[2]);
+    buf.nrm.push(nx, ny, nz);
+    buf.conf.push(level);
+  }
+}
+
+/**
+ * A four-cornered slab of a stated thickness whose TOP may be a warped plane —
+ * each corner carries its own height. Used for the deck, which is level over
+ * the water and inclined over the bank.
+ *
+ * `corners` are local ENU `[e, n]` in ring order and `tops` their heights; the
+ * ring is reversed if it is not counter-clockwise in (e, n), which is what puts
+ * the top face's normal up in a world of (E, up, −N).
+ */
+function pushSlab(buf, corners, tops, thickness, level) {
+  let ring = corners.map((p, i) => [p[0], p[1], tops[i]]);
+  let area = 0;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    area += (ring[j][0] * ring[i][1]) - (ring[i][0] * ring[j][1]);
+  }
+  if (area < 0) ring = ring.slice().reverse();
+  const top = ring.map((p) => [wx(p[0]), p[2], wz(p[1])]);
+  const bot = top.map((p) => [p[0], p[1] - thickness, p[2]]);
+  for (let i = 2; i < top.length; i += 1) {
+    pushTri(buf, top[0], top[i - 1], top[i], level);
+    pushTri(buf, bot[0], bot[i], bot[i - 1], level);
+  }
+  for (let i = 0; i < top.length; i += 1) {
+    const j = (i + 1) % top.length;
+    pushTri(buf, top[i], bot[i], bot[j], level);
+    pushTri(buf, top[i], bot[j], top[j], level);
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* the wharf                                                                   */
 /* -------------------------------------------------------------------------- */
@@ -143,11 +205,16 @@ function groundAt(terrain, e, n) {
  * A run of crib wall, stepped into bents that each reach the bed under them.
  *
  * `a` and `b` are the run's two ends in local ENU, on the CENTRELINE of the
- * wall; the wall is `width` across and hangs from `deckY` down to the bed. A
- * bent whose bed sample is above the deck is skipped rather than drawn inside
- * out — over dry ground the deck sits on the ground and needs no crib.
+ * wall; the wall is `width` across and hangs from `topAt(e, n)` down to the
+ * bed. A bent whose bed sample is above the deck is skipped rather than drawn
+ * inside out — over dry ground the deck sits on the ground and needs no crib.
+ *
+ * `topAt` is a FUNCTION rather than a height because the deck's landward band
+ * is inclined (T-0058): a constant top would leave the crib standing proud of
+ * the apron it carries, which is the same class of fault as a deck floating
+ * over its own bank.
  */
-function pushCribRun(buf, a, b, width, deckY, terrain, level) {
+function pushCribRun(buf, a, b, width, topAt, terrain, level) {
   const de = b[0] - a[0];
   const dn = b[1] - a[1];
   const run = Math.hypot(de, dn);
@@ -163,6 +230,7 @@ function pushCribRun(buf, a, b, width, deckY, terrain, level) {
     const n = a[1] + un * t;
     const bed = groundAt(terrain, e, n);
     if (bed === null) continue;
+    const deckY = topAt(e, n);
     const foot = Math.min(bed - CRIB_FOOT_M, deckY - 0.25);
     const h = deckY - foot;
     if (h <= 0.05) continue;
@@ -217,31 +285,74 @@ function buildWharf(buf, w, form, terrain, level, problems) {
     return 0;
   }
   const deckY = Math.max(...samples, WATER_Y + form.freeboard);
+
+  /**
+   * THE BOARDING APRON (T-0058). The deck top is the freeboard floor at all
+   * seven landings, because the 1834 bank is 0.17-0.58 m above the water at
+   * every one of them — so a level slab across the whole outline stands
+   * 0.32-0.71 m clear of the ground its landward band is supposed to tie into.
+   * That is a step nobody can take (WALK.stepUp is 0.35 m) and a slab with
+   * daylight under it.
+   *
+   * So the landward `heel_in_m` of the deck is drawn as an inclined apron,
+   * running from the ground at its own landward lip up to the platform at the
+   * bank foot. NOTHING NEW IS INVENTED: the run is the record's own heel, the
+   * rise is whatever the terrain leaves under it, and the lip takes the LOWEST
+   * of the three ground samples along that edge so the apron never rises to
+   * meet a visitor — where the bank is higher the ground simply wins, which is
+   * what `surfaceAt()` already does over land.
+   */
+  const lipY = Math.min(deckY - form.deckT, ...samples);
+  const rise = deckY - lipY;
+  const heelIn = Math.min(form.heelIn, width);
+  const apron = rise > 0.02 && heelIn > 0.05;
+  /** The deck top at a point, in metres landward-to-waterward across the band.
+   *  Clamped at both ends: every caller today asks inside the outline, and a
+   *  caller that ever asks outside it should get the deck's own edge rather
+   *  than an extrapolated plane running off under the prairie. */
+  const topAtS = (s) => (apron && s < heelIn
+    ? lipY + rise * (Math.max(0, s) / heelIn) : deckY);
+  /** How far (e, n) stands out from the landward edge, along the deck's normal. */
+  const across = (e, n) => (e - heelL[0]) * oe + (n - heelL[1]) * on;
+  const topAt = (e, n) => topAtS(across(e, n));
   const before = buf.pos.length;
 
-  // the deck: one slab, centred on the outline
+  // the deck: the level platform over the water, and — where the bank is lower
+  // than the platform — the apron that ties it into the ground behind it.
+  const foot = (p) => [p[0] + oe * heelIn, p[1] + on * heelIn];
   const cx = (heelL[0] + heelR[0] + faceL[0] + faceR[0]) / 4;
   const cn = (heelL[1] + heelR[1] + faceL[1] + faceR[1]) / 4;
-  pushBox(buf, wx(cx), deckY - form.deckT / 2, wz(cn), ue, -un,
-    length / 2, width / 2, form.deckT / 2, level);
+  if (apron) {
+    const footL = foot(heelL);
+    const footR = foot(heelR);
+    pushSlab(buf, [heelL, heelR, footR, footL], [lipY, lipY, deckY, deckY],
+      form.deckT, level);
+    pushSlab(buf, [footL, footR, faceR, faceL], [deckY, deckY, deckY, deckY],
+      form.deckT, level);
+  } else {
+    pushBox(buf, wx(cx), deckY - form.deckT / 2, wz(cn), ue, -un,
+      length / 2, width / 2, form.deckT / 2, level);
+  }
 
   // the crib: under the outer face and under both ends, inset so the deck
-  // oversails it the way a planked deck oversails the timber carrying it.
+  // oversails it the way a planked deck oversails the timber carrying it. The
+  // end runs start at the landward lip, so the apron is carried by the same
+  // timber the platform is rather than resting on nothing.
   const inset = (p, de, dn) => [p[0] + de, p[1] + dn];
   const halfCrib = form.cribW / 2 + CRIB_INSET_M;
   const faceCentreL = inset(faceL, -oe * halfCrib, -on * halfCrib);
   const faceCentreR = inset(faceR, -oe * halfCrib, -on * halfCrib);
-  const cribDeck = deckY - form.deckT;
+  const cribTop = (e, n) => topAt(e, n) - form.deckT;
   let bents = pushCribRun(buf, faceCentreL, faceCentreR, form.cribW,
-    cribDeck, terrain, level);
+    cribTop, terrain, level);
   bents += pushCribRun(buf,
     inset(heelL, ue * halfCrib + oe * halfCrib, un * halfCrib + on * halfCrib),
     inset(faceCentreL, ue * halfCrib, un * halfCrib),
-    form.cribW, cribDeck, terrain, level);
+    form.cribW, cribTop, terrain, level);
   bents += pushCribRun(buf,
     inset(heelR, -ue * halfCrib + oe * halfCrib, -un * halfCrib + on * halfCrib),
     inset(faceCentreR, -ue * halfCrib, -un * halfCrib),
-    form.cribW, cribDeck, terrain, level);
+    form.cribW, cribTop, terrain, level);
   if (!bents) {
     problems.push(`wharves: ${w.structure_id}'s deck stands on no crib — the bed `
       + 'under it could not be sampled');
@@ -260,7 +371,32 @@ function buildWharf(buf, w, form, terrain, level, problems) {
     deck_top_m: deckY,
     from_terrain: deckY > WATER_Y + form.freeboard + 1e-6,
     bents,
+    /** The apron, or null where the bank already stood at the platform. */
+    apron: apron ? {
+      lip_m: lipY,
+      rise_m: rise,
+      run_m: heelIn,
+      slope_deg: Math.atan2(rise, heelIn) * 180 / Math.PI,
+    } : null,
+    /** The step a visitor takes to board, measured at the landward lip. */
+    board_step_m: Math.max(0, (apron ? lipY : deckY) - Math.min(...samples)),
     vertices: (buf.pos.length - before) / 3,
+  };
+  /**
+   * THE SURFACE, in `decksFrom()`'s own shape plus a height function.
+   *
+   * `y` is the platform — the highest the deck reaches, which is what a deck
+   * registry that only understands flat surfaces should be told. `heightAt` is
+   * the whole truth, and it is the SAME `topAt` the slab above was drawn from,
+   * so the plank a boot is on and the plank the mesh draws are one number
+   * rather than two that agree until they do not. That is T-0001's finding,
+   * which this layer's header has cited since it had no walk surface at all.
+   */
+  w._deck = {
+    id: `${w.structure_id}__wharf`,
+    y: deckY,
+    pts: quad,
+    heightAt: topAt,
   };
   return (buf.pos.length - before) / 3;
 }
@@ -285,6 +421,9 @@ function readForm(record) {
     cribW: v('crib_width_m', 1.2),
     postSide: v('post_side_m', 0.22),
     postH: v('post_height_m', 0.75),
+    // How far the deck ties back into the bank. Read here since T-0058 because
+    // that band is the boarding apron, and its run is the record's number.
+    heelIn: v('heel_in_m', 2.0),
   };
 }
 
@@ -312,7 +451,15 @@ export async function createWharves({
      * polygon under the same id would answer for the building.
      */
     keepOut: [],
-    census: { records: 0, wharves: 0, bents: 0, refused: 0 },
+    /**
+     * THE DECKS A VISITOR STANDS ON (T-0058), in `decksFrom()`'s `{ id, y, pts }`
+     * shape with a `heightAt` for the inclined landward band. `main.js` appends
+     * them to the walker's registry — the same route the plank walks take
+     * (T-0119), because there is exactly one mechanism in this project for
+     * "the visitor is standing on something that is not the heightfield".
+     */
+    decks: [],
+    census: { records: 0, wharves: 0, bents: 0, aprons: 0, refused: 0 },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -361,9 +508,11 @@ export async function createWharves({
       }
       spans.push({ id: w.structure_id, from, to: buf.pos.length / 9 });
       out.keepOut.push({ id: `${w.structure_id}__wharf`, pts: w.deck_quad_local_enu_m });
+      if (w._deck) out.decks.push(w._deck);
       out.wharves.push(w);
       out.census.wharves += 1;
       out.census.bents += w._drawn?.bents ?? 0;
+      out.census.aprons += w._drawn?.apron ? 1 : 0;
     }
   }
   if (!buf.pos.length) {

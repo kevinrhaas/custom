@@ -12,13 +12,21 @@
  * person steps onto without thinking. Below it you step up; above it you are
  * looking at a wall and you stop. Downhill is free — you can always step down.
  *
- * The one thing that is not the heightfield: **bridge decks** (T-0001). A deck is
- * a surface the visitor stands on that the terrain knows nothing about, so the
+ * The one thing that is not the heightfield: **decks** (T-0001). A deck is a
+ * surface the visitor stands on that the terrain knows nothing about, so the
  * floor is `surfaceAt()` rather than `terrain.walkHeight()` and every path in this
- * module asks it. Getting ONTO a deck from the bank asks nothing of this module:
- * the approach earthworks (T-0046) grade the terrain itself to meet each deck at
- * its ends, so the walk up is ordinary heightfield walking and the step from
- * earth to planks is millimetres. See docs/LIBERTIES.md L147.
+ * module asks it. Bridge decks come off the registry through `decksFrom()` below;
+ * the plank walks (T-0119) and the river wharves (T-0058) publish the same
+ * `{ id, y, pts }` shape from their own layers and `main.js` appends them, because
+ * there is exactly one mechanism here for "the visitor is standing on something
+ * that is not the heightfield" and this is it.
+ *
+ * Getting ONTO a deck from the bank asks nothing of this module, and both routes
+ * to that are the same shape: the bridge approach earthworks (T-0046) grade the
+ * terrain itself to meet each deck at its ends, and the wharf aprons (T-0058)
+ * ramp the deck's own landward band down to the bank. Either way the walk up is
+ * a slope rather than a step and the 0.35 m rule never has to be argued with.
+ * See docs/LIBERTIES.md L147 and L182.
  */
 
 import * as THREE from 'three';
@@ -181,7 +189,8 @@ export function decksFrom(registry) {
  * @param {THREE.PerspectiveCamera} o.camera
  * @param {{height:(e:number,n:number)=>number}} o.terrain
  * @param {Array<{id:string, pts:number[][]}>} o.footprints
- * @param {Array<{id:string, y:number, pts:number[][]}>} o.decks
+ * @param {Array<{id:string, y:number, pts:number[][],
+ *                heightAt?:(e:number,n:number)=>number}>} o.decks
  * @param {{local_e:number, local_n:number, yaw_deg:number}} o.spawn
  */
 export function createWalker({ camera, terrain, footprints = [], decks = [], spawn = {} }) {
@@ -227,8 +236,14 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
   function surfaceAt(e, n) {
     let deckY = null;
     for (const d of decks) {
+      // `d.y` is the HIGHEST the surface reaches, so a flat deck already known
+      // to be higher settles it without a point-in-polygon test. A deck that
+      // carries a `heightAt` is not flat — the wharf aprons ramp from the bank
+      // up to the platform (T-0058) — so it is asked for its height at the
+      // point once it is known to cover it.
       if ((deckY !== null && d.y <= deckY) || !inside(e, n, d.pts)) continue;
-      deckY = d.y;
+      const y = d.heightAt ? d.heightAt(e, n) : d.y;
+      if (deckY === null || y > deckY) deckY = y;
     }
     if (deckY === null) return terrain.walkHeight(e, n);
     return terrain.isWater(e, n) ? deckY : Math.max(deckY, terrain.surfaceHeight(e, n));

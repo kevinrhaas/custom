@@ -863,7 +863,17 @@ def record(wharves: list, refused: list, banks: list) -> dict:
                     "INVENTED. The deck's landward edge ties 2.0 m back into the "
                     "bank, so the platform meets ground rather than ending on the "
                     "waterline. Nothing attests it; it is the least that reads as "
-                    "a wharf built off a bank instead of a raft moored against one."
+                    "a wharf built off a bank instead of a raft moored against "
+                    "one. SINCE T-0058 THIS BAND IS THE BOARDING APRON and is "
+                    "drawn inclined rather than level, running from the ground at "
+                    "its own landward lip up to the platform at the bank foot. "
+                    "That adds NO number to this record: the run is this figure "
+                    "and the rise is whatever the terrain leaves under it. It is "
+                    "here because the deck holds the freeboard floor below while "
+                    "the traced bank is 0.17-0.58 m at every landing, so a level "
+                    "slab stood 0.32-0.71 m clear of the ground it ties into and "
+                    "five of the seven could not be stepped onto at all (the "
+                    "walker's step-up rule is 0.35 m). docs/LIBERTIES.md L182."
                 ),
             },
             "apron_m": {
@@ -948,7 +958,12 @@ def record(wharves: list, refused: list, banks: list) -> dict:
             "into, where the three posts stand along the face, and the timber's "
             "tone are in renderers/web/js/wharves.js, the same division "
             "data/yard/ makes with yard.js. THE DECK'S HEIGHT IS NEITHER'S: it "
-            "is the terrain's, sampled at the landward edge at load."
+            "is the terrain's, sampled at the landward edge at load. AND IT IS "
+            "ALSO THE WALK SURFACE (T-0058): the layer publishes each deck to "
+            "renderers/web/js/walker.js in the shape the bridges and the plank "
+            "walks use, carrying the same height function the planks were drawn "
+            "from, so the plank a visitor's boot is on and the plank the mesh "
+            "draws are one number and not two."
         ),
         "not_drawn": (
             "NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY AND NO NAME. The schooner "

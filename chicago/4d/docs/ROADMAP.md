@@ -10278,6 +10278,28 @@ a face that would stand on dry ground (PR #258 measured −0.34 m at Hogan's sto
 the measured rise on the record rather than given a bespoke outline. The clause refuses nothing in
 the town as it stands and is proved by `generate_river_wharves.py --selftest`, which `--check` runs.
 
+**(e)'s decks became WALKABLE on 2026-08-24, and the generator half it also owed was withdrawn on a
+measurement. T-0058**: the seven landings are surfaces a visitor stands on. The route was already
+built and unused — since **T-0119** a layer may publish `{ id, y, pts }` and `main.js` appends it to
+the same `decks` registry the bridges reach through `decksFrom()`, which is the one mechanism in
+this project for "the visitor is standing on something that is not the heightfield". So no structure
+record, no `placement.walk_surface_m` and no new mechanism: `wharves.js` publishes the deck it
+drew, with the height FUNCTION it drew it from, so the boot and the plank are one number.
+**The landward edge was the real work, and it was five sites and not one.** The deck holds its
+0.90 m freeboard floor at every landing because the 1834 bank is 0.17–0.58 m at all of them, so a
+level slab stood **0.32–0.71 m** clear of the ground it ties into against a 0.35 m step-up rule:
+five of seven refused boarding, and the slab hung over the bank with daylight under it. The
+record's own `heel_in_m` band is now an inclined apron — run from the record, rise from the terrain,
+**no new number authored** (L182) — and the crib under it steps down with it.
+**And (e)'s generator half is WITHDRAWN, not deferred (T-0059).** Measured by
+`tools/measure_generator_half.py`: a river-wharf mode of `pier_crib` re-stales the 2 harbour piers,
+a new field on `PierCribParams` re-stales the same 2 through the resolved-params hash, and wiring
+any new archetype into `generators/build.py` re-stales **346 of the 348** committed assets — so the
+branch that adds it cannot make its own gate green, with Blender off the improve runner. And it is
+not this layer's debt: **nine** layers are drawn at load from committed JSON and **none** has a
+generator, which is the same clause (a) and (c) below owe in almost the same words. Refiled whole as
+**T-0200** — one decision about nine layers rather than a fragment nobody can ship.
+
 **(a) is shipped in three pieces, all on the enclosure layer** (`data/enclosures/`,
 `renderers/web/js/enclosures.js`) — the renderer-side half of the archetype this box asked for,
 which needs no bake. **T-0050** built the layer and the Western Hotel's wagon yard (L127);

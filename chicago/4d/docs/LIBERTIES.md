@@ -6206,6 +6206,67 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+
+### L182 — The wharf decks ramp down to the bank, because a level one could not be boarded
+**Decision:** the landward band of every drawn river wharf — the `heel_in_m` the record already
+ties back into the bank — is drawn as an **inclined apron** rather than as the level slab it was,
+running from the ground at its own landward lip up to the platform at the bank foot, carried on the
+same crib timber the platform is. The lip takes the LOWEST of the three ground samples along that
+edge, so the apron never rises to meet a visitor; where the bank stands higher, the ground simply
+wins, which is what the walker already does over land. The platform — everything waterward of the
+bank foot — is unchanged, and so is the deck top, the crib, the posts and the outline. Drawn in
+`renderers/web/js/wharves.js`; the same height function is published to the walker, so the plank a
+boot is on and the plank the mesh draws are one number.
+
+**Why:** because the deck could not be stepped onto, and the reason it could not is arithmetic.
+The 1834 bank stands 0.17–0.58 m above the water plane at all seven landings, so the record's
+0.90 m freeboard floor wins at every one of them and the level slab stood **0.32–0.71 m clear of
+the ground its landward band exists to tie into** — measured on the committed heightfield at the
+three samples the renderer itself takes. The walker's step-up rule is 0.35 m (`WALK.stepUp`, "a
+little over a foot, which is what a plank walk stands above the mud"), so **five of the seven
+refused to be boarded at all**, and the two that did not — Kinzie & Hunter at 0.32 m and Robert
+Kinzie's at 0.38 m from the lip — cleared it on the bank being higher there rather than on anything
+about the dock. The slab also hung over the bank with daylight under it, which is the same fault
+read from outside.
+
+**What is invented, exactly: the inclination and nothing else.** No new ground is covered, no
+dimension is added to the record, and no number is authored. The run is the record's own
+`heel_in_m` (2.0 m, L132) and the rise is whatever the terrain leaves under it, so the slopes fall
+out rather than being chosen: **10.8° at Robert Kinzie's, 16.2° at Kinzie & Hunter and 19.2–20.1°
+at the other five**, recomputed from the heightfield at load and never stored. Measured after the
+change, the step from the ground beside a deck onto its lip is **negative at all seven** — at most
+0.03 m DOWN — so nothing is stepped up onto at any landing. What is claimed is
+that the approach RAMPS rather than steps — the alternative being a stair, which would have
+invented treads, risers and a count where this invents an angle that is already implied by two
+numbers the record carries.
+
+**What bounds it.** The bridge did this first and it is the same shape of thing: **L147** grades
+invented earthworks up to each deck end so that "the walk up is ordinary heightfield walking and
+the step from earth to planks is millimetres". The bridge could put the ramp in the TERRAIN because
+a bridge is a structure with a record and an approach; a wharf has neither, and its own record
+already owns a 2.0 m band lying on the bank. Using that band is the smaller invention. It is also
+the ordinary form: a working platform standing three feet over a river, built off a bank a foot
+above it, is reached by a short ramp or a few steps, and nothing else.
+
+**What this does NOT claim.** Not that any Chicago dock was ramped — no source reached describes
+the construction, the height or the approach of any of these landings, and L132 states that the
+fact of a dock is the whole of what is held. Not that the slope was 17°: it is a consequence of two
+invented figures and one measured bank, and if either figure moves the apron moves with it. And not
+that a visitor could have boarded any real wharf here — this is a rule about a walker in a model.
+
+**Consequence:** a visitor on the bank walks up the apron and out over the water on all seven
+landings, where before they stood at the edge and were refused. `tools/smoke_renderer.mjs` asserts
+the boarding rise against the walker's own `stepUp` at every landing, and drives the walk out at
+Newberry & Dole's — the one Andreas names — holding the boot to the drawn deck exactly, the same
+equality the bridge crossing asserts.
+
+Related: **L132** (the two river docks, invented in every dimension) · **L145** (the five South
+Water landings) · **L180** (the west-bank landing) · **L147** (the bridge approach earthworks) ·
+**L9** (the wading barrier a deck answers) · tickets **T-0058**, **T-0041**, **T-0001**. This entry
+claims no structure attribute of its own — it admits a treatment of a figure L132 already claims —
+so it carries no coverage field.
+**Recorded:** 2026-08-24.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
@@ -7738,7 +7799,6 @@ same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), *
 set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
 
-<<<<<<< HEAD
 ### L181 — Three poplar rows on the greens of the town's oldest houses, from a treatment attested at a fourth that is not in this scene
 **Decision:** `data/flora/plantings/town_planted_rows.json` stands twelve Lombardy poplars —
 four to a row, 3.5 m apart, in a straight file parallel to the waterline — on the river greens
@@ -7811,5 +7871,3 @@ Related: **L129** (the garden pickets — a treatment from a plate, a rule for t
 **L119** (every number in the tree archetypes is invented within the file's range) · tickets
 **T-0117**, **T-0074**, **T-0052**, **T-0055**.
 **Recorded:** 2026-08-24.
-=======
->>>>>>> origin/dev

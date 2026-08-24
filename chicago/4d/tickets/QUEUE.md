@@ -25,7 +25,6 @@ T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
 
 # --- THE RIVER AND ITS WHARVES — visible
-T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
@@ -85,3 +84,5 @@ T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
+T-0200 — Decide once whether a baked town carries the nine renderer-drawn layers
+T-0201 — The riverside walk's last boards cross two landings' boarding aprons
