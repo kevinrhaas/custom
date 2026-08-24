@@ -1,7 +1,7 @@
 ---
 id: T-0104
 title: Two street lines on one block face: T-0077's row stands 0.80 m off and the block generator's floor is 1.50 m
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-19
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 359
 claimed_by: run 8/24/2026, 6:25:13 AM CT
 blocked_on: null
 needs_bake: false
