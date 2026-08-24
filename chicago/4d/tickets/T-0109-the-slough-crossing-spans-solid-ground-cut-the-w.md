@@ -1,7 +1,7 @@
 ---
 id: T-0109
 title: The slough crossing spans solid ground: cut the watercourse under its deck
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-19
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 368
 claimed_by: run 8/24/2026, 9:55:52 AM CT
 blocked_on: null
 needs_bake: false

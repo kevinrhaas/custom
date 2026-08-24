@@ -21,7 +21,6 @@
 T-0143 — Apply the core density standard to the next core block below the bar (successor to T-0105)
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0127 — South Water Street and the rest of the town get the street edge
-T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
