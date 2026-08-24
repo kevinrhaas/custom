@@ -1,7 +1,7 @@
 ---
 id: T-0111
 title: Dearborn's worn track stops 2.7 m short of its causeway deck
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 7:56:58 AM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -1333,12 +1333,18 @@ for (const [label, viewport, touch] of [
         let dryCentrelinePanels = 0;
         let clippedPanels = 0;
         let slivers = 0;
+        // T-0111. Re-derived from the line the module DRAWS from — the worn
+        // wheel line where a street commits one, the platted line everywhere
+        // else (`drawn` is `path` unless `drawn_track_local_enu_m` is
+        // authored). Re-deriving from the plat would count panels the module
+        // never emitted and turn an authored track into a false failure here.
         for (const rec of a.streets.records) {
           const half = (rec.track_width_m ?? 10.5) * 0.5;
+          const line = rec.drawn ?? rec.path;
           const pts = [];
-          for (let i = 1; i < rec.path.length; i++) {
-            const A = rec.path[i - 1];
-            const B = rec.path[i];
+          for (let i = 1; i < line.length; i++) {
+            const A = line[i - 1];
+            const B = line[i];
             const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
             const c = Math.max(1, Math.ceil(d / STEP));
             for (let j = 0; j < c; j++) {
@@ -1419,10 +1425,19 @@ for (const [label, viewport, touch] of [
         // T-0110, the join itself: the worn track must run onto each bridge
         // approach and meet the deck. Stations march the street's own centreline
         // up both North Branch approaches (deck ends e −117.5 / −45.67, T-0046's
-        // terrain approaches) and up the Dearborn drawbridge fill to the street
-        // record's own end (n 18 — the record stops 2.7 m short of the deck,
-        // which is T-0111's subject, not a drawing defect this gate can see).
+        // terrain approaches) and up the Dearborn drawbridge fill.
         // Each station must land inside a drawn road triangle in plan.
+        //
+        // T-0111 CARRIED THE DEARBORN STATIONS THE LAST 2.7 M. They used to
+        // stop at n 17.5 because the street record itself stopped at n 18, and
+        // the comment here said so: the bare crest between the ribbon's end and
+        // the causeway was outside what this gate could see. The worn track is
+        // now drawn from `drawn_track_local_enu_m` onto the deck's own south
+        // edge at [697.65, 20.70], so the stations run to n 20.5 — half a metre
+        // short of the boards, which is the last ground that is ground — and
+        // they are taken on the line the ribbon is drawn from, since a station
+        // on the plat line past n 18 is asking about a place the plat does not
+        // reach.
         const covered = (e, n) => {
           let hit = false;
           a.streets.group.traverse((o) => {
@@ -1445,8 +1460,9 @@ for (const [label, viewport, touch] of [
         const centreAt = (id, axis, value) => {
           const rec = a.streets.records.find((r) => r.id === id);
           const k = axis === 'e' ? 0 : 1;
-          for (let i = 1; i < rec.path.length; i++) {
-            const [A, B] = [rec.path[i - 1], rec.path[i]];
+          const line = rec.drawn ?? rec.path;
+          for (let i = 1; i < line.length; i++) {
+            const [A, B] = [line[i - 1], line[i]];
             const lo = Math.min(A[k], B[k]);
             const hi = Math.max(A[k], B[k]);
             if (value < lo || value > hi) continue;
@@ -1464,7 +1480,7 @@ for (const [label, viewport, touch] of [
           const p = centreAt('kinzie', 'e', e);
           if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
         }
-        for (let n = 8; n <= 17.5; n += 1) {
+        for (let n = 8; n <= 20.5; n += 0.5) {
           const p = centreAt('dearborn', 'n', n);
           if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
         }

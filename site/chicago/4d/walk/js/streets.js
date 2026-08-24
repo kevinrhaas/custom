@@ -211,14 +211,52 @@ function pointSegment(e, n, a, b) {
   return { distance: Math.hypot(e - pe, n - pn), e: pe, n: pn, t };
 }
 
+/**
+ * T-0111 — THE PLATTED LINE AND THE WHEEL LINE ARE TWO CLAIMS, AND ONE FIELD
+ * WAS CARRYING BOTH.
+ *
+ * The widths were already split — `corridor_width_m` answers "which street am I
+ * standing in?" and `track_width_m` is the worn earth drawn inside it — but the
+ * LINE was not, and it turned out to matter at exactly one place in the town.
+ * Dearborn's platted line stops at [699, 18], on the crest of the drawbridge
+ * approach fill; the causeway deck's south edge is at [697.65, 20.70]. Measured
+ * on the shipped build, every station up the fill to n 18 lands on drawn
+ * roadway and every station past it lands on none: the ribbon ends exactly
+ * where the record does, 2.70 m short of the boards, and a visitor climbing
+ * from South Water crossed a band of bare crest to reach the bridge.
+ *
+ * THE ONE-LINE FIX IS THE WRONG FIX, AND IT WAS MEASURED RATHER THAN ARGUED.
+ * Appending the bend to `path_local_enu_m` fails two gates, because that field
+ * is the PLAT: `tools/generate_plat_lots.py --check` re-derives every block
+ * face by offsetting the whole polyline (PLAT GRID DRIFT the length of
+ * Dearborn) and `tools/measure_corridor_intrusion.py --gate` re-scores the
+ * corridor against it (30 laps against a committed 29 — the drawbridge itself
+ * newly lapping by 0.66 m). Both were run with the appended path before this
+ * split existed.
+ *
+ * So a street may now carry `drawn_track_local_enu_m`, the wagon-worn wheel
+ * line, and THIS MODULE IS THE ONLY THING THAT PREFERS IT. `hitsAt`, `status`
+ * and `blocksGrowth` keep reading `path`, because "which street is this",
+ * "what is ahead" and "where is the corridor cleared" are all questions about
+ * the plat; the compiler bounds the drawn line inside that same corridor and
+ * lets it overhang the platted ends by at most four metres, so it can meet an
+ * abutment and cannot become a second plat. `bounds` covers both lines, since
+ * a box that excluded the drawn one would answer "not near this street" for
+ * ground the street is drawn on.
+ */
 function prepare(raw) {
   const path = (raw.path_local_enu_m ?? []).map(([e, n]) => [Number(e), Number(n)]);
+  const authored = raw.drawn_track_local_enu_m;
+  const drawn = Array.isArray(authored) && authored.length >= 2
+    ? authored.map(([e, n]) => [Number(e), Number(n)])
+    : path;
   const pad = Math.max(raw.corridor_width_m ?? 24.384, raw.track_width_m ?? 6) * 0.5;
-  const es = path.map((p) => p[0]);
-  const ns = path.map((p) => p[1]);
+  const es = [...path, ...drawn].map((p) => p[0]);
+  const ns = [...path, ...drawn].map((p) => p[1]);
   return {
     ...raw,
     path,
+    drawn,
     corridor_width_m: raw.corridor_width_m ?? 24.384,
     track_width_m: raw.track_width_m ?? 6,
     bounds: {
@@ -371,7 +409,11 @@ function addRecord(buffers, record, terrain, stats) {
   const key = record.surface;
   const buf = buffers.get(key) ?? { pos: [], uv: [], conf: [], idx: [] };
   buffers.set(key, buf);
-  const pts = sampled(record.path);
+  // T-0111. The ribbon is painted on the WHEEL line; every other question this
+  // module answers is asked of the platted one. `drawn` is `path` for all but
+  // the one street that authors a separate track, so this is the same call it
+  // has always been everywhere else.
+  const pts = sampled(record.drawn);
   let along = 0;
   const confidence = Math.max(
     LEVEL[record.surface_confidence] ?? 1,
