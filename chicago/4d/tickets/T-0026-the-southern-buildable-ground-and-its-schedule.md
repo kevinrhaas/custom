@@ -1,7 +1,7 @@
 ---
 id: T-0026
 title: The southern buildable ground and its schedule
-state: claimed
+state: done
 epic: GROUND
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: T-E4
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 380
 claimed_by: run 8/24/2026, 1:58:10 PM CT
 blocked_on: null
 needs_bake: true
