@@ -1,5 +1,80 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0204 (of T-0058): a wharf deck is a floor, and the layer publishes what it drew
+
+**T-0058 was SPLIT rather than closed.** It asked two things and named the second as already hard —
+"*Also open at the landward edge*". They are two demonstrations: **T-0204**, this, and **T-0205**,
+the bank approaches, which are terrain and need a bake. The same two-run shape T-0001 took, where
+#231 made the bridge decks floors and T-0110 graded the ground up to reach them.
+
+### The design question, answered by the LAYER and not by a record
+
+T-0058 set it out: a wharf needs *"either a record of its own or a second route into `walker.js`'s
+`surfaceAt()`"*. It is the second route. A wharf has no structure record, so it cannot carry the
+sidecar `placement.walk_surface_m` the bridges take their deck height from; minting one would put a
+second definition of the deck top beside the one `renderers/web/js/wharves.js` already computes at
+load — which is the fault T-0001 found 1.8 m over the North Branch planks, and the reason this
+record's `freeboard_m` is a FLOOR rather than a height. So `createWharves` returns `decks` in
+`decksFrom()`'s own `{ id, y, pts }` shape, each `y` the `_drawn.deck_top_m` the slab was drawn at,
+and `main.js` pushes them into the one array the walker holds by reference — **after** the planting
+composition has been taken, because the planters already hold the same polygons as `keepOut` and
+would otherwise be handed each deck twice.
+
+The gate asserts the height as an EXACT equality, like the bridges': a tolerance would pass a
+renderer that had quietly grown a second definition of where the planks are.
+
+### What it buys, and what it does not — measured at all seven
+
+Every deck holds the record's 0.90 m freeboard floor, because the traced 1834 bank under all seven
+landward edges is lower than it. Against the walker's 0.35 m step-up rule:
+
+| wharf | bank at the heel | riser | |
+|---|---:|---:|---|
+| `kinzie_hunter_warehouse` | 0.58 m | **+0.32 m** | **boards** |
+| `robert_kinzie_store` | 0.52 m | +0.38 m | refused |
+| `carpenter_south_water_store` | 0.27 m | +0.63 m | refused |
+| `newberry_dole_warehouse` | 0.21 m | +0.69 m | refused |
+| `jh_kinzie_forwarding_store` | 0.21 m | +0.69 m | refused |
+| `peck_store` | 0.20 m | +0.70 m | refused |
+| `h_jones_store` | 0.19 m | +0.71 m | refused |
+
+**One of the seven can be walked onto from its own ground, and it is the attested dock** — Kinzie &
+Hunter's, the one this project did not have to reconstruct. The gate stands a walker 3 m inland of
+its heel on open ground, faces them down the deck's own waterward normal and walks: no teleport onto
+the planks, 0 samples off deck height, standing clearance exact to better than 1e-9 m, and the
+barrier that used to hold them (4.00 m) measured against the deck that holds them now (0.90 m).
+Nothing was widened and no ramp was faked to get it: the other six are T-0205 and its table is this
+one.
+
+### AND IT FOUND SOMETHING, which is the honest cost of the run
+
+Making the decks solid made a fault that had been true and invisible show up as a wall. The
+riverside plank walk's last reach is laid across the landward heels of **two** committed dock decks
+— **3.75 m** of band at Carpenter's landing, including 2.5 m of its own centreline, and **1.58 m**
+at Jones's. Two committed floors on one piece of ground at two heights, and nothing in the repo ever
+asked: `generate_frontage_works.py`'s march refuses every step a WALL stands on, and a dock deck is
+the other committed thing on that bank.
+
+Walking that reach westward, a visitor used to pass THROUGH the timber. They now stop at Carpenter's
+landing (local E 389.6) against a 0.62 m step, and the 26 m of bank beyond it is reached round the
+dock on the street side. Stopping at a dock is the truthful half of that; the walk being drawn under
+one is not, and it is **T-0206** with its own acceptance. Banked in the gate meanwhile: exactly two
+decks carry plank walk under them, both named, each under 5.0 m — so it cannot spread to a third
+landing or grow at these two unseen.
+
+One assertion moved for it and the reasoning is written where it moved. `the plank decks tie into
+the ground they cross` asks what surface a board is laid ON, and it already excluded a walk's own
+footway decks because counting one would ask every board to tie into itself. A wharf deck is
+excluded for the neighbouring reason: a board under a dock is still laid on the BANK — it did not
+climb 0.6 m to meet a structure standing over it. The lap is not swept under that carve-out; it is
+measured beside it.
+
+### Verification
+
+`./tools/check.sh` PASS. `node tools/smoke_renderer.mjs` at 390×780 and 1280×800, zero pageerrors.
+No data record moved, no mesh moved, no bake: this is renderer wiring plus the gate that measures
+it, and `validate.py --stale` agrees.
+
 ## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
 
 **T-0127 was SPLIT rather than closed, and the split is the honest part of this run.** Its first

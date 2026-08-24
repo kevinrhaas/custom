@@ -3505,10 +3505,20 @@ for (const [label, viewport, touch] of [
       // board to tie into itself and read the whole walk as sunk by its own rise.
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
+      //
+      // A WHARF DECK IS NOT SUCH A SURFACE EITHER, and T-0204 is where THAT had
+      // to be drawn. The wharf layer publishes its decks to the walker now, and
+      // two of them — Carpenter's and Jones's landings — stand on the same bank
+      // the riverside plank walk runs along, lapping it in plan. A board under a
+      // dock is still laid on the BANK: it did not climb 0.6 m to meet the
+      // planks over its head, and asking it to would read the whole reach as
+      // sunk by the height of a structure that is not its base. The lap itself
+      // is not swept under this carve-out — it is measured and banked in its own
+      // check below, and T-0206 owns getting the walk out from under the timber.
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
-          if (/__footway_\d+$/.test(d.id)) continue;
+          if (/__footway_\d+$/.test(d.id) || /__wharf$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -4469,6 +4479,68 @@ for (const [label, viewport, touch] of [
       + `reached ${wharfWalk.reach?.toFixed(1)} m of a ${wharfWalk.width?.toFixed(1)} m deck, `
       + `${wharfWalk.offDeck} sample(s) not at deck height, worst standing clearance error `
       + `${wharfWalk.clearance?.toExponential(1)} m`);
+    // WHAT MAKING THE DECKS SOLID COST, AND WHERE. T-0204 found it by making
+    // the walker notice something that had been true and invisible: the
+    // riverside plank walk is laid ALONG the same bank two dock decks tie back
+    // into, and its band runs under them. Until this run a visitor walked
+    // straight through the timber; now the deck stands 0.62 m over the boards
+    // and the 0.35 m step-up rule stops them at Carpenter's landing, so the
+    // riverside walk's own line ends there and the reach beyond it is reached
+    // around the dock rather than through it.
+    //
+    // That overlap is a DATA fault — two committed floors on one piece of
+    // ground, which `generate_frontage_works.py` would refuse if it refused a
+    // deck the way it already refuses a wall — and it is T-0206. Banked here so
+    // it cannot grow, or spread to a third landing, without somebody seeing it.
+    const walkUnderDeck = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const decks = (a.wharves?.decks ?? []);
+      const inside = (e, n, pts) => {
+        let hit = false;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
+      // Metres of each walk's BAND — centreline and both edges — inside a deck.
+      const lapped = new Map();
+      for (const w of a.frontage?.walks ?? []) {
+        const cl = w.centreline_local_enu_m ?? [];
+        const half = (w.width_m ?? 0) / 2;
+        for (let k = 0; k < cl.length - 1; k += 1) {
+          const [ae, an] = cl[k];
+          const [be, bn] = cl[k + 1];
+          const len = Math.hypot(be - ae, bn - an);
+          if (!(len > 0)) continue;
+          const nx = -(bn - an) / len;
+          const ny = (be - ae) / len;
+          const steps = Math.max(2, Math.round(len / 0.25));
+          for (let s = 0; s < steps; s += 1) {
+            const t = s / steps;
+            for (const off of [-half, 0, half]) {
+              const e = ae + (be - ae) * t + nx * off;
+              const n = an + (bn - an) * t + ny * off;
+              for (const d of decks) {
+                if (!inside(e, n, d.pts)) continue;
+                lapped.set(d.id, (lapped.get(d.id) ?? 0) + len / steps / 3);
+              }
+            }
+          }
+        }
+      }
+      return [...lapped.entries()].map(([id, m]) => ({ id, m })).sort((x, y) => y.m - x.m);
+    });
+    check(`${label}: exactly two wharf decks stand on the riverside walk, and no more`,
+      walkUnderDeck.length === 2
+        && walkUnderDeck.every((d) => ['carpenter_south_water_store__wharf',
+          'h_jones_store__wharf'].includes(d.id))
+        && walkUnderDeck.every((d) => d.m <= 5.0),
+      walkUnderDeck.length
+        ? walkUnderDeck.map((d) => `${d.id} carries ${d.m.toFixed(1)} m of plank walk `
+          + 'under it').join('; ')
+        : 'no walk laps any deck — banked at two (T-0206); if this is a repair, move the bank');
     check(`${label}: the planks, not the wading barrier, carry them over the river`,
       !wharfWalk.missing && wharfWalk.overWater > 0
         && wharfWalk.barrier > wharfWalk.deckY + 1

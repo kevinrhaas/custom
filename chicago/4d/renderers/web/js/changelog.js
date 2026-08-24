@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 271, title: 'You can walk out on the wharves', kind: 'feature', ts: '2026-08-24T20:50:49.393Z', date: 'Aug 24, 2026, 3:50 PM CT',
+    items: [
+      'Seven timber landings stand on the river. Until today every one of them was scenery: the deck was drawn, and a visitor who walked at it walked straight through the planks and out into the water. They are floors now.',
+      'Go to Kinzie & Hunter\u2019s warehouse on the north bank and walk down to the water. You step up onto the dock and out along it, over open river, and stop at the edge of the boards. It is the one dock in the town whose existence a source states outright rather than this project reconstructing it, and it is the one whose bank is high enough to step off.',
+      'The other six you cannot yet climb onto from the ground, and the reason is measured rather than guessed. A working deck stands clear of its own river, so these hold about 0.9 m over the summer water \u2014 but the traced 1834 bank under most of them is only 0.19 to 0.27 m above it. That is a knee-high step, and it is now written down for all seven so the ground can be brought up to meet them.',
+      'The height a visitor stands at is the same number the deck was drawn at, not a second one typed in beside it. That mistake put a walker 1.8 m over the planks of the North Branch bridge once, and it is the reason a wharf gets its deck height from the ground it ties into rather than from anybody\u2019s figure.',
+      'One thing got smaller, and it is worth saying plainly. The riverside walk along the south bank runs past Carpenter\u2019s and Jones\u2019s landings, and part of it was laid straight under their decks \u2014 which nobody could see while you could walk through timber. Walking west you now stop at Carpenter\u2019s dock instead of passing through it, and the last stretch of bank is reached round the landward side. Standing at a dock is the honest half of that; the walk being drawn underneath one is not, and it is written up as its own job.',
+    ] },
   { v: 270, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T18:49:53.486Z', date: 'Aug 24, 2026, 1:49 PM CT',
     items: [
       'Walk east along South Water Street. The plank sidewalk on the south side came out in stumps \u2014 nine short pieces, the longest 47 m \u2014 and the reason was never the sidewalk. Eleven documented buildings on that side stood four and a half to eight metres out in the roadway.',
