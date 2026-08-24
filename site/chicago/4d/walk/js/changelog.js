@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 254, title: 'The streets stop fading out halfway down', kind: 'fix', ts: '2026-08-24T02:53:52.418Z', date: 'Aug 23, 2026, 9:53 PM CT',
+    items: [
+      'Stand on South Water Street and look along it. The road under your feet reads, and the road in the far distance reads \u2014 but between roughly forty metres and the middle distance it thinned out into the grass and came back again further off. That gap is gone: the street now runs continuously from your boots to where it should.',
+      'It was never a fault that crept in. The road had two separate helps and neither covered the middle. One brightens the surface right in front of you, and stops at forty metres. The other rescues a track once it has shrunk to less than two pixels on the screen, which only happens a long way off. Between the two, nothing helped at all \u2014 and the middle had simply always been that way, from the day the near field was fixed and nobody looked further out.',
+      'The measurement said so before anything was changed. Down one open street the road was legible in 90 per cent of the places checked close up, 87 a little further, then 33 in the middle, then 97 beyond it. Contrast that simply faded with distance would not come back at 250 metres; a hole in the middle does.',
+      'The obvious repair was tried first and was wrong. Making the thin-track rescue reach further in changed the reading by nothing at all \u2014 not a rounding, the identical number \u2014 because out there the road is still many pixels wide and that rescue never applies. So the middle got a help of its own instead, gentler than the one at your feet, because the middle was never invisible, only faint.',
+      'It reads 98 per cent now where it read 33, and from the air the street grid holds together across the town instead of dissolving in the middle ring. The ground right in front of you is untouched, to the digit, which was the one thing this change had to avoid disturbing.',
+    ] },
   { v: 253, title: 'A suspected fault in how the prairie is dealt is not there', kind: 'chore', ts: '2026-08-23T21:43:52.649Z', date: 'Aug 23, 2026, 4:43 PM CT',
     items: [
       'Nothing you can see changed. This is about how the grass and flowers underfoot are chosen \u2014 and about a suspicion, written down a week ago, that the town getting in their way was quietly spoiling the mix.',
