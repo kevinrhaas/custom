@@ -41,10 +41,13 @@ auditable:
     * the wall the wharf serves: the footprint's own max-`v` edge and the
       committed facade bearing, through `docs/GLB-CONTRACT.md`'s frame — the same
       three lines `tools/generate_business_signboards.py` composes.
-    * WHERE the wharf stands: the traced 1834 bank line
-      (`data/terrain/epochs/e1834_harbor_cut/river.geojson`), nearest point to the
+    * WHERE the wharf stands: the traced 1834 bank line, nearest point to the
       middle of that wall. The deck runs ALONG the bank's own tangent, not square
       to the building — a wharf follows the river, and the two differ by 20° here.
+      That bank is TWO TRACING WINDOWS of the Wright 1834 sheet joined at a seam
+      they agree on to under a metre — `river.geojson` at the forks and
+      `shoreline.geojson` through the harbour reach — which is the composition
+      `terrain_spec.json` declares in `shore_runs`. See `bank_lines()`.
     * how deep the water is at its face, and how far it stands clear of the
       building it serves: sampled from the committed heightfield, reported rather
       than assumed, so what the invented outline implies is on the record.
@@ -103,6 +106,13 @@ POST_SIDE_M = 0.22      # a snubbing post, square
 POST_HEIGHT_M = 0.75    # and how far it stands proud of the deck
 CRIB_W_M = 1.20         # the crib wall under the deck's outer face and its ends
 
+# The least water a drawn landing may have at its face. NOT a new number: it is
+# the floor `tools/smoke_renderer.mjs` has asserted on every drawn wharf since
+# T-0041 ("no deck floats and every crib reaches the bed"), moved here so the
+# record refuses in writing with the sounding rather than leaving the browser
+# test to discover it. One figure, stated once, read by both instruments.
+MIN_DEPTH_M = 0.50
+
 
 def _load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -137,27 +147,234 @@ def _front_edge(polygon: list) -> tuple[float, float, float]:
     return min(on), max(on), vmax
 
 
+# Weakest first. A run composed of two traced windows carries the weaker of the
+# two grades, never the better one: a line is only as good as its worst stretch.
+CONF_ORDER = ("conjectural", "reconstructed", "inferred", "documented", "attested")
+
+
+def _depth_span(wharves: list) -> str:
+    """How much water the drawn faces actually stand in, as a sentence fragment.
+
+    Derived rather than written down: the figure in this note used to be "about
+    1.2 m of water at both sites", true of the two wharves that existed when it
+    was typed and quietly false of every one added since.
+    """
+    d = sorted(x for w in wharves for x in w["depth_at_face_m"])
+    if not d:
+        return "no drawn face to measure"
+    return (f"between {d[0]:.2f} m and {d[-1]:.2f} m of water across the "
+            f"{len(wharves)} drawn faces (measured per wharf in depth_at_face_m)")
+
+
+def _weakest(grades) -> str:
+    """The weakest grade present, or the first one if the model does not know it."""
+    known = [g for g in grades if g in CONF_ORDER]
+    return CONF_ORDER[min(CONF_ORDER.index(g) for g in known)] if known else "inferred"
+
+
+def _seam(run: list, p: tuple) -> tuple[float, int, float]:
+    """(distance, segment index, parameter) of the foot of `p` on `run`."""
+    best = (float("inf"), 0, 0.0)
+    for i, (a, b) in enumerate(zip(run, run[1:])):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L2 = dx * dx + dy * dy
+        t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((p[0] - a[0]) * dx
+                                                   + (p[1] - a[1]) * dy) / L2))
+        d = math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy))
+        if d < best[0]:
+            best = (d, i, t)
+    return best
+
+
+def _run_length(points: list) -> float:
+    return sum(math.hypot(b[0] - a[0], b[1] - a[1])
+               for a, b in zip(points, points[1:]))
+
+
 def bank_lines() -> list[dict]:
-    """The traced 1834 bank lines, in local ENU metres.
+    """The traced 1834 bank of each division, in local ENU metres.
+
+    THE BANK IS TWO TRACING WINDOWS, NOT ONE, AND THIS LAYER USED TO READ ONLY
+    THE FIRST (T-0106). `tools/trace_river.py` works a 1120 px window of the
+    Wright 1834 sheet centred on the forks, so the bank polylines it writes into
+    `river.geojson` stop at local E +390 — where the WINDOW closed, not where the
+    bank did. `tools/trace_shoreline.py` picks the same waterline up off the same
+    sheet at E +314 and carries it east past the Dearborn drawbridge (E +699) to
+    the lake, and `shoreline.geojson` has held that trace since 2026-08-10. The
+    two windows overlap between E +314 and E +390 and AGREE THERE TO UNDER A
+    METRE at the seam, which is what licenses reading them as one line.
+
+    So nothing here is extended by eye and nothing new is traced: the run is the
+    composition `terrain_spec.json` already declares in `shore_runs`, which is
+    also how `generators/terrain_gen.py::build_field` measures a division's
+    waterline — it takes the minimum distance over every run of that division,
+    across both files. Two consumers of one waterline reading it two ways is how
+    a river grows two banks; before this, the wharf layer believed the south bank
+    ended 309 m short of the drawbridge and refused three stated landings for
+    standing beyond a trace that was there all along.
+
+    The join, stated so it cannot drift:
+
+      1. the division's `river.geojson` run is taken WHOLE and oriented so its
+         last vertex is the end nearer the harbour-reach run — no committed
+         vertex is dropped, moved or resampled, so every wharf already standing
+         keeps the bank foot it had;
+      2. the harbour-reach run is oriented to continue away from that end;
+      3. the foot of the forks run's terminal vertex is found on it, and only the
+         vertices BEYOND that foot are appended. The overlap is therefore
+         corroboration, never geometry — the seam offset is the distance between
+         the two windows' readings of one bank and is reported in the record.
 
     `river.geojson` is EPSG:26916 and the scene is local ENU from
     `data/datum.json`'s origin, which is the one conversion this file makes.
     """
     datum = _load(ROOT / "data" / "datum.json")
     oe, on = float(datum["origin_utm_e"]), float(datum["origin_utm_n"])
-    out: list[dict] = []
-    for f in _load(EPOCH / "river.geojson").get("features", []):
-        geom = f.get("geometry") or {}
+    spec = _load(EPOCH / "terrain_spec.json")
+
+    feats: dict[str, tuple[str, dict]] = {}
+    for fname in ("river.geojson", "shoreline.geojson"):
+        for f in _load(EPOCH / fname).get("features", []):
+            if (f.get("geometry") or {}).get("type") == "LineString":
+                feats[f.get("id")] = (fname, f)
+
+    def local(fid: str) -> list:
+        _, f = feats[fid]
+        return [(x - oe, y - on) for x, y in f["geometry"]["coordinates"]]
+
+    def member(fid: str) -> dict:
+        fname, f = feats[fid]
         props = f.get("properties") or {}
-        if geom.get("type") != "LineString" or props.get("kind") != "bank":
-            continue
-        out.append({
+        return {
+            "id": fid,
+            "from": f"data/terrain/epochs/{EPOCH.name}/{fname}",
+            "traced_by": ("tools/trace_river.py" if fname == "river.geojson"
+                          else "tools/trace_shoreline.py"),
             "name": props.get("name"),
             "confidence": props.get("confidence"),
             "sources": props.get("sources") or [],
-            "points": [(x - oe, y - on) for x, y in geom["coordinates"]],
+        }
+
+    by_div: dict[str, list] = {}
+    for run in spec.get("shore_runs", []):
+        by_div.setdefault(run.get("division"), []).append(run)
+
+    out: list[dict] = []
+    for division, runs in by_div.items():
+        base = [r for r in runs if r.get("from") == "river.geojson"]
+        ext = [r for r in runs if r.get("from") == "shoreline.geojson"]
+        if not base or base[0]["id"] not in feats:
+            continue
+        pts = local(base[0]["id"])
+        members = [member(base[0]["id"])]
+        seam = None
+        base_s0, base_len = 0.0, _run_length(pts)
+        if ext and ext[0]["id"] in feats:
+            tail = local(ext[0]["id"])
+            # WHICH END of the forks run the harbour reach continues from. The
+            # forks run itself is never reversed: its direction is the committed
+            # trace's, and a deck's tangent — and therefore the corner order of
+            # every quad already drawn off it — comes straight off that.
+            d_head = min(math.hypot(pts[0][0] - q[0], pts[0][1] - q[1])
+                         for q in (tail[0], tail[-1]))
+            d_foot = min(math.hypot(pts[-1][0] - q[0], pts[-1][1] - q[1])
+                         for q in (tail[0], tail[-1]))
+            at_head = d_head < d_foot
+            end = pts[0] if at_head else pts[-1]
+            if (math.hypot(end[0] - tail[-1][0], end[1] - tail[-1][1])
+                    < math.hypot(end[0] - tail[0][0], end[1] - tail[0][1])):
+                tail = tail[::-1]               # orient it to lead away from the seam
+            gap, i, t = _seam(tail, end)        # append only past the foot
+            beyond = tail[i + 1:] if t < 1.0 else tail[i + 2:]
+            if beyond:
+                members.append(member(ext[0]["id"]))
+                seam = {
+                    "at_local_enu_m": [_round(end[0]), _round(end[1])],
+                    "windows_disagree_m": _round(gap),
+                    "vertices_appended": len(beyond),
+                    "joined_at": "head" if at_head else "tail",
+                }
+                if at_head:
+                    pts = beyond[::-1] + pts
+                    base_s0 = _run_length(beyond) + math.hypot(
+                        beyond[0][0] - end[0], beyond[0][1] - end[1])
+                else:
+                    pts = pts + beyond
+        out.append({
+            "id": division,
+            "name": (feats[base[0]["id"]][1].get("properties") or {}).get("name"),
+            "confidence": _weakest(m["confidence"] for m in members),
+            "sources": sorted({s for m in members for s in m["sources"]}),
+            "members": members,
+            "seam": seam,
+            "base_s0": base_s0,
+            "base_len": base_len,
+            "points": pts,
         })
+    out.sort(key=lambda b: b["id"])
     return out
+
+
+def in_front_of(points: list, wall_a: tuple, wall_b: tuple, half: float) -> list:
+    """The stretches of bank that lie IN FRONT OF the wall, as sub-polylines.
+
+    "In front of" is the strip of the wall's own line the deck will occupy:
+    a bank point counts when its projection onto that line falls within
+    ±`half` of the wall's middle, which is the deck's own run (the frontage
+    plus its apron at each end).
+
+    WHY THE FOOT NEEDS THIS AT ALL (T-0106). The rule used to be the nearest
+    point on the bank, full stop, and on the forks-window trace — a smooth
+    curve in front of a row of warehouses — the nearest point is always the
+    bank the wall faces. The harbour-reach trace is not smooth: it carries
+    re-entrants, and one of them is a 10 m-wide slot cutting 32 m into the
+    south bank at local E +463. Peck's store fronts the river 29 m west of
+    that slot, and the slot's tip is 30.3 m from its river wall against 41.2 m
+    for the bank the wall actually faces — so a nearest-point rule laid an
+    18 m deck ACROSS THE HEAD OF THE SLOT, square to the river, with a third of
+    its face standing 0.37 m above the water on dry ground. That is the same
+    class of thing clause 4 refuses when a deck laps the wall it serves.
+
+    Clipping is done on SEGMENTS and not on vertices: the trace's vertices are
+    tens of metres apart, so a 9 m band usually contains none of them while the
+    bank runs straight through it. Endpoints are interpolated, so the returned
+    stretches are the bank itself and not a subsample of it.
+    """
+    L = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1]) or 1.0
+    ux, uy = (wall_b[0] - wall_a[0]) / L, (wall_b[1] - wall_a[1]) / L
+    mx, my = (wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0
+
+    def s_of(p):
+        return (p[0] - mx) * ux + (p[1] - my) * uy
+
+    runs: list[list] = []
+    run: list = []
+    for a, b in zip(points, points[1:]):
+        sa, sb = s_of(a), s_of(b)
+        ds = sb - sa
+        if abs(ds) < 1e-12:                       # parallel to the wall
+            lo, hi = (0.0, 1.0) if abs(sa) <= half else (1.0, 0.0)
+        else:
+            t1, t2 = (half - sa) / ds, (-half - sa) / ds
+            lo, hi = max(0.0, min(t1, t2)), min(1.0, max(t1, t2))
+        if hi <= lo:                              # this segment misses the band
+            if len(run) > 1:
+                runs.append(run)
+            run = []
+            continue
+        pa = (a[0] + lo * (b[0] - a[0]), a[1] + lo * (b[1] - a[1]))
+        pb = (a[0] + hi * (b[0] - a[0]), a[1] + hi * (b[1] - a[1]))
+        if run and math.hypot(run[-1][0] - pa[0], run[-1][1] - pa[1]) > 1e-9:
+            if len(run) > 1:
+                runs.append(run)
+            run = []
+        run = (run or [pa]) + [pb]
+        if hi < 1.0 - 1e-12:                      # the band closed inside [a,b]
+            runs.append(run)
+            run = []
+    if len(run) > 1:
+        runs.append(run)
+    return runs
 
 
 def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple, float, float]:
@@ -184,7 +401,7 @@ def nearest_on(points: list, p: tuple) -> tuple[float, tuple, tuple, float, floa
     return best
 
 
-def build_record() -> tuple[list, list]:
+def build_record() -> tuple[list, list, list]:
     index = _load(SIDECARS / "index.json")
     banks = bank_lines()
     field = Heightfield.load(EPOCH)
@@ -220,8 +437,25 @@ def build_record() -> tuple[list, list]:
         mid = ((wall_a[0] + wall_b[0]) / 2.0, (wall_a[1] + wall_b[1]) / 2.0)
         frontage = math.hypot(wall_b[0] - wall_a[0], wall_b[1] - wall_a[1])
 
-        near = [(nearest_on(b["points"], mid), b) for b in banks]
-        (dist, foot, tangent, foot_s, bank_len), bank = min(near, key=lambda r: r[0][0])
+        half = frontage / 2.0 + APRON_M
+
+        # CLAUSE 3b (T-0106): the foot is the nearest bank IN FRONT OF the wall,
+        # not the nearest bank anywhere. See `in_front_of` for the re-entrant
+        # that made the difference. The choice is made on the clipped stretches;
+        # the tangent and the two arclengths are then read off the FULL run, so
+        # clause 4b still measures the deck against the whole traced bank.
+        candidates = [(nearest_on(run, mid), b)
+                      for b in banks
+                      for run in in_front_of(b["points"], wall_a, wall_b, half)]
+        if not candidates:
+            refused.append({"structure_id": sid, "why": (
+                "no traced bank stands in front of its river wall — nothing "
+                "within the deck's own run of the wall's line — so there is no "
+                "frontage here for a landing to be derived from.")})
+            continue                                             # clause 3b
+        (dist, chosen, _t, _s, _l), bank = min(candidates, key=lambda r: r[0][0])
+        dist, foot, tangent, foot_s, bank_len = nearest_on(bank["points"], chosen)
+        dist = math.hypot(mid[0] - foot[0], mid[1] - foot[1])
         # Outward is across the bank, away from the building it serves. Deriving
         # it from the building rather than from the polygon's winding is what
         # keeps a wharf on the water when a bank line is re-traced the other way.
@@ -229,22 +463,22 @@ def build_record() -> tuple[list, list]:
         if (foot[0] - mid[0]) * nx + (foot[1] - mid[1]) * ny < 0:
             nx, ny = -nx, -ny
 
-        half = frontage / 2.0 + APRON_M
-
         # CLAUSE 4b (T-0062): every metre of the deck must stand off a traced
-        # metre of bank. The 1834 bank polylines end at local E 390 and three
-        # stated South Water landings lie east of that; without this clause all
-        # three snapped to the trace's terminal vertex and stacked on one point
-        # — a modelling error wearing three wharves' clothes. A landing refused
-        # here is STATED AND NOT DRAWN until the trace reaches it (T-0106),
-        # because a deck derived from a bank that is not there is derived from
-        # nothing.
+        # metre of bank. The clause is UNCHANGED and still refuses; what changed
+        # under T-0106 is the bank it measures against. It used to see only the
+        # forks tracing window, which closes at local E +390, so three stated
+        # South Water landings east of that all snapped to the window's terminal
+        # vertex and stacked on one point — a modelling error wearing three
+        # wharves' clothes. `bank_lines()` now composes the same waterline
+        # `terrain_gen.py` uses, so the trace HAS reached this reach and those
+        # three draw. A deck derived from a bank that is not there is still
+        # derived from nothing, and is still refused here.
         if foot_s - half < 0.0 or foot_s + half > bank_len:
             refused.append({"structure_id": sid, "why": (
                 "its frontage lies beyond the traced 1834 bank line, so part of "
                 "its deck would stand off bank nobody traced. The dock "
                 "statement stands; the landing is drawn when the trace reaches "
-                "this reach (T-0106).")})
+                "this reach.")})
             continue                                             # clause 4b
 
         heel = (foot[0] - nx * HEEL_IN_M, foot[1] - ny * HEEL_IN_M)
@@ -282,6 +516,32 @@ def build_record() -> tuple[list, list]:
                 "cannot be measured and the wharf is not drawn.")})
             continue                                             # clause 5
 
+        # CLAUSE 5b (T-0106): AND THE SOUNDING HAS TO BE A WORKING ONE. Clause 5
+        # only asks whether the depth could be measured; this one reads it. A
+        # deck whose face stands in less water than MIN_DEPTH_M is a deck on the
+        # beach — nothing can lie at it — and `tools/smoke_renderer.mjs` has
+        # asserted exactly that floor on every drawn wharf since T-0041. Until
+        # T-0106 the two instruments could not disagree, because the only bank
+        # this layer could see was the forks window, where the channel gives
+        # 1.5-1.7 m at six metres out. THE DRAWBRIDGE REACH IS SHALLOWER: the
+        # committed terrain gives 0.76-0.88 m six metres off the south bank
+        # between E +560 and E +700, and where the traced bank also carries a
+        # step across a frontage, one corner of a straight 18 m deck ends up
+        # nearer the bank than its foot is and shallower still. Refusing here,
+        # with the sounding in the reason, puts that on the record in writing
+        # instead of leaving a browser assertion to fail after the fact. THE
+        # DEPTH FIELD ITSELF IS NOT THIS LAYER'S TO CHANGE and is untouched by
+        # this run: it comes out of generators/terrain_gen.py from the reach
+        # beds and channel profile in terrain_spec.json.
+        if min(depths) < MIN_DEPTH_M:
+            refused.append({"structure_id": sid, "why": (
+                f"the modelled channel gives only {min(depths):.2f} m of water at "
+                f"its face, under the {MIN_DEPTH_M:.2f} m this layer requires of a "
+                "working landing. Its frontage IS reached by the traced bank; what "
+                "refuses it is a sounding and not a gap in the trace. The dock "
+                "statement stands and the landing is not drawn.")})
+            continue                                             # clause 5b
+
         wharves.append({
             "structure_id": sid,
             "name": sc.get("name"),
@@ -291,6 +551,14 @@ def build_record() -> tuple[list, list]:
             "bank": bank["name"],
             "bank_confidence": bank["confidence"],
             "bank_sources": bank["sources"],
+            # WHICH TRACING WINDOW this particular deck stands on. The bank is
+            # two windows of one sheet joined at a seam they agree on to under a
+            # metre, and a reader should not have to work out from an easting
+            # which of the two carried any given landing.
+            "bank_traced_in": (bank["members"][0]["id"]
+                               if len(bank["members"]) == 1
+                               or bank["base_s0"] <= foot_s <= bank["base_s0"] + bank["base_len"]
+                               else bank["members"][1]["id"]),
             "bank_foot_local_enu_m": [_round(foot[0]), _round(foot[1])],
             "bank_tangent": [_round(tangent[0], 4), _round(tangent[1], 4)],
             "waterward_normal": [_round(nx, 4), _round(ny, 4)],
@@ -306,10 +574,10 @@ def build_record() -> tuple[list, list]:
 
     wharves.sort(key=lambda w: w["structure_id"])
     refused.sort(key=lambda r: r["structure_id"])
-    return wharves, refused
+    return wharves, refused, banks
 
 
-def record(wharves: list, refused: list) -> dict:
+def record(wharves: list, refused: list, banks: list) -> dict:
     return {
         "_doc": (
             "The town's river wharves and landings — a plank deck on timber "
@@ -340,6 +608,40 @@ def record(wharves: list, refused: list) -> dict:
             "construction (data/datum.json § vertical)."
         ),
         "counts": {"wharves": len(wharves), "refused": len(refused)},
+        "bank_runs": {
+            "note": (
+                "THE BANK THIS LAYER STANDS ITS DECKS ON, AND WHERE EVERY METRE "
+                "OF IT WAS TRACED. It is not one polyline but two tracing windows "
+                "of one sheet — the Wright 1834 survey — joined at a seam the two "
+                "windows agree on to under a metre. tools/trace_river.py works a "
+                "1120 px window centred on the forks, so the bank polylines in "
+                "river.geojson stop at local E +390: that is where the WINDOW "
+                "closed, not where the bank did. tools/trace_shoreline.py picks "
+                "the same waterline up off the same sheet at E +314 and carries "
+                "it east past the Dearborn drawbridge (E +699) to the lake. "
+                "NOTHING IS EXTENDED BY EYE AND NOTHING NEW IS TRACED HERE: the "
+                "composition is the one terrain_spec.json already declares in "
+                "shore_runs and generators/terrain_gen.py already measures a "
+                "division's waterline with. Until T-0106 this layer read only the "
+                "first window, believed the south bank ended 309 m short of the "
+                "drawbridge, and refused three stated landings for standing "
+                "beyond a trace that was there all along. The forks run is taken "
+                "WHOLE — no committed vertex dropped, moved or resampled — and "
+                "only the harbour-reach vertices beyond its terminal foot are "
+                "appended, so the overlap is corroboration and never geometry."
+            ),
+            "runs": [{
+                "division": b["id"],
+                "confidence": b["confidence"],
+                "sources": b["sources"],
+                "traced_windows": b["members"],
+                "seam": b["seam"],
+                "vertices": len(b["points"]),
+                "length_m": _round(_run_length(b["points"]), 1),
+                "local_e_range_m": [_round(min(p[0] for p in b["points"]), 1),
+                                    _round(max(p[0] for p in b["points"]), 1)],
+            } for b in banks],
+        },
         "existence": {
             "value": True,
             "confidence": "reconstructed",
@@ -395,16 +697,17 @@ def record(wharves: list, refused: list) -> dict:
                 "confidence": "reconstructed",
                 "note": (
                     "INVENTED. The deck's face stands 6.0 m beyond the traced 1834 "
-                    "bank line. No source gives the reach of either dock. What "
-                    "bounds it is the bed this project has already modelled: at "
-                    "6 m out the channel gives about 1.2 m of water at both sites "
-                    "(measured per wharf in depth_at_face_m), so a lighter or a "
-                    "scow lies at the face and a loaded lake schooner does not — "
-                    "the restrained reading, chosen because a longer deck would be "
-                    "a claim about the river trade's tonnage as well as about the "
-                    "dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED so that what "
-                    "the invented reach implies is on the record and not in "
-                    "somebody's head."
+                    "bank line. No source gives the reach of any of these docks. "
+                    "What bounds it is the bed this project has already modelled: "
+                    f"at 6 m out the channel gives {_depth_span(wharves)}, so a "
+                    "lighter or a scow lies at the face and a loaded lake schooner "
+                    "does not — the restrained reading, chosen because a longer "
+                    "deck would be a claim about the river trade's tonnage as well "
+                    "as about the dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED "
+                    "so that what the invented reach implies is on the record and "
+                    "not in somebody's head, and the span is recomputed from the "
+                    "committed heightfield every time this record is derived so it "
+                    "cannot go stale behind a new landing."
                 ),
             },
             "heel_in_m": {
@@ -532,8 +835,8 @@ def main() -> int:
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
     args = ap.parse_args()
-    wharves, refused = build_record()
-    text = json.dumps(record(wharves, refused), indent=2, ensure_ascii=False) + "\n"
+    wharves, refused, banks = build_record()
+    text = json.dumps(record(wharves, refused, banks), indent=2, ensure_ascii=False) + "\n"
     if args.check:
         if not OUT.exists():
             print(f"WHARF DRIFT\n  - {OUT.relative_to(ROOT)} is missing")
