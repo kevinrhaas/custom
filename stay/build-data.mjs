@@ -163,6 +163,8 @@ const DATA = {
     'Confirm dates, the bed layout and the real holiday rate with the host or manager before counting on any of it. ' +
     'Prices are whatever the source published — often a shoulder-season nightly rate or a range, not a Christmas-week quote, which will usually be higher. ' +
     'Bed counts are the listing’s own; where a host never published a layout the card says so rather than guessing. ' +
+    'A house missing from a dated search is not proof it is booked: a holiday minimum-stay rule can exclude a place from an eight-night December search while it sits empty, ' +
+    'and several Cedar Key houses that appear in a November search but not a December one are exactly this ambiguous — worth a phone call, not a write-off. ' +
     'Ranking is built for this group specifically — nine people, five or six rooms, three kings and no more. ' +
     'Houses outside that shape are kept but ranked down rather than deleted, so a bigger place is still one filter away. ' +
     'Pins sit at each listing’s stated area, not its street address. Fit ranking is our own opinion, not the platforms’.',
