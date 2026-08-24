@@ -6177,6 +6177,18 @@ banks down to the deck at both ends (a cut — L147), so the `outside_modelled_g
 this entry's last sentence asked for — the South Division slough cut into the terrain epoch, so
 the bridge spans water rather than solid ground — is still not done, and is re-filed as ticket
 T-0109 rather than left implied here.
+**Evidence since, 2026-08-24:** **the last sentence above is answered and this entry is closed
+out for good.** T-0005 carved dossier zone 14 — the South Division's drain — into
+`e1834_harbor_cut` on 2026-08-20, and T-0118 straightened its last reach to run square beneath
+this deck the same day. Neither was aimed at this entry or at T-0109; both are why it can be
+retired. Measured on the committed heightfield by `tools/measure_slough_crossing.py`: **3.30 m
+of open water in the deck's 8.00 m span** (41 %), **0.53 m deep**, **2.35 m of dry abutment seat
+at each end**, and the channel unbroken from the planks to the river. The one clause above that
+did NOT come true is the diagnosis about levels — this entry expected the archetype to anchor
+the deck to a river surface 0.15–0.45 m below the slough's own, and the drain as built backs up
+into the river as one pool at one surface, so the offset never arose. What is still invented is
+what it always was: the depth and the width of a watercourse whose route is documented and whose
+section nobody recorded. That invention lives in **L149** with the swales, not here.
 
 
 ### L40 — Two thirds of the town stands on ground that has not been built

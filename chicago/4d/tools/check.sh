@@ -203,6 +203,16 @@ step "nothing unpermitted stands on refused ground, and the refusal still reache
 step "every deferred in-town water feature is dated against the scene" \
   python3 tools/measure_intown_water.py --gate
 
+# The fifth of those features is no longer deferred, and the thing that most obviously
+# depends on it had nobody watching it. The Slough Log Bridge is the only built thing in
+# this dataset that exists to answer the terrain, and for two months it stood over dry
+# prairie because zone 14 was not carved (T-0109). T-0005 carved it and T-0118 put its
+# last reach square under this deck — both aimed elsewhere, neither gated here, and a
+# swale line nudged a metre west would put the crossing back over solid ground with every
+# other check still green. This joins the bridge's placement to the ground beneath it.
+step "the slough crossing spans open water, and nothing else stands in the cut" \
+  python3 tools/measure_slough_crossing.py --gate
+
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
 # a PERSON placed, so the answer arrived as anecdotes — three buildings in T-A9, two more

@@ -7835,6 +7835,16 @@ over open prairie. That is not an argument for cutting a conjectural channel —
 still unsourced and parcel (c) still owns them — it is the proof that the four were never on one
 footing, which one shared phrase implied they were.
 
+**Since, 2026-08-24 (T-0109).** Zone 14 came off the deferral list: **T-0005** carved it on
+2026-08-20 and **T-0118** ran its last reach square under the crossing the same day, at the
+reconstructed tier with depth and width declared invented in **L149**. So the bridge over nothing is
+gone, and the reading is now taken rather than argued — `tools/measure_slough_crossing.py`, on the
+committed heightfield: **3.30 m of open water in an 8.00 m span, 0.53 m deep, 2.35 m of dry abutment
+seat at each end, the reach to the river unbroken, nothing else rooted in the cut.** The other three
+zones stand exactly as this box left them, and the correspondence gate above still holds them: 15,
+16 and 17 remain deferred and dated, and zone 14 no longer appears in the dating record because the
+spec no longer defers it.
+
 **On the pond itself the answer is `not_established`, and deliberately not "it was not there".**
 One document, `chicagology_prefire273`, carries both sides. FOR: its slough sentence has the stream
 draining *"the pond and the marsh extending up Wells Street"* as a live feature of a drainage
