@@ -53,6 +53,21 @@ shipped: structures 346 interior / 74 silhouette, trees 188 / 134, ground 125 / 
 layer's outline against the rest of the scene and cannot see the boundary between two surfaces
 OF that layer, so 94–98 % of an "interior" count is internal silhouette.
 
+**The whole table reproduced digit for digit on a second independent run** — 1,056 / 25, 4,843 /
+124, 2,482 / 0, 7,310 / 0, every per-layer row identical.
+
+**And a finding about the ownership test at EYE HEIGHT, recorded rather than smoothed over.**
+`measure_tie_class.mjs`'s footprint partition had only ever been run aerially, and its own header
+warns that *"a large overlap between two layers is a bug in this tool rather than a finding"*. At
+`from_above` the overlaps are small — 0, 5, 9, 0, 63, 310 of 1,056 — and the partition is sound.
+At `lake_market` the ground's footprint overlaps the streets' on **2,436 of its 2,607** flickering
+pixels, because the street layer is a skin on the heightfield and hiding either one moves the same
+pixels. Every pixel is still counted exactly once, but which of those two layers gets the credit
+is decided by the LAYERS list order rather than by occlusion, so the eye-height per-layer split
+between `streets` and `ground` should not be quoted as ownership. **No conclusion here rests on
+it**: the frame totals — flicker, hard flips, worst Δ, mean Δ — are attribution-free, and the
+structures and trees rows carry no meaningful overlap at either station.
+
 **THE COST, and the honest limit of it.** Timed over the ten scene anchors the release gate
 walks, clock held, `setAnimationLoop(null)`, a one-pixel `readPixels` fence per frame, 12 timed
 frames after 6 warm-up, A/B/A: **24,457 → 43,283 ms summed, +56.4 % against a mean-of-A

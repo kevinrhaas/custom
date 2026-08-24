@@ -9618,6 +9618,16 @@ Render-quality control was timed rather than asserted: at pixel ratio 1 with MSA
 6–9 % CHEAPER than the ratio-1.5 frame that shipped before, still antialiased. `light` stays the
 floor.
 
+**A second finding about the ownership instrument, from running it at EYE HEIGHT for the first
+time.** The footprint partition had only ever been read from the air, and its own header warns
+that a large overlap between two layers is a bug in the tool rather than a finding. Aerially the
+overlaps are 0–310 of 1,056 and the partition is sound. At `lake_market` the ground's footprint
+overlaps the streets' on **2,436 of its 2,607** flickering pixels — the street layer is a skin ON
+the heightfield, so hiding either moves the same pixels. Each pixel is still counted once, but
+the credit between those two layers falls to the LAYERS list order rather than to occlusion, so
+the eye-height `streets`/`ground` split is not an ownership claim. Nothing above depends on it:
+the frame totals are attribution-free.
+
 **A premise corrected on the way.** T-0157 held that a phone is "capped at 1.5 rather than 2".
 The boot-time `coarse ? 1.5 : 2` is superseded by `setPixelRatio(Math.min(dpr, hud.settings
 .quality))` and `quality` defaults to 1.5 on BOTH platforms — so the phone reports 1.5 at dpr 2

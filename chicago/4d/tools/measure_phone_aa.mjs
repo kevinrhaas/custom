@@ -65,6 +65,19 @@
  * 94–98 % of an "interior" count is internal silhouette. The column is exact
  * about ownership and loose about cause, and is quoted on those terms.
  *
+ * AND ONE MORE CAVEAT, MEASURED HERE AND NOT PREVIOUSLY KNOWN, because the
+ * ownership test had only ever been run from the air. `measure_tie_class.mjs`
+ * warns that a large overlap between two layers is a bug in the tool rather
+ * than a finding, and at `from_above` the overlaps are small (0–310 of 1,056).
+ * At EYE HEIGHT they are not: at `lake_market` the ground's footprint overlaps
+ * the streets' on 2,436 of its 2,607 flickering pixels, because the street
+ * layer is a skin ON the heightfield and hiding either moves the same pixels.
+ * Every pixel is still counted exactly once — `owned` is what splits — but
+ * which of those two layers gets the credit is decided by the LAYERS list order
+ * rather than by occlusion. So the eye-height `streets`/`ground` split is not
+ * an ownership claim. The frame totals below are attribution-free and are what
+ * this ticket's conclusion rests on.
+ *
  * AND A SEVERITY COLUMN, because a pixel count alone cannot answer this ticket.
  * MSAA does not make an edge stop resampling — the camera really did move — it
  * makes the resample PARTIAL. So the count of pixels that changed at all can
