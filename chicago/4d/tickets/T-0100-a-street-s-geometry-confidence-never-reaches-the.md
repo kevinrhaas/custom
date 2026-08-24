@@ -1,7 +1,7 @@
 ---
 id: T-0100
 title: A street's geometry confidence never reaches the picture
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 357
 claimed_by: run 8/24/2026, 7:26:15 AM CT
 blocked_on: null
 needs_bake: false
