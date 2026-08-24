@@ -516,8 +516,8 @@
         "note": "cream fat face on Venetian red"
       },
       "anchor_local_enu_m": [
-        557.5,
-        1.72
+        557.55,
+        -4.89
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 3.28,
@@ -534,20 +534,20 @@
       "frontage_m": 12.19,
       "ground_quad_local_enu_m": [
         [
-          551.4,
-          -5.9
+          551.45,
+          -12.51
         ],
         [
-          563.59,
-          -5.9
+          563.64,
+          -12.51
         ],
         [
-          563.59,
-          1.72
+          563.64,
+          -4.89
         ],
         [
-          551.4,
-          1.72
+          551.45,
+          -4.89
         ]
       ]
     },
@@ -1020,8 +1020,8 @@
         "note": "white block letters on a Prussian-blue ground"
       },
       "anchor_local_enu_m": [
-        595.8,
-        1.72
+        595.69,
+        -5.08
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
@@ -1039,20 +1039,20 @@
       "frontage_m": 12.19,
       "ground_quad_local_enu_m": [
         [
-          588.0,
-          -5.9
+          587.89,
+          -12.71
         ],
         [
-          600.19,
-          -5.9
+          600.08,
+          -12.71
         ],
         [
-          600.19,
-          1.72
+          600.08,
+          -5.08
         ],
         [
-          588.0,
-          1.72
+          587.89,
+          -5.08
         ]
       ]
     },
@@ -1166,8 +1166,8 @@
         "note": "gilt letters in an oval field on a dark green ground"
       },
       "anchor_local_enu_m": [
-        263.4,
-        1.02
+        239.08,
+        -7.58
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
@@ -1184,20 +1184,20 @@
       "frontage_m": 12.19,
       "ground_quad_local_enu_m": [
         [
-          257.3,
-          -6.6
+          232.98,
+          -15.2
         ],
         [
-          269.49,
-          -6.6
+          245.18,
+          -15.2
         ],
         [
-          269.49,
-          1.02
+          245.18,
+          -7.58
         ],
         [
-          257.3,
-          1.02
+          232.98,
+          -7.58
         ]
       ]
     },
@@ -1306,8 +1306,8 @@
         "note": "gilt letters on a black ground, shaded — the commonest painted board of the trade"
       },
       "anchor_local_enu_m": [
-        682.37,
-        0.99
+        682.25,
+        -6.49
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.2,
@@ -1324,20 +1324,20 @@
       "frontage_m": 9.14,
       "ground_quad_local_enu_m": [
         [
-          677.8,
-          -4.5
+          677.68,
+          -11.98
         ],
         [
-          686.94,
-          -4.5
+          686.82,
+          -11.98
         ],
         [
-          686.94,
-          0.99
+          686.82,
+          -6.49
         ],
         [
-          677.8,
-          0.99
+          677.68,
+          -6.49
         ]
       ]
     },
@@ -1819,8 +1819,8 @@
         "note": "cream on a Brunswick-green ground"
       },
       "anchor_local_enu_m": [
-        434.2,
-        0.12
+        434.25,
+        -5.89
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 3.45,
@@ -1837,20 +1837,20 @@
       "frontage_m": 12.19,
       "ground_quad_local_enu_m": [
         [
-          428.1,
-          -7.5
+          428.15,
+          -13.51
         ],
         [
-          440.29,
-          -7.5
+          440.34,
+          -13.51
         ],
         [
-          440.29,
-          0.12
+          440.34,
+          -5.89
         ],
         [
-          428.1,
-          0.12
+          428.15,
+          -5.89
         ]
       ]
     },

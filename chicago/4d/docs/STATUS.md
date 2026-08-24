@@ -1,5 +1,94 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
+
+**T-0127 was SPLIT rather than closed, and the split is the honest part of this run.** Its first
+clause turned out to be two pieces and its second turned out not to fit at all — both measured, not
+guessed.
+
+### 1. Eleven documented South Water buildings stood in the platted roadway. Six are out of it.
+
+The ticket named ten; measuring the walk band found **eleven** — `temple_building` is the eleventh
+and no one had listed it. Every one was placed in August 2026 by reading the MODERN West Wacker
+Drive centreline out of OpenStreetMap and stepping 12.2 m south of it *"so the north face sits on
+the South Water frontage"*; several of the notes already warn that *"modern Wacker Drive is not
+exactly the 1835 South Water Street line"*. Against this project's committed centreline, offset by
+half the committed 80 ft corridor, they stood **4.51 to 8.17 m out past the platted frontage**.
+
+The repair is each record's OWN method run against this project's OWN line: translated along the
+face's inward normal until the north wall stands 1.50 m back — the margin
+`generate_block_infill.py` gives every reconstructed unit on these faces. No along-street position
+moved and no confidence grade moved; re-deriving a coordinate from better geometry is not new
+evidence. `jh_kinzie_forwarding_store` also moved 24.39 m WEST along the same face, in its own
+argument's stated direction (wharfage at the west end), so it seats on lot 0 beside the Temple
+Building rather than on lot 2, which the roof schedule had dealt.
+
+| | before | after |
+|---|---:|---:|
+| South Water walk | 237.1 m in **9** pieces | **303.9 m in 8** |
+| longest single run | 47.0 m | **96.5 m** — a whole block face |
+| `blk_south_water_franklin` north | 25.4 m + 45.7 m | **one 96.5 m run** |
+| record total | 1,147.7 m / 21 runs / 86 decks | **1,214.5 m / 20 runs / 89 decks** |
+| corridor laps, town-wide | 29 | **26** |
+| deepest lap of the six | 5.98 m | **0.21 m**, and on a cross street |
+
+### 2. FIVE COULD NOT MOVE, and that is the finding this run owes
+
+Reconciled onto the plat a building SEATS on a platted lot — and for `h_jones_store` (lot 0),
+`carpenter_south_water_store` (lot 2), `pruyne_kimball_drugstore` (lot 2), `chicago_american_office`
+(lot 0) and `frederick_thomas_shop` (lot 2) that lot is one the 665-roof schedule has already dealt
+to the anonymous South Water frontage run. `generate_block_infill.py` refuses to deal a roof to a
+lot that already carries one — *"the schedule's headroom is the block's, not the lot's"* — and each
+of the five was tried ALONE to prove it was its own blocker, not a side effect. Nothing overlaps
+geometrically; the runs stand at the east end of their faces, clear of all five. The conflict is
+entitlement, not ground. **Each is refused IN WRITING, per store**, in its own `position.note` and
+in the street-edge record's `refused`, with the metres it would move and the lot it would take —
+the ticket's own second acceptance route, taken deliberately. **T-0189** owns the untangling.
+
+The wider finding: eleven documented South Water buildings occupied NO platted lot at all, because
+they stood in the roadway. Putting six on the plat moved exactly one number in the derived 665
+programme — `blk_south_water_clark.standing_roofs` 9 → 10.
+
+### 3. The shadow lever T-0115 costed, implemented and measured
+
+`applyShadowTier` reads a per-mesh `userData.groundHugging` flag instead of overwriting `castShadow`
+on every furniture mesh; `frontage.js` sets it on the plank-walk and board-crossing chunks (35 of
+them, 2.9 km of boards). The street-lining fences moved to their own mesh — **one per covered
+street, not one per fenced face**, which is the whole draw-call cost: 3 meshes in the colour pass
+and 3 in the shadow pass against 20 ground-hugging chunks leaving the shadow pass. Per-face standing
+meshes would have cost 26 of each and made the trade a loss. The smoke's *"the light tier draws no
+furniture into the shadow map"* check now COUNTS the exempt meshes — `casting === meshes -
+groundHugging`, with `groundHugging > 0` asserted — instead of assuming every furniture mesh casts.
+
+### 4. THE SECOND STREET TIER DOES NOT FIT, AND THE TICKET'S COST ASSUMPTION IS REFUTED
+
+T-0127 said the shadow lever was *"what the cross streets need"*. It is not. Randolph Street was
+generated, published and read at the T-0135 stand set, at the axial stand:
+
+| tier | dev | with Randolph | ceiling | headroom before | after |
+|---|---:|---:|---:|---:|---:|
+| desktop `full` | 1,378,984 | **1,497,588** | 1,400,000 | 21,016 | **−97,588** |
+| desktop `balanced` | 1,205,762 | **1,355,638** | 1,210,000 | **4,238** | **−145,638** |
+| desktop `light` | 812,753 | 869,731 | 1,050,000 | 237,247 | 180,269 |
+| mobile `full` | 1,337,059 | **1,452,419** | 1,400,000 | 62,941 | **−52,419** |
+| mobile `balanced` | 1,165,921 | **1,316,605** | 1,210,000 | 44,079 | **−106,605** |
+
+Exempting the street fences from the shadow map as well is worth a MEASURED **44,110** triangles
+and 3 draw calls — the layer's five remaining shadow casters at that stand, turned off and read —
+against a 145,638 shortfall. **The binding fact is not Randolph:** `balanced` stood **4,238 triangles —
+0.35 %** — inside its ceiling BEFORE this parcel, and `full` at 1.5 %, where T-0135 set both on
+2026-08-22 with *"about 6 % of headroom over the measured worst"*. Two days of content ate it. No
+street tier of any size fits today. Raising a ceiling a fifth time to fit one reading is what
+T-0135 named as the bug, and T-0127's acceptance asks for a LEVER to pay, not a re-budget — so
+Randolph was taken back out and the reading is written into the generator, into the record's own
+`refused`, into T-0115's ledger and into **T-0190**, which owns the choice. The cross streets were
+measured too: **34 faces, 3,562.8 m**, and they need `_edge_faces` to enumerate a block's EAST and
+WEST faces as well.
+
+**Also measured and deliberately left alone:** Lake Street's own four intruders
+(`dole_warehouse_south` 1.28 m, `st_marys_church` 3.03 m, `first_presbyterian_church` 1.90 m,
+`old_bank_building` 1.62 m into the walk band) — out of this ticket's lane, and
+`first_presbyterian_church`'s repair would collide with `physicians_office`.
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
 **The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`

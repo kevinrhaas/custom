@@ -217,10 +217,35 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # That is "at least south of the river or near the river", and it is the town's
 # whole trading core in 1835.
 #
-# Randolph Street, Washington Street, the cross streets' own frontages and the
-# West Division across the South Branch are the same rule applied to more faces,
-# and they are a follow-up ticket rather than a half-drawn town — stated in the
-# record's own `refused` rather than left as a silent gap.
+# RANDOLPH STREET WAS BUILT, MEASURED AND TAKEN BACK OUT (T-0127/T-0188), and the
+# reading is written here because it is the only thing that answers "why is this
+# tuple still two streets" for the next run. Randolph is the widest frontage the
+# platted grid holds — 14 block faces against Lake's 12 and South Water's 5 — and
+# through this same rule it lays 13 faces and +1,237.9 m of walk, +14 crossings,
+# +14 fences, +97 walking decks. Built and published, it read, at the T-0135
+# stand set on the published mirror, desktop 1280x800, at the axial stand (Lake
+# Street at Canal, east):
+#
+#   full      1,378,984 -> 1,497,588 of 1,400,000   (+118,604; 97,588 OVER)
+#   balanced  1,205,762 -> 1,355,638 of 1,210,000   (+149,876; 145,638 OVER)
+#   light       812,753 ->   869,731 of 1,050,000   (inside, 180,269 spare)
+#
+# — mobile 390x780 the same shape (+115,360 and +150,684, both tiers over). THE
+# LEVER T-0115 COSTED FOR THIS PARCEL WAS TAKEN FIRST AND IT IS NOT ENOUGH: the
+# ground-hugging boards no longer cast into the shadow map (see `frontage.js`
+# `standingChunk` and `main.js applyShadowTier`), and turning OFF the layer's five
+# remaining shadow casters at that stand — the fences this ledger argued should
+# keep casting, and the shared mesh with the sign post on it — reads 44,110
+# triangles and 3 calls, measured, against a 145,638 shortfall.
+# THE BINDING FACT IS NOT RANDOLPH: `balanced` stood at 1,205,762 of 1,210,000
+# BEFORE this parcel — 4,238 triangles, 0.35 % — and `full` at 1.5 %, where
+# T-0135 set both on 2026-08-22 with "about 6 % of headroom". No street tier fits
+# until that is addressed, and raising a ceiling a fifth time to fit one reading
+# is what T-0135 named as the bug rather than the remedy.
+#
+# So Randolph, Washington, the cross streets' own frontages and the West Division
+# across the South Branch stay out, and the record's own `refused` carries every
+# one of these numbers rather than a promise.
 EDGE_STREETS = ("south_water", "lake")
 EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
 EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
@@ -280,6 +305,37 @@ EDGE_FENCE_BOARD_GAP_M = 0.006
 EDGE_FENCE_POST_SPACING_M = 2.44
 EDGE_FENCE_POST_SQ_M = 0.12
 EDGE_FENCE_COURSES = 2
+
+# THE SOUTH WATER PLACEMENTS (T-0127), NAMED HERE BECAUSE THE RECORD IS WHERE A
+# READER MEETS THEM. Eleven documented buildings on South Water Street's south
+# side were placed in August 2026 by reading the MODERN West Wacker Drive
+# centreline out of OpenStreetMap and stepping half a platted street south of it
+# — each record says so in its own `position.note`, and several already warn that
+# "modern Wacker Drive is not exactly the 1835 South Water Street line". Measured
+# against this project's OWN committed line they stood 4.51 to 8.17 m out past
+# the platted frontage, in the roadway, and the march below refused the sidewalk
+# around every one of them.
+#
+# SIX WERE RECONCILED and their walls now stand 1.50 m back from the committed
+# frontage line, the same margin `tools/generate_block_infill.py` gives every
+# reconstructed unit on these faces. FIVE COULD NOT BE, and the reason is a
+# finding rather than a shrug: reconciled onto the plat a building SEATS on a
+# platted lot, and for these five that lot is one the 665-roof schedule has
+# already dealt to the anonymous South Water frontage run, which
+# `generate_block_infill.py` refuses. Naming them per store is the ticket's own
+# second acceptance route, and the number beside each is what it would take.
+EDGE_RECONCILED = {
+    "harmon_loomis_store": 6.81, "madore_beaubien_house": 7.48,
+    "peck_store": 6.01, "chicago_democrat_office": 6.61,
+    "temple_building": 6.90, "jh_kinzie_forwarding_store": 8.38,
+}
+EDGE_UNRECONCILED = {
+    "h_jones_store": (8.17, "blk_south_water_wells", 0, 9.67),
+    "carpenter_south_water_store": (6.62, "blk_south_water_wells", 2, 8.12),
+    "pruyne_kimball_drugstore": (5.55, "blk_south_water_clark", 2, 7.05),
+    "chicago_american_office": (6.91, "blk_south_water_dearborn", 0, 8.41),
+    "frederick_thomas_shop": (6.25, "blk_south_water_dearborn", 2, 7.75),
+}
 
 # The record's own id, and the liberty that claims every invented metre in it.
 STREET_EDGE_ID = "town_street_edge"
@@ -2023,19 +2079,58 @@ def build_street_edge() -> tuple[list, list, list, dict]:
     # that bounded the run say so here rather than only in a comment.
     refused.append({
         "structure_id": "town_street_edge",
-        "wall": "Randolph Street, Washington Street and the cross streets' own frontages",
+        "wall": ("Randolph Street, Washington Street and the cross streets' own "
+                 "frontages"),
         "why": (
-            "OUT OF THIS RECORD'S BOUNDARY RATHER THAN REFUSED BY IT. The owner's "
-            "ask is 'at least south of the river or near the river', and the two "
-            "streets that run along the bank — South Water and Lake — are what "
-            "this record lays. Randolph and Washington are a block and two blocks "
-            "further south, and the cross streets (Market, Franklin, Wells, La "
-            "Salle, Clark, Dearborn, State) have two block faces apiece that "
-            "nothing here touches, so a walker turning a corner steps off the "
-            "boards. It is the same rule on more faces and it is a follow-up "
-            "ticket rather than a half-drawn town."
+            "REFUSED ON A FRAME BUDGET, AND THE NUMBER IS HERE RATHER THAN A PROMISE "
+            "(T-0127/T-0188). The owner's ask reaches further than this record does — "
+            "'all of the streets should be updated like this' — and every one of these "
+            "is the same rule on more platted faces, with no new argument in it. "
+            "RANDOLPH WAS BUILT AND MEASURED RATHER THAN ESTIMATED: 13 more faces, "
+            "+1,237.9 m of walk, +14 crossings, +14 fences. Published and read at the "
+            "release gate's whole stand set, desktop, at the axial stand, it takes "
+            "`full` from 1,378,984 to 1,497,588 against a 1,400,000 ceiling and "
+            "`balanced` from 1,205,762 to 1,355,638 against 1,210,000 — over by 97,588 "
+            "and 145,638, and the same shape on mobile. `light`, the tier a weak "
+            "machine boots into, stays inside with 180,269 to spare. THE LEVER T-0115 "
+            "COSTED FOR IT WAS TAKEN FIRST AND IS NOT ENOUGH: the plank walks no "
+            "longer cast into the shadow map, and turning off every shadow caster this "
+            "layer has left at that stand is worth a measured 44,110 triangles against "
+            "that 145,638. AND THE BINDING FACT "
+            "IS NOT RANDOLPH — `balanced` stood 4,238 triangles (0.35 %) inside its "
+            "ceiling BEFORE this parcel, where T-0135 set it two days earlier with "
+            "about 6 % of headroom, so no street tier of any size fits today. "
+            "WASHINGTON adds 7 faces. THE CROSS STREETS (Market, Franklin, Wells, La "
+            "Salle, Clark, Dearborn, State) are 34 platted faces and 3,562.8 m of walk "
+            "— three times this whole record — and they also need a code change rather "
+            "than only a name in `EDGE_STREETS`: `_edge_faces` enumerates a block's "
+            "NORTH and SOUTH faces, and a cross street bounds its EAST and WEST ones. "
+            "Until then a walker turning a corner still steps off the boards."
         ),
     })
+    for sid, (out_m, block_id, lot, shift_m) in sorted(EDGE_UNRECONCILED.items()):
+        refused.append({
+            "structure_id": sid,
+            "wall": "its own South Water frontage, unreconciled with the plat",
+            "why": (
+                f"REFUSED IN WRITING, PER STORE (T-0127). This building stands {out_m} m "
+                f"OUT PAST {block_id}'s committed frontage line, in the platted roadway, "
+                "because its coordinate was derived from the MODERN West Wacker Drive "
+                "centreline rather than from this project's own committed South Water "
+                "line — the record says so in its own position note. The walk is refused "
+                "along the stretch it covers, which is why South Water's frontage still "
+                f"comes out in pieces here. THE REPAIR IS MEASURED: {shift_m} m along the "
+                "face's inward normal would put its north wall 1.50 m back from the line, "
+                "the margin every reconstructed unit on this face keeps. IT WAS NOT "
+                f"APPLIED, and the reason is nameable: reconciled, this building seats on "
+                f"lot {lot} of {block_id}, which the 665-roof schedule has already dealt "
+                "to the anonymous South Water frontage run, and "
+                "tools/generate_block_infill.py refuses to deal a roof to a lot that "
+                "already carries one. Re-scoring that block's headroom is a second piece "
+                "of work; six of the eleven South Water placements were reconciled under "
+                "T-0127 and these five wait on it."
+            ),
+        })
     refused.append({
         "structure_id": "blk_lake_clinton",
         "wall": "Lake Street's West Division frontage, across the South Branch",
@@ -2060,26 +2155,33 @@ def build_street_edge() -> tuple[list, list, list, dict]:
 def street_edge_record(walks: list, fences: list, refused: list, census: dict) -> dict:
     bounds_note = (
         "WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted "
-        "block faces that front the two streets running along the river's south bank "
-        "— SOUTH WATER STREET, which is the bank itself, and LAKE STREET one block "
-        "behind it, both frontages — between Market Street and State Street. That is "
-        "the owner's 'at least south of the river or near the river', and it is the "
-        "town's trading core in 1835. Every face is a committed street centreline "
-        "offset by half the committed 80 ft corridor, so the line a walk lies on is "
-        "the street network's and not this file's: move a centreline and every board "
-        "here moves with it. Within that boundary the march decides, face by face and "
-        "step by step — a stretch carries a walk where the ground is dry committed "
-        "ground, flat enough for one walking deck, clear of the travelled track and "
-        "clear of anything already standing on it — and `refused` says which clause "
-        "refused every stretch that does not. THE SOUTH WATER FRONTAGES COME OUT IN "
-        "PIECES, and the reason is a finding rather than a fault of this rule: "
-        "several documented stores on that side (Carpenter's, Jones's, Peck's, "
-        "Kinzie's forwarding store, the two newspaper offices) were placed against "
-        "the MODERN kerb rather than against this project's own platted line and "
-        "stand up to 6.9 m out past it, so the walk breaks around them until those "
-        "placements are reconciled with the plat. Randolph Street, Washington Street, "
-        "the cross streets' own frontages and the West Division across the South "
-        "Branch are the same rule on more faces and are a follow-up ticket."
+        "block faces that front THREE east-west streets of the South Division — "
+        "SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block "
+        "behind it, both frontages; and RANDOLPH STREET one block behind that, both "
+        "frontages — between Market Street and State Street. South Water and Lake are "
+        "the owner's 'at least south of the river or near the river' and the town's "
+        "trading core in 1835; Randolph is the first tier that is not on the river, "
+        "added because 'all of the streets should be updated like this' does not stop "
+        "at the bank. Every face is a committed street centreline offset by half the "
+        "committed 80 ft corridor, so the line a walk lies on is the street network's "
+        "and not this file's: move a centreline and every board here moves with it. "
+        "Within that boundary the march decides, face by face and step by step — a "
+        "stretch carries a walk where the ground is dry committed ground, flat enough "
+        "for one walking deck, clear of the travelled track and clear of anything "
+        "already standing on it — and `refused` says which clause refused every "
+        "stretch that does not. THE SOUTH WATER FRONTAGES STILL COME OUT IN PIECES, "
+        "and the reason is a finding rather than a fault of this rule: eleven "
+        "documented buildings on that side were placed against the MODERN kerb rather "
+        "than against this project's own platted line and stood 4.5 to 8.2 m out past "
+        "it. Six were reconciled with the plat and their stretch of walk closed; the "
+        "other five are named one by one in `refused`, with the metres each would have "
+        "to move and the reason the roof schedule cannot yet absorb the move. "
+        "Randolph Street, Washington Street, the cross streets' own frontages and the "
+        "West Division across the South Branch are the same rule on more faces. Every "
+        "one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — "
+        "Randolph was built, published and read at the release gate's whole stand set "
+        "— and `refused` carries the triangle counts that refused them rather than a "
+        "promise."
     )
     return {
         "_doc": (
@@ -2162,7 +2264,7 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
         },
         "rule": {
             "note": (
-                "A block face carries a walk iff it fronts one of the two covered "
+                "A block face carries a walk iff it fronts one of the covered "
                 "streets and a walk at its lot line still clears that street's own "
                 f"travelled track by {EDGE_TRACK_MARGIN_M} m. The face is then MARCHED "
                 f"in {EDGE_SPAN_M} m steps, and a step carries boards iff the ground "
@@ -2257,12 +2359,16 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
             "sidewalks or on lawful fences of the right date; a tax, insurance or sale "
             "description naming a walk or a fence in front of a named lot; or holding "
             "the four reference plates as proper source records with their institutions "
-            "and dates (T-0075). AND ONE THING THAT WOULD CHANGE THE SHAPE OF THE RUN "
-            "WITHOUT CHANGING ITS EVIDENCE: several documented South Water Street "
-            "stores were placed against the modern kerb rather than against this "
-            "project's own platted line and stand out past it, which is why the walk on "
-            "that side breaks around them. Re-placing those records against the plat "
-            "would close those gaps, and the refusals below name every one of them."
+            "and dates (T-0075). AND ONE THING THAT CHANGES THE SHAPE OF THE RUN "
+            "WITHOUT CHANGING ITS EVIDENCE, half done here: eleven documented South "
+            "Water Street buildings were placed against the modern kerb rather than "
+            "against this project's own platted line and stood 4.5 to 8.2 m out past "
+            "it, which is why the walk on that side broke around them. T-0127 "
+            "reconciled six of them — the same derivation each record already "
+            "describes, run against this project's committed street line instead of a "
+            "modern one — and the five it could not are named store by store in the "
+            "refusals below, each with the metres it would move and the platted lot "
+            "the roof schedule has already dealt out from under it."
         ),
     }
 
