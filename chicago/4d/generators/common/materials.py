@@ -376,7 +376,7 @@ DARK = Finish(
          "the midpoint, 0.575, taken to the 0.60 the town already speaks rather "
          "than to a newly invented 0.575 that would mean the same thing 0.025 away "
          "(buildings.js: nothing in the dataset uses two roughness values closer "
-         "than 0.01). §2.3; docs/LIBERTIES.md L179. NOT EVERY USE IS AN OPENING and "
+         "than 0.01). §2.3; docs/LIBERTIES.md L181. NOT EVERY USE IS AN OPENING and "
          "this row does not pretend otherwise: the fort's sun-dial plate and its "
          "lighthouse lantern drum, the log dwelling's iron hinge straps and the "
          "stockade's two shut gate leaves ride on the same slot. All are dark and "

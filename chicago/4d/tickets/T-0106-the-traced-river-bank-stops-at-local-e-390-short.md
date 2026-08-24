@@ -1,7 +1,7 @@
 ---
 id: T-0106
 title: The traced river bank stops at local E 390, short of the drawbridge reach
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-24
+pr: 366
+claimed_by: run 8/24/2026, 10:48:16 AM CT
 blocked_on: null
 needs_bake: false
 ---
