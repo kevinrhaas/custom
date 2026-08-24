@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 1:56 PM",
+  "generated_ct": "Aug 24, 2026, 2:39 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3264,6 +3264,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 54
+    },
+    {
+      "id": "T-0201",
+      "title": "A critic baseline standing on the public square",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 55
     }
   ]
 }
