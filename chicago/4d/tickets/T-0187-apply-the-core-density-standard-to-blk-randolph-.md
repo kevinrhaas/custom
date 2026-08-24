@@ -1,5 +1,5 @@
 ---
-id: T-0184
+id: T-0187
 title: Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 state: open
 epic: TOWN

@@ -154,6 +154,17 @@ step "the frontage works re-derive from the rule that chose their walls" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# T-0163. The plat grid is the cartesian product of its east-west rows and north-south
+# columns, so it proposes blocks that never existed, and it reports every refusal the same
+# way — as a distance. A distance cannot tell "the centreline has not been carried there
+# yet" from "these two streets never met", and both were being scheduled as headroom
+# waiting on the same owed trace. This carries each refused block's named street toward it
+# and samples the run against the committed heightfield: a run that crosses water is two
+# banks, not a gap. It is what keeps the classification in the programme honest, so a block
+# cannot quietly go back to promising roofs that no street control can deliver.
+step "a refused block is short of control, or was never a block" \
+  python3 tools/measure_block_gating.py --check
+
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
 # possible place to carry a stale number is the panel a visitor sees before anything
@@ -375,6 +386,24 @@ step "no body of far timber stands in the river" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
+
+# T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
+# have not been since the archetype was written: the committed master carries
+# 0.312 m of sharpened head on every one of its 768 posts, 8.4 % of the picket,
+# and a visitor at the north wall sees the sawtooth. The claim had never been
+# measured, which is how it reached a ticket. This holds the property so it cannot
+# be re-filed off a screenshot, and so a flattened archetype or a decimation pass
+# that ate the apexes would be named here rather than found by eye.
+#
+# THE PLATE HALF OF THAT FILE DOES NOT GATE, deliberately. p4_0 is a tier-5
+# retrospective lithograph; it may inform a value and it may refute a claim made
+# about itself, and it may not hold a build red. Run the file without --gate for
+# the plate reading, which also needs Pillow and skips without it.
+step "the fort's stockade is still pointed" \
+  python3 tools/measure_picket_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_picket_plate.py --self-test
 
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.

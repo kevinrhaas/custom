@@ -131,10 +131,36 @@ def block_capacity(lots: int) -> int:
     principal = lots * ROW_UNITS_PER_LOT
     return principal + round(principal * ANCILLARY_PER_PRINCIPAL)
 
-# The two blocks the plat module refuses for want of street control, as against the three
-# it refuses because what lies between the streets is the river. Named here so that a
-# block which starts being emitted stops being scheduled as gated.
-STREET_CONTROL_OMISSIONS = {"blk_south_water_market", "blk_south_water_clinton"}
+# The blocks the plat module refuses for want of street control, as against the three it
+# refuses because what lies between the streets is the river. Named here so that a block
+# which starts being emitted stops being scheduled as gated.
+#
+# T-0163 SPLIT THIS SET IN TWO, because a refusal distance cannot tell two very different
+# cases apart and both were being counted as headroom waiting on the same owed trace.
+# `tools/measure_block_gating.py` carries each named street toward the block it is supposed
+# to bound and samples the run against the committed heightfield:
+#
+#   blk_south_water_market    south_water  25 m away,   0 of 5 samples wet
+#   blk_south_water_clinton   south_water 328 m away,  20 of 66 samples wet
+#
+# The second is the South Branch. South Water Street is a SOUTH-BANK street; the block
+# between Clinton and Canal is on the West Side, two blocks back from the west bank. No
+# street control will ever join them, because the row does not run that far and never did:
+# the west bank's own riverside street was WEST WATER STREET, and this project already
+# records — on `data/traces/street_control.json` and as the largest residual uncertainty on
+# green_tree_tavern and goss_cobb_saddlery — that West Water ran along the bank with modern
+# Canal Street a full block (~146 m) further west. So West Water does not bound this block
+# either. The pairing is an artifact of the grid being a CARTESIAN PRODUCT of rows and
+# columns, and scheduling its 27 roofs against "street control ROADMAP S9 records as owed"
+# promised ground that no trace can deliver. Those roofs go back to the West Division
+# balance, where "waiting on coverage" is a statement the ledger can actually make.
+STREET_CONTROL_OMISSIONS = {"blk_south_water_market"}
+
+# Refused because the two streets never met, not because a centreline is short. Kept in the
+# schedule rather than dropped, so the block is visibly answered instead of silently absent
+# — and so the day a source shows the row really did run that far, this is where the claim
+# is argued rather than re-discovered.
+NEVER_PLATTED_OMISSIONS = {"blk_south_water_clinton"}
 
 # The West recipe's own instantiation block: "do not emit structure records or meshes for
 # any placement with centre E < -300 m until the heightfield, collision surface,
@@ -485,9 +511,44 @@ def programme_document():
             "principal_room": rooms[0], "ancillary_room": rooms[1],
             "headroom": rooms[0] + rooms[1],
             "state": "gated",
-            "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed",
+            "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed. "
+                          "Measured dry: tools/measure_block_gating.py carries South Water "
+                          "toward this block over 25 m of ground with no wet sample on it, "
+                          "so this one really is waiting on a trace. What is missing is one "
+                          "control point at Market and South Water: the committed set holds "
+                          "four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and "
+                          "NONE anywhere on South Water, and Market's centreline stops at "
+                          "its single control point where Lake crosses it.",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
                          "block itself is not generated, so it has no measured geometry",
+        })
+    # A block the grid proposed and the ground refuses. It keeps its bounded_by and its
+    # place in the schedule so the answer is visible, and it keeps NO headroom: its roofs
+    # are not waiting on street control, so they go back to the district balance with the
+    # rest of the ground this project has not reached. See NEVER_PLATTED_OMISSIONS above
+    # for the evidence and tools/measure_block_gating.py for the measurement that gates it.
+    for block in grid["omitted"]:
+        if block["id"] not in NEVER_PLATTED_OMISSIONS:
+            continue
+        units.append({
+            "id": block["id"], "kind": "platted_block_never_platted",
+            "district": "west" if block["id"].endswith("clinton") else "south",
+            "bounded_by": block["bounded_by"], "lots": 0,
+            "capacity_roofs": 0, "standing_roofs": 0, "free_lots": 0,
+            "principal_room": 0, "ancillary_room": 0, "headroom": 0,
+            "state": "not_a_block",
+            "waiting_on": "nothing — this pairing is an artifact of the plat grid being a "
+                          "cartesian product of its east-west rows and north-south columns. "
+                          "South Water Street is a south-bank street and this block is on "
+                          "the West Side: measured, the two are 328 m apart with 20 of 66 "
+                          "samples between them on water, which is the South Branch. The "
+                          "west bank's own riverside street was West Water Street, and this "
+                          "dataset records (data/traces/street_control.json, and as the "
+                          "largest residual uncertainty on green_tree_tavern and "
+                          "goss_cobb_saddlery) that West Water ran along the bank with "
+                          "modern Canal Street a full block further west — so West Water "
+                          "does not bound this block either. No street control can join "
+                          "them; the roofs are in this district's balance.",
         })
     # The West recipe's own remainder, derived two ways and required to agree: its 55
     # reviewed placements less the ones already emitted as records, and the placements its
