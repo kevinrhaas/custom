@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 262, title: 'The town stops shimmering on a phone', kind: 'fix', ts: '2026-08-24T16:50:31.185Z', date: 'Aug 24, 2026, 11:50 AM CT',
+    items: [
+      'Walk down Lake Street on a phone and look at the edges \u2014 roof lines, window frames, a fence rail, tree crowns against the sky. They used to crawl and sparkle as you moved. Every edge is now sampled four times over and blended, on a phone exactly as on a desktop.',
+      'A phone had been drawing the whole town with that switched off, since the first day this walkthrough existed. A desktop never was. Nobody had measured what a phone loses by it, because every measurement of these shimmering edges had been taken on a desktop \u2014 where it was already on.',
+      'Measured on a phone-sized screen by nudging the camera two millimetres and counting what changes, the headline number says the opposite of the truth: the count of pixels that move goes UP, from 1,056 to 2,482 seen from the air. Read alone it would have condemned this change. It rises because without sampling a pixel on an edge flips from one surface to the other outright, and with it the pixel merely shifts. More pixels move, and each one moves far less.',
+      'The count that matters is of pixels that flip whole. There were 25 of those from the air and 124 standing at Lake and Market. There are now none \u2014 not fewer, none \u2014 and the worst single pixel in the frame moves about a quarter as far as it did.',
+      'It is not free, and the cost is not hidden. Across the ten viewpoints the release test walks, a frame costs roughly half again what it did on the machine that does the measuring \u2014 which paints every pixel on its processor with no graphics card at all, and so pays the very worst price there is for this. What a real phone pays was not measured and is not claimed.',
+      'If a phone struggles with it, the Render quality control in Settings already covers it, and that was timed too rather than assumed: dropped to Low, a frame comes back about a tenth CHEAPER than the town cost before today, with the edges still sampled. The level of scene detail a phone starts at has not changed.',
+    ] },
   { v: 261, title: 'Dearborn\u2019s worn track now reaches the drawbridge', kind: 'fix', ts: '2026-08-24T14:26:31.859Z', date: 'Aug 24, 2026, 9:26 AM CT',
     items: [
       'Stand at the foot of Dearborn Street on South Water and look north at the drawbridge. The dirt track climbed the earth ramp and then simply gave out on bare grass, a couple of metres short of the plank causeway. It runs the whole way now and meets the boards.',

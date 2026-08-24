@@ -9577,6 +9577,53 @@ against the house behind it. Those are silhouettes too, and 94–98 % of the "in
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
 
+### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
+
+Everything above was measured at 1280×800 on the DESKTOP boot, which has had `antialias: true`
+since Milestone 0. `main.js` read `antialias: !coarse`, so the device that was NOT measured was
+the only one drawing these edges with no multisampling at all — and mobile is a release gate here.
+
+**First, the instrument could not see a phone.** `measure_tie_class.mjs`'s `TIE_VIEWPORT=mobile`
+opens a plain `newPage({ viewport })`; `prefersTouch()` asks for `(pointer: coarse)` or
+`maxTouchPoints > 0 && innerWidth < 900`, and **a viewport satisfies neither**. So the existing
+"mobile" reading was the desktop renderer in a narrow window — `antialias: true`, `detail: full`,
+the pointer-lock backend. Same shape as T-0018's finding against `SWARD_VIEWPORT=mobile`.
+`tools/measure_phone_aa.mjs` uses a context with `hasTouch` and `deviceScaleFactor: 2`, the
+release gate's own, and prints `pointer: coarse`, the resolved detail level and the renderer's
+pixel ratio so the boot cannot be assumed.
+
+**And then the obvious number pointed the wrong way.** 390×780, published mirror, 2 mm nudge,
+shadow map off by R-BUG6(a)'s repaired control, control 0 px and return 0 px:
+
+```
+station        flicker px        hard flips (delta >= 64 of 255)   worst d    mean d
+from_above     1056 -> 2482            25 -> 0                   105 -> 28  15.6 -> 6.8
+lake_market    4843 -> 7310           124 -> 0                   140 -> 37  14.8 -> 6.4
+```
+
+**The flicker COUNT rises 135 % aerial and 51 % at eye height when MSAA is switched on** — the
+count this file quotes in three separate boxes as the measure of the defect. It rises because a
+partial resample touches more pixels than a whole flip does. What collapses is severity: all 149
+pixels that were swapping surface outright stop, and the worst single pixel moves about a quarter
+as far. **A parcel that had measured only the count would have refused the fix on its own
+evidence**, which is R-BUG2's lesson arriving from a new direction: measure before choosing, and
+be ready for the prime suspect's own metric to be the misleading one.
+
+**Cost, and its limit.** Ten scene anchors, clock held, `readPixels` fence, A/B/A: **+56.4 %**
+of a frame (24,457 → 43,283 ms), the runner drifting +26.3 % between its own two A passes; two
+four-station repeats read +49.3 % and +71.6 %. Drawn through SwiftShader, a SOFTWARE rasteriser
+resolving every sample on the CPU — the harshest witness there is for this change, so the figure
+is an upper bound. **Phone-silicon cost is not measured and not claimed.** The visitor's existing
+Render-quality control was timed rather than asserted: at pixel ratio 1 with MSAA the frame is
+6–9 % CHEAPER than the ratio-1.5 frame that shipped before, still antialiased. `light` stays the
+floor.
+
+**A premise corrected on the way.** T-0157 held that a phone is "capped at 1.5 rather than 2".
+The boot-time `coarse ? 1.5 : 2` is superseded by `setPixelRatio(Math.min(dpr, hud.settings
+.quality))` and `quality` defaults to 1.5 on BOTH platforms — so the phone reports 1.5 at dpr 2
+and the desktop 1.0 at dpr 1. The phone was already supersampling more than the desktop; what it
+lacked was MSAA.
+
 ### R-BUG6(b) — the parcel as written, kept for the record
 
 **The suspect list is one shorter and the remainder is measured**: with the shadow map switched

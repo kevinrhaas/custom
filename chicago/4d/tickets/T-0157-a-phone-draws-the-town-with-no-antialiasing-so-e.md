@@ -1,7 +1,7 @@
 ---
 id: T-0157
 title: A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/24/2026, 9:55:50 AM CT
 blocked_on: null
 needs_bake: false
 ---
