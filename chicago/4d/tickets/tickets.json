@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 9:35 AM",
+  "generated_ct": "Aug 24, 2026, 9:39 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3173,6 +3173,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 55
+    },
+    {
+      "id": "T-0186",
+      "title": "LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }

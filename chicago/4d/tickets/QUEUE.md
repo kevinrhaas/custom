@@ -87,3 +87,4 @@ T-0183 — The Market and South Water corner needs one control point, and the no
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
+T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
