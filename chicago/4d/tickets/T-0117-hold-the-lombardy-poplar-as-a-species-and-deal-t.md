@@ -1,7 +1,7 @@
 ---
 id: T-0117
 title: Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-20
-closed: null
-pr: null
+closed: 2026-08-24
+pr: 374
 claimed_by: run 8/24/2026, 11:04:56 AM CT
 blocked_on: null
 needs_bake: false
