@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 267, title: 'The log bridge\u2019s card catches up with the water under it', kind: 'fix', ts: '2026-08-24T16:54:23.267Z', date: 'Aug 24, 2026, 11:54 AM CT',
+    items: [
+      'Walk east along South Water Street to the log crossing at the foot of State Street and open its card. Until today it told you the stream beneath your feet was not modelled, and that you were looking at a bridge over nothing. There has been water under that deck since the twentieth of August. The card now says what the crossing actually spans.',
+      'The figures on it are measured rather than asserted: three and three tenths metres of standing water in an eight metre span, half a metre deep, the deck\u2019s underside half a metre clear of it, two and a third metres of dry bank holding each end, and the drain running unbroken from the planks down to the river.',
+      'Nothing in the town moved. The bridge, the stream, its banks, the graded street on either side and the plank footway over the deck are all exactly where they were. The ground was carved on the twentieth of August by two pieces of work aimed at the sloughs themselves, and neither went back to the crossing\u2019s own record to tell it.',
+      'That gap is the thing worth naming. A watercourse is a line in one file and a bridge is a placement in another, and nothing joined them: nudge that line a metre west and the crossing would go back to spanning dry prairie with every other check still green. A new check takes the reading on every build. It was tried by moving the deck off the water, by standing an abutment in the stream, by walking the drain up the dry bank and by planting a fence in the channel, and it names all four.',
+      'What is still invented here is what it always was, and the note admitting it is unchanged: the drain\u2019s route is documented and nobody ever wrote down how wide or how deep it ran.',
+    ] },
   { v: 266, title: 'Fort Dearborn\u2019s gates are shut', kind: 'fix', ts: '2026-08-24T16:31:43.067Z', date: 'Aug 24, 2026, 11:31 AM CT',
     items: [
       'Stand on the north bank of the river and look across at the fort. Its north gate is shut. Until now there was a slot of daylight straight through it, a quarter of the gateway wide, and you could see the grass of the parade and a building beyond it through a gate that is meant to be barred. Both gates were like it, north and south.',

@@ -1,5 +1,63 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0109: the slough crossing spans water, and its card finally says so
+
+**The acceptance, stated before working, because the ticket carried none.** *Standing at the Water
+Street crossing, the log bridge spans open water: the watercourse is cut under the deck, its
+abutments land on dry bank, the channel runs unbroken from the deck to the river, nothing else is
+rooted in the cut, and the crossing's own record — the card a visitor opens — says what it spans in
+figures read off the committed heightfield rather than saying the stream is not modelled.* Not
+weakened at any point; the fifth clause is the one that was still open.
+
+**The first four clauses were already true, and this run did not make them true.** Measured on the
+committed heightfield before anything was edited: along the deck's own 8.00 m span the ground falls
+below the 1835 water surface for **3.30 m** (41 %), deepest **−0.53 m**, leaving **2.35 m** of dry
+abutment seat at each end; **277 of 277** samples down `state_slough_mouth` from the deck to the
+river stand below the water surface; the nearest other structure is **45.8 m** away and no walk,
+board fence or street centreline in the scene is rooted on ground below the water surface anywhere
+in the crossing's reach — the only thing over the water is the river walk's crossing footway, which
+declares `rides: slough_log_bridge`. **T-0005 carved dossier zone 14 on 2026-08-20 (changelog v204)
+and T-0118 straightened its last reach square under this deck the same day (v210)**, both filed
+after T-0109 and neither aimed at it. The ticket had been describing a state the tree had left —
+the T-0151 shape, and the second time this queue has produced one.
+
+**What was actually still wrong is what a visitor reads.** `data/structures/slough_log_bridge.json`
+told the card, in three places, that the slough "IS NOT MODELLED IN THIS TERRAIN EPOCH", that "this
+bridge crosses nothing a visitor can see", and that "a visitor sees a bridge over nothing" — the
+`research_note` verbatim on the card, the `position_note` behind its *why*. `docs/LIBERTIES.md` L69
+said the same in the Evidence panel. One of them also pointed at a `ground_contact` block T-0046 had
+already removed. All three passages now carry the measurement, plus the one prediction that did NOT
+come true: L69 expected the archetype to anchor the deck to a river surface 0.15–0.45 m below the
+slough's own, and the drain as built backs into the river as one pool at one surface. The footprint
+note's counterfactual — *"if the slough ran 40 ft wide here the span is half what it should be"* —
+is replaced by the check it invited: the built carve is **6.0 m** across the top, the span was not
+resized, and it clears the carve by about a metre at each end.
+
+**And the joint nobody was watching.** `tools/measure_slough_crossing.py` joins the bridge's
+placement to the ground beneath it: it reads span, width, bearing, walk surface, stringer, plank and
+clearance out of the committed record, samples the heightfield along the deck's own axis at 0.05 m,
+and gates five things — open water under the deck, dry abutment seats, an unbroken reach to the
+river, the record's clearance against its own deck build-up, and nothing rooted in the cut that does
+not declare it rides the crossing. Wired into `tools/check.sh`. **Proved firing, four ways**: deck
+moved 12 m west → *"the deck spans SOLID GROUND"*; deck shifted 1.7 m → *"the deck's west end keeps
+0.25 m of dry seat"*; `clearance_m` hand-set to the branch bridges' 6 ft → *"its own deck stands
+0.500 m over the water"*; the drain's last vertex walked onto the dry bank → *"320 of 377 samples
+… stand above the water surface"*; and a probe fence in the channel → named by id. Tree restored
+clean after each. Upstream is deliberately **not** asserted: the record reads the July drain above
+its pool as a damp swale standing above the water, so a dry reading there is the claim.
+
+**Nothing in the scene moved, and the changelog says so.** No terrain change was available in any
+case — swale geometry is inside the terrain hash, so it costs a Blender bake this runner does not
+have; the notes added to `state_slough_mouth` are prose and are stripped from that hash, so they
+cost nothing.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. Smoke on the published mirror, mobile 390×780,
+**`SMOKE_STAGE=2`** — chosen because that is the stage the crossing is in, not stage 5–6: the river
+plank walk's block (T-0119) sits inside `stageOn(2)`, and it is the only place in the suite that
+asserts this crossing. **75 passed / 0 failed, zero page errors, 5 m 13 s**, including *"the walker
+stands on the planks over the water at the mouth"* (`isWater(809.4, 14.2)` mid-deck), *"the crossing
+reads as planks underfoot, and walks off onto the bank"*, and *"the river walk publishes its floor
+and registers its crossing deck"*.
 ## Shipped 2026-08-24 — T-0095: the fort's gates were open, and `p4_0` never drew the corner works
 
 Two findings. One is a defect in the scene and is fixed; the other refutes the ticket that asked
