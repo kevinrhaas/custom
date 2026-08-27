@@ -1,5 +1,44 @@
 # STATUS
 
+## Shipped — T-0054: 23 standing liberties compiled as settled, because Resolved was the last section
+
+**The count, measured rather than assumed.** The ticket said "every liberty appended since L111",
+seventeen of them. It is **23**, and they are not a range: of the **71** entries numbered L111 and
+above, **24** sit under `## Resolved` and one of those (L116, the sycamore drawn as an elm) genuinely
+belongs there. The other 47 were placed by hand in the right section by whoever wrote them. So the
+fault is intermittent — it catches whoever appends at the end of the file, which is what this
+document tells you to do — and it had reached **L181**, written three days ago. `data/liberties.json`
+compiled **34** entries `section: "resolved"`; **11** carry a `**Resolved:**` line saying what
+settled them.
+
+**Why it is not cosmetic.** `validate.py` exempts the Resolved section from the check that a claimed
+invention is *still* an invention — the exemption is what lets an append-only document survive its
+own data being corrected. **12 of the 65 exempted claim tokens were exempt by accident**: the four
+Lake-and-Clark roofs' footprints and positions (L144) and the four State Street and La Salle slough
+claims (L149, L150). Put back under the check, **all twelve pass** — every one is still an invention,
+which is exactly what makes the label a lie rather than a nuisance. On screen it was worse than the
+gate: ten building cards carried a scope chip reading *resolved* on a liberty that still stands,
+including the Western Hotel's wagon-yard fence (L127), which is standing in the town.
+
+**Fixed by moving the trap, not by patching around it.** `## Resolved` now sits **above** the
+per-subject register instead of below it, so appending at the end of the file — the operation the
+document mandates — lands where a new liberty belongs. No liberty text is edited and none is
+removed: the 23 stay exactly where they were written and the 11 settled entries move up. The
+compiled sections are now 3 standing / 167 per-subject / 11 resolved.
+
+**And the guard, because a reshaped file can be reshaped back.** `compile_liberties.py` now decides
+`resolved` from **two independent statements that must agree** — the section an entry sits under,
+and whether its own text carries the `**Resolved:**` line the section's preamble has always asked
+for. Either half alone is reported by id and fails `check.sh`; a misfiled entry compiles as
+`per_subject`, which is the reading that keeps its obligations. This is the T-0207 lesson used the
+other way round: *that* fault was invisible because two derivations of one source agreed, so the
+repair here is a second statement that is not derived from the first.
+
+**One deliberate change to what a visitor sees beyond the chips.** The derived file is now emitted
+grouped standing → per-subject → resolved, stable within each group, so the Evidence panel's order
+is a decision in the compiler rather than a side effect of where a section sits in a 7,800-line
+markdown file. The order on screen is the same order as before the reshuffle.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
