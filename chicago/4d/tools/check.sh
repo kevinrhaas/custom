@@ -503,8 +503,19 @@ step "datum re-derivation" \
 # states. LIBERTIES.md is append-only and is the source of truth; data/
 # liberties.json is derived and committed so the site needs no build step, which
 # only holds up if drift is a gate failure rather than a discovery.
+#
+# Since T-0054 it also asks WHICH SECTION each entry is in, from two independent
+# statements — the heading it sits under and the `**Resolved:**` line in its own
+# text — because `resolved` is the section validate.py stops checking. It used to
+# be the last section in a document whose one rule is that liberties are
+# APPENDED, so 23 entries landed in the exemption by doing what they were told,
+# and the drift check above could not see it: the markdown and the JSON agreed,
+# both reading the fault the same way (the T-0207 shape).
 step "liberties derived from docs/LIBERTIES.md" \
   python3 tools/compile_liberties.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_liberties.py --self-test
 
 # The renderer reads the sidecars and never the dataset, which only keeps the
 # walkthrough and the archive together if a record edited without a recompile is
