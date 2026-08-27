@@ -44,6 +44,54 @@ emergencies — but it is the reason to promote sooner rather than later.
 **And the exposure is fleet-wide.** Every app in the suite compiles or parses an authored file with
 a parser that recognises structure and ignores the rest — `js/changelog.js` above all. A marker in
 any of them rides the same path. Worth a sweep in polecat-platform.
+## Shipped 2026-08-24 — T-0200: the picket head is on the record, and the reason it was not was false
+
+**The reason was checked and it was wrong.** T-0094 shipped hours earlier with one named half
+undone, and gave two reasons. The first was measured and is right: `generators/mesh_inputs.py`
+hashes the resolved archetype parameters, so any new key under `form` restales the GLB. The second
+— *"and there is no Blender on this runner"* — was **assumed and false.** The pinned build was
+installed the whole time and matches `generators/blender.pin` exactly: **Blender 4.5.3 LTS** at
+`blender-4.5.3-linux-x64`. **That was the integrator's error, not the ticket author's finding.** It
+cost one deferred half and a liberty that had to withhold its own `Covers:` field for a day, and it
+is struck in place — in T-0094 and in the T-0094 passage below — rather than deleted. The other
+"no Blender" statements in this file describe earlier runs and were not touched, because they were
+not checked.
+
+**The half is done.** `fort_dearborn_palisade.picket_1816.form.picket_head_m` = **0.312 m**,
+`reconstructed`, with its own note; `picket_head_m` joins `palisade_params.CONSUMED` and
+`PalisadeParams` gains the field, so `picket_point_m` now reads the record when the record states
+a head and derives `min(width × 1.3, height × 0.18)` when it does not. The head is bounded as a
+**proportion** — 4 % to 50 % of the picket — because that is what it is: it is cut out of the
+height, so what decides whether the sawtooth reads is how much of the post it takes. The floor is
+the shipped gate's own `MIN_POINT_FRACTION`, so this module can never accept a value
+`measure_picket_plate.py --gate` would then refuse. A head stated on a **worm fence** is refused
+outright; that fence has no pickets.
+
+**Nothing moved, and it was proved rather than asserted.** The value was not typed in: the run
+asserted `params.picket_point_m == min(width × 1.3, height × 0.18)` before writing it
+(`0.24 × 1.3 = 0.312` exactly, in doubles). A **control** rebake with no change to anything
+reproduced the committed master byte-for-byte, so a byte difference afterwards would have meant
+something. After the change, both rebaked masters are again byte-for-byte the committed files, and
+the vertex comparison says the same thing directly: **21,728 positions, 0 moved, max displacement
+0.000000 mm**, with NORMAL, TEXCOORD_0, `_CONFIDENCE` and the index buffer identical.
+
+**What the bake cost:** two lines of `assets/manifest.json`. `fort_dearborn_palisade__picket_1816`
+`579cb33f…` → `dd0c84b8…`, and — **restaled too, and this is worth knowing** —
+`fort_dearborn_garrison_garden__fence_1816` `5d60352e…` → `1c92409e…`. The hash is taken over the
+resolved parameter OBJECT, and the new field is on the class both wall kinds resolve through, so a
+worm fence that states no head still hashes `picket_head_m: null` where it hashed nothing before.
+It was rebaked rather than left stale; 7,488 positions, 0 moved. The web derivatives regenerate
+byte-identically from the unchanged masters, so `assets/web/` is untouched.
+
+**L179 claims the attribute.** Its own last sentence said *"The day a `picket_head` attribute
+exists on the record, this entry claims it"* — it now carries
+`Covers: fort_dearborn_palisade.picket_1816.form.picket_head_m` and a `Revised:` field. The
+paragraph explaining why it withheld the field is kept verbatim: it was the right reading on the
+day.
+
+**What a visitor sees:** open the stockade's card and there is a line for the head of the picket —
+0.312 m under a `reconstructed` chip — where before the most conspicuous invention on the most
+recognisable building in the town lived only inside a Python property.
 
 ## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
 
@@ -658,10 +706,27 @@ build red.
 
 **Not done, and stated rather than skipped.** The acceptance also asked the record to carry the head
 as a **form value**. It cannot without a bake: `generators/mesh_inputs.py` hashes the resolved
-parameters, and any new key under `form` restales the GLB — verified, not assumed — and there is no
-Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate, and
-the form attribute is left for the run that has a bake. What the plate DOES say about the pickets —
-its rhythm is nearly three times coarser than the model's — is **T-0185**.
+parameters, and any new key under `form` restales the GLB — verified, not assumed — ~~and there is
+no Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate,
+and the form attribute is left for the run that has a bake.~~ What the plate DOES say about the
+pickets — its rhythm is nearly three times coarser than the model's — is **T-0185**.
+
+**CORRECTED 2026-08-24 (T-0200), and the strike-through above stays.** The unstruck half of that
+paragraph is true and was measured; the struck clause was **false** and was assumed: the pinned
+Blender 4.5.3 — the exact build `generators/blender.pin` names, `blender-4.5.3-linux-x64` — was
+installed on that runner the whole time, and nothing checked before the half was deferred. **That was the integrator's error,
+not the ticket author's finding**, and it is written down here rather than removed because this
+file is the honest narrative and an unflattering entry is the only kind worth keeping. The cost was
+one deferred half and a liberty that had to withhold its own `Covers:` field for a day. The half is
+now done: `form.picket_head_m` stands on the record at **0.312 m**, `reconstructed`, asserted equal
+to the derivation before it was written; the rebake came back **byte-for-byte identical**, 21,728
+vertices with none moved, and the only thing that changed is the manifest input hash
+(`579cb33f…` → `dd0c84b8…`). The garrison garden's worm fence restaled with it — the new parameter
+is on the shared class — was rebaked too, and is byte-identical as well.
+
+**Do not read this as a general correction.** Every OTHER "no Blender on this runner" in this file
+describes an earlier run and may well have been true of it; only T-0094's passage is corrected,
+because only T-0094's was checked.
 
 Evidence: `docs/evidence/t-0094-plate-vs-model.png`, `docs/evidence/t-0094-p4_0-stand.png`.
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
