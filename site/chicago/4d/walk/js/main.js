@@ -285,84 +285,51 @@ const DETAIL = {
   // and it is a separate ticket precisely so that the trim has to be measured
   // before the ceiling is allowed to follow it down. A ceiling lowered in the
   // same breath as the trim that justified it is a ceiling nobody checked.
-  // ── RE-BUDGETED 2026-08-27 ON THE OWNER'S DECISION, AND IT EXPIRES ──────────
+  // ── THE 2026-08-27 RAISE IS TAKEN BACK OUT, T-0229 ─────────────────────────
   //
-  // `full` and `balanced` are raised to clear a breach that is REAL but whose
-  // cause is measured and is NOT the town's content. Both numbers come back
-  // down when T-0223's first step lands. This is written here rather than in a
-  // ticket because the next person to read these constants is the one who needs
-  // to know they are provisional.
+  // For one day these two numbers read 1,425,000 and 1,260,000. They were
+  // raised on the owner's decision to clear a breach that was real and whose
+  // cause was measured and was NOT the town's content: `trees.js` submitted
+  // kilometre-wide quadrant meshes whole to a ±240 m shadow box, so the sun
+  // drew 180,100 triangles of timber it could not cast — 14.4 % of the worst
+  // frame, roughly four times the headroom either ceiling needed (T-0223's
+  // layer table). The raise was filed WITH an expiry TICKET rather than as a
+  // comment promising to be temporary, and this is that ticket closing.
   //
-  // THE TICKET NUMBER IN THIS BLOCK WAS WRONG WHEN IT WAS WRITTEN, and every
-  // reference in it said T-0209 until 2026-08-27. T-0209 is a FLORA ticket
-  // about how far the sward's bloom reaches; it has nothing to do with timber,
-  // shadows or this budget. The measurement, the layer table and the costed
-  // cull are T-0223. That matters here more than a citation usually does: this
-  // block is an EXPIRY, and an expiry pointed at the wrong ticket does not
-  // expire — it comes due when an unrelated ticket about flowers closes.
-  // T-0231 records how the number got in.
+  // T-0223 landed the cull: the near timber is chunked on a 120 m lattice and
+  // submitted as one batched multi-draw, so the sun's box and the view frustum
+  // both cull it per cell. Re-read afterwards on the published mirror with
+  // `tools/measure_detail_ceilings.mjs` — the instrument that reproduces the
+  // gate's own five-stand sweep to the triangle — at the WORST of T-0135's five
+  // stands, on the tree these constants ship in:
   //
-  // THE MEASUREMENT (T-0223, `tools/measure_stand_budget.mjs`, at the release
-  // smoke's own worst stand — Lake Street at Canal, east down the axis):
+  //              desktop 1280x800              mobile 390x780        here
+  //   full       1,252,519 (the forks)         1,145,025 (Lake)   1,400,000
+  //   balanced   1,083,932 (the forks)         1,020,396 (Lake)   1,210,000
+  //   light        702,212 (the forks)           649,224 (Lake)   1,050,000
   //
-  //   full      1,412,120 of 1,400,000   over by 12,120
-  //   balanced  1,252,802 of 1,210,000   over by 42,802
+  // So `full` comes home with 147,481 triangles clear and `balanced` with
+  // 126,068 — about 10 % of each ceiling. The raise had bought 12,880 at `full`,
+  // and T-0237 measured 91 % of that spent within twelve hours by content
+  // landing behind it: a ceiling raised to be temporary was consumed faster
+  // than the trim that was meant to retire it could land.
   //
-  //   trees     360,926 triangles drawn, of 181,900 the layer OWNS.
-  //             180,100 of that is the sun's pass over timber that lies
-  //             outside the +/-240 m shadow box — 14.4 % of the whole frame,
-  //             casting nothing any pixel of the shadow map can hold.
+  // THE WORST STAND MOVED WITH THE CULL, from Lake Street at Canal to the forks
+  // at Wolf Point, and that is the five-stand sweep earning its place. A
+  // one-camera instrument pointed down the axial street reads 1,206,923 at
+  // `full` here — 45,596 triangles short of the frame that actually costs the
+  // most, and it was the axial street that was the worst stand before the cull.
   //
-  // So the frame carries roughly FOUR TIMES the headroom either ceiling needs,
-  // in work the renderer should not be doing at all. trees.js builds the near
-  // timber as four quadrant meshes spanning kilometres, and a mesh whose
-  // bounding sphere merely touches the shadow box is submitted whole — there is
-  // nothing to cull per-mesh until the timber is chunked. That is why this is a
-  // raise today and not a trim: the trim is real work, not a flag.
+  // T-0229's escape clause was that if the cull recovered materially less than
+  // 180,100 these ceilings had to be re-argued from a fresh measurement rather
+  // than quietly kept at the raised numbers. It did not: both tiers land under
+  // the ORIGINAL figures at both viewports, so the original figures are what
+  // stand here and nothing in this table is provisional any more.
   //
-  // WHY RAISE AT ALL, since the content is not at fault: the nightly bake's
-  // desktop 3-4 leg is red on every branch until one of the two happens, so it
-  // reports nothing about the branch under test, and production cannot ship
-  // without a known breach. A red gate that is red for everyone is a gate
-  // nobody reads.
-  //
-  // THE NUMBERS: the measured worst stand plus ~0.6 % — the smallest step that
-  // clears the breach and leaves a normal parcel room, NOT a round number and
-  // NOT chosen to fit a particular record.
-  //
-  // WHEN THIS COMES OUT: T-0223 step one culls the timber from the sun's
-  // camera. At that point the worst stand should fall to roughly 1,232,000
-  // (full) and 1,072,000 (balanced) — comfortably under the ORIGINAL
-  // 1,400,000 / 1,210,000. Put them back. If the cull recovers materially less
-  // than 180,100, that is a finding and these numbers need re-arguing, not
-  // quietly keeping.
-  //
-  // This is the FIFTH re-basing of these ceilings. The count is the argument
-  // for T-0223, and it is recorded here so the sixth is harder to reach for.
-  //
-  // THE EXPIRY CONDITION IS MET, 2026-08-27 — T-0223 step one has landed and
-  // these two numbers are now dead weight. `trees.js` builds the near timber on
-  // a 120 m lattice submitted as one batched multi-draw, so the sun's box and
-  // the view frustum both cull it per cell. Re-read on the published mirror by
-  // `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands:
-  //
-  //             desktop 1280x800          mobile 390x780     ORIGINAL ceiling
-  //   full      1,252,519 (was 1,412,120)   1,145,025          1,400,000
-  //   balanced  1,083,932 (was 1,252,802)   1,020,396          1,210,000
-  //   light       702,212 (was   838,742)     649,224          1,050,000
-  //
-  //   draw calls 195 (was 204) at the worst stand, so the trim did NOT buy the
-  //   sun's pass with errands in the colour pass — which was the condition
-  //   T-0223 put on it.
-  //
-  // The block above predicted "roughly 1,232,000 (full) and 1,072,000
-  // (balanced)" and asked for a re-argument if the cull recovered materially
-  // less. It did not: it landed within 2 % of the prediction on both tiers, at
-  // both viewports, under both ORIGINAL numbers. TAKING THE RAISE BACK OUT IS
-  // T-0229 — it is left standing here only so that the removal is its own
-  // reviewable change with its own reading, which is the same reason T-0147
-  // exists apart from T-0150.
-  full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
+  // FIVE RE-BASINGS OF THESE CEILINGS ARE RECORDED ABOVE THIS LINE AND THIS IS
+  // THE FIRST ONE EVER GIVEN BACK. That is the count a sixth raise has to argue
+  // against, and it is now a count of five raises and one return.
+  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -423,9 +390,11 @@ const DETAIL = {
   // at 1,210,000 and the budget question lives entirely in T-0223, which orders
   // the trim first and the ceiling after. The tree stand this parcel adds ships
   // regardless; its own smoke leg is red on dev with or without it.
-  // Raised with `full` above, same reasoning, same expiry: measured 1,252,802
-  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0223.
-  balanced: { triangles: 1260000, shadowReachM: 240, furnitureCastsShadow: true,
+  // Raised with `full` above on 2026-08-27 and RETURNED WITH IT (T-0229): it
+  // read 1,260,000 for a day, on a worst stand of 1,252,802 that measured
+  // 1,083,932 once T-0223's cull landed. The reading, both viewports, is in the
+  // block above `full` rather than written out twice.
+  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },

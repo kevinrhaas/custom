@@ -1,7 +1,7 @@
 ---
 id: T-0229
 title: The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: T-0223
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 3:54:35 PM CT
 blocked_on: T-0223
 needs_bake: false
 ---

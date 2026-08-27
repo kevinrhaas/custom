@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 298, title: 'The quality ceilings come back down, as promised', kind: 'chore', ts: '2026-08-27T21:51:24.754Z', date: 'Aug 27, 2026, 4:51 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is the second half of a promise made in August, kept on the day the work that paid for it landed.',
+      'Each of the three quality settings has a ceiling: the most the town is allowed to cost to draw at that setting, measured from the five hardest places a visitor can stand. In August the town went over two of those ceilings \u2014 and the cause turned out not to be the town at all, but the sun being asked to draw a forest it could not cast a shadow from. Fixing that was real work rather than a switch, and in the meantime a check that is red for every change reports nothing about any of them. So the two ceilings were lifted just enough to clear the breach, with a note beside them saying exactly when they had to come back down.',
+      'That work has now landed \u2014 the trees were cut into cells so the sun can skip the ones it cannot reach, and the far patches of ground are handed to the graphics card in one piece where that is free. Both ceilings are back to what they were before the lift: 1,400,000 triangles at the full setting and 1,210,000 at balanced.',
+      'They come back with room to spare rather than by a hair. Re-measured at all five of those hard viewpoints, on a desktop screen and on a phone-sized one, the worst frame in the town costs 1,252,519 at the full setting and 1,083,932 at balanced \u2014 about a tenth of each ceiling left clear. The lightest setting, which was never lifted, keeps its 1,050,000 and uses 702,212 of it.',
+      'One thing worth recording: the hardest viewpoint MOVED. It used to be the long look east down Lake Street from Canal, and it is now the forks at Wolf Point, where there is open water and nothing to hide anything behind. Had the ceilings been checked from the old spot alone they would have been declared safe by a margin that no longer exists there.',
+      'The note promising the lift was temporary is gone from the code with it, replaced by what was actually measured. Five times these ceilings have been raised; this is the first time one has been given back.',
+    ] },
   { v: 297, title: 'The long view down Lake Street cost more work than it needed', kind: 'chore', ts: '2026-08-27T20:36:02.288Z', date: 'Aug 27, 2026, 3:36 PM CT',
     items: [
       'Nothing in the town looks different today, and that is the whole point of this one. The same buildings, the same fences, the same plank walks, the same boards on the same wagons \u2014 down to the last triangle, which is checked rather than claimed.',
