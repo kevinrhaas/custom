@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 12:20 PM",
+  "generated_ct": "Aug 27, 2026, 12:29 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3990,6 +3990,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 62
+    },
+    {
+      "id": "T-0236",
+      "title": "The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     }
   ]
 }
