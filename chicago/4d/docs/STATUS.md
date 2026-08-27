@@ -73,6 +73,126 @@ thirteen units are now log-walled, interleaved with the frame ones — a working
 than a uniform frame terrace. **What is still invented is unchanged and L182 says so**: that any of
 these buildings stood at all, which of them was of logs, and that they stood shoulder to shoulder.
 The plate supports the treatment; it cannot say which building was which.
+## Shipped — T-0034: the bloom had no target, but it had a CEILING, and the records were already over it
+
+**The ticket was "raise the bloom", and R-W4c(b1) had already taken away the bar.** The 4–6 %
+flower-load target is unsourced on one half and does not reproduce on the other; do not quote it.
+The owner ruled on the ticket rather than picking one of (b1)'s three routes: *"I think you can
+adjust that without source"* — the bloom may be tuned as a **reconstructed** value, bounded,
+declared, never promoted. So this run did not re-derive a target. It asked the other question the
+ticket's own title contains: **raising a number is only a raise if something downstream can carry
+it.**
+
+**The bar that governs the bloom is the lattice, and it is 0.346 forbs per square metre.**
+`forbShareOf` in `renderers/web/js/flora.js` is `min(1, density × cell² / perCell)` — four slots to
+a 3.4 m cell, one plant per slot, and not one plant more whatever a record says. On the build
+before this change, **six of ten forb layers already sat on that clamp** (ROADMAP K58, still open):
+for those, `density_per_ha` is a number the renderer cannot spend. K55 had already been bitten by
+exactly this — it multiplied `z10_settled_town`'s forb density and drew the same 146 plants.
+
+**And then nothing had to be invented, because the records already asked for more bloom than the
+lattice can draw.** Every abundance in `data/flora` is a *range* — 400–900 yellow coneflowers to the
+hectare — and the renderer had been reading its **midpoint**, a figure no source states, chosen
+silently, planting every hectare of the town as the average hectare. The forb stratum's slot count
+is now dealt off the **top** of each species' own recorded range instead (`stemsHigh` →
+`subsetOn().densityHigh` → `forbShare`):
+
+| community | midpoint sum | recorded top | share was | share now | raise |
+|---|---|---|---|---|---|
+| `z02_mesic_prairie` | 0.2800 /m² | **0.4080** | 0.809 | **1.000** | 1.236× |
+| `z01_wet_prairie` | 0.2760 | **0.4070** | 0.798 | **1.000** | 1.254× |
+| `z09_sand_prairie` | 0.0725 | **0.1140** | 0.210 | 0.329 | 1.572× |
+| the other seven | — | — | 1.000 / 0 | 1.000 / 0 | **none** |
+
+The mesic prairie's records sum to **0.408** where the lattice carries **0.346**, so **18 % of what
+the evidence asks for is clipped by a rendering constant**. No record changed and none was
+overwritten; the species lottery still runs on the midpoints, so the *mix* of the sward is
+identical and only the number of slots filled moved. It is `docs/LIBERTIES.md` **L182**,
+reconstructed tier, bounded by the records themselves: no species is planted denser than its own
+record's larger figure. The shrub stratum is deliberately excluded — a denser shrub layer is more
+bushes, not more bloom.
+
+**What a visitor sees.** At `prairie_west`, **206 forbs and 1,617 flower heads → 256 and 1,968**,
+for 8,191 more sward triangles; at `prairie_south`, 125 and 949 → 155 and 1,122. **And it is the
+last raise either prairie can be given** — both now read a share of 1.000 with no headroom left, so
+the next flower on that ground needs a different lattice and not a different number.
+
+**The instrument, and two readings that had to be wired for it.** `tools/measure_bloom_headroom.mjs`
+is new, committed and carries `--assert`. It drives the placer through its own entry points —
+`flora.update` with a synthetic camera, then `flora.stats` and `flora.communities()` — and asks the
+three ceilings between `density_per_ha` and a flower on the screen which of them binds. It needed
+`flora.stats.caps` (the ceiling beside each set's count) and `flora.forbLattice` (the lattice
+geometry the clamp is against), because both were inside the module and unreadable from outside:
+**a share sitting on its clamp had looked exactly like a share that was simply small.** It is not
+in `tools/check.sh` — it drives a browser — and is a measurement to be re-run and quoted, in the
+shape of `tools/measure_sward_draw.mjs`.
+
+**Two findings this run did not cause, both filed rather than fixed.**
+
+- **T-0208** — `flora-head-spike` in the settled town and `flora-head-dome` in the wet woods stand
+  at **820 of 820** and truncate silently: `maybeHead` stops pushing mid-plant when a set is full,
+  and nothing reports it. Measured across every community at four bearings, **on the build before
+  this raise as well as after**. The nine head sets share nine separate ceilings of 820 and the
+  aggregate is barely a fifth spent at the worst stand, so it is an allocation, not a budget.
+- **T-0209** — the head ring reaches **23.65 m** while the sward is carried to **175 m** as
+  aggregate cards that carry no head at all, so **bloom covers 1.8 % of the ground the sward
+  covers**. That is the real answer to "raise the bloom" and it is a DISTANCE, not a density: this
+  parcel spent the whole of the lattice's remaining 24 % and the frame past twenty-four metres did
+  not change by a pixel.
+
+**What was NOT done, deliberately.** No ceiling constant was raised. `TUNE.forb.cell`,
+`TUNE.forb.perCell` and `TUNE.cap.head` are exactly what they were — the room this run spent was
+room that already existed inside the records, and where it ran out the run says so and files the
+parcel rather than moving the number that was in the way. R-W4c(b1)'s route 3 — retiring the 4–6 %
+figure from the three documents that still quote it — is also not done here; it is a documentation
+sweep and this parcel is a prairie.
+## Shipped — T-0032: the town held 662 roofs, because three of the six civic slots counted nothing
+
+**The open half of T-I3, closed on the owner's delegated pick.** He ruled on 2026-08-17: *"close it
+at 665 or 662 — either is close."* It is **662**. T-I3(a) had already enumerated the town's public
+buildings and found three roofs — the log jail, the council house and the lighthouse, all three
+committed named records — against a family target of six. Route 2, re-typing the three spare slots
+into ordinary families, was refused for the reason T-I3(a) established: they were a count of
+nothing, not miscategorised real roofs, so re-typing would have invented three buildings on the
+strength of an arithmetic artifact.
+
+**Every candidate is settled against the dataset, not against the dossier.**
+`tools/measure_institutional_claims.py` now carries the civic ledger and re-derives it on every run
+of the gate: three **stood** (each an I3 entry in the physical-roof reconciliation crediting a
+roof); four came **later** — the court-house (fall 1835; a committed record the reconciliation
+credits none), the engine house (contracted 30 December 1835), the market house (1837), the custom
+house (Chicago was not a port of entry until 1846); two were **functions with no building of their
+own** — the United States Land Office, working four weeks before the scene date out of a room on
+Lake Street, and a town hall the corporation never built; and the estray pen **stood and was
+roofless**. The gate fails if the I3 target is not the number that stood — above it is a slot that
+counts nothing, below it is a documented roof with nothing to count against — and nine self-test
+cases break each assertion in memory to prove it fires.
+
+**The correction found a second fault in the same row, and this is the part worth keeping.** The
+inventory apportioned twelve institutional roofs as **south 10 / west 1 / north 1** while the named
+records stand **south 5 / west 1 / north 3**. Two authored views of the same aggregate — a family
+schedule and a district×group matrix — were never cross-referenced, so the schedule kept finding
+institutional headroom in the South Division that no evidence supports and none in the North where
+three of these buildings are. That is the T-I3(a) shape again: not a document disagreeing with the
+data, but the data disagreeing with itself in two files nothing read together. The row is now the
+census, and the gate holds it there.
+
+**What moved.** `roof_total` **665 → 662**; `principal_functional` **511 → 508** (all three phantom
+roofs were principal, so `ancillary` stays 154 and the programme's ratio becomes 154:508 — the block
+ceiling is unchanged at either ratio, checked rather than assumed); `family_targets.I3` **6 → 3**;
+`institutional_public` **12 → 9**, south 10 → 5 and north 1 → 3; the **south district target 370 →
+365** and the **north 150 → 152**. Downstream, `reconcile_665.py` re-derives 338 standing and **324
+remaining** (was 327), with **296** gated on coverage (was 299). **Every I3 slot has left the
+schedule** — one at `blk_lake_franklin`, one at `blk_south_water_market`, three in the South balance
+— so no block is short a roof because the schedule dealt it a family every generator refuses.
+
+**What a visitor sees.** The gate screen reads **338 buildings standing, of the 662 the town held**.
+Nothing in the scene moved: no building was added, removed, re-typed or re-dated, and the standing
+count is 338 exactly as it was.
+
+**What was deliberately not done.** The filename `1835_665_roof_programme.json` and the tool name
+`reconcile_665.py` **stay**, each carrying a line saying the number in the name is history; renaming
+them is churn the ruling does not require, and the live total is always `remaining.of_target`.
 ## Shipped — T-0023 + T-0189: the Randolph–Washington row stops inheriting South Water's rules
 
 **Two things the row was given by a street it does not stand on, at two layers of the same
@@ -7263,7 +7383,9 @@ district-group rows, rows into district targets, districts into `roof_total: 665
 `reconcile_665.py` asserts all three — so the three cannot simply be removed. The two exits are
 two different claims about the town (662 roofs, or three roofs that were not civic), the research
 settles neither, and choosing one would invent exactly the kind of aggregate this parcel just
-removed. **T-I3(b), blocked on the owner.** Also unmoved: `estray_pen`'s phase id still reads
+removed. **T-I3(b), blocked on the owner.** *(**CLOSED 2026-08-27 as ticket T-0032, route 1 —
+the total is 662. Read that entry at the top of this file before quoting any number in this
+paragraph.**)* Also unmoved: `estray_pen`'s phase id still reads
 `pen_1833` after its year was corrected to 1832, because a phase id is half of a baked asset's
 filename.
 

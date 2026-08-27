@@ -288,8 +288,20 @@ step "…and its own assertion still fires when broken" \
 # North, West and phase-one parcels ran before it existed and nothing had ever asked the
 # committed records. This asks all of them: absolute zero for I1 and I3, a ratchet at the
 # one anonymous I2 that L93 records rather than deletes.
-step "no anonymous roof claims to be a public building" \
+#
+# T-0032 CLOSED THE OTHER HALF, which had been open since T-I3: the I3 target was SIX and
+# the town's civic roofs are three, so three slots counted nothing and the schedule went on
+# dealing them to blocks where every generator refused them. The step now settles every
+# civic candidate against the committed dataset — a roof that stood, a building that came
+# later, a function that never had a building of its own — and holds the target and the
+# institutional district row to that ledger. It is the shape of fault this project has been
+# bitten by twice: the court-house stood in the scene for four days while another file
+# already credited it no roof, because nothing read the two together.
+step "no anonymous roof claims to be a public building, and the civic target is the ledger" \
   python3 tools/measure_institutional_claims.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_institutional_claims.py --self-test
 
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
