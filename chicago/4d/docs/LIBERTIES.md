@@ -8242,3 +8242,52 @@ line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store
 
 
 
+
+---
+
+### L188 — A boarding stair at each wharf's landward edge, because the deck stands proud of its own bank and nothing says how a man got up
+**Decision:** every one of the seven river wharves gets a **stair of plank treads at the middle of
+its landward edge** — 2.4 m across, 0.75 m of going per tread, and as many treads as the ground
+there needs for no single one to rise more than 0.30 m. It is drawn by
+`renderers/web/js/wharves.js` from the `boarding_stair_*` figures in
+`data/wharves/river_landings.json`, and each tread is published to the walker as a floor along
+with the deck itself (T-0058).
+
+**What forced it, measured rather than supposed.** The deck top is the GROUND'S own height along
+the landward edge, floored at the record's 0.90 m freeboard over the water so a working deck
+stands clear of its own river (L132). This terrain puts the bank at those seven heels between
+**0.12 m and 0.58 m**, so every deck stands **0.32 m to 0.78 m** proud of the ground it ties into,
+and the walkthrough's step-up rule is 0.35 m (`renderers/web/js/walker.js`, `WALK.stepUp`). Six of
+the seven landward edges were therefore unboardable at the moment they became walkable. A dock a
+visitor can walk ALONG and cannot get ONTO is a worse artifact than one they can only look at: the
+first reads as a bug in the model, the second reads as a wharf.
+
+**What is invented.** That there was a stair at all; that it was of plank; its width; its going;
+and the 0.30 m ceiling on a rise. No source describes the landward end of any Chicago river dock.
+What bounds each of them:
+
+- **A stair rather than a regrade.** The other honest answer is that the bank was filled up to the
+  deck, and that is a claim about the LAND — it would move the terrain record, and this project
+  does not move ground to make a walk work. A stair invents only timber this layer already draws.
+- **2.4 m across** is two men abreast with a barrel between them, which is what the deck is for.
+- **0.75 m of going** keeps the whole stair inside the 2.0 m the deck already ties back into the
+  bank plus a metre of approach, so it stands on ground the layer had already claimed.
+- **0.30 m of rise** is an ordinary stair rise and is under the walker's own 0.35 m rule with
+  margin. It is a CEILING, not a height: the stair divides whatever rise the terrain leaves it
+  into equal treads, so how many treads a site takes — one at Kinzie & Hunter's and at Robert
+  Kinzie's, two at the five South Water landings — is the heightfield's answer at load and is
+  authored nowhere.
+
+**What is NOT claimed.** No handrail, no stringer detail, no ramp, no gangway to a vessel; the
+`not_drawn` clause on the record still refuses all of that. Every stair vertex grades
+`reconstructed`, the same as the deck it climbs to — the size of these docks is invented and the
+way onto them is a weaker claim still.
+
+**How to resolve:** any description or plan of a Chicago river dock's landward end — a wharfage
+contract, a builder's account, a lien, or a legible pre-fire photograph of a surviving crib
+landing — would replace the invention with a treatment. Evidence that these banks were FILLED to
+deck level would remove the stair entirely and move the change into the terrain record instead.
+
+Related: **L132** (the docks themselves, invented in every dimension) · **L9** (a deck height
+authored beside a mesh instead of taken from it) · ticket **T-0058**.
+**Recorded:** 2026-08-27.

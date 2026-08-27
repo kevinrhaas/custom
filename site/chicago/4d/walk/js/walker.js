@@ -127,9 +127,10 @@ export function footprintsFrom(registry) {
 }
 
 /**
- * The surfaces a visitor may stand ON TOP OF, as opposed to the ground.
+ * The surfaces a visitor may stand ON TOP OF, as opposed to the ground, THAT THE
+ * STRUCTURE REGISTRY CARRIES.
  *
- * Today that means bridge decks and nothing else, and the dataset says so: the
+ * In the registry that means bridge decks and nothing else, and the dataset says so: the
  * sidecar carries `placement.walk_surface_m` — the height of the deck above the
  * structure's own anchor — and it is `null` on all 327 structures that are not a
  * crossing. The number is the generator's `deck_height_m`, carried through by
@@ -148,6 +149,14 @@ export function footprintsFrom(registry) {
  * job and not a calculation to keep a second copy of. Nothing in the dataset needs
  * it, and skipping is visible — the deck simply is not walkable — where guessing
  * would put a floating surface in the air.
+ *
+ * IT IS NOT THE ONLY SOURCE OF DECKS. The street edge's plank walks publish
+ * their own (T-0119), and since T-0058 so do the river wharves: a wharf stands
+ * over the water with no structure record at all, so it can carry neither a
+ * sidecar nor a `walk_surface_m`, and its layer hands over the deck it drew and
+ * every tread of its boarding stair in this same shape. `main.js` puts every
+ * lot in the one array `createWalker` is given. What this function owns is the
+ * REGISTRY'S half, and the return shape below is the contract between them.
  *
  * @param {Map} registry the loaded structure registry
  * @returns {Array<{id:string, y:number, pts:number[][]}>}
@@ -209,6 +218,13 @@ export function createWalker({ camera, terrain, footprints = [], decks = [], spa
    * free-fly — goes through it, because a walker that agreed with itself only on
    * some of them is how you end up standing on a bridge and falling through it
    * when you stop moving.
+   *
+   * `decks` carries the bridges the registry declares (`decksFrom`), the street
+   * edge's boards, and the wharf decks and stair treads their layer publishes at
+   * the height it drew them. Nothing here cares which is which: a deck is an id,
+   * a height and a plan outline, and every route hands over exactly that. The
+   * HIGHEST deck covering a point wins, which is what makes a flight of treads
+   * behave as a stair rather than as one ambiguous slab.
    *
    * `terrain.walkHeight()` is the answer wherever no deck covers the point, wading
    * barrier and all. Where a deck does:
