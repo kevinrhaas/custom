@@ -319,6 +319,19 @@ step "no reconstructed roof's ridge is newly outside its family band" \
 step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
   python3 tools/measure_ridge_reach.py --quiet
 
+# ...and the residual THAT gate printed as three NOTE lines, joined to what the
+# generators actually deal (T-0179). Nine families are offered a SHED by their roof line
+# and four cannot reach their own ridge band as one, because a shed's plane climbs the
+# whole span where a gable climbs half. Nothing was broken, because no parcel dealt those
+# four a shed — but which families get a shed was decided FIVE times, once inside each
+# parcel, and the five had already drifted over A5. The rule now lives in
+# tools/roof_form.py alone, the refusal is written on the card a visitor opens, and the
+# step above holds the two together: a family dealt a form its own bands cannot carry, a
+# record that does not carry its family's refusal, or a parcel that grows its own copy of
+# the shed set all fail here.
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_ridge_reach.py --self-test
+
 # And the question the two gates above cannot ask, because they read what LANDED: is
 # every family the 665-roof schedule may deal to a platted block buildable at every
 # size its own band allows? A family comes up rarely — there are two H1s and two H2s in

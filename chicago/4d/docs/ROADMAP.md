@@ -585,6 +585,37 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
+### T-0179 — three families offer a shed their ridge band cannot carry · **DONE 2026-08-27 — two held, one refuted, and a fourth nobody had measured**
+
+**The reasoning archive for L182 and the STATUS box of the same date.** T-0148's sweep printed C1,
+F1 and F4 as NOTE lines: families whose crosswalk roof line offers a SHED their own `ridge_ft` band
+cannot carry, latent because no generator dealt them one. Asked of what the archetypes actually
+build:
+
+| family | ticket | measured | the reason |
+|---|---|---|---|
+| C1 | 231 of 441 | **231 of 441** | `frame_storefront._shed_roof` always falls back-to-front; the run is the 20-30 ft depth |
+| F1 | 399 of 441 | **399 of 441** | `outbuilding` with no open side, so the fall is down 32-50 ft |
+| F4 | 441 of 441 | **0 of 441** | F4's own entry is `1/open`, "open posts", "part-open sides" — the fall goes across the 24-36 ft width (L73) |
+| W5 | — | **84 of 441** | never swept: the sweep reports a family with no pitch band before testing any FORM |
+
+**Three findings worth keeping.** (1) The sweep constrained a claim it did not know it was
+constraining — the AXIS a shed falls down — exactly as T-0145 had constrained the eave; the shape of
+that error is now twice-observed and worth watching for a third time. (2) `ridge_model` turned the
+shed's span with `gable_front`; all three archetypes that build a shed ignore the orientation
+entirely, and no committed GLB is a shed on those archetypes, so the gate that exists to keep the
+model honest had nothing to compare against. **A model checked only against what has been built is
+unchecked wherever the build has not gone.** (3) The shed set was written five times and had drifted
+over A5 — one roof stands on the difference — which is the same one-rule-two-files fault
+`family_bands.py` was created to end, three files later.
+
+**Owner question, unresolved and not blocking:** the `ridge_ft` column is authored for a gable's
+half-span. Retiring the shed reading for C1, F1 and W5 in the crosswalk would be cleaner than
+recording a refusal on every one of their records; recording it is what an agent may do, editing the
+specification is not. See L182 "How to resolve".
+
+**Still owed:** T-0208, the one A5 roof held on a gable pending a bake.
+
 ### R-BUG5b — the trees are still in the river · **DONE 2026-08-16 · the whole wood was drawn mirrored**
 
 **THE WOOD WAS TESTED IN ENU AND DRAWN IN WORLD SPACE, AND THE TWO POINT OPPOSITE WAYS.** The

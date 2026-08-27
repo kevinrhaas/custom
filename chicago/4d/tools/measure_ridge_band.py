@@ -134,8 +134,13 @@ def measure() -> dict:
             width = max(p[0] for p in poly) - min(p[0] for p in poly)
             depth = max(p[1] for p in poly) - min(p[1] for p in poly)
             roof_type = str(form.get("roof_type") or "gable")
+            # `open_sides` decides which way a shed falls and therefore how high it
+            # stands (T-0179). No reconstructed record carries one today, so this reads
+            # as the closed shell it always did; a record that gains one moves its
+            # modelled ridge with it instead of being measured against the wrong span.
             run = ridge_model.ridge_run_m(doc.get("archetype", ""), roof_type, width, depth,
-                                          form.get("gable_front"))
+                                          form.get("gable_front"),
+                                          tuple(form.get("open_sides") or ()))
             if run is None:
                 unmodelled[doc.get("archetype", "?")] = unmodelled.get(doc.get("archetype", "?"), 0) + 1
                 continue

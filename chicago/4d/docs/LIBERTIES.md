@@ -6227,6 +6227,90 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L182 — Which roof form each family gets is one rule, and where the specification offers a shed this town will not build, the record says so and says by how much
+
+**Decision:** `tools/roof_form.py` is the single statement of which of the roof forms a family's
+crosswalk roof line offers this project actually builds. **D2, A3, A4 and A5 are built as sheds;
+every other family is built with the gable its line also offers** — including the five whose line
+names a shed as well (C1, F1, F4, W4, W5). For the three whose own `ridge_ft` band cannot carry a
+shed, the refusal is now written on the record itself: **thirteen committed roofs — nine C1 shops,
+two F1 freight sheds and two W5 workshops — carry a new sentence on `roof_type` naming the form the
+specification offers, the span a shed would have to climb, the ridge band it would miss and how many
+of the family's own footprints miss it.** `tools/measure_ridge_reach.py` gates the statement against
+what the generators deal, in five ways, and `tools/ridge_model.py` is corrected to model the shed the
+archetypes actually build. No geometry moved: prose is not hashed into the staleness recipe, so
+thirteen cards changed and not one vertex.
+
+**Why the rule needed one home.** It had five, one literal inside each anonymous parcel — and the
+five had already drifted. `generate_north_infill.py`, `generate_west_infill.py` and
+`generate_inferred_households.py` named D2, A3, A4 and A5; `generate_block_infill.py` and
+`generate_inferred_infill.py` named D2, A3 and A4. One roof stands on the difference:
+`recon_1835_south_a5_044` is a gable where the other three A5 utility buildings in this town are
+sheds. Nobody chose that and nothing in the repository said it, because there was nowhere for the
+rule to be said.
+
+**What was measured, and it corrects the ticket that asked for it in two places.** T-0179 named C1,
+F1 and F4 as the families whose ridge band cannot carry a shed. Swept against what the archetypes
+actually build:
+
+- **C1** (small shop, `frame_storefront`): the archetype's `_shed_roof` falls from the back wall to
+  the facade and never reads the record's gable orientation, so the run is the DEPTH — and **231 of
+  the 441 plans C1's own footprint band allows** cannot reach its 15-20 ft ridge band at any eave in
+  its 9-11 ft band and any pitch in its 5:12-9:12. Refused, recorded.
+- **F1** (freight shed, `outbuilding`): no open side is authored, so the fall is front-to-back down
+  32-50 ft. **399 of 441.** Refused, recorded.
+- **F4** (lumber shed) is REFUTED. Closed it is 441 of 441, but F4's own entry says `levels: 1/open`,
+  "open posts with slab boards" and "part-open sides", and an open long side turns the archetype's
+  `shed_axis` to fall across the SHORT span (L73). Across its 24-36 ft width rather than its 45-70 ft
+  length, **F4 reaches its ridge band at every footprint in its band.** F4's shed is buildable inside
+  F4's own claims; nothing in the specification has to give way for it.
+- **W5** (sawmill or riverside shop) is ADDED, and it is a fault in the instrument rather than in the
+  ticket. W5 authors no rise:run, and the sweep reported a family with no pitch band before testing
+  any form — so W5's shed had never been measured at all. Against the 18 degrees a shed is actually
+  dealt, **84 of 441** of its own footprints miss its 20-29 ft ridge band.
+
+The archetype had already said the same thing in its own voice, which is worth more than a gate
+saying it: `outbuilding_params.default_roof_type` flips from shed to gable at 5 m of depth, "because
+the rise is the run times the pitch and a shallow pitch will not shed water off riven shakes… over
+5 m it rises 1.6 m, which is most of a wall again". F1's depth band starts at 9.8 m and F4's at
+13.7 m.
+
+**What is INVENTED here, plainly.** Two things, and neither is a reading of any source. First, that
+D2, A3, A4 and A5 are the families built with a single slope: the crosswalk offers "gable or shed"
+and says nothing about which, so the choice is this project's, bounded by the archetype's own
+depth rule and by the ridge band each family authors. Second, the reading of F4's entry as an
+open-sided building, which is what puts its shed across the short span — three clauses of F4's own
+entry say the building is open, but nothing states which elevation, and one open long side is the
+minimum that turns the axis. W5's "open work bay" is deliberately NOT read the same way: a framing
+bay is not a whole open elevation, and the phrase sits among variants beside "timber piles" and
+"rare crane/derrick". That judgement decides W5's verdict, so it is written down rather than left to
+a keyword.
+
+**What is refused and NOT recorded on a card:** F4 and W4, whose sheds their bands do carry. Those
+two are this town's choice and not the specification's refusal, and the gate prints them as such.
+Saying "refused" on a card where the only reason is taste would be the same false-provenance fault
+K33 spent a parcel undoing.
+
+**Consequence:** a visitor who opens any of nine anonymous shops, two freight sheds or two workshops
+and presses `why` on its roof now reads which other roof the specification allowed and the arithmetic
+that rules it out here. Nothing in the town moved. One roof, `recon_1835_south_a5_044`, is still a
+gable where its family's rule says shed: flipping it moves committed geometry and needs a bake, so
+the hold is named in `roof_form.AWAITING_BAKE`, banked by the gate so it may shrink and not grow, and
+owned by **T-0208**.
+
+**How to resolve:** an owner ruling on the crosswalk's `ridge_ft` column — it is written for a
+gable's half-span and three families' shed reading cannot live inside it — would retire the refusal
+for C1, F1 and W5 rather than recording it. A reading of W5's "open work bay" as an open elevation
+would move W5 to `OPEN_SIDED_FAMILIES` and the gate would follow it. Neither is a missing number, so
+neither is blocking: what stands today is measured, gated and declared.
+
+Related: **L176** (the eave drawn under the ridge band, which named these families as the residual) ·
+**L73** (the outbuilding's conventions, including the direction a shed roof falls) · **L171** ·
+tickets **T-0179**, **T-0148**, **T-0208**, **T-0172**.
+
+**Covers:** `inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_c1_020.inferred_1835.form.roof_type`, `recon_1835_north_c1_047.inferred_1835.form.roof_type`, `recon_1835_north_f1_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_c1_003.inferred_1835.form.roof_type`, `recon_1835_south_c1_010.inferred_1835.form.roof_type`, `recon_1835_south_c1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`.
+**Recorded:** 2026-08-27.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
