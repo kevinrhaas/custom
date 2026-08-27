@@ -1,5 +1,53 @@
 # STATUS
 
+## Shipped — T-0032: the town held 662 roofs, because three of the six civic slots counted nothing
+
+**The open half of T-I3, closed on the owner's delegated pick.** He ruled on 2026-08-17: *"close it
+at 665 or 662 — either is close."* It is **662**. T-I3(a) had already enumerated the town's public
+buildings and found three roofs — the log jail, the council house and the lighthouse, all three
+committed named records — against a family target of six. Route 2, re-typing the three spare slots
+into ordinary families, was refused for the reason T-I3(a) established: they were a count of
+nothing, not miscategorised real roofs, so re-typing would have invented three buildings on the
+strength of an arithmetic artifact.
+
+**Every candidate is settled against the dataset, not against the dossier.**
+`tools/measure_institutional_claims.py` now carries the civic ledger and re-derives it on every run
+of the gate: three **stood** (each an I3 entry in the physical-roof reconciliation crediting a
+roof); four came **later** — the court-house (fall 1835; a committed record the reconciliation
+credits none), the engine house (contracted 30 December 1835), the market house (1837), the custom
+house (Chicago was not a port of entry until 1846); two were **functions with no building of their
+own** — the United States Land Office, working four weeks before the scene date out of a room on
+Lake Street, and a town hall the corporation never built; and the estray pen **stood and was
+roofless**. The gate fails if the I3 target is not the number that stood — above it is a slot that
+counts nothing, below it is a documented roof with nothing to count against — and nine self-test
+cases break each assertion in memory to prove it fires.
+
+**The correction found a second fault in the same row, and this is the part worth keeping.** The
+inventory apportioned twelve institutional roofs as **south 10 / west 1 / north 1** while the named
+records stand **south 5 / west 1 / north 3**. Two authored views of the same aggregate — a family
+schedule and a district×group matrix — were never cross-referenced, so the schedule kept finding
+institutional headroom in the South Division that no evidence supports and none in the North where
+three of these buildings are. That is the T-I3(a) shape again: not a document disagreeing with the
+data, but the data disagreeing with itself in two files nothing read together. The row is now the
+census, and the gate holds it there.
+
+**What moved.** `roof_total` **665 → 662**; `principal_functional` **511 → 508** (all three phantom
+roofs were principal, so `ancillary` stays 154 and the programme's ratio becomes 154:508 — the block
+ceiling is unchanged at either ratio, checked rather than assumed); `family_targets.I3` **6 → 3**;
+`institutional_public` **12 → 9**, south 10 → 5 and north 1 → 3; the **south district target 370 →
+365** and the **north 150 → 152**. Downstream, `reconcile_665.py` re-derives 338 standing and **324
+remaining** (was 327), with **296** gated on coverage (was 299). **Every I3 slot has left the
+schedule** — one at `blk_lake_franklin`, one at `blk_south_water_market`, three in the South balance
+— so no block is short a roof because the schedule dealt it a family every generator refuses.
+
+**What a visitor sees.** The gate screen reads **338 buildings standing, of the 662 the town held**.
+Nothing in the scene moved: no building was added, removed, re-typed or re-dated, and the standing
+count is 338 exactly as it was.
+
+**What was deliberately not done.** The filename `1835_665_roof_programme.json` and the tool name
+`reconcile_665.py` **stay**, each carrying a line saying the number in the name is history; renaming
+them is churn the ruling does not require, and the live total is always `remaining.of_target`.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
@@ -6981,7 +7029,9 @@ district-group rows, rows into district targets, districts into `roof_total: 665
 `reconcile_665.py` asserts all three — so the three cannot simply be removed. The two exits are
 two different claims about the town (662 roofs, or three roofs that were not civic), the research
 settles neither, and choosing one would invent exactly the kind of aggregate this parcel just
-removed. **T-I3(b), blocked on the owner.** Also unmoved: `estray_pen`'s phase id still reads
+removed. **T-I3(b), blocked on the owner.** *(**CLOSED 2026-08-27 as ticket T-0032, route 1 —
+the total is 662. Read that entry at the top of this file before quoting any number in this
+paragraph.**)* Also unmoved: `estray_pen`'s phase id still reads
 `pen_1833` after its year was corrected to 1832, because a phase id is half of a baked asset's
 filename.
 
