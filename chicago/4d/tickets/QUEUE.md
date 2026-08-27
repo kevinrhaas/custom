@@ -56,7 +56,6 @@ T-0089 — The 'light' scene-detail ceiling is breached, and it was breached bef
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible
-T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
 T-0019 — Six forb layers ask for more plants than the lattice holds
