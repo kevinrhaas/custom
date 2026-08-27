@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0216: dev has a standing smoke result, and a red can be attributed without re-running it
+
+**Four runs in one day re-derived the same two reds by hand.** `chicago-4d-check.yml` runs
+`check.sh` and nothing else, and `chicago-4d-smoke.yml` is dispatch-plus-one-path, so the smoke
+state of `dev` was whatever the last agent happened to run in a worktree. The question every
+branch asks — *"is this red mine, or did I inherit it?"* — cost a clean `origin/dev` worktree and
+a ten-minute stage, every time it was asked. On 2026-08-27 three runs paid it on the What's-new
+stage and a fourth on the desktop triangle ceiling, and the first of those turned out to belong to
+neither branch nor `dev`: it was the machine (T-0215's frame timings — 0.46–1.10 s per frame on a
+quiet box, 17–27 s on a loaded one).
+
+**`tools/dev-smoke-state.json` is the record; `tools/dev-smoke-state.mjs` writes and reads it.**
+`ask --viewport desktop --stage 8` answers the question from the file, running nothing.
+
+**It is fed by the two routes a run already has, and that is a constraint, not a preference.**
+`.github/workflows/` is outside a steward run's scope (`AGENTS.md` § How work ships) — the exact
+reason T-0215 could not build this in its own PR — so the record is not a new scheduled job. A
+local smoke log and a `chicago-4d-smoke.yml` run's log go through **one parser**: `record <log>`
+and `ci <run id>`. If the owner later schedules that workflow on `dev`, `ci` is what folds its
+result in and nothing in the tool changes.
+
+**A verdict without its conditions is what sent three runs chasing a machine, so every reading
+carries them** — host kind, CPU count, load average, wall clock, and any animation-frame cost the
+smoke printed after a timeout. A CI pass on a quiet runner *dates* a steward-runner red; it does
+not overrule it.
+
+**And every reading carries a hash of what the smoke actually exercises**, so it can be attributed
+rather than merely dated. `renderers/`, `data/`, `assets/`, `tools/smoke_renderer.mjs` and the
+published mirror, from the git index. Match it and the reading is a reading *of your tree*: the red
+is inherited, provably, with nothing re-run. Three files every branch changes **by construction**
+would otherwise have made the hash differ before any real work was done, and each is handled for a
+different reason — `tickets.json` is dropped (`ticket.mjs claim` mirrors it in the first commit,
+and nothing in the renderer reads it); the changelog is hashed **apart** and reported against
+part 8 alone, which is the only part that reads it; and `publish.sh`'s build stamp is **normalised
+out** of the gate page rather than the page being dropped. **Verified, not asserted:** this branch
+and `origin/dev` hash identically — `sha256:0d99bf7ecdf56cd1` — with a changelog entry, a claimed
+ticket and a fresh publish stamp between them.
+
+**Seeded with what this run measured, on a quiet box, and it says so.** mobile stages 1–2 pass in
+4 m 17 s and desktop stage 8 passes in 2 m 34 s, both against the published mirror, on a 4-CPU
+runner at load ~6. Desktop stage 8 is the stage T-0215 watched die on its first click at 90 s on a
+loaded box — same tree, same assertions, and the record now holds both kinds of reading rather than
+one of them.
+
+**What is NOT in it yet, stated rather than implied.** The CI half is unread: `ci 32689397335`
+would fold in the last unfiltered `chicago-4d-smoke.yml` pass on `dev`
+(2026-08-24T04:16Z, `97ac4c8563cb`, success, both viewports) and GitHub rate-limited this account
+twice while trying. The code path is exercised — `ci` with no argument lists the four runs — and
+the tool now exits 3 with one sentence instead of a stack trace when the limit is hit. Fold it in
+on the next quiet run. Coverage today is mobile parts 1–2 and desktop part 8; the other 15
+viewport-parts report *"no reading — nobody has recorded this one"*, which is the honest answer and
+not a gap being hidden.
+
+**It is a record, never a bar.** Nothing here fails a gate, refuses a merge or excuses a red — the
+shape `tools/road_band_baseline.json` is kept in (T-0016).
+
 ## Shipped — T-0058: a wharf deck is a floor, and there are steps up onto it
 
 **Seven docks stood in this town as scenery.** `terrain.walkHeight()` puts a wading barrier at
