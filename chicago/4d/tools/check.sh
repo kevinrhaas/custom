@@ -748,6 +748,16 @@ fi
 step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
   node tools/test_ticket_mirror.mjs
 
+# The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
+# used to find the ticket by FILE (its own comment explains that with two files
+# sharing an id, nothing else can tell them apart) and then edit the queue by ID,
+# so it rewrote whichever of the two lines the owner had ranked higher — a coin
+# toss, and on 2026-08-27 it clobbered a real ticket's line and left a stale one
+# behind with every gate green (T-0217). This runs the repair on BOTH orderings of
+# the same fixture, because the old code passed one of them by luck.
+step "restamp moves the queue line it was handed, not the other one" \
+  node tools/test_ticket_restamp.mjs
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A

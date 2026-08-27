@@ -297,9 +297,7 @@ function find(tickets, id) {
 }
 
 function queueIds() {
-  if (!existsSync(QUEUE)) return [];
-  return readFileSync(QUEUE, 'utf8').split('\n')
-    .map((l) => /^(T-\d{4})\b/.exec(l.trim())?.[1]).filter(Boolean);
+  return queueLines().map(queueId).filter(Boolean);
 }
 
 function queueAppend(t) {
@@ -307,15 +305,62 @@ function queueAppend(t) {
   writeFileSync(QUEUE, cur + `${t.id} — ${t.title}\n`);
 }
 
-function queueReplace(id, rows) {
+function queueLines() {
+  if (!existsSync(QUEUE)) return [];
+  return readFileSync(QUEUE, 'utf8').split('\n');
+}
+
+/** The id a queue line carries, or null for a comment/blank/prose line. */
+function queueId(line) {
+  return /^(T-\d{4})\b/.exec(line.trim())?.[1] ?? null;
+}
+
+/**
+ * The LABEL half of a queue line — everything after the id, which QUEUE.md's own
+ * header calls "a label, not data" and which is regenerated from the ticket's
+ * `title:`. It is also the only thing that tells two lines carrying the SAME id
+ * apart, which is what `queueIndexOf` below needs it for.
+ */
+function queueLabel(line) {
+  return /^T-\d{4}\s*[—-]\s*(.*)$/.exec(line.trim())?.[1]?.trim() ?? '';
+}
+
+/**
+ * THE LINE THAT BELONGS TO ONE PARTICULAR TICKET — by id AND by label (T-0217).
+ *
+ * Matching on the id alone is right in every state `check` allows, and wrong in
+ * the one state `restamp` exists to repair: a duplicate id puts TWO lines in the
+ * queue carrying it, and `indexOf` returns whichever the owner happened to rank
+ * higher — a coin toss. On 2026-08-27 it came up tails during T-0215's merge and
+ * silently overwrote a queue line the owner had ordered with another ticket's
+ * title, leaving a stale line behind for good measure. `check` was green
+ * throughout; it was caught by reading `tail QUEUE.md`.
+ *
+ * The title is the discriminator because the line was WRITTEN from it. When it
+ * cannot discriminate — a hand-edited label, or genuinely identical titles — this
+ * falls back to the first line carrying the id, i.e. the old behaviour, and the
+ * caller says out loud that it guessed. A repair tool that refused to run would
+ * leave the duplicate in place, which is worse.
+ */
+function queueIndexOf(id, title) {
+  const lines = queueLines();
+  const carries = (l) => queueId(l) === id;
+  const exact = lines.findIndex((l) => carries(l) && queueLabel(l) === title);
+  return { i: exact >= 0 ? exact : lines.findIndex(carries), byLabel: exact >= 0 };
+}
+
+function queueReplaceAt(i, rows) {
   // Children take the PARENT'S EXACT PLACE in the order. Appending them to the
   // bottom would silently demote work the owner had deliberately ranked — the
   // one thing this file's ordering rule exists to prevent. A split is a
   // clarification of what the work is, never a re-prioritisation of it.
-  const lines = existsSync(QUEUE) ? readFileSync(QUEUE, 'utf8').split('\n') : [];
-  const i = lines.findIndex((l) => l.trim().startsWith(id));
+  const lines = queueLines();
   if (i < 0) lines.push(...rows); else lines.splice(i, 1, ...rows);
   writeFileSync(QUEUE, lines.join('\n').replace(/\n+$/, '\n'));
+}
+
+function queueReplace(id, rows, title) {
+  queueReplaceAt(queueIndexOf(id, title).i, rows);
 }
 
 function queueRemove(id) {
@@ -445,14 +490,46 @@ function check(tickets) {
   // ghost. Order is not checked — order is the owner's.
   const q = queueIds();
   const wantIds = tickets.filter((t) => WORKABLE.includes(t.state)).map((t) => t.id);
+  const ledger = new Map(tickets.filter((t) => t.id).map((t) => [t.id, t]));
   for (const id of q) {
-    if (!wantIds.includes(id)) problems.push(`QUEUE.md lists ${id}, which is not an open ticket`);
+    // NOT IN THE LEDGER AT ALL is its own answer, and it is the one T-0217 asked
+    // for: a queue line pointing at an id no ticket file carries is a line the
+    // owner ranked that now sends whoever reads it to nothing. The old single
+    // message called that "not an open ticket", which reads like a ticket that
+    // closed — a repair (delete the line) rather than a corruption (find out
+    // what was lost).
+    if (!ledger.has(id)) {
+      problems.push(`QUEUE.md lists ${id}, which is not in the ledger — no ticket file carries `
+        + 'that id. A queue line pointing at nothing is a lost ranking, not a stale one: find '
+        + 'what the line used to name before deleting it');
+    } else if (!wantIds.includes(id)) {
+      problems.push(`QUEUE.md lists ${id}, which is not an open ticket (state ${ledger.get(id).state})`);
+    }
   }
   for (const id of wantIds) {
     if (!q.includes(id)) problems.push(`open ticket ${id} is missing from QUEUE.md — append it, do not reorder`);
   }
   const dupQ = q.filter((id, i) => q.indexOf(id) !== i);
   for (const id of new Set(dupQ)) problems.push(`QUEUE.md lists ${id} twice`);
+
+  // THE LABEL HAS TO NAME THE TICKET (T-0217). Every gate above reads the id and
+  // nothing else, so a line carrying one ticket's id and another's title passes
+  // all of them: both ids are real, both are open, neither is duplicated. That is
+  // exactly the residue `restamp`'s wrong-line bug left on 2026-08-27, and it is
+  // what an agent reading QUEUE.md top-down goes and builds. The label is
+  // regenerated from `title:`, so the ticket wins and the line is repairable by
+  // hand in one edit — the message says which line and what it should read.
+  queueLines().forEach((l, n) => {
+    const id = queueId(l);
+    const t = id && ledger.get(id);
+    if (!t || !t.title) return;
+    const label = queueLabel(l);
+    if (label !== t.title) {
+      problems.push(`QUEUE.md line ${n + 1} labels ${id} "${label || '(nothing)'}", but that `
+        + `ticket is titled "${t.title}" — the ticket wins; rewrite the line as `
+        + `\`${id} — ${t.title}\``);
+    }
+  });
 
   // The generated pair must be fresh — a stale board is the stale-build.json
   // fault (found on check_published's first run) wearing a new file name.
@@ -590,12 +667,25 @@ switch (cmd) {
     // the new one at the BOTTOM, so renumbering a ticket silently re-prioritised
     // it — and the owner orders that file. A restamp changes a ticket's NUMBER
     // and nothing else about it.
-    const line = queueIds().indexOf(old);
+    //
+    // AND KEEP THE OTHER TICKET'S. The comment above says the FILE is the only
+    // way to name which of a colliding pair moves; the queue edit then went back
+    // to matching on the shared id, so it rewrote whichever of the two lines the
+    // owner had ranked higher (T-0217). `queueIndexOf` resolves the line by id
+    // AND label, so the line that moves is the one written from THIS file.
+    const { i: line, byLabel } = queueIndexOf(old, t.title);
     t.id = idOf(nextIdNum(tickets));
     const dest = path.join(DIR, `${t.id}-${slugOf(t.title)}.md`);
     writeTicket(t); renameSync(t.file, dest); t.file = dest;
-    if (line >= 0) queueReplace(old, [`${t.id} — ${t.title}`]);
+    if (line >= 0) queueReplaceAt(line, [`${t.id} — ${t.title}`]);
     else if (WORKABLE.includes(t.state)) queueAppend(t);
+    // Say so when the label could not name the line. With a duplicate id in the
+    // queue that means the wrong line may just have moved — the exact fault this
+    // repair is for — and the reader is the only one who can tell.
+    if (line >= 0 && !byLabel && queueIds().filter((x) => x === old).length) {
+      console.log(`   NOTE: no queue line carried this ticket's title, so line ${line + 1} `
+        + `was picked by id alone and another ${old} line remains. Check QUEUE.md.`);
+    }
     generateBoard(loadAll());
     console.log(`${old} → ${t.id}${line >= 0 ? ' (queue place kept)' : ''}`);
     break;
@@ -630,7 +720,7 @@ switch (cmd) {
       rows.push(`${id} — ${title}`);
       console.log(`  ${id}  ${title}`);
     });
-    queueReplace(t.id, rows);
+    queueReplace(t.id, rows, t.title);
     t.state = 'split'; t.closed = today();
     writeTicket(t); generateBoard(loadAll());
     console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
