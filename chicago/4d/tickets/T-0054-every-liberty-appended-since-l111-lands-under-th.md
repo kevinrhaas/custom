@@ -1,7 +1,7 @@
 ---
 id: T-0054
 title: Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 386
 claimed_by: run 8/26/2026, 11:30:15 PM CT
 blocked_on: null
 needs_bake: false
