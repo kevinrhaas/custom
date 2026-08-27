@@ -40,7 +40,6 @@ T-0182 — The household layer's two Lake-face buildings stand on a hand-authore
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
-T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
