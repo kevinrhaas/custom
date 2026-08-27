@@ -6342,6 +6342,42 @@ counterfactual) · `docs/ROADMAP.md` · `chicago/4d/tickets/T-0009-*.md` (blocke
 `renderers/web/js/changelog.js`. **No structure record, footprint, coordinate, confidence or
 baseline was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
 
+#### K30(d) RESOLUTION 1 IS TAKEN FOR SIX OF THE ELEVEN — 2026-08-24, T-0127 → T-0188
+
+**The owner answered it, in a ticket, in his own ask.** K30(d) left three resolutions and said
+resolution 1 — *"the buildings follow the street"* — is *"a position change on sourced records,
+which is exactly what AGENTS.md forbids an agent to do alone"*, and T-0009 has sat `blocked-owner`
+on it since. **T-0127** (`requested_by: owner`, `seen: true`) is that decision: *"ten documented
+buildings on that side were placed against the MODERN kerb, read off OpenStreetMap, rather than
+against this project's own platted line… **Reconciling them with the committed plat closes those
+gaps and is worth doing on its own terms** — the disagreement is a finding about the dataset, not
+about the sidewalk."*
+
+**What T-0188 did with it.** Measuring the walk band found **eleven**, not ten — `temple_building`
+is the eleventh and no earlier count had it. **Six were reconciled**: `harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`, `chicago_democrat_office`, `temple_building` and
+`jh_kinzie_forwarding_store`, each translated along its block face's inward normal until its north
+wall stands 1.50 m back from the committed frontage line — the margin
+`generate_block_infill.py` already gives every reconstructed unit on those faces. **No along-street
+position moved and no confidence grade moved**: this is each record's OWN stated method
+(*"the south kerb taken 12.2 m south of it… so the north face sits on the South Water frontage"*)
+re-run against this project's committed centreline instead of the modern OpenStreetMap one, which
+is the reference frame K30(d) finding 4 identified as the whole cause. Town-wide corridor laps go
+**29 → 26**, and the six drop from 4.51–7.48 m to 0.16–0.21 m, on a cross street.
+
+**Five could NOT be, and the blocker is not the owner's this time.** `h_jones_store`,
+`carpenter_south_water_store`, `pruyne_kimball_drugstore`, `chicago_american_office` and
+`frederick_thomas_shop` each seat, once reconciled, on a platted lot the 665-roof schedule has
+already dealt to the anonymous South Water frontage run, and `generate_block_infill.py` refuses to
+deal a roof to a lot that already carries one. Each was tried alone to prove it was its own
+blocker. They are refused **in writing, per store**, in their own `position.note` and in
+`data/frontage/town_street_edge.json`'s `refused`. **T-0189** owns the untangling.
+
+**T-0009 is untouched here** — it is a `needs_bake` ticket about 29 bodies on eight streets and its
+`blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
+cluster, and whoever picks it up should read this heading first.
+
+
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 

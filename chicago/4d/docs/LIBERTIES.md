@@ -6024,9 +6024,30 @@ proportion the archetype derives, not a value the record states — and claiming
 not the invention being confessed. The honest form is an entry that claims nothing in the
 machine-readable field and says in prose exactly what was made up. The day a `picket_head`
 attribute exists on the record, this entry claims it.
-**Ticket:** T-0094, opened by T-0044, closed as refuted. **Related:** **L47** (the fabric of this
-wall), **L42** (the fort's buildings), **L174** (the ground outside its walls).
+
+**Covers:** `fort_dearborn_palisade.picket_1816.form.picket_head_m`.
+**Ticket:** T-0094, opened by T-0044, closed as refuted; **T-0200** claimed the attribute.
+**Related:** **L47** (the fabric of this wall), **L42** (the fort's buildings), **L174** (the
+ground outside its walls).
 **Recorded:** 2026-08-24.
+**Revised:** 2026-08-24 (T-0200), hours after it was written — **that day is today, so the "No
+`Covers:` field, deliberately" paragraph under *Held by* is superseded and the field is
+filled.** `form.picket_head_m` now
+stands on `fort_dearborn_palisade`, `reconstructed`, at **0.312 m**: the identical number
+`PalisadeParams.picket_point_m` had been deriving, asserted equal to the derivation before it was
+written and then proved by a real bake — `fort_dearborn_palisade__picket_1816.glb` came back
+**byte-for-byte the file that stood before**, 21,728 vertices, none moved. Only the manifest's
+input hash changed, `579cb33f…` → `dd0c84b8…`, which is what a declaration is supposed to cost.
+That paragraph is kept verbatim rather than deleted because it was the right reading of the
+document and the wrong reading of the runner: **the head was deferred out of `form` for a reason
+that was false.** T-0094 recorded that the attribute "cannot be in this run … there is no Blender on
+this runner", and the pinned Blender 4.5.3 was installed on that runner the whole time. That was
+the integrator's error, not the ticket author's finding, and it is corrected here, in T-0094 and
+in `docs/STATUS.md` rather than quietly removed. What does NOT change: the head is still ours,
+still `reconstructed`, still unattested by any source, and `p4_0` still rules the cap flat. The
+derived proportion stays in the archetype as the fallback for any palisade record that states no
+head — the garrison garden's worm fence resolves through the same class and states none; it was
+rebaked too, because the new parameter restaled it, and it also came back byte-identical.
 
 
 ### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it

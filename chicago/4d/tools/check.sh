@@ -31,6 +31,19 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# Runs early and costs milliseconds, because the fault it catches is cheap to
+# make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
+# merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
+# the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
+# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
+# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# they agreed perfectly — both carried the same garbage.
+step "no committed file carries a conflict marker" \
+  python3 tools/test_no_conflict_markers.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/test_no_conflict_markers.py --self-test
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.

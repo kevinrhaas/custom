@@ -19,7 +19,7 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0127 — South Water Street and the rest of the town get the street edge
+T-0199 — The five South Water stores standing on a lot the roof schedule already dealt
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
@@ -81,6 +81,8 @@ T-0185 — The plate draws the fort's pickets three times coarser than the model
 T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
-T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
+T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0209 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them

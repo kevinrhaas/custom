@@ -211,7 +211,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 294664,
-      "inputs_sha256": "72c609b5adbbb353e0c34339ab6b4aae58dfafed0c74efe0be8200cc76c88e21",
+      "inputs_sha256": "d77e28a003833c3f36c92ad860c335115b665595599bb3da5e05e972ac8dbc26",
       "kind": "generated",
       "phase_id": "fence_1816",
       "structure_id": "fort_dearborn_garrison_garden"
@@ -247,7 +247,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 841836,
-      "inputs_sha256": "729dff4874d8ad6bd8b694d2806e9ac22f16c165c3d8c6ec4064007ac1ed985d",
+      "inputs_sha256": "b94139c5f316e6694fee38f6552bf18b59d06c0fdbd063d40da901654913e0dd",
       "kind": "generated",
       "phase_id": "picket_1816",
       "structure_id": "fort_dearborn_palisade"
