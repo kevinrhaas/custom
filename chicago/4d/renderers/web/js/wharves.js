@@ -30,11 +30,28 @@
  *    `terrain.surfaceHeight` at its own point, so the crib meets the channel
  *    floor the heightfield draws rather than a flat guess — which is the only
  *    reason a structure standing in water can be drawn honestly at all.
- *  * IT IS NOT A WALK SURFACE, and does not pretend to be. `walkHeight()` puts
- *    a wading barrier over open water and the deck does not override it, so a
- *    visitor sees the wharf from the bank and cannot walk out along it. Making
- *    a deck walkable is the bridge's `placement.walk_surface_m` route and it
- *    belongs to a structure record; this layer has none.
+ *  * IT IS A WALK SURFACE SINCE T-0058, AND IT IS THIS LAYER THAT SAYS SO.
+ *    Until then `walkHeight()`'s wading barrier stood over every deck, so a
+ *    visitor saw a wharf from the bank and could not step out along it. The
+ *    bridges' route is closed here: `placement.walk_surface_m` lives on a
+ *    sidecar and a wharf has no structure record to carry one, and inventing a
+ *    record to hold a height would be a SECOND opinion about a number this file
+ *    already knows. So `createWharves` publishes `decks` in `walker.js`'s own
+ *    `{ id, y, pts }` shape, each at the `deck_top_m` its slab was drawn at,
+ *    and `main.js` hands them to the walker beside the bridges'. One number,
+ *    not two that agree until they do not — T-0001's finding, 1.8 m over the
+ *    North Branch planks.
+ *  * AND IT DRAWS THE WAY ON. The deck top is the ground's, floored at the
+ *    record's freeboard over the water, so at every one of these seven sites
+ *    the planks stand PROUD of the bank they tie into — enough of it that the
+ *    walker's 0.35 m step-up rule refuses most of the landward edges, which
+ *    would leave a deck you can walk along and cannot get onto. A boarding
+ *    stair of plank treads is drawn at the middle of each landward edge, as
+ *    many treads as the terrain's own rise there needs at the record's greatest
+ *    permitted rise, and each tread is published as a walk surface with the
+ *    deck. The alternative was to regrade the bank, which is a claim about the
+ *    LAND and needs a bake; this invents only timber this layer already draws
+ *    (docs/LIBERTIES.md).
  *  * NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY, NO NAME. The record says so and
  *    this file keeps it: the schooner cheered at one of these two wharves in
  *    1834 is not drawn, because a hull would be a larger invention than the
@@ -75,6 +92,16 @@ const CRIB_INSET_M = 0.10;   // the crib sits this far in under the deck's edge
 const CRIB_FOOT_M = 0.35;    // and is buried this far into the bed it stands on
 const POSTS = 3;             // snubbing posts along the face
 const POST_INSET_M = 0.45;   // set back this far from the face's own edge
+/**
+ * The boarding stair's grain, as opposed to its claim. How wide it is, how deep
+ * a tread goes and the most one may rise are the record's (`form`, above); what
+ * is here is how far the bottom tread's ground is looked for beyond the stair's
+ * own foot, and the ceiling on treads that stops a hole in the heightfield
+ * building a staircase.
+ */
+const STAIR_FOOT_REACH_M = 1.0;  // ground is sampled this far landward of the foot
+const STAIR_MAX_TREADS = 4;      // beyond this the site is reported, not stepped
+const TREAD_T_M = 0.10;          // a tread is a plank, and this is its thickness
 
 /**
  * The layer's timber tone. Deliberately NOT the goods' warm cooperage colour and
@@ -174,6 +201,79 @@ function pushCribRun(buf, a, b, width, deckY, terrain, level) {
 }
 
 /**
+ * THE BOARDING STAIR, and why the number of treads is not in the record.
+ *
+ * The deck top is `max(the ground along the landward edge, the record's
+ * freeboard over the water)`, so how far it stands proud of the bank is a
+ * TERRAIN answer and differs at every site — nothing that could honestly be
+ * authored beside the outline. The record therefore states only what a stair
+ * IS here (its width across, its going per tread, the most any one tread may
+ * rise) and this function asks the heightfield how many that comes to.
+ *
+ * The count is a small fixed-point search rather than one division, because the
+ * ground the stair steps off is the ground at its own FOOT and the foot moves
+ * landward with every tread added. So: try one tread, look at where that puts
+ * the foot, and add treads until the rise there divides under the record's
+ * ceiling. `STAIR_MAX_TREADS` stops a hole in the heightfield from building a
+ * staircase — a site that needs more is reported and left unstepped, which is
+ * visible (the deck is not boardable there) where a guess would not be.
+ *
+ * Returns `{ treads, rise, footY, polys }`; `polys` are the tread rectangles in
+ * local ENU, bottom tread first, ready to be published as walk surfaces.
+ */
+function planStair(heelL, heelR, ue, un, oe, on, deckY, form, terrain) {
+  const midE = (heelL[0] + heelR[0]) / 2;
+  const midN = (heelL[1] + heelR[1]) / 2;
+  const half = form.stairW / 2;
+  // The ground the stair steps off, sampled across its foot and a metre beyond
+  // it. The MINIMUM is taken, not the mean: the walker climbs from wherever it
+  // is standing and the worst of those stations is the rise that has to divide.
+  const footGround = (dFoot) => {
+    let g = Infinity;
+    for (const across of [-half, 0, half]) {
+      for (const back of [dFoot, dFoot + STAIR_FOOT_REACH_M]) {
+        const e = midE + ue * across - oe * back;
+        const n = midN + un * across - on * back;
+        const y = groundAt(terrain, e, n);
+        if (y !== null) g = Math.min(g, y);
+      }
+    }
+    return Number.isFinite(g) ? g : null;
+  };
+
+  let treads = null;
+  let footY = null;
+  for (let n = 1; n <= STAIR_MAX_TREADS + 1; n += 1) {
+    const g = footGround((n - 1) * form.stairTread);
+    if (g === null) return null;
+    if (deckY - g <= n * form.stairRise + 1e-9) { treads = n - 1; footY = g; break; }
+  }
+  if (treads === null) return null;
+
+  const rise = (deckY - footY) / (treads + 1);
+  const polys = [];
+  for (let k = 1; k <= treads; k += 1) {
+    // Tread k counts UP from the foot, so k = treads is the one against the
+    // deck and sits in the first going landward of the heel.
+    const far = (treads + 1 - k) * form.stairTread;
+    const near = far - form.stairTread;
+    const dm = (far + near) / 2;
+    const ce = midE - oe * dm;
+    const cn = midN - on * dm;
+    const corner = (a, b) => [
+      ce + ue * half * a + oe * (form.stairTread / 2) * b,
+      cn + un * half * a + on * (form.stairTread / 2) * b,
+    ];
+    polys.push({
+      y: footY + rise * k,
+      centre: [ce, cn],
+      pts: [corner(-1, -1), corner(1, -1), corner(1, 1), corner(-1, 1)],
+    });
+  }
+  return { treads, rise, footY, polys };
+}
+
+/**
  * One wharf: the deck slab, the crib under its face and its two ends, and the
  * snubbing posts. Returns the number of vertices it emitted, or 0 if the record
  * could not be stood anywhere — which is always a recorded problem and never a
@@ -256,12 +356,41 @@ function buildWharf(buf, w, form, terrain, level, problems) {
       form.postSide / 2, form.postSide / 2, form.postH / 2, level);
   }
 
+  // THE WAY ON. Drawn last because it is the only part of a wharf whose size is
+  // decided by the ground rather than by the record, and because a site the
+  // heightfield cannot answer for has to leave the rest of the dock standing.
+  const stair = planStair(heelL, heelR, ue, un, oe, on, deckY, form, terrain);
+  if (!stair) {
+    problems.push(`wharves: ${w.structure_id}'s landward edge has no ground to `
+      + 'stand a boarding stair on — the deck is drawn and cannot be boarded');
+  }
+  for (const t of stair?.polys ?? []) {
+    let under = groundAt(terrain, t.centre[0], t.centre[1]);
+    if (under === null) under = t.y - TREAD_T_M;
+    const foot = Math.min(under, t.y - TREAD_T_M) - 0.05;
+    const h = t.y - foot;
+    pushBox(buf, wx(t.centre[0]), foot + h / 2, wz(t.centre[1]), ue, -un,
+      form.stairW / 2, form.stairTread / 2, h / 2, level);
+  }
+
   w._drawn = {
     deck_top_m: deckY,
     from_terrain: deckY > WATER_Y + form.freeboard + 1e-6,
     bents,
+    // The stair as built here, so the gate can ask the geometry rather than
+    // re-deriving it: how many treads the ground needed, what each one rises,
+    // and the height the bottom of it steps off.
+    stair_treads: stair?.treads ?? null,
+    stair_rise_m: stair?.rise ?? null,
+    stair_foot_m: stair?.footY ?? null,
     vertices: (buf.pos.length - before) / 3,
   };
+  w._decks = [
+    { id: `${w.structure_id}__wharf`, y: deckY, pts: quad },
+    ...(stair?.polys ?? []).map((t, i) => ({
+      id: `${w.structure_id}__wharf_step${i + 1}`, y: t.y, pts: t.pts,
+    })),
+  ];
   return (buf.pos.length - before) / 3;
 }
 
@@ -285,6 +414,9 @@ function readForm(record) {
     cribW: v('crib_width_m', 1.2),
     postSide: v('post_side_m', 0.22),
     postH: v('post_height_m', 0.75),
+    stairW: v('boarding_stair_width_m', 2.4),
+    stairTread: v('boarding_stair_tread_m', 0.75),
+    stairRise: v('boarding_stair_rise_m', 0.30),
   };
 }
 
@@ -312,7 +444,26 @@ export async function createWharves({
      * polygon under the same id would answer for the building.
      */
     keepOut: [],
-    census: { records: 0, wharves: 0, bents: 0, refused: 0 },
+    /**
+     * The same planks as WALK SURFACES, in `decksFrom()`'s own `{ id, y, pts }`
+     * shape, for `walker.js` (T-0058) — the deck slab and every tread of its
+     * boarding stair.
+     *
+     * It is the LAYER that publishes them and not the record, deliberately. A
+     * wharf carries no structure record, so there is no sidecar to hold the
+     * bridges' `placement.walk_surface_m`; and the height is `deck_top_m`, the
+     * identical number `buildWharf` just drew the slab at, so the plank a boot
+     * is on and the plank the mesh draws are one value rather than two that
+     * agree until they do not.
+     *
+     * Kept apart from `keepOut`, which the planters hold. They are the same
+     * rectangles for the deck today and answers to different questions: a floor
+     * nothing may grow through, and a floor a visitor stands on.
+     */
+    decks: [],
+    census: {
+      records: 0, wharves: 0, bents: 0, refused: 0, stairs: 0, treads: 0,
+    },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -361,6 +512,17 @@ export async function createWharves({
       }
       spans.push({ id: w.structure_id, from, to: buf.pos.length / 9 });
       out.keepOut.push({ id: `${w.structure_id}__wharf`, pts: w.deck_quad_local_enu_m });
+      // Every plank this wharf laid — the deck and its treads — as a floor the
+      // walker stands on. The treads are keep-outs too: a stair is as much a
+      // floor as the deck it climbs to, and a forb growing between the boards
+      // reads as a hole in the model (T-0085/T-0124's finding, on new timber).
+      for (const d of w._decks ?? []) {
+        out.decks.push(d);
+        if (d.id.endsWith('__wharf')) continue;
+        out.keepOut.push({ id: d.id, pts: d.pts });
+        out.census.treads += 1;
+      }
+      if ((w._drawn?.stair_treads ?? 0) > 0) out.census.stairs += 1;
       out.wharves.push(w);
       out.census.wharves += 1;
       out.census.bents += w._drawn?.bents ?? 0;

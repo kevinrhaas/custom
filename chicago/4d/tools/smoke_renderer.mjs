@@ -61,6 +61,9 @@
  *                                 its deck ties into the bank it was derived
  *                                 from, its crib reaches the bed, and neither is
  *                                 answerable from the dataset alone
+ *   a wharf carries a walker .... and since T-0058 the planks are a floor: off
+ *                                 the bank, up the boarding stair and out over
+ *                                 the water at every one of the seven docks
  *   the boats on the river ...... the first layer that RIDES the water: every
  *                                 afloat hull floats in its own depth, beached
  *                                 hulls sit at the bank, the drawbridge's
@@ -911,11 +914,19 @@ const stamp = () => {
   const secs = Math.round((Date.now() - startedAt) / 1000);
   return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
 };
-function check(name, cond, detail = '') {
+// T-0187: `show` prints the detail on a PASS as well as on a failure, for the
+// handful of checks whose measured figure is the thing a run has to be able to
+// quote. The sward's outer reach is the case that asked for it: a change to the
+// boundary has to be able to say what the reach was before and after, and a
+// green line that prints nothing makes that a re-run with an edited gate.
+// Deterministic figures only — the output stays comparable between runs.
+function check(name, cond, detail = '', show = false) {
   if (inStageWork) stageWorkChecks += 1;
   const t = TIMING ? stamp() : '';
-  if (cond) { passes.push(name); console.log(`  pass  ${t}${name}`); }
-  else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
+  if (cond) {
+    passes.push(name);
+    console.log(`  pass  ${t}${name}${show && detail ? ` — ${detail}` : ''}`);
+  } else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
 }
 
 const server = http.createServer((req, res) => {
@@ -1052,6 +1063,17 @@ for (const [label, viewport, touch] of [
   // because of it. Ninety seconds is room for a slow machine, not permission
   // for a broken control: a click that never lands still fails, three times
   // slower.
+  //
+  // IT IS NOT RAISED AGAIN, AND T-0215 IS WHY. On 2026-08-27 the same starvation
+  // took the desktop half down again, and the honest reading is that a budget
+  // measured in frames is the wrong instrument for a scene whose frame cost is
+  // set by whatever else the machine is doing (17-27 s per frame, measured, on a
+  // runner where the identical scene also drew frames in 29 ms). Raising 90 to
+  // 180 buys one more town-sized month and pays for it in wall clock against a
+  // ten-minute per-command ceiling this gate has already been re-cut for twice.
+  // The answer is `clickChrome` below — not paying for the frames at all where
+  // the frames are not the subject. This number stays what it is: the backstop
+  // for the clicks that must remain a visitor's own mouse.
   page.setDefaultTimeout(90_000);
 
   // A fresh boot stands at the GATE SCREEN, and the part that enters the town
@@ -1075,6 +1097,80 @@ for (const [label, viewport, touch] of [
       document.getElementById('control-help-gotit')?.click();
     }
   });
+
+  // A click on the HUD chrome that does not have to race the render loop for it.
+  //
+  // THE HAZARD THE 90 s ABOVE ONLY POSTPONED. `page.click` is frame-bound three
+  // ways over: it polls the target's box on consecutive animation frames until it
+  // holds still, then scrolls it into view, then hit-tests it, and every one of
+  // those steps queues behind whatever the render loop is doing. STATUS
+  // 2026-08-13 raised the budget to 90 s for exactly that and said, in writing,
+  // that it was **a standing hazard and not a fixed one**: *"the same starvation
+  // will return as the town grows, and the next symptom will again look like a UI
+  // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
+  // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
+  // died on its FIRST click, on the Settings tab, before a single one of part 8's
+  // assertions had run — and three agents in one day read that as the What's-new
+  // panel being broken. It was not. Driven by hand at the same moment the gate was
+  // dying, the panel opened and painted all 272 releases and cleared its unread
+  // dot; the tab was the topmost element at its own centre with no pointer lock.
+  // What had moved was the cost of a frame: **17.0 / 0.03 / 0.33 / 21.5 / 20.2 /
+  // 0.12 / 4.4 / 22.3 / 12.2 / 26.6 seconds**, measured on the loaded runner
+  // against the 0.46-1.10 s this file's comment above records. The 29 ms frames
+  // in that list are the proof it is the machine and not the scene — the renderer
+  // draws fast when it is given the CPU, and it was not being given it. Another
+  // number is not the answer to that; not needing the frames is. And note there
+  // is no trigger to find: timed at the same load, that identical click landed in
+  // 10.9 s cold, 28.4 s settled and 53.8 s after a reload before it blew ninety
+  // in the gate. It is a distribution with a tail across the budget, so any
+  // budget is a coin toss and only removing the dependency ends it.
+  //
+  // NOTHING IS SKIPPED, AND THAT IS THE POINT. Everything `page.click` asserts
+  // implicitly is asserted here explicitly, in the page, in ONE round trip: the
+  // element exists, is enabled, has a real box, and is the topmost thing at its
+  // own centre. That last one is T-0108's assertion verbatim — a control the
+  // HUD's `pointer-events: none` swallows returns the CANVAS from
+  // `elementFromPoint` and fails here exactly as it fails a visitor's mouse — and
+  // it now fails in one round trip with a sentence naming what covered it,
+  // instead of in ninety seconds with a call log that reads like a broken
+  // control. A real `page.click` stays the instrument wherever the trusted event
+  // ITSELF is the subject: the confidence menu in part 4 is the case, and it says
+  // so where it stands.
+  const clickChrome = async (sel) => {
+    const why = await page.evaluate((s) => {
+      const el = document.querySelector(s);
+      if (!el) return `nothing matches ${s}`;
+      if (el.disabled) return `${s} is disabled`;
+      // The same scroll `page.click` would do, in the same round trip as the
+      // reading — a result row far down the Go-to list is off the panel's
+      // viewport until this runs, and `elementFromPoint` would then answer for
+      // whatever is at those coordinates instead.
+      el.scrollIntoView({ block: 'center', inline: 'center' });
+      const b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) {
+        return `${s} has no box (${Math.round(b.width)}x${Math.round(b.height)})`;
+      }
+      const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
+      if (!top || !(top === el || el.contains(top))) {
+        const cls = top && typeof top.className === 'string' ? top.className : '';
+        return `${s} is covered at its own centre by `
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+      }
+      // A real mouse press FOCUSES a focusable control, and an untrusted
+      // `.click()` does not — which is a difference the suite already depends on
+      // and which this helper got wrong on its first run, honestly and visibly.
+      // Part 8 closes the panel and then presses `g`, and `g` only reaches the
+      // window shortcut if focus has left the Go-to search box first: the shared
+      // `isTyping(e.target)` guard swallows it otherwise, which is the whole
+      // point of that guard. Without this line the panel stayed shut, `g` did
+      // nothing, and the next reading was a result row with a 0x0 box. So this
+      // is fidelity to the click being replaced, not a convenience.
+      if (typeof el.focus === 'function') el.focus({ preventScroll: true });
+      el.click();
+      return null;
+    }, sel);
+    if (why) throw new Error(`clickChrome: ${why}`);
+  };
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1485,8 +1581,70 @@ for (const [label, viewport, touch] of [
           if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
         }
 
+        /**
+         * T-0184 — THE OUTSIDE OF EVERY TURN, stationed the way the approaches
+         * above are, and for the same reason: a claim about roadway is only
+         * worth what a point standing on it is worth.
+         *
+         * Every panel used to be square to its own chord, so at a bend the two
+         * rows crossed at the centreline and diverged towards the edges and the
+         * outside of the turn carried a triangle of unpainted ground — 23.47 m2
+         * of it town-wide, worst 4.29 m2 at South Water Street's west approach
+         * (`tools/measure_road_joints.mjs`, a 2 cm plan lattice). Nine stations
+         * are dropped INSIDE that sector at each authored bend, spread across
+         * its angle and out to nine tenths of the half-width, and each must land
+         * on drawn roadway. Every one of them was uncovered before the mitre.
+         *
+         * The full lattice lives in the instrument; these stations are the part
+         * a release can afford. A bend whose own centreline is wet carries no
+         * question — North Water Street's line runs inside the water mask from
+         * E 330 to E 576, and no ribbon may be drawn there at all.
+         */
+        const jointGaps = [];
+        let jointStations = 0;
+        for (const rec of a.streets.records) {
+          const line = rec.drawn ?? rec.path;
+          const half = (rec.track_width_m ?? 6) * 0.5;
+          for (let i = 1; i < line.length - 1; i++) {
+            const [A, P, B] = [line[i - 1], line[i], line[i + 1]];
+            let turn = Math.atan2(B[1] - P[1], B[0] - P[0])
+              - Math.atan2(P[1] - A[1], P[0] - A[0]);
+            if (turn > Math.PI) turn -= 2 * Math.PI;
+            if (turn < -Math.PI) turn += 2 * Math.PI;
+            if (Math.abs(turn) < 0.25 * Math.PI / 180) continue;
+            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(P[0], P[1])
+              || a.terrain.isWater(B[0], B[1])) continue;
+            const l1 = Math.hypot(P[0] - A[0], P[1] - A[1]);
+            const u1e = -(P[1] - A[1]) / l1;
+            const u1n = (P[0] - A[0]) / l1;
+            const sgn = turn > 0 ? 1 : -1;
+            for (let s = 0; s < 3; s++) {
+              const ang = ((s + 0.5) * turn) / 3;
+              const c = Math.cos(ang);
+              const sn = Math.sin(ang);
+              const ve = u1e * c - u1n * sn;
+              const vn = u1e * sn + u1n * c;
+              for (const f of [0.35, 0.65, 0.9]) {
+                const e = P[0] - sgn * ve * half * f;
+                const n = P[1] - sgn * vn * half * f;
+                if (a.terrain.isWater(e, n)) continue;
+                jointStations++;
+                if (!covered(e, n)) {
+                  jointGaps.push(`${rec.id} [${P[0]}, ${P[1]}] ${(turn * 180 / Math.PI)
+                    .toFixed(1)} deg at ${f}`);
+                }
+              }
+            }
+          }
+        }
+
         return {
-          worstSink, refinedPanels, approachGaps,
+          worstSink, refinedPanels, approachGaps, jointGaps, jointStations,
+          joints: a.streets.stats?.joints ?? null,
+          squareJoints: a.streets.stats?.squareJoints ?? null,
+          mitredJoints: a.streets.stats?.mitredJoints ?? null,
+          fannedJoints: a.streets.stats?.fannedJoints ?? null,
+          jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -1503,10 +1661,14 @@ for (const [label, viewport, touch] of [
           // living exactly in that gap.
           farTimberWater: a.trees.farTimberWater?.() ?? null,
           // ...and the clip that keeps them off the screen, exercised. The band is
-          // solved around the camera, so this stands far enough back that
-          // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
-          // it: from the spawn point it is 329 m away and one metre inside the
-          // near cut-off, which is a green gate that has run nothing.
+          // solved around the camera, so this has to stand far enough back that a
+          // body in water clears MIN_FAR_M and the solver actually reaches it —
+          // from the spawn point the nearest one is a metre inside the near
+          // cut-off, which is a green gate that has run nothing. Since T-0031 the
+          // body it exercises is `north_branch_belt`, whose wet crossing begins at
+          // its first vertex (-95, 345) — 605 m from this stand, and the first
+          // sample of a segment is emitted at the vertex itself, so the clip is
+          // reached whatever the adaptive step does with the 16 m of wet run.
           horizonWetSkipped: (() => {
             a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
             a.step();
@@ -1527,6 +1689,39 @@ for (const [label, viewport, touch] of [
     // graph rather than off the screen.
     if (stageOn(1)) {
     inStageWork = true;
+
+    // --- the frame is multisampled, phone included (T-0157) ----------------
+    // `main.js` booted with `antialias: !coarse` from Milestone 0, so a touch
+    // device drew the whole town with no multisampling and its edges flipped
+    // whole. Measured at 390×780 on the published mirror by
+    // `tools/measure_phone_aa.mjs`: switching MSAA on takes every one of the 149
+    // pixels that were swapping surface outright under a 2 mm nudge — 25 aerial,
+    // 124 at Lake and Market — to ZERO, and the worst per-pixel movement from
+    // 105/140 to 28/37.
+    //
+    // This is asserted on the live CONTEXT rather than on a pixel count, and the
+    // measurement is why: the flicker COUNT goes UP when MSAA is switched on
+    // (1,056 → 2,482 aerial), because a partial resample touches more pixels
+    // than a whole flip does. Any gate written on the count would have to be
+    // written backwards.
+    //
+    // `antialias` is a context-creation attribute with no runtime handle, which
+    // is exactly what makes it worth a gate: the only way to lose it is a reboot
+    // with the flag off, and not one other check in this file would notice.
+    // `getContextAttributes()` alone will not do — it echoes what was ASKED for.
+    // `SAMPLES` is what the framebuffer actually has.
+    const multisample = await page.evaluate(() => {
+      const gl = window.__chicago4d.renderer.getContext();
+      return {
+        asked: gl.getContextAttributes().antialias,
+        samples: gl.getParameter(gl.SAMPLES),
+        coarse: window.matchMedia('(pointer: coarse)').matches,
+      };
+    });
+    check(`${label}: the frame is multisampled — the town's edges are resolved on a phone too`,
+      multisample.asked === true && multisample.samples >= 2,
+      `antialias=${multisample.asked} SAMPLES=${multisample.samples} `
+      + `pointer:coarse=${multisample.coarse}`);
 
     // --- the gate counts the town (T-0036) --------------------------------
     // The owner asked for the number of buildings and the number of people
@@ -3502,10 +3697,23 @@ for (const [label, viewport, touch] of [
       // board to tie into itself and read the whole walk as sunk by its own rise.
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
+      //
+      // NEITHER IS A WHARF DECK, and T-0058 is where THAT difference had to be
+      // drawn. Two of the seven docks — Carpenter's and Jones's, both on the
+      // South Water reach — tie their heels back into a bank the riverside plank
+      // walk already runs along, so their decks OVERSAIL about 3,000 of this
+      // layer's vertices by roughly half a metre. A board under a dock is not a
+      // board riding one: it is laid on the ground, it is measured against the
+      // ground, and it was in band against the ground before this deck was ever
+      // registered with the walker. Counting the dock as its base would read a
+      // walk that has not moved as newly sunk by the height of somebody else's
+      // floor. (What a visitor meets there is its own question and its own
+      // ticket; the stair at those two rises off the walk itself.)
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
           if (/__footway_\d+$/.test(d.id)) continue;
+          if (/__wharf(_step\d+)?$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -3651,13 +3859,14 @@ for (const [label, viewport, touch] of [
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
       };
     });
-    check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 28
-        && frontage.census?.crossings === 12
+    check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
+      frontage.census?.records === 5 && frontage.census?.walks === 27
+        && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 59
+        && frontage.census?.refused === 54
         && frontage.recordIds.join(',')
-          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
+          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
+            + 'lasalle_crossing_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
       `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
       + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
@@ -3701,21 +3910,22 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
-    // T-0188's six reconciled South Water placements welded two runs into one)
-    // and the TWO street-fence meshes T-0188 split off — one per covered street
-    // that carries a fence — so the boards could leave the shadow map while the
-    // fences stayed in it, all on ONE material, and the painted name on its own
-    // mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's eighteen (T-0069 laid twenty-one;
+    // T-0198's six reconciled South Water placements welded two runs into one
+    // and T-0199's last five welded two more) and the TWO street-fence meshes
+    // T-0198 split off — one per covered street that carries a fence — so the
+    // boards could leave the shadow map while the fences stayed in it, all on
+    // ONE material, and the painted name on its own mesh, the only thing here
+    // that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 39,
+        && frontage.meshes === 37,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4231,14 +4441,30 @@ for (const [label, viewport, touch] of [
           id: d.structure_id,
           deckTop: d._drawn?.deck_top_m ?? null,
           bents: d._drawn?.bents ?? 0,
+          treads: d._drawn?.stair_treads ?? null,
+          stairRise: d._drawn?.stair_rise_m ?? null,
+          stairFoot: d._drawn?.stair_foot_m ?? null,
           heelDry: [heelL, heelR].every((p) => !terrain.isWater(p[0], p[1])),
           faceWet: [faceL, faceR].every((p) => terrain.isWater(p[0], p[1])),
           bankY: Math.max(...[heelL, heelR].map((p) => terrain.surfaceHeight(p[0], p[1]))),
           depth: Math.min(...[faceL, faceR].map((p) => -terrain.surfaceHeight(p[0], p[1]))),
         };
       });
+      // What the layer PUBLISHES to the walker, as against what it drew: one
+      // entry per deck slab plus one per stair tread, each carrying the height
+      // that slab was actually built at.
+      const decks = (w?.decks ?? []).map((d) => ({ id: d.id, y: d.y, pts: d.pts.length }));
+      const deckY = new Map(list.map((d) => [`${d.structure_id}__wharf`,
+        d._drawn?.deck_top_m ?? null]));
+      const publishedMatchesDrawn = decks
+        .filter((d) => d.id.endsWith('__wharf'))
+        .every((d) => d.y === deckY.get(d.id));
+      const stairCeiling = w?.records?.[0]?.form?.boarding_stair_rise_m?.value ?? null;
       return {
         census: w?.census ?? null,
+        decks,
+        publishedMatchesDrawn,
+        stairCeiling,
         keepOut: (w?.keepOut ?? []).length,
         meshes: w?.group?.children?.length ?? 0,
         verts: g?.getAttribute('position')?.count ?? 0,
@@ -4272,13 +4498,19 @@ for (const [label, viewport, touch] of [
     // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
     // a refusal disappearing without this line moving is a rule change nobody
     // reviewed.
+    // The keep-out count is SEVEN DECKS PLUS EVERY STAIR TREAD (T-0058) — a
+    // tread is as much a floor as the deck it climbs to, and how many treads a
+    // site takes is the terrain's answer, so the bar is the layer's own census
+    // rather than a number written here that would go stale at the next regrade.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
+      docks.census?.wharves === 7 && docks.verts > 0
+        && docks.keepOut === 7 + (docks.census?.treads ?? -1)
         && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
-      + `${docks.keepOut} planting keep-out(s), ${docks.census?.refused} refused`);
+      + `${docks.keepOut} planting keep-out(s) for 7 deck(s) and `
+      + `${docks.census?.treads} tread(s), ${docks.census?.refused} refused`);
     check(`${label}: the whole wharf layer is one draw call`,
       docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
@@ -4310,6 +4542,101 @@ for (const [label, viewport, touch] of [
       docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
         + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
       + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // --- and a visitor can walk out along one (T-0058) ---------------------
+    //
+    // THE DECK IS A FLOOR AND THE WAY ONTO IT IS DRAWN. Until T-0058 the wading
+    // barrier `walkHeight()` puts over open water stood above every one of these
+    // decks, so a visitor saw seven docks from the bank and could step onto none
+    // of them. A wharf carries no structure record, so it cannot take the
+    // bridges' `placement.walk_surface_m` route; the LAYER publishes what it drew
+    // and `main.js` hands it to the walker beside the bridges'.
+    //
+    // That alone does not buy boarding, which is the half of this ticket that is
+    // easy to declare done and is not. The deck top is the ground's, floored at
+    // the record's 0.90 m freeboard over the water, and this terrain puts the
+    // bank at these seven heels between 0.12 and 0.58 m — a 0.32 to 0.78 m riser
+    // against the walker's 0.35 m step-up rule, which refuses six of the seven.
+    // So the layer draws a boarding stair and the bar here is the WALK, not the
+    // publication: start on the ground behind each dock, push forward, and be
+    // standing on the planks over the water at the far end having been refused
+    // nothing on the way.
+    check(`${label}: every plank a wharf drew is published to the walker at the height it drew it`,
+      docks.decks.length === 7 + (docks.census?.treads ?? -1)
+        && docks.publishedMatchesDrawn
+        && docks.decks.every((d) => d.pts === 4)
+        && docks.census?.stairs === 7,
+      `${docks.decks.length} walk surface(s) for 7 deck(s) and `
+      + `${docks.census?.treads} tread(s) on ${docks.census?.stairs} stair(s), `
+      + `heights ${docks.publishedMatchesDrawn ? 'match' : 'DISAGREE WITH'} the drawn slabs`);
+    // The stair divides whatever rise the terrain leaves it into equal treads,
+    // as many as it takes for none to exceed the record's ceiling — which is
+    // itself under the walker's step-up rule. Asserted against BOTH, because a
+    // record edited to 0.4 m would leave every other check here green and the
+    // decks unboardable again.
+    check(`${label}: no boarding tread rises past the record's ceiling or the step-up rule`,
+      docks.stairCeiling !== null && docks.stairCeiling <= 0.35
+        && docks.stands.every((s) => s.treads !== null && s.treads >= 0
+          && s.stairRise !== null && s.stairRise <= docks.stairCeiling + 1e-9
+          && s.stairRise <= 0.35),
+      `ceiling ${docks.stairCeiling} m against the 0.35 m step-up rule; `
+      + docks.stands.map((s) => `${s.id} ${s.treads} tread(s) of `
+        + `${s.stairRise?.toFixed(3)} m off ${s.stairFoot?.toFixed(2)} m`).join('; '));
+
+    const boarding = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const rows = [];
+      for (const d of a.wharves.wharves ?? []) {
+        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
+        const mid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+        const face = [(faceL[0] + faceR[0]) / 2, (faceL[1] + faceR[1]) / 2];
+        const span = Math.hypot(face[0] - mid[0], face[1] - mid[1]) || 1;
+        const oe = (face[0] - mid[0]) / span;
+        const on = (face[1] - mid[1]) / span;
+        // Start on plain ground behind the stair's own foot, facing the river
+        // down the deck's waterward normal — the approach a visitor coming from
+        // the warehouse takes, and not a spot chosen to work.
+        const back = (d._drawn?.stair_treads ?? 0) * 0.75 + 2.0;
+        a.walker.teleport({
+          local_e: mid[0] - oe * back,
+          local_n: mid[1] - on * back,
+          yaw_deg: (Math.atan2(oe, on) * 180) / Math.PI,
+        });
+        const row = { id: d.structure_id, blocked: 0, worstStride: 0, strides: 0,
+          startY: a.walker.state.groundY };
+        // A metre in from the face, which is deck by construction and is where a
+        // visitor would stand to look at the river.
+        const target = [face[0] - oe * 1.0, face[1] - on * 1.0];
+        let prevY = a.walker.state.groundY;
+        a.intent.forward = 1;
+        for (let i = 0; i < 600; i += 1) {
+          a.walker.update(0.05, a.intent);
+          const st = a.walker.state;
+          row.strides += 1;
+          row.worstStride = Math.max(row.worstStride, Math.abs(st.groundY - prevY));
+          prevY = st.groundY;
+          if (st.blocked) row.blocked += 1;
+          if (Math.hypot(st.e - target[0], st.n - target[1]) < 0.8) break;
+        }
+        a.intent.forward = 0;
+        const st = a.walker.state;
+        row.reached = Math.hypot(st.e - target[0], st.n - target[1]);
+        row.endY = st.groundY;
+        row.overWater = a.terrain.isWater(st.e, st.n);
+        row.barrier = a.terrain.walkHeight(st.e, st.n);
+        row.deckTop = d._drawn?.deck_top_m ?? null;
+        rows.push(row);
+      }
+      return rows;
+    });
+    check(`${label}: a visitor walks off the bank, up the stair and out over the water`,
+      boarding.length === 7 && boarding.every((r) => r.blocked === 0
+        && r.reached < 1.0 && r.worstStride <= 0.35
+        && r.overWater === true && r.endY === r.deckTop && r.barrier > r.endY + 1),
+      boarding.map((r) => `${r.id}: ${r.strides} stride(s), ${r.blocked} blocked, `
+        + `worst ${r.worstStride?.toFixed(3)} m, ended ${r.reached?.toFixed(2)} m short `
+        + `at ${r.endY?.toFixed(2)} m over water=${r.overWater} `
+        + `(barrier ${r.barrier?.toFixed(1)} m)`).join('; '));
 
     // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
     // at the wharf anchor — on the ground outside Newberry & Dole's river wall,
@@ -6572,6 +6899,11 @@ for (const [label, viewport, touch] of [
     // visitor's mouse, where an evaluate()'d .click() would quietly pass. It
     // runs here because the HUD only exists past the gate, and the guide that
     // covers this corner of it was dismissed by the check above.
+    //
+    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
+    // `clickChrome`, which hit-tests at the element's own centre and would catch
+    // this same regression — but here the trusted event is not the means, it is
+    // the SUBJECT, and the instrument should be the visitor's own mouse.
     await page.click('#btn-confidence-more');
     await page.click('#cm-reconstructed');
     await page.waitForTimeout(120);
@@ -6698,6 +7030,21 @@ for (const [label, viewport, touch] of [
       streetLayer.approachGaps.length
         ? `uncovered stations: ${streetLayer.approachGaps.join(', ')}`
         : 'every approach station lands on drawn roadway');
+    // T-0184. Stations inside the sector on the OUTSIDE of every authored bend —
+    // the wedge of prairie a square joint opened, 23.47 m2 town-wide before the
+    // mitre. `squareJoints` is asserted at zero beside it because the module is
+    // allowed to give up on a hairpin it cannot mitre, and a town where every
+    // bend had quietly fallen through that guard would still have stations to
+    // pass if they were the only thing read here.
+    check(`${label}: no bend in the ribbon opens a wedge on the outside of its turn`,
+      streetLayer.jointGaps.length === 0 && streetLayer.jointStations > 100
+      && streetLayer.squareJoints === 0 && streetLayer.mitredJoints > 0,
+      streetLayer.jointGaps.length
+        ? `uncovered: ${streetLayer.jointGaps.slice(0, 6).join('; ')}`
+        : `${streetLayer.jointStations} stations across ${streetLayer.joints} joints — `
+          + `${streetLayer.mitredJoints} mitred, ${streetLayer.fannedJoints} cut into `
+          + `sub-mitres for ${streetLayer.jointFanTriangles} triangles, `
+          + `${streetLayer.squareJoints} left square`);
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
@@ -8259,7 +8606,7 @@ for (const [label, viewport, touch] of [
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`);
+        + `-${s.maxReach.toFixed(2)} m`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
@@ -8270,7 +8617,8 @@ for (const [label, viewport, touch] of [
         && s.meanReach >= s.nominal - 0.5 * s.fringe,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
         + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m`);
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
+        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
@@ -8286,7 +8634,7 @@ for (const [label, viewport, touch] of [
         && fb.ringLo >= fb.nominal - fb.fringe - 0.05
         && fb.ringHi <= fb.nominal + fb.fringe + 0.05,
         `forb rings span ${fb.ringLo.toFixed(2)}-${fb.ringHi.toFixed(2)} m about a nominal `
-        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`);
+        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`, true);
     }
     // A fringe that moved with the walker would be a boundary that swims — the
     // pop-in defect over again, one ring further out. Nine points on the ground
@@ -8490,6 +8838,15 @@ for (const [label, viewport, touch] of [
     // read eye height against the ground the visitor is standing on, and a
     // teleport here would be this part measuring somewhere the unfiltered run
     // never stands.
+    //
+    // EVERY CHROME CLICK IN THIS PART GOES THROUGH `clickChrome` (T-0215), and
+    // the reason is written where that helper is defined. The short of it: this
+    // part is nothing but panel chrome — fourteen clicks and almost no camera —
+    // so it is the part with the most to lose to a starved action, and on
+    // 2026-08-27 its FIRST click starved for ninety seconds and took the whole
+    // part down before one assertion had run. Not one assertion is dropped or
+    // softened by the change: `clickChrome` hit-tests the control at its own
+    // centre the way a real click does, and says what covered it when it fails.
     if (stageOn(8)) {
     inStageWork = true;
     await enterTown();
@@ -8515,7 +8872,7 @@ for (const [label, viewport, touch] of [
     // And free-fly must NOT be resettled — up there the eye height is an
     // altitude the visitor is flying, and dropping them to standing height mid
     // flight would be the setting reaching somewhere it has no business.
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const eye = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const el = document.getElementById('s-eye');
@@ -8641,7 +8998,7 @@ for (const [label, viewport, touch] of [
       tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
 
     // G, from the walk, with the panel shut.
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
     await page.keyboard.press('g');
     await page.waitForTimeout(60);
     const viaKey = await page.evaluate(() => ({
@@ -8744,15 +9101,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
       JSON.stringify(jumps.filtered));
-    await page.click('[data-jump-id="randolph_canal"]');
+    await clickChrome('[data-jump-id="randolph_canal"]');
     await page.waitForTimeout(80);
     const arrived = await page.evaluate(() => ({ ...window.__chicago4d.player }));
     check(`${label}: an intersection result moves the visitor there`,
       Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2,
       `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)})`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const toggles = await page.evaluate(() => {
       const compass = document.getElementById('s-compass');
       const map = document.getElementById('s-overview-map');
@@ -8774,14 +9131,14 @@ for (const [label, viewport, touch] of [
     check(`${label}: settings toggle all three navigation aids`,
       toggles.hidden.compass && toggles.hidden.map && toggles.hidden.street && toggles.restored,
       JSON.stringify(toggles));
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
 
     // The HUD toggle must drive the same view the harness does.
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
     await page.waitForTimeout(100);
     const viaHud = await page.evaluate(() => window.__chicago4d.confidenceView);
     check(`${label}: the HUD toggle drives the confidence view`, viaHud === true, `${viaHud}`);
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
 
     // --- what's new ---------------------------------------------------------
     // The changelog is authored inside the app and mirrored out by publish.sh.
@@ -8791,7 +9148,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.removeItem('chicago4d.whatsnew.seen'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
 
@@ -8802,8 +9159,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: a first-time visitor is told there are unread notes`,
       unread.chip && unread.tab, `chip ${unread.chip}, tab ${unread.tab}`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const wn = await page.evaluate(() => {
       const host = document.getElementById('whatsnew');
@@ -8831,11 +9188,11 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.setItem('chicago4d.whatsnew.seen', '3'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const ret = await page.evaluate(() => ({
       flagged: [...document.querySelectorAll('#whatsnew .wn-entry.is-new .wn-title')]
@@ -9871,6 +10228,32 @@ for (const [label, viewport, touch] of [
     } catch (e) {
       inStageWork = false;
       thrown = e;
+    }
+
+    // T-0215 — WHEN AN ACTION TIMES OUT, SAY WHAT A FRAME COSTS, because that is
+    // the question the log leaves unanswered and the wrong answer has now been
+    // given twice. `TimeoutError: page.click: Timeout 90000ms exceeded` on a
+    // control that is visible, enabled and stable reads like a broken control,
+    // and on 2026-08-13 and again on 2026-08-27 it was not one: Playwright's
+    // click waits on animation frames, and this scene's frames cost 0.46-1.10 s
+    // on a quiet machine and 17-27 s on a loaded one. Three sampled frames turn a
+    // whole run of guessing into one line. It is a REPORT, never a bar — the
+    // failure above still fails, and a slow frame is not an excuse for a control
+    // that is genuinely gone.
+    if (thrown && /Timeout .* exceeded/.test(String(thrown))) {
+      try {
+        const f = await page.evaluate(() => new Promise((done) => {
+          const ms = []; let prev = performance.now();
+          const step = () => {
+            const now = performance.now(); ms.push(Math.round(now - prev)); prev = now;
+            if (ms.length >= 3) done(ms); else requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }), { timeout: 120_000 });
+        console.log(`        one animation frame costs ${f.join(' / ')} ms here `
+          + `(0.46-1.10 s is this scene's cost on a quiet machine — a reading in `
+          + `seconds means the action starved on frames, not on a missing control)`);
+      } catch { console.log('        the page would not report a frame at all'); }
     }
 
     if (KEEP) {

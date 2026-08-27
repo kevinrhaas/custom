@@ -27,7 +27,7 @@
  "water_surface_m": 0.0,
  "water_fraction": 0.2533,
  "relief_ft": {
-  "land_min": -1.966,
+  "land_min": -1.978,
   "land_max": 12.285,
   "channel_min": -17.405
  },
@@ -52,6 +52,14 @@
    "approach_dearborn_south": {
     "cells": 37,
     "cell_max": 148.58
+   },
+   "approach_lasalle_crossing_east": {
+    "cells": 10,
+    "cell_max": 73.528
+   },
+   "approach_lasalle_crossing_west": {
+    "cells": 10,
+    "cell_max": 60.641
    },
    "approach_north_branch_east": {
     "cells": 21,
@@ -106,7 +114,7 @@
     "cell_max": 116.863
    },
    "swales": {
-    "cells": 21418,
+    "cells": 21434,
     "cell_max": 158.047
    }
   },
@@ -116,5 +124,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "c14b084a78aedd405bcfadf558ed6f58164dc5d7586c21c4f3e6ef14a2c69eb3"
+ "inputs_sha256": "7347a8a42ea3d2edae8e7210f98c69045e08d9c458de23ac6e2620f642c8013b"
 }

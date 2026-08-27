@@ -47,7 +47,12 @@ from band_notes import split_notes  # noqa: E402
 from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E402
                           families, pitch_deg, storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
+# T-0112. The clapboard stock is dealt HERE, at the end of the parcel, because it is
+# the one form value that depends on where a building's neighbours stand — and the
+# recipe is the only thing that knows the parcel whole. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
 FAMILIES = families()
@@ -152,20 +157,23 @@ def form_for(family: str, spec: dict, key: str, seq: int, paint: str,
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, spec, key, seq, paint, archetype, width, depth),
-                       family, band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, spec, key, seq, paint, archetype, width, depth),
+                    family, band_note(family)),
+        family, width, depth)
 
 
-# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
-# once, because both the eave and the pitch now need them (T-0148). These two answers
-# used to sit inline in each form branch, which is the same rule written five times;
-# `_form_body` below reads them instead of restating them, so a family cannot get one
-# roof for the purpose of choosing its eave and another for the purpose of building it.
-def _roof_kind(family: str) -> tuple[str, bool | None]:
-    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
-    return roof, (True if family.startswith("C") else None)
+# WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this file's
+# (T-0179). It was decided here and in four other parcels, as the same literal written
+# five times, and the five had already drifted: three named A5 among the shed families
+# and two did not, which is why one A5 stands on a gable beside three A5 sheds. The rule
+# now has one home, and `tools/measure_ridge_reach.py` tests it against the ridge band
+# every family authors, so a family cannot be dealt a form its own bands cannot carry.
 
 
 def _pitch_default(family: str) -> float:
@@ -178,7 +186,7 @@ def _pitch_default(family: str) -> float:
         return 33.0
     if family.startswith("T") or family.startswith("I") or family in ("H2", "H3"):
         return 38.0
-    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
 
 
 def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
@@ -198,7 +206,7 @@ def _form_body(family: str, spec: dict, key: str, seq: int, paint: str,
     # a ridge band that is reachable at an eave their own family also authors — the
     # sampler was constraining one of its two free claims and making the other carry
     # the choice.
-    roof_type, gable_front = _roof_kind(family)
+    roof_type, gable_front = roof_kind(family)
     run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
     floor = eave_floor(family, door_kind(family))
     wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor),
@@ -452,6 +460,7 @@ def validate(records: list[dict], inventory: dict, recipe: dict, datum: dict) ->
 def records_from_inputs() -> list[dict]:
     inventory, recipe, datum = load(INVENTORY_PATH), load(RECIPE_PATH), load(DATA / "datum.json")
     records = [make_record(row, datum) for row in recipe["placements"]]
+    deal_siding(records)
     validate(records, inventory, recipe, datum)
     return records
 

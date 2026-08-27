@@ -29,6 +29,9 @@ PARCEL_PATH = DATA / "reconstruction" / "1835_phase1_south_mixed_blocks.json"
 SOURCE_ID = "owner_chicago_1835_reconstruction_spec_2026"
 PHASE_ID = "inferred_1835"
 PREFIX = "recon_1835_south_"
+# This parcel's own name, as `roof_form.AWAITING_BAKE` keys it. It is passed rather than
+# inferred so the hold is looked up under a string this file states about itself.
+PARCEL = "generate_inferred_infill.py"
 
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
@@ -38,6 +41,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 # data, not a hand edit: this generator still re-derives every record byte for byte,
 # and the occupancy block arrives from the household programme's ledger.
 from band_notes import split_notes  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 # Every committed footprint in this scene's local frame, so a frontage run can butt
 # onto a building this parcel did not write — read from the module the occupancy and
@@ -46,6 +50,10 @@ from plat_occupancy import footprints  # noqa: E402
 # The face of a committed block — the line a party-line row stands on — is one
 # rule in one module, imported by both generators that build a row (T-0078).
 from block_faces import extent, face_frame as block_face, project  # noqa: E402
+# T-0112. The clapboard stock is dealt at the end of the parcel, AFTER the frontage
+# runs move their buildings: it is the one form value that depends on where a
+# building's neighbours stand. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -148,9 +156,15 @@ def form_for(family: str, seq: int, finish: str, width: float, depth: float) -> 
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, seq, finish, width, depth), family, band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, seq, finish, width, depth), family,
+                    band_note(family)),
+        family, width, depth)
 
 
 def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -> dict:
@@ -202,7 +216,12 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
         door = "wagon"
     elif family in ("W2", "A1"):
         door = "stable"
-    roof = "shed" if family in ("D2", "A3", "A4") else "gable"
+    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
+    # file's (T-0179). This parcel is the one held back from part of that rule — it
+    # retyped the shed set without A5 and one A5 roof stands on the difference, which
+    # cannot move without a bake — so it names itself and the hold is recorded beside
+    # the rule rather than here. See `roof_form.AWAITING_BAKE` and T-0212.
+    roof = roof_kind(family, PARCEL)[0]
     wall = 2.05 if family == "A3" else (3.42 if door == "wagon" else 2.75)
     material = "plank"
     if family == "A1" and min(width, depth) >= 2.2:
@@ -533,10 +552,10 @@ def check_frontage(records: list[dict], parcel: dict, datum: dict) -> None:
 
 def validate_programme(inventory: dict, parcel: dict, records: list[dict]) -> None:
     if sum(inventory["family_targets"].values()) != inventory["targets"]["roof_total"]:
-        raise SystemExit("family targets do not sum to the 665-roof target")
+        raise SystemExit("family targets do not sum to the authored roof target")
     matrix_total = sum(v["total"] for v in inventory["district_group_matrix"].values())
     if matrix_total != inventory["targets"]["roof_total"]:
-        raise SystemExit("district/group matrix does not sum to the 665-roof target")
+        raise SystemExit("district/group matrix does not sum to the authored roof target")
     for district, row in inventory["districts"].items():
         total = sum(v[district] for v in inventory["district_group_matrix"].values())
         if total != row["target"]:
@@ -579,6 +598,7 @@ def records_from_inputs() -> list[dict]:
                 record["_frontage"] = frontage
             records.append(record)
     place_on_frontage(records, parcel, datum)
+    deal_siding(records)
     validate_programme(inventory, parcel, records)
     check_frontage(records, parcel, datum)
     check_corridors(records, datum)

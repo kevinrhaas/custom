@@ -18,6 +18,10 @@
       "file": "river_walk_frontage.json"
     },
     {
+      "id": "lasalle_crossing_frontage",
+      "file": "lasalle_crossing_frontage.json"
+    },
+    {
       "id": "town_street_edge",
       "file": "town_street_edge.json"
     }

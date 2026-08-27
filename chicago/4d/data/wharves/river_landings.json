@@ -187,10 +187,25 @@
       "value": 0.75,
       "confidence": "reconstructed",
       "note": "INVENTED. 0.75 m proud of the deck, which is a working height for a line rather than a measurement of anything."
+    },
+    "boarding_stair_width_m": {
+      "value": 2.4,
+      "confidence": "reconstructed",
+      "note": "INVENTED (T-0058, docs/LIBERTIES.md). The deck top is a FLOOR and the freeboard figure above is a floor over the water, so at every one of these sites the planks stand proud of the bank they tie into — measured from the committed heightfield at load, between 0.3 and 0.8 m of it. Something got a man from the ground onto the deck and no source says what. A stair of plank treads is the least of the possibilities: it invents timber this layer already draws rather than regrading the bank, which would be a claim about the LAND. 2.4 m across is a two-man width with a barrel between them; nothing attests it."
+    },
+    "boarding_stair_tread_m": {
+      "value": 0.75,
+      "confidence": "reconstructed",
+      "note": "INVENTED. 0.75 m of tread, landward, per step. Nothing attests it; it is a comfortable going for the rise below and keeps the whole stair inside the 2.0 m the deck already ties back into the bank plus a metre of approach."
+    },
+    "boarding_stair_rise_m": {
+      "value": 0.3,
+      "confidence": "reconstructed",
+      "note": "INVENTED, AND IT IS A CEILING RATHER THAN A HEIGHT. The stair divides whatever rise the terrain leaves between the bank and the deck into equal treads, as many as it takes for none to exceed this. 0.30 m is under the walker's own 0.35 m step-up rule (renderers/web/js/walker.js WALK.stepUp) with margin, which is what makes the deck boardable rather than a platform you can see and not reach; it is also an ordinary stair rise. How many treads that comes to is the terrain's answer at each site, taken at load, never authored here."
     }
   },
-  "geometry_note": "The record owns the OUTLINE — where the deck stands, how long and how wide it is, and the figures above. How that outline becomes triangles is the renderer's: how many bents the crib is stepped into, where the three posts stand along the face, and the timber's tone are in renderers/web/js/wharves.js, the same division data/yard/ makes with yard.js. THE DECK'S HEIGHT IS NEITHER'S: it is the terrain's, sampled at the landward edge at load.",
-  "not_drawn": "NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY AND NO NAME. The schooner Illinois was cheered at one of these two wharves in July 1834 and is not drawn at either: this project holds no description of any vessel in Chicago at the scene date, and a hull is a larger invention than the deck it would lie at. Goods are drawn only where the yard layer's own rule puts them (data/yard/), which is on the town's trading frontages and not out here.",
+  "geometry_note": "The record owns the OUTLINE — where the deck stands, how long and how wide it is, and the figures above. How that outline becomes triangles is the renderer's: how many bents the crib is stepped into, where the three posts stand along the face, and the timber's tone are in renderers/web/js/wharves.js, the same division data/yard/ makes with yard.js. THE DECK'S HEIGHT IS NEITHER'S: it is the terrain's, sampled at the landward edge at load — and so is the HEIGHT OF THE BOARDING STAIR and the number of treads it takes, which is why this record states the stair's width, going and greatest rise and states no stair height anywhere.",
+  "not_drawn": "NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY AND NO NAME. The schooner Illinois was cheered at one of these two wharves in July 1834 and is not drawn at either: this project holds no description of any vessel in Chicago at the scene date, and a hull is a larger invention than the deck it would lie at. Goods are drawn only where the yard layer's own rule puts them (data/yard/), which is on the town's trading frontages and not out here. THE BOARDING STAIR IS NOT A GANGWAY: the gangway refused here is the plank to a hull, and the stair stated in `form` is the landward one, off the bank onto the deck.",
   "wharves": [
     {
       "structure_id": "carpenter_south_water_store",
@@ -237,8 +252,8 @@
       "deck_length_m": 13.62,
       "deck_width_m": 8.0,
       "frontage_served_m": 7.62,
-      "wall_to_bank_m": 40.97,
-      "clearance_to_wall_m": 38.14,
+      "wall_to_bank_m": 49.08,
+      "clearance_to_wall_m": 46.23,
       "depth_at_face_m": [
         1.7,
         1.5,
@@ -261,7 +276,7 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        353.27,
+        353.32,
         42.73
       ],
       "bank_tangent": [
@@ -274,27 +289,27 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          362.37,
+          362.42,
           40.76
         ],
         [
-          344.18,
+          344.23,
           40.71
         ],
         [
-          344.16,
-          48.7
+          344.2,
+          48.71
         ],
         [
-          362.35,
+          362.4,
           48.76
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 39.61,
-      "clearance_to_wall_m": 37.71,
+      "wall_to_bank_m": 49.29,
+      "clearance_to_wall_m": 47.36,
       "depth_at_face_m": [
         1.61,
         1.63,

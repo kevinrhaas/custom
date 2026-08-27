@@ -131,6 +131,9 @@ DECK_T_M = 0.14         # the plank deck's thickness
 FREEBOARD_M = 0.90      # the least the deck top may stand above the water plane
 POST_SIDE_M = 0.22      # a snubbing post, square
 POST_HEIGHT_M = 0.75    # and how far it stands proud of the deck
+STAIR_WIDTH_M = 2.4     # the boarding stair at the landward edge, across
+STAIR_TREAD_M = 0.75    # each tread's depth, landward
+STAIR_RISE_M = 0.30     # the most any one tread may rise
 CRIB_W_M = 1.20         # the crib wall under the deck's outer face and its ends
 
 # The least water a drawn landing may have at its face. NOT a new number: it is
@@ -940,6 +943,48 @@ def record(wharves: list, refused: list, banks: list) -> dict:
                     "for a line rather than a measurement of anything."
                 ),
             },
+            "boarding_stair_width_m": {
+                "value": STAIR_WIDTH_M,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED (T-0058, docs/LIBERTIES.md). The deck top is a FLOOR "
+                    "and the freeboard figure above is a floor over the water, so "
+                    "at every one of these sites the planks stand proud of the "
+                    "bank they tie into \u2014 measured from the committed "
+                    "heightfield at load, between 0.3 and 0.8 m of it. Something "
+                    "got a man from the ground onto the deck and no source says "
+                    "what. A stair of plank treads is the least of the "
+                    "possibilities: it invents timber this layer already draws "
+                    "rather than regrading the bank, which would be a claim about "
+                    "the LAND. 2.4 m across is a two-man width with a barrel "
+                    "between them; nothing attests it."
+                ),
+            },
+            "boarding_stair_tread_m": {
+                "value": STAIR_TREAD_M,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED. 0.75 m of tread, landward, per step. Nothing "
+                    "attests it; it is a comfortable going for the rise below and "
+                    "keeps the whole stair inside the 2.0 m the deck already ties "
+                    "back into the bank plus a metre of approach."
+                ),
+            },
+            "boarding_stair_rise_m": {
+                "value": STAIR_RISE_M,
+                "confidence": "reconstructed",
+                "note": (
+                    "INVENTED, AND IT IS A CEILING RATHER THAN A HEIGHT. The stair "
+                    "divides whatever rise the terrain leaves between the bank and "
+                    "the deck into equal treads, as many as it takes for none to "
+                    "exceed this. 0.30 m is under the walker's own 0.35 m step-up "
+                    "rule (renderers/web/js/walker.js WALK.stepUp) with margin, "
+                    "which is what makes the deck boardable rather than a platform "
+                    "you can see and not reach; it is also an ordinary stair rise. "
+                    "How many treads that comes to is the terrain's answer at each "
+                    "site, taken at load, never authored here."
+                ),
+            },
         },
         "geometry_note": (
             "The record owns the OUTLINE — where the deck stands, how long and "
@@ -948,7 +993,10 @@ def record(wharves: list, refused: list, banks: list) -> dict:
             "into, where the three posts stand along the face, and the timber's "
             "tone are in renderers/web/js/wharves.js, the same division "
             "data/yard/ makes with yard.js. THE DECK'S HEIGHT IS NEITHER'S: it "
-            "is the terrain's, sampled at the landward edge at load."
+            "is the terrain's, sampled at the landward edge at load \u2014 and so "
+            "is the HEIGHT OF THE BOARDING STAIR and the number of treads it "
+            "takes, which is why this record states the stair's width, going and "
+            "greatest rise and states no stair height anywhere."
         ),
         "not_drawn": (
             "NO VESSEL, NO CARGO, NO CRANE, NO GANGWAY AND NO NAME. The schooner "
@@ -957,7 +1005,9 @@ def record(wharves: list, refused: list, banks: list) -> dict:
             "in Chicago at the scene date, and a hull is a larger invention than "
             "the deck it would lie at. Goods are drawn only where the yard layer's "
             "own rule puts them (data/yard/), which is on the town's trading "
-            "frontages and not out here."
+            "frontages and not out here. THE BOARDING STAIR IS NOT A GANGWAY: "
+            "the gangway refused here is the plank to a hull, and the stair "
+            "stated in `form` is the landward one, off the bank onto the deck."
         ),
         "wharves": wharves,
         "refused": refused,

@@ -284,7 +284,52 @@ const DETAIL = {
   // and it is a separate ticket precisely so that the trim has to be measured
   // before the ceiling is allowed to follow it down. A ceiling lowered in the
   // same breath as the trim that justified it is a ceiling nobody checked.
-  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
+  // ── RE-BUDGETED 2026-08-27 ON THE OWNER'S DECISION, AND IT EXPIRES ──────────
+  //
+  // `full` and `balanced` are raised to clear a breach that is REAL but whose
+  // cause is measured and is NOT the town's content. Both numbers come back
+  // down when T-0209's first step lands. This is written here rather than in a
+  // ticket because the next person to read these constants is the one who needs
+  // to know they are provisional.
+  //
+  // THE MEASUREMENT (T-0209, `tools/measure_stand_budget.mjs`, at the release
+  // smoke's own worst stand — Lake Street at Canal, east down the axis):
+  //
+  //   full      1,412,120 of 1,400,000   over by 12,120
+  //   balanced  1,252,802 of 1,210,000   over by 42,802
+  //
+  //   trees     360,926 triangles drawn, of 181,900 the layer OWNS.
+  //             180,100 of that is the sun's pass over timber that lies
+  //             outside the +/-240 m shadow box — 14.4 % of the whole frame,
+  //             casting nothing any pixel of the shadow map can hold.
+  //
+  // So the frame carries roughly FOUR TIMES the headroom either ceiling needs,
+  // in work the renderer should not be doing at all. trees.js builds the near
+  // timber as four quadrant meshes spanning kilometres, and a mesh whose
+  // bounding sphere merely touches the shadow box is submitted whole — there is
+  // nothing to cull per-mesh until the timber is chunked. That is why this is a
+  // raise today and not a trim: the trim is real work, not a flag.
+  //
+  // WHY RAISE AT ALL, since the content is not at fault: the nightly bake's
+  // desktop 3-4 leg is red on every branch until one of the two happens, so it
+  // reports nothing about the branch under test, and production cannot ship
+  // without a known breach. A red gate that is red for everyone is a gate
+  // nobody reads.
+  //
+  // THE NUMBERS: the measured worst stand plus ~0.6 % — the smallest step that
+  // clears the breach and leaves a normal parcel room, NOT a round number and
+  // NOT chosen to fit a particular record.
+  //
+  // WHEN THIS COMES OUT: T-0209 step one culls the timber from the sun's
+  // camera. At that point the worst stand should fall to roughly 1,232,000
+  // (full) and 1,072,000 (balanced) — comfortably under the ORIGINAL
+  // 1,400,000 / 1,210,000. Put them back. If the cull recovers materially less
+  // than 180,100, that is a finding and these numbers need re-arguing, not
+  // quietly keeping.
+  //
+  // This is the FIFTH re-basing of these ceilings. The count is the argument
+  // for T-0209, and it is recorded here so the sixth is harder to reach for.
+  full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -295,7 +340,59 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
-  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+  //
+  // RE-BUDGETED AGAIN 2026-08-24, 1210000 -> 1225000 (T-0098), and the entry
+  // above asked for exactly this to be justified: "the next parcel that
+  // breaches them is breaching a bar that means something." It measured what
+  // the bar means before moving it, twice, at the release smoke's own worst
+  // stand (Lake Street at Canal, east down the axis, desktop 1280x800):
+  //
+  //   dev alone, this parcel unmounted     1,209,926 of 1,210,000   PASS by 74
+  //   dev plus a twelve-stem tree stand    1,213,446 of 1,210,000   FAIL by 3,446
+  //
+  // SEVENTY-FOUR TRIANGLES. That is a quarter of one tree, on a frame of 1.2
+  // million. The bar had not been reached by a parcel that overspent it; it had
+  // been reached, full stop, and the next VISIBLE parcel of any size at all was
+  // going to fail it whatever it was - which is a fact about the ceiling and not
+  // about the parcel that found it. `full` was measured in the same runs with
+  // 16,852 (1.2 %) of headroom, so the ladder was not uniformly full: the middle
+  // rung alone had been squeezed to nothing.
+  //
+  // WHERE 1,225,000 COMES FROM, so it is a principle and not "enough for me":
+  // it gives `balanced` the same PROPORTIONAL headroom `full` carries today
+  // (about 1 %) over the measured worst stand WITH this parcel in. The ladder
+  // keeps its shape; nothing was chosen to fit one record.
+  //
+  // WHAT WAS NOT DONE, and both halves matter. `light` IS UNTOUCHED at 1050000
+  // and reads 815,777 - 22 % under its own ceiling. The floor a weak machine
+  // boots into is not spent here, which is the standing constraint on every
+  // re-budget this table has taken. And this raise does NOT buy room for the
+  // parcel after this one: it restores about 1 % and no more, and the trim that
+  // would actually win the middle rung back is still T-0149 (the axial view) and
+  // T-0147 (the ceilings that follow a trim down). A ceiling raised to carry one
+  // record is not a ceiling anybody should spend twice.
+  // SUPERSEDED 2026-08-27, and the re-budget above is DEFERRED rather than
+  // dismissed: it was careful reasoning that later measurement overtook, twice.
+  //
+  //   (i)  It rests on `balanced` measuring 1,213,446 at the worst stand. dev
+  //        measures 1,252,802 there today, so 1,225,000 no longer clears the
+  //        breach it was raised to clear. It also rests on `full` carrying
+  //        1.2 % headroom; `full` is now OVER, at 1,412,120 of 1,400,000. Both
+  //        halves of the proportional-headroom argument have moved.
+  //   (ii) T-0209 measured what actually occupies the frame, which nobody had:
+  //        `trees` draws 360,926 triangles out of 181,900 it owns -- the whole
+  //        layer twice -- because trees.js submits kilometre-wide quadrant
+  //        meshes whole to a +/-240 m shadow box. 180,100 triangles, 14.4 % of
+  //        the frame, cast nothing any pixel of the shadow map can hold.
+  //
+  // Re-basing a ceiling with that still in it budgets for work the renderer
+  // should not be doing, and it would be the fifth raise. So the number stays
+  // at 1,210,000 and the budget question lives entirely in T-0209, which orders
+  // the trim first and the ceiling after. The tree stand this parcel adds ships
+  // regardless; its own smoke leg is red on dev with or without it.
+  // Raised with `full` above, same reasoning, same expiry: measured 1,252,802
+  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0209.
+  balanced: { triangles: 1260000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
@@ -508,12 +605,69 @@ async function boot() {
   const bases = resolveBases();
   const coarse = prefersTouch();
 
+  /**
+   * MULTISAMPLING, ON EVERY DEVICE INCLUDING A PHONE (T-0157).
+   *
+   * This read `antialias: !coarse` from Milestone 0 — the first commit of this
+   * renderer, before there was a town to look at — so every touch device drew
+   * the whole reconstruction with no multisampling at all. Nobody had ever
+   * measured what that costs a phone: T-0013 established that all 627
+   * interior-flickering pixels at `from_above` are edges and that only sample
+   * density touches them, but every one of its readings was taken at 1280×800
+   * on the DESKTOP boot, where MSAA was already absorbing most of it.
+   *
+   * `tools/measure_phone_aa.mjs` measures the phone, at 390×780 in a context
+   * with `hasTouch` — which the release gate uses and which `TIE_VIEWPORT=mobile`
+   * does not, so the older instrument had been booting the desktop renderer in a
+   * narrow window. Published mirror, 2 mm nudge, shadow map off, control and
+   * return-to-pose both 0 px:
+   *
+   *              flicker px      HARD FLIPS (a pixel that moved ≥ 64 of 255)
+   *   from_above   1056 → 2482        25 → 0
+   *   lake_market  4843 → 7310       124 → 0
+   *
+   * READ THE SECOND COLUMN, AND NOTE THAT THE FIRST ONE ARGUES THE OTHER WAY.
+   * The flicker COUNT — the number T-0013 and three boxes of ROADMAP quote —
+   * goes UP by 135 % aerial and 51 % at eye height when MSAA is switched on,
+   * because a partial resample touches more pixels than a whole flip does. A run
+   * that had measured only the count would have refused this. What actually
+   * happens is that the SEVERITY collapses: the worst per-pixel movement falls
+   * 105 → 28 aerial and 140 → 37 at Lake and Market, the mean 15.6 → 6.8 and
+   * 14.8 → 6.4, and every one of the 149 pixels that were swapping surface
+   * outright stops doing it. That is precisely the difference between an edge
+   * that crawls and an edge that is resolved.
+   *
+   * WHAT IT COSTS, AND THE HONEST LIMIT OF THAT FIGURE. Timed over the ten scene
+   * anchors the release gate walks, clock held, A/B/A: **+56 % of a frame**
+   * (24,457 → 43,283 ms summed, against a mean-of-A baseline), with the runner
+   * itself drifting +26 % between its two A passes — so the true reading is
+   * "roughly half a frame again", not a digit. It is measured through ANGLE's
+   * SwiftShader, a SOFTWARE rasteriser, which resolves every sample on the CPU
+   * with no tile memory: that is the harshest possible witness for this change
+   * and the figure is an UPPER bound. **The cost on real phone silicon was not
+   * measured and is not claimed.**
+   *
+   * The floor is untouched and the escape hatch already ships. A phone still
+   * boots into the `light` scene-detail tier, unchanged; and Render quality in
+   * Settings drops the pixel ratio to 1, which cuts the multisampled pixel count
+   * by 56 % — measured at 4 stations rather than asserted, see STATUS.md.
+   */
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: !coarse,
+    antialias: true,
     powerPreference: 'high-performance',
     stencil: false,
   });
+  /**
+   * The boot-time ratio. Note that this is superseded a few hundred lines below
+   * by `renderer.setPixelRatio(Math.min(dpr, hud.settings.quality))` once the
+   * visitor's stored settings are read, and the shipped default of `quality` is
+   * **1.5 on both platforms** — so the `: 2` here reaches a fresh visitor's
+   * screen for the handful of frames before the HUD mounts and nowhere else.
+   * T-0157's premise held that a phone was capped at 1.5 "rather than 2"; what
+   * the renderer actually reports is 1.5 on a phone at dpr 2 and 1.0 on a
+   * desktop at dpr 1, which is the phone supersampling MORE than the desktop.
+   */
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
 
   const scene3d = new THREE.Scene();
@@ -560,9 +714,13 @@ async function boot() {
   scene3d.add(buildings.group);
 
   const footprints = footprintsFrom(loaded.registry);
-  // The bridge decks, which are the one walkable surface the heightfield does not
-  // carry — the wall you are kept out of and the deck you stand on are the same
-  // polygon read two ways, so both come off the same footprints. T-0001.
+  // The bridge decks: a walkable surface the heightfield does not carry — the
+  // wall you are kept out of and the deck you stand on are the same polygon read
+  // two ways, so both come off the same footprints. T-0001. They are no longer
+  // the only ones: the street edge's boards and, since T-0058, the wharf decks
+  // and their boarding stairs join this same array once their own layers have
+  // drawn them and know how high they stood them. The walker holds it BY
+  // REFERENCE and reads whatever is in it.
   const decks = decksFrom(loaded.registry);
   const spawn = anchorFor(loaded.scene, params.get('anchor')) ?? loaded.scene.spawn ?? {};
   const walker = createWalker({ camera, terrain, footprints, decks, spawn });
@@ -719,6 +877,15 @@ async function boot() {
     // planks of a bridge deck either.
     decks,
   );
+
+  // …AND THE WHARF PLANKS BECOME FLOORS — after `planting` has been taken and
+  // not before. `decks` is the array the walker holds by reference, so a push
+  // here reaches it; but the planters already have these same rectangles out of
+  // `wharves.keepOut` above, and pushing earlier would hand them each one twice.
+  // The layer publishes them rather than a record because a wharf has no
+  // structure record to carry `placement.walk_surface_m`, and the height is the
+  // one that layer drew the slab at (T-0058; see the header of `wharves.js`).
+  decks.push(...wharves.decks);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //

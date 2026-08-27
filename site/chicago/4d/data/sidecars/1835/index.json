@@ -2334,6 +2334,12 @@
       "asset": "gltf/lake_house_construction__shell_1835.glb"
     },
     {
+      "id": "lasalle_slough_crossing",
+      "name": "The La Salle Slough Crossing, South Water Street",
+      "sidecar": "sidecars/1835/lasalle_slough_crossing.json",
+      "asset": "gltf/lasalle_slough_crossing__crossing_1835.glb"
+    },
+    {
       "id": "log_jail",
       "name": "Log jail",
       "sidecar": "sidecars/1835/log_jail.json",

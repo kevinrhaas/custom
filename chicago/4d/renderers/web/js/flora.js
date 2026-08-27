@@ -148,9 +148,23 @@ const TUNE = {
    * slots drawn at `d` is exactly the alpha the ramp used to write, so the
    * tuning below still means what it meant. What is gone is the stipple.
    *
-   * `mid.band` is deliberately NOT spread: that is the mid ring's OUTER edge at
-   * 18–27 m, where the far band already stands over it (T-0086) and where a
-   * dithered ramp is a handful of pixels rather than the verge.
+   * `mid.band` and `forb.band` are deliberately NOT spread, and T-0187 is why
+   * it stays that way rather than why it was never tried. Those are the OUTER
+   * edges, and an outer edge is the one the sward's reach is read off: a
+   * boundary handed over by density is drawn out to the depth at which the
+   * thinning still leaves a plant standing in a given bearing, which is a
+   * SAMPLE and not a radius. Simulated slot by slot on the published mirror,
+   * against every mid instance's own ring and the smoke's own 16 bearing bins:
+   * a spread of the full band takes the mean drawn reach from 26.81 m to
+   * 25.42 m at `full` — which the boundary check survives — and from 11.89 m
+   * to 9.64 m at `light`, where the bar stands at 11.60 m and only 0.29 m of
+   * it was unspent. Even a one-metre spread lands at 11.48 m there. The reach
+   * a coverage ramp reports is bought by plants at two per cent coverage that
+   * a visitor cannot see, so no representation that draws a plant whole or not
+   * at all can match it on a ring that small (T-0209).
+   *
+   * So the outer edges keep their ramp, and what T-0187 fixes is the ramp's
+   * WIDTH: it must not begin inside the verge. See `LOW` and `MID`.
    */
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
     spreadOuter: true },
@@ -532,8 +546,25 @@ const LOW = {
   // the radius at every setting, so the boundary reads the same way on a phone
   // as on a desktop rather than being a fixed number of metres on a ring half
   // the size.
-  mid: { inner: 3.0, radius: 13.0, fringe: 1.6 },
-  forb: { radius: 13.0, fringe: 1.6 },
+  //
+  // T-0187 — AND SO DOES THE OUTER BAND, which it did not, and that was the
+  // whole of the defect. `band` was left at TUNE's 7.0 m and 5.0 m on rings cut
+  // from 27 m to 13 m, so a ramp sized for the far middle distance came to sit
+  // across the middle of the phone's field: the mid ring's ran from 5.4 m and
+  // the forb ring's from 7.4 m, both inside the verge, and every plant on them
+  // was written through the 4x4 screen door. Measured on the published mirror
+  // at 390x780: 15.4 % of the frame screen-doored inside 9 m at the open
+  // prairie stand, off 179 mid cards and 35 forbs caught mid-ramp, 81 and 14
+  // of them inside the verge.
+  //
+  // The width here is the widest that keeps the WHOLE ramp outside the verge —
+  // `radius - step - fringe - 9.0`, the last term being the nine metres
+  // tools/measure_near_verge.mjs calls the ground a walker looks at — which is
+  // 1.8 m on this ring, taken at 1.6 for margin. It happens to equal the
+  // fringe, and that is a fair statement of what is left: the sward's edge
+  // thins over no more ground than it is ragged by.
+  mid: { inner: 3.0, radius: 13.0, fringe: 1.6, band: 1.6 },
+  forb: { radius: 13.0, fringe: 1.6, band: 1.6 },
   // ...and the far band is where the phone gains most, because thirteen metres
   // is where its detailed rings stop. It is also where it can least afford
   // geometry, so the band is shallower, coarser and smaller-carded than the
@@ -560,8 +591,14 @@ const LOW = {
  */
 const MID = {
   near: { radius: 6.2, tuftsPerM2: 6.4 },
-  mid: { inner: 4.0, radius: 18.0, fringe: 2.2 },
-  forb: { radius: 17.5, fringe: 2.2 },
+  // T-0187, the same correction as LOW's and it binds less tightly here. The
+  // proportionate band — 7.0 x 18/27 and 5.0 x 17.5/26 — is 4.7 m and 3.4 m,
+  // and both already clear the verge on these rings (the widths that would
+  // reach it are 6.2 m and 5.7 m), so this setting takes the proportion rather
+  // than the clearance. Left at TUNE's 7.0 m the mid ramp began at 8.2 m here,
+  // which is inside the verge too: the defect was never only the phone's.
+  mid: { inner: 4.0, radius: 18.0, fringe: 2.2, band: 4.7 },
+  forb: { radius: 17.5, fringe: 2.2, band: 3.4 },
   far: {
     columns: 8,
     bands: [
@@ -1199,6 +1236,12 @@ export async function createFlora({
     for (const s of sets) s.commit();
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
     stats.sets = Object.fromEntries(sets.map((s) => [s.mesh.name, s.mesh.count]));
+    /** T-0034. The ceiling beside the count, because `capped` answers only
+     *  "is this set full" and the question a bloom measurement has to ask is
+     *  "how much of its ceiling is spent" — a set at 0.31 of its cap and one at
+     *  0.99 are the same row otherwise, and they are the difference between a
+     *  raise a lattice can carry and one an instance budget eats. */
+    stats.caps = Object.fromEntries(sets.map((s) => [s.mesh.name, s.max]));
     stats.capped = sets.filter((s) => s.mesh.count >= s.max).map((s) => s.mesh.name);
     stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0);
     stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length;
@@ -1256,8 +1299,15 @@ export async function createFlora({
         shrubShare: z.shrubShare,
         /** The sum each is dealt off, so a reader can tell a share that is
          *  clamped from one that is small. `null` for the matrix by
-         *  `SLOT_BASIS` — its slot count is `matrixShare` above. */
-        forbDensity: z.dry.forbs.density,
+         *  `SLOT_BASIS` — its slot count is `matrixShare` above.
+         *
+         *  T-0034: `forbDensity` is the sum `forbShare` is ACTUALLY dealt off,
+         *  which is now the recorded upper bound. `forbDensityMid` is the
+         *  midpoint sum it was dealt off before, kept beside it so a
+         *  measurement can quote the size of the raise and the ceiling that
+         *  ate the rest of it without re-deriving either. */
+        forbDensity: z.dry.forbs.densityHigh,
+        forbDensityMid: z.dry.forbs.density,
         shrubDensity: z.dry.shrubs.density,
       }));
     },
@@ -1266,6 +1316,28 @@ export async function createFlora({
      *  layer here: it carries no fade ring for that gate to inset, and the
      *  invariant it does carry is the one below. */
     rings: { step, layers: rings },
+    /**
+     * T-0034. The forb lattice's own geometry — the ceiling `forbShareOf`
+     * clamps against, stated rather than re-derived in a tool.
+     *
+     * `forbShare` alone cannot say how far a community is from the clamp in
+     * PLANTS: a share of 1.0 is one plant per slot whatever the slot is, and
+     * what a raise buys is decided by how much ground a slot stands for. K58's
+     * six clamped layers are all one number away from that ceiling and nothing
+     * outside this module could name it.
+     *
+     * It is `TUNE.forb`, not `tune.forb`: `forbShareOf` reads the base tune, so
+     * the ceiling is the same at every detail setting and only the RING the
+     * lattice is dealt over shrinks with `light`.
+     */
+    forbLattice: {
+      cell: TUNE.forb.cell,
+      perCell: TUNE.forb.perCell,
+      /** Ground one lattice slot stands for, m². */
+      slotArea: (TUNE.forb.cell ** 2) / TUNE.forb.perCell,
+      /** The most plants per m² this lattice can carry: one per slot. */
+      ceilingPerM2: TUNE.forb.perCell / (TUNE.forb.cell ** 2),
+    },
     /** T-0086. The far band's own tuning and its ramp, so a measurement asks
      *  the placer what fraction of the ground carries a card at `d` rather than
      *  re-deriving it. Zero at both ends is the assertion worth making. */
@@ -1692,17 +1764,23 @@ function compileZones({ index, files }, terrain, problems, stats) {
          *  inverted, on the width K49(c1) put on all 98 sward records. */
         density: basis === null ? null
           : items.reduce((a, s) => a + (s.stems ?? 0), 0),
+        /** T-0034. The same sum at the top of every record's own range. See
+         *  `stemsHigh`: it is the FORB stratum's slot count that is dealt off
+         *  this, and nothing else reads it. */
+        densityHigh: basis === null ? null
+          : items.reduce((a, s) => a + (s.stemsHigh ?? s.stems ?? 0), 0),
       };
     };
 
     const cell = TUNE.forb.cell;
-    /** Chance one lattice slot of the forb-ring cell carries a plant: the
-     *  subset's own plants per m² times the ground one slot stands for. The
+    /** Chance one lattice slot of the forb-ring cell carries a plant: a
+     *  stratum's own plants per m² times the ground one slot stands for. The
      *  clamp is the lattice's ceiling of one plant per slot and is the only
      *  bound in it — see K54's note on the wet woods, the one community whose
-     *  recorded shrub density reaches it. */
-    const forbShareOf = (subset) => Math.min(
-      1, subset.density * cell * cell / TUNE.forb.perCell);
+     *  recorded shrub density reaches it, and K58, which is the open parcel on
+     *  what that clamp costs the six communities already sitting on it. */
+    const shareOf = (density) => Math.min(
+      1, density * cell * cell / TUNE.forb.perCell);
     const dry = {
       graminoids: subsetOn(graminoids, false, SLOT_BASIS.matrix),
       forbs: subsetOn(forbs, false, SLOT_BASIS.forb),
@@ -1736,15 +1814,32 @@ function compileZones({ index, files }, terrain, problems, stats) {
        *  be a bookkeeping error the validator already refuses. */
       matrixShare: clamp01(matrixShare),
       bareSoil: typeof cover.bare_soil_fraction === 'number' ? cover.bare_soil_fraction : null,
-      /** Chance a forb lattice slot is used, from the record's own densities —
-       *  per side, because the legal subset is what stands there. */
-      forbShare: forbShareOf(dry.forbs),
-      forbShareWet: forbShareOf(wet.forbs),
+      /**
+       * Chance a forb lattice slot is used, from the record's own densities —
+       * per side, because the legal subset is what stands there.
+       *
+       * T-0034 — AT THE TOP OF THE RECORDED RANGE, NOT ITS MIDDLE. The ticket
+       * was "raise the bloom", and the owner's ruling on it allows the bloom to
+       * be tuned as a reconstructed value provided the bound is stated. The
+       * bound taken is the tightest one available: each species' own recorded
+       * upper figure, so the town is a prairie at the dense end of what its
+       * sources describe and not one plant past it (docs/LIBERTIES.md L182).
+       *
+       * It moves three communities and only three — the mesic prairie
+       * (0.809 → 1.000), the wet prairie (0.798 → 1.000) and the sand prairie
+       * (0.210 → 0.329). The other six forb layers were already over the
+       * lattice's ceiling before this and are unchanged by it, which is K58 and
+       * not this ticket: past the clamp a bigger number draws nothing.
+       */
+      forbShare: shareOf(dry.forbs.densityHigh),
+      forbShareWet: shareOf(wet.forbs.densityHigh),
       /** ROADMAP K54. The same question of the shrub stratum's own lattice, off
        *  its own recorded clump density. Nothing here is taken from the forb
-       *  layer: the two passes are independent draws over the same ring. */
-      shrubShare: forbShareOf(dry.shrubs),
-      shrubShareWet: forbShareOf(wet.shrubs),
+       *  layer: the two passes are independent draws over the same ring — and
+       *  T-0034's upper-bound reading is deliberately NOT applied here, because
+       *  a denser shrub stratum is more bushes and not more bloom. */
+      shrubShare: shareOf(dry.shrubs.density),
+      shrubShareWet: shareOf(wet.shrubs.density),
       matColor: meanColor(graminoids, palette),
       palette,
     });
@@ -1892,18 +1987,26 @@ function buildSpecies(sp, palette, problems, zoneId) {
    */
   const width = Array.isArray(sp.width_m) ? sp.width_m : null;
   let stems = null;
+  let stemsHigh = null;
   let unit = 'none';
   if (Array.isArray(ab.stems_per_m2)) {
     unit = 'stems_per_m2';
     stems = mid(ab.stems_per_m2);
+    stemsHigh = ab.stems_per_m2[1];
   } else if (Array.isArray(ab.density_per_ha)) {
     unit = 'density_per_ha';
     stems = mid(ab.density_per_ha) / 10000;
+    stemsHigh = ab.density_per_ha[1] / 10000;
   } else if (Array.isArray(ab.cover_fraction)) {
     unit = 'cover_fraction';
-    if (width) stems = mid(ab.cover_fraction) / (Math.PI * (mid(width) * 0.5) ** 2);
+    if (width) {
+      const one = Math.PI * (mid(width) * 0.5) ** 2;
+      stems = mid(ab.cover_fraction) / one;
+      stemsHigh = ab.cover_fraction[1] / one;
+    }
   }
   if (stems !== null && !(stems > 0)) stems = null;
+  if (stemsHigh !== null && !(stemsHigh > 0)) stemsHigh = null;
 
   return {
     id: sp.id ?? sp.binomial ?? 'unnamed',
@@ -1915,6 +2018,25 @@ function buildSpecies(sp, palette, problems, zoneId) {
      *  same abundance as plants per m² where one is derivable. K49(a). */
     unit,
     stems,
+    /**
+     * T-0034 — THE SAME ABUNDANCE READ AT THE TOP OF ITS OWN RANGE.
+     *
+     * Every abundance in `data/flora` is a RANGE, because a prairie's forb load
+     * is not one number: the record says 400–900 yellow coneflowers to the
+     * hectare and means both ends of that. `stems` takes the midpoint, and the
+     * midpoint is not a figure any source states — it is a reading this
+     * renderer chose, silently, and it planted every hectare of the town as the
+     * average hectare.
+     *
+     * This is the same abundance read at the recorded upper end. It is a
+     * RECONSTRUCTED reading, not a sourced one (docs/LIBERTIES.md L182), and its
+     * bound is the record itself: no species can be planted denser than its own
+     * record's larger figure, so the sward never leaves the envelope its
+     * evidence draws. `stems` is kept beside it because the LOTTERY still runs
+     * on the midpoints — which species fills a slot is unchanged, and only how
+     * many slots are filled moves.
+     */
+    stemsHigh,
     height: h,
     width,
     shape: GRASS_SHAPE[sp.form] ?? { arch: 0.28, spread: 0.45 },
@@ -2093,6 +2215,25 @@ function zoneFinder(zones, terrain, water) {
   };
 }
 
+/**
+ * `include_polygons` — ground a community holds that its own extent rule cannot
+ * reach, and the exact mirror of `exclude_polygons` below.
+ *
+ * It exists because one community's evidence is a PLACE and its extent is a
+ * RULE, and the two stopped agreeing. `docs/research/02-flora.md` heads ZONE 3
+ * "SLOUGH & SEDGE MEADOW (Public Square → Tremont House site → river at State
+ * St)" — the public square named first, by name — while `z03_sedge_meadow`'s
+ * committed extent is an elevation band, which can only find the square if the
+ * terrain gives the square a basin, and dossier zone 15 is deferred and
+ * unmodelled, so it does not. The band was not selecting against the block; it
+ * could not see it. Fitting the band down to reach it would have moved the
+ * community everywhere else in the box to solve one address.
+ *
+ * The box test still binds — a polygon outside a zone's declared box is refused
+ * with everything else — and the exclusions still run last, so a hole cut in a
+ * community stays a hole. Which ground this admits, and on what evidence, is a
+ * claim in the zone record's own extent note, never a rule in here.
+ */
 function matches(x, e, n, terrain, water) {
   if (!x) return false;
   if (x.box) {
@@ -2123,6 +2264,11 @@ function matches(x, e, n, terrain, water) {
     }
     default:
       return false;
+  }
+  if (!ok) {
+    for (const patch of x.include_polygons ?? []) {
+      if (pointInPolygon(patch, e, n)) { ok = true; break; }
+    }
   }
   if (!ok) return false;
   for (const hole of x.exclude_polygons ?? []) {
@@ -3872,9 +4018,15 @@ float chiBayer4(vec2 fragXY) {
 // ground over by DENSITY now (TUNE \`spreadOuter\`/\`spreadInner\`), so every plant
 // on either of those boundaries arrives with \`vChiFade\` at 0 or 1 and the guard
 // below sends it straight past. What is left dithering is the mid and forb
-// rings' OUTER edges at 18–27 m, where a plant is a few pixels wide and the far
-// band stands over the same ground — the verge, which is what a walker looks
-// at, is written solid.
+// rings' OUTER edges, where a plant is a few pixels wide and the far band
+// stands over the same ground.
+//
+// T-0187. That last sentence used to read "at 18–27 m", and it was only true
+// of the desktop: \`band\` was not scaled with the ring, so on a phone the same
+// ramps ran from 5.4 m and 7.4 m and 15.4 % of the frame inside nine metres
+// was written through this line. The bands are cut to the ring now, at every
+// setting, so the claim holds where it is made — the verge, which is what a
+// walker looks at, is written solid at \`light\`, \`balanced\` and \`full\` alike.
 //
 // T-0035. Coverage first, before a single lighting instruction is spent on a
 // fragment that is about to be thrown away — and guarded, so a plant that is

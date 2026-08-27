@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
-"""Reconcile the 665-roof programme against the town that has actually been built.
+"""Reconcile the roof programme against the town that has actually been built.
 
-ROADMAP T-A1. `data/reconstruction/1835_building_inventory.json` states the target — 665
-roofs, split by district, by group and by a 35-family schedule — and it has never been
+THE 665 IN THIS TOOL'S NAME IS HISTORY, and it is kept deliberately. The authored total
+became **662** on 2026-08-27 (ticket T-0032): three of family I3's six civic slots were
+shown to count nothing — the town's public buildings with a roof on 1835-07-01 are three
+named records — so the three came off the total rather than being re-typed into ordinary
+families. Renaming the file, the tool and every reference to them is churn; the live total
+is read from the inventory on every run and written to `remaining.of_target`. Nothing in
+here hardcodes it.
+
+ROADMAP T-A1. `data/reconstruction/1835_building_inventory.json` states the target —
+roofs split by district, by group and by a 35-family schedule — and it has never been
 subtracted from. The crosswalk still calls 617 roofs "remaining", a figure that predates
 the North parcel, the West parcel, the inferred-household buildings and every documented
 roof the research has since placed. A programme whose remainder is wrong by 185 roofs
@@ -32,7 +40,7 @@ What each part of the output is entitled to claim:
   rather than inventing a block number this project has never read off a sheet.
 * **A per-unit family mix** is an apportionment of that district's remainder, not a claim
   about any block. It is what makes the schedule addable: every unit's families sum to its
-  count, every district's units sum to its remainder, and the districts sum to 665.
+  count, every district's units sum to its remainder, and the districts sum to the target.
 
     tools/reconcile_665.py            regenerate the programme file
     tools/reconcile_665.py --check    fail if the committed file is not what the dataset
@@ -56,7 +64,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 # Lot occupancy is derived in ONE place and imported by both halves of the T-A6 rule.
 # See tools/plat_occupancy.py for why it is a module rather than a copied loop.
-from plat_occupancy import block_of_structure, occupied_lots  # noqa: E402
+from plat_occupancy import (block_of_structure, exclusive_lots,  # noqa: E402
+                            occupied_lots)
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -75,9 +84,13 @@ ANCILLARY_GROUPS = {"barns_stables", "small_outbuildings"}
 
 DISTRICTS = ["south", "west", "north", "fort"]
 
-# Ancillary roofs at the programme's own ratio: the inventory's targets are 511 principal
-# to 154 ancillary, which is a reading of the dataset rather than a tuning knob.
-ANCILLARY_PER_PRINCIPAL = 154 / 511
+# Ancillary roofs at the programme's own ratio: the inventory's targets are 508 principal
+# to 154 ancillary, which is a reading of the dataset rather than a tuning knob. It was
+# 154:511 until T-0032 took three phantom civic roofs off the total; all three were
+# principal, so the ancillary half did not move. The ceiling is unchanged either way — an
+# eight-lot block rounds to seven yard buildings at both ratios — which is worth saying,
+# because a capacity that HAD moved would have re-dealt blocks this ticket never touched.
+ANCILLARY_PER_PRINCIPAL = 154 / 508
 
 # THE CORE DENSITY STANDARD (T-0079), and it replaces one principal roof per platted lot.
 #
@@ -116,8 +129,9 @@ ANCILLARY_PER_PRINCIPAL = 154 / 511
 #
 # The owner's ruling of 2026-08-18 is the warrant for taking the decision now: "there
 # should be more and denser buildings. this is important." What it does NOT do is grow the
-# 665-roof total — the roofs come out of `south_plat_beyond_committed_control`, the district
-# balance waiting on street control that may never arrive, and the marginals still close.
+# authored roof total — the roofs come out of `south_plat_beyond_committed_control`, the
+# district balance waiting on street control that may never arrive, and the marginals
+# still close.
 ROW_UNITS_PER_LOT = 3
 
 
@@ -168,17 +182,22 @@ NEVER_PLATTED_OMISSIONS = {"blk_south_water_clinton"}
 # here only to cross-check the recipe's remainder against the records actually emitted.
 WEST_INSTANTIATION_BLOCK_E = -300.0
 
-# What the balance of each district is waiting on. The South and West entries are the
-# street control ROADMAP S9 records as owed; the North entry is the coverage the North
-# parcel's own recipe names. No block can be named inside any of them, which is the point.
+# What the balance of each district is waiting on. The West entry is the street control
+# ROADMAP S9 records as owed; the North entry is the coverage the North parcel's own
+# recipe names. No block can be named inside any of them, which is the point.
+#
+# THE SOUTH ENTRY IS NOT AUTHORED HERE ANY MORE, and T-0026 is why. It used to name street
+# control alone — "no block east of State or south of Washington has four committed
+# centrelines" — and that is true, downstream, and it sent the next parcel to go and carry
+# a centreline. `tools/measure_southern_ground.py` measures what is actually there: the
+# modelled box ends at local N -400 m, INSIDE Washington Street's own platted corridor, so
+# every north-south column of the south plat has its committed line cut at exactly that
+# line and Madison — the plat's south boundary, resolved from the section corner at State &
+# Madison — is 125 m further south again. Street control stops where the ground does. The
+# south's `waiting_on` is composed from that measurement below, so it cannot go stale the
+# day the terrain moves.
 BALANCE_UNITS = {
-    "south": (
-        "south_plat_beyond_committed_control",
-        "Committed street control reaches State Street on the east and Washington Street "
-        "on the south; the plat continues past both. No block east of State or south of "
-        "Washington has four committed centrelines, so none can be named, let alone "
-        "measured (ROADMAP S9).",
-    ),
+    "south": ("south_plat_beyond_committed_control", None),
     "west": (
         "west_division_beyond_committed_control",
         "West Division ground beyond the Wolf Point approaches: no committed street "
@@ -370,6 +389,43 @@ def district_of_block(block) -> str:
     return "west" if max(p[0] for p in block["boundary_local_enu_m"]) < 0 else "south"
 
 
+def southern_ground() -> tuple[dict, str]:
+    """The measured state of the ground south of the committed plat, and what it says.
+
+    T-0026. Imported rather than restated so that the schedule's southern blocker and the
+    command a reader can run to check it are the same arithmetic — the discipline
+    `tools/measure_street_frontage.py` set for the face rule and `measure_block_gating.py`
+    for the refused blocks. `tools/measure_southern_ground.py --gate` holds the pair
+    together in `tools/check.sh`.
+    """
+    from measure_southern_ground import coverage_figures, measure  # noqa: PLC0415
+
+    m = measure()
+    figures = coverage_figures(m)
+    return figures, (
+        f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
+        f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
+        f"inside Washington Street's own platted corridor — "
+        f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
+        f"lies off the field. South of the corridor the field holds "
+        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
+        f"surface and "
+        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
+        f"the South Division: the rest is the West Division bank, across the South Branch. "
+        f"Madison Street, the plat's south boundary, is "
+        f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
+        f"last tier — {figures['unmodelled_tier_blocks']} blocks and "
+        f"{figures['unmodelled_tier_lots']} lots between Market and State, "
+        f"{figures['unmodelled_tier_area_ha']:.2f} ha — is not modelled ground at all. "
+        f"Every north-south column of the south plat has its committed centreline cut at "
+        f"the field's own south edge, so carrying street control further south would emit "
+        f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
+        f"outside the modelled terrain. Ground east of State is not coming at any date — "
+        f"it is the United States Reservation (T-E2). Measured by "
+        f"tools/measure_southern_ground.py."
+    )
+
+
 def programme_document():
     inventory = load(RECON / "1835_building_inventory.json")
     grid = load(DATA / "traces" / "vectors" / "thompson_lots.json")
@@ -388,6 +444,15 @@ def programme_document():
     # that, which block each roof stands in. Two questions, one measurement.
     taken = occupied_lots(grid, datum)
     rows = standing_roofs(grid, datum, taken)
+    # …and a THIRD question, which is not the same as the first: which lots are still
+    # AVAILABLE. Under the owner's 2026-08-27 clause a documented store standing at the
+    # street on a declared business front does not exhaust its lot, so the lot is both
+    # occupied — its roof counts against this block's headroom above — and free for the
+    # frontage run. `tools/generate_block_infill.py` refuses on exactly this map, and
+    # the schedule has to score against the same one or it goes back to promising a
+    # block room its own generator will not build (T-A6, and the reason both halves
+    # call one module).
+    available = exclusive_lots(grid, datum)
 
     # ---- what stands ------------------------------------------------------------
     built_family: dict[str, int] = {}
@@ -423,9 +488,9 @@ def programme_document():
     overrun = {f: built_family.get(f, 0) - t
                for f, t in sorted(targets.items()) if built_family.get(f, 0) > t}
     remaining_family = {f: max(0, t - built_family.get(f, 0)) for f, t in targets.items()}
-    # The excess has to come out of somewhere, because 665 is the target and a documented
-    # roof is not removable. It comes out one slot at a time, each from whichever invented
-    # family has the most slack at that moment.
+    # The excess has to come out of somewhere, because the authored total is the target and
+    # a documented roof is not removable. It comes out one slot at a time, each from
+    # whichever invented family has the most slack at that moment.
     absorbed: dict[str, int] = {}
     for _ in range(sum(overrun.values())):
         family = sorted(remaining_family, key=lambda f: (-remaining_family[f], f))[0]
@@ -470,7 +535,7 @@ def programme_document():
         lots = len(block["lots"])
         capacity = block_capacity(lots)
         stands = built_block.get(block["id"], 0)
-        free = lots - len(taken.get(block["id"], ()))
+        free = lots - len(available.get(block["id"], ()))
         rooms = block_rooms(free, max(0, capacity - stands))
         unit = {
             "id": block["id"], "kind": "platted_block",
@@ -580,10 +645,14 @@ def programme_document():
         "recipe": "data/reconstruction/1835_phase2_west_wolf_point_approaches.json",
     })
 
+    southern_figures, southern_statement = southern_ground()
+
     for district in DISTRICTS:
         placed = sum(u["headroom"] for u in units if u["district"] == district)
         balance = remaining_district[district] - placed
         unit_id, waiting = BALANCE_UNITS[district]
+        if waiting is None:
+            waiting = southern_statement
         units.append({
             "id": unit_id, "kind": "district_balance", "district": district,
             "capacity_roofs": max(0, balance), "standing_roofs": 0,
@@ -615,8 +684,8 @@ def programme_document():
             if unit["id"] == balance_id:
                 # The district balance is the bucket for roofs no named unit can hold, so
                 # it takes what is left rather than a fixed slice. A roof a block has no
-                # lot for does not stop being one of the 665; it goes back to waiting on
-                # coverage, which is a statement the ledger can make and "nowhere" is not.
+                # lot for does not stop being one of the programme's roofs; it goes back to
+                # waiting on coverage, a statement the ledger can make where "nowhere" is not.
                 take, pool = pool, []
                 unit["capacity_roofs"] = unit["headroom"] = len(take)
             else:
@@ -662,7 +731,11 @@ def programme_document():
                         "re-derives it. Do not hand-edit: every number here is a function "
                         "of the committed structure records, the physical-roof "
                         "reconciliation and the authored target in "
-                        "1835_building_inventory.json.",
+                        "1835_building_inventory.json. THE 665 IN THE NAME IS HISTORY: the "
+                        "authored total became 662 on 2026-08-27 (T-0032), when three of "
+                        "family I3's six civic slots were shown to count nothing. The "
+                        "filename and the tool keep their names because renaming them is "
+                        "churn; the live total is always `remaining.of_target`.",
         "id": "chicago_july_1835_665_roof_programme",
         "target_date": "1835-07-01",
         "programme_id": inventory["id"],
@@ -681,7 +754,9 @@ def programme_document():
                                "chronology puts outside July 1835 contribute nothing; the "
                                "physical-roof reconciliation decides, record by record.",
             "capacity": f"{ROW_UNITS_PER_LOT} principal roofs per platted lot plus "
-                        f"ancillary at the programme's own {154}:{511} ratio (T-0079, the "
+                        f"ancillary at the programme's own "
+                        f"{inventory['targets']['ancillary']}:"
+                        f"{inventory['targets']['principal_functional']} ratio (T-0079, the "
                         "core density standard). The frontage rule is measured at the worst "
                         "case: the smallest lot on the committed grid carries 23.56 m, the "
                         "plat module keeps 1.5 m clear of a side line at each end of a run, "
@@ -730,9 +805,14 @@ def programme_document():
                          "ground this project has already surveyed, platted and modelled. "
                          f"The other {gated} have nowhere to go until street control, "
                          "terrain and hydrology reach them. The binding constraint on the "
-                         "665-roof programme is coverage, not recipes.",
+                         f"{roof_total}-roof programme is coverage, not recipes.",
             "platted_lots": sum(len(b["lots"]) for b in grid["blocks"]),
             "blocks_named": sum(1 for u in units if u["kind"].startswith("platted_block")),
+            # T-0026. The South is the largest of the three gated balances and the one the
+            # lane was opened to widen; these are the figures that say it cannot be widened
+            # by a rule. Carried here so a scheduler reads them without re-running a
+            # command, and held to the ground by tools/measure_southern_ground.py --gate.
+            "southern_ground": southern_figures,
         },
         "schedule": units,
     }
@@ -759,7 +839,8 @@ def main() -> int:
             return 1
     else:
         OUT_PATH.write_text(text, encoding="utf-8")
-    print(f"{'verified' if args.check else 'generated'} the 665-roof programme: "
+    print(f"{'verified' if args.check else 'generated'} the "
+          f"{programme['remaining']['of_target']}-roof programme: "
           f"{programme['standing']['physical_roofs']['min']} standing, "
           f"{programme['remaining']['roofs']} remaining, "
           f"{programme['coverage']['schedulable_on_committed_ground']} of them on ground "

@@ -68,7 +68,7 @@
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a building of this kind was ordinarily like — not a reading of evidence about this particular building, because no source speaks to it: the structure exists in the model because the town demonstrably needed one of these, and nothing more. The spec is cited because the invention is bounded by it. Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+          "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a building of this kind was ordinarily like — not a reading of evidence about this particular building, because no source speaks to it: the structure exists in the model because the town demonstrably needed one of these, and nothing more. The spec is cited because the invention is bounded by it. Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building. THE OTHER FORM ON OFFER IS REFUSED, AND HERE IS THE NUMBER. The C1 roof line offers \"front gable or shed, 5:12-9:12\", and this town builds only the gable. A shed is one plane over the whole 7.8 m of this plan where a gable climbs half of it, so across the 441 plans C1's own footprint band allows, 231 of them cannot reach the 15-20 ft ridge band the same family authors — at any eave in its 9-11 ft band and at any pitch between 22.6 and 36.9 degrees. This building's own plan is not one of them; the C1 family is refused as a whole rather than plan by plan."
         },
         "roof_pitch_deg": {
           "value": 33.0,
@@ -149,6 +149,11 @@
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
           "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a building of this kind was ordinarily like — not a reading of evidence about this particular building, because no source speaks to it: the structure exists in the model because the town demonstrably needed one of these, and nothing more. The spec is cited because the invention is bounded by it. Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "siding_exposure_m": {
+          "value": 0.14,
+          "confidence": "reconstructed",
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this roof wears 5.5 in — dealt in this building's own parcel recipe: drawn from the set on this record's stable key, then advanced so that no roof of the parcel standing within 60 m hangs the same course. It is NOT keyed to a construction season the way the named buildings' stocks are: this record's 1835-01-01 is the programme's count-unit convention and not a date anything was built, so keying to it would deal every anonymous roof in the town one stock. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention and the recipe half is recorded beside it, under `tools/siding_stock.py`."
         }
       },
       "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it."

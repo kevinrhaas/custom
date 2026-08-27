@@ -160,7 +160,22 @@ whose height is a guess is a guessed wall, even if we know it was white.
   anchor over budget. It is off in `tools/web_derivatives.sh`, and `BAKE_PALETTE=1` restores
   it for anyone re-measuring. A shared atlas is still the right idea — it is **R-W2b's** job,
   authored across the town rather than generated per file.
-- **Bake ambient occlusion into the texture**, not into vertex colours.
+- **Bake ambient occlusion into the texture**, not into vertex colours. It reaches the file
+  as a glTF `occlusionTexture`, sampled from the R channel as **`byte / 255` with no transfer
+  decode** — occlusion is non-colour data, and a value of 0 means FULLY occluded. So the
+  image must be tagged `Non-Color` **before** the bake, never after: setting
+  `colorspace_settings.name` on a generated, unpacked image frees its buffer, which
+  regenerates black and clears the `is_dirty` flag Blender's own exporter tests before it
+  will carry unsaved pixels. Doing it in the wrong order shipped a uniformly black occlusion
+  texture with `baked_ao: true` beside it (T-0158). `generators/ao_export.py --gate` reads
+  the exported bytes on every commit and refuses a texture that carries no occlusion or a
+  manifest that disagrees with the file; `generators/build.py` runs the same assertion the
+  moment each GLB is written, so `baked_ao: true` cannot be recorded for a bake that did not
+  arrive. **No committed master carries one today** — `--ao` is opt-in and nothing passes it
+  (T-0015), and whether it *should* be is open: every figure that said the bake is too dark was
+  read off an sRGB-tagged buffer AND over an atlas that is 68.9 % empty UV space, so it is void
+  (T-0158). The corrected reading on `sauganash_hotel` is mean **0.5358** over the 81,458 texels
+  the unwrap writes, 58.7 % of them below half. T-0227 settles it from a rendered frame.
 - No emissive, no transparency in the base asset. The confidence view's translucency is a
   *renderer* effect (screen-door dither in the opaque pass), never baked geometry.
 
