@@ -714,9 +714,13 @@ async function boot() {
   scene3d.add(buildings.group);
 
   const footprints = footprintsFrom(loaded.registry);
-  // The bridge decks, which are the one walkable surface the heightfield does not
-  // carry — the wall you are kept out of and the deck you stand on are the same
-  // polygon read two ways, so both come off the same footprints. T-0001.
+  // The bridge decks: a walkable surface the heightfield does not carry — the
+  // wall you are kept out of and the deck you stand on are the same polygon read
+  // two ways, so both come off the same footprints. T-0001. They are no longer
+  // the only ones: the street edge's boards and, since T-0058, the wharf decks
+  // and their boarding stairs join this same array once their own layers have
+  // drawn them and know how high they stood them. The walker holds it BY
+  // REFERENCE and reads whatever is in it.
   const decks = decksFrom(loaded.registry);
   const spawn = anchorFor(loaded.scene, params.get('anchor')) ?? loaded.scene.spawn ?? {};
   const walker = createWalker({ camera, terrain, footprints, decks, spawn });
@@ -873,6 +877,15 @@ async function boot() {
     // planks of a bridge deck either.
     decks,
   );
+
+  // …AND THE WHARF PLANKS BECOME FLOORS — after `planting` has been taken and
+  // not before. `decks` is the array the walker holds by reference, so a push
+  // here reaches it; but the planters already have these same rectangles out of
+  // `wharves.keepOut` above, and pushing earlier would hand them each one twice.
+  // The layer publishes them rather than a record because a wharf has no
+  // structure record to carry `placement.walk_surface_m`, and the height is the
+  // one that layer drew the slab at (T-0058; see the header of `wharves.js`).
+  decks.push(...wharves.decks);
   progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //

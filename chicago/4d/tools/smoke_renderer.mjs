@@ -61,6 +61,9 @@
  *                                 its deck ties into the bank it was derived
  *                                 from, its crib reaches the bed, and neither is
  *                                 answerable from the dataset alone
+ *   a wharf carries a walker .... and since T-0058 the planks are a floor: off
+ *                                 the bank, up the boarding stair and out over
+ *                                 the water at every one of the seven docks
  *   the boats on the river ...... the first layer that RIDES the water: every
  *                                 afloat hull floats in its own depth, beached
  *                                 hulls sit at the bank, the drawbridge's
@@ -3694,10 +3697,23 @@ for (const [label, viewport, touch] of [
       // board to tie into itself and read the whole walk as sunk by its own rise.
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
+      //
+      // NEITHER IS A WHARF DECK, and T-0058 is where THAT difference had to be
+      // drawn. Two of the seven docks — Carpenter's and Jones's, both on the
+      // South Water reach — tie their heels back into a bank the riverside plank
+      // walk already runs along, so their decks OVERSAIL about 3,000 of this
+      // layer's vertices by roughly half a metre. A board under a dock is not a
+      // board riding one: it is laid on the ground, it is measured against the
+      // ground, and it was in band against the ground before this deck was ever
+      // registered with the walker. Counting the dock as its base would read a
+      // walk that has not moved as newly sunk by the height of somebody else's
+      // floor. (What a visitor meets there is its own question and its own
+      // ticket; the stair at those two rises off the walk itself.)
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
           if (/__footway_\d+$/.test(d.id)) continue;
+          if (/__wharf(_step\d+)?$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -4425,14 +4441,30 @@ for (const [label, viewport, touch] of [
           id: d.structure_id,
           deckTop: d._drawn?.deck_top_m ?? null,
           bents: d._drawn?.bents ?? 0,
+          treads: d._drawn?.stair_treads ?? null,
+          stairRise: d._drawn?.stair_rise_m ?? null,
+          stairFoot: d._drawn?.stair_foot_m ?? null,
           heelDry: [heelL, heelR].every((p) => !terrain.isWater(p[0], p[1])),
           faceWet: [faceL, faceR].every((p) => terrain.isWater(p[0], p[1])),
           bankY: Math.max(...[heelL, heelR].map((p) => terrain.surfaceHeight(p[0], p[1]))),
           depth: Math.min(...[faceL, faceR].map((p) => -terrain.surfaceHeight(p[0], p[1]))),
         };
       });
+      // What the layer PUBLISHES to the walker, as against what it drew: one
+      // entry per deck slab plus one per stair tread, each carrying the height
+      // that slab was actually built at.
+      const decks = (w?.decks ?? []).map((d) => ({ id: d.id, y: d.y, pts: d.pts.length }));
+      const deckY = new Map(list.map((d) => [`${d.structure_id}__wharf`,
+        d._drawn?.deck_top_m ?? null]));
+      const publishedMatchesDrawn = decks
+        .filter((d) => d.id.endsWith('__wharf'))
+        .every((d) => d.y === deckY.get(d.id));
+      const stairCeiling = w?.records?.[0]?.form?.boarding_stair_rise_m?.value ?? null;
       return {
         census: w?.census ?? null,
+        decks,
+        publishedMatchesDrawn,
+        stairCeiling,
         keepOut: (w?.keepOut ?? []).length,
         meshes: w?.group?.children?.length ?? 0,
         verts: g?.getAttribute('position')?.count ?? 0,
@@ -4466,13 +4498,19 @@ for (const [label, viewport, touch] of [
     // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
     // a refusal disappearing without this line moving is a rule change nobody
     // reviewed.
+    // The keep-out count is SEVEN DECKS PLUS EVERY STAIR TREAD (T-0058) — a
+    // tread is as much a floor as the deck it climbs to, and how many treads a
+    // site takes is the terrain's answer, so the bar is the layer's own census
+    // rather than a number written here that would go stale at the next regrade.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
+      docks.census?.wharves === 7 && docks.verts > 0
+        && docks.keepOut === 7 + (docks.census?.treads ?? -1)
         && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
-      + `${docks.keepOut} planting keep-out(s), ${docks.census?.refused} refused`);
+      + `${docks.keepOut} planting keep-out(s) for 7 deck(s) and `
+      + `${docks.census?.treads} tread(s), ${docks.census?.refused} refused`);
     check(`${label}: the whole wharf layer is one draw call`,
       docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
     // NOT MERELY GRADED — graded reconstructed, every vertex of it. That a dock
@@ -4504,6 +4542,101 @@ for (const [label, viewport, touch] of [
       docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
         + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
       + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
+
+    // --- and a visitor can walk out along one (T-0058) ---------------------
+    //
+    // THE DECK IS A FLOOR AND THE WAY ONTO IT IS DRAWN. Until T-0058 the wading
+    // barrier `walkHeight()` puts over open water stood above every one of these
+    // decks, so a visitor saw seven docks from the bank and could step onto none
+    // of them. A wharf carries no structure record, so it cannot take the
+    // bridges' `placement.walk_surface_m` route; the LAYER publishes what it drew
+    // and `main.js` hands it to the walker beside the bridges'.
+    //
+    // That alone does not buy boarding, which is the half of this ticket that is
+    // easy to declare done and is not. The deck top is the ground's, floored at
+    // the record's 0.90 m freeboard over the water, and this terrain puts the
+    // bank at these seven heels between 0.12 and 0.58 m — a 0.32 to 0.78 m riser
+    // against the walker's 0.35 m step-up rule, which refuses six of the seven.
+    // So the layer draws a boarding stair and the bar here is the WALK, not the
+    // publication: start on the ground behind each dock, push forward, and be
+    // standing on the planks over the water at the far end having been refused
+    // nothing on the way.
+    check(`${label}: every plank a wharf drew is published to the walker at the height it drew it`,
+      docks.decks.length === 7 + (docks.census?.treads ?? -1)
+        && docks.publishedMatchesDrawn
+        && docks.decks.every((d) => d.pts === 4)
+        && docks.census?.stairs === 7,
+      `${docks.decks.length} walk surface(s) for 7 deck(s) and `
+      + `${docks.census?.treads} tread(s) on ${docks.census?.stairs} stair(s), `
+      + `heights ${docks.publishedMatchesDrawn ? 'match' : 'DISAGREE WITH'} the drawn slabs`);
+    // The stair divides whatever rise the terrain leaves it into equal treads,
+    // as many as it takes for none to exceed the record's ceiling — which is
+    // itself under the walker's step-up rule. Asserted against BOTH, because a
+    // record edited to 0.4 m would leave every other check here green and the
+    // decks unboardable again.
+    check(`${label}: no boarding tread rises past the record's ceiling or the step-up rule`,
+      docks.stairCeiling !== null && docks.stairCeiling <= 0.35
+        && docks.stands.every((s) => s.treads !== null && s.treads >= 0
+          && s.stairRise !== null && s.stairRise <= docks.stairCeiling + 1e-9
+          && s.stairRise <= 0.35),
+      `ceiling ${docks.stairCeiling} m against the 0.35 m step-up rule; `
+      + docks.stands.map((s) => `${s.id} ${s.treads} tread(s) of `
+        + `${s.stairRise?.toFixed(3)} m off ${s.stairFoot?.toFixed(2)} m`).join('; '));
+
+    const boarding = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const rows = [];
+      for (const d of a.wharves.wharves ?? []) {
+        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
+        const mid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
+        const face = [(faceL[0] + faceR[0]) / 2, (faceL[1] + faceR[1]) / 2];
+        const span = Math.hypot(face[0] - mid[0], face[1] - mid[1]) || 1;
+        const oe = (face[0] - mid[0]) / span;
+        const on = (face[1] - mid[1]) / span;
+        // Start on plain ground behind the stair's own foot, facing the river
+        // down the deck's waterward normal — the approach a visitor coming from
+        // the warehouse takes, and not a spot chosen to work.
+        const back = (d._drawn?.stair_treads ?? 0) * 0.75 + 2.0;
+        a.walker.teleport({
+          local_e: mid[0] - oe * back,
+          local_n: mid[1] - on * back,
+          yaw_deg: (Math.atan2(oe, on) * 180) / Math.PI,
+        });
+        const row = { id: d.structure_id, blocked: 0, worstStride: 0, strides: 0,
+          startY: a.walker.state.groundY };
+        // A metre in from the face, which is deck by construction and is where a
+        // visitor would stand to look at the river.
+        const target = [face[0] - oe * 1.0, face[1] - on * 1.0];
+        let prevY = a.walker.state.groundY;
+        a.intent.forward = 1;
+        for (let i = 0; i < 600; i += 1) {
+          a.walker.update(0.05, a.intent);
+          const st = a.walker.state;
+          row.strides += 1;
+          row.worstStride = Math.max(row.worstStride, Math.abs(st.groundY - prevY));
+          prevY = st.groundY;
+          if (st.blocked) row.blocked += 1;
+          if (Math.hypot(st.e - target[0], st.n - target[1]) < 0.8) break;
+        }
+        a.intent.forward = 0;
+        const st = a.walker.state;
+        row.reached = Math.hypot(st.e - target[0], st.n - target[1]);
+        row.endY = st.groundY;
+        row.overWater = a.terrain.isWater(st.e, st.n);
+        row.barrier = a.terrain.walkHeight(st.e, st.n);
+        row.deckTop = d._drawn?.deck_top_m ?? null;
+        rows.push(row);
+      }
+      return rows;
+    });
+    check(`${label}: a visitor walks off the bank, up the stair and out over the water`,
+      boarding.length === 7 && boarding.every((r) => r.blocked === 0
+        && r.reached < 1.0 && r.worstStride <= 0.35
+        && r.overWater === true && r.endY === r.deckTop && r.barrier > r.endY + 1),
+      boarding.map((r) => `${r.id}: ${r.strides} stride(s), ${r.blocked} blocked, `
+        + `worst ${r.worstStride?.toFixed(3)} m, ended ${r.reached?.toFixed(2)} m short `
+        + `at ${r.endY?.toFixed(2)} m over water=${r.overWater} `
+        + `(barrier ${r.barrier?.toFixed(1)} m)`).join('; '));
 
     // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
     // at the wharf anchor — on the ground outside Newberry & Dole's river wall,

@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 292, title: 'You can walk out onto the wharves now', kind: 'feature', ts: '2026-08-27T13:36:41.806Z', date: 'Aug 27, 2026, 8:36 AM CT',
+    items: [
+      'Walk down to the river behind any of the seven warehouses and stores that have a dock, and go up onto it. There is a short flight of plank steps at the landward end of each deck. Climb it, walk out to the far end, and stand over the water looking down the channel — which is the view the men working these docks had, and which nobody has been able to get to until now.',
+      'The docks have been drawable since they were built, and unreachable. The river carries an invisible wall a visitor cannot wade past, and it stood above the planks rather than below them, so a wharf was scenery: you could see it, aim at it, open the warehouse it belongs to, and never set foot on it. The planks now hold you up, exactly as the bridge decks have since the crossings were built.',
+      'Letting you stand on a deck was only half of it, and the other half is the reason for the steps. A working deck stands clear of its own river — these hold nine hundred millimetres above the water — and the banks they tie into are lower than that, between twelve and fifty-eight centimetres. So six of the seven decks stood too far above their own ground to step onto. A dock you can walk along and cannot get onto looks like a broken model, not like a wharf.',
+      'The steps are ours. No source describes the landward end of any Chicago river dock, and the note in the evidence panel says so and says what bounded the invention: plank rather than a filled bank, because filling the bank would be a claim about the land itself; two and a half metres across, a barrel’s width between two men. How many steps there are is not ours — the ground decides it at each dock, and it comes to one at the two Kinzie landings and two at the five along South Water.',
+    ] },
   { v: 291, title: 'The town was drawing every tree twice for a shadow nobody sees', kind: 'chore', ts: '2026-08-27T12:41:49.665Z', date: 'Aug 27, 2026, 7:41 AM CT',
     items: [
       'Nothing in the town looks different today. This is a note about a number that had quietly stopped meaning anything, and about finding out why.',

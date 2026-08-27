@@ -49,7 +49,6 @@ T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off 
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
@@ -98,3 +97,4 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- PROBABLY ALREADY ANSWERED — verify, then withdraw. Not withdrawn by an agent.
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
+T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
