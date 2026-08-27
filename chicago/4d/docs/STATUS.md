@@ -1,5 +1,83 @@
 # STATUS
 
+## Shipped — T-0211: the What's-new stage was not failing on What's-new, and nothing was broken
+
+**Three agents in one day read the same log as a broken panel.** `SMOKE_VIEWPORT=desktop
+SMOKE_STAGE=8` died on a single `page.click` timeout; one branch re-ran it in a clean `origin/dev`
+worktree at `29eebdef` to prove it was not its own change, and it was not. **Read the summary line
+and the diagnosis is already half done: `0 staged-section check(s)`.** The eight passes were the
+boot, page-error and vendor checks every invocation takes. Part 8 was dying on the **Settings tab,
+its first action**, before one of its 28 assertions had run — including all the ones that have
+nothing to do with What's-new. The part is *named* for its last section, and three readers took
+the name for the subject.
+
+**The panel was driven by hand while the gate was dying, on the same tree and the same machine.**
+Gate dismissed, panel open, `elementFromPoint` at the tab's own centre returning the tab itself, no
+pointer lock, and the feed painting **272 entries and 1,569 items**, newest *"Two evidence cards
+were showing their own merge scars"*, its meta line `Fixed · Aug 26, 2026, 11:18 PM CT`, the unread
+chip cleared and `chicago4d.whatsnew.seen` at 272. Every assertion the stage makes about that panel
+would have passed.
+
+**What had actually moved was the cost of a frame.** Ten consecutive frames on the loaded runner:
+**17,036 · 29 · 333 · 21,451 · 20,211 · 119 · 4,420 · 22,280 · 12,242 · 26,580 ms**, against the
+**0.46-1.10 s** measured on 2026-08-13 that the 90-second action budget was written around. The
+29 ms and 119 ms frames in that same sample are what settles it: the renderer draws this town fast
+when it is given the CPU, and for tens of seconds at a stretch it was not. Load average was
+**38.7-51.7 with 71-115 concurrent Chromium processes** (a dozen agents on one box); two runs ended
+`Target page, context or browser has been closed`, `pgrep -c chrome` went 115 → 0 in one interval,
+and a `page.goto` against a **local static file server** timed out at 30 s.
+
+**It is flaky, not broken, and the tidy explanation is refuted.** The identical click landed in
+**10.9 s** cold from a fresh boot through part 8's own prologue, **28.4 s** on a settled page,
+**20.6 s** for the What's-new tab and **53.8 s** for `#gate-btn` after a reload — and then blew
+90 s in the gate. The obvious mechanism (a filtered run clicks during the expensive first frames
+where an unfiltered run has seven parts of walking in between) predicts the COLD click is the slow
+one; it was the fastest of the five. There is no trigger, only a distribution with a tail across
+the budget.
+
+**No commit is guilty, and that is shown rather than asserted.** T-0167 measured desktop part 8
+green at 6 m 10 s twice on 2026-08-24. Since then nothing the panel is made of has changed —
+`renderers/web/index.html`, `js/hud.js`, `js/whatsnew.js` and `css/walk.css` were last touched at
+`d7e09dcb` (T-0076), well before that reading. What has changed under `renderers/web/` since
+2026-08-23 is `flora.js`, `frontage.js`, `trees.js`, `streets.js`, `main.js` and `changelog.js`:
+six contributions to the cost of a frame and not one panel.
+
+**The budget is NOT raised a second time.** This file predicted the recurrence in as many words on
+2026-08-13 — *"a standing hazard, not a fixed one: the same starvation will return as the town
+grows, and the next symptom will again look like a UI bug rather than a budget"* — and 90 → 180
+would buy one town-sized month and spend it against a ten-minute per-command ceiling this gate has
+already been re-cut for twice. **`clickChrome()`** replaces part 8's fourteen panel-chrome clicks:
+in ONE page round trip it asserts everything `page.click` asserts across many frame-bound ones —
+the element exists, is enabled, has a real box, and is **the topmost thing at its own centre** —
+then clicks it. Nothing is skipped. The `elementFromPoint` test IS T-0108's assertion: a control
+the HUD's `pointer-events: none` swallows returns the canvas and fails here exactly as it fails a
+visitor's mouse, now in one round trip naming what covered it instead of in ninety seconds with a
+call log that reads like a broken control. The four clicks where the trusted event is the *subject*
+rather than the means — part 4's confidence menu — stay `page.click` and now say why.
+
+**And the smoke now prints what a frame costs whenever an action times out**, so the next reader
+gets in the same log the answer this cost three agents a day to establish. It is a report and never
+a bar: the failure still fails.
+
+**The helper's own first run got one thing wrong, and it is the lesson worth keeping.** It took
+part 8 from 0 staged checks to 19 of 28 and then failed two — *"G opens the Go to tab"* reading
+`{"open":false,"tab":"goto"}` and the row after it reading `has no box (0x0)`. One fault:
+**a real mouse press focuses a focusable control and an untrusted `.click()` does not.** Part 8
+closes the panel and then presses `g`, and `g` only reaches the window shortcut once focus has
+left the Go-to search box, because `isTyping(e.target)` swallows it otherwise — which is precisely
+what that guard exists for. So the panel stayed shut and the row beneath it had no box.
+`clickChrome` focuses before it clicks now. That is the exact hazard in swapping a trusted event
+for an untrusted one, and anyone extending this past part 8 should look for it first. Note also
+which instrument found it: one line naming the fault, where the old path spent ninety seconds and
+printed a call log about a button it had itself found visible, enabled and stable.
+
+**What is NOT fixed, and it is the part that matters.** `chicago-4d-check.yml` runs `check.sh` and
+nothing else, and the full smoke is dispatch-only, so **dev has no standing smoke result of its
+own**. "Is this red mine or dev's?" costs a fresh worktree and a re-run every single time, which is
+exactly what three agents paid today. A nightly dispatch of `chicago-4d-smoke.yml` on `dev` would
+make it a lookup — filed as T-0212, and left unbuilt here because it edits a workflow file, which
+AGENTS.md § How work ships puts outside a steward run's scope.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a

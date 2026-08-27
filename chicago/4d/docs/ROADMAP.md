@@ -220,6 +220,34 @@ run reported nothing about — T-0166's part 7 reading is literally ">10 m", and
 the stamp on, a killed run is still a profile of everything it reached, which is what places the
 next cut. It is off by default so the gate's own output stays comparable between runs.
 
+**AND EVERY NUMBER IN THE TABLE ABOVE IS A READING OF THE MACHINE AS MUCH AS OF THE SUITE —
+T-0167 said so, and 2026-08-27 put a factor on it.** T-0167 wrote that "these desktop numbers move
+by minutes between runs because SwiftShader's cost tracks whatever else the machine is doing", and
+sized its cuts on margin rather than on any single reading. **T-0211 measured how far that goes.**
+On a box carrying a dozen parallel agents — load average **38.7-51.7**, **71-115** concurrent
+Chromium processes — ten consecutive animation frames of this scene cost
+
+**17,036 · 29 · 333 · 21,451 · 20,211 · 119 · 4,420 · 22,280 · 12,242 · 26,580 ms**
+
+against the **0.46-1.10 s** of 2026-08-13. That is a factor of twenty on the quantity every
+Playwright action is denominated in, and the 29 ms frames in the same sample are the proof it is
+contention rather than the scene. Boot to `ready` measured **29 s, 106.8 s and 127.4 s** on one
+tree inside twenty minutes, against the 30 s the boot check allows; two runs had their browser
+killed outright; a `page.goto` against a **local static file server** timed out at 30 s. So:
+
+- **A part's timing is only comparable to another taken under the same load.** Record the load
+  average and the Chromium process count beside any reading added to the table above, the way
+  T-0211's are recorded in its ticket. A margin measured at load 2 is not a margin at load 50.
+- **A `page.click` timeout on this suite is a question, not a verdict.** It has now twice been
+  read as a broken control and twice been the budget — 2026-08-13 and 2026-08-27, the second time
+  by three separate agents on one day. The smoke now prints what a frame costs whenever an action
+  times out, and `clickChrome` (part 8's fourteen chrome clicks) takes the panel chrome out of the
+  race entirely without dropping one assertion. See STATUS 2026-08-27.
+- **The ten-minute ceiling this section exists to fit is not the binding constraint on a loaded
+  box.** Part 8 measured 6 m 10 s at desktop on 2026-08-24 and could not reach its first assertion
+  in 4 m 23 s on 2026-08-27. Cutting parts finer does not help that; running fewer of them at once
+  does (T-0212).
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
