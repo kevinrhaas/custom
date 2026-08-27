@@ -1,5 +1,5 @@
 ---
-id: T-0211
+id: T-0215
 title: Desktop smoke stage 8 (What's-new) is red on dev and every branch inherits it
 state: claimed
 epic: RENDERING

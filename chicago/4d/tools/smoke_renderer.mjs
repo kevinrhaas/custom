@@ -1053,7 +1053,7 @@ for (const [label, viewport, touch] of [
   // for a broken control: a click that never lands still fails, three times
   // slower.
   //
-  // IT IS NOT RAISED AGAIN, AND T-0211 IS WHY. On 2026-08-27 the same starvation
+  // IT IS NOT RAISED AGAIN, AND T-0215 IS WHY. On 2026-08-27 the same starvation
   // took the desktop half down again, and the honest reading is that a budget
   // measured in frames is the wrong instrument for a scene whose frame cost is
   // set by whatever else the machine is doing (17-27 s per frame, measured, on a
@@ -1096,7 +1096,7 @@ for (const [label, viewport, touch] of [
   // 2026-08-13 raised the budget to 90 s for exactly that and said, in writing,
   // that it was **a standing hazard and not a fixed one**: *"the same starvation
   // will return as the town grows, and the next symptom will again look like a UI
-  // bug rather than a budget."* It returned on 2026-08-27 (T-0211), and it
+  // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
   // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
   // died on its FIRST click, on the Settings tab, before a single one of part 8's
   // assertions had run — and three agents in one day read that as the What's-new
@@ -6691,7 +6691,7 @@ for (const [label, viewport, touch] of [
     // runs here because the HUD only exists past the gate, and the guide that
     // covers this corner of it was dismissed by the check above.
     //
-    // SO THESE FOUR STAY `page.click` (T-0211). Part 8's chrome clicks moved to
+    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
     // `clickChrome`, which hit-tests at the element's own centre and would catch
     // this same regression — but here the trusted event is not the means, it is
     // the SUBJECT, and the instrument should be the visitor's own mouse.
@@ -8614,7 +8614,7 @@ for (const [label, viewport, touch] of [
     // teleport here would be this part measuring somewhere the unfiltered run
     // never stands.
     //
-    // EVERY CHROME CLICK IN THIS PART GOES THROUGH `clickChrome` (T-0211), and
+    // EVERY CHROME CLICK IN THIS PART GOES THROUGH `clickChrome` (T-0215), and
     // the reason is written where that helper is defined. The short of it: this
     // part is nothing but panel chrome — fourteen clicks and almost no camera —
     // so it is the part with the most to lose to a starved action, and on
@@ -10005,7 +10005,7 @@ for (const [label, viewport, touch] of [
       thrown = e;
     }
 
-    // T-0211 — WHEN AN ACTION TIMES OUT, SAY WHAT A FRAME COSTS, because that is
+    // T-0215 — WHEN AN ACTION TIMES OUT, SAY WHAT A FRAME COSTS, because that is
     // the question the log leaves unanswered and the wrong answer has now been
     // given twice. `TimeoutError: page.click: Timeout 90000ms exceeded` on a
     // control that is visible, enabled and stable reads like a broken control,
