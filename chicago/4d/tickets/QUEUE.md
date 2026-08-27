@@ -103,3 +103,4 @@ T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now m
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
+T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
