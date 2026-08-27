@@ -911,11 +911,19 @@ const stamp = () => {
   const secs = Math.round((Date.now() - startedAt) / 1000);
   return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
 };
-function check(name, cond, detail = '') {
+// T-0187: `show` prints the detail on a PASS as well as on a failure, for the
+// handful of checks whose measured figure is the thing a run has to be able to
+// quote. The sward's outer reach is the case that asked for it: a change to the
+// boundary has to be able to say what the reach was before and after, and a
+// green line that prints nothing makes that a re-run with an edited gate.
+// Deterministic figures only — the output stays comparable between runs.
+function check(name, cond, detail = '', show = false) {
   if (inStageWork) stageWorkChecks += 1;
   const t = TIMING ? stamp() : '';
-  if (cond) { passes.push(name); console.log(`  pass  ${t}${name}`); }
-  else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
+  if (cond) {
+    passes.push(name);
+    console.log(`  pass  ${t}${name}${show && detail ? ` — ${detail}` : ''}`);
+  } else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
 }
 
 const server = http.createServer((req, res) => {
@@ -8387,7 +8395,7 @@ for (const [label, viewport, touch] of [
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`);
+        + `-${s.maxReach.toFixed(2)} m`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
@@ -8398,7 +8406,8 @@ for (const [label, viewport, touch] of [
         && s.meanReach >= s.nominal - 0.5 * s.fringe,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
         + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m`);
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
+        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
@@ -8414,7 +8423,7 @@ for (const [label, viewport, touch] of [
         && fb.ringLo >= fb.nominal - fb.fringe - 0.05
         && fb.ringHi <= fb.nominal + fb.fringe + 0.05,
         `forb rings span ${fb.ringLo.toFixed(2)}-${fb.ringHi.toFixed(2)} m about a nominal `
-        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`);
+        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`, true);
     }
     // A fringe that moved with the walker would be a boundary that swims — the
     // pop-in defect over again, one ring further out. Nine points on the ground

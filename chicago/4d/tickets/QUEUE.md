@@ -70,7 +70,6 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
-T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
@@ -84,10 +83,11 @@ T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at
 T-0213 — Weight the trade families onto the business front
 T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
-T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
+T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 T-0211 — The other nine group rows are cross-checked against nothing
 T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
+T-0209 — The sward's drawn reach is measured off plants at two per cent coverage
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
 T-0224 — A critic baseline standing on the public square

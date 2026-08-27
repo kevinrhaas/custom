@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 286, title: 'On a phone the grass ahead of you was full of holes', kind: 'fix', ts: '2026-08-27T11:01:20.167Z', date: 'Aug 27, 2026, 6:01 AM CT',
+    items: [
+      'Stand in the open prairie on a phone and look at the ground five paces out. Every clump from there to the middle distance was drawn through a regular mesh of gaps — worst at about eight metres, where roughly every other pixel of a plant was thrown away. It is solid grass now, and the ground no longer thins out ahead of you as you walk.',
+      'Fifteen per cent of the phone’s screen inside nine metres was being drawn that way in open prairie. It is zero at every stand that was measured, on the street and off it. On a desktop it was already zero and still is.',
+      'The cause was a single width that never got scaled down. The meadow is drawn in rings around you and the outermost one fades away over a band, so it does not stop at a hard circle. That band is seven metres. A phone’s ring is only thirteen metres across, so a fade meant for the far middle distance ended up spread over the middle of what you are actually looking at. The medium setting had it too.',
+      'The band is now cut to the ring it belongs to: about a metre and a half on a phone, four and a half on the medium setting, unchanged on a desktop where it was never in the way. The rule is that the fade may not begin inside the nine metres a walker looks at.',
+      'The obvious repair was measured first and turned down, which is why this is a narrower change than it looks. Drawing fewer whole plants instead of more see-through ones would have pulled the visible edge of the meadow in by more than two metres on a phone — past what the project already checks for. The figure is written down, and so is the reason the check itself needs a second look.',
+      'Nothing else moved. The same plants stand in the same places, in the same species and proportions, and exactly as much geometry is drawn as before. Flowers at the far edge of the ring do last a little longer now, out to about twelve metres instead of ten.',
+    ] },
   { v: 285, title: 'The timber along South Water Street stands on land again', kind: 'fix', ts: '2026-08-27T10:55:17.486Z', date: 'Aug 27, 2026, 5:55 AM CT',
     items: [
       'Stand at Lake and Canal by the Green Tree and look east, or out on Randolph and look north-east across the grass: there is a wood along the far side of the river again, standing behind the roofs. It is the body of timber the sources put on the south side of the town, and for eleven days it drew nothing at all.',
