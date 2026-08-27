@@ -1199,6 +1199,12 @@ export async function createFlora({
     for (const s of sets) s.commit();
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
     stats.sets = Object.fromEntries(sets.map((s) => [s.mesh.name, s.mesh.count]));
+    /** T-0034. The ceiling beside the count, because `capped` answers only
+     *  "is this set full" and the question a bloom measurement has to ask is
+     *  "how much of its ceiling is spent" — a set at 0.31 of its cap and one at
+     *  0.99 are the same row otherwise, and they are the difference between a
+     *  raise a lattice can carry and one an instance budget eats. */
+    stats.caps = Object.fromEntries(sets.map((s) => [s.mesh.name, s.max]));
     stats.capped = sets.filter((s) => s.mesh.count >= s.max).map((s) => s.mesh.name);
     stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0);
     stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length;
@@ -1256,8 +1262,15 @@ export async function createFlora({
         shrubShare: z.shrubShare,
         /** The sum each is dealt off, so a reader can tell a share that is
          *  clamped from one that is small. `null` for the matrix by
-         *  `SLOT_BASIS` — its slot count is `matrixShare` above. */
-        forbDensity: z.dry.forbs.density,
+         *  `SLOT_BASIS` — its slot count is `matrixShare` above.
+         *
+         *  T-0034: `forbDensity` is the sum `forbShare` is ACTUALLY dealt off,
+         *  which is now the recorded upper bound. `forbDensityMid` is the
+         *  midpoint sum it was dealt off before, kept beside it so a
+         *  measurement can quote the size of the raise and the ceiling that
+         *  ate the rest of it without re-deriving either. */
+        forbDensity: z.dry.forbs.densityHigh,
+        forbDensityMid: z.dry.forbs.density,
         shrubDensity: z.dry.shrubs.density,
       }));
     },
@@ -1266,6 +1279,28 @@ export async function createFlora({
      *  layer here: it carries no fade ring for that gate to inset, and the
      *  invariant it does carry is the one below. */
     rings: { step, layers: rings },
+    /**
+     * T-0034. The forb lattice's own geometry — the ceiling `forbShareOf`
+     * clamps against, stated rather than re-derived in a tool.
+     *
+     * `forbShare` alone cannot say how far a community is from the clamp in
+     * PLANTS: a share of 1.0 is one plant per slot whatever the slot is, and
+     * what a raise buys is decided by how much ground a slot stands for. K58's
+     * six clamped layers are all one number away from that ceiling and nothing
+     * outside this module could name it.
+     *
+     * It is `TUNE.forb`, not `tune.forb`: `forbShareOf` reads the base tune, so
+     * the ceiling is the same at every detail setting and only the RING the
+     * lattice is dealt over shrinks with `light`.
+     */
+    forbLattice: {
+      cell: TUNE.forb.cell,
+      perCell: TUNE.forb.perCell,
+      /** Ground one lattice slot stands for, m². */
+      slotArea: (TUNE.forb.cell ** 2) / TUNE.forb.perCell,
+      /** The most plants per m² this lattice can carry: one per slot. */
+      ceilingPerM2: TUNE.forb.perCell / (TUNE.forb.cell ** 2),
+    },
     /** T-0086. The far band's own tuning and its ramp, so a measurement asks
      *  the placer what fraction of the ground carries a card at `d` rather than
      *  re-deriving it. Zero at both ends is the assertion worth making. */
@@ -1692,17 +1727,23 @@ function compileZones({ index, files }, terrain, problems, stats) {
          *  inverted, on the width K49(c1) put on all 98 sward records. */
         density: basis === null ? null
           : items.reduce((a, s) => a + (s.stems ?? 0), 0),
+        /** T-0034. The same sum at the top of every record's own range. See
+         *  `stemsHigh`: it is the FORB stratum's slot count that is dealt off
+         *  this, and nothing else reads it. */
+        densityHigh: basis === null ? null
+          : items.reduce((a, s) => a + (s.stemsHigh ?? s.stems ?? 0), 0),
       };
     };
 
     const cell = TUNE.forb.cell;
-    /** Chance one lattice slot of the forb-ring cell carries a plant: the
-     *  subset's own plants per m² times the ground one slot stands for. The
+    /** Chance one lattice slot of the forb-ring cell carries a plant: a
+     *  stratum's own plants per m² times the ground one slot stands for. The
      *  clamp is the lattice's ceiling of one plant per slot and is the only
      *  bound in it — see K54's note on the wet woods, the one community whose
-     *  recorded shrub density reaches it. */
-    const forbShareOf = (subset) => Math.min(
-      1, subset.density * cell * cell / TUNE.forb.perCell);
+     *  recorded shrub density reaches it, and K58, which is the open parcel on
+     *  what that clamp costs the six communities already sitting on it. */
+    const shareOf = (density) => Math.min(
+      1, density * cell * cell / TUNE.forb.perCell);
     const dry = {
       graminoids: subsetOn(graminoids, false, SLOT_BASIS.matrix),
       forbs: subsetOn(forbs, false, SLOT_BASIS.forb),
@@ -1736,15 +1777,32 @@ function compileZones({ index, files }, terrain, problems, stats) {
        *  be a bookkeeping error the validator already refuses. */
       matrixShare: clamp01(matrixShare),
       bareSoil: typeof cover.bare_soil_fraction === 'number' ? cover.bare_soil_fraction : null,
-      /** Chance a forb lattice slot is used, from the record's own densities —
-       *  per side, because the legal subset is what stands there. */
-      forbShare: forbShareOf(dry.forbs),
-      forbShareWet: forbShareOf(wet.forbs),
+      /**
+       * Chance a forb lattice slot is used, from the record's own densities —
+       * per side, because the legal subset is what stands there.
+       *
+       * T-0034 — AT THE TOP OF THE RECORDED RANGE, NOT ITS MIDDLE. The ticket
+       * was "raise the bloom", and the owner's ruling on it allows the bloom to
+       * be tuned as a reconstructed value provided the bound is stated. The
+       * bound taken is the tightest one available: each species' own recorded
+       * upper figure, so the town is a prairie at the dense end of what its
+       * sources describe and not one plant past it (docs/LIBERTIES.md L182).
+       *
+       * It moves three communities and only three — the mesic prairie
+       * (0.809 → 1.000), the wet prairie (0.798 → 1.000) and the sand prairie
+       * (0.210 → 0.329). The other six forb layers were already over the
+       * lattice's ceiling before this and are unchanged by it, which is K58 and
+       * not this ticket: past the clamp a bigger number draws nothing.
+       */
+      forbShare: shareOf(dry.forbs.densityHigh),
+      forbShareWet: shareOf(wet.forbs.densityHigh),
       /** ROADMAP K54. The same question of the shrub stratum's own lattice, off
        *  its own recorded clump density. Nothing here is taken from the forb
-       *  layer: the two passes are independent draws over the same ring. */
-      shrubShare: forbShareOf(dry.shrubs),
-      shrubShareWet: forbShareOf(wet.shrubs),
+       *  layer: the two passes are independent draws over the same ring — and
+       *  T-0034's upper-bound reading is deliberately NOT applied here, because
+       *  a denser shrub stratum is more bushes and not more bloom. */
+      shrubShare: shareOf(dry.shrubs.density),
+      shrubShareWet: shareOf(wet.shrubs.density),
       matColor: meanColor(graminoids, palette),
       palette,
     });
@@ -1892,18 +1950,26 @@ function buildSpecies(sp, palette, problems, zoneId) {
    */
   const width = Array.isArray(sp.width_m) ? sp.width_m : null;
   let stems = null;
+  let stemsHigh = null;
   let unit = 'none';
   if (Array.isArray(ab.stems_per_m2)) {
     unit = 'stems_per_m2';
     stems = mid(ab.stems_per_m2);
+    stemsHigh = ab.stems_per_m2[1];
   } else if (Array.isArray(ab.density_per_ha)) {
     unit = 'density_per_ha';
     stems = mid(ab.density_per_ha) / 10000;
+    stemsHigh = ab.density_per_ha[1] / 10000;
   } else if (Array.isArray(ab.cover_fraction)) {
     unit = 'cover_fraction';
-    if (width) stems = mid(ab.cover_fraction) / (Math.PI * (mid(width) * 0.5) ** 2);
+    if (width) {
+      const one = Math.PI * (mid(width) * 0.5) ** 2;
+      stems = mid(ab.cover_fraction) / one;
+      stemsHigh = ab.cover_fraction[1] / one;
+    }
   }
   if (stems !== null && !(stems > 0)) stems = null;
+  if (stemsHigh !== null && !(stemsHigh > 0)) stemsHigh = null;
 
   return {
     id: sp.id ?? sp.binomial ?? 'unnamed',
@@ -1915,6 +1981,25 @@ function buildSpecies(sp, palette, problems, zoneId) {
      *  same abundance as plants per m² where one is derivable. K49(a). */
     unit,
     stems,
+    /**
+     * T-0034 — THE SAME ABUNDANCE READ AT THE TOP OF ITS OWN RANGE.
+     *
+     * Every abundance in `data/flora` is a RANGE, because a prairie's forb load
+     * is not one number: the record says 400–900 yellow coneflowers to the
+     * hectare and means both ends of that. `stems` takes the midpoint, and the
+     * midpoint is not a figure any source states — it is a reading this
+     * renderer chose, silently, and it planted every hectare of the town as the
+     * average hectare.
+     *
+     * This is the same abundance read at the recorded upper end. It is a
+     * RECONSTRUCTED reading, not a sourced one (docs/LIBERTIES.md L182), and its
+     * bound is the record itself: no species can be planted denser than its own
+     * record's larger figure, so the sward never leaves the envelope its
+     * evidence draws. `stems` is kept beside it because the LOTTERY still runs
+     * on the midpoints — which species fills a slot is unchanged, and only how
+     * many slots are filled moves.
+     */
+    stemsHigh,
     height: h,
     width,
     shape: GRASS_SHAPE[sp.form] ?? { arch: 0.28, spread: 0.45 },

@@ -215,7 +215,7 @@ So the zone now also holds the square **by polygon** — `include_polygons`, the
 vertex for vertex, held there by the same tool. **Nothing is fitted**, in particular not fitted
 around the estray pen, the log jail and the court-house: they stand *on* the sward, which is what a
 seasonally ponded bed carries and open water does not. **No water is drawn**, and the zone's own
-`cover.standing_water_fraction` of 0.10 is explicitly not claimed here. `docs/LIBERTIES.md` **L182**
+`cover.standing_water_fraction` of 0.10 is explicitly not claimed here. `docs/LIBERTIES.md` **L188**
 records the one invention: that the wet ground stopped at the surveyor's line.
 
 **What this parcel did NOT do.** It moved no ground, cut no basin, dated no water and promoted no

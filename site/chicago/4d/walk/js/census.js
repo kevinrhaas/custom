@@ -8,10 +8,12 @@
  *
  * NOTHING HERE IS A NUMBER SOMEBODY TYPED, and that is the whole design. Both figures
  * AND both denominators come out of `data/town_census.json`, which `tools/town_census.py`
- * derives from the 665-roof programme and the residents layer and `tools/check.sh`
+ * derives from the roof programme and the residents layer and `tools/check.sh`
  * re-derives on every commit. Writing "322" into this file would have been three lines
  * shorter and stale by the next bake — the front screen is the most visible possible
- * place to carry a number the dataset has moved past.
+ * place to carry a number the dataset has moved past. The DENOMINATOR proved that on
+ * 2026-08-27: T-0032 took the town's roof total from 665 to 662 when three civic slots
+ * turned out to count nothing, and this file needed no edit at all.
  *
  * THE SECOND FIGURE IS A FLOOR AND SAYS SO. `people housed` counts person entries in
  * households whose `lives_at` names a building that stands, and three of the entries it

@@ -25,7 +25,26 @@ So this asks the question one level up, of the SPECIFICATION rather than of a re
      reachable eaves are the interval `family_bands.eave_window_for_ridge` computes and the
      question is whether it meets the authored eave band.
 
-  2. THE RECORD REPORT. For each roof in `tools/ridge_band_baseline.json`, which claim is
+  2. THE SHED OFFER, which is the sweep's own residual made into a gate (T-0179). Nine
+     families are offered a SHED by their roof line and three of them — C1, F1, W5 —
+     cannot reach their own ridge band as one, because a shed's plane climbs the WHOLE
+     span where a gable climbs half and the `ridge_ft` column was written for the gable.
+     The sweep printed some as NOTE lines and nothing joined them to what the parcels
+     deal, so the day
+     a parcel took a permission the crosswalk plainly gives, the roof would have been
+     built outside its own band. `tools/roof_form.py` now holds the deal in ONE place —
+     it used to be the same literal in five parcels, and the five had already drifted —
+     and this section is the join:
+
+       * a family this town builds as a SHED whose shed the sweep cannot reach: FAIL.
+       * a family offered a shed and built as a gable: its refusal must be recorded on
+         every committed record of that family, in the note a visitor opens. A refusal
+         that lives only in a Python tuple is one nobody outside the repo can read.
+       * the open-sided table against the crosswalk's own words, the held-back parcel
+         against its one named family, and the five generators against a retyped shed
+         set — three ratchets, so the single home stays the single home.
+
+  3. THE RECORD REPORT. For each roof in `tools/ridge_band_baseline.json`, which claim is
      disobeyed — stated, because the answer differs by parcel and the repairs have
      different owners:
 
@@ -42,13 +61,16 @@ So this asks the question one level up, of the SPECIFICATION rather than of a re
        unreachable         no (eave in band, pitch in band) reaches it at this footprint —
                            a genuine conflict between the family's own claims. None today.
 
-    python3 tools/measure_ridge_reach.py            the sweep, the report, and the gate
-    python3 tools/measure_ridge_reach.py --quiet    the gate alone
+    python3 tools/measure_ridge_reach.py              the sweep, the report, and the gate
+    python3 tools/measure_ridge_reach.py --quiet      the gate alone
+    python3 tools/measure_ridge_reach.py --self-test  break each shed assertion in memory
 """
 from __future__ import annotations
 
+import contextlib
+import copy
+import io
 import json
-import math
 import pathlib
 import re
 import sys
@@ -58,31 +80,21 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import family_bands  # noqa: E402
 import ridge_model  # noqa: E402
+import roof_form  # noqa: E402
 
 FT = 0.3048
 BASELINE = ROOT / "tools" / "ridge_band_baseline.json"
-# The footprint band is swept on a grid rather than at its corners. The run is a
-# min/max over width and depth for every archetype here, so the extremes are corners
-# and a corner sweep would answer correctly — the grid is there so that an archetype
-# whose run is not monotone in both cannot slip past a future reader's edit.
-GRID = 21
-EAVE_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$")
+STRUCTURES = ROOT / "data" / "structures"
+eave_band_m = family_bands.eave_band_m
+roof_forms = roof_form.offered_forms
 
-
-def eave_band_m(eave_ft: str | None) -> tuple[float, float] | None:
-    m = EAVE_RE.match(str(eave_ft or ""))
-    return (float(m.group(1)) * FT, float(m.group(2)) * FT) if m else None
-
-
-def roof_forms(roof: str | None) -> list[str]:
-    """The roof forms a family's roof line names, in the vocabulary `ridge_model` uses."""
-    text = str(roof or "").lower()
-    forms = []
-    if "gable" in text or "hip" in text or not text:
-        forms.append("gable")
-    if "shed" in text:
-        forms.append("shed")
-    return forms or ["gable"]
+# The five parcels that deal a family a roof form, and the shape of the literal that
+# used to decide it inside each of them. `roof_form.py` is the one home now; a parcel
+# that grows its own copy back fails the gate rather than drifting for four months.
+PARCEL_SOURCES = ("generate_north_infill.py", "generate_block_infill.py",
+                  "generate_west_infill.py", "generate_inferred_infill.py",
+                  "generate_inferred_households.py")
+RETYPED_RE = re.compile(r"""["']shed["']\s+if\s+family\s+in""")
 
 
 def reachable(run_m: float, pitch: tuple[float, float], ridge: tuple[float, float],
@@ -92,41 +104,219 @@ def reachable(run_m: float, pitch: tuple[float, float], ridge: tuple[float, floa
 
 
 def sweep() -> list[dict]:
-    """Per family and roof form, the footprints from which the ridge band is unreachable."""
+    """Per family and roof form, the footprints from which the ridge band is unreachable.
+
+    The grid, the run and the reach test are `roof_form`'s, not a second copy: the module
+    that DECIDES which form a family gets has to answer this question anyway, and a gate
+    that computes reachability its own way is a gate measuring a different question from
+    the one the generators answer (T-0179). What stays here is the READING — this gate
+    tests the four claims the crosswalk authors, so a family with no pitch band is
+    reported and not swept, because the specification claims nothing testable about its
+    pitch. The shed section below takes the other reading, against the generator's own
+    default, and says so.
+    """
     out = []
     for fid, spec in family_bands.families().items():
         band = spec.get("band_ft")
         ridge = family_bands.ridge_band_m(spec.get("ridge_ft"))
         eave = eave_band_m(spec.get("eave_ft"))
         pitch = family_bands.pitch_band_deg(spec.get("roof"))
-        arch = spec.get("archetype")
         if band is None or ridge is None or eave is None:
             continue
         if pitch is None:
             out.append({"family": fid, "form": None, "state": "no-pitch-band",
                         "tested": 0, "unreachable": 0})
             continue
-        lo_w, lo_d, hi_w, hi_d = band
-        for form in roof_forms(spec.get("roof")):
-            tested = bad = 0
-            worst = None
-            for i in range(GRID):
-                w = (lo_w + (hi_w - lo_w) * i / (GRID - 1)) * FT
-                for j in range(GRID):
-                    d = (lo_d + (hi_d - lo_d) * j / (GRID - 1)) * FT
-                    run = ridge_model.ridge_run_m(arch, form, w, d, None)
-                    if run is None:
-                        continue
-                    tested += 1
-                    if not reachable(run, pitch, ridge, eave):
-                        bad += 1
-                        if worst is None:
-                            worst = (round(w / FT, 1), round(d / FT, 1))
-            if tested:
-                out.append({"family": fid, "form": form, "state": "swept",
-                            "tested": tested, "unreachable": bad, "worst": worst,
-                            "ridge_ft": spec.get("ridge_ft"), "archetype": arch})
+        for form in roof_forms(fid):
+            s = roof_form.sweep(fid, form)
+            if s is None:
+                continue
+            out.append({"family": fid, "form": form, "state": "swept",
+                        "tested": s["tested"], "unreachable": s["unreachable"],
+                        "worst": s["worst"], "ridge_ft": spec.get("ridge_ft"),
+                        "archetype": spec.get("archetype")})
     return out
+
+
+# ---------------------------------------------------------------- THE SHED OFFER (T-0179)
+
+def shed_offer() -> dict:
+    """What the crosswalk offers as a shed, what this town deals, and whether they agree."""
+    fams = family_bands.families()
+    refusals = roof_form.refusals()
+    rows = []
+    for fid in sorted(fams):
+        if "shed" not in roof_forms(fid):
+            continue
+        dealt = roof_form.roof_kind(fid)[0]
+        s = roof_form.sweep(fid, "shed")
+        if s is None:
+            continue
+        rows.append({"family": fid, "dealt": dealt, "unreachable": s["unreachable"],
+                     "tested": s["tested"], "worst": s["worst"],
+                     "open_sides": s["open_sides"], "ridge_ft": s["ridge_ft"],
+                     "reason": (refusals.get(fid) or {}).get("reason")})
+
+    # A family this town builds as a shed whose shed its own ridge band cannot carry.
+    dealt_unbuildable = [r for r in rows if r["dealt"] == "shed" and r["unreachable"]]
+
+    # The open-sided table against the crosswalk's own words, in both directions.
+    open_drift = [f for f in fams
+                  if roof_form.entry_says_open(f) != bool(roof_form.open_sides_for(f))]
+
+    # The refusal has to reach the records. Every committed record of a family refused
+    # BY THE RIDGE BAND carries the sentence its generator writes, or the refusal exists
+    # only in Python and the card a visitor opens still says nothing about it.
+    #
+    # Asked only of INVENTED roofs, and that is the point rather than a softening: this
+    # sentence defends an invention — it says which other form the typology offered and
+    # why this town did not take it. A roof somebody has evidence for is not choosing
+    # between the typology's forms at all, and writing the refusal onto its note would be
+    # the false-provenance fault K33 spent a parcel undoing.
+    refused = {f for f, e in refusals.items() if e["reason"] == "ridge_band"}
+    unrecorded = []
+    for path in sorted(STRUCTURES.glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        fam = (doc.get("reconstruction") or {}).get("family")
+        if fam not in refused:
+            continue
+        for phase in doc.get("phases", []):
+            claim = (phase.get("form") or {}).get("roof_type") or {}
+            if claim.get("confidence") != "reconstructed":
+                continue
+            if "THE OTHER FORM ON OFFER IS REFUSED" not in (claim.get("note") or ""):
+                unrecorded.append((doc["id"], fam))
+
+    retyped = [name for name in PARCEL_SOURCES
+               if RETYPED_RE.search((ROOT / "tools" / name).read_text(encoding="utf-8"))]
+
+    return {"rows": rows, "dealt_unbuildable": dealt_unbuildable,
+            "open_drift": open_drift, "unrecorded": unrecorded, "retyped": retyped,
+            "held": dict(roof_form.AWAITING_BAKE), "refused": sorted(refused)}
+
+
+# The one parcel held back from the shared rule, banked by name. It may SHRINK — the day
+# `recon_1835_south_a5_044` is re-baked as the shed its family gets everywhere else, this
+# goes to empty — and it may not grow. See `roof_form.AWAITING_BAKE` and T-0212.
+HELD_BASELINE = {("generate_inferred_infill.py", "A5"): "gable"}
+
+
+def report_shed_offer(offer: dict) -> list[str]:
+    """The section a reader sees, and the failures it returns for the exit code."""
+    fails = []
+    print(f"\n   the shed offer — {len(offer['rows'])} family(ies) whose roof line names a "
+          f"SHED, against what this town deals them:")
+    print("     family  dealt   unreachable as a shed   why not a shed")
+    for r in offer["rows"]:
+        why = {"ridge_band": "its own ridge band cannot carry one",
+               "choice": "buildable; this town builds the gable"}.get(r["reason"], "-")
+        axis = " (open-sided, so it falls across the short span)" if r["open_sides"] else ""
+        print(f"     {r['family']:6}  {r['dealt']:6}  {r['unreachable']:4} of "
+              f"{r['tested']:<4} ridge {r['ridge_ft']:>6} ft   {why}{axis}")
+
+    for r in offer["dealt_unbuildable"]:
+        fails.append(f"FAIL {r['family']} is dealt a SHED and {r['unreachable']} of "
+                     f"{r['tested']} footprints in its own band cannot reach ridge "
+                     f"{r['ridge_ft']} ft as one (first at "
+                     f"{r['worst'][0]}x{r['worst'][1]} ft) — roof_form.SHED_FAMILIES "
+                     f"claims a form the specification cannot carry")
+    for fam in offer["open_drift"]:
+        fails.append(f"FAIL {fam}: the crosswalk entry and roof_form.OPEN_SIDED_FAMILIES "
+                     f"disagree about whether this family is built open, and that decides "
+                     f"which span its shed climbs")
+    for sid, fam in offer["unrecorded"]:
+        fails.append(f"FAIL {sid} ({fam}): its family's shed is refused by the ridge band "
+                     f"and the record does not say so — the refusal has to reach the card")
+    for name in offer["retyped"]:
+        fails.append(f"FAIL tools/{name} has grown its own copy of the shed set; the rule "
+                     f"lives in tools/roof_form.py and nowhere else")
+    grown = {k: v for k, v in offer["held"].items() if HELD_BASELINE.get(k) != v}
+    if grown:
+        fails.append(f"FAIL roof_form.AWAITING_BAKE has grown by {grown}; a parcel may be "
+                     f"held back from the shared rule only by the one entry banked in "
+                     f"HELD_BASELINE, and that one may shrink and may not grow")
+    if offer["held"]:
+        for (parcel, fam), form in sorted(offer["held"].items()):
+            print(f"     held: {parcel} still deals {fam} a {form}, awaiting a bake (T-0212)")
+    print(f"     the refusal is recorded on every committed record of "
+          f"{', '.join(offer['refused'])}")
+    return fails
+
+
+def self_test() -> int:
+    """Break each of the shed-offer assertions in memory, against the real tree.
+
+    A gate nobody has watched fail is a gate nobody knows fires. Each case below is the
+    real repository state with exactly one thing wrong with it, and the assertion for
+    that thing must go red while the others stay as they are.
+    """
+    clean = shed_offer()
+    if not clean["rows"] or not clean["refused"]:
+        print("SELF-TEST FAIL: nothing measured, so no assertion can be exercised")
+        return 1
+    base = len(report_shed_offer_quiet(clean))
+    cases = []
+
+    c1 = copy.deepcopy(clean)
+    c1["dealt_unbuildable"] = [r for r in c1["rows"] if r["family"] == "F1"]
+    cases.append(("a family dealt a shed its own ridge band cannot carry", c1))
+
+    c2 = copy.deepcopy(clean)
+    c2["open_drift"] = ["F4"]
+    cases.append(("the open-sided table drifting from the crosswalk entry", c2))
+
+    c3 = copy.deepcopy(clean)
+    c3["unrecorded"] = [("recon_1835_north_f1_022", "F1")]
+    cases.append(("a refused family's record that does not carry the refusal", c3))
+
+    c4 = copy.deepcopy(clean)
+    c4["retyped"] = ["generate_west_infill.py"]
+    cases.append(("a parcel that grows its own copy of the shed set", c4))
+
+    c5 = copy.deepcopy(clean)
+    c5["held"] = dict(c5["held"])
+    c5["held"][("generate_west_infill.py", "D2")] = "gable"
+    cases.append(("a second parcel opting a second family out of the rule", c5))
+
+    ok = True
+    for label, state in cases:
+        fired = len(report_shed_offer_quiet(state)) > base
+        print(f"  {'fires' if fired else 'SILENT'}  {label}")
+        ok = ok and fired
+
+    # The two scans the assertions rest on, exercised directly: each has to be able to
+    # say yes AND no, or a green gate means only that the scan found nothing.
+    checks = [
+        ("the retyped-set scan sees the literal it is looking for",
+         bool(RETYPED_RE.search('roof = "shed" if family in ("D2", "A3")'))),
+        ("...and does not see the shared call that replaced it",
+         not RETYPED_RE.search("roof = roof_kind(family)[0]")),
+        ("no parcel contains the literal today",
+         not [n for n in PARCEL_SOURCES
+              if RETYPED_RE.search((ROOT / "tools" / n).read_text(encoding="utf-8"))]),
+        ("the open-side scan reads F4's entry as open",
+         roof_form.entry_says_open("F4")),
+        ("...and W5's 'open work bay' as not an open side",
+         not roof_form.entry_says_open("W5")),
+        ("a refused family's note is generated, not typed: the sentence carries its "
+         "own measured count",
+         "231 of" in (roof_form.refusal_note("C1", 5.49, 8.53) or "")),
+        ("a family whose shed IS reachable gets no refusal sentence",
+         roof_form.refusal_note("F4", 8.0, 15.0) is None),
+    ]
+    for label, passed in checks:
+        print(f"  {'ok   ' if passed else 'FAIL '}  {label}")
+        ok = ok and passed
+
+    print("\nSELF-TEST PASS" if ok else "\nSELF-TEST FAIL")
+    return 0 if ok else 1
+
+
+def report_shed_offer_quiet(offer: dict) -> list[str]:
+    """`report_shed_offer` without the printing, for the self-test."""
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        return report_shed_offer(offer)
 
 
 def record_report() -> list[dict]:
@@ -155,7 +345,8 @@ def record_report() -> list[dict]:
             depth = max(p[1] for p in poly) - min(p[1] for p in poly)
             run = ridge_model.ridge_run_m(doc.get("archetype", ""),
                                           str(form.get("roof_type") or "gable"),
-                                          width, depth, form.get("gable_front"))
+                                          width, depth, form.get("gable_front"),
+                                          tuple(form.get("open_sides") or ()))
             if run is None or ridge is None or eave_band is None:
                 continue
             eave = float(form.get("wall_height_m") or 0.0)
@@ -201,6 +392,8 @@ def parcel(structure_id: str) -> tuple[str, bool]:
 
 
 def main() -> int:
+    if "--self-test" in sys.argv:
+        return self_test()
     quiet = "--quiet" in sys.argv
     rows = sweep()
     swept = [r for r in rows if r["state"] == "swept"]
@@ -228,6 +421,8 @@ def main() -> int:
               f"form is the only one its own bands describe (first at "
               f"{n['worst'][0]}x{n['worst'][1]} ft)")
 
+    shed_fails = report_shed_offer(shed_offer())
+
     if not quiet:
         report = record_report()
         by_state: dict[str, list[dict]] = {}
@@ -253,7 +448,9 @@ def main() -> int:
         print(f"   FAIL {f} ({rs[0]['archetype']}): no roof form it names reaches ridge "
               f"{rs[0]['ridge_ft']} ft at every footprint in its own band — "
               f"{', '.join(r['form'] for r in rs)}")
-    return 1 if conflicts else 0
+    for line in shed_fails:
+        print(f"   {line}")
+    return 1 if conflicts or shed_fails else 0
 
 
 if __name__ == "__main__":
