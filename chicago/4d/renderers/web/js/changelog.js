@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 271, title: 'Two evidence cards were showing their own merge scars', kind: 'fix', ts: '2026-08-27T04:10:11.820Z', date: 'Aug 26, 2026, 11:10 PM CT',
+    items: [
+      'Open the confidence panel and read the notes on what this project has invented. Two of them ended in a line of angle brackets \u2014 \u201cRecorded: 23 August 2026.\u201d and then some machinery. It has been there since the poplar rows went in on the twenty-fourth, and it went out to the live site an hour before it was found.',
+      'It is the debris of two versions of the same document being joined together. Nothing was lost and nothing was wrong underneath it: the note about the poplars is whole, every word of it, and there are still exactly a hundred and eighty-one of these notes. Three stray lines sat on top of two of them.',
+      'Which is a small thing to look at and not a small thing to leave. These particular cards are the ones that say, in plain words, this part of the town is our invention and here is why we made it that way. A card whose job is to be candid should not be the card that looks unfinished.',
+      'The reason nothing caught it is the interesting part, and it is now closed. The check that guards these notes compares the document a person writes against the file the site reads, and asks whether the two agree. They agreed perfectly \u2014 both of them carried the same three stray lines, because the reader that builds one from the other only recognises headings and labelled fields and quietly carries anything else along. A check that asks \u201cdo these two match?\u201d cannot see a fault that both sides copy faithfully.',
+      'So there is now a much stupider check underneath it, which is the point: it reads every one of the three thousand three hundred and forty files this project ships as plain text and refuses any of them that still carries a merge scar. It knows the difference between that and the ordinary rules and underlines this documentation is full of, and it proves that it does \u2014 nine ways, every time it runs.',
+    ] },
   { v: 270, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T18:49:53.486Z', date: 'Aug 24, 2026, 1:49 PM CT',
     items: [
       'Walk east along South Water Street. The plank sidewalk on the south side came out in stumps \u2014 nine short pieces, the longest 47 m \u2014 and the reason was never the sidewalk. Eleven documented buildings on that side stood four and a half to eight metres out in the roadway.',
