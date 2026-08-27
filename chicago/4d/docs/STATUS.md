@@ -1,5 +1,143 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0199 / T-0220: the owner changed the density standard, and South Water's walk closed up
+
+**THE STANDARD MOVED. This is not a bug being fixed, and it must not read as one later.** Until
+2026-08-27 this project held one principal roof to a platted lot. It no longer does on the town's
+business front: **a platted business-front lot may carry a documented store at the street AND an
+anonymous dwelling behind it.** Kevin ruled it, in those terms, on 2026-08-27.
+
+**How the question arose, which is why it was his to answer.** T-0127 sent eleven documented South
+Water buildings back onto the committed plat — their setback had come from `osm_streets_2026`, a
+2026 kerb line, and stood them up to 8.17 m out in the platted roadway, which is why T-0069's
+plank walk came out of that street in stumps. T-0198 (PR #373) moved six. It refused the other
+five **in writing, per store**, because on the plat each of them SEATS on a lot the 665-roof
+schedule had already dealt to that street's anonymous frontage run. Nothing overlapped — all
+eleven were checked against every committed footprint in the town and the worst overlap is
+**zero**. What refused the repair was the RULE, and the finding under the finding was worse than
+the repair: **the block programme had dealt those roofs onto lots documented buildings actually
+stand on, and passed its own occupancy gate only because those buildings were drawn out in the
+road.**
+
+**The fork, as put to him, and his answer.** (a) The lot rule holds and the town gives the roofs
+back: **eight roofs leave** (338 → 330), four block recipes are re-authored, two households are
+re-homed or leave with their roof. (b) The business-front lot carries both. **He chose (b)**, on
+the reasoning the ticket recommended — the geometry already permits it, and (a) pays eight roofs
+and two households for a rule the corrected data has itself called into question. It is the same
+argument T-0143 and T-0188 are about, the core density standard T-0079 raised, and settling it by
+side effect inside a sidewalk ticket would have been the wrong way to decide it.
+
+**Where the ruling is recorded**, because a standard that lives in one commit message is a
+standard nobody can find: `tools/plat_occupancy.py`'s module docstring (the ruling, the fork and
+the clause's three tests), `docs/ROADMAP.md` K30(d), the four affected blocks' own
+`arrangement_note`s in `data/reconstruction/1835_platted_block_parcels.json`, and tickets T-0199
+and T-0220.
+
+**What the clause admits, and what it still refuses.** `plat_occupancy` now answers two questions
+with two maps instead of conflating them: `occupied_lots` — *what stands on this lot* — unchanged
+and still truthful, because a documented store on a shared front still stands there and its roof
+still counts against its block's headroom; and `exclusive_lots` — *what BARS another roof* —
+which is the first less this clause. `generate_block_infill.py` and `reconcile_665.py` both read
+the second, so the generator and the schedule cannot drift apart on it (T-A6, T-A7). Three tests,
+all of which must hold: **the lot is named in its block's own `frontage` run** in the committed
+parcel recipes (an interior lot, a side lot and any block with no frontage run are untouched);
+**the standing building is researched**, not one this project's reconstruction programmes wrote
+(two anonymous roofs on one lot is still one too many); and **it stands AT the street**, its
+street wall no further back from the committed frontage line than the run's own units plus one
+lot margin, both read from the block's own recipe. A fourth falls out of the third: the store has
+to be the lot's only occupant, which is what keeps the schedule from offering a block room it is
+already building on — and it is also why one function serves both halves, since the generator
+asks it with its own records excluded and the schedule asks it with nothing excluded.
+
+**Nothing physical was relaxed, and NO second rule was needed.** No overlap, the 1.5 m lot
+margin, the platted corridor and the three-metre separation between roofs all still bind,
+untouched. One pair did fail the separation gate on the way — the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store`, side by side along the face with their fronts
+level — and the honest fix was in the recipe rather than in the gate. That break is AUTHORED:
+`blk_south_water_wells`'s westernmost frontage slot stands `clear_west_of` the store by a
+stated `clear_m`, and
+`place_frontage`'s own note says where the number comes from — *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*. **2.40 m was authored while the
+store stood 6.62 m out in the roadway**, when the along-face break was not the real gap at all;
+on the plat their fronts are level and it is. So the authored break moved to the gate: 2.4 →
+3.0 m, one anonymous roof 0.6 m further west, `clear_why` written beside it. **No threshold was
+lowered anywhere in this work.**
+
+**Which of the eleven still needed moving, re-measured rather than inherited.** The figures the
+parked branch carried were taken before #373 merged and were stale by six records. After #373:
+three of the eleven (`jh_kinzie_forwarding_store`, `temple_building`, `chicago_democrat_office`)
+were on the plat and clear of every corridor; three more (`harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`) were on the plat with a 0.16–0.21 m residual on a CROSS
+street, which is T-0195 and which this ruling does not touch; and **five still stood in the
+roadway — exactly the five #373 refused.** They moved 9.67 (`h_jones_store`), 8.41
+(`chicago_american_office`), 8.12 (`carpenter_south_water_store`), 7.75
+(`frederick_thomas_shop`) and 7.05 m (`pruyne_kimball_drugstore`) along their block face's inward
+normal, each leaving its street wall 1.50 m back from the committed frontage line. **That is
+#373's method, not the parked branch's** — the branch had put the wall ON the lot line, and one
+rule across the eleven is worth more than the 1.5 m. `local_e` moves only by the face's own skew,
+0.07–0.24 m; the along-street position the sources argue is untouched, and no confidence grade
+moved.
+
+**What a visitor sees**, measured against `dev` after #373:
+
+| | before | after |
+|---|---|---|
+| town street edge | 1,214.5 m of walk in **20** runs | **1,297.3 m** in **18** |
+| corner crossings | 9 (212.5 m) | **11** (266.5 m) |
+| walking decks | 89 | **96** |
+| `blk_south_water_wells` north face | 20.6 m + 41.1 m | **one 97.6 m run** |
+| `blk_south_water_dearborn` north face | 15.6 m + 20.8 m | **one 67.6 m run** |
+| phases lapping a platted corridor | 26 | **21** |
+| standing roofs | 338 | **338** |
+
+**The march refuses ZERO steps for a wall anywhere on South Water Street**, read off `_march`
+itself step by step rather than inferred from the run lengths. Every remaining South Water
+refusal is that street's own ground — 0.07–0.13 m of roll under one walking deck, one step at
++0.02 m at or under the water. The **eleven** wall-refused steps left in the town are all on Lake
+Street: `old_bank_building` 4, `dole_warehouse_south` 3, `first_presbyterian_church` 2,
+`st_marys_church` 2. That is **T-0196**, and the ruling deliberately does not reach it — measured,
+not assumed: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run in the parcel
+recipes for the clause to sit on, and all four would land on lots that already carry anonymous
+roofs.
+
+**The smoke ran all nine stages at both viewports** — mobile **449 checks, 1 failed**;
+desktop **454 checks, 2 failed**; and mobile was re-run whole after the second dev merge,
+**450 checks, 1 failed**. Every failure is one assertion at one stand.
+
+**ONE GATE IS RED AND IT IS NOT WAVED THROUGH.** `scene detail 'balanced' stays inside its own
+ceiling at the WORST stand` fails at Lake Street at Canal, the long axial view. Measured as an
+A/B — the same tree read twice, once with `dev`'s `town_street_edge.json` in the published mirror
+and once with this one — the frontage layer costs **5,350 triangles** at that stand, to the
+triangle, at every tier and both viewports:
+
+| tier · viewport | ceiling | dev | here |
+|---|---:|---:|---:|
+| `balanced` · mobile | 1,210,000 | 1,208,033 — **1,967 to spare (0.16 %)** | **1,213,383** over |
+| `balanced` · desktop | 1,210,000 | 1,253,630 — **already over by 43,630** | 1,258,980 |
+| `full` · desktop | 1,400,000 | 1,413,266 — **already over by 13,266** | 1,418,616 |
+| `full` · mobile | 1,400,000 | 1,366,289 | 1,371,639 (28,361 to spare) |
+| `light` · mobile / desktop | 1,050,000 | passes | 807,943 / 859,229 |
+
+Desktop's two failures are `dev`'s and predate this branch entirely. Mobile's is this branch's,
+and it was 3,383 triangles over a ceiling `dev` was 1,967 triangles from failing — **762
+triangles over, 0.06 %, once dev's #384/#387/#394 were merged in and gave most of it back**. **A tier with
+0.16 % of headroom is not a budget, it is a coincidence** — T-0135 set these on 2026-08-22 with
+*"about 6 % of headroom over the measured worst"* and five days of content ate it. **No ceiling
+was moved here**, deliberately: raising a number to make a red go away inside a ticket about a
+sidewalk is the exact defect T-0135 was opened to end, and its own text says the choice between a
+conscious re-budget and the trim T-0149/T-0146 are open for is the owner's — *"This is the
+measure. The move is his."* What HAS changed since he last looked is that `light`, the objection
+he was given last time, now sits 18–23 % UNDER its ceiling rather than 65 % over. Filed with every
+figure as **T-0218**.
+
+**One measurement made on the way, worth its own ticket.** `measure_street_frontage.layer_of`
+names the three evidence layers by ID PREFIX, and across the committed 348 records it disagrees
+with the record's own contents exactly once: `physicians_office` carries no `inf_` prefix and is
+nonetheless a product of the inferred-household programme, which its own
+`reconstruction.status` says. The new clause reads the record rather than the filename for
+precisely that reason — a rule about documented buildings must not let an invented one through on
+the strength of its name. Filed as **T-0221**.
+
 ## Shipped — T-0215: the What's-new stage was not failing on What's-new, and nothing was broken
 
 **Three agents in one day read the same log as a broken panel.** `SMOKE_VIEWPORT=desktop
