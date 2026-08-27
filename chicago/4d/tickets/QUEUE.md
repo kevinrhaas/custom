@@ -94,3 +94,4 @@ T-0224 — A critic baseline standing on the public square
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0201 — docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them
 T-0202 — SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch
+T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0209's timber cull
