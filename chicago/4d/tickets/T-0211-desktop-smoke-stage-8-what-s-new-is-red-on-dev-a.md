@@ -186,6 +186,52 @@ untrusted one, so anyone extending `clickChrome` past part 8 knows what to look 
 helper's failure message named the fault in one line — `has no box (0x0)` — where the old path
 would have spent ninety seconds and printed a call log about a stable, visible, enabled button.
 
+## The controlled A/B, which settles it
+
+The box drained around 06:00 CT (every agent's browser was killed at once), and that gave the
+reading the whole ticket wanted: **`origin/dev`'s own unmodified `smoke_renderer.mjs`, run against
+this same tree at a quiet load.**
+
+| run | harness | load avg / Chromium | outcome | wall |
+|---|---|---|---|---|
+| desktop 8 | dev's, unmodified | 38.7 → 51.7 / 71-115 | **1 failed · 0 staged checks** | 4 m 23 s |
+| desktop 8 | dev's, unmodified | **10.4 → 13.7 / 20-24** | **37 passed, 0 failed · 28 staged · SMOKE PASS** | **14 m 33 s** |
+| desktop 8 | `clickChrome`, first cut | 15.8 → 15.7 / 21-30 | 26 passed, 2 failed · 19 staged | 3 m 14 s |
+| desktop 8 | `clickChrome` + focus | 15.8 → 21.2 / 21-35 | **37 passed, 0 failed · 28 staged · SMOKE PASS** | **6 m 10 s** |
+| mobile 8 | `clickChrome` + focus | 14.4 → 12.0 / 20-27 | **37 passed, 0 failed · 28 staged · SMOKE PASS** | 2 m 52 s |
+
+**Row two is the verdict.** Same tree, same commit, same harness that had failed three agents —
+green, every one of the 28 assertions reached and passed, on nothing but a quieter machine.
+**Stage 8 was never broken.** It is (c), machine load, without qualification.
+
+**And row two is also the argument for changing anything at all.** It passed in **14 m 33 s**,
+four and a half minutes PAST the ten-minute per-command ceiling that a steward run's single
+foreground command is killed at — so on this box the old part 8 does not fit even when it does
+not flake. `clickChrome` does the same 28 checks at a comparable load in **6 m 10 s**, which is
+T-0167's 2026-08-24 figure to the second. **It buys back 8 m 23 s of margin on the ceiling this
+gate has already been re-cut for twice, and it does it by not paying for frames rather than by
+checking less.**
+
+Is it desktop-only? Yes, and the mechanism is the obvious one: at 390×780 a frame covers a quarter
+the pixels, and the same part costs 2 m 52 s there against 6 m 10 s at 1280×800. Mobile was never
+reported red by anyone, and every reading here is consistent with it having the headroom desktop
+does not.
+
+The green rows were taken as the box drained, so **none of them proves the fix survives load 50 —
+nothing measurable here could.** They prove the 28 assertions exist, pass and are reached, and
+that the part now fits its ceiling with margin. The claim about load rests on row two and on the
+frame timings.
+
+## The sibling ticket, already filed by someone else
+
+**T-0210 — "The desktop smoke's stage 9 times out clicking the panel close, on an unmodified
+tree"** arrived on dev while this was being measured. That is the same fault one part along:
+`page.click('#panel-close')`, part 9, unmodified tree. `clickChrome` is the ready-made answer for
+it and part 9's chrome clicks are the obvious next adoption — deliberately NOT done here, because
+part 9 is that ticket's and because a helper that has been through exactly one part's worth of
+surprises (see the focus fidelity above) should be extended by someone who reads that paragraph
+first.
+
 ## The process fault, which is the part worth arguing about
 
 A red stage that every branch inherits and nobody owns is not a code fault. Three separate agents

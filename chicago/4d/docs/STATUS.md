@@ -71,6 +71,39 @@ for an untrusted one, and anyone extending this past part 8 should look for it f
 which instrument found it: one line naming the fault, where the old path spent ninety seconds and
 printed a call log about a button it had itself found visible, enabled and stable.
 
+**The controlled A/B, which settles it.** The box drained around 06:00 CT — every agent's browser
+was killed at once — and that bought the reading this needed: **`origin/dev`'s own unmodified
+`smoke_renderer.mjs`, on this same tree, at a quiet load.**
+
+| run | harness | load / Chromium | outcome | wall |
+|---|---|---|---|---|
+| desktop 8 | dev's, unmodified | 38.7 → 51.7 / 71-115 | **1 failed · 0 staged checks** | 4 m 23 s |
+| desktop 8 | dev's, unmodified | **10.4 → 13.7 / 20-24** | **37 passed, 0 failed · 28 staged · PASS** | **14 m 33 s** |
+| desktop 8 | after | 15.8 → 21.2 / 21-35 | **37 passed, 0 failed · 28 staged · PASS** | **6 m 10 s** |
+| mobile 8 | after | 14.4 → 12.0 / 20-27 | **37 passed, 0 failed · 28 staged · PASS** | 2 m 52 s |
+
+**Row two is the verdict: the harness that failed three agents is green on a quieter machine, same
+tree, same commit, every one of the 28 assertions reached and passed.** Stage 8 was never broken.
+
+**Row two is also the argument for changing anything at all.** It passed in **14 m 33 s** — four
+and a half minutes past the ten-minute per-command ceiling a steward run is killed at, so on this
+box the old part 8 does not fit even when it does not flake. `clickChrome` runs the same 28 checks
+at a comparable load in **6 m 10 s**, which is T-0167's 2026-08-24 figure to the second. It buys
+back **8 m 23 s of margin** on the ceiling this gate has already been re-cut for twice, and it
+does it by not paying for frames rather than by checking less. **Desktop-only, and the mechanism
+is the obvious one**: at 390×780 a frame covers a quarter the pixels and the same part costs
+2 m 52 s against 6 m 10 s.
+
+Every green row was taken as the box drained, so **none proves the fix survives load 50 and
+nothing measurable here could**. They prove the assertions exist, pass, are reached, and now fit
+the ceiling; the claim about load rests on row two and the frame timings.
+
+**The same fault one part along is already filed by someone else** — **T-0210**, *"the desktop
+smoke's stage 9 times out clicking the panel close, on an unmodified tree"*. `clickChrome` is the
+ready-made answer for it, and part 9 is deliberately left alone here: it is that ticket's, and a
+helper with exactly one part's worth of surprises behind it should be extended by someone who has
+read the focus-fidelity paragraph above first.
+
 **What is NOT fixed, and it is the part that matters.** `chicago-4d-check.yml` runs `check.sh` and
 nothing else, and the full smoke is dispatch-only, so **dev has no standing smoke result of its
 own**. "Is this red mine or dev's?" costs a fresh worktree and a re-run every single time, which is

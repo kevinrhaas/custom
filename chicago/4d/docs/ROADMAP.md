@@ -248,6 +248,17 @@ killed outright; a `page.goto` against a **local static file server** timed out 
   in 4 m 23 s on 2026-08-27. Cutting parts finer does not help that; running fewer of them at once
   does (T-0212).
 
+**AND THE CONTROLLED A/B, TAKEN WHEN THE BOX DRAINED.** `origin/dev`'s own unmodified harness, on
+the same tree, at load 10.4-13.7 with 20-24 Chromium processes: **37 passed, 0 failed, all 28
+staged checks, SMOKE PASS — in 14 m 33 s.** Two readings to hold together. Stage 8 was never
+broken: the harness that failed three agents is green on a quieter machine. And it does not fit:
+**14 m 33 s is four and a half minutes past the ten-minute ceiling**, on a part T-0167 measured at
+6 m 10 s three days earlier and cut to that size deliberately. So the table above is a *floor* on
+what these parts cost on a shared box, not a description of it. T-0211's `clickChrome` puts part 8
+back at **6 m 10 s** — T-0167's figure to the second, all 28 checks — by not paying for frames
+where the frames are not the subject. Desktop-only: the same part costs 2 m 52 s at 390×780, where
+a frame covers a quarter the pixels.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
