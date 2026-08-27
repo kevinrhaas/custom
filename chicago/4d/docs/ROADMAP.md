@@ -6410,15 +6410,16 @@ the lot is named in its block's own `frontage` run in the committed parcel recip
 building is RESEARCHED, not one this project's reconstruction programmes wrote; and it stands AT
 the street, its street wall no further back than the run's own units plus one lot margin. A
 fourth falls out: the store must be the lot's only occupant, which is what stops the schedule
-offering a block room it is already building on. **Nothing physical was relaxed** — no overlap,
-the 1.5 m lot margin, the platted corridor and the three-metre separation all still bind. The
-separation gate took one bounded clause of its own, named rather than folded in: on a declared
-business front the yard rule does not bind between a unit of that face's run and a researched
-building standing at the street on it, because they stand on the same party line the run already
-closes to zero between its own units — and it is NARROWER than the party-wall exemption beside
-it, since touching ground is still refused. Measured, that clause admits exactly **one** pair in
-the town: `recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from
-`carpenter_south_water_store`; the next it could reach is 6.40 m and was already legal.
+offering a block room it is already building on. **Nothing physical was relaxed and NO second rule was needed** —
+no overlap, the 1.5 m lot margin, the platted corridor and the three-metre separation all still
+bind, untouched. One pair failed the separation gate on the way, the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store` with their fronts level, and the fix was in the
+recipe rather than in the gate: that break is AUTHORED as `clear_west_of` + `clear_m` on
+`blk_south_water_wells`'s D4 slot, `place_frontage`'s own note says *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*, and the 2.4 m had been authored
+while the store stood 6.62 m out in the roadway and the along-face break was not the real gap.
+On the plat it is. **The authored break moved to the gate — 2.4 → 3.0 m, one anonymous roof
+0.6 m further west, with `clear_why` written beside it.**
 
 **What it bought, measured against `dev` after T-0198:** the town's street edge goes from
 **1,214.5 m of walk in 20 runs to 1,297.3 m in 18**, corner crossings 9 → **11** (212.5 m →

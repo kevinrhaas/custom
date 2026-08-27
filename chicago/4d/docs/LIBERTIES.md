@@ -6265,8 +6265,9 @@ across the street, along their block face's own inward normal, by the metres the
 bounded to a lot named in its block's own `frontage` run, to a RESEARCHED standing building, and
 to one standing AT the street; the store must also be the lot's only other occupant. Nothing
 physical moved with it — no overlap, the 1.5 m lot margin, the platted corridor and the
-three-metre separation between roofs all still bind, and the one pair the companion clause admits
-inside that separation stands 2.40 m apart on a shared party line and does not touch. The rule
+three-metre separation between roofs all still bind, untouched: the one pair that came out at
+2.40 m was opened to 3.0 m by widening the recipe's own authored break, not by moving the gate,
+and the reason is recorded on that slot as `clear_why`. The rule
 and its bounds are in `tools/plat_occupancy.py`; the reasoning is in `docs/ROADMAP.md` K30(d) and
 `docs/STATUS.md`.
 

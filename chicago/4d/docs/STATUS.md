@@ -49,16 +49,18 @@ to be the lot's only occupant, which is what keeps the schedule from offering a 
 already building on — and it is also why one function serves both halves, since the generator
 asks it with its own records excluded and the schedule asks it with nothing excluded.
 
-**Nothing physical was relaxed.** No overlap, the 1.5 m lot margin, the platted corridor and the
-three-metre separation all still bind. The separation gate took one bounded clause of its own,
-**named rather than folded quietly into the first**: on a declared business front the yard rule
-does not bind between a unit of that face's run and a researched building standing at the street
-on it — they stand on the same party line, and the run already closes that gap to ZERO between
-its own units. It is NARROWER than the party-wall exemption beside it, because touching ground is
-still refused. Measured, it admits **exactly one pair in the town**:
-`recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from `carpenter_south_water_store`, side by
-side along the face with their fronts level. The next pair it could reach is 6.40 m and was
-already legal. **No threshold was lowered anywhere in this work.**
+**Nothing physical was relaxed, and NO second rule was needed.** No overlap, the 1.5 m lot
+margin, the platted corridor and the three-metre separation between roofs all still bind,
+untouched. One pair did fail the separation gate on the way — the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store`, side by side along the face with their fronts
+level — and the honest fix was in the recipe rather than in the gate. That break is AUTHORED:
+`blk_south_water_wells`'s D4 slot stands `clear_west_of` the store by a stated `clear_m`, and
+`place_frontage`'s own note says where the number comes from — *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*. **2.40 m was authored while the
+store stood 6.62 m out in the roadway**, when the along-face break was not the real gap at all;
+on the plat their fronts are level and it is. So the authored break moved to the gate: 2.4 →
+3.0 m, one anonymous roof 0.6 m further west, `clear_why` written beside it. **No threshold was
+lowered anywhere in this work.**
 
 **Which of the eleven still needed moving, re-measured rather than inherited.** The figures the
 parked branch carried were taken before #373 merged and were stale by six records. After #373:

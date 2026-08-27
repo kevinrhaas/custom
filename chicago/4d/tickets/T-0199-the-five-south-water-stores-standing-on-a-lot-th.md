@@ -94,16 +94,17 @@ both ask the second, so the generator and the schedule cannot drift apart on it 
 the anonymous run already stands on has been used, which is what keeps the schedule from
 offering a block room it is already building on.
 
-**Nothing physical was relaxed**: no overlap, the lot margin, the platted corridor and the
-three-metre separation all still bind. The separation rule gained one bounded clause of its
-own, named rather than folded in — on a declared business front the yard rule does not bind
-between a unit of that face's run and a researched building standing at the street on it,
-because they stand on the same party line and the run already closes that gap to ZERO between
-its own units. It is NARROWER than the party-wall exemption beside it: touching ground is
-still refused. Measured, it admits exactly one pair in the town —
-`recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from `carpenter_south_water_store`,
-side by side along the face with their fronts level; the next pair it could reach is 6.40 m
-and was already legal.
+**Nothing physical was relaxed, and only ONE rule moved.** No overlap, the lot margin, the
+platted corridor and the three-metre separation all still bind, untouched. One pair did fail
+the separation gate on the way — `recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from
+`carpenter_south_water_store`, side by side along the face with their fronts level — and the
+honest fix turned out to be in the recipe, not in the gate. That break is AUTHORED: the D4 slot
+stands `clear_west_of` the store by a stated `clear_m`, and `place_frontage`'s own note says
+where the figure comes from — *"the three-metre separation rule — not this recipe — is what
+fixes the size of the break"*. **2.4 m was authored while the store stood 6.62 m out in the
+roadway**, when the along-face break and the real gap were different things. On the plat they
+are the same thing, so the authored break moved to the gate: **2.4 → 3.0 m**, one anonymous
+roof 0.6 m further west, `clear_why` recorded beside it. The measured gap is now exactly 3.0 m.
 
 **The five, and the metres:** `h_jones_store` 9.67 · `chicago_american_office` 8.41 ·
 `carpenter_south_water_store` 8.12 · `frederick_thomas_shop` 7.75 ·

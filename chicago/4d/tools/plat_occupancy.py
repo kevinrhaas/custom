@@ -86,6 +86,18 @@ each other by the separation gate's three metres, still must stand inside their 
 lines by `LOT_MARGIN_M`, and still may not lap a platted corridor. This clause moves one
 line only: whether a documented storefront ALONE entitles a lot, and on a business front
 the answer is now no.
+
+**And it did not need a second clause to hold, which is worth recording because the first
+attempt wrote one.** Standing the five stores on the plat left one pair at 2.40 m —
+`recon_1835_blk_south_water_wells_d4_03` and `carpenter_south_water_store`, side by side
+along the face with their fronts level — under the three-metre gate. That gap is AUTHORED,
+not derived: the D4 slot stands `clear_west_of` the store by a stated `clear_m`, and
+`generate_block_infill.place_frontage`'s own note says where the number belongs — *"the
+three-metre separation rule — not this recipe — is what fixes the size of the break"*.
+2.4 m was authored while the store stood 6.62 m out in the roadway, where the along-face
+break was not the real gap at all. So the RECIPE moved to the gate (2.4 → 3.0 m, with
+`clear_why` beside it) rather than the gate to the recipe. One rule changed in this work,
+and it is the one above.
 """
 
 from __future__ import annotations
