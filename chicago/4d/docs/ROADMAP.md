@@ -251,7 +251,7 @@ not at the top of the queue.
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
-| — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
+| — | RENDERING | ~~R-W4c(b2)~~ | **DONE 2026-08-27 as T-0034 — the bar that governs the bloom is the LATTICE, and the records already asked for more bloom than it can draw.** `forbShare` clamps at one plant per lattice slot — **0.346 forbs per m²** — and the mesic prairie's own records sum to **0.408** at their upper bounds, so nothing had to be invented: the forb stratum is dealt off the TOP of every recorded range instead of its midpoint (L182), which is **1.236x** at the mesic prairie, **1.254x** at the wet prairie, **1.572x** on the sand prairie and, measurably, **nothing at the other six** — they were already over the ceiling. `prairie_west` **206 forbs / 1,617 heads → 256 / 1,968**. **It is the last raise either prairie can be given**: both now read a share of 1.000. Read its box before raising any flora density |
 | — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number. **Its 12.9 mm no longer describes the tree** — re-measured 2026-08-23 on the terrain as extended east, the same 16-bit ground is **77.1 mm** worst with **56** samples past the lift, on 60–90 % slopes that did not exist in the box R-W6 measured. T-0152 |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
@@ -305,7 +305,7 @@ rationed.**
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
 | — | RENDERING | ~~R-W3b(a)~~ | **SEEN** | **DONE 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else: 5 to 8 of 331 structures and 0 to 41 of 730 stems, measured at all eight anchors.** It is ±120 m now, at the SAME texel size (the map doubles with the box), and `green_tree` goes 8 → 27 structures, `south_water` 8 → 26 and 12 → 54 stems. **Its finding is the ceiling: the reach is DRAW-CALL-bound, not fill-bound** — every batch entering the box is another call in the shadow pass, and the worst anchor reads 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at 180, which is the budget**, with the town still two thirds outside the box. Read its box before raising the number |
 | — | RENDERING | ~~R-W5a2 + R-W3b(a2)~~ | **SEEN** | **DONE 2026-08-17 — 16 batches → 1, and the reach went straight from ±120 m to ±240 m on the calls it freed.** Roughness is the last thing that was splitting the town, and it is per-vertex now; the worst anchor reads **50 draw calls of 80 where it read 74 this morning**, at the SAME 11.7 cm texel. `green_tree` 27 → **49** of 331 structures and 0 → **70** of 730 stems; `south_water` 26 → **91** and 54 → **239**. **Its finding is that the batch merge is not neutral after all** — 942 pixels of 7,168,000 move across seven poses, all of them depth ties between co-planar surfaces of different materials, which is R-BUG6's own class one draw call in. Read its box before quoting a draw-call figure taken before this date |
-| — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
+| — | RENDERING | ~~R-W4c(b2)~~ | — | **DONE 2026-08-27 as T-0034** — the bar is the lattice, the records already ask for 18 % more bloom than it can draw, and the prairies are on the ceiling now |
 | — | TOWN | ~~T-I3(b)~~ | — | **DONE 2026-08-27 as ticket T-0032** — closed at **662** on the owner's delegated pick; the institutional matrix row is now the census, and the target is gated against a civic ledger re-derived on every run |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
@@ -348,7 +348,7 @@ stated here because the next run will otherwise spend a third of its budget redi
 Of the numbered picks left standing, **T-V1(b), K30(c), T-E3 and R-W2c all say NEEDS A BAKE** and
 cannot go green on the improve runner; **T-V2 landed 2026-08-16 (its `hold` was withdrawn — the
 number it was parked on had been fixed by other parcels), and R-W1 is still on `hold` PR #125**;
-**R-W4c(b2) and R-M1b are blocked on the owner** (T-I3(b) was, and closed 2026-08-27
+**R-M1b is blocked on the owner** (R-W4c(b2) closed 2026-08-27 as T-0034, and T-I3(b)
 as ticket T-0032 on the owner's delegated pick); and **R-W5a2's own box says to take it
 only when the lane has nothing sharper**. That leaves **R-W2b** — whose R-W2a finding 2 makes it a
 schema change across 315 records with no source yet stating a roof covering, so it is larger than
@@ -2188,6 +2188,66 @@ between rather than an agent to pick:
 **Cost, measured.** The whole parcel: one 3-station desktop capture at **4 min 02 s**, and 19 s
 for `measure_bloom_target.mjs` (of which §2 is 4032×3024 pixels twice). No renderer file changed,
 so no bake and no new geometry.
+
+#### R-W4c(b2) — DONE 2026-08-27 as T-0034 · there was no target, but there was a CEILING, and the records were already over it
+
+**What it was.** "Raise the bloom." R-W4c(b1) had removed the bar it was to be raised against and
+left the parcel blocked on the owner with three routes in its box. The owner ruled on the ticket
+instead: *"I think you can adjust that without source"* — the bloom may be tuned as a
+**reconstructed** value, bounded, declared in `docs/LIBERTIES.md`, never promoted. So the target
+was never re-derived and is not quoted below. What the run had to find was the other half of the
+ticket's own title: **raising a number is only a raise if something downstream can carry it.**
+
+**The instrument.** `tools/measure_bloom_headroom.mjs`, new, committed, `--assert`. It drives the
+placer through its own entry points — `flora.update` with a synthetic camera, then `flora.stats`
+and `flora.communities()` — and asks the three ceilings between `density_per_ha` and a flower on
+the screen which of them binds. Two readings had to be wired for it, because they were inside the
+module and unreadable from outside: `flora.stats.caps` (the ceiling beside each set's count) and
+`flora.forbLattice` (the lattice geometry `forbShareOf` clamps against). **A share sitting on its
+clamp had looked exactly like a share that was simply small** — the same blindness K55 hit when it
+multiplied `z10_settled_town`'s forb density and drew the same 146 plants.
+
+**1 · THE BAR IS THE LATTICE, AND IT IS 0.346 FORBS PER SQUARE METRE.** `forbShareOf` is
+`min(1, density × cell² / perCell)`: four slots to a 3.4 m cell, one plant per slot, and not one
+plant more whatever any record says. Measured on the build before the change, **six of ten forb
+layers were already ON that clamp** (K58, still open) — for those, `density_per_ha` is a number
+the renderer cannot spend and a raise applied to it draws nothing.
+
+**2 · AND THE RECORDS ALREADY ASKED FOR MORE BLOOM THAN IT CAN DRAW.** Nothing had to be invented
+to raise the prairie. Every abundance in `data/flora` is a *range*, the renderer had been reading
+the **midpoint** — a figure no source states, chosen silently — and the top of the same range is a
+reading of the same evidence:
+
+| community | midpoint sum | recorded top | share was | share now | raise |
+|---|---|---|---|---|---|
+| `z02_mesic_prairie` | 0.2800 /m² | **0.4080** | 0.809 | **1.000** | 1.236x |
+| `z01_wet_prairie` | 0.2760 | **0.4070** | 0.798 | **1.000** | 1.254x |
+| `z09_sand_prairie` | 0.0725 | **0.1140** | 0.210 | 0.329 | 1.572x |
+| the other seven | — | — | 1.000 / 0 | 1.000 / 0 | **none** |
+
+The mesic prairie's own records sum to **0.408** where the lattice carries **0.346**, so **18 % of
+what the evidence asks for is clipped by a rendering constant**. The species lottery still runs on
+the midpoints, so the mix of the sward did not move: only how many slots are filled. Declared as
+**L182**, reconstructed tier, bounded by the records themselves — no species is planted denser
+than its own record's larger figure.
+
+**3 · WHAT A VISITOR GETS, AND THAT IT IS THE LAST OF IT.** At `prairie_west`, **206 forbs and
+1,617 flower heads → 256 and 1,968**, for 8,191 more sward triangles; at `prairie_south`, 125 and
+949 → 155 and 1,122. **Both prairies now read a share of 1.000 with no headroom left.** The next
+flower on that ground needs a different lattice (K58) and not a different number, and this box is
+the measurement that says so.
+
+**4 · TWO FINDINGS THE RUN DID NOT CAUSE, both filed.** Standing in every community at four
+bearings: `flora-head-spike` in the settled town and `flora-head-dome` in the wet woods stand at
+**820 of 820** and truncate silently — `maybeHead` stops pushing mid-plant — on the build *before*
+this raise as well as after (**T-0208**). And the head ring reaches **23.65 m** while the sward is
+carried to **175 m** as aggregate cards that carry no head at all, so **bloom covers 1.8 % of the
+ground the sward covers** (**T-0209**). That second one is the real answer to "raise the bloom"
+and it is a DISTANCE, not a density: this parcel spent the whole of the lattice's remaining 24 %
+and the frame past twenty-four metres did not change by a pixel.
+
+**Cost, measured.** One browser run of `measure_bloom_headroom.mjs` at about 70 s (32 mosaic stands
+plus 3 sweep poses); no bake, no new geometry files, no data record edited.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
