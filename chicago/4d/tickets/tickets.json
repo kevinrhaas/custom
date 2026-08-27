@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 12:03 AM",
+  "generated_ct": "Aug 27, 2026, 1:02 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3141,7 +3141,7 @@
     {
       "id": "T-0184",
       "title": "Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie",
-      "state": "claimed",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3149,12 +3149,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-27",
+      "pr": "391",
       "claimed_by": "run 8/26/2026, 11:27:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": null
     },
     {
       "id": "T-0185",
@@ -3226,7 +3226,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0189",
@@ -3244,7 +3244,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0190",
@@ -3262,7 +3262,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0197",
@@ -3280,7 +3280,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0198",
@@ -3370,7 +3370,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     }
   ]
 }

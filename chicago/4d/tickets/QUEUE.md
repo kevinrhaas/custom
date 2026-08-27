@@ -81,7 +81,6 @@ T-0182 — The household layer's two Lake-face buildings stand on a hand-authore
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
 T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
-T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them

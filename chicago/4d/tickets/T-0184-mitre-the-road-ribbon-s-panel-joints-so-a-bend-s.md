@@ -1,7 +1,7 @@
 ---
 id: T-0184
 title: Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 391
 claimed_by: run 8/26/2026, 11:27:23 PM CT
 blocked_on: null
 needs_bake: false
