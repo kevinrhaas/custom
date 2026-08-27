@@ -1,7 +1,7 @@
 ---
 id: T-0089
 title: The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 2:06:24 PM CT
 blocked_on: null
 needs_bake: false
 ---
