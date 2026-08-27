@@ -199,6 +199,7 @@ this same tree at a quiet load.**
 | desktop 8 | `clickChrome`, first cut | 15.8 → 15.7 / 21-30 | 26 passed, 2 failed · 19 staged | 3 m 14 s |
 | desktop 8 | `clickChrome` + focus | 15.8 → 21.2 / 21-35 | **37 passed, 0 failed · 28 staged · SMOKE PASS** | **6 m 10 s** |
 | mobile 8 | `clickChrome` + focus | 14.4 → 12.0 / 20-27 | **37 passed, 0 failed · 28 staged · SMOKE PASS** | 2 m 52 s |
+| desktop 8 | after, **on the final merged tree** | 12.4 → 13.5 / 30 | **37 passed, 0 failed · 28 staged · SMOKE PASS** | 4 m 49 s |
 
 **Row two is the verdict.** Same tree, same commit, same harness that had failed three agents —
 green, every one of the 28 assertions reached and passed, on nothing but a quieter machine.

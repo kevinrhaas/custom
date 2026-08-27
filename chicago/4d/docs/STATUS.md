@@ -81,6 +81,7 @@ was killed at once — and that bought the reading this needed: **`origin/dev`'s
 | desktop 8 | dev's, unmodified | **10.4 → 13.7 / 20-24** | **37 passed, 0 failed · 28 staged · PASS** | **14 m 33 s** |
 | desktop 8 | after | 15.8 → 21.2 / 21-35 | **37 passed, 0 failed · 28 staged · PASS** | **6 m 10 s** |
 | mobile 8 | after | 14.4 → 12.0 / 20-27 | **37 passed, 0 failed · 28 staged · PASS** | 2 m 52 s |
+| desktop 8 | after, on the **final merged tree** | 12.4 → 13.5 / 30 | **37 passed, 0 failed · 28 staged · PASS** | 4 m 49 s |
 
 **Row two is the verdict: the harness that failed three agents is green on a quieter machine, same
 tree, same commit, every one of the 28 assertions reached and passed.** Stage 8 was never broken.
