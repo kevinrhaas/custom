@@ -6227,6 +6227,60 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L182 — Which side of South Water Street the timber stood on
+**Decision:** `FAR_TIMBER.main_stem_belt_east` in `renderers/web/js/trees.js` — the South Side
+body of timber along the main stem — is drawn on a line **12.192 m south of the committed
+`south_water` centreline**, running from the street's west end at the forks to the mean easting
+of the committed `wells` centreline, E **+329.3**. The line is `reconstructed`: it is derived by
+`tools/derive_timber_belt.py` and re-derived on every commit, but the **side of the street is an
+assertion no source states**.
+
+**What is ATTESTED.** Andreas, through `chicagology_prefire273`: *"On the South Side, a body of
+timber grew along the river, extending east as far as Wells Street, and following the bend of the
+river, crossed Clark Street, and extending south two or three miles."* That gives the body, the
+division, the river as its axis and Wells Street as its east end. It does not give a width, a
+near edge, or a side.
+
+**What is DERIVED and not invented.** The line itself is South Water Street's own committed
+centreline — the only traced line this dataset holds along that bank — and the east end is the
+committed `wells` record, read as the mean of its point eastings, which is exactly the number
+`timberEastLimits()` hands the near-field planter for the same limit (ROADMAP K45(b2)). So the
+horizon body and the planted wood end at the same street, from one record.
+
+**What is INVENTED: south, by half a platted corridor.** Two things bound it. First, the
+project's own reading of the same sentence already puts the survivors in the blocks rather than
+on the bank — `docs/research/02-flora.md` records relict native trees at *8–25 /ha in the
+north/riverside blocks (South Water–Lake, west of Wells)*. Second, the ground on the other side
+is measured and it is the wrong ground: between the street centreline and the water's edge there
+are **11.5 m of dry bank at the narrowest and 36.0 m at Wells**, and on 1 July 1835 that strip is the
+town's working waterfront — the wharves, the warehouse doors and the frontage the South Water row
+was built to face. Half a corridor (12.192 m of the platted 24.384) puts the belt's near edge on
+the lot line at the back of the street: the timber begins where the street ends, not in it.
+
+**What the placement is checked against, and it was not tuned to pass.** Every 2 m sample of the
+derived line stands **24–49 m from the water's edge**, inside the 30–74 m gallery `communityAt()`
+deals from the same bank distance — so the far body stands on ground the near planter's own
+classifier independently calls ZONE 5 gallery, and 70 stems already stand in that reach. The
+census is **0 of 136 samples over water** against the stub's 39 of 39 (`tools/measure_far_timber.py`).
+
+**Consequence:** a documented body of timber that drew nothing for eleven days is on the skyline
+again, and a visitor looking east from the Green Tree or north-east from Randolph sees a treeline
+along the south bank that is a reconstruction of its POSITION, not of its existence. If it stood
+on the river side instead, the belt is up to 25 m north of where this draws it — under one crown
+width at the distance the band is drawn from, and the length, the east end and the bend are
+unaffected.
+
+**How to resolve:** any plat annotation, view, sale notice or survey field note that puts standing
+timber on the river side of South Water Street, or on a named lot behind it, would settle the side
+and move the placement from `reconstructed` toward `inferred`. The 1834 Wright and Hathaway sheets
+are held and traced for streets but have not been read for vegetation; that is the nearest
+unexamined evidence.
+
+Related: **L35** (the horizon band's haze cap — the same body of far timber) · **L119** (every
+number in the tree archetypes is invented within the file's range) · ROADMAP **R-BUG5** /
+**R-BUG5(b)** · tickets **T-0031**, **T-0017**.
+**Recorded:** 2026-08-27.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

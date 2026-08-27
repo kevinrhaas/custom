@@ -52,14 +52,20 @@ gate that called that ground dry would be inventing a survey it does not have.
 The RENDERER half is absolute: `solveHorizon()` now refuses to emit a sample the
 mask calls water, so nothing draws in the channel whatever the table says, and
 this file asserts that clip is still there. The DATA half is a ratchet, banked by
-name in `far_timber_baseline.json`, and the reason is not convenience. Where the
-South Side timber's east stub actually stood is a PLACEMENT claim, and no source
-this repository holds settles it — the note that produced the fault is itself the
-project's best current reading of Andreas. Repairing it by picking a new line
-would be inventing the very thing the measurement just showed nobody knows. So
-the two known offenders are recorded, may shrink and may not grow, and R-BUG5's
-residual is written up for the owner. A new offender, or a banked one that got
-worse, fails here.
+name in `far_timber_baseline.json`: an offender may shrink and may not grow, a
+new one fails, and a repair the baseline was not told about fails too.
+
+THE SOUTH WATER BELT IS REPAIRED — T-0031, 2026-08-27, and the ratchet is what
+made the repair provable. This file used to argue that `main_stem_belt_east`
+could not be re-placed, because where the belt's near edge ran is a PLACEMENT
+claim no source here settles. The owner ruled instead: derive it from the
+committed `south_water` centreline, and record the side of the street as a
+liberty. `tools/derive_timber_belt.py` does exactly that and `tools/check.sh`
+re-derives it, so the belt cannot drift from the street it is cut from. The
+census went **39 of 39 samples over water, 3.347 m deep → 0 of 136**, and the
+body left the baseline by the ratchet's own third rule. `north_branch_belt` is
+still banked at 8: it crosses the North Branch between two dry ends, which is a
+belt doing what belts do, and the renderer clips the crossing.
 
 It also scans `renderers/web/js/trees.js` for the runtime clip itself. The data
 being clean and the solver consulting the mask are two different claims, and
@@ -344,8 +350,10 @@ def write_baseline(rows: list[dict], epoch: str) -> None:
         "_doc": "ROADMAP R-BUG5. Bodies of far timber whose authored polyline crosses "
                 "water inside the modelled heightfield, banked by name so the fault may "
                 "shrink and may not grow. Written by tools/measure_far_timber.py "
-                "--update; the renderer refuses to draw any of it, so this is a record "
-                "of a placement question nobody has answered, not of anything on screen.",
+                "--update; the renderer refuses to draw any of it, so nothing banked "
+                "here is on screen. main_stem_belt_east left this file in T-0031, "
+                "re-placed on the committed South Water centreline: 39 of 39 samples "
+                "over water became 0 of 136.",
         "epoch": epoch,
         "sample_step_m": SAMPLE_STEP_M,
         "bodies": bodies,

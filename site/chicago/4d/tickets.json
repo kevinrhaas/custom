@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 26, 2026, 11:18 PM",
+  "generated_ct": "Aug 26, 2026, 11:27 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -536,16 +536,17 @@
     {
       "id": "T-0031",
       "title": "Where did the South Water timber belt stand",
-      "state": "open",
+      "state": "claimed",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "R-BUG5(b)",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:27:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 19

@@ -411,15 +411,26 @@ step "…and its own assertions still fire when broken" \
 # walks instance matrices on a lattice centred on the camera. FAR_TIMBER is neither:
 # five bodies of timber authored as polylines and drawn as a horizon silhouette, and
 # nothing had ever asked those polylines where they stand. One of them, the belt whose
-# own note says it follows South Water Street, is 39 of 39 samples over the main stem
+# own note says it follows South Water Street, was 39 of 39 samples over the main stem
 # and 3.347 m under its surface — the line of trees across the channel in the owner's
-# screenshot (ROADMAP R-BUG5). The renderer refuses it absolutely now; this holds the
-# table, and scans the clip so it cannot quietly come back out.
+# screenshot (ROADMAP R-BUG5). T-0031 put it back on land (0 of 136) and the step below
+# keeps it there. The renderer refuses water absolutely now; this holds the table, and
+# scans the clip so it cannot quietly come back out.
 step "no body of far timber stands in the river" \
   python3 tools/measure_far_timber.py --gate
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
+
+# T-0031 / R-BUG5(b). The belt that stood in the channel is back on land, on a line
+# DERIVED from the committed `south_water` centreline rather than authored beside
+# it — the owner's route 1, with the side of the street recorded as L191. The stub
+# it replaced was drawn on a Wells Street 66.7 m east of the committed centreline,
+# and that error is half of why it ended up in the river, so the belt is re-derived
+# here on every commit. Move South Water Street and this fails until the belt moves
+# with it.
+step "the South Water timber belt re-derives from the street it is cut from" \
+  python3 tools/derive_timber_belt.py --check
 
 # T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
 # have not been since the archetype was written: the committed master carries

@@ -1,5 +1,71 @@
 # STATUS
 
+## Shipped — T-0031: the South Water timber belt is derived from the street, not authored beside it
+
+**The owner's ruling, and route 1 was buildable.** R-BUG5 measured `FAR_TIMBER.main_stem_belt_east`
+standing in the main stem — **39 of 39 samples over water, 3.347 m under the surface** — and the
+renderer has refused to draw it since 2026-08-16. The residual, R-BUG5(b), was not a pick without
+the owner because where the belt's near edge ran is a placement claim Andreas does not settle. He
+ruled on 2026-08-17: derive it from the committed `south_water` centreline, assert the side of the
+street, record the assertion as a liberty, re-bank the gates.
+
+**What shipped.** `tools/derive_timber_belt.py` builds the path out of `data/streets/1835.json` —
+the committed `south_water` centreline, mitred-offset **12.192 m** (half the platted 24.384 m
+corridor) to the SOUTH, clipped east at the **mean easting of the committed `wells` centreline,
+E +329.3**, which is byte for byte the number `timberEastLimits()` already hands the near-field
+planter for the same limit. The path stays a literal in `trees.js`, because
+`tools/measure_far_timber.py` reads the renderer's own table and must keep being able to, and
+`tools/check.sh` re-derives it on every commit. **Move South Water Street and the gate fails until
+the belt moves with it.**
+
+| | the stub | the derived belt |
+|---|---|---|
+| samples over water | **39 of 39** | **0 of 136** |
+| worst depth | 3.347 m | — |
+| length | 73.4 m | 265.0 m |
+| east end | E +396 — **66.7 m east of Wells** | E +329.4, on the committed `wells` easting |
+| distance to the water's edge | in the channel | 24–49 m |
+
+**The stub was east of the street it was named for**, because it was authored against the old 640 m
+box with Wells guessed at E +400. That is the same class of error K45(b2) found in
+`z05_riverbank_timber`'s note (440 m out) and it is half of why the line ended up in the channel:
+the other half is that it was offset north instead of south.
+
+**The placement was checked against something it was not fitted to.** Every 2 m sample of the
+derived line stands **24–49 m from the water's edge**, inside the 30–74 m gallery `communityAt()`
+deals from the same bank distance — so the far body stands on ground the near planter's own
+classifier independently calls ZONE 5 gallery. The browser census agrees with the Python one body
+for body and sample for sample.
+
+**What a visitor sees, measured through `horizonCensus()`.** The band drew nothing for eleven days.
+It now wins **19 bearings from the Green Tree anchor** (73–80°, crowns to 36.6 px at 1280×800),
+**36 from Randolph and Canal** (47–61°, 37.3 px — the stand R-BUG5 reproduced the owner's
+screenshot from) and **15 from the forks** (84–89°, 46.9 px). From the `south_water` anchor itself
+it draws nothing, which is correct: standing on the belt puts it inside `MIN_FAR_M`. Frames:
+`docs/evidence/t-0031-{before,after}.png`, crop `t-0031-green-tree-crop.png` — the pair differs by a
+small eye-height settle between the two runs, so read the crop rather than differencing the frames.
+
+**One thing the ticket did not ask.** Since K45(b2) the near planter sweeps the whole field and
+ends the South Division timber at the same Wells Street, so **70 stems already stand in this
+reach**. The far body is not a duplicate of them — it is the relationship `north_division_timber`
+has had with the ZONE 6 wood since the sweep widened: stems near, silhouette far, one east limit
+read from one street record. But the belt was never wholly absent from the scene, only from the
+skyline, and that is worth knowing before anyone quotes "the belt draws nothing".
+
+**The one assertion is `docs/LIBERTIES.md` L182** — which side of the street. South, on the
+dossier's own reading (relict trees *"8–25 /ha in the north/riverside blocks (South Water–Lake,
+west of Wells)"*) and on a measurement: the strip between the street centreline and the water is
+**11.5 m at its narrowest and 36.0 m at Wells**, and on this date it is the working waterfront.
+
+**Gates.** `tools/check.sh` green, including the census, its five-case self-test, the three ratchet
+directions and the new re-derivation step. **The Playwright smoke was NOT run**: the shared runner
+was at load 48 with 105 concurrent Chromium processes and browsers were being killed mid-run, so a
+local result would have been worthless in both directions. CI is the authority. The browser figures
+quoted above were taken before that instruction, on the same loaded box, and are reported with that
+caveat — they are counts out of the scene graph rather than timings, which is why they are quoted
+at all.
+
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
