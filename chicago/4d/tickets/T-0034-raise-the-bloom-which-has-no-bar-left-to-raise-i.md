@@ -1,7 +1,7 @@
 ---
 id: T-0034
 title: Raise the bloom, which has no bar left to raise it to
-state: claimed
+state: done
 epic: FLORA
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: R-W4c(b2)
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 390
 claimed_by: run 8/26/2026, 11:27:08 PM CT
 blocked_on: null
 needs_bake: false
