@@ -7401,7 +7401,52 @@ them; this is the second-lowest. K20 still owns the fix.
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
 `tools/measure_adoption_tests.py`, new, standalone, not wired into `check.sh`.**
 
-### K31 — the end rule is exhausted on the Randolph–Washington row · **UNCLAIMED · from T-A15 · Effort: S to decide, S to apply**
+### K31 — the end rule is exhausted on the Randolph–Washington row · **DECIDED 2026-08-27 · T-0023 · the criterion is the WALK**
+
+> **The decision, so nobody has to read the rest of this box to apply it.** The end rule keeps its
+> claim — the better roof stands nearer the Dearborn Street drawbridge — and its criterion becomes
+> **the distance WALKED along the committed street centrelines** from the roof's own frontage to the
+> bridge's south abutment. It is carried in
+> `data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`; run
+> `tools/measure_end_rule.py` and quote it. Full admission in `docs/LIBERTIES.md` **L182**.
+>
+> **Four things were measured on all 36 faces of the platted grid, and each answers one of the
+> questions this box asked.**
+>
+> 1. **The trap this box warned about cannot be sprung, because there is nothing to trap.** The two
+>    criteria name **the same nearest lot on 36 of 36 faces**. K31 said the successor must not be
+>    chosen on a block where it agrees with the old rule; they agree EVERYWHERE, so no block could
+>    have discriminated. **The choice was never about which roof goes where** — it was about whether
+>    the order could still be called reasoned. Nothing was re-graded and nothing was retro-fitted.
+> 2. **The straight line measures how far away the BLOCK is, not where a roof stands on it.** Its
+>    worst step between two neighbouring party-line units falls from **6.06 m** on the far blocks to
+>    **0.52 m** at `blk_randolph_clark`, and it is below the floor on **12 of the 36 faces** —
+>    including the back face of `blk_south_water_clark`, **the block T-A11 wrote the rule on**. The
+>    exhaustion was never a fact about this row; it reached this row first.
+> 3. **The floor is the recipe's own declared invention, not a threshold picked to suit.** The
+>    recipe deals its 48 principal slots setbacks of **4.0 m to 7.5 m** and calls them "a period
+>    typology and not a measurement of this lot"; a setback moves a roof along the outward normal,
+>    broadly the axis the rule grades along, so **3.50 m** is the noise the records already admit to
+>    on the same line. Below it a criterion is grading its own invention. The rule now says that
+>    where its step falls at or under that range **the parcel records the order as arbitrary** —
+>    this box's third candidate, kept as a bound rather than adopted as the answer.
+> 4. **What the rule is asked to rank changed under it in T-0079 and nobody noticed.** Before the
+>    core density standard a block carried one principal roof per lot, so the rule ordered LOTS
+>    ~24.6 m apart. A party-line run now stands three units on ONE lot ~6 m apart, so the rule has
+>    been ranking the front doors of what the plat calls a single property ever since. **That, more
+>    than the bridge's bearing, is why it ran out of room.** Under the walk the step is the unit's
+>    own 6.072 m on every face, because a metre of frontage is a metre of walk.
+>
+> **A reproduction the command owes its predecessors.** T-A11's eight figures on
+> `blk_south_water_clark` re-derive within **1.7 m** (ratio 2.908 against 2.86) — it read the
+> frontage. T-A15's read **26.4 m nearer**, which is the distance from a lot's frontage to its
+> middle: L106 names the point in passing ("the 49.3 m between the lot 2 and lot 6 **centroids**").
+> **The criterion had been read at two points 26.5 m apart on two blocks and neither parcel said
+> which.** T-A15's finding is unaffected — its spread reproduces at **7.86 m** against 7.5 m — and
+> that discrepancy is the ordinary reason a measurement becomes a command.
+
+**The box as it stood when it was opened, kept verbatim:**
+
 
 T-A11's criterion — the better roof goes to the free lot nearest the Dearborn Street drawbridge —
 has thinned on every block since it was written: **2.93× at T-A12, 1.13× at T-A13, 1.11× at T-A14,

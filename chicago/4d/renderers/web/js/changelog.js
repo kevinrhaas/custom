@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 275, title: 'On a phone the grass ahead of you was full of holes', kind: 'fix', ts: '2026-08-27T06:01:45.104Z', date: 'Aug 27, 2026, 1:01 AM CT',
+  { v: 276, title: 'On a phone the grass ahead of you was full of holes', kind: 'fix', ts: '2026-08-27T06:16:43.327Z', date: 'Aug 27, 2026, 1:16 AM CT',
     items: [
       'Stand in the open prairie on a phone and look at the ground five paces out. Every clump from there to the middle distance was drawn through a regular mesh of gaps — worst at about eight metres, where roughly every other pixel of a plant was thrown away. It is solid grass now, and the ground no longer thins out ahead of you as you walk.',
       'Fifteen per cent of the phone’s screen inside nine metres was being drawn that way in open prairie. It is zero at every stand that was measured, on the street and off it. On a desktop it was already zero and still is.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'The band is now cut to the ring it belongs to: about a metre and a half on a phone, four and a half on the medium setting, unchanged on a desktop where it was never in the way. The rule is that the fade may not begin inside the nine metres a walker looks at.',
       'The obvious repair was measured first and turned down, which is why this is a narrower change than it looks. Drawing fewer whole plants instead of more see-through ones would have pulled the visible edge of the meadow in by more than two metres on a phone — past what the project already checks for. The figure is written down, and so is the reason the check itself needs a second look.',
       'Nothing else moved. The same plants stand in the same places, in the same species and proportions, and exactly as much geometry is drawn as before. Flowers at the far edge of the ring do last a little longer now, out to about twelve metres instead of ten.',
+    ] },
+  { v: 275, title: 'Nine houses were told they stood in a row by the river', kind: 'fix', ts: '2026-08-27T06:01:18.228Z', date: 'Aug 27, 2026, 1:01 AM CT',
+    items: [
+      'Stand at Washington and Dearborn and open the card on any of the three houses there. It used to tell you the house stood on “the town’s river business front”, that it was one unit of “the party-line river row”, and that its front looked at Washington Street “and the river beyond it, as every documented store on this face does”. The river is four hundred metres away and you cannot see it from that corner.',
+      'Every one of those sentences was written for South Water Street, where all three are true, and then printed on every row of joined houses the town has built since. Twenty-three houses carry them. Fourteen are on South Water and were always right; the other nine — three on Washington, three on Randolph, three on Lake — were being described as a street they do not stand on. The cards now name the street each house actually faces.',
+      'The one thing genuinely borrowed from South Water is the shape: an 1834 view of that street is the evidence that houses here stood shoulder to shoulder on shared walls rather than set back on grass. The cards now say that plainly — a row anywhere else in town takes the treatment from that one street, and the view drew a row, it did not draw this row. Washington Street’s entire documented frontage in 1835 is the town pound for stray animals.',
+      'Nothing moved. Not one wall, roof, corner or setback: these are sentences describing where a house stands, not the thing deciding it.',
+      'Underneath, the rule that decides which of a row’s houses is the better one was rebuilt on the same finding. It has always said the better house stands nearer the drawbridge — our invention, never anyone’s record — and it measured that as the crow flies, which stops working as you approach the bridge: on the block opposite the courthouse it separated neighbouring houses by half a metre while their own front doors are six metres wide. It is now measured as a walk along the streets, which is what a resident did. Every house in the town keeps exactly the position it had.',
     ] },
   { v: 274, title: 'Twenty-three notes about what we invented said they were settled', kind: 'fix', ts: '2026-08-27T05:47:10.386Z', date: 'Aug 27, 2026, 12:47 AM CT',
     items: [
