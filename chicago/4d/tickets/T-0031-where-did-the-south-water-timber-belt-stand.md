@@ -1,7 +1,7 @@
 ---
 id: T-0031
 title: Where did the South Water timber belt stand
-state: claimed
+state: done
 epic: FLORA
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: R-BUG5(b)
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 393
 claimed_by: run 8/26/2026, 11:27:06 PM CT
 blocked_on: null
 needs_bake: false
