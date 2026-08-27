@@ -6686,8 +6686,12 @@ for (const [label, viewport, touch] of [
             a.setFarMerge(false);
             await settle();
             const off = a.stats();
+            // Restored without a settle of its own, deliberately: this stand is
+            // never the last of the order, `setFarMerge` puts the visibility
+            // back synchronously, and the next stand settles before it reads.
+            // Part 4 is the thinnest margin in the desktop suite (T-0173) and a
+            // frame here costs about three seconds on the software renderer.
             a.setFarMerge(true);
-            await settle();
             row.mergeTris = off.triangles - r.triangles;
             row.mergeCalls = off.drawCalls - r.drawCalls;
           }
