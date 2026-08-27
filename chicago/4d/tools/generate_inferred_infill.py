@@ -29,6 +29,9 @@ PARCEL_PATH = DATA / "reconstruction" / "1835_phase1_south_mixed_blocks.json"
 SOURCE_ID = "owner_chicago_1835_reconstruction_spec_2026"
 PHASE_ID = "inferred_1835"
 PREFIX = "recon_1835_south_"
+# This parcel's own name, as `roof_form.AWAITING_BAKE` keys it. It is passed rather than
+# inferred so the hold is looked up under a string this file states about itself.
+PARCEL = "generate_inferred_infill.py"
 
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
@@ -38,6 +41,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 # data, not a hand edit: this generator still re-derives every record byte for byte,
 # and the occupancy block arrives from the household programme's ledger.
 from band_notes import split_notes  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 # Every committed footprint in this scene's local frame, so a frontage run can butt
 # onto a building this parcel did not write — read from the module the occupancy and
@@ -148,9 +152,15 @@ def form_for(family: str, seq: int, finish: str, width: float, depth: float) -> 
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, seq, finish, width, depth), family, band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, seq, finish, width, depth), family,
+                    band_note(family)),
+        family, width, depth)
 
 
 def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -> dict:
@@ -202,7 +212,12 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
         door = "wagon"
     elif family in ("W2", "A1"):
         door = "stable"
-    roof = "shed" if family in ("D2", "A3", "A4") else "gable"
+    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
+    # file's (T-0179). This parcel is the one held back from part of that rule — it
+    # retyped the shed set without A5 and one A5 roof stands on the difference, which
+    # cannot move without a bake — so it names itself and the hold is recorded beside
+    # the rule rather than here. See `roof_form.AWAITING_BAKE` and T-0212.
+    roof = roof_kind(family, PARCEL)[0]
     wall = 2.05 if family == "A3" else (3.42 if door == "wagon" else 2.75)
     material = "plank"
     if family == "A1" and min(width, depth) >= 2.2:

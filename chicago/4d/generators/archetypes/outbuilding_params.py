@@ -242,6 +242,35 @@ def default_roof_pitch_deg(roof_type: str) -> float:
     return 32.0 if roof_type == "gable" else 18.0
 
 
+def shed_axis_for(open_sides) -> str:
+    """Which way a shed roof falls: 'y' front-to-back, 'x' side-to-side.
+
+    DERIVED FROM THE OPEN SIDES, not taken as a parameter, and this is the rule that
+    makes a wagon shed a wagon shed. The opening has to be under the TALL eave: a
+    loaded hay wagon that clears a 2.4 m wall does not clear the 2.4 m wall at the
+    other end of the slope. So one open side sets the axis across itself; two OPPOSITE
+    open sides are a drive-through and the roof has to fall along the other axis or one
+    of the two openings is the low one.
+
+    It is a module-level function and not only a property because the run a shed climbs
+    IS this choice — 'y' climbs the depth and 'x' the width — so a tool asking whether a
+    family's ridge band can carry a shed has to ask the same question the mesh will
+    (T-0179). `tools/ridge_model.py` calls this rather than retyping it; retyping it is
+    how a model of an archetype drifts from the archetype.
+    """
+    op = set(open_sides)
+    fb, lr = op & {"front", "back"}, op & {"left", "right"}
+    if len(fb) == 1 and not lr:
+        return "y"
+    if len(lr) == 1 and not fb:
+        return "x"
+    if len(fb) == 2 and len(lr) <= 1:
+        return "x"
+    if len(lr) == 2 and len(fb) <= 1:
+        return "y"
+    return "y"
+
+
 @dataclass
 class OutbuildingParams:
     """A stable, shed, barn, smokehouse, privy, crib or woodshed.
@@ -341,24 +370,12 @@ class OutbuildingParams:
     def shed_axis(self) -> str:
         """Which way a shed roof falls: 'y' front-to-back, 'x' side-to-side.
 
-        DERIVED FROM THE OPEN SIDES, not taken as a parameter, and this is the rule
-        that makes a wagon shed a wagon shed. The opening has to be under the TALL
-        eave: a loaded hay wagon that clears a 2.4 m wall does not clear the 2.4 m wall
-        at the other end of the slope. So one open side sets the axis across itself;
-        two OPPOSITE open sides are a drive-through and the roof has to fall along the
-        other axis or one of the two openings is the low one.
+        DERIVED FROM THE OPEN SIDES, not taken as a parameter — see `shed_axis_for`,
+        which is this rule and is a module-level function so that a tool asking "how
+        high would a shed on this plan stand?" can read the rule instead of retyping
+        it (T-0179).
         """
-        op = set(self.open_sides)
-        fb, lr = op & {"front", "back"}, op & {"left", "right"}
-        if len(fb) == 1 and not lr:
-            return "y"
-        if len(lr) == 1 and not fb:
-            return "x"
-        if len(fb) == 2 and len(lr) <= 1:
-            return "x"
-        if len(lr) == 2 and len(fb) <= 1:
-            return "y"
-        return "y"
+        return shed_axis_for(self.open_sides)
 
     @property
     def shed_high_side(self) -> str:

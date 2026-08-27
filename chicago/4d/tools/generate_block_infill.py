@@ -96,6 +96,7 @@ from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E40
                           eave_limits, families, pitch_deg, stable_fraction,
                           storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -289,23 +290,23 @@ def form_for(family: str, spec: dict, key: str, width: float, depth: float,
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, spec, key, width, depth, paint), family,
-                       band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, spec, key, width, depth, paint), family,
+                    band_note(family)),
+        family, width, depth)
 
 
-# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
-# once, because both the eave and the pitch need them (T-0148). Each used to sit
-# inline in the form branch that returned it, which is the same rule written four
-# times; a family cannot now get one roof for the purpose of choosing its eave and
-# another for the purpose of building it.
-def _roof_kind(family: str) -> tuple[str, bool | None]:
-    if family.startswith(("C", "F")) and family != "F1":
-        return "gable", family.startswith("C")
-    if family in ("D2", "A3", "A4"):
-        return "shed", None
-    return "gable", None
+# WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this file's
+# (T-0179). It was decided here and in four other parcels, as the same literal written
+# five times, and the five had already drifted: three named A5 among the shed families
+# and two — this one and `generate_inferred_infill.py` — did not. No A5 stands on these
+# blocks, so adopting the shared rule moves nothing here; it moves what the schedule
+# WOULD deal, which is the whole point of a rule with one home.
 
 
 def _pitch_default(family: str, levels: float) -> float:
@@ -316,7 +317,7 @@ def _pitch_default(family: str, levels: float) -> float:
         return 34.0
     if family.startswith(("D", "H")) and family != "D2":
         return 44.0 if levels == 1.5 else 38.0
-    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
 
 
 def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
@@ -346,7 +347,7 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
     # A1 stables on these blocks stood outside their ridge band for exactly that. The
     # eave is held to the nearest value in its OWN band that the ridge band can be met
     # from; a draw that already meets it is returned untouched.
-    roof_type, gable_front = _roof_kind(family)
+    roof_type, gable_front = roof_kind(family)
     run = ridge_run_m(spec.get("archetype"), roof_type, width, depth, gable_front)
     wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
                           family, spec["eave_ft"], spec.get("roof"),
