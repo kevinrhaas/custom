@@ -8591,7 +8591,40 @@ number in the tree archetypes is invented within the file's range) · ROADMAP **
 **R-BUG5(b)** · tickets **T-0031**, **T-0017**.
 **Recorded:** 2026-08-27.
 
+### L194 — A mitred ribbon corner stands up to 29 mm outside the street's own recorded half-width
+**Decision:** where a drawn street centreline bends, `renderers/web/js/streets.js` now gives the two
+panels that meet there ONE shared corner, on the bisector of their chord normals and `1 / cos(turn/2)`
+long, instead of letting each end square to its own chord (T-0184). A corner on the bisector stands
+`half_width * (sec(turn/2) - 1)` further from the bend vertex than the recorded half-width does, so
+the ribbon covers a thin crescent of ground the street's own `track_width_m` does not reach. Measured
+across the whole town, the worst is **29 mm**, at the fort road's 16.7-degree turn at [1075, 38]; a
+turn sharp enough to need more is cut into sub-mitres instead, and no corner anywhere may exceed
+**40 mm**. Perpendicular to every chord the ribbon is still exactly `track_width_m` wide: what
+overhangs is the JOIN, not the road.
 
+**Why:** the alternative is a hole. Square joints left **23.47 m2 of ground inside the nominal ribbon
+with no roadway drawn on it** — apex on the centreline, `half * tan(turn/2)` long at the ribbon's
+edge — worst 4.29 m2 at South Water Street's west approach, and a visitor walking that bend crossed a
+triangle of prairie in the middle of a 10.5 m street. Closing a joint to the ground the record claims
+REQUIRES the corner to reach where the two edges meet, and that point is outside the half-width circle
+at the vertex by simple geometry. Truncating it back to the circle re-opens a smaller hole; rounding
+it inside the circle re-opens a smaller one again. There is no join that both closes the ribbon and
+stays inside the half-width at the corner, and this project would rather admit 29 mm than draw a gap.
 
+**What bounds it, and it is a measurement rather than a taste.** The cap is set below the 0.05 m that
+`tools/drawn_placement_census.mjs` already tolerates when it holds every drawn road vertex to its own
+street's half-width — the gate that catches a mirrored ribbon, run on every release at both viewports.
+So the overhang is bounded by an instrument that existed before this liberty and was not touched for
+it: the census still reads **0 strays, worst 0.00 m**, and its negative control still fails a mirrored
+build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 30.5 and
+the fort road's 39.3) and are cut into two or three sub-mitres for 22 triangles town-wide.
 
+**What is NOT invented.** No width, no centreline and no record moved. `track_width_m` is unchanged on
+all eighteen streets, the platted corridor is untouched, and the flora-clearing corridor — which asks
+the same point-to-centreline question at `half + 0.65` — already reached well past every mitred
+corner, so no mitre paints roadway on ground where the sward still grows.
+
+Related: **L79** (the corridors are measured, the travelled earth is drawn by eye) · **L178** (the
+artefact this retires) · tickets **T-0184**, **T-0110**, **T-0111**.
+**Recorded:** 2026-08-27.
 

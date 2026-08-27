@@ -71,12 +71,12 @@ T-0183 — The Market and South Water corner needs one control point, and the no
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
-T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports

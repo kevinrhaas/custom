@@ -1,5 +1,108 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0184: the ribbon's bends are mitred, and both joints the ticket named were wrong
+
+**23.47 m2 of prairie inside the roadway, closed to 0.000, for 22 triangles.** `streets.js` built
+every panel square to ITS OWN chord, so at a bend the row at a shared centreline point was emitted
+twice — once perpendicular to the incoming chord, once to the outgoing one. The two rows crossed at
+the centreline and splayed apart towards the edges: a triangle of unpainted ground on the outside of
+the turn, `half * tan(turn/2)` long at the ribbon's edge, and a matching double-blended overlap on
+the inside. Both are gone: the two panels now share one corner on the bisector of their chord
+normals, `1 / cos(turn/2)` long, so neither a gap nor an overlap is arithmetically possible.
+
+### The instrument, and its control runs on every build
+
+`tools/measure_road_joints.mjs` (probe in `tools/road_joint_probe.mjs`, shared with the smoke the way
+`drawn_placement_census.mjs` is): a **2 cm plan lattice** over every authored bend, each point
+classified twice — inside the nominal ribbon, and inside any drawn street triangle in plan. Coverage
+is asked of EVERY street, because a crossing street's roadway is roadway.
+
+The control is not a `--refute` flag somebody has to remember: the same lattice is probed against a
+**reference ribbon built here from the committed centrelines under the old square-joint rule**, with
+the same 2.25 m sampling, the same waterline trim and the same sliver drop. So `square` is the wedge
+and `drawn` is what is left, on every run, and a build where the reference reads zero is a build
+where the tool says it has stopped being an instrument.
+
+| | uncovered | drawn triangles |
+|---|---|---|
+| before | **23.472 m2** over 21 live bends | 22,596 |
+| after | **0.000 m2** | 22,618 |
+
+Each bend's reading agrees with the closed form `half^2 * turn / 2` to three decimals — 4.292 against
+4.289 at South Water's worst — which is what says the lattice reads geometry rather than noise.
+
+### Both joints the ticket named were wrong, in opposite directions
+
+1. **South Water's west approach turns 17.8 deg at [120, -57], not at [140, -35].** The angle and the
+   4.3 m2 were right and the coordinate named the next vertex along, which turns 7.4 deg for 1.77 m2.
+2. **Dearborn's corner left 0.00 m2 uncovered, not L178's 0.30.** South Water Street's own 10.5 m
+   roadway covers the WHOLE 0.61 m2 sector there, not half of it: the sector reaches at most 3.50 m
+   from [698.93, 7] and South Water's ribbon spans N 1.8 to N 12.3. **The one joint the ledger chose
+   to admit to was the one joint in the town that never showed** — while the five on South Water's
+   own bends, named in the same breath and not measured, were 4.29, 4.25, 3.58, 1.77 and 1.77.
+   L178 is revised in place with the correction rather than rewritten.
+
+### The two costs, and why the mitre is capped rather than run out
+
+**22 triangles**, town-wide, and the whole breakdown is: **23 of the 30 authored bends are mitred at
+ZERO cost** — a mitre moves vertices, it does not add any — and 7 are too sharp for one mitre and pay
+3 triangles each except the fort road's 39.3-degree turn, which pays 4. south_water [120, -57],
+[180, -5], [220, 6]; north_water [827, 116], [920, 190]; fort_road [1115, 55], [1140, 78]. Read back
+off the shipped scene rather than argued: 22,596 street triangles before, 22,618 after. No straight
+street pays anything, so this is +22 at the worst stand in the town and +22 at the best.
+
+**Against the ceilings, stated because they are already breached on `dev`** by other work (`full`
+1,412,120 of 1,400,000 and `balanced` 1,252,802 of 1,210,000 at Lake Street at Canal, owned
+elsewhere): 22 triangles is 0.0018 % of the `balanced` ceiling and 0.05 % of the 42,802 that
+breach already stands at. It does not cause the breach and it does not materially deepen it.
+
+**A mitred corner stands `half * (sec(turn/2) - 1)` past its bend by construction** — 0.17 m at the
+fort road's 39.3-degree turn — and `drawn_placement_census.mjs` holds every drawn road vertex within
+**0.05 m** of its own street's half-width. That census is what catches a mirrored ribbon, so it was
+not touched; the geometry was designed to respect it. The cap is spent by CUTTING the turn rather than
+truncating the corner: a joint too sharp for one mitre is closed by `k` sub-mitres whose outer corners
+are the intersections of `k + 1` lines each tangent to the half-width circle. That polygon still
+contains every point the round buffer does — a truncated corner would not — and the worst corner in
+town now stands **0.029 m** out. Recorded as **L194**.
+
+**And the concave side is never cut.** There the two offset strips already overlap and the nominal
+ribbon reaches the full mitre point, so subdividing that side would pull the ribbon inside its own
+recorded width and open a gap on the inside of the turn to close one on the outside. The asymmetry is
+forced by the geometry, not chosen.
+
+### Found and filed rather than fixed: T-0226
+
+Three of North Water Street's six bends carry no joint question at all, because its committed
+centreline runs **inside the water mask** and no ribbon may be drawn there — the first reading of this
+instrument reported them as 33.8 m2 of uncovered ground apiece and it was the tool that was wrong, not
+the town. The nominal ribbon is now defined as ground the module is ALLOWED to paint, and those bends
+are counted separately so they cannot hide.
+
+### The picture
+
+`docs/evidence/t-0184-before.png` and `-after.png`, one stand and one camera, on South Water
+Street's west approach 15 m short of the [120, -57] bend, lifted 12 m and pitched 35 degrees down
+so the ribbon's own edge is in frame. Before: a triangle of prairie cut into the road's left edge at
+the turn. After: the roadway runs whole through it. Nothing else in either frame differs.
+
+### Gates, and the one that was NOT run
+
+**Run, on the published mirror:** `tools/check.sh` CHECK PASS · `measure_drawn_placement.mjs --gate
+--refute` 0 strays of 28,265 drawn vertices, worst 0.00 m, negative control fires ·
+`measure_road_joints.mjs --gate` 0.000 m2 with its square-joint control at 23.472 m2.
+
+**The full Playwright smoke was NOT run to completion, and CI is the authority for it.** The runner
+was at load 48 with 105 concurrent Chromium processes from ten parallel agents; three agents had
+already reported browsers killed mid-run and timeouts on unmodified `origin/dev` controls, so a local
+smoke result would have been worthless in both directions. What was obtained before the run was
+stopped is reported as a partial: mobile 390x780, stage 5, published mirror — **all five street-layer
+checks passed**, including the new one, and the run's only failure is the "suite body ran to
+completion" line caused by killing it.
+
+The smoke gains nine stations inside the sector at every authored bend, at three angles and three
+radii, which is the part of the lattice a release can afford. **It was verified RED on the pre-fix
+build before it was believed** — mobile stage 5, naming South Water [120, -57] at all three radii —
+which is the reading that says it is an assertion rather than decoration.
 ## Shipped — T-0187: the phone's sward stops thinning five metres ahead of the walker, and the obvious fix is priced and refused
 
 **T-0187, the residue T-0093 banked rather than closed.** The near/mid run converted two boundaries
