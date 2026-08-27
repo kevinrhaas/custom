@@ -11606,6 +11606,44 @@ in the **mid** field.
      coverage ramps, and at `light` they reach in to **5.4 m** and **7.4 m** — inside the verge on a
      phone. That is the mid→far handover, which T-0086 answered by standing the far band over it;
      the gate holds it against `tools/near_verge_baseline.json` so it cannot grow, and it is filed.
+     **Closed 2026-08-27 by item 3c below, and NOT the way this box expected.**
+3c. **The outer ramps' WIDTH, not their kind.** · **DONE 2026-08-27, T-0187.** The residue item 3b
+   banked: at `light` the mid and forb rings' outer coverage ramps began 5.4 m and 7.4 m ahead of
+   the walker and 15.4 % of the phone's frame inside nine metres was written through the screen
+   door. Read this box before proposing a density handover on any OUTER edge.
+   - **The cause is one line that was never scaled.** `LOW` and `MID` cut `radius` and scaled
+     `fringe` with it — "about an eighth of the radius at every setting", its own comment — and left
+     `band` at TUNE's 7.0 m and 5.0 m. A ramp sized for 18–27 m therefore sat on a 13 m ring and
+     came out across the middle of the phone's field. `balanced` had it too: the mid ramp began at
+     **8.2 m** there, also inside the verge. Nothing about the phone was special; the number simply
+     was not carried down.
+   - **THE OBVIOUS FIX WAS PRICED AND REFUSED, and the number is the reason.** Handing these edges
+     over by density — `spreadOuter`, T-0093's own answer — was simulated slot by slot on the
+     published mirror against every mid instance's own `aChiRing` and the gate's own 16 bearing
+     bins. It takes the mean drawn reach from **26.81 m to 25.42 m at `full`**, which the boundary
+     check survives (bar 24.90), and from **11.89 m to 9.64 m at `light`**, where the bar stands at
+     **11.60 m and only 0.29 m of it was unspent**. Even a one-metre spread lands at 11.48 m. The
+     loss is not a tuning artefact: the drawn edge of a stochastic thinning is the depth at which
+     the thinning still leaves a plant standing in a given bearing, and the mid lattice deals about
+     one slot per metre per bin at 12 m against two and a third at 26 m.
+   - **The bar it fails is resting on plants nobody can see, and that is now its own ticket.** The
+     reach admits any plant at `fadeAt > 0.02` — two per cent coverage, one pixel in fifty through
+     the Bayer matrix. On a coverage ramp that is every placed slot, so the statistic reports where
+     the placer stopped placing rather than where the field ends, and it can only ever be met by
+     drawing ghosts. **T-0209.** The bars were left exactly where they stood.
+   - **So the ramp is cut to the ring instead.** The rule: an outer band may not BEGIN inside the
+     verge — `radius − step − fringe − 9.0`, the nine metres `tools/measure_near_verge.mjs` calls
+     the ground a walker looks at. `light` takes **1.6 m** on both rings (the clearance binds at
+     1.8; it lands equal to the fringe, so the edge thins over no more ground than it is ragged
+     by); `balanced` takes the proportionate **4.7 m** and **3.4 m**, which already clear it; `full`
+     is unchanged at 7.0 m and 5.0 m, clearing by 16.4 m and 17.4 m.
+   - **What it costs and what it buys.** Placement is untouched, so triangles, instances and draw
+     calls are unchanged — the ramp's own comment in item 3 already says the lattice pays for the
+     geometry and the fade pays for nothing. What changes is fill: the ground the ramp used to
+     thin is drawn solid, and the phone's sward stops opening up five metres ahead of the walker.
+     The flower heads reach further out with it, because `headRingOf` hangs the head ring off the
+     band (`fade[0] − 0.35 × band`): at `light` the forb heads run to 11.8 m where they stopped at
+     10.0 m.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.

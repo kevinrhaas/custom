@@ -1,7 +1,7 @@
 ---
 id: T-0187
 title: At light detail the mid and forb rings' outer ramps dither inside the verge
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/26/2026, 11:27:35 PM CT
 blocked_on: null
 needs_bake: false
 ---
