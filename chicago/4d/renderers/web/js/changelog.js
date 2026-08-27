@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 296, title: 'The sun has stopped drawing a wood it cannot see', kind: 'fix', ts: '2026-08-27T20:21:44.299Z', date: 'Aug 27, 2026, 3:21 PM CT',
+    items: [
+      'Nothing in the town looks different today, and that is the whole claim: the same picture, from the same five spots, drawn with about a hundred and sixty thousand fewer triangles a frame.',
+      'A note here a fortnight ago said the trees were being drawn twice — once for you and once for the sun — and that most of the second pass was timber standing well outside the patch of ground the sun draws shadows for. Fourteen per cent of everything drawn, every frame, casting nothing any pixel could hold. That note also said why it could not simply be switched off: the wood was built as four enormous pieces, each of them the best part of a kilometre across, and you cannot leave out the far half of a thing that is one thing.',
+      'So the wood is cut smaller. It is built on a grid of hundred-and-twenty-metre cells now — about seventy of them — and both the sun and your own eye skip the cells they cannot reach. Cutting a thing into seventy pieces normally costs seventy times the work to hand it to the graphics card, which is the reason it was one piece; the seventy are handed over together instead, in one go, with the card told which to skip.',
+      'What it comes to, at the two hardest viewpoints the checks visit, on the desktop screen: the balanced setting draws 1,083,932 triangles where it drew 1,252,802, and the full setting 1,252,519 where it drew 1,412,120. Both had been over their ceilings for days. Both are now comfortably under the ceilings they had BEFORE the ceilings were lifted last fortnight, so the lift can come out.',
+      'The count of separate handovers went DOWN as well, from 204 to 195, which is the part that had to be watched: a repair that saved the sun some work by giving the graphics card forty more errands would not have been a repair.',
+      'The lightest setting, the one a weak machine boots into, gains most of all — 702,212 triangles where it drew 838,742, a sixth of the frame back.',
+    ] },
   { v: 295, title: 'Nine houses told you the wrong wall held them in place', kind: 'fix', ts: '2026-08-27T19:38:00.568Z', date: 'Aug 27, 2026, 2:38 PM CT',
     items: [
       'Open the card on any of the nine reconstructed houses in the Lake-and-Clark row or the two Randolph-and-Dearborn rows, and read down to where it explains how the building was placed. It used to name the wrong wall — it said the EAST wall was the one pinned to the corner or to the neighbour\u2019s party wall, when on these rows it is the WEST wall, and the east one simply follows a house-width along.',
