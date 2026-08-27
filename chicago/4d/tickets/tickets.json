@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 8:50 AM",
+  "generated_ct": "Aug 27, 2026, 9:19 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3918,6 +3918,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 61
+    },
+    {
+      "id": "T-0232",
+      "title": "The owner's production switch is a coin toss: one promotion in four never reaches a promotion step",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
     }
   ]
 }
