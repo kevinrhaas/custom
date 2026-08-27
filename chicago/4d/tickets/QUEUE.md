@@ -23,7 +23,6 @@
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
-T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
