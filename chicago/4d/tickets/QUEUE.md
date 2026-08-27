@@ -31,7 +31,6 @@ T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small
-T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so

@@ -1525,6 +1525,110 @@ self-tests) proved red first: `measure_fort_gates.py --gate` named the 0.900 m s
 on the committed mesh before the fix. `node tools/smoke_renderer.mjs --published` at 390×780,
 stage 1 — the leg that carries the stockade checks — zero page errors.
 
+## Shipped 2026-08-24 — T-0098: a stand at the fort, on the side the plate actually draws it
+
+**Visible run.** T-0044's image-accuracy pass listed eight gaps against the two committed Fort
+Dearborn plates; number 8 was *"No trees at the fort."* Eleven relict black willows now stand on
+the ground outside the palisade's **west** wall. Before and after from `p4_0`'s own stand
+(`1145, 300`, yaw 180°): `docs/evidence/t-0098-before.png`, `-after.png`.
+
+**THE TICKET'S COMPASS WORD WAS WRONG, AND THAT IS THE FIRST FINDING.** T-0044's row 8 and
+T-0098's own title both say the mass stands **east** of the walls. Both were read by eye.
+`tools/measure_fort_trees_plate.py` measures the plate instead — foliage segmented as
+greener-than-red and darker than the sky, a 7×7 majority filter over the stipple, split at the
+two ends of the drawn stockade:
+
+| | foliage px | largest connected component |
+|---|---|---|
+| frame-LEFT of the stockade | 2 322 | **924 px**, x 27–87, y 534–557 — bank grass on the viewer's own side of the river, below the waterline |
+| frame-RIGHT of the stockade | 35 714 | **33 334 px**, x 1189–1537, y 293–490 — a canopy, running off the right edge of the plate |
+
+**And frame-right is WEST**, argued off the stand rather than off the picture: `p4_0`'s viewpoint
+is the north bank looking SOUTH (HUD compass S 180° in `fort_from_the_north_bank_2026-08-19.png`),
+and the committed `chicago_lighthouse_1832` — E 1105.2 against the fort's centre at E 1152.0,
+**46.8 m west** — draws to the frame-right of the fort in that same shot. Two independent readings
+agree. Written up in `docs/RESEARCH/fort_dearborn_image_accuracy.md` § "Row 8's east is west"; the
+acceptance clause asked for trees *where the plate puts them* and that clause is met exactly,
+unweakened.
+
+**AND THE PLATE CANNOT DATE ITS OWN TREES — the second finding, and it changed the tier.** T-0197
+landed while this parcel was in flight. `data/exclusions.json` already assigns `p4_0`'s flagstaff
+to Whistler's **FIRST fort of 1803**, and T-0095 measured the plate's two roofed lanterned works
+at 0.435 and 0.521 of the wall — over the gate, not at the angles — and reads two such works as
+first-fort signature. Everything struck so far is the fort's FABRIC and both forts stood on the
+same ground, **but a draughtsman working decades later off first-fort descriptions was drawing a
+SCENE, and there is no reason his trees are better dated than his blockhouses.** Nor does the
+dataset help: `docs/research/02-flora.md`, on Andreas, ends the South Division's river timber belt
+**east at Wells Street**, 900 m west of this reservation, and `trees.js` enforces that limit — a
+BELT here would contradict the dataset. A few relict boles on used ground east of a belt's end
+would not, which is what `z10_settled_town` records its black willow as: *"Left along the bank
+where the landing was cut."* **So existence is `reconstructed` with EMPTY sources**, downgraded
+from `inferred` before merge, and the record says why in its own note.
+
+**It is a rule, not a list.** `tools/generate_fort_trees.py` deals a 12.5 m grid in the fort's OWN
+footprint frame, west of the wall, beyond the apron — the inner edge read out of
+`fort_dearborn_apron.json`'s own `apron_width_m` rather than retyped — and every candidate is put
+to the renderer's own refusals with a working margin. **13 of 24 points are refused** — 6 in the
+river's own bend north-west of the fort, 4 on the fort's trodden apron, 2 inside a committed
+footprint's clearance, 1 on a beached bark canoe — which cuts the stand back to the falling ground between wall and water,
+the ground the plate draws its mass on. `tools/check.sh` re-derives the record byte for byte, and
+the gate was proved to fire three ways.
+
+**The species is the measurement's, not a preference.** The plate's crowns stand 127 px above the
+wall foot: **8.8 m** on the fort's committed 53 m footprint (apparent width 59.86 m at 8° off the
+grid), **10.9 m** on its committed 3.7 m picket height. The two differ by 24 % and are printed side
+by side, never averaged — that spread is the ±20 % the palisade's placement note already carries.
+Plus the 0.54 m the bank falls under the stand, derived from the heightfield. Of
+`z10_settled_town`'s three recorded trees only the relict **black willow** (9–14 m) is banded low
+enough to carry it; the relict elm (16–24 m) and cottonwood (18–26 m) are refused in the record's
+own prose, and `trees.js` would refuse the stem anyway. Every height is dealt inside the OVERLAP —
+**9.3–11.4 m**.
+
+**THE TRIANGLE CEILING — AND THE ANSWER WAS AT THE CEILING, NOT AT THE PARCEL.** The record was
+first written as **40 stems**, measured at +12 800 triangles whole-scene (320 a stem, no new draw
+call: a placed stem goes into the timber layer's existing chunk buffers, and it is never
+distance-culled and never thinned by a detail level's `keep` fraction the way a dealt stem is, so
+it costs the same at `light`, at `balanced` and 1.3 km away as it does at the fort). The desktop
+part-4 leg read `balanced` at **1 218 562 of 1 210 000**. Cut to twelve stems — 3 520 — it read
+**1 213 446** and **still failed**. So a control run was taken at the same stand with the record
+unmounted altogether:
+
+| desktop 1280×800, Lake Street at Canal, `balanced` | triangles | verdict |
+|---|---|---|
+| `dev` alone, this record unmounted | **1 209 926** of 1 210 000 | **PASS by 74** |
+| + a twelve-stem stand | 1 213 446 | FAIL by 3 446 |
+| + the forty-stem original | 1 218 562 | FAIL by 8 562 |
+
+**Seventy-four triangles.** A quarter of one tree on a frame of 1.2 million. The middle rung had
+not been overspent by this parcel — it was full, and the next visible parcel of any size was going
+to fail it whatever it was. `full` carried 1.2 % of headroom in the same runs, so the squeeze was
+on `balanced` alone. **That is a fact about the ceiling, so it is answered at the ceiling:**
+`balanced` is re-budgeted **1 210 000 → 1 225 000** in `renderers/web/js/main.js`, both readings
+written at the number, on the standing ruling that a performance ceiling is a number this project
+chose and not a claim about 1835. **`light` is untouched** at 1 050 000 and reads 815 777, 22 %
+under — the floor a weak machine boots into is not spent here. The new figure gives `balanced` the
+same proportional headroom `full` carries (about 1 %), so **it buys no room for the parcel after
+this one**; T-0149 and T-0147 still own the trim that would win the rung back properly.
+
+**A second thing the smoke caught, and it is why that assertion exists.** The first twelve-stem
+version put one stem inside a beached bark canoe, and `trees.js` refused it — *"no unexpected
+loader problems"* went red on the exact line. `main.js` hands the planters
+`footprints.concat(wharves.keepOut, boats.keepOut, frontage.keepOut, decks)`, and this tool had
+been mirroring the sidecar footprints alone. It now reads `data/boats/` and refuses the
+circumscribed circle of every BEACHED hull — strictly larger than the polygon the renderer keeps
+out, so it can never leave a stem the renderer then declines. **Eleven stems ship.**
+
+**What is deliberately NOT built:** the two-storey frame house with the double gallery that stands
+inside the mass in `p4_0`. That is a structure record, no source this project holds identifies it,
+and a building invented to fill a lithograph is a far larger liberty than a tree. Recorded as
+**L188**.
+
+**What the next run should know.** Both routes T-0115 names were taken here — the parcel was cut
+AND the ceiling was moved — and the ceiling was moved by the smallest amount that keeps the ladder's
+own shape. `balanced` now carries about 1 % of headroom and `full` about 1.2 %. **The next visible
+parcel of any size will still meet that wall**, and the answer is not another raise: it is the trim
+T-0149 and T-0147 exist for.
+
 ## Shipped 2026-08-24 — T-0107: a landing on the west bank at Wolf Point, and a face that has to be afloat
 
 **The gap, and it was a scope gap rather than a finding.** T-0062 shipped five reconstructed docks

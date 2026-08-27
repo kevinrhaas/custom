@@ -806,6 +806,11 @@
       "id": "town_planted_rows",
       "file": "plantings/town_planted_rows.json",
       "note": "The planted rows (T-0117): files of Lombardy poplars on the river greens of the town's oldest houses, dealt by the rule in tools/generate_planted_rows.py and re-derived on every commit. The treatment is Wau-Bun's — 'a broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars' — and the count and rhythm are measured off the plates; which ground gets one is the rule's. Listed AFTER the dooryard pass because the rule reads the records above as ground already taken and yields to them."
+    },
+    {
+      "id": "fort_dearborn_wood",
+      "file": "plantings/fort_dearborn_wood.json",
+      "note": "The relict stand outside Fort Dearborn's west wall (T-0098), dealt by the rule in tools/generate_fort_trees.py off the palisade's own committed footprint and its apron, and re-derived on every commit. The plate settles the SIDE and the crown height and nothing else: tools/measure_fort_trees_plate.py measures the mass on the frame-RIGHT of the drawn stockade, which from p4_0's own stand is WEST — the ticket and T-0044's row 8 both said east, by eye. It does NOT settle the date: p4_0's flagstaff is excluded as first-fort and T-0095 reads its two tall works the same way, so existence here is reconstructed with empty sources and the stand is open where the plate's canopy closes."
     }
   ],
   "palettes": [
