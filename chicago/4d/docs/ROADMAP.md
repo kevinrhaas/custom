@@ -6342,6 +6342,42 @@ counterfactual) · `docs/ROADMAP.md` · `chicago/4d/tickets/T-0009-*.md` (blocke
 `renderers/web/js/changelog.js`. **No structure record, footprint, coordinate, confidence or
 baseline was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
 
+#### K30(d) RESOLUTION 1 IS TAKEN FOR SIX OF THE ELEVEN — 2026-08-24, T-0127 → T-0188
+
+**The owner answered it, in a ticket, in his own ask.** K30(d) left three resolutions and said
+resolution 1 — *"the buildings follow the street"* — is *"a position change on sourced records,
+which is exactly what AGENTS.md forbids an agent to do alone"*, and T-0009 has sat `blocked-owner`
+on it since. **T-0127** (`requested_by: owner`, `seen: true`) is that decision: *"ten documented
+buildings on that side were placed against the MODERN kerb, read off OpenStreetMap, rather than
+against this project's own platted line… **Reconciling them with the committed plat closes those
+gaps and is worth doing on its own terms** — the disagreement is a finding about the dataset, not
+about the sidewalk."*
+
+**What T-0188 did with it.** Measuring the walk band found **eleven**, not ten — `temple_building`
+is the eleventh and no earlier count had it. **Six were reconciled**: `harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`, `chicago_democrat_office`, `temple_building` and
+`jh_kinzie_forwarding_store`, each translated along its block face's inward normal until its north
+wall stands 1.50 m back from the committed frontage line — the margin
+`generate_block_infill.py` already gives every reconstructed unit on those faces. **No along-street
+position moved and no confidence grade moved**: this is each record's OWN stated method
+(*"the south kerb taken 12.2 m south of it… so the north face sits on the South Water frontage"*)
+re-run against this project's committed centreline instead of the modern OpenStreetMap one, which
+is the reference frame K30(d) finding 4 identified as the whole cause. Town-wide corridor laps go
+**29 → 26**, and the six drop from 4.51–7.48 m to 0.16–0.21 m, on a cross street.
+
+**Five could NOT be, and the blocker is not the owner's this time.** `h_jones_store`,
+`carpenter_south_water_store`, `pruyne_kimball_drugstore`, `chicago_american_office` and
+`frederick_thomas_shop` each seat, once reconciled, on a platted lot the 665-roof schedule has
+already dealt to the anonymous South Water frontage run, and `generate_block_infill.py` refuses to
+deal a roof to a lot that already carries one. Each was tried alone to prove it was its own
+blocker. They are refused **in writing, per store**, in their own `position.note` and in
+`data/frontage/town_street_edge.json`'s `refused`. **T-0189** owns the untangling.
+
+**T-0009 is untouched here** — it is a `needs_bake` ticket about 29 bodies on eight streets and its
+`blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
+cluster, and whoever picks it up should read this heading first.
+
+
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
@@ -7834,6 +7870,16 @@ the source runs that crossing *"until after 1840"*, so a visitor walks onto a ti
 over open prairie. That is not an argument for cutting a conjectural channel — depth and width are
 still unsourced and parcel (c) still owns them — it is the proof that the four were never on one
 footing, which one shared phrase implied they were.
+
+**Since, 2026-08-24 (T-0109).** Zone 14 came off the deferral list: **T-0005** carved it on
+2026-08-20 and **T-0118** ran its last reach square under the crossing the same day, at the
+reconstructed tier with depth and width declared invented in **L149**. So the bridge over nothing is
+gone, and the reading is now taken rather than argued — `tools/measure_slough_crossing.py`, on the
+committed heightfield: **3.30 m of open water in an 8.00 m span, 0.53 m deep, 2.35 m of dry abutment
+seat at each end, the reach to the river unbroken, nothing else rooted in the cut.** The other three
+zones stand exactly as this box left them, and the correspondence gate above still holds them: 15,
+16 and 17 remain deferred and dated, and zone 14 no longer appears in the dating record because the
+spec no longer defers it.
 
 **On the pond itself the answer is `not_established`, and deliberately not "it was not there".**
 One document, `chicagology_prefire273`, carries both sides. FOR: its slough sentence has the stream
@@ -10162,7 +10208,7 @@ advanced by the same 60 m separation. Clapboard pairs within 60 m wearing the sa
 131 anonymous roofs now differ from their nearest neighbour, where none did. The residual is
 stated rather than rounded: a recipe deals its own parcel only (a town-wide deal was measured at
 9/186 and refused, because it would make moving one roof restale every other parcel's meshes),
-and four stocks cannot separate a roof with nine neighbours. **L181.**
+and four stocks cannot separate a roof with nine neighbours. **L182.**
 
 ### K5 — The town's furniture: fences, yards, wagons, signs, porches, docks
 The scene is buildings on bare ground; a working town has STUFF. In order: (a) the
@@ -11075,6 +11121,30 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   surface to be wrong about. The two that remain off the ground are the stockade and the
   commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
   because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
+
+**The gates were open, and `p4_0` never drew the corner works it was said to (T-0095,
+2026-08-24).** Two findings, one measured off the sheet and one off the shipped mesh —
+`docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`, held by
+`tools/measure_fort_works_plate.py` and `tools/measure_fort_gates.py`.
+
+- **The plate raises no work at either angle it draws.** It raises exactly two roofed,
+  lanterned, log-faced works and both stand over the MIDDLE of the wall, at **0.435 and
+  0.521** of the drawn run; a corner work stands at 0.000 or 1.000. The one angle it shows
+  unoccluded is the north-east and it is drawn plain — which is what the record says of that
+  angle. The north-west angle, the one the record does put a work at, is behind the tree
+  outside the walls. **Nothing was massed at the angles**, and the log-faced work over the
+  gate was not built either: the sheet already carries a certified FIRST-fort feature (the
+  flagstaff, `data/exclusions.json`) and two roofed lanterned log towers is that fort's own
+  signature in everything but position. Same failure as T-0094, one day apart, on the same
+  sheet: the plate read by eye.
+- **Both documented gates stood a quarter open.** One leaf of each pair was placed from a
+  midpoint that collapsed onto its own jamb, so **0.90 m of the 3.6 m gateway was daylight
+  straight through the wall** and 0.90 m of leaf lay across the pickets outside the frame —
+  in the committed GLB, so in the bytes a visitor downloaded. Four lines in `palisade.py`,
+  one asset rebaked (`fort_dearborn_palisade__picket_1816`). The gate that holds it reads the
+  shipped mesh rather than re-deriving the placement, because the derivation was the fault.
+- **The south-west blockhouse already read above the curtain** and now has a number: 9.48 m
+  of building over a 3.80 m curtain, from its own instance bounds in the scene.
 
 **Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
 plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,

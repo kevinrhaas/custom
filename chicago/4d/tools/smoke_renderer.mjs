@@ -3652,10 +3652,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 29
+      frontage.census?.records === 4 && frontage.census?.walks === 28
         && frontage.census?.crossings === 12
-        && frontage.census?.posts === 3 && frontage.census?.fences === 12
-        && frontage.census?.refused === 53
+        && frontage.census?.posts === 3 && frontage.census?.fences === 11
+        && frontage.census?.refused === 59
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
@@ -3701,18 +3701,21 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-eight
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119) and the town street edge's twenty-one (T-0069, one per run
-    // of sidewalk), all on ONE material, and the painted name on
-    // its own mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
+    // T-0188's six reconciled South Water placements welded two runs into one)
+    // and the TWO street-fence meshes T-0188 split off — one per covered street
+    // that carries a fence — so the boards could leave the shadow map while the
+    // fences stayed in it, all on ONE material, and the painted name on its own
+    // mesh, the only thing here that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 38,
+        && frontage.meshes === 39,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -3952,43 +3955,59 @@ for (const [label, viewport, touch] of [
       const walks = (f?.walks ?? []).filter((w) => w.belongs_to === 'town_street_edge');
       const decks = (a.decks ?? []).filter((d) => /^blk_.*__footway_/.test(d.id));
 
-      // ---- WALKED END TO END, along one core street south of the river.
-      // Lake Street's north frontage through two whole platted blocks and the
-      // board crossing over Wells Street between them: about 220 m of walk, all
-      // of it derived from the plat and none of it placed. The walker is stood
-      // on the walk's own centreline every two metres and asked what is under
-      // their boots — the deck the record published, or the mud.
+      // ---- WALKED END TO END, on Lake Street and, since T-0188, on the one
+      // South Water block face whose walk the reconciliation made whole.
+      // The walker is stood on the walk's own centreline every two metres and
+      // asked what is under their boots — the deck the record published, or the
+      // mud. One sample in the mud is a hole in the sidewalk, so the bar is
+      // every one of them.
+      const marchChain = (ids) => {
+        const chain = ids.map((id) => walks.find((w) => w.id === id) ?? null);
+        const out = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
+          missing: chain.filter((w) => !w).length };
+        let previous = null;
+        for (const w of chain) {
+          if (!w) continue;
+          const line = w.centreline_local_enu_m;
+          for (let s = 0; s + 1 < line.length; s += 1) {
+            const [ae, an] = line[s];
+            const [be, bn] = line[s + 1];
+            const len = Math.hypot(be - ae, bn - an);
+            out.run += len;
+            if (previous) {
+              out.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
+            }
+            const steps = Math.max(2, Math.round(len / 2));
+            for (let i = 0; i <= steps; i += 1) {
+              const e = ae + (be - ae) * (i / steps);
+              const n = an + (bn - an) * (i / steps);
+              a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
+              const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
+              out.samples += 1;
+              if (lift > 0.04) out.onPlanks += 1;
+              out.worstLift = Math.min(out.worstLift, lift);
+            }
+            previous = [be, bn];
+          }
+        }
+        return out;
+      };
+      // LAKE STREET (T-0069): the north frontage through two whole platted
+      // blocks and the board crossing over Wells Street between them, about
+      // 220 m, all of it derived from the plat and none of it placed.
       const chain = ['blk_south_water_franklin_south_walk_1',
         'blk_south_water_franklin_south_crossing_blk_south_water_wells_south',
-        'blk_south_water_wells_south_walk_1']
-        .map((id) => walks.find((w) => w.id === id) ?? null);
-      const march = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
-        missing: chain.filter((w) => !w).length };
-      let previous = null;
-      for (const w of chain) {
-        if (!w) continue;
-        const line = w.centreline_local_enu_m;
-        for (let s = 0; s + 1 < line.length; s += 1) {
-          const [ae, an] = line[s];
-          const [be, bn] = line[s + 1];
-          const len = Math.hypot(be - ae, bn - an);
-          march.run += len;
-          if (previous) {
-            march.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
-          }
-          const steps = Math.max(2, Math.round(len / 2));
-          for (let i = 0; i <= steps; i += 1) {
-            const e = ae + (be - ae) * (i / steps);
-            const n = an + (bn - an) * (i / steps);
-            a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
-            const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
-            march.samples += 1;
-            if (lift > 0.04) march.onPlanks += 1;
-            march.worstLift = Math.min(march.worstLift, lift);
-          }
-          previous = [be, bn];
-        }
-      }
+        'blk_south_water_wells_south_walk_1'];
+      const march = marchChain(chain);
+      // SOUTH WATER STREET (T-0188): the whole north face of
+      // blk_south_water_franklin, 96.5 m of it, and it is the acceptance clause
+      // this ticket had to EARN rather than assert. Before the reconciliation
+      // that face carried two stumps of 25.4 m and 45.7 m with the Temple
+      // Building and Kinzie's forwarding store standing in the roadway between
+      // them; both were re-derived against this project's own committed street
+      // line and the face is now one unbroken run — the first whole block face
+      // of sidewalk this street has ever had.
+      const southWater = marchChain(['blk_south_water_franklin_north_walk_1']);
 
       // ---- AND WALKED, not teleported, over the crossing at the corner.
       // Start on the planks a few metres short of the crossing, point along it,
@@ -3996,7 +4015,7 @@ for (const [label, viewport, touch] of [
       // road and come off onto the far block's walk. A crossing that were only
       // drawn — no deck registered — would drop the walker into the ruts here
       // and every other check in this file would stay green.
-      const cross = chain[1];
+      const cross = walks.find((w) => w.id === chain[1]) ?? null;
       const gait = { blocked: 0, offPlanks: 0, strides: 0, worstStride: 0,
         startE: null, endE: null };
       if (cross) {
@@ -4097,13 +4116,13 @@ for (const [label, viewport, touch] of [
         faces: rec?.rule?.faces_laid ?? null,
         walkM: rec?.rule?.walk_m ?? null,
         decks: decks.length,
-        march, gait, track, floor,
+        march, southWater, gait, track, floor,
       };
     });
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 16 && edge.walkM >= 1100 && edge.fences >= 10
-        && edge.decks >= 80,
+        && edge.faces === 16 && edge.walkM >= 1200 && edge.fences >= 10
+        && edge.decks >= 85,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
       + `${edge.decks} walking deck(s) registered`);
@@ -4118,6 +4137,22 @@ for (const [label, viewport, touch] of [
       + `${edge.march.run?.toFixed(0)} m, ${edge.march.gaps} gap(s) in the chain, `
       + `least lift ${edge.march.worstLift?.toFixed(3)} m, `
       + `${edge.march.missing} run(s) missing from the record`);
+    // T-0188 — AND THE SAME CLAUSE ON THE STREET THAT HAD NEVER PASSED IT.
+    // South Water's frontages came out in pieces because eleven documented
+    // buildings on that side were placed against the modern kerb and stood up to
+    // 8.17 m out in the platted roadway. Six were reconciled against this
+    // project's own committed street line; this is the face where that closed a
+    // whole block. Asserted on the RUN as well as on the samples, because a
+    // shorter run with the same lift would pass a sample-only bar.
+    check(`${label}: South Water's reconciled block face is one walk, end to end`,
+      edge.southWater.missing === 0 && edge.southWater.samples > 45
+        && edge.southWater.onPlanks === edge.southWater.samples
+        && edge.southWater.gaps === 0 && edge.southWater.run > 95,
+      `${edge.southWater.onPlanks} of ${edge.southWater.samples} sample(s) stood on `
+      + `planks over ${edge.southWater.run?.toFixed(0)} m, `
+      + `${edge.southWater.gaps} gap(s), least lift `
+      + `${edge.southWater.worstLift?.toFixed(3)} m, `
+      + `${edge.southWater.missing} run(s) missing from the record`);
     check(`${label}: a board crossing carries the walker over the road at the corner`,
       edge.gait.strides > 0 && edge.gait.blocked === 0 && edge.gait.offPlanks === 0
         && edge.gait.reached < 1.5 && edge.gait.worstStride <= 0.35,
@@ -4215,18 +4250,31 @@ for (const [label, viewport, touch] of [
         stands,
       };
     });
-    // Five docks since T-0107: the two warehouses whose dock the dossier
-    // states, the two South Water landings (J. H. Kinzie's, Jones's) the
-    // owner's 2026-08-18 ruling reconstructed (T-0062), and Robert A. Kinzie's
-    // storehouse on the WEST bank at Wolf Point — the first landing this layer
-    // has put on that shore, which T-0062's South-Water-only pass had left with
-    // no candidate at all. The refused count is asserted too: three more
-    // landings are STATED and not drawn because the traced 1834 bank ends at
-    // local E 390 (T-0106) — a sixth wharf appearing or a refusal disappearing
-    // without this line moving is a rule change nobody reviewed.
+    // SEVEN docks, and the count is the sum of two runs that landed together.
+    // The two warehouses whose dock the dossier states; the four South Water
+    // landings the owner's 2026-08-18 ruling reconstructed that are drawable
+    // (J. H. Kinzie's, Jones's, and — since T-0106 — Carpenter's and Peck's);
+    // and Robert A. Kinzie's storehouse on the WEST bank at Wolf Point, the
+    // first landing this layer put on that shore (T-0107), which T-0062's
+    // South-Water-only pass had left with no candidate at all.
+    //
+    // T-0106 moved the count because the BANK moved, not the rule. The layer
+    // used to read only the forks tracing window, which closes at local E 390,
+    // and refused three frontages east of it for standing off untraced bank.
+    // They were never untraced — tools/trace_shoreline.py has carried the same
+    // waterline off the same 1834 sheet past the drawbridge since 2026-08-10,
+    // and the generator now composes both windows the way terrain_gen.py did.
+    //
+    // ONE refusal remains and it is a different kind from the three it replaces:
+    // Harmon & Loomis's frontage IS reached by the trace, and the modelled
+    // channel gives only 0.48 m under its deck face against the 0.50 m floor
+    // asserted just below. It is refused by a SOUNDING, in writing, on the
+    // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
+    // a refusal disappearing without this line moving is a rule change nobody
+    // reviewed.
     check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 5 && docks.verts > 0 && docks.keepOut === 5
-        && docks.census?.refused === 3
+      docks.census?.wharves === 7 && docks.verts > 0 && docks.keepOut === 7
+        && docks.census?.refused === 1
         && docks.stands.every((s) => s.bents > 0),
       `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
       + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
@@ -4249,7 +4297,7 @@ for (const [label, viewport, touch] of [
     // bank were re-traced or a warehouse moved and the generator not re-run, the
     // deck would be on the wrong ground and every dataset gate would still pass.
     check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 5 && docks.stands.every((s) => s.heelDry && s.faceWet),
+      docks.stands.length === 7 && docks.stands.every((s) => s.heelDry && s.faceWet),
       docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
         + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
     // The deck is neither floating over the bank nor drowned in the river, and
@@ -6314,7 +6362,8 @@ for (const [label, viewport, touch] of [
           worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
           worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
           reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
-          furnitureMeshes: f.meshes, furnitureCasting: f.casting });
+          furnitureMeshes: f.meshes, furnitureCasting: f.casting,
+          furnitureGroundHugging: f.groundHugging });
       }
       await a.setDetail(started);
       return { seen, restored: a.detail === started, flying: a.flying,
@@ -6393,11 +6442,25 @@ for (const [label, viewport, touch] of [
     // The trim, asserted on the meshes rather than on the table that asked for
     // it: a policy that reaches `DETAIL` and not the scene passes every check
     // above unchanged, which is the failure this one exists to catch.
-    check(`${label}: the light tier draws no furniture into the shadow map`,
+    //
+    // T-0188 — AND THE TWO CASTING TIERS ARE NO LONGER HELD TO "EVERY MESH".
+    // The ground-hugging furniture (the plank-walk and board-crossing chunks of
+    // the town street edge and the river walk, 2.9 km of boards lying 0.11 m
+    // proud of the ground) is exempt at every tier, because its own cast shadow
+    // is about 0.04 m wide at noon and drawing it into the shadow map costs its
+    // whole triangle count and a draw call per chunk for nothing a visitor can
+    // see. The exemption is COUNTED rather than assumed: `furnitureShadows`
+    // reports `groundHugging`, the bar is `casting === meshes - groundHugging`,
+    // and the count is asserted to be non-zero — so a layer that silently
+    // stopped casting still fails here, and an exemption nobody declared cannot
+    // hide in the difference.
+    check(`${label}: the light tier draws no furniture into the shadow map, and only the ground-hugging timber is exempt above it`,
       light.furnitureMeshes > 0 && light.furnitureCasting === 0
-      && full.furnitureCasting === full.furnitureMeshes
-      && balanced.furnitureCasting === balanced.furnitureMeshes,
-      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes}`).join(', '));
+      && full.furnitureGroundHugging > 0
+      && full.furnitureCasting === full.furnitureMeshes - full.furnitureGroundHugging
+      && balanced.furnitureCasting === balanced.furnitureMeshes - balanced.furnitureGroundHugging,
+      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes} casting `
+        + `(${s.furnitureGroundHugging} ground-hugging)`).join(', '));
     /**
      * T-0150 — THE FURNITURE'S REACH, asserted as three separate claims because
      * three separate things can break it.

@@ -31,6 +31,19 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# Runs early and costs milliseconds, because the fault it catches is cheap to
+# make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
+# merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
+# the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
+# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
+# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# they agreed perfectly — both carried the same garbage.
+step "no committed file carries a conflict marker" \
+  python3 tools/test_no_conflict_markers.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/test_no_conflict_markers.py --self-test
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -102,6 +115,17 @@ step "the lot-line yard fences re-derive from the rule that chose their lots and
 # 125 stems stay auditable rather than 125 numbers somebody typed (T-0074).
 step "the dooryard plantings re-derive from the rule that dealt their stems" \
   python3 tools/generate_dooryard_plantings.py --check
+
+# And the planted rows are the same shape again, on the one flora treatment this project
+# has in WORDS rather than in pictures: Wau-Bun states "a broad green space was inclosed
+# between it and the river, and shaded by a row of Lombardy poplars", at a house that is
+# excluded from this scene. Seven committed plates draw that row and five agree on four
+# stems at 0.195 of their own height apart; not one of them shows a poplar anywhere else
+# in Chicago. So the treatment is the source's, the count and the rhythm are measured,
+# and WHICH GROUND GETS ONE is a rule over the committed dwellings — re-derived here so
+# the twelve stems and the refusal beside them stay auditable (T-0117).
+step "the planted poplar rows re-derive from the rule that chose their greens" \
+  python3 tools/generate_planted_rows.py --check
 
 # The business signboards are the same shape of claim one layer over: exactly one record
 # in this dataset ATTESTS a sign, and the boards on the other two dozen frontages are a
@@ -212,6 +236,16 @@ step "nothing unpermitted stands on refused ground, and the refusal still reache
 # cannot outlive the deferral it grades.
 step "every deferred in-town water feature is dated against the scene" \
   python3 tools/measure_intown_water.py --gate
+
+# The fifth of those features is no longer deferred, and the thing that most obviously
+# depends on it had nobody watching it. The Slough Log Bridge is the only built thing in
+# this dataset that exists to answer the terrain, and for two months it stood over dry
+# prairie because zone 14 was not carved (T-0109). T-0005 carved it and T-0118 put its
+# last reach square under this deck — both aimed elsewhere, neither gated here, and a
+# swale line nudged a metre west would put the crossing back over solid ground with every
+# other check still green. This joins the bridge's placement to the ground beneath it.
+step "the slough crossing spans open water, and nothing else stands in the cut" \
+  python3 tools/measure_slough_crossing.py --gate
 
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
@@ -414,6 +448,44 @@ step "the fort's stockade is still pointed" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_picket_plate.py --self-test
+
+# NOTE ON THE TWO FORT STEPS THAT FOLLOW, because they look inconsistent and are
+# not. T-0094's plate half deliberately does NOT gate: it asks whether a tier-5
+# retrospective lithograph supports a claim about the MODEL, and a lithograph may
+# not hold a build red. T-0095's does gate, and its live assertion is a different
+# question — the third one, which reads the RECORD and fires the day someone gives
+# a corner work a height, a roof or a lantern on that plate's authority. Its other
+# two assertions read a committed image that cannot change, so the only thing they
+# can catch is the detector moving under them, which is what its baseline is for.
+# One asks the plate about the town; the other asks the town about the plate.
+
+# Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
+# fort with its gates standing open makes a claim about the hour of the day, and
+# the garrison is attested for the scene date. Both of them stood a quarter open.
+# One leaf of each pair was placed from a midpoint that collapsed onto its own
+# jamb, so 0.90 m of a 3.6 m gateway was daylight straight through the wall and
+# 0.90 m of leaf lay across the pickets outside the frame — in the committed GLB,
+# so in the bytes a visitor downloaded. This reads the shipped mesh rather than
+# re-deriving the placement, because the derivation was the fault (T-0095).
+step "Fort Dearborn's documented gates are shut" \
+  python3 tools/measure_fort_gates.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_gates.py --self-test
+
+# T-0095 was filed saying p4_0 "draws the corner works RISING ABOVE the curtain
+# with their own pyramidal roofs and small lanterns". It does not. It raises two
+# such works and both stand over the MIDDLE of the wall, at 0.435 and 0.521 of the
+# drawn run; the one angle the plate shows unoccluded is drawn plain, and the other
+# is behind a tree. This is the second Fort Dearborn parcel in two days seeded by a
+# plate read with the eye (T-0094 was the first), so the refutation is held by a
+# measurement rather than by a paragraph — and its third assertion fires the day
+# the record is built to the misreading anyway.
+step "p4_0 raises no work at either angle of the fort it draws" \
+  python3 tools/measure_fort_works_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_works_plate.py --self-test
 
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.

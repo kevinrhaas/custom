@@ -211,7 +211,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 294664,
-      "inputs_sha256": "069607005ed210fc27326247de103b9d29389d3736942108b3df971b28db0ef6",
+      "inputs_sha256": "1c92409e0534aa0104f7ad2c7f3979c7f9b10433aeb6c79a3240bdfdba663b52",
       "kind": "generated",
       "phase_id": "fence_1816",
       "structure_id": "fort_dearborn_garrison_garden"
@@ -247,7 +247,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 841836,
-      "inputs_sha256": "4a110224c54afb33868844f0609db1beb8598afcb171c4665181739f3e0327c4",
+      "inputs_sha256": "dd0c84b84b5638e81ce2a21c2e93ba82072efbae49d775a696294d79642dd561",
       "kind": "generated",
       "phase_id": "picket_1816",
       "structure_id": "fort_dearborn_palisade"
@@ -651,8 +651,8 @@
     "jh_kinzie_forwarding_store__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 51652,
-      "inputs_sha256": "1bd819d21d9ebaa7687548892e60328931109a70bdc138bbd1230bdc6e32ed68",
+      "bytes": 53992,
+      "inputs_sha256": "d32a3f97eccc35fe27a113f57cc1b39a3f9f2778dfb8c350c8228879b6471f14",
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "jh_kinzie_forwarding_store"

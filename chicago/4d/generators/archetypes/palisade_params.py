@@ -58,10 +58,21 @@ CORNERS = ("nw", "ne", "se", "sw")
 # a gate failure rather than a silently unbuilt attribute.
 CONSUMED = frozenset({
     "wall_kind", "construction", "picket_height_m", "picket_width_m",
-    "picket_spacing_m", "gate_sides", "gate_width_m",
+    "picket_spacing_m", "picket_head_m", "gate_sides", "gate_width_m",
     "bastion_corners", "bastion_length_m", "bastion_projection_m",
     "rail_courses", "panel_length_m", "panel_offset_m", "fence_height_m",
 })
+
+# How short a head may get before the wall stops reading as a stockade. The same
+# number, for the same reason, as `tools/measure_picket_plate.py`'s
+# MIN_POINT_FRACTION, which refuses a shipped GLB whose apexes have worn below it:
+# a bound the record may state and the gate would then reject is not a bound.
+MIN_HEAD_FRACTION = 0.04
+
+# And how long. Half the picket is not a sharpened head, it is a spike on a short
+# post, and past that the shaft this archetype builds under it stops being the
+# thing a visitor reads as a picket.
+MAX_HEAD_FRACTION = 0.5
 
 # Where this archetype touches the ground: the whole outline, at the foot of the
 # posts. A picket line whose own outline does not reach the terrain is a fence
@@ -114,6 +125,11 @@ class PalisadeParams:
     picket_width_m: float = 0.22
     picket_spacing_m: float = 0.30
 
+    # How much of the picket's height is the sharpened head. `None` means the
+    # record does not state it and the proportion below is derived instead — see
+    # `picket_point_m`, which is what the builder actually reads.
+    picket_head_m: float | None = None
+
     # gates. Named by the side they pierce, because that is how every source
     # describes them: "large gates opened to the north and south".
     gate_sides: tuple = ()
@@ -148,11 +164,28 @@ class PalisadeParams:
     def picket_point_m(self) -> float:
         """How much of a picket's height is the sharpened point.
 
-        Derived rather than recorded: no source describes the head of a Fort
-        Dearborn picket, and a flat-topped post reads as a fence rail while a
-        pointed one reads as a stockade. One picket width is the proportion that
-        a splitting axe produces and it is not a claim about this fort.
+        **Stated by the record when the record states it, derived when it does
+        not**, and the derivation is the fallback rather than the rule because of
+        what the head is: no source describes the head of a Fort Dearborn picket,
+        and a flat-topped post reads as a fence rail while a pointed one reads as
+        a stockade. One picket width is the proportion that a splitting axe
+        produces and it is not a claim about this fort.
+
+        It was derived-only until T-0094's second half, and that was the defect:
+        an invention this conspicuous — it is the silhouette of the most
+        recognisable building in the town — lived in a Python expression, where
+        the confidence model cannot grade it, the popup cannot show it and
+        `docs/LIBERTIES.md` could not claim it in the machine-readable field. A
+        value the archetype makes up is still a value about the building, so it
+        belongs on the record at the tier it earns, which is `reconstructed`.
+        `fort_dearborn_palisade` now states 0.312 m — the number this expression
+        already produced, to the bit — so declaring it moved no vertex.
+
+        The fallback stays, and it is not vestigial: the garrison garden's worm
+        fence resolves through this same class and states no picket anything.
         """
+        if self.picket_head_m is not None:
+            return float(self.picket_head_m)
         return min(self.picket_width_m * 1.3, self.picket_height_m * 0.18)
 
     @property
@@ -190,6 +223,23 @@ class PalisadeParams:
                              f"kind of evidence")
         if not 0.08 <= self.picket_width_m <= 0.5:
             raise ParamError(f"picket_width_m {self.picket_width_m} outside 0.08-0.5 m")
+        if self.picket_head_m is not None:
+            # Bounded as a PROPORTION of the picket rather than in metres,
+            # because that is what the head is: it is cut out of the height, so
+            # what decides whether it reads is how much of the post it takes, not
+            # how many centimetres it is. The floor is the shipped gate's own
+            # (tools/measure_picket_plate.py MIN_POINT_FRACTION) so that a value
+            # this module accepts is never one check.sh then refuses.
+            lo = self.picket_height_m * MIN_HEAD_FRACTION
+            hi = self.picket_height_m * MAX_HEAD_FRACTION
+            if not lo <= self.picket_head_m <= hi:
+                raise ParamError(
+                    f"picket_head_m {self.picket_head_m} outside {lo:.3f}-{hi:.3f} m — "
+                    f"{MIN_HEAD_FRACTION:.0%} to {MAX_HEAD_FRACTION:.0%} of the "
+                    f"{self.picket_height_m} m picket. Under the floor the sawtooth "
+                    f"stops reading at the wall and tools/measure_picket_plate.py "
+                    f"--gate refuses the result; over the ceiling it is a spike on a "
+                    f"stub, not a sharpened post")
         if self.picket_spacing_m < self.picket_width_m:
             raise ParamError(f"picket_spacing_m {self.picket_spacing_m} is closer than the "
                              f"pickets are wide ({self.picket_width_m}) — they would "
@@ -220,6 +270,13 @@ class PalisadeParams:
                                  f"outside 1-12 m")
 
     def _validate_fence(self) -> None:
+        if self.picket_head_m is not None:
+            raise ParamError(f"picket_head_m {self.picket_head_m} is stated on a worm "
+                             f"fence, which has no pickets to head — a worm fence is "
+                             f"stacked split rails and nothing is set in the ground. "
+                             f"The value would be read by nothing and shown by the popup "
+                             f"anyway, which is the state `geometry:` declarations exist "
+                             f"to make impossible")
         if not 0.6 <= self.fence_height_m <= 2.5:
             raise ParamError(f"fence_height_m {self.fence_height_m} outside 0.6-2.5 m")
         if self.rail_courses not in (2, 3, 4, 5, 6, 7, 8):
@@ -275,6 +332,11 @@ def from_phase(phase: dict, record: dict | None = None) -> PalisadeParams:
         picket_height_m=float(val("picket_height_m", 3.7)),
         picket_width_m=float(val("picket_width_m", 0.22)),
         picket_spacing_m=float(val("picket_spacing_m", 0.30)),
+        # No default number, deliberately: absence means "the record does not
+        # state the head", which `picket_point_m` answers by deriving one. A
+        # default here would put a second, silent number in the same place.
+        picket_head_m=(None if val("picket_head_m") is None
+                       else float(val("picket_head_m"))),
         gate_sides=_seq(val("gate_sides"), SIDES, "gate side"),
         gate_width_m=float(val("gate_width_m", 3.6)),
         bastion_corners=_seq(val("bastion_corners"), CORNERS, "bastion corner"),
