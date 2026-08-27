@@ -33,6 +33,7 @@ import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
 import { createFrontage } from './frontage.js';
+import { createFarMerge } from './far-merge.js';
 import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
@@ -975,7 +976,11 @@ async function boot() {
       // furniture at all, so nothing here changes it.
       group.traverse((o) => {
         if (!o.isMesh) return;
-        o.castShadow = casts && !o.userData.groundHugging;
+        // A merged far batch (T-0146) never casts: it is only ever drawn for a
+        // cluster every part of which is beyond 340 m, which is outside the
+        // sun's ±240 m box whatever the bearing, so its members were casting
+        // nothing either. The shadow map reads the same with the merge on.
+        o.castShadow = casts && !o.userData.groundHugging && !o.userData.farMerged;
       });
     }
     return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
@@ -1039,6 +1044,10 @@ async function boot() {
       group.updateWorldMatrix(true, true);
       group.traverse((o) => {
         if (!o.isMesh || !o.geometry) return;
+        // The merged far batches (T-0146) are drawn FROM these chunks, not
+        // alongside them: banking one would have the reach culling a batch and
+        // the batch drawing the chunks the reach had just culled.
+        if (o.userData.farMerged) return;
         if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
         const sph = o.geometry.boundingSphere?.clone();
         if (!sph) return;
@@ -1050,9 +1059,22 @@ async function boot() {
   /** The reach in force, from the level — and every mesh made visible again on
    *  the way back up the ladder, so switching down and up returns the frame the
    *  visitor had rather than a permanently thinner one. */
+  /**
+   * T-0146 — the second half of the same idea, and the piece of T-0149 that is
+   * about the two tiers with NO reach. Where the reach asks "is this too far to
+   * be worth drawing", this asks "is the frustum skipping anything in return
+   * for these chunk boundaries" — and where the answer is no, submits the
+   * cluster as one call. `far-merge.js` states both conditions and why each one
+   * makes the merge free; it is fed the spheres banked just above rather than
+   * walking the layers a second time.
+   */
+  const farMerge = createFarMerge({
+    scene: scene3d, camera, layers: FURNITURE_LAYERS,
+  });
   function applyFurnitureReach(level) {
     const want = DETAIL[level] ?? DETAIL.full;
     collectFurniture();
+    farMerge.rebuild(furniture.spheres);
     furniture.reachM = typeof want.furnitureReachM === 'number'
       ? want.furnitureReachM : null;
     updateFurnitureReach();
@@ -1081,10 +1103,20 @@ async function boot() {
         far = Math.sqrt(dx * dx + dy * dy + dz * dz) - sph.r > reach;
       }
       sph.mesh.visible = !far;
+      // Recorded on the mesh as well as counted, because two things now set
+      // `visible` on a furniture chunk and only ONE of them is the reach: the
+      // far merge (T-0146) hides a chunk it is drawing itself. The probes below
+      // and the merge's own composition rule both read this flag rather than
+      // `visible`, so "held back for distance" keeps meaning what T-0150's
+      // gates assert it means.
+      sph.mesh.userData.reachCulled = far;
       if (far) culled++; else drawn++;
     }
     furniture.drawn = drawn;
     furniture.culled = culled;
+    // After the reach and never before it: a cluster with a member the reach is
+    // holding back is left chunked, which is read off the flag just written.
+    farMerge.update();
   }
   applyFurnitureReach(detailLevel);
 
@@ -1810,6 +1842,19 @@ async function boot() {
       updateFurnitureReach();
       return furniture.reachM;
     },
+    /** T-0146, HARNESS ONLY and never a visitor setting, for the reason
+     *  `setFurnitureReach` above is one: the merge's whole claim is that it
+     *  changes the call count and not the triangle count, and the only honest
+     *  way to read that is the same frame with it off and with it on.
+     *  `tools/measure_far_merge.mjs` is what does. */
+    setFarMerge(on) {
+      const state = farMerge.setEnabled(on);
+      // The merge only ever hides a chunk; the reach is what makes one visible
+      // again, so turning the merge OFF has to run that pass rather than just
+      // hiding the batches.
+      updateFurnitureReach();
+      return state;
+    },
     /** Force one frame — for tests that must not race the animation loop. */
     step() { tick(); },
     /** Keep rendering, advance nothing — for tests comparing two frames of the
@@ -1866,6 +1911,11 @@ async function boot() {
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
+            // The merged far batches are a BATCHING of these same meshes, not
+            // furniture of their own, and they never cast (T-0146). Counting
+            // them would put a non-caster into both sides of the bar
+            // `casting === meshes - groundHugging` and quietly weaken it.
+            if (o.userData.farMerged) return;
             meshes += 1;
             if (o.userData.groundHugging) groundHugging += 1;
             if (o.castShadow) casting += 1;
@@ -1893,8 +1943,13 @@ async function boot() {
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
+            if (o.userData.farMerged) return;
             meshes += 1;
-            if (!o.visible) hidden += 1;
+            // `reachCulled` and not `!visible`: since T-0146 a chunk can also be
+            // invisible because its cluster is being drawn as one mesh, and
+            // reporting that as "the reach held it back" would make this
+            // reading say `full` has a reach when it has none.
+            if (o.userData.reachCulled) hidden += 1;
           });
         }
         return { reachM: furniture.reachM, layers: FURNITURE_LAYERS.slice(),
@@ -1902,6 +1957,15 @@ async function boot() {
       },
       enumerable: true,
     },
+    /**
+     * T-0146. What the far merge is doing at this instant — clusters formed,
+     * clusters merged in the frame just drawn, and the calls that saved. A
+     * function of where the visitor stands, like `furnitureReach`: 0 merged in
+     * a frame that is looking at a wall, and most of them merged down an axial
+     * street. Read off the clusters rather than off the constants, for the
+     * reason R-A1 gives above.
+     */
+    farMerge: { get: () => farMerge.state, enumerable: true },
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },

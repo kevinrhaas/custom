@@ -6671,6 +6671,30 @@ for (const [label, viewport, touch] of [
             row.trimTris = off.triangles - r.triangles;
             row.trimCalls = off.drawCalls - r.drawCalls;
           }
+          // T-0146 — WHAT THE FAR MERGE IS WORTH, and the fact that it costs
+          // nothing, taken the same way and at the same stand and for the same
+          // cost reason: one tier only (`full`, where the worst frame is), one
+          // stand only, two extra frames in the whole stage. The merge submits
+          // a far cluster as one mesh only while the cluster is wholly inside
+          // the frustum, so the triangle delta is 0 BY CONSTRUCTION — it is
+          // asserted below rather than tolerated, because a merge that started
+          // drawing what the frustum used to skip would be a ceiling breach
+          // wearing a saving's clothes.
+          if (st.id === 'lake_at_canal' && level === 'full') {
+            row.mergeClusters = a.farMerge.clusters;
+            row.mergeMerged = a.farMerge.merged;
+            a.setFarMerge(false);
+            await settle();
+            const off = a.stats();
+            // Restored without a settle of its own, deliberately: this stand is
+            // never the last of the order, `setFarMerge` puts the visibility
+            // back synchronously, and the next stand settles before it reads.
+            // Part 4 is the thinnest margin in the desktop suite (T-0173) and a
+            // frame here costs about three seconds on the software renderer.
+            a.setFarMerge(true);
+            row.mergeTris = off.triangles - r.triangles;
+            row.mergeCalls = off.drawCalls - r.drawCalls;
+          }
           atStands.push(row);
         }
         // The furniture and shadow-rig readings are properties of the LEVEL, not
@@ -6815,6 +6839,28 @@ for (const [label, viewport, touch] of [
      * A reach set to a number larger than the town would satisfy the first check
      * and do nothing at all.
      */
+    /**
+     * T-0146 — THE FAR MERGE, asserted as the one claim it makes: down the
+     * axial street it gives back a large part of the call count the chunking
+     * spent, and it moves NOT ONE TRIANGLE doing it. Both halves come from the
+     * same frame read twice at the stand the trim was designed against, so
+     * neither can be satisfied by an unrelated layer getting cheaper.
+     *
+     * The call bar is set at roughly half the 54 calls measured when it landed
+     * (201 -> 147 at `full`, `tools/measure_far_merge.mjs`), which is the same
+     * margin T-0150's reach bar carries: enough that the merge going dead is
+     * caught, loose enough that a parcel adding a chunk somewhere does not have
+     * to re-argue the number. The triangle bar has no margin at all and must
+     * not be given one.
+     */
+    const merged = full.atStands.find((x) => x.id === 'lake_at_canal');
+    check(`${label}: the far merge gives back draw calls down the axial street and moves no triangle doing it`,
+      !!merged && merged.mergeTris === 0 && merged.mergeCalls >= 25
+      && merged.mergeMerged > 0,
+      merged
+        ? `${merged.mergeCalls} call(s) saved over ${merged.mergeMerged} of `
+          + `${merged.mergeClusters} cluster(s), ${merged.mergeTris} triangle(s) moved`
+        : 'the axial stand was not walked at full');
     const axial = light.atStands.find((x) => x.id === 'lake_at_canal');
     check(`${label}: the light tier holds furniture back down the axial street`,
       !!axial && axial.hidden > 0,
