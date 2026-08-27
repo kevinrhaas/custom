@@ -24,7 +24,7 @@ Piece 5 of 5 of **T-0127 — The rest of the town gets the street edge**, split 
 
 ---
 
-## 2026-08-27 — BUILT AND GATED, HELD ON A CEILING IT DID NOT BREACH
+## 2026-08-27 (morning) — BUILT AND GATED, HELD ON A CEILING IT DID NOT BREACH
 
 Branch **`steward/t-0194-hitching-posts`** (2 commits, pushed). **The PR could not be
 opened: GitHub rate-limited the steward PAT three times in a row** (403, "API rate limit
@@ -121,3 +121,47 @@ mirrored; T-0230 filed `--by loop` at the QUEUE bottom; QUEUE order otherwise un
 **This ticket is left `claimed`, not `done`** — its state only reaches `dev` when its PR
 merges, and `ticket.mjs claim` will point the next run at this branch rather than let it
 rebuild the work.
+
+
+## 2026-08-27 (evening) — THE HOLD IS LIFTED: THE CEILING THAT HELD IT IS NO LONGER BREACHED
+
+The run above finished the work, could not open its PR (three consecutive 403s on the steward
+PAT), and left the branch pushed with an explicit handoff. Nothing was reworked here: the branch
+was **rebased onto today's `dev`** — which has since taken **T-0223** (the timber cull, #411),
+**T-0146** (#408) and **T-0208** (#410) — every derived artefact re-generated on that base, and
+the gate re-run in full. The parallel implementation this run had built independently was
+discarded rather than opened as a second PR: one ticket, one branch, one PR. `ticket.mjs inflight`
+reported nothing at claim time because the rival branch was pushed hours earlier and had aged out
+of the three-hour "live" window — which is the same collision **T-0238** is already filed for.
+
+**The hold was never about this parcel, and it is gone.** T-0223 landed the timber cull the morning
+run named as the real repair, and the whole frame came down with it. Re-measured by the smoke's own
+ceiling leg, on this branch, at the worst stand in each set:
+
+| tier | ceiling | desktop 1280×800 | mobile 390×780 |
+|---|---:|---:|---:|
+| `full` | 1,425,000 | 1,252,879 | 1,145,313 |
+| `balanced` | 1,260,000 | 1,084,292 | 1,020,684 |
+| `light` | 1,050,000 | 703,610 | 649,296 |
+
+`balanced` was **5,678 over** this morning and is **175,708 under** now. Draw calls: 141 worst
+(desktop), 137 (mobile). The 288 triangles this parcel adds are inside the instrument's own noise.
+
+**Re-run in the foreground on this branch, all of it:**
+
+* `./tools/check.sh` — **CHECK PASS**. This is the declared dev gate (`docs/PIPELINE.md`: *"the dev
+  gate is `check.sh` and nothing else"*), and it re-derives the record byte for byte.
+* `SMOKE_STAGE=2`, **both viewports** — **160 passed, 0 failed, SMOKE PASS**, including both
+  hitching-post assertions and *aiming at the frontage opens the inn it belongs to* at each.
+* `SMOKE_STAGE=3-4`, **mobile 390×780** — **113 passed, 0 failed, SMOKE PASS**, all three ceilings.
+* `SMOKE_STAGE=3`, **desktop 1280×800** — **74 passed, 0 failed, SMOKE PASS**.
+* `SMOKE_STAGE=4`, **desktop 1280×800** — every assertion in the part passed, **including all
+  three detail ceilings and the draw-call ceiling**, run TWICE with identical figures. The part
+  could not reach its own teardown inside the runner's ten-minute per-command ceiling either time.
+  That is the condition **T-0173** ("part 4 and part 5 have under a minute of margin") and
+  **T-0235** ("the unfiltered smoke takes 55 minutes on the steward runner") already record on
+  `dev`; it is a fact about the runner, not about this branch.
+* Changelog re-stamped on the rebased base (the morning's v292 collided with three merges since);
+  `publish.sh` re-run in the same commit; `compile_liberties.py` re-derived; `ticket.mjs board`
+  regenerated. **T-0230's QUEUE line was re-appended at the BOTTOM** of the file as the owner
+  re-ordered it this afternoon — his ranking is untouched.
