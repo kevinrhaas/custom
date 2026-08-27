@@ -96,6 +96,7 @@ from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E40
                           eave_limits, families, pitch_deg, stable_fraction,
                           storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -125,21 +126,33 @@ INVENTED_NOTE = (
 )
 
 
+# T-0189, and the same fault the `symbolic_location` clause below carried: this note was
+# written for T-0078's run on South Water Street, where every literal in it was true, and
+# it has been printed verbatim on every frontage run since. The card shows it beside the
+# location line, so a house on Washington Street 400 m from the water was told it stood on
+# "the town's river business front" and looked at "the river beyond it, as every documented
+# store on this face does" — on a face whose entire documented 1835 frontage is the estray
+# pen (tools/measure_street_frontage.py randolph washington: Washington 1 record, 0 inferred
+# households). Two claims about the town were removed and nothing else changed. What stays
+# is the treatment's real provenance: the 1834 view IS where a row of party walls comes
+# from, and a row placed on any other face is borrowing it, which the note now says.
 FRONTAGE_NOTE = (
     "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0078). This building does "
     "not stand centred on a lot at a typology setback: it stands ON the {face} face of "
-    "{block}, the town's river business front, whose line and bearing are read from the "
-    "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
+    "{block}, the block's {street} Street frontage, whose line and bearing are read from "
+    "the block boundary in data/traces/vectors/thompson_lots.json — the same committed "
     "geometry the lot grid and the corridor gate are derived from. Its front wall is "
     "{setback} m back from that lot line, {line_why}, and its east wall is fixed "
-    "by {anchor}. The bearing is the face's own, so the front looks at {street} Street and "
-    "the river beyond it, as every documented store on this face does. The run carries no "
+    "by {anchor}. The bearing is the face's own, so the front looks square at {street} "
+    "Street. The run carries no "
     "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
     "INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here at all, which "
     "building it was, and that these particular units stood shoulder to shoulder. What the "
-    "1834 South Water Street view supports is the TREATMENT — a continuous working row "
-    "facing the river rather than detached cottages set back on grass — and the treatment "
-    "is what this placement takes from it. Standing on a derived block face is not standing "
+    "1834 South Water Street view supports is the TREATMENT — a continuous working row of "
+    "party walls rather than detached cottages set back on grass. The treatment is what "
+    "this placement takes from it, and a run standing on any other face of the town is "
+    "borrowing it from that one street: the view draws a row, it does not place this row. "
+    "Standing on a derived block face is not standing "
     "on a recovered lot, and the side lot lines this row crosses were always conjectural."
 )
 
@@ -277,23 +290,23 @@ def form_for(family: str, spec: dict, key: str, width: float, depth: float,
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, spec, key, width, depth, paint), family,
-                       band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, spec, key, width, depth, paint), family,
+                    band_note(family)),
+        family, width, depth)
 
 
-# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
-# once, because both the eave and the pitch need them (T-0148). Each used to sit
-# inline in the form branch that returned it, which is the same rule written four
-# times; a family cannot now get one roof for the purpose of choosing its eave and
-# another for the purpose of building it.
-def _roof_kind(family: str) -> tuple[str, bool | None]:
-    if family.startswith(("C", "F")) and family != "F1":
-        return "gable", family.startswith("C")
-    if family in ("D2", "A3", "A4"):
-        return "shed", None
-    return "gable", None
+# WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this file's
+# (T-0179). It was decided here and in four other parcels, as the same literal written
+# five times, and the five had already drifted: three named A5 among the shed families
+# and two — this one and `generate_inferred_infill.py` — did not. No A5 stands on these
+# blocks, so adopting the shared rule moves nothing here; it moves what the schedule
+# WOULD deal, which is the whole point of a rule with one home.
 
 
 def _pitch_default(family: str, levels: float) -> float:
@@ -304,7 +317,7 @@ def _pitch_default(family: str, levels: float) -> float:
         return 34.0
     if family.startswith(("D", "H")) and family != "D2":
         return 44.0 if levels == 1.5 else 38.0
-    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
 
 
 def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
@@ -334,7 +347,7 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
     # A1 stables on these blocks stood outside their ridge band for exactly that. The
     # eave is held to the nearest value in its OWN band that the ridge band can be met
     # from; a draw that already meets it is returned untouched.
-    roof_type, gable_front = _roof_kind(family)
+    roof_type, gable_front = roof_kind(family)
     run = ridge_run_m(spec.get("archetype"), roof_type, width, depth, gable_front)
     wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
                           family, spec["eave_ft"], spec.get("roof"),
@@ -596,8 +609,18 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
              f"{bounded['south'].replace('_', ' ').title()} and "
              f"{bounded['west'].replace('_', ' ').title()}")
     if on_frontage:
+        # T-0189. This clause read "one unit of the party-line RIVER row" until
+        # 2026-08-27, which was written for T-0078's South Water run and was true of it.
+        # It is the first line a visitor reads on the card, and by the time it was
+        # caught it stood on 23 records across four faces — three houses on Washington
+        # Street 400 m from the water among them, told they were part of a river row on
+        # a street the sentence does not name. The row belongs to the face it stands on,
+        # which is the face this same sentence has always named; `tools/block_faces.py`
+        # calls it "a party-line STREET row" in its own docstring and that is the
+        # vocabulary. Nothing moved: the phrase describes the placement, it does not
+        # decide it.
         where += (f"; standing ON the {faces.replace('_', ' ').title()} Street frontage "
-                  "itself, one unit of the party-line river row")
+                  "itself, one unit of the party-line row along it")
     else:
         where += (f"; a yard building off the block alley behind the {slot['fronts'].title()} "
                   "Street frontage" if fronts_alley

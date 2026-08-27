@@ -51,7 +51,7 @@ anything a placement gate allows.
 ## THE ONE EXCEPTION — a business front is shared, and the owner said so
 
 **Owner's ruling, 2026-08-27.** Reconciling the South Water placements with the
-committed plat seated five documented stores on lots the 665-roof schedule had already
+committed plat seated five documented stores on lots the roof schedule had already
 dealt to that street's anonymous frontage runs (T-0199). Nothing overlapped — every one
 of them was checked against every committed footprint in the town and the worst overlap
 was zero — so what failed was a RULE, one principal roof to a lot, and the fork went to
@@ -89,9 +89,9 @@ the answer is now no.
 
 **And it did not need a second clause to hold, which is worth recording because the first
 attempt wrote one.** Standing the five stores on the plat left one pair at 2.40 m —
-`recon_1835_blk_south_water_wells_d4_03` and `carpenter_south_water_store`, side by side
+`recon_1835_blk_south_water_wells_d1_05` and `carpenter_south_water_store`, side by side
 along the face with their fronts level — under the three-metre gate. That gap is AUTHORED,
-not derived: the D4 slot stands `clear_west_of` the store by a stated `clear_m`, and
+not derived: that slot stands `clear_west_of` the store by a stated `clear_m`, and
 `generate_block_infill.place_frontage`'s own note says where the number belongs — *"the
 three-metre separation rule — not this recipe — is what fixes the size of the break"*.
 2.4 m was authored while the store stood 6.62 m out in the roadway, where the along-face
@@ -289,7 +289,7 @@ def lot_holders(grid: dict, datum: dict,
     ever needed. The owner's business-front clause needs the LIST: a lot the run already
     stands on is not freed by a documented store also standing at the street on it, and
     with only the first id in hand — `carpenter_south_water_store` sorts before
-    `recon_1835_blk_south_water_wells_d4_03` — the row unit is invisible and the lot
+    `recon_1835_blk_south_water_wells_d1_05` — the row unit is invisible and the lot
     reads free. That is the schedule offering a block room it is already using.
     """
     frames = [(block["id"], index, [tuple(p) for p in lot["polygon"]])

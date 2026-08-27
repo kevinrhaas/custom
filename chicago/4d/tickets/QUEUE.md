@@ -42,15 +42,9 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
-T-0022 — May the schedule deal log cabins to commercial frontage
-T-0023 — The end rule is exhausted on the Randolph-Washington row
-T-0032 — The six-roof civic target counts three that were never built
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0031 — Where did the South Water timber belt stand
-T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
-T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
 
 # --- THE TRIANGLE BUDGET — invisible, but it governs how much can be added
 T-0146 — Merge far chunks back into single draws
@@ -78,7 +72,6 @@ T-0172 — The other three anonymous parcels still deal a retyped roof pitch, an
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
@@ -86,10 +79,18 @@ T-0187 — At light detail the mid and forb rings' outer ramps dither inside the
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
-T-0209 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
+T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
+T-0213 — Weight the trade families onto the business front
+T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
+T-0214 — Two flower-head archetypes truncate silently at their instance cap
+T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
+T-0211 — The other nine group rows are cross-checked against nothing
+T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
+T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
+T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
+T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one

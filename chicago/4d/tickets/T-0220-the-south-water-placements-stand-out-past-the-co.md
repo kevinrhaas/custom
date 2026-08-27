@@ -1,5 +1,5 @@
 ---
-id: T-0208
+id: T-0220
 title: The South Water placements stand out past the committed plat, and the walk breaks on them
 state: done
 epic: TOWN
@@ -198,7 +198,7 @@ narrative; the four blocks' `arrangement_note`s carry it where a reader of the r
 **ONE rule changed, and only one.** Standing the five on the plat left one pair under the
 three-metre separation gate — the wells run's westernmost unit at 2.40 m from Carpenter's store,
 side by side along the face with their fronts level — and the first attempt at this repair wrote
-a second clause for it. That was wrong. The break is AUTHORED, on the D4 slot as `clear_west_of`
+a second clause for it. That was wrong. The break is AUTHORED, on that slot as `clear_west_of`
 + `clear_m`, and `place_frontage`'s own note says where the number belongs: *"the three-metre
 separation rule — not this recipe — is what fixes the size of the break"*. The 2.4 m had been
 authored while the store stood 6.62 m out in the roadway, where the along-face break was not the
@@ -252,7 +252,7 @@ any depth now, cross streets included.
 
 ## Bookkeeping this run had to do
 
-- **This ticket was `T-0190` and is now `T-0208`.** `dev` merged its own `T-0190` (a second
+- **This ticket was `T-0190` and is now `T-0220`.** `dev` merged its own `T-0190` (a second
   street tier) while this branch was parked, so two files carried the id; `ticket.mjs restamp`
   renumbered the younger, which is this one, and `T-0190`'s place in the owner's QUEUE was put
   back where the restamp had taken it.

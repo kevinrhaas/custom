@@ -68,5 +68,5 @@ repaired. **If the answer needs a rule rather than a metre — anonymous roofs s
 documented building belongs — it is the same shape of question the owner settled for the
 business front and it goes to him, not to the loop.** Never by weakening a gate.
 
-**Links:** T-0198 (the six) · T-0199 (the five, and the ruling) · T-0208 (the fork) ·
+**Links:** T-0198 (the six) · T-0199 (the five, and the ruling) · T-0220 (the fork) ·
 `tools/plat_occupancy.py` (the clause and its bounds) · T-0069, T-0127 (the street edge).

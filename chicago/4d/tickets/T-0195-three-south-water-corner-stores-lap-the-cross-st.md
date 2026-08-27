@@ -54,5 +54,5 @@ writing per store with the metres and the reason in its own `position.note`;
 banked rather than tolerated; and no source-argued coordinate is moved to make a derived
 number smaller. Never by weakening a gate.
 
-**Links:** T-0198 (the six) · T-0199 (the five, and the owner's ruling) · T-0208 (the fork as
+**Links:** T-0198 (the six) · T-0199 (the five, and the owner's ruling) · T-0220 (the fork as
 it was put to him) · `tools/corridor_intrusion_baseline.json`.

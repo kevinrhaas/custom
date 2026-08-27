@@ -96,9 +96,9 @@ offering a block room it is already building on.
 
 **Nothing physical was relaxed, and only ONE rule moved.** No overlap, the lot margin, the
 platted corridor and the three-metre separation all still bind, untouched. One pair did fail
-the separation gate on the way — `recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from
+the separation gate on the way — `recon_1835_blk_south_water_wells_d1_05` at **2.40 m** from
 `carpenter_south_water_store`, side by side along the face with their fronts level — and the
-honest fix turned out to be in the recipe, not in the gate. That break is AUTHORED: the D4 slot
+honest fix turned out to be in the recipe, not in the gate. That break is AUTHORED: that slot
 stands `clear_west_of` the store by a stated `clear_m`, and `place_frontage`'s own note says
 where the figure comes from — *"the three-metre separation rule — not this recipe — is what
 fixes the size of the break"*. **2.4 m was authored while the store stood 6.62 m out in the
@@ -116,4 +116,4 @@ Wells and Dearborn block faces each go from two stumps to one whole run. The mar
 zero steps for a wall anywhere on South Water; the eleven wall-refused steps left in the town
 are all on Lake Street, which is T-0196.
 
-Closed with T-0208, which carries the fork as it was put to the owner and his answer.
+Closed with T-0220, which carries the fork as it was put to the owner and his answer.

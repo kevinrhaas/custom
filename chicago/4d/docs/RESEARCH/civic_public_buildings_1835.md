@@ -214,10 +214,70 @@ inventing the very kind of aggregate this parcel just removed. It is written up 
 scheduling I3 slots that every generator refuses — which is visible, gated and honest,
 and is a better failure than a number quietly changed.
 
+## 6a. Route 1 was taken — the target is three, and the town's total is 662
+
+**Settled 2026-08-27, ticket T-0032.** The owner ruled on 17 August: *"close it at 665 or
+662 — either is close."* The pick was delegated and **662** is the one taken, for the
+reason section 6 gives against route 2: T-I3(a) established the three slots were a count of
+nothing rather than miscategorised real roofs, so re-typing them into ordinary families
+would have invented three buildings on the strength of an arithmetic artifact. 662 sits
+inside the spec's own `defensible_range`.
+
+**Every candidate a slot could have been spent on is settled, and the ledger is re-derived
+on every run of the gate rather than remembered from this page.**
+`tools/measure_institutional_claims.py` now carries the roster, and prints it:
+
+| candidate | on 1835-07-01 | how the dataset settles it |
+|---|---|---|
+| `log_jail` | **stood** | reconciliation credits one I3 roof |
+| `council_house` | **stood** | reconciliation credits one I3 roof |
+| `chicago_lighthouse_1832` | **stood** | reconciliation credits one I3 roof |
+| `cook_county_courthouse_1835` | later — fall 1835 | committed record; reconciliation credits no roof |
+| `first_fire_engine_house` | later — contracted 30 Dec 1835 | exclusion, `earliest_scene: 1836` |
+| `market_house_lake_state` | later — 1837 | exclusion, `earliest_scene: 1837` |
+| `custom_house_chicago` | later — 1846 | exclusion, `earliest_scene: 1847` |
+| `chicago_town_hall` | never built | exclusion with NO date: a kind guard |
+| `us_land_office_1835` | a function, not a building | exclusion with NO date: a kind guard |
+| `estray_pen` | stood, and roofless | committed record; reconciliation credits no roof |
+
+Three stood. The target is three, and the tool fails the gate if it is anything else —
+above the ledger is a slot that counts nothing, below it is a documented roof with nothing
+to count against.
+
+**What else moved, because a closed arithmetic has no free variables.**
+
+- `roof_total` **665 → 662**, and `principal_functional` **511 → 508**. All three phantom
+  roofs were principal; `ancillary` stays at 154, so the programme's own ancillary ratio
+  becomes 154:508. The block ceiling is unchanged — an eight-lot block rounds to seven yard
+  buildings at either ratio — which was checked rather than assumed, because a ceiling that
+  HAD moved would have re-dealt blocks this correction never touched.
+- **The institutional district row was wrong in a second way, and it is corrected from the
+  same enumeration.** The inventory apportioned twelve institutional roofs as south 10 /
+  west 1 / north 1, while the named records stand **south 5 / west 1 / north 3**. So the
+  schedule kept finding institutional headroom in the South Division that no evidence
+  supports, and none in the North where three of these buildings actually are. The row is
+  now the census. That is what carries the **south district target 370 → 365** and the
+  **north 150 → 152**; no other row in the matrix changed, and the district columns still
+  sum to their own targets.
+- **Every I3 slot has left the schedule.** `blk_lake_franklin` and
+  `blk_south_water_market` each held one, and the South balance held three; the block deals
+  now name buildable families instead, so a block that was going to be short a roof for
+  arithmetic reasons is not. The remainder falls **327 → 324** and the coverage-gated
+  balance **299 → 296**.
+- **The gate screen shows it.** `data/town_census.json` is derived, and the first panel a
+  visitor meets now reads *338 buildings standing, of the 662 the town held*.
+
+**What did NOT move.** No building was added, removed or re-typed; no record's confidence,
+date, position or fabric changed; the standing count is 338 exactly as before. The
+correction is to a target, and the only thing a target can be wrong about is what is still
+owed.
+
 ## 7. What is still owed
 
-- **T-I3(b)** — the target correction above; an owner decision between two routes.
 - The court-house's **corner** and **fabric**, now attested, applied to the record. Needs
   a bake, because a changed form value stales the mesh.
 - Nothing else. The enumeration is closed on the sources this project holds; a new source
-  could add a building, and if one does it arrives as a named record and not as a slot.
+  could add a building, and if one does it arrives as a named record and not as a slot —
+  and it will move the target, the district row and the town total with it, because the
+  gate now refuses a row that does not equal the census. That is the intended cost: an
+  institutional roof cannot be added quietly.

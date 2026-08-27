@@ -1,5 +1,5 @@
 ---
-id: T-0209
+id: T-0221
 title: measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 state: open
 epic: META
@@ -49,5 +49,5 @@ are reconciled in one module both callers import; the `physicians_office` disagr
 in the numbers is stated; and a self-test proves the absolute assertion still fires when a
 generated roof is put in a corridor. Never by weakening a gate.
 
-**Links:** T-0199 / T-0208 (where it was found) · `tools/plat_occupancy.py` `researched_ids` ·
+**Links:** T-0199 / T-0220 (where it was found) · `tools/plat_occupancy.py` `researched_ids` ·
 ROADMAP K30.
