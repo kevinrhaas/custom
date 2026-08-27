@@ -284,7 +284,52 @@ const DETAIL = {
   // and it is a separate ticket precisely so that the trim has to be measured
   // before the ceiling is allowed to follow it down. A ceiling lowered in the
   // same breath as the trim that justified it is a ceiling nobody checked.
-  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
+  // ── RE-BUDGETED 2026-08-27 ON THE OWNER'S DECISION, AND IT EXPIRES ──────────
+  //
+  // `full` and `balanced` are raised to clear a breach that is REAL but whose
+  // cause is measured and is NOT the town's content. Both numbers come back
+  // down when T-0209's first step lands. This is written here rather than in a
+  // ticket because the next person to read these constants is the one who needs
+  // to know they are provisional.
+  //
+  // THE MEASUREMENT (T-0209, `tools/measure_stand_budget.mjs`, at the release
+  // smoke's own worst stand — Lake Street at Canal, east down the axis):
+  //
+  //   full      1,412,120 of 1,400,000   over by 12,120
+  //   balanced  1,252,802 of 1,210,000   over by 42,802
+  //
+  //   trees     360,926 triangles drawn, of 181,900 the layer OWNS.
+  //             180,100 of that is the sun's pass over timber that lies
+  //             outside the +/-240 m shadow box — 14.4 % of the whole frame,
+  //             casting nothing any pixel of the shadow map can hold.
+  //
+  // So the frame carries roughly FOUR TIMES the headroom either ceiling needs,
+  // in work the renderer should not be doing at all. trees.js builds the near
+  // timber as four quadrant meshes spanning kilometres, and a mesh whose
+  // bounding sphere merely touches the shadow box is submitted whole — there is
+  // nothing to cull per-mesh until the timber is chunked. That is why this is a
+  // raise today and not a trim: the trim is real work, not a flag.
+  //
+  // WHY RAISE AT ALL, since the content is not at fault: the nightly bake's
+  // desktop 3-4 leg is red on every branch until one of the two happens, so it
+  // reports nothing about the branch under test, and production cannot ship
+  // without a known breach. A red gate that is red for everyone is a gate
+  // nobody reads.
+  //
+  // THE NUMBERS: the measured worst stand plus ~0.6 % — the smallest step that
+  // clears the breach and leaves a normal parcel room, NOT a round number and
+  // NOT chosen to fit a particular record.
+  //
+  // WHEN THIS COMES OUT: T-0209 step one culls the timber from the sun's
+  // camera. At that point the worst stand should fall to roughly 1,232,000
+  // (full) and 1,072,000 (balanced) — comfortably under the ORIGINAL
+  // 1,400,000 / 1,210,000. Put them back. If the cull recovers materially less
+  // than 180,100, that is a finding and these numbers need re-arguing, not
+  // quietly keeping.
+  //
+  // This is the FIFTH re-basing of these ceilings. The count is the argument
+  // for T-0209, and it is recorded here so the sixth is harder to reach for.
+  full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -345,7 +390,9 @@ const DETAIL = {
   // at 1,210,000 and the budget question lives entirely in T-0209, which orders
   // the trim first and the ceiling after. The tree stand this parcel adds ships
   // regardless; its own smoke leg is red on dev with or without it.
-  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+  // Raised with `full` above, same reasoning, same expiry: measured 1,252,802
+  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0209.
+  balanced: { triangles: 1260000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
