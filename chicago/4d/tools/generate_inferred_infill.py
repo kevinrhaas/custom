@@ -216,7 +216,7 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
     # file's (T-0179). This parcel is the one held back from part of that rule — it
     # retyped the shed set without A5 and one A5 roof stands on the difference, which
     # cannot move without a bake — so it names itself and the hold is recorded beside
-    # the rule rather than here. See `roof_form.AWAITING_BAKE` and T-0208.
+    # the rule rather than here. See `roof_form.AWAITING_BAKE` and T-0212.
     roof = roof_kind(family, PARCEL)[0]
     wall = 2.05 if family == "A3" else (3.42 if door == "wagon" else 2.75)
     material = "plank"

@@ -197,7 +197,7 @@ def shed_offer() -> dict:
 
 # The one parcel held back from the shared rule, banked by name. It may SHRINK — the day
 # `recon_1835_south_a5_044` is re-baked as the shed its family gets everywhere else, this
-# goes to empty — and it may not grow. See `roof_form.AWAITING_BAKE` and T-0208.
+# goes to empty — and it may not grow. See `roof_form.AWAITING_BAKE` and T-0212.
 HELD_BASELINE = {("generate_inferred_infill.py", "A5"): "gable"}
 
 
@@ -237,7 +237,7 @@ def report_shed_offer(offer: dict) -> list[str]:
                      f"HELD_BASELINE, and that one may shrink and may not grow")
     if offer["held"]:
         for (parcel, fam), form in sorted(offer["held"].items()):
-            print(f"     held: {parcel} still deals {fam} a {form}, awaiting a bake (T-0208)")
+            print(f"     held: {parcel} still deals {fam} a {form}, awaiting a bake (T-0212)")
     print(f"     the refusal is recorded on every committed record of "
           f"{', '.join(offer['refused'])}")
     return fails

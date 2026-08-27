@@ -106,7 +106,7 @@ SHED_FAMILIES = ("D2", "A3", "A4", "A5")
 # So the hold is NAMED, here, beside the rule it suspends, rather than left inside the
 # parcel looking like a choice. `tools/measure_ridge_reach.py` holds this table to exactly
 # what is written below: it may shrink and it may not grow, so a second parcel cannot
-# quietly opt a second family out. Owned by T-0208.
+# quietly opt a second family out. Owned by T-0212.
 AWAITING_BAKE = {("generate_inferred_infill.py", "A5"): "gable"}
 
 # The footprint band is swept on a grid rather than at its corners — same grid as the
