@@ -1,7 +1,7 @@
 ---
 id: T-0223
 title: The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 411
 claimed_by: run 8/27/2026, 1:54:47 PM CT
 blocked_on: null
 needs_bake: false
