@@ -56,6 +56,190 @@ renders as dry prairie"*; `docs/RESEARCH/public_square_pond.md` § 6; ROADMAP T-
 **Unverified / stated rather than measured:** the sward's *appearance* on the block is asserted from
 the zone record and the smoke's zero-pageerror pass, not from a shipped screenshot diff — no critic
 baseline stands on the public square, which is itself worth a ticket.
+## Refuted 2026-08-24 — T-0026: there is no southern buildable ground, and the schedule was naming the wrong blocker
+
+**T-E4 was opened on "south is where the room is" and told the next run to widen the eligible ground
+southward.** Measured against the committed heightfield, there is nothing there to widen onto. The
+modelled box ends at **local N -400 m**, and that line falls **inside Washington Street's own 80 ft
+platted corridor** — so the town's southernmost committed street is the last thing on the field.
+
+| | measured by `tools/measure_southern_ground.py` |
+|---|---|
+| land above the water surface south of Washington's platted corridor | **0.0819 ha** (131 cells of 135) |
+| ...of it in the South Division | **0.0000 ha** — every cell lies west of local E -10, on the West Division bank across the South Branch |
+| Washington's own corridor lying off the field | **0.33 ha**, over **899 m** of its length, up to **7.29 m** deep |
+| Madison Street below the field's south edge | **125.2 m** at State, **119.2 m** at Market |
+| the plat's last tier — Washington to Madison, Market to State | **6 blocks, 48 lots, 6.28 ha, 0 of 24 boundary points on modelled ground** |
+
+**The finding that matters is not the acreage, it is what the programme was telling the next run to
+do.** `south_plat_beyond_committed_control` holds **120 roofs**, the largest of the three gated
+balances, and it said they were waiting on **street control**: *"no block east of State or south of
+Washington has four committed centrelines (ROADMAP S9)"*. That is true and it is downstream. Every
+north-south column of the south plat — Market, Franklin, Wells, LaSalle, Clark, Dearborn, State —
+has its committed centreline cut at **exactly N -400**, the field's own south edge, not at a street.
+Street control stops where the ground does, and the modern control that would carry it further is
+already committed: `G1`, the PLSS corner at State & Madison, is an OpenStreetMap node with an id and
+a 13.9 m residual. A run that had believed the stated blocker would have carried the lines south,
+emitted six blocks, and watched `tools/generate_block_infill.py` refuse every placement on them for
+*standing outside the modelled terrain*. **Ground east of State was never available either — T-E2
+settled that it is the United States Reservation.**
+
+**What the terrain parcel actually needs, measured so it is not re-argued.** The box's south cap is
+evidence-bound rather than a cost decision, and the evidence is about **one river**: the spec says a
+box reaching further south *"would show open prairie where the river actually continues"*, and the
+river in question is the South Branch, whose traced water ends at **N -405.2**. Everything else is
+already in hand — the harbour-reach shoreline reaches **N -589.2** and the sand bar **N -436**, both
+south of Madison. So the extension needs the South Branch's two banks carried from N -405 to about
+**N -531, 126 m per bank**, off a sheet this project holds, and then a bake. The tier itself is dry:
+at N -400 the branch occupies local E -8 to +35 and the tier runs E +88 to +826. Filed as **T-0219**.
+
+**What shipped, and what did not.** `tools/measure_southern_ground.py` is new — the report, two
+assertions and a self-test, wired into `tools/check.sh`. The first assertion is absolute and is the
+one worth having: **no committed platted block stands off the modelled ground** (19 of 19 today), so
+the day a centreline is carried south without the terrain following, the failure arrives at the
+commit naming the block instead of inside a parcel run as a cryptic per-placement refusal. The
+second holds the programme's stated southern coverage to the measured one. `tools/reconcile_665.py`
+now **composes** the South balance's `waiting_on` from that measurement rather than authoring it,
+and carries the figures in `coverage.southern_ground`. `tools/compile_scene.py` puts the measured
+southern edge on the ground card. **No structure record moved, no roof was added or removed, the 665
+total is unchanged, and nothing was baked.**
+## Shipped 2026-08-27 — T-0199 / T-0220: the owner changed the density standard, and South Water's walk closed up
+
+**THE STANDARD MOVED. This is not a bug being fixed, and it must not read as one later.** Until
+2026-08-27 this project held one principal roof to a platted lot. It no longer does on the town's
+business front: **a platted business-front lot may carry a documented store at the street AND an
+anonymous dwelling behind it.** Kevin ruled it, in those terms, on 2026-08-27.
+
+**How the question arose, which is why it was his to answer.** T-0127 sent eleven documented South
+Water buildings back onto the committed plat — their setback had come from `osm_streets_2026`, a
+2026 kerb line, and stood them up to 8.17 m out in the platted roadway, which is why T-0069's
+plank walk came out of that street in stumps. T-0198 (PR #373) moved six. It refused the other
+five **in writing, per store**, because on the plat each of them SEATS on a lot the 665-roof
+schedule had already dealt to that street's anonymous frontage run. Nothing overlapped — all
+eleven were checked against every committed footprint in the town and the worst overlap is
+**zero**. What refused the repair was the RULE, and the finding under the finding was worse than
+the repair: **the block programme had dealt those roofs onto lots documented buildings actually
+stand on, and passed its own occupancy gate only because those buildings were drawn out in the
+road.**
+
+**The fork, as put to him, and his answer.** (a) The lot rule holds and the town gives the roofs
+back: **eight roofs leave** (338 → 330), four block recipes are re-authored, two households are
+re-homed or leave with their roof. (b) The business-front lot carries both. **He chose (b)**, on
+the reasoning the ticket recommended — the geometry already permits it, and (a) pays eight roofs
+and two households for a rule the corrected data has itself called into question. It is the same
+argument T-0143 and T-0188 are about, the core density standard T-0079 raised, and settling it by
+side effect inside a sidewalk ticket would have been the wrong way to decide it.
+
+**Where the ruling is recorded**, because a standard that lives in one commit message is a
+standard nobody can find: `tools/plat_occupancy.py`'s module docstring (the ruling, the fork and
+the clause's three tests), `docs/ROADMAP.md` K30(d), the four affected blocks' own
+`arrangement_note`s in `data/reconstruction/1835_platted_block_parcels.json`, and tickets T-0199
+and T-0220.
+
+**What the clause admits, and what it still refuses.** `plat_occupancy` now answers two questions
+with two maps instead of conflating them: `occupied_lots` — *what stands on this lot* — unchanged
+and still truthful, because a documented store on a shared front still stands there and its roof
+still counts against its block's headroom; and `exclusive_lots` — *what BARS another roof* —
+which is the first less this clause. `generate_block_infill.py` and `reconcile_665.py` both read
+the second, so the generator and the schedule cannot drift apart on it (T-A6, T-A7). Three tests,
+all of which must hold: **the lot is named in its block's own `frontage` run** in the committed
+parcel recipes (an interior lot, a side lot and any block with no frontage run are untouched);
+**the standing building is researched**, not one this project's reconstruction programmes wrote
+(two anonymous roofs on one lot is still one too many); and **it stands AT the street**, its
+street wall no further back from the committed frontage line than the run's own units plus one
+lot margin, both read from the block's own recipe. A fourth falls out of the third: the store has
+to be the lot's only occupant, which is what keeps the schedule from offering a block room it is
+already building on — and it is also why one function serves both halves, since the generator
+asks it with its own records excluded and the schedule asks it with nothing excluded.
+
+**Nothing physical was relaxed, and NO second rule was needed.** No overlap, the 1.5 m lot
+margin, the platted corridor and the three-metre separation between roofs all still bind,
+untouched. One pair did fail the separation gate on the way — the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store`, side by side along the face with their fronts
+level — and the honest fix was in the recipe rather than in the gate. That break is AUTHORED:
+`blk_south_water_wells`'s westernmost frontage slot stands `clear_west_of` the store by a
+stated `clear_m`, and
+`place_frontage`'s own note says where the number comes from — *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*. **2.40 m was authored while the
+store stood 6.62 m out in the roadway**, when the along-face break was not the real gap at all;
+on the plat their fronts are level and it is. So the authored break moved to the gate: 2.4 →
+3.0 m, one anonymous roof 0.6 m further west, `clear_why` written beside it. **No threshold was
+lowered anywhere in this work.**
+
+**Which of the eleven still needed moving, re-measured rather than inherited.** The figures the
+parked branch carried were taken before #373 merged and were stale by six records. After #373:
+three of the eleven (`jh_kinzie_forwarding_store`, `temple_building`, `chicago_democrat_office`)
+were on the plat and clear of every corridor; three more (`harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`) were on the plat with a 0.16–0.21 m residual on a CROSS
+street, which is T-0195 and which this ruling does not touch; and **five still stood in the
+roadway — exactly the five #373 refused.** They moved 9.67 (`h_jones_store`), 8.41
+(`chicago_american_office`), 8.12 (`carpenter_south_water_store`), 7.75
+(`frederick_thomas_shop`) and 7.05 m (`pruyne_kimball_drugstore`) along their block face's inward
+normal, each leaving its street wall 1.50 m back from the committed frontage line. **That is
+#373's method, not the parked branch's** — the branch had put the wall ON the lot line, and one
+rule across the eleven is worth more than the 1.5 m. `local_e` moves only by the face's own skew,
+0.07–0.24 m; the along-street position the sources argue is untouched, and no confidence grade
+moved.
+
+**What a visitor sees**, measured against `dev` after #373:
+
+| | before | after |
+|---|---|---|
+| town street edge | 1,214.5 m of walk in **20** runs | **1,297.3 m** in **18** |
+| corner crossings | 9 (212.5 m) | **11** (266.5 m) |
+| walking decks | 89 | **96** |
+| `blk_south_water_wells` north face | 20.6 m + 41.1 m | **one 97.6 m run** |
+| `blk_south_water_dearborn` north face | 15.6 m + 20.8 m | **one 67.6 m run** |
+| phases lapping a platted corridor | 26 | **21** |
+| standing roofs | 338 | **338** |
+
+**The march refuses ZERO steps for a wall anywhere on South Water Street**, read off `_march`
+itself step by step rather than inferred from the run lengths. Every remaining South Water
+refusal is that street's own ground — 0.07–0.13 m of roll under one walking deck, one step at
++0.02 m at or under the water. The **eleven** wall-refused steps left in the town are all on Lake
+Street: `old_bank_building` 4, `dole_warehouse_south` 3, `first_presbyterian_church` 2,
+`st_marys_church` 2. That is **T-0196**, and the ruling deliberately does not reach it — measured,
+not assumed: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run in the parcel
+recipes for the clause to sit on, and all four would land on lots that already carry anonymous
+roofs.
+
+**The smoke ran all nine stages at both viewports** — mobile **449 checks, 1 failed**;
+desktop **454 checks, 2 failed**; and mobile was re-run whole after the second dev merge,
+**450 checks, 1 failed**. Every failure is one assertion at one stand.
+
+**ONE GATE IS RED AND IT IS NOT WAVED THROUGH.** `scene detail 'balanced' stays inside its own
+ceiling at the WORST stand` fails at Lake Street at Canal, the long axial view. Measured as an
+A/B — the same tree read twice, once with `dev`'s `town_street_edge.json` in the published mirror
+and once with this one — the frontage layer costs **5,350 triangles** at that stand, to the
+triangle, at every tier and both viewports:
+
+| tier · viewport | ceiling | dev | here |
+|---|---:|---:|---:|
+| `balanced` · mobile | 1,210,000 | 1,208,033 — **1,967 to spare (0.16 %)** | **1,213,383** over |
+| `balanced` · desktop | 1,210,000 | 1,253,630 — **already over by 43,630** | 1,258,980 |
+| `full` · desktop | 1,400,000 | 1,413,266 — **already over by 13,266** | 1,418,616 |
+| `full` · mobile | 1,400,000 | 1,366,289 | 1,371,639 (28,361 to spare) |
+| `light` · mobile / desktop | 1,050,000 | passes | 807,943 / 859,229 |
+
+Desktop's two failures are `dev`'s and predate this branch entirely. Mobile's is this branch's,
+and it was 3,383 triangles over a ceiling `dev` was 1,967 triangles from failing — **762
+triangles over, 0.06 %, once dev's #384/#387/#394 were merged in and gave most of it back**. **A tier with
+0.16 % of headroom is not a budget, it is a coincidence** — T-0135 set these on 2026-08-22 with
+*"about 6 % of headroom over the measured worst"* and five days of content ate it. **No ceiling
+was moved here**, deliberately: raising a number to make a red go away inside a ticket about a
+sidewalk is the exact defect T-0135 was opened to end, and its own text says the choice between a
+conscious re-budget and the trim T-0149/T-0146 are open for is the owner's — *"This is the
+measure. The move is his."* What HAS changed since he last looked is that `light`, the objection
+he was given last time, now sits 18–23 % UNDER its ceiling rather than 65 % over. Filed with every
+figure as **T-0218**.
+
+**One measurement made on the way, worth its own ticket.** `measure_street_frontage.layer_of`
+names the three evidence layers by ID PREFIX, and across the committed 348 records it disagrees
+with the record's own contents exactly once: `physicians_office` carries no `inf_` prefix and is
+nonetheless a product of the inferred-household programme, which its own
+`reconstruction.status` says. The new clause reads the record rather than the filename for
+precisely that reason — a rule about documented buildings must not let an invented one through on
+the strength of its name. Filed as **T-0221**.
 
 ## Shipped — T-0215: the What's-new stage was not failing on What's-new, and nothing was broken
 
@@ -812,6 +996,232 @@ WEST faces as well.
 (`dole_warehouse_south` 1.28 m, `st_marys_church` 3.03 m, `first_presbyterian_church` 1.90 m,
 `old_bank_building` 1.62 m into the walk band) — out of this ticket's lane, and
 `first_presbyterian_church`'s repair would collide with `physicians_office`.
+## Shipped 2026-08-24 — T-0126: one dark behind every opening, and `timber` stops naming two woods
+
+**The ticket's own count was wrong, and measuring it first is what set the parcel's shape.**
+materials.md §2.3 recorded FOUR values for "what you see through an opening", across four
+generators. Re-measured over `assets/gltf/**/*.glb` before anything was chosen, **three** ship:
+
+| shipped | colour | roughness | slots | emitted by |
+|---|---|---|---|---|
+| `dark` | `0.070, 0.080, 0.090` | **0.35** | 112 | `frame_dwelling` |
+| `dark` | `0.070, 0.080, 0.090` | **0.40** | 58 | `log_dwelling`, `fort_structure`, `palisade` |
+| `interior` | `0.072, 0.068, 0.060` | **0.60** | 117 | `outbuilding` |
+
+The fourth — `placeholder_opening_dark`, `#2D3D33` at 0.70, the only green of the four and the
+only one that is not a near-black — belongs to `generators/inferred_placeholder.py`, and that
+generator paints **no committed asset**: `--check` says *"verified 0 flagged placeholder GLBs;
+226 superseded by a canonical bake."* It was dead code, not a surface anyone could see. The same
+cause has staled §1's whole census (334 assets are now 344, and no `placeholder_*` material
+remains in the tree); §1 is a dated measurement and is **not** rewritten, but the correction is
+recorded at materials.md §7.1 so no parcel quotes those counts again without re-measuring.
+
+**The visible half is the ROUGHNESS, not the colour.** The two colours are 0.030 apart at their
+widest — a convergence, not a repaint. The gloss is what decides whether a surface catches the
+sun, and the town rendered one idea at three glosses: a doorway on a frame dwelling glinted at
+0.35 and the identical doorway on the shed behind it did not at 0.60. **None of the three values
+carried a word of argument in the file that set it.**
+
+**What was chosen, and how it is bounded.** One row, `0.072, 0.068, 0.060` at **0.60**, graded
+`reconstructed` — a deliberate DOWNGRADE from the `inferred` the old `interior_dark` row carried,
+because no source states any of it and reasoning from physics is not an inference about these
+buildings. The colour is the warm near-black over the cool: light reaching an unlit room here has
+bounced off timber and lime, and a cool cast is SKY — sky in an opening is `glass`'s job, and
+keeping both hues on one idea left the family's only real distinction pointing at nothing. The
+roughness is **bounded between two values already shipping and placed at their midpoint**: not
+`glass`'s 0.25, because **every one of the 287 slots** carries surfaces that are certainly not
+glazed — doorways, board gaps, open bays, loopholes, gable vents, the stockade's shut gate leaves;
+not the bare fabrics behind it (0.90–0.94), because **156 of the 287 also carry windows**, and on
+the 112 frame dwellings among them every window is sized off the Green Tree's attested 6 × 8 in
+lights, so those panels stand for glazed sash. No slot in this family is purely one or the
+other — `frame_dwelling` paints doors and windows from one slot — so the bounds are stated by
+what a slot paints rather than as a percentage. The
+midpoint is 0.575, taken to the **0.60** the town already speaks rather than to a new number
+0.025 away that would mean the same thing. **L182.**
+
+**What the sources actually carry about glazing, measured.** The word *glass* appears in **no
+source this repository holds.** Two records reach the glazing and both are `inferred`: the Green
+Tree's `fenestration: small_paned_sash` off Gale's *"about 12x12, with two windows 6x8"*
+(`chicagology_prefire127`) — the one attested pane size in the dataset, and the number
+`frame_dwelling` sizes every window in town from — and the Sauganash's Trowbridge plate, louvred
+shutters **on the sash**. So *that* the town was glazed in small lights is held; what colour a
+pane reads at fifty metres is stated nowhere. `glass` therefore comes onto the sheet graded
+`reconstructed` and **at exactly the value its 48 slots already shipped** — carried across, as
+§2.3 asked, not re-argued.
+
+**Finding 3 discharged.** `outbuilding`'s `0.208, 0.172, 0.128` and `frame_storefront`'s
+`0.66, 0.56, 0.40` are two materials 3.2× apart in linear red that shared the name `timber`.
+Re-measured: 117 slots and **zero** — no record turns `framing_exposed` on, so the collision was
+latent exactly as the finding said. Two rows and two slot names now: `heavy_timber` and
+`sawn_framing`. No value moved; `SAWN_FRAMING` is regraded `reconstructed`, because a value that
+has never been rendered has no building it is an inference about.
+
+**The count did not move, which was the constraint (K36(a)).** Measured file-by-file against each
+asset's own committed blob, all 344: material-count histogram identical (1×2, 2×3, 3×6, 4×125,
+5×148, 6×59, 8×1), 1,628 slots before and after, **484,903 triangles before and after**, zero
+assets whose material or triangle count changed.
+
+**Which assets moved, and why each one did.** 287 of the 344 masters changed and **57
+re-derived BYTE FOR BYTE**. Every changed file was diffed against its own committed blob and its
+difference named: **117** `outbuilding` assets carry a material RENAME only (`interior` → `dark`,
+`timber` → `heavy_timber`, no value moved); **112** `frame_dwelling` move `dark` from
+`0.07, 0.08, 0.09` at 0.35 to `0.072, 0.068, 0.060` at 0.60; **58** (`log_dwelling` 44,
+`fort_structure` 13, `palisade` 1) move the same colour from roughness 0.40. **Zero** assets had
+bytes move without a nameable material difference, and **zero** moved a triangle. 287 is exactly
+the count of assets carrying the `dark` slot, measured before anything was chosen — the blast
+radius is the family, not a hash wave. The 57 unchanged are `frame_storefront` 38 (its
+`timber` → `sawn_framing` rename touches an UNREFERENCED slot dropped at export), `frame_tavern`
+10 (`glass` came onto the sheet at the value it already had), `bridge_timber` 4, `pier_crib` 2,
+2 terrain, and **1 `palisade`** — the garrison garden fence, a palisade build with no gate and so
+no `dark` slot. That is the control: a windowless, gateless object in the family's own archetype,
+and its bytes did not move. No asset without a `dark` slot changed; no asset with one failed to.
+
+**The bake, and a correction to the record.** Blender 4.5.3 LTS IS on the steward runner
+(`/opt/blender-dl/blender-4.5.3-linux-x64`), and its tarball sha256 verifies against
+`generators/blender.pin` — so this `needs_bake` ticket was baked rather than half-shipped. 342
+structure masters in one Blender invocation; the 2 terrain GLBs re-stamped separately, and they
+came out **byte-identical** because `terrain_gen.py` imports nothing from `generators/common/` —
+only their `inputs_sha256` moved. One trap worth recording: `mesh_inputs.py` hashes every byte of
+`generators/common/`, **comments included**, so editing a docstring after a bake re-stales all
+342. It happened here and cost a second Blender pass; the masters came back byte-identical, which
+is the determinism promise doing its job.
+
+**Left standing, in writing.** `dark` is not only openings — it also paints the fort's sun-dial
+plate and the 1832 lighthouse's lantern drum, `log_dwelling`'s iron sign-hinge straps and the
+stockade gate's two shut leaves. And a glazed sash and an open bay are still one material on 112
+frame dwellings, because `frame_dwelling` paints its doors and its windows from the same slot
+while `frame_storefront` paints its windows from `glass`. Splitting either costs a material on
+assets that sit on K36(a)'s threshold, which T-0126's acceptance forbids. Both are recorded at
+materials.md §7.1 rather than quietly carried.
+
+### THE NIGHTLY'S SMOKE WENT RED ON THE TRIANGLE CEILING, AND THE TRIANGLES ARE NOT THIS PARCEL'S — measured 2026-08-27
+
+Bake run **32761900576** ran the release smoke against this branch and failed *"scene detail
+'balanced' stays inside its own ceiling at the WORST stand"* — **1,244,766 triangles of
+1,210,000** at Lake Street at Canal, east down the axis, desktop 1280 × 800, published mirror.
+34,766 over. `full` passed with 9,940 left (0.7 %) and `light` with 223,183 (21 %). The PR's own
+`ci.yml` gate was green, and that is not a contradiction: the dev gate is the fast half, and the
+stand sweep sits at about assertion 150 of desktop stage 4, which is why this was found by a
+nightly rather than by the branch standing under it.
+
+**The question a red ceiling actually asks is not "is the town over" but "did THIS branch put it
+over", and those are different numbers.** T-0126 moves material values and material names and
+adds no geometry, so the claim to test was that it costs the frame nothing. Both trees were
+published and swept at T-0135's five stands, three tiers each, desktop 1280 × 800, on the
+published mirror:
+
+| `balanced`, at each stand | dev @ `e2056e97` — this branch's base | this branch @ `69eb7175` | delta |
+|---|---:|---:|---:|
+| **Lake Street at Canal, east** | **1,244,766** / 201 calls | **1,244,766** / 201 calls | **0** |
+| the forks, from Wolf Point | 1,218,154 / 184 | 1,218,154 / 184 | 0 |
+| Lake and Market | 1,030,764 / 151 | 1,030,764 / 151 | 0 |
+| the Sauganash at 26 m | 882,190 / 122 | 882,190 / 122 | 0 |
+| the open aerial | 874,807 / 122 | 874,807 / 122 | 0 |
+
+**All fifteen readings — five stands × three tiers — are identical, to the triangle and to the
+draw call.** `full` reads 1,390,060 at 203 calls on both trees at the axial stand; `light` reads
+826,817 on both. The GLBs say the same thing from the other side: **487,837 triangles in
+`assets/web/` on both trees**, and not one asset's count moved. **T-0126's cost to the frame is
+exactly zero**, and the `balanced` ceiling was already breached on the commit this branch was cut
+from.
+
+So the three answers a breach normally has all collapse here. **The glazing cannot be made
+cheaper** — it is not made of triangles; the openings were already flat panels and this parcel
+did not add one. **Making `balanced` draw less of something else** would be cutting content out
+of the tier a visitor chose, to buy room for a parcel that spends none of it. And **the ceiling
+is not raised**, for the same reason: AGENTS.md's re-budget ruling wants a parcel that needs the
+room and a measurement that says so, and moving a number this branch does not spend, to clear a
+red this branch did not cause, is the "ceiling moved to fit the camera that flatters it" defect
+T-0135 was opened to end.
+
+**Where the 34,766 came from, since somebody should say.** T-0098's branch read `balanced` at
+**1,209,926 of 1,210,000 — seventy-four triangles of headroom** at this same stand, on dev @
+`059aaf26`. Four parcels merged between that commit and this branch's base — **T-0095** (the
+fort's gates and corner works), **T-0109** (the slough crossing), **T-0106** (the drawbridge-reach
+bank and its landings) and **T-0117** (twelve poplars) — and together they cost **34,840**
+triangles there. A ceiling with seventy-four triangles left is not a budget; the next visible
+parcel of any size was going to breach it, and the one standing under it when the nightly finally
+looked happened to be this one. T-0188 wrote the same finding from the other end on the same day:
+*"`balanced` stood 4,238 triangles — 0.35 % — inside its ceiling BEFORE this parcel … two days of
+content ate the margin."*
+
+**And it has since got worse on dev, at two tiers.** Merged with `origin/dev` at `29eebdef` and
+re-published, the axial stand reads **`full` 1,412,120 of 1,400,000 (12,120 OVER) and `balanced`
+1,252,802 of 1,210,000 (42,802 OVER)**; `light` passes at 858,389 of 1,050,000. Against this
+branch's base that is +22,060 at `full`, +8,036 at `balanced` and **+35,426 at `light`** — and
+`light` is the honest reading of the content, because T-0188's shadow lever does not apply there
+(that tier already drew no furniture into the shadow map). So the lever bought back about 27,000
+triangles at `balanced` and the six re-placed South Water buildings, the extra 66.8 m of plank
+walk and the three new street-fence meshes spent rather more. **`full` has never been over before
+today.** Since this branch contributes zero, that reading is dev's own, and nothing has measured
+dev since T-0188 because the sweep only runs in a nightly and the last nightly ran against here.
+
+**And the run was widened to answer the question underneath it: WHAT occupies the budget at
+that stand.** Every ceiling argument this project has had was made against a TOTAL, so each
+round has had to guess which lever to pull and then measure whether the guess paid. The layer
+table did not exist. It does now — `tools/measure_stand_budget.mjs`, hiding each named scene
+group in turn, two frames, `renderer.info.render`, restore. The sun column is CONTROLLED
+against a whole-frame reading with `shadowMap.enabled = false`, the two agree **exactly** at
+both tiers, and the baseline re-read against itself is **0 triangles, 0 calls**.
+
+**`balanced` at Lake Street at Canal, east — 1,252,802 of 1,210,000, 202 calls**
+
+| layer | drawn | % of frame | calls | of which the sun | meshes |
+|---|---:|---:|---:|---:|---:|
+| **trees** | **360,926** | **28.8** | 9 | **180,100** | 5 |
+| terrain | 249,185 | 19.9 | 22 | 0 | 31 |
+| structures | 240,734 | 19.2 | 2 | 40,060 | 1 |
+| frontage | 154,932 | 12.4 | 40 | 8,680 | 39 |
+| enclosures | 105,888 | 8.5 | 48 | 6,892 | 48 |
+| yard | 65,480 | 5.2 | 54 | 15,768 | 50 |
+| streets | 45,192 | 3.6 | 6 | 0 | 3 |
+| yard-ground | 12,892 | 1.0 | 4 | 0 | 4 |
+| flora | 9,389 | 0.7 | 10 | 0 | 15 |
+| boats · wharves · signage | 8,172 | 0.7 | 6 | 4,086 | 3 |
+| **the sun's own pass** | **255,586** | **20.4** | 25 | — | — |
+
+At `full` the same stand reads 1,412,120 with `trees` at **442,110 (31.3 %), 220,692 of it the
+sun**, `enclosures` at **173,838** against `balanced`'s 105,888 — T-0068's zero-thickness pale
+is worth **67,950** here — and the sun's whole pass at **296,178 (21.0 %)**.
+
+**The largest consumer of the frame is not the town. It is the timber, and half of it is a
+shadow.** `trees` holds 181,900 triangles and draws 360,926 — the whole layer, twice, once for
+the camera and once for the sun, with nothing culled. `trees.js` builds the near timber as
+**four quadrant meshes spanning kilometres**, and the sun's box is **±240 m**; a mesh whose
+bounding sphere touches that box is submitted whole, so most of those 180,100 triangles are
+timber standing outside the box, **casting nothing any pixel of the shadow map can hold**. The
+comment at `trees.js` `mesh.castShadow = true` still says the shadow camera is *"only ±60 m
+around the walker … so this costs a shadow pass on the few stands actually near the visitor"*.
+The reach has been ±240 m since T-0115, and the cost is 14.4 % of every frame at the worst
+stand. **`flora` should also stop being the first suspect**: 9,389 triangles, 0.7 %, ninth
+largest, where three earlier budget arguments began with the sward.
+
+**So the honest answer to "are the ceilings wrong or is the content" is NEITHER, YET.** There
+are roughly 180,000 triangles of pure-loss shadow work in the frame, claimed by nothing — not a
+source, not a form, not a pixel — and re-basing a ceiling with that still in it would be
+budgeting for work the renderer should not be doing, for the fifth time. T-0149 already ordered
+it this way: *"only THEN consider lowering the ceilings back … a ceiling that comes back DOWN
+after a trim is the strongest evidence the trim worked."*
+
+**Filed as T-0209, with the table and a costed plan, rather than fixed here** — letting the
+sun's camera cull the timber is a renderer change with its own smoke, its own frame-signature
+control and its own draw-call trade (202 of 215 calls are already spent), and the ticket says
+so rather than half-doing it. It belongs with **T-0190**, **T-0147**, **T-0149**, **T-0089**
+and **T-0056**, which already own the choice; what is new is the *dev* reading, the fact that
+`full` has joined `balanced`, and the layer table itself.
+
+**Two instruments are committed rather than described.**
+`tools/measure_detail_ceilings.mjs` runs T-0135's sweep on its own, in one command, against any
+published tree, and `--against DIR` takes a second tree and prints the per-stand delta — which
+is the reading that settles authorship. `tools/measure_stand_budget.mjs` is the layer table
+above, at any stand and any tier, with the sun's pass separated and controlled. Both are
+verified against the gate they copy: on `69eb7175` the first reproduces bake run 32761900576's
+desktop figures exactly, to the triangle and to the draw call. Neither is a gate —
+`tools/smoke_renderer.mjs` holds the ceilings and nothing here changes that. Two ceiling
+failures have now landed on branches that did not cause them (T-0089 was the first), and both
+times the first job was working out whose triangles they were; the third time it should take
+one command.
+
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
 **The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`

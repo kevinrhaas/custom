@@ -73,7 +73,7 @@ from inferred_occupancy import occupancy  # noqa: E402
 
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
-from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
 # its fronts look, and where along it a wall lands. Authored once, in the module the
@@ -1211,8 +1211,19 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # frontage: its centroid is then in the roadway and its walls are on the lot. Three
     # documented buildings on this grid do it, and the block this parcel shape met them
     # on read every one of its lots as free.
-    occupied = occupied_lots({"blocks": [grid]}, datum,
-                             exclude=mine_ids).get(block["block_id"], {})
+    #
+    # THE OWNER'S 2026-08-27 CLAUSE, and it is asked here as `exclusive_lots` rather
+    # than as `occupied_lots`: a lot of this block's own declared business front is not
+    # exhausted by a RESEARCHED building standing AT THE STREET on it. He ruled it after
+    # the South Water plat reconciliation (T-0199) seated five documented stores on lots
+    # the schedule had already dealt this street's frontage runs — nothing overlapped,
+    # the worst overlap in the town was zero, and what refused them was this rule and
+    # not the ground. `tools/plat_occupancy.py`'s docstring carries the ruling, the fork
+    # as it was put to him and all three tests the clause has to pass; everything
+    # physical below — the lot margin, the corridor, the three-metre separation — is
+    # untouched by it and still refuses what it always refused.
+    occupied = exclusive_lots({"blocks": [grid]}, datum,
+                              exclude=mine_ids).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1264,6 +1275,11 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # occupied by a roof this recipe wrote, and calling it "already carrying a roof"
     # would say a stranger built it. The lots are read from the recipe rather than from
     # the ground, which is what makes the answer the same on both sides of a generate.
+    # A lot the owner's business-front clause admits is NOT its own class: it is built
+    # on by this parcel — the run stands over it — and it also carries a documented
+    # store at the street. `occupied` is `exclusive_lots` above, so the clause has
+    # already taken it out of "already carrying a roof" and the four classes stay
+    # disjoint, which is the only property this check has ever needed of them.
     classes = {"built on by this parcel": set(used),
                "built on by another deal on this block": set(sibling_lots),
                "already carrying a roof": set(occupied) - set(sibling_lots),
@@ -1323,6 +1339,7 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         if target:
             abutted.add((record["id"], target))
             abutted.add((target, record["id"]))
+
     for sid, poly in mine:
         for other_id, other in others + [(s, p) for s, p in mine if s != sid]:
             if (sid, other_id) in abutted:

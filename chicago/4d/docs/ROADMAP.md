@@ -315,6 +315,7 @@ not at the top of the queue.
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
+| — | GROUND | ~~T-E4~~ | **REFUTED 2026-08-24 (T-0026)** — there is no southern buildable ground to widen onto. The modelled box ends at local **N -400 m**, INSIDE Washington Street's own platted corridor; of the 0.0819 ha of land south of that corridor, **0.0000 ha** is in the South Division. Madison — the plat's south boundary — is **125.2 m** further south, and the plat's last tier (6 blocks, 48 lots, 6.28 ha) has **0 of 24** boundary points on modelled ground. The South's 120 roofs were gated on street control; the blocker is **terrain**, and street control stops where the ground does. Read its box before quoting any southern-ground figure |
 
 **Every row is tagged. `SEEN` means a screenshot from the same spot looks different when it
 merges. `UNSEEN` means it does not — those are real work and this project needs them, but they are
@@ -2508,7 +2509,7 @@ unchanged to the triangle; the same frame-difference budget R-W5a measured itsel
 | | parcel | scope |
 |---|---|---|
 | **R-W2a** | ~~**the material sheet**~~ · **DONE 2026-08-16 — `docs/RESEARCH/materials.md`. Read its §4 before texturing anything: the chimney is not a material here, no record states a roof covering, and 27 % of the town is painted by a generator that shares no colour with the other 73 %** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
-| **R-W2b** | ~~**wire the sheet in**~~ · **LANDED 2026-08-21 as T-0007** — `generators/common/materials.py` is the sheet as code and 207 of 243 committed GLBs were repainted from it. **The records needed no new material field:** `finish_key` (222 records) and `roof_condition` (218) were already committed in the `reconstruction` block, one level ABOVE the phase, which is exactly why no archetype could read them — so the wiring is `from_phase(phase, record)` rather than a 315-record schema change. Triangle delta 0 and material-count delta 0 (K36(a)'s five-material threshold binds hard). Findings 2 and 5 discharged; **finding 2's covering half stands untouched** — no `shingle` row exists and roofs are graded by weathering CONDITION. `docs/LIBERTIES.md` L155; materials.md §6; STATUS.md. | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
+| **R-W2b** | ~~**wire the sheet in**~~ · **LANDED 2026-08-21 as T-0007** — `generators/common/materials.py` is the sheet as code and 207 of 243 committed GLBs were repainted from it. **The records needed no new material field:** `finish_key` (222 records) and `roof_condition` (218) were already committed in the `reconstruction` block, one level ABOVE the phase, which is exactly why no archetype could read them — so the wiring is `from_phase(phase, record)` rather than a 315-record schema change. Triangle delta 0 and material-count delta 0 (K36(a)'s five-material threshold binds hard). Findings 2 and 5 discharged; **finding 2's covering half stands untouched** — no `shingle` row exists and roofs are graded by weathering CONDITION. `docs/LIBERTIES.md` L155 (now **L157** — the file is append-only and the number shifted); materials.md §6; STATUS.md. **The half it left is DONE 2026-08-24 as T-0126** — §2.3's dark openings and the glazing beside them, and finding 3's one name over two timbers. Re-measured first: §2.3 says FOUR values and **three ship**, because `inferred_placeholder.py` now paints no committed asset (`--check`: *0 flagged placeholder GLBs; 226 superseded by a canonical bake*), so §1's whole census is stale and must be re-measured before it is quoted again. One `dark` row at `0.072, 0.068, 0.060` / **0.60** over 287 slots — the roughness bounded between `glass` 0.25 and the bare fabrics 0.90–0.94 and taken at their midpoint, because every one of those slots carries surfaces that are certainly not glazed while 156 of them also carry windows, 112 of those sized off the one attested pane. `glass` comes onto the sheet unchanged; `timber` becomes `heavy_timber` + `sawn_framing`. Material-count delta 0, triangle delta 0 (484,903 both sides). L182; materials.md §7. | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
 
 **R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
 rendering. Do not merge the two: a sheet argued and a sheet applied are different reviews.
@@ -6540,6 +6541,62 @@ blocker. They are refused **in writing, per store**, in their own `position.note
 `blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
 cluster, and whoever picks it up should read this heading first.
 
+#### K30(d) RESOLUTION 1 IS NOW TAKEN FOR ALL ELEVEN — 2026-08-27, T-0199 → T-0220, ON THE OWNER'S RULING
+
+**The last five came onto the plat, and it took a decision rather than a measurement.** The
+blocker above was never geometry: reconciled, each of the five seats on a lot the 665-roof
+schedule had already dealt to this street's anonymous frontage run, and nothing overlapped —
+every one of the eleven was checked against every committed footprint in the town and the worst
+overlap is **zero**. What refused them was the standard itself, *one principal roof to a lot*,
+and the block programme had passed its own occupancy gate only because those buildings were
+drawn out in the road. The repair did not create that; it made it visible.
+
+**The fork, as it was put to the owner** (T-0220, and the recommendation was (b)):
+
+- **(a)** the lot rule holds, the frontage runs give the lots back, **eight roofs leave the town**
+  (338 → 330), four block recipes are re-authored and two households are re-homed or leave;
+- **(b)** a platted business-front lot may carry a documented store at the street **and** an
+  anonymous dwelling behind it; nothing physical objects, the block parcels keep every roof.
+
+**Kevin chose (b) on 2026-08-27**, on the reasoning the ticket recommended: the geometry already
+permits it, and (a) pays eight roofs and two households for a rule the corrected data has itself
+called into question. **This is a standard changing, not a bug being fixed.** It is the same
+argument T-0143 and T-0188 are about — the core density standard, T-0079's — and it decides that
+the town's business front is NOT one roof to a lot.
+
+**How it is written down, so it cannot be mistaken for an exemption later.**
+`tools/plat_occupancy.py` carries the ruling and the clause in its module docstring and answers
+two questions with two maps: `occupied_lots` — *what stands on this lot* — unchanged; and
+`exclusive_lots` — *what BARS another roof* — which is the first less this clause.
+`generate_block_infill.py` and `reconcile_665.py` both read the second, so the generator and the
+schedule cannot drift apart on it (T-A6, T-A7). **Three tests bound it and all three must hold:**
+the lot is named in its block's own `frontage` run in the committed parcel recipes; the standing
+building is RESEARCHED, not one this project's reconstruction programmes wrote; and it stands AT
+the street, its street wall no further back than the run's own units plus one lot margin. A
+fourth falls out: the store must be the lot's only occupant, which is what stops the schedule
+offering a block room it is already building on. **Nothing physical was relaxed and NO second rule was needed** —
+no overlap, the 1.5 m lot margin, the platted corridor and the three-metre separation all still
+bind, untouched. One pair failed the separation gate on the way, the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store` with their fronts level, and the fix was in the
+recipe rather than in the gate: that break is AUTHORED as `clear_west_of` + `clear_m` on
+`blk_south_water_wells`'s westernmost frontage slot, `place_frontage`'s own note says *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*, and the 2.4 m had been authored
+while the store stood 6.62 m out in the roadway and the along-face break was not the real gap.
+On the plat it is. **The authored break moved to the gate — 2.4 → 3.0 m, one anonymous roof
+0.6 m further west, with `clear_why` written beside it.**
+
+**What it bought, measured against `dev` after T-0198:** the town's street edge goes from
+**1,214.5 m of walk in 20 runs to 1,297.3 m in 18**, corner crossings 9 → **11** (212.5 m →
+266.5 m), walking decks 89 → **96**; `blk_south_water_wells`'s and `blk_south_water_dearborn`'s
+South Water faces each go from two stumps to **one whole run** (97.6 m and 67.6 m). Town-wide
+corridor laps **26 → 21**, and all five leave the census outright at every depth, cross streets
+included. **`generate_frontage_works.py`'s march now refuses ZERO steps for a wall anywhere on
+South Water Street** — read off the march itself, step by step. The eleven wall-refused steps
+left in the town are all on **Lake Street** (T-0196), where this clause deliberately does not
+reach: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run for it to sit on.
+
+**Standing roofs: 338 before, 338 after. No household moved.**
+
 
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
@@ -8064,7 +8121,65 @@ blocks, where the evidence does not support 2.5 m detail anyway.
 New geometry arrives via `chicago-4d-bake.yml` as a PR into `dev`. The data half ships here and
 says so.
 
-### T-E4 — the southern buildable ground, and the re-apportioned schedule · **UNCLAIMED · after T-E2**
+### T-E4 — the southern buildable ground, and the re-apportioned schedule · **REFUTED 2026-08-24 (T-0026)**
+
+**There is no southern buildable ground to widen onto, and the parcel's own acceptance is what
+refutes it.** T-E4 said a roof may stand only where the ground is *covered by the heightfield AND
+historically plausible*, and told the next run to widen the eligible ground south. Measured against
+the committed heightfield by `tools/measure_southern_ground.py`, the first condition is already
+unsatisfiable everywhere south of the town: **the modelled box ends at local N -400 m, and that line
+falls INSIDE Washington Street's own 80 ft platted corridor.**
+
+| | measured |
+|---|---|
+| land above the water surface south of Washington's platted corridor | **0.0819 ha** (131 cells) |
+| ...of it in the South Division | **0.0000 ha** — every cell is west of local E -10, the West Division bank across the South Branch |
+| Washington's own corridor lying off the field | **0.33 ha**, over **899 m** of its length, up to **7.29 m** deep |
+| Madison Street — the plat's south boundary — below the field's south edge | **125.2 m** at State, 119.2 m at Market |
+| the plat's last tier, Washington to Madison, Market to State | **6 blocks, 48 lots, 6.28 ha, 0 of 24 boundary points on modelled ground** |
+
+**The blocker the 665-roof programme named for the South was the wrong one, and it was pointing the
+next run at the wrong work.** `south_plat_beyond_committed_control` — 120 roofs, the largest of the
+three gated balances — said *"no block east of State or south of Washington has four committed
+centrelines (ROADMAP S9)"*. True, and downstream: **every north-south column of the south plat has
+its committed centreline cut at exactly N -400, the field's own south edge.** Market, Franklin,
+Wells, LaSalle, Clark, Dearborn and State all end on that line and not at a street. Street control
+stops where the ground does, and the control that would carry it further is already committed —
+`G1`, the PLSS corner at State & Madison, is an OpenStreetMap node with an id and a 13.9 m residual.
+Carry the lines south without the terrain and the plat module emits six blocks whose every placement
+`tools/generate_block_infill.py` refuses for *standing outside the modelled terrain*. **The southern
+unlock is a TERRAIN parcel, not a rule the programme can relax.**
+
+**What the terrain parcel needs, so it is not re-derived: one trace, and it is bounded.** The
+box's `n_min` is capped by evidence rather than by cost — *"the South Branch's traced water ends at
+N -404.5, where the forks tracing window closes, so a box reaching further south would show open
+prairie where the river actually continues"*. That is a statement about the **South Branch only**.
+The harbour-reach shoreline already reaches **N -589.2** and the sand bar **N -436**, both south of
+Madison; the old southward channel is traced through the whole of the new depth. So extending the
+box to Madison's corridor needs the South Branch's two banks carried from **N -405 to about N -531 —
+126 m per bank** — off a sheet this project already holds, and then a bake. Everything east of the
+river in that tier is dry ground with no water in it: at N -400 the branch occupies local E -8 to
++35 and the tier runs E +88 (Market) to +826 (State).
+
+**Nothing about the ground east of State changes and nothing was hoped for there.** T-E2 settled it:
+that is the United States Reservation, 22.57 ha, refused at any date. So the South balance is gated
+on exactly one thing now, and the programme says which.
+
+**What shipped.** `tools/measure_southern_ground.py` (new; the report, two assertions and a
+self-test, wired into `tools/check.sh`) · `tools/reconcile_665.py` composes the South balance's
+`waiting_on` from that measurement instead of authoring it, and carries the figures in
+`coverage.southern_ground` so a scheduler reads them without running a command ·
+`tools/compile_scene.py` puts the measured southern edge on the ground card a visitor opens. **No
+structure record moved, no roof was added or removed, the 665 total is unchanged, and no geometry
+was baked.**
+
+**The successor is `T-0219`**, filed at the QUEUE bottom: finish the heightfield SOUTH to Madison,
+the mirror of T-E3 / T-0010's eastern extension. It is the largest single unlock left in the
+programme and it is the only route to any of the South's **120** roofs — six blocks at the
+schedule's own 31-roof block capacity is 186 roofs of ground, so the tier would absorb the whole
+southern balance and still have room, against T-0163's 54-roof South Water unlock.
+
+### T-E4 (spec) — the original parcel definition
 
 The owner is right that south is where the room is: the sheet shows the town's platted blocks,
 then Canal Land and the School Section below Madison, with named claims scattered through. That

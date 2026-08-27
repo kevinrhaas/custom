@@ -19,9 +19,11 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0199 — The five South Water stores standing on a lot the roof schedule already dealt
+T-0191 — Randolph and Washington get the street edge
+T-0192 — The cross streets' own frontages get the street edge
+T-0193 — blk_lake_clinton, the West Division block T-0069 refused
+T-0194 — Hitching posts at the commercial frontages
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
-T-0026 — The southern buildable ground and its schedule
 
 # --- THE RIVER AND ITS WHARVES — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
@@ -35,7 +37,6 @@ T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits nei
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 
@@ -75,8 +76,13 @@ T-0187 — At light detail the mid and forb rings' outer ramps dither inside the
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
+T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
+T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
+T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
+T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
 T-0213 — Weight the trade families onto the business front
 T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
@@ -86,4 +92,7 @@ T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end 
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
-T-0201 — A critic baseline standing on the public square
+T-0224 — A critic baseline standing on the public square
+T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
+T-0201 — docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them
+T-0202 — SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch
