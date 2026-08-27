@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 2:39 PM",
+  "generated_ct": "Aug 27, 2026, 3:13 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4026,6 +4026,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 64
+    },
+    {
+      "id": "T-0238",
+      "title": "Nothing tests the party-line note's prose against the placement it describes",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
     }
   ]
 }
