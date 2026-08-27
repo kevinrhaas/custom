@@ -3623,10 +3623,23 @@ for (const [label, viewport, touch] of [
       // board to tie into itself and read the whole walk as sunk by its own rise.
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
+      //
+      // NEITHER IS A WHARF DECK, and T-0058 is where THAT difference had to be
+      // drawn. Two of the seven docks — Carpenter's and Jones's, both on the
+      // South Water reach — tie their heels back into a bank the riverside plank
+      // walk already runs along, so their decks OVERSAIL about 3,000 of this
+      // layer's vertices by roughly half a metre. A board under a dock is not a
+      // board riding one: it is laid on the ground, it is measured against the
+      // ground, and it was in band against the ground before this deck was ever
+      // registered with the walker. Counting the dock as its base would read a
+      // walk that has not moved as newly sunk by the height of somebody else's
+      // floor. (What a visitor meets there is its own question and its own
+      // ticket; the stair at those two rises off the walk itself.)
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
           if (/__footway_\d+$/.test(d.id)) continue;
+          if (/__wharf(_step\d+)?$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;

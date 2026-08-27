@@ -87,3 +87,4 @@ T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end 
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
+T-0223 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge

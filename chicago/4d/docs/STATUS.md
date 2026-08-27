@@ -1,5 +1,58 @@
 # STATUS
 
+## Shipped — T-0058: a wharf deck is a floor, and there are steps up onto it
+
+**Seven docks stood in this town as scenery.** `terrain.walkHeight()` puts a wading barrier at
+4.0 m over open water and no wharf deck overrode it, so a visitor could see a wharf, aim at it,
+open the warehouse it serves — and never set foot on it. The bridges have been standable since
+T-0001 by a route a wharf cannot take: `placement.walk_surface_m` lives on a sidecar, and a wharf
+carries no structure record at all.
+
+**So the LAYER publishes what it drew.** `createWharves` returns `decks` in `decksFrom()`'s own
+`{ id, y, pts }` shape at the `deck_top_m` each slab was built at, and `main.js` pushes them into
+the array `createWalker` holds by reference — after `planting` is taken, so the planters are not
+handed the same rectangle twice. Inventing a record to carry a height would have been a SECOND
+opinion about a number `wharves.js` already knows, which is the fault T-0001 found 1.8 m over the
+North Branch planks.
+
+**Publishing the deck is the half that is easy to declare done.** Measured at load on this
+terrain: deck tops **0.90 m at all seven** — the record's freeboard floor, because every bank is
+under it — over heels at **0.117–0.575 m**. That is a **0.325–0.783 m** riser against the walker's
+0.35 m step-up rule, and **six of the seven decks were unboardable** at the moment they became
+walkable. A dock a visitor can walk ALONG and cannot get ONTO reads as a broken model.
+
+**The answer is a boarding stair, and not a regrade.** The other honest reading is that the banks
+were filled to deck level, and that is a claim about the LAND — it moves the terrain record and
+needs a bake. The stair invents only timber this layer already draws: 2.4 m across, 0.75 m of
+going, dividing whatever rise the ground leaves it into equal treads under the record's 0.30 m
+ceiling. How many treads is the terrain's answer at load and is authored nowhere — **one** at
+Kinzie & Hunter's and at Robert Kinzie's, **two** at the five South Water landings, twelve in all.
+`data/wharves/river_landings.json` gained `boarding_stair_width_m`, `_tread_m` and `_rise_m` and no
+stair height; **L188** records the invention and what bounds each figure.
+
+**One thing found on the way, filed rather than fixed (T-0223).** Carpenter's and Jones's decks tie
+their heels back into bank the riverside plank walk already runs along: about 2,700 frontage
+vertices lie inside those two deck outlines and 270 inside their stairs. None of that geometry
+moved — but the deck is a registered floor now, so the walk meets a 0.50 m riser at the deck's edge
+and the way up is the boarding stair, which at those two rises off the plank walk itself. Truthful,
+and nobody chose it. `tools/smoke_renderer.mjs` excludes wharf decks from the frontage layer's
+tie-into-the-ground probe for that reason — a board under a dock is not a board riding one — which
+is right for that check and is not an answer to the question.
+
+**Verification.** `tools/check.sh` **CHECK PASS**. `tools/smoke_renderer.mjs --published`, the full
+staged gate at both viewports: desktop parts 1–9 and mobile 1-2, 3-4, 5-6, 7-9. Three new checks in
+the wharf section — the layer publishes every plank it drew at the height it drew it (19 surfaces:
+7 decks, 12 treads); no tread rises past the record's ceiling or the step-up rule; and **the walk
+itself, all seven docks, 0 blocked strides, worst stride 0.205 m**, each ending on the planks over
+open water with the barrier 3.1 m above its head.
+
+**One failure, and it is dev's, not this branch's.** Desktop part 4's `full` and `balanced`
+scene-detail ceilings are breached at Lake Street at Canal. Measured on this runner in this session
+against `origin/dev`'s own published mirror: dev **1,410,456** tris of 1,400,000, this branch
+**1,410,744** — the twelve treads are **+288 triangles on a frame already 10,456 over**. (`balanced`
+came in *lower* here than on dev, 1,225,457 against 1,251,361, which is the vegetation deal's own
+spread and not a saving.) The queue already owns it: **T-0089**, **T-0146**, **T-0147**.
+
 ## Shipped — T-0215: the What's-new stage was not failing on What's-new, and nothing was broken
 
 **Three agents in one day read the same log as a broken panel.** `SMOKE_VIEWPORT=desktop
