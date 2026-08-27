@@ -24,7 +24,6 @@ T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0194 — Hitching posts at the commercial frontages
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
-T-0027 — How much of the public square was wet
 
 # --- THE RIVER AND ITS WHARVES — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
@@ -93,6 +92,7 @@ T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end 
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
+T-0224 — A critic baseline standing on the public square
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0201 — docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them
 T-0202 — SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch

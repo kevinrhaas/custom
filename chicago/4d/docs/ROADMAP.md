@@ -348,7 +348,7 @@ rationed.**
 | — | RENDERING | ~~R-W5a2 + R-W3b(a2)~~ | **SEEN** | **DONE 2026-08-17 — 16 batches → 1, and the reach went straight from ±120 m to ±240 m on the calls it freed.** Roughness is the last thing that was splitting the town, and it is per-vertex now; the worst anchor reads **50 draw calls of 80 where it read 74 this morning**, at the SAME 11.7 cm texel. `green_tree` 27 → **49** of 331 structures and 0 → **70** of 730 stems; `south_water` 26 → **91** and 54 → **239**. **Its finding is that the batch merge is not neutral after all** — 942 pixels of 7,168,000 move across seven poses, all of them depth ties between co-planar surfaces of different materials, which is R-BUG6's own class one draw call in. Read its box before quoting a draw-call figure taken before this date |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **DONE 2026-08-27 as T-0034** — the bar is the lattice, the records already ask for 18 % more bloom than it can draw, and the prairies are on the ceiling now |
 | — | TOWN | ~~T-I3(b)~~ | — | **DONE 2026-08-27 as ticket T-0032** — closed at **662** on the owner's delegated pick; the institutional matrix row is now the census, and the target is gated against a civic ledger re-derived on every run |
-| — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
+| — | GROUND | ~~T-E5(b)~~ | **SEEN** | **DONE 2026-08-24 as T-0027 — and it refuted its own question. There is no wet fraction to read: 43,885 samples at 0.5 m over the platted block, 0 of them at or below the water surface, and the block's whole relief is 1.49 in — INSIDE the spec's own micro-relief noise, so the terrain models no basin here and a fraction read off it would be a read of the seed. The answer is a DEPTH: the dossier's own bed for zone 15 is +1.0 to +2.0 ft and the committed ground stands 0.84 to 1.96 ft above it, so the pond has to be DUG, not chosen. What was wrong was the SWARD — `docs/research/02-flora.md` heads ZONE 3 with the Public Square by name and `z03`'s elevation-band extent could never reach a block drawn at the plain's height. Read its box before proposing an extent for zone 15 |
 | — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
 | — | RENDERING | ~~K45(b3)~~ | **SEEN on `light`** | **DONE 2026-08-17 — the control was inert for the wood and was quietly halving the one thing that must not thin.** Measured before the repair: the three levels planted **472 / 470 / 437 trees** — one wood planted three times, exactly as K45(b2) predicted — while the point-bar willow screen went **258 / 190 / 133 stools**, because the thicket roll is a fixed per-cell chance and a coarser grid visits fewer bar cells. **So the only thing scene detail did was break the screen its own comment says must not be broken.** `keep` is now a fraction on the tree acceptance roll (1 / 0.80 / 0.60, the levels' own triangle ceilings read as a ratio — L121) and the thicket roll scales with its cell instead: **`light` 437 → 257 trees and 133 → 182 stools**, scene triangles **416,222 → 370,738**, `full` unchanged to the stem, and the wood reaches N +391.8 m at `light` against `full`'s +397.7. Read its box before quoting a stem count at any level but `full` |
 | — | RENDERING | ~~K45(b2)~~ | **SEEN** | **DONE 2026-08-16** — the planter sweeps the field (reach 27.05 % → 98.37 %), the timber gets the east end Andreas gives it, and `z05`'s own note had Wells Street 440 m from where the committed centreline puts it. Read its box before quoting a reach number or moving a woody east limit |
@@ -8279,7 +8279,62 @@ failed is not a check.
 parcel (c), and no research dossier was edited — those are committed verbatim, which is why the
 disagreement lives in `docs/RESEARCH/`.
 
-### T-E5(b) — how much of the square was wet · **UNCLAIMED · opened 2026-08-16 by T-E5(a) · Effort: M · NEEDS A BAKE**
+### T-E5(b) — how much of the square was wet · **DONE 2026-08-24 as T-0027 · NO BAKE NEEDED, and that is a finding**
+
+**IT REFUTED ITS OWN QUESTION, AND THE REFUTATION IS BETTER THAN THE NUMBER WOULD HAVE BEEN.**
+`tools/measure_public_square.py` (new, and wired into `check.sh`) samples the committed platted
+block at 0.5 m — **43,885 samples over 10,976 m²** — and reads:
+
+| | |
+|---|---|
+| ground | **+2.84 to +2.96 ft** above the summer-1835 water surface |
+| relief across the whole block | **1.49 in** |
+| **wet fraction** | **0.0 %** — 0 of 43,885 samples at or below the water |
+| the dossier's own bed (row 15) | +1.0 to +2.0 ft, which the ground stands **0.84 to 1.96 ft above** |
+| the square's drain, `state_slough_course` | heads **34.4 m** off the block's east kerb, outside it |
+
+**The zero is a reading of the MODEL, and the second row is what says so.** An inch and a half of
+relief across a city block is inside the spec's own declared micro-relief — ±0.10 ft of value noise
+that `micro_relief.note` calls *"a texture, not a claim"* — so the square carries no landform at
+all, and reading a wet fraction off it would be reading the noise seed. That is why the tool asserts
+the relief beside the water: assertion 1 is a statement about the model only for as long as
+assertion 2 holds.
+
+**So the answer to "how much" is a DEPTH, and it is the question this box did not ask.** The pond
+the dossier describes cannot be laid on this block; it has to be **dug**, one to two feet deep over
+10,976 m², out of the one land elevation in this box that rests on a documentary sentence (*"a level
+plain elevated only two to three feet above the river"*), under the block carrying Chicago's first
+public building, on no source that states a depth. `geometry conjectural` was carrying that. **The
+extent was never the whole question and the date was never the other half of it** — there is a third
+question underneath both, and it is the expensive one.
+
+**What was actually wrong was the SWARD, and no bake was needed to fix it.**
+`docs/research/02-flora.md` heads its ZONE 3 *"SLOUGH & SEDGE MEADOW (**Public Square** → Tremont
+House site → river at State St)"* and its § 1.2 calls that slough the single most important
+vegetation feature INSIDE the platted grid. `z03_sedge_meadow`'s extent is an **elevation band** of
++0.6 to +2.2 ft, which could never reach a block the terrain draws at +2.9 ft — *because zone 15 is
+deferred*. So the one block three sources describe as water was planted by the same rule as
+anonymous prairie 800 m west, and the pond quotation reached the flora layer nowhere. This is the
+mirror of what T-E5(a) found in the fauna: `z04_marsh` is a buffer of the mapped water and "has
+never reached the square" either.
+
+**Shipped:** `include_polygons` on the flora extent matcher (`renderers/web/js/flora.js`, mirrored
+in `tools/validate.py` and registered in `tools/measure_layer_reads.py`) — the exact mirror of
+`exclude_polygons`, for a community whose evidence is a PLACE and whose rule is a HEIGHT; the
+square's ring on `z03_sedge_meadow`, taken vertex for vertex from the committed plat and held there
+by the gate, so **nothing is fitted** — in particular nothing shaped around the estray pen, the log
+jail and the court-house, which stand ON the sward; `docs/LIBERTIES.md` **L188** for the one
+invention, that the wet ground stopped at the surveyor's line; the correction of
+`1835_reserved_ground.json`'s now-false *"the square renders as dry prairie"*; and
+`docs/RESEARCH/public_square_pond.md` § 6.
+
+**What it did NOT do.** It moved no ground, cut no basin, dated no water and promoted no confidence.
+Zone 15 is still deferred, still `not_established`, and still needs a bake and a source before it can
+be anything else. **Its fallback stands discharged:** the liberty this box asked for is written, and
+it admits a boundary rather than a pond.
+
+<details>
+<summary><b>The brief as T-E5(a) opened it, 2026-08-16</b></summary>
 
 What (a) deliberately did not answer. Its first question is not how to model an extent but
 **whether any source states one at all** — (a) found none, and the two corners this project has
@@ -8289,6 +8344,8 @@ buildings is a number chosen to look right, which is the failure mode R-M1b is p
 one this project has been handed twice. If the honest answer is that no extent is recoverable,
 that is a finding and it belongs in `docs/LIBERTIES.md` — but (a) is not it, because (a) invented
 nothing. Ground geometry means a bake either way.
+
+</details>
 
 <details>
 <summary><b>The original T-E5 brief, as opened by T-A16 on 2026-08-15</b></summary>

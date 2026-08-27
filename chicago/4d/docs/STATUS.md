@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0027: the public square has no wet fraction to read, and the sward was the thing that was wrong
+
+**The ticket asked how much of the public square was wet, and the answer is that the question has no
+fraction in it.** `tools/measure_public_square.py` (new, and a `check.sh` gate) samples the committed
+platted block `blk_randolph_lasalle` at 0.5 m — 43,885 samples over 10,976 m² — against the committed
+heightfield:
+
+| | |
+|---|---|
+| ground | **+2.84 to +2.96 ft** above the summer-1835 water surface (mean +2.90) |
+| relief across the whole block | **1.49 in** |
+| **wet fraction** | **0.0 %** — 0 of 43,885 samples at or below the water |
+| the dossier's bed for zone 15 | +1.0 to +2.0 ft, which the ground stands **0.84 to 1.96 ft above** |
+| the square's drain, `state_slough_course` | heads **34.4 m** off the block's east kerb, outside it |
+
+### The zero is a reading of the model, and the relief row is what says so
+
+An inch and a half across a city block is *inside* the terrain spec's own declared micro-relief —
+two octaves of value noise at ±0.10 ft, seed 18350701, which `micro_relief.note` calls **"a texture,
+not a claim"**. The square carries no landform at all; it is the South Division's plain profile plus
+noise, which is exactly what `not_modelled_in_this_box` says dossier zone 15 is. **A wet fraction
+read off this ground would be a read of the noise seed.** That is why the gate asserts the relief
+beside the water: assertion 1 is a statement about the model only while assertion 2 holds.
+
+### So the honest answer is a depth, and it is a question nobody had asked
+
+The dossier's row 15 puts the pond's bed at +1.0 to +2.0 ft; the committed ground stands 0.84 to
+1.96 ft above it. **The pond cannot be laid on this block — it has to be dug**, one to two feet deep
+over 10,976 m², out of the one land elevation in this box that rests on a documentary sentence, under
+the block carrying Chicago's first public building, with no source stating a depth. T-E5(a) had the
+date and the extent as one question; they sit inside a third, and `geometry conjectural` was carrying
+it. Zone 15 stays deferred and `not_established`. **No confidence moved and no ground moved.**
+
+### What was actually wrong, and it needed no bake
+
+The **sward**. `docs/research/02-flora.md` heads its ZONE 3 *"SLOUGH & SEDGE MEADOW (**Public
+Square** → Tremont House site → river at State St)"* and § 1.2 calls that slough the single most
+important vegetation feature INSIDE the platted grid. `z03_sedge_meadow`'s extent is an **elevation
+band** of +0.6 to +2.2 ft — which can never reach a block the terrain draws at +2.9 ft, *because zone
+15 is deferred*. So the one block three sources describe as water was planted by the same rule as
+anonymous prairie 800 m west, and the pond quotation reached the flora layer nowhere. It is the
+mirror of what T-E5(a) found in the fauna, where `z04_marsh` "has never reached the square" either.
+
+**Shipped:** `include_polygons` on the flora extent matcher — the exact mirror of `exclude_polygons`,
+for a community whose evidence is a PLACE and whose rule is a HEIGHT — in
+`renderers/web/js/flora.js`, mirrored in `tools/validate.py`'s evaluator and registered in
+`tools/measure_layer_reads.py`; the square's ring on `z03_sedge_meadow`, taken **vertex for vertex
+from the committed plat** and held there by the gate, so nothing is fitted and in particular nothing
+is shaped around the estray pen, the log jail and the court-house, which stand ON the sward;
+`docs/LIBERTIES.md` **L188** for the one invention, that the wet ground stopped at the surveyor's
+line; the correction of `data/reconstruction/1835_reserved_ground.json`'s now-false *"the square
+renders as dry prairie"*; `docs/RESEARCH/public_square_pond.md` § 6; ROADMAP T-E5(b) closed.
+
+**Unverified / stated rather than measured:** the sward's *appearance* on the block is asserted from
+the zone record and the smoke's zero-pageerror pass, not from a shipped screenshot diff — no critic
+baseline stands on the public square, which is itself worth a ticket.
 ## Refuted 2026-08-24 — T-0026: there is no southern buildable ground, and the schedule was naming the wrong blocker
 
 **T-E4 was opened on "south is where the room is" and told the next run to widen the eligible ground
