@@ -342,19 +342,71 @@ walk and the three new street-fence meshes spent rather more. **`full` has never
 today.** Since this branch contributes zero, that reading is dev's own, and nothing has measured
 dev since T-0188 because the sweep only runs in a nightly and the last nightly ran against here.
 
-**Filed as T-0209 rather than fixed here.** Two tiers over at the town's worst stand, with no
-parcel in flight that spends it, is its own unit of work and it belongs with the tickets that
-already own the choice — **T-0190** (the street tier the ceiling refuses), **T-0147** and
-**T-0149** (win the axial frame back, then let the ceilings follow it down), **T-0089** and
-**T-0056**. What is new is the *dev* reading and the fact that `full` has joined `balanced`.
+**And the run was widened to answer the question underneath it: WHAT occupies the budget at
+that stand.** Every ceiling argument this project has had was made against a TOTAL, so each
+round has had to guess which lever to pull and then measure whether the guess paid. The layer
+table did not exist. It does now — `tools/measure_stand_budget.mjs`, hiding each named scene
+group in turn, two frames, `renderer.info.render`, restore. The sun column is CONTROLLED
+against a whole-frame reading with `shadowMap.enabled = false`, the two agree **exactly** at
+both tiers, and the baseline re-read against itself is **0 triangles, 0 calls**.
 
-**The instrument is committed rather than described.** `tools/measure_detail_ceilings.mjs` runs
-T-0135's sweep on its own, in one command, against any published tree, and `--against DIR` takes
-a second tree and prints the per-stand delta — which is the reading that settles authorship. It
-is verified against the gate it copies: on `69eb7175` it reproduces bake run 32761900576's
-desktop figures exactly, to the triangle and to the draw call. Two ceiling failures have now
-landed on branches that did not cause them (T-0089 was the first), and both times the first job
-was working out whose triangles they were.
+**`balanced` at Lake Street at Canal, east — 1,252,802 of 1,210,000, 202 calls**
+
+| layer | drawn | % of frame | calls | of which the sun | meshes |
+|---|---:|---:|---:|---:|---:|
+| **trees** | **360,926** | **28.8** | 9 | **180,100** | 5 |
+| terrain | 249,185 | 19.9 | 22 | 0 | 31 |
+| structures | 240,734 | 19.2 | 2 | 40,060 | 1 |
+| frontage | 154,932 | 12.4 | 40 | 8,680 | 39 |
+| enclosures | 105,888 | 8.5 | 48 | 6,892 | 48 |
+| yard | 65,480 | 5.2 | 54 | 15,768 | 50 |
+| streets | 45,192 | 3.6 | 6 | 0 | 3 |
+| yard-ground | 12,892 | 1.0 | 4 | 0 | 4 |
+| flora | 9,389 | 0.7 | 10 | 0 | 15 |
+| boats · wharves · signage | 8,172 | 0.7 | 6 | 4,086 | 3 |
+| **the sun's own pass** | **255,586** | **20.4** | 25 | — | — |
+
+At `full` the same stand reads 1,412,120 with `trees` at **442,110 (31.3 %), 220,692 of it the
+sun**, `enclosures` at **173,838** against `balanced`'s 105,888 — T-0068's zero-thickness pale
+is worth **67,950** here — and the sun's whole pass at **296,178 (21.0 %)**.
+
+**The largest consumer of the frame is not the town. It is the timber, and half of it is a
+shadow.** `trees` holds 181,900 triangles and draws 360,926 — the whole layer, twice, once for
+the camera and once for the sun, with nothing culled. `trees.js` builds the near timber as
+**four quadrant meshes spanning kilometres**, and the sun's box is **±240 m**; a mesh whose
+bounding sphere touches that box is submitted whole, so most of those 180,100 triangles are
+timber standing outside the box, **casting nothing any pixel of the shadow map can hold**. The
+comment at `trees.js` `mesh.castShadow = true` still says the shadow camera is *"only ±60 m
+around the walker … so this costs a shadow pass on the few stands actually near the visitor"*.
+The reach has been ±240 m since T-0115, and the cost is 14.4 % of every frame at the worst
+stand. **`flora` should also stop being the first suspect**: 9,389 triangles, 0.7 %, ninth
+largest, where three earlier budget arguments began with the sward.
+
+**So the honest answer to "are the ceilings wrong or is the content" is NEITHER, YET.** There
+are roughly 180,000 triangles of pure-loss shadow work in the frame, claimed by nothing — not a
+source, not a form, not a pixel — and re-basing a ceiling with that still in it would be
+budgeting for work the renderer should not be doing, for the fifth time. T-0149 already ordered
+it this way: *"only THEN consider lowering the ceilings back … a ceiling that comes back DOWN
+after a trim is the strongest evidence the trim worked."*
+
+**Filed as T-0209, with the table and a costed plan, rather than fixed here** — letting the
+sun's camera cull the timber is a renderer change with its own smoke, its own frame-signature
+control and its own draw-call trade (202 of 215 calls are already spent), and the ticket says
+so rather than half-doing it. It belongs with **T-0190**, **T-0147**, **T-0149**, **T-0089**
+and **T-0056**, which already own the choice; what is new is the *dev* reading, the fact that
+`full` has joined `balanced`, and the layer table itself.
+
+**Two instruments are committed rather than described.**
+`tools/measure_detail_ceilings.mjs` runs T-0135's sweep on its own, in one command, against any
+published tree, and `--against DIR` takes a second tree and prints the per-stand delta — which
+is the reading that settles authorship. `tools/measure_stand_budget.mjs` is the layer table
+above, at any stand and any tier, with the sun's pass separated and controlled. Both are
+verified against the gate they copy: on `69eb7175` the first reproduces bake run 32761900576's
+desktop figures exactly, to the triangle and to the draw call. Neither is a gate —
+`tools/smoke_renderer.mjs` holds the ceilings and nothing here changes that. Two ceiling
+failures have now landed on branches that did not cause them (T-0089 was the first), and both
+times the first job was working out whose triangles they were; the third time it should take
+one command.
 
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
