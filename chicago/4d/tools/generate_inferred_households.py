@@ -54,6 +54,7 @@ sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
 from band_notes import split_notes  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import label  # noqa: E402
 from measure_adoption_tests import floor_evidence  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel, because it is the one
@@ -325,7 +326,10 @@ def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 
                 "goods_door": a(wide), "goods_door_side": a("end")}
     door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
         "stable" if family == "A1" else "man")
-    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
+    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
+    # file's (T-0179): the same literal used to sit in five parcels and the five had
+    # already drifted over A5.
+    roof = roof_kind(family)[0]
     wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
     return {"wall_height_m": a(wall), "roof_type": a(roof),
             "roof_pitch_deg": a(18.0 if roof == "shed" else 32.0),
@@ -421,9 +425,13 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
     # ROADMAP K33: the citation is restricted to the values the family actually authors
     # something for, BEFORE the programme's own overrides land — those carry authored
     # notes of their own and are not this parcel's to rewrite.
-    form = split_notes(inferred_form(b["archetype"], b["family"], spec_note, w,
-                                     building_documented=documented),
-                       b["family"], spec_note)
+    # ...and T-0179's other half lands in the same place: where the family's roof line
+    # offers a SHED this town does not build, the record says so and says by how much.
+    form = note_refusal(
+        split_notes(inferred_form(b["archetype"], b["family"], spec_note, w,
+                                  building_documented=documented),
+                    b["family"], spec_note),
+        b["family"], w, d)
     for key, value in (form_over or {}).items():
         form[key] = attested(value, "reconstructed", [ANDREAS] if documented else [SPEC],
                              p.get("form_note") or spec_note)

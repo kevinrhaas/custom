@@ -52,6 +52,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 # dwelling or workplace of an inferred household (ROADMAP K1). The link is data, not a
 # hand edit, so this generator still re-derives every record byte for byte.
 from band_notes import split_notes  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel, because it is the one
 # form value that depends on where a building's neighbours stand — and the recipe is
@@ -136,15 +137,20 @@ def band_note(family: str) -> str:
             "specification; it is not evidence for this anonymous West Division instance.")
 
 
-def form_for(family: str, seq: int, paint: str) -> dict:
+def form_for(family: str, seq: int, paint: str, width: float, depth: float) -> dict:
     """The family's form values, with the band citation restricted to what it can cite.
 
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, seq, paint), family, band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, seq, paint), family, band_note(family)),
+        family, width, depth)
 
 
 def _form_body(family: str, seq: int, paint: str) -> dict:
@@ -198,7 +204,10 @@ def _form_body(family: str, seq: int, paint: str) -> dict:
 
     door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
         "stable" if family == "A1" else "man")
-    roof = "shed" if family in ("D2", "A3", "A4", "A5") else "gable"
+    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
+    # file's (T-0179): the same literal used to sit in five parcels and the five had
+    # already drifted over A5.
+    roof = roof_kind(family)[0]
     wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
     construction = "light_frame" if family in ("W2", "W4", "A1", "A2") else "plank"
     return {
@@ -303,7 +312,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                 "confidence": "reconstructed",
                 "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
             },
-            "form": form_for(family, seq, paint),
+            "form": form_for(family, seq, paint, width, depth),
             "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": inferred(function, f"Assigned from the {family} family to satisfy the aggregate West Division mix; no occupant or individual use is known."),

@@ -94,7 +94,13 @@ def build(params: FortStructureParams, name: str):
         # The roof takes the town's default tone: no fort record deals a weathering
         # condition, and none states a covering either (materials.md finding 2).
         simple_material("roof", ROOF_RGBA, roughness=0.9),
-        simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
+        # ONE DARK (T-0126) — the sheet's `DARK` row. Loopholes, the root house's
+        # plank door and every opening the complex cuts. Two uses on this archetype
+        # are not openings and the row's note names them: the sun-dial's brass plate
+        # and the lighthouse lantern's glazed drum. Both are dark and small, and
+        # splitting either would take this archetype from four materials to five.
+        simple_material("dark", materials.DARK.rgba,
+                        roughness=materials.DARK.roughness),
         simple_material("chinking", CHINK_RGBA,
                         roughness=materials.SUBSTRATES["chinking"].roughness),
     ]

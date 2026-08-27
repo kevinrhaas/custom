@@ -179,6 +179,7 @@ RIVER_APPROACH_M = 1.7     # the crossing footway reaches this far past each dec
 RIVER_DECK_MARGIN_M = 0.05  # the walkable footway strip is this much wider than its boards
 RIVER_DRY_M = 0.03         # least ground elevation under a board centre, m over datum
 RIVER_CROSS_CLEAR_M = 1.3  # a crossing runs past the track edge by this much each side
+LASALLE_LIBERTY = "L195"   # the crossing and its footway are claimed together
 
 # The authored knots, local ENU metres, east to west. Reach ends that meet the
 # crossing footway or the Dearborn board crossing are DERIVED below, not listed.
@@ -316,25 +317,26 @@ EDGE_FENCE_COURSES = 2
 # the platted frontage, in the roadway, and the march below refused the sidewalk
 # around every one of them.
 #
-# SIX WERE RECONCILED and their walls now stand 1.50 m back from the committed
-# frontage line, the same margin `tools/generate_block_infill.py` gives every
-# reconstructed unit on these faces. FIVE COULD NOT BE, and the reason is a
-# finding rather than a shrug: reconciled onto the plat a building SEATS on a
-# platted lot, and for these five that lot is one the 665-roof schedule has
-# already dealt to the anonymous South Water frontage run, which
-# `generate_block_infill.py` refuses. Naming them per store is the ticket's own
-# second acceptance route, and the number beside each is what it would take.
+# ALL ELEVEN ARE NOW RECONCILED and every one of their walls stands 1.50 m back
+# from the committed frontage line, the same margin `tools/generate_block_infill.py`
+# gives every reconstructed unit on these faces. It took two runs and one ruling.
+# T-0198 moved SIX; the other five it refused in writing, per store, because
+# reconciled onto the plat a building SEATS on a platted lot and for those five the
+# lot was one the 665-roof schedule had already dealt to this street's anonymous
+# frontage run — nothing overlapped, and what refused them was the rule "one
+# principal roof to a lot" rather than the ground. **The owner ruled on 2026-08-27
+# that a business-front lot may carry a documented store at the street AND an
+# anonymous dwelling behind it** (T-0199; `tools/plat_occupancy.py` carries the
+# ruling and the clause), so the last five came onto the plat too and this record's
+# march stopped refusing a single step for a wall anywhere on South Water Street.
+# The number beside each is the metres it moved along its face's inward normal.
 EDGE_RECONCILED = {
     "harmon_loomis_store": 6.81, "madore_beaubien_house": 7.48,
     "peck_store": 6.01, "chicago_democrat_office": 6.61,
     "temple_building": 6.90, "jh_kinzie_forwarding_store": 8.38,
-}
-EDGE_UNRECONCILED = {
-    "h_jones_store": (8.17, "blk_south_water_wells", 0, 9.67),
-    "carpenter_south_water_store": (6.62, "blk_south_water_wells", 2, 8.12),
-    "pruyne_kimball_drugstore": (5.55, "blk_south_water_clark", 2, 7.05),
-    "chicago_american_office": (6.91, "blk_south_water_dearborn", 0, 8.41),
-    "frederick_thomas_shop": (6.25, "blk_south_water_dearborn", 2, 7.75),
+    "h_jones_store": 9.67, "carpenter_south_water_store": 8.12,
+    "pruyne_kimball_drugstore": 7.05, "chicago_american_office": 8.41,
+    "frederick_thomas_shop": 7.75,
 }
 
 # The record's own id, and the liberty that claims every invented metre in it.
@@ -1294,6 +1296,302 @@ def build_river_walk() -> tuple[list, list]:
     return walks, refused
 
 
+# THE LA SALLE CROSSING FOOTWAY (T-0129). The owner, from South Water Street
+# looking west at 277 degrees on 2026-08-21: the La Salle drain should be "a
+# continous water drain into the river and have plank crossings for both the
+# road and the sidewalk". The drain was carried through to the river in the same
+# ticket and `lasalle_slough_crossing` is the timber crossing that answers the
+# first half; this is the second — six feet of plank laid along the deck's north
+# edge, outside the wagon way, on the machinery T-0119 built for the footway over
+# the State Street slough's mouth. Nothing here is authored: every figure is read
+# off the crossing's own committed sidecar.
+LASALLE_WALK_ID = "lasalle_crossing_walk"
+LASALLE_BRIDGE = "lasalle_slough_crossing"
+# The wagon way the footway stands clear of. The crossing's record splits its
+# 4.27 m deck into eight feet of wagon way and six of walk; this is the eight.
+LASALLE_WAGON_WAY_M = 2.44
+# AND THE RUN IS THE DECK AND NOTHING MORE — no reach onto the approaches, where
+# the State Street footway takes 1.7 m at each end. The difference is which way
+# the approach earthwork goes. `frontage.js` decides board by board whether a
+# plank rides the committed deck or the land, by asking which is HIGHER: over the
+# State slough the approaches are CUTS and the banks stand above that low deck, so
+# a board laid past the abutment takes the ground and its stringers reach it. Here
+# they are FILLS graded UP to a deck that stands over its banks, so the ground is
+# below the deck for as far as the fill runs and every board past the abutment
+# would go on riding the deck — 0.27 m of daylight under it, no stringers, which
+# is what the smoke's "the plank decks tie into the ground they cross" reads. So
+# the boards stop where the deck does and the fill's own crest carries the last
+# stride, 0.13 m below the plank line.
+LASALLE_APPROACH_M = 0.0
+
+
+def build_lasalle_crossing_walk() -> tuple[list, list]:
+    """The plank footway over the La Salle slough, derived from the crossing's
+    committed deck and audited against the committed ground at its approaches."""
+    problems: list[str] = []
+    bridge = _load(SIDECARS / f"{LASALLE_BRIDGE}.json")
+    place = bridge.get("placement") or {}
+    poly = (bridge.get("footprint") or {}).get("polygon") or []
+    if place.get("vertical_anchor") != "water" or not isinstance(
+            place.get("walk_surface_m"), (int, float)):
+        raise SystemExit("generate_frontage_works: the La Salle slough crossing sidecar "
+                         "no longer carries a water-anchored walk_surface_m — the "
+                         "footway has nothing to ride")
+    if float(place.get("rotation_deg") or 0.0) != 0.0:
+        raise SystemExit("generate_frontage_works: the La Salle slough crossing deck has "
+                         "rotated — the footway derivation below assumes the committed "
+                         "east-west deck and must be re-derived")
+    deck_y = float(place["walk_surface_m"])          # a water anchor is datum zero
+    e0, n0 = float(place["local_e"]), float(place["local_n"])
+    deck_e0, deck_e1 = e0 + min(p[0] for p in poly), e0 + max(p[0] for p in poly)
+    deck_n0, deck_n1 = n0 + min(p[1] for p in poly), n0 + max(p[1] for p in poly)
+    # THE FOOTWAY'S LINE IS THE DECK'S NORTH EDGE, not its centre, and that is the
+    # difference from the State Street footway: this deck was widened to carry a
+    # walk BESIDE the wagon way rather than down the middle of it, so the boards
+    # start where the wagon way ends. If the deck ever narrows below the two
+    # widths it was sized from, the walk would lap the track and the check below
+    # refuses the record rather than laying it anyway.
+    if deck_n1 - deck_n0 < LASALLE_WAGON_WAY_M + WALK_W_M - 1e-6:
+        raise SystemExit("generate_frontage_works: the La Salle crossing's deck is "
+                         f"{deck_n1 - deck_n0:.2f} m wide and the wagon way plus this "
+                         f"walk need {LASALLE_WAGON_WAY_M + WALK_W_M:.2f} m — the "
+                         "footway would lap the track, so no boards are laid")
+    walk_n = _round(deck_n0 + LASALLE_WAGON_WAY_M + WALK_W_M / 2.0)
+    line = [[_round(deck_e0 - LASALLE_APPROACH_M), walk_n],
+            [_round(deck_e1 + LASALLE_APPROACH_M), walk_n]]
+    span_hw = _round(WALK_W_M / 2.0 + RIVER_DECK_MARGIN_M)
+    deck_span = [[_round(deck_e0), _round(walk_n - span_hw)],
+                 [_round(deck_e1), _round(walk_n - span_hw)],
+                 [_round(deck_e1), _round(walk_n + span_hw)],
+                 [_round(deck_e0), _round(walk_n + span_hw)]]
+
+    hf = _heightfield()
+    # THE GROUND AT EACH END MUST BE DRY AND MUST REACH THE PLANK LINE. Every
+    # board of this run rides the deck, so the ground is not asked to carry any of
+    # them — but a visitor steps off the last plank onto it, and the crossing is
+    # only walkable if that step is one. The fill approaches are what make it so.
+    for e, n in line:
+        g = hf.height(e, n)
+        if g < RIVER_DRY_M:
+            problems.append(f"{LASALLE_WALK_ID}: the footway's end at "
+                            f"({e:.1f}, {n:.1f}) stands on wet ground")
+        elif deck_y + WALK_RISE_M - g > 0.35:
+            problems.append(f"{LASALLE_WALK_ID}: the footway's end at "
+                            f"({e:.1f}, {n:.1f}) stands "
+                            f"{deck_y + WALK_RISE_M - g:.2f} m over the ground beside "
+                            "it, past the walker's 0.35 m step — the approach fill no "
+                            "longer reaches the plank line")
+    # AND THE THING THE WALK IS FOR MUST STILL BE THERE. A footway over a drain
+    # that has silted back up is the fault T-0129 was filed about, wearing a
+    # plank. Under the deck's own span, on the footway's own line, the committed
+    # field must fall below the water surface.
+    wet = 0.0
+    e = deck_e0
+    while e <= deck_e1:
+        if hf.height(e, walk_n) < 0.0:
+            wet += 0.05
+        e += 0.05
+    if wet < 1.0:
+        problems.append(f"{LASALLE_WALK_ID}: only {wet:.2f} m of open water runs under "
+                        "the footway's line — the drain has come up dry under its own "
+                        "crossing and the boards would span solid ground")
+    if problems:
+        raise SystemExit("generate_frontage_works: the La Salle crossing footway failed "
+                         "its own placement audit:\n  - " + "\n  - ".join(problems))
+
+    walks = [{
+        "id": f"{LASALLE_WALK_ID}_footway",
+        "belongs_to": LASALLE_WALK_ID,
+        "kind": "plank_walk",
+        "confidence": "reconstructed",
+        "rides": LASALLE_BRIDGE,
+        "centreline_local_enu_m": line,
+        "width_m": WALK_W_M,
+        "rise_m": WALK_RISE_M,
+        "plank_run": "across",
+        "plank_pitch_m": PLANK_PITCH_M,
+        "plank_thickness_m": PLANK_T_M,
+        "deck_m": _round(deck_y),
+        "deck_span_local_enu_m": deck_span,
+        "note": (
+            "THE PLANK FOOTWAY OVER THE LA SALLE SLOUGH — the sidewalk half of the "
+            "owner's 2026-08-21 ask, laid beside the wagon way rather than down the "
+            "middle of it. WHERE is derived, not authored: the run is the committed "
+            f"deck's extent (E {deck_e0:.1f}..{deck_e1:.1f}) exactly, its line is the "
+            "deck's own north edge "
+            f"less half this walk's width ({LASALLE_WAGON_WAY_M} m of wagon way, then "
+            "the boards), and `deck_m` is the deck surface the sidecar already states "
+            "(`walk_surface_m` over a water anchor), so the boards ride the same "
+            "number the walker's deck registry reads. Every board of this run lies on "
+            "the deck; the graded fill either side reaches within 0.13 m of the plank "
+            "line, so the step off is one stride. docs/LIBERTIES.md "
+            f"{LASALLE_LIBERTY}."
+        ),
+    }]
+    refused = [{
+        "structure_id": LASALLE_WALK_ID,
+        "wall": "the block faces either side (E +424.8 to +460, E +472 to +501.1)",
+        "why": (
+            "the footway stops at its own approaches and does not run on to meet the "
+            "town's street edge, because South Water Street's plank walk has not "
+            "reached this reach yet — the nearest committed runs end at E +424.8 to "
+            "the west and begin again at E +501.1 to the east (T-0127). A walk laid "
+            "across that ground would be inventing the street edge rather than the "
+            "crossing, which is a different ticket's work and a different record's."
+        ),
+    }]
+    return walks, refused
+
+
+def lasalle_record(walks: list, refused: list) -> dict:
+    total = 0.0
+    for w in walks:
+        line = w["centreline_local_enu_m"]
+        for i in range(len(line) - 1):
+            total += math.hypot(line[i + 1][0] - line[i][0], line[i + 1][1] - line[i][1])
+    bounds_note = (
+        "WHAT BOUNDED THE RUN: both ends are the La Salle slough crossing's own "
+        "committed deck plus its graded fill approaches, and the line across is the "
+        "deck's north edge less half this walk's width — the crossing's record splits "
+        "its deck into eight feet of wagon way and six of walk, and these are the six. "
+        "Nothing here is authored and nothing is measured off 1835: docs/LIBERTIES.md "
+        f"{LASALLE_LIBERTY}."
+    )
+    return {
+        "_doc": (
+            "The La Salle slough crossing's plank footway (T-0129) — the sidewalk "
+            "half of the crossing the owner asked for on 2026-08-21, laid along the "
+            "north edge of the timber crossing's committed deck. NOT a structure "
+            "record and NOT baked geometry: boards laid on a deck this project has "
+            "already built, drawn at load by renderers/web/js/frontage.js. Generated "
+            "by tools/generate_frontage_works.py and re-derived byte for byte by "
+            "tools/check.sh, which also re-asks whether there is still open water "
+            "under it."
+        ),
+        "id": "lasalle_crossing_frontage",
+        "name": "The plank footway over the La Salle slough",
+        "kind": "frontage",
+        "scene": "1835",
+        "target_date": "1835-07-01",
+        "coordinates": (
+            "Local East-North-Up metres from data/datum.json's origin, the same "
+            "frame data/signage/, data/yard/ and the sidecars' placement.local_e "
+            "/ placement.local_n use."
+        ),
+        "existence": {
+            "value": True,
+            "confidence": "reconstructed",
+            "sources": [],
+            "note": (
+                "NO SOURCE RECORD IN THIS REPOSITORY STATES THAT ANYTHING CROSSED THE "
+                "LA SALLE DRAIN ON 1 JULY 1835, LET ALONE A FOOTWAY. The crossing this "
+                "walk rides is itself reconstructed — unlike the State Street footway, "
+                "which rides a documented log bridge — so this record stands two "
+                "reconstructions deep and says so. What is held: the owner asked for "
+                "'plank crossings for both the road and the sidewalk' in as many words, "
+                "under the standing 2026-08-18 ruling that reconstructed items may be "
+                "added liberally so long as they are labelled and marked; and the "
+                "ground under South Water Street here is water, which a street either "
+                "crosses or stops at. Graded and claimed at docs/LIBERTIES.md "
+                f"{LASALLE_LIBERTY}."
+            ),
+        },
+        "treatment": {
+            "confidence": "reconstructed",
+            "note": (
+                f"Walk {WALK_W_M} m wide, its deck {WALK_RISE_M} m over the ground, "
+                f"{PLANK_T_M} m boards at a {PLANK_PITCH_M} m pitch laid ACROSS the "
+                "way a foot travels — the same drawn treatment as every walk this "
+                "layer lays. Over the crossing's deck the boards ride the committed "
+                "`walk_surface_m` and the stringers are omitted; on the two approach "
+                "fills each board samples the terrain under its own centre. Not one "
+                "of these numbers is a record's; they are how the layer is DRAWN."
+            ),
+        },
+        "rule": {
+            "note": (
+                "Every figure in this record is read off the crossing's committed "
+                "sidecar, and the generator refuses to write the file if any of four "
+                "things stops being true: the deck must still be water-anchored and "
+                "still state a walk_surface_m, it must still lie east-west, it must "
+                "still be wide enough to carry the wagon way AND this walk side by "
+                "side, and there must still be at least a metre of open water under "
+                "the footway's own line — a plank crossing over dry ground is the "
+                "fault this ticket was filed about. Read the clauses in "
+                "tools/generate_frontage_works.py."
+            ),
+        },
+        "card": {
+            "id": LASALLE_WALK_ID,
+            "name": "The plank footway over the La Salle slough",
+            "symbolic_location": (
+                "On the north side of the South Water Street crossing of the La Salle "
+                "drain, between La Salle Street and the drain's mouth."
+            ),
+            "position_note": bounds_note,
+            "attributes": {
+                "existence": {
+                    "value": True,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "Asked for by the owner from South Water Street, 2026-08-21: "
+                        "the drain should be 'a continous water drain into the river "
+                        "and have plank crossings for both the road and the "
+                        "sidewalk.' No 1835 source describes a walk here, and none "
+                        "describes the crossing it rides either."
+                    ),
+                },
+                "run_m": {
+                    "value": _round(total, 1),
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "The whole run, which is the committed deck's own extent: "
+                        "the boards stop at the abutments and the graded fill carries "
+                        "the last stride."
+                    ),
+                },
+                "width_m": {
+                    "value": WALK_W_M,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": "Six feet — two people passing; the layer's own drawn width.",
+                },
+                "crossing_deck_m": {
+                    "value": 0.84,
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        "The crossing's own committed walk_surface_m, carried and not "
+                        "claimed — but that number is itself a reconstruction, which "
+                        "is why this attribute reads reconstructed where the State "
+                        "Street footway's reads inferred."
+                    ),
+                },
+            },
+            "research_note": (
+                "A walk from data/frontage/ — not a structure record. " + bounds_note
+                + " What would move it off reconstruction: a bridge or culvert order "
+                "for South Water Street west of Clark; a Chicago town order on "
+                "sidewalks of the right date; or any view of the street at La Salle."
+            ),
+        },
+        "walks": walks,
+        "posts": [],
+        "refused": refused,
+        "research_note": (
+            "THE SIDEWALK HALF OF T-0129, AND THE SHALLOWER OF ITS TWO INVENTIONS. "
+            "The deeper one is the crossing itself (docs/LIBERTIES.md L195); this "
+            "record only decides that a town which built a crossing put a walking "
+            "surface on it, and where on the deck that surface lay. It does NOT run "
+            "on to meet the town's street edge either side — see `refused` — because "
+            "South Water Street's plank walk has not reached this reach yet, and "
+            "laying it here would be inventing the street rather than the crossing."
+        ),
+    }
+
+
 def river_record(walks: list, refused: list) -> dict:
     total = 0.0
     for w in walks:
@@ -2108,29 +2406,6 @@ def build_street_edge() -> tuple[list, list, list, dict]:
             "Until then a walker turning a corner still steps off the boards."
         ),
     })
-    for sid, (out_m, block_id, lot, shift_m) in sorted(EDGE_UNRECONCILED.items()):
-        refused.append({
-            "structure_id": sid,
-            "wall": "its own South Water frontage, unreconciled with the plat",
-            "why": (
-                f"REFUSED IN WRITING, PER STORE (T-0127). This building stands {out_m} m "
-                f"OUT PAST {block_id}'s committed frontage line, in the platted roadway, "
-                "because its coordinate was derived from the MODERN West Wacker Drive "
-                "centreline rather than from this project's own committed South Water "
-                "line — the record says so in its own position note. The walk is refused "
-                "along the stretch it covers, which is why South Water's frontage still "
-                f"comes out in pieces here. THE REPAIR IS MEASURED: {shift_m} m along the "
-                "face's inward normal would put its north wall 1.50 m back from the line, "
-                "the margin every reconstructed unit on this face keeps. IT WAS NOT "
-                f"APPLIED, and the reason is nameable: reconciled, this building seats on "
-                f"lot {lot} of {block_id}, which the 665-roof schedule has already dealt "
-                "to the anonymous South Water frontage run, and "
-                "tools/generate_block_infill.py refuses to deal a roof to a lot that "
-                "already carries one. Re-scoring that block's headroom is a second piece "
-                "of work; six of the eleven South Water placements were reconciled under "
-                "T-0127 and these five wait on it."
-            ),
-        })
     refused.append({
         "structure_id": "blk_lake_clinton",
         "wall": "Lake Street's West Division frontage, across the South Branch",
@@ -2405,6 +2680,7 @@ def index_record() -> dict:
         ),
         "frontage": [{"id": c["record_id"], "file": c["out"]} for c in BUILDINGS]
         + [{"id": "river_walk_frontage", "file": "river_walk_frontage.json"},
+           {"id": "lasalle_crossing_frontage", "file": "lasalle_crossing_frontage.json"},
            {"id": STREET_EDGE_RECORD_ID, "file": "town_street_edge.json"}],
     }
 
@@ -2429,6 +2705,12 @@ def main() -> int:
                    json.dumps(river_record(river_walks, river_refused), indent=2,
                               ensure_ascii=False) + "\n",
                    "the river plank walk"))
+    lasalle_walks, lasalle_refused = build_lasalle_crossing_walk()
+    totals = [totals[0] + len(lasalle_walks), totals[1], totals[2] + len(lasalle_refused)]
+    wanted.append((OUTDIR / "lasalle_crossing_frontage.json",
+                   json.dumps(lasalle_record(lasalle_walks, lasalle_refused), indent=2,
+                              ensure_ascii=False) + "\n",
+                   "the La Salle crossing footway"))
     edge_walks, edge_fences, edge_refused, edge_census = build_street_edge()
     totals = [totals[0] + len(edge_walks), totals[1], totals[2] + len(edge_refused)]
     fences_written = len(edge_fences)
@@ -2453,7 +2735,7 @@ def main() -> int:
             for d in drift:
                 print(f"  - {d}")
             return 1
-        print(f"verified {len(BUILDINGS) + 2} frontage record(s): {totals[0]} "
+        print(f"verified {len(BUILDINGS) + 3} frontage record(s): {totals[0]} "
               f"walk/crossing run(s), {fences_written} street-lining fence run(s) and "
               f"{totals[1]} post(s) ({totals[2]} refusal(s) stated)")
         return 0
@@ -2461,7 +2743,7 @@ def main() -> int:
     OUTDIR.mkdir(parents=True, exist_ok=True)
     for path, text, _ in wanted:
         path.write_text(text, encoding="utf-8")
-    print(f"wrote {len(BUILDINGS) + 2} frontage record(s) and their manifest — "
+    print(f"wrote {len(BUILDINGS) + 3} frontage record(s) and their manifest — "
           f"{totals[0]} walk/crossing run(s), {fences_written} street-lining fence "
           f"run(s), {totals[1]} post(s) ({totals[2]} refused)")
     print(f"  street edge: {edge_census['faces']} block face(s), "

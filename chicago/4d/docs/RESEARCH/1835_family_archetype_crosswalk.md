@@ -2,7 +2,12 @@
 
 ## Status and limits
 
-This crosswalk turns the 35-family, 665-roof production schedule into an implementable
+**THE TOTAL MOVED 665 → 662 on 2026-08-27 (ticket T-0032).** Three of family I3's six civic
+slots were shown to count nothing — the town's public buildings with a roof on 1835-07-01 are
+three named records — so I3 goes 6 → 3 and the total with it. No other family target changed.
+See `docs/RESEARCH/civic_public_buildings_1835.md` § 6a.
+
+This crosswalk turns the 35-family, 662-roof production schedule into an implementable
 geometry backlog. Its source is the owner-supplied *Chicago · July 1835: Building Inventory
 and Architectural Reconstruction Specification*, recorded as
 `owner_chicago_1835_reconstruction_spec_2026`. That modern synthesis supports aggregate family
@@ -12,12 +17,12 @@ building, parcel, occupant, finish or detail.
 “Current” below means the least-wrong generator available today, not a claim that it is a
 finished representation. “Canonical” is the required production family and variant. Existing
 named records remain protected: a named or better-documented roof substitutes for an anonymous
-slot instead of increasing the 665 total.
+slot instead of increasing the authored total.
 
 ## Count and priority control
 
-The 665 family targets independently sum to the programme total. Phase 1 has instantiated 48
-anonymous South Division roofs, leaving 617. Reviewed but unrendered phase-2 recipes are not
+The family targets independently sum to the programme total. Phase 1 has instantiated 48
+anonymous South Division roofs, leaving 614. Reviewed but unrendered phase-2 recipes are not
 subtracted. The backlog is ordered by remaining roof count:
 
 - **P0:** 50 or more remaining
@@ -56,14 +61,14 @@ subtracted. The backlog is ordered by remaining roof count:
 | F4 | 2 | 0 | 2 | 33 | P4 |
 | I1 | 4 | 0 | 4 | 29 | P4 |
 | I2 | 2 | 0 | 2 | 34 | P4 |
-| I3 | 6 | 0 | 6 | 23 | P3 |
+| I3 | 3 | 0 | 3 | 23 | P4 |
 | M1 | 10 | 0 | 10 | 19 | P2 |
 | A1 | 42 | 1 | 41 | 5 | P1 |
 | A2 | 30 | 1 | 29 | 8 | P1 |
 | A3 | 40 | 3 | 37 | 6 | P1 |
 | A4 | 28 | 2 | 26 | 9 | P1 |
 | A5 | 14 | 1 | 13 | 16 | P2 |
-| **Total** | **665** | **48** | **617** |  |  |
+| **Total** | **662** | **48** | **614** |  |  |
 
 ## Production crosswalk
 
