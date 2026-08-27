@@ -590,6 +590,22 @@ step "the shipped derivative still describes the master's building" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_web_derivatives.py --self-test
 
+# T-0158, and it is the SECOND fault of this exact shape. `build.py --ao` baked
+# occlusion that read min 0.000 / max 1.000 in Blender's own buffer and reached the
+# GLB as min 0 / max 0 — every one of 262,144 texels — while the run exited 0, the
+# GLB grew 4 KB and assets/manifest.json recorded `baked_ao: true`. Under glTF an
+# occlusion of 0 means FULLY occluded, so the manifest was asserting good AO on an
+# asset whose ambient light was extinguished. Nothing at all read the texture. This
+# does, off the exported bytes, with no Blender and no numpy: an asset that carries
+# an occlusion texture must carry occlusion, and the manifest must agree with the
+# file in both directions. Costs a quarter-second on a town whose 348 masters all
+# carry `baked_ao: false` — the moment one does not, it has a reader.
+step "a shipped occlusion texture carries occlusion, and the manifest agrees" \
+  python3 generators/ao_export.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 generators/ao_export.py --self-test
+
 # Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
 # three parcels because the ground a browser loads was quantised by a publish
 # step AFTER the only gate that measured it, and every gate passed because every

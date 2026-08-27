@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 26, 2026, 11:18 PM",
+  "generated_ct": "Aug 27, 2026, 12:04 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2799,7 +2799,7 @@
     {
       "id": "T-0158",
       "title": "The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black",
-      "state": "open",
+      "state": "claimed",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
@@ -2809,7 +2809,7 @@
       "opened": "2026-08-23",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:27:17 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 26
@@ -3353,6 +3353,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0208",
+      "title": "Is the AO bake actually too dark? Every figure that said so was wrong twice over",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }
