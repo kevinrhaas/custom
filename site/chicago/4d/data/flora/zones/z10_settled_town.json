@@ -302,6 +302,31 @@
    "note": "See populus_deltoides: survivor density inferred."
   },
   {
+   "id": "populus_nigra_italica",
+   "binomial": "Populus nigra 'Italica'",
+   "common": "Lombardy poplar (planted)",
+   "role": "tree",
+   "form": "tree_columnar",
+   "abundance": {"density_per_ha":[0,0]},
+   "height_m": [12,18],
+   "width_m": [1.4,2.4],
+   "width_provenance": {
+    "confidence": "reconstructed",
+    "sources": [],
+    "note": "MEASURED OFF ONE PLATE AND RECONSTRUCTED FROM IT. chicago/reference/images/chicago/chicago_kinzie_house_1833.png — the Chicago Magazine wood engraving of March 1857, captioned elsewhere 'The Old Kinzie House — About 1833' — is the only committed plate whose scan resolves a single spire against clear sky with a gap on both sides. Its leftmost poplar measures 24–27 px across between two fifths and three quarters of its height, on a stem 224 px tall: a width-to-height ratio of 0.107–0.121. Carried across the height band above that is 1.3–2.2 m, and this record widens it a little at each end. NOTHING STATES A CROWN WIDTH, and a drawn spire is an engraver's line — a living 'Italica' at this height commonly carries more spread than an engraving gives it. The band is kept narrow all the same, because narrowness is the whole character of the tree and a fat column is the one way to draw this species wrong."
+   },
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [66,96,54],
+    "foliage_rgb_alt": [122,146,96],
+    "inflorescence": null,
+    "appearance": "A narrow dark spire held to a single leader, foliage carried nearly to the ground, flickering pale where the flattened leaf-stalks turn the undersides into the wind. Nothing in flower or fruit: the catkins are March and April, and 'Italica' is a male clone that sets no cotton."
+   },
+   "confidence": "inferred",
+   "sources": ["kinzie_waubun_1856"],
+   "note": "THE SPECIES IS ATTESTED AT CHICAGO; ITS MEMBERSHIP OF THIS COMMUNITY IS NOT, AND THAT IS WHAT THE GRADE MEANS HERE. Wau-Bun, ch. XVII 'Chicago in 1831', verbatim: \"On the northern bank of the river, directly facing the fort, was the family mansion of my husband. It was a long, low building, with a piazza extending along its front, a range of four or five rooms. A BROAD GREEN SPACE WAS INCLOSED BETWEEN IT AND THE RIVER, AND SHADED BY A ROW OF LOMBARDY POPLARS. Two immense cottonwood-trees stood in the rear of the building, one of which still remains as an ancient landmark.\" The species, the ROW, the fenced green, and which side of the house it stood on are all stated, by a near-contemporary who lived there. WHAT IS INFERRED IS THIS ENTRY: Populus nigra 'Italica' is a European cultivar and no part of the settled town's ecology; it is held in this zone's species table only because that table is where renderers/web/js/trees.js reads a stem's height, crown, foliage and confidence from. THE ZERO DENSITY IS THE CLAIM THAT KEEPS THAT HONEST — nothing grows this tree here. Every stem of it arrives as nursery stock and is put in the ground by a household, so no density over the settled town may ever deal one, and the only stems of it in this scene are the ones data/flora/plantings/town_planted_rows.json states by the rule in tools/generate_planted_rows.py. THE HEIGHT BAND IS RECONSTRUCTED. No source gives this tree a size. The ceiling is 18 m because that is the FLOOR of the eastern cottonwood's band in this same record, and every committed plate that draws both draws the round-crowned cottonwoods behind the house standing clear above the poplar row — which is Wau-Bun's reading too, since the cottonwoods are the 'immense' ones and the surviving landmark. The floor is 12 m because it is the shortest row the rule in tools/generate_planted_rows.py can deal: the youngest house that rule's age clause lets through has eleven and a half growing seasons behind it, at the cultivar's ordinary metre a year on lake-plain clay. WHAT WOULD REPLACE IT: a nurseryman's list, a sale notice, or a girth measured off a photograph-era survivor."
+  },
+  {
    "id": "ribes_spp",
    "binomial": "Ribes spp.",
    "common": "currant bushes (dooryard)",

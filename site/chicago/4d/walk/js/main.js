@@ -539,12 +539,69 @@ async function boot() {
   const bases = resolveBases();
   const coarse = prefersTouch();
 
+  /**
+   * MULTISAMPLING, ON EVERY DEVICE INCLUDING A PHONE (T-0157).
+   *
+   * This read `antialias: !coarse` from Milestone 0 — the first commit of this
+   * renderer, before there was a town to look at — so every touch device drew
+   * the whole reconstruction with no multisampling at all. Nobody had ever
+   * measured what that costs a phone: T-0013 established that all 627
+   * interior-flickering pixels at `from_above` are edges and that only sample
+   * density touches them, but every one of its readings was taken at 1280×800
+   * on the DESKTOP boot, where MSAA was already absorbing most of it.
+   *
+   * `tools/measure_phone_aa.mjs` measures the phone, at 390×780 in a context
+   * with `hasTouch` — which the release gate uses and which `TIE_VIEWPORT=mobile`
+   * does not, so the older instrument had been booting the desktop renderer in a
+   * narrow window. Published mirror, 2 mm nudge, shadow map off, control and
+   * return-to-pose both 0 px:
+   *
+   *              flicker px      HARD FLIPS (a pixel that moved ≥ 64 of 255)
+   *   from_above   1056 → 2482        25 → 0
+   *   lake_market  4843 → 7310       124 → 0
+   *
+   * READ THE SECOND COLUMN, AND NOTE THAT THE FIRST ONE ARGUES THE OTHER WAY.
+   * The flicker COUNT — the number T-0013 and three boxes of ROADMAP quote —
+   * goes UP by 135 % aerial and 51 % at eye height when MSAA is switched on,
+   * because a partial resample touches more pixels than a whole flip does. A run
+   * that had measured only the count would have refused this. What actually
+   * happens is that the SEVERITY collapses: the worst per-pixel movement falls
+   * 105 → 28 aerial and 140 → 37 at Lake and Market, the mean 15.6 → 6.8 and
+   * 14.8 → 6.4, and every one of the 149 pixels that were swapping surface
+   * outright stops doing it. That is precisely the difference between an edge
+   * that crawls and an edge that is resolved.
+   *
+   * WHAT IT COSTS, AND THE HONEST LIMIT OF THAT FIGURE. Timed over the ten scene
+   * anchors the release gate walks, clock held, A/B/A: **+56 % of a frame**
+   * (24,457 → 43,283 ms summed, against a mean-of-A baseline), with the runner
+   * itself drifting +26 % between its two A passes — so the true reading is
+   * "roughly half a frame again", not a digit. It is measured through ANGLE's
+   * SwiftShader, a SOFTWARE rasteriser, which resolves every sample on the CPU
+   * with no tile memory: that is the harshest possible witness for this change
+   * and the figure is an UPPER bound. **The cost on real phone silicon was not
+   * measured and is not claimed.**
+   *
+   * The floor is untouched and the escape hatch already ships. A phone still
+   * boots into the `light` scene-detail tier, unchanged; and Render quality in
+   * Settings drops the pixel ratio to 1, which cuts the multisampled pixel count
+   * by 56 % — measured at 4 stations rather than asserted, see STATUS.md.
+   */
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: !coarse,
+    antialias: true,
     powerPreference: 'high-performance',
     stencil: false,
   });
+  /**
+   * The boot-time ratio. Note that this is superseded a few hundred lines below
+   * by `renderer.setPixelRatio(Math.min(dpr, hud.settings.quality))` once the
+   * visitor's stored settings are read, and the shipped default of `quality` is
+   * **1.5 on both platforms** — so the `: 2` here reaches a fresh visitor's
+   * screen for the handful of frames before the HUD mounts and nowhere else.
+   * T-0157's premise held that a phone was capped at 1.5 "rather than 2"; what
+   * the renderer actually reports is 1.5 on a phone at dpr 2 and 1.0 on a
+   * desktop at dpr 1, which is the phone supersampling MORE than the desktop.
+   */
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
 
   const scene3d = new THREE.Scene();
@@ -794,7 +851,21 @@ async function boot() {
       // every post stood in water) simply has no group, and that is not an
       // error here — the problem is already recorded where it happened.
       if (!group) continue;
-      group.traverse((o) => { if (o.isMesh) o.castShadow = casts; });
+      // T-0127 — THE PER-MESH OPT-OUT T-0115'S LEDGER COSTED, and it is a
+      // property of the MESH rather than of the layer because within one layer
+      // the two halves differ: `frontage.js` marks the plank-walk and board-
+      // crossing chunks `groundHugging` and leaves the street-lining fences on
+      // their own meshes without it. A walk lies 0.11 m proud of the ground and
+      // its own cast shadow is about 0.04 m wide at noon on 1 July, so drawing
+      // 2.9 km of boards into the shadow map buys nothing a visitor can see and
+      // costs their whole triangle count and one draw call per chunk, at the two
+      // tiers that cast at all. The fences (1.37 m, about half a metre of real
+      // shadow along the walk they stand behind) keep casting. `light` casts no
+      // furniture at all, so nothing here changes it.
+      group.traverse((o) => {
+        if (!o.isMesh) return;
+        o.castShadow = casts && !o.userData.groundHugging;
+      });
     }
     return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
   }
@@ -1671,16 +1742,25 @@ async function boot() {
       get: () => {
         let meshes = 0;
         let casting = 0;
+        // T-0127 — COUNTED, NOT ASSUMED. Before the per-mesh opt-out above, the
+        // gate could read "every furniture mesh casts" as a single equality.
+        // With an exemption in the layer that equality is false by design, so
+        // the exempt meshes are counted here and the gate asserts
+        // casting === meshes - groundHugging. A layer that silently stopped
+        // casting would still fail; an exemption nobody declared cannot hide in
+        // the difference.
+        let groundHugging = 0;
         for (const name of FURNITURE_LAYERS) {
           const group = scene3d.getObjectByName(name);
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
             meshes += 1;
+            if (o.userData.groundHugging) groundHugging += 1;
             if (o.castShadow) casting += 1;
           });
         }
-        return { layers: FURNITURE_LAYERS.slice(), meshes, casting };
+        return { layers: FURNITURE_LAYERS.slice(), meshes, casting, groundHugging };
       },
       enumerable: true,
     },

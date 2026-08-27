@@ -43,11 +43,11 @@ notice it:
 | 1 | **No road anywhere on the reservation.** Both plates show a travelled way at the fort; the render has trackless prairie between the town and the gate. | **yes — this pass ships it** |
 | 2 | The track descending the bank from the north gate to the water (`p4_0`). | no while the bank is ungraded — T-0004 owns the bank |
 | 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** | nothing to bake |
-| 4 | The corner works do not rise above the curtain with roofs and lanterns as the plate draws them. | geometry — needs the bake |
-| 5 | No gate is drawn in either documented wall; the plate shows a log-faced work over the gate. | geometry — needs the bake |
+| 4 | ~~The corner works do not rise above the curtain with roofs and lanterns as the plate draws them.~~ **`p4_0` draws no work at either angle it shows. Refuted and closed 2026-08-24 by T-0095 — see below.** | nothing to bake |
+| 5 | ~~No gate is drawn in either documented wall;~~ **a gate has been drawn in both since the archetype was written — but both stood a QUARTER OPEN, and that is now fixed. Closed 2026-08-24 by T-0095 — see below.** The plate's log-faced work over the gate is not built, and § "Row 4" says why. | **closed — one asset rebaked** |
 | 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
-| 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L181); before/after at `docs/evidence/t-0098-{before,after}.png` |
+| 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L188); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
 ## Row 3 was wrong, and the correction is the interesting part (T-0094, 2026-08-24)
 
@@ -134,6 +134,44 @@ Reservation by the 1833 order and nothing reached draws what carried on.
 
 Rows 2–8 above became tickets at the bottom of `tickets/QUEUE.md`, where the owner can rank
 them. Rows 3–5 are one bake apart; rows 6–8 are not.
+
+## Rows 4 and 5 were wrong too, and the gate was open (T-0095, 2026-08-24)
+
+The full working is in **`docs/RESEARCH/fort_dearborn_gate_and_corner_works.md`**; this is the
+part that belongs to this table. Measured by `tools/measure_fort_works_plate.py` and
+`tools/measure_fort_gates.py`, both of which run in `tools/check.sh`.
+
+**Row 4 — `p4_0` raises no work at either angle it draws.** The plate raises exactly two
+roofed, lanterned, log-faced works and **both stand over the middle of the wall**, at
+**0.435 and 0.521** of the drawn run — over the gate, which is where row 5 already put one
+of them. A corner work stands at 0.000 or 1.000. The one angle the plate shows unoccluded is
+the north-east, and it is drawn **plain**: the picket crest is the skyline from column 319,
+rising 0.04 curtain heights over its first twenty columns — which is what the record says of
+that angle. The north-west angle, the one the record does put a work at, is behind the tree
+outside the walls: the crest is last legible at column 1181 and the material past it is green
+by 12.1 against 8.0 over the fort. **The plate has nothing to say about it, and no height was
+read out of leaves.**
+
+This row and row 3 are the same mistake made twice on the same sheet, one day apart: the plate
+read by eye, and a feature of the record joined to a feature of the drawing that was somewhere
+else.
+
+**Row 5 — the gate was drawn, and it was open.** `palisade.py::_gate` has built a gateway in
+both documented walls since the archetype was written — jamb posts, a lintel, two leaves —
+and it was in the committed GLB when this table was written. What was wrong is something this
+table did not claim: **one leaf of each pair was placed from a midpoint that collapsed onto
+its own jamb**, so 0.90 m of the 3.6 m gateway stood open with daylight straight through the
+wall, and 0.90 m of leaf lay across the pickets outside the frame. Both gates. In the bytes a
+visitor downloaded. Fixed and rebaked; before and after from this plate's own stand at
+`docs/evidence/t-0095-{before,after}.png`, with the gate itself at 5x in
+`t-0095-close-{before,after}.png`.
+
+**And the log-faced work over the gate is still not built.** Not because the plate is unclear
+— it is perfectly clear — but because of § "The flagstaff is a documented trap" above,
+applied consistently. This sheet already carries one feature `data/exclusions.json` assigns to
+the FIRST fort, and two roofed lanterned log towers is that fort's own signature in everything
+but position. A tier-5 view that conflates the two forts cannot add a tower to the second one
+at an angle **or** over a gate.
 
 ## Row 8's "east" is west — measured 2026-08-24 (T-0098)
 
