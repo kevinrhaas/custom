@@ -21,8 +21,6 @@
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
 
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
-T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
-T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
@@ -104,4 +102,5 @@ T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now m
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
+T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
