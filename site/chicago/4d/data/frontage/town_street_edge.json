@@ -23,16 +23,16 @@
       "lake"
     ],
     "faces_laid": 16,
-    "walk_m": 1214.5,
-    "crossing_m": 212.5,
+    "walk_m": 1297.3,
+    "crossing_m": 266.5,
     "fence_m": 494.4,
-    "walking_decks": 89
+    "walking_decks": 96
   },
   "card": {
     "id": "town_street_edge",
     "name": "The town's street edge",
     "symbolic_location": "South Water Street and Lake Street, between Market Street and State Street — the plank sidewalks at the lot line, the board crossings at the corners and over the road, and the fences behind them.",
-    "position_note": "WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted block faces that front THREE east-west streets of the South Division — SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block behind it, both frontages; and RANDOLPH STREET one block behind that, both frontages — between Market Street and State Street. South Water and Lake are the owner's 'at least south of the river or near the river' and the town's trading core in 1835; Randolph is the first tier that is not on the river, added because 'all of the streets should be updated like this' does not stop at the bank. Every face is a committed street centreline offset by half the committed 80 ft corridor, so the line a walk lies on is the street network's and not this file's: move a centreline and every board here moves with it. Within that boundary the march decides, face by face and step by step — a stretch carries a walk where the ground is dry committed ground, flat enough for one walking deck, clear of the travelled track and clear of anything already standing on it — and `refused` says which clause refused every stretch that does not. THE SOUTH WATER FRONTAGES STILL COME OUT IN PIECES, and the reason is a finding rather than a fault of this rule: eleven documented buildings on that side were placed against the MODERN kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it. Six were reconciled with the plat and their stretch of walk closed; the other five are named one by one in `refused`, with the metres each would have to move and the reason the roof schedule cannot yet absorb the move. Randolph Street, Washington Street, the cross streets' own frontages and the West Division across the South Branch are the same rule on more faces. Every one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — Randolph was built, published and read at the release gate's whole stand set — and `refused` carries the triangle counts that refused them rather than a promise.",
+    "position_note": "WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted block faces that front THREE east-west streets of the South Division — SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block behind it, both frontages; and RANDOLPH STREET one block behind that, both frontages — between Market Street and State Street. South Water and Lake are the owner's 'at least south of the river or near the river' and the town's trading core in 1835; Randolph is the first tier that is not on the river, added because 'all of the streets should be updated like this' does not stop at the bank. Every face is a committed street centreline offset by half the committed 80 ft corridor, so the line a walk lies on is the street network's and not this file's: move a centreline and every board here moves with it. Within that boundary the march decides, face by face and step by step — a stretch carries a walk where the ground is dry committed ground, flat enough for one walking deck, clear of the travelled track and clear of anything already standing on it — and `refused` says which clause refused every stretch that does not. THE SOUTH WATER FRONTAGES USED TO COME OUT IN PIECES, and the reason was a finding rather than a fault of this rule: eleven documented buildings on that side were placed against the MODERN kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it, so the march refused the boards around every one of them. All eleven now stand on the plat — six reconciled under T-0188, the last five under T-0199, each translated along its own block face's inward normal until its north wall stood 1.50 m back from the committed frontage line, and no along-street position moved. What still refuses a stretch of this street is its own ground and the buildings that ARE the street wall, both named in `refused`. Randolph Street, Washington Street, the cross streets' own frontages and the West Division across the South Branch are the same rule on more faces. Every one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — Randolph was built, published and read at the release gate's whole stand set — and `refused` carries the triangle counts that refused them rather than a promise.",
     "attributes": {
       "existence": {
         "value": true,
@@ -41,10 +41,10 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 1214.5,
+        "value": 1297.3,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "20 run(s) of sidewalk on 16 platted block face(s), plus 212.5 m of board crossing at 9 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
+        "note": "18 run(s) of sidewalk on 16 platted block face(s), plus 266.5 m of board crossing at 11 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
         "value": 494.4,
@@ -59,7 +59,7 @@
         "note": "Six feet — two people passing; the layer's own drawn width."
       }
     },
-    "research_note": "A walk from data/frontage/ — not a structure record. WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted block faces that front THREE east-west streets of the South Division — SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block behind it, both frontages; and RANDOLPH STREET one block behind that, both frontages — between Market Street and State Street. South Water and Lake are the owner's 'at least south of the river or near the river' and the town's trading core in 1835; Randolph is the first tier that is not on the river, added because 'all of the streets should be updated like this' does not stop at the bank. Every face is a committed street centreline offset by half the committed 80 ft corridor, so the line a walk lies on is the street network's and not this file's: move a centreline and every board here moves with it. Within that boundary the march decides, face by face and step by step — a stretch carries a walk where the ground is dry committed ground, flat enough for one walking deck, clear of the travelled track and clear of anything already standing on it — and `refused` says which clause refused every stretch that does not. THE SOUTH WATER FRONTAGES STILL COME OUT IN PIECES, and the reason is a finding rather than a fault of this rule: eleven documented buildings on that side were placed against the MODERN kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it. Six were reconciled with the plat and their stretch of walk closed; the other five are named one by one in `refused`, with the metres each would have to move and the reason the roof schedule cannot yet absorb the move. Randolph Street, Washington Street, the cross streets' own frontages and the West Division across the South Branch are the same rule on more faces. Every one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — Randolph was built, published and read at the release gate's whole stand set — and `refused` carries the triangle counts that refused them rather than a promise. What would move it off reconstruction: a Chicago town order on sidewalks of the right date — the corporation legislated wooden walks within a few years of 1835, and an order would give a width and a material at a stroke; a tax, insurance or sale description naming a walk or a fence in front of a named lot; or holding the jail, Green Tree and Sauganash plates as proper source records (T-0075)."
+    "research_note": "A walk from data/frontage/ — not a structure record. WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted block faces that front THREE east-west streets of the South Division — SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block behind it, both frontages; and RANDOLPH STREET one block behind that, both frontages — between Market Street and State Street. South Water and Lake are the owner's 'at least south of the river or near the river' and the town's trading core in 1835; Randolph is the first tier that is not on the river, added because 'all of the streets should be updated like this' does not stop at the bank. Every face is a committed street centreline offset by half the committed 80 ft corridor, so the line a walk lies on is the street network's and not this file's: move a centreline and every board here moves with it. Within that boundary the march decides, face by face and step by step — a stretch carries a walk where the ground is dry committed ground, flat enough for one walking deck, clear of the travelled track and clear of anything already standing on it — and `refused` says which clause refused every stretch that does not. THE SOUTH WATER FRONTAGES USED TO COME OUT IN PIECES, and the reason was a finding rather than a fault of this rule: eleven documented buildings on that side were placed against the MODERN kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it, so the march refused the boards around every one of them. All eleven now stand on the plat — six reconciled under T-0188, the last five under T-0199, each translated along its own block face's inward normal until its north wall stood 1.50 m back from the committed frontage line, and no along-street position moved. What still refuses a stretch of this street is its own ground and the buildings that ARE the street wall, both named in `refused`. Randolph Street, Washington Street, the cross streets' own frontages and the West Division across the South Branch are the same rule on more faces. Every one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — Randolph was built, published and read at the release gate's whole stand set — and `refused` carries the triangle counts that refused them rather than a promise. What would move it off reconstruction: a Chicago town order on sidewalks of the right date — the corporation legislated wooden walks within a few years of 1835, and an order would give a width and a material at a stroke; a tax, insurance or sale description naming a walk or a fence in front of a named lot; or holding the jail, Green Tree and Sauganash plates as proper source records (T-0075)."
   },
   "walks": [
     {
@@ -991,6 +991,80 @@
       "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_wells's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 0.0 m to 97.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
+      "id": "blk_south_water_clark_north_crossing_blk_south_water_dearborn_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "south_water",
+      "street_name": "South Water Street",
+      "chunk": "blk_south_water_clark_north_2",
+      "centreline_local_enu_m": [
+        [
+          681.49,
+          -3.74
+        ],
+        [
+          711.08,
+          -4.38
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 29.6,
+      "footway_decks": [
+        {
+          "y": 0.695,
+          "pts": [
+            [
+              681.39,
+              -4.65
+            ],
+            [
+              696.35,
+              -4.97
+            ],
+            [
+              696.39,
+              -3.15
+            ],
+            [
+              681.43,
+              -2.82
+            ]
+          ],
+          "ground_roll_m": 0.11
+        },
+        {
+          "y": 0.717,
+          "pts": [
+            [
+              696.19,
+              -4.97
+            ],
+            [
+              711.14,
+              -5.29
+            ],
+            [
+              711.18,
+              -3.46
+            ],
+            [
+              696.23,
+              -3.14
+            ]
+          ],
+          "ground_roll_m": 0.024
+        }
+      ],
+      "note": "A BOARD CROSSING OVER SOUTH WATER STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 29.6 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
       "id": "blk_south_water_clark_north_walk_1",
       "belongs_to": "town_street_edge",
       "kind": "plank_walk",
@@ -1004,8 +1078,8 @@
           -2.39
         ],
         [
-          624.44,
-          -2.81
+          640.0,
+          -3.07
         ]
       ],
       "width_m": 1.83,
@@ -1041,29 +1115,29 @@
           "ground_roll_m": 0.062
         },
         {
-          "y": 0.762,
+          "y": 0.764,
           "pts": [
             [
               619.16,
               -3.64
             ],
             [
-              624.5,
-              -3.73
+              640.06,
+              -3.98
             ],
             [
-              624.53,
-              -1.9
+              640.09,
+              -2.15
             ],
             [
               619.18,
               -1.81
             ]
           ],
-          "ground_roll_m": 0.05
+          "ground_roll_m": 0.062
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_clark's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 10.4 m to 36.3 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_clark's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 10.4 m to 51.9 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_clark_north_walk_2",
@@ -1417,12 +1491,12 @@
       "chunk": "blk_south_water_dearborn_north_1",
       "centreline_local_enu_m": [
         [
-          726.68,
-          -4.82
+          711.08,
+          -4.38
         ],
         [
-          742.29,
-          -5.26
+          778.69,
+          -6.29
         ]
       ],
       "width_m": 1.83,
@@ -1435,6 +1509,28 @@
       "lot_line_offset_m": 1.17,
       "verge_to_track_m": 4.86,
       "footway_decks": [
+        {
+          "y": 0.781,
+          "pts": [
+            [
+              710.98,
+              -5.29
+            ],
+            [
+              726.74,
+              -5.73
+            ],
+            [
+              726.79,
+              -3.9
+            ],
+            [
+              711.03,
+              -3.46
+            ]
+          ],
+          "ground_roll_m": 0.042
+        },
         {
           "y": 0.799,
           "pts": [
@@ -1458,86 +1554,55 @@
           "ground_roll_m": 0.056
         },
         {
-          "y": 0.815,
+          "y": 0.839,
           "pts": [
             [
               736.98,
               -6.02
             ],
             [
-              742.34,
-              -6.18
+              752.74,
+              -6.47
             ],
             [
-              742.39,
-              -4.35
+              752.79,
+              -4.64
             ],
             [
               737.03,
               -4.19
             ]
           ],
-          "ground_roll_m": 0.044
-        }
-      ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 15.6 m to 31.2 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
-    },
-    {
-      "id": "blk_south_water_dearborn_north_walk_2",
-      "belongs_to": "town_street_edge",
-      "kind": "plank_walk",
-      "confidence": "reconstructed",
-      "street": "south_water",
-      "street_name": "South Water Street",
-      "chunk": "blk_south_water_dearborn_north_2",
-      "centreline_local_enu_m": [
-        [
-          757.89,
-          -5.7
-        ],
-        [
-          778.69,
-          -6.29
-        ]
-      ],
-      "width_m": 1.83,
-      "rise_m": 0.11,
-      "plank_run": "across",
-      "plank_pitch_m": 0.32,
-      "plank_thickness_m": 0.055,
-      "plank_underside": false,
-      "stringer_pitch_m": 2.08,
-      "lot_line_offset_m": 1.17,
-      "verge_to_track_m": 4.86,
-      "footway_decks": [
+          "ground_roll_m": 0.068
+        },
         {
-          "y": 0.867,
+          "y": 0.861,
           "pts": [
             [
-              757.78,
-              -6.61
+              752.58,
+              -6.47
             ],
             [
-              773.54,
-              -7.06
+              768.34,
+              -6.91
             ],
             [
-              773.6,
-              -5.23
+              768.39,
+              -5.08
             ],
             [
-              757.83,
-              -4.78
+              752.63,
+              -4.64
             ]
           ],
-          "ground_roll_m": 0.033
+          "ground_roll_m": 0.04
         },
         {
           "y": 0.869,
           "pts": [
             [
-              773.38,
-              -7.05
+              768.18,
+              -6.91
             ],
             [
               778.74,
@@ -1548,14 +1613,14 @@
               -5.38
             ],
             [
-              773.44,
-              -5.23
+              768.24,
+              -5.08
             ]
           ],
-          "ground_roll_m": 0.011
+          "ground_roll_m": 0.017
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 46.8 m to 67.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 0.0 m to 67.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_dearborn_south_walk_1",
@@ -1653,6 +1718,80 @@
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_south_water_dearborn's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 0.0 m to 62.2 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_franklin_north_crossing_blk_south_water_wells_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "south_water",
+      "street_name": "South Water Street",
+      "chunk": "blk_south_water_franklin_north_1",
+      "centreline_local_enu_m": [
+        [
+          318.23,
+          -4.14
+        ],
+        [
+          342.61,
+          -3.93
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.38,
+      "footway_decks": [
+        {
+          "y": 0.819,
+          "pts": [
+            [
+              318.16,
+              -5.05
+            ],
+            [
+              330.51,
+              -4.94
+            ],
+            [
+              330.49,
+              -3.11
+            ],
+            [
+              318.14,
+              -3.22
+            ]
+          ],
+          "ground_roll_m": 0.009
+        },
+        {
+          "y": 0.81,
+          "pts": [
+            [
+              330.35,
+              -4.95
+            ],
+            [
+              342.7,
+              -4.84
+            ],
+            [
+              342.68,
+              -3.01
+            ],
+            [
+              330.33,
+              -3.12
+            ]
+          ],
+          "ground_roll_m": 0.005
+        }
+      ],
+      "note": "A BOARD CROSSING OVER SOUTH WATER STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_franklin_north_walk_1",
@@ -2503,12 +2642,12 @@
       "chunk": "blk_south_water_wells_north_1",
       "centreline_local_enu_m": [
         [
-          363.16,
-          -3.76
+          342.61,
+          -3.93
         ],
         [
-          383.71,
-          -3.59
+          440.23,
+          -3.13
         ]
       ],
       "width_m": 1.83,
@@ -2521,6 +2660,28 @@
       "lot_line_offset_m": 1.17,
       "verge_to_track_m": 4.86,
       "footway_decks": [
+        {
+          "y": 0.855,
+          "pts": [
+            [
+              342.54,
+              -4.84
+            ],
+            [
+              363.25,
+              -4.67
+            ],
+            [
+              363.23,
+              -2.84
+            ],
+            [
+              342.52,
+              -3.01
+            ]
+          ],
+          "ground_roll_m": 0.01
+        },
         {
           "y": 0.845,
           "pts": [
@@ -2542,56 +2703,25 @@
             ]
           ],
           "ground_roll_m": 0.0
-        }
-      ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_wells's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 20.6 m to 41.1 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
-    },
-    {
-      "id": "blk_south_water_wells_north_walk_2",
-      "belongs_to": "town_street_edge",
-      "kind": "plank_walk",
-      "confidence": "reconstructed",
-      "street": "south_water",
-      "street_name": "South Water Street",
-      "chunk": "blk_south_water_wells_north_2",
-      "centreline_local_enu_m": [
-        [
-          399.13,
-          -3.46
-        ],
-        [
-          440.23,
-          -3.13
-        ]
-      ],
-      "width_m": 1.83,
-      "rise_m": 0.11,
-      "plank_run": "across",
-      "plank_pitch_m": 0.32,
-      "plank_thickness_m": 0.055,
-      "plank_underside": false,
-      "stringer_pitch_m": 2.08,
-      "lot_line_offset_m": 1.17,
-      "verge_to_track_m": 4.86,
-      "footway_decks": [
+        },
         {
           "y": 0.849,
           "pts": [
             [
-              399.05,
-              -4.38
+              383.64,
+              -4.5
             ],
             [
-              419.77,
-              -4.21
+              404.35,
+              -4.33
             ],
             [
-              419.75,
-              -2.38
+              404.34,
+              -2.5
             ],
             [
-              399.04,
-              -2.55
+              383.63,
+              -2.67
             ]
           ],
           "ground_roll_m": 0.004
@@ -2600,8 +2730,30 @@
           "y": 0.848,
           "pts": [
             [
-              419.61,
-              -4.21
+              404.19,
+              -4.34
+            ],
+            [
+              424.9,
+              -4.17
+            ],
+            [
+              424.89,
+              -2.34
+            ],
+            [
+              404.18,
+              -2.51
+            ]
+          ],
+          "ground_roll_m": 0.003
+        },
+        {
+          "y": 0.845,
+          "pts": [
+            [
+              424.74,
+              -4.17
             ],
             [
               440.32,
@@ -2612,14 +2764,14 @@
               -2.21
             ],
             [
-              419.59,
-              -2.38
+              424.73,
+              -2.34
             ]
           ],
-          "ground_roll_m": 0.06
+          "ground_roll_m": 0.057
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_wells's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 56.5 m to 97.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_wells's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 0.0 m to 97.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_wells_south_crossing_blk_south_water_lasalle_south",
@@ -3358,7 +3510,7 @@
     {
       "structure_id": "blk_south_water_clark_lot2",
       "wall": "blk_south_water_clark north face, lot 2",
-      "why": "pruyne_kimball_drugstore stands -5.55 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "pruyne_kimball_drugstore stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_clark_lot4",
@@ -3376,14 +3528,9 @@
       "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
     },
     {
-      "structure_id": "blk_south_water_clark_north_crossing_blk_south_water_dearborn_north",
-      "wall": "corner crossing",
-      "why": "the two walks stop 45.2 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
-    },
-    {
       "structure_id": "blk_south_water_dearborn_lot0",
       "wall": "blk_south_water_dearborn north face, lot 0",
-      "why": "chicago_american_office stands -6.91 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "chicago_american_office stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_dearborn_lot1",
@@ -3393,12 +3540,12 @@
     {
       "structure_id": "blk_south_water_dearborn_lot2",
       "wall": "blk_south_water_dearborn north face, lot 2",
-      "why": "frederick_thomas_shop stands -6.25 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "frederick_thomas_shop stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_dearborn_lot4",
       "wall": "blk_south_water_dearborn north face, lot 4",
-      "why": "recon_1835_blk_south_water_dearborn_c3_01 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_dearborn_a3_06 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_dearborn_lot7",
@@ -3429,11 +3576,6 @@
       "structure_id": "blk_south_water_franklin_lot7",
       "wall": "blk_south_water_franklin south face, lot 7",
       "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
-    },
-    {
-      "structure_id": "blk_south_water_franklin_north_crossing_blk_south_water_wells_north",
-      "wall": "corner crossing",
-      "why": "the two walks stop 44.9 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot0",
@@ -3471,6 +3613,11 @@
       "why": "the two walks stop 34.8 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
+      "structure_id": "blk_south_water_wells_lot0",
+      "wall": "blk_south_water_wells north face, lot 0",
+      "why": "h_jones_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+    },
+    {
       "structure_id": "blk_south_water_wells_lot1",
       "wall": "blk_south_water_wells south face, lot 1",
       "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
@@ -3478,12 +3625,12 @@
     {
       "structure_id": "blk_south_water_wells_lot2",
       "wall": "blk_south_water_wells north face, lot 2",
-      "why": "recon_1835_blk_south_water_wells_d4_03 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "carpenter_south_water_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_wells_lot4",
       "wall": "blk_south_water_wells north face, lot 4",
-      "why": "recon_1835_blk_south_water_wells_d5_02 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_blk_south_water_wells_a3_08 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_wells_lot6",
@@ -3496,35 +3643,10 @@
       "why": "the two walks stop 60.9 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
-      "structure_id": "carpenter_south_water_store",
-      "wall": "its own South Water frontage, unreconciled with the plat",
-      "why": "REFUSED IN WRITING, PER STORE (T-0127). This building stands 6.62 m OUT PAST blk_south_water_wells's committed frontage line, in the platted roadway, because its coordinate was derived from the MODERN West Wacker Drive centreline rather than from this project's own committed South Water line — the record says so in its own position note. The walk is refused along the stretch it covers, which is why South Water's frontage still comes out in pieces here. THE REPAIR IS MEASURED: 8.12 m along the face's inward normal would put its north wall 1.50 m back from the line, the margin every reconstructed unit on this face keeps. IT WAS NOT APPLIED, and the reason is nameable: reconciled, this building seats on lot 2 of blk_south_water_wells, which the 665-roof schedule has already dealt to the anonymous South Water frontage run, and tools/generate_block_infill.py refuses to deal a roof to a lot that already carries one. Re-scoring that block's headroom is a second piece of work; six of the eleven South Water placements were reconciled under T-0127 and these five wait on it."
-    },
-    {
-      "structure_id": "chicago_american_office",
-      "wall": "its own South Water frontage, unreconciled with the plat",
-      "why": "REFUSED IN WRITING, PER STORE (T-0127). This building stands 6.91 m OUT PAST blk_south_water_dearborn's committed frontage line, in the platted roadway, because its coordinate was derived from the MODERN West Wacker Drive centreline rather than from this project's own committed South Water line — the record says so in its own position note. The walk is refused along the stretch it covers, which is why South Water's frontage still comes out in pieces here. THE REPAIR IS MEASURED: 8.41 m along the face's inward normal would put its north wall 1.50 m back from the line, the margin every reconstructed unit on this face keeps. IT WAS NOT APPLIED, and the reason is nameable: reconciled, this building seats on lot 0 of blk_south_water_dearborn, which the 665-roof schedule has already dealt to the anonymous South Water frontage run, and tools/generate_block_infill.py refuses to deal a roof to a lot that already carries one. Re-scoring that block's headroom is a second piece of work; six of the eleven South Water placements were reconciled under T-0127 and these five wait on it."
-    },
-    {
-      "structure_id": "frederick_thomas_shop",
-      "wall": "its own South Water frontage, unreconciled with the plat",
-      "why": "REFUSED IN WRITING, PER STORE (T-0127). This building stands 6.25 m OUT PAST blk_south_water_dearborn's committed frontage line, in the platted roadway, because its coordinate was derived from the MODERN West Wacker Drive centreline rather than from this project's own committed South Water line — the record says so in its own position note. The walk is refused along the stretch it covers, which is why South Water's frontage still comes out in pieces here. THE REPAIR IS MEASURED: 7.75 m along the face's inward normal would put its north wall 1.50 m back from the line, the margin every reconstructed unit on this face keeps. IT WAS NOT APPLIED, and the reason is nameable: reconciled, this building seats on lot 2 of blk_south_water_dearborn, which the 665-roof schedule has already dealt to the anonymous South Water frontage run, and tools/generate_block_infill.py refuses to deal a roof to a lot that already carries one. Re-scoring that block's headroom is a second piece of work; six of the eleven South Water placements were reconciled under T-0127 and these five wait on it."
-    },
-    {
-      "structure_id": "h_jones_store",
-      "wall": "its own South Water frontage, unreconciled with the plat",
-      "why": "REFUSED IN WRITING, PER STORE (T-0127). This building stands 8.17 m OUT PAST blk_south_water_wells's committed frontage line, in the platted roadway, because its coordinate was derived from the MODERN West Wacker Drive centreline rather than from this project's own committed South Water line — the record says so in its own position note. The walk is refused along the stretch it covers, which is why South Water's frontage still comes out in pieces here. THE REPAIR IS MEASURED: 9.67 m along the face's inward normal would put its north wall 1.50 m back from the line, the margin every reconstructed unit on this face keeps. IT WAS NOT APPLIED, and the reason is nameable: reconciled, this building seats on lot 0 of blk_south_water_wells, which the 665-roof schedule has already dealt to the anonymous South Water frontage run, and tools/generate_block_infill.py refuses to deal a roof to a lot that already carries one. Re-scoring that block's headroom is a second piece of work; six of the eleven South Water placements were reconciled under T-0127 and these five wait on it."
-    },
-    {
-      "structure_id": "pruyne_kimball_drugstore",
-      "wall": "its own South Water frontage, unreconciled with the plat",
-      "why": "REFUSED IN WRITING, PER STORE (T-0127). This building stands 5.55 m OUT PAST blk_south_water_clark's committed frontage line, in the platted roadway, because its coordinate was derived from the MODERN West Wacker Drive centreline rather than from this project's own committed South Water line — the record says so in its own position note. The walk is refused along the stretch it covers, which is why South Water's frontage still comes out in pieces here. THE REPAIR IS MEASURED: 7.05 m along the face's inward normal would put its north wall 1.50 m back from the line, the margin every reconstructed unit on this face keeps. IT WAS NOT APPLIED, and the reason is nameable: reconciled, this building seats on lot 2 of blk_south_water_clark, which the 665-roof schedule has already dealt to the anonymous South Water frontage run, and tools/generate_block_infill.py refuses to deal a roof to a lot that already carries one. Re-scoring that block's headroom is a second piece of work; six of the eleven South Water placements were reconciled under T-0127 and these five wait on it."
-    },
-    {
       "structure_id": "town_street_edge",
       "wall": "Randolph Street, Washington Street and the cross streets' own frontages",
       "why": "REFUSED ON A FRAME BUDGET, AND THE NUMBER IS HERE RATHER THAN A PROMISE (T-0127/T-0188). The owner's ask reaches further than this record does — 'all of the streets should be updated like this' — and every one of these is the same rule on more platted faces, with no new argument in it. RANDOLPH WAS BUILT AND MEASURED RATHER THAN ESTIMATED: 13 more faces, +1,237.9 m of walk, +14 crossings, +14 fences. Published and read at the release gate's whole stand set, desktop, at the axial stand, it takes `full` from 1,378,984 to 1,497,588 against a 1,400,000 ceiling and `balanced` from 1,205,762 to 1,355,638 against 1,210,000 — over by 97,588 and 145,638, and the same shape on mobile. `light`, the tier a weak machine boots into, stays inside with 180,269 to spare. THE LEVER T-0115 COSTED FOR IT WAS TAKEN FIRST AND IS NOT ENOUGH: the plank walks no longer cast into the shadow map, and turning off every shadow caster this layer has left at that stand is worth a measured 44,110 triangles against that 145,638. AND THE BINDING FACT IS NOT RANDOLPH — `balanced` stood 4,238 triangles (0.35 %) inside its ceiling BEFORE this parcel, where T-0135 set it two days earlier with about 6 % of headroom, so no street tier of any size fits today. WASHINGTON adds 7 faces. THE CROSS STREETS (Market, Franklin, Wells, La Salle, Clark, Dearborn, State) are 34 platted faces and 3,562.8 m of walk — three times this whole record — and they also need a code change rather than only a name in `EDGE_STREETS`: `_edge_faces` enumerates a block's NORTH and SOUTH faces, and a cross street bounds its EAST and WEST ones. Until then a walker turning a corner still steps off the boards."
     }
   ],
-  "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on sidewalks or on lawful fences of the right date; a tax, insurance or sale description naming a walk or a fence in front of a named lot; or holding the four reference plates as proper source records with their institutions and dates (T-0075). AND ONE THING THAT CHANGES THE SHAPE OF THE RUN WITHOUT CHANGING ITS EVIDENCE, half done here: eleven documented South Water Street buildings were placed against the modern kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it, which is why the walk on that side broke around them. T-0127 reconciled six of them — the same derivation each record already describes, run against this project's committed street line instead of a modern one — and the five it could not are named store by store in the refusals below, each with the metres it would move and the platted lot the roof schedule has already dealt out from under it."
+  "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on sidewalks or on lawful fences of the right date; a tax, insurance or sale description naming a walk or a fence in front of a named lot; or holding the four reference plates as proper source records with their institutions and dates (T-0075). AND ONE THING THAT CHANGED THE SHAPE OF THE RUN WITHOUT CHANGING ITS EVIDENCE, finished here: eleven documented South Water Street buildings were placed against the modern kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it, which is why the walk on that side broke around them. T-0188 reconciled six — the same derivation each record already describes, run against this project's committed street line instead of a modern one — and T-0199 the last five, which had been refused because each seated on a platted lot the 665-roof schedule had dealt to that block's anonymous frontage run. What answered that refusal was a measurement rather than a concession: the town's eight party-line runs were dealt 20 lots of frontage and stand on 12, so four of the five stores were being kept out of the town by an entitlement no roof was using, and the fifth shares its lot with a run that had room for it. No anonymous roof left the street."
 }
