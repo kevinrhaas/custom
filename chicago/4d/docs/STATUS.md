@@ -1,5 +1,79 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0022: the South Water row is log and frame, and the rule that made it frame-only was a preference
+
+**The ticket asked whether the schedule may deal log cabins to the town's commercial frontage. It
+may, and the interesting part is that nothing was stopping it.** L99 and L100 both recorded the
+opposite worry in the same words — the 665-roof programme apportions families by DISTRICT and "has
+no notion of what a street was for", so "it will keep dealing cabins to commercial frontage every
+time this lane reaches one" — and ROADMAP K29 proposed the remedy that follows from believing it: a
+schedule term weighting the meanest dwelling families off the business front. **Measured, the fault
+runs the other way, and the schedule was never the fault.**
+
+**The number.** Before this run, **15 invented buildings stood on South Water Street's line and not
+one of them was log.** Thirteen of the fifteen were the party-line river row itself. The documented
+record for the same line is 8 buildings, one of them log — Hogan's store. Every log dwelling the
+schedule HAD dealt those five blocks, all five of them, stood on the Lake face, put there by a rule
+the block recipes state in their own prose: *"the two best dwellings the schedule deals take its two
+free lots … and the two meanest take Lake."* **Lake Street is the other principal thoroughfare**, so
+the rule was moving cabins from one commercial frontage to another and reading as care.
+
+**The evidence is three witnesses and none of them is taste.** The committed record already stands
+log TRADE buildings on the principal-street line — `hogan_store` (a store, South Water),
+`philo_carpenter_log_shop` (a drug shop, Lake), `madore_beaubien_house` (dwelling and store, South
+Water), `mansion_house` (a tavern, Lake) — and one street back `james_kinzie_house` is a documented
+log RESIDENCE on Lake. The only picture of this row, image 11 of the owner's brief of 2026-08-18
+(*"South Water Street in 1834"*), draws it as *"roughly ten one-storey log and frame buildings
+shoulder to shoulder facing the river, two two-storey frame stores anchoring the east end"* — and
+that is the **same plate T-0078 already cites as the warrant for the party-line treatment itself.**
+This project took the half of that sentence about shape and left the half about fabric. And the
+owner's ruling of 2026-08-27 on PR #371's fork, option (b), settles the general point: a
+business-front lot may carry a documented store at the street and an anonymous dwelling behind it,
+so the business front is not a district a dwelling is kept out of.
+
+**What shipped: ten records changed places, and that is the whole of it.** Five log dwellings came
+off the Lake lots into the South Water run — one per block, at its west end — and the five frame
+cottages they displaced took the Lake lots the cabins held, at the cabins' own setbacks and offsets.
+**No roof was added or removed. No record changed id, family, footprint or any form value.** The
+slots keep their positions in the recipe list precisely so the ids do not shift, because a record
+renamed is a record re-dimensioned and that would have been a bake for a change that moves no
+vertex; `validate.py` confirms it — 0 errors, no staleness. The run's line, length, anchors and unit
+count are unchanged, the schedule re-derives untouched (338 standing, 327 remaining), and the
+closest any moved record comes to anything that is not its own party wall is **3.14 m** — Wells's
+cabin to Carpenter's South Water store, against a 3 m separation gate.
+
+**K29's re-apportionment is refused rather than deferred.** A schedule term built to keep cabins off
+the business front would have been a term built on a refuted premise. **Its other half survives and
+is filed as T-0208**: weighting the trade families C, F and W ONTO the business front is not
+refuted — the same census reads South Water's documented line at 80 % trade — but it is a genuine
+schedule change, it is invisible until a block is built, and it does not belong in this run.
+
+**Held by `tools/measure_frontage_fabric.py`**, wired into `check.sh` with its own self-test. One
+assertion, absolute, no ratchet and no threshold: *a principal street's invented frontage may not be
+more uniform in construction than the documented record of the same street.* A floor of one log
+building where the record puts one, not a share — the plate gives no ratio, so a share would be a
+number somebody chose. It runs over the anonymous layers together rather than per layer, because
+splitting them would have carved an exemption for the household row on Lake, and an exemption
+written to make a new gate pass is a gate that arrives disbelieved. **It is red at the commit before
+this one and green at this one.** The principal streets come from the committed street hierarchy
+(`data/streets/1835.json`, `traffic: principal`), not from a list in the tool; the street-line band
+is the measured empty gap in the setback distribution (last building on the line 1.61 m, next
+building anywhere 3.81 m), printed by `--setbacks`.
+
+**What DID move, because a cabin is not the shape of a cottage.** Four derived layers read a lot's
+building and re-derived around the swap, and the numbers are stated rather than swept up: dooryard
+garden plots **15 → 14**, dooryard stems **130 → 128** across **63 → 62** dwellings, town wagons
+**68 → 67** (one farm box, off a street verge). The lot-line fences kept their count exactly (111
+fenced lots of 121 improved, 277 runs) and moved geometry only, and the street edge kept every metre
+of its 1,214.5 m of walk — two of its refusal notes now name a different building. All four are the
+rules doing what they are for; none was touched.
+
+**What a visitor sees.** Standing on South Water Street looking at the river row, five of the
+thirteen units are now log-walled, interleaved with the frame ones — a working frontier row rather
+than a uniform frame terrace. **What is still invented is unchanged and L182 says so**: that any of
+these buildings stood at all, which of them was of logs, and that they stood shoulder to shoulder.
+The plate supports the treatment; it cannot say which building was which.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a

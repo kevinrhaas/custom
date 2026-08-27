@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 181,
+  "count": 182,
   "liberties": [
     {
       "id": "L1",
@@ -11256,6 +11256,110 @@
         {
           "label": "Recorded",
           "text": "2026-08-24."
+        }
+      ]
+    },
+    {
+      "id": "L182",
+      "title": "The log units in the South Water row, and the face rule that had kept them out",
+      "section": "per_subject",
+      "subjects": [
+        "hogan_store",
+        "james_kinzie_house",
+        "madore_beaubien_house",
+        "mansion_house",
+        "philo_carpenter_log_shop",
+        "recon_1835_blk_south_water_clark_d1_04",
+        "recon_1835_blk_south_water_clark_d4_02",
+        "recon_1835_blk_south_water_dearborn_d1_05",
+        "recon_1835_blk_south_water_dearborn_d3_03",
+        "recon_1835_blk_south_water_franklin_d1_04",
+        "recon_1835_blk_south_water_franklin_d3_03",
+        "recon_1835_blk_south_water_lasalle_d1_04",
+        "recon_1835_blk_south_water_lasalle_d3_03",
+        "recon_1835_blk_south_water_wells_d1_05",
+        "recon_1835_blk_south_water_wells_d4_03"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_d1_04",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_clark_d4_02",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_d1_05",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_dearborn_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_d1_04",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_d1_04",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_d3_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_wells_d1_05",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_wells_d4_03",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-27",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the five log dwellings the 665-roof schedule dealt the five South Water blocks now stand IN the party-line river row on South Water Street, each in place of a frame cottage that has taken the Lake-face lot the cabin held. Ten records change places — `..._franklin_d1_04` ↔ `..._franklin_d3_03`, `..._wells_d1_05` ↔ `..._wells_d4_03`, `..._lasalle_d1_04` ↔ `..._lasalle_d3_03`, `..._clark_d1_04` ↔ `..._clark_d4_02`, `..._dearborn_d1_05` ↔ `..._dearborn_d3_03` — and **nothing else changes**: no roof is added or removed, no record changes id, family, footprint or any form value, the schedule's family totals are untouched, and no household is re-homed. What is admitted here is the arrangement, which was invented before and is invented now; what has changed is which invention the evidence supports. **THE PREMISE OF T-0022 IS REFUTED, AND THE NUMBER IS THE REFUTATION.** L99 and L100 both recorded the worry in the same words — the programme \"has no notion of what a street was for\" and \"will keep dealing cabins to commercial frontage\" — and ROADMAP K29 proposed the remedy that follows from believing it: a schedule term weighting the meanest dwelling families off the business front. Measured, the worry is backwards. Before this parcel, **15 invented buildings stood on South Water Street's line and not one of them was log**, 13 of the 15 being the party-line row itself, against a documented record for the same line of 8 buildings of which one — Hogan's store — is log. Every log dwelling the schedule had dealt those five blocks, all five, had been put on the Lake face by a rule the recipes state in their own prose: *\"the two best dwellings the schedule deals take its two free lots … and the two meanest take Lake.\"* That rule is a preference. It is in no source, it is in no part of the programme, and Lake Street is the OTHER principal thoroughfare, so it moved the cabins from one commercial frontage to another and called it a fix. **What the evidence actually says, and it is three witnesses rather than one.** (i) The committed record already stands log buildings on the principal-street line and they are TRADE buildings — `hogan_store` (log, a store, South Water), `philo_carpenter_log_shop` (log, a drug shop, Lake), `madore_beaubien_house` (log, dwelling and store, South Water), `mansion_house` (log, a tavern, Lake) — and one street back `james_kinzie_house` is a documented log RESIDENCE on Lake. (ii) The only picture of this row, image 11 of the owner's brief of 2026-08-18 (*\"South Water Street in 1834\"*), draws it as *\"roughly ten one-storey log and frame buildings shoulder to shoulder facing the river, two two-storey frame stores anchoring the east end\"* — the same plate T-0078 already cites as the warrant for the party-line treatment. **This project took the half of that sentence about shape and ignored the half about fabric.** (iii) The owner's ruling of 2026-08-27 on PR #371's fork, option (b): a business-front lot may carry a documented store at the street and an anonymous dwelling behind it, so the business front is not a district a dwelling is kept out of. L148 had already reached the same reading for one instance on Lake at Clark and said the question stayed open for the schedule; it is closed here. **What this parcel refuses to do, deliberately.** It does NOT re-apportion the schedule. K29's frontage term would have moved families between schedule units to keep cabins off the business front, and the measurement says the business front should have them; a term built on a refuted premise is worse than no term. The other half of K29 — weighting the trade families C, F and W ONTO the business front, which the same census does support at 80 % documented trade on South Water's line — is a genuine schedule change, is invisible until a block is built, and is filed as its own ticket rather than ridden in on this one. **What is invented, restated plainly, because the swap does not reduce it.** That any of these ten buildings stood at all; which of them was of logs; that the log one stood in the row rather than behind it; and that the row stood shoulder to shoulder. The plate supports the TREATMENT — a working row of log and frame on the water side of the street — and cannot say which building was which. Every value on all ten records still grades `reconstructed` with its own note saying so, and no confidence was upgraded by this parcel. **Consequence, and the measurement that holds it.** South Water Street's invented street line goes from **15 buildings, 0 log** to **15 buildings, 5 log**; the documented line beside it is 8 buildings, 1 log. `tools/measure_frontage_fabric.py` is the census and carries the one assertion, absolutely and with no ratchet: *a principal street's invented frontage may not be more uniform in construction than the documented record of the same street.* It is red at the commit before this one and green at this one, and `tools/check.sh` runs it. The row's line, its length, its anchors, its unit count and the block's open lot are all unchanged; the closest any moved record comes to anything not its own party wall is **3.14 m**, Wells's cabin to Carpenter's South Water store, against a 3 m separation gate. **What moved downstream, and it is derived rather than chosen.** Four layers read whatever building stands on a lot, and a log cabin is not the footprint of a frame cottage, so they re-derived: dooryard garden plots 15 → 14, dooryard stems 130 → 128 across 63 → 62 dwellings, and town wagons 68 → 67. The lot-line fences kept their count exactly (111 fenced lots, 277 runs) and moved geometry only; the street edge kept all 1,214.5 m of its walk and changed only which building two of its refusal notes name. No rule was touched to get those numbers."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or fire-insurance evidence for the South Water blocks would replace an invented roof with a named one on the same line — the 665-roof programme's substitution clause — and would say what each unit was built of instead of leaving it to a ratio the plate does not give. A legible, rights-cleared reproduction of image 11 (still `unidentified-pending` after T-0075) would let the fabric be read off the plate rather than off its written description. Related: **L99**, **L100**, **L101** (the three business-front blocks and the worry this refutes) · **L148** (the same reading, taken for one instance on Lake at Clark) · **L177** (one line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store)."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-27."
         }
       ]
     },
