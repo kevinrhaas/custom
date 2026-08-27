@@ -1,5 +1,81 @@
 # STATUS
 
+## Shipped 2026-08-24 — T-0112: the anonymous roofs get their own siding stocks, dealt in their recipes
+
+**The state before, counted rather than asserted.** T-0049 dealt 24 named frame buildings a
+`siding_exposure_m` from four period mill stocks and could reach no further: the other 131
+clapboard frame roofs in the scene re-derive byte-for-byte from `tools/generate_block_infill.py`
+and its four kin, so a value written into those records by a second tool is drift on the next
+run. All 131 wore the archetypes' 0.14 m, and **every one of the 186 anonymous pairs standing
+within 60 m of each other wore the same board — 186 of 186, 100 %.** No anonymous roof, of 131,
+differed from its nearest neighbour.
+
+**The refutation that decided the rule, and it is the third time this dataset has hit it.** The
+obvious move was to run L148's own key inside the recipes: base stock from the phase's
+construction season, `(year + quarter) % 4`. Measured on the records: **all 131 anonymous roofs
+carry `documented_range.from = 1835-01-01`** — the programme's count-unit convention, not a
+construction season, the same literal on every one of them. That key deals all 131 ONE stock. It
+is the archetypes' single course put back one step over, a range collapsed to a point — T-V1's
+sixty identical North roofs and T-0142's one-pitch-per-family, a third time. So the base is
+DRAWN from the four-stock list on the record's own stable key (slot 11; 1-10 are spoken for),
+exactly as `tools/family_bands.py` draws a footprint, an eave and a pitch from the crosswalk's
+authored ranges, and then advanced by the same 60 m rule L148 already uses.
+
+**Where the deal lives.** `tools/siding_stock.py` — the set, the separation distance, the advance
+and the recipe post-pass, in one module, imported by all five generators AND by
+`tools/deal_siding_stock.py`, so the two populations cannot drift apart on what a board is.
+Each recipe calls `deal_records()` at the END of `records_from_inputs()` (after
+`place_on_frontage()` in the South parcel, which moves buildings), because the stock is the one
+form value that depends on where a roof's neighbours stand.
+
+**Scope: 131 dealt, 4 left as neighbours, and the reason is a liberty and not an oversight.** A
+recipe deals a roof only when the record carries a `reconstruction` block — the anonymous
+`recon_*` count-units and the `inf_*`/`physicians_office` roofs raised for reconstructed
+households, all of which docs/LIBERTIES.md L91 admits as inventions whole. The inferred-household
+programme also regenerates four DOCUMENTED frame buildings (`heacock_house_monroe`,
+`temple_lake_st_building`, `wright_building_to_let_a`, `wright_building_to_let_b`); those are
+attested buildings, their liberty tokens are enumerated one by one, and inventing a board width
+for a real building outside the entry that owns it is not this parcel's to do. They stay on
+0.140 m and the deal counts them as the fixed neighbours they are.
+
+**The trade that was measured, not assumed.** A recipe deals its OWN parcel. It could read the
+other parcels' committed records and deal the town in one order — measured with the shipped rule,
+that reaches **9 of 186** anonymous pairs sharing instead of 16, and moves 25 of the 131 roofs.
+It was refused: it makes moving one North roof re-deal the platted blocks and restale their
+meshes, so every future building costs a town-wide rebake. Seven pairs is not worth that
+coupling, and the residual is written down rather than rounded off. Some sharing is unavoidable
+in any case — four stocks cannot separate a roof with nine neighbours, and the densest stands
+here have nine.
+
+**The result.**
+
+| | before | after |
+|---|---|---|
+| clapboard pairs within 60 m sharing a stock, whole town | 192 / 266 (72.2 %) | **21 / 266 (7.9 %)** |
+| the same, anonymous roofs only | 186 / 186 (100 %) | **16 / 186 (8.6 %)** |
+| anonymous roofs whose NEAREST neighbour hangs a different course | 0 / 131 | **120 / 131** |
+| stock distribution (0.114 / 0.127 / 0.140 / 0.152 m) | 8 / 6 / 135 / 10 | **33 / 44 / 39 / 43** |
+
+**What re-derived and what moved.** All five recipe `--check`s are green, so every one of the 131
+values re-derives from its recipe. 146 structure records changed and **118 of the 159 clapboard
+walls moved their stock; 41 did not** — 28 anonymous roofs were dealt the 0.140 m they already
+wore and 13 named ones were unaffected. 15 of the 24 named records were re-dealt, because
+`tools/deal_siding_stock.py` now reads what the recipes dealt each derived neighbour instead of
+assuming 0.140 m for all of them (and no longer counts a vertical-board wall as a neighbour at
+all — it exposes no course). **The bake ran here: 342 assets rebuilt, 118 GLBs changed, 224 came
+out byte-identical**, derivatives and sidecars regenerated, published; the staleness gate is back
+to 344 fresh, 0 stale.
+
+**The new gate, and it was landed red first.** `tools/deal_siding_stock.py --check` was never in
+`tools/check.sh` at all, so the named half's 24 values were ungated. It is a step now, and it
+grew a second half: every invented clapboard frame roof in the town must carry a stock from the
+set. The recipes' own `--check`s hold each value byte for byte but would not notice a recipe that
+stopped dealing ALTOGETHER — a record with no `siding_exposure_m` is a perfectly well-formed
+record; it just puts 131 walls back on one course, invisibly. Run against the tree before the
+recipes were wired, the new step names all 131 by id and exits 1.
+
+docs/LIBERTIES.md **L196** owns the invention and supersedes L148's sentence saying derived
+records stay on the default.
 ## Shipped 2026-08-27 — T-0158: one line in the wrong order was extinguishing the AO, and the number the AO parcel aims at was wrong too
 
 **Nothing in the town changed, and this run is exempt under AGENTS.md exemption 2** — the second

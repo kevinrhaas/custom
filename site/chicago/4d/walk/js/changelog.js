@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 290, title: 'The town was drawing every tree twice for a shadow nobody sees', kind: 'chore', ts: '2026-08-27T12:37:13.023Z', date: 'Aug 27, 2026, 7:37 AM CT',
+  { v: 291, title: 'The town was drawing every tree twice for a shadow nobody sees', kind: 'chore', ts: '2026-08-27T12:41:49.665Z', date: 'Aug 27, 2026, 7:41 AM CT',
     items: [
       'Nothing in the town looks different today. This is a note about a number that had quietly stopped meaning anything, and about finding out why.',
       'The walkthrough gives itself three settings \u2014 full, balanced and light \u2014 and each one has a ceiling on how much it may draw in a single frame. Two of those ceilings had been quietly breached for days, and every nightly check had been failing on them, which meant the check had stopped being able to tell anyone anything: it was red for every piece of work regardless of what the work was.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'The comment in the code beside that line still says the sun only reaches sixty metres around you. It reaches two hundred and forty now, and has for some time; the sentence was true when it was written and nobody went back to it. Which is the whole story: the frame was not full, it was wasteful, and the ceiling was being blamed for it.',
       'The proper repair is to stop handing the sun timber it cannot use, and that is now a ticket with the measurements attached. It is not a switch \u2014 the wood is built as four enormous pieces, so there is nothing to leave out until it is cut smaller. In the meantime the two ceilings are lifted by the smallest step that clears the breach, on the owner\u2019s decision, with the reason and the exact figures written beside them and a ticket whose entire purpose is to put them back.',
       'That makes five times these ceilings have been raised. The count is written down next to them too, which is the point: the next person to reach for the same lever has to read it first.',
+    ] },
+  { v: 290, title: 'A street of houses stops hanging the same clapboard', kind: 'feature', ts: '2026-08-27T12:24:03.167Z', date: 'Aug 27, 2026, 7:24 AM CT',
+    items: [
+      'Walk any street of anonymous houses \u2014 the Randolph and South Water blocks, the North Division cluster, the West approaches \u2014 and look along the row. Until now every one of them wore the same board: the same width of clapboard showing to the weather, the same rhythm of lines up every wall, a hundred and thirty-one houses deep. They hang four different boards now, and the two houses either side of you are almost never the same.',
+      'The four are period mill sidings \u2014 four and a half, five, five and a half and six inches left showing once the board above laps it. On the same wall that is about nineteen courses at the widest and twenty-five at the narrowest, which reads from across a street.',
+      'The town\u2019s two dozen named frame buildings were dealt from that same set of four earlier this month. The anonymous ones could not be: each is rebuilt from scratch from its recipe every time the data is checked, so a board width typed into the record would be wiped out on the next run. The deal now happens inside the recipe, which is why it survives.',
+      'Which board a house gets is not a fact about that house. No source states the board width of any building in Chicago, and none ever will for a house nobody wrote down. What is recorded is the invention and its bound: one of four, drawn from the house\u2019s own record, then moved along until no neighbour of its parcel within sixty metres hangs the same one. The evidence panel says so on every value.',
+      'Counted over the whole town, pairs of clapboard walls standing within sixty metres of each other and wearing the same board fall from 192 of 266 to 21 of 266. Of the hundred and thirty-one anonymous roofs, 120 now differ from their nearest neighbour. Before this, none did.',
+      'Nothing was added, moved or resized \u2014 same buildings, same ground, same sizes. A hundred and eighteen walls were rebuilt with their new rhythm and everything else came out exactly as it was.',
     ] },
   { v: 289, title: 'The La Salle slough runs into the river, on a crossing', kind: 'feature', ts: '2026-08-27T11:47:56.788Z', date: 'Aug 27, 2026, 6:47 AM CT',
     items: [
