@@ -23,19 +23,17 @@ T-0191 — Randolph and Washington get the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0194 — Hitching posts at the commercial frontages
-T-0109 — The slough crossing spans solid ground: cut the watercourse under its deck
+T-0199 — The five South Water stores standing on a lot the roof schedule already dealt
 T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 T-0026 — The southern buildable ground and its schedule
 T-0027 — How much of the public square was wet
 
 # --- THE RIVER AND ITS WHARVES — visible
-T-0106 — The traced river bank stops at local E 390, short of the drawbridge reach
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0058 — A visitor can walk out along a wharf deck
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 
 # --- THE FORT — visible, mostly small
-T-0095 — The fort's corner works and its two documented gates, as the plate draws them
 T-0098 — Trees at the fort, which the plate puts in a mass east of the walls
 T-0099 — The bank track from the fort's north gate down to the water
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
@@ -51,7 +49,6 @@ T-0032 — The six-roof civic target counts three that were never built
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0034 — Raise the bloom, which has no bar left to raise it to
-T-0117 — Hold the Lombardy poplar as a species, and deal the planted rows the plates attest
 T-0031 — Where did the South Water timber belt stand
 T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
 T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
@@ -89,7 +86,9 @@ T-0185 — The plate draws the fort's pickets three times coarser than the model
 T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
-T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.10-0.31 m, which the plat reconciliation could not reach
-T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault T-0190 repaired on South Water
+T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
+T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
+T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)

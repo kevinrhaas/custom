@@ -457,3 +457,62 @@ Frame at the T-0135 gate's stand, desktop 1280×800, `full`: **960,668 triangles
 T-0135: that gate now stands at the worst frame rather than the friendliest, so this headroom is
 real headroom and not the old camera's flattery. Nothing here was spent, and nothing is claimed
 back.
+
+**Measured by T-0188, 2026-08-24 — THE GROUND-HUGGING LEVER THIS LEDGER COSTED FOR T-0127 IS BUILT,
+AND IT DOES NOT BUY WHAT THE ENTRY ABOVE PROMISED.** The entry said a walk lies 11 cm proud of the
+ground and casts about 4 cm of shadow at noon, so if the walk chunks stopped casting *"this layer's
+six shadow-pass calls at this stand and roughly half its triangles at `full`/`balanced` would go at
+no visible cost — which is what the cross streets need."* Both halves were tested.
+
+**What was built.** `applyShadowTier` no longer overwrites `castShadow` on every furniture mesh: it
+reads `o.userData.groundHugging`, which `frontage.js` sets on the plank-walk and board-crossing
+chunks. The street-lining fences (1.37 m, about half a metre of real shadow along the walk they
+stand behind) had shared their walk's mesh since T-0069, so they moved to a mesh of their own —
+**one per covered street, not one per fenced face**. That packing IS the trade: 3 meshes in the
+colour pass and 3 in the shadow pass, against 20 ground-hugging chunks leaving the shadow pass
+entirely. Per-face standing meshes would have cost 26 of each and turned a saving into a loss.
+`furnitureShadows` now reports `groundHugging` and the release gate asserts
+`casting === meshes - groundHugging` with `groundHugging > 0`, which is the counting this ledger
+asked for — the old single equality could not survive an exemption, and an unasserted difference is
+where an exemption nobody declared would hide.
+
+**What it is worth, and it is not enough for a street.** Randolph Street — the second tier T-0127's
+clause 2 asks for, 13 platted faces, +1,237.9 m of walk, +14 crossings, +14 fences, +97 walking
+decks — was generated, published and read at the T-0135 stand set on the published mirror, WITH the
+lever in place, at the axial stand (Lake Street at Canal, east):
+
+| tier | dev | with Randolph, lever in | ceiling | headroom before | after |
+|---|---:|---:|---:|---:|---:|
+| desktop `full` | 1,378,984 @ 202c | **1,497,588 @ 218c** | 1,400,000 / 215c | 21,016 (1.5 %) | **−97,588** |
+| desktop `balanced` | 1,205,762 @ 200c | **1,355,638 @ 216c** | 1,210,000 | **4,238 (0.35 %)** | **−145,638** |
+| desktop `light` | 812,753 @ 70c | 869,731 @ 74c | 1,050,000 | 237,247 | 180,269 |
+| mobile `full` | 1,337,059 @ 193c | **1,452,419 @ 209c** | 1,400,000 | 62,941 | **−52,419** |
+| mobile `balanced` | 1,165,921 @ 191c | **1,316,605 @ 207c** | 1,210,000 | 44,079 | **−106,605** |
+| mobile `light` | 764,401 @ 66c | 829,741 @ 70c | 1,050,000 | 285,599 | 220,259 |
+
+Exempting the street-lining FENCES from the shadow map as well — the half this ledger argued should
+be kept — was measured rather than estimated: with Randolph in, the layer draws 282,876 triangles in
+56 calls at that stand, and turning off every shadow caster it has left (5 meshes: the shared timber
+with the sign post on it, and the three street-fence meshes) reads **44,110 triangles and 3 draw
+calls**. Against a **145,638** shortfall there is no version of this lever that carries a street
+tier.
+
+**AND THE BINDING FACT IS NOT RANDOLPH, WHICH IS THIS LEDGER'S ITEM 1 COMING BACK.** `balanced`
+stood at **1,205,762 of 1,210,000 — 4,238 triangles, 0.35 %** — before this parcel touched anything,
+and `full` at 1.5 %, where T-0135 set both on **2026-08-22** with *"about 6 % of headroom over the
+measured worst"*. Two days of content ate the margin. **No street tier of any size fits today**, and
+a ceiling that has to be raised every time the town grows is not measuring anything. Note also that
+`balanced` reads only **9.5 %** cheaper than `full` at that stand while `light` reads **42 %**
+cheaper, because `light` alone carries a furniture reach — the middle rung is barely a step.
+
+Randolph was therefore taken back out rather than paid for with a fifth raise of these ceilings,
+which is what T-0135 named as the bug rather than the remedy, and because T-0127's acceptance asks
+for a lever to pay for the tier and not for a re-budget. The reading is written at
+`generate_frontage_works.py`'s `EDGE_STREETS`, in `data/frontage/town_street_edge.json`'s own
+`refused`, and in **T-0190**, which owns the choice between winning the axial frame back (T-0147,
+T-0149), a conscious re-budget argued at the definition site, and a cheaper street edge.
+
+**What the lever DID buy, kept:** with Randolph out, the street edge's 20 ground-hugging chunks and
+the river walk's 15 no longer draw into the shadow map at `full` or `balanced` — 35 meshes and their
+whole triangle count, once per frame, for a shadow 4 cm wide. That is a straight saving against dev
+at every stand, and it costs 3 draw calls in each pass.

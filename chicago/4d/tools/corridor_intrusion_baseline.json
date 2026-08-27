@@ -15,6 +15,23 @@
       "street": "dearborn",
       "structure": "bates_auction_room"
     },
+    "carpenter_south_water_store:frame_1833": {
+      "anchor_in": [
+        "south_water"
+      ],
+      "anchor_offset_m": 11.67,
+      "body_toward_street": true,
+      "category": "building",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 6.62,
+      "layer": "research",
+      "phase": "frame_1833",
+      "position_confidence": "inferred",
+      "street": "south_water",
+      "structure": "carpenter_south_water_store"
+    },
     "chappel_infant_school:log_1833": {
       "anchor_in": [],
       "anchor_offset_m": 15.75,
@@ -27,6 +44,21 @@
       "position_confidence": "reconstructed",
       "street": "state",
       "structure": "chappel_infant_school"
+    },
+    "chicago_american_office:frame_1835": {
+      "anchor_in": [],
+      "anchor_offset_m": 13.25,
+      "body_toward_street": true,
+      "category": "building",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 6.91,
+      "layer": "research",
+      "phase": "frame_1835",
+      "position_confidence": "inferred",
+      "street": "south_water",
+      "structure": "chicago_american_office"
     },
     "cook_county_courthouse_1835:wood_1835": {
       "anchor_in": [],
@@ -85,6 +117,21 @@
       "street": "clark",
       "structure": "first_presbyterian_church"
     },
+    "frederick_thomas_shop:frame_1835": {
+      "anchor_in": [],
+      "anchor_offset_m": 12.3,
+      "body_toward_street": true,
+      "category": "building",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 6.25,
+      "layer": "research",
+      "phase": "frame_1835",
+      "position_confidence": "reconstructed",
+      "street": "south_water",
+      "structure": "frederick_thomas_shop"
+    },
     "goss_cobb_saddlery:shop_1833": {
       "anchor_in": [
         "lake"
@@ -100,15 +147,32 @@
       "street": "canal",
       "structure": "goss_cobb_saddlery"
     },
+    "h_jones_store:frame_1833": {
+      "anchor_in": [
+        "south_water"
+      ],
+      "anchor_offset_m": 11.64,
+      "body_toward_street": true,
+      "category": "building",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 8.17,
+      "layer": "research",
+      "phase": "frame_1833",
+      "position_confidence": "reconstructed",
+      "street": "south_water",
+      "structure": "h_jones_store"
+    },
     "harmon_loomis_store:frame_1833": {
       "anchor_in": [
         "clark"
       ],
-      "anchor_offset_m": 12.13,
+      "anchor_offset_m": 12.03,
       "body_toward_street": false,
       "category": "building",
       "centroid_in": [],
-      "depth_m": 0.11,
+      "depth_m": 0.21,
       "layer": "research",
       "phase": "frame_1833",
       "position_confidence": "inferred",
@@ -147,11 +211,11 @@
     },
     "madore_beaubien_house:log_1831": {
       "anchor_in": [],
-      "anchor_offset_m": 21.02,
+      "anchor_offset_m": 21.13,
       "body_toward_street": true,
       "category": "building",
       "centroid_in": [],
-      "depth_m": 0.31,
+      "depth_m": 0.2,
       "layer": "research",
       "phase": "log_1831",
       "position_confidence": "inferred",
@@ -207,11 +271,11 @@
     },
     "peck_store:frame_1833": {
       "anchor_in": [],
-      "anchor_offset_m": 24.28,
+      "anchor_offset_m": 24.22,
       "body_toward_street": true,
       "category": "building",
       "centroid_in": [],
-      "depth_m": 0.1,
+      "depth_m": 0.16,
       "layer": "research",
       "phase": "frame_1833",
       "position_confidence": "inferred",
@@ -230,6 +294,21 @@
       "position_confidence": "inferred",
       "street": "lake",
       "structure": "philo_carpenter_log_shop"
+    },
+    "pruyne_kimball_drugstore:frame_1830s": {
+      "anchor_in": [],
+      "anchor_offset_m": 12.86,
+      "body_toward_street": true,
+      "category": "building",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 5.55,
+      "layer": "research",
+      "phase": "frame_1830s",
+      "position_confidence": "reconstructed",
+      "street": "south_water",
+      "structure": "pruyne_kimball_drugstore"
     },
     "sauganash_hotel:frame_1831": {
       "anchor_in": [],
@@ -302,5 +381,5 @@
     }
   },
   "measured": "2026-08-16",
-  "placed_phases": 348
+  "placed_phases": 344
 }
