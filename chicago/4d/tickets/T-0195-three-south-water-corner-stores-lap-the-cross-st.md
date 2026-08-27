@@ -1,7 +1,7 @@
 ---
 id: T-0195
 title: Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 6:21:36 PM CT
 blocked_on: null
 needs_bake: false
 ---
