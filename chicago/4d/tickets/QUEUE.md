@@ -40,7 +40,6 @@ T-0138 — The placeholders' brick chimney is a different brick from the archety
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0031 — Where did the South Water timber belt stand
 
 # --- THE TRIANGLE BUDGET — invisible, but it governs how much can be added
 T-0146 — Merge far chunks back into single draws

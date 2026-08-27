@@ -1588,10 +1588,14 @@ for (const [label, viewport, touch] of [
           // living exactly in that gap.
           farTimberWater: a.trees.farTimberWater?.() ?? null,
           // ...and the clip that keeps them off the screen, exercised. The band is
-          // solved around the camera, so this stands far enough back that
-          // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
-          // it: from the spawn point it is 329 m away and one metre inside the
-          // near cut-off, which is a green gate that has run nothing.
+          // solved around the camera, so this has to stand far enough back that a
+          // body in water clears MIN_FAR_M and the solver actually reaches it —
+          // from the spawn point the nearest one is a metre inside the near
+          // cut-off, which is a green gate that has run nothing. Since T-0031 the
+          // body it exercises is `north_branch_belt`, whose wet crossing begins at
+          // its first vertex (-95, 345) — 605 m from this stand, and the first
+          // sample of a segment is emitted at the vertex itself, so the clip is
+          // reached whatever the adaptive step does with the 16 m of wet run.
           horizonWetSkipped: (() => {
             a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
             a.step();
