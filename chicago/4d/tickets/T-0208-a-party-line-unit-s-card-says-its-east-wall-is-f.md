@@ -1,7 +1,7 @@
 ---
 id: T-0208
 title: A party-line unit's card says its EAST wall is fixed by the WEST end of the run
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-26
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 2:34:22 PM CT
 blocked_on: null
 needs_bake: false
 ---
