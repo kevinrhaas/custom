@@ -1,7 +1,7 @@
 ---
 id: T-0146
 title: Merge far chunks back into single draws
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0149
 opened: 2026-08-22
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 1:53:20 PM CT
 blocked_on: null
 needs_bake: false
 ---
