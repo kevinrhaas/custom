@@ -103,3 +103,4 @@ T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at
 # --- these are new tickets, not tickets to withdraw.
 T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
+T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
