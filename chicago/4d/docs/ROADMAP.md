@@ -7449,7 +7449,52 @@ them; this is the second-lowest. K20 still owns the fix.
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
 `tools/measure_adoption_tests.py`, new, standalone, not wired into `check.sh`.**
 
-### K31 — the end rule is exhausted on the Randolph–Washington row · **UNCLAIMED · from T-A15 · Effort: S to decide, S to apply**
+### K31 — the end rule is exhausted on the Randolph–Washington row · **DECIDED 2026-08-27 · T-0023 · the criterion is the WALK**
+
+> **The decision, so nobody has to read the rest of this box to apply it.** The end rule keeps its
+> claim — the better roof stands nearer the Dearborn Street drawbridge — and its criterion becomes
+> **the distance WALKED along the committed street centrelines** from the roof's own frontage to the
+> bridge's south abutment. It is carried in
+> `data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`; run
+> `tools/measure_end_rule.py` and quote it. Full admission in `docs/LIBERTIES.md` **L182**.
+>
+> **Four things were measured on all 36 faces of the platted grid, and each answers one of the
+> questions this box asked.**
+>
+> 1. **The trap this box warned about cannot be sprung, because there is nothing to trap.** The two
+>    criteria name **the same nearest lot on 36 of 36 faces**. K31 said the successor must not be
+>    chosen on a block where it agrees with the old rule; they agree EVERYWHERE, so no block could
+>    have discriminated. **The choice was never about which roof goes where** — it was about whether
+>    the order could still be called reasoned. Nothing was re-graded and nothing was retro-fitted.
+> 2. **The straight line measures how far away the BLOCK is, not where a roof stands on it.** Its
+>    worst step between two neighbouring party-line units falls from **6.06 m** on the far blocks to
+>    **0.52 m** at `blk_randolph_clark`, and it is below the floor on **12 of the 36 faces** —
+>    including the back face of `blk_south_water_clark`, **the block T-A11 wrote the rule on**. The
+>    exhaustion was never a fact about this row; it reached this row first.
+> 3. **The floor is the recipe's own declared invention, not a threshold picked to suit.** The
+>    recipe deals its 48 principal slots setbacks of **4.0 m to 7.5 m** and calls them "a period
+>    typology and not a measurement of this lot"; a setback moves a roof along the outward normal,
+>    broadly the axis the rule grades along, so **3.50 m** is the noise the records already admit to
+>    on the same line. Below it a criterion is grading its own invention. The rule now says that
+>    where its step falls at or under that range **the parcel records the order as arbitrary** —
+>    this box's third candidate, kept as a bound rather than adopted as the answer.
+> 4. **What the rule is asked to rank changed under it in T-0079 and nobody noticed.** Before the
+>    core density standard a block carried one principal roof per lot, so the rule ordered LOTS
+>    ~24.6 m apart. A party-line run now stands three units on ONE lot ~6 m apart, so the rule has
+>    been ranking the front doors of what the plat calls a single property ever since. **That, more
+>    than the bridge's bearing, is why it ran out of room.** Under the walk the step is the unit's
+>    own 6.072 m on every face, because a metre of frontage is a metre of walk.
+>
+> **A reproduction the command owes its predecessors.** T-A11's eight figures on
+> `blk_south_water_clark` re-derive within **1.7 m** (ratio 2.908 against 2.86) — it read the
+> frontage. T-A15's read **26.4 m nearer**, which is the distance from a lot's frontage to its
+> middle: L106 names the point in passing ("the 49.3 m between the lot 2 and lot 6 **centroids**").
+> **The criterion had been read at two points 26.5 m apart on two blocks and neither parcel said
+> which.** T-A15's finding is unaffected — its spread reproduces at **7.86 m** against 7.5 m — and
+> that discrepancy is the ordinary reason a measurement becomes a command.
+
+**The box as it stood when it was opened, kept verbatim:**
+
 
 T-A11's criterion — the better roof goes to the free lot nearest the Dearborn Street drawbridge —
 has thinned on every block since it was written: **2.93× at T-A12, 1.13× at T-A13, 1.11× at T-A14,
@@ -9670,6 +9715,63 @@ surfaces OF that layer — one crown behind another, a chimney against its own r
 against the house behind it. Those are silhouettes too, and 94–98 % of the "interior" count is
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
+
+### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
+
+Everything above was measured at 1280×800 on the DESKTOP boot, which has had `antialias: true`
+since Milestone 0. `main.js` read `antialias: !coarse`, so the device that was NOT measured was
+the only one drawing these edges with no multisampling at all — and mobile is a release gate here.
+
+**First, the instrument could not see a phone.** `measure_tie_class.mjs`'s `TIE_VIEWPORT=mobile`
+opens a plain `newPage({ viewport })`; `prefersTouch()` asks for `(pointer: coarse)` or
+`maxTouchPoints > 0 && innerWidth < 900`, and **a viewport satisfies neither**. So the existing
+"mobile" reading was the desktop renderer in a narrow window — `antialias: true`, `detail: full`,
+the pointer-lock backend. Same shape as T-0018's finding against `SWARD_VIEWPORT=mobile`.
+`tools/measure_phone_aa.mjs` uses a context with `hasTouch` and `deviceScaleFactor: 2`, the
+release gate's own, and prints `pointer: coarse`, the resolved detail level and the renderer's
+pixel ratio so the boot cannot be assumed.
+
+**And then the obvious number pointed the wrong way.** 390×780, published mirror, 2 mm nudge,
+shadow map off by R-BUG6(a)'s repaired control, control 0 px and return 0 px:
+
+```
+station        flicker px        hard flips (delta >= 64 of 255)   worst d    mean d
+from_above     1056 -> 2482            25 -> 0                   105 -> 28  15.6 -> 6.8
+lake_market    4843 -> 7310           124 -> 0                   140 -> 37  14.8 -> 6.4
+```
+
+**The flicker COUNT rises 135 % aerial and 51 % at eye height when MSAA is switched on** — the
+count this file quotes in three separate boxes as the measure of the defect. It rises because a
+partial resample touches more pixels than a whole flip does. What collapses is severity: all 149
+pixels that were swapping surface outright stop, and the worst single pixel moves about a quarter
+as far. **A parcel that had measured only the count would have refused the fix on its own
+evidence**, which is R-BUG2's lesson arriving from a new direction: measure before choosing, and
+be ready for the prime suspect's own metric to be the misleading one.
+
+**Cost, and its limit.** Ten scene anchors, clock held, `readPixels` fence, A/B/A: **+56.4 %**
+of a frame (24,457 → 43,283 ms), the runner drifting +26.3 % between its own two A passes; two
+four-station repeats read +49.3 % and +71.6 %. Drawn through SwiftShader, a SOFTWARE rasteriser
+resolving every sample on the CPU — the harshest witness there is for this change, so the figure
+is an upper bound. **Phone-silicon cost is not measured and not claimed.** The visitor's existing
+Render-quality control was timed rather than asserted: at pixel ratio 1 with MSAA the frame is
+6–9 % CHEAPER than the ratio-1.5 frame that shipped before, still antialiased. `light` stays the
+floor.
+
+**A second finding about the ownership instrument, from running it at EYE HEIGHT for the first
+time.** The footprint partition had only ever been read from the air, and its own header warns
+that a large overlap between two layers is a bug in the tool rather than a finding. Aerially the
+overlaps are 0–310 of 1,056 and the partition is sound. At `lake_market` the ground's footprint
+overlaps the streets' on **2,436 of its 2,607** flickering pixels — the street layer is a skin ON
+the heightfield, so hiding either moves the same pixels. Each pixel is still counted once, but
+the credit between those two layers falls to the LAYERS list order rather than to occlusion, so
+the eye-height `streets`/`ground` split is not an ownership claim. Nothing above depends on it:
+the frame totals are attribution-free.
+
+**A premise corrected on the way.** T-0157 held that a phone is "capped at 1.5 rather than 2".
+The boot-time `coarse ? 1.5 : 2` is superseded by `setPixelRatio(Math.min(dpr, hud.settings
+.quality))` and `quality` defaults to 1.5 on BOTH platforms — so the phone reports 1.5 at dpr 2
+and the desktop 1.0 at dpr 1. The phone was already supersampling more than the desktop; what it
+lacked was MSAA.
 
 ### R-BUG6(b) — the parcel as written, kept for the record
 

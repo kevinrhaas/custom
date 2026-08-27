@@ -1,5 +1,306 @@
 # STATUS
 
+## Shipped — T-0023 + T-0189: the Randolph–Washington row stops inheriting South Water's rules
+
+**Two things the row was given by a street it does not stand on, at two layers of the same
+records: the criterion that decides which roof is better, and the sentence that tells a visitor
+what row they are standing in.** Both were written for T-0078's party-line run on South Water
+Street, where both were true. Both were then applied verbatim to every frontage run since.
+
+**T-0023 / K31 — the end rule's criterion is now the WALK.** The rule keeps its claim, unchanged
+since T-A8 and invented since T-A8: the better roof stands nearer the Dearborn Street drawbridge,
+the only crossing of the main stem in July 1835. What changes is the distance — **walked along the
+committed street centrelines** from the roof's own frontage, not T-A11's straight line. It lives in
+`data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`, and
+**`tools/measure_end_rule.py`** prints it so the next parcel quotes rather than re-argues. Full
+admission in `docs/LIBERTIES.md` **L182**; the resolution is written into ROADMAP § K31.
+
+**Four measurements decided it, taken on all 36 faces of the platted grid.**
+
+1. **The two criteria name the same nearest lot on 36 of 36 faces.** K31 warned the successor must
+   not be chosen where it agrees with the old rule. They agree everywhere, so **no block could have
+   discriminated between them, and the choice was never about which roof goes where.** Nothing was
+   re-graded and nothing was retro-fitted; L102 onward stand verbatim.
+2. **The straight line measures how far away the BLOCK is, not where a roof stands on it.** Its
+   worst step between two neighbouring party-line units runs from **6.06 m** on the far blocks to
+   **0.52 m** at `blk_randolph_clark` — it goes blind as a block approaches the bridge, weakest
+   exactly where the bridge matters most. **It is below the floor on 12 of the 36 faces**, the back
+   face of `blk_south_water_clark` — the block T-A11 wrote the rule on — among them. The exhaustion
+   was never a fact about this row; the row reached it first.
+3. **The floor is the recipe's own admitted invention.** It deals its 48 principal slots setbacks of
+   **4.0 m to 7.5 m** and grades them "a period typology and not a measurement of this lot". A
+   setback moves a roof along the outward normal, broadly the axis the rule reads, so **3.50 m** is
+   noise the records already declare on the same line. The rule now records the within-face order as
+   **arbitrary** where its step falls at or under it — K31's third candidate, kept as a bound rather
+   than adopted as the answer. Under the walk no committed face is in that position.
+4. **T-0079 changed what the rule ranks and nobody noticed.** Before the core density standard a
+   block carried one roof per lot, so the rule ordered LOTS ~24.6 m apart; a party-line run now
+   stands three units on ONE lot ~6 m apart, so **the rule has been ranking the front doors of what
+   the plat calls a single property.** That, more than the bridge's bearing, is why it ran out of
+   room. Under the walk the step is the unit's own 6.072 m on every face.
+
+**A reproduction, and it found a real discrepancy.** T-A11's eight figures re-derive within
+**1.7 m** (ratio 2.908 against 2.86) — it read the frontage. T-A15's read **26.4 m nearer**, which
+is a lot's frontage-to-middle distance; L106 names the point in passing ("the 49.3 m between the lot
+2 and lot 6 **centroids**"). **The criterion had been read at two points 26.5 m apart on two blocks
+and neither parcel said which.** T-A15's finding is unaffected — its spread reproduces at **7.86 m**
+against 7.5 m.
+
+**T-0189 — and the sentence describing all this was wrong on 9 of 23 cards.** The bold location line
+and the position note beside it are the first two things a visitor reads on a party-line unit.
+Three houses on **Washington Street**, 400 m from the water, were told they were "one unit of the
+party-line **river** row", standing on "the town's **river business front**", looking at "Washington
+Street **and the river beyond it, as every documented store on this face does**" — on a face whose
+entire documented 1835 frontage is the estray pen, the town's pound for stray animals. Three more
+stand on Randolph, three on Lake; the other 14 are on South Water and were always right. All three
+phrases now name the face the building actually stands on, and the note says in terms that a row on
+any other face is **borrowing** the treatment from the 1834 South Water view rather than being drawn
+by it. Recorded as **L183**.
+
+**Not one coordinate moved.** All 23 records and their sidecars re-derive from the same recipe and
+the same committed block boundaries; the phrases describe the placement, they do not decide it.
+
+**What is NOT done and is filed rather than dodged.** The frontage note still says "its east wall is
+fixed by the west end of the run's own frontage" on a west-anchored run — the generator's internal
+convention leaking into visitor prose. It is confusing rather than false, it is not about 1835, and
+it is its own ticket.
+## Shipped — T-0054: 23 standing liberties compiled as settled, because Resolved was the last section
+
+**The count, measured rather than assumed.** The ticket said "every liberty appended since L111",
+seventeen of them. It is **23**, and they are not a range: of the **71** entries numbered L111 and
+above, **24** sit under `## Resolved` and one of those (L116, the sycamore drawn as an elm) genuinely
+belongs there. The other 47 were placed by hand in the right section by whoever wrote them. So the
+fault is intermittent — it catches whoever appends at the end of the file, which is what this
+document tells you to do — and it had reached **L181**, written three days ago. `data/liberties.json`
+compiled **34** entries `section: "resolved"`; **11** carry a `**Resolved:**` line saying what
+settled them.
+
+**Why it is not cosmetic.** `validate.py` exempts the Resolved section from the check that a claimed
+invention is *still* an invention — the exemption is what lets an append-only document survive its
+own data being corrected. **12 of the 65 exempted claim tokens were exempt by accident**: the four
+Lake-and-Clark roofs' footprints and positions (L144) and the four State Street and La Salle slough
+claims (L149, L150). Put back under the check, **all twelve pass** — every one is still an invention,
+which is exactly what makes the label a lie rather than a nuisance. On screen it was worse than the
+gate: ten building cards carried a scope chip reading *resolved* on a liberty that still stands,
+including the Western Hotel's wagon-yard fence (L127), which is standing in the town.
+
+**Fixed by moving the trap, not by patching around it.** `## Resolved` now sits **above** the
+per-subject register instead of below it, so appending at the end of the file — the operation the
+document mandates — lands where a new liberty belongs. No liberty text is edited and none is
+removed: the 23 stay exactly where they were written and the 11 settled entries move up. The
+compiled sections are now 3 standing / 167 per-subject / 11 resolved.
+
+**And the guard, because a reshaped file can be reshaped back.** `compile_liberties.py` now decides
+`resolved` from **two independent statements that must agree** — the section an entry sits under,
+and whether its own text carries the `**Resolved:**` line the section's preamble has always asked
+for. Either half alone is reported by id and fails `check.sh`; a misfiled entry compiles as
+`per_subject`, which is the reading that keeps its obligations. This is the T-0207 lesson used the
+other way round: *that* fault was invisible because two derivations of one source agreed, so the
+repair here is a second statement that is not derived from the first.
+
+**One deliberate change to what a visitor sees beyond the chips.** The derived file is now emitted
+grouped standing → per-subject → resolved, stable within each group, so the Evidence panel's order
+is a decision in the compiler rather than a side effect of where a section sits in a 7,800-line
+markdown file. The order on screen is the same order as before the reshuffle.
+## Shipped 2026-08-24 — T-0157: a phone multisamples the town, and the obvious number said not to
+
+**The ask.** `main.js` had read `antialias: !coarse` since Milestone 0 — the renderer's first
+commit, 2026-08-09, before there was a town to look at — so every touch device drew the whole
+reconstruction with no multisampling. T-0013 had established that every one of the 627
+interior-flickering pixels at `from_above` is an edge and that **only sample density touches
+them** (supersampling healed 83–93 %; a shading change that moved 164,572 px healed none), but
+every reading it took was at 1280×800 on the DESKTOP boot, where MSAA was already absorbing most
+of it. The ticket asked for the phone to be measured first, and for the flag to be shipped only
+with a frame cost in hand.
+
+**The instrument, and the gap it had to close first.** `tools/measure_phone_aa.mjs`. Before it
+could read anything, one thing had to be fixed: `measure_tie_class.mjs`'s `TIE_VIEWPORT=mobile`
+opens a plain `newPage({ viewport })`, and `prefersTouch()` is `(pointer: coarse)` or
+`maxTouchPoints > 0 && innerWidth < 900` — **a viewport satisfies neither**, so the existing
+"mobile" reading was the DESKTOP renderer in a narrow window: `antialias: true`, `detail: full`,
+the pointer-lock backend. This is the same class of finding T-0018 filed against
+`SWARD_VIEWPORT=mobile` ("changes the browser page size but not `lowSpec`"), now measured on a
+second instrument. Every figure below comes from a context with `hasTouch: true` and
+`deviceScaleFactor: 2` — what `smoke_renderer.mjs` uses for the release gate — and the run prints
+the three readings that prove the coarse path took: `pointer: coarse true`, `detail "light"`,
+`pixelRatio 1.5`.
+
+`antialias` is a context-creation attribute with no runtime handle, so the control is an init
+script that rewrites the one attribute inside `HTMLCanvasElement.prototype.getContext` before
+three.js sees it — and it is **proven live**, not asserted: the run reads
+`getContextAttributes().antialias` AND `gl.getParameter(gl.SAMPLES)` off the live context and
+aborts unless they are `false`/0 or `true`/4. R-A1's frozen readback and R-BUG6(a)'s inert
+`--no-sun-shadow` are why that is written down.
+
+**THE MEASUREMENT REFUTES ITS OWN HEADLINE NUMBER, AND THIS IS THE FINDING.** At 390×780 on the
+published mirror, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired control, control 0 px and
+return-to-pose 0 px on every run:
+
+| station | flicker px | HARD FLIPS (≥ 64 of 255) | worst Δ | mean Δ |
+|---|---|---|---|---|
+| `from_above` off → on | 1,056 → **2,482** | 25 → **0** | 105 → 28 | 15.6 → 6.8 |
+| `lake_market` off → on | 4,843 → **7,310** | 124 → **0** | 140 → 37 | 14.8 → 6.4 |
+
+**The flicker COUNT — the figure T-0013 and three boxes of ROADMAP quote — goes UP by 135 %
+aerial and 51 % at eye height when MSAA is switched on.** A run that measured only the count
+would have refused this change on its own evidence. The count rises because a partial resample
+touches more pixels than a whole flip does; what collapses is the SEVERITY. Every one of the 149
+pixels that were swapping surface outright stops doing it — not fewer, none — and the worst
+single pixel moves about a quarter of what it did. That is exactly the difference between an
+edge that crawls and an edge that is resolved, and no pixel count on its own can see it.
+
+The mobile interior/silhouette split the ticket asked for, at `from_above`, antialias off as
+shipped: structures 346 interior / 74 silhouette, trees 188 / 134, ground 125 / 54, water 20 /
+49, streets 0 / 9, flora 0 / 2. Quoted with T-0013's correction attached — `interiorOf` knows a
+layer's outline against the rest of the scene and cannot see the boundary between two surfaces
+OF that layer, so 94–98 % of an "interior" count is internal silhouette.
+
+**The whole table reproduced digit for digit on a second independent run** — 1,056 / 25, 4,843 /
+124, 2,482 / 0, 7,310 / 0, every per-layer row identical.
+
+**And a finding about the ownership test at EYE HEIGHT, recorded rather than smoothed over.**
+`measure_tie_class.mjs`'s footprint partition had only ever been run aerially, and its own header
+warns that *"a large overlap between two layers is a bug in this tool rather than a finding"*. At
+`from_above` the overlaps are small — 0, 5, 9, 0, 63, 310 of 1,056 — and the partition is sound.
+At `lake_market` the ground's footprint overlaps the streets' on **2,436 of its 2,607** flickering
+pixels, because the street layer is a skin on the heightfield and hiding either one moves the same
+pixels. Every pixel is still counted exactly once, but which of those two layers gets the credit
+is decided by the LAYERS list order rather than by occlusion, so the eye-height per-layer split
+between `streets` and `ground` should not be quoted as ownership. **No conclusion here rests on
+it**: the frame totals — flicker, hard flips, worst Δ, mean Δ — are attribution-free, and the
+structures and trees rows carry no meaningful overlap at either station.
+
+**THE COST, and the honest limit of it.** Timed over the ten scene anchors the release gate
+walks, clock held, `setAnimationLoop(null)`, a one-pixel `readPixels` fence per frame, 12 timed
+frames after 6 warm-up, A/B/A: **24,457 → 43,283 ms summed, +56.4 % against a mean-of-A
+baseline** — with the runner itself drifting **+26.3 %** between its two A passes. A second run
+over four stations read +49.3 %, and a third +71.6 %. So the honest statement is *roughly half a
+frame again, somewhere between a half and three quarters* — not a digit. It is drawn through
+ANGLE's SwiftShader, a SOFTWARE rasteriser that resolves every sample on the CPU with no tile
+memory, which is the harshest possible witness for this particular change. **The cost on real
+phone silicon was not measured here and is not claimed.**
+
+**And the escape hatch was timed rather than asserted.** "Render quality" in Settings already
+ships with three stops and drops the pixel ratio to 1. Measured inside a single page load, so no
+drift separates the two readings, at four stations, twice:
+
+| | run A | run B | vs the frame that shipped before this |
+|---|---|---|---|
+| ratio 1.5, MSAA off — **what shipped** | 12,085 ms | 13,399 ms | — |
+| ratio 1.5, MSAA on — **what ships now** | 20,735 ms | 20,004 ms | +71.6 % / +49.3 % |
+| ratio 1, MSAA on — one tap in Settings | 10,967 ms | 12,561 ms | **−9.3 % / −6.3 %** |
+
+So a phone that cannot afford the new frame has a control that returns it to **below** what the
+town cost it before today, still antialiased. The `light` scene-detail tier a phone boots into
+is untouched — AGENTS.md's floor stays the floor.
+
+**A correction to the ticket's premise, on the way.** It held that a phone's pixel ratio is
+"capped at 1.5 rather than 2". The boot-time `coarse ? 1.5 : 2` is superseded a few hundred lines
+later by `setPixelRatio(Math.min(dpr, hud.settings.quality))`, and `quality` defaults to **1.5 on
+both platforms** — so the shipped cap is 1.5 everywhere, and the renderer reports 1.5 on a phone
+at dpr 2 against 1.0 on a desktop at dpr 1. **The phone was already supersampling more than the
+desktop**; what it did not have was MSAA. Recorded at the line in `main.js`.
+
+**The gate.** `smoke_renderer.mjs` part 1, both viewports: the live context reports
+`antialias === true` and `SAMPLES >= 2`. Written on the context and not on a pixel count, because
+the count moves the wrong way. Proved to fire by restoring `antialias: !coarse`, republishing and
+re-running the mobile half — see the PR.
+
+**What is unverified.** The frame cost on phone hardware. Nothing in this repo can measure it,
+and the software figure is quoted as an upper bound rather than an estimate.
+
+## Shipped — T-0207: three conflict markers reached production inside two liberty cards
+
+**Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
+text scan for conflict markers, on the theory that `git add -A` will stage a marker-carrying file
+and `--diff-filter=U` will then report nothing unresolved. It refused the merge. The markers turned
+out not to be from that merge at all: `docs/LIBERTIES.md` had carried three of them since
+**e2056e97** (T-0117), through the compile into `data/liberties.json`, out to the published mirror,
+into `dev`, and **into `main` in promotion run #13** — which the integrator had dispatched an hour
+earlier. A visitor reading the Evidence panel saw `Recorded: 2026-08-23. <<<<<<< HEAD` on L180 and
+`Recorded: 2026-08-24. ======= >>>>>>> origin/dev` on L181.
+
+**No liberty text was lost.** Dev's side of the hunk was empty, L181 is whole at 72 lines, the count
+is unchanged at 181. The damage is three lines of merge debris sitting on top of two cards — and
+these are the cards whose entire job is to say *this part of the town is our invention, and here is
+why*. A card whose purpose is candour should not be the one that looks unfinished.
+
+**Why every gate passed it, which is the part worth keeping.** The liberties gate asks whether the
+authored markdown and the compiled JSON agree. They agreed *perfectly* — both carried the same
+garbage, because `compile_liberties.py` recognises `### L<n> — title` headings and `**Label:** text`
+fields and quietly carries anything else along as body text. **A consistency check cannot see a
+fault that both sides reproduce faithfully.** That is a general lesson about derivation gates, not
+a fact about this file: every one of them compares two things built from the same source.
+
+Two other conditions had to hold, and did: `git add -A` stages markers without complaint, and this
+particular hunk had an *empty* other side — a positional conflict over an entry both branches
+already had — so there was no visible disagreement to prompt a careful read.
+
+**Closed with `tools/test_no_conflict_markers.py`**, wired in near the top of `check.sh` where it
+costs milliseconds. It is deliberately dumb: a text scan over all 3,340 tracked files under
+`chicago/4d` and `site/chicago/4d`, asking nothing about structure, **because structure is what
+missed it**. It refuses `<<<<<<< `, a whole line of `=======`, and `>>>>>>> `; it deliberately does
+not refuse a markdown heading underline, a table rule, an indented divider, or prose mentioning a
+marker mid-line, so it stays a guard rather than a nuisance. Nine self-test assertions prove both
+directions, including that the tool does not trip its own scan — the patterns are built from
+`"<" * 7` rather than written out. Proved against the real fault: on the unrepaired tree it named
+all three lines with file and line numbers.
+
+**What is NOT fixed: `main` still carries the markers** until dev→prod is dispatched again. This
+went to dev rather than down the hotfix lane because it is cosmetic and that lane is for
+emergencies — but it is the reason to promote sooner rather than later.
+
+**And the exposure is fleet-wide.** Every app in the suite compiles or parses an authored file with
+a parser that recognises structure and ignores the rest — `js/changelog.js` above all. A marker in
+any of them rides the same path. Worth a sweep in polecat-platform.
+## Shipped 2026-08-24 — T-0200: the picket head is on the record, and the reason it was not was false
+
+**The reason was checked and it was wrong.** T-0094 shipped hours earlier with one named half
+undone, and gave two reasons. The first was measured and is right: `generators/mesh_inputs.py`
+hashes the resolved archetype parameters, so any new key under `form` restales the GLB. The second
+— *"and there is no Blender on this runner"* — was **assumed and false.** The pinned build was
+installed the whole time and matches `generators/blender.pin` exactly: **Blender 4.5.3 LTS** at
+`blender-4.5.3-linux-x64`. **That was the integrator's error, not the ticket author's finding.** It
+cost one deferred half and a liberty that had to withhold its own `Covers:` field for a day, and it
+is struck in place — in T-0094 and in the T-0094 passage below — rather than deleted. The other
+"no Blender" statements in this file describe earlier runs and were not touched, because they were
+not checked.
+
+**The half is done.** `fort_dearborn_palisade.picket_1816.form.picket_head_m` = **0.312 m**,
+`reconstructed`, with its own note; `picket_head_m` joins `palisade_params.CONSUMED` and
+`PalisadeParams` gains the field, so `picket_point_m` now reads the record when the record states
+a head and derives `min(width × 1.3, height × 0.18)` when it does not. The head is bounded as a
+**proportion** — 4 % to 50 % of the picket — because that is what it is: it is cut out of the
+height, so what decides whether the sawtooth reads is how much of the post it takes. The floor is
+the shipped gate's own `MIN_POINT_FRACTION`, so this module can never accept a value
+`measure_picket_plate.py --gate` would then refuse. A head stated on a **worm fence** is refused
+outright; that fence has no pickets.
+
+**Nothing moved, and it was proved rather than asserted.** The value was not typed in: the run
+asserted `params.picket_point_m == min(width × 1.3, height × 0.18)` before writing it
+(`0.24 × 1.3 = 0.312` exactly, in doubles). A **control** rebake with no change to anything
+reproduced the committed master byte-for-byte, so a byte difference afterwards would have meant
+something. After the change, both rebaked masters are again byte-for-byte the committed files, and
+the vertex comparison says the same thing directly: **21,728 positions, 0 moved, max displacement
+0.000000 mm**, with NORMAL, TEXCOORD_0, `_CONFIDENCE` and the index buffer identical.
+
+**What the bake cost:** two lines of `assets/manifest.json`. `fort_dearborn_palisade__picket_1816`
+`579cb33f…` → `dd0c84b8…`, and — **restaled too, and this is worth knowing** —
+`fort_dearborn_garrison_garden__fence_1816` `5d60352e…` → `1c92409e…`. The hash is taken over the
+resolved parameter OBJECT, and the new field is on the class both wall kinds resolve through, so a
+worm fence that states no head still hashes `picket_head_m: null` where it hashed nothing before.
+It was rebaked rather than left stale; 7,488 positions, 0 moved. The web derivatives regenerate
+byte-identically from the unchanged masters, so `assets/web/` is untouched.
+
+**L179 claims the attribute.** Its own last sentence said *"The day a `picket_head` attribute
+exists on the record, this entry claims it"* — it now carries
+`Covers: fort_dearborn_palisade.picket_1816.form.picket_head_m` and a `Revised:` field. The
+paragraph explaining why it withheld the field is kept verbatim: it was the right reading on the
+day.
+
+**What a visitor sees:** open the stockade's card and there is a line for the head of the picket —
+0.312 m under a `reconstructed` chip — where before the most conspicuous invention on the most
+recognisable building in the town lived only inside a Python property.
 ## Shipped 2026-08-24 — T-0199 (of T-0127): the last five South Water stores come onto the plat
 
 **The five T-0188 refused are reconciled, no anonymous roof left the town, and the thing that had
@@ -706,10 +1007,27 @@ build red.
 
 **Not done, and stated rather than skipped.** The acceptance also asked the record to carry the head
 as a **form value**. It cannot without a bake: `generators/mesh_inputs.py` hashes the resolved
-parameters, and any new key under `form` restales the GLB — verified, not assumed — and there is no
-Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate, and
-the form attribute is left for the run that has a bake. What the plate DOES say about the pickets —
-its rhythm is nearly three times coarser than the model's — is **T-0185**.
+parameters, and any new key under `form` restales the GLB — verified, not assumed — ~~and there is
+no Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate,
+and the form attribute is left for the run that has a bake.~~ What the plate DOES say about the
+pickets — its rhythm is nearly three times coarser than the model's — is **T-0185**.
+
+**CORRECTED 2026-08-24 (T-0200), and the strike-through above stays.** The unstruck half of that
+paragraph is true and was measured; the struck clause was **false** and was assumed: the pinned
+Blender 4.5.3 — the exact build `generators/blender.pin` names, `blender-4.5.3-linux-x64` — was
+installed on that runner the whole time, and nothing checked before the half was deferred. **That was the integrator's error,
+not the ticket author's finding**, and it is written down here rather than removed because this
+file is the honest narrative and an unflattering entry is the only kind worth keeping. The cost was
+one deferred half and a liberty that had to withhold its own `Covers:` field for a day. The half is
+now done: `form.picket_head_m` stands on the record at **0.312 m**, `reconstructed`, asserted equal
+to the derivation before it was written; the rebake came back **byte-for-byte identical**, 21,728
+vertices with none moved, and the only thing that changed is the manifest input hash
+(`579cb33f…` → `dd0c84b8…`). The garrison garden's worm fence restaled with it — the new parameter
+is on the shared class — was rebaked too, and is byte-identical as well.
+
+**Do not read this as a general correction.** Every OTHER "no Blender on this runner" in this file
+describes an earlier run and may well have been true of it; only T-0094's passage is corrected,
+because only T-0094's was checked.
 
 Evidence: `docs/evidence/t-0094-plate-vs-model.png`, `docs/evidence/t-0094-p4_0-stand.png`.
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line

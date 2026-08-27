@@ -131,21 +131,33 @@ INVENTED_NOTE = (
 )
 
 
+# T-0189, and the same fault the `symbolic_location` clause below carried: this note was
+# written for T-0078's run on South Water Street, where every literal in it was true, and
+# it has been printed verbatim on every frontage run since. The card shows it beside the
+# location line, so a house on Washington Street 400 m from the water was told it stood on
+# "the town's river business front" and looked at "the river beyond it, as every documented
+# store on this face does" — on a face whose entire documented 1835 frontage is the estray
+# pen (tools/measure_street_frontage.py randolph washington: Washington 1 record, 0 inferred
+# households). Two claims about the town were removed and nothing else changed. What stays
+# is the treatment's real provenance: the 1834 view IS where a row of party walls comes
+# from, and a row placed on any other face is borrowing it, which the note now says.
 FRONTAGE_NOTE = (
     "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0078). This building does "
     "not stand centred on a lot at a typology setback: it stands ON the {face} face of "
-    "{block}, the town's river business front, whose line and bearing are read from the "
-    "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
+    "{block}, the block's {street} Street frontage, whose line and bearing are read from "
+    "the block boundary in data/traces/vectors/thompson_lots.json — the same committed "
     "geometry the lot grid and the corridor gate are derived from. Its front wall is "
     "{setback} m back from that lot line, {line_why}, and its east wall is fixed "
-    "by {anchor}. The bearing is the face's own, so the front looks at {street} Street and "
-    "the river beyond it, as every documented store on this face does. The run carries no "
+    "by {anchor}. The bearing is the face's own, so the front looks square at {street} "
+    "Street. The run carries no "
     "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
     "INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here at all, which "
     "building it was, and that these particular units stood shoulder to shoulder. What the "
-    "1834 South Water Street view supports is the TREATMENT — a continuous working row "
-    "facing the river rather than detached cottages set back on grass — and the treatment "
-    "is what this placement takes from it. Standing on a derived block face is not standing "
+    "1834 South Water Street view supports is the TREATMENT — a continuous working row of "
+    "party walls rather than detached cottages set back on grass. The treatment is what "
+    "this placement takes from it, and a run standing on any other face of the town is "
+    "borrowing it from that one street: the view draws a row, it does not place this row. "
+    "Standing on a derived block face is not standing "
     "on a recovered lot, and the side lot lines this row crosses were always conjectural."
 )
 
@@ -602,8 +614,18 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
              f"{bounded['south'].replace('_', ' ').title()} and "
              f"{bounded['west'].replace('_', ' ').title()}")
     if on_frontage:
+        # T-0189. This clause read "one unit of the party-line RIVER row" until
+        # 2026-08-27, which was written for T-0078's South Water run and was true of it.
+        # It is the first line a visitor reads on the card, and by the time it was
+        # caught it stood on 23 records across four faces — three houses on Washington
+        # Street 400 m from the water among them, told they were part of a river row on
+        # a street the sentence does not name. The row belongs to the face it stands on,
+        # which is the face this same sentence has always named; `tools/block_faces.py`
+        # calls it "a party-line STREET row" in its own docstring and that is the
+        # vocabulary. Nothing moved: the phrase describes the placement, it does not
+        # decide it.
         where += (f"; standing ON the {faces.replace('_', ' ').title()} Street frontage "
-                  "itself, one unit of the party-line river row")
+                  "itself, one unit of the party-line row along it")
     else:
         where += (f"; a yard building off the block alley behind the {slot['fronts'].title()} "
                   "Street frontage" if fronts_alley
