@@ -84,3 +84,10 @@ untouched — the ramp never paid for geometry — so the species deal and the d
 identical plant for plant. Two things do move and both are stated in STATUS: fill, because the
 ground the ramp used to thin is written solid; and the flower heads, whose ring hangs off the band
 (`headRingOf`), so at `light` the forb heads run to 11.8 m where they stopped at 10.0 m.
+
+**Both boundary checks green at their existing bars, and the reach went UP.** Part 7 at 390×780,
+45 passed / 0 failed: min drawn reach **10.32 m** (unmoved, bar 9.60), mean **11.89 → 11.96 m**
+(bar 11.60), max **12.76 → 13.22 m**, boundary rows **17.4 → 19.8 px** (bar 4). The smoke culls a
+plant below `fadeAt <= 0.02`, which costs 0.14 m of reach on a 7 m band and 0.03 m on a 1.6 m one —
+the mirror image of why the density handover could not be had, since that one does not draw the
+outermost plants at all.

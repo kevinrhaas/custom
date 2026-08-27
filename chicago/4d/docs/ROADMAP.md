@@ -11694,13 +11694,20 @@ in the **mid** field.
      1.8; it lands equal to the fringe, so the edge thins over no more ground than it is ragged
      by); `balanced` takes the proportionate **4.7 m** and **3.4 m**, which already clear it; `full`
      is unchanged at 7.0 m and 5.0 m, clearing by 16.4 m and 17.4 m.
-   - **What it costs and what it buys.** Placement is untouched, so triangles, instances and draw
+   - **What it costs and what it buys.** The lattice is untouched, so triangles, instances and draw
      calls are unchanged — the ramp's own comment in item 3 already says the lattice pays for the
      geometry and the fade pays for nothing. What changes is fill: the ground the ramp used to
      thin is drawn solid, and the phone's sward stops opening up five metres ahead of the walker.
-     The flower heads reach further out with it, because `headRingOf` hangs the head ring off the
-     band (`fade[0] − 0.35 × band`): at `light` the forb heads run to 11.8 m where they stopped at
-     10.0 m.
+     Off identical placement, `flora-mid` drawn WHOLE goes **17 → 144** in open prairie, 2 → 71 at
+     Wells, 6 → 31 on the South Water verge. The flower heads reach further out with it, because
+     `headRingOf` hangs the head ring off the band (`fade[0] − 0.35 × band`): at `light` the forb
+     heads run to 11.8 m where they stopped at 10.0 m.
+   - **And the reach it was refused for went UP.** Part 7 at 390×780 after: min **10.32 m**
+     (unmoved), mean **11.89 → 11.96 m**, max **12.76 → 13.22 m**, boundary rows **17.4 → 19.8 px**,
+     both bars green where they stood. Arithmetic rather than luck — the smoke culls below
+     `fadeAt <= 0.02`, which is 0.14 m of reach on a 7 m band and 0.03 m on a 1.6 m one. Which is
+     the mirror image of why the density handover could not be had: it does not draw the outermost
+     plants at all.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.

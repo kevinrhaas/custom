@@ -59,9 +59,24 @@ and the fragment shader's discard sits before the lighting rather than after it.
 heads, because `headRingOf` hangs the head ring off the band: at `light` the forb heads run to
 11.8 m where they stopped at 10.0 m, which is more head instances against the same 240 cap.
 
-**Verification.** `tools/check.sh` CHECK PASS. `tools/smoke_renderer.mjs --published` part 7 at both
-viewports, with the reach now printed on the passing line as well as the failing one (a `show` flag
-on `check`, added because a change to the boundary has to be able to quote what it was before).
+**Verification, and the reach it was refused for went UP.** `tools/check.sh` CHECK PASS.
+`tools/smoke_renderer.mjs --published` part 7 at 390×780: **45 passed, 0 failed**, both boundary
+checks green at their existing bars, and the figures printed on the passing line as well as the
+failing one (a `show` flag on `check`, added because a change to the boundary has to be able to
+quote what it was before):
+
+| | before | after | bar |
+|---|---|---|---|
+| min drawn reach | 10.32 m | 10.32 m | ≥ 9.60 |
+| mean drawn reach | 11.89 m | **11.96 m** | ≥ 11.60 |
+| max drawn reach | 12.76 m | **13.22 m** | — |
+| boundary rows spread | 17.4 px | **19.8 px** | ≥ 4 |
+
+The gain is arithmetic rather than luck: the smoke culls a plant below `fadeAt <= 0.02`, which on a
+7 m band is 0.14 m of reach and on a 1.6 m band is 0.03 m. Narrowing the ramp hands most of that
+back — which is the mirror image of why the density handover could not: it does not draw the
+outermost plants at all. `full` detail is untouched by this change (only `LOW` and `MID` moved), so
+the desktop boundary readings cannot shift.
 
 **What this run did NOT do.** The outer edges are still coverage ramps and still dither, in the last
 1.6 m of the phone's ring and the last 7 m of the desktop's — outside the verge at every setting,
