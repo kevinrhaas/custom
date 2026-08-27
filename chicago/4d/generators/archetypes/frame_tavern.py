@@ -190,7 +190,13 @@ def build(params: FrameTavernParams, name: str):
                         roughness=materials.SUBSTRATES["hewn_log"].roughness),
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
-        simple_material("glass", (0.09, 0.11, 0.13, 1.0), roughness=0.25),
+        # The town's glazing, on the sheet since T-0126 (`GLASS`) at exactly the
+        # value this archetype and frame_storefront already agreed on across all 48
+        # shipped slots — brought onto the sheet rather than re-argued. The one
+        # attested pane in the dataset is the Green Tree's 6x8 lights and the one
+        # depicted sash is the Sauganash's, and both are this archetype's buildings.
+        simple_material("glass", materials.GLASS.rgba,
+                        roughness=materials.GLASS.roughness),
     ]
     if params.chimneys > 0:
         mats.append(simple_material("brick", BRICK_RGBA,

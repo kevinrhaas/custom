@@ -47,6 +47,57 @@ subject polygon need not be convex; the clip polygon must be, which is checked.
 `SLIVER_M2` is a numerical tolerance and not a policy. Two polygons that share an edge
 intersect in a few square millimetres of rounding, and the tolerance is far below
 anything a placement gate allows.
+
+## THE ONE EXCEPTION — a business front is shared, and the owner said so
+
+**Owner's ruling, 2026-08-27.** Reconciling the South Water placements with the
+committed plat seated five documented stores on lots the roof schedule had already
+dealt to that street's anonymous frontage runs (T-0199). Nothing overlapped — every one
+of them was checked against every committed footprint in the town and the worst overlap
+was zero — so what failed was a RULE, one principal roof to a lot, and the fork went to
+the owner because it decides what the town's business front IS rather than where one
+building stands. **He was asked whether a platted business-front lot may carry a
+documented store at the street AND an anonymous dwelling behind it, or whether the lot
+rule holds and the town gives eight roofs and two households back. He chose the first**,
+on the reasoning the ticket recommended: the geometry already permits it, and the other
+answer pays eight roofs and two households for a rule the corrected data had itself
+called into question.
+
+So `exclusive_lots` is the rule the schedule and the generator both ask, and it is
+`occupied_lots` less this clause. **A lot of a block's declared business front is not
+exhausted by a researched building standing at the street on it.** All three of these
+hold or the lot is taken, exactly as before:
+
+1. **The face is a business front.** The lot is named in that block's own `frontage`
+   run in `data/reconstruction/1835_platted_block_parcels.json` — a face the block
+   programme deals a commercial row, with its `why` written down. An interior lot, a
+   side lot, or any lot of a block with no frontage run is untouched by this.
+2. **The standing building is researched, not invented.** `researched_ids()` — a record
+   this project's own reconstruction programmes wrote is not a documented store, and
+   two anonymous roofs on one lot is still one roof too many.
+3. **It stands AT the street.** Its street wall is no further back from the committed
+   frontage line than the run's own units stand plus one lot margin
+   (`setback_m + LOT_MARGIN_M`, both read from the block's own recipe, neither invented
+   here). A documented building standing back in the depth of its lot takes the lot,
+   because the ground the row needs is the ground it is on.
+
+**Nothing physical is relaxed.** The footprints still may not overlap, still must clear
+each other by the separation gate's three metres, still must stand inside their own lot
+lines by `LOT_MARGIN_M`, and still may not lap a platted corridor. This clause moves one
+line only: whether a documented storefront ALONE entitles a lot, and on a business front
+the answer is now no.
+
+**And it did not need a second clause to hold, which is worth recording because the first
+attempt wrote one.** Standing the five stores on the plat left one pair at 2.40 m —
+`recon_1835_blk_south_water_wells_d1_05` and `carpenter_south_water_store`, side by side
+along the face with their fronts level — under the three-metre gate. That gap is AUTHORED,
+not derived: that slot stands `clear_west_of` the store by a stated `clear_m`, and
+`generate_block_infill.place_frontage`'s own note says where the number belongs — *"the
+three-metre separation rule — not this recipe — is what fixes the size of the break"*.
+2.4 m was authored while the store stood 6.62 m out in the roadway, where the along-face
+break was not the real gap at all. So the RECIPE moved to the gate (2.4 → 3.0 m, with
+`clear_why` beside it) rather than the gate to the recipe. One rule changed in this work,
+and it is the one above.
 """
 
 from __future__ import annotations
@@ -55,8 +106,16 @@ import json
 import math
 from pathlib import Path
 
+from block_faces import face_frame, project
+
 ROOT = Path(__file__).resolve().parent.parent
 STRUCTURES = ROOT / "data" / "structures"
+
+# Where a block's BUSINESS FRONT is declared: the block-parcel recipes' own `frontage`
+# entry, face and lots and setback, with the reasoning beside it. Read here rather than
+# passed in by each caller for the same reason `LOT_MARGIN_M` is authored here — the
+# schedule and the generator must not be able to be handed two different answers.
+PARCELS = ROOT / "data" / "reconstruction" / "1835_platted_block_parcels.json"
 
 # A tenth of a metre square. See the module docstring: a tolerance, not a threshold.
 SLIVER_M2 = 0.01
@@ -217,26 +276,28 @@ def inset(convex_poly: list[tuple[float, float]], metres: float
     return out if len(out) >= 3 else []
 
 
-def occupied_lots(grid: dict, datum: dict,
-                  exclude: set[str] | frozenset[str] = frozenset()
-                  ) -> dict[str, dict[int, str]]:
-    """{block_id: {lot_index: the structure standing on it}} across the whole grid.
+def lot_holders(grid: dict, datum: dict,
+                exclude: set[str] | frozenset[str] = frozenset()
+                ) -> dict[str, dict[int, list[str]]]:
+    """{block_id: {lot_index: [every structure standing on it, by id]}}.
 
     Both tests, in order: a building's lot is the one it has the greatest area on, and
     it occupies that lot only if it reaches inside the lot's buildable inset. See the
     module docstring for why each is there and what each was measured against.
 
-    Where two structures hold one lot the first by id is named. The map's job is to say
-    the lot is taken and by something nameable, not to arbitrate between them — that
-    two roofs share a lot is the separation gate's question, and this one's answer is
-    the same either way.
+    `occupied_lots` names one holder per lot, which is all a "is this lot taken" answer
+    ever needed. The owner's business-front clause needs the LIST: a lot the run already
+    stands on is not freed by a documented store also standing at the street on it, and
+    with only the first id in hand — `carpenter_south_water_store` sorts before
+    `recon_1835_blk_south_water_wells_d1_05` — the row unit is invisible and the lot
+    reads free. That is the schedule offering a block room it is already using.
     """
     frames = [(block["id"], index, [tuple(p) for p in lot["polygon"]])
               for block in grid["blocks"] for index, lot in enumerate(block["lots"])]
     buildable = {(bid, index): inset(polygon, LOT_MARGIN_M)
                  for bid, index, polygon in frames}
 
-    taken: dict[str, dict[int, str]] = {}
+    held: dict[str, dict[int, list[str]]] = {}
     for structure_id, world in footprints(datum, exclude):
         seat, best = None, SLIVER_M2
         for bid, index, polygon in frames:
@@ -248,8 +309,135 @@ def occupied_lots(grid: dict, datum: dict,
         room = buildable[seat]
         if not room or overlap_area(world, room) <= SLIVER_M2:
             continue
-        taken.setdefault(seat[0], {}).setdefault(seat[1], structure_id)
-    return taken
+        held.setdefault(seat[0], {}).setdefault(seat[1], []).append(structure_id)
+    return held
+
+
+def occupied_lots(grid: dict, datum: dict,
+                  exclude: set[str] | frozenset[str] = frozenset()
+                  ) -> dict[str, dict[int, str]]:
+    """{block_id: {lot_index: the structure standing on it}} across the whole grid.
+
+    Where two structures hold one lot the first by id is named. The map's job is to say
+    the lot is taken and by something nameable, not to arbitrate between them — that
+    two roofs share a lot is the separation gate's question, and this one's answer is
+    the same either way.
+    """
+    return {block_id: {index: ids[0] for index, ids in sorted(lots.items())}
+            for block_id, lots in lot_holders(grid, datum, exclude).items()}
+
+
+def researched_ids() -> set[str]:
+    """Every structure id this project did not itself invent.
+
+    The three evidence layers are named by ID PREFIX in
+    `tools/measure_street_frontage.layer_of` — `recon_1835_*` reconstruction, `inf_*`
+    inferred household, everything else research. That reading is a proxy for the thing
+    it wants, and it misses one record: `physicians_office` carries neither prefix and
+    is nonetheless a product of the inferred-household programme, which says so in its
+    own `reconstruction.status: "inferred_household"`. So the RECORD is asked here
+    instead of its name — a record one of the programmes wrote carries the
+    `reconstruction` block that programme writes, and a researched one does not.
+    Measured across the committed dataset the two readings agree on 347 of 348 records
+    and disagree on that one, in the direction that matters: a clause about DOCUMENTED
+    buildings must not let an invented one through on the strength of its filename.
+    """
+    documented: set[str] = set()
+    for path in sorted(STRUCTURES.glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        if "reconstruction" not in record:
+            documented.add(record["id"])
+    return documented
+
+
+def business_fronts() -> dict[str, list[dict]]:
+    """{block_id: [frontage entry, …]} — the faces the block programme deals a row.
+
+    A block may appear twice in the recipes (`blk_randolph_dearborn` is dealt its
+    Randolph face and its Washington face by two different parcels), so the entries
+    are collected rather than replaced.
+    """
+    parcels = json.loads(PARCELS.read_text(encoding="utf-8"))
+    fronts: dict[str, list[dict]] = {}
+    for block in parcels["blocks"]:
+        frontage = block.get("frontage")
+        if frontage:
+            fronts.setdefault(block["block_id"], []).append(frontage)
+    return fronts
+
+
+def shared_business_fronts(grid: dict, datum: dict,
+                           exclude: set[str] | frozenset[str] = frozenset(),
+                           held: dict[str, dict[int, list[str]]] | None = None
+                           ) -> dict[str, dict[int, str]]:
+    """{block_id: {lot_index: the documented store standing at the street on it}}.
+
+    The owner's 2026-08-27 clause, in code. See the module docstring for the ruling and
+    for all three tests; this is only their arithmetic. The street wall is measured on
+    the face's own outward normal out of `tools/block_faces.py`, which is the same line
+    `tools/generate_plat_lots.py` builds the block edge from and the same one the run
+    itself is set back from — so "at the street" is a distance from the committed plat,
+    never from a modern kerb.
+
+    A FOURTH condition falls straight out of the third: the store has to be the only
+    thing seated on the lot. A lot the anonymous run ALREADY stands on has been used;
+    the clause says a documented storefront does not exhaust a business-front lot, not
+    that such a lot can never be exhausted. This is why the two halves can call one
+    function and still get the answers they each need — the generator asks it with its
+    own records excluded, so the store stands alone and the run may be dealt the lot;
+    the schedule asks it with nothing excluded, sees the run standing there too, and
+    does not offer the block that lot a second time.
+    """
+    held = lot_holders(grid, datum, exclude) if held is None else held
+    fronts = business_fronts()
+    documented = researched_ids()
+    blocks = {block["id"]: block for block in grid["blocks"]}
+
+    walls: dict[tuple[str, str], float] = {}     # (block_id+face, structure) -> outward
+    shared: dict[str, dict[int, str]] = {}
+    for block_id, lots in held.items():
+        for frontage in fronts.get(block_id, []):
+            frame = face_frame(blocks[block_id], frontage["face"])
+            reach = float(frontage["setback_m"]) + LOT_MARGIN_M
+            dealt = {int(index) for index in frontage["lots"]}
+            for index, holders in lots.items():
+                if index not in dealt or len(holders) != 1:
+                    continue
+                holder = holders[0]
+                if holder not in documented:
+                    continue
+                key = (f"{block_id}:{frontage['face']}", holder)
+                if key not in walls:
+                    walls[key] = max(
+                        project(frame, point)[1]
+                        for sid, world in footprints(datum, exclude) if sid == holder
+                        for point in world)
+                # outward is INTO the street, so a wall behind the line reads negative
+                if walls[key] >= -reach:
+                    shared.setdefault(block_id, {})[index] = holder
+    return shared
+
+
+def exclusive_lots(grid: dict, datum: dict,
+                   exclude: set[str] | frozenset[str] = frozenset()
+                   ) -> dict[str, dict[int, str]]:
+    """The occupancies that BAR another roof — `occupied_lots` less the shared fronts.
+
+    THIS is the map a schedule or a generator asks before it deals a lot a roof;
+    `occupied_lots` stays the truthful answer to "what stands on this lot", because a
+    documented store on a shared business front still stands there, still counts as a
+    roof of its block, and still has to be subtracted from that block's headroom.
+    Reading one map for both questions is how the two facts were ever confused.
+    """
+    held = lot_holders(grid, datum, exclude)
+    taken = {block_id: {index: ids[0] for index, ids in sorted(lots.items())}
+             for block_id, lots in held.items()}
+    shared = shared_business_fronts(grid, datum, exclude, held)
+    if not shared:
+        return taken
+    return {block_id: {index: holder for index, holder in lots.items()
+                       if index not in shared.get(block_id, {})}
+            for block_id, lots in taken.items()}
 
 
 def block_of_structure(taken: dict[str, dict[int, str]]) -> dict[str, str]:

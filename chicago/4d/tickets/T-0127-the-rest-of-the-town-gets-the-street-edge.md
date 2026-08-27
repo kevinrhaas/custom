@@ -81,3 +81,23 @@ and measured in T-0115's ledger. Never by weakening a gate.
 **Links:** T-0069 (parent ask) · T-0115 (the tier ledger and the shadow lever) · T-0068 ·
 docs/LIBERTIES.md L160 · `data/sources/assets/owner_brief_2026_08_18/README.md` images 1,
 6, 8, 9.
+
+---
+## 2026-08-24 — SPLIT into five, because the acceptance names more than one demonstration
+
+The acceptance above asks for the South Water placement repair AND at least one more street
+tier AND the walkability of both AND the budget lever measured. That is not one run: the
+repair rewrites ten documented records' positions and re-derives every gate that reads them,
+while "one more street tier" is a generator boundary and its own metres. The ticket's own
+body already enumerates the five pieces; the split takes them verbatim and changes no
+priority — the children hold this ticket's exact place in QUEUE.md.
+
+- **T-0190** the South Water placements vs the plat (the repair — body item 1)
+- **T-0191** Randolph and Washington (item 2)
+- **T-0192** the cross streets' own frontages (item 3, and the piece that must spend the
+  T-0115 shadow lever, since it is the largest by metres)
+- **T-0193** `blk_lake_clinton`, the West Division block (item 4)
+- **T-0194** hitching posts at the commercial fronts (item 5)
+
+This record keeps the owner's ask, the reference images and the links; the children own the
+work.

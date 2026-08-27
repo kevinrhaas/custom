@@ -139,3 +139,85 @@ named block the scene draws dry, and the notes now say which of those two things
 - It did not answer **how much** of the block was wet, and nothing here should be read as
   licensing a guess at it. That is `T-E5(b)`, and its first question is whether any source states
   an extent at all.
+
+---
+
+## 6. How much of the square was wet — the reading, 2026-08-24 (T-0027)
+
+**Parcel T-0027**, the ticket §5 above opened. `tools/measure_public_square.py` takes it on every
+commit; nothing below is asserted, and no number here is authored by this project.
+
+### 6.1 The reading
+
+Sampled at 0.5 m over the committed platted block `blk_randolph_lasalle` — **43,885 samples, one
+per 0.25 m², over 10,976 m²** — against `data/terrain/epochs/e1834_harbor_cut/heightfield.json`:
+
+| | |
+|---|---|
+| ground | **+2.84 to +2.96 ft** above the summer-1835 water surface (mean +2.90) |
+| relief across the whole block | **1.49 in** |
+| samples at or below the water surface | **0 of 43,885** |
+| **wet fraction** | **0.0 %** |
+| the dossier's own bed for zone 15 | +1.0 to +2.0 ft — the ground stands **0.84 to 1.96 ft above it** |
+| the square's drain (`state_slough_course`) | heads **34.4 m** off the block's east kerb, outside it |
+
+### 6.2 Why the zero is not a measurement of a pond
+
+**It is a measurement of the model, and the second row is what says so.** An inch and a half of
+relief across a city block is *inside* the terrain spec's own declared micro-relief — two octaves
+of value noise at ±0.10 ft, seed 18350701, which `micro_relief.note` calls **"a texture, not a
+claim"**. So the square carries no landform at all: it is the South Division's plain profile plus
+noise, exactly as `not_modelled_in_this_box` says zone 15 is. **Reading a wet fraction off this
+ground would be reading the noise seed**, which is why the tool asserts the relief as well as the
+water — assertion 1 is only a statement about the model for as long as assertion 2 holds.
+
+### 6.3 So the honest answer to "how much" is a DEPTH, and it is the thing §3 could not reach
+
+`docs/research/01-terrain-hydrology.md` row 15 puts the pond's bed at **+1.0 to +2.0 ft**. The
+committed ground stands **0.84 ft above the top of that band and 1.96 ft above its floor**. The pond
+the dossier describes therefore cannot be laid on this block — **it has to be dug**, over the whole
+of it, out of the one land elevation in this box that rests on a documentary sentence: *"to the west
+of State Street, it sloped down to the river in a level plain elevated only two to three feet above
+the river"*.
+
+That reframes §3. The parcel had the extent and the date as one question; they are one question
+inside a THIRD, which nobody had asked. Modelling zone 15 is not choosing a boundary — it is
+choosing an excavation, roughly one to two feet deep over 10,976 m², under the block carrying
+Chicago's first public building, on no source that states a depth. **`geometry conjectural` was
+carrying that, and it does not survive being read out loud.** The date stays `not_established`, the
+geometry stays deferred, and the reason both stay is now a number.
+
+### 6.4 And the drain is already in the scene
+
+`state_slough_course` — dossier zone 14, carved by T-0005 and amended by T-0118 — is committed with
+its head, in the spec's own words, *"just east of Clark between Washington and Randolph (the
+square's drain)"*. Its head vertex stands **34.4 m** off the block's east kerb and feathers to zero
+depth, so **the scene contains the pond's drain and not the pond**. §1 found a bridge over a
+watercourse the scene did not contain; this is the same shape one feature upstream, and it is the
+one piece of positive, committed evidence that this block collected water. The tool asserts the head
+stays within 60 m of the block, because nothing else joins that file to this reading.
+
+### 6.5 What was actually wrong, and what T-0027 changed
+
+Not the terrain — **the sward**. `docs/research/02-flora.md` heads its ZONE 3 **"SLOUGH & SEDGE
+MEADOW (Public Square → Tremont House site → river at State St; river-shore strip)"** and its § 1.2
+calls the slough from *"the Public Square area (Randolph/Clark/LaSalle/Washington)"* the single most
+important vegetation feature **inside** the platted grid. `z03_sedge_meadow`'s extent is an
+**elevation band** of +0.6 to +2.2 ft — and it could never reach a block the terrain draws at
++2.9 ft, *because zone 15 is deferred*. The block three sources describe as water was being planted
+by the same rule as anonymous prairie 800 m west, and the pond quotation reached the flora layer
+nowhere at all. §4 records the mirror of this: the fauna zone had rested three claims on that
+quotation and had to withdraw them, because `z04_marsh` is a buffer of the mapped water and **"has
+never reached the square"**.
+
+So the zone now also holds the square **by polygon** — `include_polygons`, the exact mirror of the
+`exclude_polygons` the matcher already had — and the ring is the committed plat's block boundary,
+vertex for vertex, held there by the same tool. **Nothing is fitted**, in particular not fitted
+around the estray pen, the log jail and the court-house: they stand *on* the sward, which is what a
+seasonally ponded bed carries and open water does not. **No water is drawn**, and the zone's own
+`cover.standing_water_fraction` of 0.10 is explicitly not claimed here. `docs/LIBERTIES.md` **L188**
+records the one invention: that the wet ground stopped at the surveyor's line.
+
+**What this parcel did NOT do.** It moved no ground, cut no basin, dated no water and promoted no
+confidence. Zone 15 is still deferred, still `not_established`, and still needs a bake and a source
+before it can be anything else.

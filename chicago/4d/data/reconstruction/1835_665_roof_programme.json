@@ -258,7 +258,17 @@
   "gated_on_coverage": 296,
   "statement": "28 of the 324 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
   "platted_lots": 144,
-  "blocks_named": 21
+  "blocks_named": 21,
+  "southern_ground": {
+   "field_south_edge_n_m": -400.0,
+   "madison_line_n_m_at_state": -525.2,
+   "madison_south_of_field_m": 125.2,
+   "land_south_of_committed_plat_ha": 0.0819,
+   "south_division_land_south_of_committed_plat_ha": 0.0,
+   "unmodelled_tier_blocks": 6,
+   "unmodelled_tier_lots": 48,
+   "unmodelled_tier_area_ha": 6.28
+  }
  },
  "schedule": [
   {
@@ -301,7 +311,7 @@
    },
    "lots": 8,
    "capacity_roofs": 31,
-   "standing_roofs": 10,
+   "standing_roofs": 12,
    "free_lots": 1,
    "principal_room": 0,
    "ancillary_room": 0,
@@ -850,7 +860,7 @@
    "standing_roofs": 0,
    "headroom": 115,
    "state": "gated",
-   "waiting_on": "Committed street control reaches State Street on the east and Washington Street on the south; the plat continues past both. No block east of State or south of Washington has four committed centrelines, so none can be named, let alone measured (ROADMAP S9).",
+   "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
    "roofs": 115,
    "families": {
     "A1": 9,

@@ -2178,6 +2178,25 @@ function zoneFinder(zones, terrain, water) {
   };
 }
 
+/**
+ * `include_polygons` — ground a community holds that its own extent rule cannot
+ * reach, and the exact mirror of `exclude_polygons` below.
+ *
+ * It exists because one community's evidence is a PLACE and its extent is a
+ * RULE, and the two stopped agreeing. `docs/research/02-flora.md` heads ZONE 3
+ * "SLOUGH & SEDGE MEADOW (Public Square → Tremont House site → river at State
+ * St)" — the public square named first, by name — while `z03_sedge_meadow`'s
+ * committed extent is an elevation band, which can only find the square if the
+ * terrain gives the square a basin, and dossier zone 15 is deferred and
+ * unmodelled, so it does not. The band was not selecting against the block; it
+ * could not see it. Fitting the band down to reach it would have moved the
+ * community everywhere else in the box to solve one address.
+ *
+ * The box test still binds — a polygon outside a zone's declared box is refused
+ * with everything else — and the exclusions still run last, so a hole cut in a
+ * community stays a hole. Which ground this admits, and on what evidence, is a
+ * claim in the zone record's own extent note, never a rule in here.
+ */
 function matches(x, e, n, terrain, water) {
   if (!x) return false;
   if (x.box) {
@@ -2208,6 +2227,11 @@ function matches(x, e, n, terrain, water) {
     }
     default:
       return false;
+  }
+  if (!ok) {
+    for (const patch of x.include_polygons ?? []) {
+      if (pointInPolygon(patch, e, n)) { ok = true; break; }
+    }
   }
   if (!ok) return false;
   for (const hole of x.exclude_polygons ?? []) {

@@ -56,32 +56,6 @@
       "note": "THE HOUSE LOT: blk_south_water_franklin lot 5 of the platted grid, holding recon_1835_blk_south_water_franklin_d3_03 (one-room frame cottage) and nothing else. IT PASSES THE RULE THIS RECORD IS BUILT ON — one building on the lot, a dwelling by archetype and by function, and a household recorded as living in it — and the rule is the answer to 'why this lot': no source puts a garden here or anywhere else in the town. THE RECTANGLE IS DERIVED AND NOT PLACED: 8.53 x 6.10 m at the back of the lot, 0.914 m inside the rear and side lot lines, 3.048 m or more clear of the house's own back face, and centred on the house. Every metre of it comes from data/traces/vectors/thompson_lots.json and this building's committed footprint; the SIZE of the plot and its position at the rear are the invention, and they are the same for every lot on this record. THE CEILING ON THE PLOT — 28 x 20 ft — is invented twice over: nothing states a garden's size, and the number is additionally bounded by the renderer's own triangle budget, because a paled fence is thousands of small boxes and this layer draws in one pass. docs/LIBERTIES.md L129 claims that, on the precedent of L121."
     },
     {
-      "id": "blk_south_water_wells_lot2",
-      "path_local_enu_m": [
-        [
-          377.86,
-          -15.8
-        ],
-        [
-          386.39,
-          -15.73
-        ],
-        [
-          386.36,
-          -21.82
-        ],
-        [
-          377.82,
-          -21.89
-        ],
-        [
-          377.86,
-          -15.8
-        ]
-      ],
-      "note": "THE HOUSE LOT: blk_south_water_wells lot 2 of the platted grid, holding recon_1835_blk_south_water_wells_d1_05 (older log dwelling) and nothing else. IT PASSES THE RULE THIS RECORD IS BUILT ON — one building on the lot, a dwelling by archetype and by function, and a household recorded as living in it — and the rule is the answer to 'why this lot': no source puts a garden here or anywhere else in the town. THE RECTANGLE IS DERIVED AND NOT PLACED: 8.53 x 6.10 m at the back of the lot, 0.914 m inside the rear and side lot lines, 3.048 m or more clear of the house's own back face, and centred on the house. Every metre of it comes from data/traces/vectors/thompson_lots.json and this building's committed footprint; the SIZE of the plot and its position at the rear are the invention, and they are the same for every lot on this record. THE CEILING ON THE PLOT — 28 x 20 ft — is invented twice over: nothing states a garden's size, and the number is additionally bounded by the renderer's own triangle budget, because a paled fence is thousands of small boxes and this layer draws in one pass. docs/LIBERTIES.md L129 claims that, on the precedent of L121."
-    },
-    {
       "id": "blk_south_water_wells_lot7",
       "path_local_enu_m": [
         [
@@ -401,17 +375,6 @@
       "at_local_enu_m": [
         282.69,
         -84.11
-      ],
-      "width_m": 1.067,
-      "confidence": "reconstructed",
-      "note": "INVENTED, like every gateway on this layer. A garden that is worked daily from the house has a way in from the house, so the gap is centred in the side that faces the back door; 3 ft 6 in is a person with a hoe or a basket, not a team. NO GATE LEAF IS DRAWN — the fence simply stops, the way it does at the wagon yard and the pound, because a hung gate would be an invention on top of an invention."
-    },
-    {
-      "id": "blk_south_water_wells_lot2_gate",
-      "on": "dooryard",
-      "at_local_enu_m": [
-        382.13,
-        -15.76
       ],
       "width_m": 1.067,
       "confidence": "reconstructed",

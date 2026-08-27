@@ -64,7 +64,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 # Lot occupancy is derived in ONE place and imported by both halves of the T-A6 rule.
 # See tools/plat_occupancy.py for why it is a module rather than a copied loop.
-from plat_occupancy import block_of_structure, occupied_lots  # noqa: E402
+from plat_occupancy import (block_of_structure, exclusive_lots,  # noqa: E402
+                            occupied_lots)
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -181,17 +182,22 @@ NEVER_PLATTED_OMISSIONS = {"blk_south_water_clinton"}
 # here only to cross-check the recipe's remainder against the records actually emitted.
 WEST_INSTANTIATION_BLOCK_E = -300.0
 
-# What the balance of each district is waiting on. The South and West entries are the
-# street control ROADMAP S9 records as owed; the North entry is the coverage the North
-# parcel's own recipe names. No block can be named inside any of them, which is the point.
+# What the balance of each district is waiting on. The West entry is the street control
+# ROADMAP S9 records as owed; the North entry is the coverage the North parcel's own
+# recipe names. No block can be named inside any of them, which is the point.
+#
+# THE SOUTH ENTRY IS NOT AUTHORED HERE ANY MORE, and T-0026 is why. It used to name street
+# control alone — "no block east of State or south of Washington has four committed
+# centrelines" — and that is true, downstream, and it sent the next parcel to go and carry
+# a centreline. `tools/measure_southern_ground.py` measures what is actually there: the
+# modelled box ends at local N -400 m, INSIDE Washington Street's own platted corridor, so
+# every north-south column of the south plat has its committed line cut at exactly that
+# line and Madison — the plat's south boundary, resolved from the section corner at State &
+# Madison — is 125 m further south again. Street control stops where the ground does. The
+# south's `waiting_on` is composed from that measurement below, so it cannot go stale the
+# day the terrain moves.
 BALANCE_UNITS = {
-    "south": (
-        "south_plat_beyond_committed_control",
-        "Committed street control reaches State Street on the east and Washington Street "
-        "on the south; the plat continues past both. No block east of State or south of "
-        "Washington has four committed centrelines, so none can be named, let alone "
-        "measured (ROADMAP S9).",
-    ),
+    "south": ("south_plat_beyond_committed_control", None),
     "west": (
         "west_division_beyond_committed_control",
         "West Division ground beyond the Wolf Point approaches: no committed street "
@@ -383,6 +389,43 @@ def district_of_block(block) -> str:
     return "west" if max(p[0] for p in block["boundary_local_enu_m"]) < 0 else "south"
 
 
+def southern_ground() -> tuple[dict, str]:
+    """The measured state of the ground south of the committed plat, and what it says.
+
+    T-0026. Imported rather than restated so that the schedule's southern blocker and the
+    command a reader can run to check it are the same arithmetic — the discipline
+    `tools/measure_street_frontage.py` set for the face rule and `measure_block_gating.py`
+    for the refused blocks. `tools/measure_southern_ground.py --gate` holds the pair
+    together in `tools/check.sh`.
+    """
+    from measure_southern_ground import coverage_figures, measure  # noqa: PLC0415
+
+    m = measure()
+    figures = coverage_figures(m)
+    return figures, (
+        f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
+        f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
+        f"inside Washington Street's own platted corridor — "
+        f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
+        f"lies off the field. South of the corridor the field holds "
+        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
+        f"surface and "
+        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
+        f"the South Division: the rest is the West Division bank, across the South Branch. "
+        f"Madison Street, the plat's south boundary, is "
+        f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
+        f"last tier — {figures['unmodelled_tier_blocks']} blocks and "
+        f"{figures['unmodelled_tier_lots']} lots between Market and State, "
+        f"{figures['unmodelled_tier_area_ha']:.2f} ha — is not modelled ground at all. "
+        f"Every north-south column of the south plat has its committed centreline cut at "
+        f"the field's own south edge, so carrying street control further south would emit "
+        f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
+        f"outside the modelled terrain. Ground east of State is not coming at any date — "
+        f"it is the United States Reservation (T-E2). Measured by "
+        f"tools/measure_southern_ground.py."
+    )
+
+
 def programme_document():
     inventory = load(RECON / "1835_building_inventory.json")
     grid = load(DATA / "traces" / "vectors" / "thompson_lots.json")
@@ -401,6 +444,15 @@ def programme_document():
     # that, which block each roof stands in. Two questions, one measurement.
     taken = occupied_lots(grid, datum)
     rows = standing_roofs(grid, datum, taken)
+    # …and a THIRD question, which is not the same as the first: which lots are still
+    # AVAILABLE. Under the owner's 2026-08-27 clause a documented store standing at the
+    # street on a declared business front does not exhaust its lot, so the lot is both
+    # occupied — its roof counts against this block's headroom above — and free for the
+    # frontage run. `tools/generate_block_infill.py` refuses on exactly this map, and
+    # the schedule has to score against the same one or it goes back to promising a
+    # block room its own generator will not build (T-A6, and the reason both halves
+    # call one module).
+    available = exclusive_lots(grid, datum)
 
     # ---- what stands ------------------------------------------------------------
     built_family: dict[str, int] = {}
@@ -483,7 +535,7 @@ def programme_document():
         lots = len(block["lots"])
         capacity = block_capacity(lots)
         stands = built_block.get(block["id"], 0)
-        free = lots - len(taken.get(block["id"], ()))
+        free = lots - len(available.get(block["id"], ()))
         rooms = block_rooms(free, max(0, capacity - stands))
         unit = {
             "id": block["id"], "kind": "platted_block",
@@ -593,10 +645,14 @@ def programme_document():
         "recipe": "data/reconstruction/1835_phase2_west_wolf_point_approaches.json",
     })
 
+    southern_figures, southern_statement = southern_ground()
+
     for district in DISTRICTS:
         placed = sum(u["headroom"] for u in units if u["district"] == district)
         balance = remaining_district[district] - placed
         unit_id, waiting = BALANCE_UNITS[district]
+        if waiting is None:
+            waiting = southern_statement
         units.append({
             "id": unit_id, "kind": "district_balance", "district": district,
             "capacity_roofs": max(0, balance), "standing_roofs": 0,
@@ -752,6 +808,11 @@ def programme_document():
                          f"{roof_total}-roof programme is coverage, not recipes.",
             "platted_lots": sum(len(b["lots"]) for b in grid["blocks"]),
             "blocks_named": sum(1 for u in units if u["kind"].startswith("platted_block")),
+            # T-0026. The South is the largest of the three gated balances and the one the
+            # lane was opened to widen; these are the figures that say it cannot be widened
+            # by a rule. Carried here so a scheduler reads them without re-running a
+            # command, and held to the ground by tools/measure_southern_ground.py --gate.
+            "southern_ground": southern_figures,
         },
         "schedule": units,
     }

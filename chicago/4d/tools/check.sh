@@ -199,6 +199,21 @@ step "the 665-roof programme reconciles with the town that stands" \
 step "a refused block is short of control, or was never a block" \
   python3 tools/measure_block_gating.py --check
 
+# T-0026, and the same fault one district wide. The programme's South balance — 120 roofs,
+# the largest of the three gated ones — named STREET CONTROL as its blocker and sent the
+# next parcel to go and carry a centreline. Measured, the blocker is the ground: the box
+# ends at local N -400 m, INSIDE Washington Street's platted corridor, every north-south
+# column of the south plat has its committed line cut at that same edge, and Madison — the
+# plat's south boundary — is 125 m further south. The plat's last tier, six blocks and 48
+# lots, is 100 % unmodelled. Two assertions: no committed platted block stands off the
+# modelled ground (absolute, and it is what fires the day control is carried south without
+# the terrain following), and the programme's stated southern coverage is the measured one.
+step "no platted block stands off the modelled ground, and the south's blocker is the measured one" \
+  python3 tools/measure_southern_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_southern_ground.py --self-test
+
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
 # possible place to carry a stale number is the panel a visitor sees before anything
@@ -246,6 +261,21 @@ step "every deferred in-town water feature is dated against the scene" \
 # other check still green. This joins the bridge's placement to the ground beneath it.
 step "the slough crossing spans open water, and nothing else stands in the cut" \
   python3 tools/measure_slough_crossing.py --gate
+
+# And the feature that crossing's own drain runs OUT of. "How much of the public
+# square was wet" (T-0027) presumes a fraction can be read off the block, and it
+# cannot: the terrain draws the square at the South Division plain's +2.9 ft with
+# an inch and a half of relief — inside the spec's own declared micro-relief
+# noise — so there is no basin there and a wet fraction read off it would be a
+# read of the noise seed. The answer is a DEPTH: the dossier's own bed for zone 15
+# is +1.0 to +2.0 ft, which the committed ground stands 0.84 to 1.96 ft above. So
+# the square is planted as the flora dossier names it — ZONE 3, by name, the
+# heading of the section that authors sedge meadow — and NO WATER IS DRAWN. This
+# holds all of that: zero water, absolutely; no landform, so the zero stays a
+# statement about the model; the sedge polygon still the committed plat's ring;
+# and the drain still heading at the block it is named for.
+step "no water stands on the public square, and its sward is the one the dossier names" \
+  python3 tools/measure_public_square.py --gate
 
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records

@@ -3287,18 +3287,24 @@ def _extent_matches(ext: dict, e: float, n: float, h: float, dwater: float) -> b
         if bn and not (bn[0] <= n <= bn[1]):
             return False
     kind = ext.get("kind")
+    ok = True
     if kind == "elevation_band":
         lo, hi = ext.get("elev_m", [0, 0])
-        if not (lo <= h <= hi):
-            return False
+        ok = lo <= h <= hi
     elif kind == "polygon":
-        if not _point_in_polygon(e, n, ext.get("polygon") or []):
-            return False
+        ok = _point_in_polygon(e, n, ext.get("polygon") or [])
     elif kind == "buffer":
         lo, hi = ext.get("distance_m", [0, 0])
-        if not (lo <= dwater <= hi):
-            return False
+        ok = lo <= dwater <= hi
     elif kind != "everywhere":
+        return False
+    # Ground a community holds that its own rule cannot reach — the mirror of the
+    # exclusions below, and read here exactly as renderers/web/js/flora.js reads
+    # it, so this evaluator keeps answering the question the renderer answers.
+    if not ok:
+        ok = any(_point_in_polygon(e, n, patch)
+                 for patch in ext.get("include_polygons") or [])
+    if not ok:
         return False
     for hole in ext.get("exclude_polygons") or []:
         if _point_in_polygon(e, n, hole):
@@ -3681,6 +3687,19 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
                 rep.error(where, "extent.distance_m must be [min,max] metres from the water")
         if not isinstance(ext.get("priority"), int):
             rep.error(where, "extent.priority must be an integer; higher wins on overlap")
+        # Ground admitted by name rather than by the rule. A ring of two points is
+        # a line and matches nothing, which would read in the record as a claim
+        # the renderer silently declines to draw.
+        for key in ("include_polygons", "exclude_polygons"):
+            rings = ext.get(key)
+            if rings is None:
+                continue
+            if not isinstance(rings, list):
+                rep.error(where, f"extent.{key} must be a list of rings")
+                continue
+            for i, patch in enumerate(rings):
+                if not isinstance(patch, list) or len(patch) < 3:
+                    rep.error(where, f"extent.{key}[{i}] needs at least three vertices")
         check_attested(where, "extent", ext, source_ids, rep)
 
         seen: set = set()
