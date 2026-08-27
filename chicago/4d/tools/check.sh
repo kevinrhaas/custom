@@ -262,6 +262,23 @@ step "a block face carries one street line, across every generator that builds o
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_street_line.py --self-test
 
+# One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
+# worried that the schedule "will keep dealing cabins to commercial frontage", and the
+# block recipes quietly acted on it: every log dwelling the five South Water blocks were
+# dealt was put on the Lake face, leaving 15 invented buildings on South Water's line and
+# not one of them log — against a documented record for the same line that carries Hogan's
+# log store, and against the only picture of that row, which draws it as log AND frame
+# shoulder to shoulder. T-0022 measured that, refused the re-apportionment K29 proposed,
+# and moved the arrangement instead. This holds it: a principal street's INVENTED frontage
+# may not be more uniform in construction than the documented record of the same street.
+# A floor of one, absolute — the plate gives no ratio, so a share would be a number
+# somebody chose.
+step "no principal frontage is more uniform than the record it reconstructs" \
+  python3 tools/measure_frontage_fabric.py --gate --quiet
+
+step "…and its own assertion still fires when broken" \
+  python3 tools/measure_frontage_fabric.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a
