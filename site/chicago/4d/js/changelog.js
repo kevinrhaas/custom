@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 273, title: 'More flowers on the prairie, and no room left for more', kind: 'feature', ts: '2026-08-27T04:52:33.848Z', date: 'Aug 26, 2026, 11:52 PM CT',
+    items: [
+      'Walk out onto the West Side prairie and look at the ground around you. There is about a quarter more flower in it — 256 flowering plants where there were 206, carrying 1,968 blooms where they carried 1,617. The wet prairie along the river gains the same again, and the sand along the lake gains half as much over.',
+      'Nothing was invented to do it. Every plant this project records comes with a range rather than a number — four hundred to nine hundred yellow coneflowers to the hectare — and the prairie was being planted at the average of those two ends, which is a figure no source ever wrote down. It is planted at the top of each plant’s own recorded range now: a prairie at the dense end of what its sources describe, and not one plant past it.',
+      'That moves three of the ten plant communities and only three. The other seven were already asking for more flowers than can be drawn, so the number they ask with makes no difference to them at all.',
+      'Which is the finding, and it is why this is the last time the prairie gets more flower this way. The ground is planted on a grid that holds one plant to every 2.9 square metres, and the mesic prairie’s own records now ask for eighteen per cent more than that grid can hold. What you are looking at is the grid, not the evidence.',
+      'Two things were measured on the way and written down rather than quietly fixed. Flowers of two particular shapes reach a hard limit in the settled town and in the wet woods and simply stop being drawn — which was already true yesterday. And no flower at all is drawn more than twenty-four metres off, while the grass runs to a hundred and seventy-five, so the bloom you can see covers under two per cent of the meadow. The real answer to “more flowers” is distance, not density.',
+    ] },
   { v: 272, title: 'Two evidence cards were showing their own merge scars', kind: 'fix', ts: '2026-08-27T04:18:16.226Z', date: 'Aug 26, 2026, 11:18 PM CT',
     items: [
       'Open the confidence panel and read the notes on what this project has invented. Two of them ended in a line of angle brackets \u2014 \u201cRecorded: 23 August 2026.\u201d and then some machinery. It has been there since the poplar rows went in on the twenty-fourth, and it went out to the live site an hour before it was found.',

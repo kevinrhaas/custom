@@ -6227,6 +6227,65 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+
+### L182 — The prairie's forbs are planted at the TOP of every recorded abundance range, not at its middle
+**Decision:** the forb stratum's slot count is dealt off the **upper figure** of each species'
+own recorded abundance range instead of that range's midpoint
+(`renderers/web/js/flora.js`: `stemsHigh` → `subsetOn().densityHigh` → `forbShare`). No record
+changes and no record is overwritten: `data/flora` still states exactly what it stated, and the
+species lottery — *which* forb fills a slot that is dealt — still runs on the midpoints, so the
+mix of the sward is untouched and only the number of slots filled moves. It moves three
+communities and only three: the **mesic prairie** from 0.809 to 1.000 of the lattice, the **wet
+prairie** from 0.798 to 1.000, the **sand prairie** from 0.210 to 0.329. The other six forb
+layers were already over the lattice's ceiling and are drawn plant for plant as before. The
+shrub stratum is deliberately not included — a denser shrub layer is more bushes, not more
+bloom.
+
+**Why:** the ticket was "raise the bloom", and R-W4c(b1) had already measured that the bar it
+was to be raised against — a 4–6 % flower-load target — is unsourced on one half and does not
+reproduce on the other. The owner's ruling on T-0034 allows the bloom to be tuned as a
+**reconstructed** value provided the bound is stated and recorded. This is the tightest bound
+available, and the reason it is tight is that it never leaves the evidence: **the midpoint was
+never a sourced figure either.** Every abundance in `data/flora` is a *range* — 400–900 yellow
+coneflowers to the hectare — because a prairie's forb load is not one number, and the renderer
+had been quietly reading the average of the two ends and planting every hectare of the town as
+the average hectare. Reading the other end of the same range is the same kind of reading, made
+deliberately and written down. What it says is that this is a prairie at the dense end of what
+its sources describe, and not one plant past it.
+
+**What bounds it:** the record. No species is planted denser than its own record's larger
+figure, so the sward cannot leave the envelope its evidence draws however the ranges are read.
+The second bound is the lattice, and it is the one that actually bit: `forbShare` clamps at one
+plant per lattice slot — 4 slots to a 3.4 m cell, **0.346 forbs per m²** — and the mesic
+prairie's records sum to **0.408** at their upper bounds. So the records already ask for
+**18 % more bloom than the renderer can draw**, and what a visitor gets is the ceiling, not the
+top of the range.
+
+**What it is NOT:** it is not a claim any source makes about 1 July 1835, and it must never be
+promoted out of the reconstructed tier. Nobody counted the forbs on this ground. A reader
+counting coneflowers per square metre in this walkthrough is reading the upper end of a modern
+remnant range, clipped by a rendering lattice — the same warning L32 gives about the grass, one
+stratum up.
+
+**Consequence, measured** (`node tools/measure_bloom_headroom.mjs`, desktop, full detail): at
+`prairie_west` the frame goes from **206 forbs and 1,617 flower heads to 256 and 1,968**, for
+8,191 more sward triangles; at `prairie_south`, 125 and 949 to 155 and 1,122. **And it is the
+last raise either prairie can be given.** Both now read a share of 1.000 with no headroom left,
+so the next flower needs a different lattice (ROADMAP K58) rather than a different number.
+
+**How to resolve:** a stated stand-level forb density for the specific ground this scene stands
+on would replace the choice entirely — it would say where in the range, or outside it, this
+prairie sat, and the reading would stop being ours. Failing that, the honest successor is K58:
+give the forb stratum a lattice that can carry what the records already ask for, and the clamp
+stops deciding how much of the evidence a visitor sees.
+
+Related: **L32** (the absolute sward density is a rendering budget, and full recorded cover
+saturates the lattice) · **L113** (six researched plants reach no renderer) · ROADMAP **K55**
+(the forb stratum's slot count moved onto a count), **K58** (six forb layers ask for more than
+the lattice carries), **R-W4c(b1)** (there is no 4–6 % target) · tickets **T-0034**, **T-0208**
+(two head sets truncate at their cap), **T-0209** (the bloom reaches 1.8 % of the sward's ground).
+**Recorded:** 2026-08-27.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

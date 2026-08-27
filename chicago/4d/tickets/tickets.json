@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 26, 2026, 11:18 PM",
+  "generated_ct": "Aug 26, 2026, 11:49 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -587,16 +587,17 @@
     {
       "id": "T-0034",
       "title": "Raise the bloom, which has no bar left to raise it to",
-      "state": "open",
+      "state": "claimed",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "R-W4c(b2)",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:27:08 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 18
@@ -3353,6 +3354,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0208",
+      "title": "Two flower-head archetypes truncate silently at their instance cap",
+      "state": "open",
+      "epic": "FLORA",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0209",
+      "title": "The bloom reaches 1.8 per cent of the ground the sward covers",
+      "state": "open",
+      "epic": "FLORA",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
     }
   ]
 }
