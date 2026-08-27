@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 12:38 PM",
+  "generated_ct": "Aug 26, 2026, 11:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2241,7 +2241,7 @@
     {
       "id": "T-0127",
       "title": "The rest of the town gets the street edge",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -2249,12 +2249,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-21",
-      "closed": null,
+      "closed": "2026-08-24",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 9:51:00 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": null
     },
     {
       "id": "T-0128",
@@ -3226,7 +3226,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 52
+      "queue_rank": 55
     },
     {
       "id": "T-0189",
@@ -3247,6 +3247,24 @@
       "queue_rank": 53
     },
     {
+      "id": "T-0190",
+      "title": "A second street tier for the street edge, and the ceiling that refuses it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 52
+    },
+    {
       "id": "T-0197",
       "title": "Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them",
       "state": "open",
@@ -3263,6 +3281,78 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 54
+    },
+    {
+      "id": "T-0198",
+      "title": "Six South Water placements come off the modern kerb and onto the committed plat",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": "2026-08-24",
+      "pr": "373",
+      "claimed_by": "run 8/24/2026, 10:47:01 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0199",
+      "title": "The five South Water stores standing on a lot the roof schedule already dealt",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 1
+    },
+    {
+      "id": "T-0200",
+      "title": "The picket head is a form value on the record, and the reason it was deferred was false",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": "2026-08-24",
+      "pr": "379",
+      "claimed_by": "run 8/24/2026, 2:06:24 PM CT",
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0207",
+      "title": "Three conflict markers reached production inside two liberty cards, and every gate passed them",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": "2026-08-26",
+      "pr": "383",
+      "claimed_by": "integrator",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

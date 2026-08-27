@@ -317,8 +317,8 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        255.33,
-        31.33
+        230.48,
+        24.72
       ],
       "bank_tangent": [
         -0.9663,
@@ -330,33 +330,33 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          264.63,
-          31.74
+          239.79,
+          25.13
         ],
         [
-          247.05,
-          27.06
+          222.21,
+          20.45
         ],
         [
-          244.99,
-          34.79
+          220.15,
+          28.18
         ],
         [
-          262.57,
-          39.47
+          237.73,
+          32.86
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 31.37,
-      "clearance_to_wall_m": 27.98,
+      "wall_to_bank_m": 33.42,
+      "clearance_to_wall_m": 30.02,
       "depth_at_face_m": [
-        1.53,
-        1.49,
-        1.46
+        1.43,
+        1.4,
+        1.49
       ],
-      "least_depth_at_face_m": 1.46,
+      "least_depth_at_face_m": 1.4,
       "face_stations": 19,
       "facade_bearing_deg": 0.0
     },
@@ -489,8 +489,8 @@
       ],
       "bank_traced_in": "south_shore_harbor_reach",
       "bank_foot_local_enu_m": [
-        436.76,
-        41.13
+        437.18,
+        41.1
       ],
       "bank_tangent": [
         -0.9981,
@@ -502,27 +502,27 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          445.71,
-          38.57
+          446.13,
+          38.54
         ],
         [
-          427.55,
-          39.7
+          427.98,
+          39.67
         ],
         [
-          428.05,
-          47.68
+          428.47,
+          47.66
         ],
         [
-          446.21,
-          46.55
+          446.63,
+          46.52
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 41.09,
-      "clearance_to_wall_m": 38.83,
+      "wall_to_bank_m": 47.08,
+      "clearance_to_wall_m": 44.8,
       "depth_at_face_m": [
         1.46,
         1.5,
@@ -592,7 +592,7 @@
   "refused": [
     {
       "structure_id": "harmon_loomis_store",
-      "why": "the modelled channel gives only 0.48 m of water under its face 9.1 m from the centre, under the 0.50 m this layer requires of a working landing. Its frontage IS reached by the traced bank; what refuses it is a sounding and not a gap in the trace. The dock statement stands and the landing is not drawn."
+      "why": "the modelled channel gives only 0.30 m of water under its face 6.1 m from the centre, under the 0.50 m this layer requires of a working landing. Its frontage IS reached by the traced bank; what refuses it is a sounding and not a gap in the trace. The dock statement stands and the landing is not drawn."
     }
   ],
   "research_note": "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: the Chicago Democrat's advertising columns, where a forwarding house states its street and sometimes its wharf; the harbour engineers' reports of 1833-1836, which measure the river's depth and might carry a private wharf line; a marine list giving the Illinois's draught, which would say whether she could have lain at a face in 1.2 m of water or was warped in to a deeper one; or the c. 1835 view that docs/research/03-structures-north.md describes and this project has never been able to cite. Any of them would also bear on L66's open question, which is which BANK each of these two warehouses stood on."

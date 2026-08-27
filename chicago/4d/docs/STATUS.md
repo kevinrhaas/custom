@@ -1,5 +1,187 @@
 # STATUS
 
+## Shipped — T-0207: three conflict markers reached production inside two liberty cards
+
+**Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
+text scan for conflict markers, on the theory that `git add -A` will stage a marker-carrying file
+and `--diff-filter=U` will then report nothing unresolved. It refused the merge. The markers turned
+out not to be from that merge at all: `docs/LIBERTIES.md` had carried three of them since
+**e2056e97** (T-0117), through the compile into `data/liberties.json`, out to the published mirror,
+into `dev`, and **into `main` in promotion run #13** — which the integrator had dispatched an hour
+earlier. A visitor reading the Evidence panel saw `Recorded: 2026-08-23. <<<<<<< HEAD` on L180 and
+`Recorded: 2026-08-24. ======= >>>>>>> origin/dev` on L181.
+
+**No liberty text was lost.** Dev's side of the hunk was empty, L181 is whole at 72 lines, the count
+is unchanged at 181. The damage is three lines of merge debris sitting on top of two cards — and
+these are the cards whose entire job is to say *this part of the town is our invention, and here is
+why*. A card whose purpose is candour should not be the one that looks unfinished.
+
+**Why every gate passed it, which is the part worth keeping.** The liberties gate asks whether the
+authored markdown and the compiled JSON agree. They agreed *perfectly* — both carried the same
+garbage, because `compile_liberties.py` recognises `### L<n> — title` headings and `**Label:** text`
+fields and quietly carries anything else along as body text. **A consistency check cannot see a
+fault that both sides reproduce faithfully.** That is a general lesson about derivation gates, not
+a fact about this file: every one of them compares two things built from the same source.
+
+Two other conditions had to hold, and did: `git add -A` stages markers without complaint, and this
+particular hunk had an *empty* other side — a positional conflict over an entry both branches
+already had — so there was no visible disagreement to prompt a careful read.
+
+**Closed with `tools/test_no_conflict_markers.py`**, wired in near the top of `check.sh` where it
+costs milliseconds. It is deliberately dumb: a text scan over all 3,340 tracked files under
+`chicago/4d` and `site/chicago/4d`, asking nothing about structure, **because structure is what
+missed it**. It refuses `<<<<<<< `, a whole line of `=======`, and `>>>>>>> `; it deliberately does
+not refuse a markdown heading underline, a table rule, an indented divider, or prose mentioning a
+marker mid-line, so it stays a guard rather than a nuisance. Nine self-test assertions prove both
+directions, including that the tool does not trip its own scan — the patterns are built from
+`"<" * 7` rather than written out. Proved against the real fault: on the unrepaired tree it named
+all three lines with file and line numbers.
+
+**What is NOT fixed: `main` still carries the markers** until dev→prod is dispatched again. This
+went to dev rather than down the hotfix lane because it is cosmetic and that lane is for
+emergencies — but it is the reason to promote sooner rather than later.
+
+**And the exposure is fleet-wide.** Every app in the suite compiles or parses an authored file with
+a parser that recognises structure and ignores the rest — `js/changelog.js` above all. A marker in
+any of them rides the same path. Worth a sweep in polecat-platform.
+## Shipped 2026-08-24 — T-0200: the picket head is on the record, and the reason it was not was false
+
+**The reason was checked and it was wrong.** T-0094 shipped hours earlier with one named half
+undone, and gave two reasons. The first was measured and is right: `generators/mesh_inputs.py`
+hashes the resolved archetype parameters, so any new key under `form` restales the GLB. The second
+— *"and there is no Blender on this runner"* — was **assumed and false.** The pinned build was
+installed the whole time and matches `generators/blender.pin` exactly: **Blender 4.5.3 LTS** at
+`blender-4.5.3-linux-x64`. **That was the integrator's error, not the ticket author's finding.** It
+cost one deferred half and a liberty that had to withhold its own `Covers:` field for a day, and it
+is struck in place — in T-0094 and in the T-0094 passage below — rather than deleted. The other
+"no Blender" statements in this file describe earlier runs and were not touched, because they were
+not checked.
+
+**The half is done.** `fort_dearborn_palisade.picket_1816.form.picket_head_m` = **0.312 m**,
+`reconstructed`, with its own note; `picket_head_m` joins `palisade_params.CONSUMED` and
+`PalisadeParams` gains the field, so `picket_point_m` now reads the record when the record states
+a head and derives `min(width × 1.3, height × 0.18)` when it does not. The head is bounded as a
+**proportion** — 4 % to 50 % of the picket — because that is what it is: it is cut out of the
+height, so what decides whether the sawtooth reads is how much of the post it takes. The floor is
+the shipped gate's own `MIN_POINT_FRACTION`, so this module can never accept a value
+`measure_picket_plate.py --gate` would then refuse. A head stated on a **worm fence** is refused
+outright; that fence has no pickets.
+
+**Nothing moved, and it was proved rather than asserted.** The value was not typed in: the run
+asserted `params.picket_point_m == min(width × 1.3, height × 0.18)` before writing it
+(`0.24 × 1.3 = 0.312` exactly, in doubles). A **control** rebake with no change to anything
+reproduced the committed master byte-for-byte, so a byte difference afterwards would have meant
+something. After the change, both rebaked masters are again byte-for-byte the committed files, and
+the vertex comparison says the same thing directly: **21,728 positions, 0 moved, max displacement
+0.000000 mm**, with NORMAL, TEXCOORD_0, `_CONFIDENCE` and the index buffer identical.
+
+**What the bake cost:** two lines of `assets/manifest.json`. `fort_dearborn_palisade__picket_1816`
+`579cb33f…` → `dd0c84b8…`, and — **restaled too, and this is worth knowing** —
+`fort_dearborn_garrison_garden__fence_1816` `5d60352e…` → `1c92409e…`. The hash is taken over the
+resolved parameter OBJECT, and the new field is on the class both wall kinds resolve through, so a
+worm fence that states no head still hashes `picket_head_m: null` where it hashed nothing before.
+It was rebaked rather than left stale; 7,488 positions, 0 moved. The web derivatives regenerate
+byte-identically from the unchanged masters, so `assets/web/` is untouched.
+
+**L179 claims the attribute.** Its own last sentence said *"The day a `picket_head` attribute
+exists on the record, this entry claims it"* — it now carries
+`Covers: fort_dearborn_palisade.picket_1816.form.picket_head_m` and a `Revised:` field. The
+paragraph explaining why it withheld the field is kept verbatim: it was the right reading on the
+day.
+
+**What a visitor sees:** open the stockade's card and there is a line for the head of the picket —
+0.312 m under a `reconstructed` chip — where before the most conspicuous invention on the most
+recognisable building in the town lived only inside a Python property.
+
+## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
+
+**T-0127 was SPLIT rather than closed, and the split is the honest part of this run.** Its first
+clause turned out to be two pieces and its second turned out not to fit at all — both measured, not
+guessed.
+
+### 1. Eleven documented South Water buildings stood in the platted roadway. Six are out of it.
+
+The ticket named ten; measuring the walk band found **eleven** — `temple_building` is the eleventh
+and no one had listed it. Every one was placed in August 2026 by reading the MODERN West Wacker
+Drive centreline out of OpenStreetMap and stepping 12.2 m south of it *"so the north face sits on
+the South Water frontage"*; several of the notes already warn that *"modern Wacker Drive is not
+exactly the 1835 South Water Street line"*. Against this project's committed centreline, offset by
+half the committed 80 ft corridor, they stood **4.51 to 8.17 m out past the platted frontage**.
+
+The repair is each record's OWN method run against this project's OWN line: translated along the
+face's inward normal until the north wall stands 1.50 m back — the margin
+`generate_block_infill.py` gives every reconstructed unit on these faces. No along-street position
+moved and no confidence grade moved; re-deriving a coordinate from better geometry is not new
+evidence. `jh_kinzie_forwarding_store` also moved 24.39 m WEST along the same face, in its own
+argument's stated direction (wharfage at the west end), so it seats on lot 0 beside the Temple
+Building rather than on lot 2, which the roof schedule had dealt.
+
+| | before | after |
+|---|---:|---:|
+| South Water walk | 237.1 m in **9** pieces | **303.9 m in 8** |
+| longest single run | 47.0 m | **96.5 m** — a whole block face |
+| `blk_south_water_franklin` north | 25.4 m + 45.7 m | **one 96.5 m run** |
+| record total | 1,147.7 m / 21 runs / 86 decks | **1,214.5 m / 20 runs / 89 decks** |
+| corridor laps, town-wide | 29 | **26** |
+| deepest lap of the six | 5.98 m | **0.21 m**, and on a cross street |
+
+### 2. FIVE COULD NOT MOVE, and that is the finding this run owes
+
+Reconciled onto the plat a building SEATS on a platted lot — and for `h_jones_store` (lot 0),
+`carpenter_south_water_store` (lot 2), `pruyne_kimball_drugstore` (lot 2), `chicago_american_office`
+(lot 0) and `frederick_thomas_shop` (lot 2) that lot is one the 665-roof schedule has already dealt
+to the anonymous South Water frontage run. `generate_block_infill.py` refuses to deal a roof to a
+lot that already carries one — *"the schedule's headroom is the block's, not the lot's"* — and each
+of the five was tried ALONE to prove it was its own blocker, not a side effect. Nothing overlaps
+geometrically; the runs stand at the east end of their faces, clear of all five. The conflict is
+entitlement, not ground. **Each is refused IN WRITING, per store**, in its own `position.note` and
+in the street-edge record's `refused`, with the metres it would move and the lot it would take —
+the ticket's own second acceptance route, taken deliberately. **T-0189** owns the untangling.
+
+The wider finding: eleven documented South Water buildings occupied NO platted lot at all, because
+they stood in the roadway. Putting six on the plat moved exactly one number in the derived 665
+programme — `blk_south_water_clark.standing_roofs` 9 → 10.
+
+### 3. The shadow lever T-0115 costed, implemented and measured
+
+`applyShadowTier` reads a per-mesh `userData.groundHugging` flag instead of overwriting `castShadow`
+on every furniture mesh; `frontage.js` sets it on the plank-walk and board-crossing chunks (35 of
+them, 2.9 km of boards). The street-lining fences moved to their own mesh — **one per covered
+street, not one per fenced face**, which is the whole draw-call cost: 3 meshes in the colour pass
+and 3 in the shadow pass against 20 ground-hugging chunks leaving the shadow pass. Per-face standing
+meshes would have cost 26 of each and made the trade a loss. The smoke's *"the light tier draws no
+furniture into the shadow map"* check now COUNTS the exempt meshes — `casting === meshes -
+groundHugging`, with `groundHugging > 0` asserted — instead of assuming every furniture mesh casts.
+
+### 4. THE SECOND STREET TIER DOES NOT FIT, AND THE TICKET'S COST ASSUMPTION IS REFUTED
+
+T-0127 said the shadow lever was *"what the cross streets need"*. It is not. Randolph Street was
+generated, published and read at the T-0135 stand set, at the axial stand:
+
+| tier | dev | with Randolph | ceiling | headroom before | after |
+|---|---:|---:|---:|---:|---:|
+| desktop `full` | 1,378,984 | **1,497,588** | 1,400,000 | 21,016 | **−97,588** |
+| desktop `balanced` | 1,205,762 | **1,355,638** | 1,210,000 | **4,238** | **−145,638** |
+| desktop `light` | 812,753 | 869,731 | 1,050,000 | 237,247 | 180,269 |
+| mobile `full` | 1,337,059 | **1,452,419** | 1,400,000 | 62,941 | **−52,419** |
+| mobile `balanced` | 1,165,921 | **1,316,605** | 1,210,000 | 44,079 | **−106,605** |
+
+Exempting the street fences from the shadow map as well is worth a MEASURED **44,110** triangles
+and 3 draw calls — the layer's five remaining shadow casters at that stand, turned off and read —
+against a 145,638 shortfall. **The binding fact is not Randolph:** `balanced` stood **4,238 triangles —
+0.35 %** — inside its ceiling BEFORE this parcel, and `full` at 1.5 %, where T-0135 set both on
+2026-08-22 with *"about 6 % of headroom over the measured worst"*. Two days of content ate it. No
+street tier of any size fits today. Raising a ceiling a fifth time to fit one reading is what
+T-0135 named as the bug, and T-0127's acceptance asks for a LEVER to pay, not a re-budget — so
+Randolph was taken back out and the reading is written into the generator, into the record's own
+`refused`, into T-0115's ledger and into **T-0190**, which owns the choice. The cross streets were
+measured too: **34 faces, 3,562.8 m**, and they need `_edge_faces` to enumerate a block's EAST and
+WEST faces as well.
+
+**Also measured and deliberately left alone:** Lake Street's own four intruders
+(`dole_warehouse_south` 1.28 m, `st_marys_church` 3.03 m, `first_presbyterian_church` 1.90 m,
+`old_bank_building` 1.62 m into the walk band) — out of this ticket's lane, and
+`first_presbyterian_church`'s repair would collide with `physicians_office`.
 ## Shipped 2026-08-24 — T-0117: the Lombardy poplar is held, and three greens get the row Wau-Bun states
 
 **The source was here all along and nobody had read it.** `docs/research/03-structures-north.md`
@@ -524,10 +706,27 @@ build red.
 
 **Not done, and stated rather than skipped.** The acceptance also asked the record to carry the head
 as a **form value**. It cannot without a bake: `generators/mesh_inputs.py` hashes the resolved
-parameters, and any new key under `form` restales the GLB — verified, not assumed — and there is no
-Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate, and
-the form attribute is left for the run that has a bake. What the plate DOES say about the pickets —
-its rhythm is nearly three times coarser than the model's — is **T-0185**.
+parameters, and any new key under `form` restales the GLB — verified, not assumed — ~~and there is
+no Blender on this runner. The head is therefore declared in prose, in the liberty and in the gate,
+and the form attribute is left for the run that has a bake.~~ What the plate DOES say about the
+pickets — its rhythm is nearly three times coarser than the model's — is **T-0185**.
+
+**CORRECTED 2026-08-24 (T-0200), and the strike-through above stays.** The unstruck half of that
+paragraph is true and was measured; the struck clause was **false** and was assumed: the pinned
+Blender 4.5.3 — the exact build `generators/blender.pin` names, `blender-4.5.3-linux-x64` — was
+installed on that runner the whole time, and nothing checked before the half was deferred. **That was the integrator's error,
+not the ticket author's finding**, and it is written down here rather than removed because this
+file is the honest narrative and an unflattering entry is the only kind worth keeping. The cost was
+one deferred half and a liberty that had to withhold its own `Covers:` field for a day. The half is
+now done: `form.picket_head_m` stands on the record at **0.312 m**, `reconstructed`, asserted equal
+to the derivation before it was written; the rebake came back **byte-for-byte identical**, 21,728
+vertices with none moved, and the only thing that changed is the manifest input hash
+(`579cb33f…` → `dd0c84b8…`). The garrison garden's worm fence restaled with it — the new parameter
+is on the shared class — was rebaked too, and is byte-identical as well.
+
+**Do not read this as a general correction.** Every OTHER "no Blender on this runner" in this file
+describes an earlier run and may well have been true of it; only T-0094's passage is corrected,
+because only T-0094's was checked.
 
 Evidence: `docs/evidence/t-0094-plate-vs-model.png`, `docs/evidence/t-0094-p4_0-stand.png`.
 ## Shipped 2026-08-24 — T-0111: Dearborn's worn track reaches the causeway, on a second line
