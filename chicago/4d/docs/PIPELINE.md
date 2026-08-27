@@ -53,6 +53,50 @@ nothing.
 
 ---
 
+## dev's standing smoke result (T-0216)
+
+**The dev gate is `check.sh` and nothing else.** `chicago-4d-check.yml` runs the fast half
+of the two-speed build; `chicago-4d-smoke.yml` is dispatch-plus-one-path on purpose (a
+~25-minute-per-viewport Playwright crawl on every push would be a queue, not a gate). So
+`dev` has had **no standing smoke result of its own**, and the question every branch asks —
+*"is this red mine, or did I inherit it?"* — was answered by cutting a clean `origin/dev`
+worktree and paying ten minutes for the stage again.
+
+On **2026-08-27 four separate runs paid that price on two reds**, and one of the two belonged
+to neither branch nor `dev`: it was the machine. T-0215 has the frame timings — the same tree
+drew twenty times slower on a loaded box than a quiet one, and `page.click` starved into a
+90-second timeout that reads exactly like a broken control.
+
+**`tools/dev-smoke-state.json` is the record, and `tools/dev-smoke-state.mjs` reads it.**
+
+```
+node tools/dev-smoke-state.mjs ask --viewport desktop --stage 8   # answer, running nothing
+node tools/dev-smoke-state.mjs record run.log                     # file a smoke you ran anyway
+node tools/dev-smoke-state.mjs ci 32689397335                     # fold a chicago-4d-smoke.yml run in
+node tools/dev-smoke-state.mjs hash                               # the smoke-relevant tree hash
+```
+
+Three things about it are the whole design:
+
+- **It is fed by the two routes a run already has**, because `.github/workflows/` is outside a
+  steward run's scope (§ How work ships in `AGENTS.md`) and this could not be a new scheduled
+  job. A local smoke log and a `chicago-4d-smoke.yml` run's log go through **one parser**. If
+  the owner later schedules that workflow on `dev`, `ci <id>` is what folds its result in and
+  nothing in the tool changes.
+- **Every reading carries its conditions** — host, CPU count, load average, wall clock, and any
+  animation-frame cost the smoke reported. A CI pass on a quiet runner **dates** a
+  steward-runner red; it does not overrule it. A verdict without its conditions is what sent
+  three runs chasing a machine.
+- **Every reading carries a tree hash**, digesting exactly what the smoke exercises. Match it
+  and the reading is a reading *of your tree* — the red is inherited, provably, with nothing
+  re-run. The three files every branch changes by construction are handled rather than
+  ignored: `tickets.json` is dropped (nothing reads it), the changelog is hashed **apart**
+  (only part 8 reads it), and `publish.sh`'s build stamp is **normalised out** of the gate page.
+
+**It is a record, never a bar.** Nothing in it fails a gate, refuses a merge or excuses a red.
+
+---
+
 ## Five things that are easy to get wrong
 
 **1. A Pages deploy job on a dev ref is REJECTED, silently.** The `github-pages` environment
