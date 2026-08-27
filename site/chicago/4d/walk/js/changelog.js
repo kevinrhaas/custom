@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 298, title: 'The fences were accused of ignoring the quality setting', kind: 'chore', ts: '2026-08-27T22:00:07.843Z', date: 'Aug 27, 2026, 5:00 PM CT',
+  { v: 299, title: 'The fences were accused of ignoring the quality setting', kind: 'chore', ts: '2026-08-27T22:25:14.501Z', date: 'Aug 27, 2026, 5:25 PM CT',
     items: [
       'Nothing you can see changed. This is a charge laid against one part of the town a fortnight ago, never answered, and sitting near the top of the work list ever since \u2014 and the answer turns out to be that it was already put right three separate times, by three separate pieces of work, none of which went back and said so.',
       'The charge: the town\u2019s five kilometres of fence \u2014 yard rails, garden pickets, the board fences that make a back yard private \u2014 were built once when the page loaded and then drawn identically whether you asked for full, balanced or light. A fence post is a tiny thing and there are thousands of them.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'None of those savings was made for this reason or measured against it, which is how a fixed thing stays on a list. Nobody had asked the fences alone what the setting costs them.',
       'So there is now a tool that asks exactly that, and a check that keeps the answer true. It reads the fences off the scene rather than off the settings table \u2014 the failure worth catching is a setting that reaches the table and not the town \u2014 and it refuses the work if any setting stops costing less than the one above it, at either screen size, at any of the five places the checks stand.',
       'Written down too, because it is the part that is NOT fixed: about half the length of fence in Chicago is plain post and rail, which has no pales, and a post and a rail cost the same at every setting. That is a decision, not an oversight. A pale\u2019s edge is a fortieth of what you see of it; a rail\u2019s top face is not.',
+    ] },
+  { v: 298, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '2026-08-27T21:08:48.498Z', date: 'Aug 27, 2026, 4:08 PM CT',
+    items: [
+      'Twelve hitching posts now stand at the road edge along South Water Street and Lake Street \u2014 chest-high timber under a capped head, out past the plank walk where a rider coming into town would leave a horse and step up onto the boards.',
+      'They are not scattered. One stands outside each shop front the town can actually name a trade for: the two drug stores, the grocery, the auction room, both newspaper offices, the boarding house, the forwarding store, the tavern, and the stores that sold over a counter with the keeper living above.',
+      'Which frontages qualify was not decided afresh. The walkthrough already keeps a list of the trades whose customer was a stranger arriving off the street \u2014 the same list that decides which building hangs a painted signboard \u2014 and the posts read it. A tannery, a packing house, a blacksmith and a warehouse take carts and drays at a yard gate rather than riders at a post, and each of those is turned down in writing on the record.',
+      'So are three more, for reasons worth reading: two shops whose trade the town guessed at rather than found in a document get nothing, because a post there would be furniture standing on an invention; and the Sauganash Hotel is refused a thirteenth post because it already has two of its own, drawn years earlier from its own pictures.',
+      'The post itself is borrowed whole from that hotel \u2014 same height, same section, same capped head, standing the same distance out past the walk. Nothing about it is new, and nothing about it is recorded history: no source says a post stood at any of these doors. Hide reconstructions in the evidence panel and every one of them disappears.',
+      'They cost the town nothing to draw. A post is standing timber, so each one joins the mesh its street already uses for the fences behind it \u2014 twelve posts, no new draw call, no new shadow.',
     ] },
   { v: 297, title: 'The long view down Lake Street cost more work than it needed', kind: 'chore', ts: '2026-08-27T20:36:02.288Z', date: 'Aug 27, 2026, 3:36 PM CT',
     items: [
