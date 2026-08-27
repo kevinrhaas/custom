@@ -338,6 +338,29 @@ const DETAIL = {
   //
   // This is the FIFTH re-basing of these ceilings. The count is the argument
   // for T-0223, and it is recorded here so the sixth is harder to reach for.
+  //
+  // THE EXPIRY CONDITION IS MET, 2026-08-27 — T-0223 step one has landed and
+  // these two numbers are now dead weight. `trees.js` builds the near timber on
+  // a 120 m lattice submitted as one batched multi-draw, so the sun's box and
+  // the view frustum both cull it per cell. Re-read on the published mirror by
+  // `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands:
+  //
+  //             desktop 1280x800          mobile 390x780     ORIGINAL ceiling
+  //   full      1,252,519 (was 1,412,120)   1,145,025          1,400,000
+  //   balanced  1,083,932 (was 1,252,802)   1,020,396          1,210,000
+  //   light       702,212 (was   838,742)     649,224          1,050,000
+  //
+  //   draw calls 195 (was 204) at the worst stand, so the trim did NOT buy the
+  //   sun's pass with errands in the colour pass — which was the condition
+  //   T-0223 put on it.
+  //
+  // The block above predicted "roughly 1,232,000 (full) and 1,072,000
+  // (balanced)" and asked for a re-argument if the cull recovered materially
+  // less. It did not: it landed within 2 % of the prediction on both tiers, at
+  // both viewports, under both ORIGINAL numbers. TAKING THE RAISE BACK OUT IS
+  // T-0229 — it is left standing here only so that the removal is its own
+  // reviewable change with its own reading, which is the same reason T-0147
+  // exists apart from T-0150.
   full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a

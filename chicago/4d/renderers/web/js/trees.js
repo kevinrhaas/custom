@@ -1270,8 +1270,9 @@ const ICO_F = [
  * Trees are MERGED rather than instanced, on purpose. An InstancedMesh is one
  * draw call for the lot, but every tree of a species is then the same tree at a
  * different scale, and a stand of clones is exactly what an open-grown savanna
- * must not look like. Chunked spatially — four quadrants, four calls, each
- * culled on its own — merging costs no more and buys real per-tree variation.
+ * must not look like. Chunked spatially — a 120 m lattice since T-0223, each
+ * cell culled on its own and all of them submitted as one batched multi-draw —
+ * merging costs no more and buys real per-tree variation.
  */
 class MeshBuf {
   constructor() {
@@ -1912,6 +1913,10 @@ export async function createTrees({
   const hf = terrain?.heightfield;
   const stats = {
     trees: 0, thickets: 0, drawCalls: 0, triangles: 0,
+    // T-0223. How many cells of the 120 m lattice ended up carrying timber, so
+    // a gate can ask what the batch was actually asked to cull rather than
+    // re-deriving it from the cell size.
+    timberChunks: 0,
     communities: {}, species: {},
     horizonBodies: 0, horizonBins: 0, timberedBearingFraction: 0,
     horizonDrawnFraction: 0, horizonPxPerRad: 0,
@@ -2245,8 +2250,39 @@ export async function createTrees({
   /* ---- 3. plant ---------------------------------------------------------- */
 
   const rnd = mulberry32(18350701);
-  const buffers = [new MeshBuf(), new MeshBuf(), new MeshBuf(), new MeshBuf()];
-  const chunkOf = (e, n) => (e < 0 ? 0 : 1) + (n < 0 ? 0 : 2);
+  /**
+   * THE NEAR TIMBER IS CHUNKED ON A 120 m LATTICE, and until T-0223 it was
+   * chunked into FOUR WORLD QUADRANTS — which is a partition, but not one any
+   * camera can cull against.
+   *
+   * The near wood spans 1,760 m east-west and 800 m north-south. Split at the
+   * datum origin, each of the four pieces was most of a kilometre across, so its
+   * bounding sphere touched every frustum the scene has: the colour camera drew
+   * all four whole from any stand, and the sun's ±240 m box — `DETAIL.shadowReachM`,
+   * ±60 m when the comment below was written and ±240 since T-0115 — took all four
+   * whole as well. T-0223 measured what that cost at the release smoke's worst
+   * stand (Lake Street at Canal, east): `trees` drew **360,926 triangles out of
+   * the 181,900 the layer owns** — the whole layer twice — and **180,100 of it
+   * was the sun's pass over timber standing outside the box**, casting nothing
+   * any pixel of the shadow map could hold. 14.4 % of the entire frame.
+   *
+   * 120 m is the lattice because it is the coarsest cell that still lets the
+   * ±240 m box reject most of the wood: a chunk enters the shadow pass when its
+   * bounding sphere touches the box, so the wasted margin is about one chunk
+   * radius all round.
+   *
+   * WHY THIS DOES NOT COST 70 DRAW CALLS — see the `BatchedMesh` below. Fine
+   * chunks are only affordable because the whole lattice is submitted as ONE
+   * multi-draw, culled per chunk by three itself, in both passes.
+   */
+  const CHUNK_M = 120;
+  const buffers = new Map();
+  const chunkOf = (e, n) => {
+    const k = `${Math.floor(e / CHUNK_M)},${Math.floor(n / CHUNK_M)}`;
+    let b = buffers.get(k);
+    if (!b) { b = new MeshBuf(); buffers.set(k, b); }
+    return b;
+  };
 
   // Scene detail sets how many stems are drawn and how coarsely the ground is
   // sampled for them. It does NOT touch the species mix, the zone rules or the
@@ -2557,7 +2593,7 @@ export async function createTrees({
         // screen is the same screen at every setting rather than the sampling
         // step's by-product (ROADMAP K45(b3)).
         if (rnd() > THICKET_ACCEPT || blocked(px, pz)) continue;
-        addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, worldZ(pz), rnd,
+        addTree(chunkOf(px, pz), specs.salix_interior, px, gy, worldZ(pz), rnd,
           0.8 + rnd() * 0.5);
         noteStation(px, pz, gy);
         stats.thickets++;
@@ -2597,7 +2633,7 @@ export async function createTrees({
       // cottonwood is not the gallery cottonwood. See `communitySpecs`.
       const spec = communitySpecs[key][id];
       if (!spec) continue;
-      addTree(buffers[chunkOf(px, pz)], spec, px, gy, worldZ(pz), rnd);
+      addTree(chunkOf(px, pz), spec, px, gy, worldZ(pz), rnd);
       noteStation(px, pz, gy);
       stats.trees++;
       if (spec.head) {
@@ -2689,7 +2725,7 @@ export async function createTrees({
           + 'the travelled track — not drawn');
         continue;
       }
-      addTree(buffers[chunkOf(pe, pn)], { ...spec, h: [h, h] }, pe, gy, worldZ(pn), rnd);
+      addTree(chunkOf(pe, pn), { ...spec, h: [h, h] }, pe, gy, worldZ(pn), rnd);
       noteStation(pe, pn, gy);
       stats.planted++;
       stats.plantedStems.push({ id: stem.id, record: rec.id, e: pe, n: pn,
@@ -2736,9 +2772,9 @@ uniform float uWind;
 #include <begin_vertex>
   {
     // Two crossing waves so a stand never sways in unison, keyed on world
-    // position rather than on object position — there is one merged object per
-    // quadrant, so anything keyed on the object would move a hundred trees as
-    // one. Amplitude is a metre at most, on a 25 m crown: a 3 m/s breeze.
+    // position rather than on object position — one merged object carries the
+    // whole lattice, so anything keyed on the object would move a hundred trees
+    // as one. Amplitude is a metre at most, on a 25 m crown: a 3 m/s breeze.
     vec3 chiW = (modelMatrix * vec4(transformed, 1.0)).xyz;
     float chiS = sin(uWind * 0.85 + chiW.x * 0.055 + chiW.z * 0.041) * 0.62
                + sin(uWind * 1.63 + chiW.x * 0.113 - chiW.z * 0.087) * 0.28;
@@ -2752,24 +2788,67 @@ uniform float uWind;
   confidence?.patch(nearMat);
 
   const disposables = [nearMat];
-  for (let i = 0; i < buffers.length; i++) {
-    if (buffers[i].count === 0) continue;
-    const geo = buffers[i].build();
-    const mesh = new THREE.Mesh(geo, nearMat);
-    mesh.name = `timber__q${i}`;
+  /**
+   * ONE BATCH, CULLED PER CHUNK, IN BOTH PASSES — T-0223 step one.
+   *
+   * The lattice above is only affordable because of what this object is. A
+   * `BatchedMesh` holds every chunk in one pair of buffers and submits the
+   * visible ones as a SINGLE `WEBGL_multi_draw` call, deciding per chunk which
+   * to include from that chunk's own bounding sphere. It does it in the colour
+   * pass through `onBeforeRender` (the view camera) and in the shadow pass
+   * through `onBeforeShadow`, which three routes to the same code with the
+   * SHADOW camera — so the sun's ±240 m box finally rejects the timber standing
+   * outside it, which is the whole of what T-0223 measured and costed.
+   *
+   * The old four quadrant meshes were four calls in the colour pass and four
+   * more in the sun's. This is one and one. Draw calls FALL by six at the worst
+   * stand while the chunk count rises from 4 to about seventy, which is the
+   * trade the ticket said had to be watched: "the colour pass must NOT gain 40
+   * calls to save the shadow pass."
+   *
+   * WHAT IS NOT CLAIMED. `renderer.info` counts a multi-draw as one call
+   * because it is one call, but the driver still issues a sub-draw per chunk,
+   * so this is not free on a real GPU the way the counter makes it look. The
+   * lattice is 120 m rather than 40 for that reason — the shadow saving is
+   * nearly all won by the first halving, and the sub-draw count is what pays
+   * for the rest.
+   *
+   * The batch matrices are all identity: the chunk geometries carry absolute
+   * world coordinates, exactly as the four quadrant meshes did. That is what
+   * keeps the wind shader above correct — it reads `modelMatrix * transformed`
+   * for its world position, which under batching skips the (identity) per-chunk
+   * matrix that `project_vertex` would otherwise apply.
+   */
+  const chunks = [...buffers.values()].filter((b) => b.count > 0);
+  if (chunks.length) {
+    const vertexTotal = chunks.reduce((t, b) => t + b.count, 0);
+    const indexTotal = chunks.reduce((t, b) => t + b.idx.length, 0);
+    const batch = new THREE.BatchedMesh(
+      chunks.length, vertexTotal, indexTotal, nearMat,
+    );
+    batch.name = 'timber';
     // Timber that casts no shadow is pasted onto the ground rather than
     // standing on it, and a crown that receives none is lit from every side at
     // once — which is half of why round 1's crowns read as flat green balls.
-    // The sun's shadow camera is only +/-60 m around the walker (world.js), so
-    // this costs a shadow pass on the few stands actually near the visitor.
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    group.add(mesh);
-    disposables.push(geo);
+    // What decides how much of the wood pays for that is the sun's box, and
+    // since T-0115 that box is ±240 m (`DETAIL.shadowReachM`), not the ±60 m an
+    // earlier note here claimed — see the lattice comment at `chunkOf`.
+    batch.castShadow = true;
+    batch.receiveShadow = true;
+    for (const b of chunks) {
+      const geo = b.build();
+      batch.addInstance(batch.addGeometry(geo));
+      // The batch owns a copy from here; the source geometry is scratch.
+      geo.dispose();
+    }
+    batch.computeBoundingSphere();
+    group.add(batch);
+    disposables.push(batch);
     stats.drawCalls++;
-    stats.triangles += buffers[i].idx.length / 3;
+    stats.triangles += indexTotal / 3;
   }
-  for (const b of buffers) stats.heads += b.heads;
+  stats.timberChunks = chunks.length;
+  for (const b of chunks) stats.heads += b.heads;
 
   /* ---- 5. the horizon ---------------------------------------------------- */
 
