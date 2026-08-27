@@ -5443,7 +5443,7 @@ is unseen). One that gave a WORDING, a COLOUR or a MOUNTING for a named house wo
 thing this project has ever held that could take one of those three off the reconstructed tier.
 **Recorded:** 2026-08-21.
 
-### L160 — South Water Street and Lake Street get plank sidewalks, board crossings and street-lining fences, all of it invented and all of it derived from the plat
+### L160 — South Water, Lake and Randolph Streets get plank sidewalks, board crossings and street-lining fences, all of it invented and all of it derived from the plat
 **Decision:** `data/frontage/town_street_edge.json` lays the STREET EDGE along the two
 streets that run beside the river's south bank — **South Water Street, which is the bank
 itself, and Lake Street one block behind it, both frontages, from Market Street to State
@@ -5523,6 +5523,57 @@ a walk or a fence in front of a named lot; or holding the jail, Green Tree and S
 plates as proper source records with their institutions and dates (T-0075), which would
 turn the committed path in `existence.note` into a source_id.
 **Recorded:** 2026-08-21.
+**AMENDED 2026-08-27 — RANDOLPH STREET IS NOW INSIDE THIS LIBERTY (T-0240).** Everything
+above holds unchanged: the same rule, the same invented widths, rises, pitches, board
+counts, fence heights and clearances, the same march in 5.2 m steps over the same committed
+plat, and the same `reconstructed` on every vertex. **What changed is the scope, and only
+the scope** — `EDGE_STREETS` in `tools/generate_frontage_works.py` carries a third street,
+so **13 of Randolph Street's 14 platted block faces** are now laid by it. The record's own
+`rule` block, which is the auditable statement of the whole scope, reads:
+
+|  | before | after |
+|---|---:|---:|
+| block faces laid | 16 | **29** |
+| plank sidewalk | 1,297.3 m | **2,468.3 m** |
+| board crossings | 11 | **25** |
+| street-lining fence runs | 11 (494.4 m) | **26 (1,345.6 m)** |
+| walking decks | 96 | **190** |
+
+The fourteenth Randolph face is refused rather than laid, and the record's `refused` names
+the clause that refused it, exactly as every other refusal here does.
+
+**No new invention is claimed and none is needed.** Not one number in the paragraphs above
+moves; a third street is the SAME reconstruction applied to more of the plat, which is what
+made it a generated layer rather than 1.1 km of typing. The owner's ask — *"all of the
+streets should be updated like this... at least south of the river or near the river"* —
+is the same ask, and Randolph is one block further from the bank than Lake.
+
+**WHY IT COULD NOT BE LAID UNTIL NOW, and it was never about Randolph.** This street was
+built and measured for T-0188 and taken back out: it read 97,588 triangles over `full` and
+145,638 over `balanced`. That ledger's own conclusion was that the binding fact was the
+frame, not the street — `balanced` stood 0.35 % under its ceiling **before** the parcel.
+T-0223 then found the sun drawing 180,100 triangles of timber outside the ±240 m shadow
+box, casting nothing the shadow map can hold, and culled it. Re-measured on the published
+mirror with `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands:
+
+| tier | desktop 1280×800 | mobile 390×780 | ceiling | original ceiling |
+|---|---:|---:|---:|---:|
+| `full` | 1,369,835 | 1,272,801 | 1,425,000 | 1,400,000 |
+| `balanced` | 1,201,248 | 1,148,172 | 1,260,000 | 1,210,000 |
+| `light` | 745,904 | 695,030 | 1,050,000 | 1,050,000 |
+
+Draw calls at the worst stand: 155 desktop, 146 mobile, of 215. Every tier is inside its
+ceiling at every stand at both viewports, **and inside the ORIGINAL ceilings T-0229 exists
+to restore** — `balanced` clears the original by 8,752 — so this street does not stand on
+the temporary raise and is not unwound with it.
+
+**WASHINGTON STREET IS DELIBERATELY NOT IN THIS LIBERTY (T-0241).** Both streets were
+generated together first: 36 faces, 3,129.1 m of walk, and desktop `balanced` read
+**1,260,174 of 1,260,000 — over by 174 triangles.** Washington's seven faces cost 58,926
+at `balanced` and about 15,400 at each tier either side, so what refuses it is that one
+rung rather than the town. It is filed with its number attached rather than bought with a
+sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
+**Recorded:** 2026-08-27.
 
 ### L161 — The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented
 

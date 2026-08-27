@@ -29,7 +29,8 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0191 — Randolph and Washington get the street edge
+T-0240 — Randolph gets the street edge
+T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0194 — Hitching posts at the commercial frontages

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 298, title: 'Randolph Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T21:36:54.531Z', date: 'Aug 27, 2026, 4:36 PM CT',
+    items: [
+      'Walk one block south of Lake Street and the ground under your feet changes. Randolph now has the same boarded walk the two river streets have had since August \u2014 a raised plank sidewalk at the lot line, board crossings over the roadway at the corners, and board fences standing behind the walk wherever a lot is improved but its building sits back from the street.',
+      'It is a long street: the widest frontage the town plat holds, fourteen block faces against Lake\u2019s twelve. Thirteen of the fourteen are laid. The one that is not is refused for a stated reason, the same way every other gap in this layer is \u2014 ground too wet, too uneven, too narrow a verge, or a building already standing on it.',
+      'Nothing here was placed by hand. The walk\u2019s line is a surveyed street centreline stepped out by half the platted street width, so it is the plat that decides where a board may lie; move a street and every board moves with it. That is what makes a whole street possible where a hand-placed one would not be.',
+      'You can stand on it. The boards are a surface the walker steps up onto and stays on, not a stripe painted on the mud \u2014 ninety-four more of those standing surfaces than yesterday.',
+      'This street was built once before, in August, and taken straight back out: it did not fit the frame. Nothing about Randolph changed since. What changed is that the sun stopped drawing a wood it could not cast, which handed back about a hundred and sixty thousand triangles a frame \u2014 and this is what that room was for.',
+      'Washington Street is not here, and by a hair: with it, one of the three quality settings went over its ceiling by 174 triangles out of 1.26 million. Raising that ceiling a sixth time would have bought the street with the one number this project has promised to stop moving, so Washington waits for room rather than for permission.',
+    ] },
   { v: 297, title: 'The long view down Lake Street cost more work than it needed', kind: 'chore', ts: '2026-08-27T20:36:02.288Z', date: 'Aug 27, 2026, 3:36 PM CT',
     items: [
       'Nothing in the town looks different today, and that is the whole point of this one. The same buildings, the same fences, the same plank walks, the same boards on the same wagons \u2014 down to the last triangle, which is checked rather than claimed.',

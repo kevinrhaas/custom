@@ -218,36 +218,78 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # That is "at least south of the river or near the river", and it is the town's
 # whole trading core in 1835.
 #
-# RANDOLPH STREET WAS BUILT, MEASURED AND TAKEN BACK OUT (T-0127/T-0188), and the
-# reading is written here because it is the only thing that answers "why is this
-# tuple still two streets" for the next run. Randolph is the widest frontage the
-# platted grid holds — 14 block faces against Lake's 12 and South Water's 5 — and
-# through this same rule it lays 13 faces and +1,237.9 m of walk, +14 crossings,
-# +14 fences, +97 walking decks. Built and published, it read, at the T-0135
-# stand set on the published mirror, desktop 1280x800, at the axial stand (Lake
-# Street at Canal, east):
+# RANDOLPH STREET WAS BUILT, MEASURED, TAKEN BACK OUT, AND IS NOW BACK IN
+# (T-0127/T-0188, then T-0240). It is the widest frontage the platted grid holds —
+# 14 block faces against Lake's 12, Washington's 7 and South Water's 5 — and
+# through this same rule it lays 13 of them: the record's own `rule` block goes
+# from 16 faces to 29, 1,297.3 m of walk to 2,468.3, 11 board crossings to 25,
+# 11 street fence runs to 26 (494.4 m to 1,345.6), and 96 walking decks to 190.
+# One Randolph face is refused rather than laid, and the record's `refused`
+# names it. The history is kept here
+# because it is the only thing that answers "why is this tuple the length it is"
+# for the next run, and because WHAT CHANGED was not the street.
+#
+# WHEN IT WAS REFUSED (T-0188), at the T-0135 stand set on the published mirror,
+# desktop 1280x800, at the axial stand (Lake Street at Canal, east):
 #
 #   full      1,378,984 -> 1,497,588 of 1,400,000   (+118,604; 97,588 OVER)
 #   balanced  1,205,762 -> 1,355,638 of 1,210,000   (+149,876; 145,638 OVER)
 #   light       812,753 ->   869,731 of 1,050,000   (inside, 180,269 spare)
 #
-# — mobile 390x780 the same shape (+115,360 and +150,684, both tiers over). THE
-# LEVER T-0115 COSTED FOR THIS PARCEL WAS TAKEN FIRST AND IT IS NOT ENOUGH: the
-# ground-hugging boards no longer cast into the shadow map (see `frontage.js`
-# `standingChunk` and `main.js applyShadowTier`), and turning OFF the layer's five
-# remaining shadow casters at that stand — the fences this ledger argued should
-# keep casting, and the shared mesh with the sign post on it — reads 44,110
-# triangles and 3 calls, measured, against a 145,638 shortfall.
-# THE BINDING FACT IS NOT RANDOLPH: `balanced` stood at 1,205,762 of 1,210,000
-# BEFORE this parcel — 4,238 triangles, 0.35 % — and `full` at 1.5 %, where
-# T-0135 set both on 2026-08-22 with "about 6 % of headroom". No street tier fits
-# until that is addressed, and raising a ceiling a fifth time to fit one reading
-# is what T-0135 named as the bug rather than the remedy.
+# — mobile 390x780 the same shape. The lever T-0115 costed for this parcel had
+# already been taken and was not enough: the ground-hugging boards do not cast
+# into the shadow map (see `frontage.js` `standingChunk` and `main.js`
+# `applyShadowTier`), and turning OFF the layer's five remaining shadow casters
+# read 44,110 triangles against a 145,638 shortfall. The ledger's own conclusion
+# was that THE BINDING FACT WAS NOT RANDOLPH: `balanced` stood at 1,205,762 of
+# 1,210,000 BEFORE the parcel — 0.35 % — so no street tier fitted until that was
+# addressed.
 #
-# So Randolph, Washington, the cross streets' own frontages and the West Division
-# across the South Branch stay out, and the record's own `refused` carries every
-# one of these numbers rather than a promise.
-EDGE_STREETS = ("south_water", "lake")
+# IT WAS ADDRESSED, AND BY THE TICKET THAT LEDGER POINTED AT. T-0223 found the
+# sun drawing 180,100 triangles of timber lying outside the +/-240 m shadow box —
+# 14.4 % of the frame, casting nothing the shadow map can hold — and culled it.
+# The worst stand fell from 1,412,120 to 1,252,519 at `full` and 1,252,802 to
+# 1,083,932 at `balanced`. That is the headroom this street was refused for, and
+# it was never Randolph's to give back.
+#
+# RE-MEASURED FOR T-0240 on the published mirror with
+# `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands, BOTH
+# viewports — not the axial stand alone, because with this street laid the worst
+# stand at two of the three tiers moves to the forks:
+#
+#                 desktop 1280x800            mobile 390x780        ORIGINAL
+#   full      1,369,835 of 1,425,000      1,272,801 of 1,425,000   1,400,000
+#   balanced  1,201,248 of 1,260,000      1,148,172 of 1,260,000   1,210,000
+#   light       745,904 of 1,050,000        695,030 of 1,050,000   1,050,000
+#
+#   draw calls, worst stand: 155 desktop, 146 mobile, of 215.
+#
+# Every tier is inside its ceiling at every stand at both viewports, and — the
+# clause that matters, because T-0229 exists to take the raise back out — every
+# tier is also inside the ORIGINAL 1,400,000 / 1,210,000 / 1,050,000. `balanced`
+# clears the original by 8,752. So this street does NOT depend on the temporary
+# raise and does not have to be unwound with it.
+#
+# WASHINGTON IS NOT HERE, AND IT IS A NUMBER RATHER THAN AN OPINION (T-0241).
+# Both streets were added and generated TOGETHER first — 36 faces, 3,129.1 m of
+# walk — and measured together, desktop, worst of the five stands:
+#
+#   full      1,385,207 of 1,425,000   PASS by 39,793
+#   balanced  1,260,174 of 1,260,000   OVER BY 174
+#   light       761,404 of 1,050,000   PASS
+#
+# One hundred and seventy-four triangles on 1.26 million. Washington's seven
+# faces cost +58,926 at `balanced` and only ~15,400 at the tiers either side, so
+# what refuses it is that one rung and not the town. The two honest routes past
+# it are a sixth re-basing of the ceiling or a trim, and the sixth raise is what
+# T-0223, T-0229, T-0237 and the count written into `main.js` beside `DETAIL` all
+# exist to make harder — T-0237's acceptance says it in as many words. So
+# Washington keeps its measured cost in T-0241 rather than being bought with it.
+#
+# The cross streets' own frontages (T-0192) and the West Division across the
+# South Branch (T-0193) likewise stay out, and the record's own `refused` carries
+# every one of these numbers rather than a promise.
+EDGE_STREETS = ("south_water", "lake", "randolph")
 EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
 EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
 EDGE_OFFSET_M = EDGE_FENCE_CLEAR_M + WALK_W_M / 2.0   # walk centre, out from the lot line
