@@ -396,7 +396,59 @@ const DETAIL = {
   // block above `full` rather than written out twice.
   balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
-  light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
+  // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
+  //
+  // The third and last piece of T-0149, whose whole complaint is the sentence
+  // near the top of this block: `light` carried MORE than `full` had promised
+  // the day before, so the tier a weak machine boots into was not a floor
+  // anybody could be promised. The trims that were supposed to earn it back
+  // have all landed -- T-0150 (the derived furniture distance-culled at `light`
+  // alone, 350 m), T-0146 (far chunks merged back into single draws), and
+  // T-0223's timber cull, which arrived between them and gave more than either.
+  //
+  // MEASURED FIRST AND LOWERED SECOND, which is the entire reason this is a
+  // separate ticket from the trims: a ceiling lowered in the same breath as the
+  // trim that justified it is a ceiling nobody checked.
+  // `tools/measure_detail_ceilings.mjs`, published mirror, T-0135's five
+  // stands, BOTH release viewports, dev @ f7aca445:
+  //
+  //                    desktop 1280x800          mobile 390x780
+  //   worst frame      703,610 at the forks      649,296 at Lake/Canal
+  //   worst calls           76 at Lake+Market         69 at Lake+Market
+  //
+  // WHERE 785,000 COMES FROM, so it is a principle and not "enough for today".
+  // It gives `light` the same PROPORTIONAL headroom over its own measured worst
+  // stand that `full` carries over its: 1,400,000 against 1,252,879 is 11.7 %,
+  // and 785,000 against 703,610 is 11.6 %. The ladder keeps its shape, and the
+  // figure is a WORST-STAND number rather than a reference-stand one, which is
+  // the rule this table has now been re-taught five times. (`full`'s figure is
+  // the 1,400,000 immediately above -- T-0229 landed its restoration while this
+  // was being gated, so the two numbers this compares are both live.)
+  //
+  // WHAT IT RESTORES, said as plainly as the thing it answers: 785,000 is
+  // 21.5 % BELOW the 1,000,000 `full` promised before 2026-08-22. The bottom
+  // rung is a fifth cheaper than the old top rung again, so it is a floor and
+  // not merely the cheapest of three expensive settings.
+  //
+  // AND THE DRAW-CALL PROMISE COMES BACK AS A COUNT, in
+  // `tools/smoke_renderer.mjs`, where the check that used to hold `light` inside
+  // 80 calls was weakened to a ratio on 2026-08-22 and its own comment asked
+  // this ticket to turn it back. 80 is the number this project chose before any
+  // of the 2026-08 content landed, not one tuned to today's 76 -- four calls of
+  // room, and the next chunked layer that reaches it is reaching a bar that
+  // means something. It is worth naming how thin that is: this branch read 75
+  // before T-0194's hitching posts merged and 76 after, so one ordinary visible
+  // parcel spent a quarter of the margin. That is the bar working, and the
+  // answer when it goes red is a trim or an argued re-budget -- never a
+  // weakening of the assertion, which is the move T-0223 forbade by name.
+  //
+  // WHAT THIS DELIBERATELY DOES NOT DO. `full` and `balanced` are untouched:
+  // taking T-0229's raise back out was T-0229's own change with its own
+  // reading, and this one does not reach across it. Nothing in the renderer
+  // moves -- no geometry, no reach, no shadow tier, no cull. This is only the
+  // ceiling following a trim DOWN, which T-0149 named as the strongest evidence
+  // that a trim worked.
+  light:    { triangles: 785000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];

@@ -1,5 +1,71 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0147: the `light` ceiling comes back DOWN, 1,050,000 → 785,000
+
+The third and last piece of **T-0149**, and the one the other two existed to make possible.
+T-0135's five-stand re-basing on 2026-08-22 lifted all three ceilings at once and left `light`
+carrying **1,050,000** — more than `full` had promised the day before — so the tier a weak
+machine boots into was not a floor anybody could be promised. T-0150 (furniture distance-culled
+at `light`, 350 m), T-0146 (far chunks merged back into single draws) and T-0223's timber cull
+each trimmed the axial view without touching the picture. **A ceiling that comes back down after
+a trim is the strongest evidence the trim worked**, and this is that.
+
+**Measured before it was moved**, which is why T-0147 was a separate ticket from the trims.
+`tools/measure_detail_ceilings.mjs`, published mirror, T-0135's five stands, **both** release
+viewports, `dev` @ `f7aca445` (after T-0194's hitching posts merged):
+
+| tier | ceiling before | desktop 1280×800 | mobile 390×780 | ceiling now |
+|---|---:|---:|---:|---:|
+| `full` | 1,425,000 | 1,252,879 | 1,145,313 | untouched here — T-0229 restored it to 1,400,000 |
+| `balanced` | 1,260,000 | 1,084,292 | 1,020,684 | untouched here — T-0229 restored it to 1,210,000 |
+| `light` | 1,050,000 | **703,610** | **649,296** | **785,000** |
+
+Worst `light` draw calls: **76** desktop (Lake and Market), **69** mobile.
+
+**Where 785,000 comes from**, so it is a principle rather than "enough for today": it gives
+`light` the same proportional headroom over its own measured worst stand that `full` carries
+over its — 1,400,000/1,252,879 is 11.7 %, and 785,000/703,610 is 11.6 %. It is a worst-stand
+number, not a reference-stand one. And it is **21.5 % below the 1,000,000 `full` promised before
+2026-08-22**, which is the sentence T-0149 was opened to answer.
+
+**The draw-call promise comes back as a COUNT.** `tools/smoke_renderer.mjs`' check that held
+`light` inside **80** calls was weakened to a ratio on 2026-08-22, and its own comment asked
+T-0147 to turn it back: *"a count is what a promise to a person looks like."* It is 80 again —
+the number chosen before any of the 2026-08 content landed, not one fitted around today's 76, so
+there are **four** calls of room. Thin on purpose and thin in fact: this branch read **75**
+before T-0194's hitching posts merged into `dev` and **76** after, so one ordinary visible parcel
+spent a quarter of the margin between two readings an hour apart. That is the bar working. When
+it goes red the answer is a trim or an argued re-budget at `DETAIL` — never a weakening of the
+assertion, which is the move T-0223 forbade by name. The ratio check is **kept underneath** rather than replaced: the
+count is the promise, the ratio is the claim that the scene-detail control is not decoration.
+
+**What this deliberately does NOT do.** `full` and `balanced` are untouched — taking T-0229's
+raise back out was that ticket's own change with its own reading, and it merged from a parallel
+slice while this was being gated — this one does not reach across it. Nothing in the renderer moves: no geometry, no reach, no shadow tier, no cull. The
+only edits are one constant, one gate assertion, their reasoning, and the changelog.
+
+**Verified in the foreground on the branch.** `./tools/check.sh` PASS — *which is the dev gate*
+(`docs/PIPELINE.md`: "the dev gate is `check.sh` and nothing else"). Smoke at **mobile 390×780,
+all nine parts**: `1-2` PASS (148/0), `3-4` PASS (114/0, printing `light 434366/785000`), `5-6`
+PASS (43/0), `7-9` 151 passed / **1 failed**. Smoke at **desktop 1280×800** stage `6` PASS (23/0)
+— boot, canvas, **zero page errors**, vendor.
+
+**NOT verified, and stated rather than glossed:** desktop smoke stage 4 — the stage that holds the
+ceiling sweep — **could not be taken on this runner.** It exceeds the ten-minute foreground command
+ceiling, and `tools/dev-smoke-state.json` records `dev`'s own desktop stage 4 as FAIL at
+`2026-08-27T20:16` (`page.click: Target page … has been closed`, the T-0210/T-0215 loaded-box
+failure). The desktop half of the sweep is covered instead by `tools/measure_detail_ceilings.mjs`,
+which is documented and verified to reproduce that gate's figures to the triangle and to the draw
+call — a substitute for the instrument, not for the stage.
+
+**One red, proven inherited, filed as T-0243.** `mobile: every tree drawn stands at its own
+station` fails — and fails identically on a clean `origin/dev` worktree. `smoke_renderer.mjs`
+traverses `/^timber__/`; T-0223 replaced `timber__q0…q3` with one `THREE.BatchedMesh` named
+`timber`, so the regex matches nothing and the check fails its own `meshes > 0` liveness clause.
+No tree moved. Its sibling — `no timber is drawn out in the channel` — is *passing on the same
+empty traversal*, which is the worse half. `dev`'s standing record reads PASS for mobile 7-9,
+taken five minutes before T-0223 merged.
+
 ## Shipped 2026-08-27 — T-0216: dev has a standing smoke result, and a red can be attributed without re-running it
 
 **Four runs in one day re-derived the same two reds by hand.** `chicago-4d-check.yml` runs
