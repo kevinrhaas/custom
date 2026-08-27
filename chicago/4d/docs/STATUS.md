@@ -1,5 +1,70 @@
 # STATUS
 
+## Shipped — T-0023 + T-0189: the Randolph–Washington row stops inheriting South Water's rules
+
+**Two things the row was given by a street it does not stand on, at two layers of the same
+records: the criterion that decides which roof is better, and the sentence that tells a visitor
+what row they are standing in.** Both were written for T-0078's party-line run on South Water
+Street, where both were true. Both were then applied verbatim to every frontage run since.
+
+**T-0023 / K31 — the end rule's criterion is now the WALK.** The rule keeps its claim, unchanged
+since T-A8 and invented since T-A8: the better roof stands nearer the Dearborn Street drawbridge,
+the only crossing of the main stem in July 1835. What changes is the distance — **walked along the
+committed street centrelines** from the roof's own frontage, not T-A11's straight line. It lives in
+`data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`, and
+**`tools/measure_end_rule.py`** prints it so the next parcel quotes rather than re-argues. Full
+admission in `docs/LIBERTIES.md` **L182**; the resolution is written into ROADMAP § K31.
+
+**Four measurements decided it, taken on all 36 faces of the platted grid.**
+
+1. **The two criteria name the same nearest lot on 36 of 36 faces.** K31 warned the successor must
+   not be chosen where it agrees with the old rule. They agree everywhere, so **no block could have
+   discriminated between them, and the choice was never about which roof goes where.** Nothing was
+   re-graded and nothing was retro-fitted; L102 onward stand verbatim.
+2. **The straight line measures how far away the BLOCK is, not where a roof stands on it.** Its
+   worst step between two neighbouring party-line units runs from **6.06 m** on the far blocks to
+   **0.52 m** at `blk_randolph_clark` — it goes blind as a block approaches the bridge, weakest
+   exactly where the bridge matters most. **It is below the floor on 12 of the 36 faces**, the back
+   face of `blk_south_water_clark` — the block T-A11 wrote the rule on — among them. The exhaustion
+   was never a fact about this row; the row reached it first.
+3. **The floor is the recipe's own admitted invention.** It deals its 48 principal slots setbacks of
+   **4.0 m to 7.5 m** and grades them "a period typology and not a measurement of this lot". A
+   setback moves a roof along the outward normal, broadly the axis the rule reads, so **3.50 m** is
+   noise the records already declare on the same line. The rule now records the within-face order as
+   **arbitrary** where its step falls at or under it — K31's third candidate, kept as a bound rather
+   than adopted as the answer. Under the walk no committed face is in that position.
+4. **T-0079 changed what the rule ranks and nobody noticed.** Before the core density standard a
+   block carried one roof per lot, so the rule ordered LOTS ~24.6 m apart; a party-line run now
+   stands three units on ONE lot ~6 m apart, so **the rule has been ranking the front doors of what
+   the plat calls a single property.** That, more than the bridge's bearing, is why it ran out of
+   room. Under the walk the step is the unit's own 6.072 m on every face.
+
+**A reproduction, and it found a real discrepancy.** T-A11's eight figures re-derive within
+**1.7 m** (ratio 2.908 against 2.86) — it read the frontage. T-A15's read **26.4 m nearer**, which
+is a lot's frontage-to-middle distance; L106 names the point in passing ("the 49.3 m between the lot
+2 and lot 6 **centroids**"). **The criterion had been read at two points 26.5 m apart on two blocks
+and neither parcel said which.** T-A15's finding is unaffected — its spread reproduces at **7.86 m**
+against 7.5 m.
+
+**T-0189 — and the sentence describing all this was wrong on 9 of 23 cards.** The bold location line
+and the position note beside it are the first two things a visitor reads on a party-line unit.
+Three houses on **Washington Street**, 400 m from the water, were told they were "one unit of the
+party-line **river** row", standing on "the town's **river business front**", looking at "Washington
+Street **and the river beyond it, as every documented store on this face does**" — on a face whose
+entire documented 1835 frontage is the estray pen, the town's pound for stray animals. Three more
+stand on Randolph, three on Lake; the other 14 are on South Water and were always right. All three
+phrases now name the face the building actually stands on, and the note says in terms that a row on
+any other face is **borrowing** the treatment from the 1834 South Water view rather than being drawn
+by it. Recorded as **L183**.
+
+**Not one coordinate moved.** All 23 records and their sidecars re-derive from the same recipe and
+the same committed block boundaries; the phrases describe the placement, they do not decide it.
+
+**What is NOT done and is filed rather than dodged.** The frontage note still says "its east wall is
+fixed by the west end of the run's own frontage" on a west-anchored run — the generator's internal
+convention leaking into visitor prose. It is confusing rather than false, it is not about 1835, and
+it is its own ticket.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a

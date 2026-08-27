@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 26, 2026, 11:18 PM",
+  "generated_ct": "Aug 26, 2026, 11:49 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -398,16 +398,17 @@
     {
       "id": "T-0023",
       "title": "The end rule is exhausted on the Randolph-Washington row",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "K31",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:26:56 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 16
@@ -3231,7 +3232,7 @@
     {
       "id": "T-0189",
       "title": "A house on Washington is told it is 'one unit of the party-line river row'",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3241,7 +3242,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:45:35 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 53
@@ -3353,6 +3354,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0208",
+      "title": "A party-line unit's card says its EAST wall is fixed by the WEST end of the run",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }

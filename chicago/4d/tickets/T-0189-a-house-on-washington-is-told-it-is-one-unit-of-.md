@@ -1,7 +1,7 @@
 ---
 id: T-0189
 title: A house on Washington is told it is 'one unit of the party-line river row'
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/26/2026, 11:45:35 PM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -6227,6 +6227,106 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L182 — The end rule's criterion becomes the walk to the drawbridge, and the rule gains a floor
+**Decision:** the END RULE — which of the roofs a block was dealt stands where along its
+frontage — keeps the claim it has made since T-A8, that **the better roof stands nearer the
+Dearborn Street drawbridge, the only crossing of the main stem in July 1835**, and changes how
+that distance is measured. From 2026-08-27 it is the distance **walked along the committed
+street centrelines** from the roof's own frontage to the bridge's south abutment, not T-A11's
+straight line to it. The decision is carried in
+`data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`, where the
+next parcel reads it, and `tools/measure_end_rule.py` prints the number so it is quoted rather
+than re-argued.
+
+**THE CLAIM IS AND ALWAYS WAS AN INVENTION.** No source this project holds says a better
+dwelling stood nearer the bridge, or nearer anything. L102, L104 and L106 say so of the same
+rule and nothing here promotes it. What is being chosen is how to order an invention, and the
+only honest reasons to prefer one ordering to another are that it can tell its own cases apart
+and that it does not dress rounding up as reasoning.
+
+**WHAT WAS MEASURED, on all 36 faces of the platted grid.** The straight line measures how far
+away the BLOCK is, not where a roof stands on it: its worst step between two neighbouring
+party-line units falls from **6.06 m** on the blocks a kilometre out to **0.52 m** at
+`blk_randolph_clark`, because the bridge's bearing swings round toward the face and the
+criterion sees only the sine of the angle between them. It goes blind as a block approaches the
+bridge — weakest exactly where the bridge matters most. **It is below the floor on 12 of the 36
+faces**, the back face of `blk_south_water_clark` — the block T-A11 wrote the rule on — among
+them. The walk grades all 36, at a constant **6.072 m** step, because a metre of frontage is a
+metre of walk on every face of every block.
+
+**THE FLOOR IS THE PLACEMENT'S OWN DECLARED INVENTION AND IS NOT INVENTED FOR THE OCCASION.**
+The recipe deals its 48 principal slots setbacks from **4.0 m to 7.5 m** and grades them, in its
+own `placement_rule`, "a period typology and not a measurement of this lot". A setback moves a
+roof along the face's outward normal, broadly the axis the end rule grades along, so that
+**3.50 m** range is admitted positional invention measured along the very line the criterion
+reads. A criterion separating two neighbouring roofs by less than it is grading its own noise.
+The rule now states that where its step falls at or below that range the parcel **records the
+within-face order as arbitrary** rather than claiming a grading. Under the walk no committed
+face is in that position; the clause exists so the next exhaustion is caught by the command and
+not by a fifth block.
+
+**NOTHING THAT STANDS MOVED, AND THAT IS WHY THE DECISION COULD BE TAKEN.** The two criteria
+name **the same nearest lot on 36 of 36** platted block faces. K31 warned that the successor
+must not be chosen on a block where it agrees with the old rule; the answer is that they agree
+EVERYWHERE, so no block could ever have discriminated between them and the choice was never
+about which roof goes where. Not one roof is re-graded, no arrangement note written before this
+date is touched, and L102 onward stand verbatim.
+
+**WHAT THE RULE IS NOW ASKED TO DO, which is not what it was built for.** Until T-0079 a block
+carried one principal roof per platted lot, so the end rule ordered LOTS about 24.6 m apart. The
+core density standard retired that ceiling and a party-line run stands three units on ONE lot,
+about 6 m apart — so since T-0079 the rule has been ranking the front doors of what the plat
+calls a single property and no parcel said so. Under the straight line that step was 0.52 m to
+3.53 m across the Randolph–Washington row; under the walk it is the unit's own width.
+
+**How to resolve:** nothing about 1835 resolves it. A source placing any named 1835 dwelling
+against its neighbours on one block face would replace the rule outright rather than re-grade
+it; short of that, what is available is a better-argued ordering, and the command is where the
+argument would have to beat this one.
+
+Related: **L102**, **L104**, **L106** (the rule as applied, block by block, left verbatim) ·
+**L183** (the sentence that described it) · tickets **T-0023**, **T-0079** (the density standard
+that changed what the rule ranks), **T-0024** (K32, whether the face rule may rank a store).
+**Recorded:** 2026-08-27.
+
+### L183 — A party-line unit's card said it stood in a river row on streets 400 m from the water
+**Decision:** `tools/generate_block_infill.py` composes the two lines a visitor reads first on a
+party-line unit's card — the bold location line and the position's own reasoning beside it — and
+both were written for T-0078's run on South Water Street, where every literal in them was true.
+They have been printed verbatim on every frontage run since. Three claims are removed and
+nothing else changes: the location line said the building was **"one unit of the party-line
+river row"** and now says "one unit of the party-line row along it"; the note called the block
+face **"the town's river business front"** and now names the street the face actually fronts;
+and the note said the front looks at that street **"and the river beyond it, as every documented
+store on this face does"** and now says it looks square at the street.
+
+**WHY IT IS A LIBERTY AND NOT ONLY A TYPO.** Those sentences were the record's own account of
+what a visitor was looking at, and on 9 of the 23 records carrying them they described a
+different street. Three houses on **Washington Street**, 400 m from the water, were told they
+stood in a river row and faced a river; Washington's entire documented 1835 frontage is the
+estray pen, the town's pound for stray animals (`tools/measure_street_frontage.py randolph
+washington`: 1 documented record, 0 inferred households). Three more stand on Randolph and three
+on Lake. The remaining 14 are on South Water, where the sentences were true and stay true.
+
+**WHAT DID NOT CHANGE, and it is the whole of the geometry.** Not one coordinate, bearing,
+footprint or setback moved: the phrases describe the placement, they do not decide it. All 23
+records re-derive from the same recipe and the same committed block boundaries, and the gates
+that measure party walls, street lines and corridor intrusion read exactly what they read
+before.
+
+**WHAT IS STILL BORROWED, and the note now says so.** The 1834 South Water Street view is real
+evidence for the TREATMENT — a continuous working row of party walls rather than detached
+cottages set back on grass — and a row standing on any other face of the town is borrowing that
+treatment from one street. The note says that in terms instead of implying the view drew this
+row.
+
+**How to resolve:** a source describing a continuous built row on Randolph, Washington or Lake
+in 1835 would let the borrowing be retired for that face. This project holds none.
+
+Related: **L182** (the rule those sentences were describing) · tickets **T-0189**, **T-0078**
+(the South Water run the wording was written for), **T-0076** (what a card calls a building).
+**Recorded:** 2026-08-27.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
