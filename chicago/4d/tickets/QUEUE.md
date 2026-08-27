@@ -25,7 +25,6 @@
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0147 — Re-lower the ceilings once the trims land
-T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
