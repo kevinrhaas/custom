@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 6:11 PM",
+  "generated_ct": "Aug 27, 2026, 6:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3292,7 +3292,7 @@
     {
       "id": "T-0192",
       "title": "The cross streets' own frontages get the street edge",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -3302,7 +3302,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 6:18:39 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
