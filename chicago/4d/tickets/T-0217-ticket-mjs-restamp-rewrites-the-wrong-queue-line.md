@@ -1,7 +1,7 @@
 ---
 id: T-0217
 title: ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 403
+claimed_by: run 8/27/2026, 10:22:34 AM CT
 blocked_on: null
 needs_bake: false
 ---
