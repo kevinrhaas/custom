@@ -1,7 +1,7 @@
 ---
 id: T-0202
 title: SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
+closed: 2026-08-27
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Fixed and shipped as T-0215 in PR #394: clickChrome() is on dev and part 8 runs its 28 staged checks in 6 m 10 s. The failure was machine load, not the panel — the part died on its first click having run zero staged checks, and was named for its last section.
 needs_bake: false
 ---
 
