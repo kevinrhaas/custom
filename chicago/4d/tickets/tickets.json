@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 6:19 PM",
+  "generated_ct": "Aug 27, 2026, 6:46 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4170,6 +4170,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 61
+    },
+    {
+      "id": "T-0245",
+      "title": "first_presbyterian_church cannot come onto the Lake Street plat without displacing physicians_office",
+      "state": "blocked-owner",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Does a documented building displace an inferred-household unit when the plat repair puts them on the same lot? first_presbyterian_church needs 3.395 m to come onto the Lake Street plat and physicians_office stands 3.15 m behind it — the church, the household, or neither moves.",
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0246",
+      "title": "log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
     }
   ]
 }

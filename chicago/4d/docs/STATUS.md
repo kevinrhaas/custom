@@ -1,5 +1,77 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
+
+The Lake Street half of the repair T-0198 and T-0199 made on South Water. Four documented
+records stood out past their own frontage line, in the platted roadway, because their
+cross-street coordinate was taken off a **modern OpenStreetMap kerb line** rather than off this
+project's committed 1835 centreline. `tools/generate_frontage_works.py`'s march refuses every
+step a wall stands on, which is why Lake Street's north side came out in stumps.
+
+**The four, measured on the march rather than estimated.** Each repair is the record's own
+method run against this project's own line: translate along the block face's inward normal
+until the street wall stands `LOT_MARGIN_M` (1.50 m) back from the committed frontage line.
+No `local_e` moved — the along-street coordinate is the axis the sources argue.
+
+| record | face | out past the line | moved | steps of walk it refused |
+|---|---|---:|---:|---:|
+| `old_bank_building` | `blk_lake_lasalle` north | 1.62 m | **3.124 m** | 4 |
+| `dole_warehouse_south` | `blk_lake_dearborn` north | 1.28 m | **2.784 m** | 3 |
+| `st_marys_church` | `blk_lake_dearborn` north | 3.03 m | **4.532 m** | 2 |
+| `first_presbyterian_church` | `blk_lake_lasalle` north | 1.90 m | **refused** | 2 |
+
+**What it did to the town's street edge**, re-derived and read off the record:
+
+```
+  walk        2,468.3 m in 33 runs  ->  2,499.5 m in 34 runs
+  crossings   25 (596.2 m)          ->  29 (689.1 m)
+  decks       140                   ->  142
+  refusals    68                    ->  66
+  wall-refused march steps in the town   13 -> 4
+```
+
+Two new corner crossings on Lake Street's north side (`blk_lake_clark × blk_lake_dearborn`,
+`blk_lake_wells × blk_lake_lasalle`) and two more on the South Water faces those walks now
+reach the corner of. `blk_lake_dearborn` north goes from 36.3 m to 51.8 m in one run;
+`blk_lake_lasalle` north from 57.3 m to 72.9 m in two, the break being its own ground and not a
+wall. `tools/measure_corridor_intrusion.py` banks two records cleared outright (22 lapping
+phases to 20); `st_marys_church` stays in the census on **State** Street, which is a cross-street
+lap and a different ticket.
+
+**THE FOURTH IS REFUSED, AND THE NUMBERS ARE WHY.** `first_presbyterian_church` needs 3.395 m.
+`physicians_office` stands 3.15 m behind it on the lot it would come onto:
+
+| move along the inward normal | gap to `physicians_office` |
+|---:|---:|
+| 0.0 m (as committed) | 3.15 m |
+| 0.2 m | 2.95 m — inside the 3.0 m separation gate |
+| 3.2 m | 0 — the footprints overlap |
+
+There is no translation along this normal that both clears the walk and leaves the pair apart.
+**The owner's 2026-08-27 business-front clause does not reach it**, and that was measured rather
+than assumed: the clause is bounded to a lot named in its block's own `frontage` run, and
+`blk_lake_lasalle` has no frontage run at all — its roofs came from the pre-plat South Division
+parcel. So nothing committed says what happens when a **documented** building's correct position
+is held by an **inferred** one. Filed as **T-0245**, `blocked-owner`, with the three options and
+the figures. The record's own `position.note` carries the refusal, so a visitor opening the card
+reads it.
+
+**Nothing else moved.** The three reconciled records keep their confidence grade — re-deriving a
+coordinate from better geometry is not new evidence — their block, their corner, their side and
+every uncertainty they state. No gate was weakened, no threshold moved, and no roof left the
+town: all three seat on lots that already carry anonymous roofs, and the nearest of those stands
+6.99, 7.11 and 8.14 m away, clear of the 3.0 m the separation gate asks.
+
+**Also found, and filed rather than folded in:** T-0196's own count of "eleven refused steps,
+all on Lake Street" was read before T-0240 laid Randolph. Re-read after it, the town carried
+thirteen — the other two are `log_jail` on `blk_randolph_lasalle`'s north face, 3.48 m into the
+Randolph corridor with its centroid inside. **T-0246.**
+
+**The smoke's pinned frontage census moved with the walk**: walks 42→43, crossings 28→32,
+refusals 74→72, meshes 53→54 (one culling chunk per run of sidewalk). Shape, not threshold —
+nothing here is a gate being loosened.
+
+
 ## Shipped 2026-08-27 — T-0147: the `light` ceiling comes back DOWN, 1,050,000 → 785,000
 
 The third and last piece of **T-0149**, and the one the other two existed to make possible.

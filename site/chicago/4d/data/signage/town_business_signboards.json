@@ -656,8 +656,8 @@
         "note": "gilt letters in an oval field on a dark green ground"
       },
       "anchor_local_enu_m": [
-        718.3,
-        -126.48
+        718.27,
+        -129.26
       ],
       "facade_bearing_deg": 0.0,
       "arm_height_m": 3.2,
@@ -674,20 +674,20 @@
       "frontage_m": 12.19,
       "ground_quad_local_enu_m": [
         [
-          712.2,
-          -134.1
+          712.18,
+          -136.88
         ],
         [
-          724.39,
-          -134.1
+          724.37,
+          -136.88
         ],
         [
-          724.39,
-          -126.48
+          724.37,
+          -129.26
         ],
         [
-          712.2,
-          -126.48
+          712.18,
+          -129.26
         ]
       ]
     },

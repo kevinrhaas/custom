@@ -442,6 +442,23 @@ EDGE_RECONCILED = {
     "frederick_thomas_shop": 7.75,
 }
 
+# AND THE SAME FAULT ON LAKE STREET, WHICH IS WHERE IT WENT NEXT. T-0199 closed
+# South Water and named the eleven march steps left in the town; they were all on
+# Lake Street, and their cause is the same modern-kerb read (T-0196). Three are
+# reconciled here by the same derivation, against the same committed line, to the
+# same 1.50 m. THE FOURTH IS NOT, and it is not an omission: the same translation
+# would set `first_presbyterian_church` down ON TOP of `physicians_office`, which
+# stands 3.15 m behind it on the lot it would come onto — moved 0.2 m the two are
+# inside the three-metre separation gate and moved 3.2 m they overlap. There is no
+# translation along this normal that both clears the walk and leaves the pair
+# standing apart, and choosing between a documented church and an inferred
+# household is a rule rather than a metre, so it went to the owner as T-0245. Two
+# steps of Lake Street's walk stay unlaid and the record below says whose they are.
+EDGE_RECONCILED_LAKE = {
+    "old_bank_building": 3.124, "dole_warehouse_south": 2.784,
+    "st_marys_church": 4.532,
+}
+
 # The record's own id, and the liberty that claims every invented metre in it.
 STREET_EDGE_ID = "town_street_edge"
 STREET_EDGE_RECORD_ID = "town_street_edge"

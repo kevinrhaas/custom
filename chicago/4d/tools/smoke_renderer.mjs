@@ -3860,10 +3860,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 42
-        && frontage.census?.crossings === 28
+      frontage.census?.records === 5 && frontage.census?.walks === 43
+        && frontage.census?.crossings === 32
         && frontage.census?.posts === 15 && frontage.census?.fences === 26
-        && frontage.census?.refused === 74
+        && frontage.census?.refused === 72
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3912,11 +3912,14 @@ for (const [label, viewport, touch] of [
     // a board whose painted name drifted from the record would be this project
     // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's thirty-three (T-0069 laid
+    // chunks (T-0119), the town street edge's thirty-four (T-0069 laid
     // twenty-one; T-0198's six reconciled South Water placements welded two runs
     // into one and T-0199's last five welded two more, taking it to eighteen;
     // T-0240 laid Randolph Street's thirteen block faces and took it to
-    // thirty-three) and the THREE street-fence meshes — one per covered street
+    // thirty-three; T-0196 reconciled three Lake Street placements, and clearing
+    // old_bank_building off blk_lake_lasalle's north face opened a fourteenth
+    // Lake run west of the ground break that still cuts it) and the THREE
+    // street-fence meshes — one per covered street
     // that carries a fence, which T-0198 split off so the boards could leave the
     // shadow map while the fences stayed in it, and which is why this number
     // moves with `EDGE_STREETS` — all on ONE material, and the painted name on
@@ -3927,7 +3930,7 @@ for (const [label, viewport, touch] of [
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 53,
+        && frontage.meshes === 54,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);

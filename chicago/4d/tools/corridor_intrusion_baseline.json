@@ -44,19 +44,6 @@
       "street": "clark",
       "structure": "cook_county_courthouse_1835"
     },
-    "dole_warehouse_south:frame_1832": {
-      "anchor_in": [],
-      "anchor_offset_m": 18.63,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [],
-      "depth_m": 1.28,
-      "layer": "research",
-      "phase": "frame_1832",
-      "position_confidence": "inferred",
-      "street": "lake",
-      "structure": "dole_warehouse_south"
-    },
     "exchange_coffee_house:frame_1834": {
       "anchor_in": [
         "wells"
@@ -209,19 +196,6 @@
       "position_confidence": "reconstructed",
       "street": "south_water",
       "structure": "newberry_dole_warehouse"
-    },
-    "old_bank_building:frame_1834": {
-      "anchor_in": [],
-      "anchor_offset_m": 19.83,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [],
-      "depth_m": 1.63,
-      "layer": "research",
-      "phase": "frame_1834",
-      "position_confidence": "reconstructed",
-      "street": "lake",
-      "structure": "old_bank_building"
     },
     "peck_store:frame_1833": {
       "anchor_in": [],
