@@ -90,6 +90,7 @@ T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an
 T-0209 — The sward's drawn reach is measured off plants at two per cent coverage
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
+T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0224 — A critic baseline standing on the public square
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0201 — docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them

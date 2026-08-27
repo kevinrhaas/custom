@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 289, title: 'The La Salle slough runs into the river, on a crossing', kind: 'feature', ts: '2026-08-27T11:47:56.788Z', date: 'Aug 27, 2026, 6:47 AM CT',
+    items: [
+      'Stand on South Water Street and look west towards La Salle. The little drain that comes down off the block used to stop dead at the street: a tongue of bare ground carried across the channel, water on the far side of it and water on the near side, two ponds with a causeway between. It is one watercourse now, running unbroken from inland out into the river.',
+      'What crosses it is new too, because the street had to get over the water somehow. A timber crossing twelve metres long stands there on one log bent, with a six-foot plank footway laid along its north edge and the wagon way beside it — the crossing for the road and the crossing for the sidewalk the owner asked for. The earth is graded up to each end of it, so you walk on and off without a step.',
+      'The whole of it is invented and its card says so. Nothing in this project’s papers records a crossing here; the 1834 survey draws the stream stopping at the street line and nobody wrote down what the street did about it. Its sibling four hundred metres east — the log bridge at the foot of State Street — IS recorded, and every figure on this one is borrowed from it and labelled as borrowed: the span sized off the stream, the half-metre of air over the water, the split-log floor.',
+      'One figure is wider than its sibling and it is the footway: fourteen feet of deck instead of ten, being eight feet of wagon way and six of walk side by side. That extra four feet is the sidewalk and nothing else, and it is written down as a liberty rather than slipped past.',
+      'A check now takes the readings on every build — the drain unbroken from inland to the river, open water under the deck, dry ground holding both abutments — so the stream cannot quietly silt back up under its own crossing.',
+    ] },
   { v: 288, title: 'The soft shading no building wears was arriving pitch black', kind: 'fix', ts: '2026-08-27T11:22:49.953Z', date: 'Aug 27, 2026, 6:22 AM CT',
     items: [
       'Nothing you can see changed. This one is about the workshop rather than the town — the soft shading that gathers in the corner of a doorway or under an eave. No building here wears it, and none did yesterday either.',

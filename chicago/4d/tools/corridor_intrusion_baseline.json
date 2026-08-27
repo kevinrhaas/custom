@@ -130,6 +130,24 @@
       "street": "south_water",
       "structure": "hogan_store"
     },
+    "lasalle_slough_crossing:crossing_1835": {
+      "anchor_in": [
+        "lasalle",
+        "south_water"
+      ],
+      "anchor_offset_m": 5.08,
+      "body_toward_street": true,
+      "category": "furniture",
+      "centroid_in": [
+        "south_water"
+      ],
+      "depth_m": 11.39,
+      "layer": "research",
+      "phase": "crossing_1835",
+      "position_confidence": "reconstructed",
+      "street": "south_water",
+      "structure": "lasalle_slough_crossing"
+    },
     "log_jail:log_1833": {
       "anchor_in": [],
       "anchor_offset_m": 13.33,
@@ -302,5 +320,5 @@
     }
   },
   "measured": "2026-08-16",
-  "placed_phases": 348
+  "placed_phases": 349
 }

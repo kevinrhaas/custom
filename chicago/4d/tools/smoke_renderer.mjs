@@ -3843,13 +3843,14 @@ for (const [label, viewport, touch] of [
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
       };
     });
-    check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 26
+    check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
+      frontage.census?.records === 5 && frontage.census?.walks === 27
         && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 53
+        && frontage.census?.refused === 54
         && frontage.recordIds.join(',')
-          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
+          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
+            + 'lasalle_crossing_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
       `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
       + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `

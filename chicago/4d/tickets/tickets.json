@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 6:22 AM",
+  "generated_ct": "Aug 27, 2026, 6:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2284,7 +2284,7 @@
     {
       "id": "T-0129",
       "title": "The La Salle slough is dammed by a tongue of land where the street crosses it",
-      "state": "open",
+      "state": "claimed",
       "epic": "GROUND",
       "requested_by": "owner",
       "seen": true,
@@ -2294,7 +2294,7 @@
       "opened": "2026-08-21",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/24/2026, 1:09:24 PM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 5
@@ -3467,7 +3467,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 63
     },
     {
       "id": "T-0202",
@@ -3485,7 +3485,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0203",
+      "title": "The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 60
     },
     {
       "id": "T-0207",
@@ -3719,7 +3737,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 61
+      "queue_rank": 62
     },
     {
       "id": "T-0220",
@@ -3791,7 +3809,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 61
     },
     {
       "id": "T-0225",
