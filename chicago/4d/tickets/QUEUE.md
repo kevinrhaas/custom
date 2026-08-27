@@ -21,7 +21,6 @@
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
 
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
-T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
@@ -104,3 +103,4 @@ T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
+T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap

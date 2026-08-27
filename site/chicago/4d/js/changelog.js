@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 294, title: 'The ledger of what we made up could lose an entry', kind: 'chore', ts: '2026-08-27T17:20:34.964Z', date: 'Aug 27, 2026, 12:20 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is about the register that lists every part of this reconstruction we invented — the one you open to ask which of this did you make up — and two ways an entry could go missing from it without anybody being told.',
+      'The register is numbered, and every piece of work adds an entry to the end of it. Twice in one afternoon in August, two pieces of work took the same number. Both entries were written, both were kept, and the two were combined without a word of complaint: a numbered list with one number on two different entries, found by somebody reading the file rather than by any check.',
+      'Looking into that, a quieter fault turned up beside it. A heading has a shape, and a heading that misses that shape by one character — an en dash where a slightly longer dash belongs, which is what a paste from almost anywhere else in the world brings with it — was not refused. It was absorbed into the entry above it. The register still compiled, every check still passed, and the liberty was simply gone.',
+      'Both stop the work now. A number taken twice is reported with both titles, so it is clear which of the two is the newcomer to renumber. A heading that does not parse is reported with its line number, because an en dash and an em dash are three pixels apart in an eight-thousand-line file. And the check knows that L31 and L31a are two entries rather than one — nine such lettered entries stand in the file today, and a check that mistook them would be red on a file nobody had touched, and switched off within the day.',
+      'Measured rather than assumed. Two pieces of work that each add at the end of the file already collide loudly, and always did. The silent case is the other one, where the two additions land in different parts of a long file and neither touches the other’s lines; that is the case now covered. The reasoning sits next to the file, with the figures, so the next person to reach for a shortcut has to read it first.',
+    ] },
   { v: 293, title: 'Four agents in one day re-measured the same failure by hand', kind: 'chore', ts: '2026-08-27T15:29:05.044Z', date: 'Aug 27, 2026, 10:29 AM CT',
     items: [
       'Nothing you can see changed. This is a note about the workshop, and about a cost nobody had noticed was being paid over and over.',
