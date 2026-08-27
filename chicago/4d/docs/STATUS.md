@@ -1,5 +1,111 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0158: one line in the wrong order was extinguishing the AO, and the number the AO parcel aims at was wrong too
+
+**Nothing in the town changed, and this run is exempt under AGENTS.md exemption 2** — the second
+half of a split whose first half was a measurement. T-0015 measured the failure on 2026-08-23,
+wrote the guard, demonstrated it firing, and then deliberately reverted it because T-0139 made any
+edit to `build.py` unhealable. T-0139 is closed; this is the fix half, and it lands the guard.
+
+**The fault, in one line.** `bake_ao()` set `img.colorspace_settings.name = "Non-Color"` *after*
+`bpy.ops.object.bake(type="AO")`. Setting a colorspace on a GENERATED image that has no file
+behind it and is not packed **frees the image buffer**, which then regenerates from
+`generated_color` — black — and **clears `is_dirty`**, which is the flag Blender's own exporter
+tests in `make_temp_image_copy()` before it will bother to carry unsaved pixels across. So one
+statement destroyed the data *and* switched off the exporter's only rescue path. Moving it above
+the bake is the whole repair.
+
+**Measured on the bytes, not read off the code** — `sauganash_hotel`, 512×512, 48 samples,
+Blender 4.5.3, four bakes of the same asset, occlusion PNG extracted from the GLB and decoded
+with a reader written for this and self-tested against all five PNG filter types:
+
+| when the image is tagged `Non-Color` | in Blender's buffer after the bake | in the exported GLB | drift |
+|---|---|---|---|
+| **after the bake — as shipped** | min 0.000 max 1.000 mean **0.2158** | min **0** max **0** mean **0.0000**, all 262,144 texels | **100 %** |
+| **before the bake — the fix** | min 0.000 max 1.000 mean **0.1665** | min 0.0000 max 1.0000 mean **0.1665** | **0.0 %** |
+| bake, `pack()`, then Non-Color | mean 0.2158 | mean 0.2158 | 0.0 % |
+| no colorspace change at all (sRGB) | mean 0.2158 | mean 0.2158 | 0.0 % |
+
+The last two rows survive the export but are the wrong number, and that is the second finding.
+
+**`Image.pixels` on an 8-bit buffer is RAW — measured, both directions.** Setting 0.1665 and
+reading it back gives 0.1647 whether the image is tagged `sRGB` or `Non-Color`, and the saved PNG
+byte is 42 either way (an sRGB *encode* would be 113). So the tag does not change how the buffer
+is read; it changes what the **bake writes into it**. Under `sRGB` the bake stores the
+sRGB-ENCODED occlusion; glTF samples an occlusion texture as `byte / 255` **with no transfer
+decode**, so the pre-2026-08-27 path was shipping a map ~30 % too bright *before* it went black.
+
+**Which means the AO parcel has been aiming at a number that is wrong twice over.** `bake_ao()`'s
+docstring and ROADMAP R-W3a both quote **"mean 0.265, 69 % of texels below half"** (and 0.38 for a
+shortened AO distance) as the reading that makes the Sauganash render brown when its white paint
+is documented. Two faults:
+
+1. **the gamma above** — those are sRGB-encoded readings, not occlusion;
+2. **the population** — they are taken over the whole 512×512 atlas, and **68.9 % of that atlas is
+   empty UV space**. The famous "69 % below half" is very nearly the empty fraction itself. Most
+   of what that figure counted was blank, not dark.
+
+Re-measured from the exported file: atlas-wide raw mean **0.1665**, and over the **81,458** texels
+the unwrap actually writes, **mean 0.5358 with 58.7 % below half**. The 0.38 figure carries both
+faults and has not been re-measured at all. The *shape* of the concern survives — more than half
+the written surface is below half occlusion — but the numbers behind every AO decision this
+project has taken are void, and **none of them was ever read off a file that carried the occlusion
+in the first place**. Corrected in place in `bake_ao()` and R-W3a; **T-0227** filed to answer the
+question properly, from a rendered frame, before R-W3a builds a cage to improve a figure nobody
+has measured correctly. T-0227 also carries the unwrap: an atlas two-thirds empty is two-thirds
+of every occlusion map's bytes spent on nothing.
+
+**What was NOT done, deliberately: `--ao` stays off.** It is opt-in and nothing passes it — not
+`tools/bake.sh`, not `chicago-4d-bake.yml` (T-0015 established this). This ticket's job was the
+mechanism; whether the result is *good enough to ship* is a different question, it is now
+answerable for the first time, and it is T-0227. Turning the flag on in the same run that made it
+work would be deciding that question by momentum.
+
+**A cost figure R-W3a now has to answer first.** With the export working, `sauganash_hotel`'s
+master goes **94,420 → 202,292 bytes, +114 %**: a 512² occlusion PNG carrying real variation costs
+~107 KB where the black one compressed to 3,620 — so T-0015's "+4.4 % file size" was measuring the
+size of the *bug*, and is void. `assets/gltf/` is 27 MB; a 512² map on each of 348 masters adds
+~37 MB. Textures do not meshopt, so the derivatives carry the same PNGs, and the published tree is
+**23.53 MB against a 25 MB `SITE_BUDGET_MB`**. Texture size and how many assets get a map at all
+are now the cage parcel's first questions, not its last.
+
+**What fails when it recurs** — the ticket asked for this specifically, because it is the second
+fault of this shape here and the first repair left only a comment behind.
+
+- `generators/ao_export.py` reads the **exported bytes**: a pure-stdlib PNG decoder and GLB reader
+  (no Blender, no numpy, no Pillow — CI installs `jsonschema` and `pyproj` and nothing else).
+- `generators/build.py` calls `assert_ao_survived_export()` the moment each GLB is written, and
+  the manifest entry is written **only if it passes** — so `baked_ao: true` cannot outlive the
+  occlusion again. It refuses a missing `occlusionTexture`, a uniform texture (whichever value it
+  is uniform on — a white map is a bake that did not arrive just as much as a black one), and a
+  mean more than 2 % from the bake's own reading, which is the arm that would catch the sRGB
+  curve at ~30 %.
+- `generators/ao_export.py --gate` runs in `check.sh` on every commit over all 348 committed
+  masters in 0.27 s, and cross-checks the manifest **in both directions**: `baked_ao: true` with
+  no texture, and a texture under `baked_ao: false`.
+- `--self-test` breaks every arm in memory — 17 assertions, including the five PNG filter types
+  round-tripping and a gradient of known mean reading back exactly.
+- Proved on the real artefacts rather than only synthetically: the guard **refuses** the actual
+  broken GLB (uniform 0.0000 over 262,144 texels) and **passes the fixed one on merit**.
+
+**Gates: `tools/check.sh` PASS. The Playwright smoke was NOT run to completion, and that is
+stated rather than glossed.** The only renderer file this change touches is `changelog.js` (one
+entry), but three attempts at `SMOKE_STAGE=8` mobile against the published mirror gave two
+timeouts and one browser kill, at 9–13 minutes for a stage that should not take that long — the
+box was running ten agents at **load 48 with 105 concurrent Chromium processes on 4 cores**, and a
+control run on unmodified `origin/dev` failed the same way. A loaded box makes the suite flap in
+both directions, so nothing was concluded from it and no assertion was touched. What *was* proved,
+with generous timeouts: an isolated probe of the exact What's-New assertions passed all eight —
+273 entries render, the new entry appears with all six items, the unread marker clears, a
+returning visitor is flagged only the newer entries, zero page errors. **CI's nine-stage run at
+both viewports is the authority here.**
+
+**The rebake, and what it cost.** `generators/mesh_inputs.py` hashes `build.py`'s bytes into every
+asset's `inputs_sha256`, so this one-line reorder restaled all 346 structure masters. The full
+rebake took **1 m 23 s** and every one of the 346 GLBs came back **byte-identical** — the only
+change in `assets/` is 346 hash strings in `manifest.json`. Worth recording, because T-0015 could
+not run that rebake at all (T-0139) and reverted a working guard rather than monkey-patch around
+it: the healing route now works, and it is cheap.
 ## Shipped 2026-08-27 — T-0184: the ribbon's bends are mitred, and both joints the ticket named were wrong
 
 **23.47 m2 of prairie inside the roadway, closed to 0.000, for 22 triangles.** `streets.js` built

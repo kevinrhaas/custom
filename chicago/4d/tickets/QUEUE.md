@@ -48,7 +48,6 @@ T-0089 — The 'light' scene-detail ceiling is breached, and it was breached bef
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible
-T-0158 — The AO bake succeeds and the glTF export drops it: the shipped occlusion texture is uniformly black
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
 T-0019 — Six forb layers ask for more plants than the lattice holds
@@ -76,6 +75,7 @@ T-0195 — Three South Water corner stores lap the cross street's corridor by 0.
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
 T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
