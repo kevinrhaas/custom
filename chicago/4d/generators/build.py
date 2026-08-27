@@ -135,7 +135,7 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> float:
     The shape of the problem is unchanged — more than half the written surface sits
     below half occlusion, on a building whose white paint is DOCUMENTED — but no
     judgement about it should rest on the old numbers, and none of them was ever
-    taken from a file that carried the occlusion at all (T-0208 asks the question
+    taken from a file that carried the occlusion at all (T-0227 asks the question
     properly, now that one can).
 
     The fix, when someone picks this up, is a low-poly AO cage — bake the massing

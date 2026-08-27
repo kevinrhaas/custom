@@ -107,7 +107,7 @@ So every number the AO parcel is written around is void, in two independent dire
 **none of them was ever read off a file that carried the occlusion** — the export was shipping
 black. The concern's shape survives (over half the written surface below half occlusion, on a
 documented-white building) but nothing quantitative does. Corrected in place in `bake_ao()` and
-R-W3a, and **T-0208** filed to settle it from a rendered frame before a cage is built to improve
+R-W3a, and **T-0227** filed to settle it from a rendered frame before a cage is built to improve
 a figure nobody has measured correctly.
 
 **Acceptance, met.** `--ao` on one asset:

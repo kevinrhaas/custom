@@ -295,6 +295,56 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
+  //
+  // RE-BUDGETED AGAIN 2026-08-24, 1210000 -> 1225000 (T-0098), and the entry
+  // above asked for exactly this to be justified: "the next parcel that
+  // breaches them is breaching a bar that means something." It measured what
+  // the bar means before moving it, twice, at the release smoke's own worst
+  // stand (Lake Street at Canal, east down the axis, desktop 1280x800):
+  //
+  //   dev alone, this parcel unmounted     1,209,926 of 1,210,000   PASS by 74
+  //   dev plus a twelve-stem tree stand    1,213,446 of 1,210,000   FAIL by 3,446
+  //
+  // SEVENTY-FOUR TRIANGLES. That is a quarter of one tree, on a frame of 1.2
+  // million. The bar had not been reached by a parcel that overspent it; it had
+  // been reached, full stop, and the next VISIBLE parcel of any size at all was
+  // going to fail it whatever it was - which is a fact about the ceiling and not
+  // about the parcel that found it. `full` was measured in the same runs with
+  // 16,852 (1.2 %) of headroom, so the ladder was not uniformly full: the middle
+  // rung alone had been squeezed to nothing.
+  //
+  // WHERE 1,225,000 COMES FROM, so it is a principle and not "enough for me":
+  // it gives `balanced` the same PROPORTIONAL headroom `full` carries today
+  // (about 1 %) over the measured worst stand WITH this parcel in. The ladder
+  // keeps its shape; nothing was chosen to fit one record.
+  //
+  // WHAT WAS NOT DONE, and both halves matter. `light` IS UNTOUCHED at 1050000
+  // and reads 815,777 - 22 % under its own ceiling. The floor a weak machine
+  // boots into is not spent here, which is the standing constraint on every
+  // re-budget this table has taken. And this raise does NOT buy room for the
+  // parcel after this one: it restores about 1 % and no more, and the trim that
+  // would actually win the middle rung back is still T-0149 (the axial view) and
+  // T-0147 (the ceilings that follow a trim down). A ceiling raised to carry one
+  // record is not a ceiling anybody should spend twice.
+  // SUPERSEDED 2026-08-27, and the re-budget above is DEFERRED rather than
+  // dismissed: it was careful reasoning that later measurement overtook, twice.
+  //
+  //   (i)  It rests on `balanced` measuring 1,213,446 at the worst stand. dev
+  //        measures 1,252,802 there today, so 1,225,000 no longer clears the
+  //        breach it was raised to clear. It also rests on `full` carrying
+  //        1.2 % headroom; `full` is now OVER, at 1,412,120 of 1,400,000. Both
+  //        halves of the proportional-headroom argument have moved.
+  //   (ii) T-0209 measured what actually occupies the frame, which nobody had:
+  //        `trees` draws 360,926 triangles out of 181,900 it owns -- the whole
+  //        layer twice -- because trees.js submits kilometre-wide quadrant
+  //        meshes whole to a +/-240 m shadow box. 180,100 triangles, 14.4 % of
+  //        the frame, cast nothing any pixel of the shadow map can hold.
+  //
+  // Re-basing a ceiling with that still in it budgets for work the renderer
+  // should not be doing, and it would be the fifth raise. So the number stays
+  // at 1,210,000 and the budget question lives entirely in T-0209, which orders
+  // the trim first and the ceiling after. The tree stand this parcel adds ships
+  // regardless; its own smoke leg is red on dev with or without it.
   balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
@@ -508,12 +558,69 @@ async function boot() {
   const bases = resolveBases();
   const coarse = prefersTouch();
 
+  /**
+   * MULTISAMPLING, ON EVERY DEVICE INCLUDING A PHONE (T-0157).
+   *
+   * This read `antialias: !coarse` from Milestone 0 — the first commit of this
+   * renderer, before there was a town to look at — so every touch device drew
+   * the whole reconstruction with no multisampling at all. Nobody had ever
+   * measured what that costs a phone: T-0013 established that all 627
+   * interior-flickering pixels at `from_above` are edges and that only sample
+   * density touches them, but every one of its readings was taken at 1280×800
+   * on the DESKTOP boot, where MSAA was already absorbing most of it.
+   *
+   * `tools/measure_phone_aa.mjs` measures the phone, at 390×780 in a context
+   * with `hasTouch` — which the release gate uses and which `TIE_VIEWPORT=mobile`
+   * does not, so the older instrument had been booting the desktop renderer in a
+   * narrow window. Published mirror, 2 mm nudge, shadow map off, control and
+   * return-to-pose both 0 px:
+   *
+   *              flicker px      HARD FLIPS (a pixel that moved ≥ 64 of 255)
+   *   from_above   1056 → 2482        25 → 0
+   *   lake_market  4843 → 7310       124 → 0
+   *
+   * READ THE SECOND COLUMN, AND NOTE THAT THE FIRST ONE ARGUES THE OTHER WAY.
+   * The flicker COUNT — the number T-0013 and three boxes of ROADMAP quote —
+   * goes UP by 135 % aerial and 51 % at eye height when MSAA is switched on,
+   * because a partial resample touches more pixels than a whole flip does. A run
+   * that had measured only the count would have refused this. What actually
+   * happens is that the SEVERITY collapses: the worst per-pixel movement falls
+   * 105 → 28 aerial and 140 → 37 at Lake and Market, the mean 15.6 → 6.8 and
+   * 14.8 → 6.4, and every one of the 149 pixels that were swapping surface
+   * outright stops doing it. That is precisely the difference between an edge
+   * that crawls and an edge that is resolved.
+   *
+   * WHAT IT COSTS, AND THE HONEST LIMIT OF THAT FIGURE. Timed over the ten scene
+   * anchors the release gate walks, clock held, A/B/A: **+56 % of a frame**
+   * (24,457 → 43,283 ms summed, against a mean-of-A baseline), with the runner
+   * itself drifting +26 % between its two A passes — so the true reading is
+   * "roughly half a frame again", not a digit. It is measured through ANGLE's
+   * SwiftShader, a SOFTWARE rasteriser, which resolves every sample on the CPU
+   * with no tile memory: that is the harshest possible witness for this change
+   * and the figure is an UPPER bound. **The cost on real phone silicon was not
+   * measured and is not claimed.**
+   *
+   * The floor is untouched and the escape hatch already ships. A phone still
+   * boots into the `light` scene-detail tier, unchanged; and Render quality in
+   * Settings drops the pixel ratio to 1, which cuts the multisampled pixel count
+   * by 56 % — measured at 4 stations rather than asserted, see STATUS.md.
+   */
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: !coarse,
+    antialias: true,
     powerPreference: 'high-performance',
     stencil: false,
   });
+  /**
+   * The boot-time ratio. Note that this is superseded a few hundred lines below
+   * by `renderer.setPixelRatio(Math.min(dpr, hud.settings.quality))` once the
+   * visitor's stored settings are read, and the shipped default of `quality` is
+   * **1.5 on both platforms** — so the `: 2` here reaches a fresh visitor's
+   * screen for the handful of frames before the HUD mounts and nowhere else.
+   * T-0157's premise held that a phone was capped at 1.5 "rather than 2"; what
+   * the renderer actually reports is 1.5 on a phone at dpr 2 and 1.0 on a
+   * desktop at dpr 1, which is the phone supersampling MORE than the desktop.
+   */
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
 
   const scene3d = new THREE.Scene();

@@ -175,7 +175,7 @@ whose height is a guess is a guessed wall, even if we know it was white.
   (T-0015), and whether it *should* be is open: every figure that said the bake is too dark was
   read off an sRGB-tagged buffer AND over an atlas that is 68.9 % empty UV space, so it is void
   (T-0158). The corrected reading on `sauganash_hotel` is mean **0.5358** over the 81,458 texels
-  the unwrap writes, 58.7 % of them below half. T-0208 settles it from a rendered frame.
+  the unwrap writes, 58.7 % of them below half. T-0227 settles it from a rendered frame.
 - No emissive, no transparency in the base asset. The confidence view's translucency is a
   *renderer* effect (screen-door dither in the opaque pass), never baked geometry.
 
