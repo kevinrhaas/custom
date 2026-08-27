@@ -35,6 +35,29 @@ Deliberately NOT a markdown renderer. It reads the one shape this document has �
 `### L<n> — <title>` followed by `**Label:** text` fields — and carries the field
 text through verbatim, markdown and all, for the renderer to display. Anything it
 cannot parse it reports rather than dropping.
+
+WHICH SECTION AN ENTRY IS IN TAKES TWO STATEMENTS THAT AGREE (T-0054). `resolved`
+is not a label like the others: `validate.py` exempts that section from the check
+that a claimed invention is still an invention, which is what lets an append-only
+document survive its own data being corrected. So it is the one section a mistake
+in cannot be caught by anything downstream — the exemption's whole job is to stop
+asking.
+
+It was reached by accident 23 times. `## Resolved` was the LAST section of the
+document, and this project's rule is that a liberty is APPENDED, so an entry
+written at the end of the file landed inside the exemption and compiled
+`section: "resolved"` while the fence it was written for stood in the town. The
+markdown and the compiled JSON agreed exactly — this file read the fault the same
+way both times — which is the same blind spot T-0207 found with conflict markers:
+a consistency check cannot see a fault that both sides reproduce faithfully.
+
+The document was reshaped so that appending lands in the per-subject register, and
+that is the fix. This is the guard: an entry's own text says whether it was
+settled, in the `**Resolved:**` line the section's preamble has always asked for,
+and its position says the same thing independently. The exemption is granted only
+where the two agree. Either half alone is reported, and the compiled section is
+the one that is still checked — a misfiled entry is a standing liberty until
+somebody writes down what settled it.
 """
 
 from __future__ import annotations
@@ -115,6 +138,22 @@ SECTION_KEY = {
     "resolved": "resolved",
 }
 
+# The order the Evidence panel reads in, which is not the order the document is
+# written in. The markdown is a ledger and grows by appending; the panel is read
+# by a visitor, and what we are still making up belongs above what we no longer
+# are. Emitting in this order also means the file can be reshaped — as it was to
+# get Resolved out of the append path — without the panel's order moving.
+SECTION_ORDER = ("standing", "per_subject", "resolved", "other")
+
+# The section that cannot be entered by accident, and the field that has to say so.
+RESOLVED = "resolved"
+SETTLED_FIELD = "resolved"
+
+# Where a misfiled entry lands instead. It is the section that is still CHECKED:
+# an entry nobody has said is settled keeps its obligations, and the register it
+# keeps them in is the per-subject one, which is 167 of the 170 unsettled entries.
+UNSETTLED_DEFAULT = "per_subject"
+
 
 def _clean(text: str) -> str:
     """Collapse the markdown's hard-wrapped lines into one paragraph."""
@@ -184,6 +223,42 @@ def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
     return sorted(claims, key=claim_sort_key)
 
 
+def settled_section(lid: str, positional: str, states_settled: bool,
+                    problems: list[str]) -> str:
+    """The section an entry is in, from its position AND its own words.
+
+    They are two independent statements of one fact, and `resolved` is granted
+    only where they agree, because `resolved` is the section `validate.py`
+    exempts from the over-claim check. A section that switches a check off is
+    the one section a mistake in has nothing downstream to catch it.
+
+    Neither half is silently believed:
+
+      * Under `## Resolved`, saying nothing about what settled it — the T-0054
+        fault, and the reason the document was reshaped. It compiles as a
+        standing liberty, keeps its obligations, and is named here.
+      * Carrying a `**Resolved:**` line somewhere else — the mirror image, and
+        the likelier one now that appending lands in the per-subject register.
+        It compiles where it sits, because a line of prose may not switch off a
+        check on its own; the entry is moved, or it is not resolved.
+    """
+    if positional == RESOLVED and not states_settled:
+        problems.append(
+            f"{lid}: sits under '## Resolved' but no '**Resolved:**' line says what "
+            f"settled it — an entry appended at the end of the file used to land "
+            f"here and be exempted from the check that its claim is still an "
+            f"invention (T-0054). Compiled as '{UNSETTLED_DEFAULT}'. Move it into the "
+            f"per-subject register, or write down what settled it")
+        return UNSETTLED_DEFAULT
+    if positional != RESOLVED and states_settled:
+        problems.append(
+            f"{lid}: carries a '**Resolved:**' line but sits under the "
+            f"'{positional}' section — say what settled it AND move the entry into "
+            f"'## Resolved'. Compiled as '{positional}': one line of prose does not "
+            f"exempt an entry from the check that its claim is still an invention")
+    return positional
+
+
 def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
     problems: list[str] = []
 
@@ -245,7 +320,8 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
         entries.append({
             "id": m.group(1),
             "title": m.group(2).strip(),
-            "section": section_at(m.start()),
+            "section": settled_section(m.group(1), section_at(m.start()),
+                                       SETTLED_FIELD in by_label, problems),
             "subjects": subjects,
             "covers": covers,
             "recorded": recorded.group(1) if recorded else None,
@@ -262,6 +338,12 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
         seen.add(e["id"])
         if e["recorded"] is None:
             problems.append(f"{e['id']}: no Recorded date")
+
+    # Grouped for the reader, stable within each group, so the panel's order is
+    # a decision here rather than a side effect of where a section sits in a
+    # 7,800-line markdown file. Nothing else in the derived file is reordered.
+    entries.sort(key=lambda e: SECTION_ORDER.index(e["section"])
+                 if e["section"] in SECTION_ORDER else len(SECTION_ORDER))
 
     return entries, problems
 
@@ -287,11 +369,106 @@ def build() -> tuple[dict, list[str]]:
     return doc, problems
 
 
+SPECIMEN = """# Liberties taken
+
+## Standing liberties
+
+### L1 — A whole-scene decision
+**Decision:** something the scene does everywhere.
+**Recorded:** 2026-08-09.
+
+---
+
+## Resolved
+
+Kept verbatim, with a **Resolved:** line saying what settled them.
+
+### L2 — Settled, and it says so
+**Decision:** something we invented.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-11, the evidence arrived.
+
+### L3 — Appended at the end of the file, which used to be here
+**Decision:** something we are still inventing.
+**Recorded:** 2026-08-12.
+
+---
+
+## Per-subject liberties
+
+### L4 — One building
+**Decision:** something about one building.
+**Recorded:** 2026-08-13.
+
+### L5 — Says it was settled, and was never moved
+**Decision:** something we invented.
+**Recorded:** 2026-08-14.
+**Resolved:** 2026-08-15, the evidence arrived.
+"""
+
+
+def self_test() -> bool:
+    """Every assertion fires when broken.
+
+    The specimen is the document in miniature, faults and all: an entry that is
+    settled and says so, one that landed under Resolved by being appended (the
+    T-0054 fault), and one that says it was settled without being moved (the
+    mirror image). A synthetic document is the only way to hold both faults,
+    because the committed one is repaired — and the repaired document is
+    asserted too, at the end, so this cannot pass on the specimen alone.
+    """
+    ok = True
+
+    def check(label, got, want=True):
+        nonlocal ok
+        if got != want:
+            ok = False
+        print(f"  {'ok  ' if got == want else 'FAIL'}  {label}")
+
+    entries, problems = parse(SPECIMEN, {})
+    at = {e["id"]: e["section"] for e in entries}
+    blamed = {lid for lid in at for p in problems if p.startswith(lid + ":")}
+
+    check("a standing entry compiles standing", at.get("L1") == "standing")
+    check("a resolved entry that says what settled it compiles resolved",
+          at.get("L2") == "resolved")
+    check("…and is not blamed for anything", "L2" not in blamed)
+    check("an entry under Resolved saying nothing is NOT compiled resolved",
+          at.get("L3") == UNSETTLED_DEFAULT)
+    check("…and the gate names it", "L3" in blamed)
+    check("a per-subject entry compiles per_subject", at.get("L4") == "per_subject")
+    check("…and is not blamed for anything", "L4" not in blamed)
+    check("a Resolved line outside the section does NOT exempt the entry",
+          at.get("L5") == "per_subject")
+    check("…and the gate names that too", "L5" in blamed)
+    check("the reader's order is standing, then per-subject, then resolved — "
+          "and inside a group, the order the document was written in",
+          [e["id"] for e in entries] == ["L1", "L3", "L4", "L5", "L2"])
+
+    # And the document that ships. The fault this exists for is exactly a
+    # section nobody meant to be in, so the specimen proving the assertion
+    # fires is worth nothing without the live reading beside it.
+    live, live_problems = parse(SOURCE.read_text(), {})
+    settled = [e["id"] for e in live if e["section"] == RESOLVED]
+    misfiled = [p for p in live_problems if "## Resolved" in p or "**Resolved:**" in p]
+    check(f"the committed document misfiles nothing ({len(settled)} settled, "
+          f"{len(live) - len(settled)} still standing)", not misfiled)
+    return ok
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and compare against the committed file")
+    ap.add_argument("--self-test", action="store_true",
+                    help="prove the section assertions fire when broken")
     args = ap.parse_args()
+
+    if args.self_test:
+        print("\n\033[1m== …and its own assertions still fire when broken\033[0m")
+        good = self_test()
+        print("\nSELF-TEST " + ("PASS" if good else "FAIL"))
+        return 0 if good else 1
 
     doc, problems = build()
     for p in problems:
