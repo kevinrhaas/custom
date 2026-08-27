@@ -548,10 +548,10 @@ def check_frontage(records: list[dict], parcel: dict, datum: dict) -> None:
 
 def validate_programme(inventory: dict, parcel: dict, records: list[dict]) -> None:
     if sum(inventory["family_targets"].values()) != inventory["targets"]["roof_total"]:
-        raise SystemExit("family targets do not sum to the 665-roof target")
+        raise SystemExit("family targets do not sum to the authored roof target")
     matrix_total = sum(v["total"] for v in inventory["district_group_matrix"].values())
     if matrix_total != inventory["targets"]["roof_total"]:
-        raise SystemExit("district/group matrix does not sum to the 665-roof target")
+        raise SystemExit("district/group matrix does not sum to the authored roof target")
     for district, row in inventory["districts"].items():
         total = sum(v[district] for v in inventory["district_group_matrix"].values())
         if total != row["target"]:
