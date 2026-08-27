@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 298, title: 'The quality ceilings come back down, as promised', kind: 'chore', ts: '2026-08-27T21:51:24.754Z', date: 'Aug 27, 2026, 4:51 PM CT',
+  { v: 299, title: 'The quality ceilings come back down, as promised', kind: 'chore', ts: '2026-08-27T22:17:42.751Z', date: 'Aug 27, 2026, 5:17 PM CT',
     items: [
       'Nothing in the town looks different today. This is the second half of a promise made in August, kept on the day the work that paid for it landed.',
       'Each of the three quality settings has a ceiling: the most the town is allowed to cost to draw at that setting, measured from the five hardest places a visitor can stand. In August the town went over two of those ceilings \u2014 and the cause turned out not to be the town at all, but the sun being asked to draw a forest it could not cast a shadow from. Fixing that was real work rather than a switch, and in the meantime a check that is red for every change reports nothing about any of them. So the two ceilings were lifted just enough to clear the breach, with a note beside them saying exactly when they had to come back down.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'They come back with room to spare rather than by a hair. Re-measured at all five of those hard viewpoints, on a desktop screen and on a phone-sized one, the worst frame in the town costs 1,252,519 at the full setting and 1,083,932 at balanced \u2014 about a tenth of each ceiling left clear. The lightest setting, which was never lifted, keeps its 1,050,000 and uses 702,212 of it.',
       'One thing worth recording: the hardest viewpoint MOVED. It used to be the long look east down Lake Street from Canal, and it is now the forks at Wolf Point, where there is open water and nothing to hide anything behind. Had the ceilings been checked from the old spot alone they would have been declared safe by a margin that no longer exists there.',
       'The note promising the lift was temporary is gone from the code with it, replaced by what was actually measured. Five times these ceilings have been raised; this is the first time one has been given back.',
+    ] },
+  { v: 298, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '2026-08-27T21:08:48.498Z', date: 'Aug 27, 2026, 4:08 PM CT',
+    items: [
+      'Twelve hitching posts now stand at the road edge along South Water Street and Lake Street \u2014 chest-high timber under a capped head, out past the plank walk where a rider coming into town would leave a horse and step up onto the boards.',
+      'They are not scattered. One stands outside each shop front the town can actually name a trade for: the two drug stores, the grocery, the auction room, both newspaper offices, the boarding house, the forwarding store, the tavern, and the stores that sold over a counter with the keeper living above.',
+      'Which frontages qualify was not decided afresh. The walkthrough already keeps a list of the trades whose customer was a stranger arriving off the street \u2014 the same list that decides which building hangs a painted signboard \u2014 and the posts read it. A tannery, a packing house, a blacksmith and a warehouse take carts and drays at a yard gate rather than riders at a post, and each of those is turned down in writing on the record.',
+      'So are three more, for reasons worth reading: two shops whose trade the town guessed at rather than found in a document get nothing, because a post there would be furniture standing on an invention; and the Sauganash Hotel is refused a thirteenth post because it already has two of its own, drawn years earlier from its own pictures.',
+      'The post itself is borrowed whole from that hotel \u2014 same height, same section, same capped head, standing the same distance out past the walk. Nothing about it is new, and nothing about it is recorded history: no source says a post stood at any of these doors. Hide reconstructions in the evidence panel and every one of them disappears.',
+      'They cost the town nothing to draw. A post is standing timber, so each one joins the mesh its street already uses for the fences behind it \u2014 twelve posts, no new draw call, no new shadow.',
     ] },
   { v: 297, title: 'The long view down Lake Street cost more work than it needed', kind: 'chore', ts: '2026-08-27T20:36:02.288Z', date: 'Aug 27, 2026, 3:36 PM CT',
     items: [
