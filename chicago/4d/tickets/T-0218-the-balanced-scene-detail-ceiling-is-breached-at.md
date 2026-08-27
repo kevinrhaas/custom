@@ -39,6 +39,13 @@ and once with T-0199's, so the delta is the street edge and nothing else.
 viewports** — which is what an A/B is for. `light` is the exception, because it distance-culls
 the derived furniture (T-0150) and most of the new walk is beyond its reach.
 
+**RE-MEASURED 2026-08-27 AFTER MERGING dev's #384, #387 and #394**, because the town shrank
+under them: `balanced` at mobile now reads **1,210,762 of 1,210,000 — over by 762 triangles,
+0.06 %**. T-0179's roof forms and T-0022's log walls between them gave back most of the
+5,350 the street edge costs. The breach is real and it is small, and small is the whole
+problem: this tier has been inside its ceiling by a rounding error for a week.
+
+
 **Read the first row before anything else.** On desktop BOTH failures are `dev`'s and predate any
 of this: 43,630 and 13,266 triangles over, with T-0199's street edge not in the tree. On mobile
 `dev` stood **1,967 triangles — 0.16 % — inside** the `balanced` ceiling, and T-0199's 82.8 m of

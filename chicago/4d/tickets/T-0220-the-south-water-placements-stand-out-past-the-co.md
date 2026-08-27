@@ -279,6 +279,9 @@ any depth now, cross streets included.
   | **total** | **449 checks, 1 failed** | **454 checks, 2 failed** |
 
   Every failure is the same assertion at the same stand, and desktop's two are `dev`'s.
+  **Re-run whole at mobile after the second dev merge (#384, #387, #394): 450 checks, 1
+  failed**, and the breach shrank to **762 triangles of 1,210,000 — 0.06 %** as dev's own
+  roof-form and log-wall work gave most of the 5,350 back.
 - **The one failure, and it is measured rather than argued.**
   `scene detail 'balanced' stays inside its own ceiling at the WORST stand`, at Lake Street at
   Canal. A/B: the same tree read twice, once with `dev`'s `town_street_edge.json` in the mirror

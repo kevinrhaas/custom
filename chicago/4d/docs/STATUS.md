@@ -101,7 +101,8 @@ recipes for the clause to sit on, and all four would land on lots that already c
 roofs.
 
 **The smoke ran all nine stages at both viewports** — mobile **449 checks, 1 failed**;
-desktop **454 checks, 2 failed**. Every failure is one assertion at one stand.
+desktop **454 checks, 2 failed**; and mobile was re-run whole after the second dev merge,
+**450 checks, 1 failed**. Every failure is one assertion at one stand.
 
 **ONE GATE IS RED AND IT IS NOT WAVED THROUGH.** `scene detail 'balanced' stays inside its own
 ceiling at the WORST stand` fails at Lake Street at Canal, the long axial view. Measured as an
@@ -118,7 +119,8 @@ triangle, at every tier and both viewports:
 | `light` · mobile / desktop | 1,050,000 | passes | 807,943 / 859,229 |
 
 Desktop's two failures are `dev`'s and predate this branch entirely. Mobile's is this branch's,
-and it is 3,383 triangles over a ceiling `dev` was 1,967 triangles from failing. **A tier with
+and it was 3,383 triangles over a ceiling `dev` was 1,967 triangles from failing — **762
+triangles over, 0.06 %, once dev's #384/#387/#394 were merged in and gave most of it back**. **A tier with
 0.16 % of headroom is not a budget, it is a coincidence** — T-0135 set these on 2026-08-22 with
 *"about 6 % of headroom over the measured worst"* and five days of content ate it. **No ceiling
 was moved here**, deliberately: raising a number to make a red go away inside a ticket about a
