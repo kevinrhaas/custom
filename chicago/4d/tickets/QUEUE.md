@@ -23,7 +23,6 @@ T-0191 — Randolph and Washington get the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0194 — Hitching posts at the commercial frontages
-T-0129 — The La Salle slough is dammed by a tongue of land where the street crosses it
 
 # --- THE RIVER AND ITS WHARVES — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
@@ -73,7 +72,6 @@ T-0190 — A second street tier for the street edge, and the ceiling that refuse
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
-T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
 T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
