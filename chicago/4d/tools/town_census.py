@@ -113,7 +113,7 @@ def census_document() -> dict:
     return {
         "$schema_note": "DERIVED — regenerate with tools/town_census.py; tools/check.sh "
                         "re-derives it. Do not hand-edit: both figures are functions of "
-                        "the committed 665-roof programme and the committed residents "
+                        "the committed roof programme and the committed residents "
                         "layer, and the gate screen shows them.",
         "id": f"chicago_july_{YEAR}_town_census",
         "target_date": programme["target_date"],
@@ -128,7 +128,10 @@ def census_document() -> dict:
             "standing": roofs["min"],
             "target": programme["remaining"]["of_target"],
             "records_in_scene": len(in_scene),
-            "basis": "Physical roofs credited by the 665-roof reconciliation, not "
+            # A VISITOR READS THIS, on the gate figure's own tooltip, so it must not
+            # quote a number the figure beside it contradicts: it said "the 665-roof
+            # reconciliation" for a day after T-0032 took the total to 662.
+            "basis": "Physical roofs credited by the roof reconciliation, not "
                      "structure records: a bridge, a pier, a palisade and a parade "
                      "ground are records that are not buildings.",
             "range_note": roofs["range_note"],

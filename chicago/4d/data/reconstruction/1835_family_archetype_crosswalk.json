@@ -3,8 +3,8 @@
   "id": "chicago_1835_family_archetype_crosswalk",
   "target_date": "1835-07-01",
   "source_id": "owner_chicago_1835_reconstruction_spec_2026",
-  "count_basis": "SUPERSEDED FOR COUNTING PURPOSES 2026-08-14 — the live remainder is derived in data/reconstruction/1835_665_roof_programme.json by tools/reconcile_665.py, and 433 roofs remain against the 617 below. The per-family remaining_roofs here were computed when only the phase1 parcel stood; they are kept because the crosswalk's VALUE is the family-to-archetype mapping and its geometry contract, neither of which the count affects. Remaining below means the 665-roof family target less the 48 phase1 South Division anonymous roofs already instantiated. Reviewed but unrendered phase2 recipes are not subtracted.",
-  "roof_totals": {"target": 665, "phase1_instantiated": 48, "remaining": 617},
+  "count_basis": "SUPERSEDED FOR COUNTING PURPOSES 2026-08-14 — the live remainder is derived in data/reconstruction/1835_665_roof_programme.json by tools/reconcile_665.py, and 433 roofs remain against the 617 below. The per-family remaining_roofs here were computed when only the phase1 parcel stood; they are kept because the crosswalk's VALUE is the family-to-archetype mapping and its geometry contract, neither of which the count affects. Remaining below means the authored family target less the 48 phase1 South Division anonymous roofs already instantiated. Reviewed but unrendered phase2 recipes are not subtracted. THE AUTHORED TOTAL ITSELF MOVED 665 → 662 on 2026-08-27 (T-0032), when three civic slots were shown to count nothing; I3 and the totals here move with it, and no other family's target changed.",
+  "roof_totals": {"target": 662, "phase1_instantiated": 48, "remaining": 614},
   "priority_rule": {
     "order": "descending remaining_roofs, then family id",
     "bands": {"P0": "50 or more", "P1": "25-49", "P2": "10-24", "P3": "5-9", "P4": "1-4"}
@@ -242,12 +242,12 @@
       "assumption_note": "Reused prior function and sign are not automatic; each of the two slots needs named-record reconciliation."
     },
     {
-      "id": "I3", "label": "Civic or public-service structure", "target_roofs": 6, "phase1_instantiated": 0, "remaining_roofs": 6, "priority_rank": 23, "priority_band": "P3",
+      "id": "I3", "label": "Civic or public-service structure", "target_roofs": 3, "phase1_instantiated": 0, "remaining_roofs": 3, "priority_rank": 23, "priority_band": "P4",
       "current_placeholder_archetype": "fort_structure",
       "canonical_archetype": "institution_civic", "required_variant": "adapted_public_service_set",
       "key_geometry_parameters": {"footprint_ft": "12x18-26x40", "levels": "1-2", "eave_ft": "9-19", "ridge_ft": "16-29", "roof": "gable or stockade-associated", "construction": "log, frame, or rare brick", "variants": "jail/blockhouse; engine/service; adapted offices"},
       "evidence_note": "fort_structure can mass a blockhouse or simple government roof but is off-label for adapted offices and service buildings.",
-      "assumption_note": "The six-roof aggregate spans unlike functions; they must reconcile to named public records before selecting construction, and rare brick needs direct support."
+      "assumption_note": "SIX → THREE, 2026-08-27 (T-0032). This entry's own precondition — that the aggregate 'must reconcile to named public records before selecting construction' — was met by docs/RESEARCH/civic_public_buildings_1835.md and it did not reconcile: the town's civic roofs on the scene date are the log jail, the council house and the lighthouse, and the other three slots counted nothing. All three that remain are already committed named records, so the live remainder against this family is ZERO and the engine house and adapted offices this entry names as variants are the very buildings that were dated out. Canonical geometry is still owed for the three that stand; no slot is."
     },
     {
       "id": "M1", "label": "Fort Dearborn principal roofs", "target_roofs": 10, "phase1_instantiated": 0, "remaining_roofs": 10, "priority_rank": 19, "priority_band": "P2",

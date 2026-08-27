@@ -271,8 +271,20 @@ step "…and its own assertions still fire when broken" \
 # North, West and phase-one parcels ran before it existed and nothing had ever asked the
 # committed records. This asks all of them: absolute zero for I1 and I3, a ratchet at the
 # one anonymous I2 that L93 records rather than deletes.
-step "no anonymous roof claims to be a public building" \
+#
+# T-0032 CLOSED THE OTHER HALF, which had been open since T-I3: the I3 target was SIX and
+# the town's civic roofs are three, so three slots counted nothing and the schedule went on
+# dealing them to blocks where every generator refused them. The step now settles every
+# civic candidate against the committed dataset — a roof that stood, a building that came
+# later, a function that never had a building of its own — and holds the target and the
+# institutional district row to that ledger. It is the shape of fault this project has been
+# bitten by twice: the court-house stood in the scene for four days while another file
+# already credited it no roof, because nothing read the two together.
+step "no anonymous roof claims to be a public building, and the civic target is the ledger" \
   python3 tools/measure_institutional_claims.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_institutional_claims.py --self-test
 
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
@@ -497,8 +509,19 @@ step "datum re-derivation" \
 # states. LIBERTIES.md is append-only and is the source of truth; data/
 # liberties.json is derived and committed so the site needs no build step, which
 # only holds up if drift is a gate failure rather than a discovery.
+#
+# Since T-0054 it also asks WHICH SECTION each entry is in, from two independent
+# statements — the heading it sits under and the `**Resolved:**` line in its own
+# text — because `resolved` is the section validate.py stops checking. It used to
+# be the last section in a document whose one rule is that liberties are
+# APPENDED, so 23 entries landed in the exemption by doing what they were told,
+# and the drift check above could not see it: the markdown and the JSON agreed,
+# both reading the fault the same way (the T-0207 shape).
 step "liberties derived from docs/LIBERTIES.md" \
   python3 tools/compile_liberties.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_liberties.py --self-test
 
 # The renderer reads the sidecars and never the dataset, which only keeps the
 # walkthrough and the archive together if a record edited without a recompile is
