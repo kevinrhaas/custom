@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 1:01 AM",
+  "generated_ct": "Aug 27, 2026, 1:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -341,7 +341,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 25
     },
     {
       "id": "T-0020",
@@ -376,7 +376,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 26
     },
     {
       "id": "T-0022",
@@ -428,7 +428,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 27
     },
     {
       "id": "T-0025",
@@ -445,7 +445,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 28
     },
     {
       "id": "T-0026",
@@ -532,7 +532,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 35
     },
     {
       "id": "T-0031",
@@ -549,24 +549,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 17
     },
     {
       "id": "T-0032",
       "title": "The six-roof civic target counts three that were never built",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "T-I3(b)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "388",
+      "claimed_by": "run 8/26/2026, 11:26:54 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": null
     },
     {
       "id": "T-0033",
@@ -600,7 +601,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 16
     },
     {
       "id": "T-0035",
@@ -653,7 +654,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 29
     },
     {
       "id": "T-0038",
@@ -941,7 +942,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 23
     },
     {
       "id": "T-0054",
@@ -977,7 +978,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 30
     },
     {
       "id": "T-0056",
@@ -995,7 +996,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 21
     },
     {
       "id": "T-0057",
@@ -1571,7 +1572,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 20
     },
     {
       "id": "T-0090",
@@ -2417,7 +2418,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 31
     },
     {
       "id": "T-0137",
@@ -2597,7 +2598,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 18
     },
     {
       "id": "T-0147",
@@ -2615,7 +2616,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 19
     },
     {
       "id": "T-0148",
@@ -2759,7 +2760,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 32
     },
     {
       "id": "T-0156",
@@ -2777,7 +2778,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 33
     },
     {
       "id": "T-0157",
@@ -2813,7 +2814,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 22
     },
     {
       "id": "T-0159",
@@ -2885,7 +2886,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 24
     },
     {
       "id": "T-0163",
@@ -2921,7 +2922,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 34
     },
     {
       "id": "T-0165",
@@ -2993,7 +2994,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 36
     },
     {
       "id": "T-0171",
@@ -3029,7 +3030,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 37
     },
     {
       "id": "T-0173",
@@ -3047,7 +3048,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 38
     },
     {
       "id": "T-0179",
@@ -3065,7 +3066,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 41
     },
     {
       "id": "T-0180",
@@ -3083,7 +3084,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 39
     },
     {
       "id": "T-0181",
@@ -3101,7 +3102,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 40
     },
     {
       "id": "T-0182",
@@ -3119,7 +3120,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 43
     },
     {
       "id": "T-0183",
@@ -3137,7 +3138,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 42
     },
     {
       "id": "T-0184",
@@ -3155,7 +3156,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0185",
@@ -3173,7 +3174,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 45
+      "queue_rank": 44
     },
     {
       "id": "T-0186",
@@ -3191,7 +3192,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 46
     },
     {
       "id": "T-0187",
@@ -3209,7 +3210,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 45
     },
     {
       "id": "T-0188",
@@ -3227,7 +3228,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0189",
@@ -3263,7 +3264,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0197",
@@ -3281,7 +3282,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0198",
@@ -3390,6 +3391,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 53
+    },
+    {
+      "id": "T-0211",
+      "title": "The other nine group rows are cross-checked against nothing",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 51
     }
   ]
 }

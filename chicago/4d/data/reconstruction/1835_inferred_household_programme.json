@@ -39,9 +39,9 @@
       "note": "76 documented and 20 derived person entries in 72 households, of which 85 carry a trade. This layer is measured against that spread, not against a modern occupational census."
     },
     "roof_schedule": {
-      "value": 665,
+      "value": 662,
       "source": "owner_chicago_1835_reconstruction_spec_2026",
-      "note": "The building inventory's roof total, with its family targets: 30 workshops (W1 6, W2 8, W3 6, W4 6, W5 4), 52 stores and mixed use, 42 boarding houses, 10 inns and taverns, 20 warehouses, 335 ordinary dwellings. WHERE A TRADE HAS A SHOP FAMILY, THAT TARGET IS THE CEILING THIS CENSUS WORKS UNDER."
+      "note": "The building inventory's roof total — 665 until 2026-08-27, when T-0032 took three phantom civic roofs off it — with its family targets: 30 workshops (W1 6, W2 8, W3 6, W4 6, W5 4), 52 stores and mixed use, 42 boarding houses, 10 inns and taverns, 20 warehouses, 335 ordinary dwellings. WHERE A TRADE HAS A SHOP FAMILY, THAT TARGET IS THE CEILING THIS CENSUS WORKS UNDER."
     },
     "packing_volumes": {
       "value": "250 cattle + 2,000 hogs (Clybourne 1833); 250 + 1,000 (Dole, same place); 300 cattle + 1,400 hogs (Newberry & Dole 1834)",

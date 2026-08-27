@@ -7956,3 +7956,59 @@ Related: **L182** (the rule those sentences were describing) · tickets **T-0189
 (the South Water run the wording was written for), **T-0076** (what a card calls a building).
 **Recorded:** 2026-08-27.
 
+### L184 — The town's roof total is 662, and how it splits across the three divisions is ours
+
+**Decision:** the authored aggregate `roof_total` moves **665 → 662** and `principal_functional`
+**511 → 508**, because three of family I3's six civic slots were shown to count nothing. The three
+came OFF the total rather than back into the pool. In the same correction the
+`institutional_public` row of the district×group matrix is set to the census of named institutional
+records — **south 5 / west 1 / north 3**, where it read south 10 / west 1 / north 1 — and that
+carries the **South Division target 370 → 365** and the **North Division 150 → 152**. No other row
+of the matrix and no other family target moved.
+
+**Why:** T-I3(a) enumerated the town's public buildings from Andreas and found three roofs on
+1835-07-01, all three already committed named records. Six was therefore three real buildings and
+three slots that counted nothing, and the inventory's arithmetic is closed, so they could not
+simply be deleted. The owner ruled on 2026-08-17 — *"close it at 665 or 662 — either is close"* —
+and delegated the pick. **662** is taken because the alternative, re-typing three phantom civic
+slots into ordinary families by weight, would have invented three dwellings on the strength of an
+arithmetic artifact: the slots were a count of nothing, not real roofs filed under the wrong
+letter.
+
+**What bounds the invention:** the enumeration bounds the *institutional* half completely — the
+row is now nine named records and their divisions, which is evidence rather than judgement, and
+`tools/measure_institutional_claims.py` fails the gate if it drifts from them. What is NOT bounded
+by any source is **what the totals mean**. No source states how many roofs stood in Chicago on 1
+July 1835, nor how they divided between the South, West and North Divisions: 665 was an authored
+figure in the owner's reconstruction specification, and 662 is that figure less three. The
+`defensible_range` the same specification carries is [565, 765], so both readings sit deep inside
+it and the correction is not the difference between a defensible number and an indefensible one —
+it is the difference between a number that counts three buildings nobody can name and one that
+does not. Likewise **370 → 365 and 150 → 152**: those follow arithmetically from setting the
+institutional row to the census while leaving every other row exactly as authored, which is a
+choice this project made rather than a fact it read. The alternative — holding the district totals
+still and moving two roofs into another group instead — would have invented two dwellings, which
+is the same fault at a smaller scale.
+
+**Consequence:** the gate screen reads *338 buildings standing, of the 662 the town held* where it
+read 665. The programme's remainder falls **327 → 324** and its coverage-gated balance **299 →
+296**. Every I3 slot has left the block schedule — one at `blk_lake_franklin`, one at
+`blk_south_water_market`, three in the South balance — so those five deals now name families a
+generator will actually build. **Nothing in the scene moved**: no building was added, removed,
+re-typed or re-dated, and the standing count is 338 before and after. A visitor comparing two
+screenshots sees one number on the gate panel change and nothing else.
+
+**How to resolve:** a source that states the town's building count on or near the scene date, or a
+division-by-division count. Andreas's November 1835 town census gives **3,265 people in 398
+dwellings** four months later, which this project already quotes on the gate screen as the *town's*
+recorded figure and deliberately does not convert into a roof count for 1 July — dwellings are not
+roofs, four months is a building season in a town that was doubling, and the conversion would be a
+third invention stacked on two. If a new public building is ever attested it arrives as a named
+record, and the gate now forces the target, the district row and the town total to move with it
+consciously rather than quietly.
+
+Related: **L93** (the anonymous civic roof this project refused to build, and the one anonymous I2
+it keeps) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**,
+**T-I3(a)**.
+**Recorded:** 2026-08-27.
+
