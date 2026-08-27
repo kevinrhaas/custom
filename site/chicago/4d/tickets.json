@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 2:39 PM",
+  "generated_ct": "Aug 26, 2026, 11:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3334,6 +3334,24 @@
       "claimed_by": "run 8/24/2026, 2:06:24 PM CT",
       "blocked_on": null,
       "needs_bake": true,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0207",
+      "title": "Three conflict markers reached production inside two liberty cards, and every gate passed them",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": "2026-08-26",
+      "pr": "383",
+      "claimed_by": "integrator",
+      "blocked_on": null,
+      "needs_bake": false,
       "queue_rank": null
     }
   ]

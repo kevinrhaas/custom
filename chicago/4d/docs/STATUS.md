@@ -1,5 +1,49 @@
 # STATUS
 
+## Shipped — T-0207: three conflict markers reached production inside two liberty cards
+
+**Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
+text scan for conflict markers, on the theory that `git add -A` will stage a marker-carrying file
+and `--diff-filter=U` will then report nothing unresolved. It refused the merge. The markers turned
+out not to be from that merge at all: `docs/LIBERTIES.md` had carried three of them since
+**e2056e97** (T-0117), through the compile into `data/liberties.json`, out to the published mirror,
+into `dev`, and **into `main` in promotion run #13** — which the integrator had dispatched an hour
+earlier. A visitor reading the Evidence panel saw `Recorded: 2026-08-23. <<<<<<< HEAD` on L180 and
+`Recorded: 2026-08-24. ======= >>>>>>> origin/dev` on L181.
+
+**No liberty text was lost.** Dev's side of the hunk was empty, L181 is whole at 72 lines, the count
+is unchanged at 181. The damage is three lines of merge debris sitting on top of two cards — and
+these are the cards whose entire job is to say *this part of the town is our invention, and here is
+why*. A card whose purpose is candour should not be the one that looks unfinished.
+
+**Why every gate passed it, which is the part worth keeping.** The liberties gate asks whether the
+authored markdown and the compiled JSON agree. They agreed *perfectly* — both carried the same
+garbage, because `compile_liberties.py` recognises `### L<n> — title` headings and `**Label:** text`
+fields and quietly carries anything else along as body text. **A consistency check cannot see a
+fault that both sides reproduce faithfully.** That is a general lesson about derivation gates, not
+a fact about this file: every one of them compares two things built from the same source.
+
+Two other conditions had to hold, and did: `git add -A` stages markers without complaint, and this
+particular hunk had an *empty* other side — a positional conflict over an entry both branches
+already had — so there was no visible disagreement to prompt a careful read.
+
+**Closed with `tools/test_no_conflict_markers.py`**, wired in near the top of `check.sh` where it
+costs milliseconds. It is deliberately dumb: a text scan over all 3,340 tracked files under
+`chicago/4d` and `site/chicago/4d`, asking nothing about structure, **because structure is what
+missed it**. It refuses `<<<<<<< `, a whole line of `=======`, and `>>>>>>> `; it deliberately does
+not refuse a markdown heading underline, a table rule, an indented divider, or prose mentioning a
+marker mid-line, so it stays a guard rather than a nuisance. Nine self-test assertions prove both
+directions, including that the tool does not trip its own scan — the patterns are built from
+`"<" * 7` rather than written out. Proved against the real fault: on the unrepaired tree it named
+all three lines with file and line numbers.
+
+**What is NOT fixed: `main` still carries the markers** until dev→prod is dispatched again. This
+went to dev rather than down the hotfix lane because it is cosmetic and that lane is for
+emergencies — but it is the reason to promote sooner rather than later.
+
+**And the exposure is fleet-wide.** Every app in the suite compiles or parses an authored file with
+a parser that recognises structure and ignores the rest — `js/changelog.js` above all. A marker in
+any of them rides the same path. Worth a sweep in polecat-platform.
 ## Shipped 2026-08-24 — T-0200: the picket head is on the record, and the reason it was not was false
 
 **The reason was checked and it was wrong.** T-0094 shipped hours earlier with one named half
