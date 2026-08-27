@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 298, title: 'Randolph Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T21:36:54.531Z', date: 'Aug 27, 2026, 4:36 PM CT',
+  { v: 299, title: 'Randolph Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T22:29:02.332Z', date: 'Aug 27, 2026, 5:29 PM CT',
     items: [
       'Walk one block south of Lake Street and the ground under your feet changes. Randolph now has the same boarded walk the two river streets have had since August \u2014 a raised plank sidewalk at the lot line, board crossings over the roadway at the corners, and board fences standing behind the walk wherever a lot is improved but its building sits back from the street.',
       'It is a long street: the widest frontage the town plat holds, fourteen block faces against Lake\u2019s twelve. Thirteen of the fourteen are laid. The one that is not is refused for a stated reason, the same way every other gap in this layer is \u2014 ground too wet, too uneven, too narrow a verge, or a building already standing on it.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'You can stand on it. The boards are a surface the walker steps up onto and stays on, not a stripe painted on the mud \u2014 ninety-four more of those standing surfaces than yesterday.',
       'This street was built once before, in August, and taken straight back out: it did not fit the frame. Nothing about Randolph changed since. What changed is that the sun stopped drawing a wood it could not cast, which handed back about a hundred and sixty thousand triangles a frame \u2014 and this is what that room was for.',
       'Washington Street is not here, and by a hair: with it, one of the three quality settings went over its ceiling by 174 triangles out of 1.26 million. Raising that ceiling a sixth time would have bought the street with the one number this project has promised to stop moving, so Washington waits for room rather than for permission.',
+    ] },
+  { v: 298, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '2026-08-27T21:08:48.498Z', date: 'Aug 27, 2026, 4:08 PM CT',
+    items: [
+      'Twelve hitching posts now stand at the road edge along South Water Street and Lake Street \u2014 chest-high timber under a capped head, out past the plank walk where a rider coming into town would leave a horse and step up onto the boards.',
+      'They are not scattered. One stands outside each shop front the town can actually name a trade for: the two drug stores, the grocery, the auction room, both newspaper offices, the boarding house, the forwarding store, the tavern, and the stores that sold over a counter with the keeper living above.',
+      'Which frontages qualify was not decided afresh. The walkthrough already keeps a list of the trades whose customer was a stranger arriving off the street \u2014 the same list that decides which building hangs a painted signboard \u2014 and the posts read it. A tannery, a packing house, a blacksmith and a warehouse take carts and drays at a yard gate rather than riders at a post, and each of those is turned down in writing on the record.',
+      'So are three more, for reasons worth reading: two shops whose trade the town guessed at rather than found in a document get nothing, because a post there would be furniture standing on an invention; and the Sauganash Hotel is refused a thirteenth post because it already has two of its own, drawn years earlier from its own pictures.',
+      'The post itself is borrowed whole from that hotel \u2014 same height, same section, same capped head, standing the same distance out past the walk. Nothing about it is new, and nothing about it is recorded history: no source says a post stood at any of these doors. Hide reconstructions in the evidence panel and every one of them disappears.',
+      'They cost the town nothing to draw. A post is standing timber, so each one joins the mesh its street already uses for the fences behind it \u2014 twelve posts, no new draw call, no new shadow.',
     ] },
   { v: 297, title: 'The long view down Lake Street cost more work than it needed', kind: 'chore', ts: '2026-08-27T20:36:02.288Z', date: 'Aug 27, 2026, 3:36 PM CT',
     items: [

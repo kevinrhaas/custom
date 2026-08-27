@@ -5443,7 +5443,7 @@ is unseen). One that gave a WORDING, a COLOUR or a MOUNTING for a named house wo
 thing this project has ever held that could take one of those three off the reconstructed tier.
 **Recorded:** 2026-08-21.
 
-### L160 — South Water, Lake and Randolph Streets get plank sidewalks, board crossings and street-lining fences, all of it invented and all of it derived from the plat
+### L160 — South Water, Lake and Randolph Streets get plank sidewalks, board crossings, street-lining fences and hitching posts, all of it invented and all of it derived from the plat
 **Decision:** `data/frontage/town_street_edge.json` lays the STREET EDGE along the two
 streets that run beside the river's south bank — **South Water Street, which is the bank
 itself, and Lake Street one block behind it, both frontages, from Market Street to State
@@ -5522,6 +5522,31 @@ replace the fence's height and stock outright; a tax, insurance or sale descript
 a walk or a fence in front of a named lot; or holding the jail, Green Tree and Sauganash
 plates as proper source records with their institutions and dates (T-0075), which would
 turn the committed path in `existence.note` into a source_id.
+**Amended 2026-08-27 — the trading frontages get hitching posts (T-0194):** twelve posts
+now stand in the verge outside the walk, one at each frontage the rule accepts. THE POST
+ITSELF IS NOT NEW AND NEITHER IS ITS PLACE: it is the Sauganash's own post — 1.30 m of
+0.16 m timber under a 0.22 m capped head, standing 0.90 m beyond the walk's outer edge —
+carried across unchanged from **L136**, where it is claimed from that hotel's three
+reference views and the saddled horse tied to one of them. What is new here is only WHICH
+OTHER FRONTAGES get one, and that is a rule with five clauses, every one of them already
+argued somewhere in this repository: a committed building stands on the lot; its
+`function` is one of the trades `tools/generate_business_signboards.py` already rules take
+their custom from a stranger off the street (the table is IMPORTED, not restated, so the
+two layers cannot drift — a works or a warehouse took carts and drays at a yard gate and
+is refused in writing); that trade is held `attested`, `documented` or `inferred` rather
+than dealt by the roof schedule, which is what keeps posts off the anonymous slots; the
+walk was actually laid in front of it; and the post's own stand is dry committed ground
+with ≥ 0.35 m still between its outer face and the travelled track. It stands at 0.28 of
+the BUILDING's own projected frontage rather than the lot's, because two trades can share
+one platted lot on these streets and a fraction of the lot would put both posts in the
+same hole. Seven frontages are refused and each names its clause — including the Sauganash
+itself, which already stands its own two under L136 and is refused rather than given a
+third. **What it cost: nothing in draw calls.** A post is standing timber, so it lands in
+its street's existing standing mesh beside the fences (`frontage.js` `standingChunk`,
+renamed from `__fences` because it is no longer only fences) — twelve posts, twenty-four
+boxes, no new mesh and no new bounding sphere. **What is invented remains what L136
+invents:** that a post stood on this ground at noon on 1 July 1835, and its height, its
+section and its capped head. No source in this repository states that one did.
 **Recorded:** 2026-08-21.
 **AMENDED 2026-08-27 — RANDOLPH STREET IS NOW INSIDE THIS LIBERTY (T-0240).** Everything
 above holds unchanged: the same rule, the same invented widths, rises, pitches, board
@@ -5574,6 +5599,7 @@ at `balanced` and about 15,400 at each tier either side, so what refuses it is t
 rung rather than the town. It is filed with its number attached rather than bought with a
 sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
 **Recorded:** 2026-08-27.
+**Revised:** 2026-08-27.
 
 ### L161 — The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented
 
