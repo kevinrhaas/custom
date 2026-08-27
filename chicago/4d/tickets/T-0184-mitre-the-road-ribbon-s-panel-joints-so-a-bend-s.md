@@ -90,9 +90,9 @@ authored bends mitre at ZERO cost (a mitre moves vertices, it adds none) and 7 a
 one mitre and pay 3 triangles each, except fort_road [1140, 78] at 39.3 deg which pays 4. That is
 0.0018 % of the `balanced` ceiling. (b) A mitred corner stands `half * (sec(turn/2) - 1)` past its
 bend by construction; capped by sub-mitring, the worst in town is **0.029 m** at fort_road
-[1075, 38], against the 0.05 m the drawn-placement census tolerates. Recorded as **L182**.
+[1075, 38], against the 0.05 m the drawn-placement census tolerates. Recorded as **L194**.
 
-**A third finding, filed rather than fixed (T-0208):** three of North Water Street's six bends
+**A third finding, filed rather than fixed (T-0226):** three of North Water Street's six bends
 carry no joint question at all, because its committed centreline runs inside the water mask and no
 ribbon may be drawn there. The probe reports them as `paintable 0.00` rather than as 33.8 m2 of
 uncovered ground apiece, and counts them, so they cannot hide.

@@ -266,6 +266,20 @@ def ridge_band_m(ridge_ft: str | None) -> tuple[float, float] | None:
     return (float(m.group(1)) * .3048, float(m.group(2)) * .3048)
 
 
+def eave_band_m(eave_ft: str | None) -> tuple[float, float] | None:
+    """The family's authored eave band in metres, or None where it is not numeric.
+
+    The third of the three band readers, and it lives here for the same reason as the
+    other two: `wall_height_m` above already parses this column with this expression, and
+    a second copy in a measuring tool is how a gate ends up testing a different band from
+    the one the sampler drew from (T-0179).
+    """
+    m = RANGE_RE.match(str(eave_ft or ""))
+    if not m:
+        return None
+    return (float(m.group(1)) * .3048, float(m.group(2)) * .3048)
+
+
 def ridge_m(eave_m: float, run_m: float, pitch_deg_value: float) -> float:
     """The ridge a pitch reaches over a given run, from the eave it springs from.
 

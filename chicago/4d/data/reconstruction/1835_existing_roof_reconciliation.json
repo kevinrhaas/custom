@@ -7,7 +7,7 @@
   "eligible": "A covered building or independently roofed working structure plausibly standing on the scene date.",
   "ineligible": "Open ground/enclosure, bridge, pier, incomplete roofless works, or a building whose July existence is contradicted by the production chronology.",
   "compound": "roof_count records distinct physical roof masses; inventory_roof_count counts attached ranges as one roofed building but counts separately described cabins separately.",
-  "substitution": "Each eligible existing inventory roof explicitly replaces that many anonymous programme slots in its district/family; it is not added above 665."
+  "substitution": "Each eligible existing inventory roof explicitly replaces that many anonymous programme slots in its district/family; it is not added above the authored roof total (662 since T-0032, 2026-08-27; the programme file keeps its 665 name)."
  },
  "records": [
   {

@@ -188,7 +188,13 @@ def build(params: LogDwellingParams, name: str):
         simple_material("roof", materials.roof_finish(params.roof_condition).rgba,
                         roughness=0.9),
         simple_material("frame", frame_rgba, roughness=frame_rough),
-        simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.4),
+        # ONE DARK (T-0126) — the sheet's `DARK` row, converging the three readings
+        # materials.md §2.3 measured. This archetype's door, windows and gable vent
+        # are the unglazed end of that family; the sign's iron hinge straps ride on
+        # the same slot, which the row's note records rather than hides, because
+        # giving them one of their own would add a material to every log cabin.
+        simple_material("dark", materials.DARK.rgba,
+                        roughness=materials.DARK.roughness),
         simple_material("sign", SIGN_RGBA, roughness=0.85),
     ]
     # M_PAINT is appended only where a device is actually painted, and only ever
