@@ -1,7 +1,7 @@
 ---
 id: T-0186
 title: LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 10:23:21 AM CT
 blocked_on: null
 needs_bake: false
 ---

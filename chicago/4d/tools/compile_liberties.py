@@ -73,7 +73,30 @@ SOURCE = ROOT / "docs" / "LIBERTIES.md"
 OUT = ROOT / "data" / "liberties.json"
 
 # "### L4a — Sauganash Hotel: the log wing is inferred from two derivative images"
+#
+# The trailing letter is part of the id and not decoration: `L31` and `L31a` are
+# two entries, nine such sub-entries stand in the document today, and a numbering
+# check that folds them onto their parent cries wolf nine times on an unmodified
+# file — which is worse than no check, because a gate that is always red gets
+# switched off (T-0186).
 HEADING = re.compile(r"^###\s+(L\d+[a-z]?)\s*[—-]\s*(.+?)\s*$", re.M)
+
+# A line that MEANT to be an entry heading, matched loosely so the strict grammar
+# above can be told apart from a near miss.
+#
+# The strict shape is not a filter, it is a CLIFF. A heading it rejects is not
+# reported and not dropped — the body underneath it folds into the previous
+# entry's fields, and the liberty leaves the register without a word. Measured
+# 2026-08-27 (T-0186) by appending `### L198 – title` with an EN dash, which the
+# `[—-]` class does not carry: 197 liberties compiled, `--check` exited 0, the
+# whole of check.sh stayed green, and L198 was simply not there while its
+# Decision and Recorded hung off the end of L197.
+#
+# That is the same silence this ticket was filed for, one step earlier than the
+# duplicate number. A ledger whose whole job is to say which parts we made up
+# cannot lose an entry quietly: an invention with no admission is the one fault
+# that outranks everything else here.
+NEAR_HEADING = re.compile(r"^\s{0,3}#{2,6}\s*L\s*\d+")
 SECTION = re.compile(r"^##\s+(.+?)\s*$", re.M)
 # "**How to resolve:**" — a bolded label ending in a colon. The colon is what
 # keeps ordinary emphasis ("**no** gallery", "**[DISPUTED]**") out of the match.
@@ -259,8 +282,61 @@ def settled_section(lid: str, positional: str, states_settled: bool,
     return positional
 
 
+def unparsed_headings(markdown: str) -> list[tuple[int, str]]:
+    """Lines that look like an entry heading and are not one, with line numbers.
+
+    The one thing this document cannot survive is losing an entry silently, and
+    a heading the grammar rejects does exactly that — see NEAR_HEADING. So the
+    near miss is caught here rather than downstream, where there is nothing left
+    to catch: the compiled JSON, the liberties gate and the Evidence panel all
+    agree perfectly about a register the entry was never in.
+
+    Line numbers, because the whole point is that the reader cannot see it. A
+    bare "a heading did not parse" in an 8,800-line file is a search, and an en
+    dash and an em dash are the same three pixels apart.
+    """
+    parsed = {markdown.count("\n", 0, m.start()) for m in HEADING.finditer(markdown)}
+    return [(i + 1, line) for i, line in enumerate(markdown.splitlines())
+            if NEAR_HEADING.match(line) and i not in parsed]
+
+
+def duplicate_ids(entries: list[dict]) -> list[str]:
+    """Numbers taken twice, reported with both titles.
+
+    Two branches that each append `### L177` merge CLEAN when their appends land
+    in different parts of the file, and git says nothing because neither touched
+    the other's lines (T-0186, 2026-08-24: it happened twice in one afternoon).
+    A conflict is safe because it stops you; a clean merge of two appends to a
+    numbered ledger is not, and this is what stands in for the conflict.
+
+    Both titles, because the number alone does not tell you which of the two
+    entries is the newcomer to renumber — and the renumber has to carry its
+    references, since liberty numbers are cited from records, tickets, STATUS.md
+    and the research docs.
+    """
+    seen: dict[str, str] = {}
+    problems: list[str] = []
+    for e in entries:
+        first = seen.get(e["id"])
+        if first is not None:
+            problems.append(
+                f"{e['id']}: taken twice — '{first}' and '{e['title']}'. Two "
+                f"appends to a numbered ledger merged clean; renumber the newer "
+                f"entry and carry its citations. A lettered sub-entry ({e['id']}a) "
+                f"is a different id and is not this")
+        else:
+            seen[e["id"]] = e["title"]
+    return problems
+
+
 def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
     problems: list[str] = []
+    for lineno, line in unparsed_headings(markdown):
+        problems.append(
+            f"line {lineno}: '{line.strip()[:70]}' looks like an entry heading and "
+            f"does not parse as one, so its body folds into the entry above it and "
+            f"the liberty leaves the register. The shape is "
+            f"'### L<n>[a] — Title', with an em dash or a plain hyphen")
 
     # Which "## " section each character offset falls under.
     sections = [(m.start(), m.group(1).strip().lower()) for m in SECTION.finditer(markdown)]
@@ -331,11 +407,8 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
 
     if not entries:
         problems.append("no '### L<n> — title' entries found at all")
-    seen: set[str] = set()
+    problems.extend(duplicate_ids(entries))
     for e in entries:
-        if e["id"] in seen:
-            problems.append(f"duplicate id {e['id']}")
-        seen.add(e["id"])
         if e["recorded"] is None:
             problems.append(f"{e['id']}: no Recorded date")
 
@@ -407,6 +480,57 @@ Kept verbatim, with a **Resolved:** line saying what settled them.
 """
 
 
+# The numbering faults, in miniature. Separate from SPECIMEN because that one is
+# about which SECTION an entry is in and this one is about its NUMBER, and a
+# specimen carrying both faults at once cannot show either cleanly.
+#
+# It holds the shape the committed document actually has — a parent with lettered
+# sub-entries under it — beside the collision those sub-entries are forever being
+# mistaken for. Both readings have to be asserted together or the check drifts
+# into one of its two failure modes: silent on a real duplicate, or red nine
+# times on a file nobody touched.
+NUMBERING_SPECIMEN = """# Liberties taken
+
+## Per-subject liberties
+
+### L31 — A parent entry
+**Decision:** something we invented.
+**Recorded:** 2026-08-09.
+
+### L31a — A lettered sub-entry, which is a different entry and not a duplicate
+**Decision:** something narrower.
+**Recorded:** 2026-08-10.
+
+### L31b — A second sub-entry of the same parent
+**Decision:** something else narrower.
+**Recorded:** 2026-08-11.
+
+### L32 — One branch's entry
+**Decision:** something one branch invented.
+**Recorded:** 2026-08-12.
+
+### L32 — The other branch's entry, carried in by a merge that raised no conflict
+**Decision:** something the other branch invented.
+**Recorded:** 2026-08-13.
+"""
+
+# A heading that misses the grammar by one character. The en dash is the real
+# instance — it is three pixels from the em dash the shape requires, and it is
+# what a paste from anywhere else in the world brings with it.
+SHAPE_SPECIMEN = """# Liberties taken
+
+## Per-subject liberties
+
+### L40 — An entry that parses
+**Decision:** something we invented.
+**Recorded:** 2026-08-09.
+
+### L41 \u2013 An en dash, which the heading shape does not accept
+**Decision:** something we invented and admit to.
+**Recorded:** 2026-08-10.
+"""
+
+
 def self_test() -> bool:
     """Every assertion fires when broken.
 
@@ -445,6 +569,35 @@ def self_test() -> bool:
           "and inside a group, the order the document was written in",
           [e["id"] for e in entries] == ["L1", "L3", "L4", "L5", "L2"])
 
+    # The NUMBER of an entry, which is the other half. Same discipline as the
+    # section assertions above: the fault in a specimen, then the live document
+    # beside it, because a check can only be trusted once it has been seen to
+    # fire and seen to stay quiet.
+    num, num_problems = parse(NUMBERING_SPECIMEN, {})
+    dupes = [p for p in num_problems if "taken twice" in p]
+    check("a number taken by two entries is reported",
+          len(dupes) == 1 and dupes[0].startswith("L32:"))
+    check("…and the report names BOTH titles, so the newcomer can be told apart",
+          bool(dupes) and "One branch's entry" in dupes[0]
+          and "the other branch's entry" in dupes[0].lower())
+    check("a lettered sub-entry is NOT a duplicate of its parent",
+          [e["id"] for e in num] == ["L31", "L31a", "L31b", "L32", "L32"])
+    check("…and nothing is reported for the sub-entries",
+          not [p for p in num_problems if p.startswith(("L31:", "L31a:", "L31b:"))])
+
+    # The heading that misses the grammar and takes its entry with it.
+    shape, shape_problems = parse(SHAPE_SPECIMEN, {})
+    near = [p for p in shape_problems if "looks like an entry heading" in p]
+    want_line = SHAPE_SPECIMEN.splitlines().index(
+        [l for l in SHAPE_SPECIMEN.splitlines() if "en dash" in l][0]) + 1
+    check(f"a heading the grammar rejects is reported rather than swallowed "
+          f"(line {want_line})",
+          len(near) == 1 and f"line {want_line}:" in near[0])
+    check("…and the entry it would have swallowed is named by line, not left "
+          "to be searched for", bool(near) and "L41" in near[0])
+    check("…and it is the ONLY entry parsed, which is why the silence mattered",
+          [e["id"] for e in shape] == ["L40"])
+
     # And the document that ships. The fault this exists for is exactly a
     # section nobody meant to be in, so the specimen proving the assertion
     # fires is worth nothing without the live reading beside it.
@@ -453,6 +606,17 @@ def self_test() -> bool:
     misfiled = [p for p in live_problems if "## Resolved" in p or "**Resolved:**" in p]
     check(f"the committed document misfiles nothing ({len(settled)} settled, "
           f"{len(live) - len(settled)} still standing)", not misfiled)
+
+    # The nine sub-entries are the reason the lettered-id assertion above is not
+    # academic: a check that folded them onto their parents would report nine
+    # duplicates on an unmodified file, and the gate would be switched off within
+    # the day rather than fixed.
+    subs = [e["id"] for e in live if re.fullmatch(r"L\d+[a-z]", e["id"])]
+    check(f"the committed document carries no duplicate number, across "
+          f"{len(live)} entries including {len(subs)} lettered sub-entries "
+          f"({', '.join(subs)})", not duplicate_ids(live))
+    check(f"…and every one of its {len(live)} headings parses",
+          not unparsed_headings(SOURCE.read_text()))
     return ok
 
 
@@ -484,11 +648,24 @@ def main() -> int:
             print("   data/liberties.json does not match docs/LIBERTIES.md — "
                   "re-run tools/compile_liberties.py and commit the result")
             return 1
+        # The summary line has to agree with the exit code. It used to print
+        # "OK: … matches its markdown" and then exit 1 on the problems listed
+        # directly above it, which reads as green in a 600-line gate log — the
+        # one place a duplicate number was ever going to be noticed (T-0186).
+        # Matching is not passing: the derived file agreeing with a faulty
+        # register is the exact shape of fault this project has now paid for
+        # three times (T-0054, T-0207, and this one).
+        if problems:
+            print(f"   data/liberties.json matches its markdown, and the markdown "
+                  f"has {len(problems)} problem(s) listed above — a faithful copy "
+                  f"of a faulty register is still a fail")
+            return 1
         print(f"OK: {doc['count']} liberties, data/liberties.json matches its markdown")
-        return 1 if problems else 0
+        return 0
 
     OUT.write_text(text)
-    print(f"wrote {OUT.relative_to(ROOT)} — {doc['count']} liberties")
+    print(f"wrote {OUT.relative_to(ROOT)} — {doc['count']} liberties"
+          + (f" — {len(problems)} problem(s) above" if problems else ""))
     return 1 if problems else 0
 
 
