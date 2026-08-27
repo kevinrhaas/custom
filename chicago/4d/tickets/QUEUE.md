@@ -23,7 +23,6 @@
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
-T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0147 — Re-lower the ceilings once the trims land
 
 # --- THE TOWN AND ITS STREETS — visible

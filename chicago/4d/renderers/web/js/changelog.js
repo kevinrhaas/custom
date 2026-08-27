@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 299, title: 'The fences were accused of ignoring the quality setting', kind: 'chore', ts: '2026-08-27T22:25:14.501Z', date: 'Aug 27, 2026, 5:25 PM CT',
+  { v: 300, title: 'The fences were accused of ignoring the quality setting', kind: 'chore', ts: '2026-08-27T22:50:48.966Z', date: 'Aug 27, 2026, 5:50 PM CT',
     items: [
       'Nothing you can see changed. This is a charge laid against one part of the town a fortnight ago, never answered, and sitting near the top of the work list ever since \u2014 and the answer turns out to be that it was already put right three separate times, by three separate pieces of work, none of which went back and said so.',
       'The charge: the town\u2019s five kilometres of fence \u2014 yard rails, garden pickets, the board fences that make a back yard private \u2014 were built once when the page loaded and then drawn identically whether you asked for full, balanced or light. A fence post is a tiny thing and there are thousands of them.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'None of those savings was made for this reason or measured against it, which is how a fixed thing stays on a list. Nobody had asked the fences alone what the setting costs them.',
       'So there is now a tool that asks exactly that, and a check that keeps the answer true. It reads the fences off the scene rather than off the settings table \u2014 the failure worth catching is a setting that reaches the table and not the town \u2014 and it refuses the work if any setting stops costing less than the one above it, at either screen size, at any of the five places the checks stand.',
       'Written down too, because it is the part that is NOT fixed: about half the length of fence in Chicago is plain post and rail, which has no pales, and a post and a rail cost the same at every setting. That is a decision, not an oversight. A pale\u2019s edge is a fortieth of what you see of it; a rail\u2019s top face is not.',
+    ] },
+  { v: 299, title: 'The quality ceilings come back down, as promised', kind: 'chore', ts: '2026-08-27T22:17:42.751Z', date: 'Aug 27, 2026, 5:17 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is the second half of a promise made in August, kept on the day the work that paid for it landed.',
+      'Each of the three quality settings has a ceiling: the most the town is allowed to cost to draw at that setting, measured from the five hardest places a visitor can stand. In August the town went over two of those ceilings \u2014 and the cause turned out not to be the town at all, but the sun being asked to draw a forest it could not cast a shadow from. Fixing that was real work rather than a switch, and in the meantime a check that is red for every change reports nothing about any of them. So the two ceilings were lifted just enough to clear the breach, with a note beside them saying exactly when they had to come back down.',
+      'That work has now landed \u2014 the trees were cut into cells so the sun can skip the ones it cannot reach, and the far patches of ground are handed to the graphics card in one piece where that is free. Both ceilings are back to what they were before the lift: 1,400,000 triangles at the full setting and 1,210,000 at balanced.',
+      'They come back with room to spare rather than by a hair. Re-measured at all five of those hard viewpoints, on a desktop screen and on a phone-sized one, the worst frame in the town costs 1,252,879 at the full setting and 1,084,292 at balanced \u2014 about a tenth of each ceiling left clear. The lightest setting, which was never lifted, keeps its 1,050,000 and uses 703,610 of it.',
+      'One thing worth recording: the hardest viewpoint MOVED. It used to be the long look east down Lake Street from Canal, and it is now the forks at Wolf Point, where there is open water and nothing to hide anything behind. Had the ceilings been checked from the old spot alone they would have been declared safe by a margin that no longer exists there.',
+      'The note promising the lift was temporary is gone from the code with it, replaced by what was actually measured. Five times these ceilings have been raised; this is the first time one has been given back.',
     ] },
   { v: 298, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '2026-08-27T21:08:48.498Z', date: 'Aug 27, 2026, 4:08 PM CT',
     items: [
