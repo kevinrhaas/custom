@@ -1,7 +1,7 @@
 ---
 id: T-0147
 title: Re-lower the ceilings once the trims land
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0149
 opened: 2026-08-22
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 413
+claimed_by: run 8/27/2026, 3:53:02 PM CT
 blocked_on: null
 needs_bake: false
 ---

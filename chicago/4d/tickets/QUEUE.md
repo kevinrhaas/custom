@@ -23,7 +23,6 @@
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
-T-0147 — Re-lower the ceilings once the trims land
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
@@ -103,3 +102,4 @@ T-0238 — Two parallel slices took the same ticket, because the rule that ranks
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
+T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev

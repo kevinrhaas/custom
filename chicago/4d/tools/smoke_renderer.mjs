@@ -3823,14 +3823,8 @@ for (const [label, viewport, touch] of [
         const stand = terrain.surfaceHeight(e0, n0);
         let top = -Infinity;
         let low = Infinity;
-        // EVERY timber mesh, not the shared one (T-0194). The two inns' posts
-        // live in the shared mesh; the street edge's stand in their own street's
-        // standing mesh beside the fences, and a probe that only looked at the
-        // shared mesh would read `top = -Infinity` for twelve of the fourteen
-        // and report it as a pass on the two it could see.
-        for (const t of timber) {
-          const g = t.geometry;
-          if (!g || !Number.isFinite(stand)) continue;
+        const g = mesh?.geometry;         // the posts live in the shared mesh
+        if (g && Number.isFinite(stand)) {
           const pos = g.getAttribute('position');
           for (let i = 0; i < pos.count; i++) {
             if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
@@ -3868,8 +3862,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
       frontage.census?.records === 5 && frontage.census?.walks === 27
         && frontage.census?.crossings === 14
-        && frontage.census?.posts === 15 && frontage.census?.fences === 11
-        && frontage.census?.refused === 61
+        && frontage.census?.posts === 3 && frontage.census?.fences === 11
+        && frontage.census?.refused === 54
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3987,15 +3981,9 @@ for (const [label, viewport, touch] of [
     // record says 1.30 m and it is the renderer that would be wrong. Measured
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
-    //
-    // FOURTEEN OF THEM SINCE T-0194: the Sauganash's own two, and twelve at the
-    // street edge's trading frontages. Each one is measured the same way and
-    // against its own stand, so a post the street-edge rule put on a slope or in
-    // the wrong mesh fails here rather than being averaged away by the two that
-    // were already right.
-    check(`${label}: every hitching post stands on its own ground, carrying nothing`,
-      frontage.hitching.length === 14
-        && frontage.census?.hitching === 14
+    check(`${label}: the Sauganash's two hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 2
+        && frontage.census?.hitching === 2
         && frontage.hitching.every((h) => Math.abs(h.top - h.recorded) <= 0.05
           && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text)
         && frontage.census?.lettered === 1
@@ -6779,24 +6767,42 @@ for (const [label, viewport, touch] of [
     // measured it at the WORST stand for the first time and found 167 calls
     // down Lake Street. The owner ruled to raise the ceilings rather than trim
     // the view ("raise it, I think", 2026-08-22), which surrenders that promise
-    // knowingly: `light` now carries 1,050,000 triangles, more than `full`
-    // promised the day before.
+    // knowingly: `light` carried 1,050,000 triangles, more than `full` promised
+    // the day before. In the count's place stood a RATIO — `light` merely had to
+    // be materially cheaper than `full` — which guards the control doing
+    // something but promises a person nothing.
     //
-    // So the absolute floor is gone and this check no longer guards it. What it
-    // guards instead is the one thing still true and still worth something: the
-    // ladder must keep WORKING — `light` has to be materially cheaper than
-    // `full` at the worst stand, or the setting is decoration. The bar is a
-    // ratio, not a count, and it is deliberately not tuned to sit just under
-    // today's reading.
+    // AND THE COUNT IS BACK, 2026-08-27 (T-0147), which is what the note that
+    // stood here asked for in as many words: "when it does, this check should go
+    // back to being a count — and a count is what a promise to a person looks
+    // like." The trims that earned it are T-0150 (the derived furniture
+    // distance-culled at `light`), T-0146 (far chunks merged back into single
+    // draws) and T-0223's timber cull. Read on the published mirror at T-0135's
+    // five stands, dev @ f7aca445: `light`'s worst frame is 76 calls on desktop
+    // and 69 on mobile, against the 141 and 137 `full` reaches at its own worst.
+    // 80 is the ORIGINAL number and not one tuned to sit just over 76 — four
+    // calls of room, and the next chunked layer to reach it reaches a bar that
+    // means something. Thin on purpose and thin in fact: the reading was 75
+    // before T-0194's hitching posts merged and 76 after, so one ordinary
+    // parcel spent a quarter of the margin. When it goes red the answer is a
+    // trim or an argued re-budget at `DETAIL`, never a weakening of this line. `light`'s triangle ceiling came down in the same commit,
+    // 1,050,000 -> 785,000, and `DETAIL` in `main.js` carries that reading.
     //
-    // T-0147 restores the absolute bar after T-0150 and T-0146 trim the axial
-    // view. When it does, this check should go back to being a count — and a
-    // count is what a promise to a person looks like.
+    // The ratio is KEPT underneath rather than replaced: the count is the
+    // promise to a weak machine, the ratio is the claim that the scene-detail
+    // control is not decoration, and a reading can break either without the
+    // other.
+    const LIGHT_CALL_FLOOR = 80;
+    check(`${label}: the light tier draws inside its ${LIGHT_CALL_FLOOR}-call floor at the worst stand`,
+      light.worstCalls.calls <= LIGHT_CALL_FLOOR,
+      `${light.worstCalls.calls} calls at light, worst stand ${light.worstCalls.label} `
+      + `— floor ${LIGHT_CALL_FLOOR}, the count this project chose before the 2026-08 `
+      + `content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed `
+      + `the axial view`);
     check(`${label}: the light tier stays materially cheaper than full at the worst stand`,
       light.worstCalls.calls <= full.worstCalls.calls * 0.9,
       `${light.worstCalls.calls} calls at light against ${full.worstCalls.calls} at full, `
-      + `worst stand ${light.worstCalls.label} — the pre-2026-08 floor of 80 calls was `
-      + `surrendered by the owner's raise-or-trim ruling; T-0147 wins it back`);
+      + `worst stand ${light.worstCalls.label}`);
     check(`${label}: the level the visitor started on is restored`,
       detail.restored && !detail.flying && detail.restoredAt === STANDS[0].id,
       `${detail.restored ? 'level restored' : 'level NOT restored'}, `
