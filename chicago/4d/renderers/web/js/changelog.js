@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 295, title: 'Nine houses told you the wrong wall held them in place', kind: 'fix', ts: '2026-08-27T19:38:00.568Z', date: 'Aug 27, 2026, 2:38 PM CT',
+    items: [
+      'Open the card on any of the nine reconstructed houses in the Lake-and-Clark row or the two Randolph-and-Dearborn rows, and read down to where it explains how the building was placed. It used to name the wrong wall — it said the EAST wall was the one pinned to the corner or to the neighbour\u2019s party wall, when on these rows it is the WEST wall, and the east one simply follows a house-width along.',
+      'These rows are built from the corner outward. For twelve blocks every row in town started at the east end of its street face and packed westward, so the pinned wall and the east wall were the same wall and the sentence was true. Then a corner lot was opened at the WEST end, and three rows have been built that way since. The sentence was never revisited.',
+      'It matters because the card is telling you what is invented here and what is not. A reader following it would set the east wall a metre and a half off the wrong side line, which is the opposite corner of the lot from where the house actually stands.',
+      'Which wall the anchor holds is now read off the placement instead of assumed, so a row built from either end describes itself correctly. Nothing moved: the nine houses stand exactly where they stood, at the same size, on the same line.',
+    ] },
   { v: 294, title: 'The ledger of what we made up could lose an entry', kind: 'chore', ts: '2026-08-27T17:20:34.964Z', date: 'Aug 27, 2026, 12:20 PM CT',
     items: [
       'Nothing in the town looks different today. This is about the register that lists every part of this reconstruction we invented — the one you open to ask which of this did you make up — and two ways an entry could go missing from it without anybody being told.',

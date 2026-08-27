@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 2:34 PM",
+  "generated_ct": "Aug 27, 2026, 2:39 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4008,6 +4008,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 63
+    },
+    {
+      "id": "T-0237",
+      "title": "The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
     }
   ]
 }
