@@ -104,3 +104,4 @@ T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
+T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
