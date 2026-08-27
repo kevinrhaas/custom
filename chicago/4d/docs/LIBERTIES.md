@@ -8294,3 +8294,53 @@ Related: **L144** (the density standard this extends) · **L100**, **L101**, **L
 (the anonymous roofs on these four blocks) · **L142**, **L143** (the South Water row) ·
 **L160** (the plank walk this repair closed up) · tickets **T-0198**, **T-0199**, **T-0220**.
 **Recorded:** 2026-08-27.
+
+### L189 — One dark behind every opening in Chicago, at a gloss nobody stated
+
+**Decision:** the 287 dark panels this town uses to stand in for an opening — window and door
+panels on 112 frame dwellings, the log cabins' doors, windows and gable vents, the fort's
+loopholes and its root-house door, the stockade gate's shut leaves, and the outbuildings'
+interiors seen through a board gap, a vent or an open bay — all resolve to ONE row of
+`generators/common/materials.py`: `0.072, 0.068, 0.060` at **roughness 0.60**. Two of the three
+values they carried are retired. `glass` joins the same family on the sheet at exactly the value
+its 48 slots already shipped, `0.09, 0.11, 0.13` at 0.25, unchanged.
+**Why:** the town rendered one idea three ways and the spread was in the gloss, which is what
+decides whether a surface catches the sun: a doorway on a frame dwelling glinted at 0.35, the
+identical doorway on the shed beside it did not at 0.60, and the fort's loopholes sat between
+them at 0.40. None of the three carried a word of argument in the file that set it.
+**What is invented:** the roughness and the hue, and nothing else. **No source this repository
+holds states either, and the word "glass" appears in no source at all** — so this is
+`reconstructed`, a deliberate DOWNGRADE from the `inferred` the old `interior_dark` row carried.
+Neither number is free, though. The roughness is **bounded by two values already shipping and
+placed at their midpoint**: it cannot be `glass`'s 0.25, because EVERY ONE of the 287 slots
+carries surfaces that are certainly not glazed — doorways, gaps between boards, open bays,
+loopholes, gable vents, the stockade's two shut gate leaves — and at a glazing gloss an open bay
+takes the same sun glint a shop window does; and it cannot be the bare fabrics behind it (heavy
+timber 0.90, hewn log 0.92, sawn board 0.94), because 156 of the 287 ALSO carry windows, and on
+the 112 frame dwellings among them every window is sized off the Green Tree's attested 6 × 8 in
+lights (`chicagology_prefire127`, Gale's guest chamber "about 12x12, with two windows 6x8"), so
+those panels stand for glazed sash and a sash with no specular reads as a hole knocked in the
+wall. No slot in this family is purely one or the other — one slot paints a frame dwelling's
+doors AND its windows — which is why the bounds are stated by what a slot paints rather than as
+a percentage, and why the value belongs strictly between them.
+Nothing says where between them it sits, so it sits at the midpoint, 0.575, taken to the **0.60**
+the town already speaks on 117 slots rather than to a newly invented number 0.025 away. The hue
+is the warm near-black over the cool one because light reaching an unlit room here has bounced
+off timber and lime; a cool cast in an opening is SKY, and sky in an opening is `glass`'s job.
+**Consequence:** every opening in the town now catches the light the same way, and on the 170
+slots that moved the change a visitor sees is the sheen leaving — windows and doors on 112 frame
+dwellings, 44 log cabins, the fort's 13 buildings and the stockade read as recesses rather than
+as something faintly wet. **What it does NOT do is claim glazing**: a dwelling's window and a
+shed's open bay are still one material, because separating them costs a material on 112 assets
+and ROADMAP K36(a)'s palette threshold sits exactly at the count this town carries. That split is
+named in `docs/RESEARCH/materials.md` §7.1 and left open.
+**How to resolve:** a source that states a glazing — a pane count, a colour, or which buildings
+had glass at all — would move `glass` off `reconstructed` and would justify the material a frame
+dwelling's windows do not yet have. Nothing reached so far comes close: two records mention a
+sash and neither describes it.
+**Ticket:** T-0126. **Extends** L157 (the material sheet paints the town), which covers the wall,
+roof, log, chinking and heavy-timber families and deliberately left this one. **Supersedes
+nothing.**
+**Recorded:** 2026-08-24.
+
+

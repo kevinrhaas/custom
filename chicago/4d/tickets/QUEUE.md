@@ -39,7 +39,6 @@ T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits nei
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 
@@ -83,6 +82,7 @@ T-0195 — Three South Water corner stores lap the cross street's corridor by 0.
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
 T-0213 — Weight the trade families onto the business front
