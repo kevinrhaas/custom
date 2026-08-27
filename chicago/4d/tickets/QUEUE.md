@@ -46,8 +46,6 @@ T-0032 — The six-roof civic target counts three that were never built
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0031 — Where did the South Water timber belt stand
-T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
-T-0054 — Every liberty appended since L111 lands under the Resolved heading and compiles as resolved
 
 # --- THE TRIANGLE BUDGET — invisible, but it governs how much can be added
 T-0146 — Merge far chunks back into single draws
@@ -86,4 +84,5 @@ T-0190 — A second street tier for the street edge, and the ceiling that refuse
 T-0189 — A house on Washington is told it is 'one unit of the party-line river row'
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0209 — The sward's drawn reach is measured off plants at two per cent coverage

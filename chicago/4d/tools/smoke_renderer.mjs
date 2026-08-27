@@ -1536,6 +1536,39 @@ for (const [label, viewport, touch] of [
     if (stageOn(1)) {
     inStageWork = true;
 
+    // --- the frame is multisampled, phone included (T-0157) ----------------
+    // `main.js` booted with `antialias: !coarse` from Milestone 0, so a touch
+    // device drew the whole town with no multisampling and its edges flipped
+    // whole. Measured at 390×780 on the published mirror by
+    // `tools/measure_phone_aa.mjs`: switching MSAA on takes every one of the 149
+    // pixels that were swapping surface outright under a 2 mm nudge — 25 aerial,
+    // 124 at Lake and Market — to ZERO, and the worst per-pixel movement from
+    // 105/140 to 28/37.
+    //
+    // This is asserted on the live CONTEXT rather than on a pixel count, and the
+    // measurement is why: the flicker COUNT goes UP when MSAA is switched on
+    // (1,056 → 2,482 aerial), because a partial resample touches more pixels
+    // than a whole flip does. Any gate written on the count would have to be
+    // written backwards.
+    //
+    // `antialias` is a context-creation attribute with no runtime handle, which
+    // is exactly what makes it worth a gate: the only way to lose it is a reboot
+    // with the flag off, and not one other check in this file would notice.
+    // `getContextAttributes()` alone will not do — it echoes what was ASKED for.
+    // `SAMPLES` is what the framebuffer actually has.
+    const multisample = await page.evaluate(() => {
+      const gl = window.__chicago4d.renderer.getContext();
+      return {
+        asked: gl.getContextAttributes().antialias,
+        samples: gl.getParameter(gl.SAMPLES),
+        coarse: window.matchMedia('(pointer: coarse)').matches,
+      };
+    });
+    check(`${label}: the frame is multisampled — the town's edges are resolved on a phone too`,
+      multisample.asked === true && multisample.samples >= 2,
+      `antialias=${multisample.asked} SAMPLES=${multisample.samples} `
+      + `pointer:coarse=${multisample.coarse}`);
+
     // --- the gate counts the town (T-0036) --------------------------------
     // The owner asked for the number of buildings and the number of people
     // living in them on the FRONT screen. The assertion that matters is not
