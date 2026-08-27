@@ -288,11 +288,20 @@ const DETAIL = {
   //
   // `full` and `balanced` are raised to clear a breach that is REAL but whose
   // cause is measured and is NOT the town's content. Both numbers come back
-  // down when T-0209's first step lands. This is written here rather than in a
+  // down when T-0223's first step lands. This is written here rather than in a
   // ticket because the next person to read these constants is the one who needs
   // to know they are provisional.
   //
-  // THE MEASUREMENT (T-0209, `tools/measure_stand_budget.mjs`, at the release
+  // THE TICKET NUMBER IN THIS BLOCK WAS WRONG WHEN IT WAS WRITTEN, and every
+  // reference in it said T-0209 until 2026-08-27. T-0209 is a FLORA ticket
+  // about how far the sward's bloom reaches; it has nothing to do with timber,
+  // shadows or this budget. The measurement, the layer table and the costed
+  // cull are T-0223. That matters here more than a citation usually does: this
+  // block is an EXPIRY, and an expiry pointed at the wrong ticket does not
+  // expire — it comes due when an unrelated ticket about flowers closes.
+  // T-0231 records how the number got in.
+  //
+  // THE MEASUREMENT (T-0223, `tools/measure_stand_budget.mjs`, at the release
   // smoke's own worst stand — Lake Street at Canal, east down the axis):
   //
   //   full      1,412,120 of 1,400,000   over by 12,120
@@ -320,7 +329,7 @@ const DETAIL = {
   // clears the breach and leaves a normal parcel room, NOT a round number and
   // NOT chosen to fit a particular record.
   //
-  // WHEN THIS COMES OUT: T-0209 step one culls the timber from the sun's
+  // WHEN THIS COMES OUT: T-0223 step one culls the timber from the sun's
   // camera. At that point the worst stand should fall to roughly 1,232,000
   // (full) and 1,072,000 (balanced) — comfortably under the ORIGINAL
   // 1,400,000 / 1,210,000. Put them back. If the cull recovers materially less
@@ -328,7 +337,7 @@ const DETAIL = {
   // quietly keeping.
   //
   // This is the FIFTH re-basing of these ceilings. The count is the argument
-  // for T-0209, and it is recorded here so the sixth is harder to reach for.
+  // for T-0223, and it is recorded here so the sixth is harder to reach for.
   full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
@@ -379,7 +388,7 @@ const DETAIL = {
   //        breach it was raised to clear. It also rests on `full` carrying
   //        1.2 % headroom; `full` is now OVER, at 1,412,120 of 1,400,000. Both
   //        halves of the proportional-headroom argument have moved.
-  //   (ii) T-0209 measured what actually occupies the frame, which nobody had:
+  //   (ii) T-0223 measured what actually occupies the frame, which nobody had:
   //        `trees` draws 360,926 triangles out of 181,900 it owns -- the whole
   //        layer twice -- because trees.js submits kilometre-wide quadrant
   //        meshes whole to a +/-240 m shadow box. 180,100 triangles, 14.4 % of
@@ -387,11 +396,11 @@ const DETAIL = {
   //
   // Re-basing a ceiling with that still in it budgets for work the renderer
   // should not be doing, and it would be the fifth raise. So the number stays
-  // at 1,210,000 and the budget question lives entirely in T-0209, which orders
+  // at 1,210,000 and the budget question lives entirely in T-0223, which orders
   // the trim first and the ceiling after. The tree stand this parcel adds ships
   // regardless; its own smoke leg is red on dev with or without it.
   // Raised with `full` above, same reasoning, same expiry: measured 1,252,802
-  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0209.
+  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0223.
   balanced: { triangles: 1260000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,

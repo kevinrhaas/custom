@@ -27,7 +27,7 @@ T-0216 — dev has no standing smoke result of its own, so every branch re-deriv
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
-T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0209's timber cull
+T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0146 — Merge far chunks back into single draws
 T-0147 — Re-lower the ceilings once the trims land
 T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
@@ -97,4 +97,9 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- PROBABLY ALREADY ANSWERED — verify, then withdraw. Not withdrawn by an agent.
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
+
+# --- NEWLY FILED — appended here by `ticket.mjs new`, which writes to the END of
+# --- this file. NOT yet placed by the owner, and NOT part of the band above:
+# --- these are new tickets, not tickets to withdraw.
 T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
+T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down

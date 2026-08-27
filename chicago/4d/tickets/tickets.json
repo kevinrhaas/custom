@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 8:34 AM",
+  "generated_ct": "Aug 27, 2026, 8:50 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3885,21 +3885,39 @@
     },
     {
       "id": "T-0229",
-      "title": "The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0209's timber cull",
+      "title": "The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull",
       "state": "open",
       "epic": "RENDERING",
       "requested_by": "owner",
       "seen": false,
       "effort": "XS",
       "legacy_id": null,
-      "parent": "T-0209",
+      "parent": "T-0223",
       "opened": "2026-08-27",
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "T-0209",
+      "blocked_on": "T-0223",
       "needs_bake": false,
       "queue_rank": 4
+    },
+    {
+      "id": "T-0231",
+      "title": "T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
     }
   ]
 }
