@@ -1,7 +1,7 @@
 ---
 id: T-0056
 title: The enclosure layer pays its full triangle cost at every scene-detail level
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 3:54:05 PM CT
 blocked_on: null
 needs_bake: false
 ---
