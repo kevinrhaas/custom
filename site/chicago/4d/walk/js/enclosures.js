@@ -57,6 +57,35 @@
  *    mesh apiece would be hundreds of draw calls for fences you can see all at
  *    once — so neighbouring runs share a chunk while it stays under `CHUNK_M`,
  *    and the three sides of one lot's yard are one mesh.
+ *  * IT KNOWS WHAT DETAIL LEVEL IT IS DRAWING AT, and T-0056 exists because it
+ *    once did not. That ticket was filed against a layer that built once, at
+ *    load, and consulted nothing: *"a pale is a very small box and there are
+ *    thousands of them."* Four mechanisms have landed on it since, none of them
+ *    in that ticket and none of them measured against it, so this is what the
+ *    control actually costs the fences today —
+ *    `tools/measure_enclosure_detail.mjs`, published mirror, 2026-08-27:
+ *
+ *      level       owns              at the aerial, colour + sun
+ *      full        171,480 tris      342,960
+ *      balanced    104,916 tris      209,832   -38.8 %
+ *      light       104,916 tris       39,596   -88.5 %
+ *
+ *    The four are: the PLANK pale at `light` (T-0067) and at `balanced`
+ *    (T-0068), which is where the whole 66,564-triangle owned saving comes from
+ *    — 11,094 pales at 6 triangles apiece; the 350 m furniture REACH at `light`
+ *    (T-0150), which is holding 20 to 37 of the layer's 48 chunks back at the
+ *    five stands; and the SHADOW tier (`furnitureCastsShadow: false` at
+ *    `light`), which stops the fences being drawn a second time for the sun.
+ *    The first is this file's; the other three are `main.js`'s, and the reason
+ *    they are named here is that a reader asking T-0056's question is reading
+ *    this file. The instrument holds the ladder with `--gate`.
+ *
+ *    WHAT `light` STILL PAYS IN FULL, so the next reader does not have to
+ *    re-derive it: a POST and a RAIL cost the same ten and eight triangles at
+ *    every level, and about half of the layer's 5,187 m is `post_and_rail`,
+ *    which has no pales to plank. That is deliberate rather than unfinished —
+ *    a pale's 22 mm edge is a fortieth of its silhouette and a rail's 90 mm top
+ *    face is not, so the same trade does not come round twice.
  *  * It marks itself. Every vertex carries `_confidence`, and it carries the
  *    grade of the WEAKEST thing that decides where that vertex is — which for
  *    every fence in this dataset is the fence type, and every fence type here is
