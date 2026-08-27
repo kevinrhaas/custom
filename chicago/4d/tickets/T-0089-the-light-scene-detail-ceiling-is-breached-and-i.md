@@ -10,7 +10,7 @@ legacy_id: null
 parent: null
 opened: 2026-08-18
 closed: 2026-08-27
-pr: null
+pr: 407
 claimed_by: run 8/27/2026, 2:06:24 PM CT
 blocked_on: Withdrawn on measurement: the 600,000 ceiling this breach was measured against was replaced by T-0135's re-basing to 1,050,000. See the body.
 needs_bake: false
