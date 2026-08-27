@@ -77,7 +77,6 @@ T-0179 — Three families offer a shed roof their own ridge band cannot carry: C
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
-T-0187 — At light detail the mid and forb rings' outer ramps dither inside the verge
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
 T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it

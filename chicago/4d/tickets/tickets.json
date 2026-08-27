@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 1:01 AM",
+  "generated_ct": "Aug 27, 2026, 1:05 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3154,7 +3154,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0185",
@@ -3190,12 +3190,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0187",
       "title": "At light detail the mid and forb rings' outer ramps dither inside the verge",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3203,12 +3203,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-27",
+      "pr": "392",
       "claimed_by": "run 8/26/2026, 11:27:35 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": null
     },
     {
       "id": "T-0188",
@@ -3226,7 +3226,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0189",
@@ -3244,7 +3244,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0190",
@@ -3262,7 +3262,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0197",
@@ -3280,7 +3280,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0198",
@@ -3370,7 +3370,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0210",
@@ -3388,7 +3388,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     }
   ]
 }
