@@ -1,7 +1,7 @@
 ---
 id: T-0199
 title: The five South Water stores standing on a lot the roof schedule already dealt
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0127
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/26/2026, 11:58:51 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -60,3 +60,59 @@ counted; and all three detail tiers stay inside their ceilings. Never by weakeni
 
 **Links:** T-0127 (parent) · T-0188 (piece 1, which measured all of the above) · T-0115 (the tier
 ledger) · `data/frontage/town_street_edge.json` `refused`, where all five are already named.
+
+---
+## 2026-08-27 — SETTLED BY THE OWNER, and all five are on the plat
+
+This ticket set out two honest routes and asked for one to be chosen with numbers. **Neither
+was needed: the choice was the owner's, because it is the core density standard rather than a
+sidewalk detail, and he made it on 2026-08-27.** A platted business-front lot may carry a
+documented store at the street AND an anonymous dwelling behind it. So the third route — the
+one the ticket did not list — is the one taken: the block programme's headroom is untouched,
+the frontage runs keep every lot they were dealt, and the five stores come onto the plat
+beside them.
+
+**No standing roof left the town** (338 before, 338 after), no household moved, and no gate
+was weakened. What moved is the RULE, deliberately: `tools/plat_occupancy.py` now answers two
+different questions with two different maps — `occupied_lots`, "what stands on this lot",
+unchanged and still truthful; and `exclusive_lots`, "what BARS another roof", which is the
+first less the owner's clause. `tools/generate_block_infill.py` and `tools/reconcile_665.py`
+both ask the second, so the generator and the schedule cannot drift apart on it (T-A6/T-A7).
+
+**What the clause admits, and what it still refuses** — all three tests must hold:
+
+1. the lot is named in that block's own `frontage` run in the committed parcel recipes, so an
+   interior lot, a side lot, and any lot of a block with no frontage run are untouched;
+2. the standing building is RESEARCHED — a record one of this project's reconstruction
+   programmes wrote is not a documented store, and two anonymous roofs on one lot is still one
+   too many;
+3. it stands AT the street — its street wall no further back than the run's own units plus one
+   lot margin (`setback_m + LOT_MARGIN_M`, both read from the block's own recipe). A documented
+   building standing back in the depth of its lot still takes the lot.
+
+…and a fourth that falls out of the third: the store has to be the lot's only occupant. A lot
+the anonymous run already stands on has been used, which is what keeps the schedule from
+offering a block room it is already building on.
+
+**Nothing physical was relaxed**: no overlap, the lot margin, the platted corridor and the
+three-metre separation all still bind. The separation rule gained one bounded clause of its
+own, named rather than folded in — on a declared business front the yard rule does not bind
+between a unit of that face's run and a researched building standing at the street on it,
+because they stand on the same party line and the run already closes that gap to ZERO between
+its own units. It is NARROWER than the party-wall exemption beside it: touching ground is
+still refused. Measured, it admits exactly one pair in the town —
+`recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from `carpenter_south_water_store`,
+side by side along the face with their fronts level; the next pair it could reach is 6.40 m
+and was already legal.
+
+**The five, and the metres:** `h_jones_store` 9.67 · `chicago_american_office` 8.41 ·
+`carpenter_south_water_store` 8.12 · `frederick_thomas_shop` 7.75 ·
+`pruyne_kimball_drugstore` 7.05, each along its block face's inward normal, each leaving its
+street wall 1.50 m back from the committed frontage line — T-0198's method, so the eleven are
+repaired by one rule. **South Water's street edge: 1,214.5 m of walk in 20 runs becomes
+1,297.3 m in 18, with 9 corner crossings becoming 11 and 89 walking decks becoming 96**; the
+Wells and Dearborn block faces each go from two stumps to one whole run. The march refuses
+zero steps for a wall anywhere on South Water; the eleven wall-refused steps left in the town
+are all on Lake Street, which is T-0196.
+
+Closed with T-0208, which carries the fork as it was put to the owner and his answer.

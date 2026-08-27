@@ -6227,6 +6227,60 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
+### L182 — Five business-front lots on South Water carry a documented store at the street and anonymous roofs beside and behind it
+
+**Decision:** on five platted lots of the town's business front — `blk_south_water_wells` lots 0
+and 2, `blk_south_water_clark` lot 2, `blk_south_water_dearborn` lots 0 and 2 — a **documented**
+building stands at the street AND the block programme's own anonymous roofs stand on the same
+lot: the party-line frontage run across the face, and on the two lot-0 cases a yard building at
+the alley end. Five lots, six anonymous roofs sharing ground with five documented ones. The
+documented buildings are H. Jones's grocery, Philo Carpenter's store, Pruyne & Kimball's
+drugstore, the Chicago American's office and Frederick Thomas's shop.
+
+**Why:** T-0199 and T-0208, and it is the OWNER'S RULING of 2026-08-27 rather than a
+derivation. Reconciling those five records with the committed plat (they had been set back off a
+2026 kerb line and stood up to 8.17 m out in the platted roadway) seated each of them on a lot
+the 665-roof schedule had already dealt. Nothing collides — all eleven South Water placements
+were checked against every committed footprint in the town and the worst overlap is **zero** —
+so the refusal was the standard itself, *one principal roof to a lot*, which L144 raised to
+three units per lot for a RUN but which still read one documented building as exhausting a lot.
+The fork was put to him: give eight roofs and two households back, or let a business-front lot
+carry both. **He chose both**, on the reasoning that the geometry already permits it and the
+other answer pays eight roofs and two households for a rule the corrected data had itself called
+into question. It is the same standard L144 records and the same ask behind it — *"there should
+be more and denser buildings. this is important."*
+
+**WHAT IS INVENTED.** That any anonymous building stood on these five lots at all, which L100,
+L101, L102 and L103 already claim for the roofs themselves and still do — this entry adds only
+the further claim that they stood there **while a documented shop stood in front of them on the
+same lot**. No source names an occupant of any of these lots, and none says how many roofs stood
+on one. What the owner's own reference for this reach supports is the TREATMENT: *"South Water
+Street in 1834"* draws a continuous trading front of log and frame buildings shoulder to
+shoulder, which is a street of shared lots rather than of detached cottages. **No coordinate was
+authored for it**: not one anonymous roof moved, and the five documented records moved only
+across the street, along their block face's own inward normal, by the metres their own
+`position.note` records.
+
+**WHAT IS NOT RELAXED, because a liberty that quietly widens is worse than none.** The clause is
+bounded to a lot named in its block's own `frontage` run, to a RESEARCHED standing building, and
+to one standing AT the street; the store must also be the lot's only other occupant. Nothing
+physical moved with it — no overlap, the 1.5 m lot margin, the platted corridor and the
+three-metre separation between roofs all still bind, and the one pair the companion clause admits
+inside that separation stands 2.40 m apart on a shared party line and does not touch. The rule
+and its bounds are in `tools/plat_occupancy.py`; the reasoning is in `docs/ROADMAP.md` K30(d) and
+`docs/STATUS.md`.
+
+**How to resolve:** any period document naming an occupant on a numbered South Water lot — an
+advertisement giving an address, a tax or insurance description, an itemised loss list — would
+replace an invented roof with a named one, which is what the 665-roof programme's substitution
+clause exists for. A document showing detached houses set back behind these shops would retire
+the shared-lot claim instead.
+
+Related: **L144** (the density standard this extends) · **L100**, **L101**, **L102**, **L103**
+(the anonymous roofs on these four blocks) · **L142**, **L143** (the South Water row) ·
+**L160** (the plank walk this repair closed up) · tickets **T-0198**, **T-0199**, **T-0208**.
+**Recorded:** 2026-08-27.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

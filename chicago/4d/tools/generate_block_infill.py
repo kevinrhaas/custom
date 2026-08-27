@@ -73,7 +73,8 @@ from inferred_occupancy import occupancy  # noqa: E402
 
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
-from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+from plat_occupancy import (LOT_MARGIN_M, exclusive_lots,  # noqa: E402
+                            footprints, shared_business_fronts)
 
 # The face of a committed block — the line a party-line street row stands on, the way
 # its fronts look, and where along it a wall lands. Authored once, in the module the
@@ -1188,8 +1189,21 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # frontage: its centroid is then in the roadway and its walls are on the lot. Three
     # documented buildings on this grid do it, and the block this parcel shape met them
     # on read every one of its lots as free.
-    occupied = occupied_lots({"blocks": [grid]}, datum,
-                             exclude=mine_ids).get(block["block_id"], {})
+    #
+    # THE OWNER'S 2026-08-27 CLAUSE, and it is asked here as `exclusive_lots` rather
+    # than as `occupied_lots`: a lot of this block's own declared business front is not
+    # exhausted by a RESEARCHED building standing AT THE STREET on it. He ruled it after
+    # the South Water plat reconciliation (T-0199) seated five documented stores on lots
+    # the schedule had already dealt this street's frontage runs — nothing overlapped,
+    # the worst overlap in the town was zero, and what refused them was this rule and
+    # not the ground. `tools/plat_occupancy.py`'s docstring carries the ruling, the fork
+    # as it was put to him and all three tests the clause has to pass; everything
+    # physical below — the lot margin, the corridor, the three-metre separation — is
+    # untouched by it and still refuses what it always refused.
+    occupied = exclusive_lots({"blocks": [grid]}, datum,
+                              exclude=mine_ids).get(block["block_id"], {})
+    shared = shared_business_fronts({"blocks": [grid]}, datum,
+                                    exclude=mine_ids).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1241,6 +1255,11 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # occupied by a roof this recipe wrote, and calling it "already carrying a roof"
     # would say a stranger built it. The lots are read from the recipe rather than from
     # the ground, which is what makes the answer the same on both sides of a generate.
+    # A lot the owner's business-front clause admits is NOT its own class: it is built
+    # on by this parcel — the run stands over it — and it also carries a documented
+    # store at the street. `occupied` is `exclusive_lots` above, so the clause has
+    # already taken it out of "already carrying a roof" and the four classes stay
+    # disjoint, which is the only property this check has ever needed of them.
     classes = {"built on by this parcel": set(used),
                "built on by another deal on this block": set(sibling_lots),
                "already carrying a roof": set(occupied) - set(sibling_lots),
@@ -1300,11 +1319,45 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         if target:
             abutted.add((record["id"], target))
             abutted.add((target, record["id"]))
+
+    # THE OWNER'S 2026-08-27 CLAUSE, second half — and it is a SECOND rule, named
+    # rather than folded quietly into the first. Once a documented store may share a
+    # business-front lot with the run, the two stand side by side ON THE SAME PARTY
+    # LINE, and three metres between two storefronts is not a yard: it is the gap the
+    # run already closes to ZERO between its own units, by the exemption above. So on
+    # a face the block itself declares a business front, the yard rule does not bind
+    # between a unit of that face's run and a researched building standing at the
+    # street on it. NARROWER THAN THE PARTY-WALL EXEMPTION IT SITS BESIDE — that one
+    # permits a shared wall; this one still refuses touching ground, because no
+    # documented record on this street declares a party wall with the anonymous row
+    # and inventing one would be a claim, not a repair. Everything else keeps the
+    # three metres: a yard building and a store, two anonymous roofs, and a documented
+    # building standing back in the depth of its lot rather than at the street.
+    #
+    # MEASURED, so the width of the clause is on the record rather than assumed: it
+    # admits exactly one pair in the town today — `recon_1835_blk_south_water_wells_d4_03`
+    # at 2.40 m from `carpenter_south_water_store`, along the face and with the fronts
+    # level. The next-closest pair it would reach is 6.40 m and already legal.
+    shared_here = {index: holder for index, holder in shared.items()
+                   if frontage and index in {int(i) for i in frontage["lots"]}}
+    front_share = set()
+    for record in row:
+        for holder in shared_here.values():
+            front_share.add((record["id"], holder))
+            front_share.add((holder, record["id"]))
+
     for sid, poly in mine:
         for other_id, other in others + [(s, p) for s, p in mine if s != sid]:
             if (sid, other_id) in abutted:
                 continue
             gap = polygon_gap(poly, other)
+            if (sid, other_id) in front_share:
+                if gap <= 0.0:
+                    raise SystemExit(
+                        f"{sid} stands on the same ground as {other_id}. The business "
+                        f"front is shared, not overlapping — the clause admits a narrow "
+                        f"gap between a storefront and the run, never none")
+                continue
             if gap < MIN_SEPARATION_M:
                 raise SystemExit(f"{sid} stands {gap:.2f} m from {other_id}")
 

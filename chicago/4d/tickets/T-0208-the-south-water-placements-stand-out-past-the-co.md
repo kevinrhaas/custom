@@ -1,7 +1,7 @@
 ---
-id: T-0190
+id: T-0208
 title: The South Water placements stand out past the committed plat, and the walk breaks on them
-state: blocked-owner
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,8 +11,8 @@ parent: T-0127
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: run 8/24/2026, 11:26:34 AM CT
-blocked_on: Does a South Water business-front lot carry a documented store at the street AND an anonymous dwelling behind it (b), or does the lot rule hold and the town give back six principal roofs and two yard buildings (a)? See the ticket's fork; the whole plat repair is derived and waiting on the answer.
+claimed_by: run 8/26/2026, 11:58:26 PM CT
+blocked_on: null
 needs_bake: false
 ---
 
@@ -179,3 +179,73 @@ on LAKE Street's walk, the same OSM-kerb fault, and downstream of this same fork
 - Desktop stages 5-9 not run: each leg costs about seven minutes against a ten-minute per-command
   ceiling, and with the branch already red on the block-parcel gate there is nothing for them to
   clear. They run before this merges.
+
+---
+## 2026-08-27 — THE OWNER RULED. (b): two roofs may share a business lot.
+
+**The fork above went to Kevin and he chose (b), verbatim in effect: a platted business-front
+lot may carry a documented store at the street AND an anonymous dwelling behind it.** His
+reasoning is this ticket's own recommendation — the geometry already permits it (all eleven
+were checked against every committed footprint in the town and the worst overlap is zero),
+and (a) would pay eight roofs and two households for a rule the corrected data had itself
+called into question. **No roof left the town, no household moved, and the four block
+recipes keep every roof they were dealt.** What changed is the STANDARD, and it is recorded
+as a standard changing rather than as a bug being fixed: `tools/plat_occupancy.py`'s module
+docstring carries the ruling, the fork as it was put to him and the three tests that bound
+the clause; `docs/STATUS.md` and `docs/ROADMAP.md` K30(d) carry it in the project's own
+narrative; the four blocks' `arrangement_note`s carry it where a reader of the recipe meets it.
+
+## WHAT WAS ALREADY DONE BY THE TIME THE ANSWER CAME — re-measured, not re-asserted
+
+`origin/dev` moved on. **T-0198 (PR #373) merged and reconciled SIX of the eleven** by the
+same method this branch used, so the honest answer to "what still needed moving" is FIVE, and
+they are exactly the five T-0198 refused in writing because they seat on a dealt lot — which
+is the fork, which is why they waited.
+
+| of the eleven | after PR #373 | this run |
+|---|---|---|
+| `jh_kinzie_forwarding_store`, `temple_building`, `chicago_democrat_office` | on the plat, clear of every corridor | nothing to do |
+| `harmon_loomis_store`, `madore_beaubien_house`, `peck_store` | on the plat; 0.16–0.21 m residual on a CROSS street | nothing to do — T-0195 |
+| `h_jones_store` 8.17 m · `chicago_american_office` 6.91 m · `carpenter_south_water_store` 6.62 m · `frederick_thomas_shop` 6.25 m · `pruyne_kimball_drugstore` 5.55 m | still out in the platted roadway, refused in writing | **moved 9.67 / 8.41 / 8.12 / 7.75 / 7.05 m** |
+
+The five were translated along their block face's inward normal until each street wall stands
+1.50 m back from the committed frontage line — **T-0198's method, not this branch's original
+one**, so the whole street is repaired by one rule rather than two. (This branch had put the
+wall ON the lot line; the merged six stand at the margin every reconstructed unit on these
+faces keeps, and consistency across the eleven is worth more than the 1.5 m.) `local_e` moves
+only by the face's own skew (0.07–0.24 m); the along-street position the sources argue is
+untouched. Every metre is in each record's `position.note` and its sidecar's.
+
+## WHAT IT BOUGHT, MEASURED AGAINST `dev` AFTER #373 — NOT AGAINST THE STALE FIGURES ABOVE
+
+| | dev (after #373) | after this run |
+|---|---|---|
+| town street edge | 1,214.5 m of walk in **20** runs | **1,297.3 m** in **18** |
+| corner crossings | 9 (212.5 m) | **11** (266.5 m) |
+| walking decks | 89 | **96** |
+| `blk_south_water_wells` north | 20.6 m + 41.1 m | **one 97.6 m run** |
+| `blk_south_water_dearborn` north | 15.6 m + 20.8 m | **one 67.6 m run** |
+| `blk_south_water_clark` north | 25.9 m + 20.8 m | 41.5 m + 20.8 m |
+| phases lapping a platted corridor | 26 | **21** |
+
+**The march refuses ZERO steps for a wall anywhere on South Water Street** — asserted by
+re-running `_march` over every committed face and reading the reason on every refused step.
+Eleven refused steps are left in the town and all eleven are on LAKE Street
+(`old_bank_building` 4, `dole_warehouse_south` 3, `first_presbyterian_church` 2,
+`st_marys_church` 2), which is T-0196. Every remaining South Water refusal is that street's
+own ground: 0.07–0.13 m of roll under one walking deck, and one step at +0.02 m at or under
+the water. That is the acceptance clause in its own words.
+
+**All five leave the corridor census entirely** — not one of them laps any platted corridor at
+any depth now, cross streets included.
+
+## Bookkeeping this run had to do
+
+- **This ticket was `T-0190` and is now `T-0208`.** `dev` merged its own `T-0190` (a second
+  street tier) while this branch was parked, so two files carried the id; `ticket.mjs restamp`
+  renumbered the younger, which is this one, and `T-0190`'s place in the owner's QUEUE was put
+  back where the restamp had taken it.
+- **`T-0199` is closed by the same PR** — dev's two-way split of T-0127 named the five stores
+  exactly, and this is that work. T-0127's five-way split on this branch and dev's two-way
+  split both stand; T-0191–T-0194 still own items 2–5 of the parent's body, which neither
+  T-0198 nor T-0199 covers.

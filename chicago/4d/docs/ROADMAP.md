@@ -6377,6 +6377,61 @@ blocker. They are refused **in writing, per store**, in their own `position.note
 `blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
 cluster, and whoever picks it up should read this heading first.
 
+#### K30(d) RESOLUTION 1 IS NOW TAKEN FOR ALL ELEVEN — 2026-08-27, T-0199 → T-0208, ON THE OWNER'S RULING
+
+**The last five came onto the plat, and it took a decision rather than a measurement.** The
+blocker above was never geometry: reconciled, each of the five seats on a lot the 665-roof
+schedule had already dealt to this street's anonymous frontage run, and nothing overlapped —
+every one of the eleven was checked against every committed footprint in the town and the worst
+overlap is **zero**. What refused them was the standard itself, *one principal roof to a lot*,
+and the block programme had passed its own occupancy gate only because those buildings were
+drawn out in the road. The repair did not create that; it made it visible.
+
+**The fork, as it was put to the owner** (T-0208, and the recommendation was (b)):
+
+- **(a)** the lot rule holds, the frontage runs give the lots back, **eight roofs leave the town**
+  (338 → 330), four block recipes are re-authored and two households are re-homed or leave;
+- **(b)** a platted business-front lot may carry a documented store at the street **and** an
+  anonymous dwelling behind it; nothing physical objects, the block parcels keep every roof.
+
+**Kevin chose (b) on 2026-08-27**, on the reasoning the ticket recommended: the geometry already
+permits it, and (a) pays eight roofs and two households for a rule the corrected data has itself
+called into question. **This is a standard changing, not a bug being fixed.** It is the same
+argument T-0143 and T-0188 are about — the core density standard, T-0079's — and it decides that
+the town's business front is NOT one roof to a lot.
+
+**How it is written down, so it cannot be mistaken for an exemption later.**
+`tools/plat_occupancy.py` carries the ruling and the clause in its module docstring and answers
+two questions with two maps: `occupied_lots` — *what stands on this lot* — unchanged; and
+`exclusive_lots` — *what BARS another roof* — which is the first less this clause.
+`generate_block_infill.py` and `reconcile_665.py` both read the second, so the generator and the
+schedule cannot drift apart on it (T-A6, T-A7). **Three tests bound it and all three must hold:**
+the lot is named in its block's own `frontage` run in the committed parcel recipes; the standing
+building is RESEARCHED, not one this project's reconstruction programmes wrote; and it stands AT
+the street, its street wall no further back than the run's own units plus one lot margin. A
+fourth falls out: the store must be the lot's only occupant, which is what stops the schedule
+offering a block room it is already building on. **Nothing physical was relaxed** — no overlap,
+the 1.5 m lot margin, the platted corridor and the three-metre separation all still bind. The
+separation gate took one bounded clause of its own, named rather than folded in: on a declared
+business front the yard rule does not bind between a unit of that face's run and a researched
+building standing at the street on it, because they stand on the same party line the run already
+closes to zero between its own units — and it is NARROWER than the party-wall exemption beside
+it, since touching ground is still refused. Measured, that clause admits exactly **one** pair in
+the town: `recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from
+`carpenter_south_water_store`; the next it could reach is 6.40 m and was already legal.
+
+**What it bought, measured against `dev` after T-0198:** the town's street edge goes from
+**1,214.5 m of walk in 20 runs to 1,297.3 m in 18**, corner crossings 9 → **11** (212.5 m →
+266.5 m), walking decks 89 → **96**; `blk_south_water_wells`'s and `blk_south_water_dearborn`'s
+South Water faces each go from two stumps to **one whole run** (97.6 m and 67.6 m). Town-wide
+corridor laps **26 → 21**, and all five leave the census outright at every depth, cross streets
+included. **`generate_frontage_works.py`'s march now refuses ZERO steps for a wall anywhere on
+South Water Street** — read off the march itself, step by step. The eleven wall-refused steps
+left in the town are all on **Lake Street** (T-0196), where this clause deliberately does not
+reach: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run for it to sit on.
+
+**Standing roofs: 338 before, 338 after. No household moved.**
+
 
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)

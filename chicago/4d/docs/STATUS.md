@@ -1,5 +1,110 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0199 / T-0208: the owner changed the density standard, and South Water's walk closed up
+
+**THE STANDARD MOVED. This is not a bug being fixed, and it must not read as one later.** Until
+2026-08-27 this project held one principal roof to a platted lot. It no longer does on the town's
+business front: **a platted business-front lot may carry a documented store at the street AND an
+anonymous dwelling behind it.** Kevin ruled it, in those terms, on 2026-08-27.
+
+**How the question arose, which is why it was his to answer.** T-0127 sent eleven documented South
+Water buildings back onto the committed plat — their setback had come from `osm_streets_2026`, a
+2026 kerb line, and stood them up to 8.17 m out in the platted roadway, which is why T-0069's
+plank walk came out of that street in stumps. T-0198 (PR #373) moved six. It refused the other
+five **in writing, per store**, because on the plat each of them SEATS on a lot the 665-roof
+schedule had already dealt to that street's anonymous frontage run. Nothing overlapped — all
+eleven were checked against every committed footprint in the town and the worst overlap is
+**zero**. What refused the repair was the RULE, and the finding under the finding was worse than
+the repair: **the block programme had dealt those roofs onto lots documented buildings actually
+stand on, and passed its own occupancy gate only because those buildings were drawn out in the
+road.**
+
+**The fork, as put to him, and his answer.** (a) The lot rule holds and the town gives the roofs
+back: **eight roofs leave** (338 → 330), four block recipes are re-authored, two households are
+re-homed or leave with their roof. (b) The business-front lot carries both. **He chose (b)**, on
+the reasoning the ticket recommended — the geometry already permits it, and (a) pays eight roofs
+and two households for a rule the corrected data has itself called into question. It is the same
+argument T-0143 and T-0188 are about, the core density standard T-0079 raised, and settling it by
+side effect inside a sidewalk ticket would have been the wrong way to decide it.
+
+**Where the ruling is recorded**, because a standard that lives in one commit message is a
+standard nobody can find: `tools/plat_occupancy.py`'s module docstring (the ruling, the fork and
+the clause's three tests), `docs/ROADMAP.md` K30(d), the four affected blocks' own
+`arrangement_note`s in `data/reconstruction/1835_platted_block_parcels.json`, and tickets T-0199
+and T-0208.
+
+**What the clause admits, and what it still refuses.** `plat_occupancy` now answers two questions
+with two maps instead of conflating them: `occupied_lots` — *what stands on this lot* — unchanged
+and still truthful, because a documented store on a shared front still stands there and its roof
+still counts against its block's headroom; and `exclusive_lots` — *what BARS another roof* —
+which is the first less this clause. `generate_block_infill.py` and `reconcile_665.py` both read
+the second, so the generator and the schedule cannot drift apart on it (T-A6, T-A7). Three tests,
+all of which must hold: **the lot is named in its block's own `frontage` run** in the committed
+parcel recipes (an interior lot, a side lot and any block with no frontage run are untouched);
+**the standing building is researched**, not one this project's reconstruction programmes wrote
+(two anonymous roofs on one lot is still one too many); and **it stands AT the street**, its
+street wall no further back from the committed frontage line than the run's own units plus one
+lot margin, both read from the block's own recipe. A fourth falls out of the third: the store has
+to be the lot's only occupant, which is what keeps the schedule from offering a block room it is
+already building on — and it is also why one function serves both halves, since the generator
+asks it with its own records excluded and the schedule asks it with nothing excluded.
+
+**Nothing physical was relaxed.** No overlap, the 1.5 m lot margin, the platted corridor and the
+three-metre separation all still bind. The separation gate took one bounded clause of its own,
+**named rather than folded quietly into the first**: on a declared business front the yard rule
+does not bind between a unit of that face's run and a researched building standing at the street
+on it — they stand on the same party line, and the run already closes that gap to ZERO between
+its own units. It is NARROWER than the party-wall exemption beside it, because touching ground is
+still refused. Measured, it admits **exactly one pair in the town**:
+`recon_1835_blk_south_water_wells_d4_03` at **2.40 m** from `carpenter_south_water_store`, side by
+side along the face with their fronts level. The next pair it could reach is 6.40 m and was
+already legal. **No threshold was lowered anywhere in this work.**
+
+**Which of the eleven still needed moving, re-measured rather than inherited.** The figures the
+parked branch carried were taken before #373 merged and were stale by six records. After #373:
+three of the eleven (`jh_kinzie_forwarding_store`, `temple_building`, `chicago_democrat_office`)
+were on the plat and clear of every corridor; three more (`harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`) were on the plat with a 0.16–0.21 m residual on a CROSS
+street, which is T-0195 and which this ruling does not touch; and **five still stood in the
+roadway — exactly the five #373 refused.** They moved 9.67 (`h_jones_store`), 8.41
+(`chicago_american_office`), 8.12 (`carpenter_south_water_store`), 7.75
+(`frederick_thomas_shop`) and 7.05 m (`pruyne_kimball_drugstore`) along their block face's inward
+normal, each leaving its street wall 1.50 m back from the committed frontage line. **That is
+#373's method, not the parked branch's** — the branch had put the wall ON the lot line, and one
+rule across the eleven is worth more than the 1.5 m. `local_e` moves only by the face's own skew,
+0.07–0.24 m; the along-street position the sources argue is untouched, and no confidence grade
+moved.
+
+**What a visitor sees**, measured against `dev` after #373:
+
+| | before | after |
+|---|---|---|
+| town street edge | 1,214.5 m of walk in **20** runs | **1,297.3 m** in **18** |
+| corner crossings | 9 (212.5 m) | **11** (266.5 m) |
+| walking decks | 89 | **96** |
+| `blk_south_water_wells` north face | 20.6 m + 41.1 m | **one 97.6 m run** |
+| `blk_south_water_dearborn` north face | 15.6 m + 20.8 m | **one 67.6 m run** |
+| phases lapping a platted corridor | 26 | **21** |
+| standing roofs | 338 | **338** |
+
+**The march refuses ZERO steps for a wall anywhere on South Water Street**, read off `_march`
+itself step by step rather than inferred from the run lengths. Every remaining South Water
+refusal is that street's own ground — 0.07–0.13 m of roll under one walking deck, one step at
++0.02 m at or under the water. The **eleven** wall-refused steps left in the town are all on Lake
+Street: `old_bank_building` 4, `dole_warehouse_south` 3, `first_presbyterian_church` 2,
+`st_marys_church` 2. That is **T-0196**, and the ruling deliberately does not reach it — measured,
+not assumed: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run in the parcel
+recipes for the clause to sit on, and all four would land on lots that already carry anonymous
+roofs.
+
+**One measurement made on the way, worth its own ticket.** `measure_street_frontage.layer_of`
+names the three evidence layers by ID PREFIX, and across the committed 348 records it disagrees
+with the record's own contents exactly once: `physicians_office` carries no `inf_` prefix and is
+nonetheless a product of the inferred-household programme, which its own
+`reconstruction.status` says. The new clause reads the record rather than the filename for
+precisely that reason — a rule about documented buildings must not let an invented one through on
+the strength of its name. Filed as **T-0209**.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a
