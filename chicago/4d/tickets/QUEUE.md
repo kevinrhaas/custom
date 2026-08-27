@@ -46,7 +46,6 @@ T-0032 — The six-roof civic target counts three that were never built
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0034 — Raise the bloom, which has no bar left to raise it to
 T-0031 — Where did the South Water timber belt stand
-T-0157 — A phone draws the town with no antialiasing, so every edge T-0013 named crawls unresolved
 
 # --- THE TRIANGLE BUDGET — invisible, but it governs how much can be added
 T-0146 — Merge far chunks back into single draws
