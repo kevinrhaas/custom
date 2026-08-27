@@ -590,6 +590,36 @@ def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
     return len(citations)
 
 
+def southern_edge_text() -> str:
+    """Where the modelled ground stops on the south, and what the plat has beyond it.
+
+    Composed from `tools/measure_southern_ground.py` rather than written here, for the
+    same reason the relief row reads `heightfield.json`: a sentence about the extent of
+    the ground that is typed into prose is a sentence that survives the ground moving.
+    """
+    from measure_southern_ground import measure  # noqa: PLC0415
+
+    m = measure()
+    field, corridor = m["field"], m["washington_corridor"]
+    census, tier = m["south_of_plat"], m["tier"]
+    south_of_field = field["south_edge_n_m"] - tier["madison_at"]["state"]
+    return (
+        f"The modelled box ends {abs(field['south_edge_n_m']):.0f} m south of the forks, "
+        f"and that line falls inside Washington Street's own 80 ft corridor: "
+        f"{corridor['area_m2'] / 1e4:.2f} ha of the street's south half, over "
+        f"{corridor['length_m']:.0f} m of its length, lies off the field. Madison Street "
+        f"— the 1830 town plat's south boundary, fixed here from the section corner at "
+        f"State and Madison — is {south_of_field:.1f} m further south again, so the plat's "
+        f"last tier of blocks, {tier['area_ha']:.2f} ha on {tier['lots']} lots between "
+        f"Market and State, is not modelled ground at all. Of the "
+        f"{census['land_ha']:.2f} ha of land the field does hold south of Washington's "
+        f"corridor, none is in the South Division: it is the far bank of the South "
+        f"Branch. Past every edge of the box the ground is a plain skirt carrying the "
+        f"edge heights outward, which claims nothing about 1835. Measured from the "
+        f"committed heightfield and the committed street lines, not asserted."
+    )
+
+
 def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> int:
     """What the ground claims, for the visitor standing on it.
 
@@ -664,6 +694,19 @@ def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> i
                     f"channel floor reaches {relief.get('channel_min')} ft below it. "
                     f"Measured from the committed heightfield, not asserted.",
         })
+
+    # T-0026. The box's own note above tells a reader how many samples it holds and
+    # what it cost to publish; it does not tell them WHERE IT ENDS, and the south edge
+    # is the one a visitor meets. Walk to the south side of Washington Street and the
+    # town's modelled ground is already behind you — the box's edge falls inside that
+    # street's own platted corridor, and the plat has a whole further tier of blocks
+    # below it that this reconstruction does not contain. Same discipline as the relief
+    # row: every figure is measured off the committed heightfield and the committed
+    # street lines by `tools/measure_southern_ground.py`, so the card cannot drift from
+    # the ground the day the terrain is extended.
+    if epoch == "e1834_harbor_cut":
+        context.append({"label": "Where the ground stops on the south",
+                        "text": southern_edge_text()})
 
     emit(outdir / "terrain.json", {
         "scene": scene_id,

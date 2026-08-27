@@ -16,13 +16,13 @@
   },
   "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": 378.725,
-    "local_n": -14.94,
-    "rotation_deg": 359.53,
+    "local_e": 404.279,
+    "local_n": -86.121,
+    "rotation_deg": 180.34,
     "position_confidence": "reconstructed",
     "position_sources": [],
-    "position_note": "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0078). This building does not stand centred on a lot at a typology setback: it stands ON the north face of blk_south_water_wells, the town's river business front, whose line and bearing are read from the block boundary in data/traces/vectors/thompson_lots.json — the same committed geometry the lot grid and the corridor gate are derived from. Its front wall is 1.50 m back from that lot line, which is the closest line the plat module's own margin allows and is not a measurement of this frontage, and its east wall is fixed by 2.4 m west of carpenter_south_water_store, which stands proud of the platted line and so cannot share a wall with the row. The bearing is the face's own, so the front looks at South Water Street and the river beyond it, as every documented store on this face does. The run carries no lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here at all, which building it was, and that these particular units stood shoulder to shoulder. What the 1834 South Water Street view supports is the TREATMENT — a continuous working row facing the river rather than detached cottages set back on grass — and the treatment is what this placement takes from it. Standing on a derived block face is not standing on a recovered lot, and the side lot lines this row crosses were always conjectural.",
-    "symbolic_location": "Anonymous reconstructed roof in the South Division block bounded by South Water, Lasalle, Lake and Wells; standing ON the South Water Street frontage itself, one unit of the party-line river row",
+    "position_note": "Interpretive placement on a GENERATED lot, not a recovered parcel. The lot geometry is the K7 plat module's — this project has never read Thompson's numbering off a sheet, and the side lot lines and the alley are conjectural even where the block face is not. The building stands 6.0 m back from its street edge, which is a typology for the period and not a measurement of this lot. The whole footprint — not its centre — is tested against the platted street corridors, against its own lot lines and against every other footprint in the dataset, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
+    "symbolic_location": "Anonymous reconstructed roof in the South Division block bounded by South Water, Lasalle, Lake and Wells; standing back from the Lake Street frontage",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain",
@@ -132,6 +132,11 @@
       ],
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention being bounded does not hold for this value: the D4 family's key geometry parameters do not speak to a porch, so there is nothing here for a citation to point at. The value is the reconstruction generator's type default; it is not evidence for this anonymous instance."
     },
+    "siding_exposure_m": {
+      "value": 0.127,
+      "confidence": "reconstructed",
+      "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this roof wears 5 in — dealt in this building's own parcel recipe: drawn from the set on this record's stable key, then advanced so that no roof of the parcel standing within 60 m hangs the same course. It is NOT keyed to a construction season the way the named buildings' stocks are: this record's 1835-01-01 is the programme's count-unit convention and not a date anything was built, so keying to it would deal every anonymous roof in the town one stock. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention and the recipe half is recorded beside it, under `tools/siding_stock.py`."
+    },
     "function": {
       "value": "two-room frame cottage",
       "confidence": "reconstructed",
@@ -174,18 +179,12 @@
     "programme_phase": "phase3_platted_block_south_water_wells",
     "source_id": "owner_chicago_1835_reconstruction_spec_2026",
     "block_id": "blk_south_water_wells",
-    "stands_on": "frontage",
-    "fronts": "south_water",
+    "lot_index": 5,
+    "stands_on": "street",
+    "fronts": "lake",
     "sequence": 3,
     "finish_key": "fresh_timber",
     "roof_condition": "weathered",
-    "age_state": "older_frontier",
-    "frontage": {
-      "block": "blk_south_water_wells",
-      "face": "north",
-      "setback_m": 1.5,
-      "abuts": null,
-      "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written."
-    }
+    "age_state": "older_frontier"
   }
 }

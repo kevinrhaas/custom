@@ -60,9 +60,21 @@ DATA = ROOT / "data"
 sys.path.insert(0, str(ROOT / "tools"))
 from heightfield import Heightfield  # noqa: E402
 
-BRIDGE = "slough_log_bridge"
 SCENE = "1835"
-WATERCOURSE = "state_slough_mouth"
+
+# THE CROSSINGS THIS FILE READS. It measured one until 2026-08-24 and the module
+# names still say so; T-0129 built a second crossing over the second of the three
+# Main Branch sloughs, whose record and whose liberty both promise these same
+# readings, and a near-identical second file would have been two gates to keep in
+# step instead of one. Each entry is a committed bridge record and the swale entry
+# whose water it is supposed to span — nothing else about a crossing is stated
+# here, because everything else is read out of the records themselves.
+CROSSINGS = [
+    {"bridge": "slough_log_bridge", "watercourse": "state_slough_mouth",
+     "label": "The Slough Log Bridge, Water Street"},
+    {"bridge": "lasalle_slough_crossing", "watercourse": "lasalle_slough_lower",
+     "label": "The La Salle Slough Crossing, South Water Street"},
+]
 
 # The step the transects are read at. Finer than the 2.5 m grid on purpose: the
 # field is sampled bilinearly by the walker and by the renderer, so the waterline
@@ -142,7 +154,9 @@ def longest_wet_run(samples: list[tuple[float, float]], water_y: float):
     return best
 
 
-def measure() -> tuple[dict, list[str]]:
+def measure(crossing: dict) -> tuple[dict, list[str]]:
+    BRIDGE = crossing["bridge"]
+    WATERCOURSE = crossing["watercourse"]
     problems: list[str] = []
     rec = load(DATA / "structures" / f"{BRIDGE}.json")
     side = load(DATA / "sidecars" / SCENE / f"{BRIDGE}.json")
@@ -224,6 +238,46 @@ def measure() -> tuple[dict, list[str]]:
                 f"{walked} samples along '{WATERCOURSE}' stand above the water "
                 f"surface, first at E {dry[0][0]} N {dry[0][1]}")
 
+        # --- 3b: AND NOTHING DAMS IT ANYWHERE ALONG ITS LENGTH -------------
+        # T-0129. Assertion 3 asks about the reach BELOW the deck, because a
+        # drain's inland course is read here as a damp swale standing above the
+        # water and a dry reading up there is the claim rather than a failure.
+        # What that cannot catch is a bar of land sitting BETWEEN two pools —
+        # dry cells with water on both sides of them — which is exactly what the
+        # owner reported on 2026-08-21 at the La Salle drain: "this slough has
+        # kind of a bulge of land... it would not have that and be a continous
+        # water drain into the river". A watercourse may END. It may not be
+        # INTERRUPTED, and the difference is what this clause reads.
+        along = []
+        for i in range(len(line) - 1):
+            (ae, an), (be, bn) = line[i], line[i + 1]
+            length = math.hypot(be - ae, bn - an)
+            for k in range(int(length / STEP_M) + 1):
+                t_ = k * STEP_M / length
+                e, n = ae + (be - ae) * t_, an + (bn - an) * t_
+                along.append((e, n, hf.height(e, n) < water_y))
+        wet_ix = [i for i, s in enumerate(along) if s[2]]
+        bars = []
+        if wet_ix:
+            run_start = None
+            for i in range(wet_ix[0], wet_ix[-1] + 1):
+                if not along[i][2]:
+                    if run_start is None:
+                        run_start = i
+                elif run_start is not None:
+                    bars.append((run_start, i - 1))
+                    run_start = None
+        reading["interruptions"] = len(bars)
+        reading["longest_bar_m"] = (round(max(b[1] - b[0] + 1 for b in bars) * STEP_M, 2)
+                                    if bars else 0.0)
+        if bars:
+            first = along[bars[0][0]]
+            problems.append(
+                f"'{WATERCOURSE}' is DAMMED: {len(bars)} bar(s) of dry ground sit "
+                f"between two pools along its own centreline, the longest "
+                f"{reading['longest_bar_m']:.2f} m, the first at E {first[0]:.1f} "
+                f"N {first[1]:.1f}. A watercourse may end; it may not be interrupted")
+
     # --- 4: the record's own deck ------------------------------------------
     attrs = side["attributes"]
     thickness = float(attrs["stringer_d_m"]["value"]) + float(attrs["plank_t_m"]["value"])
@@ -281,36 +335,51 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--gate", action="store_true",
-                    help="exit 1 if the crossing does not span open water")
+                    help="exit 1 if any crossing does not span open water")
+    ap.add_argument("--crossing", help="one bridge id; the default reads them all")
     args = ap.parse_args()
-    r, problems = measure()
 
-    if not args.gate and r:
-        print(f"The Slough Log Bridge, Water Street — deck E {r['deck_e'][0]} .. "
-              f"{r['deck_e'][1]}, span {r['span_m']} m, water surface "
-              f"{r['water_surface_m']:+.2f} m")
-        print(f"  open water under the deck   {r['open_water_m']:.2f} m "
-              f"({100 * r['open_water_m'] / r['span_m']:.0f}% of the span), "
-              f"bed {r['deepest_m']:+.3f} m")
-        print(f"  dry abutment seats          west {r['west_seat_m']:.2f} m, "
-              f"east {r['east_seat_m']:.2f} m")
-        print(f"  deck                        walk {r['deck_walk_m']:.2f} m, soffit "
-              f"{r['deck_soffit_m']:+.2f} m, clearance stated "
-              f"{r['clearance_stated_m']:.2f} m")
-        print(f"  reach to the river          {r.get('mouth_reach_samples', 0)} samples, "
-              f"{r.get('mouth_reach_dry', 0)} above the water surface")
-        print(f"  rooted in the cut           "
-              f"{', '.join(r['intruders']) if r['intruders'] else 'nothing but the crossing'}")
+    wanted = [c for c in CROSSINGS
+              if args.crossing in (None, c["bridge"])]
+    if not wanted:
+        print(f"no crossing '{args.crossing}' — this file reads "
+              + ", ".join(c["bridge"] for c in CROSSINGS), file=sys.stderr)
+        return 2
 
-    for p in problems:
-        print(f"FAIL  {p}", file=sys.stderr)
-    if problems:
-        return 1
-    if args.gate:
-        print(f"slough crossing: {r['open_water_m']:.2f} m of open water under an "
-              f"{r['span_m']:.1f} m span, abutments dry, the reach to the river "
-              f"unbroken, nothing else rooted in the cut")
-    return 0
+    failed = False
+    for crossing in wanted:
+        r, problems = measure(crossing)
+
+        if not args.gate and r:
+            print(f"{crossing['label']} — deck E {r['deck_e'][0]} .. "
+                  f"{r['deck_e'][1]}, span {r['span_m']} m, water surface "
+                  f"{r['water_surface_m']:+.2f} m")
+            print(f"  open water under the deck   {r['open_water_m']:.2f} m "
+                  f"({100 * r['open_water_m'] / r['span_m']:.0f}% of the span), "
+                  f"bed {r['deepest_m']:+.3f} m")
+            print(f"  dry abutment seats          west {r['west_seat_m']:.2f} m, "
+                  f"east {r['east_seat_m']:.2f} m")
+            print(f"  deck                        walk {r['deck_walk_m']:.2f} m, soffit "
+                  f"{r['deck_soffit_m']:+.2f} m, clearance stated "
+                  f"{r['clearance_stated_m']:.2f} m")
+            print(f"  reach to the river          {r.get('mouth_reach_samples', 0)} samples, "
+                  f"{r.get('mouth_reach_dry', 0)} above the water surface")
+            print(f"  bars of land in the course  {r.get('interruptions', 0)} "
+                  f"(longest {r.get('longest_bar_m', 0.0):.2f} m)")
+            print(f"  rooted in the cut           "
+                  f"{', '.join(r['intruders']) if r['intruders'] else 'nothing but the crossing'}")
+
+        for p in problems:
+            print(f"FAIL  {crossing['bridge']}: {p}", file=sys.stderr)
+        if problems:
+            failed = True
+            continue
+        if args.gate:
+            print(f"{crossing['bridge']}: {r['open_water_m']:.2f} m of open water "
+                  f"under an {r['span_m']:.1f} m span, abutments dry, the reach to "
+                  f"the river unbroken, nothing damming the course, nothing else "
+                  f"rooted in the cut")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

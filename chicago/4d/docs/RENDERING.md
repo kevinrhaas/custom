@@ -131,13 +131,28 @@ weak machine has to hold.
 holds each tier to its ceiling at the WORST of them, which found the town 32 % over at
 `full`, 27 % at `balanced` and 65 % at `light` — at viewpoints the Go-to menu already
 offers. The ceilings were raised on the owner's ruling to 1,400,000 / 1,210,000 /
-1,050,000 and the call budget to 215, which made a dishonest number honest and left the
+1,050,000 (`balanced` to 1,225,000 on 2026-08-24, below) and the call budget to 215, which made a dishonest number honest and left the
 bottom rung heavier than the old top rung. T-0149 is the programme that wins the floor
 back by trimming the axial view instead of carrying it; its first piece landed on
 2026-08-23 (T-0150) and distance-culls the derived furniture beyond 350 m at `light`
 only, taking the worst stand from 998,073 triangles and 177 calls to 745,933 and 70.
 The ceilings above have NOT yet followed it down — that is T-0147, kept separate so the
-trim has to be measured before the ceiling moves. Read `renderers/web/js/main.js`
+trim has to be measured before the ceiling moves.
+
+**`balanced` was re-budgeted once more on 2026-08-24 (T-0098), 1,210,000 → 1,225,000, and
+the measurement is the point of the entry.** The parcel that found the bar measured it at
+the worst stand twice, with and without itself: `dev` alone read **1,209,926 of 1,210,000 —
+inside by SEVENTY-FOUR triangles**, and the same tree with a twelve-stem planting record
+read 1,213,446. Seventy-four triangles is a quarter of one tree on a 1.2-million-triangle
+frame: the middle rung was not overspent by that parcel, it was simply full, and the next
+visible parcel of any size was going to fail it whatever it was. `full` carried 1.2 % of
+headroom in the same runs, so the squeeze was on `balanced` alone. The new figure gives
+`balanced` the same PROPORTIONAL headroom `full` has (about 1 %) over the measured worst
+stand — the ladder keeps its shape, and the raise buys no room for the parcel after this
+one. **`light` is untouched at 1,050,000 and reads 815,777, 22 % under.** T-0149 and
+T-0147 still own the trim that would win the middle rung back properly.
+
+Read `renderers/web/js/main.js`
 `DETAIL`, `BUDGET` and `FURNITURE_REACH_LIGHT_M` for the arguments and the tables;
 `tools/smoke_renderer.mjs` `STANDS` for the set.
 

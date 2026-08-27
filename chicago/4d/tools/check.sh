@@ -31,6 +31,19 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# Runs early and costs milliseconds, because the fault it catches is cheap to
+# make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
+# merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
+# the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
+# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
+# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# they agreed perfectly — both carried the same garbage.
+step "no committed file carries a conflict marker" \
+  python3 tools/test_no_conflict_markers.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/test_no_conflict_markers.py --self-test
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -60,6 +73,16 @@ step "inferred households, adoptions and their buildings match the programme" \
 
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
+
+# The clapboard stock, both halves of it. The named deal re-derives its own 24 records
+# (T-0049) — that half was never gated, so a hand-edited board width would have sat in
+# the tree looking exactly like a dealt one. The recipes deal the other 131 and their
+# own --check above holds those values byte for byte, but a recipe that stopped dealing
+# ALTOGETHER would pass every one of those checks: a record with no siding_exposure_m is
+# a perfectly well-formed record. It just puts 131 walls back on one course, invisibly,
+# which is the defect T-0112 closed. So this asks the town-wide question instead.
+step "every clapboard wall's stock re-derives from its deal" \
+  python3 tools/deal_siding_stock.py --check
 
 # The platted block and lot grid is generated from the Thompson module and the
 # committed street lines, never traced off the 1834 sheets. Re-deriving it here is
@@ -139,6 +162,16 @@ step "the building material re-derives from the rule that chose the lots" \
 step "the fort apron re-derives from the palisade it is measured off" \
   python3 tools/generate_fort_apron.py --check
 
+# And the layer above that ground: the wood p4_0 draws outside the same walls (T-0098). Same
+# shape again — the plate attests a tree mass and places nothing, so which ground carries a
+# stem is a rule off the palisade's own footprint and its apron's own width, re-derived here.
+# The rule also picks the SPECIES rather than a preference: of the zone's three recorded
+# trees only one is banded low enough to carry the crown height measured off the plate, and
+# a re-banded zone record must therefore fail this gate rather than quietly plant a
+# cottonwood that would tower over the fort the plate draws it level with.
+step "the fort wood re-derives from the palisade and the apron it stands off" \
+  python3 tools/generate_fort_trees.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
@@ -175,6 +208,21 @@ step "the 665-roof programme reconciles with the town that stands" \
 # cannot quietly go back to promising roofs that no street control can deliver.
 step "a refused block is short of control, or was never a block" \
   python3 tools/measure_block_gating.py --check
+
+# T-0026, and the same fault one district wide. The programme's South balance — 120 roofs,
+# the largest of the three gated ones — named STREET CONTROL as its blocker and sent the
+# next parcel to go and carry a centreline. Measured, the blocker is the ground: the box
+# ends at local N -400 m, INSIDE Washington Street's platted corridor, every north-south
+# column of the south plat has its committed line cut at that same edge, and Madison — the
+# plat's south boundary — is 125 m further south. The plat's last tier, six blocks and 48
+# lots, is 100 % unmodelled. Two assertions: no committed platted block stands off the
+# modelled ground (absolute, and it is what fires the day control is carried south without
+# the terrain following), and the programme's stated southern coverage is the measured one.
+step "no platted block stands off the modelled ground, and the south's blocker is the measured one" \
+  python3 tools/measure_southern_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_southern_ground.py --self-test
 
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
@@ -224,6 +272,21 @@ step "every deferred in-town water feature is dated against the scene" \
 step "the slough crossing spans open water, and nothing else stands in the cut" \
   python3 tools/measure_slough_crossing.py --gate
 
+# And the feature that crossing's own drain runs OUT of. "How much of the public
+# square was wet" (T-0027) presumes a fraction can be read off the block, and it
+# cannot: the terrain draws the square at the South Division plain's +2.9 ft with
+# an inch and a half of relief — inside the spec's own declared micro-relief
+# noise — so there is no basin there and a wet fraction read off it would be a
+# read of the noise seed. The answer is a DEPTH: the dossier's own bed for zone 15
+# is +1.0 to +2.0 ft, which the committed ground stands 0.84 to 1.96 ft above. So
+# the square is planted as the flora dossier names it — ZONE 3, by name, the
+# heading of the section that authors sedge meadow — and NO WATER IS DRAWN. This
+# holds all of that: zero water, absolutely; no landform, so the zero stays a
+# statement about the model; the sedge polygon still the committed plat's ring;
+# and the drain still heading at the block it is named for.
+step "no water stands on the public square, and its sward is the one the dossier names" \
+  python3 tools/measure_public_square.py --gate
+
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
 # a PERSON placed, so the answer arrived as anecdotes — three buildings in T-A9, two more
@@ -249,6 +312,23 @@ step "a block face carries one street line, across every generator that builds o
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_street_line.py --self-test
 
+# One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
+# worried that the schedule "will keep dealing cabins to commercial frontage", and the
+# block recipes quietly acted on it: every log dwelling the five South Water blocks were
+# dealt was put on the Lake face, leaving 15 invented buildings on South Water's line and
+# not one of them log — against a documented record for the same line that carries Hogan's
+# log store, and against the only picture of that row, which draws it as log AND frame
+# shoulder to shoulder. T-0022 measured that, refused the re-apportionment K29 proposed,
+# and moved the arrangement instead. This holds it: a principal street's INVENTED frontage
+# may not be more uniform in construction than the documented record of the same street.
+# A floor of one, absolute — the plate gives no ratio, so a share would be a number
+# somebody chose.
+step "no principal frontage is more uniform than the record it reconstructs" \
+  python3 tools/measure_frontage_fabric.py --gate --quiet
+
+step "…and its own assertion still fires when broken" \
+  python3 tools/measure_frontage_fabric.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a
@@ -258,8 +338,20 @@ step "…and its own assertions still fire when broken" \
 # North, West and phase-one parcels ran before it existed and nothing had ever asked the
 # committed records. This asks all of them: absolute zero for I1 and I3, a ratchet at the
 # one anonymous I2 that L93 records rather than deletes.
-step "no anonymous roof claims to be a public building" \
+#
+# T-0032 CLOSED THE OTHER HALF, which had been open since T-I3: the I3 target was SIX and
+# the town's civic roofs are three, so three slots counted nothing and the schedule went on
+# dealing them to blocks where every generator refused them. The step now settles every
+# civic candidate against the committed dataset — a roof that stood, a building that came
+# later, a function that never had a building of its own — and holds the target and the
+# institutional district row to that ledger. It is the shape of fault this project has been
+# bitten by twice: the court-house stood in the scene for four days while another file
+# already credited it no roof, because nothing read the two together.
+step "no anonymous roof claims to be a public building, and the civic target is the ledger" \
   python3 tools/measure_institutional_claims.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_institutional_claims.py --self-test
 
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
@@ -305,6 +397,19 @@ step "no reconstructed roof's ridge is newly outside its family band" \
 # fails here, at the specification, instead of four runs later as a roof nobody can raise.
 step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
   python3 tools/measure_ridge_reach.py --quiet
+
+# ...and the residual THAT gate printed as three NOTE lines, joined to what the
+# generators actually deal (T-0179). Nine families are offered a SHED by their roof line
+# and four cannot reach their own ridge band as one, because a shed's plane climbs the
+# whole span where a gable climbs half. Nothing was broken, because no parcel dealt those
+# four a shed — but which families get a shed was decided FIVE times, once inside each
+# parcel, and the five had already drifted over A5. The rule now lives in
+# tools/roof_form.py alone, the refusal is written on the card a visitor opens, and the
+# step above holds the two together: a family dealt a form its own bands cannot carry, a
+# record that does not carry its family's refusal, or a parcel that grows its own copy of
+# the shed set all fail here.
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_ridge_reach.py --self-test
 
 # And the question the two gates above cannot ask, because they read what LANDED: is
 # every family the 665-roof schedule may deal to a platted block buildable at every
@@ -398,15 +503,26 @@ step "…and its own assertions still fire when broken" \
 # walks instance matrices on a lattice centred on the camera. FAR_TIMBER is neither:
 # five bodies of timber authored as polylines and drawn as a horizon silhouette, and
 # nothing had ever asked those polylines where they stand. One of them, the belt whose
-# own note says it follows South Water Street, is 39 of 39 samples over the main stem
+# own note says it follows South Water Street, was 39 of 39 samples over the main stem
 # and 3.347 m under its surface — the line of trees across the channel in the owner's
-# screenshot (ROADMAP R-BUG5). The renderer refuses it absolutely now; this holds the
-# table, and scans the clip so it cannot quietly come back out.
+# screenshot (ROADMAP R-BUG5). T-0031 put it back on land (0 of 136) and the step below
+# keeps it there. The renderer refuses water absolutely now; this holds the table, and
+# scans the clip so it cannot quietly come back out.
 step "no body of far timber stands in the river" \
   python3 tools/measure_far_timber.py --gate
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
+
+# T-0031 / R-BUG5(b). The belt that stood in the channel is back on land, on a line
+# DERIVED from the committed `south_water` centreline rather than authored beside
+# it — the owner's route 1, with the side of the street recorded as L191. The stub
+# it replaced was drawn on a Wells Street 66.7 m east of the committed centreline,
+# and that error is half of why it ended up in the river, so the belt is re-derived
+# here on every commit. Move South Water Street and this fails until the belt moves
+# with it.
+step "the South Water timber belt re-derives from the street it is cut from" \
+  python3 tools/derive_timber_belt.py --check
 
 # T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
 # have not been since the archetype was written: the committed master carries
@@ -473,8 +589,19 @@ step "datum re-derivation" \
 # states. LIBERTIES.md is append-only and is the source of truth; data/
 # liberties.json is derived and committed so the site needs no build step, which
 # only holds up if drift is a gate failure rather than a discovery.
+#
+# Since T-0054 it also asks WHICH SECTION each entry is in, from two independent
+# statements — the heading it sits under and the `**Resolved:**` line in its own
+# text — because `resolved` is the section validate.py stops checking. It used to
+# be the last section in a document whose one rule is that liberties are
+# APPENDED, so 23 entries landed in the exemption by doing what they were told,
+# and the drift check above could not see it: the markdown and the JSON agreed,
+# both reading the fault the same way (the T-0207 shape).
 step "liberties derived from docs/LIBERTIES.md" \
   python3 tools/compile_liberties.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_liberties.py --self-test
 
 # The renderer reads the sidecars and never the dataset, which only keeps the
 # walkthrough and the archive together if a record edited without a recompile is
@@ -576,6 +703,22 @@ step "the shipped derivative still describes the master's building" \
 # trusting that someone runs it by hand.
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_web_derivatives.py --self-test
+
+# T-0158, and it is the SECOND fault of this exact shape. `build.py --ao` baked
+# occlusion that read min 0.000 / max 1.000 in Blender's own buffer and reached the
+# GLB as min 0 / max 0 — every one of 262,144 texels — while the run exited 0, the
+# GLB grew 4 KB and assets/manifest.json recorded `baked_ao: true`. Under glTF an
+# occlusion of 0 means FULLY occluded, so the manifest was asserting good AO on an
+# asset whose ambient light was extinguished. Nothing at all read the texture. This
+# does, off the exported bytes, with no Blender and no numpy: an asset that carries
+# an occlusion texture must carry occlusion, and the manifest must agree with the
+# file in both directions. Costs a quarter-second on a town whose 348 masters all
+# carry `baked_ao: false` — the moment one does not, it has a reader.
+step "a shipped occlusion texture carries occlusion, and the manifest agrees" \
+  python3 generators/ao_export.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 generators/ao_export.py --self-test
 
 # Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
 # three parcels because the ground a browser loads was quantised by a publish

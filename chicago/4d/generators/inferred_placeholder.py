@@ -43,6 +43,16 @@ WALL_COLOURS = {k: materials.FINISHES[k].rgba
                           "ochre", "red_oxide", "mixed_patch")}
 ROOF_COLOURS = {k: v.rgba for k, v in materials.ROOF_CONDITIONS.items()}
 
+# AND THE OPENING FOLLOWS THEM (T-0126). `placeholder_opening_dark` was the fourth of
+# the four values materials.md §2.3 measured for "what you see through an opening",
+# and the only one of the four that was GREEN — #2D3D33, a colour nothing in this
+# repository argues for and nothing in a Chicago building is. It is pointed at the
+# sheet's `DARK` row with the rest of them. NOTE WHAT THIS DOES AND DOES NOT CHANGE:
+# `--check` reports "0 flagged placeholder GLBs; 226 superseded by a canonical bake",
+# so this generator paints nothing that ships and the edit repaints no building. It
+# is here so the divergence cannot walk back in the day a placeholder is emitted
+# again, and §2.3's count of four is corrected to the three that were real.
+
 
 def load(path: Path):
     return json.loads(path.read_text())
@@ -144,7 +154,7 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
     mats = [
         {"name": f"placeholder_wall_{meta['finish_key']}", "pbrMetallicRoughness": {"baseColorFactor": list(WALL_COLOURS[meta["finish_key"]]), "metallicFactor": 0, "roughnessFactor": .86}, "doubleSided": True},
         {"name": f"placeholder_roof_{meta['roof_condition']}", "pbrMetallicRoughness": {"baseColorFactor": list(ROOF_COLOURS[meta["roof_condition"]]), "metallicFactor": 0, "roughnessFactor": .9}, "doubleSided": True},
-        {"name": "placeholder_opening_dark", "pbrMetallicRoughness": {"baseColorFactor": list(materials.hex_rgba("#2D3D33")), "metallicFactor": 0, "roughnessFactor": .7}, "doubleSided": True},
+        {"name": "placeholder_opening_dark", "pbrMetallicRoughness": {"baseColorFactor": list(materials.DARK.rgba), "metallicFactor": 0, "roughnessFactor": materials.DARK.roughness}, "doubleSided": True},
         {"name": "placeholder_chimney_brick", "pbrMetallicRoughness": {"baseColorFactor": list(materials.hex_rgba("#89503F")), "metallicFactor": 0, "roughnessFactor": .88}, "doubleSided": True},
     ]
     return groups, mats
