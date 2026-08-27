@@ -64,6 +64,150 @@ the same committed block boundaries; the phrases describe the placement, they do
 fixed by the west end of the run's own frontage" on a west-anchored run — the generator's internal
 convention leaking into visitor prose. It is confusing rather than false, it is not about 1835, and
 it is its own ticket.
+## Shipped — T-0054: 23 standing liberties compiled as settled, because Resolved was the last section
+
+**The count, measured rather than assumed.** The ticket said "every liberty appended since L111",
+seventeen of them. It is **23**, and they are not a range: of the **71** entries numbered L111 and
+above, **24** sit under `## Resolved` and one of those (L116, the sycamore drawn as an elm) genuinely
+belongs there. The other 47 were placed by hand in the right section by whoever wrote them. So the
+fault is intermittent — it catches whoever appends at the end of the file, which is what this
+document tells you to do — and it had reached **L181**, written three days ago. `data/liberties.json`
+compiled **34** entries `section: "resolved"`; **11** carry a `**Resolved:**` line saying what
+settled them.
+
+**Why it is not cosmetic.** `validate.py` exempts the Resolved section from the check that a claimed
+invention is *still* an invention — the exemption is what lets an append-only document survive its
+own data being corrected. **12 of the 65 exempted claim tokens were exempt by accident**: the four
+Lake-and-Clark roofs' footprints and positions (L144) and the four State Street and La Salle slough
+claims (L149, L150). Put back under the check, **all twelve pass** — every one is still an invention,
+which is exactly what makes the label a lie rather than a nuisance. On screen it was worse than the
+gate: ten building cards carried a scope chip reading *resolved* on a liberty that still stands,
+including the Western Hotel's wagon-yard fence (L127), which is standing in the town.
+
+**Fixed by moving the trap, not by patching around it.** `## Resolved` now sits **above** the
+per-subject register instead of below it, so appending at the end of the file — the operation the
+document mandates — lands where a new liberty belongs. No liberty text is edited and none is
+removed: the 23 stay exactly where they were written and the 11 settled entries move up. The
+compiled sections are now 3 standing / 167 per-subject / 11 resolved.
+
+**And the guard, because a reshaped file can be reshaped back.** `compile_liberties.py` now decides
+`resolved` from **two independent statements that must agree** — the section an entry sits under,
+and whether its own text carries the `**Resolved:**` line the section's preamble has always asked
+for. Either half alone is reported by id and fails `check.sh`; a misfiled entry compiles as
+`per_subject`, which is the reading that keeps its obligations. This is the T-0207 lesson used the
+other way round: *that* fault was invisible because two derivations of one source agreed, so the
+repair here is a second statement that is not derived from the first.
+
+**One deliberate change to what a visitor sees beyond the chips.** The derived file is now emitted
+grouped standing → per-subject → resolved, stable within each group, so the Evidence panel's order
+is a decision in the compiler rather than a side effect of where a section sits in a 7,800-line
+markdown file. The order on screen is the same order as before the reshuffle.
+## Shipped 2026-08-24 — T-0157: a phone multisamples the town, and the obvious number said not to
+
+**The ask.** `main.js` had read `antialias: !coarse` since Milestone 0 — the renderer's first
+commit, 2026-08-09, before there was a town to look at — so every touch device drew the whole
+reconstruction with no multisampling. T-0013 had established that every one of the 627
+interior-flickering pixels at `from_above` is an edge and that **only sample density touches
+them** (supersampling healed 83–93 %; a shading change that moved 164,572 px healed none), but
+every reading it took was at 1280×800 on the DESKTOP boot, where MSAA was already absorbing most
+of it. The ticket asked for the phone to be measured first, and for the flag to be shipped only
+with a frame cost in hand.
+
+**The instrument, and the gap it had to close first.** `tools/measure_phone_aa.mjs`. Before it
+could read anything, one thing had to be fixed: `measure_tie_class.mjs`'s `TIE_VIEWPORT=mobile`
+opens a plain `newPage({ viewport })`, and `prefersTouch()` is `(pointer: coarse)` or
+`maxTouchPoints > 0 && innerWidth < 900` — **a viewport satisfies neither**, so the existing
+"mobile" reading was the DESKTOP renderer in a narrow window: `antialias: true`, `detail: full`,
+the pointer-lock backend. This is the same class of finding T-0018 filed against
+`SWARD_VIEWPORT=mobile` ("changes the browser page size but not `lowSpec`"), now measured on a
+second instrument. Every figure below comes from a context with `hasTouch: true` and
+`deviceScaleFactor: 2` — what `smoke_renderer.mjs` uses for the release gate — and the run prints
+the three readings that prove the coarse path took: `pointer: coarse true`, `detail "light"`,
+`pixelRatio 1.5`.
+
+`antialias` is a context-creation attribute with no runtime handle, so the control is an init
+script that rewrites the one attribute inside `HTMLCanvasElement.prototype.getContext` before
+three.js sees it — and it is **proven live**, not asserted: the run reads
+`getContextAttributes().antialias` AND `gl.getParameter(gl.SAMPLES)` off the live context and
+aborts unless they are `false`/0 or `true`/4. R-A1's frozen readback and R-BUG6(a)'s inert
+`--no-sun-shadow` are why that is written down.
+
+**THE MEASUREMENT REFUTES ITS OWN HEADLINE NUMBER, AND THIS IS THE FINDING.** At 390×780 on the
+published mirror, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired control, control 0 px and
+return-to-pose 0 px on every run:
+
+| station | flicker px | HARD FLIPS (≥ 64 of 255) | worst Δ | mean Δ |
+|---|---|---|---|---|
+| `from_above` off → on | 1,056 → **2,482** | 25 → **0** | 105 → 28 | 15.6 → 6.8 |
+| `lake_market` off → on | 4,843 → **7,310** | 124 → **0** | 140 → 37 | 14.8 → 6.4 |
+
+**The flicker COUNT — the figure T-0013 and three boxes of ROADMAP quote — goes UP by 135 %
+aerial and 51 % at eye height when MSAA is switched on.** A run that measured only the count
+would have refused this change on its own evidence. The count rises because a partial resample
+touches more pixels than a whole flip does; what collapses is the SEVERITY. Every one of the 149
+pixels that were swapping surface outright stops doing it — not fewer, none — and the worst
+single pixel moves about a quarter of what it did. That is exactly the difference between an
+edge that crawls and an edge that is resolved, and no pixel count on its own can see it.
+
+The mobile interior/silhouette split the ticket asked for, at `from_above`, antialias off as
+shipped: structures 346 interior / 74 silhouette, trees 188 / 134, ground 125 / 54, water 20 /
+49, streets 0 / 9, flora 0 / 2. Quoted with T-0013's correction attached — `interiorOf` knows a
+layer's outline against the rest of the scene and cannot see the boundary between two surfaces
+OF that layer, so 94–98 % of an "interior" count is internal silhouette.
+
+**The whole table reproduced digit for digit on a second independent run** — 1,056 / 25, 4,843 /
+124, 2,482 / 0, 7,310 / 0, every per-layer row identical.
+
+**And a finding about the ownership test at EYE HEIGHT, recorded rather than smoothed over.**
+`measure_tie_class.mjs`'s footprint partition had only ever been run aerially, and its own header
+warns that *"a large overlap between two layers is a bug in this tool rather than a finding"*. At
+`from_above` the overlaps are small — 0, 5, 9, 0, 63, 310 of 1,056 — and the partition is sound.
+At `lake_market` the ground's footprint overlaps the streets' on **2,436 of its 2,607** flickering
+pixels, because the street layer is a skin on the heightfield and hiding either one moves the same
+pixels. Every pixel is still counted exactly once, but which of those two layers gets the credit
+is decided by the LAYERS list order rather than by occlusion, so the eye-height per-layer split
+between `streets` and `ground` should not be quoted as ownership. **No conclusion here rests on
+it**: the frame totals — flicker, hard flips, worst Δ, mean Δ — are attribution-free, and the
+structures and trees rows carry no meaningful overlap at either station.
+
+**THE COST, and the honest limit of it.** Timed over the ten scene anchors the release gate
+walks, clock held, `setAnimationLoop(null)`, a one-pixel `readPixels` fence per frame, 12 timed
+frames after 6 warm-up, A/B/A: **24,457 → 43,283 ms summed, +56.4 % against a mean-of-A
+baseline** — with the runner itself drifting **+26.3 %** between its two A passes. A second run
+over four stations read +49.3 %, and a third +71.6 %. So the honest statement is *roughly half a
+frame again, somewhere between a half and three quarters* — not a digit. It is drawn through
+ANGLE's SwiftShader, a SOFTWARE rasteriser that resolves every sample on the CPU with no tile
+memory, which is the harshest possible witness for this particular change. **The cost on real
+phone silicon was not measured here and is not claimed.**
+
+**And the escape hatch was timed rather than asserted.** "Render quality" in Settings already
+ships with three stops and drops the pixel ratio to 1. Measured inside a single page load, so no
+drift separates the two readings, at four stations, twice:
+
+| | run A | run B | vs the frame that shipped before this |
+|---|---|---|---|
+| ratio 1.5, MSAA off — **what shipped** | 12,085 ms | 13,399 ms | — |
+| ratio 1.5, MSAA on — **what ships now** | 20,735 ms | 20,004 ms | +71.6 % / +49.3 % |
+| ratio 1, MSAA on — one tap in Settings | 10,967 ms | 12,561 ms | **−9.3 % / −6.3 %** |
+
+So a phone that cannot afford the new frame has a control that returns it to **below** what the
+town cost it before today, still antialiased. The `light` scene-detail tier a phone boots into
+is untouched — AGENTS.md's floor stays the floor.
+
+**A correction to the ticket's premise, on the way.** It held that a phone's pixel ratio is
+"capped at 1.5 rather than 2". The boot-time `coarse ? 1.5 : 2` is superseded a few hundred lines
+later by `setPixelRatio(Math.min(dpr, hud.settings.quality))`, and `quality` defaults to **1.5 on
+both platforms** — so the shipped cap is 1.5 everywhere, and the renderer reports 1.5 on a phone
+at dpr 2 against 1.0 on a desktop at dpr 1. **The phone was already supersampling more than the
+desktop**; what it did not have was MSAA. Recorded at the line in `main.js`.
+
+**The gate.** `smoke_renderer.mjs` part 1, both viewports: the live context reports
+`antialias === true` and `SAMPLES >= 2`. Written on the context and not on a pixel count, because
+the count moves the wrong way. Proved to fire by restoring `antialias: !coarse`, republishing and
+re-running the mobile half — see the PR.
+
+**What is unverified.** The frame cost on phone hardware. Nothing in this repo can measure it,
+and the software figure is quoted as an upper bound rather than an estimate.
 
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
