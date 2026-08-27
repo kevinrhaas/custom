@@ -64,7 +64,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 # Lot occupancy is derived in ONE place and imported by both halves of the T-A6 rule.
 # See tools/plat_occupancy.py for why it is a module rather than a copied loop.
-from plat_occupancy import block_of_structure, occupied_lots  # noqa: E402
+from plat_occupancy import (block_of_structure, exclusive_lots,  # noqa: E402
+                            occupied_lots)
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -443,6 +444,15 @@ def programme_document():
     # that, which block each roof stands in. Two questions, one measurement.
     taken = occupied_lots(grid, datum)
     rows = standing_roofs(grid, datum, taken)
+    # …and a THIRD question, which is not the same as the first: which lots are still
+    # AVAILABLE. Under the owner's 2026-08-27 clause a documented store standing at the
+    # street on a declared business front does not exhaust its lot, so the lot is both
+    # occupied — its roof counts against this block's headroom above — and free for the
+    # frontage run. `tools/generate_block_infill.py` refuses on exactly this map, and
+    # the schedule has to score against the same one or it goes back to promising a
+    # block room its own generator will not build (T-A6, and the reason both halves
+    # call one module).
+    available = exclusive_lots(grid, datum)
 
     # ---- what stands ------------------------------------------------------------
     built_family: dict[str, int] = {}
@@ -525,7 +535,7 @@ def programme_document():
         lots = len(block["lots"])
         capacity = block_capacity(lots)
         stands = built_block.get(block["id"], 0)
-        free = lots - len(taken.get(block["id"], ()))
+        free = lots - len(available.get(block["id"], ()))
         rooms = block_rooms(free, max(0, capacity - stands))
         unit = {
             "id": block["id"], "kind": "platted_block",

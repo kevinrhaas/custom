@@ -3770,10 +3770,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 28
-        && frontage.census?.crossings === 12
+      frontage.census?.records === 4 && frontage.census?.walks === 26
+        && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 59
+        && frontage.census?.refused === 53
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
@@ -3819,21 +3819,22 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
-    // T-0188's six reconciled South Water placements welded two runs into one)
-    // and the TWO street-fence meshes T-0188 split off — one per covered street
-    // that carries a fence — so the boards could leave the shadow map while the
-    // fences stayed in it, all on ONE material, and the painted name on its own
-    // mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's eighteen (T-0069 laid twenty-one;
+    // T-0198's six reconciled South Water placements welded two runs into one
+    // and T-0199's last five welded two more) and the TWO street-fence meshes
+    // T-0198 split off — one per covered street that carries a fence — so the
+    // boards could leave the shadow map while the fences stayed in it, all on
+    // ONE material, and the painted name on its own mesh, the only thing here
+    // that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 39,
+        && frontage.meshes === 37,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
