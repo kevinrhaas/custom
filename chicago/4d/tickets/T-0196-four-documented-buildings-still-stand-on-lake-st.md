@@ -1,7 +1,7 @@
 ---
 id: T-0196
 title: Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 6:19:40 PM CT
 blocked_on: null
 needs_bake: false
 ---
