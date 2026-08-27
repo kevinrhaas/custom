@@ -2760,12 +2760,51 @@ filed together only because RENDERING §4 groups them:**
 
 | | parcel | scope |
 |---|---|---|
-| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other (mean 0.265, 69 % of texels below half). It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158; read the correction below before claiming this, and see T-0227.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
 | **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, DONE — and R-W3b(b) — true cascades, which (a)'s measurement says is now the only route past ±120 m that does not start by cutting batches.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
 **The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.
 **After R-W3a**, and see `B-A1` before assuming the nightly should be the thing that runs it.
+
+**Two corrections to the numbers R-W3a is built on — T-0158, 2026-08-27, and the second one
+changes the parcel's target.**
+
+1. **The export was losing the bake entirely.** `build.py --ao` tagged the baked image
+   `Non-Color` AFTER the bake, which frees a generated image's buffer — it regenerates black —
+   and clears the `is_dirty` flag Blender's exporter tests before it will carry unsaved pixels.
+   Measured on `sauganash_hotel`, 512×512, 48 samples: in memory min 0.000 / max 1.000 / mean
+   0.2158, in the GLB **min 0, max 0, all 262,144 texels**, with `baked_ao: true` beside it.
+   Tagging the image before the bake fixes it — 0.1665 in memory, 0.1665 in the file, 0.0 %
+   drift — and `generators/ao_export.py` now refuses the failure at build time and on every
+   commit. So R-W3a can now measure a cage rather than a black square.
+2. **"Mean 0.265, 69 % of texels below half" is wrong twice over, and so is the 0.38.** First,
+   both were read off an sRGB-tagged buffer, so they are the sRGB-ENCODED occlusion rather than
+   the occlusion: `Image.pixels` on an 8-bit buffer is raw in both directions (measured), so the
+   tag decides what the bake WRITES, and glTF samples occlusion as `byte/255` with no transfer
+   decode. Second, and worse, both are taken over the **whole 512×512 atlas, 68.9 % of which is
+   empty UV space** — the "69 % below half" is very nearly the empty fraction itself, so most of
+   what it counted was blank rather than dark. Re-measured from the exported file: atlas-wide raw
+   mean **0.1665**, and over the **81,458** texels the unwrap actually writes, **mean 0.5358 with
+   58.7 % below half**. The 0.38 has not been re-measured at all.
+
+   The concern's *shape* survives — over half the written surface below half occlusion, on a
+   building whose white paint is documented — but **every number this parcel is written around is
+   void, and none was ever read off a file that carried the occlusion** (the export was shipping
+   black). **T-0227 answers it from a rendered frame before this parcel builds a cage to improve
+   a figure nobody has measured correctly**, and carries the unwrap with it: an atlas two-thirds
+   empty is two-thirds of every occlusion map's bytes spent on nothing.
+
+**And a cost figure the bake half has to answer first.** With the export working, one asset's
+master goes **94,420 → 202,292 bytes (+114 %)**: a 512×512 occlusion PNG carrying real variation
+costs ~107 KB, where the uniformly black one compressed to 3,620 — which is why T-0015 measured
+the AO file cost at "+4.4 %" and why that figure is now void. `assets/gltf/` is 27 MB for 348
+masters; one 512² occlusion map each would add roughly 37 MB to it. Textures do not meshopt, so
+the derivatives carry the same PNGs — and the published tree is **23.53 MB against a 25 MB
+`SITE_BUDGET_MB`**, i.e. 1.5 MB of headroom against a ~37 MB ask. **So the cage parcel's first
+question is texture size, atlas resolution and how many assets get a map at all, not cage
+geometry** — a per-building 512² map is not affordable on this site as budgeted, and finding
+that out after baking 346 of them would be the expensive way to learn it.
 
 **3a and 3c are the same conversation about the same few centimetres of wall** (R-G1 says so),
 so whoever takes one should read the other — but they ship separately.
@@ -10712,6 +10751,24 @@ shutters). Add material variation per building — board tone jitter, weathering
 phase, board-width irregularity — so no two share a face (extends L22/L23 rather than
 repeating them). Log buildings: hewn vs round logs per record. Cite what you can; grade the
 rest `inferred` with the economics argument in the note.
+
+**"Board-width irregularity … so no two share a face" is now true of the whole town — T-0049 for
+the 24 named buildings, T-0112 for the other 131.** The named half could not reach the anonymous
+roofs because every one of them re-derives byte-for-byte from a parcel recipe, so T-0112 put the
+deal INSIDE the recipes (`tools/siding_stock.py`, imported by all five generators and by
+`tools/deal_siding_stock.py`). **The refutation worth keeping is about the KEY.** L148 bases a
+named building's stock on its phase's construction season, which the named records can carry
+because their dates differ; measured on the anonymous ones, **all 131 carry
+`documented_range.from = 1835-01-01`**, the programme's count-unit convention rather than a date
+anything was built. Re-using the season key there deals all 131 one stock — the archetypes'
+single course one step over, a range collapsed to a point, which is T-V1 and T-0142's fault a
+third time. So the base is drawn from the four-stock list on the record's own stable key and then
+advanced by the same 60 m separation. Clapboard pairs within 60 m wearing the same board fall
+**192/266 → 21/266** across the town and **186/186 → 16/186** among the anonymous roofs; 120 of
+131 anonymous roofs now differ from their nearest neighbour, where none did. The residual is
+stated rather than rounded: a recipe deals its own parcel only (a town-wide deal was measured at
+9/186 and refused, because it would make moving one roof restale every other parcel's meshes),
+and four stocks cannot separate a roof with nine neighbours. **L196.**
 
 ### K5 — The town's furniture: fences, yards, wagons, signs, porches, docks
 The scene is buildings on bare ground; a working town has STUFF. In order: (a) the

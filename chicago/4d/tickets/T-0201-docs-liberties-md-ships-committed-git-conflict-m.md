@@ -1,7 +1,7 @@
 ---
 id: T-0201
 title: docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
+closed: 2026-08-27
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Fixed and shipped as T-0207 in PR #383: tools/test_no_conflict_markers.py is on dev and wired into check.sh, the three markers are gone from docs/LIBERTIES.md and data/liberties.json, and the repair reached production in release-v272. Filed independently before that landed.
 needs_bake: false
 ---
 

@@ -53,6 +53,188 @@ against `origin/dev`'s own published mirror: dev **1,410,456** tris of 1,400,000
 came in *lower* here than on dev, 1,225,457 against 1,251,361, which is the vegetation deal's own
 spread and not a saving.) The queue already owns it: **T-0089**, **T-0146**, **T-0147**.
 
+## Shipped 2026-08-24 — T-0112: the anonymous roofs get their own siding stocks, dealt in their recipes
+
+**The state before, counted rather than asserted.** T-0049 dealt 24 named frame buildings a
+`siding_exposure_m` from four period mill stocks and could reach no further: the other 131
+clapboard frame roofs in the scene re-derive byte-for-byte from `tools/generate_block_infill.py`
+and its four kin, so a value written into those records by a second tool is drift on the next
+run. All 131 wore the archetypes' 0.14 m, and **every one of the 186 anonymous pairs standing
+within 60 m of each other wore the same board — 186 of 186, 100 %.** No anonymous roof, of 131,
+differed from its nearest neighbour.
+
+**The refutation that decided the rule, and it is the third time this dataset has hit it.** The
+obvious move was to run L148's own key inside the recipes: base stock from the phase's
+construction season, `(year + quarter) % 4`. Measured on the records: **all 131 anonymous roofs
+carry `documented_range.from = 1835-01-01`** — the programme's count-unit convention, not a
+construction season, the same literal on every one of them. That key deals all 131 ONE stock. It
+is the archetypes' single course put back one step over, a range collapsed to a point — T-V1's
+sixty identical North roofs and T-0142's one-pitch-per-family, a third time. So the base is
+DRAWN from the four-stock list on the record's own stable key (slot 11; 1-10 are spoken for),
+exactly as `tools/family_bands.py` draws a footprint, an eave and a pitch from the crosswalk's
+authored ranges, and then advanced by the same 60 m rule L148 already uses.
+
+**Where the deal lives.** `tools/siding_stock.py` — the set, the separation distance, the advance
+and the recipe post-pass, in one module, imported by all five generators AND by
+`tools/deal_siding_stock.py`, so the two populations cannot drift apart on what a board is.
+Each recipe calls `deal_records()` at the END of `records_from_inputs()` (after
+`place_on_frontage()` in the South parcel, which moves buildings), because the stock is the one
+form value that depends on where a roof's neighbours stand.
+
+**Scope: 131 dealt, 4 left as neighbours, and the reason is a liberty and not an oversight.** A
+recipe deals a roof only when the record carries a `reconstruction` block — the anonymous
+`recon_*` count-units and the `inf_*`/`physicians_office` roofs raised for reconstructed
+households, all of which docs/LIBERTIES.md L91 admits as inventions whole. The inferred-household
+programme also regenerates four DOCUMENTED frame buildings (`heacock_house_monroe`,
+`temple_lake_st_building`, `wright_building_to_let_a`, `wright_building_to_let_b`); those are
+attested buildings, their liberty tokens are enumerated one by one, and inventing a board width
+for a real building outside the entry that owns it is not this parcel's to do. They stay on
+0.140 m and the deal counts them as the fixed neighbours they are.
+
+**The trade that was measured, not assumed.** A recipe deals its OWN parcel. It could read the
+other parcels' committed records and deal the town in one order — measured with the shipped rule,
+that reaches **9 of 186** anonymous pairs sharing instead of 16, and moves 25 of the 131 roofs.
+It was refused: it makes moving one North roof re-deal the platted blocks and restale their
+meshes, so every future building costs a town-wide rebake. Seven pairs is not worth that
+coupling, and the residual is written down rather than rounded off. Some sharing is unavoidable
+in any case — four stocks cannot separate a roof with nine neighbours, and the densest stands
+here have nine.
+
+**The result.**
+
+| | before | after |
+|---|---|---|
+| clapboard pairs within 60 m sharing a stock, whole town | 192 / 266 (72.2 %) | **21 / 266 (7.9 %)** |
+| the same, anonymous roofs only | 186 / 186 (100 %) | **16 / 186 (8.6 %)** |
+| anonymous roofs whose NEAREST neighbour hangs a different course | 0 / 131 | **120 / 131** |
+| stock distribution (0.114 / 0.127 / 0.140 / 0.152 m) | 8 / 6 / 135 / 10 | **33 / 44 / 39 / 43** |
+
+**What re-derived and what moved.** All five recipe `--check`s are green, so every one of the 131
+values re-derives from its recipe. 146 structure records changed and **118 of the 159 clapboard
+walls moved their stock; 41 did not** — 28 anonymous roofs were dealt the 0.140 m they already
+wore and 13 named ones were unaffected. 15 of the 24 named records were re-dealt, because
+`tools/deal_siding_stock.py` now reads what the recipes dealt each derived neighbour instead of
+assuming 0.140 m for all of them (and no longer counts a vertical-board wall as a neighbour at
+all — it exposes no course). **The bake ran here: 342 assets rebuilt, 118 GLBs changed, 224 came
+out byte-identical**, derivatives and sidecars regenerated, published; the staleness gate is back
+to 344 fresh, 0 stale.
+
+**The new gate, and it was landed red first.** `tools/deal_siding_stock.py --check` was never in
+`tools/check.sh` at all, so the named half's 24 values were ungated. It is a step now, and it
+grew a second half: every invented clapboard frame roof in the town must carry a stock from the
+set. The recipes' own `--check`s hold each value byte for byte but would not notice a recipe that
+stopped dealing ALTOGETHER — a record with no `siding_exposure_m` is a perfectly well-formed
+record; it just puts 131 walls back on one course, invisibly. Run against the tree before the
+recipes were wired, the new step names all 131 by id and exits 1.
+
+docs/LIBERTIES.md **L196** owns the invention and supersedes L148's sentence saying derived
+records stay on the default.
+## Shipped 2026-08-27 — T-0158: one line in the wrong order was extinguishing the AO, and the number the AO parcel aims at was wrong too
+
+**Nothing in the town changed, and this run is exempt under AGENTS.md exemption 2** — the second
+half of a split whose first half was a measurement. T-0015 measured the failure on 2026-08-23,
+wrote the guard, demonstrated it firing, and then deliberately reverted it because T-0139 made any
+edit to `build.py` unhealable. T-0139 is closed; this is the fix half, and it lands the guard.
+
+**The fault, in one line.** `bake_ao()` set `img.colorspace_settings.name = "Non-Color"` *after*
+`bpy.ops.object.bake(type="AO")`. Setting a colorspace on a GENERATED image that has no file
+behind it and is not packed **frees the image buffer**, which then regenerates from
+`generated_color` — black — and **clears `is_dirty`**, which is the flag Blender's own exporter
+tests in `make_temp_image_copy()` before it will bother to carry unsaved pixels across. So one
+statement destroyed the data *and* switched off the exporter's only rescue path. Moving it above
+the bake is the whole repair.
+
+**Measured on the bytes, not read off the code** — `sauganash_hotel`, 512×512, 48 samples,
+Blender 4.5.3, four bakes of the same asset, occlusion PNG extracted from the GLB and decoded
+with a reader written for this and self-tested against all five PNG filter types:
+
+| when the image is tagged `Non-Color` | in Blender's buffer after the bake | in the exported GLB | drift |
+|---|---|---|---|
+| **after the bake — as shipped** | min 0.000 max 1.000 mean **0.2158** | min **0** max **0** mean **0.0000**, all 262,144 texels | **100 %** |
+| **before the bake — the fix** | min 0.000 max 1.000 mean **0.1665** | min 0.0000 max 1.0000 mean **0.1665** | **0.0 %** |
+| bake, `pack()`, then Non-Color | mean 0.2158 | mean 0.2158 | 0.0 % |
+| no colorspace change at all (sRGB) | mean 0.2158 | mean 0.2158 | 0.0 % |
+
+The last two rows survive the export but are the wrong number, and that is the second finding.
+
+**`Image.pixels` on an 8-bit buffer is RAW — measured, both directions.** Setting 0.1665 and
+reading it back gives 0.1647 whether the image is tagged `sRGB` or `Non-Color`, and the saved PNG
+byte is 42 either way (an sRGB *encode* would be 113). So the tag does not change how the buffer
+is read; it changes what the **bake writes into it**. Under `sRGB` the bake stores the
+sRGB-ENCODED occlusion; glTF samples an occlusion texture as `byte / 255` **with no transfer
+decode**, so the pre-2026-08-27 path was shipping a map ~30 % too bright *before* it went black.
+
+**Which means the AO parcel has been aiming at a number that is wrong twice over.** `bake_ao()`'s
+docstring and ROADMAP R-W3a both quote **"mean 0.265, 69 % of texels below half"** (and 0.38 for a
+shortened AO distance) as the reading that makes the Sauganash render brown when its white paint
+is documented. Two faults:
+
+1. **the gamma above** — those are sRGB-encoded readings, not occlusion;
+2. **the population** — they are taken over the whole 512×512 atlas, and **68.9 % of that atlas is
+   empty UV space**. The famous "69 % below half" is very nearly the empty fraction itself. Most
+   of what that figure counted was blank, not dark.
+
+Re-measured from the exported file: atlas-wide raw mean **0.1665**, and over the **81,458** texels
+the unwrap actually writes, **mean 0.5358 with 58.7 % below half**. The 0.38 figure carries both
+faults and has not been re-measured at all. The *shape* of the concern survives — more than half
+the written surface is below half occlusion — but the numbers behind every AO decision this
+project has taken are void, and **none of them was ever read off a file that carried the occlusion
+in the first place**. Corrected in place in `bake_ao()` and R-W3a; **T-0227** filed to answer the
+question properly, from a rendered frame, before R-W3a builds a cage to improve a figure nobody
+has measured correctly. T-0227 also carries the unwrap: an atlas two-thirds empty is two-thirds
+of every occlusion map's bytes spent on nothing.
+
+**What was NOT done, deliberately: `--ao` stays off.** It is opt-in and nothing passes it — not
+`tools/bake.sh`, not `chicago-4d-bake.yml` (T-0015 established this). This ticket's job was the
+mechanism; whether the result is *good enough to ship* is a different question, it is now
+answerable for the first time, and it is T-0227. Turning the flag on in the same run that made it
+work would be deciding that question by momentum.
+
+**A cost figure R-W3a now has to answer first.** With the export working, `sauganash_hotel`'s
+master goes **94,420 → 202,292 bytes, +114 %**: a 512² occlusion PNG carrying real variation costs
+~107 KB where the black one compressed to 3,620 — so T-0015's "+4.4 % file size" was measuring the
+size of the *bug*, and is void. `assets/gltf/` is 27 MB; a 512² map on each of 348 masters adds
+~37 MB. Textures do not meshopt, so the derivatives carry the same PNGs, and the published tree is
+**23.53 MB against a 25 MB `SITE_BUDGET_MB`**. Texture size and how many assets get a map at all
+are now the cage parcel's first questions, not its last.
+
+**What fails when it recurs** — the ticket asked for this specifically, because it is the second
+fault of this shape here and the first repair left only a comment behind.
+
+- `generators/ao_export.py` reads the **exported bytes**: a pure-stdlib PNG decoder and GLB reader
+  (no Blender, no numpy, no Pillow — CI installs `jsonschema` and `pyproj` and nothing else).
+- `generators/build.py` calls `assert_ao_survived_export()` the moment each GLB is written, and
+  the manifest entry is written **only if it passes** — so `baked_ao: true` cannot outlive the
+  occlusion again. It refuses a missing `occlusionTexture`, a uniform texture (whichever value it
+  is uniform on — a white map is a bake that did not arrive just as much as a black one), and a
+  mean more than 2 % from the bake's own reading, which is the arm that would catch the sRGB
+  curve at ~30 %.
+- `generators/ao_export.py --gate` runs in `check.sh` on every commit over all 348 committed
+  masters in 0.27 s, and cross-checks the manifest **in both directions**: `baked_ao: true` with
+  no texture, and a texture under `baked_ao: false`.
+- `--self-test` breaks every arm in memory — 17 assertions, including the five PNG filter types
+  round-tripping and a gradient of known mean reading back exactly.
+- Proved on the real artefacts rather than only synthetically: the guard **refuses** the actual
+  broken GLB (uniform 0.0000 over 262,144 texels) and **passes the fixed one on merit**.
+
+**Gates: `tools/check.sh` PASS. The Playwright smoke was NOT run to completion, and that is
+stated rather than glossed.** The only renderer file this change touches is `changelog.js` (one
+entry), but three attempts at `SMOKE_STAGE=8` mobile against the published mirror gave two
+timeouts and one browser kill, at 9–13 minutes for a stage that should not take that long — the
+box was running ten agents at **load 48 with 105 concurrent Chromium processes on 4 cores**, and a
+control run on unmodified `origin/dev` failed the same way. A loaded box makes the suite flap in
+both directions, so nothing was concluded from it and no assertion was touched. What *was* proved,
+with generous timeouts: an isolated probe of the exact What's-New assertions passed all eight —
+273 entries render, the new entry appears with all six items, the unread marker clears, a
+returning visitor is flagged only the newer entries, zero page errors. **CI's nine-stage run at
+both viewports is the authority here.**
+
+**The rebake, and what it cost.** `generators/mesh_inputs.py` hashes `build.py`'s bytes into every
+asset's `inputs_sha256`, so this one-line reorder restaled all 346 structure masters. The full
+rebake took **1 m 23 s** and every one of the 346 GLBs came back **byte-identical** — the only
+change in `assets/` is 346 hash strings in `manifest.json`. Worth recording, because T-0015 could
+not run that rebake at all (T-0139) and reverted a working guard rather than monkey-patch around
+it: the healing route now works, and it is cheap.
 ## Shipped 2026-08-27 — T-0184: the ribbon's bends are mitred, and both joints the ticket named were wrong
 
 **23.47 m2 of prairie inside the roadway, closed to 0.000, for 22 triangles.** `streets.js` built

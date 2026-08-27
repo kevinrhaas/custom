@@ -6564,7 +6564,6 @@ Related: **L141** (the row whose line this adopts), **L144** (the run that moves
 **T-0104** (this), **T-0077**, **T-0079**.
 **Recorded:** 2026-08-24.
 
-
 ### L180 — A landing on the WEST bank at Wolf Point, and no source states a dock anywhere on that shore
 
 **Decision:** Robert A. Kinzie's storehouse at Wolf Point now STATES a dock — `value: true,
@@ -8628,10 +8627,118 @@ Related: **L79** (the corridors are measured, the travelled earth is drawn by ey
 artefact this retires) · tickets **T-0184**, **T-0110**, **T-0111**.
 **Recorded:** 2026-08-27.
 
+### L195 — The La Salle slough crossing: a whole structure committed on a ruling, and the two earthworks that get a wagon onto it
+**Decision:** `data/structures/lasalle_slough_crossing.json` puts a timber street crossing
+over the La Salle drain where South Water Street meets it — a 12 m span, 4.27 m wide, on one
+log bent at mid-span, its puncheon deck 0.84 m over the water — and
+`terrain_spec.json` grades the street up to each end of it as two `fill` approaches
+(`lasalle_crossing_west`, `lasalle_crossing_east`) at 1 in 12. **Every attribute of the
+structure is `reconstructed`, including whether it existed at all**, and the record says so on
+its face rather than in a footnote.
+**Why:** the owner ruled on 2026-08-21 (T-0129) that the drain should run unbroken into the
+river "and have plank crossings for both the road and the sidewalk". Carrying the water
+through the street corridor — L150's amendment — takes the ground out from under South Water
+Street, and a graded public street that meets six metres of water either crosses it or stops.
+The town trustees ordered South Water pitched and graded from the United States Reservation to
+Randolph in August 1833, so it did not stop. The sibling crossing four hundred metres east IS
+attested — "where Water Street crossed it a log bridge was needed until after 1840" — and this
+record borrows its whole argument, one attribute at a time, saying at each which figure is
+being borrowed from a crossing that is not this one.
+**What is invented, and what bounded each invention.** The EXISTENCE, first and worst: nothing
+records a crossing here. The POSITION is derived rather than authored — the drain's committed
+centreline crossed with the street's committed path — but the decision to lay the deck in the
+track's SOUTHERN half is this entry's, and it was measured: the river's traced re-entrant opens
+northward across this longitude, so the water under the corridor is 6.10 m wide at N +3 and
+12.90 m at N +11, and a deck on the platted centreline would have to span sixteen metres of a
+river mouth. The SPAN is sized off the stream exactly as the sibling's 8 m is, and comes out at
+the same proportion (12 m over 5.55 m of water on its own centre line, dry abutment seats 3.10 and 3.35 m,
+against 8 m over 3.30 m and 2.35 m). The WIDTH, 4.27 m, is the one figure that exceeds the sibling and
+it is the owner's ask made dimensional: eight feet of wagon way and a six-foot plank footway
+beside it, the walk width this project lays everywhere else. Cleaver's documented ten feet
+belongs to the BRANCH bridges and is a yardstick here, not a measurement. The CLEARANCE is the
+sibling's 0.5 m on the sibling's reasoning, and the measured 0.44 m of water under the deck is
+what makes it read the same here. The BENT COUNT is the span's: the sibling argues zero for
+8 m and the same carpentry cannot be claimed for 12, so one bent halves it into two 6 m runs —
+against the archetype's fallback spacing, which would have put two supports in a six-metre
+stream. CONSTRUCTION, DECK KIND, STRINGER and PLANK are local practice from the 1883
+old-settlers statement and the sibling record, none of them attested here. The two APPROACHES
+are fills where every other approach in this dataset is a cut, because this deck stands over
+its banks where the others sit below theirs; their form is invented at the house 1 in 12, and
+their one departure from the house pattern is `end_overhang_m` 1.0 against 3.0 — three metres
+of fill past each deck end would take two thirds of the channel this ticket opened and put the
+owner's bulge back at a smaller scale.
+**Consequence:** from the owner's stand the drain runs unbroken into the river and a timber
+crossing carries South Water Street over it, walkable end to end — onto the graded fill, across
+the deck, off the other side, with water running under the whole span. Every vertex of the
+crossing carries `reconstructed` in the confidence channel, so a visitor who hides that tier
+loses the crossing and is left looking at the water it spans, which is the honest picture of
+what is known here. Aiming at it opens its own card. `tools/measure_slough_crossing.py` takes
+the readings on every commit — the drain unbroken from its inland reach to the river, open
+water under the deck, dry seats at both abutments — so the deck and the stream cannot drift
+apart the way the sibling's did for two months before T-0109 caught it.
+**How to resolve:** any period document that crosses this ground — a bridge or culvert order
+for South Water Street west of Clark, a grading record, a lot survey, or any view of the
+street at La Salle. A source that says the street crossed on FILL would refute the structure
+and hand the ground back to L150's superseded reading; that is the shape of the evidence this
+entry is waiting for, and it would be welcome.
+**Covers:** `lasalle_slough_crossing.function`, `lasalle_slough_crossing.crossing_1835.footprint`, `lasalle_slough_crossing.crossing_1835.position`, `lasalle_slough_crossing.crossing_1835.documented_range`, `lasalle_slough_crossing.crossing_1835.form.construction`, `lasalle_slough_crossing.crossing_1835.form.width_m`, `lasalle_slough_crossing.crossing_1835.form.clearance_m`, `lasalle_slough_crossing.crossing_1835.form.pier_count`, `lasalle_slough_crossing.crossing_1835.form.pier_kind`, `lasalle_slough_crossing.crossing_1835.form.deck_kind`, `lasalle_slough_crossing.crossing_1835.form.stringer_d_m`, `lasalle_slough_crossing.crossing_1835.form.plank_t_m`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_west`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_east`.
+**Recorded:** 2026-08-24.
 
----
+### L196 — The anonymous roofs get their own siding stocks, dealt in their recipes and not by season
 
-### L195 — A boarding stair at each wharf's landward edge, because the deck stands proud of its own bank and nothing says how a man got up
+**Decision:** the 131 invented clapboard frame roofs — the anonymous `recon_*` count-units of
+the platted blocks and the South, West and North parcels, the `inf_*` roofs raised for
+reconstructed households, and `physicians_office` — each carry a `siding_exposure_m` of their
+own, from the same four period mill sidings L148 invented (4.5, 5, 5.5 or 6 in to the weather).
+It is dealt inside each building's own parcel recipe by `tools/siding_stock.py`: the base stock
+is **drawn from the set on the record's stable key**, then advanced until no roof of the same
+parcel standing within 60 m hangs the same course. **This supersedes the sentence in L148 that
+says derived records "stay on the archetypes' 0.14 m default, counted by the deal as fixed
+neighbours"** — they no longer do, and the named deal now reads what each recipe dealt instead
+of assuming 0.140 m.
+
+**Why it could not simply be L148's rule again.** L148 keys a building's base stock to its
+phase's construction season, and the supply argument behind that key is real: a town sided from
+separate shipments of St Joseph sawn lumber did not hang every wall from one pile. But every one
+of these 131 records carries `documented_range.from = 1835-01-01`, which is not a construction
+season — it is the programme's count-unit convention, the same literal on every anonymous roof
+in the town. Keyed to it, all 131 would be dealt ONE stock: the archetypes' single 0.14 m course
+put back a step over, a range collapsed to a point, which is the fault this dataset has now
+found three times (T-V1's sixty identical North roofs, T-0142's pitch, this). So the key is the
+record's own, exactly as `tools/family_bands.py` draws a footprint, an eave and a pitch from the
+bands the crosswalk authors as ranges. **The draw is not a claim about which mill supplied which
+house.** Nothing here is. What is claimed is only that the town's walls were not all one board.
+
+**What the separation reaches, and what it does not.** A recipe deals its own parcel and no
+other, because a recipe that read the other parcels' committed records would make moving one
+North roof re-deal the platted blocks and restale their meshes — every future building would
+cost a town-wide rebake. So no two roofs of one parcel within 60 m share a stock, and the named
+deal (which does see the whole town, and runs last) separates its 24 from all of them. **A pair
+straddling two parcels may share, and 16 of the 186 anonymous pairs standing within 60 m of each
+other do.** Some sharing is unavoidable in any case: four stocks cannot separate a roof that has
+nine neighbours, and the densest stands here have nine. Measured over the whole town, the share
+of clapboard pairs within 60 m wearing the same stock falls from **72.2 % (192 of 266) to 7.9 %
+(21 of 266)**, and the number of anonymous roofs whose NEAREST neighbour hangs a different
+course from **0 of 131 to 120 of 131**.
+
+**Consequence:** a visitor walking any anonymous street — the Randolph and South Water blocks,
+the North Division cluster, the West approaches — sees the houses either side of them hang
+visibly different board courses, roughly 19 to 25 courses on the same wall height, and cannot
+tell from the mesh that the difference was dealt rather than found. The Evidence panel's
+`reconstructed` grade and the note on every one of the 131 values say so, and say which key was
+used and why it was not the season.
+
+**How to resolve:** the same thing that would resolve L148 — any survivor's account, bill of
+lading, mill advertisement or measured photograph stating a board width. Nothing will resolve it
+for an individual anonymous roof, because no such roof is a building any document could be about;
+a document on the town's lumber stock would replace the whole set's bounds at once.
+
+Related: **L148** (the named half, and the set), **L91** (every form value on these roofs is
+invented), **L22** (the uniformity this began as), tickets **T-0112** (this), **T-0049**.
+**Recorded:** 2026-08-24.
+**Covers:** `recon_*.*.form.siding_exposure_m`, `inf_*.*.form.siding_exposure_m`, `physicians_office.inferred_1835.form.siding_exposure_m`.
+
+### L197 — A boarding stair at each wharf's landward edge, because the deck stands proud of its own bank and nothing says how a man got up
 **Decision:** every one of the seven river wharves gets a **stair of plank treads at the middle of
 its landward edge** — 2.4 m across, 0.75 m of going per tread, and as many treads as the ground
 there needs for no single one to rise more than 0.30 m. It is drawn by
@@ -8677,3 +8784,4 @@ deck level would remove the stair entirely and move the change into the terrain 
 Related: **L132** (the docks themselves, invented in every dimension) · **L9** (a deck height
 authored beside a mesh instead of taken from it) · ticket **T-0058**.
 **Recorded:** 2026-08-27.
+
