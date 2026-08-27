@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '', date: '',
+  { v: 298, title: 'A place to tie your horse outside the shops', kind: 'feature', ts: '2026-08-27T21:08:48.498Z', date: 'Aug 27, 2026, 4:08 PM CT',
     items: [
       'Twelve hitching posts now stand at the road edge along South Water Street and Lake Street \u2014 chest-high timber under a capped head, out past the plank walk where a rider coming into town would leave a horse and step up onto the boards.',
       'They are not scattered. One stands outside each shop front the town can actually name a trade for: the two drug stores, the grocery, the auction room, both newspaper offices, the boarding house, the forwarding store, the tavern, and the stores that sold over a counter with the keeper living above.',
