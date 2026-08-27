@@ -27,7 +27,6 @@ T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no 
 T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0146 — Merge far chunks back into single draws
 T-0147 — Re-lower the ceilings once the trims land
-T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
