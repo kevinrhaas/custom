@@ -39,7 +39,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 T-0126 — The openings-and-glazing half of the material sheet: one dark, one timber
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
-T-0022 — May the schedule deal log cabins to commercial frontage
 T-0023 — The end rule is exhausted on the Randolph-Washington row
 T-0032 — The six-roof civic target counts three that were never built
 
