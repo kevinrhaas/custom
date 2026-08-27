@@ -1,5 +1,55 @@
 # STATUS
 
+## Shipped — T-0179: the shed a family cannot carry is refused once, and the refusal is on the card
+
+**The premise held for two of three, was refuted for the third, and missed a fourth.** T-0179
+reported that C1, F1 and F4 are offered a shed by their crosswalk roof line that their own `ridge_ft`
+band cannot carry. Swept against what the archetypes actually build — `tools/roof_form.py`, gated by
+`tools/measure_ridge_reach.py`:
+
+| family | ticket said | measured | why |
+|---|---|---|---|
+| C1 small shop | 231 of 441 | **231 of 441** | `frame_storefront._shed_roof` falls back-to-front, so the run is the 20-30 ft depth |
+| F1 freight shed | 399 of 441 | **399 of 441** | `outbuilding`, no open side, so the fall is down 32-50 ft |
+| F4 lumber shed | 441 of 441 | **0 of 441** | its own entry says `1/open`, "open posts", "part-open sides" — an open long side turns `shed_axis` and the fall goes across the 24-36 ft width |
+| W5 riverside shop | not named | **84 of 441** | the sweep bails on a family with no pitch band before testing any FORM, so W5's shed had never been measured |
+
+So the answer is **C1, F1 and W5**, not C1, F1 and F4, and the instrument that produced the original
+list could not see one of its own cases. Both corrections are in `docs/LIBERTIES.md` L182.
+
+**A second fault, found on the way and larger.** *Which* families get a shed was decided **five
+times**, once as a literal inside each anonymous parcel, and the five had already drifted:
+north/west/households name D2, A3, A4, A5; block/inferred_infill name D2, A3, A4. One roof stands on
+the difference — `recon_1835_south_a5_044` is a gable where the other three A5s are sheds. The rule
+now lives in `tools/roof_form.py` alone and all five parcels read it.
+
+**A third, in the model rather than the data.** `tools/ridge_model.py` turned a shed's span with
+`gable_front`, the way it turns a gable's. All three archetypes that build a shed
+(`frame_dwelling`, `frame_storefront`, `log_dwelling`) use a private `_shed_roof` that falls from
+the back wall to the facade and never reads the orientation at all, and `frame_tavern` has no shed
+branch. Nothing caught it because no committed GLB is a storefront shed, so `measure_ridge_band.py`
+had no roof to compare the model against. Corrected; the 261 modelled roofs and the 58-roof residual
+are unchanged, because the correction only touches a form nothing is built with yet.
+
+**What a visitor sees.** Thirteen cards — nine C1 shops, two F1 freight sheds, two W5 workshops —
+carry a new paragraph on `roof_type` naming the form the specification offers, the span a shed would
+climb, the ridge band it would miss and how many of the family's own footprints miss it, with this
+building's own plan called out either way. Prose is not hashed into `mesh_inputs`' staleness recipe,
+so **no geometry moved and no bake is owed by this run.**
+
+**The gate, and it fails five ways.** `measure_ridge_reach.py` now joins the sweep to the deal: a
+family dealt a shed its band cannot carry, a refused family's record that does not carry the
+refusal, a parcel that grows its own copy of the shed set, the open-sided table drifting from the
+crosswalk's own words, and a second parcel opting out of the rule. `--self-test` breaks each in
+memory and is a step in `check.sh`. The sweep's grid and reach test are `roof_form`'s, so the gate
+and the generators cannot be answering different questions.
+
+**What is NOT done, named:** `recon_1835_south_a5_044` still stands on a gable. Giving it the shared
+answer moves committed geometry, so it is held in `roof_form.AWAITING_BAKE`, banked by the gate at
+exactly one entry that may shrink and may not grow, and filed as **T-0212**. And the underlying
+question is still the owner's: the crosswalk's `ridge_ft` column is written for a gable's half-span,
+and three families' shed reading cannot live inside it. Recording the refusal is not the same as
+retiring it.
 ## Shipped — T-0034: the bloom had no target, but it had a CEILING, and the records were already over it
 
 **The ticket was "raise the bloom", and R-W4c(b1) had already taken away the bar.** The 4–6 %
