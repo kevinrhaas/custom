@@ -27,7 +27,6 @@ T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no 
 T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0146 — Merge far chunks back into single draws
 T-0147 — Re-lower the ceilings once the trims land
-T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
@@ -105,5 +104,6 @@ T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, an
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
+T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
-T-0238 — Nothing tests the party-line note's prose against the placement it describes
+T-0239 — Nothing tests the party-line note's prose against the placement it describes
