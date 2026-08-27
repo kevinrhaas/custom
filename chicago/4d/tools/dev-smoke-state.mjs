@@ -457,10 +457,21 @@ function ask(argv) {
         const sameTree = latest.treeHash && latest.treeHash === th.hash;
         const notesDiffer = CHANGELOG_PARTS.includes(part)
           && latest.changelogHash && latest.changelogHash !== th.changelogHash;
-        console.log(`  → ${sameTree
-          ? 'this reading was taken on YOUR EXACT tree — the red is INHERITED, not yours. '
-            + 'Do not re-derive it.'
-          : 'taken on a different tree from yours, so it dates the red but does not attribute it.'
+        // `killed` and `fail` are DIFFERENT FACTS and only one of them is about
+        // the tree — which is the whole of T-0215. A matching hash proves an
+        // ordinary red is inherited; it proves nothing at all about a kill,
+        // because a kill is a statement about the box the browser was starved
+        // on. Saying "inherited" over both would rebuild the wrong answer three
+        // runs already gave.
+        console.log(`  → ${!sameTree
+          ? 'taken on a different tree from yours, so it dates this but does not attribute it.'
+          : latest.verdict === 'killed'
+            ? 'taken on YOUR EXACT tree — but a KILL is a fact about the machine, not the '
+              + 'tree.\n     The hash says the tree was the same; it does not say the stage '
+              + 'would fail on a quiet box.\n     Read the load and the frame cost above '
+              + 'before spending ten minutes re-running it (T-0215).'
+            : 'this reading was taken on YOUR EXACT tree — the red is INHERITED, not yours. '
+              + 'Do not re-derive it.'
         }`);
         if (sameTree && notesDiffer) {
           console.log('     (part 8 reads the release notes, and your changelog entry is not '

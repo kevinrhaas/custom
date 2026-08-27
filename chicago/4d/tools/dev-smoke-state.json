@@ -1,6 +1,70 @@
 {
-  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
+  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
+    {
+      "viewport": "mobile",
+      "stage": "7-9",
+      "parts": [
+        7,
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 152,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 499,
+      "takenAt": "2026-08-27T15:51:48.966Z",
+      "ref": "steward/t-0216-dev-smoke-record",
+      "commit": "17f7ae99a4a9",
+      "devCommit": "646b83547357",
+      "treeHash": "sha256:0d99bf7ecdf56cd1",
+      "treeDirty": false,
+      "changelogHash": "sha256:55442612e0261f78",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          4.4,
+          3.3
+        ]
+      },
+      "source": "/tmp/mobile-7-9.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 232,
+      "takenAt": "2026-08-27T15:43:26.569Z",
+      "ref": "steward/t-0216-dev-smoke-record",
+      "commit": "17f7ae99a4a9",
+      "devCommit": "646b83547357",
+      "treeHash": "sha256:0d99bf7ecdf56cd1",
+      "treeDirty": false,
+      "changelogHash": "sha256:55442612e0261f78",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          3.5,
+          2.3
+        ]
+      },
+      "source": "/tmp/desktop-9.log"
+    },
     {
       "viewport": "desktop",
       "stage": "8",

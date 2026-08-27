@@ -38,20 +38,31 @@ out** of the gate page rather than the page being dropped. **Verified, not asser
 and `origin/dev` hash identically — `sha256:0d99bf7ecdf56cd1` — with a changelog entry, a claimed
 ticket and a fresh publish stamp between them.
 
-**Seeded with what this run measured, on a quiet box, and it says so.** mobile stages 1–2 pass in
-4 m 17 s and desktop stage 8 passes in 2 m 34 s, both against the published mirror, on a 4-CPU
-runner at load ~6. Desktop stage 8 is the stage T-0215 watched die on its first click at 90 s on a
-loaded box — same tree, same assertions, and the record now holds both kinds of reading rather than
-one of them.
+**Seeded with what this run measured, on a quiet box, and it says so.** Four `--published` runs,
+all green, on a 4-CPU runner at load 3.7–6.1: mobile 1–2 in 4 m 17 s, mobile 7–9 in 8 m 19 s,
+desktop 8 in 2 m 34 s, desktop 9 in 3 m 52 s. Seven of the eighteen viewport-parts.
+
+**Two of those four are readings somebody wanted.** Desktop part 8 is the stage T-0215 watched die
+on its FIRST click at 90 s — it passes here in 2 m 34 s on the same tree, which is the factor-of-
+twenty story in two lines of the record rather than a day of re-derivation. And desktop part 9 is
+T-0210's *"stage 9 times out clicking the panel close, on an unmodified tree"*: it did not time out,
+it passed in 3 m 52 s at load 3.7. That does not refute T-0210 — it dates it and gives it the
+counter-reading it never had, which is a fact for whoever takes that ticket rather than a verdict
+from this one.
+
+**All three verdicts are exercised, not just the happy one.** `pass`, `fail` and `killed` were each
+driven through the parser before merge. `killed` is deliberately NOT reported as inherited even when
+the hash matches: a kill is a statement about the machine the browser starved on, and collapsing it
+into "the red is yours/not yours" would rebuild the exact wrong answer three runs already gave.
 
 **What is NOT in it yet, stated rather than implied.** The CI half is unread: `ci 32689397335`
 would fold in the last unfiltered `chicago-4d-smoke.yml` pass on `dev`
 (2026-08-24T04:16Z, `97ac4c8563cb`, success, both viewports) and GitHub rate-limited this account
 twice while trying. The code path is exercised — `ci` with no argument lists the four runs — and
 the tool now exits 3 with one sentence instead of a stack trace when the limit is hit. Fold it in
-on the next quiet run. Coverage today is mobile parts 1–2 and desktop part 8; the other 15
-viewport-parts report *"no reading — nobody has recorded this one"*, which is the honest answer and
-not a gap being hidden.
+on the next quiet run. The eleven viewport-parts nobody measured today report
+*"no reading — nobody has recorded this one"*, which is the honest answer and not a gap being
+hidden.
 
 **It is a record, never a bar.** Nothing here fails a gate, refuses a merge or excuses a red — the
 shape `tools/road_band_baseline.json` is kept in (T-0016).
