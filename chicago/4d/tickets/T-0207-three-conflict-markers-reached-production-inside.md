@@ -1,7 +1,7 @@
 ---
 id: T-0207
 title: Three conflict markers reached production inside two liberty cards, and every gate passed them
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-26
+pr: 383
 claimed_by: integrator
 blocked_on: null
 needs_bake: false
