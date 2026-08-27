@@ -1,7 +1,7 @@
 ---
 id: T-0199
 title: The five South Water stores standing on a lot the roof schedule already dealt
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0127
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 371
 claimed_by: run 8/26/2026, 11:58:51 PM CT
 blocked_on: null
 needs_bake: false

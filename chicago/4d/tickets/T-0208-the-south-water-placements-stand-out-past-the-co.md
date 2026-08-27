@@ -1,7 +1,7 @@
 ---
 id: T-0208
 title: The South Water placements stand out past the committed plat, and the walk breaks on them
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0127
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 371
 claimed_by: run 8/26/2026, 11:58:26 PM CT
 blocked_on: null
 needs_bake: false
@@ -195,6 +195,17 @@ docstring carries the ruling, the fork as it was put to him and the three tests 
 the clause; `docs/STATUS.md` and `docs/ROADMAP.md` K30(d) carry it in the project's own
 narrative; the four blocks' `arrangement_note`s carry it where a reader of the recipe meets it.
 
+**ONE rule changed, and only one.** Standing the five on the plat left one pair under the
+three-metre separation gate — the wells run's westernmost unit at 2.40 m from Carpenter's store,
+side by side along the face with their fronts level — and the first attempt at this repair wrote
+a second clause for it. That was wrong. The break is AUTHORED, on the D4 slot as `clear_west_of`
++ `clear_m`, and `place_frontage`'s own note says where the number belongs: *"the three-metre
+separation rule — not this recipe — is what fixes the size of the break"*. The 2.4 m had been
+authored while the store stood 6.62 m out in the roadway, where the along-face break was not the
+real gap at all. So **the recipe moved to the gate, not the gate to the recipe**: `clear_m`
+2.4 → 3.0 with `clear_why` beside it, one anonymous roof 0.6 m further west, measured gap now
+exactly 3.00 m. No threshold moved anywhere in this work.
+
 ## WHAT WAS ALREADY DONE BY THE TIME THE ANSWER CAME — re-measured, not re-asserted
 
 `origin/dev` moved on. **T-0198 (PR #373) merged and reconciled SIX of the eleven** by the
@@ -249,3 +260,47 @@ any depth now, cross streets included.
   exactly, and this is that work. T-0127's five-way split on this branch and dev's two-way
   split both stand; T-0191–T-0194 still own items 2–5 of the parent's body, which neither
   T-0198 nor T-0199 covers.
+
+## Verification actually run for the 2026-08-27 finish
+
+- `bash tools/check.sh` — **CHECK PASS**, every step, including
+  `generate_block_infill.py --check` (the gate this ticket was parked on) and
+  `check_published.mjs` (`tools/publish.sh` was run this time — this is shipping).
+- Smoke on the **published mirror, ALL NINE STAGES AT BOTH VIEWPORTS** — the legs this PR
+  admitted it had never run are run:
+
+  | leg | mobile 390×780 | desktop 1280×800 |
+  |---|---|---|
+  | 1-2 | 144 passed, 0 failed | 144 passed, 0 failed |
+  | 3 / 3-4 | 111 passed, **1 failed** | 74 passed, 0 failed |
+  | 4 | *(in 3-4 above)* | 42 passed, **2 failed** |
+  | 5-6 | 42 passed, 0 failed | 42 passed, 0 failed |
+  | 7-9 | 152 passed, 0 failed | 152 passed, 0 failed |
+  | **total** | **449 checks, 1 failed** | **454 checks, 2 failed** |
+
+  Every failure is the same assertion at the same stand, and desktop's two are `dev`'s.
+- **The one failure, and it is measured rather than argued.**
+  `scene detail 'balanced' stays inside its own ceiling at the WORST stand`, at Lake Street at
+  Canal. A/B: the same tree read twice, once with `dev`'s `town_street_edge.json` in the mirror
+  and once with this one. The frontage layer costs **5,350 triangles** at that stand, to the
+  triangle, at every tier and both viewports.
+
+  | tier · viewport | ceiling | dev | here |
+  |---|---:|---:|---:|
+  | `balanced` · mobile | 1,210,000 | 1,208,033 — **1,967 to spare (0.16 %)** | **1,213,383** |
+  | `balanced` · desktop | 1,210,000 | 1,253,630 — **already over by 43,630** | 1,258,980 |
+  | `full` · desktop | 1,400,000 | 1,413,266 — **already over by 13,266** | 1,418,616 |
+  | `full` · mobile | 1,400,000 | 1,366,289 | 1,371,639 |
+  | `light` · mobile / desktop | 1,050,000 | passes | 807,943 / 859,229 |
+
+  Desktop's two are `dev`'s, before this branch. Mobile's is this branch's, over a ceiling `dev`
+  was 0.16 % from failing. **No ceiling was moved**: T-0135's own text leaves that choice to the
+  owner, and raising a number to clear a red inside a sidewalk ticket is the defect it was opened
+  to end. Filed with every figure as **T-0218**.
+- Proved the new occupancy clause REFUSES what it should, one bound at a time, by breaking each:
+  a store moved 6 m back into the depth of its lot → *"lot 2 already carries
+  pruyne_kimball_drugstore, so the frontage run cannot be dealt its roof"*; a store given a
+  `reconstruction` block so it reads as a record the programme wrote → *"lot 2 already carries
+  carpenter_south_water_store"*; clark lot 2 dropped from its block's `frontage` run → the lot
+  goes back to barring another roof; and with nothing excluded, wells lots 0 and 2 (which the run
+  already stands on) are not shared at all, so the schedule cannot be offered them twice.

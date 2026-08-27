@@ -99,6 +99,34 @@ not assumed: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage r
 recipes for the clause to sit on, and all four would land on lots that already carry anonymous
 roofs.
 
+**The smoke ran all nine stages at both viewports** — mobile **449 checks, 1 failed**;
+desktop **454 checks, 2 failed**. Every failure is one assertion at one stand.
+
+**ONE GATE IS RED AND IT IS NOT WAVED THROUGH.** `scene detail 'balanced' stays inside its own
+ceiling at the WORST stand` fails at Lake Street at Canal, the long axial view. Measured as an
+A/B — the same tree read twice, once with `dev`'s `town_street_edge.json` in the published mirror
+and once with this one — the frontage layer costs **5,350 triangles** at that stand, to the
+triangle, at every tier and both viewports:
+
+| tier · viewport | ceiling | dev | here |
+|---|---:|---:|---:|
+| `balanced` · mobile | 1,210,000 | 1,208,033 — **1,967 to spare (0.16 %)** | **1,213,383** over |
+| `balanced` · desktop | 1,210,000 | 1,253,630 — **already over by 43,630** | 1,258,980 |
+| `full` · desktop | 1,400,000 | 1,413,266 — **already over by 13,266** | 1,418,616 |
+| `full` · mobile | 1,400,000 | 1,366,289 | 1,371,639 (28,361 to spare) |
+| `light` · mobile / desktop | 1,050,000 | passes | 807,943 / 859,229 |
+
+Desktop's two failures are `dev`'s and predate this branch entirely. Mobile's is this branch's,
+and it is 3,383 triangles over a ceiling `dev` was 1,967 triangles from failing. **A tier with
+0.16 % of headroom is not a budget, it is a coincidence** — T-0135 set these on 2026-08-22 with
+*"about 6 % of headroom over the measured worst"* and five days of content ate it. **No ceiling
+was moved here**, deliberately: raising a number to make a red go away inside a ticket about a
+sidewalk is the exact defect T-0135 was opened to end, and its own text says the choice between a
+conscious re-budget and the trim T-0149/T-0146 are open for is the owner's — *"This is the
+measure. The move is his."* What HAS changed since he last looked is that `light`, the objection
+he was given last time, now sits 18–23 % UNDER its ceiling rather than 65 % over. Filed with every
+figure as **T-0218**.
+
 **One measurement made on the way, worth its own ticket.** `measure_street_frontage.layer_of`
 names the three evidence layers by ID PREFIX, and across the committed 348 records it disagrees
 with the record's own contents exactly once: `physicians_office` carries no `inf_` prefix and is
