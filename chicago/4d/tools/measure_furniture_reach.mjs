@@ -1,7 +1,7 @@
 /**
  * T-0150 — WHAT A FURNITURE REACH BUYS, AND WHAT IT COSTS THE PICTURE.
  *
- *   node tools/measure_furniture_reach.mjs [--source] [--json <file>]
+ *   node tools/measure_furniture_reach.mjs [--source] [--json <file>] [--level TIER]
  *
  * T-0149's first piece is a distance cull on the derived furniture at `light`,
  * and the number it turns on — how far down a street a fence, a plank walk, a
@@ -114,6 +114,18 @@ console.log(`serving ${ROOT} — ${wantSource ? 'source tree' : 'PUBLISHED mirro
  */
 const onlyAt = process.argv.indexOf('--only');
 const ONLY = onlyAt >= 0 ? process.argv[onlyAt + 1] : null;
+/** WHICH TIER THE SWEEP DRIVES, `light` by default because T-0150 asked the
+ *  question about the floor. T-0241 asked it about the middle rung — `balanced`
+ *  carried NO reach at all, so "turn the quality down and less is drawn" was
+ *  true of the bottom rung and not of the one above it — and the honest way to
+ *  answer that was to point the same instrument at the other tier rather than
+ *  write a second one. `--level balanced`. */
+const levelAt = process.argv.indexOf('--level');
+const LEVEL = levelAt >= 0 ? process.argv[levelAt + 1] : 'light';
+if (!['full', 'balanced', 'light'].includes(LEVEL)) {
+  console.error(`--level must be full, balanced or light — got ${LEVEL}`);
+  process.exit(2);
+}
 const VIEWPORTS = [
   { label: 'desktop 1280x800', width: 1280, height: 800 },
   { label: 'mobile 390x780', width: 390, height: 780 },
@@ -127,12 +139,12 @@ page.on('pageerror', (e) => errors.push(`${vp.label}: ${String(e)}`));
 await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load' });
 await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 240000 });
 
-const measured = await page.evaluate(async ({ stands, reaches }) => {
+const measured = await page.evaluate(async ({ stands, reaches, level }) => {
   const a = window.__chicago4d;
   const settle = () => new Promise((r) => requestAnimationFrame(
     () => requestAnimationFrame(r)));
   const started = a.detail;
-  await a.setDetail('light');
+  await a.setDetail(level);
   await settle();
   // THE CLOCK IS HELD FOR THE WHOLE SWEEP, and the first run said why: the wind
   // blows between two captures, so a frame delta taken with the prairie moving
@@ -190,7 +202,7 @@ const measured = await page.evaluate(async ({ stands, reaches }) => {
   a.setFurnitureReach(null);
   await a.setDetail(started);
   return { rows, restored: a.detail === started };
-}, { stands: STANDS, reaches: REACHES });
+}, { stands: STANDS, reaches: REACHES, level: LEVEL });
 passes.push({ viewport: vp.label, ...measured });
 await page.close();
 }
