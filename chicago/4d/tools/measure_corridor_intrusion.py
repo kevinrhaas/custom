@@ -33,6 +33,7 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py --recentre     K30(a)'s refuted counterfactual
     tools/measure_corridor_intrusion.py --reflect      K30(b)'s cause, REFUTED by --anchors
     tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
+    tools/measure_corridor_intrusion.py --escape       T-0195: which way OUT, and what it costs
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
@@ -45,6 +46,7 @@ come out of here.
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import json
 import math
 import sys
@@ -53,9 +55,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from generate_plat_lots import point_in_polygon  # noqa: E402
+from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
 from measure_street_frontage import layer_of  # noqa: E402
-from plat_corridors import corridors, intrusion  # noqa: E402
+from plat_corridors import corridors, intrusion, sampled  # noqa: E402
 from plat_occupancy import world_polygon  # noqa: E402
 
 BASELINE = ROOT / "tools" / "corridor_intrusion_baseline.json"
@@ -536,6 +538,194 @@ def anchors() -> str:
     return "\n".join(lines)
 
 
+# How close two bearings have to run before this tool will say one is ALONG the other.
+# The committed centrelines are traced polylines, not a drafted grid: the cross streets in
+# the business core run at 0.34-0.36 degrees and South Water at 89.53-90.93, so a tolerance
+# tighter than a degree would call the same relationship "along" on one block and not on
+# the next. Five degrees is comfortably inside the smallest angle any two DIFFERENT streets
+# in this plat make with each other, which is what the tolerance actually has to separate.
+ALONG_TOLERANCE_DEG = 5.0
+
+# The furthest a corridor may be from a footprint's centroid and still be counted as one of
+# the streets that footprint stands on. A corner lot's two streets are both within a street
+# module of it; the next street over is a block away.
+NEIGHBOUR_M = 60.0
+
+
+def _bearing(vector: tuple[float, float]) -> float:
+    """Compass bearing of a local-ENU vector, degrees clockwise from grid north."""
+    return math.degrees(math.atan2(vector[0], vector[1])) % 360.0
+
+
+def _angle_between_lines(a_deg: float, b_deg: float) -> float:
+    """The acute angle between two UNDIRECTED bearings — a street has no forward end."""
+    delta = abs(a_deg - b_deg) % 180.0
+    return min(delta, 180.0 - delta)
+
+
+def depth_into(polygon: list, lane: dict) -> float:
+    """How deep a footprint reaches into ONE named corridor, in metres from its edge.
+
+    `plat_corridors.intrusion()` answers a different question — the DEEPEST corridor of all
+    — and a record standing in two of them at once cannot be asked about one of them
+    through it. That distinction is not academic: `first_presbyterian_church` laps both
+    Clark and Lake, and a search that stops when the deepest corridor merely CHANGES NAME
+    reports it escaping Clark in 28 mm when it has done nothing of the kind.
+    """
+    ring = lane["ring"]
+    worst = 0.0
+    for point in sampled(polygon):
+        if point_in_polygon(point, ring):
+            worst = max(worst, point_to_ring_m(point, ring))
+    return worst
+
+
+def escape(json_out: bool = False) -> str:
+    """T-0195 — WHICH WAY WOULD A LAPPING RECORD HAVE TO MOVE, AND WHAT DOES THE MOVE SPEND?
+
+    The table above says how deep each record stands in a roadway. It has never said what
+    getting it out would COST, and on a corner that is the whole question. A corner lot has
+    two streets. The South Water repair (T-0198, T-0199, and T-0127's method before them)
+    re-derived eleven records against this project's own committed centreline for the street
+    they FRONT, and translated each one along that street's normal. Three of the eleven
+    stand on a corner, and the move that answers the frontage street cannot answer the one
+    the building turns onto: they lap the CROSS street's corridor by 0.16-0.21 m.
+
+    So this mode measures the way out, per record, and names what the way out runs along:
+
+    * **escape** — the shortest translation along the lapped corridor's own normal, away
+      from it, that takes the footprint clear of that corridor. Bisected against
+      `plat_corridors.intrusion()` rather than assumed equal to the depth, because a
+      corridor is an offset polyline and its ring is not parallel to a building's wall.
+    * **vs front** — that escape bearing read against the record's OWN facade bearing, the
+      authored `position.rotation_deg`. `across` means the escape runs into or out of the
+      building's front, so the move changes its SETBACK. `along` means the escape runs
+      sideways across its front, so the move changes WHERE ALONG THE STREET IT STANDS.
+      `oblique` is neither, and on this plat only a record whose facade is not square to
+      its own street reads that way.
+
+    A grid tempts a looser test — "is there a nearby street parallel to the escape?" — and
+    on an orthogonal plat that test is TRUE FOR EVERY RECORD, because the street crossing
+    the one you lap always runs the way you have to move. It says nothing. The facade
+    bearing is what distinguishes the two cases, because it is the record's own statement
+    about which street it stands on the front of.
+
+    That distinction is the whole of T-0195's refusal. Moving a documented record ACROSS
+    its front is re-deriving a setback against a better line, which is what T-0127 did and
+    defended: the claim does not move, only the line it was derived against. Moving one
+    ALONG its front moves the corner attribution itself — the one part of these three
+    placements a source actually argues — to make a derived number smaller, which is the
+    thing this file's own note forbids in as many words.
+    """
+    lanes = corridors()
+    rows = []
+    for structure_id, phase_id, _phase, polygon, category in placed_phases():
+        street, depth = intrusion(polygon, lanes)
+        if street is None:
+            continue
+        cx = sum(p[0] for p in polygon) / len(polygon)
+        cy = sum(p[1] for p in polygon) / len(polygon)
+        _, axis, foot = centreline_frame(lanes[street]["points"], cx, cy)
+        normal = (-axis[1], axis[0])
+        side = math.copysign(1.0, (cx - foot[0]) * normal[0] + (cy - foot[1]) * normal[1])
+        out = (side * normal[0], side * normal[1])
+
+        def moved_by(distance: float) -> list:
+            return [(x + out[0] * distance, y + out[1] * distance) for x, y in polygon]
+
+        # Bisect for the clearance, against THIS corridor rather than against whichever is
+        # deepest. The upper bound starts at the depth — the answer on a straight corridor —
+        # and doubles until the record is actually clear, so a ring that is not parallel to
+        # the wall cannot make the search miss.
+        high = max(depth, 0.01)
+        while depth_into(moved_by(high), lanes[street]) > 0.0 and high < 50.0:
+            high *= 2.0
+        low = 0.0
+        for _ in range(40):
+            mid = (low + high) / 2.0
+            if depth_into(moved_by(mid), lanes[street]) > 0.0:
+                low = mid
+            else:
+                high = mid
+        after_street, after_depth = intrusion(moved_by(high), lanes)
+
+        bearing = _bearing(out)
+        facade = float(_phase["position"].get("rotation_deg") or 0.0) % 360.0
+        # The acute angle between the escape and the FACADE NORMAL. Zero means the escape
+        # runs straight out of the front (or straight into it); ninety means it runs
+        # sideways along the front.
+        offset = _angle_between_lines(bearing, facade)
+        if offset <= ALONG_TOLERANCE_DEG:
+            versus = "across"
+        elif abs(offset - 90.0) <= ALONG_TOLERANCE_DEG:
+            versus = "along"
+        else:
+            versus = "oblique"
+        # The street the facade actually faces, for legibility: the nearest corridor whose
+        # axis is square to the facade normal. Named, never listed.
+        fronts, fronts_m = None, None
+        for other_id, lane in lanes.items():
+            distance, other_axis, _foot = centreline_frame(lane["points"], cx, cy)
+            if distance > NEIGHBOUR_M:
+                continue
+            if abs(_angle_between_lines(facade, _bearing(other_axis)) - 90.0) > ALONG_TOLERANCE_DEG:
+                continue
+            if fronts_m is None or distance < fronts_m:
+                fronts, fronts_m = other_id, distance
+        rows.append({
+            "structure": structure_id,
+            "phase": phase_id,
+            "category": category,
+            "street": street,
+            "depth_m": round(depth, PLACES),
+            "escape_m": round(high, 3),
+            "escape_bearing_deg": round(bearing, 2),
+            "facade_bearing_deg": round(facade, 2),
+            "escape_vs_facade": versus,
+            "escape_facade_offset_deg": round(offset, 2),
+            "fronts": fronts,
+            "fronts_m": None if fronts_m is None else round(fronts_m, PLACES),
+            "then_laps": after_street,
+            "then_depth_m": round(after_depth, PLACES),
+        })
+
+    rows.sort(key=lambda r: r["escape_m"])
+    if json_out:
+        return json.dumps(rows, indent=2, sort_keys=True)
+
+    lines = [f"{'structure':<44}{'laps':<13}{'depth m':>8}{'escape m':>10}"
+             f"{'bearing':>9}  {'vs front':<9}fronts"]
+    for r in rows:
+        fronts = r["fronts"] or "—"
+        lines.append(f"{r['structure']:<44}{r['street']:<13}{r['depth_m']:>8.2f}"
+                     f"{r['escape_m']:>10.3f}{r['escape_bearing_deg']:>9.2f}  "
+                     f"{r['escape_vs_facade']:<9}{fronts}")
+
+    along = [r for r in rows if r["escape_vs_facade"] == "along"]
+    lines += [
+        "",
+        f"{len(along)} of {len(rows)} records can only get clear by sliding SIDEWAYS ACROSS "
+        f"their own front, which moves where along the street the record stands:",
+    ]
+    for r in along:
+        lines.append(f"   {r['structure']:<44}{r['escape_m']:.2f} m along "
+                     f"{r['fronts'] or 'its frontage'}, to clear {r['street']}")
+    lines += [
+        "",
+        "The rest escape ACROSS their own front, which is the operation T-0127 and the "
+        "South Water repairs performed: the setback is re-derived against this project's "
+        "own committed centreline and the along-street coordinate never moves.",
+        "A record whose escape leaves it lapping a SECOND street cannot be repaired by "
+        "translation at all — it would trade one corridor for another.",
+    ]
+    traded = [r for r in rows if r["then_laps"]]
+    for r in traded:
+        lines.append(f"   {r['structure']:<44}clears {r['street']} at "
+                     f"{r['escape_m']:.2f} m and then laps {r['then_laps']} "
+                     f"at {r['then_depth_m']:.2f} m")
+    return "\n".join(lines)
+
+
 def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
@@ -577,6 +767,25 @@ def gate(quiet: bool = False) -> int:
                 f"street furniture is an exemption and may not be acquired by editing an "
                 f"archetype or a function")
 
+    # A refusal is a written argument attached to a lap (T-0195). It is checked, not
+    # trusted: it has to name a lap that is still there, and it may not quietly become the
+    # justification for a DIFFERENT number than the one it was written about.
+    refused = baseline.get("refused") or {}
+    for key, entry in sorted(refused.items()):
+        if key not in result["lapping"]:
+            failures.append(
+                f"{key} is refused in writing but no longer laps anything — withdraw the "
+                f"refusal with --write-baseline, and take the paragraph out of the "
+                f"record's position.note with it")
+            continue
+        row = result["lapping"][key]
+        if row["street"] != entry.get("street"):
+            failures.append(f"{key} is refused for {entry.get('street')} and now laps "
+                            f"{row['street']}; the refusal argues about a different street")
+        elif row["depth_m"] > float(entry.get("depth_m", 0.0)) + TOLERANCE_M:
+            failures.append(f"{key} laps deeper than the depth it was refused at: "
+                            f"{entry.get('depth_m')} -> {row['depth_m']:.2f} m")
+
     repaired = sorted(set(committed) - set(result["lapping"]))
     shallower = sorted(k for k, r in result["lapping"].items()
                        if k in committed and r["depth_m"] < committed[k]["depth_m"] - TOLERANCE_M)
@@ -588,6 +797,8 @@ def gate(quiet: bool = False) -> int:
         print(f"   {len(result['lapping']) - furniture} buildings, {furniture} street "
               f"furniture (a bridge in a street is not an intrusion)")
         print(f"   generated roofs lapping a corridor: {len(generated)} (must be 0)")
+        print(f"   refused in writing: {len(refused)} "
+              f"(each one argued in its own record's position.note)")
     if repaired or shallower:
         print(f"   {len(repaired)} cleared and {len(shallower)} shallower than the "
               f"baseline — re-run with --write-baseline to bank the repair")
@@ -605,9 +816,13 @@ def main() -> int:
                         help="K30(b)'s confirmed cause — a diagnosis, not a proposal")
     parser.add_argument("--anchors", action="store_true",
                         help="K30(d)'s test — is the point the kerb face or the back corner")
+    parser.add_argument("--escape", action="store_true",
+                        help="T-0195 — the way out per record, and what the move spends")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
+    parser.add_argument("--measured", default=None, metavar="YYYY-MM-DD",
+                        help="the date to stamp the baseline with; defaults to today")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
@@ -627,6 +842,10 @@ def main() -> int:
         print(anchors())
         return 0
 
+    if args.escape:
+        print(escape(json_out=args.json))
+        return 0
+
     result = measure()
 
     if args.write_baseline:
@@ -640,11 +859,32 @@ def main() -> int:
             "whose depth has grown. It is NOT an allowance — K30(b) owns the fix, and "
             "these are the numbers it takes as its baseline. Never move a documented "
             "building to make an entry smaller: a position with a source outranks a "
-            "corridor this project derived.")
-        baseline["measured"] = args.__dict__.get("measured") or "2026-08-16"
+            "corridor this project derived. `refused` is the other half of that "
+            "sentence (T-0195): a lap whose only escape would move a source-argued "
+            "coordinate is refused IN WRITING, per record, here and in the record's own "
+            "position.note — not tolerated by silence. A refusal may not outlive the lap "
+            "it refuses; the gate says so and --write-baseline drops the stale ones.")
+        # NOT a constant. This read "2026-08-16" for as long as the file existed, and no
+        # --measured option was ever defined to override it, so every repair banked since
+        # August has been stamped with the date of the first measurement rather than its
+        # own. A banked number whose date is a fossil is the shape of fault this tool was
+        # written to stop (T-0195).
+        baseline["measured"] = args.measured or _dt.date.today().isoformat()
         baseline["placed_phases"] = result["placed_phases"]
         baseline["corridors"] = result["corridors"]
         baseline["lapping"] = result["lapping"]
+        # A refusal is an argument about a lap that exists. When the lap goes, so does the
+        # argument — otherwise the file accumulates written refusals of nothing, and the
+        # gate below would fail forever on work that was actually a repair.
+        refused = baseline.get("refused") or {}
+        stale = sorted(k for k in refused if k not in result["lapping"])
+        for key in stale:
+            refused.pop(key)
+        if refused or stale:
+            baseline["refused"] = refused
+        if stale:
+            print(f"   dropped {len(stale)} refusal(s) whose lap is gone: "
+                  f"{', '.join(stale)}")
         BASELINE.write_text(json.dumps(baseline, indent=2, sort_keys=True) + "\n",
                             encoding="utf-8")
         print(f"   wrote {BASELINE.relative_to(ROOT)}: {len(result['lapping'])} record(s)")

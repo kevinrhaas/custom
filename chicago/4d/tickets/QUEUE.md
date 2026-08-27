@@ -32,7 +32,6 @@ T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0213 — Weight the trade families onto the business front
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
-T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
