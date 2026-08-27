@@ -29,7 +29,6 @@ T-0056 — The enclosure layer pays its full triangle cost at every scene-detail
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0240 — Randolph gets the street edge
 T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
@@ -105,4 +104,3 @@ T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
-T-0242 — Two dooryard plantings are dealt onto blocked ground and refused at load, on dev
