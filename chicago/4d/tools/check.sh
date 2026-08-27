@@ -189,6 +189,21 @@ step "the 665-roof programme reconciles with the town that stands" \
 step "a refused block is short of control, or was never a block" \
   python3 tools/measure_block_gating.py --check
 
+# T-0026, and the same fault one district wide. The programme's South balance — 120 roofs,
+# the largest of the three gated ones — named STREET CONTROL as its blocker and sent the
+# next parcel to go and carry a centreline. Measured, the blocker is the ground: the box
+# ends at local N -400 m, INSIDE Washington Street's platted corridor, every north-south
+# column of the south plat has its committed line cut at that same edge, and Madison — the
+# plat's south boundary — is 125 m further south. The plat's last tier, six blocks and 48
+# lots, is 100 % unmodelled. Two assertions: no committed platted block stands off the
+# modelled ground (absolute, and it is what fires the day control is carried south without
+# the terrain following), and the programme's stated southern coverage is the measured one.
+step "no platted block stands off the modelled ground, and the south's blocker is the measured one" \
+  python3 tools/measure_southern_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_southern_ground.py --self-test
+
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
 # possible place to carry a stale number is the panel a visitor sees before anything
