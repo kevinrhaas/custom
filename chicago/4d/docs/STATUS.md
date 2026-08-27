@@ -394,6 +394,42 @@ road and occupying no lot at all.
 against this project's own committed line, the yard buildings' lots were always an invention the
 parcel already declares, and a placement gate's unit is not a claim about 1835.
 
+### AND THE PART OF THE ACCEPTANCE THIS DOES NOT MEET — measured 2026-08-27, both sides
+
+The ticket's last clause is *"all three detail tiers stay inside their ceilings"*, and **they do
+not**. Two of them were already outside on `dev` before this branch existed. `SMOKE_STAGE=4` run
+twice on the same runner, once on `origin/dev` and once here, at the worst stand the sweep visits —
+**Lake Street at Canal, east down the axis**, 700 m west of every metre of this work (the `light`
+row's worst stand is the forks, from Wolf Point):
+
+| tier | ceiling | `origin/dev` | this branch | Δ tris | Δ draw calls |
+|---|---:|---:|---:|---:|---:|
+| mobile `full` | 1,400,000 | 1,365,143 | 1,371,639 | +6,496 | 195 → 192 |
+| mobile `balanced` | 1,210,000 | **1,207,205** (2,795 under) | **1,213,383 — OVER by 3,383** | +6,178 | 193 → 190 |
+| mobile `light` | 1,050,000 | 807,103 | 807,943 | +840 | 72 → 72 |
+| desktop `full` | 1,400,000 | **1,412,120 — already over by 12,120** | **1,418,616 — over by 18,616** | +6,496 | 204 → 201 |
+| desktop `balanced` | 1,210,000 | **1,252,802 — already over by 42,802** | **1,258,980 — over by 48,980** | +6,178 | 202 → 199 |
+| desktop `light` | 1,050,000 | 858,389 | 859,229 | +840 | 79 → 79 |
+
+**Two readings were red before this work and stay red; one that was green goes red.** Mobile
+`balanced` had 2,795 triangles of headroom — 0.23 % — and 136.7 m of new plank walk and two new
+board crossings cost 6,178 of them. So the honest statement is not "this branch breaks the ceiling":
+it is that **the ceiling was already broken on the desktop and had 0.23 % left on the phone, and
+this is the parcel that spent it.**
+
+**Where the cost sits, and it names its own lever.** The three tiers pay `full` +6,496,
+`balanced` +6,178 and `light` **+840** for the same geometry. The gap is the furniture reach: `light`
+holds street furniture back at ±120 m and the new decks are outside that from Lake and Canal, while
+`full` and `balanced` both draw to ±240 m. **The whole overage is street-edge furniture drawn at
+half a kilometre**, which is precisely T-0146 (merge far chunks back into single draws) and T-0147
+(re-lower the ceilings once the trims land), with T-0190 already holding the street tier's ceiling
+question. **No ceiling was raised here.** Raising one to fit this reading is the thing the acceptance
+clause forbids, and it is the fifth time it would have been done.
+
+Note the direction of the draw-call column: this parcel **removes three draw calls** at the same
+stand, because reconciling the stores welds four stumps of sidewalk into two block-face runs. It
+costs triangles and buys back calls.
+
 ## Shipped 2026-08-24 — T-0188 (of T-0127): six South Water placements come onto the plat, and the boards leave the shadow map
 
 **T-0127 was SPLIT rather than closed, and the split is the honest part of this run.** Its first

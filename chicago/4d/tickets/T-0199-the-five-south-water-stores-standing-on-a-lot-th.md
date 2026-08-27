@@ -58,7 +58,8 @@ Street's walk then runs unbroken except where its own ground refuses it, asserte
 walker on it end to end; no standing roof leaves the town without that removal being argued and
 counted; and all three detail tiers stay inside their ceilings. Never by weakening a gate.
 
-**RESOLVED 2026-08-24 — ALL FIVE ARE ON THE PLAT AND NO ANONYMOUS ROOF LEFT THE TOWN.** Neither of
+**ALL FIVE ARE ON THE PLAT AND NO ANONYMOUS ROOF LEFT THE TOWN — but the ticket is NOT closed; see the
+2026-08-27 note at the foot.** Neither of
 the two routes above was taken, because a measurement made a third one available. `tools/measure_frontage_entitlement.py`
 (new) asks whether a party-line run stands on the lots it was dealt: across the town's eight runs,
 **20 lots dealt, 12 stood on**. A run packs from one end of its own strip and three of its units fit
@@ -84,6 +85,43 @@ corner crossings. Town street edge 1,427.0 → **1,563.7 m** over **96** walking
 a platted corridor 26 → **21**. Cost, stated: three blocks go `at_capacity` and the programme's
 `schedulable_on_committed_ground` falls 28 → 20 — headroom that existed only while eleven documented
 buildings stood in the road occupying no lot.
+
+---
+
+## 2026-08-27 — RECOVERED FROM AN ABANDONED RUN, AND HELD ON THE LAST CLAUSE OF ITS OWN ACCEPTANCE
+
+The work above was done on 2026-08-24 by a run that never opened a PR and died with the branch
+pushed — `steward/t-0199-south-water-relet`, 58 h cold, no PR, exactly the failure
+`tickets/README.md` § "A claim is only real once its PR merges" describes. It was recovered rather
+than rebuilt: `origin/dev` merged in, every derived layer re-run against the merged inputs, and the
+published mirror rewritten. `tools/check.sh` is **green**. Smoke stages **1, 2 and 3 are green**
+(450 checks). **Stage 4 is red on the triangle ceilings**, and that is this ticket's own last
+acceptance clause — *"all three detail tiers stay inside their ceilings"* — so nothing here was
+merged.
+
+Measured on both sides, same runner, at the worst stand the sweep visits (Lake Street at Canal,
+east down the axis — 700 m west of every metre of this work):
+
+| tier | ceiling | `origin/dev` | this branch |
+|---|---:|---:|---:|
+| desktop `full` | 1,400,000 | **1,412,120 — already over** | 1,418,616 |
+| desktop `balanced` | 1,210,000 | **1,252,802 — already over** | 1,258,980 |
+| mobile `balanced` | 1,210,000 | 1,207,205 — 2,795 under | **1,213,383 — over by 3,383** |
+
+Two of the three were red before this branch existed. The third had 0.23 % of headroom and this
+parcel spent it: 136.7 m of new plank walk and two new board crossings cost +6,178 triangles at
+`balanced` and +6,496 at `full` — while REMOVING three draw calls, because the reconciliation welds
+four stumps of sidewalk into two block-face runs.
+
+**The lever is named by the measurement.** `light` pays only **+840** for the same geometry, because
+it holds street furniture back at ±120 m where `full` and `balanced` draw to ±240 m. The whole
+overage is street-edge furniture drawn at half a kilometre — T-0146 (merge far chunks back into
+single draws), T-0147 (re-lower the ceilings once the trims land) and T-0190 (the street tier and
+the ceiling that refuses it). **No ceiling was raised.** Raising one to fit this reading is what the
+acceptance clause forbids, and it would be the fifth time.
+
+Filed as its own ticket so the queue carries it rather than this PR: see the ticket filed
+`--by loop` on 2026-08-27 for the desktop ceiling that is red on an unmodified `dev`.
 
 **Links:** T-0127 (parent) · T-0188 (piece 1, which measured all of the above) · T-0115 (the tier
 ledger) · `data/frontage/town_street_edge.json` `refused`, where all five are already named.
