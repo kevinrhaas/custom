@@ -702,14 +702,16 @@ export async function createFrontage({
    *
    * So the standing timber goes into its own buffer, keyed PER STREET rather
    * than per face: one extra mesh for each covered street instead of one for
-   * each fenced face. That is the whole of the draw-call cost — three calls in
+   * each fenced face. T-0194's hitching posts join it — they are standing
+   * timber on the same faces and they ride the meshes that already exist, which
+   * is why a post at every trading frontage costs no draw call at all. That is the whole of the draw-call cost — three calls in
    * the colour pass and three in the shadow pass — against the thirty-five
    * ground-hugging chunks that leave the shadow pass entirely. Per-face
    * standing meshes would have cost twenty-six of each and made the trade a
    * loss.
    */
   const standingChunk = (record, item) => (
-    item.street ? `${record.id}__${item.street}__fences` : item.chunk);
+    item.street ? `${record.id}__${item.street}__standing` : item.chunk);
   const cards = new Map();
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`frontage: ${id} — ${why}`); continue; }
@@ -856,12 +858,20 @@ export async function createFrontage({
       out.fences.push(fence);
       out.census.fences += 1;
     }
+    // The posts. A post that names a street (the street edge's hitching posts,
+    // T-0194) is STANDING timber and lands in that street's own standing mesh
+    // beside the fences — it culls with them, it casts with them, and it costs
+    // no draw call of its own. A post with no street (the two inns' own, which
+    // are one record each) falls back to the layer's shared mesh, exactly as it
+    // always did.
     for (const post of record.posts ?? []) {
       const level = LEVEL[post.confidence] ?? 1;
+      const bucket = bufFor(standingChunk(record, post), post.belongs_to, true);
+      const target = bucket ? bucket.buf : buf;
       const from = buf.pos.length / 9;
-      const board = buildPost(buf, post, terrain, level, problems);
+      const board = buildPost(target, post, terrain, level, problems);
       if (!board) continue;
-      spans.push({ id: post.belongs_to, from, to: buf.pos.length / 9 });
+      if (!bucket) spans.push({ id: post.belongs_to, from, to: buf.pos.length / 9 });
       out.posts.push(post);
       out.census.posts += 1;
       if (post.kind === 'hitching_post') out.census.hitching += 1;

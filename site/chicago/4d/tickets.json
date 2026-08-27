@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 3:36 PM",
+  "generated_ct": "Aug 27, 2026, 4:08 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3328,7 +3328,7 @@
     {
       "id": "T-0194",
       "title": "Hitching posts at the commercial frontages",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -3338,7 +3338,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 8:07:04 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 7

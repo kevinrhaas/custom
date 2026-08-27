@@ -1,7 +1,7 @@
 ---
 id: T-0194
 title: Hitching posts at the commercial frontages
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0127
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 8:07:04 AM CT
 blocked_on: null
 needs_bake: false
 ---

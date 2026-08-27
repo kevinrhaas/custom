@@ -3823,8 +3823,14 @@ for (const [label, viewport, touch] of [
         const stand = terrain.surfaceHeight(e0, n0);
         let top = -Infinity;
         let low = Infinity;
-        const g = mesh?.geometry;         // the posts live in the shared mesh
-        if (g && Number.isFinite(stand)) {
+        // EVERY timber mesh, not the shared one (T-0194). The two inns' posts
+        // live in the shared mesh; the street edge's stand in their own street's
+        // standing mesh beside the fences, and a probe that only looked at the
+        // shared mesh would read `top = -Infinity` for twelve of the fourteen
+        // and report it as a pass on the two it could see.
+        for (const t of timber) {
+          const g = t.geometry;
+          if (!g || !Number.isFinite(stand)) continue;
           const pos = g.getAttribute('position');
           for (let i = 0; i < pos.count; i++) {
             if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
@@ -3862,8 +3868,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
       frontage.census?.records === 5 && frontage.census?.walks === 27
         && frontage.census?.crossings === 14
-        && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 54
+        && frontage.census?.posts === 15 && frontage.census?.fences === 11
+        && frontage.census?.refused === 61
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3981,9 +3987,15 @@ for (const [label, viewport, touch] of [
     // record says 1.30 m and it is the renderer that would be wrong. Measured
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
-    check(`${label}: the Sauganash's two hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 2
-        && frontage.census?.hitching === 2
+    //
+    // FOURTEEN OF THEM SINCE T-0194: the Sauganash's own two, and twelve at the
+    // street edge's trading frontages. Each one is measured the same way and
+    // against its own stand, so a post the street-edge rule put on a slope or in
+    // the wrong mesh fails here rather than being averaged away by the two that
+    // were already right.
+    check(`${label}: every hitching post stands on its own ground, carrying nothing`,
+      frontage.hitching.length === 14
+        && frontage.census?.hitching === 14
         && frontage.hitching.every((h) => Math.abs(h.top - h.recorded) <= 0.05
           && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text)
         && frontage.census?.lettered === 1
