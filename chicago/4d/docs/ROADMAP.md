@@ -8064,6 +8064,28 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
+### B-BUG4 — North Water Street's committed centreline runs inside the water mask · **OPEN, T-0208**
+
+Found 2026-08-27 by T-0184's joint probe, which is the shape worth keeping: a NEW instrument's
+first reading was 125 m2 of "uncovered roadway" and 101 of it was not the fault the instrument
+was built to see. Three of North Water Street's six bends — [330, 66], [452, 75], [576, 86] —
+sit on centreline the water mask calls river, so `streets.js` refuses every panel there under
+R-BUG4's own rule ("clip, don't paint a ford"). Walked at half-metre steps, **477.4 m of that
+street's 843.3 m centreline is inside the mask, in one unbroken run from [200.2, 55] to
+[675.4, 95.7]** — 57 % of the street, and no ribbon is drawn on any of it. The probe reported
+each of the three bends as 33.8 m2 uncovered, which was true and irrelevant.
+
+Two readings are possible and this run did not settle which: the traced north bank is too far
+south along that reach, or the street record's line is too far north. Both are recorded claims
+with sources, so it is a research question rather than a nudge — filed as **T-0208** with the
+extent measured.
+
+**The instrument was fixed rather than the number explained away.** `road_joint_probe.mjs` now
+defines the nominal ribbon as ground the module is ALLOWED to paint — within the half-width of a
+chord that survived the centreline water test and the sliver drop, and not itself on water — and
+counts the water-refused bends on their own line so they cannot hide in a total. Any joint gate
+built on this instrument reads the joints and only the joints.
+
 ### R-REF1 — commit the reference photograph · **DONE 2026-08-15**
 
 `bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this

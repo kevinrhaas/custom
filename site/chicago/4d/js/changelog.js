@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 273, title: 'The road stops splitting open where it turns', kind: 'fix', ts: '2026-08-27T05:39:00.765Z', date: 'Aug 27, 2026, 12:39 AM CT',
+    items: [
+      'Walk the first two hundred metres of South Water Street, where it bends five times climbing from the west end. At each of those bends a triangle of bare prairie used to open in the roadway — nearly a metre of missing road at the edge, narrowing to nothing at the crown of the street. The road runs whole through the turn now, and so does every other bend in the town.',
+      'The reason was in how a road is drawn: a chain of flat panels laid end to end, each squared off across its own straight run. Where the street turned, the two panels meeting there were squared to different runs, so they crossed at the crown and splayed apart towards the edges — a gap on the outside of the turn, and the same surface painted twice over on the inside.',
+      'Measured before anything was touched, with a two-centimetre grid laid over every bend in the town: twenty-three and a half square metres of ground inside the roadway carried no road at all. The worst single corner was four and a quarter of those, on a street ten and a half metres wide.',
+      'Two panels now meet on one shared corner instead of two, so a gap cannot open. Five turns are too sharp to close with a single corner and are closed with two or three, which is the whole cost of this: twenty-two extra triangles in a town that draws over half a million of them.',
+      'One admission, written into this project’s own ledger of inventions. At a corner the road now reaches a few millimetres past the width its record states, because that is where the two edges meet — twenty-nine millimetres at the worst turn in town, and no more than forty anywhere.',
+      'Nothing else moved: every street is the same width on the same line, and no record changed. A note filed on the twenty-fourth admitted a wedge like this at the Dearborn corner. Measured, that turned out to be the one bend in town that never showed one — South Water Street’s own roadway had been covering it all along. The note now says so.',
+    ] },
   { v: 272, title: 'Two evidence cards were showing their own merge scars', kind: 'fix', ts: '2026-08-27T04:18:16.226Z', date: 'Aug 26, 2026, 11:18 PM CT',
     items: [
       'Open the confidence panel and read the notes on what this project has invented. Two of them ended in a line of angle brackets \u2014 \u201cRecorded: 23 August 2026.\u201d and then some machinery. It has been there since the poplar rows went in on the twenty-fourth, and it went out to the live site an hour before it was found.',

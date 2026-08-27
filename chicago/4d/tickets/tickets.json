@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 26, 2026, 11:18 PM",
+  "generated_ct": "Aug 27, 2026, 12:03 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3141,7 +3141,7 @@
     {
       "id": "T-0184",
       "title": "Mitre the road ribbon's panel joints, so a bend stops opening a wedge of prairie",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3151,7 +3151,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/26/2026, 11:27:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 51
@@ -3353,6 +3353,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0208",
+      "title": "North Water Street runs inside the water mask for 477 m and draws no ribbon at all",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }

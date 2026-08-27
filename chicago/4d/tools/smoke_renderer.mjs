@@ -1485,8 +1485,70 @@ for (const [label, viewport, touch] of [
           if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
         }
 
+        /**
+         * T-0184 — THE OUTSIDE OF EVERY TURN, stationed the way the approaches
+         * above are, and for the same reason: a claim about roadway is only
+         * worth what a point standing on it is worth.
+         *
+         * Every panel used to be square to its own chord, so at a bend the two
+         * rows crossed at the centreline and diverged towards the edges and the
+         * outside of the turn carried a triangle of unpainted ground — 23.47 m2
+         * of it town-wide, worst 4.29 m2 at South Water Street's west approach
+         * (`tools/measure_road_joints.mjs`, a 2 cm plan lattice). Nine stations
+         * are dropped INSIDE that sector at each authored bend, spread across
+         * its angle and out to nine tenths of the half-width, and each must land
+         * on drawn roadway. Every one of them was uncovered before the mitre.
+         *
+         * The full lattice lives in the instrument; these stations are the part
+         * a release can afford. A bend whose own centreline is wet carries no
+         * question — North Water Street's line runs inside the water mask from
+         * E 330 to E 576, and no ribbon may be drawn there at all.
+         */
+        const jointGaps = [];
+        let jointStations = 0;
+        for (const rec of a.streets.records) {
+          const line = rec.drawn ?? rec.path;
+          const half = (rec.track_width_m ?? 6) * 0.5;
+          for (let i = 1; i < line.length - 1; i++) {
+            const [A, P, B] = [line[i - 1], line[i], line[i + 1]];
+            let turn = Math.atan2(B[1] - P[1], B[0] - P[0])
+              - Math.atan2(P[1] - A[1], P[0] - A[0]);
+            if (turn > Math.PI) turn -= 2 * Math.PI;
+            if (turn < -Math.PI) turn += 2 * Math.PI;
+            if (Math.abs(turn) < 0.25 * Math.PI / 180) continue;
+            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(P[0], P[1])
+              || a.terrain.isWater(B[0], B[1])) continue;
+            const l1 = Math.hypot(P[0] - A[0], P[1] - A[1]);
+            const u1e = -(P[1] - A[1]) / l1;
+            const u1n = (P[0] - A[0]) / l1;
+            const sgn = turn > 0 ? 1 : -1;
+            for (let s = 0; s < 3; s++) {
+              const ang = ((s + 0.5) * turn) / 3;
+              const c = Math.cos(ang);
+              const sn = Math.sin(ang);
+              const ve = u1e * c - u1n * sn;
+              const vn = u1e * sn + u1n * c;
+              for (const f of [0.35, 0.65, 0.9]) {
+                const e = P[0] - sgn * ve * half * f;
+                const n = P[1] - sgn * vn * half * f;
+                if (a.terrain.isWater(e, n)) continue;
+                jointStations++;
+                if (!covered(e, n)) {
+                  jointGaps.push(`${rec.id} [${P[0]}, ${P[1]}] ${(turn * 180 / Math.PI)
+                    .toFixed(1)} deg at ${f}`);
+                }
+              }
+            }
+          }
+        }
+
         return {
-          worstSink, refinedPanels, approachGaps,
+          worstSink, refinedPanels, approachGaps, jointGaps, jointStations,
+          joints: a.streets.stats?.joints ?? null,
+          squareJoints: a.streets.stats?.squareJoints ?? null,
+          mitredJoints: a.streets.stats?.mitredJoints ?? null,
+          fannedJoints: a.streets.stats?.fannedJoints ?? null,
+          jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -6698,6 +6760,21 @@ for (const [label, viewport, touch] of [
       streetLayer.approachGaps.length
         ? `uncovered stations: ${streetLayer.approachGaps.join(', ')}`
         : 'every approach station lands on drawn roadway');
+    // T-0184. Stations inside the sector on the OUTSIDE of every authored bend —
+    // the wedge of prairie a square joint opened, 23.47 m2 town-wide before the
+    // mitre. `squareJoints` is asserted at zero beside it because the module is
+    // allowed to give up on a hairpin it cannot mitre, and a town where every
+    // bend had quietly fallen through that guard would still have stations to
+    // pass if they were the only thing read here.
+    check(`${label}: no bend in the ribbon opens a wedge on the outside of its turn`,
+      streetLayer.jointGaps.length === 0 && streetLayer.jointStations > 100
+      && streetLayer.squareJoints === 0 && streetLayer.mitredJoints > 0,
+      streetLayer.jointGaps.length
+        ? `uncovered: ${streetLayer.jointGaps.slice(0, 6).join('; ')}`
+        : `${streetLayer.jointStations} stations across ${streetLayer.joints} joints — `
+          + `${streetLayer.mitredJoints} mitred, ${streetLayer.fannedJoints} cut into `
+          + `sub-mitres for ${streetLayer.jointFanTriangles} triangles, `
+          + `${streetLayer.squareJoints} left square`);
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
