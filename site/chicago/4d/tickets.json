@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 9:19 AM",
+  "generated_ct": "Aug 27, 2026, 9:56 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3936,6 +3936,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 62
+    },
+    {
+      "id": "T-0233",
+      "title": "Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     }
   ]
 }
