@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 1:48 AM",
+  "generated_ct": "Aug 27, 2026, 1:52 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3468,7 +3468,7 @@
     {
       "id": "T-0215",
       "title": "Desktop smoke stage 8 (What's-new) is red on dev and every branch inherits it",
-      "state": "claimed",
+      "state": "done",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": false,
@@ -3476,12 +3476,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-27",
+      "pr": "394",
       "claimed_by": "run 8/27/2026, 12:44:46 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": null
     },
     {
       "id": "T-0216",
@@ -3499,7 +3499,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0217",
@@ -3517,7 +3517,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     }
   ]
 }

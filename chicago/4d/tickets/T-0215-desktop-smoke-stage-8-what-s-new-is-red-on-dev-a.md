@@ -1,7 +1,7 @@
 ---
 id: T-0215
 title: Desktop smoke stage 8 (What's-new) is red on dev and every branch inherits it
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 394
 claimed_by: run 8/27/2026, 12:44:46 AM CT
 blocked_on: null
 needs_bake: false

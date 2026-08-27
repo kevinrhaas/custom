@@ -85,6 +85,5 @@ T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0211 — The other nine group rows are cross-checked against nothing
 T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
-T-0215 — Desktop smoke stage 8 (What's-new) is red on dev and every branch inherits it
 T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
