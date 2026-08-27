@@ -1,7 +1,7 @@
 ---
 id: T-0089
 title: The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
-state: claimed
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
+closed: 2026-08-27
 pr: null
 claimed_by: run 8/27/2026, 2:06:24 PM CT
-blocked_on: null
+blocked_on: Withdrawn on measurement: the 600,000 ceiling this breach was measured against was replaced by T-0135's re-basing to 1,050,000. See the body.
 needs_bake: false
 ---
 
@@ -77,5 +77,67 @@ terrain remesh, and the delta is level-independent (`full` 778 446 → 787 860, 
 cost, not a detail-tier one. The breach it deepens was open before the branch (T-0115
 banked 605 414 on T-0060's no-geometry branch). The durable saving still sits in T-0056.
 
-**Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row goes unseen)
-· `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).
+---
+
+## WITHDRAWN 2026-08-27 — the ceiling this ticket reports a breach of no longer exists
+
+Re-measured on **dev at `d9b437dd`**, published mirror, with
+`tools/measure_detail_ceilings.mjs` — T-0135's five stands, all three tiers, both
+viewports. Every tier is inside its ceiling at every stand.
+
+**desktop 1280 x 800**
+
+| stand | `full` | `balanced` | `light` |
+|---|---:|---:|---:|
+| the Sauganash at 26 m | 1,009,901 | 857,553 | 641,786 |
+| Lake Street at Canal, east | **1,423,855** | **1,239,486** | 839,778 |
+| the forks, from Wolf Point | 1,412,635 | 1,223,388 | **858,200** |
+| the open aerial | 1,038,508 | 862,941 | 642,448 |
+| Lake and Market | 1,170,322 | 995,311 | 754,274 |
+| ceiling | 1,425,000 | 1,260,000 | 1,050,000 |
+| **verdict** | PASS by 1,145 | PASS by 20,514 | **PASS by 191,800** |
+
+**mobile 390 x 780** — `light` worst **806,468** at the forks, PASS by 243,532;
+`full` 1,376,697 (PASS by 48,303); `balanced` 1,195,584 (PASS by 64,416).
+
+### Why this is a withdrawal and not a `done`
+
+**The acceptance cannot be met, and it cannot be met because it was overtaken rather
+than because the work was hard.** It asks for the row to be green *"with the saving
+stated against the 604 950 measured here"*. There is no saving. The town draws
+**858,200** triangles at `light` today — **42 % MORE** than the 604,950 that opened
+this ticket. The row is green because the owner re-based the ceiling from **600,000 to
+1,050,000** on 2026-08-22 (T-0135's five-stand re-argument, recorded at the definition
+site in `main.js` `DETAIL`), and that entry says plainly what it cost: *"`light` now
+carries 1,050,000, which is MORE than `full` promised the day before this commit."*
+
+Marking this `done` would be reading a green row off a bar that moved under it, which
+is the exact defect T-0135 was opened to end. So it is withdrawn on the measurement,
+with the number banked above.
+
+One real saving did land at this tier and it is worth naming, because it is the shape
+this ticket asked for and got: **T-0150's furniture reach** distance-culls the derived
+furniture at `light` only — the worst stand fell from 998,073 triangles and 177 calls
+to 745,933 and 70. That is a distance cull, not a thinning, so it honours this ticket's
+*"without thinning what any layer claims to be"*. It was not enough on its own; the town
+grew past it.
+
+### Where each half of this ticket now lives — nothing here is dropped
+
+- **The durable saving** — **T-0056**, the enclosure layer's detail-blindness. Still
+  open, still the right lever, and no longer bottled up behind this number.
+- **Re-lowering the ceilings once trims land** — **T-0147**.
+- **The breach that is live today** — **T-0223** (`full` and `balanced`), with
+  **T-0229** the receipt for the raise that is meant to expire with it. Note the desktop
+  `full` row above: **1,423,855 of 1,425,000, headroom 1,145 triangles — 0.08 %**. The
+  raise T-0229 describes as *"the smallest step that clears the breach and leaves an
+  ordinary parcel room"* leaves room for about a quarter of one tree. That is context
+  for T-0223's urgency, not a new ticket: both tickets already own the state.
+- **Nobody sees the row until the nightly bake** — answered by T-0126's
+  `tools/measure_detail_ceilings.mjs`, the instrument used above, which reads the whole
+  ladder in one command instead of at assertion 151 of a 55-minute crawl. Its own header
+  cites this ticket as one of the two cases that justified building it.
+
+**Links:** T-0056 (the layer that pays full cost at every level) · T-0060 (why the row went unseen)
+· T-0126 (`tools/measure_detail_ceilings.mjs`) · T-0135 (the re-basing) · T-0150 (the trim that did land)
+· T-0223 / T-0229 / T-0147 (today's budget) · `docs/ROADMAP.md` § THE RUN BUDGET · PR for T-0090 (where it was measured).
