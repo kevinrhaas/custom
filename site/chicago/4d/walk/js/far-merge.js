@@ -39,7 +39,7 @@
  *    matters: the headroom under these ceilings had four figures at the axial
  *    stands when this was written (1,423,855 against 1,425,000 at `full`), and
  *    has six only because T-0223 culled the sun's pass over the far timber and
- *    T-0229 then handed the raise back — 1,206,923 against 1,400,000 down Lake
+ *    T-0229 then handed the raise back — 1,207,211 against 1,400,000 down Lake
  *    Street today. A merge that could ADD a triangle would be a worse bargain
  *    than the calls it saves, at either figure. It cannot.
  *  2. **Every part of it is more than `FAR_M` from the eye.** The sun's pass

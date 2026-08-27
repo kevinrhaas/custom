@@ -304,20 +304,20 @@ const DETAIL = {
   // stands, on the tree these constants ship in:
   //
   //              desktop 1280x800              mobile 390x780        here
-  //   full       1,252,519 (the forks)         1,145,025 (Lake)   1,400,000
-  //   balanced   1,083,932 (the forks)         1,020,396 (Lake)   1,210,000
-  //   light        702,212 (the forks)           649,224 (Lake)   1,050,000
+  //   full       1,252,879 (the forks)         1,145,313 (Lake)   1,400,000
+  //   balanced   1,084,292 (the forks)         1,020,684 (Lake)   1,210,000
+  //   light        703,610 (the forks)           649,296 (Lake)   1,050,000
   //
-  // So `full` comes home with 147,481 triangles clear and `balanced` with
-  // 126,068 — about 10 % of each ceiling. The raise had bought 12,880 at `full`,
+  // So `full` comes home with 147,121 triangles clear and `balanced` with
+  // 125,708 — about 10 % of each ceiling. The raise had bought 12,880 at `full`,
   // and T-0237 measured 91 % of that spent within twelve hours by content
   // landing behind it: a ceiling raised to be temporary was consumed faster
   // than the trim that was meant to retire it could land.
   //
   // THE WORST STAND MOVED WITH THE CULL, from Lake Street at Canal to the forks
   // at Wolf Point, and that is the five-stand sweep earning its place. A
-  // one-camera instrument pointed down the axial street reads 1,206,923 at
-  // `full` here — 45,596 triangles short of the frame that actually costs the
+  // one-camera instrument pointed down the axial street reads 1,207,211 at
+  // `full` here — 45,668 triangles short of the frame that actually costs the
   // most, and it was the axial street that was the worst stand before the cull.
   //
   // T-0229's escape clause was that if the cull recovered materially less than
