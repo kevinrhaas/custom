@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 273, title: 'The town stops shimmering on a phone', kind: 'fix', ts: '2026-08-27T04:27:45.587Z', date: 'Aug 26, 2026, 11:27 PM CT',
+    items: [
+      'Walk down Lake Street on a phone and look at the edges \u2014 roof lines, window frames, a fence rail, tree crowns against the sky. They used to crawl and sparkle as you moved. Every edge is now sampled four times over and blended, on a phone exactly as on a desktop.',
+      'A phone had been drawing the whole town with that switched off, since the first day this walkthrough existed. A desktop never was. Nobody had measured what a phone loses by it, because every measurement of these shimmering edges had been taken on a desktop \u2014 where it was already on.',
+      'Measured on a phone-sized screen by nudging the camera two millimetres and counting what changes, the headline number says the opposite of the truth: the count of pixels that move goes UP, from 1,056 to 2,482 seen from the air. Read alone it would have condemned this change. It rises because without sampling a pixel on an edge flips from one surface to the other outright, and with it the pixel merely shifts. More pixels move, and each one moves far less.',
+      'The count that matters is of pixels that flip whole. There were 25 of those from the air and 124 standing at Lake and Market. There are now none \u2014 not fewer, none \u2014 and the worst single pixel in the frame moves about a quarter as far as it did.',
+      'It is not free, and the cost is not hidden. Across the ten viewpoints the release test walks, a frame costs roughly half again what it did on the machine that does the measuring \u2014 which paints every pixel on its processor with no graphics card at all, and so pays the very worst price there is for this. What a real phone pays was not measured and is not claimed.',
+      'If a phone struggles with it, the Render quality control in Settings already covers it, and that was timed too rather than assumed: dropped to Low, a frame comes back about a tenth CHEAPER than the town cost before today, with the edges still sampled. The level of scene detail a phone starts at has not changed.',
+    ] },
   { v: 272, title: 'Two evidence cards were showing their own merge scars', kind: 'fix', ts: '2026-08-27T04:18:16.226Z', date: 'Aug 26, 2026, 11:18 PM CT',
     items: [
       'Open the confidence panel and read the notes on what this project has invented. Two of them ended in a line of angle brackets \u2014 \u201cRecorded: 23 August 2026.\u201d and then some machinery. It has been there since the poplar rows went in on the twenty-fourth, and it went out to the live site an hour before it was found.',
