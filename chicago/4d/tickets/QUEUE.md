@@ -23,7 +23,6 @@
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
 T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
 T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
-T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
