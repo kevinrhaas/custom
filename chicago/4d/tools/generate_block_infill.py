@@ -73,7 +73,7 @@ from inferred_occupancy import occupancy  # noqa: E402
 
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
-from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
+from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
 # its fronts look, and where along it a wall lands. Authored once, in the module the
@@ -96,6 +96,7 @@ from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E40
                           eave_limits, families, pitch_deg, stable_fraction,
                           storeys, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
+from roof_form import note_refusal, roof_kind  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -289,23 +290,23 @@ def form_for(family: str, spec: dict, key: str, width: float, depth: float,
     `_form_body` authors every value exactly as it always has, with the citation
     attached to all of them; `split_notes` (ROADMAP K33) then strips that citation from
     the values whose family authors nothing for it to point at, and says instead what
-    the value actually is — the reconstruction generator's type default.
+    the value actually is — the reconstruction generator's type default. `note_refusal`
+    (T-0179) then adds, on the families whose roof line offers a SHED this town does not
+    build, the measured reason it does not — because a refusal that lives only in a
+    Python tuple is a refusal no visitor can read.
     """
-    return split_notes(_form_body(family, spec, key, width, depth, paint), family,
-                       band_note(family))
+    return note_refusal(
+        split_notes(_form_body(family, spec, key, width, depth, paint), family,
+                    band_note(family)),
+        family, width, depth)
 
 
-# WHICH ROOF A FAMILY GETS, and at what pitch when its family authors none — named
-# once, because both the eave and the pitch need them (T-0148). Each used to sit
-# inline in the form branch that returned it, which is the same rule written four
-# times; a family cannot now get one roof for the purpose of choosing its eave and
-# another for the purpose of building it.
-def _roof_kind(family: str) -> tuple[str, bool | None]:
-    if family.startswith(("C", "F")) and family != "F1":
-        return "gable", family.startswith("C")
-    if family in ("D2", "A3", "A4"):
-        return "shed", None
-    return "gable", None
+# WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this file's
+# (T-0179). It was decided here and in four other parcels, as the same literal written
+# five times, and the five had already drifted: three named A5 among the shed families
+# and two — this one and `generate_inferred_infill.py` — did not. No A5 stands on these
+# blocks, so adopting the shared rule moves nothing here; it moves what the schedule
+# WOULD deal, which is the whole point of a rule with one home.
 
 
 def _pitch_default(family: str, levels: float) -> float:
@@ -316,7 +317,7 @@ def _pitch_default(family: str, levels: float) -> float:
         return 34.0
     if family.startswith(("D", "H")) and family != "D2":
         return 44.0 if levels == 1.5 else 38.0
-    return 18.0 if _roof_kind(family)[0] == "shed" else 32.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
 
 
 def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
@@ -346,7 +347,7 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
     # A1 stables on these blocks stood outside their ridge band for exactly that. The
     # eave is held to the nearest value in its OWN band that the ridge band can be met
     # from; a draw that already meets it is returned untouched.
-    roof_type, gable_front = _roof_kind(family)
+    roof_type, gable_front = roof_kind(family)
     run = ridge_run_m(spec.get("archetype"), roof_type, width, depth, gable_front)
     wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
                           family, spec["eave_ft"], spec.get("roof"),
@@ -1210,8 +1211,19 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # frontage: its centroid is then in the roadway and its walls are on the lot. Three
     # documented buildings on this grid do it, and the block this parcel shape met them
     # on read every one of its lots as free.
-    occupied = occupied_lots({"blocks": [grid]}, datum,
-                             exclude=mine_ids).get(block["block_id"], {})
+    #
+    # THE OWNER'S 2026-08-27 CLAUSE, and it is asked here as `exclusive_lots` rather
+    # than as `occupied_lots`: a lot of this block's own declared business front is not
+    # exhausted by a RESEARCHED building standing AT THE STREET on it. He ruled it after
+    # the South Water plat reconciliation (T-0199) seated five documented stores on lots
+    # the schedule had already dealt this street's frontage runs — nothing overlapped,
+    # the worst overlap in the town was zero, and what refused them was this rule and
+    # not the ground. `tools/plat_occupancy.py`'s docstring carries the ruling, the fork
+    # as it was put to him and all three tests the clause has to pass; everything
+    # physical below — the lot margin, the corridor, the three-metre separation — is
+    # untouched by it and still refuses what it always refused.
+    occupied = exclusive_lots({"blocks": [grid]}, datum,
+                              exclude=mine_ids).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1263,6 +1275,11 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # occupied by a roof this recipe wrote, and calling it "already carrying a roof"
     # would say a stranger built it. The lots are read from the recipe rather than from
     # the ground, which is what makes the answer the same on both sides of a generate.
+    # A lot the owner's business-front clause admits is NOT its own class: it is built
+    # on by this parcel — the run stands over it — and it also carries a documented
+    # store at the street. `occupied` is `exclusive_lots` above, so the clause has
+    # already taken it out of "already carrying a roof" and the four classes stay
+    # disjoint, which is the only property this check has ever needed of them.
     classes = {"built on by this parcel": set(used),
                "built on by another deal on this block": set(sibling_lots),
                "already carrying a roof": set(occupied) - set(sibling_lots),
@@ -1322,6 +1339,7 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         if target:
             abutted.add((record["id"], target))
             abutted.add((target, record["id"]))
+
     for sid, poly in mine:
         for other_id, other in others + [(s, p) for s, p in mine if s != sid]:
             if (sid, other_id) in abutted:

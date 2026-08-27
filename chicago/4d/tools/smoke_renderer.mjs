@@ -1060,6 +1060,17 @@ for (const [label, viewport, touch] of [
   // because of it. Ninety seconds is room for a slow machine, not permission
   // for a broken control: a click that never lands still fails, three times
   // slower.
+  //
+  // IT IS NOT RAISED AGAIN, AND T-0215 IS WHY. On 2026-08-27 the same starvation
+  // took the desktop half down again, and the honest reading is that a budget
+  // measured in frames is the wrong instrument for a scene whose frame cost is
+  // set by whatever else the machine is doing (17-27 s per frame, measured, on a
+  // runner where the identical scene also drew frames in 29 ms). Raising 90 to
+  // 180 buys one more town-sized month and pays for it in wall clock against a
+  // ten-minute per-command ceiling this gate has already been re-cut for twice.
+  // The answer is `clickChrome` below — not paying for the frames at all where
+  // the frames are not the subject. This number stays what it is: the backstop
+  // for the clicks that must remain a visitor's own mouse.
   page.setDefaultTimeout(90_000);
 
   // A fresh boot stands at the GATE SCREEN, and the part that enters the town
@@ -1083,6 +1094,80 @@ for (const [label, viewport, touch] of [
       document.getElementById('control-help-gotit')?.click();
     }
   });
+
+  // A click on the HUD chrome that does not have to race the render loop for it.
+  //
+  // THE HAZARD THE 90 s ABOVE ONLY POSTPONED. `page.click` is frame-bound three
+  // ways over: it polls the target's box on consecutive animation frames until it
+  // holds still, then scrolls it into view, then hit-tests it, and every one of
+  // those steps queues behind whatever the render loop is doing. STATUS
+  // 2026-08-13 raised the budget to 90 s for exactly that and said, in writing,
+  // that it was **a standing hazard and not a fixed one**: *"the same starvation
+  // will return as the town grows, and the next symptom will again look like a UI
+  // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
+  // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
+  // died on its FIRST click, on the Settings tab, before a single one of part 8's
+  // assertions had run — and three agents in one day read that as the What's-new
+  // panel being broken. It was not. Driven by hand at the same moment the gate was
+  // dying, the panel opened and painted all 272 releases and cleared its unread
+  // dot; the tab was the topmost element at its own centre with no pointer lock.
+  // What had moved was the cost of a frame: **17.0 / 0.03 / 0.33 / 21.5 / 20.2 /
+  // 0.12 / 4.4 / 22.3 / 12.2 / 26.6 seconds**, measured on the loaded runner
+  // against the 0.46-1.10 s this file's comment above records. The 29 ms frames
+  // in that list are the proof it is the machine and not the scene — the renderer
+  // draws fast when it is given the CPU, and it was not being given it. Another
+  // number is not the answer to that; not needing the frames is. And note there
+  // is no trigger to find: timed at the same load, that identical click landed in
+  // 10.9 s cold, 28.4 s settled and 53.8 s after a reload before it blew ninety
+  // in the gate. It is a distribution with a tail across the budget, so any
+  // budget is a coin toss and only removing the dependency ends it.
+  //
+  // NOTHING IS SKIPPED, AND THAT IS THE POINT. Everything `page.click` asserts
+  // implicitly is asserted here explicitly, in the page, in ONE round trip: the
+  // element exists, is enabled, has a real box, and is the topmost thing at its
+  // own centre. That last one is T-0108's assertion verbatim — a control the
+  // HUD's `pointer-events: none` swallows returns the CANVAS from
+  // `elementFromPoint` and fails here exactly as it fails a visitor's mouse — and
+  // it now fails in one round trip with a sentence naming what covered it,
+  // instead of in ninety seconds with a call log that reads like a broken
+  // control. A real `page.click` stays the instrument wherever the trusted event
+  // ITSELF is the subject: the confidence menu in part 4 is the case, and it says
+  // so where it stands.
+  const clickChrome = async (sel) => {
+    const why = await page.evaluate((s) => {
+      const el = document.querySelector(s);
+      if (!el) return `nothing matches ${s}`;
+      if (el.disabled) return `${s} is disabled`;
+      // The same scroll `page.click` would do, in the same round trip as the
+      // reading — a result row far down the Go-to list is off the panel's
+      // viewport until this runs, and `elementFromPoint` would then answer for
+      // whatever is at those coordinates instead.
+      el.scrollIntoView({ block: 'center', inline: 'center' });
+      const b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) {
+        return `${s} has no box (${Math.round(b.width)}x${Math.round(b.height)})`;
+      }
+      const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
+      if (!top || !(top === el || el.contains(top))) {
+        const cls = top && typeof top.className === 'string' ? top.className : '';
+        return `${s} is covered at its own centre by `
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+      }
+      // A real mouse press FOCUSES a focusable control, and an untrusted
+      // `.click()` does not — which is a difference the suite already depends on
+      // and which this helper got wrong on its first run, honestly and visibly.
+      // Part 8 closes the panel and then presses `g`, and `g` only reaches the
+      // window shortcut if focus has left the Go-to search box first: the shared
+      // `isTyping(e.target)` guard swallows it otherwise, which is the whole
+      // point of that guard. Without this line the panel stayed shut, `g` did
+      // nothing, and the next reading was a result row with a 0x0 box. So this
+      // is fidelity to the click being replaced, not a convenience.
+      if (typeof el.focus === 'function') el.focus({ preventScroll: true });
+      el.click();
+      return null;
+    }, sel);
+    if (why) throw new Error(`clickChrome: ${why}`);
+  };
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1511,10 +1596,14 @@ for (const [label, viewport, touch] of [
           // living exactly in that gap.
           farTimberWater: a.trees.farTimberWater?.() ?? null,
           // ...and the clip that keeps them off the screen, exercised. The band is
-          // solved around the camera, so this stands far enough back that
-          // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
-          // it: from the spawn point it is 329 m away and one metre inside the
-          // near cut-off, which is a green gate that has run nothing.
+          // solved around the camera, so this has to stand far enough back that a
+          // body in water clears MIN_FAR_M and the solver actually reaches it —
+          // from the spawn point the nearest one is a metre inside the near
+          // cut-off, which is a green gate that has run nothing. Since T-0031 the
+          // body it exercises is `north_branch_belt`, whose wet crossing begins at
+          // its first vertex (-95, 345) — 605 m from this stand, and the first
+          // sample of a segment is emitted at the vertex itself, so the clip is
+          // reached whatever the adaptive step does with the 16 m of wet run.
           horizonWetSkipped: (() => {
             a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
             a.step();
@@ -3693,10 +3782,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all four records' walks and stands their posts`,
-      frontage.census?.records === 4 && frontage.census?.walks === 28
-        && frontage.census?.crossings === 12
+      frontage.census?.records === 4 && frontage.census?.walks === 26
+        && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 59
+        && frontage.census?.refused === 53
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,town_street_edge'
         && frontage.verts > 0 && frontage.problems.length === 0,
@@ -3742,21 +3831,22 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
-    // T-0188's six reconciled South Water placements welded two runs into one)
-    // and the TWO street-fence meshes T-0188 split off — one per covered street
-    // that carries a fence — so the boards could leave the shadow map while the
-    // fences stayed in it, all on ONE material, and the painted name on its own
-    // mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's eighteen (T-0069 laid twenty-one;
+    // T-0198's six reconciled South Water placements welded two runs into one
+    // and T-0199's last five welded two more) and the TWO street-fence meshes
+    // T-0198 split off — one per covered street that carries a fence — so the
+    // boards could leave the shadow map while the fences stayed in it, all on
+    // ONE material, and the painted name on its own mesh, the only thing here
+    // that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 39,
+        && frontage.meshes === 37,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -6613,6 +6703,11 @@ for (const [label, viewport, touch] of [
     // visitor's mouse, where an evaluate()'d .click() would quietly pass. It
     // runs here because the HUD only exists past the gate, and the guide that
     // covers this corner of it was dismissed by the check above.
+    //
+    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
+    // `clickChrome`, which hit-tests at the element's own centre and would catch
+    // this same regression — but here the trusted event is not the means, it is
+    // the SUBJECT, and the instrument should be the visitor's own mouse.
     await page.click('#btn-confidence-more');
     await page.click('#cm-reconstructed');
     await page.waitForTimeout(120);
@@ -8532,6 +8627,15 @@ for (const [label, viewport, touch] of [
     // read eye height against the ground the visitor is standing on, and a
     // teleport here would be this part measuring somewhere the unfiltered run
     // never stands.
+    //
+    // EVERY CHROME CLICK IN THIS PART GOES THROUGH `clickChrome` (T-0215), and
+    // the reason is written where that helper is defined. The short of it: this
+    // part is nothing but panel chrome — fourteen clicks and almost no camera —
+    // so it is the part with the most to lose to a starved action, and on
+    // 2026-08-27 its FIRST click starved for ninety seconds and took the whole
+    // part down before one assertion had run. Not one assertion is dropped or
+    // softened by the change: `clickChrome` hit-tests the control at its own
+    // centre the way a real click does, and says what covered it when it fails.
     if (stageOn(8)) {
     inStageWork = true;
     await enterTown();
@@ -8557,7 +8661,7 @@ for (const [label, viewport, touch] of [
     // And free-fly must NOT be resettled — up there the eye height is an
     // altitude the visitor is flying, and dropping them to standing height mid
     // flight would be the setting reaching somewhere it has no business.
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const eye = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const el = document.getElementById('s-eye');
@@ -8683,7 +8787,7 @@ for (const [label, viewport, touch] of [
       tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
 
     // G, from the walk, with the panel shut.
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
     await page.keyboard.press('g');
     await page.waitForTimeout(60);
     const viaKey = await page.evaluate(() => ({
@@ -8786,15 +8890,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
       JSON.stringify(jumps.filtered));
-    await page.click('[data-jump-id="randolph_canal"]');
+    await clickChrome('[data-jump-id="randolph_canal"]');
     await page.waitForTimeout(80);
     const arrived = await page.evaluate(() => ({ ...window.__chicago4d.player }));
     check(`${label}: an intersection result moves the visitor there`,
       Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2,
       `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)})`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const toggles = await page.evaluate(() => {
       const compass = document.getElementById('s-compass');
       const map = document.getElementById('s-overview-map');
@@ -8816,14 +8920,14 @@ for (const [label, viewport, touch] of [
     check(`${label}: settings toggle all three navigation aids`,
       toggles.hidden.compass && toggles.hidden.map && toggles.hidden.street && toggles.restored,
       JSON.stringify(toggles));
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
 
     // The HUD toggle must drive the same view the harness does.
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
     await page.waitForTimeout(100);
     const viaHud = await page.evaluate(() => window.__chicago4d.confidenceView);
     check(`${label}: the HUD toggle drives the confidence view`, viaHud === true, `${viaHud}`);
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
 
     // --- what's new ---------------------------------------------------------
     // The changelog is authored inside the app and mirrored out by publish.sh.
@@ -8833,7 +8937,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.removeItem('chicago4d.whatsnew.seen'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
 
@@ -8844,8 +8948,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: a first-time visitor is told there are unread notes`,
       unread.chip && unread.tab, `chip ${unread.chip}, tab ${unread.tab}`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const wn = await page.evaluate(() => {
       const host = document.getElementById('whatsnew');
@@ -8873,11 +8977,11 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.setItem('chicago4d.whatsnew.seen', '3'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const ret = await page.evaluate(() => ({
       flagged: [...document.querySelectorAll('#whatsnew .wn-entry.is-new .wn-title')]
@@ -9913,6 +10017,32 @@ for (const [label, viewport, touch] of [
     } catch (e) {
       inStageWork = false;
       thrown = e;
+    }
+
+    // T-0215 — WHEN AN ACTION TIMES OUT, SAY WHAT A FRAME COSTS, because that is
+    // the question the log leaves unanswered and the wrong answer has now been
+    // given twice. `TimeoutError: page.click: Timeout 90000ms exceeded` on a
+    // control that is visible, enabled and stable reads like a broken control,
+    // and on 2026-08-13 and again on 2026-08-27 it was not one: Playwright's
+    // click waits on animation frames, and this scene's frames cost 0.46-1.10 s
+    // on a quiet machine and 17-27 s on a loaded one. Three sampled frames turn a
+    // whole run of guessing into one line. It is a REPORT, never a bar — the
+    // failure above still fails, and a slow frame is not an excuse for a control
+    // that is genuinely gone.
+    if (thrown && /Timeout .* exceeded/.test(String(thrown))) {
+      try {
+        const f = await page.evaluate(() => new Promise((done) => {
+          const ms = []; let prev = performance.now();
+          const step = () => {
+            const now = performance.now(); ms.push(Math.round(now - prev)); prev = now;
+            if (ms.length >= 3) done(ms); else requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }), { timeout: 120_000 });
+        console.log(`        one animation frame costs ${f.join(' / ')} ms here `
+          + `(0.46-1.10 s is this scene's cost on a quiet machine — a reading in `
+          + `seconds means the action starved on frames, not on a missing control)`);
+      } catch { console.log('        the page would not report a frame at all'); }
     }
 
     if (KEEP) {

@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 1:16 AM",
+  "generated_ct": "Aug 27, 2026, 6:01 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -341,7 +341,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 21
     },
     {
       "id": "T-0020",
@@ -376,24 +376,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 22
     },
     {
       "id": "T-0022",
       "title": "May the schedule deal log cabins to commercial frontage",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "K29",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "387",
+      "claimed_by": "run 8/26/2026, 11:26:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": null
     },
     {
       "id": "T-0023",
@@ -428,7 +429,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 23
     },
     {
       "id": "T-0025",
@@ -445,41 +446,43 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 24
     },
     {
       "id": "T-0026",
       "title": "The southern buildable ground and its schedule",
-      "state": "open",
+      "state": "done",
       "epic": "GROUND",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "T-E4",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-24",
+      "pr": "380",
+      "claimed_by": "run 8/24/2026, 1:58:10 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": null
     },
     {
       "id": "T-0027",
       "title": "How much of the public square was wet",
-      "state": "open",
+      "state": "done",
       "epic": "GROUND",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "T-E5(b)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-24",
+      "pr": "381",
+      "claimed_by": "run 8/24/2026, 1:56:55 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0028",
@@ -532,41 +535,43 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 31
     },
     {
       "id": "T-0031",
       "title": "Where did the South Water timber belt stand",
-      "state": "open",
+      "state": "done",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "R-BUG5(b)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "393",
+      "claimed_by": "run 8/26/2026, 11:27:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": null
     },
     {
       "id": "T-0032",
       "title": "The six-roof civic target counts three that were never built",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "T-I3(b)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "388",
+      "claimed_by": "run 8/26/2026, 11:26:54 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": null
     },
     {
       "id": "T-0033",
@@ -588,19 +593,20 @@
     {
       "id": "T-0034",
       "title": "Raise the bloom, which has no bar left to raise it to",
-      "state": "open",
+      "state": "done",
       "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "R-W4c(b2)",
+      "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "390",
+      "claimed_by": "run 8/26/2026, 11:27:08 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": null
     },
     {
       "id": "T-0035",
@@ -653,7 +659,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 25
     },
     {
       "id": "T-0038",
@@ -941,7 +947,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 19
     },
     {
       "id": "T-0054",
@@ -977,7 +983,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 26
     },
     {
       "id": "T-0056",
@@ -995,7 +1001,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 17
     },
     {
       "id": "T-0057",
@@ -1031,7 +1037,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 7
     },
     {
       "id": "T-0059",
@@ -1049,7 +1055,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 5
+      "queue_rank": 6
     },
     {
       "id": "T-0060",
@@ -1571,7 +1577,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 16
     },
     {
       "id": "T-0090",
@@ -1720,7 +1726,7 @@
     {
       "id": "T-0098",
       "title": "Trees at the fort, which the plate puts in a mass east of the walls",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1728,12 +1734,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-24",
+      "pr": "370",
+      "claimed_by": "run 8/24/2026, 9:53:54 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": null
     },
     {
       "id": "T-0099",
@@ -1985,7 +1991,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 14
+      "queue_rank": 13
     },
     {
       "id": "T-0113",
@@ -2224,7 +2230,7 @@
     {
       "id": "T-0126",
       "title": "The openings-and-glazing half of the material sheet: one dark, one timber",
-      "state": "open",
+      "state": "done",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": false,
@@ -2232,12 +2238,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-20",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-24",
+      "pr": "372",
+      "claimed_by": "run 8/24/2026, 9:54:30 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 12
+      "queue_rank": null
     },
     {
       "id": "T-0127",
@@ -2291,7 +2297,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 2
+      "queue_rank": 5
     },
     {
       "id": "T-0130",
@@ -2381,7 +2387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 8
     },
     {
       "id": "T-0135",
@@ -2417,7 +2423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 27
     },
     {
       "id": "T-0137",
@@ -2453,7 +2459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 12
     },
     {
       "id": "T-0139",
@@ -2597,7 +2603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 14
     },
     {
       "id": "T-0147",
@@ -2615,7 +2621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 15
     },
     {
       "id": "T-0148",
@@ -2759,7 +2765,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 28
     },
     {
       "id": "T-0156",
@@ -2777,7 +2783,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 29
     },
     {
       "id": "T-0157",
@@ -2813,7 +2819,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 18
     },
     {
       "id": "T-0159",
@@ -2885,7 +2891,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 20
     },
     {
       "id": "T-0163",
@@ -2921,7 +2927,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 30
     },
     {
       "id": "T-0165",
@@ -2993,7 +2999,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 32
     },
     {
       "id": "T-0171",
@@ -3029,7 +3035,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 33
     },
     {
       "id": "T-0173",
@@ -3047,12 +3053,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 34
     },
     {
       "id": "T-0179",
       "title": "Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3060,12 +3066,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "384",
+      "claimed_by": "run 8/26/2026, 11:27:30 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": null
     },
     {
       "id": "T-0180",
@@ -3083,7 +3089,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 35
     },
     {
       "id": "T-0181",
@@ -3101,7 +3107,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 36
     },
     {
       "id": "T-0182",
@@ -3119,7 +3125,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 38
     },
     {
       "id": "T-0183",
@@ -3137,7 +3143,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 37
     },
     {
       "id": "T-0184",
@@ -3155,7 +3161,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 41
     },
     {
       "id": "T-0185",
@@ -3173,7 +3179,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 45
+      "queue_rank": 39
     },
     {
       "id": "T-0186",
@@ -3191,7 +3197,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 40
     },
     {
       "id": "T-0187",
@@ -3227,7 +3233,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 50
+      "queue_rank": 46
     },
     {
       "id": "T-0189",
@@ -3263,7 +3269,115 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 42
+    },
+    {
+      "id": "T-0191",
+      "title": "Randolph and Washington get the street edge",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 1
+    },
+    {
+      "id": "T-0192",
+      "title": "The cross streets' own frontages get the street edge",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0193",
+      "title": "blk_lake_clinton, the West Division block T-0069 refused",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0194",
+      "title": "Hitching posts at the commercial frontages",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0195",
+      "title": "Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 43
+    },
+    {
+      "id": "T-0196",
+      "title": "Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 44
     },
     {
       "id": "T-0197",
@@ -3281,7 +3395,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 45
     },
     {
       "id": "T-0198",
@@ -3304,7 +3418,7 @@
     {
       "id": "T-0199",
       "title": "The five South Water stores standing on a lot the roof schedule already dealt",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -3312,12 +3426,12 @@
       "legacy_id": null,
       "parent": "T-0127",
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "371",
+      "claimed_by": "run 8/26/2026, 11:58:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": null
     },
     {
       "id": "T-0200",
@@ -3336,6 +3450,42 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": null
+    },
+    {
+      "id": "T-0201",
+      "title": "docs/LIBERTIES.md ships committed Git conflict markers on dev and check.sh is green across them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
+    },
+    {
+      "id": "T-0202",
+      "title": "SMOKE_STAGE=8-9 at desktop dies on PART 8's first click, on dev as well as on a branch",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     },
     {
       "id": "T-0207",
@@ -3371,25 +3521,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 55
     },
     {
       "id": "T-0209",
-      "title": "The sward's drawn reach is measured off plants at two per cent coverage",
+      "title": "The bloom reaches 1.8 per cent of the ground the sward covers",
       "state": "open",
-      "epic": "META",
+      "epic": "FLORA",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": null,
       "parent": null,
-      "opened": "2026-08-27",
+      "opened": "2026-08-26",
       "closed": null,
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 57
     },
     {
       "id": "T-0210",
@@ -3407,7 +3557,259 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0211",
+      "title": "The other nine group rows are cross-checked against nothing",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 54
+    },
+    {
+      "id": "T-0212",
+      "title": "The one A5 roof still dealt a gable takes the shed its family gets everywhere else",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 51
+    },
+    {
+      "id": "T-0213",
+      "title": "Weight the trade families onto the business front",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 50
+    },
+    {
+      "id": "T-0214",
+      "title": "Two flower-head archetypes truncate silently at their instance cap",
+      "state": "open",
+      "epic": "FLORA",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-26",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
       "queue_rank": 52
+    },
+    {
+      "id": "T-0215",
+      "title": "Desktop smoke stage 8 (What's-new) is red on dev and every branch inherits it",
+      "state": "done",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": "2026-08-27",
+      "pr": "394",
+      "claimed_by": "run 8/27/2026, 12:44:46 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0216",
+      "title": "dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 58
+    },
+    {
+      "id": "T-0217",
+      "title": "ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 59
+    },
+    {
+      "id": "T-0218",
+      "title": "The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 49
+    },
+    {
+      "id": "T-0219",
+      "title": "Finish the heightfield SOUTH to Madison Street, the plat's last tier",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 61
+    },
+    {
+      "id": "T-0220",
+      "title": "The South Water placements stand out past the committed plat, and the walk breaks on them",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0127",
+      "opened": "2026-08-24",
+      "closed": "2026-08-27",
+      "pr": "371",
+      "claimed_by": "run 8/26/2026, 11:58:26 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0221",
+      "title": "measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 48
+    },
+    {
+      "id": "T-0223",
+      "title": "The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 47
+    },
+    {
+      "id": "T-0224",
+      "title": "A critic baseline standing on the public square",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 60
+    },
+    {
+      "id": "T-0225",
+      "title": "The sward's drawn reach is measured off plants at two per cent coverage",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 53
     }
   ]
 }
