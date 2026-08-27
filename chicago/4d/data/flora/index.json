@@ -780,6 +780,11 @@
       "id": "town_dooryard_plantings",
       "file": "plantings/town_dooryard_plantings.json",
       "note": "The dooryard pass (T-0074): trees and currant bushes kept or planted around the town's dwellings, dealt by the rule in tools/generate_dooryard_plantings.py and re-derived on every commit. Same contract as the record above: stems STATED, species bound to the zone records, read by renderers/web/js/trees.js through this manifest and never probed."
+    },
+    {
+      "id": "town_planted_rows",
+      "file": "plantings/town_planted_rows.json",
+      "note": "The planted rows (T-0117): files of Lombardy poplars on the river greens of the town's oldest houses, dealt by the rule in tools/generate_planted_rows.py and re-derived on every commit. The treatment is Wau-Bun's — 'a broad green space was inclosed between it and the river, and shaded by a row of Lombardy poplars' — and the count and rhythm are measured off the plates; which ground gets one is the rule's. Listed AFTER the dooryard pass because the rule reads the records above as ground already taken and yields to them."
     }
   ],
   "palettes": [

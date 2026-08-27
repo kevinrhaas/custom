@@ -211,7 +211,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 294664,
-      "inputs_sha256": "069607005ed210fc27326247de103b9d29389d3736942108b3df971b28db0ef6",
+      "inputs_sha256": "1c92409e0534aa0104f7ad2c7f3979c7f9b10433aeb6c79a3240bdfdba663b52",
       "kind": "generated",
       "phase_id": "fence_1816",
       "structure_id": "fort_dearborn_garrison_garden"
@@ -247,7 +247,7 @@
       "archetype": "palisade",
       "baked_ao": false,
       "bytes": 841836,
-      "inputs_sha256": "4a110224c54afb33868844f0609db1beb8598afcb171c4665181739f3e0327c4",
+      "inputs_sha256": "dd0c84b84b5638e81ce2a21c2e93ba82072efbae49d775a696294d79642dd561",
       "kind": "generated",
       "phase_id": "picket_1816",
       "structure_id": "fort_dearborn_palisade"
@@ -1116,6 +1116,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_a2_08"
     },
+    "recon_1835_blk_randolph_dearborn_a2_17__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 159624,
+      "inputs_sha256": "9ac2a622fb472755b4be79f362cf33f1bb9852caf4277e782d83315d968394c8",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_dearborn_a2_17"
+    },
     "recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1161,6 +1170,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_d1_12"
     },
+    "recon_1835_blk_randolph_dearborn_d1_16__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 32820,
+      "inputs_sha256": "60e44d232152f3304fc248d0e1f4f038104eccbe832933790526ff7e49d13d37",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_dearborn_d1_16"
+    },
     "recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1188,6 +1206,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_d3_11"
     },
+    "recon_1835_blk_randolph_dearborn_d3_15__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 26748,
+      "inputs_sha256": "dc8cd0fe39acaffab53b4b859d68412757890fac8394a8637e9fdc172df47407",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_dearborn_d3_15"
+    },
     "recon_1835_blk_randolph_dearborn_d4_03__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
@@ -1214,6 +1241,15 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_dearborn_d6_10"
+    },
+    "recon_1835_blk_randolph_dearborn_h1_14__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 33012,
+      "inputs_sha256": "711d821365f80892bc5d30d303eb308db966630d9274d84a5db31768770148f5",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_dearborn_h1_14"
     },
     "recon_1835_blk_randolph_franklin_a1_07__inferred_1835.glb": {
       "archetype": "outbuilding",

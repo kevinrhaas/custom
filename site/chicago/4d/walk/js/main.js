@@ -820,7 +820,21 @@ async function boot() {
       // every post stood in water) simply has no group, and that is not an
       // error here — the problem is already recorded where it happened.
       if (!group) continue;
-      group.traverse((o) => { if (o.isMesh) o.castShadow = casts; });
+      // T-0127 — THE PER-MESH OPT-OUT T-0115'S LEDGER COSTED, and it is a
+      // property of the MESH rather than of the layer because within one layer
+      // the two halves differ: `frontage.js` marks the plank-walk and board-
+      // crossing chunks `groundHugging` and leaves the street-lining fences on
+      // their own meshes without it. A walk lies 0.11 m proud of the ground and
+      // its own cast shadow is about 0.04 m wide at noon on 1 July, so drawing
+      // 2.9 km of boards into the shadow map buys nothing a visitor can see and
+      // costs their whole triangle count and one draw call per chunk, at the two
+      // tiers that cast at all. The fences (1.37 m, about half a metre of real
+      // shadow along the walk they stand behind) keep casting. `light` casts no
+      // furniture at all, so nothing here changes it.
+      group.traverse((o) => {
+        if (!o.isMesh) return;
+        o.castShadow = casts && !o.userData.groundHugging;
+      });
     }
     return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
   }
@@ -1697,16 +1711,25 @@ async function boot() {
       get: () => {
         let meshes = 0;
         let casting = 0;
+        // T-0127 — COUNTED, NOT ASSUMED. Before the per-mesh opt-out above, the
+        // gate could read "every furniture mesh casts" as a single equality.
+        // With an exemption in the layer that equality is false by design, so
+        // the exempt meshes are counted here and the gate asserts
+        // casting === meshes - groundHugging. A layer that silently stopped
+        // casting would still fail; an exemption nobody declared cannot hide in
+        // the difference.
+        let groundHugging = 0;
         for (const name of FURNITURE_LAYERS) {
           const group = scene3d.getObjectByName(name);
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
             meshes += 1;
+            if (o.userData.groundHugging) groundHugging += 1;
             if (o.castShadow) casting += 1;
           });
         }
-        return { layers: FURNITURE_LAYERS.slice(), meshes, casting };
+        return { layers: FURNITURE_LAYERS.slice(), meshes, casting, groundHugging };
       },
       enumerable: true,
     },
