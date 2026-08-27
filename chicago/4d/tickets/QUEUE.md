@@ -70,7 +70,6 @@ T-0172 — The other three anonymous parcels still deal a retyped roof pitch, an
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
@@ -80,6 +79,7 @@ T-0184 — Mitre the road ribbon's panel joints, so a bend stops opening a wedge
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 T-0188 — Apply the core density standard to blk_randolph_market, the last core block below the bar off the South Water reach (successor to T-0143)
+T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0211 — The other nine group rows are cross-checked against nothing
