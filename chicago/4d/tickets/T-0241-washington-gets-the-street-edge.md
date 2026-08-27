@@ -1,7 +1,7 @@
 ---
 id: T-0241
 title: Washington gets the street edge
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0191
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 6:18:01 PM CT
 blocked_on: null
 needs_bake: false
 ---
