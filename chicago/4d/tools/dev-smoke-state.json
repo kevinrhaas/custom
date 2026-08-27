@@ -3,6 +3,231 @@
   "readings": [
     {
       "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 112,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 413,
+      "takenAt": "2026-08-27T20:16:06.155Z",
+      "ref": "steward/t-0208-anchored-wall",
+      "commit": "b5900d21057d",
+      "devCommit": "e3a9cf993016",
+      "treeHash": "sha256:501fae819c902562",
+      "treeDirty": false,
+      "changelogHash": "sha256:465fddcc04c94711",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-m34.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7-9",
+      "parts": [
+        7,
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 152,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 540,
+      "takenAt": "2026-08-27T20:16:06.063Z",
+      "ref": "steward/t-0208-anchored-wall",
+      "commit": "b5900d21057d",
+      "devCommit": "e3a9cf993016",
+      "treeHash": "sha256:501fae819c902562",
+      "treeDirty": false,
+      "changelogHash": "sha256:465fddcc04c94711",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-m79.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 40,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": null,
+      "takenAt": "2026-08-27T20:16:05.967Z",
+      "ref": "steward/t-0208-anchored-wall",
+      "commit": "b5900d21057d",
+      "devCommit": "e3a9cf993016",
+      "treeHash": "sha256:501fae819c902562",
+      "treeDirty": false,
+      "changelogHash": "sha256:465fddcc04c94711",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-d4.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 169,
+      "takenAt": "2026-08-27T20:16:05.870Z",
+      "ref": "steward/t-0208-anchored-wall",
+      "commit": "b5900d21057d",
+      "devCommit": "e3a9cf993016",
+      "treeHash": "sha256:501fae819c902562",
+      "treeDirty": false,
+      "changelogHash": "sha256:465fddcc04c94711",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-d8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 249,
+      "takenAt": "2026-08-27T20:16:05.771Z",
+      "ref": "steward/t-0208-anchored-wall",
+      "commit": "b5900d21057d",
+      "devCommit": "e3a9cf993016",
+      "treeHash": "sha256:501fae819c902562",
+      "treeDirty": false,
+      "changelogHash": "sha256:465fddcc04c94711",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-d9.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 148,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 278,
+      "takenAt": "2026-08-27T19:24:48.763Z",
+      "ref": "steward/t-0089-light-ceiling-verified",
+      "commit": "d9b0c8236dea",
+      "devCommit": "d9b437ddb518",
+      "treeHash": "sha256:0d99bf7ecdf56cd1",
+      "treeDirty": false,
+      "changelogHash": "sha256:de2719d0cd632778",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.3,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke-m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 42,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": 570,
+      "takenAt": "2026-08-27T19:19:58.043Z",
+      "ref": "steward/t-0089-light-ceiling-verified",
+      "commit": "d9b0c8236dea",
+      "devCommit": "d9b437ddb518",
+      "treeHash": "sha256:0d99bf7ecdf56cd1",
+      "treeDirty": false,
+      "changelogHash": "sha256:de2719d0cd632778",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke-d4.log"
+    },
+    {
+      "viewport": "mobile",
       "stage": "7-9",
       "parts": [
         7,

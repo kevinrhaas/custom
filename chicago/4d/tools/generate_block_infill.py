@@ -141,14 +141,24 @@ INVENTED_NOTE = (
 # households). Two claims about the town were removed and nothing else changed. What stays
 # is the treatment's real provenance: the 1834 view IS where a row of party walls comes
 # from, and a row placed on any other face is borrowing it, which the note now says.
+# T-0208, and it is the same class of fault again in the same template: prose written for
+# one face printed verbatim on another. The sentence used to say "its east wall is fixed by
+# {anchor}" unconditionally, which was true while every run in the town anchored on the EAST
+# end of its face and packed west — the anchored wall and the east wall were the same wall.
+# T-0079 opened the west end for a corner lot that builds to the corner, and `place_frontage`
+# below sets `east = along_min + clear_m + width` on such a run: the wall standing `clear_m`
+# off the side lot line is the WEST one, and the east wall is derived from it by the
+# building's own width. Nine of the twenty-seven records carrying this note are
+# west-anchored, and each told a reader to put its east wall against the west side line.
+# Which wall the anchor fixes is now read off the anchor rather than assumed.
 FRONTAGE_NOTE = (
     "PARTY-LINE FRONTAGE, DERIVED FROM THE COMMITTED PLAT (T-0078). This building does "
     "not stand centred on a lot at a typology setback: it stands ON the {face} face of "
     "{block}, the block's {street} Street frontage, whose line and bearing are read from "
     "the block boundary in data/traces/vectors/thompson_lots.json — the same committed "
     "geometry the lot grid and the corridor gate are derived from. Its front wall is "
-    "{setback} m back from that lot line, {line_why}, and its east wall is fixed "
-    "by {anchor}. The bearing is the face's own, so the front looks square at {street} "
+    "{setback} m back from that lot line, {line_why}, and its {anchored_wall} wall is "
+    "fixed by {anchor}. The bearing is the face's own, so the front looks square at {street} "
     "Street. The run carries no "
     "lateral offset, because a shared party wall is one wall and cannot wander. WHAT IS "
     "INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood here at all, which "
@@ -632,6 +642,15 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
                   else f"; standing back from the {faces.title()} Street frontage")
 
     anchor = slot.get("anchor") or {}
+    # WHICH WALL THE ANCHOR ACTUALLY FIXES (T-0208). `place_frontage` solves for the
+    # east wall in every case, but on a west-anchored run it solves for it FROM the
+    # west wall — `corner: "west"` measures the margin off `along_min` and
+    # `abut_east_of` reads a neighbour's east extent — so the wall the anchor fixes is
+    # the west one and the east wall follows by the building's own width. The two are
+    # the same wall on an east-anchored run, which is why the sentence read true for
+    # twelve blocks before T-0079 opened the west end.
+    anchored_wall = ("west" if anchor.get("corner") == "west" or anchor.get("abut_east_of")
+                     else "east")
     described = (
         f"the {anchor.get('corner')} end of the run's own frontage, "
         f"{float(anchor.get('clear_m', LOT_MARGIN_M)):.1f} m clear of the side lot line at "
@@ -644,7 +663,7 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
         f"which stands proud of the platted line and so cannot share a wall with the row")
     position_note = FRONTAGE_NOTE.format(
         face=block["frontage"]["face"], block=block["block_id"],
-        setback=f"{setback:.2f}", anchor=described,
+        setback=f"{setback:.2f}", anchor=described, anchored_wall=anchored_wall,
         line_why=(LINE_WHY_ADOPTED if block["frontage"].get("adopts_face_line")
                   else LINE_WHY_MARGIN),
         street=slot["fronts"].replace("_", " ").title()) if on_frontage else (

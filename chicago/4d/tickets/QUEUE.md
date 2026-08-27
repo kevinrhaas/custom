@@ -23,10 +23,8 @@
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
-T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
 T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0223's timber cull
 T-0147 — Re-lower the ceilings once the trims land
-T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
 T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
@@ -40,7 +38,6 @@ T-0182 — The household layer's two Lake-face buildings stand on a hand-authore
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
-T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
@@ -104,3 +101,6 @@ T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, an
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
+T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
+T-0239 — Nothing tests the party-line note's prose against the placement it describes
