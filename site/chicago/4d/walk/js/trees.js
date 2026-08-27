@@ -768,14 +768,33 @@ const FAR_TIMBER = [
     label: 'The South Water Street belt, east to Wells Street',
     canopy: [16, 24],
     crown: 13,
-    path: [[326, 46], [360, 58], [396, 68]],
-    confidence: 'inferred',
+    /**
+     * DERIVED, not authored — `tools/derive_timber_belt.py`, re-derived and
+     * drift-checked by `tools/check.sh` (T-0031, ROADMAP R-BUG5(b)). The line is
+     * the committed `south_water` centreline offset half a platted corridor
+     * (12.192 m) to the SOUTH and clipped east at the mean easting of the
+     * committed `wells` centreline — the same E +329.3 `timberEastLimits()`
+     * hands the near-field planter, so the far body and the near wood cannot
+     * disagree about where Andreas's belt ends. Move the street and the gate
+     * fails until the belt moves with it.
+     */
+    path: [[111.1, -106.05], [130.31, -63.79], [148.49, -43.78], [167.3, -27.8],
+      [185.06, -16.25], [221.7, -6.18], [329.41, -5.2]],
+    confidence: 'reconstructed',
     sources: ['chicagology_prefire273'],
-    note: 'Andreas: the South Side timber "extend[ed] east as far as Wells '
-        + 'Street". Wells is about 400 m east of the datum in this frame, so the '
-        + 'belt stops just outside the box rather than running on to the lake — '
-        + 'this stub exists so it ends where the source ends it and not at the '
-        + 'edge of the heightfield.',
+    note: 'Andreas: the South Side timber grew "along the river", "extend[ed] '
+        + 'east as far as Wells Street" and followed the bend of the river south '
+        + '— which `south_branch_belt` carries on from the forks. WHICH SIDE OF '
+        + 'THE STREET the standing timber was on is asserted and not attested: '
+        + 'south, behind the platted lot line, because § 02-flora reads the same '
+        + 'sentence as leaving relict trees in the riverside BLOCKS (South '
+        + 'Water–Lake, west of Wells) and because on this date the 11.5–36.0 m '
+        + 'of dry ground between the street and the water is the working '
+        + 'waterfront. Recorded as docs/LIBERTIES.md L182. Until 2026-08-27 this '
+        + 'was a three-point stub from (326, 46) to (396, 68), authored on a '
+        + 'Wells Street 66.7 m east of the committed centreline and 39 of 39 '
+        + 'samples over the main stem — the line of trees across the channel in '
+        + 'the owner\'s screenshot (R-BUG5).',
   },
   {
     id: 'south_branch_grove',

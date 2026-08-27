@@ -84,8 +84,17 @@ BALLOON_WALL_M = STUD_DEPTH_M + SHEATHING_M + SIDING_M
 BRACED_WALL_M = 0.165
 
 SIGN_RGBA = (0.60, 0.54, 0.44, 1.0)          # a weathered board; see L25
-TIMBER_RGBA = (0.66, 0.56, 0.40, 1.0)        # fresh sawn lumber, paler than a wall
-GLASS_RGBA = (0.09, 0.11, 0.13, 1.0)
+# Fresh sawn lumber, paler than a wall. On the sheet since T-0126 as `SAWN_FRAMING`,
+# the SECOND of the two materials materials.md finding 3 found sharing the name
+# `timber` — the other being the outbuilding's weathered heavy stock, 3.2x darker in
+# linear red. The value is unchanged and still reaches no GLB (no record in this
+# dataset turns `framing_exposed` on); what changes is that it now has a name of its
+# own, so the day a storefront does expose its frame beside a shed the two will not
+# read as one material.
+TIMBER_RGBA = materials.SAWN_FRAMING.rgba
+# The town's glazing, on the sheet since T-0126 at exactly this value — the row is a
+# record of what already shipped on all 48 slots, not a re-argument of it.
+GLASS_RGBA = materials.GLASS.rgba
 
 
 def build(params: FrameStorefrontParams, name: str):
@@ -185,9 +194,10 @@ def build(params: FrameStorefrontParams, name: str):
         # roughness stays the archetype's own literal for the same reason.
         simple_material("roof", roof_rgba, roughness=0.9),
         simple_material("trim", _trim_rgba(wall_rgba), roughness=0.8),
-        simple_material("glass", GLASS_RGBA, roughness=0.25),
+        simple_material("glass", GLASS_RGBA, roughness=materials.GLASS.roughness),
         simple_material("sign", SIGN_RGBA, roughness=0.85),
-        simple_material("timber", TIMBER_RGBA, roughness=0.92),
+        simple_material("sawn_framing", TIMBER_RGBA,
+                        roughness=materials.SAWN_FRAMING.roughness),
     ]
     # THE STACK IS NOT THE ROOF (T-0008). R-W2a finding 1: every stack this archetype
     # built took `M_ROOF` and came out painted its roof's weathering condition. A

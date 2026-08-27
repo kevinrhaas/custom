@@ -152,6 +152,16 @@ step "the building material re-derives from the rule that chose the lots" \
 step "the fort apron re-derives from the palisade it is measured off" \
   python3 tools/generate_fort_apron.py --check
 
+# And the layer above that ground: the wood p4_0 draws outside the same walls (T-0098). Same
+# shape again — the plate attests a tree mass and places nothing, so which ground carries a
+# stem is a rule off the palisade's own footprint and its apron's own width, re-derived here.
+# The rule also picks the SPECIES rather than a preference: of the zone's three recorded
+# trees only one is banded low enough to carry the crown height measured off the plate, and
+# a re-banded zone record must therefore fail this gate rather than quietly plant a
+# cottonwood that would tower over the fort the plate draws it level with.
+step "the fort wood re-derives from the palisade and the apron it stands off" \
+  python3 tools/generate_fort_trees.py --check
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
@@ -188,6 +198,21 @@ step "the 665-roof programme reconciles with the town that stands" \
 # cannot quietly go back to promising roofs that no street control can deliver.
 step "a refused block is short of control, or was never a block" \
   python3 tools/measure_block_gating.py --check
+
+# T-0026, and the same fault one district wide. The programme's South balance — 120 roofs,
+# the largest of the three gated ones — named STREET CONTROL as its blocker and sent the
+# next parcel to go and carry a centreline. Measured, the blocker is the ground: the box
+# ends at local N -400 m, INSIDE Washington Street's platted corridor, every north-south
+# column of the south plat has its committed line cut at that same edge, and Madison — the
+# plat's south boundary — is 125 m further south. The plat's last tier, six blocks and 48
+# lots, is 100 % unmodelled. Two assertions: no committed platted block stands off the
+# modelled ground (absolute, and it is what fires the day control is carried south without
+# the terrain following), and the programme's stated southern coverage is the measured one.
+step "no platted block stands off the modelled ground, and the south's blocker is the measured one" \
+  python3 tools/measure_southern_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_southern_ground.py --self-test
 
 # The two numbers on the FRONT screen (T-0036): buildings standing and people housed.
 # Both are reads of the roof programme and the residents layer, and the most visible
@@ -236,6 +261,21 @@ step "every deferred in-town water feature is dated against the scene" \
 # other check still green. This joins the bridge's placement to the ground beneath it.
 step "the slough crossing spans open water, and nothing else stands in the cut" \
   python3 tools/measure_slough_crossing.py --gate
+
+# And the feature that crossing's own drain runs OUT of. "How much of the public
+# square was wet" (T-0027) presumes a fraction can be read off the block, and it
+# cannot: the terrain draws the square at the South Division plain's +2.9 ft with
+# an inch and a half of relief — inside the spec's own declared micro-relief
+# noise — so there is no basin there and a wet fraction read off it would be a
+# read of the noise seed. The answer is a DEPTH: the dossier's own bed for zone 15
+# is +1.0 to +2.0 ft, which the committed ground stands 0.84 to 1.96 ft above. So
+# the square is planted as the flora dossier names it — ZONE 3, by name, the
+# heading of the section that authors sedge meadow — and NO WATER IS DRAWN. This
+# holds all of that: zero water, absolutely; no landform, so the zero stays a
+# statement about the model; the sedge polygon still the committed plat's ring;
+# and the drain still heading at the block it is named for.
+step "no water stands on the public square, and its sward is the one the dossier names" \
+  python3 tools/measure_public_square.py --gate
 
 # Every generator asks whether the roof it is about to place stands in a platted street,
 # and no invented roof has ever been allowed to. Nothing had ever asked it of the records
@@ -453,15 +493,26 @@ step "…and its own assertions still fire when broken" \
 # walks instance matrices on a lattice centred on the camera. FAR_TIMBER is neither:
 # five bodies of timber authored as polylines and drawn as a horizon silhouette, and
 # nothing had ever asked those polylines where they stand. One of them, the belt whose
-# own note says it follows South Water Street, is 39 of 39 samples over the main stem
+# own note says it follows South Water Street, was 39 of 39 samples over the main stem
 # and 3.347 m under its surface — the line of trees across the channel in the owner's
-# screenshot (ROADMAP R-BUG5). The renderer refuses it absolutely now; this holds the
-# table, and scans the clip so it cannot quietly come back out.
+# screenshot (ROADMAP R-BUG5). T-0031 put it back on land (0 of 136) and the step below
+# keeps it there. The renderer refuses water absolutely now; this holds the table, and
+# scans the clip so it cannot quietly come back out.
 step "no body of far timber stands in the river" \
   python3 tools/measure_far_timber.py --gate
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_far_timber.py --self-test
+
+# T-0031 / R-BUG5(b). The belt that stood in the channel is back on land, on a line
+# DERIVED from the committed `south_water` centreline rather than authored beside
+# it — the owner's route 1, with the side of the street recorded as L191. The stub
+# it replaced was drawn on a Wells Street 66.7 m east of the committed centreline,
+# and that error is half of why it ended up in the river, so the belt is re-derived
+# here on every commit. Move South Water Street and this fails until the belt moves
+# with it.
+step "the South Water timber belt re-derives from the street it is cut from" \
+  python3 tools/derive_timber_belt.py --check
 
 # T-0094 was filed saying the fort's pickets are flat-topped. They are not, and
 # have not been since the archetype was written: the committed master carries

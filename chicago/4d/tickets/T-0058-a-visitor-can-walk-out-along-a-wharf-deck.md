@@ -42,7 +42,7 @@ Both halves in one clause on purpose: publishing the deck alone passes "walk alo
 freeboard floor, since every bank is below it — against heels at 0.117–0.575 m. Risers 0.325 m to
 0.783 m; **six of the seven over the 0.35 m rule.** Only Kinzie & Hunter's was boardable.
 
-**Answered by a boarding stair** (`docs/LIBERTIES.md` L188), not by regrading the bank: the deck
+**Answered by a boarding stair** (`docs/LIBERTIES.md` L195), not by regrading the bank: the deck
 height is the terrain's and moving the terrain to make a walk work is a claim about the LAND, and
 it needs a bake. The stair divides whatever rise the ground leaves into equal treads under the
 record's 0.30 m ceiling — one tread at the two Kinzie landings, two at the five South Water ones.

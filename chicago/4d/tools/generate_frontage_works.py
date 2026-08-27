@@ -316,25 +316,26 @@ EDGE_FENCE_COURSES = 2
 # the platted frontage, in the roadway, and the march below refused the sidewalk
 # around every one of them.
 #
-# SIX WERE RECONCILED and their walls now stand 1.50 m back from the committed
-# frontage line, the same margin `tools/generate_block_infill.py` gives every
-# reconstructed unit on these faces. FIVE COULD NOT BE, and the reason is a
-# finding rather than a shrug: reconciled onto the plat a building SEATS on a
-# platted lot, and for these five that lot is one the 665-roof schedule has
-# already dealt to the anonymous South Water frontage run, which
-# `generate_block_infill.py` refuses. Naming them per store is the ticket's own
-# second acceptance route, and the number beside each is what it would take.
+# ALL ELEVEN ARE NOW RECONCILED and every one of their walls stands 1.50 m back
+# from the committed frontage line, the same margin `tools/generate_block_infill.py`
+# gives every reconstructed unit on these faces. It took two runs and one ruling.
+# T-0198 moved SIX; the other five it refused in writing, per store, because
+# reconciled onto the plat a building SEATS on a platted lot and for those five the
+# lot was one the 665-roof schedule had already dealt to this street's anonymous
+# frontage run — nothing overlapped, and what refused them was the rule "one
+# principal roof to a lot" rather than the ground. **The owner ruled on 2026-08-27
+# that a business-front lot may carry a documented store at the street AND an
+# anonymous dwelling behind it** (T-0199; `tools/plat_occupancy.py` carries the
+# ruling and the clause), so the last five came onto the plat too and this record's
+# march stopped refusing a single step for a wall anywhere on South Water Street.
+# The number beside each is the metres it moved along its face's inward normal.
 EDGE_RECONCILED = {
     "harmon_loomis_store": 6.81, "madore_beaubien_house": 7.48,
     "peck_store": 6.01, "chicago_democrat_office": 6.61,
     "temple_building": 6.90, "jh_kinzie_forwarding_store": 8.38,
-}
-EDGE_UNRECONCILED = {
-    "h_jones_store": (8.17, "blk_south_water_wells", 0, 9.67),
-    "carpenter_south_water_store": (6.62, "blk_south_water_wells", 2, 8.12),
-    "pruyne_kimball_drugstore": (5.55, "blk_south_water_clark", 2, 7.05),
-    "chicago_american_office": (6.91, "blk_south_water_dearborn", 0, 8.41),
-    "frederick_thomas_shop": (6.25, "blk_south_water_dearborn", 2, 7.75),
+    "h_jones_store": 9.67, "carpenter_south_water_store": 8.12,
+    "pruyne_kimball_drugstore": 7.05, "chicago_american_office": 8.41,
+    "frederick_thomas_shop": 7.75,
 }
 
 # The record's own id, and the liberty that claims every invented metre in it.
@@ -2108,29 +2109,6 @@ def build_street_edge() -> tuple[list, list, list, dict]:
             "Until then a walker turning a corner still steps off the boards."
         ),
     })
-    for sid, (out_m, block_id, lot, shift_m) in sorted(EDGE_UNRECONCILED.items()):
-        refused.append({
-            "structure_id": sid,
-            "wall": "its own South Water frontage, unreconciled with the plat",
-            "why": (
-                f"REFUSED IN WRITING, PER STORE (T-0127). This building stands {out_m} m "
-                f"OUT PAST {block_id}'s committed frontage line, in the platted roadway, "
-                "because its coordinate was derived from the MODERN West Wacker Drive "
-                "centreline rather than from this project's own committed South Water "
-                "line — the record says so in its own position note. The walk is refused "
-                "along the stretch it covers, which is why South Water's frontage still "
-                f"comes out in pieces here. THE REPAIR IS MEASURED: {shift_m} m along the "
-                "face's inward normal would put its north wall 1.50 m back from the line, "
-                "the margin every reconstructed unit on this face keeps. IT WAS NOT "
-                f"APPLIED, and the reason is nameable: reconciled, this building seats on "
-                f"lot {lot} of {block_id}, which the 665-roof schedule has already dealt "
-                "to the anonymous South Water frontage run, and "
-                "tools/generate_block_infill.py refuses to deal a roof to a lot that "
-                "already carries one. Re-scoring that block's headroom is a second piece "
-                "of work; six of the eleven South Water placements were reconciled under "
-                "T-0127 and these five wait on it."
-            ),
-        })
     refused.append({
         "structure_id": "blk_lake_clinton",
         "wall": "Lake Street's West Division frontage, across the South Branch",

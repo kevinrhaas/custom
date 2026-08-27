@@ -252,8 +252,8 @@
       "deck_length_m": 13.62,
       "deck_width_m": 8.0,
       "frontage_served_m": 7.62,
-      "wall_to_bank_m": 40.97,
-      "clearance_to_wall_m": 38.14,
+      "wall_to_bank_m": 49.08,
+      "clearance_to_wall_m": 46.23,
       "depth_at_face_m": [
         1.7,
         1.5,
@@ -276,7 +276,7 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        353.27,
+        353.32,
         42.73
       ],
       "bank_tangent": [
@@ -289,27 +289,27 @@
       ],
       "deck_quad_local_enu_m": [
         [
-          362.37,
+          362.42,
           40.76
         ],
         [
-          344.18,
+          344.23,
           40.71
         ],
         [
-          344.16,
-          48.7
+          344.2,
+          48.71
         ],
         [
-          362.35,
+          362.4,
           48.76
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 39.61,
-      "clearance_to_wall_m": 37.71,
+      "wall_to_bank_m": 49.29,
+      "clearance_to_wall_m": 47.36,
       "depth_at_face_m": [
         1.61,
         1.63,
