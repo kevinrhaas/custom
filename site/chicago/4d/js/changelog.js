@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 271, title: 'The point on the fort\u2019s pickets gets a number of its own', kind: 'chore', ts: '2026-08-24T19:38:25.783Z', date: 'Aug 24, 2026, 2:38 PM CT',
+    items: [
+      'Open the card on Fort Dearborn\u2019s stockade. There is a new line on it: the head of a picket, thirty-one centimetres, marked as a reconstruction. That is the sharpened top of every one of the wall\u2019s 768 posts, and until today the only place that number existed was inside the program that builds the wall \u2014 where nothing could grade it and no card could show it.',
+      'Nothing in the town moved, and the wall was rebuilt from scratch to prove that rather than say it. The new file is identical to the old one, byte for byte, and all 21,728 corners of the stockade were compared one by one: not one of them shifted by a thousandth of a millimetre.',
+      'The number is not new either. It is the same one the program had been working out for itself \u2014 a little over one picket\u2019s width \u2014 and it was checked against that working before it was written down, which is why declaring it could not move the wall.',
+      'What changes is what you are told. The point on a picket is invented: nobody wrote down what the head of a Fort Dearborn picket looked like, and the old coloured view that was said to draw them pointed rules the top of the wall flat. That admission now hangs on its own line with its own number instead of sitting inside a note about something else.',
+      'And the reason it was not done yesterday is corrected rather than quietly dropped. Yesterday\u2019s work said the record could not carry this number because the machine that builds the geometry was not on hand. It was on hand. The mistake stays in the project\u2019s own account of itself, with a line through it and the truth beside it.',
+    ] },
   { v: 270, title: 'Six buildings step out of South Water Street', kind: 'fix', ts: '2026-08-24T18:49:53.486Z', date: 'Aug 24, 2026, 1:49 PM CT',
     items: [
       'Walk east along South Water Street. The plank sidewalk on the south side came out in stumps \u2014 nine short pieces, the longest 47 m \u2014 and the reason was never the sidewalk. Eleven documented buildings on that side stood four and a half to eight metres out in the roadway.',

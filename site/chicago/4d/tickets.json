@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 24, 2026, 1:49 PM",
+  "generated_ct": "Aug 24, 2026, 2:39 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3317,6 +3317,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
+    },
+    {
+      "id": "T-0200",
+      "title": "The picket head is a form value on the record, and the reason it was deferred was false",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-24",
+      "closed": "2026-08-24",
+      "pr": "379",
+      "claimed_by": "run 8/24/2026, 2:06:24 PM CT",
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": null
     }
   ]
 }
