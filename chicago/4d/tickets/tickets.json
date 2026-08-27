@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 6:00 PM",
+  "generated_ct": "Aug 27, 2026, 6:11 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3274,7 +3274,7 @@
     {
       "id": "T-0191",
       "title": "Randolph and Washington get the street edge",
-      "state": "open",
+      "state": "split",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -3282,12 +3282,12 @@
       "legacy_id": null,
       "parent": "T-0127",
       "opened": "2026-08-24",
-      "closed": null,
+      "closed": "2026-08-27",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 4:04:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": null
     },
     {
       "id": "T-0192",
@@ -4082,6 +4082,60 @@
       "queue_rank": 58
     },
     {
+      "id": "T-0240",
+      "title": "Randolph gets the street edge",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0191",
+      "opened": "2026-08-27",
+      "closed": "2026-08-27",
+      "pr": "416",
+      "claimed_by": "run 8/27/2026, 4:36:58 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0241",
+      "title": "Washington gets the street edge",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0191",
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 1
+    },
+    {
+      "id": "T-0242",
+      "title": "Two dooryard plantings are dealt onto blocked ground and refused at load, on dev",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": "2026-08-27",
+      "pr": "416",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
       "id": "T-0243",
       "title": "The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev",
       "state": "open",
@@ -4098,6 +4152,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 60
+    },
+    {
+      "id": "T-0244",
+      "title": "T-0194's twelve hitching posts draw no vertices the gate can find, on dev",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
     }
   ]
 }

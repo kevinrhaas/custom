@@ -3860,10 +3860,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 27
-        && frontage.census?.crossings === 14
-        && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 54
+      frontage.census?.records === 5 && frontage.census?.walks === 42
+        && frontage.census?.crossings === 28
+        && frontage.census?.posts === 15 && frontage.census?.fences === 26
+        && frontage.census?.refused === 74
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3912,20 +3912,22 @@ for (const [label, viewport, touch] of [
     // a board whose painted name drifted from the record would be this project
     // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's eighteen (T-0069 laid twenty-one;
-    // T-0198's six reconciled South Water placements welded two runs into one
-    // and T-0199's last five welded two more) and the TWO street-fence meshes
-    // T-0198 split off — one per covered street that carries a fence — so the
-    // boards could leave the shadow map while the fences stayed in it, all on
-    // ONE material, and the painted name on its own mesh, the only thing here
-    // that may carry a texture.
+    // chunks (T-0119), the town street edge's thirty-three (T-0069 laid
+    // twenty-one; T-0198's six reconciled South Water placements welded two runs
+    // into one and T-0199's last five welded two more, taking it to eighteen;
+    // T-0240 laid Randolph Street's thirteen block faces and took it to
+    // thirty-three) and the THREE street-fence meshes — one per covered street
+    // that carries a fence, which T-0198 split off so the boards could leave the
+    // shadow map while the fences stayed in it, and which is why this number
+    // moves with `EDGE_STREETS` — all on ONE material, and the painted name on
+    // its own mesh, the only thing here that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 37,
+        && frontage.meshes === 53,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4329,10 +4331,16 @@ for (const [label, viewport, touch] of [
         march, southWater, gait, track, floor,
       };
     });
+    // T-0240 RAISED EVERY FIGURE HERE by laying Randolph Street: 16 block faces
+    // to 29, 1,297.3 m of walk to 2,468.3, 11 street fence runs to 26 and 96
+    // walking decks to 190. `faces` is an equality and the other three are
+    // floors, which is the same division as before — the face count is the
+    // scope statement and has to be exact, and a walk that shrank under a floor
+    // would be a march quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 16 && edge.walkM >= 1200 && edge.fences >= 10
-        && edge.decks >= 85,
+        && edge.faces === 29 && edge.walkM >= 2400 && edge.fences >= 25
+        && edge.decks >= 185,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
       + `${edge.decks} walking deck(s) registered`);

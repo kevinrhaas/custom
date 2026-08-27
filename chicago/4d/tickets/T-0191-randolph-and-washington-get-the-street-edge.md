@@ -1,7 +1,7 @@
 ---
 id: T-0191
 title: Randolph and Washington get the street edge
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0127
 opened: 2026-08-24
-closed: null
+closed: 2026-08-27
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 4:04:18 PM CT
 blocked_on: null
 needs_bake: false
 ---

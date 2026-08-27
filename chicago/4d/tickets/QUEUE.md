@@ -26,7 +26,7 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0191 — Randolph and Washington get the street edge
+T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0213 — Weight the trade families onto the business front
@@ -102,3 +102,4 @@ T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, t
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
+T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
