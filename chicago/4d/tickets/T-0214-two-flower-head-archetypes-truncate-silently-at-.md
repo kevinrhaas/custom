@@ -1,5 +1,5 @@
 ---
-id: T-0208
+id: T-0214
 title: Two flower-head archetypes truncate silently at their instance cap
 state: open
 epic: FLORA
